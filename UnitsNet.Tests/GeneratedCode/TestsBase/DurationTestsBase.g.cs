@@ -1943,10 +1943,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 wk", new Duration(1, DurationUnit.Week).ToString());
                 Assert.Equal("1 yr", new Duration(1, DurationUnit.Year365).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -1983,10 +1979,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 s", new Duration(0.123456, DurationUnit.Second).ToString("s2"));
                 Assert.Equal("0.123 s", new Duration(0.123456, DurationUnit.Second).ToString("s3"));
                 Assert.Equal("0.1235 s", new Duration(0.123456, DurationUnit.Second).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

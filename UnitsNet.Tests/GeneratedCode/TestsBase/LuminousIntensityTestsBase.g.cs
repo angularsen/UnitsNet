@@ -406,10 +406,6 @@ namespace UnitsNet.Tests
             try {
                 Assert.Equal("1 cd", new LuminousIntensity(1, LuminousIntensityUnit.Candela).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -436,10 +432,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 cd", new LuminousIntensity(0.123456, LuminousIntensityUnit.Candela).ToString("s2"));
                 Assert.Equal("0.123 cd", new LuminousIntensity(0.123456, LuminousIntensityUnit.Candela).ToString("s3"));
                 Assert.Equal("0.1235 cd", new LuminousIntensity(0.123456, LuminousIntensityUnit.Candela).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

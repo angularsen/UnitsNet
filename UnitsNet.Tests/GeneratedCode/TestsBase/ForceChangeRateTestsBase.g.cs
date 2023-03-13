@@ -1007,10 +1007,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 lbf/min", new ForceChangeRate(1, ForceChangeRateUnit.PoundForcePerMinute).ToString());
                 Assert.Equal("1 lbf/s", new ForceChangeRate(1, ForceChangeRateUnit.PoundForcePerSecond).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -1051,10 +1047,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 N/s", new ForceChangeRate(0.123456, ForceChangeRateUnit.NewtonPerSecond).ToString("s2"));
                 Assert.Equal("0.123 N/s", new ForceChangeRate(0.123456, ForceChangeRateUnit.NewtonPerSecond).ToString("s3"));
                 Assert.Equal("0.1235 N/s", new ForceChangeRate(0.123456, ForceChangeRateUnit.NewtonPerSecond).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

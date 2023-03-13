@@ -996,10 +996,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 Tb", new Information(1, InformationUnit.Terabit).ToString());
                 Assert.Equal("1 TB", new Information(1, InformationUnit.Terabyte).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -1051,10 +1047,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 b", new Information(0.123456m, InformationUnit.Bit).ToString("s2"));
                 Assert.Equal("0.123 b", new Information(0.123456m, InformationUnit.Bit).ToString("s3"));
                 Assert.Equal("0.1235 b", new Information(0.123456m, InformationUnit.Bit).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

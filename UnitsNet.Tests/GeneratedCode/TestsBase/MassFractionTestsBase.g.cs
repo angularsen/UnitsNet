@@ -1259,10 +1259,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 ppt", new MassFraction(1, MassFractionUnit.PartPerTrillion).ToString());
                 Assert.Equal("1 %", new MassFraction(1, MassFractionUnit.Percent).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -1312,10 +1308,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s2"));
                 Assert.Equal("0.123", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s3"));
                 Assert.Equal("0.1235", new MassFraction(0.123456, MassFractionUnit.DecimalFraction).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

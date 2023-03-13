@@ -803,10 +803,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 TWh/m³", new EnergyDensity(1, EnergyDensityUnit.TerawattHourPerCubicMeter).ToString());
                 Assert.Equal("1 Wh/m³", new EnergyDensity(1, EnergyDensityUnit.WattHourPerCubicMeter).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -844,10 +840,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 J/m³", new EnergyDensity(0.123456, EnergyDensityUnit.JoulePerCubicMeter).ToString("s2"));
                 Assert.Equal("0.123 J/m³", new EnergyDensity(0.123456, EnergyDensityUnit.JoulePerCubicMeter).ToString("s3"));
                 Assert.Equal("0.1235 J/m³", new EnergyDensity(0.123456, EnergyDensityUnit.JoulePerCubicMeter).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

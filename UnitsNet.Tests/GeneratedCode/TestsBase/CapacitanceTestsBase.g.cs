@@ -601,10 +601,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 nF", new Capacitance(1, CapacitanceUnit.Nanofarad).ToString());
                 Assert.Equal("1 pF", new Capacitance(1, CapacitanceUnit.Picofarad).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -637,10 +633,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 F", new Capacitance(0.123456, CapacitanceUnit.Farad).ToString("s2"));
                 Assert.Equal("0.123 F", new Capacitance(0.123456, CapacitanceUnit.Farad).ToString("s3"));
                 Assert.Equal("0.1235 F", new Capacitance(0.123456, CapacitanceUnit.Farad).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

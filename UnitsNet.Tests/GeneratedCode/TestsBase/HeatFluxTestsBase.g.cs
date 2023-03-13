@@ -1043,10 +1043,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 W/in²", new HeatFlux(1, HeatFluxUnit.WattPerSquareInch).ToString());
                 Assert.Equal("1 W/m²", new HeatFlux(1, HeatFluxUnit.WattPerSquareMeter).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -1090,10 +1086,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 W/m²", new HeatFlux(0.123456, HeatFluxUnit.WattPerSquareMeter).ToString("s2"));
                 Assert.Equal("0.123 W/m²", new HeatFlux(0.123456, HeatFluxUnit.WattPerSquareMeter).ToString("s3"));
                 Assert.Equal("0.1235 W/m²", new HeatFlux(0.123456, HeatFluxUnit.WattPerSquareMeter).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

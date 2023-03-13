@@ -479,10 +479,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 kJ/(mol*K)", new MolarEntropy(1, MolarEntropyUnit.KilojoulePerMoleKelvin).ToString());
                 Assert.Equal("1 MJ/(mol*K)", new MolarEntropy(1, MolarEntropyUnit.MegajoulePerMoleKelvin).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -511,10 +507,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 J/(mol*K)", new MolarEntropy(0.123456, MolarEntropyUnit.JoulePerMoleKelvin).ToString("s2"));
                 Assert.Equal("0.123 J/(mol*K)", new MolarEntropy(0.123456, MolarEntropyUnit.JoulePerMoleKelvin).ToString("s3"));
                 Assert.Equal("0.1235 J/(mol*K)", new MolarEntropy(0.123456, MolarEntropyUnit.JoulePerMoleKelvin).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

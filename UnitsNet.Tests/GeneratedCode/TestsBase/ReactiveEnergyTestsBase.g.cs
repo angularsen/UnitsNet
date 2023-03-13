@@ -479,10 +479,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 Mvarh", new ReactiveEnergy(1, ReactiveEnergyUnit.MegavoltampereReactiveHour).ToString());
                 Assert.Equal("1 varh", new ReactiveEnergy(1, ReactiveEnergyUnit.VoltampereReactiveHour).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -511,10 +507,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 varh", new ReactiveEnergy(0.123456, ReactiveEnergyUnit.VoltampereReactiveHour).ToString("s2"));
                 Assert.Equal("0.123 varh", new ReactiveEnergy(0.123456, ReactiveEnergyUnit.VoltampereReactiveHour).ToString("s3"));
                 Assert.Equal("0.1235 varh", new ReactiveEnergy(0.123456, ReactiveEnergyUnit.VoltampereReactiveHour).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

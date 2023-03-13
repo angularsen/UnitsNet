@@ -503,10 +503,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 kg/m²", new AreaDensity(1, AreaDensityUnit.KilogramPerSquareMeter).ToString());
                 Assert.Equal("1 mg/m²", new AreaDensity(1, AreaDensityUnit.MilligramPerSquareMeter).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -535,10 +531,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 kg/m²", new AreaDensity(0.123456, AreaDensityUnit.KilogramPerSquareMeter).ToString("s2"));
                 Assert.Equal("0.123 kg/m²", new AreaDensity(0.123456, AreaDensityUnit.KilogramPerSquareMeter).ToString("s3"));
                 Assert.Equal("0.1235 kg/m²", new AreaDensity(0.123456, AreaDensityUnit.KilogramPerSquareMeter).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

@@ -731,10 +731,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 nCd/m²", new Luminance(1, LuminanceUnit.NanocandelaPerSquareMeter).ToString());
                 Assert.Equal("1 nt", new Luminance(1, LuminanceUnit.Nit).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -770,10 +766,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 Cd/m²", new Luminance(0.123456, LuminanceUnit.CandelaPerSquareMeter).ToString("s2"));
                 Assert.Equal("0.123 Cd/m²", new Luminance(0.123456, LuminanceUnit.CandelaPerSquareMeter).ToString("s3"));
                 Assert.Equal("0.1235 Cd/m²", new Luminance(0.123456, LuminanceUnit.CandelaPerSquareMeter).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

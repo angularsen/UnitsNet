@@ -605,10 +605,6 @@ namespace UnitsNet.Tests
             }
             Writer.WL($@"
             }}
-            catch
-            {{
-                throw;
-            }}
             finally
             {{
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -640,10 +636,6 @@ namespace UnitsNet.Tests
                 Assert.Equal(""0.12{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s2""));
                 Assert.Equal(""0.123{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s3""));
                 Assert.Equal(""0.1235{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s4""));
-            }}
-            catch
-            {{
-                throw;
             }}
             finally
             {{

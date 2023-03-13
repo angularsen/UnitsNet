@@ -479,10 +479,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 Pa·m³/s", new LeakRate(1, LeakRateUnit.PascalCubicMeterPerSecond).ToString());
                 Assert.Equal("1 Torr·l/s", new LeakRate(1, LeakRateUnit.TorrLiterPerSecond).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -511,10 +507,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 Pa·m³/s", new LeakRate(0.123456, LeakRateUnit.PascalCubicMeterPerSecond).ToString("s2"));
                 Assert.Equal("0.123 Pa·m³/s", new LeakRate(0.123456, LeakRateUnit.PascalCubicMeterPerSecond).ToString("s3"));
                 Assert.Equal("0.1235 Pa·m³/s", new LeakRate(0.123456, LeakRateUnit.PascalCubicMeterPerSecond).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

@@ -406,10 +406,6 @@ namespace UnitsNet.Tests
             try {
                 Assert.Equal("1 H/m", new Permeability(1, PermeabilityUnit.HenryPerMeter).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -436,10 +432,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 H/m", new Permeability(0.123456, PermeabilityUnit.HenryPerMeter).ToString("s2"));
                 Assert.Equal("0.123 H/m", new Permeability(0.123456, PermeabilityUnit.HenryPerMeter).ToString("s3"));
                 Assert.Equal("0.1235 H/m", new Permeability(0.123456, PermeabilityUnit.HenryPerMeter).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

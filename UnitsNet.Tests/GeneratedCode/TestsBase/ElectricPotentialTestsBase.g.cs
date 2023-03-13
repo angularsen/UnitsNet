@@ -687,10 +687,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 nV", new ElectricPotential(1, ElectricPotentialUnit.Nanovolt).ToString());
                 Assert.Equal("1 V", new ElectricPotential(1, ElectricPotentialUnit.Volt).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -722,10 +718,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 V", new ElectricPotential(0.123456, ElectricPotentialUnit.Volt).ToString("s2"));
                 Assert.Equal("0.123 V", new ElectricPotential(0.123456, ElectricPotentialUnit.Volt).ToString("s3"));
                 Assert.Equal("0.1235 V", new ElectricPotential(0.123456, ElectricPotentialUnit.Volt).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

@@ -1211,10 +1211,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 nm/s²", new Acceleration(1, AccelerationUnit.NanometerPerSecondSquared).ToString());
                 Assert.Equal("1 g", new Acceleration(1, AccelerationUnit.StandardGravity).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -1254,10 +1250,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 m/s²", new Acceleration(0.123456, AccelerationUnit.MeterPerSecondSquared).ToString("s2"));
                 Assert.Equal("0.123 m/s²", new Acceleration(0.123456, AccelerationUnit.MeterPerSecondSquared).ToString("s3"));
                 Assert.Equal("0.1235 m/s²", new Acceleration(0.123456, AccelerationUnit.MeterPerSecondSquared).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

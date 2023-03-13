@@ -406,10 +406,6 @@ namespace UnitsNet.Tests
             try {
                 Assert.Equal("1", new Scalar(1, ScalarUnit.Amount).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -436,10 +432,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12", new Scalar(0.123456, ScalarUnit.Amount).ToString("s2"));
                 Assert.Equal("0.123", new Scalar(0.123456, ScalarUnit.Amount).ToString("s3"));
                 Assert.Equal("0.1235", new Scalar(0.123456, ScalarUnit.Amount).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

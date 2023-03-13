@@ -887,10 +887,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 m²/s", new KinematicViscosity(1, KinematicViscosityUnit.SquareMeterPerSecond).ToString());
                 Assert.Equal("1 St", new KinematicViscosity(1, KinematicViscosityUnit.Stokes).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -925,10 +921,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 m²/s", new KinematicViscosity(0.123456, KinematicViscosityUnit.SquareMeterPerSecond).ToString("s2"));
                 Assert.Equal("0.123 m²/s", new KinematicViscosity(0.123456, KinematicViscosityUnit.SquareMeterPerSecond).ToString("s3"));
                 Assert.Equal("0.1235 m²/s", new KinematicViscosity(0.123456, KinematicViscosityUnit.SquareMeterPerSecond).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

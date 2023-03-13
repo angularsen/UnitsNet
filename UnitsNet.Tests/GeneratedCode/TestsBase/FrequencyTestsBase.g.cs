@@ -1011,10 +1011,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 rad/s", new Frequency(1, FrequencyUnit.RadianPerSecond).ToString());
                 Assert.Equal("1 THz", new Frequency(1, FrequencyUnit.Terahertz).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -1053,10 +1049,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 Hz", new Frequency(0.123456, FrequencyUnit.Hertz).ToString("s2"));
                 Assert.Equal("0.123 Hz", new Frequency(0.123456, FrequencyUnit.Hertz).ToString("s3"));
                 Assert.Equal("0.1235 Hz", new Frequency(0.123456, FrequencyUnit.Hertz).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

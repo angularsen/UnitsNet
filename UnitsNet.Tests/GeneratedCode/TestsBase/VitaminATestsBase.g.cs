@@ -406,10 +406,6 @@ namespace UnitsNet.Tests
             try {
                 Assert.Equal("1 IU", new VitaminA(1, VitaminAUnit.InternationalUnit).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -436,10 +432,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 IU", new VitaminA(0.123456, VitaminAUnit.InternationalUnit).ToString("s2"));
                 Assert.Equal("0.123 IU", new VitaminA(0.123456, VitaminAUnit.InternationalUnit).ToString("s3"));
                 Assert.Equal("0.1235 IU", new VitaminA(0.123456, VitaminAUnit.InternationalUnit).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

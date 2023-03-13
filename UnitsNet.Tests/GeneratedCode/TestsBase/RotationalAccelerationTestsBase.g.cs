@@ -539,10 +539,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 rpm/s", new RotationalAcceleration(1, RotationalAccelerationUnit.RevolutionPerMinutePerSecond).ToString());
                 Assert.Equal("1 r/s²", new RotationalAcceleration(1, RotationalAccelerationUnit.RevolutionPerSecondSquared).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -572,10 +568,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 rad/s²", new RotationalAcceleration(0.123456, RotationalAccelerationUnit.RadianPerSecondSquared).ToString("s2"));
                 Assert.Equal("0.123 rad/s²", new RotationalAcceleration(0.123456, RotationalAccelerationUnit.RadianPerSecondSquared).ToString("s3"));
                 Assert.Equal("0.1235 rad/s²", new RotationalAcceleration(0.123456, RotationalAccelerationUnit.RadianPerSecondSquared).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

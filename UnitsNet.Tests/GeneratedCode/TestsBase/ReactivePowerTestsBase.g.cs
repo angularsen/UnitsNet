@@ -515,10 +515,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 Mvar", new ReactivePower(1, ReactivePowerUnit.MegavoltampereReactive).ToString());
                 Assert.Equal("1 var", new ReactivePower(1, ReactivePowerUnit.VoltampereReactive).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -548,10 +544,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 var", new ReactivePower(0.123456, ReactivePowerUnit.VoltampereReactive).ToString("s2"));
                 Assert.Equal("0.123 var", new ReactivePower(0.123456, ReactivePowerUnit.VoltampereReactive).ToString("s3"));
                 Assert.Equal("0.1235 var", new ReactivePower(0.123456, ReactivePowerUnit.VoltampereReactive).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

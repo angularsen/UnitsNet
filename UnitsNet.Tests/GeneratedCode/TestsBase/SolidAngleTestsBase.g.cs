@@ -406,10 +406,6 @@ namespace UnitsNet.Tests
             try {
                 Assert.Equal("1 sr", new SolidAngle(1, SolidAngleUnit.Steradian).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -436,10 +432,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 sr", new SolidAngle(0.123456, SolidAngleUnit.Steradian).ToString("s2"));
                 Assert.Equal("0.123 sr", new SolidAngle(0.123456, SolidAngleUnit.Steradian).ToString("s3"));
                 Assert.Equal("0.1235 sr", new SolidAngle(0.123456, SolidAngleUnit.Steradian).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

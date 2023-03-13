@@ -1501,10 +1501,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 yd²", new Area(1, AreaUnit.SquareYard).ToString());
                 Assert.Equal("1 ft² (US)", new Area(1, AreaUnit.UsSurveySquareFoot).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -1544,10 +1540,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 m²", new Area(0.123456, AreaUnit.SquareMeter).ToString("s2"));
                 Assert.Equal("0.123 m²", new Area(0.123456, AreaUnit.SquareMeter).ToString("s3"));
                 Assert.Equal("0.1235 m²", new Area(0.123456, AreaUnit.SquareMeter).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

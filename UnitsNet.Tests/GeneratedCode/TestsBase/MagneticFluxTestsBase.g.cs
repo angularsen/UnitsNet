@@ -406,10 +406,6 @@ namespace UnitsNet.Tests
             try {
                 Assert.Equal("1 Wb", new MagneticFlux(1, MagneticFluxUnit.Weber).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -436,10 +432,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 Wb", new MagneticFlux(0.123456, MagneticFluxUnit.Weber).ToString("s2"));
                 Assert.Equal("0.123 Wb", new MagneticFlux(0.123456, MagneticFluxUnit.Weber).ToString("s3"));
                 Assert.Equal("0.1235 Wb", new MagneticFlux(0.123456, MagneticFluxUnit.Weber).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

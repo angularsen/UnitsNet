@@ -587,10 +587,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 ppt", new Ratio(1, RatioUnit.PartPerTrillion).ToString());
                 Assert.Equal("1 %", new Ratio(1, RatioUnit.Percent).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -622,10 +618,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s2"));
                 Assert.Equal("0.123", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s3"));
                 Assert.Equal("0.1235", new Ratio(0.123456, RatioUnit.DecimalFraction).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

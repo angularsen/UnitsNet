@@ -551,10 +551,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 nH", new ElectricInductance(1, ElectricInductanceUnit.Nanohenry).ToString());
                 Assert.Equal("1 pH", new ElectricInductance(1, ElectricInductanceUnit.Picohenry).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -585,10 +581,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 H", new ElectricInductance(0.123456, ElectricInductanceUnit.Henry).ToString("s2"));
                 Assert.Equal("0.123 H", new ElectricInductance(0.123456, ElectricInductanceUnit.Henry).ToString("s3"));
                 Assert.Equal("0.1235 H", new ElectricInductance(0.123456, ElectricInductanceUnit.Henry).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

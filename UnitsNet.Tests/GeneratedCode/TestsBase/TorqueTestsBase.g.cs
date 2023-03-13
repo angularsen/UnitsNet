@@ -1343,10 +1343,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 tf·m", new Torque(1, TorqueUnit.TonneForceMeter).ToString());
                 Assert.Equal("1 tf·mm", new Torque(1, TorqueUnit.TonneForceMillimeter).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -1397,10 +1393,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 N·m", new Torque(0.123456, TorqueUnit.NewtonMeter).ToString("s2"));
                 Assert.Equal("0.123 N·m", new Torque(0.123456, TorqueUnit.NewtonMeter).ToString("s3"));
                 Assert.Equal("0.1235 N·m", new Torque(0.123456, TorqueUnit.NewtonMeter).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

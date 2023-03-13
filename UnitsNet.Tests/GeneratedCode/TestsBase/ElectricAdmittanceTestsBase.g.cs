@@ -515,10 +515,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 nS", new ElectricAdmittance(1, ElectricAdmittanceUnit.Nanosiemens).ToString());
                 Assert.Equal("1 S", new ElectricAdmittance(1, ElectricAdmittanceUnit.Siemens).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -548,10 +544,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 S", new ElectricAdmittance(0.123456, ElectricAdmittanceUnit.Siemens).ToString("s2"));
                 Assert.Equal("0.123 S", new ElectricAdmittance(0.123456, ElectricAdmittanceUnit.Siemens).ToString("s3"));
                 Assert.Equal("0.1235 S", new ElectricAdmittance(0.123456, ElectricAdmittanceUnit.Siemens).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

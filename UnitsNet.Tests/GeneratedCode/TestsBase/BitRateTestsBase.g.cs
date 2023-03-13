@@ -1594,10 +1594,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 Tbit/s", new BitRate(1, BitRateUnit.TerabitPerSecond).ToString());
                 Assert.Equal("1 TB/s", new BitRate(1, BitRateUnit.TerabytePerSecond).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -1649,10 +1645,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 bit/s", new BitRate(0.123456m, BitRateUnit.BitPerSecond).ToString("s2"));
                 Assert.Equal("0.123 bit/s", new BitRate(0.123456m, BitRateUnit.BitPerSecond).ToString("s3"));
                 Assert.Equal("0.1235 bit/s", new BitRate(0.123456m, BitRateUnit.BitPerSecond).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

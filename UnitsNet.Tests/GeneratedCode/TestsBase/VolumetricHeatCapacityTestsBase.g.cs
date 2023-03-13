@@ -695,10 +695,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 MJ/m³·°C", new VolumetricHeatCapacity(1, VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius).ToString());
                 Assert.Equal("1 MJ/m³·K", new VolumetricHeatCapacity(1, VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -733,10 +729,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 J/m³·K", new VolumetricHeatCapacity(0.123456, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin).ToString("s2"));
                 Assert.Equal("0.123 J/m³·K", new VolumetricHeatCapacity(0.123456, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin).ToString("s3"));
                 Assert.Equal("0.1235 J/m³·K", new VolumetricHeatCapacity(0.123456, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

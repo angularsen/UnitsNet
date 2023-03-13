@@ -587,10 +587,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 nT", new MagneticField(1, MagneticFieldUnit.Nanotesla).ToString());
                 Assert.Equal("1 T", new MagneticField(1, MagneticFieldUnit.Tesla).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -622,10 +618,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 T", new MagneticField(0.123456, MagneticFieldUnit.Tesla).ToString("s2"));
                 Assert.Equal("0.123 T", new MagneticField(0.123456, MagneticFieldUnit.Tesla).ToString("s3"));
                 Assert.Equal("0.1235 T", new MagneticField(0.123456, MagneticFieldUnit.Tesla).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

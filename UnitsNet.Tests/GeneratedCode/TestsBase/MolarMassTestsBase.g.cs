@@ -1127,10 +1127,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 ng/mol", new MolarMass(1, MolarMassUnit.NanogramPerMole).ToString());
                 Assert.Equal("1 lb/mol", new MolarMass(1, MolarMassUnit.PoundPerMole).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -1169,10 +1165,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 kg/mol", new MolarMass(0.123456, MolarMassUnit.KilogramPerMole).ToString("s2"));
                 Assert.Equal("0.123 kg/mol", new MolarMass(0.123456, MolarMassUnit.KilogramPerMole).ToString("s3"));
                 Assert.Equal("0.1235 kg/mol", new MolarMass(0.123456, MolarMassUnit.KilogramPerMole).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

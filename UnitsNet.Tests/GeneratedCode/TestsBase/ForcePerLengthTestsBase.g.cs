@@ -1913,10 +1913,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 tf/m", new ForcePerLength(1, ForcePerLengthUnit.TonneForcePerMeter).ToString());
                 Assert.Equal("1 tf/mm", new ForcePerLength(1, ForcePerLengthUnit.TonneForcePerMillimeter).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -1980,10 +1976,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 N/m", new ForcePerLength(0.123456, ForcePerLengthUnit.NewtonPerMeter).ToString("s2"));
                 Assert.Equal("0.123 N/m", new ForcePerLength(0.123456, ForcePerLengthUnit.NewtonPerMeter).ToString("s3"));
                 Assert.Equal("0.1235 N/m", new ForcePerLength(0.123456, ForcePerLengthUnit.NewtonPerMeter).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

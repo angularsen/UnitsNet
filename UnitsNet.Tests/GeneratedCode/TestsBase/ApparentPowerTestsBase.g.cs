@@ -565,10 +565,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 mVA", new ApparentPower(1, ApparentPowerUnit.Millivoltampere).ToString());
                 Assert.Equal("1 VA", new ApparentPower(1, ApparentPowerUnit.Voltampere).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -600,10 +596,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 VA", new ApparentPower(0.123456, ApparentPowerUnit.Voltampere).ToString("s2"));
                 Assert.Equal("0.123 VA", new ApparentPower(0.123456, ApparentPowerUnit.Voltampere).ToString("s3"));
                 Assert.Equal("0.1235 VA", new ApparentPower(0.123456, ApparentPowerUnit.Voltampere).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

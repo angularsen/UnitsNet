@@ -2279,10 +2279,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 yd/min", new Speed(1, SpeedUnit.YardPerMinute).ToString());
                 Assert.Equal("1 yd/s", new Speed(1, SpeedUnit.YardPerSecond).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -2341,10 +2337,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 m/s", new Speed(0.123456, SpeedUnit.MeterPerSecond).ToString("s2"));
                 Assert.Equal("0.123 m/s", new Speed(0.123456, SpeedUnit.MeterPerSecond).ToString("s3"));
                 Assert.Equal("0.1235 m/s", new Speed(0.123456, SpeedUnit.MeterPerSecond).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

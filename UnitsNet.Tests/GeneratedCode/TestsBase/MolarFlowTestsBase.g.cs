@@ -695,10 +695,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 lbmol/min", new MolarFlow(1, MolarFlowUnit.PoundMolePerMinute).ToString());
                 Assert.Equal("1 lbmol/s", new MolarFlow(1, MolarFlowUnit.PoundMolePerSecond).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -733,10 +729,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 mol/s", new MolarFlow(0.123456, MolarFlowUnit.MolePerSecond).ToString("s2"));
                 Assert.Equal("0.123 mol/s", new MolarFlow(0.123456, MolarFlowUnit.MolePerSecond).ToString("s3"));
                 Assert.Equal("0.1235 mol/s", new MolarFlow(0.123456, MolarFlowUnit.MolePerSecond).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

@@ -623,10 +623,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 kJ/K", new Entropy(1, EntropyUnit.KilojoulePerKelvin).ToString());
                 Assert.Equal("1 MJ/K", new Entropy(1, EntropyUnit.MegajoulePerKelvin).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -659,10 +655,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 J/K", new Entropy(0.123456, EntropyUnit.JoulePerKelvin).ToString("s2"));
                 Assert.Equal("0.123 J/K", new Entropy(0.123456, EntropyUnit.JoulePerKelvin).ToString("s3"));
                 Assert.Equal("0.1235 J/K", new Entropy(0.123456, EntropyUnit.JoulePerKelvin).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

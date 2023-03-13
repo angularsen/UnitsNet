@@ -791,10 +791,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 Pa⁻¹", new Compressibility(1, CompressibilityUnit.InversePascal).ToString());
                 Assert.Equal("1 psi⁻¹", new Compressibility(1, CompressibilityUnit.InversePoundForcePerSquareInch).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -827,10 +823,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 Pa⁻¹", new Compressibility(0.123456, CompressibilityUnit.InversePascal).ToString("s2"));
                 Assert.Equal("0.123 Pa⁻¹", new Compressibility(0.123456, CompressibilityUnit.InversePascal).ToString("s3"));
                 Assert.Equal("0.1235 Pa⁻¹", new Compressibility(0.123456, CompressibilityUnit.InversePascal).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

@@ -831,10 +831,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 pΩ·cm", new ElectricResistivity(1, ElectricResistivityUnit.PicoohmCentimeter).ToString());
                 Assert.Equal("1 pΩ·m", new ElectricResistivity(1, ElectricResistivityUnit.PicoohmMeter).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -874,10 +870,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 Ω·m", new ElectricResistivity(0.123456, ElectricResistivityUnit.OhmMeter).ToString("s2"));
                 Assert.Equal("0.123 Ω·m", new ElectricResistivity(0.123456, ElectricResistivityUnit.OhmMeter).ToString("s3"));
                 Assert.Equal("0.1235 Ω·m", new ElectricResistivity(0.123456, ElectricResistivityUnit.OhmMeter).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

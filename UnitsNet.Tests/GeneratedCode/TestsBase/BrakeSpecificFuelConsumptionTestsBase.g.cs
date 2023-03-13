@@ -479,10 +479,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 kg/J", new BrakeSpecificFuelConsumption(1, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule).ToString());
                 Assert.Equal("1 lb/hph", new BrakeSpecificFuelConsumption(1, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -511,10 +507,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 kg/J", new BrakeSpecificFuelConsumption(0.123456, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule).ToString("s2"));
                 Assert.Equal("0.123 kg/J", new BrakeSpecificFuelConsumption(0.123456, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule).ToString("s3"));
                 Assert.Equal("0.1235 kg/J", new BrakeSpecificFuelConsumption(0.123456, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

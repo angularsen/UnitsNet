@@ -493,10 +493,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 Mlx", new Illuminance(1, IlluminanceUnit.Megalux).ToString());
                 Assert.Equal("1 mlx", new Illuminance(1, IlluminanceUnit.Millilux).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -526,10 +522,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 lx", new Illuminance(0.123456, IlluminanceUnit.Lux).ToString("s2"));
                 Assert.Equal("0.123 lx", new Illuminance(0.123456, IlluminanceUnit.Lux).ToString("s3"));
                 Assert.Equal("0.1235 lx", new Illuminance(0.123456, IlluminanceUnit.Lux).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

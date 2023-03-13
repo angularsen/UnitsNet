@@ -406,10 +406,6 @@ namespace UnitsNet.Tests
             try {
                 Assert.Equal("1 lm", new LuminousFlux(1, LuminousFluxUnit.Lumen).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -436,10 +432,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 lm", new LuminousFlux(0.123456, LuminousFluxUnit.Lumen).ToString("s2"));
                 Assert.Equal("0.123 lm", new LuminousFlux(0.123456, LuminousFluxUnit.Lumen).ToString("s3"));
                 Assert.Equal("0.1235 lm", new LuminousFlux(0.123456, LuminousFluxUnit.Lumen).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

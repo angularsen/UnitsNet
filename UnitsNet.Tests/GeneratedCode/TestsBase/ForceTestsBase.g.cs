@@ -1325,10 +1325,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 tf (short)", new Force(1, ForceUnit.ShortTonForce).ToString());
                 Assert.Equal("1 tf", new Force(1, ForceUnit.TonneForce).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -1369,10 +1365,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 N", new Force(0.123456, ForceUnit.Newton).ToString("s2"));
                 Assert.Equal("0.123 N", new Force(0.123456, ForceUnit.Newton).ToString("s3"));
                 Assert.Equal("0.1235 N", new Force(0.123456, ForceUnit.Newton).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

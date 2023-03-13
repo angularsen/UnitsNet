@@ -1288,10 +1288,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 TW", new Power(1, PowerUnit.Terawatt).ToString());
                 Assert.Equal("1 W", new Power(1, PowerUnit.Watt).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -1343,10 +1339,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 W", new Power(0.123456m, PowerUnit.Watt).ToString("s2"));
                 Assert.Equal("0.123 W", new Power(0.123456m, PowerUnit.Watt).ToString("s3"));
                 Assert.Equal("0.1235 W", new Power(0.123456m, PowerUnit.Watt).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

@@ -1451,10 +1451,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 Wh/kg", new SpecificEnergy(1, SpecificEnergyUnit.WattHourPerKilogram).ToString());
                 Assert.Equal("1 Wh/lbs", new SpecificEnergy(1, SpecificEnergyUnit.WattHourPerPound).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -1510,10 +1506,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 J/kg", new SpecificEnergy(0.123456, SpecificEnergyUnit.JoulePerKilogram).ToString("s2"));
                 Assert.Equal("0.123 J/kg", new SpecificEnergy(0.123456, SpecificEnergyUnit.JoulePerKilogram).ToString("s3"));
                 Assert.Equal("0.1235 J/kg", new SpecificEnergy(0.123456, SpecificEnergyUnit.JoulePerKilogram).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

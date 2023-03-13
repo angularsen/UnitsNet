@@ -1199,10 +1199,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 tf·m/m", new TorquePerLength(1, TorquePerLengthUnit.TonneForceMeterPerMeter).ToString());
                 Assert.Equal("1 tf·mm/m", new TorquePerLength(1, TorquePerLengthUnit.TonneForceMillimeterPerMeter).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -1249,10 +1245,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 N·m/m", new TorquePerLength(0.123456, TorquePerLengthUnit.NewtonMeterPerMeter).ToString("s2"));
                 Assert.Equal("0.123 N·m/m", new TorquePerLength(0.123456, TorquePerLengthUnit.NewtonMeterPerMeter).ToString("s3"));
                 Assert.Equal("0.1235 N·m/m", new TorquePerLength(0.123456, TorquePerLengthUnit.NewtonMeterPerMeter).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

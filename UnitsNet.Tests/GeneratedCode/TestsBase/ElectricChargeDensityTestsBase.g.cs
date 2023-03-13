@@ -406,10 +406,6 @@ namespace UnitsNet.Tests
             try {
                 Assert.Equal("1 C/m³", new ElectricChargeDensity(1, ElectricChargeDensityUnit.CoulombPerCubicMeter).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -436,10 +432,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 C/m³", new ElectricChargeDensity(0.123456, ElectricChargeDensityUnit.CoulombPerCubicMeter).ToString("s2"));
                 Assert.Equal("0.123 C/m³", new ElectricChargeDensity(0.123456, ElectricChargeDensityUnit.CoulombPerCubicMeter).ToString("s3"));
                 Assert.Equal("0.1235 C/m³", new ElectricChargeDensity(0.123456, ElectricChargeDensityUnit.CoulombPerCubicMeter).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

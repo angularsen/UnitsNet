@@ -1115,10 +1115,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 pL/L", new VolumeConcentration(1, VolumeConcentrationUnit.PicolitersPerLiter).ToString());
                 Assert.Equal("1 pL/mL", new VolumeConcentration(1, VolumeConcentrationUnit.PicolitersPerMililiter).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -1164,10 +1160,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12", new VolumeConcentration(0.123456, VolumeConcentrationUnit.DecimalFraction).ToString("s2"));
                 Assert.Equal("0.123", new VolumeConcentration(0.123456, VolumeConcentrationUnit.DecimalFraction).ToString("s3"));
                 Assert.Equal("0.1235", new VolumeConcentration(0.123456, VolumeConcentrationUnit.DecimalFraction).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

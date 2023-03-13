@@ -831,10 +831,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 TW", new Luminosity(1, LuminosityUnit.Terawatt).ToString());
                 Assert.Equal("1 W", new Luminosity(1, LuminosityUnit.Watt).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -874,10 +870,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 W", new Luminosity(0.123456, LuminosityUnit.Watt).ToString("s2"));
                 Assert.Equal("0.123 W", new Luminosity(0.123456, LuminosityUnit.Watt).ToString("s3"));
                 Assert.Equal("0.1235 W", new Luminosity(0.123456, LuminosityUnit.Watt).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {

@@ -719,10 +719,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 m°C", new Temperature(1, TemperatureUnit.MillidegreeCelsius).ToString());
                 Assert.Equal("1 T⊙", new Temperature(1, TemperatureUnit.SolarTemperature).ToString());
             }
-            catch
-            {
-                throw;
-            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -758,10 +754,6 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 K", new Temperature(0.123456, TemperatureUnit.Kelvin).ToString("s2"));
                 Assert.Equal("0.123 K", new Temperature(0.123456, TemperatureUnit.Kelvin).ToString("s3"));
                 Assert.Equal("0.1235 K", new Temperature(0.123456, TemperatureUnit.Kelvin).ToString("s4"));
-            }
-            catch
-            {
-                throw;
             }
             finally
             {
