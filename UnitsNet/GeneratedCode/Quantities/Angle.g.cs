@@ -18,12 +18,9 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Resources;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -68,29 +65,27 @@ namespace UnitsNet
             Info = new QuantityInfo<AngleUnit>("Angle",
                 new UnitInfo<AngleUnit>[]
                 {
-                    new UnitInfo<AngleUnit>(AngleUnit.Arcminute, "Arcminutes", BaseUnits.Undefined),
-                    new UnitInfo<AngleUnit>(AngleUnit.Arcsecond, "Arcseconds", BaseUnits.Undefined),
-                    new UnitInfo<AngleUnit>(AngleUnit.Centiradian, "Centiradians", BaseUnits.Undefined),
-                    new UnitInfo<AngleUnit>(AngleUnit.Deciradian, "Deciradians", BaseUnits.Undefined),
-                    new UnitInfo<AngleUnit>(AngleUnit.Degree, "Degrees", BaseUnits.Undefined),
-                    new UnitInfo<AngleUnit>(AngleUnit.Gradian, "Gradians", BaseUnits.Undefined),
-                    new UnitInfo<AngleUnit>(AngleUnit.Microdegree, "Microdegrees", BaseUnits.Undefined),
-                    new UnitInfo<AngleUnit>(AngleUnit.Microradian, "Microradians", BaseUnits.Undefined),
-                    new UnitInfo<AngleUnit>(AngleUnit.Millidegree, "Millidegrees", BaseUnits.Undefined),
-                    new UnitInfo<AngleUnit>(AngleUnit.Milliradian, "Milliradians", BaseUnits.Undefined),
-                    new UnitInfo<AngleUnit>(AngleUnit.Nanodegree, "Nanodegrees", BaseUnits.Undefined),
-                    new UnitInfo<AngleUnit>(AngleUnit.Nanoradian, "Nanoradians", BaseUnits.Undefined),
-                    new UnitInfo<AngleUnit>(AngleUnit.NatoMil, "NatoMils", BaseUnits.Undefined),
-                    new UnitInfo<AngleUnit>(AngleUnit.Radian, "Radians", BaseUnits.Undefined),
-                    new UnitInfo<AngleUnit>(AngleUnit.Revolution, "Revolutions", BaseUnits.Undefined),
-                    new UnitInfo<AngleUnit>(AngleUnit.Tilt, "Tilt", BaseUnits.Undefined),
+                    new UnitInfo<AngleUnit>(AngleUnit.Arcminute, "Arcminutes", BaseUnits.Undefined, "Angle"),
+                    new UnitInfo<AngleUnit>(AngleUnit.Arcsecond, "Arcseconds", BaseUnits.Undefined, "Angle"),
+                    new UnitInfo<AngleUnit>(AngleUnit.Centiradian, "Centiradians", BaseUnits.Undefined, "Angle"),
+                    new UnitInfo<AngleUnit>(AngleUnit.Deciradian, "Deciradians", BaseUnits.Undefined, "Angle"),
+                    new UnitInfo<AngleUnit>(AngleUnit.Degree, "Degrees", BaseUnits.Undefined, "Angle"),
+                    new UnitInfo<AngleUnit>(AngleUnit.Gradian, "Gradians", BaseUnits.Undefined, "Angle"),
+                    new UnitInfo<AngleUnit>(AngleUnit.Microdegree, "Microdegrees", BaseUnits.Undefined, "Angle"),
+                    new UnitInfo<AngleUnit>(AngleUnit.Microradian, "Microradians", BaseUnits.Undefined, "Angle"),
+                    new UnitInfo<AngleUnit>(AngleUnit.Millidegree, "Millidegrees", BaseUnits.Undefined, "Angle"),
+                    new UnitInfo<AngleUnit>(AngleUnit.Milliradian, "Milliradians", BaseUnits.Undefined, "Angle"),
+                    new UnitInfo<AngleUnit>(AngleUnit.Nanodegree, "Nanodegrees", BaseUnits.Undefined, "Angle"),
+                    new UnitInfo<AngleUnit>(AngleUnit.Nanoradian, "Nanoradians", BaseUnits.Undefined, "Angle"),
+                    new UnitInfo<AngleUnit>(AngleUnit.NatoMil, "NatoMils", BaseUnits.Undefined, "Angle"),
+                    new UnitInfo<AngleUnit>(AngleUnit.Radian, "Radians", BaseUnits.Undefined, "Angle"),
+                    new UnitInfo<AngleUnit>(AngleUnit.Revolution, "Revolutions", BaseUnits.Undefined, "Angle"),
+                    new UnitInfo<AngleUnit>(AngleUnit.Tilt, "Tilt", BaseUnits.Undefined, "Angle"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
-
-            Abbreviations = new ConcurrentDictionary<(CultureInfo Culture, AngleUnit Unit), List<string>>();
         }
 
         /// <summary>
@@ -156,11 +151,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="Zero"/>
         public static Angle AdditiveIdentity => Zero;
-
-        /// <summary>
-        /// The per-culture abbreviations. To add a custom default abbreviation, add to the beginning of the list.
-        /// </summary>
-        public static IDictionary<(CultureInfo Culture, AngleUnit Unit), List<string>> Abbreviations { get; }
 
         #endregion
  
@@ -327,7 +317,10 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        public static string GetAbbreviation(AngleUnit unit) => GetAbbreviation(unit, null);
+        public static string GetAbbreviation(AngleUnit unit)
+        {
+            return GetAbbreviation(unit, null);
+        }
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -337,34 +330,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(AngleUnit unit, IFormatProvider? provider)
         {
-            return GetAbbreviations(unit, provider as CultureInfo).FirstOrDefault() ?? string.Empty;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="unit"></param>
-        /// <param name="culture"></param>
-        /// <returns></returns>
-        public static IReadOnlyList<string> GetAbbreviations(AngleUnit unit, CultureInfo? culture = null)
-        {
-            culture ??= CultureInfo.CurrentCulture;
-
-            if(!Abbreviations.TryGetValue((culture, unit), out var abbreviations))
-            {
-                abbreviations = new List<string>();
-
-                const string resourceName = $"UnitsNet.GeneratedCode.Resources.Angle";
-                var resourceManager = new ResourceManager(resourceName, typeof(Angle).Assembly);
-
-                var abbreviationsString = resourceManager.GetString(unit.ToString(), culture);
-                if(abbreviationsString is not null)
-                    abbreviations.AddRange(abbreviationsString.Split(','));
-
-                Abbreviations.Add((culture, unit), abbreviations);
-            }
-
-            return abbreviations;
+            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -1086,9 +1052,6 @@ namespace UnitsNet
         IQuantity<AngleUnit> IQuantity<AngleUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
-
-        /// <inheritdoc/>
-        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

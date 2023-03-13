@@ -1,7 +1,7 @@
-InverseAtmosphere=atm⁻¹,1/atm
-InverseBar=bar⁻¹,1/bar
-InverseKilopascal=kPa⁻¹,1/kPa
-InverseMegapascal=MPa⁻¹,1/MPa
-InverseMillibar=mbar⁻¹,1/mbar
-InversePascal=Pa⁻¹,1/Pa
-InversePoundForcePerSquareInch=psi⁻¹,1/psi
+InverseAtmospheres=atm⁻¹,1/atm
+InverseBars=bar⁻¹,1/bar
+InverseKilopascals=kPa⁻¹,1/kPa
+InverseMegapascals=MPa⁻¹,1/MPa
+InverseMillibars=mbar⁻¹,1/mbar
+InversePascals=Pa⁻¹,1/Pa
+InversePoundsForcePerSquareInch=psi⁻¹,1/psi

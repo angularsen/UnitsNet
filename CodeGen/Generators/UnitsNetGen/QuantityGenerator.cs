@@ -37,12 +37,9 @@ namespace CodeGen.Generators.UnitsNetGen
             Writer.WL(GeneratedFileHeader);
             Writer.WL(@"
 using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Resources;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -138,7 +135,7 @@ namespace UnitsNet
                 if (baseUnits == null)
                 {
                     Writer.WL($@"
-                    new UnitInfo<{_unitEnumName}>({_unitEnumName}.{unit.SingularName}, ""{unit.PluralName}"", BaseUnits.Undefined),");
+                    new UnitInfo<{_unitEnumName}>({_unitEnumName}.{unit.SingularName}, ""{unit.PluralName}"", BaseUnits.Undefined, ""{_quantity.Name}""),");
                 }
                 else
                 {
@@ -155,7 +152,7 @@ namespace UnitsNet
                         }.Where(str => str != null));
 
                     Writer.WL($@"
-                    new UnitInfo<{_unitEnumName}>({_unitEnumName}.{unit.SingularName}, ""{unit.PluralName}"", new BaseUnits({baseUnitsCtorArgs})),");
+                    new UnitInfo<{_unitEnumName}>({_unitEnumName}.{unit.SingularName}, ""{unit.PluralName}"", new BaseUnits({baseUnitsCtorArgs}), ""{_quantity.Name}""),");
                 }
             }
 
@@ -165,8 +162,6 @@ namespace UnitsNet
 
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
-
-            Abbreviations = new ConcurrentDictionary<(CultureInfo Culture, {_unitEnumName} Unit), List<string>>();
         }}
 ");
         }
@@ -261,12 +256,6 @@ namespace UnitsNet
             }
 
             Writer.WL($@"
-
-        /// <summary>
-        /// The per-culture abbreviations. To add a custom default abbreviation, add to the beginning of the list.
-        /// </summary>
-        public static IDictionary<(CultureInfo Culture, {_unitEnumName} Unit), List<string>> Abbreviations {{ get; }}
-
         #endregion
  ");
         }
@@ -375,7 +364,10 @@ namespace UnitsNet
         /// </summary>
         /// <param name=""unit"">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        public static string GetAbbreviation({_unitEnumName} unit) => GetAbbreviation(unit, null);
+        public static string GetAbbreviation({_unitEnumName} unit)
+        {{
+            return GetAbbreviation(unit, null);
+        }}
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -385,34 +377,7 @@ namespace UnitsNet
         /// <param name=""provider"">Format to use for localization. Defaults to <see cref=""CultureInfo.CurrentCulture"" /> if null.</param>
         public static string GetAbbreviation({_unitEnumName} unit, IFormatProvider? provider)
         {{
-            return GetAbbreviations(unit, provider as CultureInfo).FirstOrDefault() ?? string.Empty;
-        }}
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name=""unit""></param>
-        /// <param name=""culture""></param>
-        /// <returns></returns>
-        public static IReadOnlyList<string> GetAbbreviations({_unitEnumName} unit, CultureInfo? culture = null)
-        {{
-            culture ??= CultureInfo.CurrentCulture;
-
-            if(!Abbreviations.TryGetValue((culture, unit), out var abbreviations))
-            {{
-                abbreviations = new List<string>();
-
-                const string resourceName = $""UnitsNet.GeneratedCode.Resources.{_quantity.Name}"";
-                var resourceManager = new ResourceManager(resourceName, typeof({_quantity.Name}).Assembly);
-
-                var abbreviationsString = resourceManager.GetString(unit.ToString(), culture);
-                if(abbreviationsString is not null)
-                    abbreviations.AddRange(abbreviationsString.Split(','));
-
-                Abbreviations.Add((culture, unit), abbreviations);
-            }}
-
-            return abbreviations;
+            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }}
 
         #endregion
@@ -1116,10 +1081,6 @@ namespace UnitsNet
         private void GenerateToString()
         {
             Writer.WL($@"
-
-        /// <inheritdoc/>
-        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
-
         #region ToString Methods
 
         /// <summary>

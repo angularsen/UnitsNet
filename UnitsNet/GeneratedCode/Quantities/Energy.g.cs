@@ -18,12 +18,9 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Resources;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -68,51 +65,49 @@ namespace UnitsNet
             Info = new QuantityInfo<EnergyUnit>("Energy",
                 new UnitInfo<EnergyUnit>[]
                 {
-                    new UnitInfo<EnergyUnit>(EnergyUnit.BritishThermalUnit, "BritishThermalUnits", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Calorie, "Calories", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.DecathermEc, "DecathermsEc", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.DecathermImperial, "DecathermsImperial", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.DecathermUs, "DecathermsUs", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.ElectronVolt, "ElectronVolts", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Erg, "Ergs", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.FootPound, "FootPounds", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.GigabritishThermalUnit, "GigabritishThermalUnits", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.GigaelectronVolt, "GigaelectronVolts", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Gigajoule, "Gigajoules", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.GigawattDay, "GigawattDays", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.GigawattHour, "GigawattHours", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.HorsepowerHour, "HorsepowerHours", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Joule, "Joules", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second)),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.KilobritishThermalUnit, "KilobritishThermalUnits", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Kilocalorie, "Kilocalories", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.KiloelectronVolt, "KiloelectronVolts", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Kilojoule, "Kilojoules", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.KilowattDay, "KilowattDays", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.KilowattHour, "KilowattHours", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.MegabritishThermalUnit, "MegabritishThermalUnits", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Megacalorie, "Megacalories", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.MegaelectronVolt, "MegaelectronVolts", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Megajoule, "Megajoules", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.MegawattDay, "MegawattDays", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.MegawattHour, "MegawattHours", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Millijoule, "Millijoules", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Petajoule, "Petajoules", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.TeraelectronVolt, "TeraelectronVolts", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Terajoule, "Terajoules", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.TerawattDay, "TerawattDays", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.TerawattHour, "TerawattHours", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.ThermEc, "ThermsEc", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.ThermImperial, "ThermsImperial", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.ThermUs, "ThermsUs", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.WattDay, "WattDays", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.WattHour, "WattHours", BaseUnits.Undefined),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.BritishThermalUnit, "BritishThermalUnits", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Calorie, "Calories", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.DecathermEc, "DecathermsEc", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.DecathermImperial, "DecathermsImperial", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.DecathermUs, "DecathermsUs", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.ElectronVolt, "ElectronVolts", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Erg, "Ergs", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.FootPound, "FootPounds", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.GigabritishThermalUnit, "GigabritishThermalUnits", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.GigaelectronVolt, "GigaelectronVolts", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Gigajoule, "Gigajoules", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.GigawattDay, "GigawattDays", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.GigawattHour, "GigawattHours", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.HorsepowerHour, "HorsepowerHours", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Joule, "Joules", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.KilobritishThermalUnit, "KilobritishThermalUnits", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Kilocalorie, "Kilocalories", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.KiloelectronVolt, "KiloelectronVolts", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Kilojoule, "Kilojoules", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.KilowattDay, "KilowattDays", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.KilowattHour, "KilowattHours", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.MegabritishThermalUnit, "MegabritishThermalUnits", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Megacalorie, "Megacalories", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.MegaelectronVolt, "MegaelectronVolts", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Megajoule, "Megajoules", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.MegawattDay, "MegawattDays", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.MegawattHour, "MegawattHours", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Millijoule, "Millijoules", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Petajoule, "Petajoules", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.TeraelectronVolt, "TeraelectronVolts", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Terajoule, "Terajoules", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.TerawattDay, "TerawattDays", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.TerawattHour, "TerawattHours", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.ThermEc, "ThermsEc", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.ThermImperial, "ThermsImperial", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.ThermUs, "ThermsUs", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.WattDay, "WattDays", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.WattHour, "WattHours", BaseUnits.Undefined, "Energy"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
-
-            Abbreviations = new ConcurrentDictionary<(CultureInfo Culture, EnergyUnit Unit), List<string>>();
         }
 
         /// <summary>
@@ -178,11 +173,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="Zero"/>
         public static Energy AdditiveIdentity => Zero;
-
-        /// <summary>
-        /// The per-culture abbreviations. To add a custom default abbreviation, add to the beginning of the list.
-        /// </summary>
-        public static IDictionary<(CultureInfo Culture, EnergyUnit Unit), List<string>> Abbreviations { get; }
 
         #endregion
  
@@ -503,7 +493,10 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        public static string GetAbbreviation(EnergyUnit unit) => GetAbbreviation(unit, null);
+        public static string GetAbbreviation(EnergyUnit unit)
+        {
+            return GetAbbreviation(unit, null);
+        }
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -513,34 +506,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(EnergyUnit unit, IFormatProvider? provider)
         {
-            return GetAbbreviations(unit, provider as CultureInfo).FirstOrDefault() ?? string.Empty;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="unit"></param>
-        /// <param name="culture"></param>
-        /// <returns></returns>
-        public static IReadOnlyList<string> GetAbbreviations(EnergyUnit unit, CultureInfo? culture = null)
-        {
-            culture ??= CultureInfo.CurrentCulture;
-
-            if(!Abbreviations.TryGetValue((culture, unit), out var abbreviations))
-            {
-                abbreviations = new List<string>();
-
-                const string resourceName = $"UnitsNet.GeneratedCode.Resources.Energy";
-                var resourceManager = new ResourceManager(resourceName, typeof(Energy).Assembly);
-
-                var abbreviationsString = resourceManager.GetString(unit.ToString(), culture);
-                if(abbreviationsString is not null)
-                    abbreviations.AddRange(abbreviationsString.Split(','));
-
-                Abbreviations.Add((culture, unit), abbreviations);
-            }
-
-            return abbreviations;
+            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -1526,9 +1492,6 @@ namespace UnitsNet
         IQuantity<EnergyUnit> IQuantity<EnergyUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
-
-        /// <inheritdoc/>
-        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

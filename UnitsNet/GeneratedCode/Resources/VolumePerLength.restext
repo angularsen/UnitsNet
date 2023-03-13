@@ -1,7 +1,7 @@
-CubicMeterPerMeter=m³/m
-CubicYardPerFoot=yd³/ft
-CubicYardPerUsSurveyFoot=yd³/ftUS
-LiterPerKilometer=l/km
-LiterPerMeter=l/m
-LiterPerMillimeter=l/mm
-OilBarrelPerFoot=bbl/ft
+CubicMetersPerMeter=m³/m
+CubicYardsPerFoot=yd³/ft
+CubicYardsPerUsSurveyFoot=yd³/ftUS
+LitersPerKilometer=l/km
+LitersPerMeter=l/m
+LitersPerMillimeter=l/mm
+OilBarrelsPerFoot=bbl/ft

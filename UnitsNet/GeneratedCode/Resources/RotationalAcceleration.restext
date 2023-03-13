@@ -1,4 +1,4 @@
-DegreePerSecondSquared=°/s²,deg/s²
-RadianPerSecondSquared=rad/s²
-RevolutionPerMinutePerSecond=rpm/s
-RevolutionPerSecondSquared=r/s²
+DegreesPerSecondSquared=°/s²,deg/s²
+RadiansPerSecondSquared=rad/s²
+RevolutionsPerMinutePerSecond=rpm/s
+RevolutionsPerSecondSquared=r/s²

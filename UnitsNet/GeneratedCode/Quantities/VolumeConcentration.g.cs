@@ -18,12 +18,9 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Resources;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -71,33 +68,31 @@ namespace UnitsNet
             Info = new QuantityInfo<VolumeConcentrationUnit>("VolumeConcentration",
                 new UnitInfo<VolumeConcentrationUnit>[]
                 {
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.CentilitersPerLiter, "CentilitersPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.CentilitersPerMililiter, "CentilitersPerMililiter", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.DecilitersPerLiter, "DecilitersPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.DecilitersPerMililiter, "DecilitersPerMililiter", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.DecimalFraction, "DecimalFractions", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.LitersPerLiter, "LitersPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.LitersPerMililiter, "LitersPerMililiter", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.MicrolitersPerLiter, "MicrolitersPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.MicrolitersPerMililiter, "MicrolitersPerMililiter", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.MillilitersPerLiter, "MillilitersPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.MillilitersPerMililiter, "MillilitersPerMililiter", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.NanolitersPerLiter, "NanolitersPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.NanolitersPerMililiter, "NanolitersPerMililiter", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PartPerBillion, "PartsPerBillion", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PartPerMillion, "PartsPerMillion", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PartPerThousand, "PartsPerThousand", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PartPerTrillion, "PartsPerTrillion", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.Percent, "Percent", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PicolitersPerLiter, "PicolitersPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PicolitersPerMililiter, "PicolitersPerMililiter", BaseUnits.Undefined),
+                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.CentilitersPerLiter, "CentilitersPerLiter", BaseUnits.Undefined, "VolumeConcentration"),
+                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.CentilitersPerMililiter, "CentilitersPerMililiter", BaseUnits.Undefined, "VolumeConcentration"),
+                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.DecilitersPerLiter, "DecilitersPerLiter", BaseUnits.Undefined, "VolumeConcentration"),
+                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.DecilitersPerMililiter, "DecilitersPerMililiter", BaseUnits.Undefined, "VolumeConcentration"),
+                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.DecimalFraction, "DecimalFractions", BaseUnits.Undefined, "VolumeConcentration"),
+                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.LitersPerLiter, "LitersPerLiter", BaseUnits.Undefined, "VolumeConcentration"),
+                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.LitersPerMililiter, "LitersPerMililiter", BaseUnits.Undefined, "VolumeConcentration"),
+                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.MicrolitersPerLiter, "MicrolitersPerLiter", BaseUnits.Undefined, "VolumeConcentration"),
+                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.MicrolitersPerMililiter, "MicrolitersPerMililiter", BaseUnits.Undefined, "VolumeConcentration"),
+                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.MillilitersPerLiter, "MillilitersPerLiter", BaseUnits.Undefined, "VolumeConcentration"),
+                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.MillilitersPerMililiter, "MillilitersPerMililiter", BaseUnits.Undefined, "VolumeConcentration"),
+                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.NanolitersPerLiter, "NanolitersPerLiter", BaseUnits.Undefined, "VolumeConcentration"),
+                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.NanolitersPerMililiter, "NanolitersPerMililiter", BaseUnits.Undefined, "VolumeConcentration"),
+                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PartPerBillion, "PartsPerBillion", BaseUnits.Undefined, "VolumeConcentration"),
+                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PartPerMillion, "PartsPerMillion", BaseUnits.Undefined, "VolumeConcentration"),
+                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PartPerThousand, "PartsPerThousand", BaseUnits.Undefined, "VolumeConcentration"),
+                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PartPerTrillion, "PartsPerTrillion", BaseUnits.Undefined, "VolumeConcentration"),
+                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.Percent, "Percent", BaseUnits.Undefined, "VolumeConcentration"),
+                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PicolitersPerLiter, "PicolitersPerLiter", BaseUnits.Undefined, "VolumeConcentration"),
+                    new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PicolitersPerMililiter, "PicolitersPerMililiter", BaseUnits.Undefined, "VolumeConcentration"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
-
-            Abbreviations = new ConcurrentDictionary<(CultureInfo Culture, VolumeConcentrationUnit Unit), List<string>>();
         }
 
         /// <summary>
@@ -163,11 +158,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="Zero"/>
         public static VolumeConcentration AdditiveIdentity => Zero;
-
-        /// <summary>
-        /// The per-culture abbreviations. To add a custom default abbreviation, add to the beginning of the list.
-        /// </summary>
-        public static IDictionary<(CultureInfo Culture, VolumeConcentrationUnit Unit), List<string>> Abbreviations { get; }
 
         #endregion
  
@@ -362,7 +352,10 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        public static string GetAbbreviation(VolumeConcentrationUnit unit) => GetAbbreviation(unit, null);
+        public static string GetAbbreviation(VolumeConcentrationUnit unit)
+        {
+            return GetAbbreviation(unit, null);
+        }
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -372,34 +365,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(VolumeConcentrationUnit unit, IFormatProvider? provider)
         {
-            return GetAbbreviations(unit, provider as CultureInfo).FirstOrDefault() ?? string.Empty;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="unit"></param>
-        /// <param name="culture"></param>
-        /// <returns></returns>
-        public static IReadOnlyList<string> GetAbbreviations(VolumeConcentrationUnit unit, CultureInfo? culture = null)
-        {
-            culture ??= CultureInfo.CurrentCulture;
-
-            if(!Abbreviations.TryGetValue((culture, unit), out var abbreviations))
-            {
-                abbreviations = new List<string>();
-
-                const string resourceName = $"UnitsNet.GeneratedCode.Resources.VolumeConcentration";
-                var resourceManager = new ResourceManager(resourceName, typeof(VolumeConcentration).Assembly);
-
-                var abbreviationsString = resourceManager.GetString(unit.ToString(), culture);
-                if(abbreviationsString is not null)
-                    abbreviations.AddRange(abbreviationsString.Split(','));
-
-                Abbreviations.Add((culture, unit), abbreviations);
-            }
-
-            return abbreviations;
+            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -1169,9 +1135,6 @@ namespace UnitsNet
         IQuantity<VolumeConcentrationUnit> IQuantity<VolumeConcentrationUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
-
-        /// <inheritdoc/>
-        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

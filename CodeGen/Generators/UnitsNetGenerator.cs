@@ -163,7 +163,7 @@ namespace CodeGen.Generators
                             {
                                 if(localization.Abbreviations.Any())
                                 {
-                                    writer.Write($"{unit.SingularName}=");
+                                    writer.Write($"{unit.PluralName}=");
 
                                     for(int i = 0; i < localization.Abbreviations.Length; i++)
                                     {

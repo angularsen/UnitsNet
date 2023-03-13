@@ -1,7 +1,7 @@
-JoulePerSquareCentimeter=J/cm²
-JoulePerSquareMeter=J/m²
-JoulePerSquareMillimeter=J/mm²
-KilojoulePerSquareMeter=kJ/m²
-KilowattHourPerSquareMeter=kWh/m²
-MillijoulePerSquareCentimeter=mJ/cm²
-WattHourPerSquareMeter=Wh/m²
+JoulesPerSquareCentimeter=J/cm²
+JoulesPerSquareMeter=J/m²
+JoulesPerSquareMillimeter=J/mm²
+KilojoulesPerSquareMeter=kJ/m²
+KilowattHoursPerSquareMeter=kWh/m²
+MillijoulesPerSquareCentimeter=mJ/cm²
+WattHoursPerSquareMeter=Wh/m²

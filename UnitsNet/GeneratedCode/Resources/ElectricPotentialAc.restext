@@ -1,5 +1,5 @@
-KilovoltAc=kVac
-MegavoltAc=MVac
-MicrovoltAc=µVac
-MillivoltAc=mVac
-VoltAc=Vac
+KilovoltsAc=kVac
+MegavoltsAc=MVac
+MicrovoltsAc=µVac
+MillivoltsAc=mVac
+VoltsAc=Vac

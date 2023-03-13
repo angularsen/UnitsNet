@@ -18,12 +18,9 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Resources;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -68,34 +65,32 @@ namespace UnitsNet
             Info = new QuantityInfo<TorquePerLengthUnit>("TorquePerLength",
                 new UnitInfo<TorquePerLengthUnit>[]
                 {
-                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.KilogramForceCentimeterPerMeter, "KilogramForceCentimetersPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.KilogramForceMeterPerMeter, "KilogramForceMetersPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.KilogramForceMillimeterPerMeter, "KilogramForceMillimetersPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.KilonewtonCentimeterPerMeter, "KilonewtonCentimetersPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.KilonewtonMeterPerMeter, "KilonewtonMetersPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.KilonewtonMillimeterPerMeter, "KilonewtonMillimetersPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.KilopoundForceFootPerFoot, "KilopoundForceFeetPerFoot", BaseUnits.Undefined),
-                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.KilopoundForceInchPerFoot, "KilopoundForceInchesPerFoot", BaseUnits.Undefined),
-                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.MeganewtonCentimeterPerMeter, "MeganewtonCentimetersPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.MeganewtonMeterPerMeter, "MeganewtonMetersPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.MeganewtonMillimeterPerMeter, "MeganewtonMillimetersPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.MegapoundForceFootPerFoot, "MegapoundForceFeetPerFoot", BaseUnits.Undefined),
-                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.MegapoundForceInchPerFoot, "MegapoundForceInchesPerFoot", BaseUnits.Undefined),
-                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.NewtonCentimeterPerMeter, "NewtonCentimetersPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.NewtonMeterPerMeter, "NewtonMetersPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.NewtonMillimeterPerMeter, "NewtonMillimetersPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.PoundForceFootPerFoot, "PoundForceFeetPerFoot", BaseUnits.Undefined),
-                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.PoundForceInchPerFoot, "PoundForceInchesPerFoot", BaseUnits.Undefined),
-                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.TonneForceCentimeterPerMeter, "TonneForceCentimetersPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.TonneForceMeterPerMeter, "TonneForceMetersPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.TonneForceMillimeterPerMeter, "TonneForceMillimetersPerMeter", BaseUnits.Undefined),
+                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.KilogramForceCentimeterPerMeter, "KilogramForceCentimetersPerMeter", BaseUnits.Undefined, "TorquePerLength"),
+                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.KilogramForceMeterPerMeter, "KilogramForceMetersPerMeter", BaseUnits.Undefined, "TorquePerLength"),
+                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.KilogramForceMillimeterPerMeter, "KilogramForceMillimetersPerMeter", BaseUnits.Undefined, "TorquePerLength"),
+                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.KilonewtonCentimeterPerMeter, "KilonewtonCentimetersPerMeter", BaseUnits.Undefined, "TorquePerLength"),
+                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.KilonewtonMeterPerMeter, "KilonewtonMetersPerMeter", BaseUnits.Undefined, "TorquePerLength"),
+                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.KilonewtonMillimeterPerMeter, "KilonewtonMillimetersPerMeter", BaseUnits.Undefined, "TorquePerLength"),
+                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.KilopoundForceFootPerFoot, "KilopoundForceFeetPerFoot", BaseUnits.Undefined, "TorquePerLength"),
+                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.KilopoundForceInchPerFoot, "KilopoundForceInchesPerFoot", BaseUnits.Undefined, "TorquePerLength"),
+                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.MeganewtonCentimeterPerMeter, "MeganewtonCentimetersPerMeter", BaseUnits.Undefined, "TorquePerLength"),
+                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.MeganewtonMeterPerMeter, "MeganewtonMetersPerMeter", BaseUnits.Undefined, "TorquePerLength"),
+                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.MeganewtonMillimeterPerMeter, "MeganewtonMillimetersPerMeter", BaseUnits.Undefined, "TorquePerLength"),
+                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.MegapoundForceFootPerFoot, "MegapoundForceFeetPerFoot", BaseUnits.Undefined, "TorquePerLength"),
+                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.MegapoundForceInchPerFoot, "MegapoundForceInchesPerFoot", BaseUnits.Undefined, "TorquePerLength"),
+                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.NewtonCentimeterPerMeter, "NewtonCentimetersPerMeter", BaseUnits.Undefined, "TorquePerLength"),
+                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.NewtonMeterPerMeter, "NewtonMetersPerMeter", BaseUnits.Undefined, "TorquePerLength"),
+                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.NewtonMillimeterPerMeter, "NewtonMillimetersPerMeter", BaseUnits.Undefined, "TorquePerLength"),
+                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.PoundForceFootPerFoot, "PoundForceFeetPerFoot", BaseUnits.Undefined, "TorquePerLength"),
+                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.PoundForceInchPerFoot, "PoundForceInchesPerFoot", BaseUnits.Undefined, "TorquePerLength"),
+                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.TonneForceCentimeterPerMeter, "TonneForceCentimetersPerMeter", BaseUnits.Undefined, "TorquePerLength"),
+                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.TonneForceMeterPerMeter, "TonneForceMetersPerMeter", BaseUnits.Undefined, "TorquePerLength"),
+                    new UnitInfo<TorquePerLengthUnit>(TorquePerLengthUnit.TonneForceMillimeterPerMeter, "TonneForceMillimetersPerMeter", BaseUnits.Undefined, "TorquePerLength"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
-
-            Abbreviations = new ConcurrentDictionary<(CultureInfo Culture, TorquePerLengthUnit Unit), List<string>>();
         }
 
         /// <summary>
@@ -161,11 +156,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="Zero"/>
         public static TorquePerLength AdditiveIdentity => Zero;
-
-        /// <summary>
-        /// The per-culture abbreviations. To add a custom default abbreviation, add to the beginning of the list.
-        /// </summary>
-        public static IDictionary<(CultureInfo Culture, TorquePerLengthUnit Unit), List<string>> Abbreviations { get; }
 
         #endregion
  
@@ -367,7 +357,10 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        public static string GetAbbreviation(TorquePerLengthUnit unit) => GetAbbreviation(unit, null);
+        public static string GetAbbreviation(TorquePerLengthUnit unit)
+        {
+            return GetAbbreviation(unit, null);
+        }
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -377,34 +370,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(TorquePerLengthUnit unit, IFormatProvider? provider)
         {
-            return GetAbbreviations(unit, provider as CultureInfo).FirstOrDefault() ?? string.Empty;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="unit"></param>
-        /// <param name="culture"></param>
-        /// <returns></returns>
-        public static IReadOnlyList<string> GetAbbreviations(TorquePerLengthUnit unit, CultureInfo? culture = null)
-        {
-            culture ??= CultureInfo.CurrentCulture;
-
-            if(!Abbreviations.TryGetValue((culture, unit), out var abbreviations))
-            {
-                abbreviations = new List<string>();
-
-                const string resourceName = $"UnitsNet.GeneratedCode.Resources.TorquePerLength";
-                var resourceManager = new ResourceManager(resourceName, typeof(TorquePerLength).Assembly);
-
-                var abbreviationsString = resourceManager.GetString(unit.ToString(), culture);
-                if(abbreviationsString is not null)
-                    abbreviations.AddRange(abbreviationsString.Split(','));
-
-                Abbreviations.Add((culture, unit), abbreviations);
-            }
-
-            return abbreviations;
+            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -1186,9 +1152,6 @@ namespace UnitsNet
         IQuantity<TorquePerLengthUnit> IQuantity<TorquePerLengthUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
-
-        /// <inheritdoc/>
-        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

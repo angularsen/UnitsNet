@@ -189,7 +189,8 @@ namespace UnitsNet
             if(!Quantity.TryFrom(0.0, enumInstance, out var quantity))
                 throw new NotImplementedException($"No abbreviation is specified for {unitType.Name} with numeric value {unitValue}.");
 
-            return quantity.GetAbbreviations(formatProvider as CultureInfo).ToArray();
+            var unitInfo = quantity.QuantityInfo.UnitInfos[unitValue];
+            return unitInfo.GetAbbreviations((CultureInfo)formatProvider!).ToArray();
         }
 
         /// <summary>
@@ -211,8 +212,7 @@ namespace UnitsNet
 
             foreach(var enumValue in enumValues)
             {
-                var quantity = Quantity.From(0.0, enumValue);
-                var abbreviations = quantity.GetAbbreviations(formatProvider as CultureInfo);
+                var abbreviations = GetUnitAbbreviations(enumValue.GetType(), Convert.ToInt32(enumValue), formatProvider);
 
                 foreach(var abbrev in abbreviations)
                 {

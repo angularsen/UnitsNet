@@ -2,7 +2,6 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 #if NET7_0_OR_GREATER
 using System.Numerics;
@@ -77,12 +76,6 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         string ToString(IFormatProvider? provider);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null);
     }
 
     /// <summary>

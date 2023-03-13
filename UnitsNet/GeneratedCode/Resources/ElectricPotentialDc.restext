@@ -1,5 +1,5 @@
-KilovoltDc=kVdc
-MegavoltDc=MVdc
-MicrovoltDc=µVdc
-MillivoltDc=mVdc
-VoltDc=Vdc
+KilovoltsDc=kVdc
+MegavoltsDc=MVdc
+MicrovoltsDc=µVdc
+MillivoltsDc=mVdc
+VoltsDc=Vdc

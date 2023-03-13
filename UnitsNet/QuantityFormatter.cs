@@ -147,9 +147,9 @@ namespace UnitsNet
                         return ToStringWithSignificantDigitsAfterRadix(quantity, formatProvider, 2);
                     case 'A':
                     case 'a':
-                        var abbreviations = quantity.GetAbbreviations((CultureInfo)formatProvider);
+                        var abbreviations = UnitAbbreviationsCache.Default.GetUnitAbbreviations(quantity.Unit, formatProvider);
 
-                        if (precisionSpecifier >= abbreviations.Count)
+                        if (precisionSpecifier >= abbreviations.Length)
                             throw new FormatException($"The {format} format string is invalid because the abbreviation index does not exist.");
 
                         return abbreviations[precisionSpecifier];
@@ -173,7 +173,7 @@ namespace UnitsNet
             {
                 // Anything else is a standard numeric format string with default unit abbreviation postfix.
 
-                var abbreviations = quantity.GetAbbreviations((CultureInfo)formatProvider);
+                var abbreviations = UnitAbbreviationsCache.Default.GetUnitAbbreviations(quantity.Unit, formatProvider);
                 return string.Format(formatProvider, $"{{0:{format}}} {{1}}", quantity.Value, abbreviations.First());
             }
         }
