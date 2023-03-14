@@ -53,6 +53,16 @@ namespace UnitsNet
             UnitTypeAndNameToUnitInfoLazy.Value.TryGetValue((unitEnum.GetType(), unitEnum.ToString()), out unitInfo);
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="unit"></param>
+        /// <param name="unitInfo"></param>
+        public static void AddUnitInfo(Enum unit, UnitInfo unitInfo)
+        {
+            UnitTypeAndNameToUnitInfoLazy.Value.Add((unit.GetType(), unit.ToString()), unitInfo);
+        }
+
+        /// <summary>
         ///     Dynamically construct a quantity.
         /// </summary>
         /// <param name="value">Numeric value.</param>

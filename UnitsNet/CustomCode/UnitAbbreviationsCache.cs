@@ -130,7 +130,13 @@ namespace UnitsNet
 
         internal void PerformAbbreviationMapping(Enum unitValue, IFormatProvider? formatProvider, bool setAsDefault, bool allowAbbreviationLookup, params string[] abbreviations)
         {
-            throw new NotImplementedException();
+            if(!Quantity.TryGetUnitInfo(unitValue, out var unitInfo))
+            {
+                unitInfo = new UnitInfo(unitValue, unitValue.ToString(), BaseUnits.Undefined);
+                Quantity.AddUnitInfo(unitValue, unitInfo);
+            }
+
+            unitInfo.AddAbbreviation(formatProvider, setAsDefault, allowAbbreviationLookup, abbreviations);
         }
 
         /// <summary>
@@ -183,14 +189,37 @@ namespace UnitsNet
         /// <returns>Unit abbreviations associated with unit.</returns>
         public string[] GetUnitAbbreviations(Type unitType, int unitValue, IFormatProvider? formatProvider = null)
         {
+            formatProvider ??= CultureInfo.CurrentCulture;
+
+            if(TryGetUnitAbbreviations(unitType, unitValue, formatProvider, out var abbreviations))
+                return abbreviations;
+            else
+                throw new NotImplementedException($"No abbreviation is specified for {unitType.Name} with numeric value {unitValue}.");
+        }
+
+        /// <summary>
+        ///     Get all abbreviations for unit.
+        /// </summary>
+        /// <param name="unitType">Enum type for unit.</param>
+        /// <param name="unitValue">Enum value for unit.</param>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="abbreviations">The unit abbreviations associated with unit.</param>
+        /// <returns>True if found, otherwise false.</returns>
+        private bool TryGetUnitAbbreviations(Type unitType, int unitValue, IFormatProvider? formatProvider, out string[] abbreviations)
+        {
             var name = Enum.GetName(unitType, unitValue);
             var enumInstance = (Enum)Enum.Parse(unitType, name!);
 
-            if(!Quantity.TryFrom(0.0, enumInstance, out var quantity))
-                throw new NotImplementedException($"No abbreviation is specified for {unitType.Name} with numeric value {unitValue}.");
-
-            var unitInfo = Quantity.GetUnitInfo(enumInstance);
-            return unitInfo.GetAbbreviations(formatProvider!).ToArray();
+            if(Quantity.TryGetUnitInfo(enumInstance, out var unitInfo))
+            {
+                abbreviations = unitInfo.GetAbbreviations(formatProvider!).ToArray();
+                return true;
+            }
+            else
+            {
+                abbreviations = Array.Empty<string>();
+                return false;
+            }
         }
 
         /// <summary>
@@ -209,14 +238,16 @@ namespace UnitsNet
         internal List<(string Abbreviation, Enum Unit)> GetStringUnitPairs(IEnumerable<Enum> enumValues, IFormatProvider? formatProvider = null)
         {
             var ret = new List<(string, Enum)>();
+            formatProvider ??= CultureInfo.CurrentCulture;
 
             foreach(var enumValue in enumValues)
             {
-                var abbreviations = GetUnitAbbreviations(enumValue.GetType(), Convert.ToInt32(enumValue), formatProvider);
-
-                foreach(var abbrev in abbreviations)
+                if(TryGetUnitAbbreviations(enumValue.GetType(), Convert.ToInt32(enumValue), formatProvider, out var abbreviations))
                 {
-                    ret.Add((abbrev, enumValue));
+                    foreach(var abbrev in abbreviations)
+                    {
+                        ret.Add((abbrev, enumValue));
+                    }
                 }
             }
 

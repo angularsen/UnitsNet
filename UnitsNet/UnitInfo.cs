@@ -21,6 +21,8 @@ namespace UnitsNet
     /// </remarks>
     public class UnitInfo
     {
+        private readonly object _syncRoot = new();
+
         /// <summary>
         /// Creates an instance of the UnitInfo class.
         /// </summary>
@@ -34,7 +36,7 @@ namespace UnitsNet
             PluralName = pluralName;
             BaseUnits = baseUnits ?? throw new ArgumentNullException(nameof(baseUnits));
 
-            AbbreviationsMap = new ConcurrentDictionary<CultureInfo, Lazy<List<string>>>();
+            AbbreviationsMap = new ConcurrentDictionary<CultureInfo, Lazy<IReadOnlyList<string>>>();
         }
 
         /// <summary>
@@ -75,7 +77,7 @@ namespace UnitsNet
         /// <summary>
         /// The per-culture abbreviations. To add a custom default abbreviation, add to the beginning of the list.
         /// </summary>
-        private IDictionary<CultureInfo, Lazy<List<string>>> AbbreviationsMap { get; }
+        private IDictionary<CultureInfo, Lazy<IReadOnlyList<string>>> AbbreviationsMap { get; }
 
         /// <summary>
         /// 
@@ -83,7 +85,7 @@ namespace UnitsNet
         /// <param name="formatProvider"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"></exception>
-        public IList<string> GetAbbreviations(IFormatProvider? formatProvider = null)
+        public IReadOnlyList<string> GetAbbreviations(IFormatProvider? formatProvider = null)
         {
             if(formatProvider is null || formatProvider is not CultureInfo)
                 formatProvider = CultureInfo.CurrentCulture;
@@ -91,12 +93,50 @@ namespace UnitsNet
             var culture = (CultureInfo)formatProvider;
 
             if(!AbbreviationsMap.TryGetValue(culture, out var abbreviations))
-                AbbreviationsMap[culture] = abbreviations = new Lazy<List<string>>(() => ReadAbbreviationsFromResourceFile(culture));
+                AbbreviationsMap[culture] = abbreviations = new Lazy<IReadOnlyList<string>>(() => ReadAbbreviationsFromResourceFile(culture));
 
-            return abbreviations.Value;
+            if(abbreviations.Value.Count == 0 && !culture.Equals(UnitAbbreviationsCache.FallbackCulture))
+                return GetAbbreviations(UnitAbbreviationsCache.FallbackCulture);
+            else
+                return abbreviations.Value;
         }
 
-        private List<string> ReadAbbreviationsFromResourceFile(CultureInfo culture)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="formatProvider"></param>
+        /// <param name="setAsDefault"></param>
+        /// <param name="allowAbbreviationLookup"></param>
+        /// <param name="abbreviations"></param>
+        public void AddAbbreviation(IFormatProvider? formatProvider, bool setAsDefault, bool allowAbbreviationLookup, params string[] abbreviations)
+        {
+            if(formatProvider is null || formatProvider is not CultureInfo)
+                formatProvider = CultureInfo.CurrentCulture;
+
+            var culture = (CultureInfo)formatProvider;
+
+            // Restrict concurrency on writes.
+            // By using ConcurrencyDictionary and immutable IReadOnlyList instances, we don't need to lock on reads.
+            lock(_syncRoot)
+            {
+                var currentAbbreviationsList = new List<string>(GetAbbreviations(culture));
+
+                foreach(var abbreviation in abbreviations)
+                {
+                    if(!currentAbbreviationsList.Contains(abbreviation))
+                    {
+                        if(setAsDefault)
+                            currentAbbreviationsList.Insert(0, abbreviation);
+                        else
+                            currentAbbreviationsList.Add(abbreviation);
+                    }
+                }
+
+                AbbreviationsMap[culture] = new Lazy<IReadOnlyList<string>>(() => currentAbbreviationsList.AsReadOnly());
+            }
+        }
+
+        private IReadOnlyList<string> ReadAbbreviationsFromResourceFile(CultureInfo culture)
         {
             var abbreviationsList = new List<string>();
 
@@ -110,7 +150,7 @@ namespace UnitsNet
                     abbreviationsList.AddRange(abbreviationsString.Split(','));
             }
 
-            return abbreviationsList;
+            return abbreviationsList.AsReadOnly();
         }
     }
 
