@@ -44,6 +44,10 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotential
         public static ElectricPotential Millivolts<T>(this T value) =>
             ElectricPotential.FromMillivolts(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="ElectricPotential.FromNanovolts(UnitsNet.QuantityValue)" />
+        public static ElectricPotential Nanovolts<T>(this T value) =>
+            ElectricPotential.FromNanovolts(Convert.ToDouble(value));
+
         /// <inheritdoc cref="ElectricPotential.FromVolts(UnitsNet.QuantityValue)" />
         public static ElectricPotential Volts<T>(this T value) =>
             ElectricPotential.FromVolts(Convert.ToDouble(value));

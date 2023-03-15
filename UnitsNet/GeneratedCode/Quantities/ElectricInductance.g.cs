@@ -39,7 +39,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Inductance
     /// </remarks>
     [DataContract]
-    public readonly partial struct ElectricInductance : IArithmeticQuantity<ElectricInductance, ElectricInductanceUnit, double>, IEquatable<ElectricInductance>, IComparable, IComparable<ElectricInductance>, IConvertible, IFormattable
+    public readonly partial struct ElectricInductance :
+        IArithmeticQuantity<ElectricInductance, ElectricInductanceUnit, double>,
+        IComparable,
+        IComparable<ElectricInductance>,
+        IConvertible,
+        IEquatable<ElectricInductance>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -66,6 +72,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Microhenry, "Microhenries", BaseUnits.Undefined),
                     new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Millihenry, "Millihenries", BaseUnits.Undefined),
                     new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Nanohenry, "Nanohenries", BaseUnits.Undefined),
+                    new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Picohenry, "Picohenries", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -189,6 +196,11 @@ namespace UnitsNet
         /// </summary>
         public double Nanohenries => As(ElectricInductanceUnit.Nanohenry);
 
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricInductanceUnit.Picohenry"/>
+        /// </summary>
+        public double Picohenries => As(ElectricInductanceUnit.Picohenry);
+
         #endregion
 
         #region Static Methods
@@ -203,6 +215,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Microhenry, ElectricInductanceUnit.Henry, quantity => quantity.ToUnit(ElectricInductanceUnit.Henry));
             unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Millihenry, ElectricInductanceUnit.Henry, quantity => quantity.ToUnit(ElectricInductanceUnit.Henry));
             unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Nanohenry, ElectricInductanceUnit.Henry, quantity => quantity.ToUnit(ElectricInductanceUnit.Henry));
+            unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Picohenry, ElectricInductanceUnit.Henry, quantity => quantity.ToUnit(ElectricInductanceUnit.Henry));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Henry, ElectricInductanceUnit.Henry, quantity => quantity);
@@ -211,6 +224,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Henry, ElectricInductanceUnit.Microhenry, quantity => quantity.ToUnit(ElectricInductanceUnit.Microhenry));
             unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Henry, ElectricInductanceUnit.Millihenry, quantity => quantity.ToUnit(ElectricInductanceUnit.Millihenry));
             unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Henry, ElectricInductanceUnit.Nanohenry, quantity => quantity.ToUnit(ElectricInductanceUnit.Nanohenry));
+            unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Henry, ElectricInductanceUnit.Picohenry, quantity => quantity.ToUnit(ElectricInductanceUnit.Picohenry));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -219,6 +233,7 @@ namespace UnitsNet
             unitAbbreviationsCache.PerformAbbreviationMapping(ElectricInductanceUnit.Microhenry, new CultureInfo("en-US"), false, true, new string[]{"µH"});
             unitAbbreviationsCache.PerformAbbreviationMapping(ElectricInductanceUnit.Millihenry, new CultureInfo("en-US"), false, true, new string[]{"mH"});
             unitAbbreviationsCache.PerformAbbreviationMapping(ElectricInductanceUnit.Nanohenry, new CultureInfo("en-US"), false, true, new string[]{"nH"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricInductanceUnit.Picohenry, new CultureInfo("en-US"), false, true, new string[]{"pH"});
         }
 
         /// <summary>
@@ -284,6 +299,16 @@ namespace UnitsNet
         {
             double value = (double) nanohenries;
             return new ElectricInductance(value, ElectricInductanceUnit.Nanohenry);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Picohenry"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricInductance FromPicohenries(QuantityValue picohenries)
+        {
+            double value = (double) picohenries;
+            return new ElectricInductance(value, ElectricInductanceUnit.Picohenry);
         }
 
         /// <summary>
@@ -521,7 +546,7 @@ namespace UnitsNet
 
         /// <summary>Indicates strict equality of two <see cref="ElectricInductance"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
         /// <remarks>Consider using <see cref="Equals(ElectricInductance, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For quantity comparisons, use Equals(ElectricInductance, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
         public static bool operator ==(ElectricInductance left, ElectricInductance right)
         {
             return left.Equals(right);
@@ -529,7 +554,7 @@ namespace UnitsNet
 
         /// <summary>Indicates strict inequality of two <see cref="ElectricInductance"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
         /// <remarks>Consider using <see cref="Equals(ElectricInductance, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is not null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is not null` syntax to not invoke overloads. For quantity comparisons, use Equals(ElectricInductance, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
         public static bool operator !=(ElectricInductance left, ElectricInductance right)
         {
             return !(left == right);
@@ -538,7 +563,7 @@ namespace UnitsNet
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="ElectricInductance"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
         /// <remarks>Consider using <see cref="Equals(ElectricInductance, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Consider using Equals(ElectricInductance, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is ElectricInductance otherQuantity))
@@ -550,7 +575,7 @@ namespace UnitsNet
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="ElectricInductance"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
         /// <remarks>Consider using <see cref="Equals(ElectricInductance, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Consider using Equals(ElectricInductance, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
         public bool Equals(ElectricInductance other)
         {
             return new { Value, Unit }.Equals(new { other.Value, other.Unit });
@@ -694,6 +719,15 @@ namespace UnitsNet
             return (double)As(typedUnit);
         }
 
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is ElectricInductanceUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricInductanceUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <summary>
         ///     Converts this ElectricInductance to another ElectricInductance with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -755,11 +789,13 @@ namespace UnitsNet
                 (ElectricInductanceUnit.Microhenry, ElectricInductanceUnit.Henry) => new ElectricInductance((_value) * 1e-6d, ElectricInductanceUnit.Henry),
                 (ElectricInductanceUnit.Millihenry, ElectricInductanceUnit.Henry) => new ElectricInductance((_value) * 1e-3d, ElectricInductanceUnit.Henry),
                 (ElectricInductanceUnit.Nanohenry, ElectricInductanceUnit.Henry) => new ElectricInductance((_value) * 1e-9d, ElectricInductanceUnit.Henry),
+                (ElectricInductanceUnit.Picohenry, ElectricInductanceUnit.Henry) => new ElectricInductance((_value) * 1e-12d, ElectricInductanceUnit.Henry),
 
                 // BaseUnit -> ElectricInductanceUnit
                 (ElectricInductanceUnit.Henry, ElectricInductanceUnit.Microhenry) => new ElectricInductance((_value) / 1e-6d, ElectricInductanceUnit.Microhenry),
                 (ElectricInductanceUnit.Henry, ElectricInductanceUnit.Millihenry) => new ElectricInductance((_value) / 1e-3d, ElectricInductanceUnit.Millihenry),
                 (ElectricInductanceUnit.Henry, ElectricInductanceUnit.Nanohenry) => new ElectricInductance((_value) / 1e-9d, ElectricInductanceUnit.Nanohenry),
+                (ElectricInductanceUnit.Henry, ElectricInductanceUnit.Picohenry) => new ElectricInductance((_value) / 1e-12d, ElectricInductanceUnit.Picohenry),
 
                 _ => null
             };

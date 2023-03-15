@@ -100,6 +100,11 @@ namespace UnitsNet
         public double Millivolts => As(ElectricPotentialUnit.Millivolt);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialUnit.Nanovolt"/>
+        /// </summary>
+        public double Nanovolts => As(ElectricPotentialUnit.Nanovolt);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialUnit.Volt"/>
         /// </summary>
         public double Volts => As(ElectricPotentialUnit.Volt);
@@ -131,6 +136,12 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotential FromMillivolts(double millivolts) => new ElectricPotential(millivolts, ElectricPotentialUnit.Millivolt);
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricPotential"/> from <see cref="ElectricPotentialUnit.Nanovolt"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricPotential FromNanovolts(double nanovolts) => new ElectricPotential(nanovolts, ElectricPotentialUnit.Nanovolt);
 
         /// <summary>
         ///     Creates a <see cref="ElectricPotential"/> from <see cref="ElectricPotentialUnit.Volt"/>.
@@ -182,6 +193,7 @@ namespace UnitsNet
                         ElectricPotentialUnit.Megavolt => (_value) * 1e6d,
                         ElectricPotentialUnit.Microvolt => (_value) * 1e-6d,
                         ElectricPotentialUnit.Millivolt => (_value) * 1e-3d,
+                        ElectricPotentialUnit.Nanovolt => (_value) * 1e-9d,
                         ElectricPotentialUnit.Volt => _value,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
                     };
@@ -200,6 +212,7 @@ namespace UnitsNet
                         ElectricPotentialUnit.Megavolt => (baseUnitValue) / 1e6d,
                         ElectricPotentialUnit.Microvolt => (baseUnitValue) / 1e-6d,
                         ElectricPotentialUnit.Millivolt => (baseUnitValue) / 1e-3d,
+                        ElectricPotentialUnit.Nanovolt => (baseUnitValue) / 1e-9d,
                         ElectricPotentialUnit.Volt => baseUnitValue,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
                     };

@@ -29,6 +29,7 @@ namespace UnitsNet.Units
         Microhenry = 2,
         Millihenry = 3,
         Nanohenry = 4,
+        Picohenry = 14,
     }
 
     #pragma warning restore 1591

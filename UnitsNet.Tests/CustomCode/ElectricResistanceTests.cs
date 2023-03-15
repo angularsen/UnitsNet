@@ -20,6 +20,8 @@ namespace UnitsNet.Tests
 
         protected override double GigaohmsInOneOhm => 1e-9;
 
+        protected override double TeraohmsInOneOhm => 1e-12;
+
         [Theory]
         [InlineData(1, 1, 1)]
         [InlineData(0, int.MaxValue, 0)]
@@ -28,7 +30,7 @@ namespace UnitsNet.Tests
         [InlineData(-10, -2, 20)]
         public void ElectricResistanceTimesElectricCurrentEqualsElectricPotential(float resistance, float current, float expected)
         {
-            ElectricPotential potential = ElectricResistance.FromOhms(resistance) *  ElectricCurrent.FromAmperes(current) ;
+            ElectricPotential potential = ElectricResistance.FromOhms(resistance) * ElectricCurrent.FromAmperes(current);
             Assert.Equal(expected, potential.Volts);
         }
     }

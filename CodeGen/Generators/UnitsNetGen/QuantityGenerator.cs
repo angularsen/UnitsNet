@@ -62,15 +62,21 @@ namespace UnitsNet
     /// </remarks>");
 
             Writer.WLIfText(1, GetObsoleteAttributeOrNull(_quantity));
-            Writer.W(@$"
+            Writer.WL(@$"
     [DataContract]
-    public readonly partial struct {_quantity.Name} : {(_quantity.GenerateArithmetic ? "IArithmeticQuantity" : "IQuantity")}<{_quantity.Name}, {_unitEnumName}, {_quantity.ValueType}>, ");
-            if (_quantity.ValueType == "decimal")
-            {
-                Writer.W("IDecimalQuantity, ");
-            }
+    public readonly partial struct {_quantity.Name} :
+        {(_quantity.GenerateArithmetic ? "IArithmeticQuantity" : "IQuantity")}<{_quantity.Name}, {_unitEnumName}, {_quantity.ValueType}>,");
 
-            Writer.WL($"IEquatable<{_quantity.Name}>, IComparable, IComparable<{_quantity.Name}>, IConvertible, IFormattable");
+            if (_quantity.ValueType == "decimal") Writer.WL(@$"
+        IDecimalQuantity,");
+
+            Writer.WL(@$"
+        IComparable,
+        IComparable<{_quantity.Name}>,
+        IConvertible,
+        IEquatable<{_quantity.Name}>,
+        IFormattable");
+
             Writer.WL($@"
     {{
         /// <summary>
@@ -263,20 +269,10 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public {_valueType} Value => _value;
-");
 
-            Writer.WL(@"
         /// <inheritdoc />
         QuantityValue IQuantity.Value => _value;
-");
-            // Need to provide explicit interface implementation for decimal quantities like Information
-            if (_quantity.ValueType == "decimal")
-                Writer.WL(@"
-        /// <inheritdoc cref=""IDecimalQuantity.Value""/>
-        decimal IDecimalQuantity.Value => _value;
-");
 
-            Writer.WL($@"
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
@@ -754,7 +750,7 @@ namespace UnitsNet
 
         /// <summary>Indicates strict equality of two <see cref=""{_quantity.Name}""/> quantities, where both <see cref=""Value"" /> and <see cref=""Unit"" /> are exactly equal.</summary>
         /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, {_valueType}, ComparisonType)""/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete(""For null checks, use `x is null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, {_valueType}, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance."")]
+        [Obsolete(""For null checks, use `x is null` syntax to not invoke overloads. For quantity comparisons, use Equals({_quantity.Name}, {_valueType}, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance."")]
         public static bool operator ==({_quantity.Name} left, {_quantity.Name} right)
         {{
             return left.Equals(right);
@@ -762,7 +758,7 @@ namespace UnitsNet
 
         /// <summary>Indicates strict inequality of two <see cref=""{_quantity.Name}""/> quantities, where both <see cref=""Value"" /> and <see cref=""Unit"" /> are exactly equal.</summary>
         /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, {_valueType}, ComparisonType)""/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete(""For null checks, use `x is not null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, {_valueType}, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance."")]
+        [Obsolete(""For null checks, use `x is not null` syntax to not invoke overloads. For quantity comparisons, use Equals({_quantity.Name}, {_valueType}, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance."")]
         public static bool operator !=({_quantity.Name} left, {_quantity.Name} right)
         {{
             return !(left == right);
@@ -771,7 +767,7 @@ namespace UnitsNet
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref=""{_quantity.Name}""/> quantities, where both <see cref=""Value"" /> and <see cref=""Unit"" /> are exactly equal.</summary>
         /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, {_valueType}, ComparisonType)""/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete(""Consider using Equals(Angle, {_valueType}, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance."")]
+        [Obsolete(""Consider using Equals({_quantity.Name}, {_valueType}, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance."")]
         public override bool Equals(object? obj)
         {{
             if (obj is null || !(obj is {_quantity.Name} otherQuantity))
@@ -783,7 +779,7 @@ namespace UnitsNet
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref=""{_quantity.Name}""/> quantities, where both <see cref=""Value"" /> and <see cref=""Unit"" /> are exactly equal.</summary>
         /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, {_valueType}, ComparisonType)""/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete(""Consider using Equals(Angle, {_valueType}, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance."")]
+        [Obsolete(""Consider using Equals({_quantity.Name}, {_valueType}, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance."")]
         public bool Equals({_quantity.Name} other)
         {{
             return new {{ Value, Unit }}.Equals(new {{ other.Value, other.Unit }});
@@ -957,6 +953,15 @@ namespace UnitsNet
                 throw new ArgumentException($""The given unit is of type {{unit.GetType()}}. Only {{typeof({_unitEnumName})}} is supported."", nameof(unit));
 
             return (double)As(typedUnit);
+        }}
+
+        /// <inheritdoc />
+        {_quantity.ValueType} IValueQuantity<{_quantity.ValueType}>.As(Enum unit)
+        {{
+            if (!(unit is {_unitEnumName} typedUnit))
+                throw new ArgumentException($""The given unit is of type {{unit.GetType()}}. Only {{typeof({_unitEnumName})}} is supported."", nameof(unit));
+
+            return As(typedUnit);
         }}
 
         /// <summary>

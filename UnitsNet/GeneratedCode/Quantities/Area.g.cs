@@ -36,7 +36,13 @@ namespace UnitsNet
     ///     Area is a quantity that expresses the extent of a two-dimensional surface or shape, or planar lamina, in the plane. Area can be understood as the amount of material with a given thickness that would be necessary to fashion a model of the shape, or the amount of paint necessary to cover the surface with a single coat.[1] It is the two-dimensional analog of the length of a curve (a one-dimensional concept) or the volume of a solid (a three-dimensional concept).
     /// </summary>
     [DataContract]
-    public readonly partial struct Area : IArithmeticQuantity<Area, AreaUnit, double>, IEquatable<Area>, IComparable, IComparable<Area>, IConvertible, IFormattable
+    public readonly partial struct Area :
+        IArithmeticQuantity<Area, AreaUnit, double>,
+        IComparable,
+        IComparable<Area>,
+        IConvertible,
+        IEquatable<Area>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -735,7 +741,7 @@ namespace UnitsNet
 
         /// <summary>Indicates strict equality of two <see cref="Area"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
         /// <remarks>Consider using <see cref="Equals(Area, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For quantity comparisons, use Equals(Area, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
         public static bool operator ==(Area left, Area right)
         {
             return left.Equals(right);
@@ -743,7 +749,7 @@ namespace UnitsNet
 
         /// <summary>Indicates strict inequality of two <see cref="Area"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
         /// <remarks>Consider using <see cref="Equals(Area, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is not null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is not null` syntax to not invoke overloads. For quantity comparisons, use Equals(Area, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
         public static bool operator !=(Area left, Area right)
         {
             return !(left == right);
@@ -752,7 +758,7 @@ namespace UnitsNet
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="Area"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
         /// <remarks>Consider using <see cref="Equals(Area, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Consider using Equals(Area, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is Area otherQuantity))
@@ -764,7 +770,7 @@ namespace UnitsNet
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="Area"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
         /// <remarks>Consider using <see cref="Equals(Area, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Consider using Equals(Area, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
         public bool Equals(Area other)
         {
             return new { Value, Unit }.Equals(new { other.Value, other.Unit });
@@ -908,6 +914,15 @@ namespace UnitsNet
             return (double)As(typedUnit);
         }
 
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is AreaUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AreaUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <summary>
         ///     Converts this Area to another Area with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -966,7 +981,7 @@ namespace UnitsNet
             Area? convertedOrNull = (Unit, unit) switch
             {
                 // AreaUnit -> BaseUnit
-                (AreaUnit.Acre, AreaUnit.SquareMeter) => new Area(_value * 4046.85642, AreaUnit.SquareMeter),
+                (AreaUnit.Acre, AreaUnit.SquareMeter) => new Area(_value * 4046.8564224, AreaUnit.SquareMeter),
                 (AreaUnit.Hectare, AreaUnit.SquareMeter) => new Area(_value * 1e4, AreaUnit.SquareMeter),
                 (AreaUnit.SquareCentimeter, AreaUnit.SquareMeter) => new Area(_value * 1e-4, AreaUnit.SquareMeter),
                 (AreaUnit.SquareDecimeter, AreaUnit.SquareMeter) => new Area(_value * 1e-2, AreaUnit.SquareMeter),
@@ -974,14 +989,14 @@ namespace UnitsNet
                 (AreaUnit.SquareInch, AreaUnit.SquareMeter) => new Area(_value * 0.00064516, AreaUnit.SquareMeter),
                 (AreaUnit.SquareKilometer, AreaUnit.SquareMeter) => new Area(_value * 1e6, AreaUnit.SquareMeter),
                 (AreaUnit.SquareMicrometer, AreaUnit.SquareMeter) => new Area(_value * 1e-12, AreaUnit.SquareMeter),
-                (AreaUnit.SquareMile, AreaUnit.SquareMeter) => new Area(_value * 2.59e6, AreaUnit.SquareMeter),
+                (AreaUnit.SquareMile, AreaUnit.SquareMeter) => new Area(_value * 1609.344 * 1609.344, AreaUnit.SquareMeter),
                 (AreaUnit.SquareMillimeter, AreaUnit.SquareMeter) => new Area(_value * 1e-6, AreaUnit.SquareMeter),
                 (AreaUnit.SquareNauticalMile, AreaUnit.SquareMeter) => new Area(_value * 3429904, AreaUnit.SquareMeter),
-                (AreaUnit.SquareYard, AreaUnit.SquareMeter) => new Area(_value * 0.836127, AreaUnit.SquareMeter),
-                (AreaUnit.UsSurveySquareFoot, AreaUnit.SquareMeter) => new Area(_value * 0.09290341161, AreaUnit.SquareMeter),
+                (AreaUnit.SquareYard, AreaUnit.SquareMeter) => new Area(_value * 0.9144 * 0.9144, AreaUnit.SquareMeter),
+                (AreaUnit.UsSurveySquareFoot, AreaUnit.SquareMeter) => new Area(_value * (1200.0 / 3937.0) * (1200.0 / 3937.0), AreaUnit.SquareMeter),
 
                 // BaseUnit -> AreaUnit
-                (AreaUnit.SquareMeter, AreaUnit.Acre) => new Area(_value / 4046.85642, AreaUnit.Acre),
+                (AreaUnit.SquareMeter, AreaUnit.Acre) => new Area(_value / 4046.8564224, AreaUnit.Acre),
                 (AreaUnit.SquareMeter, AreaUnit.Hectare) => new Area(_value / 1e4, AreaUnit.Hectare),
                 (AreaUnit.SquareMeter, AreaUnit.SquareCentimeter) => new Area(_value / 1e-4, AreaUnit.SquareCentimeter),
                 (AreaUnit.SquareMeter, AreaUnit.SquareDecimeter) => new Area(_value / 1e-2, AreaUnit.SquareDecimeter),
@@ -989,11 +1004,11 @@ namespace UnitsNet
                 (AreaUnit.SquareMeter, AreaUnit.SquareInch) => new Area(_value / 0.00064516, AreaUnit.SquareInch),
                 (AreaUnit.SquareMeter, AreaUnit.SquareKilometer) => new Area(_value / 1e6, AreaUnit.SquareKilometer),
                 (AreaUnit.SquareMeter, AreaUnit.SquareMicrometer) => new Area(_value / 1e-12, AreaUnit.SquareMicrometer),
-                (AreaUnit.SquareMeter, AreaUnit.SquareMile) => new Area(_value / 2.59e6, AreaUnit.SquareMile),
+                (AreaUnit.SquareMeter, AreaUnit.SquareMile) => new Area(_value / 1609.344 / 1609.344, AreaUnit.SquareMile),
                 (AreaUnit.SquareMeter, AreaUnit.SquareMillimeter) => new Area(_value / 1e-6, AreaUnit.SquareMillimeter),
                 (AreaUnit.SquareMeter, AreaUnit.SquareNauticalMile) => new Area(_value / 3429904, AreaUnit.SquareNauticalMile),
-                (AreaUnit.SquareMeter, AreaUnit.SquareYard) => new Area(_value / 0.836127, AreaUnit.SquareYard),
-                (AreaUnit.SquareMeter, AreaUnit.UsSurveySquareFoot) => new Area(_value / 0.09290341161, AreaUnit.UsSurveySquareFoot),
+                (AreaUnit.SquareMeter, AreaUnit.SquareYard) => new Area(_value / 0.9144 / 0.9144, AreaUnit.SquareYard),
+                (AreaUnit.SquareMeter, AreaUnit.UsSurveySquareFoot) => new Area(_value / (1200.0 / 3937.0) / (1200.0 / 3937.0), AreaUnit.UsSurveySquareFoot),
 
                 _ => null
             };

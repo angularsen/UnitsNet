@@ -36,7 +36,13 @@ namespace UnitsNet
     ///     In physics, mass (from Greek μᾶζα "barley cake, lump [of dough]") is a property of a physical system or body, giving rise to the phenomena of the body's resistance to being accelerated by a force and the strength of its mutual gravitational attraction with other bodies. Instruments such as mass balances or scales use those phenomena to measure mass. The SI unit of mass is the kilogram (kg).
     /// </summary>
     [DataContract]
-    public readonly partial struct Mass : IArithmeticQuantity<Mass, MassUnit, double>, IEquatable<Mass>, IComparable, IComparable<Mass>, IConvertible, IFormattable
+    public readonly partial struct Mass :
+        IArithmeticQuantity<Mass, MassUnit, double>,
+        IComparable,
+        IComparable<Mass>,
+        IConvertible,
+        IEquatable<Mass>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -952,7 +958,7 @@ namespace UnitsNet
 
         /// <summary>Indicates strict equality of two <see cref="Mass"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
         /// <remarks>Consider using <see cref="Equals(Mass, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For quantity comparisons, use Equals(Mass, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
         public static bool operator ==(Mass left, Mass right)
         {
             return left.Equals(right);
@@ -960,7 +966,7 @@ namespace UnitsNet
 
         /// <summary>Indicates strict inequality of two <see cref="Mass"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
         /// <remarks>Consider using <see cref="Equals(Mass, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is not null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is not null` syntax to not invoke overloads. For quantity comparisons, use Equals(Mass, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
         public static bool operator !=(Mass left, Mass right)
         {
             return !(left == right);
@@ -969,7 +975,7 @@ namespace UnitsNet
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="Mass"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
         /// <remarks>Consider using <see cref="Equals(Mass, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Consider using Equals(Mass, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is Mass otherQuantity))
@@ -981,7 +987,7 @@ namespace UnitsNet
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="Mass"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
         /// <remarks>Consider using <see cref="Equals(Mass, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Consider using Equals(Mass, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
         public bool Equals(Mass other)
         {
             return new { Value, Unit }.Equals(new { other.Value, other.Unit });
@@ -1125,6 +1131,15 @@ namespace UnitsNet
             return (double)As(typedUnit);
         }
 
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is MassUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <summary>
         ///     Converts this Mass to another Mass with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -1199,7 +1214,7 @@ namespace UnitsNet
                 (MassUnit.Microgram, MassUnit.Kilogram) => new Mass((_value / 1e3) * 1e-6d, MassUnit.Kilogram),
                 (MassUnit.Milligram, MassUnit.Kilogram) => new Mass((_value / 1e3) * 1e-3d, MassUnit.Kilogram),
                 (MassUnit.Nanogram, MassUnit.Kilogram) => new Mass((_value / 1e3) * 1e-9d, MassUnit.Kilogram),
-                (MassUnit.Ounce, MassUnit.Kilogram) => new Mass(_value / 35.2739619, MassUnit.Kilogram),
+                (MassUnit.Ounce, MassUnit.Kilogram) => new Mass(_value * 0.028349523125, MassUnit.Kilogram),
                 (MassUnit.Pound, MassUnit.Kilogram) => new Mass(_value * 0.45359237, MassUnit.Kilogram),
                 (MassUnit.ShortHundredweight, MassUnit.Kilogram) => new Mass(_value / 0.022046226218487758, MassUnit.Kilogram),
                 (MassUnit.ShortTon, MassUnit.Kilogram) => new Mass(_value * 9.0718474e2, MassUnit.Kilogram),
@@ -1225,7 +1240,7 @@ namespace UnitsNet
                 (MassUnit.Kilogram, MassUnit.Microgram) => new Mass((_value * 1e3) / 1e-6d, MassUnit.Microgram),
                 (MassUnit.Kilogram, MassUnit.Milligram) => new Mass((_value * 1e3) / 1e-3d, MassUnit.Milligram),
                 (MassUnit.Kilogram, MassUnit.Nanogram) => new Mass((_value * 1e3) / 1e-9d, MassUnit.Nanogram),
-                (MassUnit.Kilogram, MassUnit.Ounce) => new Mass(_value * 35.2739619, MassUnit.Ounce),
+                (MassUnit.Kilogram, MassUnit.Ounce) => new Mass(_value / 0.028349523125, MassUnit.Ounce),
                 (MassUnit.Kilogram, MassUnit.Pound) => new Mass(_value / 0.45359237, MassUnit.Pound),
                 (MassUnit.Kilogram, MassUnit.ShortHundredweight) => new Mass(_value * 0.022046226218487758, MassUnit.ShortHundredweight),
                 (MassUnit.Kilogram, MassUnit.ShortTon) => new Mass(_value / 9.0718474e2, MassUnit.ShortTon),

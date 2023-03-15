@@ -52,7 +52,7 @@ namespace UnitsNet.Tests
             Assertion(3, DurationUnit.Year365, Quantity.From(3, DurationUnit.Year365));
             Assertion(3, DynamicViscosityUnit.Reyn, Quantity.From(3, DynamicViscosityUnit.Reyn));
             Assertion(3, ElectricAdmittanceUnit.Siemens, Quantity.From(3, ElectricAdmittanceUnit.Siemens));
-            Assertion(3, ElectricChargeUnit.MilliampereHour, Quantity.From(3, ElectricChargeUnit.MilliampereHour));
+            Assertion(3, ElectricChargeUnit.Picocoulomb, Quantity.From(3, ElectricChargeUnit.Picocoulomb));
             Assertion(3, ElectricChargeDensityUnit.CoulombPerCubicMeter, Quantity.From(3, ElectricChargeDensityUnit.CoulombPerCubicMeter));
             Assertion(3, ElectricConductanceUnit.Siemens, Quantity.From(3, ElectricConductanceUnit.Siemens));
             Assertion(3, ElectricConductivityUnit.SiemensPerMeter, Quantity.From(3, ElectricConductivityUnit.SiemensPerMeter));
@@ -60,12 +60,12 @@ namespace UnitsNet.Tests
             Assertion(3, ElectricCurrentDensityUnit.AmperePerSquareMeter, Quantity.From(3, ElectricCurrentDensityUnit.AmperePerSquareMeter));
             Assertion(3, ElectricCurrentGradientUnit.AmperePerSecond, Quantity.From(3, ElectricCurrentGradientUnit.AmperePerSecond));
             Assertion(3, ElectricFieldUnit.VoltPerMeter, Quantity.From(3, ElectricFieldUnit.VoltPerMeter));
-            Assertion(3, ElectricInductanceUnit.Nanohenry, Quantity.From(3, ElectricInductanceUnit.Nanohenry));
+            Assertion(3, ElectricInductanceUnit.Picohenry, Quantity.From(3, ElectricInductanceUnit.Picohenry));
             Assertion(3, ElectricPotentialUnit.Volt, Quantity.From(3, ElectricPotentialUnit.Volt));
             Assertion(3, ElectricPotentialAcUnit.VoltAc, Quantity.From(3, ElectricPotentialAcUnit.VoltAc));
             Assertion(3, ElectricPotentialChangeRateUnit.VoltPerSecond, Quantity.From(3, ElectricPotentialChangeRateUnit.VoltPerSecond));
             Assertion(3, ElectricPotentialDcUnit.VoltDc, Quantity.From(3, ElectricPotentialDcUnit.VoltDc));
-            Assertion(3, ElectricResistanceUnit.Ohm, Quantity.From(3, ElectricResistanceUnit.Ohm));
+            Assertion(3, ElectricResistanceUnit.Teraohm, Quantity.From(3, ElectricResistanceUnit.Teraohm));
             Assertion(3, ElectricResistivityUnit.PicoohmMeter, Quantity.From(3, ElectricResistivityUnit.PicoohmMeter));
             Assertion(3, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, Quantity.From(3, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter));
             Assertion(3, EnergyUnit.WattHour, Quantity.From(3, EnergyUnit.WattHour));
@@ -85,6 +85,7 @@ namespace UnitsNet.Tests
             Assertion(3, IrradiationUnit.WattHourPerSquareMeter, Quantity.From(3, IrradiationUnit.WattHourPerSquareMeter));
             Assertion(3, JerkUnit.StandardGravitiesPerSecond, Quantity.From(3, JerkUnit.StandardGravitiesPerSecond));
             Assertion(3, KinematicViscosityUnit.Stokes, Quantity.From(3, KinematicViscosityUnit.Stokes));
+            Assertion(3, LeakRateUnit.TorrLiterPerSecond, Quantity.From(3, LeakRateUnit.TorrLiterPerSecond));
             Assertion(3, LengthUnit.Yard, Quantity.From(3, LengthUnit.Yard));
             Assertion(3, LevelUnit.Neper, Quantity.From(3, LevelUnit.Neper));
             Assertion(3, LinearDensityUnit.PoundPerInch, Quantity.From(3, LinearDensityUnit.PoundPerInch));
@@ -210,6 +211,7 @@ namespace UnitsNet.Tests
             Assertion(Irradiation.Info, Irradiation.Zero);
             Assertion(Jerk.Info, Jerk.Zero);
             Assertion(KinematicViscosity.Info, KinematicViscosity.Zero);
+            Assertion(LeakRate.Info, LeakRate.Zero);
             Assertion(Length.Info, Length.Zero);
             Assertion(Level.Info, Level.Zero);
             Assertion(LinearDensity.Info, LinearDensity.Zero);
@@ -335,6 +337,7 @@ namespace UnitsNet.Tests
             Assertion(Irradiation.BaseDimensions, Irradiation.Zero);
             Assertion(Jerk.BaseDimensions, Jerk.Zero);
             Assertion(KinematicViscosity.BaseDimensions, KinematicViscosity.Zero);
+            Assertion(LeakRate.BaseDimensions, LeakRate.Zero);
             Assertion(Length.BaseDimensions, Length.Zero);
             Assertion(Level.BaseDimensions, Level.Zero);
             Assertion(LinearDensity.BaseDimensions, LinearDensity.Zero);

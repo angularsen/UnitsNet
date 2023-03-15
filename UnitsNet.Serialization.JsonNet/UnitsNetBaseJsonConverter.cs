@@ -181,7 +181,7 @@ namespace UnitsNet.Serialization.JsonNet
         {
             quantity = quantity ?? throw new ArgumentNullException(nameof(quantity));
 
-            if (quantity is IDecimalQuantity d)
+            if (quantity is IValueQuantity<decimal> d)
             {
                 return new ExtendedValueUnit
                 {
