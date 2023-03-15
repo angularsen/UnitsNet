@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using UnitsNet.Units;
@@ -16,7 +17,7 @@ namespace UnitsNet
         /// <summary>
         /// The available UnitsNet custom format specifiers.
         /// </summary>
-        private static readonly char[] UnitsNetFormatSpecifiers = { 'A', 'a', 'Q', 'q', 'S', 's', 'U', 'u', 'V', 'v' };
+        private static readonly HashSet<char> UnitsNetFormatSpecifiers = new HashSet<char> { 'A', 'a', 'S', 's' };
 
         /// <summary>
         /// Formats a quantity using the given format string and format provider.
@@ -43,24 +44,12 @@ namespace UnitsNet
         ///         A <see cref="FormatException"/> will be thrown if the requested abbreviation index does not exist.</description>
         ///     </item>
         ///     <item>
-        ///         <term>"Q" or "q".</term>
-        ///         <description>The quantity name, such as "Length".</description>
-        ///     </item>
-        ///     <item>
         ///         <term>"S" or "s".</term>
         ///         <description>The value with 2 significant digits after the radix followed by the unit abbreviation, such as "1.23 m".</description>
         ///     </item>
         ///     <item>
         ///         <term>"S0", "S1", ..., "Sn" or "s0", "s1", ..., "sn".</term>
         ///         <description>The value with n significant digits after the radix followed by the unit abbreviation. "S2" and "s2" is the same as "s".</description>
-        ///     </item>
-        ///     <item>
-        ///         <term>"U" or "u".</term>
-        ///         <description>The enum name of <see cref="IQuantity{TUnitType}.Unit" />, such as "Meter".</description>
-        ///     </item>
-        ///     <item>
-        ///         <term>"V" or "v".</term>
-        ///         <description>The quantity's value as a string in the default (G) format.</description>
         ///     </item>
         /// </list>
         /// </remarks>
@@ -98,24 +87,12 @@ namespace UnitsNet
         ///         A <see cref="FormatException"/> will be thrown if the requested abbreviation index does not exist.</description>
         ///     </item>
         ///     <item>
-        ///         <term>"Q" or "q".</term>
-        ///         <description>The quantity name, such as "Length".</description>
-        ///     </item>
-        ///     <item>
         ///         <term>"S" or "s".</term>
         ///         <description>The value with 2 significant digits after the radix followed by the unit abbreviation, such as "1.23 m".</description>
         ///     </item>
         ///     <item>
         ///         <term>"S0", "S1", ..., "Sn" or "s0", "s1", ..., "sn".</term>
         ///         <description>The value with n significant digits after the radix followed by the unit abbreviation. "S2" and "s2" is the same as "s".</description>
-        ///     </item>
-        ///     <item>
-        ///         <term>"U" or "u".</term>
-        ///         <description>The enum name of <see cref="IQuantity{TUnitType}.Unit" />, such as "Meter".</description>
-        ///     </item>
-        ///     <item>
-        ///         <term>"V" or "v".</term>
-        ///         <description>The quantity's value as a string in the default (G) format.</description>
         ///     </item>
         /// </list>
         /// </remarks>
@@ -130,29 +107,19 @@ namespace UnitsNet
         private static string FormatUntrimmed<TUnitType>(IQuantity<TUnitType> quantity, string? format, IFormatProvider? formatProvider)
             where TUnitType : Enum
         {
+            format ??= "G";
             formatProvider ??= CultureInfo.CurrentCulture;
-
-            if (string.IsNullOrWhiteSpace(format))
-                format = "G";
 
             char formatSpecifier = format![0]; // netstandard2.0 nullable quirk
 
-            if (UnitsNetFormatSpecifiers.Any(unitsNetFormatSpecifier => unitsNetFormatSpecifier == formatSpecifier))
+            if (UnitsNetFormatSpecifiers.Contains(formatSpecifier))
             {
                 // UnitsNet custom format string
 
-                int precisionSpecifier = 0;
+                uint precisionSpecifier = 0;
 
-                switch(formatSpecifier)
-                {
-                    case 'A':
-                    case 'a':
-                    case 'S':
-                    case 's':
-                        if (format.Length > 1 && !int.TryParse(format.Substring(1), out precisionSpecifier))
-                            throw new FormatException($"The {format} format string is not supported.");
-                        break;
-                }
+                if (format.Length > 1 && !uint.TryParse(format.Substring(1), out precisionSpecifier))
+                    throw new FormatException($"The \"{format}\" format string is not supported.");
 
                 switch(formatSpecifier)
                 {
@@ -161,23 +128,14 @@ namespace UnitsNet
                         var abbreviations = UnitAbbreviationsCache.Default.GetUnitAbbreviations(quantity.Unit, formatProvider);
 
                         if (precisionSpecifier >= abbreviations.Length)
-                            throw new FormatException($"The {format} format string is invalid because the abbreviation index does not exist.");
+                            throw new FormatException($"The \"{format}\" format string is invalid because the index is out of range.");
 
                         return abbreviations[precisionSpecifier];
-                    case 'V':
-                    case 'v':
-                        return quantity.Value.ToString(formatProvider);
-                    case 'U':
-                    case 'u':
-                        return quantity.Unit.ToString();
-                    case 'Q':
-                    case 'q':
-                        return quantity.QuantityInfo.Name;
                     case 'S':
                     case 's':
                         return ToStringWithSignificantDigitsAfterRadix(quantity, formatProvider, precisionSpecifier);
                     default:
-                        throw new FormatException($"The {format} format string is not supported.");
+                        throw new FormatException($"The \"{format}\" format string is not supported.");
                 }
             }
             else
@@ -189,7 +147,8 @@ namespace UnitsNet
             }
         }
 
-        private static string ToStringWithSignificantDigitsAfterRadix<TUnitType>(IQuantity<TUnitType> quantity, IFormatProvider formatProvider, int number) where TUnitType : Enum
+        private static string ToStringWithSignificantDigitsAfterRadix<TUnitType>(IQuantity<TUnitType> quantity, IFormatProvider formatProvider, uint number)
+            where TUnitType : Enum
         {
             // When a fixed number of digits after the dot is expected, double and decimal behave the same.
             var value = (double)quantity.Value;

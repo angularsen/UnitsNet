@@ -58,7 +58,7 @@ namespace UnitsNet
     public class DisplayAsUnitAttribute : DefaultUnitAttribute
     {
         /// <summary>
-        /// The formatting used when the quantity is converted to string. See <see cref="IQuantity.ToString(System.IFormatProvider)"/>
+        /// The formatting used when the quantity is converted to string. See <see cref="IQuantity.ToString(IFormatProvider)"/>
         /// </summary>
         public string Format { get; set; }
 
@@ -66,8 +66,8 @@ namespace UnitsNet
         /// Initializes a new instance of the <see cref="DisplayAsUnitAttribute"/> class.
         /// </summary>
         /// <param name="unitType">The unit the quantity should be displayed in</param>
-        /// <param name="format">Formatting string <see cref="IQuantity.ToString(System.IFormatProvider)"/> </param>
-        public DisplayAsUnitAttribute(object? unitType, string format = "") : base(unitType)
+        /// <param name="format">Formatting string <see cref="IQuantity.ToString(IFormatProvider)"/> </param>
+        public DisplayAsUnitAttribute(object? unitType, string format = "G") : base(unitType)
         {
             Format = format;
         }
