@@ -11,6 +11,7 @@ namespace CodeGen.JsonTypes
 #pragma warning disable 0649
 
         public BaseUnits? BaseUnits;
+        public Conversions[] Conversions = Array.Empty<Conversions>();
         public string FromBaseToUnitFunc = null!;
         public string FromUnitToBaseFunc = null!;
         public Localization[] Localization = Array.Empty<Localization>();

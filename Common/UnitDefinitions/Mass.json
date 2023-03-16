@@ -136,6 +136,12 @@
       "BaseUnits": {
         "M": "Ounce"
       },
+      "Conversions": [
+        {
+          "Target": "Pound",
+          "Formula": "{x} / 16.0"
+        }
+      ],
       "FromUnitToBaseFunc": "{x} * 0.028349523125",
       "FromBaseToUnitFunc": "{x} / 0.028349523125",
       "XmlDocSummary": "The international avoirdupois ounce (abbreviated oz) is defined as exactly 28.349523125 g under the international yard and pound agreement of 1959, signed by the United States and countries of the Commonwealth of Nations. 16 oz make up an avoirdupois pound.",
