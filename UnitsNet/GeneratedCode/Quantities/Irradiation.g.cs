@@ -885,6 +885,18 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<IrradiationUnit> IQuantity<IrradiationUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
+        /// <inheritdoc />
+        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
+        {
+            if (unit is not IrradiationUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(IrradiationUnit)} is supported.", nameof(unit));
+
+            return ToUnit(typedUnit);
+        }
+
+        /// <inheritdoc />
+        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
         #endregion
 
         #region ToString Methods

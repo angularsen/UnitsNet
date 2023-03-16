@@ -935,6 +935,18 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<KinematicViscosityUnit> IQuantity<KinematicViscosityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
+        /// <inheritdoc />
+        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
+        {
+            if (unit is not KinematicViscosityUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(KinematicViscosityUnit)} is supported.", nameof(unit));
+
+            return ToUnit(typedUnit);
+        }
+
+        /// <inheritdoc />
+        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
         #endregion
 
         #region ToString Methods

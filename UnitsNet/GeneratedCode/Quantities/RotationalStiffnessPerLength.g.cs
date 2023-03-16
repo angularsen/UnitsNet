@@ -840,6 +840,18 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<RotationalStiffnessPerLengthUnit> IQuantity<RotationalStiffnessPerLengthUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
+        /// <inheritdoc />
+        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
+        {
+            if (unit is not RotationalStiffnessPerLengthUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalStiffnessPerLengthUnit)} is supported.", nameof(unit));
+
+            return ToUnit(typedUnit);
+        }
+
+        /// <inheritdoc />
+        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
         #endregion
 
         #region ToString Methods
