@@ -46,6 +46,12 @@ stages:
         pwsh: true
         workingDirectory: '$(Build.SourcesDirectory)'
 
+    - task: PublishTestResults@2
+      condition: always()
+      inputs:
+        searchFolder: $(Build.SourcesDirectory)\Artifacts\Logs
+        mergeTestResults: true
+
     - task: PowerShell@2
       displayName: Upload to codecov.io
       env:

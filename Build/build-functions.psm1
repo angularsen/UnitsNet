@@ -74,7 +74,6 @@ function Start-Tests {
   write-host -foreground blue "Run tests...`n---"
   foreach ($projectPath in $projectPaths) {
     $projectFileNameNoEx = [System.IO.Path]::GetFileNameWithoutExtension($projectPath)
-    $reportFile = "$testReportDir\${projectFileNameNoEx}.xunit.xml"
     $coverageReportFile = "$testCoverageDir\${projectFileNameNoEx}.coverage.xml"
     $projectDir = [System.IO.Path]::GetDirectoryName($projectPath)
 
@@ -86,7 +85,8 @@ function Start-Tests {
       --no-build `
       --dotCoverFilters="+:module=UnitsNet*;-:module=*Tests" `
       --dotCoverOutput="$coverageReportFile" `
-      --dcReportType=DetailedXML
+      --dcReportType=DetailedXML `
+      --results-directory="$testReportDir"
 
     if ($lastexitcode -ne 0) { exit 1 }
     pop-location
