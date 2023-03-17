@@ -49,6 +49,7 @@ stages:
     - task: PublishTestResults@2
       condition: always()
       inputs:
+        testResultsFiles: "*.xml"
         searchFolder: $(Build.SourcesDirectory)\Artifacts\Logs
         mergeTestResults: true
 
