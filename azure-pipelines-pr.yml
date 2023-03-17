@@ -49,8 +49,9 @@ stages:
     - task: PublishTestResults@2
       condition: always()
       inputs:
-        testResultsFiles: "*.xml"
-        searchFolder: $(Build.SourcesDirectory)\Artifacts\Logs
+        testResultsFormat: "VSTest"
+        testResultsFiles: "*.trx"
+        searchFolder: $(Build.SourcesDirectory)\Artifacts\TestResults
         mergeTestResults: true
 
     - task: PowerShell@2
