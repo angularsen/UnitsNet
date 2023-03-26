@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
 namespace UnitsNet.Samples.UnitConverter.Wpf
@@ -15,17 +14,17 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
     {
         public MainWindowDesignVm()
         {
-            Quantities = ToReadOnly(Quantity.Types);
+            Quantities = ToReadOnly(Quantity.Infos.Select(i => i.Name));
             Units = ToReadOnly(Length.Units.Select(u => new UnitListItem(u)));
-            SelectedQuantity = QuantityType.Length;
+            SelectedQuantity = Length.Info.Name;
             SelectedFromUnit = Units[1];
             SelectedToUnit = Units[2];
         }
 
 
-        public ReadOnlyObservableCollection<QuantityType> Quantities { get; }
+        public ReadOnlyObservableCollection<string> Quantities { get; }
         public ReadOnlyObservableCollection<UnitListItem> Units { get; }
-        public QuantityType SelectedQuantity { get; set; }
+        public string SelectedQuantity { get; set; }
         public UnitListItem SelectedFromUnit { get; set; }
         public UnitListItem SelectedToUnit { get; set; }
 
