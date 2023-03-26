@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="UnitsNet" Version="5.0.0-alpha001" />
+      <PackageReference Include="UnitsNet" Version="5.9.0" />
     </ItemGroup>
 
 </Project>

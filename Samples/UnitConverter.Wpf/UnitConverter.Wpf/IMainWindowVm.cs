@@ -11,9 +11,9 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
     /// </summary>
     public interface IMainWindowVm : INotifyPropertyChanged
     {
-        ReadOnlyObservableCollection<QuantityType> Quantities { get; }
+        ReadOnlyObservableCollection<string> Quantities { get; }
         ReadOnlyObservableCollection<UnitListItem> Units { get; }
-        QuantityType SelectedQuantity { get; set; }
+        string SelectedQuantity { get; set; }
 
         [CanBeNull]
         UnitListItem SelectedFromUnit { get; set; }
