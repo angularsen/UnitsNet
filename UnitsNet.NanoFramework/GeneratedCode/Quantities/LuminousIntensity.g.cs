@@ -87,6 +87,51 @@ namespace UnitsNet
         /// </summary>
         public double Candela => As(LuminousIntensityUnit.Candela);
 
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminousIntensityUnit.Centicandela"/>
+        /// </summary>
+        public double Centicandela => As(LuminousIntensityUnit.Centicandela);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminousIntensityUnit.Decacandela"/>
+        /// </summary>
+        public double Decacandela => As(LuminousIntensityUnit.Decacandela);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminousIntensityUnit.Decicandela"/>
+        /// </summary>
+        public double Decicandela => As(LuminousIntensityUnit.Decicandela);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminousIntensityUnit.Hectocandela"/>
+        /// </summary>
+        public double Hectocandela => As(LuminousIntensityUnit.Hectocandela);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminousIntensityUnit.Kilocandela"/>
+        /// </summary>
+        public double Kilocandela => As(LuminousIntensityUnit.Kilocandela);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminousIntensityUnit.Megacandela"/>
+        /// </summary>
+        public double Megacandela => As(LuminousIntensityUnit.Megacandela);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminousIntensityUnit.Microcandela"/>
+        /// </summary>
+        public double Microcandela => As(LuminousIntensityUnit.Microcandela);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminousIntensityUnit.Millicandela"/>
+        /// </summary>
+        public double Millicandela => As(LuminousIntensityUnit.Millicandela);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminousIntensityUnit.Nanocandela"/>
+        /// </summary>
+        public double Nanocandela => As(LuminousIntensityUnit.Nanocandela);
+
         #endregion
 
         #region Static Factory Methods
@@ -96,6 +141,60 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LuminousIntensity FromCandela(double candela) => new LuminousIntensity(candela, LuminousIntensityUnit.Candela);
+
+        /// <summary>
+        ///     Creates a <see cref="LuminousIntensity"/> from <see cref="LuminousIntensityUnit.Centicandela"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static LuminousIntensity FromCenticandela(double centicandela) => new LuminousIntensity(centicandela, LuminousIntensityUnit.Centicandela);
+
+        /// <summary>
+        ///     Creates a <see cref="LuminousIntensity"/> from <see cref="LuminousIntensityUnit.Decacandela"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static LuminousIntensity FromDecacandela(double decacandela) => new LuminousIntensity(decacandela, LuminousIntensityUnit.Decacandela);
+
+        /// <summary>
+        ///     Creates a <see cref="LuminousIntensity"/> from <see cref="LuminousIntensityUnit.Decicandela"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static LuminousIntensity FromDecicandela(double decicandela) => new LuminousIntensity(decicandela, LuminousIntensityUnit.Decicandela);
+
+        /// <summary>
+        ///     Creates a <see cref="LuminousIntensity"/> from <see cref="LuminousIntensityUnit.Hectocandela"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static LuminousIntensity FromHectocandela(double hectocandela) => new LuminousIntensity(hectocandela, LuminousIntensityUnit.Hectocandela);
+
+        /// <summary>
+        ///     Creates a <see cref="LuminousIntensity"/> from <see cref="LuminousIntensityUnit.Kilocandela"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static LuminousIntensity FromKilocandela(double kilocandela) => new LuminousIntensity(kilocandela, LuminousIntensityUnit.Kilocandela);
+
+        /// <summary>
+        ///     Creates a <see cref="LuminousIntensity"/> from <see cref="LuminousIntensityUnit.Megacandela"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static LuminousIntensity FromMegacandela(double megacandela) => new LuminousIntensity(megacandela, LuminousIntensityUnit.Megacandela);
+
+        /// <summary>
+        ///     Creates a <see cref="LuminousIntensity"/> from <see cref="LuminousIntensityUnit.Microcandela"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static LuminousIntensity FromMicrocandela(double microcandela) => new LuminousIntensity(microcandela, LuminousIntensityUnit.Microcandela);
+
+        /// <summary>
+        ///     Creates a <see cref="LuminousIntensity"/> from <see cref="LuminousIntensityUnit.Millicandela"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static LuminousIntensity FromMillicandela(double millicandela) => new LuminousIntensity(millicandela, LuminousIntensityUnit.Millicandela);
+
+        /// <summary>
+        ///     Creates a <see cref="LuminousIntensity"/> from <see cref="LuminousIntensityUnit.Nanocandela"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static LuminousIntensity FromNanocandela(double nanocandela) => new LuminousIntensity(nanocandela, LuminousIntensityUnit.Nanocandela);
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="LuminousIntensityUnit" /> to <see cref="LuminousIntensity" />.
@@ -138,6 +237,15 @@ namespace UnitsNet
                     return Unit switch
                     {
                         LuminousIntensityUnit.Candela => _value,
+                        LuminousIntensityUnit.Centicandela => (_value) * 1e-2d,
+                        LuminousIntensityUnit.Decacandela => (_value) * 1e1d,
+                        LuminousIntensityUnit.Decicandela => (_value) * 1e-1d,
+                        LuminousIntensityUnit.Hectocandela => (_value) * 1e2d,
+                        LuminousIntensityUnit.Kilocandela => (_value) * 1e3d,
+                        LuminousIntensityUnit.Megacandela => (_value) * 1e6d,
+                        LuminousIntensityUnit.Microcandela => (_value) * 1e-6d,
+                        LuminousIntensityUnit.Millicandela => (_value) * 1e-3d,
+                        LuminousIntensityUnit.Nanocandela => (_value) * 1e-9d,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
                     };
                     }
@@ -152,6 +260,15 @@ namespace UnitsNet
                     return unit switch
                     {
                         LuminousIntensityUnit.Candela => baseUnitValue,
+                        LuminousIntensityUnit.Centicandela => (baseUnitValue) / 1e-2d,
+                        LuminousIntensityUnit.Decacandela => (baseUnitValue) / 1e1d,
+                        LuminousIntensityUnit.Decicandela => (baseUnitValue) / 1e-1d,
+                        LuminousIntensityUnit.Hectocandela => (baseUnitValue) / 1e2d,
+                        LuminousIntensityUnit.Kilocandela => (baseUnitValue) / 1e3d,
+                        LuminousIntensityUnit.Megacandela => (baseUnitValue) / 1e6d,
+                        LuminousIntensityUnit.Microcandela => (baseUnitValue) / 1e-6d,
+                        LuminousIntensityUnit.Millicandela => (baseUnitValue) / 1e-3d,
+                        LuminousIntensityUnit.Nanocandela => (baseUnitValue) / 1e-9d,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
                     };
                     }

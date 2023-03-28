@@ -32,5 +32,41 @@ namespace UnitsNet.NumberExtensions.NumberToLuminousIntensity
         public static LuminousIntensity Candela<T>(this T value) =>
             LuminousIntensity.FromCandela(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="LuminousIntensity.FromCenticandela(UnitsNet.QuantityValue)" />
+        public static LuminousIntensity Centicandela<T>(this T value) =>
+            LuminousIntensity.FromCenticandela(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="LuminousIntensity.FromDecacandela(UnitsNet.QuantityValue)" />
+        public static LuminousIntensity Decacandela<T>(this T value) =>
+            LuminousIntensity.FromDecacandela(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="LuminousIntensity.FromDecicandela(UnitsNet.QuantityValue)" />
+        public static LuminousIntensity Decicandela<T>(this T value) =>
+            LuminousIntensity.FromDecicandela(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="LuminousIntensity.FromHectocandela(UnitsNet.QuantityValue)" />
+        public static LuminousIntensity Hectocandela<T>(this T value) =>
+            LuminousIntensity.FromHectocandela(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="LuminousIntensity.FromKilocandela(UnitsNet.QuantityValue)" />
+        public static LuminousIntensity Kilocandela<T>(this T value) =>
+            LuminousIntensity.FromKilocandela(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="LuminousIntensity.FromMegacandela(UnitsNet.QuantityValue)" />
+        public static LuminousIntensity Megacandela<T>(this T value) =>
+            LuminousIntensity.FromMegacandela(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="LuminousIntensity.FromMicrocandela(UnitsNet.QuantityValue)" />
+        public static LuminousIntensity Microcandela<T>(this T value) =>
+            LuminousIntensity.FromMicrocandela(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="LuminousIntensity.FromMillicandela(UnitsNet.QuantityValue)" />
+        public static LuminousIntensity Millicandela<T>(this T value) =>
+            LuminousIntensity.FromMillicandela(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="LuminousIntensity.FromNanocandela(UnitsNet.QuantityValue)" />
+        public static LuminousIntensity Nanocandela<T>(this T value) =>
+            LuminousIntensity.FromNanocandela(Convert.ToDouble(value));
+
     }
 }

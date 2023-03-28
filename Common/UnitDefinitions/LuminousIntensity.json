@@ -14,7 +14,8 @@
         "J": "Candela"
       },
       "FromUnitToBaseFunc": "{x}",
-      "FromBaseToUnitFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",      
+	"Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",

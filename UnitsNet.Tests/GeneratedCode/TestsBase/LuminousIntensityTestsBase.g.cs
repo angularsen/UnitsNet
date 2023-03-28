@@ -39,9 +39,27 @@ namespace UnitsNet.Tests
     public abstract partial class LuminousIntensityTestsBase : QuantityTestsBase
     {
         protected abstract double CandelaInOneCandela { get; }
+        protected abstract double CenticandelaInOneCandela { get; }
+        protected abstract double DecacandelaInOneCandela { get; }
+        protected abstract double DecicandelaInOneCandela { get; }
+        protected abstract double HectocandelaInOneCandela { get; }
+        protected abstract double KilocandelaInOneCandela { get; }
+        protected abstract double MegacandelaInOneCandela { get; }
+        protected abstract double MicrocandelaInOneCandela { get; }
+        protected abstract double MillicandelaInOneCandela { get; }
+        protected abstract double NanocandelaInOneCandela { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double CandelaTolerance { get { return 1e-5; } }
+        protected virtual double CenticandelaTolerance { get { return 1e-5; } }
+        protected virtual double DecacandelaTolerance { get { return 1e-5; } }
+        protected virtual double DecicandelaTolerance { get { return 1e-5; } }
+        protected virtual double HectocandelaTolerance { get { return 1e-5; } }
+        protected virtual double KilocandelaTolerance { get { return 1e-5; } }
+        protected virtual double MegacandelaTolerance { get { return 1e-5; } }
+        protected virtual double MicrocandelaTolerance { get { return 1e-5; } }
+        protected virtual double MillicandelaTolerance { get { return 1e-5; } }
+        protected virtual double NanocandelaTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(LuminousIntensityUnit unit)
@@ -49,6 +67,15 @@ namespace UnitsNet.Tests
             return unit switch
             {
                 LuminousIntensityUnit.Candela => (CandelaInOneCandela, CandelaTolerance),
+                LuminousIntensityUnit.Centicandela => (CenticandelaInOneCandela, CenticandelaTolerance),
+                LuminousIntensityUnit.Decacandela => (DecacandelaInOneCandela, DecacandelaTolerance),
+                LuminousIntensityUnit.Decicandela => (DecicandelaInOneCandela, DecicandelaTolerance),
+                LuminousIntensityUnit.Hectocandela => (HectocandelaInOneCandela, HectocandelaTolerance),
+                LuminousIntensityUnit.Kilocandela => (KilocandelaInOneCandela, KilocandelaTolerance),
+                LuminousIntensityUnit.Megacandela => (MegacandelaInOneCandela, MegacandelaTolerance),
+                LuminousIntensityUnit.Microcandela => (MicrocandelaInOneCandela, MicrocandelaTolerance),
+                LuminousIntensityUnit.Millicandela => (MillicandelaInOneCandela, MillicandelaTolerance),
+                LuminousIntensityUnit.Nanocandela => (NanocandelaInOneCandela, NanocandelaTolerance),
                 _ => throw new NotSupportedException()
             };
         }
@@ -56,6 +83,15 @@ namespace UnitsNet.Tests
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { LuminousIntensityUnit.Candela },
+            new object[] { LuminousIntensityUnit.Centicandela },
+            new object[] { LuminousIntensityUnit.Decacandela },
+            new object[] { LuminousIntensityUnit.Decicandela },
+            new object[] { LuminousIntensityUnit.Hectocandela },
+            new object[] { LuminousIntensityUnit.Kilocandela },
+            new object[] { LuminousIntensityUnit.Megacandela },
+            new object[] { LuminousIntensityUnit.Microcandela },
+            new object[] { LuminousIntensityUnit.Millicandela },
+            new object[] { LuminousIntensityUnit.Nanocandela },
         };
 
         [Fact]
@@ -119,6 +155,15 @@ namespace UnitsNet.Tests
         {
             LuminousIntensity candela = LuminousIntensity.FromCandela(1);
             AssertEx.EqualTolerance(CandelaInOneCandela, candela.Candela, CandelaTolerance);
+            AssertEx.EqualTolerance(CenticandelaInOneCandela, candela.Centicandela, CenticandelaTolerance);
+            AssertEx.EqualTolerance(DecacandelaInOneCandela, candela.Decacandela, DecacandelaTolerance);
+            AssertEx.EqualTolerance(DecicandelaInOneCandela, candela.Decicandela, DecicandelaTolerance);
+            AssertEx.EqualTolerance(HectocandelaInOneCandela, candela.Hectocandela, HectocandelaTolerance);
+            AssertEx.EqualTolerance(KilocandelaInOneCandela, candela.Kilocandela, KilocandelaTolerance);
+            AssertEx.EqualTolerance(MegacandelaInOneCandela, candela.Megacandela, MegacandelaTolerance);
+            AssertEx.EqualTolerance(MicrocandelaInOneCandela, candela.Microcandela, MicrocandelaTolerance);
+            AssertEx.EqualTolerance(MillicandelaInOneCandela, candela.Millicandela, MillicandelaTolerance);
+            AssertEx.EqualTolerance(NanocandelaInOneCandela, candela.Nanocandela, NanocandelaTolerance);
         }
 
         [Fact]
@@ -127,6 +172,42 @@ namespace UnitsNet.Tests
             var quantity00 = LuminousIntensity.From(1, LuminousIntensityUnit.Candela);
             AssertEx.EqualTolerance(1, quantity00.Candela, CandelaTolerance);
             Assert.Equal(LuminousIntensityUnit.Candela, quantity00.Unit);
+
+            var quantity01 = LuminousIntensity.From(1, LuminousIntensityUnit.Centicandela);
+            AssertEx.EqualTolerance(1, quantity01.Centicandela, CenticandelaTolerance);
+            Assert.Equal(LuminousIntensityUnit.Centicandela, quantity01.Unit);
+
+            var quantity02 = LuminousIntensity.From(1, LuminousIntensityUnit.Decacandela);
+            AssertEx.EqualTolerance(1, quantity02.Decacandela, DecacandelaTolerance);
+            Assert.Equal(LuminousIntensityUnit.Decacandela, quantity02.Unit);
+
+            var quantity03 = LuminousIntensity.From(1, LuminousIntensityUnit.Decicandela);
+            AssertEx.EqualTolerance(1, quantity03.Decicandela, DecicandelaTolerance);
+            Assert.Equal(LuminousIntensityUnit.Decicandela, quantity03.Unit);
+
+            var quantity04 = LuminousIntensity.From(1, LuminousIntensityUnit.Hectocandela);
+            AssertEx.EqualTolerance(1, quantity04.Hectocandela, HectocandelaTolerance);
+            Assert.Equal(LuminousIntensityUnit.Hectocandela, quantity04.Unit);
+
+            var quantity05 = LuminousIntensity.From(1, LuminousIntensityUnit.Kilocandela);
+            AssertEx.EqualTolerance(1, quantity05.Kilocandela, KilocandelaTolerance);
+            Assert.Equal(LuminousIntensityUnit.Kilocandela, quantity05.Unit);
+
+            var quantity06 = LuminousIntensity.From(1, LuminousIntensityUnit.Megacandela);
+            AssertEx.EqualTolerance(1, quantity06.Megacandela, MegacandelaTolerance);
+            Assert.Equal(LuminousIntensityUnit.Megacandela, quantity06.Unit);
+
+            var quantity07 = LuminousIntensity.From(1, LuminousIntensityUnit.Microcandela);
+            AssertEx.EqualTolerance(1, quantity07.Microcandela, MicrocandelaTolerance);
+            Assert.Equal(LuminousIntensityUnit.Microcandela, quantity07.Unit);
+
+            var quantity08 = LuminousIntensity.From(1, LuminousIntensityUnit.Millicandela);
+            AssertEx.EqualTolerance(1, quantity08.Millicandela, MillicandelaTolerance);
+            Assert.Equal(LuminousIntensityUnit.Millicandela, quantity08.Unit);
+
+            var quantity09 = LuminousIntensity.From(1, LuminousIntensityUnit.Nanocandela);
+            AssertEx.EqualTolerance(1, quantity09.Nanocandela, NanocandelaTolerance);
+            Assert.Equal(LuminousIntensityUnit.Nanocandela, quantity09.Unit);
 
         }
 
@@ -148,6 +229,15 @@ namespace UnitsNet.Tests
         {
             var candela = LuminousIntensity.FromCandela(1);
             AssertEx.EqualTolerance(CandelaInOneCandela, candela.As(LuminousIntensityUnit.Candela), CandelaTolerance);
+            AssertEx.EqualTolerance(CenticandelaInOneCandela, candela.As(LuminousIntensityUnit.Centicandela), CenticandelaTolerance);
+            AssertEx.EqualTolerance(DecacandelaInOneCandela, candela.As(LuminousIntensityUnit.Decacandela), DecacandelaTolerance);
+            AssertEx.EqualTolerance(DecicandelaInOneCandela, candela.As(LuminousIntensityUnit.Decicandela), DecicandelaTolerance);
+            AssertEx.EqualTolerance(HectocandelaInOneCandela, candela.As(LuminousIntensityUnit.Hectocandela), HectocandelaTolerance);
+            AssertEx.EqualTolerance(KilocandelaInOneCandela, candela.As(LuminousIntensityUnit.Kilocandela), KilocandelaTolerance);
+            AssertEx.EqualTolerance(MegacandelaInOneCandela, candela.As(LuminousIntensityUnit.Megacandela), MegacandelaTolerance);
+            AssertEx.EqualTolerance(MicrocandelaInOneCandela, candela.As(LuminousIntensityUnit.Microcandela), MicrocandelaTolerance);
+            AssertEx.EqualTolerance(MillicandelaInOneCandela, candela.As(LuminousIntensityUnit.Millicandela), MillicandelaTolerance);
+            AssertEx.EqualTolerance(NanocandelaInOneCandela, candela.As(LuminousIntensityUnit.Nanocandela), NanocandelaTolerance);
         }
 
         [Fact]
@@ -177,6 +267,69 @@ namespace UnitsNet.Tests
                 Assert.Equal(LuminousIntensityUnit.Candela, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
+            try
+            {
+                var parsed = LuminousIntensity.Parse("1 ccd", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Centicandela, CenticandelaTolerance);
+                Assert.Equal(LuminousIntensityUnit.Centicandela, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = LuminousIntensity.Parse("1 dacd", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Decacandela, DecacandelaTolerance);
+                Assert.Equal(LuminousIntensityUnit.Decacandela, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = LuminousIntensity.Parse("1 dcd", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Decicandela, DecicandelaTolerance);
+                Assert.Equal(LuminousIntensityUnit.Decicandela, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = LuminousIntensity.Parse("1 hcd", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Hectocandela, HectocandelaTolerance);
+                Assert.Equal(LuminousIntensityUnit.Hectocandela, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = LuminousIntensity.Parse("1 kcd", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Kilocandela, KilocandelaTolerance);
+                Assert.Equal(LuminousIntensityUnit.Kilocandela, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = LuminousIntensity.Parse("1 Mcd", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Megacandela, MegacandelaTolerance);
+                Assert.Equal(LuminousIntensityUnit.Megacandela, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = LuminousIntensity.Parse("1 µcd", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Microcandela, MicrocandelaTolerance);
+                Assert.Equal(LuminousIntensityUnit.Microcandela, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = LuminousIntensity.Parse("1 mcd", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Millicandela, MillicandelaTolerance);
+                Assert.Equal(LuminousIntensityUnit.Millicandela, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = LuminousIntensity.Parse("1 ncd", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Nanocandela, NanocandelaTolerance);
+                Assert.Equal(LuminousIntensityUnit.Nanocandela, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
         }
 
         [Fact]
@@ -186,6 +339,48 @@ namespace UnitsNet.Tests
                 Assert.True(LuminousIntensity.TryParse("1 cd", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Candela, CandelaTolerance);
                 Assert.Equal(LuminousIntensityUnit.Candela, parsed.Unit);
+            }
+
+            {
+                Assert.True(LuminousIntensity.TryParse("1 ccd", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Centicandela, CenticandelaTolerance);
+                Assert.Equal(LuminousIntensityUnit.Centicandela, parsed.Unit);
+            }
+
+            {
+                Assert.True(LuminousIntensity.TryParse("1 dacd", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Decacandela, DecacandelaTolerance);
+                Assert.Equal(LuminousIntensityUnit.Decacandela, parsed.Unit);
+            }
+
+            {
+                Assert.True(LuminousIntensity.TryParse("1 dcd", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Decicandela, DecicandelaTolerance);
+                Assert.Equal(LuminousIntensityUnit.Decicandela, parsed.Unit);
+            }
+
+            {
+                Assert.True(LuminousIntensity.TryParse("1 hcd", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Hectocandela, HectocandelaTolerance);
+                Assert.Equal(LuminousIntensityUnit.Hectocandela, parsed.Unit);
+            }
+
+            {
+                Assert.True(LuminousIntensity.TryParse("1 kcd", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kilocandela, KilocandelaTolerance);
+                Assert.Equal(LuminousIntensityUnit.Kilocandela, parsed.Unit);
+            }
+
+            {
+                Assert.True(LuminousIntensity.TryParse("1 µcd", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Microcandela, MicrocandelaTolerance);
+                Assert.Equal(LuminousIntensityUnit.Microcandela, parsed.Unit);
+            }
+
+            {
+                Assert.True(LuminousIntensity.TryParse("1 ncd", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Nanocandela, NanocandelaTolerance);
+                Assert.Equal(LuminousIntensityUnit.Nanocandela, parsed.Unit);
             }
 
         }
@@ -199,6 +394,60 @@ namespace UnitsNet.Tests
                 Assert.Equal(LuminousIntensityUnit.Candela, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
+            try
+            {
+                var parsedUnit = LuminousIntensity.ParseUnit("ccd", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LuminousIntensityUnit.Centicandela, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = LuminousIntensity.ParseUnit("dacd", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LuminousIntensityUnit.Decacandela, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = LuminousIntensity.ParseUnit("dcd", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LuminousIntensityUnit.Decicandela, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = LuminousIntensity.ParseUnit("hcd", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LuminousIntensityUnit.Hectocandela, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = LuminousIntensity.ParseUnit("kcd", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LuminousIntensityUnit.Kilocandela, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = LuminousIntensity.ParseUnit("Mcd", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LuminousIntensityUnit.Megacandela, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = LuminousIntensity.ParseUnit("µcd", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LuminousIntensityUnit.Microcandela, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = LuminousIntensity.ParseUnit("mcd", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LuminousIntensityUnit.Millicandela, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = LuminousIntensity.ParseUnit("ncd", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LuminousIntensityUnit.Nanocandela, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
         }
 
         [Fact]
@@ -207,6 +456,41 @@ namespace UnitsNet.Tests
             {
                 Assert.True(LuminousIntensity.TryParseUnit("cd", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(LuminousIntensityUnit.Candela, parsedUnit);
+            }
+
+            {
+                Assert.True(LuminousIntensity.TryParseUnit("ccd", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LuminousIntensityUnit.Centicandela, parsedUnit);
+            }
+
+            {
+                Assert.True(LuminousIntensity.TryParseUnit("dacd", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LuminousIntensityUnit.Decacandela, parsedUnit);
+            }
+
+            {
+                Assert.True(LuminousIntensity.TryParseUnit("dcd", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LuminousIntensityUnit.Decicandela, parsedUnit);
+            }
+
+            {
+                Assert.True(LuminousIntensity.TryParseUnit("hcd", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LuminousIntensityUnit.Hectocandela, parsedUnit);
+            }
+
+            {
+                Assert.True(LuminousIntensity.TryParseUnit("kcd", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LuminousIntensityUnit.Kilocandela, parsedUnit);
+            }
+
+            {
+                Assert.True(LuminousIntensity.TryParseUnit("µcd", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LuminousIntensityUnit.Microcandela, parsedUnit);
+            }
+
+            {
+                Assert.True(LuminousIntensity.TryParseUnit("ncd", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LuminousIntensityUnit.Nanocandela, parsedUnit);
             }
 
         }
@@ -232,7 +516,7 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
-        [Theory(Skip = "Multiple units required")]
+        [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(LuminousIntensityUnit unit)
         {
@@ -258,6 +542,15 @@ namespace UnitsNet.Tests
         {
             LuminousIntensity candela = LuminousIntensity.FromCandela(1);
             AssertEx.EqualTolerance(1, LuminousIntensity.FromCandela(candela.Candela).Candela, CandelaTolerance);
+            AssertEx.EqualTolerance(1, LuminousIntensity.FromCenticandela(candela.Centicandela).Candela, CenticandelaTolerance);
+            AssertEx.EqualTolerance(1, LuminousIntensity.FromDecacandela(candela.Decacandela).Candela, DecacandelaTolerance);
+            AssertEx.EqualTolerance(1, LuminousIntensity.FromDecicandela(candela.Decicandela).Candela, DecicandelaTolerance);
+            AssertEx.EqualTolerance(1, LuminousIntensity.FromHectocandela(candela.Hectocandela).Candela, HectocandelaTolerance);
+            AssertEx.EqualTolerance(1, LuminousIntensity.FromKilocandela(candela.Kilocandela).Candela, KilocandelaTolerance);
+            AssertEx.EqualTolerance(1, LuminousIntensity.FromMegacandela(candela.Megacandela).Candela, MegacandelaTolerance);
+            AssertEx.EqualTolerance(1, LuminousIntensity.FromMicrocandela(candela.Microcandela).Candela, MicrocandelaTolerance);
+            AssertEx.EqualTolerance(1, LuminousIntensity.FromMillicandela(candela.Millicandela).Candela, MillicandelaTolerance);
+            AssertEx.EqualTolerance(1, LuminousIntensity.FromNanocandela(candela.Nanocandela).Candela, NanocandelaTolerance);
         }
 
         [Fact]
@@ -316,7 +609,8 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, LuminousIntensityUnit.Candela, 1, LuminousIntensityUnit.Candela, true)]  // Same value and unit.
         [InlineData(1, LuminousIntensityUnit.Candela, 2, LuminousIntensityUnit.Candela, false)] // Different value.
-        [InlineData(2, LuminousIntensityUnit.Candela, 1, LuminousIntensityUnit.Candela, false)] // Different value and unit.
+        [InlineData(2, LuminousIntensityUnit.Candela, 1, LuminousIntensityUnit.Centicandela, false)] // Different value and unit.
+        [InlineData(1, LuminousIntensityUnit.Candela, 1, LuminousIntensityUnit.Centicandela, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, LuminousIntensityUnit unitA, double valueB, LuminousIntensityUnit unitB, bool expectEqual)
         {
             var a = new LuminousIntensity(valueA, unitA);
@@ -405,6 +699,15 @@ namespace UnitsNet.Tests
             Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             try {
                 Assert.Equal("1 cd", new LuminousIntensity(1, LuminousIntensityUnit.Candela).ToString());
+                Assert.Equal("1 ccd", new LuminousIntensity(1, LuminousIntensityUnit.Centicandela).ToString());
+                Assert.Equal("1 dacd", new LuminousIntensity(1, LuminousIntensityUnit.Decacandela).ToString());
+                Assert.Equal("1 dcd", new LuminousIntensity(1, LuminousIntensityUnit.Decicandela).ToString());
+                Assert.Equal("1 hcd", new LuminousIntensity(1, LuminousIntensityUnit.Hectocandela).ToString());
+                Assert.Equal("1 kcd", new LuminousIntensity(1, LuminousIntensityUnit.Kilocandela).ToString());
+                Assert.Equal("1 Mcd", new LuminousIntensity(1, LuminousIntensityUnit.Megacandela).ToString());
+                Assert.Equal("1 µcd", new LuminousIntensity(1, LuminousIntensityUnit.Microcandela).ToString());
+                Assert.Equal("1 mcd", new LuminousIntensity(1, LuminousIntensityUnit.Millicandela).ToString());
+                Assert.Equal("1 ncd", new LuminousIntensity(1, LuminousIntensityUnit.Nanocandela).ToString());
             }
             finally
             {
@@ -419,6 +722,15 @@ namespace UnitsNet.Tests
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
             Assert.Equal("1 cd", new LuminousIntensity(1, LuminousIntensityUnit.Candela).ToString(swedishCulture));
+            Assert.Equal("1 ccd", new LuminousIntensity(1, LuminousIntensityUnit.Centicandela).ToString(swedishCulture));
+            Assert.Equal("1 dacd", new LuminousIntensity(1, LuminousIntensityUnit.Decacandela).ToString(swedishCulture));
+            Assert.Equal("1 dcd", new LuminousIntensity(1, LuminousIntensityUnit.Decicandela).ToString(swedishCulture));
+            Assert.Equal("1 hcd", new LuminousIntensity(1, LuminousIntensityUnit.Hectocandela).ToString(swedishCulture));
+            Assert.Equal("1 kcd", new LuminousIntensity(1, LuminousIntensityUnit.Kilocandela).ToString(swedishCulture));
+            Assert.Equal("1 Mcd", new LuminousIntensity(1, LuminousIntensityUnit.Megacandela).ToString(swedishCulture));
+            Assert.Equal("1 µcd", new LuminousIntensity(1, LuminousIntensityUnit.Microcandela).ToString(swedishCulture));
+            Assert.Equal("1 mcd", new LuminousIntensity(1, LuminousIntensityUnit.Millicandela).ToString(swedishCulture));
+            Assert.Equal("1 ncd", new LuminousIntensity(1, LuminousIntensityUnit.Nanocandela).ToString(swedishCulture));
         }
 
         [Fact]

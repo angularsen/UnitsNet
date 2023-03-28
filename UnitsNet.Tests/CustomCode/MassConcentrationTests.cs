@@ -28,7 +28,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class MassConcentrationTests : MassConcentrationTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
+        protected override bool SupportsSIUnitSystem => true;
 
         #region Unit Conversion Coefficients
         protected override double PicogramsPerLiterInOneKilogramPerCubicMeter => 1e12;

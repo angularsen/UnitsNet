@@ -97,6 +97,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Mass.FromOunces(2), 2.Ounces());
 
         [Fact]
+        public void NumberToPicogramsTest() =>
+            Assert.Equal(Mass.FromPicograms(2), 2.Picograms());
+
+        [Fact]
         public void NumberToPoundsTest() =>
             Assert.Equal(Mass.FromPounds(2), 2.Pounds());
 

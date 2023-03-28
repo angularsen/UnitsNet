@@ -65,24 +65,25 @@ namespace UnitsNet
             Info = new QuantityInfo<MassUnit>("Mass",
                 new UnitInfo<MassUnit>[]
                 {
-                    new UnitInfo<MassUnit>(MassUnit.Centigram, "Centigrams", BaseUnits.Undefined),
-                    new UnitInfo<MassUnit>(MassUnit.Decagram, "Decagrams", BaseUnits.Undefined),
-                    new UnitInfo<MassUnit>(MassUnit.Decigram, "Decigrams", BaseUnits.Undefined),
+                    new UnitInfo<MassUnit>(MassUnit.Centigram, "Centigrams", new BaseUnits(mass: MassUnit.Centigram)),
+                    new UnitInfo<MassUnit>(MassUnit.Decagram, "Decagrams", new BaseUnits(mass: MassUnit.Decagram)),
+                    new UnitInfo<MassUnit>(MassUnit.Decigram, "Decigrams", new BaseUnits(mass: MassUnit.Decigram)),
                     new UnitInfo<MassUnit>(MassUnit.EarthMass, "EarthMasses", new BaseUnits(mass: MassUnit.EarthMass)),
                     new UnitInfo<MassUnit>(MassUnit.Grain, "Grains", new BaseUnits(mass: MassUnit.Grain)),
                     new UnitInfo<MassUnit>(MassUnit.Gram, "Grams", new BaseUnits(mass: MassUnit.Gram)),
-                    new UnitInfo<MassUnit>(MassUnit.Hectogram, "Hectograms", BaseUnits.Undefined),
-                    new UnitInfo<MassUnit>(MassUnit.Kilogram, "Kilograms", BaseUnits.Undefined),
-                    new UnitInfo<MassUnit>(MassUnit.Kilopound, "Kilopounds", BaseUnits.Undefined),
-                    new UnitInfo<MassUnit>(MassUnit.Kilotonne, "Kilotonnes", BaseUnits.Undefined),
+                    new UnitInfo<MassUnit>(MassUnit.Hectogram, "Hectograms", new BaseUnits(mass: MassUnit.Hectogram)),
+                    new UnitInfo<MassUnit>(MassUnit.Kilogram, "Kilograms", new BaseUnits(mass: MassUnit.Kilogram)),
+                    new UnitInfo<MassUnit>(MassUnit.Kilopound, "Kilopounds", new BaseUnits(mass: MassUnit.Kilopound)),
+                    new UnitInfo<MassUnit>(MassUnit.Kilotonne, "Kilotonnes", new BaseUnits(mass: MassUnit.Kilotonne)),
                     new UnitInfo<MassUnit>(MassUnit.LongHundredweight, "LongHundredweight", new BaseUnits(mass: MassUnit.LongHundredweight)),
                     new UnitInfo<MassUnit>(MassUnit.LongTon, "LongTons", new BaseUnits(mass: MassUnit.LongTon)),
-                    new UnitInfo<MassUnit>(MassUnit.Megapound, "Megapounds", BaseUnits.Undefined),
-                    new UnitInfo<MassUnit>(MassUnit.Megatonne, "Megatonnes", BaseUnits.Undefined),
-                    new UnitInfo<MassUnit>(MassUnit.Microgram, "Micrograms", BaseUnits.Undefined),
-                    new UnitInfo<MassUnit>(MassUnit.Milligram, "Milligrams", BaseUnits.Undefined),
-                    new UnitInfo<MassUnit>(MassUnit.Nanogram, "Nanograms", BaseUnits.Undefined),
+                    new UnitInfo<MassUnit>(MassUnit.Megapound, "Megapounds", new BaseUnits(mass: MassUnit.Megapound)),
+                    new UnitInfo<MassUnit>(MassUnit.Megatonne, "Megatonnes", new BaseUnits(mass: MassUnit.Megatonne)),
+                    new UnitInfo<MassUnit>(MassUnit.Microgram, "Micrograms", new BaseUnits(mass: MassUnit.Microgram)),
+                    new UnitInfo<MassUnit>(MassUnit.Milligram, "Milligrams", new BaseUnits(mass: MassUnit.Milligram)),
+                    new UnitInfo<MassUnit>(MassUnit.Nanogram, "Nanograms", new BaseUnits(mass: MassUnit.Nanogram)),
                     new UnitInfo<MassUnit>(MassUnit.Ounce, "Ounces", new BaseUnits(mass: MassUnit.Ounce)),
+                    new UnitInfo<MassUnit>(MassUnit.Picogram, "Picograms", new BaseUnits(mass: MassUnit.Picogram)),
                     new UnitInfo<MassUnit>(MassUnit.Pound, "Pounds", new BaseUnits(mass: MassUnit.Pound)),
                     new UnitInfo<MassUnit>(MassUnit.ShortHundredweight, "ShortHundredweight", new BaseUnits(mass: MassUnit.ShortHundredweight)),
                     new UnitInfo<MassUnit>(MassUnit.ShortTon, "ShortTons", new BaseUnits(mass: MassUnit.ShortTon)),
@@ -284,6 +285,11 @@ namespace UnitsNet
         public double Ounces => As(MassUnit.Ounce);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Picogram"/>
+        /// </summary>
+        public double Picograms => As(MassUnit.Picogram);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Pound"/>
         /// </summary>
         public double Pounds => As(MassUnit.Pound);
@@ -346,6 +352,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Mass>(MassUnit.Milligram, MassUnit.Kilogram, quantity => quantity.ToUnit(MassUnit.Kilogram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Nanogram, MassUnit.Kilogram, quantity => quantity.ToUnit(MassUnit.Kilogram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Ounce, MassUnit.Kilogram, quantity => quantity.ToUnit(MassUnit.Kilogram));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Picogram, MassUnit.Kilogram, quantity => quantity.ToUnit(MassUnit.Kilogram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Pound, MassUnit.Kilogram, quantity => quantity.ToUnit(MassUnit.Kilogram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.ShortHundredweight, MassUnit.Kilogram, quantity => quantity.ToUnit(MassUnit.Kilogram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.ShortTon, MassUnit.Kilogram, quantity => quantity.ToUnit(MassUnit.Kilogram));
@@ -375,6 +382,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Milligram, quantity => quantity.ToUnit(MassUnit.Milligram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Nanogram, quantity => quantity.ToUnit(MassUnit.Nanogram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Ounce, quantity => quantity.ToUnit(MassUnit.Ounce));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Picogram, quantity => quantity.ToUnit(MassUnit.Picogram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Pound, quantity => quantity.ToUnit(MassUnit.Pound));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.ShortHundredweight, quantity => quantity.ToUnit(MassUnit.ShortHundredweight));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.ShortTon, quantity => quantity.ToUnit(MassUnit.ShortTon));
@@ -433,6 +441,9 @@ namespace UnitsNet
             unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Nanogram, new CultureInfo("zh-CN"), false, true, new string[]{"纳克"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Ounce, new CultureInfo("en-US"), false, true, new string[]{"oz"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Ounce, new CultureInfo("zh-CN"), false, true, new string[]{"盎司"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Picogram, new CultureInfo("en-US"), false, true, new string[]{"pg"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Picogram, new CultureInfo("ru-RU"), false, true, new string[]{"пг"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Picogram, new CultureInfo("zh-CN"), false, true, new string[]{"皮克"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Pound, new CultureInfo("en-US"), false, true, new string[]{"lb", "lbs", "lbm"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Pound, new CultureInfo("ru-RU"), false, true, new string[]{"фунт"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Pound, new CultureInfo("zh-CN"), false, true, new string[]{"磅"});
@@ -651,6 +662,16 @@ namespace UnitsNet
         {
             double value = (double) ounces;
             return new Mass(value, MassUnit.Ounce);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Picogram"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Mass FromPicograms(QuantityValue picograms)
+        {
+            double value = (double) picograms;
+            return new Mass(value, MassUnit.Picogram);
         }
 
         /// <summary>
@@ -1215,6 +1236,7 @@ namespace UnitsNet
                 (MassUnit.Milligram, MassUnit.Kilogram) => new Mass((_value / 1e3) * 1e-3d, MassUnit.Kilogram),
                 (MassUnit.Nanogram, MassUnit.Kilogram) => new Mass((_value / 1e3) * 1e-9d, MassUnit.Kilogram),
                 (MassUnit.Ounce, MassUnit.Kilogram) => new Mass(_value * 0.028349523125, MassUnit.Kilogram),
+                (MassUnit.Picogram, MassUnit.Kilogram) => new Mass((_value / 1e3) * 1e-12d, MassUnit.Kilogram),
                 (MassUnit.Pound, MassUnit.Kilogram) => new Mass(_value * 0.45359237, MassUnit.Kilogram),
                 (MassUnit.ShortHundredweight, MassUnit.Kilogram) => new Mass(_value / 0.022046226218487758, MassUnit.Kilogram),
                 (MassUnit.ShortTon, MassUnit.Kilogram) => new Mass(_value * 9.0718474e2, MassUnit.Kilogram),
@@ -1241,6 +1263,7 @@ namespace UnitsNet
                 (MassUnit.Kilogram, MassUnit.Milligram) => new Mass((_value * 1e3) / 1e-3d, MassUnit.Milligram),
                 (MassUnit.Kilogram, MassUnit.Nanogram) => new Mass((_value * 1e3) / 1e-9d, MassUnit.Nanogram),
                 (MassUnit.Kilogram, MassUnit.Ounce) => new Mass(_value / 0.028349523125, MassUnit.Ounce),
+                (MassUnit.Kilogram, MassUnit.Picogram) => new Mass((_value * 1e3) / 1e-12d, MassUnit.Picogram),
                 (MassUnit.Kilogram, MassUnit.Pound) => new Mass(_value / 0.45359237, MassUnit.Pound),
                 (MassUnit.Kilogram, MassUnit.ShortHundredweight) => new Mass(_value * 0.022046226218487758, MassUnit.ShortHundredweight),
                 (MassUnit.Kilogram, MassUnit.ShortTon) => new Mass(_value / 9.0718474e2, MassUnit.ShortTon),

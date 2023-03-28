@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
+
 using CodeGen.Exceptions;
 using CodeGen.Helpers;
 using CodeGen.JsonTypes;
@@ -44,7 +46,7 @@ namespace CodeGen.Generators
         {
             try
             {
-                var quantity = JsonConvert.DeserializeObject<Quantity>(File.ReadAllText(jsonFileName), JsonSerializerSettings)
+                Quantity quantity = JsonConvert.DeserializeObject<Quantity>(File.ReadAllText(jsonFileName), JsonSerializerSettings)
                                ?? throw new UnitsNetCodeGenException($"Unable to parse quantity from JSON file: {jsonFileName}");
 
                 AddPrefixUnits(quantity);
@@ -85,13 +87,13 @@ namespace CodeGen.Generators
             {
                 try
                 {
-                    var prefixInfo = PrefixInfo.Entries[prefix];
+                    PrefixInfo prefixInfo = PrefixInfo.Entries[prefix];
 
                     unitsToAdd.Add(new Unit
                     {
                         SingularName = $"{prefix}{unit.SingularName.ToCamelCase()}", // "Kilo" + "NewtonPerMeter" => "KilonewtonPerMeter"
                         PluralName = $"{prefix}{unit.PluralName.ToCamelCase()}", // "Kilo" + "NewtonsPerMeter" => "KilonewtonsPerMeter"
-                        BaseUnits = null, // Can we determine this somehow?
+                        BaseUnits = GetBaseUnitFromPrefix(unit, prefix), // Can we determine this better somehow?
                         FromBaseToUnitFunc = $"({unit.FromBaseToUnitFunc}) / {prefixInfo.Factor}",
                         FromUnitToBaseFunc = $"({unit.FromUnitToBaseFunc}) * {prefixInfo.Factor}",
                         Localization = GetLocalizationForPrefixUnit(unit.Localization, prefixInfo),
@@ -107,6 +109,72 @@ namespace CodeGen.Generators
             }
 
             quantity.Units = quantity.Units.Concat(unitsToAdd).ToArray();
+        }
+
+        private static BaseUnits? GetBaseUnitFromPrefix(Unit unit, Prefix prefix)
+        {
+            if (unit.BaseUnits is null)
+                return null;
+            BaseUnits? dup = JsonConvert.DeserializeObject<BaseUnits>(JsonConvert.SerializeObject(unit.BaseUnits));
+            string[] words = ToWords(unit.SingularName);
+            //First Word is not Enough (Ex. PoundMole)
+            for (int i = 0; i < words.Length; i++)
+            {
+                BaseUnits? ret = AddPrefixToBaseUnits(dup, string.Join("", words.Take(i + 1)), prefix);
+                if (ret is not null)
+                    return ret;
+            }
+            
+            return null;
+        }
+
+        private static BaseUnits? AddPrefixToBaseUnits(BaseUnits? ret, string firstWord, Prefix prefix)
+        {
+            if (ret is null)
+                return null;
+            else if (ret.N is not null && ret.N == firstWord)
+            {
+                ret.N = prefix.ToString() + ret.N.ToCamelCase();
+                return ret;
+            }
+            else if (ret.I is not null && ret.I == firstWord)
+            {
+                ret.I = prefix.ToString() + ret.I.ToCamelCase();
+                return ret;
+            }
+            else if (ret.L is not null && ret.L == firstWord)
+            {
+                ret.L = prefix.ToString() + ret.L.ToCamelCase();
+                return ret;
+            }
+            else if (ret.J is not null && ret.J == firstWord)
+            {
+                ret.J = prefix.ToString() + ret.J.ToCamelCase();
+                return ret;
+            }
+            else if (ret.M is not null && ret.M == firstWord)
+            {
+                ret.M = prefix.ToString() + ret.M.ToCamelCase();
+                return ret;
+            }
+            else if (ret.Θ is not null && ret.Θ == firstWord)
+            {
+                ret.Θ = prefix.ToString() + ret.Θ.ToCamelCase();
+                return ret;
+            }
+            else if (ret.T is not null && ret.T == firstWord)
+            {
+                ret.T = prefix.ToString() + ret.T.ToCamelCase();
+                return ret;
+            }
+            else
+                return null;
+        }
+
+        public static string[] ToWords(string str)
+        {
+            return Regex.Replace(str, "[a-z][A-Z]", m => $"{m.Value[0]} {m.Value[1]}")
+                .Split(' ');
         }
 
         /// <summary>

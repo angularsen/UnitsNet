@@ -28,5 +28,41 @@ namespace UnitsNet.Tests
         public void NumberToCandelaTest() =>
             Assert.Equal(LuminousIntensity.FromCandela(2), 2.Candela());
 
+        [Fact]
+        public void NumberToCenticandelaTest() =>
+            Assert.Equal(LuminousIntensity.FromCenticandela(2), 2.Centicandela());
+
+        [Fact]
+        public void NumberToDecacandelaTest() =>
+            Assert.Equal(LuminousIntensity.FromDecacandela(2), 2.Decacandela());
+
+        [Fact]
+        public void NumberToDecicandelaTest() =>
+            Assert.Equal(LuminousIntensity.FromDecicandela(2), 2.Decicandela());
+
+        [Fact]
+        public void NumberToHectocandelaTest() =>
+            Assert.Equal(LuminousIntensity.FromHectocandela(2), 2.Hectocandela());
+
+        [Fact]
+        public void NumberToKilocandelaTest() =>
+            Assert.Equal(LuminousIntensity.FromKilocandela(2), 2.Kilocandela());
+
+        [Fact]
+        public void NumberToMegacandelaTest() =>
+            Assert.Equal(LuminousIntensity.FromMegacandela(2), 2.Megacandela());
+
+        [Fact]
+        public void NumberToMicrocandelaTest() =>
+            Assert.Equal(LuminousIntensity.FromMicrocandela(2), 2.Microcandela());
+
+        [Fact]
+        public void NumberToMillicandelaTest() =>
+            Assert.Equal(LuminousIntensity.FromMillicandela(2), 2.Millicandela());
+
+        [Fact]
+        public void NumberToNanocandelaTest() =>
+            Assert.Equal(LuminousIntensity.FromNanocandela(2), 2.Nanocandela());
+
     }
 }

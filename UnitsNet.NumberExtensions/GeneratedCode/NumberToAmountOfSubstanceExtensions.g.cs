@@ -44,6 +44,10 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
         public static AmountOfSubstance DecipoundMoles<T>(this T value) =>
             AmountOfSubstance.FromDecipoundMoles(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="AmountOfSubstance.FromFemtomoles(UnitsNet.QuantityValue)" />
+        public static AmountOfSubstance Femtomoles<T>(this T value) =>
+            AmountOfSubstance.FromFemtomoles(Convert.ToDouble(value));
+
         /// <inheritdoc cref="AmountOfSubstance.FromKilomoles(UnitsNet.QuantityValue)" />
         public static AmountOfSubstance Kilomoles<T>(this T value) =>
             AmountOfSubstance.FromKilomoles(Convert.ToDouble(value));
@@ -83,6 +87,10 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
         /// <inheritdoc cref="AmountOfSubstance.FromNanopoundMoles(UnitsNet.QuantityValue)" />
         public static AmountOfSubstance NanopoundMoles<T>(this T value) =>
             AmountOfSubstance.FromNanopoundMoles(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="AmountOfSubstance.FromPicomoles(UnitsNet.QuantityValue)" />
+        public static AmountOfSubstance Picomoles<T>(this T value) =>
+            AmountOfSubstance.FromPicomoles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AmountOfSubstance.FromPoundMoles(UnitsNet.QuantityValue)" />
         public static AmountOfSubstance PoundMoles<T>(this T value) =>

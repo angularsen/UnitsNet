@@ -7,7 +7,7 @@ namespace UnitsNet.Tests
 {
     public class DensityTests : DensityTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
+        protected override bool SupportsSIUnitSystem => true;
 
         protected override double MilligramsPerCubicMeterInOneKilogramPerCubicMeter => 1e6;
 

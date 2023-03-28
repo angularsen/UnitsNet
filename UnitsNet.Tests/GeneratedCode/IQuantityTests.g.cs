@@ -93,7 +93,7 @@ namespace UnitsNet.Tests
             Assertion(3, LuminanceUnit.Nit, Quantity.From(3, LuminanceUnit.Nit));
             Assertion(3, LuminosityUnit.Watt, Quantity.From(3, LuminosityUnit.Watt));
             Assertion(3, LuminousFluxUnit.Lumen, Quantity.From(3, LuminousFluxUnit.Lumen));
-            Assertion(3, LuminousIntensityUnit.Candela, Quantity.From(3, LuminousIntensityUnit.Candela));
+            Assertion(3, LuminousIntensityUnit.Nanocandela, Quantity.From(3, LuminousIntensityUnit.Nanocandela));
             Assertion(3, MagneticFieldUnit.Tesla, Quantity.From(3, MagneticFieldUnit.Tesla));
             Assertion(3, MagneticFluxUnit.Weber, Quantity.From(3, MagneticFluxUnit.Weber));
             Assertion(3, MagnetizationUnit.AmperePerMeter, Quantity.From(3, MagnetizationUnit.AmperePerMeter));

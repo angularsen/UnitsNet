@@ -39,7 +39,9 @@
     "Mole": 12,
     "Nanomole": 13,
     "NanopoundMole": 14,
-    "PoundMole": 15
+    "PoundMole": 15,
+    "Femtomole": 22,
+    "Picomole": 17
   },
   "AmplitudeRatio": {
     "DecibelMicrovolt": 1,
@@ -748,7 +750,16 @@
     "Lumen": 1
   },
   "LuminousIntensity": {
-    "Candela": 1
+    "Candela": 1,
+    "Centicandela": 4,
+    "Decacandela": 6,
+    "Decicandela": 7,
+    "Hectocandela": 2,
+    "Kilocandela": 3,
+    "Megacandela": 5,
+    "Microcandela": 9,
+    "Millicandela": 11,
+    "Nanocandela": 10
   },
   "MagneticField": {
     "Gauss": 1,
@@ -789,7 +800,8 @@
     "Slug": 22,
     "SolarMass": 23,
     "Stone": 24,
-    "Tonne": 25
+    "Tonne": 25,
+    "Picogram": 28
   },
   "MassConcentration": {
     "CentigramPerDeciliter": 1,

@@ -29,5 +29,14 @@ namespace UnitsNet.Tests.CustomCode
     {
         protected override bool SupportsSIUnitSystem => true;
         protected override double CandelaInOneCandela => 1;
+        protected override double CenticandelaInOneCandela => 1e2;
+        protected override double DecacandelaInOneCandela => 1e-1;
+        protected override double DecicandelaInOneCandela => 1e1;
+        protected override double HectocandelaInOneCandela => 1e-2;
+        protected override double KilocandelaInOneCandela => 1e-3;
+        protected override double MegacandelaInOneCandela => 1e-6;
+        protected override double MicrocandelaInOneCandela => 1e6;
+        protected override double MillicandelaInOneCandela => 1e3;
+        protected override double NanocandelaInOneCandela => 1e9;
     }
 }

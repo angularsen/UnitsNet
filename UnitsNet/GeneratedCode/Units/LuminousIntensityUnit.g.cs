@@ -26,6 +26,15 @@ namespace UnitsNet.Units
     public enum LuminousIntensityUnit
     {
         Candela = 1,
+        Centicandela = 4,
+        Decacandela = 6,
+        Decicandela = 7,
+        Hectocandela = 2,
+        Kilocandela = 3,
+        Megacandela = 5,
+        Microcandela = 9,
+        Millicandela = 11,
+        Nanocandela = 10,
     }
 
     #pragma warning restore 1591

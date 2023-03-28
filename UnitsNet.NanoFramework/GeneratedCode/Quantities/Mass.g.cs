@@ -170,6 +170,11 @@ namespace UnitsNet
         public double Ounces => As(MassUnit.Ounce);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Picogram"/>
+        /// </summary>
+        public double Picograms => As(MassUnit.Picogram);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Pound"/>
         /// </summary>
         public double Pounds => As(MassUnit.Pound);
@@ -317,6 +322,12 @@ namespace UnitsNet
         public static Mass FromOunces(double ounces) => new Mass(ounces, MassUnit.Ounce);
 
         /// <summary>
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Picogram"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Mass FromPicograms(double picograms) => new Mass(picograms, MassUnit.Picogram);
+
+        /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Pound"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -416,6 +427,7 @@ namespace UnitsNet
                         MassUnit.Milligram => (_value / 1e3) * 1e-3d,
                         MassUnit.Nanogram => (_value / 1e3) * 1e-9d,
                         MassUnit.Ounce => _value * 0.028349523125,
+                        MassUnit.Picogram => (_value / 1e3) * 1e-12d,
                         MassUnit.Pound => _value * 0.45359237,
                         MassUnit.ShortHundredweight => _value / 0.022046226218487758,
                         MassUnit.ShortTon => _value * 9.0718474e2,
@@ -454,6 +466,7 @@ namespace UnitsNet
                         MassUnit.Milligram => (baseUnitValue * 1e3) / 1e-3d,
                         MassUnit.Nanogram => (baseUnitValue * 1e3) / 1e-9d,
                         MassUnit.Ounce => baseUnitValue / 0.028349523125,
+                        MassUnit.Picogram => (baseUnitValue * 1e3) / 1e-12d,
                         MassUnit.Pound => baseUnitValue / 0.45359237,
                         MassUnit.ShortHundredweight => baseUnitValue * 0.022046226218487758,
                         MassUnit.ShortTon => baseUnitValue / 9.0718474e2,

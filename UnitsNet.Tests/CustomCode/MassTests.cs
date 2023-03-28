@@ -9,7 +9,7 @@ namespace UnitsNet.Tests
 {
     public class MassTests : MassTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false; // Should be true, but prefixes on "Gram" not supported yet.
+        protected override bool SupportsSIUnitSystem => true; // Should be true, but prefixes on "Gram" not supported yet.
 
         protected override double CentigramsInOneKilogram => 1E5;
 
@@ -44,6 +44,7 @@ namespace UnitsNet.Tests
         protected override double NanogramsTolerance => 1E-3;
 
         protected override double OuncesInOneKilogram => 35.2739619;
+        protected override double PicogramsInOneKilogram => 1E15;
 
         protected override double PoundsInOneKilogram => 2.2046226218487757d;
 

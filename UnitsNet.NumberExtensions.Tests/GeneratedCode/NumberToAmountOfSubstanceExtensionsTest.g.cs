@@ -41,6 +41,10 @@ namespace UnitsNet.Tests
             Assert.Equal(AmountOfSubstance.FromDecipoundMoles(2), 2.DecipoundMoles());
 
         [Fact]
+        public void NumberToFemtomolesTest() =>
+            Assert.Equal(AmountOfSubstance.FromFemtomoles(2), 2.Femtomoles());
+
+        [Fact]
         public void NumberToKilomolesTest() =>
             Assert.Equal(AmountOfSubstance.FromKilomoles(2), 2.Kilomoles());
 
@@ -79,6 +83,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToNanopoundMolesTest() =>
             Assert.Equal(AmountOfSubstance.FromNanopoundMoles(2), 2.NanopoundMoles());
+
+        [Fact]
+        public void NumberToPicomolesTest() =>
+            Assert.Equal(AmountOfSubstance.FromPicomoles(2), 2.Picomoles());
 
         [Fact]
         public void NumberToPoundMolesTest() =>

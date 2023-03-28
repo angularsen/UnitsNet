@@ -100,6 +100,10 @@ namespace UnitsNet.NumberExtensions.NumberToMass
         public static Mass Ounces<T>(this T value) =>
             Mass.FromOunces(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Mass.FromPicograms(UnitsNet.QuantityValue)" />
+        public static Mass Picograms<T>(this T value) =>
+            Mass.FromPicograms(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Mass.FromPounds(UnitsNet.QuantityValue)" />
         public static Mass Pounds<T>(this T value) =>
             Mass.FromPounds(Convert.ToDouble(value));
