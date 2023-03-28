@@ -1,7 +1,8 @@
 ﻿$root = "$PSScriptRoot\.."
 $artifactsDir = "$root\Artifacts"
 $nugetOutDir = "$root\Artifacts\NuGet"
-$testReportDir = "$root\Artifacts\Logs"
+$logsDir = "$root\Artifacts\Logs"
+$testReportDir = "$root\Artifacts\TestResults"
 $testCoverageDir = "$root\Artifacts\Coverage"
 $nuget = "$root\Tools\NuGet.exe"
 $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
@@ -31,7 +32,7 @@ function Update-GeneratedCode {
 function Start-Build([boolean] $IncludeNanoFramework = $false) {
   write-host -foreground blue "Start-Build...`n---"
 
-  $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$testReportDir\UnitsNet.msbuild.log"
+  $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$logsDir\UnitsNet.msbuild.log"
 
   $appVeyorLoggerDll = "C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
   $appVeyorLoggerNetCoreDll = "C:\Program Files\AppVeyor\BuildAgent\dotnetcore\Appveyor.MSBuildLogger.dll"
@@ -47,7 +48,7 @@ function Start-Build([boolean] $IncludeNanoFramework = $false) {
   else
   {
     write-host -foreground green "Build .NET nanoFramework."
-    $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$testReportDir\UnitsNet.NanoFramework.msbuild.log"
+    $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$logsDir\UnitsNet.NanoFramework.msbuild.log"
     $appVeyorLoggerArg = if (Test-Path "$appVeyorLoggerDll") { "/logger:$appVeyorLoggerDll" } else { "" }
 
     # msbuild does not auto-restore nugets for this project type
@@ -74,7 +75,6 @@ function Start-Tests {
   write-host -foreground blue "Run tests...`n---"
   foreach ($projectPath in $projectPaths) {
     $projectFileNameNoEx = [System.IO.Path]::GetFileNameWithoutExtension($projectPath)
-    $reportFile = "$testReportDir\${projectFileNameNoEx}.xunit.xml"
     $coverageReportFile = "$testCoverageDir\${projectFileNameNoEx}.coverage.xml"
     $projectDir = [System.IO.Path]::GetDirectoryName($projectPath)
 
@@ -84,6 +84,8 @@ function Start-Tests {
     # Create coverage report for this test project
     & dotnet dotcover test `
       --no-build `
+      --logger trx `
+      --results-directory "$testReportDir" `
       --dotCoverFilters="+:module=UnitsNet*;-:module=*Tests" `
       --dotCoverOutput="$coverageReportFile" `
       --dcReportType=DetailedXML
