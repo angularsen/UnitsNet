@@ -109,8 +109,10 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MegaukGallonsPerSecondInOneCubicMeterPerSecond => 2.19969e-4;
 
+        // https://www.wolframalpha.com/input?i=1.0000000000000000+Cubic+Meter+Per+Second+to+Megaukgallons+Per+Day
         protected override double MegaukGallonsPerDayInOneCubicMeterPerSecond => 19.00534305304118;
 
+        // https://www.wolframalpha.com/input?i=1.0000000000000000+Cubic+Meter+Per+Second+to+MegaGallons+Per+Day
         protected override double MegausGallonsPerDayInOneCubicMeterPerSecond => 22.82446532374402;
 
         protected override double MicrolitersPerDayInOneCubicMeterPerSecond => 8.64e+13;
