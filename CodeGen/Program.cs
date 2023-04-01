@@ -67,6 +67,15 @@ namespace CodeGen
                 var sw = Stopwatch.StartNew();
                 var quantities = QuantityJsonFilesParser.ParseQuantities(repositoryRoot.FullName);
 
+                // TODO TEMP Remove me after debugging.
+                Console.WriteLine("Assigned base units to {0} prefix units, failed to assign for {1} prefix units:", QuantityJsonFilesParser.TempPrefixSuccessCount, QuantityJsonFilesParser.TempPrefixFailCount);
+                Console.WriteLine("---");
+                foreach (var s in QuantityJsonFilesParser.TempNoPrefixAndBaseUnitMatch)
+                {
+                    Console.WriteLine(s);
+                }
+                Console.WriteLine("---");
+
                 QuantityNameToUnitEnumValues quantityNameToUnitEnumValues = UnitEnumValueAllocator.AllocateNewUnitEnumValues($"{rootDir}/Common/UnitEnumValues.g.json", quantities);
 
                 UnitsNetGenerator.Generate(rootDir, quantities, quantityNameToUnitEnumValues);

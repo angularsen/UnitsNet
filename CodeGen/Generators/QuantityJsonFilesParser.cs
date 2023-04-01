@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 
 using CodeGen.Exceptions;
@@ -93,7 +94,7 @@ namespace CodeGen.Generators
                     {
                         SingularName = $"{prefix}{unit.SingularName.ToCamelCase()}", // "Kilo" + "NewtonPerMeter" => "KilonewtonPerMeter"
                         PluralName = $"{prefix}{unit.PluralName.ToCamelCase()}", // "Kilo" + "NewtonsPerMeter" => "KilonewtonsPerMeter"
-                        BaseUnits = GetBaseUnitForPrefixUnit(prefix, unit),
+                        BaseUnits = GetBaseUnitForPrefixUnit(prefix, unit, unit.Prefixes),
                         FromBaseToUnitFunc = $"({unit.FromBaseToUnitFunc}) / {prefixInfo.Factor}",
                         FromUnitToBaseFunc = $"({unit.FromUnitToBaseFunc}) * {prefixInfo.Factor}",
                         Localization = GetLocalizationForPrefixUnit(unit.Localization, prefixInfo),
@@ -129,8 +130,9 @@ namespace CodeGen.Generators
         /// </summary>
         /// <param name="prefix">The SI prefix.</param>
         /// <param name="unit">The unit.</param>
+        /// <param name="debugAllUnitPrefixes">Temporary for debugging.</param>
         /// <returns></returns>
-        private static BaseUnits? GetBaseUnitForPrefixUnit(Prefix prefix, Unit unit)
+        private static BaseUnits? GetBaseUnitForPrefixUnit(Prefix prefix, Unit unit, Prefix[] debugAllUnitPrefixes)
         {
             if (unit.BaseUnits is null) return null;
             BaseUnits baseUnits = unit.BaseUnits;
@@ -144,9 +146,14 @@ namespace CodeGen.Generators
             {
                 BaseUnits? ret = AddPrefixToBaseUnits(dup, string.Join("", words.Take(i + 1)), prefix);
                 if (ret is not null)
+                {
+                    TempPrefixSuccessCount++;
                     return ret;
+                }
             }
 
+            TempPrefixFailCount++;
+            TempDebugBaseUnitsOfPrefixUnits(unit, debugAllUnitPrefixes);
             return null;
         }
 
@@ -235,5 +242,31 @@ namespace CodeGen.Generators
                 };
             }).ToArray();
         }
+
+        internal static int TempPrefixSuccessCount;
+        internal static int TempPrefixFailCount;
+        internal static readonly HashSet<string> TempNoPrefixAndBaseUnitMatch = new();
+
+        private static void TempDebugBaseUnitsOfPrefixUnits(Unit unit, Prefix[] prefixes)
+        {
+            var baseUnits = unit.BaseUnits;
+            if (baseUnits is null) return;
+
+            var sb = new StringBuilder(unit.SingularName);
+            sb.Append(new string(' ', Math.Max(0, 25 - sb.Length))); // Align
+
+            if (baseUnits.N is not null) sb.Append($" N={baseUnits.N}");
+            if (baseUnits.I is not null) sb.Append($" I={baseUnits.I}");
+            if (baseUnits.L is not null) sb.Append($" L={baseUnits.L}");
+            if (baseUnits.J is not null) sb.Append($" J={baseUnits.J}");
+            if (baseUnits.M is not null) sb.Append($" M={baseUnits.M}");
+            if (baseUnits.Θ is not null) sb.Append($" Θ={baseUnits.Θ}");
+            if (baseUnits.T is not null) sb.Append($" T={baseUnits.T}");
+            sb.Append(new string(' ', Math.Max(0, 70 - sb.Length))); // Align
+            sb.Append($"Prefixes: [{string.Join(", ", prefixes.Select(p => p.ToString()))}]");
+
+            TempNoPrefixAndBaseUnitMatch.Add(sb.ToString());
+        }
+
     }
 }
