@@ -36,8 +36,7 @@ namespace WpfMVVMSample.Converters
 
             IQuantity quantityInUnit = quantity.ToUnit(unitEnumValue);
 
-            return quantityInUnit.ToString(null, significantDigits);
-
+            return quantityInUnit.ToString($"s{significantDigits}", null);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
