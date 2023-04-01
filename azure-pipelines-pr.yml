@@ -46,6 +46,14 @@ stages:
         pwsh: true
         workingDirectory: '$(Build.SourcesDirectory)'
 
+    - task: PublishTestResults@2
+      condition: always()
+      inputs:
+        testResultsFormat: "VSTest"
+        testResultsFiles: "*.trx"
+        searchFolder: $(Build.SourcesDirectory)\Artifacts\TestResults
+        mergeTestResults: true
+
     - task: PowerShell@2
       displayName: Upload to codecov.io
       env:

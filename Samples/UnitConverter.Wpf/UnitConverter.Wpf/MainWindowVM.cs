@@ -21,7 +21,7 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
 
         [CanBeNull] private UnitListItem _selectedFromUnit;
 
-        private QuantityType _selectedQuantity;
+        private string _selectedQuantity;
 
         [CanBeNull] private UnitListItem _selectedToUnit;
 
@@ -29,7 +29,7 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
 
         public MainWindowVm()
         {
-            Quantities = ToReadOnly(Quantity.Types);
+            Quantities = ToReadOnly(Quantity.Infos.Select(i => i.Name));
 
             _units = new ObservableCollection<UnitListItem>();
             Units = new ReadOnlyObservableCollection<UnitListItem>(_units);
@@ -38,15 +38,15 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
             FromValue = 1;
             SwapCommand = new DelegateCommand(Swap);
 
-            OnSelectedQuantity(QuantityType.Length);
+            OnSelectedQuantity(Length.Info.Name);
         }
 
         public ICommand SwapCommand { get; }
 
-        public ReadOnlyObservableCollection<QuantityType> Quantities { get; }
+        public ReadOnlyObservableCollection<string> Quantities { get; }
         public ReadOnlyObservableCollection<UnitListItem> Units { get; }
 
-        public QuantityType SelectedQuantity
+        public string SelectedQuantity
         {
             get => _selectedQuantity;
             set
@@ -138,12 +138,12 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
             ToValue = Convert.ToDecimal(convertedValue);
         }
 
-        private void OnSelectedQuantity(QuantityType quantityType)
+        private void OnSelectedQuantity(string quantityName)
         {
-            QuantityInfo quantityInfo = Quantity.GetInfo(quantityType);
+            QuantityInfo quantityInfo = Quantity.ByName[quantityName];
 
             _units.Clear();
-            foreach (Enum unitValue in quantityInfo.Units)
+            foreach (Enum unitValue in quantityInfo.UnitInfos.Select(ui => ui.Value))
             {
                 _units.Add(new UnitListItem(unitValue));
             }
