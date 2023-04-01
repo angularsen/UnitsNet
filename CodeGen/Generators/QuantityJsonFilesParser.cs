@@ -60,7 +60,7 @@ namespace CodeGen.Generators
 
         private static void OrderUnitsByName(Quantity quantity)
         {
-            quantity.Units = quantity.Units.OrderBy(u => u.SingularName).ToArray();
+            quantity.Units = quantity.Units.OrderBy(u => u.SingularName, StringComparer.OrdinalIgnoreCase).ToArray();
         }
 
         private static void FixConversionFunctionsForDecimalValueTypes(Quantity quantity)
