@@ -150,7 +150,7 @@ namespace UnitsNet.Tests
             Assertion(3, VolumeConcentrationUnit.PicolitersPerMililiter, Quantity.From(3, VolumeConcentrationUnit.PicolitersPerMililiter));
             Assertion(3, VolumeFlowUnit.UsGallonPerSecond, Quantity.From(3, VolumeFlowUnit.UsGallonPerSecond));
             Assertion(3, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, Quantity.From(3, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter));
-            Assertion(3, VolumePerLengthUnit.OilBarrelPerFoot, Quantity.From(3, VolumePerLengthUnit.OilBarrelPerFoot));
+            Assertion(3, VolumePerLengthUnit.UsGallonPerMile, Quantity.From(3, VolumePerLengthUnit.UsGallonPerMile));
             Assertion(3, VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, Quantity.From(3, VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin));
             Assertion(3, WarpingMomentOfInertiaUnit.MillimeterToTheSixth, Quantity.From(3, WarpingMomentOfInertiaUnit.MillimeterToTheSixth));
         }

@@ -104,7 +104,9 @@ namespace UnitsNet
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MegaliterPerHour, "MegalitersPerHour", BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MegaliterPerMinute, "MegalitersPerMinute", BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MegaliterPerSecond, "MegalitersPerSecond", BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MegaukGallonPerDay, "MegaukGallonsPerDay", BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MegaukGallonPerSecond, "MegaukGallonsPerSecond", BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MegausGallonPerDay, "MegausGallonsPerDay", BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MicroliterPerDay, "MicrolitersPerDay", BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MicroliterPerHour, "MicrolitersPerHour", BaseUnits.Undefined),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MicroliterPerMinute, "MicrolitersPerMinute", BaseUnits.Undefined),
@@ -429,9 +431,19 @@ namespace UnitsNet
         public double MegalitersPerSecond => As(VolumeFlowUnit.MegaliterPerSecond);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.MegaukGallonPerDay"/>
+        /// </summary>
+        public double MegaukGallonsPerDay => As(VolumeFlowUnit.MegaukGallonPerDay);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.MegaukGallonPerSecond"/>
         /// </summary>
         public double MegaukGallonsPerSecond => As(VolumeFlowUnit.MegaukGallonPerSecond);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.MegausGallonPerDay"/>
+        /// </summary>
+        public double MegausGallonsPerDay => As(VolumeFlowUnit.MegausGallonPerDay);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.MicroliterPerDay"/>
@@ -607,7 +619,9 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.MegaliterPerHour, VolumeFlowUnit.CubicMeterPerSecond, quantity => quantity.ToUnit(VolumeFlowUnit.CubicMeterPerSecond));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.MegaliterPerMinute, VolumeFlowUnit.CubicMeterPerSecond, quantity => quantity.ToUnit(VolumeFlowUnit.CubicMeterPerSecond));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.MegaliterPerSecond, VolumeFlowUnit.CubicMeterPerSecond, quantity => quantity.ToUnit(VolumeFlowUnit.CubicMeterPerSecond));
+            unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.MegaukGallonPerDay, VolumeFlowUnit.CubicMeterPerSecond, quantity => quantity.ToUnit(VolumeFlowUnit.CubicMeterPerSecond));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.MegaukGallonPerSecond, VolumeFlowUnit.CubicMeterPerSecond, quantity => quantity.ToUnit(VolumeFlowUnit.CubicMeterPerSecond));
+            unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.MegausGallonPerDay, VolumeFlowUnit.CubicMeterPerSecond, quantity => quantity.ToUnit(VolumeFlowUnit.CubicMeterPerSecond));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.MicroliterPerDay, VolumeFlowUnit.CubicMeterPerSecond, quantity => quantity.ToUnit(VolumeFlowUnit.CubicMeterPerSecond));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.MicroliterPerHour, VolumeFlowUnit.CubicMeterPerSecond, quantity => quantity.ToUnit(VolumeFlowUnit.CubicMeterPerSecond));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.MicroliterPerMinute, VolumeFlowUnit.CubicMeterPerSecond, quantity => quantity.ToUnit(VolumeFlowUnit.CubicMeterPerSecond));
@@ -676,7 +690,9 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.MegaliterPerHour, quantity => quantity.ToUnit(VolumeFlowUnit.MegaliterPerHour));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.MegaliterPerMinute, quantity => quantity.ToUnit(VolumeFlowUnit.MegaliterPerMinute));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.MegaliterPerSecond, quantity => quantity.ToUnit(VolumeFlowUnit.MegaliterPerSecond));
+            unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.MegaukGallonPerDay, quantity => quantity.ToUnit(VolumeFlowUnit.MegaukGallonPerDay));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.MegaukGallonPerSecond, quantity => quantity.ToUnit(VolumeFlowUnit.MegaukGallonPerSecond));
+            unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.MegausGallonPerDay, quantity => quantity.ToUnit(VolumeFlowUnit.MegausGallonPerDay));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.MicroliterPerDay, quantity => quantity.ToUnit(VolumeFlowUnit.MicroliterPerDay));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.MicroliterPerHour, quantity => quantity.ToUnit(VolumeFlowUnit.MicroliterPerHour));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.MicroliterPerMinute, quantity => quantity.ToUnit(VolumeFlowUnit.MicroliterPerMinute));
@@ -766,7 +782,9 @@ namespace UnitsNet
             unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.MegaliterPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"Мл/мин"});
             unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.MegaliterPerSecond, new CultureInfo("en-US"), false, true, new string[]{"ML/s", "MLPS"});
             unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.MegaliterPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"Мл/c"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.MegaukGallonPerDay, new CultureInfo("en-US"), false, true, new string[]{"Mgal (U. K.)/d"});
             unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.MegaukGallonPerSecond, new CultureInfo("en-US"), false, true, new string[]{"Mgal (imp.)/s"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.MegausGallonPerDay, new CultureInfo("en-US"), false, true, new string[]{"Mgpd", "Mgal/d"});
             unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.MicroliterPerDay, new CultureInfo("en-US"), false, true, new string[]{"µl/day", "µL/d", "µLPD"});
             unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.MicroliterPerHour, new CultureInfo("en-US"), false, true, new string[]{"µL/h", "µLPH"});
             unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.MicroliterPerHour, new CultureInfo("ru-RU"), false, true, new string[]{"мкл/ч"});
@@ -1219,6 +1237,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MegaukGallonPerDay"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumeFlow FromMegaukGallonsPerDay(QuantityValue megaukgallonsperday)
+        {
+            double value = (double) megaukgallonsperday;
+            return new VolumeFlow(value, VolumeFlowUnit.MegaukGallonPerDay);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MegaukGallonPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -1226,6 +1254,16 @@ namespace UnitsNet
         {
             double value = (double) megaukgallonspersecond;
             return new VolumeFlow(value, VolumeFlowUnit.MegaukGallonPerSecond);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MegausGallonPerDay"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumeFlow FromMegausGallonsPerDay(QuantityValue megausgallonsperday)
+        {
+            double value = (double) megausgallonsperday;
+            return new VolumeFlow(value, VolumeFlowUnit.MegausGallonPerDay);
         }
 
         /// <summary>
@@ -1991,7 +2029,9 @@ namespace UnitsNet
                 (VolumeFlowUnit.MegaliterPerHour, VolumeFlowUnit.CubicMeterPerSecond) => new VolumeFlow((_value / 3600000.000) * 1e6d, VolumeFlowUnit.CubicMeterPerSecond),
                 (VolumeFlowUnit.MegaliterPerMinute, VolumeFlowUnit.CubicMeterPerSecond) => new VolumeFlow((_value / 60000.00000) * 1e6d, VolumeFlowUnit.CubicMeterPerSecond),
                 (VolumeFlowUnit.MegaliterPerSecond, VolumeFlowUnit.CubicMeterPerSecond) => new VolumeFlow((_value / 1000) * 1e6d, VolumeFlowUnit.CubicMeterPerSecond),
+                (VolumeFlowUnit.MegaukGallonPerDay, VolumeFlowUnit.CubicMeterPerSecond) => new VolumeFlow((_value / 19005304) * 1e6d, VolumeFlowUnit.CubicMeterPerSecond),
                 (VolumeFlowUnit.MegaukGallonPerSecond, VolumeFlowUnit.CubicMeterPerSecond) => new VolumeFlow((_value / 219.969) * 1e6d, VolumeFlowUnit.CubicMeterPerSecond),
+                (VolumeFlowUnit.MegausGallonPerDay, VolumeFlowUnit.CubicMeterPerSecond) => new VolumeFlow((_value / 22824465.227) * 1e6d, VolumeFlowUnit.CubicMeterPerSecond),
                 (VolumeFlowUnit.MicroliterPerDay, VolumeFlowUnit.CubicMeterPerSecond) => new VolumeFlow((_value / 86400000) * 1e-6d, VolumeFlowUnit.CubicMeterPerSecond),
                 (VolumeFlowUnit.MicroliterPerHour, VolumeFlowUnit.CubicMeterPerSecond) => new VolumeFlow((_value / 3600000.000) * 1e-6d, VolumeFlowUnit.CubicMeterPerSecond),
                 (VolumeFlowUnit.MicroliterPerMinute, VolumeFlowUnit.CubicMeterPerSecond) => new VolumeFlow((_value / 60000.00000) * 1e-6d, VolumeFlowUnit.CubicMeterPerSecond),
@@ -2057,7 +2097,9 @@ namespace UnitsNet
                 (VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.MegaliterPerHour) => new VolumeFlow((_value * 3600000.000) / 1e6d, VolumeFlowUnit.MegaliterPerHour),
                 (VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.MegaliterPerMinute) => new VolumeFlow((_value * 60000.00000) / 1e6d, VolumeFlowUnit.MegaliterPerMinute),
                 (VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.MegaliterPerSecond) => new VolumeFlow((_value * 1000) / 1e6d, VolumeFlowUnit.MegaliterPerSecond),
+                (VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.MegaukGallonPerDay) => new VolumeFlow((_value * 19005304) / 1e6d, VolumeFlowUnit.MegaukGallonPerDay),
                 (VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.MegaukGallonPerSecond) => new VolumeFlow((_value * 219.969) / 1e6d, VolumeFlowUnit.MegaukGallonPerSecond),
+                (VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.MegausGallonPerDay) => new VolumeFlow((_value * 22824465.227) / 1e6d, VolumeFlowUnit.MegausGallonPerDay),
                 (VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.MicroliterPerDay) => new VolumeFlow((_value * 86400000) / 1e-6d, VolumeFlowUnit.MicroliterPerDay),
                 (VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.MicroliterPerHour) => new VolumeFlow((_value * 3600000.000) / 1e-6d, VolumeFlowUnit.MicroliterPerHour),
                 (VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.MicroliterPerMinute) => new VolumeFlow((_value * 60000.00000) / 1e-6d, VolumeFlowUnit.MicroliterPerMinute),
