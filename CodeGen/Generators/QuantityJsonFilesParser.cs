@@ -93,14 +93,14 @@ namespace CodeGen.Generators
                     {
                         SingularName = $"{prefix}{unit.SingularName.ToCamelCase()}", // "Kilo" + "NewtonPerMeter" => "KilonewtonPerMeter"
                         PluralName = $"{prefix}{unit.PluralName.ToCamelCase()}", // "Kilo" + "NewtonsPerMeter" => "KilonewtonsPerMeter"
-                        BaseUnits = GetBaseUnitFromPrefix(unit, prefix), // Can we determine this better somehow?
+                        BaseUnits = GetBaseUnitForPrefixUnit(prefix, unit),
                         FromBaseToUnitFunc = $"({unit.FromBaseToUnitFunc}) / {prefixInfo.Factor}",
                         FromUnitToBaseFunc = $"({unit.FromUnitToBaseFunc}) * {prefixInfo.Factor}",
                         Localization = GetLocalizationForPrefixUnit(unit.Localization, prefixInfo),
                         ObsoleteText = unit.ObsoleteText,
                         SkipConversionGeneration = unit.SkipConversionGeneration,
                         AllowAbbreviationLookup = unit.AllowAbbreviationLookup
-                    } );
+                    });
                 }
                 catch (Exception e)
                 {
@@ -111,67 +111,95 @@ namespace CodeGen.Generators
             quantity.Units = quantity.Units.Concat(unitsToAdd).ToArray();
         }
 
-        private static BaseUnits? GetBaseUnitFromPrefix(Unit unit, Prefix prefix)
+        /// <summary>
+        ///     Try to determine the SI base units for a prefix of a given unit, by matching the start of the unit name with one of the base unit names.
+        ///     <br /><br />
+        ///     A unit may have prefixes like Nano, Micros, Milli, Kilo, Mega, etc. and we try to determine the base units for each prefixed unit.<br />
+        ///     As an example, applying the prefix Nano:
+        ///     <br /><br />
+        ///     Example: Nano prefix for Acceleration unit MeterPerSecondSquared.<br />
+        ///     SI base units: Length (L) = "Meter", Time (T) = "Second"<br />
+        ///     Starting with the first word, "Meter", the first match is Length (L) = "Meter" and with the Nano prefix we get L = "Nanometer".
+        ///     <br /><br />
+        ///     Example: Mega prefix for AmountOfSubstance unit PoundMole.<br />
+        ///     SI base units: AmountOfSubstance (N) = "PoundMole"<br />
+        ///     Starting with the first word "Pound", there is no match on base units.<br />
+        ///     Starting with the first 2 words "PoundMole", the first match is base unit AmountOfSubstance (N) = "PoundMole" and with the prefix we
+        ///     get N = "NanopoundMole".
+        /// </summary>
+        /// <param name="prefix">The SI prefix.</param>
+        /// <param name="unit">The unit.</param>
+        /// <returns></returns>
+        private static BaseUnits? GetBaseUnitForPrefixUnit(Prefix prefix, Unit unit)
         {
-            if (unit.BaseUnits is null)
-                return null;
-            BaseUnits? dup = JsonConvert.DeserializeObject<BaseUnits>(JsonConvert.SerializeObject(unit.BaseUnits));
+            if (unit.BaseUnits is null) return null;
+            BaseUnits baseUnits = unit.BaseUnits;
+
+            BaseUnits? dup = JsonConvert.DeserializeObject<BaseUnits>(JsonConvert.SerializeObject(baseUnits));
             string[] words = ToWords(unit.SingularName);
-            //First Word is not Enough (Ex. PoundMole)
-            for (int i = 0; i < words.Length; i++)
+
+            // Try the N first PascalCase words, starting with the first word, the 2 first words, the 3 first words, etc.
+            // This allows matching SI base unit names with multiple words, like PoundMole.
+            for (var i = 0; i < words.Length; i++)
             {
                 BaseUnits? ret = AddPrefixToBaseUnits(dup, string.Join("", words.Take(i + 1)), prefix);
                 if (ret is not null)
                     return ret;
             }
-            
+
             return null;
         }
 
         private static BaseUnits? AddPrefixToBaseUnits(BaseUnits? ret, string firstWord, Prefix prefix)
         {
-            if (ret is null)
-                return null;
-            else if (ret.N is not null && ret.N == firstWord)
+            if (ret is null) return null;
+
+            if (ret.N is not null && ret.N == firstWord)
             {
-                ret.N = prefix.ToString() + ret.N.ToCamelCase();
+                ret.N = prefix + ret.N.ToCamelCase();
                 return ret;
             }
-            else if (ret.I is not null && ret.I == firstWord)
+
+            if (ret.I is not null && ret.I == firstWord)
             {
-                ret.I = prefix.ToString() + ret.I.ToCamelCase();
+                ret.I = prefix + ret.I.ToCamelCase();
                 return ret;
             }
-            else if (ret.L is not null && ret.L == firstWord)
+
+            if (ret.L is not null && ret.L == firstWord)
             {
-                ret.L = prefix.ToString() + ret.L.ToCamelCase();
+                ret.L = prefix + ret.L.ToCamelCase();
                 return ret;
             }
-            else if (ret.J is not null && ret.J == firstWord)
+
+            if (ret.J is not null && ret.J == firstWord)
             {
-                ret.J = prefix.ToString() + ret.J.ToCamelCase();
+                ret.J = prefix + ret.J.ToCamelCase();
                 return ret;
             }
-            else if (ret.M is not null && ret.M == firstWord)
+
+            if (ret.M is not null && ret.M == firstWord)
             {
-                ret.M = prefix.ToString() + ret.M.ToCamelCase();
+                ret.M = prefix + ret.M.ToCamelCase();
                 return ret;
             }
-            else if (ret.Θ is not null && ret.Θ == firstWord)
+
+            if (ret.Θ is not null && ret.Θ == firstWord)
             {
-                ret.Θ = prefix.ToString() + ret.Θ.ToCamelCase();
+                ret.Θ = prefix + ret.Θ.ToCamelCase();
                 return ret;
             }
-            else if (ret.T is not null && ret.T == firstWord)
+
+            if (ret.T is not null && ret.T == firstWord)
             {
-                ret.T = prefix.ToString() + ret.T.ToCamelCase();
+                ret.T = prefix + ret.T.ToCamelCase();
                 return ret;
             }
-            else
-                return null;
+
+            return null;
         }
 
-        public static string[] ToWords(string str)
+        private static string[] ToWords(string str)
         {
             return Regex.Replace(str, "[a-z][A-Z]", m => $"{m.Value[0]} {m.Value[1]}")
                 .Split(' ');
