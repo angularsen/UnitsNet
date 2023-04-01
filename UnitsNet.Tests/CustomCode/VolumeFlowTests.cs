@@ -109,9 +109,9 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MegaukGallonsPerSecondInOneCubicMeterPerSecond => 2.19969e-4;
 
-        protected override double MegaukGallonsPerDayInOneCubicMeterPerSecond => 19.005304;
+        protected override double MegaukGallonsPerDayInOneCubicMeterPerSecond => 19.00534305304118;
 
-        protected override double MegausGallonsPerDayInOneCubicMeterPerSecond => 22.824465227;
+        protected override double MegausGallonsPerDayInOneCubicMeterPerSecond => 22.82446532374402;
 
         protected override double MicrolitersPerDayInOneCubicMeterPerSecond => 8.64e+13;
 
