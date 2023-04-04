@@ -413,7 +413,7 @@ https://github.com/StructuralAnalysisFormat/StructuralAnalysisFormat-SDK
 
 ## Units.NET on other platforms
 
-The powerful strong-typed unites based on Units.NET [unite definition](/Common/UnitDefinitions) is available on other platforms!
+The powerful strong-typed unites based on Units.NET [unit definitions](/Common/UnitDefinitions) is available on other platforms!
 
 - ##### JavaScript / TypeScript
   - Package on NPM registery https://www.npmjs.com/package/unitsnet-js
