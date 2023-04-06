@@ -210,8 +210,8 @@
     {
       "SingularName": "ImperialGallon",
       "PluralName": "ImperialGallons",
-      "FromUnitToBaseFunc": "{x} * 0.00454609000000181429905810072407",
-      "FromBaseToUnitFunc": "{x} / 0.00454609000000181429905810072407",
+      "FromUnitToBaseFunc": "{x} * 0.00454609",
+      "FromBaseToUnitFunc": "{x} / 0.00454609",
       "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
@@ -243,8 +243,8 @@
     {
       "SingularName": "UsGallon",
       "PluralName": "UsGallons",
-      "FromUnitToBaseFunc": "{x} * 0.00378541",
-      "FromBaseToUnitFunc": "{x} / 0.00378541",
+      "FromUnitToBaseFunc": "{x} * 0.003785411784",
+      "FromBaseToUnitFunc": "{x} / 0.003785411784",
       "Prefixes": [ "Deca", "Deci", "Hecto", "Kilo", "Mega" ],
       "Localization": [
         {
