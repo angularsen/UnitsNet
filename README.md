@@ -413,12 +413,9 @@ https://github.com/StructuralAnalysisFormat/StructuralAnalysisFormat-SDK
 
 ## Units.NET on other platforms
 
-The powerful strong-typed unites based on Units.NET [unit definitions](/Common/UnitDefinitions) is available on other platforms!
+Get the same strongly typed units on other platforms, based on the same [unit definitions](/Common/UnitDefinitions).
 
-- ##### JavaScript / TypeScript
-  - Package on NPM registery https://www.npmjs.com/package/unitsnet-js
-  - Generate units source-code https://github.com/haimkastner/unitsnet-js
-
-- ##### Python
-  - Package on PyPI registery https://pypi.org/project/unitsnet-py
-  - Generate units source-code https://github.com/haimkastner/unitsnet-py
+| Language                   | Name        | Package                                          | Repository                                           | Maintainers  |
+|----------------------------|-------------|--------------------------------------------------|------------------------------------------------------|--------------|
+| JavaScript /<br>TypeScript | unitsnet-js | [npm](https://www.npmjs.com/package/unitsnet-js) | [github](https://github.com/haimkastner/unitsnet-js) | @haimkastner |
+| Python                     | unitsnet-py | [pypi](https://pypi.org/project/unitsnet-py)     | [github](https://github.com/haimkastner/unitsnet-py) | @haimkastner |
