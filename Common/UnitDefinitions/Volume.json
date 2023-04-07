@@ -210,8 +210,10 @@
     {
       "SingularName": "ImperialGallon",
       "PluralName": "ImperialGallons",
-      "FromUnitToBaseFunc": "{x} * 0.00454609000000181429905810072407",
-      "FromBaseToUnitFunc": "{x} / 0.00454609000000181429905810072407",
+      "FromUnitToBaseFunc": "{x} * 0.00454609",
+      "FromBaseToUnitFunc": "{x} / 0.00454609",
+      "XmlDocSummary": "The British imperial gallon (frequently called simply \"gallon\") is defined as exactly 4.54609 litres.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Gallon#Imperial_gallon",
       "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
@@ -243,8 +245,10 @@
     {
       "SingularName": "UsGallon",
       "PluralName": "UsGallons",
-      "FromUnitToBaseFunc": "{x} * 0.00378541",
-      "FromBaseToUnitFunc": "{x} / 0.00378541",
+      "FromUnitToBaseFunc": "{x} * 0.003785411784",
+      "FromBaseToUnitFunc": "{x} / 0.003785411784",
+      "XmlDocSummary": "The US liquid gallon (frequently called simply \"gallon\") is legally defined as 231 cubic inches, which is exactly 3.785411784 litres.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Gallon#US_liquid_gallon",
       "Prefixes": [ "Deca", "Deci", "Hecto", "Kilo", "Mega" ],
       "Localization": [
         {
