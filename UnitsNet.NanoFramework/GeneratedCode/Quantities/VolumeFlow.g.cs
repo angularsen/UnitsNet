@@ -275,9 +275,19 @@ namespace UnitsNet
         public double MegalitersPerSecond => As(VolumeFlowUnit.MegaliterPerSecond);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.MegaukGallonPerDay"/>
+        /// </summary>
+        public double MegaukGallonsPerDay => As(VolumeFlowUnit.MegaukGallonPerDay);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.MegaukGallonPerSecond"/>
         /// </summary>
         public double MegaukGallonsPerSecond => As(VolumeFlowUnit.MegaukGallonPerSecond);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.MegausGallonPerDay"/>
+        /// </summary>
+        public double MegausGallonsPerDay => As(VolumeFlowUnit.MegausGallonPerDay);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.MicroliterPerDay"/>
@@ -643,10 +653,22 @@ namespace UnitsNet
         public static VolumeFlow FromMegalitersPerSecond(double megaliterspersecond) => new VolumeFlow(megaliterspersecond, VolumeFlowUnit.MegaliterPerSecond);
 
         /// <summary>
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MegaukGallonPerDay"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumeFlow FromMegaukGallonsPerDay(double megaukgallonsperday) => new VolumeFlow(megaukgallonsperday, VolumeFlowUnit.MegaukGallonPerDay);
+
+        /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MegaukGallonPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeFlow FromMegaukGallonsPerSecond(double megaukgallonspersecond) => new VolumeFlow(megaukgallonspersecond, VolumeFlowUnit.MegaukGallonPerSecond);
+
+        /// <summary>
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MegausGallonPerDay"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumeFlow FromMegausGallonsPerDay(double megausgallonsperday) => new VolumeFlow(megausgallonsperday, VolumeFlowUnit.MegausGallonPerDay);
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MicroliterPerDay"/>.
@@ -877,7 +899,9 @@ namespace UnitsNet
                         VolumeFlowUnit.MegaliterPerHour => (_value / 3600000.000) * 1e6d,
                         VolumeFlowUnit.MegaliterPerMinute => (_value / 60000.00000) * 1e6d,
                         VolumeFlowUnit.MegaliterPerSecond => (_value / 1000) * 1e6d,
+                        VolumeFlowUnit.MegaukGallonPerDay => (_value / 19005304) * 1e6d,
                         VolumeFlowUnit.MegaukGallonPerSecond => (_value / 219.969) * 1e6d,
+                        VolumeFlowUnit.MegausGallonPerDay => (_value / 22824465.227) * 1e6d,
                         VolumeFlowUnit.MicroliterPerDay => (_value / 86400000) * 1e-6d,
                         VolumeFlowUnit.MicroliterPerHour => (_value / 3600000.000) * 1e-6d,
                         VolumeFlowUnit.MicroliterPerMinute => (_value / 60000.00000) * 1e-6d,
@@ -955,7 +979,9 @@ namespace UnitsNet
                         VolumeFlowUnit.MegaliterPerHour => (baseUnitValue * 3600000.000) / 1e6d,
                         VolumeFlowUnit.MegaliterPerMinute => (baseUnitValue * 60000.00000) / 1e6d,
                         VolumeFlowUnit.MegaliterPerSecond => (baseUnitValue * 1000) / 1e6d,
+                        VolumeFlowUnit.MegaukGallonPerDay => (baseUnitValue * 19005304) / 1e6d,
                         VolumeFlowUnit.MegaukGallonPerSecond => (baseUnitValue * 219.969) / 1e6d,
+                        VolumeFlowUnit.MegausGallonPerDay => (baseUnitValue * 22824465.227) / 1e6d,
                         VolumeFlowUnit.MicroliterPerDay => (baseUnitValue * 86400000) / 1e-6d,
                         VolumeFlowUnit.MicroliterPerHour => (baseUnitValue * 3600000.000) / 1e-6d,
                         VolumeFlowUnit.MicroliterPerMinute => (baseUnitValue * 60000.00000) / 1e-6d,
