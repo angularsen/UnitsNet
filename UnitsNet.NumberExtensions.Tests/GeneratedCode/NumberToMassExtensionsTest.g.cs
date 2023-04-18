@@ -41,6 +41,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Mass.FromEarthMasses(2), 2.EarthMasses());
 
         [Fact]
+        public void NumberToFemtogramsTest() =>
+            Assert.Equal(Mass.FromFemtograms(2), 2.Femtograms());
+
+        [Fact]
         public void NumberToGrainsTest() =>
             Assert.Equal(Mass.FromGrains(2), 2.Grains());
 
@@ -95,6 +99,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToOuncesTest() =>
             Assert.Equal(Mass.FromOunces(2), 2.Ounces());
+
+        [Fact]
+        public void NumberToPicogramsTest() =>
+            Assert.Equal(Mass.FromPicograms(2), 2.Picograms());
 
         [Fact]
         public void NumberToPoundsTest() =>
