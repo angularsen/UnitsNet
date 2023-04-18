@@ -69,6 +69,7 @@ namespace UnitsNet
                     new UnitInfo<MassUnit>(MassUnit.Decagram, "Decagrams", BaseUnits.Undefined),
                     new UnitInfo<MassUnit>(MassUnit.Decigram, "Decigrams", BaseUnits.Undefined),
                     new UnitInfo<MassUnit>(MassUnit.EarthMass, "EarthMasses", new BaseUnits(mass: MassUnit.EarthMass)),
+                    new UnitInfo<MassUnit>(MassUnit.Femtogram, "Femtograms", BaseUnits.Undefined),
                     new UnitInfo<MassUnit>(MassUnit.Grain, "Grains", new BaseUnits(mass: MassUnit.Grain)),
                     new UnitInfo<MassUnit>(MassUnit.Gram, "Grams", new BaseUnits(mass: MassUnit.Gram)),
                     new UnitInfo<MassUnit>(MassUnit.Hectogram, "Hectograms", BaseUnits.Undefined),
@@ -83,6 +84,7 @@ namespace UnitsNet
                     new UnitInfo<MassUnit>(MassUnit.Milligram, "Milligrams", BaseUnits.Undefined),
                     new UnitInfo<MassUnit>(MassUnit.Nanogram, "Nanograms", BaseUnits.Undefined),
                     new UnitInfo<MassUnit>(MassUnit.Ounce, "Ounces", new BaseUnits(mass: MassUnit.Ounce)),
+                    new UnitInfo<MassUnit>(MassUnit.Picogram, "Picograms", BaseUnits.Undefined),
                     new UnitInfo<MassUnit>(MassUnit.Pound, "Pounds", new BaseUnits(mass: MassUnit.Pound)),
                     new UnitInfo<MassUnit>(MassUnit.ShortHundredweight, "ShortHundredweight", new BaseUnits(mass: MassUnit.ShortHundredweight)),
                     new UnitInfo<MassUnit>(MassUnit.ShortTon, "ShortTons", new BaseUnits(mass: MassUnit.ShortTon)),
@@ -214,6 +216,11 @@ namespace UnitsNet
         public double EarthMasses => As(MassUnit.EarthMass);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Femtogram"/>
+        /// </summary>
+        public double Femtograms => As(MassUnit.Femtogram);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Grain"/>
         /// </summary>
         public double Grains => As(MassUnit.Grain);
@@ -284,6 +291,11 @@ namespace UnitsNet
         public double Ounces => As(MassUnit.Ounce);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Picogram"/>
+        /// </summary>
+        public double Picograms => As(MassUnit.Picogram);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Pound"/>
         /// </summary>
         public double Pounds => As(MassUnit.Pound);
@@ -333,6 +345,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Mass>(MassUnit.Decagram, MassUnit.Kilogram, quantity => quantity.ToUnit(MassUnit.Kilogram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Decigram, MassUnit.Kilogram, quantity => quantity.ToUnit(MassUnit.Kilogram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.EarthMass, MassUnit.Kilogram, quantity => quantity.ToUnit(MassUnit.Kilogram));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Femtogram, MassUnit.Kilogram, quantity => quantity.ToUnit(MassUnit.Kilogram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Grain, MassUnit.Kilogram, quantity => quantity.ToUnit(MassUnit.Kilogram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Gram, MassUnit.Kilogram, quantity => quantity.ToUnit(MassUnit.Kilogram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Hectogram, MassUnit.Kilogram, quantity => quantity.ToUnit(MassUnit.Kilogram));
@@ -346,6 +359,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Mass>(MassUnit.Milligram, MassUnit.Kilogram, quantity => quantity.ToUnit(MassUnit.Kilogram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Nanogram, MassUnit.Kilogram, quantity => quantity.ToUnit(MassUnit.Kilogram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Ounce, MassUnit.Kilogram, quantity => quantity.ToUnit(MassUnit.Kilogram));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Picogram, MassUnit.Kilogram, quantity => quantity.ToUnit(MassUnit.Kilogram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Pound, MassUnit.Kilogram, quantity => quantity.ToUnit(MassUnit.Kilogram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.ShortHundredweight, MassUnit.Kilogram, quantity => quantity.ToUnit(MassUnit.Kilogram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.ShortTon, MassUnit.Kilogram, quantity => quantity.ToUnit(MassUnit.Kilogram));
@@ -362,6 +376,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Decagram, quantity => quantity.ToUnit(MassUnit.Decagram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Decigram, quantity => quantity.ToUnit(MassUnit.Decigram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.EarthMass, quantity => quantity.ToUnit(MassUnit.EarthMass));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Femtogram, quantity => quantity.ToUnit(MassUnit.Femtogram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Grain, quantity => quantity.ToUnit(MassUnit.Grain));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Gram, quantity => quantity.ToUnit(MassUnit.Gram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Hectogram, quantity => quantity.ToUnit(MassUnit.Hectogram));
@@ -375,6 +390,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Milligram, quantity => quantity.ToUnit(MassUnit.Milligram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Nanogram, quantity => quantity.ToUnit(MassUnit.Nanogram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Ounce, quantity => quantity.ToUnit(MassUnit.Ounce));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Picogram, quantity => quantity.ToUnit(MassUnit.Picogram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Pound, quantity => quantity.ToUnit(MassUnit.Pound));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.ShortHundredweight, quantity => quantity.ToUnit(MassUnit.ShortHundredweight));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.ShortTon, quantity => quantity.ToUnit(MassUnit.ShortTon));
@@ -396,6 +412,9 @@ namespace UnitsNet
             unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Decigram, new CultureInfo("ru-RU"), false, true, new string[]{"дг"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Decigram, new CultureInfo("zh-CN"), false, true, new string[]{"分克"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.EarthMass, new CultureInfo("en-US"), false, true, new string[]{"em"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Femtogram, new CultureInfo("en-US"), false, true, new string[]{"fg"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Femtogram, new CultureInfo("ru-RU"), false, true, new string[]{"фг"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Femtogram, new CultureInfo("zh-CN"), false, true, new string[]{"飞克"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Grain, new CultureInfo("en-US"), false, true, new string[]{"gr"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Gram, new CultureInfo("en-US"), false, true, new string[]{"g"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Gram, new CultureInfo("ru-RU"), false, true, new string[]{"г"});
@@ -433,6 +452,9 @@ namespace UnitsNet
             unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Nanogram, new CultureInfo("zh-CN"), false, true, new string[]{"纳克"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Ounce, new CultureInfo("en-US"), false, true, new string[]{"oz"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Ounce, new CultureInfo("zh-CN"), false, true, new string[]{"盎司"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Picogram, new CultureInfo("en-US"), false, true, new string[]{"pg"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Picogram, new CultureInfo("ru-RU"), false, true, new string[]{"пг"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Picogram, new CultureInfo("zh-CN"), false, true, new string[]{"皮克"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Pound, new CultureInfo("en-US"), false, true, new string[]{"lb", "lbs", "lbm"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Pound, new CultureInfo("ru-RU"), false, true, new string[]{"фунт"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Pound, new CultureInfo("zh-CN"), false, true, new string[]{"磅"});
@@ -511,6 +533,16 @@ namespace UnitsNet
         {
             double value = (double) earthmasses;
             return new Mass(value, MassUnit.EarthMass);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Femtogram"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Mass FromFemtograms(QuantityValue femtograms)
+        {
+            double value = (double) femtograms;
+            return new Mass(value, MassUnit.Femtogram);
         }
 
         /// <summary>
@@ -651,6 +683,16 @@ namespace UnitsNet
         {
             double value = (double) ounces;
             return new Mass(value, MassUnit.Ounce);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Picogram"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Mass FromPicograms(QuantityValue picograms)
+        {
+            double value = (double) picograms;
+            return new Mass(value, MassUnit.Picogram);
         }
 
         /// <summary>
@@ -1202,6 +1244,7 @@ namespace UnitsNet
                 (MassUnit.Decagram, MassUnit.Kilogram) => new Mass((_value / 1e3) * 1e1d, MassUnit.Kilogram),
                 (MassUnit.Decigram, MassUnit.Kilogram) => new Mass((_value / 1e3) * 1e-1d, MassUnit.Kilogram),
                 (MassUnit.EarthMass, MassUnit.Kilogram) => new Mass(_value * 5.9722E+24, MassUnit.Kilogram),
+                (MassUnit.Femtogram, MassUnit.Kilogram) => new Mass((_value / 1e3) * 1e-15d, MassUnit.Kilogram),
                 (MassUnit.Grain, MassUnit.Kilogram) => new Mass(_value / 15432.358352941431, MassUnit.Kilogram),
                 (MassUnit.Gram, MassUnit.Kilogram) => new Mass(_value / 1e3, MassUnit.Kilogram),
                 (MassUnit.Hectogram, MassUnit.Kilogram) => new Mass((_value / 1e3) * 1e2d, MassUnit.Kilogram),
@@ -1215,6 +1258,7 @@ namespace UnitsNet
                 (MassUnit.Milligram, MassUnit.Kilogram) => new Mass((_value / 1e3) * 1e-3d, MassUnit.Kilogram),
                 (MassUnit.Nanogram, MassUnit.Kilogram) => new Mass((_value / 1e3) * 1e-9d, MassUnit.Kilogram),
                 (MassUnit.Ounce, MassUnit.Kilogram) => new Mass(_value * 0.028349523125, MassUnit.Kilogram),
+                (MassUnit.Picogram, MassUnit.Kilogram) => new Mass((_value / 1e3) * 1e-12d, MassUnit.Kilogram),
                 (MassUnit.Pound, MassUnit.Kilogram) => new Mass(_value * 0.45359237, MassUnit.Kilogram),
                 (MassUnit.ShortHundredweight, MassUnit.Kilogram) => new Mass(_value / 0.022046226218487758, MassUnit.Kilogram),
                 (MassUnit.ShortTon, MassUnit.Kilogram) => new Mass(_value * 9.0718474e2, MassUnit.Kilogram),
@@ -1228,6 +1272,7 @@ namespace UnitsNet
                 (MassUnit.Kilogram, MassUnit.Decagram) => new Mass((_value * 1e3) / 1e1d, MassUnit.Decagram),
                 (MassUnit.Kilogram, MassUnit.Decigram) => new Mass((_value * 1e3) / 1e-1d, MassUnit.Decigram),
                 (MassUnit.Kilogram, MassUnit.EarthMass) => new Mass(_value / 5.9722E+24, MassUnit.EarthMass),
+                (MassUnit.Kilogram, MassUnit.Femtogram) => new Mass((_value * 1e3) / 1e-15d, MassUnit.Femtogram),
                 (MassUnit.Kilogram, MassUnit.Grain) => new Mass(_value * 15432.358352941431, MassUnit.Grain),
                 (MassUnit.Kilogram, MassUnit.Gram) => new Mass(_value * 1e3, MassUnit.Gram),
                 (MassUnit.Kilogram, MassUnit.Hectogram) => new Mass((_value * 1e3) / 1e2d, MassUnit.Hectogram),
@@ -1241,6 +1286,7 @@ namespace UnitsNet
                 (MassUnit.Kilogram, MassUnit.Milligram) => new Mass((_value * 1e3) / 1e-3d, MassUnit.Milligram),
                 (MassUnit.Kilogram, MassUnit.Nanogram) => new Mass((_value * 1e3) / 1e-9d, MassUnit.Nanogram),
                 (MassUnit.Kilogram, MassUnit.Ounce) => new Mass(_value / 0.028349523125, MassUnit.Ounce),
+                (MassUnit.Kilogram, MassUnit.Picogram) => new Mass((_value * 1e3) / 1e-12d, MassUnit.Picogram),
                 (MassUnit.Kilogram, MassUnit.Pound) => new Mass(_value / 0.45359237, MassUnit.Pound),
                 (MassUnit.Kilogram, MassUnit.ShortHundredweight) => new Mass(_value * 0.022046226218487758, MassUnit.ShortHundredweight),
                 (MassUnit.Kilogram, MassUnit.ShortTon) => new Mass(_value / 9.0718474e2, MassUnit.ShortTon),

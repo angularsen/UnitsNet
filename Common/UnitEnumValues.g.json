@@ -789,7 +789,9 @@
     "Slug": 22,
     "SolarMass": 23,
     "Stone": 24,
-    "Tonne": 25
+    "Tonne": 25,
+    "Femtogram": 35,
+    "Picogram": 29
   },
   "MassConcentration": {
     "CentigramPerDeciliter": 1,

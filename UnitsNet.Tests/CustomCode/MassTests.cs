@@ -63,6 +63,10 @@ namespace UnitsNet.Tests
 
         protected override double SolarMassesInOneKilogram => 5.0264643347223100000000000E-31;
 
+        protected override double FemtogramsInOneKilogram => 1E18;
+
+        protected override double PicogramsInOneKilogram => 1E15;
+
         //protected override double SolarMassesTolerance => 0.1;
 
         [Fact]
