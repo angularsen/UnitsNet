@@ -1,11 +1,23 @@
-# https://docs.codecov.com/docs/codecov-yaml#default-yaml
-coverage:
-  precision: 0      # Default: 2
-  round: down       # Default: down
-  range: "80...100" # Default: 70...100
 codecov:
     notify:
-        after_n_builds: 4
+        after_n_builds: 2
+comment:
+  behavior: new
+  layout: reach, diff, tree
+  show_carryforward_flags: false
+coverage:
+  precision: 1
+  range:
+  - 30.0
+  - 90.0
+  round: up
+  threshold: 1%
+  status:
+    changes: false
+    default_rules:
+      flag_coverage_not_uploaded_behavior: include
+    patch: true
+    project: true
 flags:
   unittests:
     carryforward: false
@@ -17,10 +29,10 @@ flags:
     carryforward: false
 ignore:
   - "OasysUnits.Tests"
-  - "OasysUnits.NumberExtensions.Tests"
-  - "OasysUnits.Serialization.JsonNet.CompatibilityTests"
-  - "OasysUnits.Serialization.JsonNet.Tests"
-  - "Artifacts\OasysUnits.Tests"
-  - "Artifacts\OasysUnits.NumberExtensions.Tests"
-  - "Artifacts\OasysUnits.Serialization.JsonNet.CompatibilityTests"
-  - "Artifacts\OasysUnits.Serialization.JsonNet.Tests"
+#  - "OasysUnits.NumberExtensions.Tests"
+#  - "OasysUnits.Serialization.JsonNet.CompatibilityTests"
+#  - "OasysUnits.Serialization.JsonNet.Tests"
+#  - "Artifacts\OasysUnits.Tests"
+#  - "Artifacts\OasysUnits.NumberExtensions.Tests"
+#  - "Artifacts\OasysUnits.Serialization.JsonNet.CompatibilityTests"
+#  - "Artifacts\OasysUnits.Serialization.JsonNet.Tests"
