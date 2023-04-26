@@ -67,6 +67,18 @@ steps:
   displayName: Upload Code Coverage to codecovio
   failOnStderr: true
 
+- publish: $(System.DefaultWorkingDirectory)\results\coverage.xml
+  artifact: OasysUnits.Tests.Coverage
+
+- publish: $(System.DefaultWorkingDirectory)\results\coverage_numberExtensions.xml
+  artifact: OasysUnits.NumberExtensions.Tests.Coverage
+
+- publish: $(System.DefaultWorkingDirectory)\results\coverage_serialization.xml
+  artifact: OasysUnits.Serialization.JsonNet.Tests.Coverage
+
+- publish: $(System.DefaultWorkingDirectory)\results\coverage_compatibility.xml
+  artifact: OasysUnits.Serialization.JsonNet.CompatibilityTests.Coverage
+
 - task: PowerShell@2
   displayName: Check for existing tags
   inputs:
