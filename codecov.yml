@@ -27,12 +27,12 @@ flags:
     carryforward: false
   compatibility:
     carryforward: false
-ignore:
-  - "OasysUnits.Tests"
-  - "OasysUnits.NumberExtensions.Tests"
-  - "OasysUnits.Serialization.JsonNet.CompatibilityTests"
-  - "OasysUnits.Serialization.JsonNet.Tests"
-  - "Artifacts\OasysUnits.Tests"
-  - "Artifacts\OasysUnits.NumberExtensions.Tests"
-  - "Artifacts\OasysUnits.Serialization.JsonNet.CompatibilityTests"
-  - "Artifacts\OasysUnits.Serialization.JsonNet.Tests"
+#ignore:
+#  - "OasysUnits.Tests"
+#  - "OasysUnits.NumberExtensions.Tests"
+#  - "OasysUnits.Serialization.JsonNet.CompatibilityTests"
+#  - "OasysUnits.Serialization.JsonNet.Tests"
+#  - "Artifacts\OasysUnits.Tests"
+#  - "Artifacts\OasysUnits.NumberExtensions.Tests"
+#  - "Artifacts\OasysUnits.Serialization.JsonNet.CompatibilityTests"
+#  - "Artifacts\OasysUnits.Serialization.JsonNet.Tests"
