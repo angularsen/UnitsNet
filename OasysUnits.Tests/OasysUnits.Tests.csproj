@@ -8,15 +8,6 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <!-- Strong name signing -->
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>../OasysUnits.snk</AssemblyOriginatorKeyFile>
-    <DelaySign>false</DelaySign>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyName>OasysUnits.Tests</AssemblyName>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-  </PropertyGroup>
-
   <ItemGroup>
     <Compile Remove="obj\**" />
     <EmbeddedResource Remove="obj\**" />

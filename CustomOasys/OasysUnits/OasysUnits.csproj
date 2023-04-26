@@ -34,16 +34,6 @@
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
   </PropertyGroup>
 
-  <!-- Strong name signing -->
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>../OasysUnits.snk</AssemblyOriginatorKeyFile>
-    <DelaySign>false</DelaySign>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyName>OasysUnits</AssemblyName>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Company>$(Authors)</Company>
-  </PropertyGroup>
-
   <!-- NuGet references that work for all TargetFrameworks, both signed and unsigned. -->
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="2022.1.0" PrivateAssets="All" />

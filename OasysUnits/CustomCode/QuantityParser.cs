@@ -11,12 +11,22 @@ using System.Text.RegularExpressions;
 // ReSharper disable once CheckNamespace
 namespace OasysUnits
 {
-
-    internal delegate TQuantity QuantityFromDelegate<out TQuantity, in TUnitType>(QuantityValue value, TUnitType fromUnit)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TQuantity"></typeparam>
+    /// <typeparam name="TUnitType"></typeparam>
+    /// <param name="value"></param>
+    /// <param name="fromUnit"></param>
+    /// <returns></returns>
+    public delegate TQuantity QuantityFromDelegate<out TQuantity, in TUnitType>(QuantityValue value, TUnitType fromUnit)
         where TQuantity : IQuantity
         where TUnitType : Enum;
 
-    internal class QuantityParser
+    /// <summary>
+    ///
+    /// </summary>
+    public class QuantityParser
     {
         /// <summary>
         /// Allow integer, floating point or exponential number formats.
@@ -26,8 +36,15 @@ namespace OasysUnits
         private readonly UnitAbbreviationsCache _unitAbbreviationsCache;
         private readonly UnitParser _unitParser;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static QuantityParser Default { get; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="unitAbbreviationsCache"></param>
         public QuantityParser(UnitAbbreviationsCache? unitAbbreviationsCache)
         {
             _unitAbbreviationsCache = unitAbbreviationsCache ?? UnitAbbreviationsCache.Default;
@@ -39,14 +56,25 @@ namespace OasysUnits
             Default = new QuantityParser(UnitAbbreviationsCache.Default);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TQuantity"></typeparam>
+        /// <typeparam name="TUnitType"></typeparam>
+        /// <param name="str"></param>
+        /// <param name="formatProvider"></param>
+        /// <param name="fromDelegate"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
         [SuppressMessage("ReSharper", "UseStringInterpolation")]
-        internal TQuantity Parse<TQuantity, TUnitType>(string str,
+        public TQuantity Parse<TQuantity, TUnitType>(string str,
             IFormatProvider? formatProvider,
             QuantityFromDelegate<TQuantity, TUnitType> fromDelegate)
             where TQuantity : IQuantity
             where TUnitType : Enum
         {
-            if (str == null) throw new ArgumentNullException(nameof(str));
+            if (str == null)
+                throw new ArgumentNullException(nameof(str));
             str = str.Trim();
 
             var regex = CreateRegexForQuantity<TUnitType>(formatProvider);
@@ -61,8 +89,18 @@ namespace OasysUnits
             return ParseWithRegex(valueString, unitString, fromDelegate, formatProvider);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TQuantity"></typeparam>
+        /// <typeparam name="TUnitType"></typeparam>
+        /// <param name="str"></param>
+        /// <param name="formatProvider"></param>
+        /// <param name="fromDelegate"></param>
+        /// <param name="result"></param>
+        /// <returns></returns>
         [SuppressMessage("ReSharper", "UseStringInterpolation")]
-        internal bool TryParse<TQuantity, TUnitType>(string? str,
+        public bool TryParse<TQuantity, TUnitType>(string? str,
             IFormatProvider? formatProvider,
             QuantityFromDelegate<TQuantity, TUnitType> fromDelegate,
             out TQuantity result)
@@ -71,7 +109,8 @@ namespace OasysUnits
         {
             result = default;
 
-            if (string.IsNullOrWhiteSpace(str)) return false;
+            if (string.IsNullOrWhiteSpace(str))
+                return false;
             str = str!.Trim(); // netstandard2.0 nullable quirk
 
             var regex = CreateRegexForQuantity<TUnitType>(formatProvider);
@@ -154,10 +193,10 @@ namespace OasysUnits
             result = default;
 
             if (!double.TryParse(valueString, ParseNumberStyles, formatProvider, out var value))
-                    return false;
+                return false;
 
             if (!_unitParser.TryParse<TUnitType>(unitString, formatProvider, out var parsedUnit))
-                    return false;
+                return false;
 
             result = fromDelegate(value, parsedUnit);
             return true;

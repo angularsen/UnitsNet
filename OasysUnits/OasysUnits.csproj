@@ -24,7 +24,6 @@
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <RootNamespace>OasysUnits</RootNamespace>
-    <TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
     <TargetFrameworks>netstandard2.0;net6.0;net48</TargetFrameworks>
   </PropertyGroup>
 
@@ -38,14 +37,6 @@
     <!-- Optional: Build symbol package (.snupkg) to distribute the PDB containing Source Link -->
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-  </PropertyGroup>
-
-  <!-- Strong name signing -->
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>../OasysUnits.snk</AssemblyOriginatorKeyFile>
-    <DelaySign>false</DelaySign>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyName>OasysUnits</AssemblyName>
   </PropertyGroup>
 
   <!-- NuGet references that work for all TargetFrameworks, both signed and unsigned. -->

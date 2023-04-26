@@ -29,13 +29,6 @@
     <Folder Include="GeneratedCode\" />
   </ItemGroup>
 
-  <!-- Strong name signing -->
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>../OasysUnits.snk</AssemblyOriginatorKeyFile>
-    <DelaySign>false</DelaySign>
-    <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-
   <!-- Project references, will also generate the corresponding nuget dependencies -->
   <ItemGroup>
     <ProjectReference Include="..\OasysUnits\OasysUnits.csproj" />

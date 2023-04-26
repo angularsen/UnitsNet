@@ -38,7 +38,6 @@ ProjectSection(SolutionItems) = preProject
 	README.md = README.md
 	test.bat = test.bat
 	OasysUnits.sln.DotSettings = OasysUnits.sln.DotSettings
-	OasysUnits.snk = OasysUnits.snk
 	azure-pipelines.yml = azure-pipelines.yml
 EndProjectSection
 EndProject
