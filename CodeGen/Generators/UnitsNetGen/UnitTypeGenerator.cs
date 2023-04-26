@@ -17,7 +17,7 @@ namespace CodeGen.Generators.OasysUnitsGen
             _unitEnumName = $"{quantity.Name}Unit";
         }
 
-        public override string Generate()
+        public string Generate()
         {
             Writer.WL(GeneratedFileHeader);
             Writer.WL($@"
@@ -28,9 +28,7 @@ namespace OasysUnits.Units
     #pragma warning disable 1591
 
     public enum {_unitEnumName}
-    {{
-        Undefined = 0,");
-
+    {{");
             foreach (var unit in _quantity.Units)
             {
                 if (unit.XmlDocSummary.HasText())
@@ -61,9 +59,8 @@ namespace OasysUnits.Units
             return Writer.ToString();
         }
 
-        private string? GetObsoleteAttributeOrNull(string obsoleteText) =>
-          string.IsNullOrWhiteSpace(obsoleteText) ?
-          null :
-          $"[System.Obsolete(\"{obsoleteText}\")]";
+        private static string? GetObsoleteAttributeOrNull(string? obsoleteText) => string.IsNullOrWhiteSpace(obsoleteText)
+            ? null
+            : $"[System.Obsolete(\"{obsoleteText}\")]";
     }
 }

@@ -24,7 +24,7 @@ namespace OasysUnits
 {
     /// <inheritdoc />
     /// <summary>
-    ///     Compressibility is the measure of the relative volume change of a fluid or solid in response to pressure changes.
+    ///     
     /// </summary>
     public struct  Compressibility
     {
@@ -173,65 +173,65 @@ namespace OasysUnits
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(CompressibilityUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(CompressibilityUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public Compressibility ToUnit(CompressibilityUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new Compressibility(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public Compressibility ToUnit(CompressibilityUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new Compressibility(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                CompressibilityUnit.InverseAtmosphere => _value * 101325,
-                CompressibilityUnit.InverseBar => _value * 1e5,
-                CompressibilityUnit.InverseKilopascal => _value * 1e3,
-                CompressibilityUnit.InverseMegapascal => _value * 1e6,
-                CompressibilityUnit.InverseMillibar => _value * 100,
-                CompressibilityUnit.InversePascal => _value,
-                CompressibilityUnit.InversePoundForcePerSquareInch => _value * 6.894757293168361e3,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        CompressibilityUnit.InverseAtmosphere => _value * 101325,
+                        CompressibilityUnit.InverseBar => _value * 1e5,
+                        CompressibilityUnit.InverseKilopascal => _value * 1e3,
+                        CompressibilityUnit.InverseMegapascal => _value * 1e6,
+                        CompressibilityUnit.InverseMillibar => _value * 100,
+                        CompressibilityUnit.InversePascal => _value,
+                        CompressibilityUnit.InversePoundForcePerSquareInch => _value * 6.894757293168361e3,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(CompressibilityUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(CompressibilityUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                CompressibilityUnit.InverseAtmosphere => baseUnitValue / 101325,
-                CompressibilityUnit.InverseBar => baseUnitValue / 1e5,
-                CompressibilityUnit.InverseKilopascal => baseUnitValue / 1e3,
-                CompressibilityUnit.InverseMegapascal => baseUnitValue / 1e6,
-                CompressibilityUnit.InverseMillibar => baseUnitValue / 100,
-                CompressibilityUnit.InversePascal => baseUnitValue,
-                CompressibilityUnit.InversePoundForcePerSquareInch => baseUnitValue / 6.894757293168361e3,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        CompressibilityUnit.InverseAtmosphere => baseUnitValue / 101325,
+                        CompressibilityUnit.InverseBar => baseUnitValue / 1e5,
+                        CompressibilityUnit.InverseKilopascal => baseUnitValue / 1e3,
+                        CompressibilityUnit.InverseMegapascal => baseUnitValue / 1e6,
+                        CompressibilityUnit.InverseMillibar => baseUnitValue / 100,
+                        CompressibilityUnit.InversePascal => baseUnitValue,
+                        CompressibilityUnit.InversePoundForcePerSquareInch => baseUnitValue / 6.894757293168361e3,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

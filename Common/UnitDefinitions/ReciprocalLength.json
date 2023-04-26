@@ -1,7 +1,7 @@
 {
   "Name": "ReciprocalLength",
   "BaseUnit": "InverseMeter",
-  "XmlDoc": "Reciprocal (Inverse) Length is used in various fields of science and mathematics. It is defined as the inverse value of a length unit.",
+  "XmlDocSummary": "Reciprocal (Inverse) Length is used in various fields of science and mathematics. It is defined as the inverse value of a length unit.",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Reciprocal_length",
   "BaseDimensions": {
     "L": -1

@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum IlluminanceUnit
     {
-        Undefined = 0,
         Kilolux = 1,
         Lux = 2,
         Megalux = 3,

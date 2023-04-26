@@ -25,9 +25,9 @@ namespace OasysUnits.Units
 
     public enum ElectricCurrentUnit
     {
-        Undefined = 0,
         Ampere = 1,
         Centiampere = 2,
+        Femtoampere = 9,
         Kiloampere = 3,
         Megaampere = 4,
         Microampere = 5,

@@ -1,5 +1,5 @@
 <# .SYNOPSIS
-  Updates the version of all UnitsNet.Serialiation.JsonNet projects.
+  Updates the version of all OasysUnits.Serialiation.JsonNet projects.
 .DESCRIPTION
   Updates the <Version> property of the .csproj project files.
 .PARAMETER set
@@ -48,7 +48,7 @@ Import-Module "$PSScriptRoot\set-version.psm1"
 
 $root = Resolve-Path "$PSScriptRoot\.."
 $paramSet = $PsCmdlet.ParameterSetName
-$projFile = "$root\UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.csproj"
+$projFile = "$root\OasysUnits.Serialization.JsonNet\OasysUnits.Serialization.JsonNet.csproj"
 
 # Use project version as base when bumping major/minor/patch
 $newVersion = Get-NewProjectVersion $projFile $paramSet $setVersion $bumpVersion

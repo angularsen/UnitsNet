@@ -459,117 +459,117 @@ namespace OasysUnits
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(MassFlowUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(MassFlowUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public MassFlow ToUnit(MassFlowUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new MassFlow(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public MassFlow ToUnit(MassFlowUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new MassFlow(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                MassFlowUnit.CentigramPerDay => (_value / 86400) * 1e-2d,
-                MassFlowUnit.CentigramPerSecond => (_value) * 1e-2d,
-                MassFlowUnit.DecagramPerDay => (_value / 86400) * 1e1d,
-                MassFlowUnit.DecagramPerSecond => (_value) * 1e1d,
-                MassFlowUnit.DecigramPerDay => (_value / 86400) * 1e-1d,
-                MassFlowUnit.DecigramPerSecond => (_value) * 1e-1d,
-                MassFlowUnit.GramPerDay => _value / 86400,
-                MassFlowUnit.GramPerHour => _value / 3600,
-                MassFlowUnit.GramPerSecond => _value,
-                MassFlowUnit.HectogramPerDay => (_value / 86400) * 1e2d,
-                MassFlowUnit.HectogramPerSecond => (_value) * 1e2d,
-                MassFlowUnit.KilogramPerDay => (_value / 86400) * 1e3d,
-                MassFlowUnit.KilogramPerHour => _value / 3.6,
-                MassFlowUnit.KilogramPerMinute => _value / 0.06,
-                MassFlowUnit.KilogramPerSecond => (_value) * 1e3d,
-                MassFlowUnit.MegagramPerDay => (_value / 86400) * 1e6d,
-                MassFlowUnit.MegapoundPerDay => (_value / 190.47936) * 1e6d,
-                MassFlowUnit.MegapoundPerHour => (_value / 7.93664) * 1e6d,
-                MassFlowUnit.MegapoundPerMinute => (_value / 0.132277) * 1e6d,
-                MassFlowUnit.MegapoundPerSecond => (_value * 453.59237) * 1e6d,
-                MassFlowUnit.MicrogramPerDay => (_value / 86400) * 1e-6d,
-                MassFlowUnit.MicrogramPerSecond => (_value) * 1e-6d,
-                MassFlowUnit.MilligramPerDay => (_value / 86400) * 1e-3d,
-                MassFlowUnit.MilligramPerSecond => (_value) * 1e-3d,
-                MassFlowUnit.NanogramPerDay => (_value / 86400) * 1e-9d,
-                MassFlowUnit.NanogramPerSecond => (_value) * 1e-9d,
-                MassFlowUnit.PoundPerDay => _value / 190.47936,
-                MassFlowUnit.PoundPerHour => _value / 7.93664,
-                MassFlowUnit.PoundPerMinute => _value / 0.132277,
-                MassFlowUnit.PoundPerSecond => _value * 453.59237,
-                MassFlowUnit.ShortTonPerHour => _value * 251.9957611,
-                MassFlowUnit.TonnePerDay => _value / 0.0864000,
-                MassFlowUnit.TonnePerHour => 1000 * _value / 3.6,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        MassFlowUnit.CentigramPerDay => (_value / 86400) * 1e-2d,
+                        MassFlowUnit.CentigramPerSecond => (_value) * 1e-2d,
+                        MassFlowUnit.DecagramPerDay => (_value / 86400) * 1e1d,
+                        MassFlowUnit.DecagramPerSecond => (_value) * 1e1d,
+                        MassFlowUnit.DecigramPerDay => (_value / 86400) * 1e-1d,
+                        MassFlowUnit.DecigramPerSecond => (_value) * 1e-1d,
+                        MassFlowUnit.GramPerDay => _value / 86400,
+                        MassFlowUnit.GramPerHour => _value / 3600,
+                        MassFlowUnit.GramPerSecond => _value,
+                        MassFlowUnit.HectogramPerDay => (_value / 86400) * 1e2d,
+                        MassFlowUnit.HectogramPerSecond => (_value) * 1e2d,
+                        MassFlowUnit.KilogramPerDay => (_value / 86400) * 1e3d,
+                        MassFlowUnit.KilogramPerHour => _value / 3.6,
+                        MassFlowUnit.KilogramPerMinute => _value / 0.06,
+                        MassFlowUnit.KilogramPerSecond => (_value) * 1e3d,
+                        MassFlowUnit.MegagramPerDay => (_value / 86400) * 1e6d,
+                        MassFlowUnit.MegapoundPerDay => (_value / 190.47936) * 1e6d,
+                        MassFlowUnit.MegapoundPerHour => (_value / 7.93664) * 1e6d,
+                        MassFlowUnit.MegapoundPerMinute => (_value / 0.132277) * 1e6d,
+                        MassFlowUnit.MegapoundPerSecond => (_value * 453.59237) * 1e6d,
+                        MassFlowUnit.MicrogramPerDay => (_value / 86400) * 1e-6d,
+                        MassFlowUnit.MicrogramPerSecond => (_value) * 1e-6d,
+                        MassFlowUnit.MilligramPerDay => (_value / 86400) * 1e-3d,
+                        MassFlowUnit.MilligramPerSecond => (_value) * 1e-3d,
+                        MassFlowUnit.NanogramPerDay => (_value / 86400) * 1e-9d,
+                        MassFlowUnit.NanogramPerSecond => (_value) * 1e-9d,
+                        MassFlowUnit.PoundPerDay => _value / 190.47936,
+                        MassFlowUnit.PoundPerHour => _value / 7.93664,
+                        MassFlowUnit.PoundPerMinute => _value / 0.132277,
+                        MassFlowUnit.PoundPerSecond => _value * 453.59237,
+                        MassFlowUnit.ShortTonPerHour => _value * 251.9957611,
+                        MassFlowUnit.TonnePerDay => _value / 0.0864000,
+                        MassFlowUnit.TonnePerHour => 1000 * _value / 3.6,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(MassFlowUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(MassFlowUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                MassFlowUnit.CentigramPerDay => (baseUnitValue * 86400) / 1e-2d,
-                MassFlowUnit.CentigramPerSecond => (baseUnitValue) / 1e-2d,
-                MassFlowUnit.DecagramPerDay => (baseUnitValue * 86400) / 1e1d,
-                MassFlowUnit.DecagramPerSecond => (baseUnitValue) / 1e1d,
-                MassFlowUnit.DecigramPerDay => (baseUnitValue * 86400) / 1e-1d,
-                MassFlowUnit.DecigramPerSecond => (baseUnitValue) / 1e-1d,
-                MassFlowUnit.GramPerDay => baseUnitValue * 86400,
-                MassFlowUnit.GramPerHour => baseUnitValue * 3600,
-                MassFlowUnit.GramPerSecond => baseUnitValue,
-                MassFlowUnit.HectogramPerDay => (baseUnitValue * 86400) / 1e2d,
-                MassFlowUnit.HectogramPerSecond => (baseUnitValue) / 1e2d,
-                MassFlowUnit.KilogramPerDay => (baseUnitValue * 86400) / 1e3d,
-                MassFlowUnit.KilogramPerHour => baseUnitValue * 3.6,
-                MassFlowUnit.KilogramPerMinute => baseUnitValue * 0.06,
-                MassFlowUnit.KilogramPerSecond => (baseUnitValue) / 1e3d,
-                MassFlowUnit.MegagramPerDay => (baseUnitValue * 86400) / 1e6d,
-                MassFlowUnit.MegapoundPerDay => (baseUnitValue * 190.47936) / 1e6d,
-                MassFlowUnit.MegapoundPerHour => (baseUnitValue * 7.93664) / 1e6d,
-                MassFlowUnit.MegapoundPerMinute => (baseUnitValue * 0.132277) / 1e6d,
-                MassFlowUnit.MegapoundPerSecond => (baseUnitValue / 453.59237) / 1e6d,
-                MassFlowUnit.MicrogramPerDay => (baseUnitValue * 86400) / 1e-6d,
-                MassFlowUnit.MicrogramPerSecond => (baseUnitValue) / 1e-6d,
-                MassFlowUnit.MilligramPerDay => (baseUnitValue * 86400) / 1e-3d,
-                MassFlowUnit.MilligramPerSecond => (baseUnitValue) / 1e-3d,
-                MassFlowUnit.NanogramPerDay => (baseUnitValue * 86400) / 1e-9d,
-                MassFlowUnit.NanogramPerSecond => (baseUnitValue) / 1e-9d,
-                MassFlowUnit.PoundPerDay => baseUnitValue * 190.47936,
-                MassFlowUnit.PoundPerHour => baseUnitValue * 7.93664,
-                MassFlowUnit.PoundPerMinute => baseUnitValue * 0.132277,
-                MassFlowUnit.PoundPerSecond => baseUnitValue / 453.59237,
-                MassFlowUnit.ShortTonPerHour => baseUnitValue / 251.9957611,
-                MassFlowUnit.TonnePerDay => baseUnitValue * 0.0864000,
-                MassFlowUnit.TonnePerHour => baseUnitValue * 3.6 / 1000,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        MassFlowUnit.CentigramPerDay => (baseUnitValue * 86400) / 1e-2d,
+                        MassFlowUnit.CentigramPerSecond => (baseUnitValue) / 1e-2d,
+                        MassFlowUnit.DecagramPerDay => (baseUnitValue * 86400) / 1e1d,
+                        MassFlowUnit.DecagramPerSecond => (baseUnitValue) / 1e1d,
+                        MassFlowUnit.DecigramPerDay => (baseUnitValue * 86400) / 1e-1d,
+                        MassFlowUnit.DecigramPerSecond => (baseUnitValue) / 1e-1d,
+                        MassFlowUnit.GramPerDay => baseUnitValue * 86400,
+                        MassFlowUnit.GramPerHour => baseUnitValue * 3600,
+                        MassFlowUnit.GramPerSecond => baseUnitValue,
+                        MassFlowUnit.HectogramPerDay => (baseUnitValue * 86400) / 1e2d,
+                        MassFlowUnit.HectogramPerSecond => (baseUnitValue) / 1e2d,
+                        MassFlowUnit.KilogramPerDay => (baseUnitValue * 86400) / 1e3d,
+                        MassFlowUnit.KilogramPerHour => baseUnitValue * 3.6,
+                        MassFlowUnit.KilogramPerMinute => baseUnitValue * 0.06,
+                        MassFlowUnit.KilogramPerSecond => (baseUnitValue) / 1e3d,
+                        MassFlowUnit.MegagramPerDay => (baseUnitValue * 86400) / 1e6d,
+                        MassFlowUnit.MegapoundPerDay => (baseUnitValue * 190.47936) / 1e6d,
+                        MassFlowUnit.MegapoundPerHour => (baseUnitValue * 7.93664) / 1e6d,
+                        MassFlowUnit.MegapoundPerMinute => (baseUnitValue * 0.132277) / 1e6d,
+                        MassFlowUnit.MegapoundPerSecond => (baseUnitValue / 453.59237) / 1e6d,
+                        MassFlowUnit.MicrogramPerDay => (baseUnitValue * 86400) / 1e-6d,
+                        MassFlowUnit.MicrogramPerSecond => (baseUnitValue) / 1e-6d,
+                        MassFlowUnit.MilligramPerDay => (baseUnitValue * 86400) / 1e-3d,
+                        MassFlowUnit.MilligramPerSecond => (baseUnitValue) / 1e-3d,
+                        MassFlowUnit.NanogramPerDay => (baseUnitValue * 86400) / 1e-9d,
+                        MassFlowUnit.NanogramPerSecond => (baseUnitValue) / 1e-9d,
+                        MassFlowUnit.PoundPerDay => baseUnitValue * 190.47936,
+                        MassFlowUnit.PoundPerHour => baseUnitValue * 7.93664,
+                        MassFlowUnit.PoundPerMinute => baseUnitValue * 0.132277,
+                        MassFlowUnit.PoundPerSecond => baseUnitValue / 453.59237,
+                        MassFlowUnit.ShortTonPerHour => baseUnitValue / 251.9957611,
+                        MassFlowUnit.TonnePerDay => baseUnitValue * 0.0864000,
+                        MassFlowUnit.TonnePerHour => baseUnitValue * 3.6 / 1000,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

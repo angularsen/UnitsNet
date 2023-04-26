@@ -5,7 +5,6 @@ using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Threading;
-using JetBrains.Annotations;
 using OasysUnits.Units;
 
 namespace OasysUnits
@@ -20,10 +19,9 @@ namespace OasysUnits
         /// <returns>The inverse of this unit as <see cref="ReciprocalLength"/>.</returns>
         public ReciprocalLength Inverse()
         {
-            if (Meters == 0.0)
-                return new ReciprocalLength(0.0, ReciprocalLengthUnit.InverseMeter);
-
-            return new ReciprocalLength(1 / Meters, ReciprocalLengthUnit.InverseMeter);
+            return Meters == 0.0
+                ? new ReciprocalLength(0.0, ReciprocalLengthUnit.InverseMeter)
+                : new ReciprocalLength(1 / Meters, ReciprocalLengthUnit.InverseMeter);
         }
 
         /// <summary>
@@ -59,7 +57,7 @@ namespace OasysUnits
         /// <param name="str"></param>
         /// <param name="formatProvider">Optionally specify the culture format numbers and localize unit abbreviations. Defaults to thread's culture.</param>
         /// <returns>Parsed length.</returns>
-        public static Length ParseFeetInches([NotNull] string str, IFormatProvider? formatProvider = null)
+        public static Length ParseFeetInches(string str, IFormatProvider? formatProvider = null)
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
             if (!TryParseFeetInches(str, out Length result, formatProvider))
@@ -223,11 +221,11 @@ namespace OasysUnits
         /// <example>Length.FromFeetInches(3,2).FeetInches.ToString() outputs: "3 ft 2 in"</example>
         /// <param name="cultureInfo">
         ///     Optional culture to format number and localize unit abbreviations.
-        ///     If null, defaults to <see cref="Thread.CurrentUICulture"/>.
+        ///     If null, defaults to <see cref="Thread.CurrentCulture"/>.
         /// </param>
         public string ToString(IFormatProvider? cultureInfo)
         {
-            cultureInfo = cultureInfo ?? CultureInfo.CurrentUICulture;
+            cultureInfo = cultureInfo ?? CultureInfo.CurrentCulture;
 
             var footUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(LengthUnit.Foot, cultureInfo);
             var inchUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(LengthUnit.Inch, cultureInfo);
@@ -263,8 +261,8 @@ namespace OasysUnits
                 throw new ArgumentOutOfRangeException(nameof(fractionDenominator), "Denominator for fractional inch must be greater than zero.");
             }
 
-            var inchTrunc = (int)Math.Truncate(this.Inches);
-            var numerator = (int)Math.Round((this.Inches - inchTrunc) * fractionDenominator);
+            var inchTrunc = (int)Math.Truncate(Inches);
+            var numerator = (int)Math.Round((Inches - inchTrunc) * fractionDenominator);
 
             if (numerator == fractionDenominator)
             {
@@ -281,7 +279,7 @@ namespace OasysUnits
 
             if (numerator > 0)
             {
-                int greatestCommonDivisor(int a, int b)
+                int GreatestCommonDivisor(int a, int b)
                 {
                     while (a != 0 && b != 0)
                     {
@@ -294,7 +292,7 @@ namespace OasysUnits
                     return a | b;
                 }
 
-                int gcd = greatestCommonDivisor((int)Math.Abs(numerator), fractionDenominator);
+                int gcd = GreatestCommonDivisor(numerator, fractionDenominator);
 
                 if (inchPart.Length > 0)
                 {
@@ -306,12 +304,12 @@ namespace OasysUnits
 
             inchPart.Append('"');
 
-            if (this.Feet == 0)
+            if (Feet == 0)
             {
                 return inchPart.ToString();
             }
 
-            return $"{this.Feet}' - {inchPart}";
+            return $"{Feet}' - {inchPart}";
         }
     }
 }

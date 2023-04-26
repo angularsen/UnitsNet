@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum AmountOfSubstanceUnit
     {
-        Undefined = 0,
         Centimole = 1,
         CentipoundMole = 2,
         Decimole = 3,

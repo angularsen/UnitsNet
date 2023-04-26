@@ -4,7 +4,7 @@
 using System;
 using Xunit;
 
-namespace OasysUnits.Tests.CustomCode
+namespace OasysUnits.Tests
 {
     public class PowerRatioTests : PowerRatioTestsBase
     {
@@ -46,6 +46,7 @@ namespace OasysUnits.Tests.CustomCode
         }
 
         [Theory]
+        // Note: Attribute arguments cannot be of type decimal.
         [InlineData(-20, 0.01)]
         [InlineData(-10, 0.1)]
         [InlineData(0, 1)]
@@ -54,8 +55,8 @@ namespace OasysUnits.Tests.CustomCode
         public void ExpectPowerRatioConvertedCorrectly(double powerRatio, double expected)
         {
             PowerRatio pr = PowerRatio.FromDecibelWatts(powerRatio);
-            double actual = pr.ToPower().Watts;
-            Assert.Equal(expected, actual);
+            decimal actual = pr.ToPower().Watts;
+            Assert.Equal((decimal)expected, actual);
         }
 
         // http://www.maximintegrated.com/en/app-notes/index.mvp/id/808

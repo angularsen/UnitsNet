@@ -25,8 +25,14 @@ namespace OasysUnits.Units
 
     public enum AreaDensityUnit
     {
-        Undefined = 0,
+
+        /// <summary>
+        ///     Also known as grammage for paper industry. In fiber industry used with abbreviation 'gsm'.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Grammage</remarks>
+        GramPerSquareMeter = 6,
         KilogramPerSquareMeter = 1,
+        MilligramPerSquareMeter = 10,
     }
 
     #pragma warning restore 1591

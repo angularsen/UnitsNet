@@ -155,7 +155,7 @@ namespace OasysUnits.Serialization.JsonNet.Tests
         [Fact]
         public void EmptyArrayValue_ExpectJsonArray()
         {
-            Frequency[] testObj = new Frequency[0];
+            Frequency[] testObj = { };
 
             string expectedJson = "[]";
 

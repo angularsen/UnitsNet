@@ -40,6 +40,10 @@ namespace OasysUnits.NumberExtensions.NumberToVolumePerLength
         public static VolumePerLength CubicYardsPerUsSurveyFoot<T>(this T value) =>
             VolumePerLength.FromCubicYardsPerUsSurveyFoot(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="VolumePerLength.FromImperialGallonsPerMile(OasysUnits.QuantityValue)" />
+        public static VolumePerLength ImperialGallonsPerMile<T>(this T value) =>
+            VolumePerLength.FromImperialGallonsPerMile(Convert.ToDouble(value));
+
         /// <inheritdoc cref="VolumePerLength.FromLitersPerKilometer(OasysUnits.QuantityValue)" />
         public static VolumePerLength LitersPerKilometer<T>(this T value) =>
             VolumePerLength.FromLitersPerKilometer(Convert.ToDouble(value));
@@ -55,6 +59,10 @@ namespace OasysUnits.NumberExtensions.NumberToVolumePerLength
         /// <inheritdoc cref="VolumePerLength.FromOilBarrelsPerFoot(OasysUnits.QuantityValue)" />
         public static VolumePerLength OilBarrelsPerFoot<T>(this T value) =>
             VolumePerLength.FromOilBarrelsPerFoot(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumePerLength.FromUsGallonsPerMile(OasysUnits.QuantityValue)" />
+        public static VolumePerLength UsGallonsPerMile<T>(this T value) =>
+            VolumePerLength.FromUsGallonsPerMile(Convert.ToDouble(value));
 
     }
 }

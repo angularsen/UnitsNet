@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum PermittivityUnit
     {
-        Undefined = 0,
         FaradPerMeter = 1,
     }
 

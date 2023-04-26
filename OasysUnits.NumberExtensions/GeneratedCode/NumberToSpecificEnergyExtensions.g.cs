@@ -92,6 +92,10 @@ namespace OasysUnits.NumberExtensions.NumberToSpecificEnergy
         public static SpecificEnergy MegajoulesPerKilogram<T>(this T value) =>
             SpecificEnergy.FromMegajoulesPerKilogram(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="SpecificEnergy.FromMegaJoulesPerTonne(OasysUnits.QuantityValue)" />
+        public static SpecificEnergy MegaJoulesPerTonne<T>(this T value) =>
+            SpecificEnergy.FromMegaJoulesPerTonne(Convert.ToDouble(value));
+
         /// <inheritdoc cref="SpecificEnergy.FromMegawattDaysPerKilogram(OasysUnits.QuantityValue)" />
         public static SpecificEnergy MegawattDaysPerKilogram<T>(this T value) =>
             SpecificEnergy.FromMegawattDaysPerKilogram(Convert.ToDouble(value));

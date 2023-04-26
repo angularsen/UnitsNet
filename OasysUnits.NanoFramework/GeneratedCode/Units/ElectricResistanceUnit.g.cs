@@ -25,13 +25,13 @@ namespace OasysUnits.Units
 
     public enum ElectricResistanceUnit
     {
-        Undefined = 0,
         Gigaohm = 1,
         Kiloohm = 2,
         Megaohm = 3,
         Microohm = 4,
         Milliohm = 5,
         Ohm = 6,
+        Teraohm = 12,
     }
 
     #pragma warning restore 1591

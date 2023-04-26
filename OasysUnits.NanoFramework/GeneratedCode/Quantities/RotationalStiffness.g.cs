@@ -459,117 +459,117 @@ namespace OasysUnits
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(RotationalStiffnessUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(RotationalStiffnessUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public RotationalStiffness ToUnit(RotationalStiffnessUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new RotationalStiffness(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public RotationalStiffness ToUnit(RotationalStiffnessUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new RotationalStiffness(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                RotationalStiffnessUnit.CentinewtonMeterPerDegree => (_value * (180 / 3.1415926535897931)) * 1e-2d,
-                RotationalStiffnessUnit.CentinewtonMillimeterPerDegree => (_value * 180 / 3.1415926535897931 * 0.001) * 1e-2d,
-                RotationalStiffnessUnit.CentinewtonMillimeterPerRadian => (_value * 0.001) * 1e-2d,
-                RotationalStiffnessUnit.DecanewtonMeterPerDegree => (_value * (180 / 3.1415926535897931)) * 1e1d,
-                RotationalStiffnessUnit.DecanewtonMillimeterPerDegree => (_value * 180 / 3.1415926535897931 * 0.001) * 1e1d,
-                RotationalStiffnessUnit.DecanewtonMillimeterPerRadian => (_value * 0.001) * 1e1d,
-                RotationalStiffnessUnit.DecinewtonMeterPerDegree => (_value * (180 / 3.1415926535897931)) * 1e-1d,
-                RotationalStiffnessUnit.DecinewtonMillimeterPerDegree => (_value * 180 / 3.1415926535897931 * 0.001) * 1e-1d,
-                RotationalStiffnessUnit.DecinewtonMillimeterPerRadian => (_value * 0.001) * 1e-1d,
-                RotationalStiffnessUnit.KilonewtonMeterPerDegree => (_value * (180 / 3.1415926535897931)) * 1e3d,
-                RotationalStiffnessUnit.KilonewtonMeterPerRadian => (_value) * 1e3d,
-                RotationalStiffnessUnit.KilonewtonMillimeterPerDegree => (_value * 180 / 3.1415926535897931 * 0.001) * 1e3d,
-                RotationalStiffnessUnit.KilonewtonMillimeterPerRadian => (_value * 0.001) * 1e3d,
-                RotationalStiffnessUnit.KilopoundForceFootPerDegrees => _value * 77682.6,
-                RotationalStiffnessUnit.MeganewtonMeterPerDegree => (_value * (180 / 3.1415926535897931)) * 1e6d,
-                RotationalStiffnessUnit.MeganewtonMeterPerRadian => (_value) * 1e6d,
-                RotationalStiffnessUnit.MeganewtonMillimeterPerDegree => (_value * 180 / 3.1415926535897931 * 0.001) * 1e6d,
-                RotationalStiffnessUnit.MeganewtonMillimeterPerRadian => (_value * 0.001) * 1e6d,
-                RotationalStiffnessUnit.MicronewtonMeterPerDegree => (_value * (180 / 3.1415926535897931)) * 1e-6d,
-                RotationalStiffnessUnit.MicronewtonMillimeterPerDegree => (_value * 180 / 3.1415926535897931 * 0.001) * 1e-6d,
-                RotationalStiffnessUnit.MicronewtonMillimeterPerRadian => (_value * 0.001) * 1e-6d,
-                RotationalStiffnessUnit.MillinewtonMeterPerDegree => (_value * (180 / 3.1415926535897931)) * 1e-3d,
-                RotationalStiffnessUnit.MillinewtonMillimeterPerDegree => (_value * 180 / 3.1415926535897931 * 0.001) * 1e-3d,
-                RotationalStiffnessUnit.MillinewtonMillimeterPerRadian => (_value * 0.001) * 1e-3d,
-                RotationalStiffnessUnit.NanonewtonMeterPerDegree => (_value * (180 / 3.1415926535897931)) * 1e-9d,
-                RotationalStiffnessUnit.NanonewtonMillimeterPerDegree => (_value * 180 / 3.1415926535897931 * 0.001) * 1e-9d,
-                RotationalStiffnessUnit.NanonewtonMillimeterPerRadian => (_value * 0.001) * 1e-9d,
-                RotationalStiffnessUnit.NewtonMeterPerDegree => _value * (180 / 3.1415926535897931),
-                RotationalStiffnessUnit.NewtonMeterPerRadian => _value,
-                RotationalStiffnessUnit.NewtonMillimeterPerDegree => _value * 180 / 3.1415926535897931 * 0.001,
-                RotationalStiffnessUnit.NewtonMillimeterPerRadian => _value * 0.001,
-                RotationalStiffnessUnit.PoundForceFeetPerRadian => _value * 1.3558179483314,
-                RotationalStiffnessUnit.PoundForceFootPerDegrees => _value * 77.6826,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        RotationalStiffnessUnit.CentinewtonMeterPerDegree => (_value * (180 / 3.1415926535897931)) * 1e-2d,
+                        RotationalStiffnessUnit.CentinewtonMillimeterPerDegree => (_value * 180 / 3.1415926535897931 * 0.001) * 1e-2d,
+                        RotationalStiffnessUnit.CentinewtonMillimeterPerRadian => (_value * 0.001) * 1e-2d,
+                        RotationalStiffnessUnit.DecanewtonMeterPerDegree => (_value * (180 / 3.1415926535897931)) * 1e1d,
+                        RotationalStiffnessUnit.DecanewtonMillimeterPerDegree => (_value * 180 / 3.1415926535897931 * 0.001) * 1e1d,
+                        RotationalStiffnessUnit.DecanewtonMillimeterPerRadian => (_value * 0.001) * 1e1d,
+                        RotationalStiffnessUnit.DecinewtonMeterPerDegree => (_value * (180 / 3.1415926535897931)) * 1e-1d,
+                        RotationalStiffnessUnit.DecinewtonMillimeterPerDegree => (_value * 180 / 3.1415926535897931 * 0.001) * 1e-1d,
+                        RotationalStiffnessUnit.DecinewtonMillimeterPerRadian => (_value * 0.001) * 1e-1d,
+                        RotationalStiffnessUnit.KilonewtonMeterPerDegree => (_value * (180 / 3.1415926535897931)) * 1e3d,
+                        RotationalStiffnessUnit.KilonewtonMeterPerRadian => (_value) * 1e3d,
+                        RotationalStiffnessUnit.KilonewtonMillimeterPerDegree => (_value * 180 / 3.1415926535897931 * 0.001) * 1e3d,
+                        RotationalStiffnessUnit.KilonewtonMillimeterPerRadian => (_value * 0.001) * 1e3d,
+                        RotationalStiffnessUnit.KilopoundForceFootPerDegrees => _value * 77682.6,
+                        RotationalStiffnessUnit.MeganewtonMeterPerDegree => (_value * (180 / 3.1415926535897931)) * 1e6d,
+                        RotationalStiffnessUnit.MeganewtonMeterPerRadian => (_value) * 1e6d,
+                        RotationalStiffnessUnit.MeganewtonMillimeterPerDegree => (_value * 180 / 3.1415926535897931 * 0.001) * 1e6d,
+                        RotationalStiffnessUnit.MeganewtonMillimeterPerRadian => (_value * 0.001) * 1e6d,
+                        RotationalStiffnessUnit.MicronewtonMeterPerDegree => (_value * (180 / 3.1415926535897931)) * 1e-6d,
+                        RotationalStiffnessUnit.MicronewtonMillimeterPerDegree => (_value * 180 / 3.1415926535897931 * 0.001) * 1e-6d,
+                        RotationalStiffnessUnit.MicronewtonMillimeterPerRadian => (_value * 0.001) * 1e-6d,
+                        RotationalStiffnessUnit.MillinewtonMeterPerDegree => (_value * (180 / 3.1415926535897931)) * 1e-3d,
+                        RotationalStiffnessUnit.MillinewtonMillimeterPerDegree => (_value * 180 / 3.1415926535897931 * 0.001) * 1e-3d,
+                        RotationalStiffnessUnit.MillinewtonMillimeterPerRadian => (_value * 0.001) * 1e-3d,
+                        RotationalStiffnessUnit.NanonewtonMeterPerDegree => (_value * (180 / 3.1415926535897931)) * 1e-9d,
+                        RotationalStiffnessUnit.NanonewtonMillimeterPerDegree => (_value * 180 / 3.1415926535897931 * 0.001) * 1e-9d,
+                        RotationalStiffnessUnit.NanonewtonMillimeterPerRadian => (_value * 0.001) * 1e-9d,
+                        RotationalStiffnessUnit.NewtonMeterPerDegree => _value * (180 / 3.1415926535897931),
+                        RotationalStiffnessUnit.NewtonMeterPerRadian => _value,
+                        RotationalStiffnessUnit.NewtonMillimeterPerDegree => _value * 180 / 3.1415926535897931 * 0.001,
+                        RotationalStiffnessUnit.NewtonMillimeterPerRadian => _value * 0.001,
+                        RotationalStiffnessUnit.PoundForceFeetPerRadian => _value * 1.3558179483314,
+                        RotationalStiffnessUnit.PoundForceFootPerDegrees => _value * 77.6826,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(RotationalStiffnessUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(RotationalStiffnessUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                RotationalStiffnessUnit.CentinewtonMeterPerDegree => (baseUnitValue / (180 / 3.1415926535897931)) / 1e-2d,
-                RotationalStiffnessUnit.CentinewtonMillimeterPerDegree => (baseUnitValue / 180 * 3.1415926535897931 * 1000) / 1e-2d,
-                RotationalStiffnessUnit.CentinewtonMillimeterPerRadian => (baseUnitValue * 1000) / 1e-2d,
-                RotationalStiffnessUnit.DecanewtonMeterPerDegree => (baseUnitValue / (180 / 3.1415926535897931)) / 1e1d,
-                RotationalStiffnessUnit.DecanewtonMillimeterPerDegree => (baseUnitValue / 180 * 3.1415926535897931 * 1000) / 1e1d,
-                RotationalStiffnessUnit.DecanewtonMillimeterPerRadian => (baseUnitValue * 1000) / 1e1d,
-                RotationalStiffnessUnit.DecinewtonMeterPerDegree => (baseUnitValue / (180 / 3.1415926535897931)) / 1e-1d,
-                RotationalStiffnessUnit.DecinewtonMillimeterPerDegree => (baseUnitValue / 180 * 3.1415926535897931 * 1000) / 1e-1d,
-                RotationalStiffnessUnit.DecinewtonMillimeterPerRadian => (baseUnitValue * 1000) / 1e-1d,
-                RotationalStiffnessUnit.KilonewtonMeterPerDegree => (baseUnitValue / (180 / 3.1415926535897931)) / 1e3d,
-                RotationalStiffnessUnit.KilonewtonMeterPerRadian => (baseUnitValue) / 1e3d,
-                RotationalStiffnessUnit.KilonewtonMillimeterPerDegree => (baseUnitValue / 180 * 3.1415926535897931 * 1000) / 1e3d,
-                RotationalStiffnessUnit.KilonewtonMillimeterPerRadian => (baseUnitValue * 1000) / 1e3d,
-                RotationalStiffnessUnit.KilopoundForceFootPerDegrees => baseUnitValue / 77682.6,
-                RotationalStiffnessUnit.MeganewtonMeterPerDegree => (baseUnitValue / (180 / 3.1415926535897931)) / 1e6d,
-                RotationalStiffnessUnit.MeganewtonMeterPerRadian => (baseUnitValue) / 1e6d,
-                RotationalStiffnessUnit.MeganewtonMillimeterPerDegree => (baseUnitValue / 180 * 3.1415926535897931 * 1000) / 1e6d,
-                RotationalStiffnessUnit.MeganewtonMillimeterPerRadian => (baseUnitValue * 1000) / 1e6d,
-                RotationalStiffnessUnit.MicronewtonMeterPerDegree => (baseUnitValue / (180 / 3.1415926535897931)) / 1e-6d,
-                RotationalStiffnessUnit.MicronewtonMillimeterPerDegree => (baseUnitValue / 180 * 3.1415926535897931 * 1000) / 1e-6d,
-                RotationalStiffnessUnit.MicronewtonMillimeterPerRadian => (baseUnitValue * 1000) / 1e-6d,
-                RotationalStiffnessUnit.MillinewtonMeterPerDegree => (baseUnitValue / (180 / 3.1415926535897931)) / 1e-3d,
-                RotationalStiffnessUnit.MillinewtonMillimeterPerDegree => (baseUnitValue / 180 * 3.1415926535897931 * 1000) / 1e-3d,
-                RotationalStiffnessUnit.MillinewtonMillimeterPerRadian => (baseUnitValue * 1000) / 1e-3d,
-                RotationalStiffnessUnit.NanonewtonMeterPerDegree => (baseUnitValue / (180 / 3.1415926535897931)) / 1e-9d,
-                RotationalStiffnessUnit.NanonewtonMillimeterPerDegree => (baseUnitValue / 180 * 3.1415926535897931 * 1000) / 1e-9d,
-                RotationalStiffnessUnit.NanonewtonMillimeterPerRadian => (baseUnitValue * 1000) / 1e-9d,
-                RotationalStiffnessUnit.NewtonMeterPerDegree => baseUnitValue / (180 / 3.1415926535897931),
-                RotationalStiffnessUnit.NewtonMeterPerRadian => baseUnitValue,
-                RotationalStiffnessUnit.NewtonMillimeterPerDegree => baseUnitValue / 180 * 3.1415926535897931 * 1000,
-                RotationalStiffnessUnit.NewtonMillimeterPerRadian => baseUnitValue * 1000,
-                RotationalStiffnessUnit.PoundForceFeetPerRadian => baseUnitValue / 1.3558179483314,
-                RotationalStiffnessUnit.PoundForceFootPerDegrees => baseUnitValue / 77.6826,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        RotationalStiffnessUnit.CentinewtonMeterPerDegree => (baseUnitValue / (180 / 3.1415926535897931)) / 1e-2d,
+                        RotationalStiffnessUnit.CentinewtonMillimeterPerDegree => (baseUnitValue / 180 * 3.1415926535897931 * 1000) / 1e-2d,
+                        RotationalStiffnessUnit.CentinewtonMillimeterPerRadian => (baseUnitValue * 1000) / 1e-2d,
+                        RotationalStiffnessUnit.DecanewtonMeterPerDegree => (baseUnitValue / (180 / 3.1415926535897931)) / 1e1d,
+                        RotationalStiffnessUnit.DecanewtonMillimeterPerDegree => (baseUnitValue / 180 * 3.1415926535897931 * 1000) / 1e1d,
+                        RotationalStiffnessUnit.DecanewtonMillimeterPerRadian => (baseUnitValue * 1000) / 1e1d,
+                        RotationalStiffnessUnit.DecinewtonMeterPerDegree => (baseUnitValue / (180 / 3.1415926535897931)) / 1e-1d,
+                        RotationalStiffnessUnit.DecinewtonMillimeterPerDegree => (baseUnitValue / 180 * 3.1415926535897931 * 1000) / 1e-1d,
+                        RotationalStiffnessUnit.DecinewtonMillimeterPerRadian => (baseUnitValue * 1000) / 1e-1d,
+                        RotationalStiffnessUnit.KilonewtonMeterPerDegree => (baseUnitValue / (180 / 3.1415926535897931)) / 1e3d,
+                        RotationalStiffnessUnit.KilonewtonMeterPerRadian => (baseUnitValue) / 1e3d,
+                        RotationalStiffnessUnit.KilonewtonMillimeterPerDegree => (baseUnitValue / 180 * 3.1415926535897931 * 1000) / 1e3d,
+                        RotationalStiffnessUnit.KilonewtonMillimeterPerRadian => (baseUnitValue * 1000) / 1e3d,
+                        RotationalStiffnessUnit.KilopoundForceFootPerDegrees => baseUnitValue / 77682.6,
+                        RotationalStiffnessUnit.MeganewtonMeterPerDegree => (baseUnitValue / (180 / 3.1415926535897931)) / 1e6d,
+                        RotationalStiffnessUnit.MeganewtonMeterPerRadian => (baseUnitValue) / 1e6d,
+                        RotationalStiffnessUnit.MeganewtonMillimeterPerDegree => (baseUnitValue / 180 * 3.1415926535897931 * 1000) / 1e6d,
+                        RotationalStiffnessUnit.MeganewtonMillimeterPerRadian => (baseUnitValue * 1000) / 1e6d,
+                        RotationalStiffnessUnit.MicronewtonMeterPerDegree => (baseUnitValue / (180 / 3.1415926535897931)) / 1e-6d,
+                        RotationalStiffnessUnit.MicronewtonMillimeterPerDegree => (baseUnitValue / 180 * 3.1415926535897931 * 1000) / 1e-6d,
+                        RotationalStiffnessUnit.MicronewtonMillimeterPerRadian => (baseUnitValue * 1000) / 1e-6d,
+                        RotationalStiffnessUnit.MillinewtonMeterPerDegree => (baseUnitValue / (180 / 3.1415926535897931)) / 1e-3d,
+                        RotationalStiffnessUnit.MillinewtonMillimeterPerDegree => (baseUnitValue / 180 * 3.1415926535897931 * 1000) / 1e-3d,
+                        RotationalStiffnessUnit.MillinewtonMillimeterPerRadian => (baseUnitValue * 1000) / 1e-3d,
+                        RotationalStiffnessUnit.NanonewtonMeterPerDegree => (baseUnitValue / (180 / 3.1415926535897931)) / 1e-9d,
+                        RotationalStiffnessUnit.NanonewtonMillimeterPerDegree => (baseUnitValue / 180 * 3.1415926535897931 * 1000) / 1e-9d,
+                        RotationalStiffnessUnit.NanonewtonMillimeterPerRadian => (baseUnitValue * 1000) / 1e-9d,
+                        RotationalStiffnessUnit.NewtonMeterPerDegree => baseUnitValue / (180 / 3.1415926535897931),
+                        RotationalStiffnessUnit.NewtonMeterPerRadian => baseUnitValue,
+                        RotationalStiffnessUnit.NewtonMillimeterPerDegree => baseUnitValue / 180 * 3.1415926535897931 * 1000,
+                        RotationalStiffnessUnit.NewtonMillimeterPerRadian => baseUnitValue * 1000,
+                        RotationalStiffnessUnit.PoundForceFeetPerRadian => baseUnitValue / 1.3558179483314,
+                        RotationalStiffnessUnit.PoundForceFootPerDegrees => baseUnitValue / 77.6826,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

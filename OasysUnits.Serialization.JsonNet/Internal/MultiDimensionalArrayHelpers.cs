@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace OasysUnits.Serialization.JsonNet.Internal
 {
@@ -10,7 +8,7 @@ namespace OasysUnits.Serialization.JsonNet.Internal
     ///     Helper class for working with and manipulating multi-dimension arrays based on their generic index.
     /// </summary>
     internal static class MultiDimensionalArrayHelpers
-    {        
+    {
 
         /// <summary>
         /// Returns a new array of same Rank and Length as <paramref name="array"/> but with each element converted to <typeparamref name="TResult"/>
@@ -28,6 +26,7 @@ namespace OasysUnits.Serialization.JsonNet.Internal
                 ret.SetValue((TResult)array.GetValue(ind), ind);
                 ind = NextIndex(array, ind);
             }
+
             return ret;
         }
 
@@ -67,7 +66,7 @@ namespace OasysUnits.Serialization.JsonNet.Internal
         /// <param name="array"></param>
         /// <param name="index"></param>
         /// <returns>Returns the index location of the next element in <paramref name="array"/> after <paramref name="index"/> as a 1D array of integers.  If there is no next index, returns null</returns>
-        public static int[] NextIndex(Array array, int[] index)
+        public static int[]? NextIndex(Array array, int[] index)
         {
             for (var i = 0; i < index.Length; i++)
             {
@@ -82,8 +81,8 @@ namespace OasysUnits.Serialization.JsonNet.Internal
                     index[i] = array.GetLowerBound(i);
                 }
             }
-            return null;
-        }        
 
+            return null;
+        }
     }
 }

@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum LapseRateUnit
     {
-        Undefined = 0,
         DegreeCelsiusPerKilometer = 1,
     }
 

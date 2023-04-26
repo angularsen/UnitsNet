@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum MolarEntropyUnit
     {
-        Undefined = 0,
         JoulePerMoleKelvin = 1,
         KilojoulePerMoleKelvin = 2,
         MegajoulePerMoleKelvin = 3,

@@ -385,103 +385,103 @@ namespace OasysUnits
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(BitRateUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(BitRateUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public BitRate ToUnit(BitRateUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new BitRate(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public BitRate ToUnit(BitRateUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new BitRate(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                BitRateUnit.BitPerSecond => _value,
-                BitRateUnit.BytePerSecond => _value * 8d,
-                BitRateUnit.ExabitPerSecond => (_value) * 1e18d,
-                BitRateUnit.ExabytePerSecond => (_value * 8d) * 1e18d,
-                BitRateUnit.ExbibitPerSecond => (_value) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024),
-                BitRateUnit.ExbibytePerSecond => (_value * 8d) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024),
-                BitRateUnit.GibibitPerSecond => (_value) * (1024d * 1024 * 1024),
-                BitRateUnit.GibibytePerSecond => (_value * 8d) * (1024d * 1024 * 1024),
-                BitRateUnit.GigabitPerSecond => (_value) * 1e9d,
-                BitRateUnit.GigabytePerSecond => (_value * 8d) * 1e9d,
-                BitRateUnit.KibibitPerSecond => (_value) * 1024d,
-                BitRateUnit.KibibytePerSecond => (_value * 8d) * 1024d,
-                BitRateUnit.KilobitPerSecond => (_value) * 1e3d,
-                BitRateUnit.KilobytePerSecond => (_value * 8d) * 1e3d,
-                BitRateUnit.MebibitPerSecond => (_value) * (1024d * 1024),
-                BitRateUnit.MebibytePerSecond => (_value * 8d) * (1024d * 1024),
-                BitRateUnit.MegabitPerSecond => (_value) * 1e6d,
-                BitRateUnit.MegabytePerSecond => (_value * 8d) * 1e6d,
-                BitRateUnit.PebibitPerSecond => (_value) * (1024d * 1024 * 1024 * 1024 * 1024),
-                BitRateUnit.PebibytePerSecond => (_value * 8d) * (1024d * 1024 * 1024 * 1024 * 1024),
-                BitRateUnit.PetabitPerSecond => (_value) * 1e15d,
-                BitRateUnit.PetabytePerSecond => (_value * 8d) * 1e15d,
-                BitRateUnit.TebibitPerSecond => (_value) * (1024d * 1024 * 1024 * 1024),
-                BitRateUnit.TebibytePerSecond => (_value * 8d) * (1024d * 1024 * 1024 * 1024),
-                BitRateUnit.TerabitPerSecond => (_value) * 1e12d,
-                BitRateUnit.TerabytePerSecond => (_value * 8d) * 1e12d,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        BitRateUnit.BitPerSecond => _value,
+                        BitRateUnit.BytePerSecond => _value * 8d,
+                        BitRateUnit.ExabitPerSecond => (_value) * 1e18d,
+                        BitRateUnit.ExabytePerSecond => (_value * 8d) * 1e18d,
+                        BitRateUnit.ExbibitPerSecond => (_value) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024),
+                        BitRateUnit.ExbibytePerSecond => (_value * 8d) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024),
+                        BitRateUnit.GibibitPerSecond => (_value) * (1024d * 1024 * 1024),
+                        BitRateUnit.GibibytePerSecond => (_value * 8d) * (1024d * 1024 * 1024),
+                        BitRateUnit.GigabitPerSecond => (_value) * 1e9d,
+                        BitRateUnit.GigabytePerSecond => (_value * 8d) * 1e9d,
+                        BitRateUnit.KibibitPerSecond => (_value) * 1024d,
+                        BitRateUnit.KibibytePerSecond => (_value * 8d) * 1024d,
+                        BitRateUnit.KilobitPerSecond => (_value) * 1e3d,
+                        BitRateUnit.KilobytePerSecond => (_value * 8d) * 1e3d,
+                        BitRateUnit.MebibitPerSecond => (_value) * (1024d * 1024),
+                        BitRateUnit.MebibytePerSecond => (_value * 8d) * (1024d * 1024),
+                        BitRateUnit.MegabitPerSecond => (_value) * 1e6d,
+                        BitRateUnit.MegabytePerSecond => (_value * 8d) * 1e6d,
+                        BitRateUnit.PebibitPerSecond => (_value) * (1024d * 1024 * 1024 * 1024 * 1024),
+                        BitRateUnit.PebibytePerSecond => (_value * 8d) * (1024d * 1024 * 1024 * 1024 * 1024),
+                        BitRateUnit.PetabitPerSecond => (_value) * 1e15d,
+                        BitRateUnit.PetabytePerSecond => (_value * 8d) * 1e15d,
+                        BitRateUnit.TebibitPerSecond => (_value) * (1024d * 1024 * 1024 * 1024),
+                        BitRateUnit.TebibytePerSecond => (_value * 8d) * (1024d * 1024 * 1024 * 1024),
+                        BitRateUnit.TerabitPerSecond => (_value) * 1e12d,
+                        BitRateUnit.TerabytePerSecond => (_value * 8d) * 1e12d,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(BitRateUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(BitRateUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                BitRateUnit.BitPerSecond => baseUnitValue,
-                BitRateUnit.BytePerSecond => baseUnitValue / 8d,
-                BitRateUnit.ExabitPerSecond => (baseUnitValue) / 1e18d,
-                BitRateUnit.ExabytePerSecond => (baseUnitValue / 8d) / 1e18d,
-                BitRateUnit.ExbibitPerSecond => (baseUnitValue) / (1024d * 1024 * 1024 * 1024 * 1024 * 1024),
-                BitRateUnit.ExbibytePerSecond => (baseUnitValue / 8d) / (1024d * 1024 * 1024 * 1024 * 1024 * 1024),
-                BitRateUnit.GibibitPerSecond => (baseUnitValue) / (1024d * 1024 * 1024),
-                BitRateUnit.GibibytePerSecond => (baseUnitValue / 8d) / (1024d * 1024 * 1024),
-                BitRateUnit.GigabitPerSecond => (baseUnitValue) / 1e9d,
-                BitRateUnit.GigabytePerSecond => (baseUnitValue / 8d) / 1e9d,
-                BitRateUnit.KibibitPerSecond => (baseUnitValue) / 1024d,
-                BitRateUnit.KibibytePerSecond => (baseUnitValue / 8d) / 1024d,
-                BitRateUnit.KilobitPerSecond => (baseUnitValue) / 1e3d,
-                BitRateUnit.KilobytePerSecond => (baseUnitValue / 8d) / 1e3d,
-                BitRateUnit.MebibitPerSecond => (baseUnitValue) / (1024d * 1024),
-                BitRateUnit.MebibytePerSecond => (baseUnitValue / 8d) / (1024d * 1024),
-                BitRateUnit.MegabitPerSecond => (baseUnitValue) / 1e6d,
-                BitRateUnit.MegabytePerSecond => (baseUnitValue / 8d) / 1e6d,
-                BitRateUnit.PebibitPerSecond => (baseUnitValue) / (1024d * 1024 * 1024 * 1024 * 1024),
-                BitRateUnit.PebibytePerSecond => (baseUnitValue / 8d) / (1024d * 1024 * 1024 * 1024 * 1024),
-                BitRateUnit.PetabitPerSecond => (baseUnitValue) / 1e15d,
-                BitRateUnit.PetabytePerSecond => (baseUnitValue / 8d) / 1e15d,
-                BitRateUnit.TebibitPerSecond => (baseUnitValue) / (1024d * 1024 * 1024 * 1024),
-                BitRateUnit.TebibytePerSecond => (baseUnitValue / 8d) / (1024d * 1024 * 1024 * 1024),
-                BitRateUnit.TerabitPerSecond => (baseUnitValue) / 1e12d,
-                BitRateUnit.TerabytePerSecond => (baseUnitValue / 8d) / 1e12d,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        BitRateUnit.BitPerSecond => baseUnitValue,
+                        BitRateUnit.BytePerSecond => baseUnitValue / 8d,
+                        BitRateUnit.ExabitPerSecond => (baseUnitValue) / 1e18d,
+                        BitRateUnit.ExabytePerSecond => (baseUnitValue / 8d) / 1e18d,
+                        BitRateUnit.ExbibitPerSecond => (baseUnitValue) / (1024d * 1024 * 1024 * 1024 * 1024 * 1024),
+                        BitRateUnit.ExbibytePerSecond => (baseUnitValue / 8d) / (1024d * 1024 * 1024 * 1024 * 1024 * 1024),
+                        BitRateUnit.GibibitPerSecond => (baseUnitValue) / (1024d * 1024 * 1024),
+                        BitRateUnit.GibibytePerSecond => (baseUnitValue / 8d) / (1024d * 1024 * 1024),
+                        BitRateUnit.GigabitPerSecond => (baseUnitValue) / 1e9d,
+                        BitRateUnit.GigabytePerSecond => (baseUnitValue / 8d) / 1e9d,
+                        BitRateUnit.KibibitPerSecond => (baseUnitValue) / 1024d,
+                        BitRateUnit.KibibytePerSecond => (baseUnitValue / 8d) / 1024d,
+                        BitRateUnit.KilobitPerSecond => (baseUnitValue) / 1e3d,
+                        BitRateUnit.KilobytePerSecond => (baseUnitValue / 8d) / 1e3d,
+                        BitRateUnit.MebibitPerSecond => (baseUnitValue) / (1024d * 1024),
+                        BitRateUnit.MebibytePerSecond => (baseUnitValue / 8d) / (1024d * 1024),
+                        BitRateUnit.MegabitPerSecond => (baseUnitValue) / 1e6d,
+                        BitRateUnit.MegabytePerSecond => (baseUnitValue / 8d) / 1e6d,
+                        BitRateUnit.PebibitPerSecond => (baseUnitValue) / (1024d * 1024 * 1024 * 1024 * 1024),
+                        BitRateUnit.PebibytePerSecond => (baseUnitValue / 8d) / (1024d * 1024 * 1024 * 1024 * 1024),
+                        BitRateUnit.PetabitPerSecond => (baseUnitValue) / 1e15d,
+                        BitRateUnit.PetabytePerSecond => (baseUnitValue / 8d) / 1e15d,
+                        BitRateUnit.TebibitPerSecond => (baseUnitValue) / (1024d * 1024 * 1024 * 1024),
+                        BitRateUnit.TebibytePerSecond => (baseUnitValue / 8d) / (1024d * 1024 * 1024 * 1024),
+                        BitRateUnit.TerabitPerSecond => (baseUnitValue) / 1e12d,
+                        BitRateUnit.TerabytePerSecond => (baseUnitValue / 8d) / 1e12d,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

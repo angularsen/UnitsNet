@@ -58,13 +58,9 @@ namespace OasysUnits.Serialization.JsonNet
 
                 return arrayOfQuantities;
             }
-            else if (obj is ValueUnit valueUnit)
-            {
-                return ParseValueUnit(valueUnit);
-            }
             else
             {
-                return obj;
+                return obj is ValueUnit valueUnit ? ParseValueUnit(valueUnit) : obj;
             }
         }
 
@@ -157,8 +153,8 @@ namespace OasysUnits.Serialization.JsonNet
                 {
                     results.SetValue((IQuantity)values.GetValue(ind), ind);
                     ind = MultiDimensionalArrayHelpers.NextIndex(results, ind);
-                }                
-                
+                }
+
                 serializer.Serialize(writer, results);
             }
             else if (obj is IQuantity quantity)
@@ -208,10 +204,9 @@ namespace OasysUnits.Serialization.JsonNet
         /// <returns></returns>
         public override bool CanConvert(Type objectType)
         {
-            if (IsNullable(objectType))
-                return CanConvertNullable(objectType);
-
-            return objectType.Namespace != null &&
+            return IsNullable(objectType)
+                ? CanConvertNullable(objectType)
+                : objectType.Namespace != null &&
                 (objectType.Namespace.Equals(nameof(OasysUnits)) ||
                 objectType == typeof(ValueUnit) ||
                 // All unit types implement IComparable

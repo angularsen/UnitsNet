@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum MassFlowUnit
     {
-        Undefined = 0,
         CentigramPerDay = 1,
         CentigramPerSecond = 2,
         DecagramPerDay = 3,

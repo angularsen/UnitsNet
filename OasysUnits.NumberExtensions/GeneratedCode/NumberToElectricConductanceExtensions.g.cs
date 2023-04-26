@@ -28,6 +28,10 @@ namespace OasysUnits.NumberExtensions.NumberToElectricConductance
     /// </summary>
     public static class NumberToElectricConductanceExtensions
     {
+        /// <inheritdoc cref="ElectricConductance.FromKilosiemens(OasysUnits.QuantityValue)" />
+        public static ElectricConductance Kilosiemens<T>(this T value) =>
+            ElectricConductance.FromKilosiemens(Convert.ToDouble(value));
+
         /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(OasysUnits.QuantityValue)" />
         public static ElectricConductance Microsiemens<T>(this T value) =>
             ElectricConductance.FromMicrosiemens(Convert.ToDouble(value));
@@ -35,6 +39,10 @@ namespace OasysUnits.NumberExtensions.NumberToElectricConductance
         /// <inheritdoc cref="ElectricConductance.FromMillisiemens(OasysUnits.QuantityValue)" />
         public static ElectricConductance Millisiemens<T>(this T value) =>
             ElectricConductance.FromMillisiemens(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricConductance.FromNanosiemens(OasysUnits.QuantityValue)" />
+        public static ElectricConductance Nanosiemens<T>(this T value) =>
+            ElectricConductance.FromNanosiemens(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricConductance.FromSiemens(OasysUnits.QuantityValue)" />
         public static ElectricConductance Siemens<T>(this T value) =>

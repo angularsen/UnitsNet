@@ -12,16 +12,15 @@ namespace CodeGen.Generators.OasysUnitsGen
             _quantities = quantities;
         }
 
-        public override string Generate()
+        public string Generate()
         {
             Writer.WL(GeneratedFileHeader);
             Writer.WL(@"
 using System;
 using System.Globalization;
-using JetBrains.Annotations;
-using OasysUnits.InternalHelpers;
 using OasysUnits.Units;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 #nullable enable
 
@@ -44,29 +43,6 @@ namespace OasysUnits
         };
 
         /// <summary>
-        /// Dynamically constructs a quantity of the given <see cref=""QuantityType""/> with the value in the quantity's base units.
-        /// </summary>
-        /// <param name=""quantityType"">The <see cref=""QuantityType""/> of the quantity to create.</param>
-        /// <param name=""value"">The value to construct the quantity with.</param>
-        /// <returns>The created quantity.</returns>
-        [Obsolete(""QuantityType will be removed. Use FromQuantityInfo(QuantityInfo, QuantityValue) instead."")]
-        public static IQuantity FromQuantityType(QuantityType quantityType, QuantityValue value)
-        {
-            return quantityType switch
-            {");
-            foreach (var quantity in _quantities)
-            {
-                var quantityName = quantity.Name;
-                Writer.WL($@"
-                QuantityType.{quantityName} => {quantityName}.From(value, {quantityName}.BaseUnit),");
-            }
-
-            Writer.WL(@"
-                _ => throw new ArgumentException($""{quantityType} is not a supported quantity type."")
-            };
-        }
-
-        /// <summary>
         /// Dynamically constructs a quantity of the given <see cref=""QuantityInfo""/> with the value in the quantity's base units.
         /// </summary>
         /// <param name=""quantityInfo"">The <see cref=""QuantityInfo""/> of the quantity to create.</param>
@@ -86,7 +62,7 @@ namespace OasysUnits
             Writer.WL(@"
                 _ => throw new ArgumentException($""{quantityInfo.Name} is not a supported quantity."")
             };
-        }
+            }
 
         /// <summary>
         ///     Try to dynamically construct a quantity.
@@ -95,7 +71,7 @@ namespace OasysUnits
         /// <param name=""unit"">Unit enum value.</param>
         /// <param name=""quantity"">The resulting quantity if successful, otherwise <c>default</c>.</param>
         /// <returns><c>True</c> if successful with <paramref name=""quantity""/> assigned the value, otherwise <c>false</c>.</returns>
-        public static bool TryFrom(QuantityValue value, Enum unit, out IQuantity? quantity)
+        public static bool TryFrom(QuantityValue value, Enum unit, [NotNullWhen(true)] out IQuantity? quantity)
         {
             switch (unit)
             {");
@@ -122,16 +98,16 @@ namespace OasysUnits
         /// <summary>
         ///     Try to dynamically parse a quantity string representation.
         /// </summary>
-        /// <param name=""formatProvider"">The format provider to use for lookup. Defaults to <see cref=""CultureInfo.CurrentUICulture"" /> if null.</param>
+        /// <param name=""formatProvider"">The format provider to use for lookup. Defaults to <see cref=""CultureInfo.CurrentCulture"" /> if null.</param>
         /// <param name=""quantityType"">Type of quantity, such as <see cref=""Length""/>.</param>
         /// <param name=""quantityString"">Quantity string representation, such as ""1.5 kg"". Must be compatible with given quantity type.</param>
         /// <param name=""quantity"">The resulting quantity if successful, otherwise <c>default</c>.</param>
         /// <returns>The parsed quantity.</returns>
-        public static bool TryParse(IFormatProvider? formatProvider, Type quantityType, string quantityString, out IQuantity? quantity)
+        public static bool TryParse(IFormatProvider? formatProvider, Type quantityType, string quantityString, [NotNullWhen(true)] out IQuantity? quantity)
         {
             quantity = default(IQuantity);
 
-            if (!typeof(IQuantity).Wrap().IsAssignableFrom(quantityType))
+            if (!typeof(IQuantity).IsAssignableFrom(quantityType))
                 return false;
 
             var parser = QuantityParser.Default;
@@ -148,7 +124,7 @@ namespace OasysUnits
             Writer.WL(@"
                 _ => false
             };
-        }
+            }
 
         internal static IEnumerable<Type> GetQuantityTypes()
         {");

@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum BitRateUnit
     {
-        Undefined = 0,
         BitPerSecond = 1,
         BytePerSecond = 2,
         ExabitPerSecond = 3,

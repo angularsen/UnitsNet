@@ -121,13 +121,13 @@ namespace OasysUnits.Tests
                 return operation != null && operation.IsSpecialName;
             }
 
-            private static Type GetMultiplicationResult(Type t, Type operandType)
+            private static Type? GetMultiplicationResult(Type t, Type operandType)
             {
                 var operation = t.GetMethod("op_Multiply", new[] { t, operandType });
                 return operation != null && operation.IsSpecialName ? operation.ReturnType : null;
             }
 
-            private static Type GetDivisionResult(Type t, Type operandType)
+            private static Type? GetDivisionResult(Type t, Type operandType)
             {
                 var operation = t.GetMethod("op_Division", new[] { t, operandType });
                 return operation != null && operation.IsSpecialName ? operation.ReturnType : null;

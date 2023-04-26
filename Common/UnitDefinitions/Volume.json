@@ -1,7 +1,7 @@
 {
   "Name": "Volume",
   "BaseUnit": "CubicMeter",
-  "XmlDoc": "Volume is the quantity of three-dimensional space enclosed by some closed boundary, for example, the space that a substance (solid, liquid, gas, or plasma) or shape occupies or contains.[1] Volume is often quantified numerically using the SI derived unit, the cubic metre. The volume of a container is generally understood to be the capacity of the container, i. e. the amount of fluid (gas or liquid) that the container could hold, rather than the amount of space the container itself displaces.",
+  "XmlDocSummary": "Volume is the quantity of three-dimensional space enclosed by some closed boundary, for example, the space that a substance (solid, liquid, gas, or plasma) or shape occupies or contains.[1] Volume is often quantified numerically using the SI derived unit, the cubic metre. The volume of a container is generally understood to be the capacity of the container, i. e. the amount of fluid (gas or liquid) that the container could hold, rather than the amount of space the container itself displaces.",
   "BaseDimensions": {
     "L": 3
   },
@@ -11,7 +11,7 @@
       "PluralName": "Liters",
       "FromUnitToBaseFunc": "{x} / 1e3",
       "FromBaseToUnitFunc": "{x} * 1e3",
-      "Prefixes": [ "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo", "Mega" ],
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -210,8 +210,10 @@
     {
       "SingularName": "ImperialGallon",
       "PluralName": "ImperialGallons",
-      "FromUnitToBaseFunc": "{x} * 0.00454609000000181429905810072407",
-      "FromBaseToUnitFunc": "{x} / 0.00454609000000181429905810072407",
+      "FromUnitToBaseFunc": "{x} * 0.00454609",
+      "FromBaseToUnitFunc": "{x} / 0.00454609",
+      "XmlDocSummary": "The British imperial gallon (frequently called simply \"gallon\") is defined as exactly 4.54609 litres.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Gallon#Imperial_gallon",
       "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
@@ -243,8 +245,10 @@
     {
       "SingularName": "UsGallon",
       "PluralName": "UsGallons",
-      "FromUnitToBaseFunc": "{x} * 0.00378541",
-      "FromBaseToUnitFunc": "{x} / 0.00378541",
+      "FromUnitToBaseFunc": "{x} * 0.003785411784",
+      "FromBaseToUnitFunc": "{x} / 0.003785411784",
+      "XmlDocSummary": "The US liquid gallon (frequently called simply \"gallon\") is legally defined as 231 cubic inches, which is exactly 3.785411784 litres.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Gallon#US_liquid_gallon",
       "Prefixes": [ "Deca", "Deci", "Hecto", "Kilo", "Mega" ],
       "Localization": [
         {

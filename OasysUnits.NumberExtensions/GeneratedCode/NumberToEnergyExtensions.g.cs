@@ -140,9 +140,17 @@ namespace OasysUnits.NumberExtensions.NumberToEnergy
         public static Energy Millijoules<T>(this T value) =>
             Energy.FromMillijoules(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Energy.FromPetajoules(OasysUnits.QuantityValue)" />
+        public static Energy Petajoules<T>(this T value) =>
+            Energy.FromPetajoules(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Energy.FromTeraelectronVolts(OasysUnits.QuantityValue)" />
         public static Energy TeraelectronVolts<T>(this T value) =>
             Energy.FromTeraelectronVolts(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Energy.FromTerajoules(OasysUnits.QuantityValue)" />
+        public static Energy Terajoules<T>(this T value) =>
+            Energy.FromTerajoules(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromTerawattDays(OasysUnits.QuantityValue)" />
         public static Energy TerawattDays<T>(this T value) =>

@@ -55,8 +55,6 @@ $projFile = "$root\OasysUnits\OasysUnits.csproj"
 $numberExtensionsProjFile = "$root\OasysUnits.NumberExtensions\OasysUnits.NumberExtensions.csproj"
 $nanoFrameworkNuspecGeneratorFile = "$root\CodeGen\Generators\NanoFrameworkGen\NuspecGenerator.cs"
 $nanoFrameworkAssemblyInfoFile = "$root\OasysUnits.NanoFramework\GeneratedCode\Properties\AssemblyInfo.cs"
-$winrtAssemblyInfoFile = "$root\OasysUnits.WindowsRuntimeComponent\Properties\AssemblyInfo.cs"
-$winrtNuspecFile = "$root\OasysUnits.WindowsRuntimeComponent\OasysUnits.WindowsRuntimeComponent.nuspec"
 
 # Use OasysUnits.Common.props version as base if bumping major/minor/patch
 $newVersion = Get-NewProjectVersion $projFile $paramSet $setVersion $bumpVersion
@@ -68,14 +66,8 @@ $didStash = Invoke-StashPush
 Set-ProjectVersion $projFile $newVersion
 Set-ProjectVersion $numberExtensionsProjFile $newVersion
 
-# Update AssemblyInfo.cs files
-Set-AssemblyInfoVersion $winrtAssemblyInfoFile $newVersion
-
 # Update AssemblyInfo.cs file for .NET nanoFramework
 Set-AssemblyInfoVersion $nanoFrameworkAssemblyInfoFile $newVersion
-
-# Update .nuspec files
-Set-NuspecVersion $winrtNuspecFile $newVersion
 
 # Update codegen and .nuspec files for nanoFramework
 Set-NuspecVersion $nanoFrameworkNuspecGeneratorFile $newVersion

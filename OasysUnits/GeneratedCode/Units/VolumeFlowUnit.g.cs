@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum VolumeFlowUnit
     {
-        Undefined = 0,
         AcreFootPerDay = 1,
         AcreFootPerHour = 2,
         AcreFootPerMinute = 3,
@@ -62,7 +61,12 @@ namespace OasysUnits.Units
         LiterPerMinute = 34,
         LiterPerSecond = 35,
         MegaliterPerDay = 36,
+        MegaliterPerHour = 68,
+        MegaliterPerMinute = 64,
+        MegaliterPerSecond = 65,
+        MegaukGallonPerDay = 73,
         MegaukGallonPerSecond = 37,
+        MegausGallonPerDay = 77,
         MicroliterPerDay = 38,
         MicroliterPerHour = 39,
         MicroliterPerMinute = 40,
@@ -71,7 +75,7 @@ namespace OasysUnits.Units
         MilliliterPerHour = 43,
         MilliliterPerMinute = 44,
         MilliliterPerSecond = 45,
-        MillionUsGallonsPerDay = 46,
+        MillionUsGallonPerDay = 66,
         NanoliterPerDay = 47,
         NanoliterPerHour = 48,
         NanoliterPerMinute = 49,

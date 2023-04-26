@@ -19,10 +19,9 @@
 
 using System;
 using System.Globalization;
-using JetBrains.Annotations;
-using OasysUnits.InternalHelpers;
 using OasysUnits.Units;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 #nullable enable
 
@@ -76,6 +75,7 @@ namespace OasysUnits
             { "ElectricResistivity", ElectricResistivity.Info },
             { "ElectricSurfaceChargeDensity", ElectricSurfaceChargeDensity.Info },
             { "Energy", Energy.Info },
+            { "EnergyDensity", EnergyDensity.Info },
             { "Entropy", Entropy.Info },
             { "Force", Force.Info },
             { "ForceChangeRate", ForceChangeRate.Info },
@@ -85,12 +85,14 @@ namespace OasysUnits
             { "HeatFlux", HeatFlux.Info },
             { "HeatTransferCoefficient", HeatTransferCoefficient.Info },
             { "Illuminance", Illuminance.Info },
+            { "Impulse", Impulse.Info },
             { "Information", Information.Info },
             { "Irradiance", Irradiance.Info },
             { "Irradiation", Irradiation.Info },
             { "Jerk", Jerk.Info },
             { "KinematicViscosity", KinematicViscosity.Info },
             { "LapseRate", LapseRate.Info },
+            { "LeakRate", LeakRate.Info },
             { "Length", Length.Info },
             { "Level", Level.Info },
             { "LinearDensity", LinearDensity.Info },
@@ -110,6 +112,7 @@ namespace OasysUnits
             { "MassMomentOfInertia", MassMomentOfInertia.Info },
             { "MolarEnergy", MolarEnergy.Info },
             { "MolarEntropy", MolarEntropy.Info },
+            { "MolarFlow", MolarFlow.Info },
             { "Molarity", Molarity.Info },
             { "MolarMass", MolarMass.Info },
             { "Moment", Moment.Info },
@@ -163,143 +166,6 @@ namespace OasysUnits
         };
 
         /// <summary>
-        /// Dynamically constructs a quantity of the given <see cref="QuantityType"/> with the value in the quantity's base units.
-        /// </summary>
-        /// <param name="quantityType">The <see cref="QuantityType"/> of the quantity to create.</param>
-        /// <param name="value">The value to construct the quantity with.</param>
-        /// <returns>The created quantity.</returns>
-        [Obsolete("QuantityType will be removed. Use FromQuantityInfo(QuantityInfo, QuantityValue) instead.")]
-        public static IQuantity FromQuantityType(QuantityType quantityType, QuantityValue value)
-        {
-            return quantityType switch
-            {
-                QuantityType.Acceleration => Acceleration.From(value, Acceleration.BaseUnit),
-                QuantityType.AmountOfSubstance => AmountOfSubstance.From(value, AmountOfSubstance.BaseUnit),
-                QuantityType.AmplitudeRatio => AmplitudeRatio.From(value, AmplitudeRatio.BaseUnit),
-                QuantityType.Angle => Angle.From(value, Angle.BaseUnit),
-                QuantityType.ApparentEnergy => ApparentEnergy.From(value, ApparentEnergy.BaseUnit),
-                QuantityType.ApparentPower => ApparentPower.From(value, ApparentPower.BaseUnit),
-                QuantityType.Area => Area.From(value, Area.BaseUnit),
-                QuantityType.AreaDensity => AreaDensity.From(value, AreaDensity.BaseUnit),
-                QuantityType.AreaMomentOfInertia => AreaMomentOfInertia.From(value, AreaMomentOfInertia.BaseUnit),
-                QuantityType.AxialStiffness => AxialStiffness.From(value, AxialStiffness.BaseUnit),
-                QuantityType.BendingStiffness => BendingStiffness.From(value, BendingStiffness.BaseUnit),
-                QuantityType.BitRate => BitRate.From(value, BitRate.BaseUnit),
-                QuantityType.BrakeSpecificFuelConsumption => BrakeSpecificFuelConsumption.From(value, BrakeSpecificFuelConsumption.BaseUnit),
-                QuantityType.Capacitance => Capacitance.From(value, Capacitance.BaseUnit),
-                QuantityType.CoefficientOfThermalExpansion => CoefficientOfThermalExpansion.From(value, CoefficientOfThermalExpansion.BaseUnit),
-                QuantityType.Compressibility => Compressibility.From(value, Compressibility.BaseUnit),
-                QuantityType.Curvature => Curvature.From(value, Curvature.BaseUnit),
-                QuantityType.Density => Density.From(value, Density.BaseUnit),
-                QuantityType.Duration => Duration.From(value, Duration.BaseUnit),
-                QuantityType.DynamicViscosity => DynamicViscosity.From(value, DynamicViscosity.BaseUnit),
-                QuantityType.ElectricAdmittance => ElectricAdmittance.From(value, ElectricAdmittance.BaseUnit),
-                QuantityType.ElectricCharge => ElectricCharge.From(value, ElectricCharge.BaseUnit),
-                QuantityType.ElectricChargeDensity => ElectricChargeDensity.From(value, ElectricChargeDensity.BaseUnit),
-                QuantityType.ElectricConductance => ElectricConductance.From(value, ElectricConductance.BaseUnit),
-                QuantityType.ElectricConductivity => ElectricConductivity.From(value, ElectricConductivity.BaseUnit),
-                QuantityType.ElectricCurrent => ElectricCurrent.From(value, ElectricCurrent.BaseUnit),
-                QuantityType.ElectricCurrentDensity => ElectricCurrentDensity.From(value, ElectricCurrentDensity.BaseUnit),
-                QuantityType.ElectricCurrentGradient => ElectricCurrentGradient.From(value, ElectricCurrentGradient.BaseUnit),
-                QuantityType.ElectricField => ElectricField.From(value, ElectricField.BaseUnit),
-                QuantityType.ElectricInductance => ElectricInductance.From(value, ElectricInductance.BaseUnit),
-                QuantityType.ElectricPotential => ElectricPotential.From(value, ElectricPotential.BaseUnit),
-                QuantityType.ElectricPotentialAc => ElectricPotentialAc.From(value, ElectricPotentialAc.BaseUnit),
-                QuantityType.ElectricPotentialChangeRate => ElectricPotentialChangeRate.From(value, ElectricPotentialChangeRate.BaseUnit),
-                QuantityType.ElectricPotentialDc => ElectricPotentialDc.From(value, ElectricPotentialDc.BaseUnit),
-                QuantityType.ElectricResistance => ElectricResistance.From(value, ElectricResistance.BaseUnit),
-                QuantityType.ElectricResistivity => ElectricResistivity.From(value, ElectricResistivity.BaseUnit),
-                QuantityType.ElectricSurfaceChargeDensity => ElectricSurfaceChargeDensity.From(value, ElectricSurfaceChargeDensity.BaseUnit),
-                QuantityType.Energy => Energy.From(value, Energy.BaseUnit),
-                QuantityType.Entropy => Entropy.From(value, Entropy.BaseUnit),
-                QuantityType.Force => Force.From(value, Force.BaseUnit),
-                QuantityType.ForceChangeRate => ForceChangeRate.From(value, ForceChangeRate.BaseUnit),
-                QuantityType.ForcePerLength => ForcePerLength.From(value, ForcePerLength.BaseUnit),
-                QuantityType.Frequency => Frequency.From(value, Frequency.BaseUnit),
-                QuantityType.FuelEfficiency => FuelEfficiency.From(value, FuelEfficiency.BaseUnit),
-                QuantityType.HeatFlux => HeatFlux.From(value, HeatFlux.BaseUnit),
-                QuantityType.HeatTransferCoefficient => HeatTransferCoefficient.From(value, HeatTransferCoefficient.BaseUnit),
-                QuantityType.Illuminance => Illuminance.From(value, Illuminance.BaseUnit),
-                QuantityType.Information => Information.From(value, Information.BaseUnit),
-                QuantityType.Irradiance => Irradiance.From(value, Irradiance.BaseUnit),
-                QuantityType.Irradiation => Irradiation.From(value, Irradiation.BaseUnit),
-                QuantityType.Jerk => Jerk.From(value, Jerk.BaseUnit),
-                QuantityType.KinematicViscosity => KinematicViscosity.From(value, KinematicViscosity.BaseUnit),
-                QuantityType.LapseRate => LapseRate.From(value, LapseRate.BaseUnit),
-                QuantityType.Length => Length.From(value, Length.BaseUnit),
-                QuantityType.Level => Level.From(value, Level.BaseUnit),
-                QuantityType.LinearDensity => LinearDensity.From(value, LinearDensity.BaseUnit),
-                QuantityType.LinearPowerDensity => LinearPowerDensity.From(value, LinearPowerDensity.BaseUnit),
-                QuantityType.Luminance => Luminance.From(value, Luminance.BaseUnit),
-                QuantityType.Luminosity => Luminosity.From(value, Luminosity.BaseUnit),
-                QuantityType.LuminousFlux => LuminousFlux.From(value, LuminousFlux.BaseUnit),
-                QuantityType.LuminousIntensity => LuminousIntensity.From(value, LuminousIntensity.BaseUnit),
-                QuantityType.MagneticField => MagneticField.From(value, MagneticField.BaseUnit),
-                QuantityType.MagneticFlux => MagneticFlux.From(value, MagneticFlux.BaseUnit),
-                QuantityType.Magnetization => Magnetization.From(value, Magnetization.BaseUnit),
-                QuantityType.Mass => Mass.From(value, Mass.BaseUnit),
-                QuantityType.MassConcentration => MassConcentration.From(value, MassConcentration.BaseUnit),
-                QuantityType.MassFlow => MassFlow.From(value, MassFlow.BaseUnit),
-                QuantityType.MassFlux => MassFlux.From(value, MassFlux.BaseUnit),
-                QuantityType.MassFraction => MassFraction.From(value, MassFraction.BaseUnit),
-                QuantityType.MassMomentOfInertia => MassMomentOfInertia.From(value, MassMomentOfInertia.BaseUnit),
-                QuantityType.MolarEnergy => MolarEnergy.From(value, MolarEnergy.BaseUnit),
-                QuantityType.MolarEntropy => MolarEntropy.From(value, MolarEntropy.BaseUnit),
-                QuantityType.Molarity => Molarity.From(value, Molarity.BaseUnit),
-                QuantityType.MolarMass => MolarMass.From(value, MolarMass.BaseUnit),
-                QuantityType.Moment => Moment.From(value, Moment.BaseUnit),
-                QuantityType.Permeability => Permeability.From(value, Permeability.BaseUnit),
-                QuantityType.Permittivity => Permittivity.From(value, Permittivity.BaseUnit),
-                QuantityType.PorousMediumPermeability => PorousMediumPermeability.From(value, PorousMediumPermeability.BaseUnit),
-                QuantityType.Power => Power.From(value, Power.BaseUnit),
-                QuantityType.PowerDensity => PowerDensity.From(value, PowerDensity.BaseUnit),
-                QuantityType.PowerRatio => PowerRatio.From(value, PowerRatio.BaseUnit),
-                QuantityType.Pressure => Pressure.From(value, Pressure.BaseUnit),
-                QuantityType.PressureChangeRate => PressureChangeRate.From(value, PressureChangeRate.BaseUnit),
-                QuantityType.Ratio => Ratio.From(value, Ratio.BaseUnit),
-                QuantityType.RatioChangeRate => RatioChangeRate.From(value, RatioChangeRate.BaseUnit),
-                QuantityType.ReactiveEnergy => ReactiveEnergy.From(value, ReactiveEnergy.BaseUnit),
-                QuantityType.ReactivePower => ReactivePower.From(value, ReactivePower.BaseUnit),
-                QuantityType.ReciprocalArea => ReciprocalArea.From(value, ReciprocalArea.BaseUnit),
-                QuantityType.ReciprocalLength => ReciprocalLength.From(value, ReciprocalLength.BaseUnit),
-                QuantityType.RelativeHumidity => RelativeHumidity.From(value, RelativeHumidity.BaseUnit),
-                QuantityType.RotationalAcceleration => RotationalAcceleration.From(value, RotationalAcceleration.BaseUnit),
-                QuantityType.RotationalSpeed => RotationalSpeed.From(value, RotationalSpeed.BaseUnit),
-                QuantityType.RotationalStiffness => RotationalStiffness.From(value, RotationalStiffness.BaseUnit),
-                QuantityType.RotationalStiffnessPerLength => RotationalStiffnessPerLength.From(value, RotationalStiffnessPerLength.BaseUnit),
-                QuantityType.Scalar => Scalar.From(value, Scalar.BaseUnit),
-                QuantityType.SectionModulus => SectionModulus.From(value, SectionModulus.BaseUnit),
-                QuantityType.SolidAngle => SolidAngle.From(value, SolidAngle.BaseUnit),
-                QuantityType.SpecificEnergy => SpecificEnergy.From(value, SpecificEnergy.BaseUnit),
-                QuantityType.SpecificEntropy => SpecificEntropy.From(value, SpecificEntropy.BaseUnit),
-                QuantityType.SpecificFuelConsumption => SpecificFuelConsumption.From(value, SpecificFuelConsumption.BaseUnit),
-                QuantityType.SpecificVolume => SpecificVolume.From(value, SpecificVolume.BaseUnit),
-                QuantityType.SpecificWeight => SpecificWeight.From(value, SpecificWeight.BaseUnit),
-                QuantityType.Speed => Speed.From(value, Speed.BaseUnit),
-                QuantityType.StandardVolumeFlow => StandardVolumeFlow.From(value, StandardVolumeFlow.BaseUnit),
-                QuantityType.Strain => Strain.From(value, Strain.BaseUnit),
-                QuantityType.Temperature => Temperature.From(value, Temperature.BaseUnit),
-                QuantityType.TemperatureChangeRate => TemperatureChangeRate.From(value, TemperatureChangeRate.BaseUnit),
-                QuantityType.TemperatureDelta => TemperatureDelta.From(value, TemperatureDelta.BaseUnit),
-                QuantityType.TemperatureGradient => TemperatureGradient.From(value, TemperatureGradient.BaseUnit),
-                QuantityType.ThermalConductivity => ThermalConductivity.From(value, ThermalConductivity.BaseUnit),
-                QuantityType.ThermalResistance => ThermalResistance.From(value, ThermalResistance.BaseUnit),
-                QuantityType.Torque => Torque.From(value, Torque.BaseUnit),
-                QuantityType.TorquePerLength => TorquePerLength.From(value, TorquePerLength.BaseUnit),
-                QuantityType.Turbidity => Turbidity.From(value, Turbidity.BaseUnit),
-                QuantityType.VitaminA => VitaminA.From(value, VitaminA.BaseUnit),
-                QuantityType.Volume => Volume.From(value, Volume.BaseUnit),
-                QuantityType.VolumeConcentration => VolumeConcentration.From(value, VolumeConcentration.BaseUnit),
-                QuantityType.VolumeFlow => VolumeFlow.From(value, VolumeFlow.BaseUnit),
-                QuantityType.VolumeFlowPerArea => VolumeFlowPerArea.From(value, VolumeFlowPerArea.BaseUnit),
-                QuantityType.VolumePerLength => VolumePerLength.From(value, VolumePerLength.BaseUnit),
-                QuantityType.VolumetricHeatCapacity => VolumetricHeatCapacity.From(value, VolumetricHeatCapacity.BaseUnit),
-                QuantityType.WarpingMomentOfInertia => WarpingMomentOfInertia.From(value, WarpingMomentOfInertia.BaseUnit),
-                _ => throw new ArgumentException($"{quantityType} is not a supported quantity type.")
-            };
-        }
-
-        /// <summary>
         /// Dynamically constructs a quantity of the given <see cref="QuantityInfo"/> with the value in the quantity's base units.
         /// </summary>
         /// <param name="quantityInfo">The <see cref="QuantityInfo"/> of the quantity to create.</param>
@@ -347,6 +213,7 @@ namespace OasysUnits
                 "ElectricResistivity" => ElectricResistivity.From(value, ElectricResistivity.BaseUnit),
                 "ElectricSurfaceChargeDensity" => ElectricSurfaceChargeDensity.From(value, ElectricSurfaceChargeDensity.BaseUnit),
                 "Energy" => Energy.From(value, Energy.BaseUnit),
+                "EnergyDensity" => EnergyDensity.From(value, EnergyDensity.BaseUnit),
                 "Entropy" => Entropy.From(value, Entropy.BaseUnit),
                 "Force" => Force.From(value, Force.BaseUnit),
                 "ForceChangeRate" => ForceChangeRate.From(value, ForceChangeRate.BaseUnit),
@@ -356,12 +223,14 @@ namespace OasysUnits
                 "HeatFlux" => HeatFlux.From(value, HeatFlux.BaseUnit),
                 "HeatTransferCoefficient" => HeatTransferCoefficient.From(value, HeatTransferCoefficient.BaseUnit),
                 "Illuminance" => Illuminance.From(value, Illuminance.BaseUnit),
+                "Impulse" => Impulse.From(value, Impulse.BaseUnit),
                 "Information" => Information.From(value, Information.BaseUnit),
                 "Irradiance" => Irradiance.From(value, Irradiance.BaseUnit),
                 "Irradiation" => Irradiation.From(value, Irradiation.BaseUnit),
                 "Jerk" => Jerk.From(value, Jerk.BaseUnit),
                 "KinematicViscosity" => KinematicViscosity.From(value, KinematicViscosity.BaseUnit),
                 "LapseRate" => LapseRate.From(value, LapseRate.BaseUnit),
+                "LeakRate" => LeakRate.From(value, LeakRate.BaseUnit),
                 "Length" => Length.From(value, Length.BaseUnit),
                 "Level" => Level.From(value, Level.BaseUnit),
                 "LinearDensity" => LinearDensity.From(value, LinearDensity.BaseUnit),
@@ -381,6 +250,7 @@ namespace OasysUnits
                 "MassMomentOfInertia" => MassMomentOfInertia.From(value, MassMomentOfInertia.BaseUnit),
                 "MolarEnergy" => MolarEnergy.From(value, MolarEnergy.BaseUnit),
                 "MolarEntropy" => MolarEntropy.From(value, MolarEntropy.BaseUnit),
+                "MolarFlow" => MolarFlow.From(value, MolarFlow.BaseUnit),
                 "Molarity" => Molarity.From(value, Molarity.BaseUnit),
                 "MolarMass" => MolarMass.From(value, MolarMass.BaseUnit),
                 "Moment" => Moment.From(value, Moment.BaseUnit),
@@ -433,7 +303,7 @@ namespace OasysUnits
                 "WarpingMomentOfInertia" => WarpingMomentOfInertia.From(value, WarpingMomentOfInertia.BaseUnit),
                 _ => throw new ArgumentException($"{quantityInfo.Name} is not a supported quantity.")
             };
-        }
+            }
 
         /// <summary>
         ///     Try to dynamically construct a quantity.
@@ -442,7 +312,7 @@ namespace OasysUnits
         /// <param name="unit">Unit enum value.</param>
         /// <param name="quantity">The resulting quantity if successful, otherwise <c>default</c>.</param>
         /// <returns><c>True</c> if successful with <paramref name="quantity"/> assigned the value, otherwise <c>false</c>.</returns>
-        public static bool TryFrom(QuantityValue value, Enum unit, out IQuantity? quantity)
+        public static bool TryFrom(QuantityValue value, Enum unit, [NotNullWhen(true)] out IQuantity? quantity)
         {
             switch (unit)
             {
@@ -560,6 +430,9 @@ namespace OasysUnits
                 case EnergyUnit energyUnit:
                     quantity = Energy.From(value, energyUnit);
                     return true;
+                case EnergyDensityUnit energyDensityUnit:
+                    quantity = EnergyDensity.From(value, energyDensityUnit);
+                    return true;
                 case EntropyUnit entropyUnit:
                     quantity = Entropy.From(value, entropyUnit);
                     return true;
@@ -587,6 +460,9 @@ namespace OasysUnits
                 case IlluminanceUnit illuminanceUnit:
                     quantity = Illuminance.From(value, illuminanceUnit);
                     return true;
+                case ImpulseUnit impulseUnit:
+                    quantity = Impulse.From(value, impulseUnit);
+                    return true;
                 case InformationUnit informationUnit:
                     quantity = Information.From(value, informationUnit);
                     return true;
@@ -604,6 +480,9 @@ namespace OasysUnits
                     return true;
                 case LapseRateUnit lapseRateUnit:
                     quantity = LapseRate.From(value, lapseRateUnit);
+                    return true;
+                case LeakRateUnit leakRateUnit:
+                    quantity = LeakRate.From(value, leakRateUnit);
                     return true;
                 case LengthUnit lengthUnit:
                     quantity = Length.From(value, lengthUnit);
@@ -661,6 +540,9 @@ namespace OasysUnits
                     return true;
                 case MolarEntropyUnit molarEntropyUnit:
                     quantity = MolarEntropy.From(value, molarEntropyUnit);
+                    return true;
+                case MolarFlowUnit molarFlowUnit:
+                    quantity = MolarFlow.From(value, molarFlowUnit);
                     return true;
                 case MolarityUnit molarityUnit:
                     quantity = Molarity.From(value, molarityUnit);
@@ -823,16 +705,16 @@ namespace OasysUnits
         /// <summary>
         ///     Try to dynamically parse a quantity string representation.
         /// </summary>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <param name="quantityType">Type of quantity, such as <see cref="Length"/>.</param>
         /// <param name="quantityString">Quantity string representation, such as "1.5 kg". Must be compatible with given quantity type.</param>
         /// <param name="quantity">The resulting quantity if successful, otherwise <c>default</c>.</param>
         /// <returns>The parsed quantity.</returns>
-        public static bool TryParse(IFormatProvider? formatProvider, Type quantityType, string quantityString, out IQuantity? quantity)
+        public static bool TryParse(IFormatProvider? formatProvider, Type quantityType, string quantityString, [NotNullWhen(true)] out IQuantity? quantity)
         {
             quantity = default(IQuantity);
 
-            if (!typeof(IQuantity).Wrap().IsAssignableFrom(quantityType))
+            if (!typeof(IQuantity).IsAssignableFrom(quantityType))
                 return false;
 
             var parser = QuantityParser.Default;
@@ -877,6 +759,7 @@ namespace OasysUnits
                 Type _ when quantityType == typeof(ElectricResistivity) => parser.TryParse<ElectricResistivity, ElectricResistivityUnit>(quantityString, formatProvider, ElectricResistivity.From, out quantity),
                 Type _ when quantityType == typeof(ElectricSurfaceChargeDensity) => parser.TryParse<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensityUnit>(quantityString, formatProvider, ElectricSurfaceChargeDensity.From, out quantity),
                 Type _ when quantityType == typeof(Energy) => parser.TryParse<Energy, EnergyUnit>(quantityString, formatProvider, Energy.From, out quantity),
+                Type _ when quantityType == typeof(EnergyDensity) => parser.TryParse<EnergyDensity, EnergyDensityUnit>(quantityString, formatProvider, EnergyDensity.From, out quantity),
                 Type _ when quantityType == typeof(Entropy) => parser.TryParse<Entropy, EntropyUnit>(quantityString, formatProvider, Entropy.From, out quantity),
                 Type _ when quantityType == typeof(Force) => parser.TryParse<Force, ForceUnit>(quantityString, formatProvider, Force.From, out quantity),
                 Type _ when quantityType == typeof(ForceChangeRate) => parser.TryParse<ForceChangeRate, ForceChangeRateUnit>(quantityString, formatProvider, ForceChangeRate.From, out quantity),
@@ -886,12 +769,14 @@ namespace OasysUnits
                 Type _ when quantityType == typeof(HeatFlux) => parser.TryParse<HeatFlux, HeatFluxUnit>(quantityString, formatProvider, HeatFlux.From, out quantity),
                 Type _ when quantityType == typeof(HeatTransferCoefficient) => parser.TryParse<HeatTransferCoefficient, HeatTransferCoefficientUnit>(quantityString, formatProvider, HeatTransferCoefficient.From, out quantity),
                 Type _ when quantityType == typeof(Illuminance) => parser.TryParse<Illuminance, IlluminanceUnit>(quantityString, formatProvider, Illuminance.From, out quantity),
+                Type _ when quantityType == typeof(Impulse) => parser.TryParse<Impulse, ImpulseUnit>(quantityString, formatProvider, Impulse.From, out quantity),
                 Type _ when quantityType == typeof(Information) => parser.TryParse<Information, InformationUnit>(quantityString, formatProvider, Information.From, out quantity),
                 Type _ when quantityType == typeof(Irradiance) => parser.TryParse<Irradiance, IrradianceUnit>(quantityString, formatProvider, Irradiance.From, out quantity),
                 Type _ when quantityType == typeof(Irradiation) => parser.TryParse<Irradiation, IrradiationUnit>(quantityString, formatProvider, Irradiation.From, out quantity),
                 Type _ when quantityType == typeof(Jerk) => parser.TryParse<Jerk, JerkUnit>(quantityString, formatProvider, Jerk.From, out quantity),
                 Type _ when quantityType == typeof(KinematicViscosity) => parser.TryParse<KinematicViscosity, KinematicViscosityUnit>(quantityString, formatProvider, KinematicViscosity.From, out quantity),
                 Type _ when quantityType == typeof(LapseRate) => parser.TryParse<LapseRate, LapseRateUnit>(quantityString, formatProvider, LapseRate.From, out quantity),
+                Type _ when quantityType == typeof(LeakRate) => parser.TryParse<LeakRate, LeakRateUnit>(quantityString, formatProvider, LeakRate.From, out quantity),
                 Type _ when quantityType == typeof(Length) => parser.TryParse<Length, LengthUnit>(quantityString, formatProvider, Length.From, out quantity),
                 Type _ when quantityType == typeof(Level) => parser.TryParse<Level, LevelUnit>(quantityString, formatProvider, Level.From, out quantity),
                 Type _ when quantityType == typeof(LinearDensity) => parser.TryParse<LinearDensity, LinearDensityUnit>(quantityString, formatProvider, LinearDensity.From, out quantity),
@@ -911,6 +796,7 @@ namespace OasysUnits
                 Type _ when quantityType == typeof(MassMomentOfInertia) => parser.TryParse<MassMomentOfInertia, MassMomentOfInertiaUnit>(quantityString, formatProvider, MassMomentOfInertia.From, out quantity),
                 Type _ when quantityType == typeof(MolarEnergy) => parser.TryParse<MolarEnergy, MolarEnergyUnit>(quantityString, formatProvider, MolarEnergy.From, out quantity),
                 Type _ when quantityType == typeof(MolarEntropy) => parser.TryParse<MolarEntropy, MolarEntropyUnit>(quantityString, formatProvider, MolarEntropy.From, out quantity),
+                Type _ when quantityType == typeof(MolarFlow) => parser.TryParse<MolarFlow, MolarFlowUnit>(quantityString, formatProvider, MolarFlow.From, out quantity),
                 Type _ when quantityType == typeof(Molarity) => parser.TryParse<Molarity, MolarityUnit>(quantityString, formatProvider, Molarity.From, out quantity),
                 Type _ when quantityType == typeof(MolarMass) => parser.TryParse<MolarMass, MolarMassUnit>(quantityString, formatProvider, MolarMass.From, out quantity),
                 Type _ when quantityType == typeof(Moment) => parser.TryParse<Moment, MomentUnit>(quantityString, formatProvider, Moment.From, out quantity),
@@ -963,7 +849,7 @@ namespace OasysUnits
                 Type _ when quantityType == typeof(WarpingMomentOfInertia) => parser.TryParse<WarpingMomentOfInertia, WarpingMomentOfInertiaUnit>(quantityString, formatProvider, WarpingMomentOfInertia.From, out quantity),
                 _ => false
             };
-        }
+            }
 
         internal static IEnumerable<Type> GetQuantityTypes()
         {
@@ -1005,6 +891,7 @@ namespace OasysUnits
             yield return typeof(ElectricResistivity);
             yield return typeof(ElectricSurfaceChargeDensity);
             yield return typeof(Energy);
+            yield return typeof(EnergyDensity);
             yield return typeof(Entropy);
             yield return typeof(Force);
             yield return typeof(ForceChangeRate);
@@ -1014,12 +901,14 @@ namespace OasysUnits
             yield return typeof(HeatFlux);
             yield return typeof(HeatTransferCoefficient);
             yield return typeof(Illuminance);
+            yield return typeof(Impulse);
             yield return typeof(Information);
             yield return typeof(Irradiance);
             yield return typeof(Irradiation);
             yield return typeof(Jerk);
             yield return typeof(KinematicViscosity);
             yield return typeof(LapseRate);
+            yield return typeof(LeakRate);
             yield return typeof(Length);
             yield return typeof(Level);
             yield return typeof(LinearDensity);
@@ -1039,6 +928,7 @@ namespace OasysUnits
             yield return typeof(MassMomentOfInertia);
             yield return typeof(MolarEnergy);
             yield return typeof(MolarEntropy);
+            yield return typeof(MolarFlow);
             yield return typeof(Molarity);
             yield return typeof(MolarMass);
             yield return typeof(Moment);

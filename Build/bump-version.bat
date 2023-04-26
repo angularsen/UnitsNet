@@ -1,10 +1,10 @@
 @echo off
-rem This scripts increases the version of nugets: UnitsNet, UnitsNet.NumberExtensions.
+rem This scripts increases the version of nugets: OasysUnits, OasysUnits.NumberExtensions.
 rem The change is committed and tagged locally, but must be pushed to origin/master to take effect.
 rem Only contributors with write access can perform this directly to master, others must perform via pull request.
 
 SET scriptdir=%~dp0
-echo Bump version UnitsNet and UnitsNet.NumberExtensions:
+echo Bump version OasysUnits and OasysUnits.NumberExtensions:
 echo.
 echo 1:   minor    4.90.0 to 4.91.0
 echo 2:   patch    4.90.0 to 4.90.1
@@ -24,5 +24,5 @@ if '%choice%'=='999' set bumpval=major
 if '%choice%'=='0' exit /b 0
 if '%choice%'=='' exit /b 0
 
-call powershell -NoProfile %scriptdir%\set-version-UnitsNet.ps1 -bump %bumpval%
+call powershell -NoProfile %scriptdir%\set-version-OasysUnits.ps1 -bump %bumpval%
 if %errorlevel% neq 0 exit /b %errorlevel%

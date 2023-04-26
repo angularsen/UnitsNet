@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum SpecificFuelConsumptionUnit
     {
-        Undefined = 0,
         GramPerKiloNewtonSecond = 1,
         KilogramPerKilogramForceHour = 2,
         KilogramPerKiloNewtonSecond = 3,

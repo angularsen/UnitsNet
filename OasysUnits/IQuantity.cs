@@ -3,7 +3,9 @@
 
 using System;
 using System.Globalization;
-using JetBrains.Annotations;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using OasysUnits.Units;
 
 namespace OasysUnits
@@ -13,12 +15,6 @@ namespace OasysUnits
     /// </summary>
     public interface IQuantity : IFormattable
     {
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use QuantityInfo instead.")]
-        QuantityType Type { get; }
-
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
@@ -53,7 +49,7 @@ namespace OasysUnits
         /// <summary>
         ///     The value this quantity was constructed with. See also <see cref="Unit"/>.
         /// </summary>
-        double Value { get; }
+        QuantityValue Value { get; }
 
         /// <summary>
         ///     Converts this <see cref="IQuantity"/> to an <see cref="IQuantity"/> in the given <paramref name="unit"/>.
@@ -78,27 +74,8 @@ namespace OasysUnits
         ///     Gets the string representation of value and unit. Uses two significant digits after radix.
         /// </summary>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         string ToString(IFormatProvider? provider);
-
-        /// <summary>
-        ///     Get string representation of value and unit.
-        /// </summary>
-        /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
-        /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
-        string ToString(IFormatProvider? provider, int significantDigitsAfterRadix);
-
-        /// <summary>
-        ///     Get string representation of value and unit.
-        /// </summary>
-        /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
-        /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
-        /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
-        string ToString(IFormatProvider? provider, [NotNull] string format, [NotNull] params object[] args);
     }
 
     /// <summary>
@@ -109,7 +86,9 @@ namespace OasysUnits
     ///     IQuantity{LengthUnit} length;
     ///     double centimeters = length.As(LengthUnit.Centimeter); // Type safety on enum type
     /// </example>
-    public interface IQuantity<TUnitType> : IQuantity where TUnitType : Enum
+    /// <typeparam name="TUnitType">The unit type of the quantity.</typeparam>
+    public interface IQuantity<TUnitType> : IQuantity
+        where TUnitType : Enum
     {
         /// <summary>
         ///     Convert to a unit representation <typeparamref name="TUnitType"/>.
@@ -138,5 +117,47 @@ namespace OasysUnits
         /// <param name="unitSystem">The <see cref="UnitSystem"/> to convert the quantity to.</param>
         /// <returns>A new quantity with the determined unit.</returns>
         new IQuantity<TUnitType> ToUnit(UnitSystem unitSystem);
+    }
+
+    /// <summary>
+    ///     A quantity backed by a particular value type with a stronger typed interface where the unit enum type is known, to avoid passing in the
+    ///     wrong unit enum type and not having to cast from <see cref="Enum"/>.
+    /// </summary>
+    /// <typeparam name="TUnitType">The unit type of the quantity.</typeparam>
+    /// <typeparam name="TValueType">The value type of the quantity.</typeparam>
+    public interface IQuantity<TUnitType, out TValueType> : IQuantity<TUnitType>, IValueQuantity<TValueType>
+        where TUnitType : Enum
+#if NET7_0_OR_GREATER
+        where TValueType : INumber<TValueType>
+#else
+        where TValueType : struct
+#endif
+    {
+        /// <summary>
+        ///     Convert to a unit representation <typeparamref name="TUnitType"/>.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        new TValueType As(TUnitType unit);
+    }
+
+    /// <summary>
+    ///     An <see cref="IQuantity{TUnitType}"/> that (in .NET 7+) implements generic math interfaces for equality, comparison and parsing.
+    /// </summary>
+    /// <typeparam name="TSelf">The type itself, for the CRT pattern.</typeparam>
+    /// <typeparam name="TUnitType">The underlying unit enum type.</typeparam>
+    /// <typeparam name="TValueType">The underlying value type for internal representation.</typeparam>
+    public interface IQuantity<TSelf, TUnitType, out TValueType> : IQuantity<TUnitType, TValueType>
+#if NET7_0_OR_GREATER
+        , IComparisonOperators<TSelf, TSelf, bool>
+        , IParsable<TSelf>
+#endif
+        where TSelf : IQuantity<TSelf, TUnitType, TValueType>
+        where TUnitType : Enum
+#if NET7_0_OR_GREATER
+        where TValueType : INumber<TValueType>
+#else
+        where TValueType : struct
+#endif
+    {
     }
 }

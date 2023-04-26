@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum CompressibilityUnit
     {
-        Undefined = 0,
         InverseAtmosphere = 1,
         InverseBar = 2,
         InverseKilopascal = 3,

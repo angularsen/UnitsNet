@@ -45,6 +45,10 @@ namespace OasysUnits.Tests
             Assert.Equal(MolarMass.FromHectogramsPerMole(2), 2.HectogramsPerMole());
 
         [Fact]
+        public void NumberToKilogramsPerKilomoleTest() =>
+            Assert.Equal(MolarMass.FromKilogramsPerKilomole(2), 2.KilogramsPerKilomole());
+
+        [Fact]
         public void NumberToKilogramsPerMoleTest() =>
             Assert.Equal(MolarMass.FromKilogramsPerMole(2), 2.KilogramsPerMole());
 

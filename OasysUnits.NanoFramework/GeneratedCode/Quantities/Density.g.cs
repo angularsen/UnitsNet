@@ -660,153 +660,153 @@ namespace OasysUnits
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(DensityUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(DensityUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public Density ToUnit(DensityUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new Density(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public Density ToUnit(DensityUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new Density(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                DensityUnit.CentigramPerDeciliter => (_value / 1e-1) * 1e-2d,
-                DensityUnit.CentigramPerLiter => (_value / 1) * 1e-2d,
-                DensityUnit.CentigramPerMilliliter => (_value / 1e-3) * 1e-2d,
-                DensityUnit.DecigramPerDeciliter => (_value / 1e-1) * 1e-1d,
-                DensityUnit.DecigramPerLiter => (_value / 1) * 1e-1d,
-                DensityUnit.DecigramPerMilliliter => (_value / 1e-3) * 1e-1d,
-                DensityUnit.GramPerCubicCentimeter => _value / 1e-3,
-                DensityUnit.GramPerCubicFoot => _value * 0.0353146667214886,
-                DensityUnit.GramPerCubicInch => _value * 61.0237440947323,
-                DensityUnit.GramPerCubicMeter => _value / 1e3,
-                DensityUnit.GramPerCubicMillimeter => _value / 1e-6,
-                DensityUnit.GramPerDeciliter => _value / 1e-1,
-                DensityUnit.GramPerLiter => _value / 1,
-                DensityUnit.GramPerMilliliter => _value / 1e-3,
-                DensityUnit.KilogramPerCubicCentimeter => (_value / 1e-3) * 1e3d,
-                DensityUnit.KilogramPerCubicMeter => (_value / 1e3) * 1e3d,
-                DensityUnit.KilogramPerCubicMillimeter => (_value / 1e-6) * 1e3d,
-                DensityUnit.KilogramPerLiter => _value * 1e3,
-                DensityUnit.KilopoundPerCubicFoot => (_value / 0.062427961) * 1e3d,
-                DensityUnit.KilopoundPerCubicInch => (_value / 3.6127298147753e-5) * 1e3d,
-                DensityUnit.MicrogramPerCubicMeter => (_value / 1e3) * 1e-6d,
-                DensityUnit.MicrogramPerDeciliter => (_value / 1e-1) * 1e-6d,
-                DensityUnit.MicrogramPerLiter => (_value / 1) * 1e-6d,
-                DensityUnit.MicrogramPerMilliliter => (_value / 1e-3) * 1e-6d,
-                DensityUnit.MilligramPerCubicMeter => (_value / 1e3) * 1e-3d,
-                DensityUnit.MilligramPerDeciliter => (_value / 1e-1) * 1e-3d,
-                DensityUnit.MilligramPerLiter => (_value / 1) * 1e-3d,
-                DensityUnit.MilligramPerMilliliter => (_value / 1e-3) * 1e-3d,
-                DensityUnit.NanogramPerDeciliter => (_value / 1e-1) * 1e-9d,
-                DensityUnit.NanogramPerLiter => (_value / 1) * 1e-9d,
-                DensityUnit.NanogramPerMilliliter => (_value / 1e-3) * 1e-9d,
-                DensityUnit.PicogramPerDeciliter => (_value / 1e-1) * 1e-12d,
-                DensityUnit.PicogramPerLiter => (_value / 1) * 1e-12d,
-                DensityUnit.PicogramPerMilliliter => (_value / 1e-3) * 1e-12d,
-                DensityUnit.PoundPerCubicCentimeter => _value / 2.204622621848775e-6,
-                DensityUnit.PoundPerCubicFoot => _value / 0.062427961,
-                DensityUnit.PoundPerCubicInch => _value / 3.6127298147753e-5,
-                DensityUnit.PoundPerCubicMeter => _value / 2.204622621848775,
-                DensityUnit.PoundPerCubicMillimeter => _value / 2.204622621848775e-9,
-                DensityUnit.PoundPerImperialGallon => _value * 9.9776398e1,
-                DensityUnit.PoundPerUSGallon => _value * 1.19826427e2,
-                DensityUnit.SlugPerCubicCentimeter => _value * 14593903,
-                DensityUnit.SlugPerCubicFoot => _value * 515.378818,
-                DensityUnit.SlugPerCubicInch => _value * 890574.60201535,
-                DensityUnit.SlugPerCubicMeter => _value * 14.5939,
-                DensityUnit.SlugPerCubicMillimeter => _value * 14593903000,
-                DensityUnit.TonnePerCubicCentimeter => _value / 1e-9,
-                DensityUnit.TonnePerCubicFoot => _value * 3.53146667214886e4,
-                DensityUnit.TonnePerCubicInch => _value * 6.10237440947323e7,
-                DensityUnit.TonnePerCubicMeter => _value / 0.001,
-                DensityUnit.TonnePerCubicMillimeter => _value / 1e-12,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        DensityUnit.CentigramPerDeciliter => (_value / 1e-1) * 1e-2d,
+                        DensityUnit.CentigramPerLiter => (_value / 1) * 1e-2d,
+                        DensityUnit.CentigramPerMilliliter => (_value / 1e-3) * 1e-2d,
+                        DensityUnit.DecigramPerDeciliter => (_value / 1e-1) * 1e-1d,
+                        DensityUnit.DecigramPerLiter => (_value / 1) * 1e-1d,
+                        DensityUnit.DecigramPerMilliliter => (_value / 1e-3) * 1e-1d,
+                        DensityUnit.GramPerCubicCentimeter => _value / 1e-3,
+                        DensityUnit.GramPerCubicFoot => _value * 0.0353146667214886,
+                        DensityUnit.GramPerCubicInch => _value * 61.0237440947323,
+                        DensityUnit.GramPerCubicMeter => _value / 1e3,
+                        DensityUnit.GramPerCubicMillimeter => _value / 1e-6,
+                        DensityUnit.GramPerDeciliter => _value / 1e-1,
+                        DensityUnit.GramPerLiter => _value / 1,
+                        DensityUnit.GramPerMilliliter => _value / 1e-3,
+                        DensityUnit.KilogramPerCubicCentimeter => (_value / 1e-3) * 1e3d,
+                        DensityUnit.KilogramPerCubicMeter => (_value / 1e3) * 1e3d,
+                        DensityUnit.KilogramPerCubicMillimeter => (_value / 1e-6) * 1e3d,
+                        DensityUnit.KilogramPerLiter => _value * 1e3,
+                        DensityUnit.KilopoundPerCubicFoot => (_value / 0.062427961) * 1e3d,
+                        DensityUnit.KilopoundPerCubicInch => (_value / 3.6127298147753e-5) * 1e3d,
+                        DensityUnit.MicrogramPerCubicMeter => (_value / 1e3) * 1e-6d,
+                        DensityUnit.MicrogramPerDeciliter => (_value / 1e-1) * 1e-6d,
+                        DensityUnit.MicrogramPerLiter => (_value / 1) * 1e-6d,
+                        DensityUnit.MicrogramPerMilliliter => (_value / 1e-3) * 1e-6d,
+                        DensityUnit.MilligramPerCubicMeter => (_value / 1e3) * 1e-3d,
+                        DensityUnit.MilligramPerDeciliter => (_value / 1e-1) * 1e-3d,
+                        DensityUnit.MilligramPerLiter => (_value / 1) * 1e-3d,
+                        DensityUnit.MilligramPerMilliliter => (_value / 1e-3) * 1e-3d,
+                        DensityUnit.NanogramPerDeciliter => (_value / 1e-1) * 1e-9d,
+                        DensityUnit.NanogramPerLiter => (_value / 1) * 1e-9d,
+                        DensityUnit.NanogramPerMilliliter => (_value / 1e-3) * 1e-9d,
+                        DensityUnit.PicogramPerDeciliter => (_value / 1e-1) * 1e-12d,
+                        DensityUnit.PicogramPerLiter => (_value / 1) * 1e-12d,
+                        DensityUnit.PicogramPerMilliliter => (_value / 1e-3) * 1e-12d,
+                        DensityUnit.PoundPerCubicCentimeter => _value / 2.204622621848775e-6,
+                        DensityUnit.PoundPerCubicFoot => _value / 0.062427961,
+                        DensityUnit.PoundPerCubicInch => _value / 3.6127298147753e-5,
+                        DensityUnit.PoundPerCubicMeter => _value / 2.204622621848775,
+                        DensityUnit.PoundPerCubicMillimeter => _value / 2.204622621848775e-9,
+                        DensityUnit.PoundPerImperialGallon => _value * 9.9776398e1,
+                        DensityUnit.PoundPerUSGallon => _value * 1.19826427e2,
+                        DensityUnit.SlugPerCubicCentimeter => _value * 14593903,
+                        DensityUnit.SlugPerCubicFoot => _value * 515.378818,
+                        DensityUnit.SlugPerCubicInch => _value * 890574.60201535,
+                        DensityUnit.SlugPerCubicMeter => _value * 14.5939,
+                        DensityUnit.SlugPerCubicMillimeter => _value * 14593903000,
+                        DensityUnit.TonnePerCubicCentimeter => _value / 1e-9,
+                        DensityUnit.TonnePerCubicFoot => _value * 3.53146667214886e4,
+                        DensityUnit.TonnePerCubicInch => _value * 6.10237440947323e7,
+                        DensityUnit.TonnePerCubicMeter => _value / 0.001,
+                        DensityUnit.TonnePerCubicMillimeter => _value / 1e-12,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(DensityUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(DensityUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                DensityUnit.CentigramPerDeciliter => (baseUnitValue * 1e-1) / 1e-2d,
-                DensityUnit.CentigramPerLiter => (baseUnitValue * 1) / 1e-2d,
-                DensityUnit.CentigramPerMilliliter => (baseUnitValue * 1e-3) / 1e-2d,
-                DensityUnit.DecigramPerDeciliter => (baseUnitValue * 1e-1) / 1e-1d,
-                DensityUnit.DecigramPerLiter => (baseUnitValue * 1) / 1e-1d,
-                DensityUnit.DecigramPerMilliliter => (baseUnitValue * 1e-3) / 1e-1d,
-                DensityUnit.GramPerCubicCentimeter => baseUnitValue * 1e-3,
-                DensityUnit.GramPerCubicFoot => baseUnitValue / 0.0353146667214886,
-                DensityUnit.GramPerCubicInch => baseUnitValue / 61.0237440947323,
-                DensityUnit.GramPerCubicMeter => baseUnitValue * 1e3,
-                DensityUnit.GramPerCubicMillimeter => baseUnitValue * 1e-6,
-                DensityUnit.GramPerDeciliter => baseUnitValue * 1e-1,
-                DensityUnit.GramPerLiter => baseUnitValue * 1,
-                DensityUnit.GramPerMilliliter => baseUnitValue * 1e-3,
-                DensityUnit.KilogramPerCubicCentimeter => (baseUnitValue * 1e-3) / 1e3d,
-                DensityUnit.KilogramPerCubicMeter => (baseUnitValue * 1e3) / 1e3d,
-                DensityUnit.KilogramPerCubicMillimeter => (baseUnitValue * 1e-6) / 1e3d,
-                DensityUnit.KilogramPerLiter => baseUnitValue / 1e3,
-                DensityUnit.KilopoundPerCubicFoot => (baseUnitValue * 0.062427961) / 1e3d,
-                DensityUnit.KilopoundPerCubicInch => (baseUnitValue * 3.6127298147753e-5) / 1e3d,
-                DensityUnit.MicrogramPerCubicMeter => (baseUnitValue * 1e3) / 1e-6d,
-                DensityUnit.MicrogramPerDeciliter => (baseUnitValue * 1e-1) / 1e-6d,
-                DensityUnit.MicrogramPerLiter => (baseUnitValue * 1) / 1e-6d,
-                DensityUnit.MicrogramPerMilliliter => (baseUnitValue * 1e-3) / 1e-6d,
-                DensityUnit.MilligramPerCubicMeter => (baseUnitValue * 1e3) / 1e-3d,
-                DensityUnit.MilligramPerDeciliter => (baseUnitValue * 1e-1) / 1e-3d,
-                DensityUnit.MilligramPerLiter => (baseUnitValue * 1) / 1e-3d,
-                DensityUnit.MilligramPerMilliliter => (baseUnitValue * 1e-3) / 1e-3d,
-                DensityUnit.NanogramPerDeciliter => (baseUnitValue * 1e-1) / 1e-9d,
-                DensityUnit.NanogramPerLiter => (baseUnitValue * 1) / 1e-9d,
-                DensityUnit.NanogramPerMilliliter => (baseUnitValue * 1e-3) / 1e-9d,
-                DensityUnit.PicogramPerDeciliter => (baseUnitValue * 1e-1) / 1e-12d,
-                DensityUnit.PicogramPerLiter => (baseUnitValue * 1) / 1e-12d,
-                DensityUnit.PicogramPerMilliliter => (baseUnitValue * 1e-3) / 1e-12d,
-                DensityUnit.PoundPerCubicCentimeter => baseUnitValue * 2.204622621848775e-6,
-                DensityUnit.PoundPerCubicFoot => baseUnitValue * 0.062427961,
-                DensityUnit.PoundPerCubicInch => baseUnitValue * 3.6127298147753e-5,
-                DensityUnit.PoundPerCubicMeter => baseUnitValue * 2.204622621848775,
-                DensityUnit.PoundPerCubicMillimeter => baseUnitValue * 2.204622621848775e-9,
-                DensityUnit.PoundPerImperialGallon => baseUnitValue / 9.9776398e1,
-                DensityUnit.PoundPerUSGallon => baseUnitValue / 1.19826427e2,
-                DensityUnit.SlugPerCubicCentimeter => baseUnitValue / 14593903,
-                DensityUnit.SlugPerCubicFoot => baseUnitValue * 0.00194032033,
-                DensityUnit.SlugPerCubicInch => baseUnitValue / 890574.60201535,
-                DensityUnit.SlugPerCubicMeter => baseUnitValue / 14.5939,
-                DensityUnit.SlugPerCubicMillimeter => baseUnitValue / 14593903000,
-                DensityUnit.TonnePerCubicCentimeter => baseUnitValue * 1e-9,
-                DensityUnit.TonnePerCubicFoot => baseUnitValue / 3.53146667214886e4,
-                DensityUnit.TonnePerCubicInch => baseUnitValue / 6.10237440947323e7,
-                DensityUnit.TonnePerCubicMeter => baseUnitValue * 0.001,
-                DensityUnit.TonnePerCubicMillimeter => baseUnitValue * 1e-12,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        DensityUnit.CentigramPerDeciliter => (baseUnitValue * 1e-1) / 1e-2d,
+                        DensityUnit.CentigramPerLiter => (baseUnitValue * 1) / 1e-2d,
+                        DensityUnit.CentigramPerMilliliter => (baseUnitValue * 1e-3) / 1e-2d,
+                        DensityUnit.DecigramPerDeciliter => (baseUnitValue * 1e-1) / 1e-1d,
+                        DensityUnit.DecigramPerLiter => (baseUnitValue * 1) / 1e-1d,
+                        DensityUnit.DecigramPerMilliliter => (baseUnitValue * 1e-3) / 1e-1d,
+                        DensityUnit.GramPerCubicCentimeter => baseUnitValue * 1e-3,
+                        DensityUnit.GramPerCubicFoot => baseUnitValue / 0.0353146667214886,
+                        DensityUnit.GramPerCubicInch => baseUnitValue / 61.0237440947323,
+                        DensityUnit.GramPerCubicMeter => baseUnitValue * 1e3,
+                        DensityUnit.GramPerCubicMillimeter => baseUnitValue * 1e-6,
+                        DensityUnit.GramPerDeciliter => baseUnitValue * 1e-1,
+                        DensityUnit.GramPerLiter => baseUnitValue * 1,
+                        DensityUnit.GramPerMilliliter => baseUnitValue * 1e-3,
+                        DensityUnit.KilogramPerCubicCentimeter => (baseUnitValue * 1e-3) / 1e3d,
+                        DensityUnit.KilogramPerCubicMeter => (baseUnitValue * 1e3) / 1e3d,
+                        DensityUnit.KilogramPerCubicMillimeter => (baseUnitValue * 1e-6) / 1e3d,
+                        DensityUnit.KilogramPerLiter => baseUnitValue / 1e3,
+                        DensityUnit.KilopoundPerCubicFoot => (baseUnitValue * 0.062427961) / 1e3d,
+                        DensityUnit.KilopoundPerCubicInch => (baseUnitValue * 3.6127298147753e-5) / 1e3d,
+                        DensityUnit.MicrogramPerCubicMeter => (baseUnitValue * 1e3) / 1e-6d,
+                        DensityUnit.MicrogramPerDeciliter => (baseUnitValue * 1e-1) / 1e-6d,
+                        DensityUnit.MicrogramPerLiter => (baseUnitValue * 1) / 1e-6d,
+                        DensityUnit.MicrogramPerMilliliter => (baseUnitValue * 1e-3) / 1e-6d,
+                        DensityUnit.MilligramPerCubicMeter => (baseUnitValue * 1e3) / 1e-3d,
+                        DensityUnit.MilligramPerDeciliter => (baseUnitValue * 1e-1) / 1e-3d,
+                        DensityUnit.MilligramPerLiter => (baseUnitValue * 1) / 1e-3d,
+                        DensityUnit.MilligramPerMilliliter => (baseUnitValue * 1e-3) / 1e-3d,
+                        DensityUnit.NanogramPerDeciliter => (baseUnitValue * 1e-1) / 1e-9d,
+                        DensityUnit.NanogramPerLiter => (baseUnitValue * 1) / 1e-9d,
+                        DensityUnit.NanogramPerMilliliter => (baseUnitValue * 1e-3) / 1e-9d,
+                        DensityUnit.PicogramPerDeciliter => (baseUnitValue * 1e-1) / 1e-12d,
+                        DensityUnit.PicogramPerLiter => (baseUnitValue * 1) / 1e-12d,
+                        DensityUnit.PicogramPerMilliliter => (baseUnitValue * 1e-3) / 1e-12d,
+                        DensityUnit.PoundPerCubicCentimeter => baseUnitValue * 2.204622621848775e-6,
+                        DensityUnit.PoundPerCubicFoot => baseUnitValue * 0.062427961,
+                        DensityUnit.PoundPerCubicInch => baseUnitValue * 3.6127298147753e-5,
+                        DensityUnit.PoundPerCubicMeter => baseUnitValue * 2.204622621848775,
+                        DensityUnit.PoundPerCubicMillimeter => baseUnitValue * 2.204622621848775e-9,
+                        DensityUnit.PoundPerImperialGallon => baseUnitValue / 9.9776398e1,
+                        DensityUnit.PoundPerUSGallon => baseUnitValue / 1.19826427e2,
+                        DensityUnit.SlugPerCubicCentimeter => baseUnitValue / 14593903,
+                        DensityUnit.SlugPerCubicFoot => baseUnitValue * 0.00194032033,
+                        DensityUnit.SlugPerCubicInch => baseUnitValue / 890574.60201535,
+                        DensityUnit.SlugPerCubicMeter => baseUnitValue / 14.5939,
+                        DensityUnit.SlugPerCubicMillimeter => baseUnitValue / 14593903000,
+                        DensityUnit.TonnePerCubicCentimeter => baseUnitValue * 1e-9,
+                        DensityUnit.TonnePerCubicFoot => baseUnitValue / 3.53146667214886e4,
+                        DensityUnit.TonnePerCubicInch => baseUnitValue / 6.10237440947323e7,
+                        DensityUnit.TonnePerCubicMeter => baseUnitValue * 0.001,
+                        DensityUnit.TonnePerCubicMillimeter => baseUnitValue * 1e-12,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

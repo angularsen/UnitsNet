@@ -2,7 +2,6 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
-using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -13,7 +12,7 @@ namespace OasysUnits.Serialization.JsonNet
     /// JSON.net converter for IQuantity types (e.g. all units in OasysUnits)
     /// Use this converter to serialize and deserialize OasysUnits types to and from JSON
     /// </summary>
-    public sealed class OasysUnitsIQuantityJsonConverter : OasysUnitsBaseJsonConverter<IQuantity>
+    public sealed class OasysUnitsIQuantityJsonConverter : OasysUnitsBaseJsonConverter<IQuantity?>
     {
         /// <summary>
         /// Writes the JSON representation of the object.
@@ -21,7 +20,7 @@ namespace OasysUnits.Serialization.JsonNet
         /// <param name="writer">The <see cref="T:Newtonsoft.Json.JsonWriter" /> to write to.</param>
         /// <param name="value">The value to write.</param>
         /// <param name="serializer">The calling serializer.</param>
-        public override void WriteJson([NotNull] JsonWriter writer, IQuantity value, [NotNull] JsonSerializer serializer)
+        public override void WriteJson(JsonWriter writer, IQuantity? value, JsonSerializer serializer)
         {
             writer = writer ?? throw new ArgumentNullException(nameof(writer));
             serializer = serializer ?? throw new ArgumentNullException(nameof(serializer));
@@ -49,20 +48,25 @@ namespace OasysUnits.Serialization.JsonNet
         /// The object value.
         /// </returns>
         /// <exception cref="OasysUnitsException">Unable to parse value and unit from JSON.</exception>
-        public override IQuantity ReadJson([NotNull] JsonReader reader, Type objectType, IQuantity existingValue, bool hasExistingValue,
-            [NotNull] JsonSerializer serializer)
+        public override IQuantity? ReadJson(JsonReader reader, Type objectType, IQuantity? existingValue, bool hasExistingValue,
+            JsonSerializer serializer)
         {
             reader = reader ?? throw new ArgumentNullException(nameof(reader));
             serializer = serializer ?? throw new ArgumentNullException(nameof(serializer));
 
             if (reader.TokenType == JsonToken.Null)
             {
-                return null;
+                return existingValue;
             }
 
             var token = JToken.Load(reader);
 
             var valueUnit = ReadValueUnit(token);
+
+            if (valueUnit == null)
+            {
+                return token.ToObject<IQuantity>(serializer);
+            }
 
             return ConvertValueUnit(valueUnit);
         }

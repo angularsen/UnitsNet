@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum SolidAngleUnit
     {
-        Undefined = 0,
         Steradian = 1,
     }
 

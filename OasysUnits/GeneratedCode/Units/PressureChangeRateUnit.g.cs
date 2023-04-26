@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum PressureChangeRateUnit
     {
-        Undefined = 0,
         AtmospherePerSecond = 1,
         KilopascalPerMinute = 2,
         KilopascalPerSecond = 3,

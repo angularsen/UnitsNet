@@ -3,7 +3,7 @@
 
 using Xunit;
 
-namespace OasysUnits.Tests.CustomCode
+namespace OasysUnits.Tests
 {
     public class ElectricChargeTests : ElectricChargeTestsBase
     {
@@ -13,6 +13,18 @@ namespace OasysUnits.Tests.CustomCode
         protected override double AmpereHoursInOneCoulomb => 2.77777777777e-4;
         protected override double KiloampereHoursInOneCoulomb => 2.77777777777e-7;
         protected override double MegaampereHoursInOneCoulomb => 2.77777777777e-10;
+
+        protected override double KilocoulombsInOneCoulomb => 1e-3;
+
+        protected override double MegacoulombsInOneCoulomb => 1e-6;
+
+        protected override double MicrocoulombsInOneCoulomb => 1e6;
+
+        protected override double MillicoulombsInOneCoulomb => 1e3;
+
+        protected override double NanocoulombsInOneCoulomb => 1e9;
+
+        protected override double PicocoulombsInOneCoulomb => 1e12;
 
         [Fact]
         public void ElectricChargeDividedByElectricCurrentEqualsDuration()

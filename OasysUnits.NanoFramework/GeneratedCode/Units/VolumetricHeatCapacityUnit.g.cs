@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum VolumetricHeatCapacityUnit
     {
-        Undefined = 0,
         BtuPerCubicFootDegreeFahrenheit = 1,
         CaloriePerCubicCentimeterDegreeCelsius = 2,
         JoulePerCubicMeterDegreeCelsius = 3,

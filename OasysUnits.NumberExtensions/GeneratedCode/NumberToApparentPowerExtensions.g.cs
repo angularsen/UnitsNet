@@ -40,6 +40,14 @@ namespace OasysUnits.NumberExtensions.NumberToApparentPower
         public static ApparentPower Megavoltamperes<T>(this T value) =>
             ApparentPower.FromMegavoltamperes(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="ApparentPower.FromMicrovoltamperes(OasysUnits.QuantityValue)" />
+        public static ApparentPower Microvoltamperes<T>(this T value) =>
+            ApparentPower.FromMicrovoltamperes(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ApparentPower.FromMillivoltamperes(OasysUnits.QuantityValue)" />
+        public static ApparentPower Millivoltamperes<T>(this T value) =>
+            ApparentPower.FromMillivoltamperes(Convert.ToDouble(value));
+
         /// <inheritdoc cref="ApparentPower.FromVoltamperes(OasysUnits.QuantityValue)" />
         public static ApparentPower Voltamperes<T>(this T value) =>
             ApparentPower.FromVoltamperes(Convert.ToDouble(value));

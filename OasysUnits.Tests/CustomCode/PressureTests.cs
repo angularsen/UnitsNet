@@ -3,10 +3,10 @@
 
 using System;
 using OasysUnits.CustomCode.Units;
-using OasysUnits.CustomCode.Wrappers;
+using OasysUnits.Wrappers;
 using Xunit;
 
-namespace OasysUnits.Tests.CustomCode
+namespace OasysUnits.Tests
 {
     public class PressureTests : PressureTestsBase
     {
@@ -88,7 +88,11 @@ namespace OasysUnits.Tests.CustomCode
 
         protected override double MillimetersOfMercuryInOnePascal => 7.50061561302643e-3;
 
-        protected override double MillimeterOfWaterColumnInOnePascal => 1.0197162129779283e-1;
+        protected override double MetersOfWaterColumnInOnePascal => 1.0197162129779283e-4;
+
+        protected override double CentimetersOfWaterColumnInOnePascal => 1.0197162129779283e-2;
+
+        protected override double MillimetersOfWaterColumnInOnePascal => 1.0197162129779283e-1;
 
         protected override double InchesOfMercuryInOnePascal => 2.95299830714159e-4;
 
@@ -214,13 +218,7 @@ namespace OasysUnits.Tests.CustomCode
         public void Reference_WithDefaultPressureReference_IsAbsolute()
         {
             var refPressure = new ReferencePressure(Pressure.FromAtmospheres(3));
-            Equals(PressureReference.Absolute, refPressure.Reference);
-        }
-
-        [Fact]
-        public void ReferencesDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(PressureReference.Undefined, ReferencePressure.References);
+            Assert.Equal(PressureReference.Absolute, refPressure.Reference);
         }
 
         [Fact]

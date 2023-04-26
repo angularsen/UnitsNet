@@ -25,10 +25,10 @@ namespace OasysUnits.Units
 
     public enum PressureUnit
     {
-        Undefined = 0,
         Atmosphere = 1,
         Bar = 2,
         Centibar = 3,
+        CentimeterOfWaterColumn = 48,
         Decapascal = 4,
         Decibar = 5,
         DynePerSquareCentimeter = 6,
@@ -54,6 +54,7 @@ namespace OasysUnits.Units
         Megapascal = 26,
         MeterOfElevation = 27,
         MeterOfHead = 28,
+        MeterOfWaterColumn = 57,
         Microbar = 29,
         Micropascal = 30,
         Millibar = 31,

@@ -319,91 +319,91 @@ namespace OasysUnits
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(VolumeConcentrationUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(VolumeConcentrationUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public VolumeConcentration ToUnit(VolumeConcentrationUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new VolumeConcentration(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public VolumeConcentration ToUnit(VolumeConcentrationUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new VolumeConcentration(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                VolumeConcentrationUnit.CentilitersPerLiter => (_value) * 1e-2d,
-                VolumeConcentrationUnit.CentilitersPerMililiter => (_value / 1e-3) * 1e-2d,
-                VolumeConcentrationUnit.DecilitersPerLiter => (_value) * 1e-1d,
-                VolumeConcentrationUnit.DecilitersPerMililiter => (_value / 1e-3) * 1e-1d,
-                VolumeConcentrationUnit.DecimalFraction => _value,
-                VolumeConcentrationUnit.LitersPerLiter => _value,
-                VolumeConcentrationUnit.LitersPerMililiter => _value / 1e-3,
-                VolumeConcentrationUnit.MicrolitersPerLiter => (_value) * 1e-6d,
-                VolumeConcentrationUnit.MicrolitersPerMililiter => (_value / 1e-3) * 1e-6d,
-                VolumeConcentrationUnit.MillilitersPerLiter => (_value) * 1e-3d,
-                VolumeConcentrationUnit.MillilitersPerMililiter => (_value / 1e-3) * 1e-3d,
-                VolumeConcentrationUnit.NanolitersPerLiter => (_value) * 1e-9d,
-                VolumeConcentrationUnit.NanolitersPerMililiter => (_value / 1e-3) * 1e-9d,
-                VolumeConcentrationUnit.PartPerBillion => _value / 1e9,
-                VolumeConcentrationUnit.PartPerMillion => _value / 1e6,
-                VolumeConcentrationUnit.PartPerThousand => _value / 1e3,
-                VolumeConcentrationUnit.PartPerTrillion => _value / 1e12,
-                VolumeConcentrationUnit.Percent => _value / 1e2,
-                VolumeConcentrationUnit.PicolitersPerLiter => (_value) * 1e-12d,
-                VolumeConcentrationUnit.PicolitersPerMililiter => (_value / 1e-3) * 1e-12d,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        VolumeConcentrationUnit.CentilitersPerLiter => (_value) * 1e-2d,
+                        VolumeConcentrationUnit.CentilitersPerMililiter => (_value / 1e-3) * 1e-2d,
+                        VolumeConcentrationUnit.DecilitersPerLiter => (_value) * 1e-1d,
+                        VolumeConcentrationUnit.DecilitersPerMililiter => (_value / 1e-3) * 1e-1d,
+                        VolumeConcentrationUnit.DecimalFraction => _value,
+                        VolumeConcentrationUnit.LitersPerLiter => _value,
+                        VolumeConcentrationUnit.LitersPerMililiter => _value / 1e-3,
+                        VolumeConcentrationUnit.MicrolitersPerLiter => (_value) * 1e-6d,
+                        VolumeConcentrationUnit.MicrolitersPerMililiter => (_value / 1e-3) * 1e-6d,
+                        VolumeConcentrationUnit.MillilitersPerLiter => (_value) * 1e-3d,
+                        VolumeConcentrationUnit.MillilitersPerMililiter => (_value / 1e-3) * 1e-3d,
+                        VolumeConcentrationUnit.NanolitersPerLiter => (_value) * 1e-9d,
+                        VolumeConcentrationUnit.NanolitersPerMililiter => (_value / 1e-3) * 1e-9d,
+                        VolumeConcentrationUnit.PartPerBillion => _value / 1e9,
+                        VolumeConcentrationUnit.PartPerMillion => _value / 1e6,
+                        VolumeConcentrationUnit.PartPerThousand => _value / 1e3,
+                        VolumeConcentrationUnit.PartPerTrillion => _value / 1e12,
+                        VolumeConcentrationUnit.Percent => _value / 1e2,
+                        VolumeConcentrationUnit.PicolitersPerLiter => (_value) * 1e-12d,
+                        VolumeConcentrationUnit.PicolitersPerMililiter => (_value / 1e-3) * 1e-12d,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(VolumeConcentrationUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(VolumeConcentrationUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                VolumeConcentrationUnit.CentilitersPerLiter => (baseUnitValue) / 1e-2d,
-                VolumeConcentrationUnit.CentilitersPerMililiter => (baseUnitValue * 1e-3) / 1e-2d,
-                VolumeConcentrationUnit.DecilitersPerLiter => (baseUnitValue) / 1e-1d,
-                VolumeConcentrationUnit.DecilitersPerMililiter => (baseUnitValue * 1e-3) / 1e-1d,
-                VolumeConcentrationUnit.DecimalFraction => baseUnitValue,
-                VolumeConcentrationUnit.LitersPerLiter => baseUnitValue,
-                VolumeConcentrationUnit.LitersPerMililiter => baseUnitValue * 1e-3,
-                VolumeConcentrationUnit.MicrolitersPerLiter => (baseUnitValue) / 1e-6d,
-                VolumeConcentrationUnit.MicrolitersPerMililiter => (baseUnitValue * 1e-3) / 1e-6d,
-                VolumeConcentrationUnit.MillilitersPerLiter => (baseUnitValue) / 1e-3d,
-                VolumeConcentrationUnit.MillilitersPerMililiter => (baseUnitValue * 1e-3) / 1e-3d,
-                VolumeConcentrationUnit.NanolitersPerLiter => (baseUnitValue) / 1e-9d,
-                VolumeConcentrationUnit.NanolitersPerMililiter => (baseUnitValue * 1e-3) / 1e-9d,
-                VolumeConcentrationUnit.PartPerBillion => baseUnitValue * 1e9,
-                VolumeConcentrationUnit.PartPerMillion => baseUnitValue * 1e6,
-                VolumeConcentrationUnit.PartPerThousand => baseUnitValue * 1e3,
-                VolumeConcentrationUnit.PartPerTrillion => baseUnitValue * 1e12,
-                VolumeConcentrationUnit.Percent => baseUnitValue * 1e2,
-                VolumeConcentrationUnit.PicolitersPerLiter => (baseUnitValue) / 1e-12d,
-                VolumeConcentrationUnit.PicolitersPerMililiter => (baseUnitValue * 1e-3) / 1e-12d,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        VolumeConcentrationUnit.CentilitersPerLiter => (baseUnitValue) / 1e-2d,
+                        VolumeConcentrationUnit.CentilitersPerMililiter => (baseUnitValue * 1e-3) / 1e-2d,
+                        VolumeConcentrationUnit.DecilitersPerLiter => (baseUnitValue) / 1e-1d,
+                        VolumeConcentrationUnit.DecilitersPerMililiter => (baseUnitValue * 1e-3) / 1e-1d,
+                        VolumeConcentrationUnit.DecimalFraction => baseUnitValue,
+                        VolumeConcentrationUnit.LitersPerLiter => baseUnitValue,
+                        VolumeConcentrationUnit.LitersPerMililiter => baseUnitValue * 1e-3,
+                        VolumeConcentrationUnit.MicrolitersPerLiter => (baseUnitValue) / 1e-6d,
+                        VolumeConcentrationUnit.MicrolitersPerMililiter => (baseUnitValue * 1e-3) / 1e-6d,
+                        VolumeConcentrationUnit.MillilitersPerLiter => (baseUnitValue) / 1e-3d,
+                        VolumeConcentrationUnit.MillilitersPerMililiter => (baseUnitValue * 1e-3) / 1e-3d,
+                        VolumeConcentrationUnit.NanolitersPerLiter => (baseUnitValue) / 1e-9d,
+                        VolumeConcentrationUnit.NanolitersPerMililiter => (baseUnitValue * 1e-3) / 1e-9d,
+                        VolumeConcentrationUnit.PartPerBillion => baseUnitValue * 1e9,
+                        VolumeConcentrationUnit.PartPerMillion => baseUnitValue * 1e6,
+                        VolumeConcentrationUnit.PartPerThousand => baseUnitValue * 1e3,
+                        VolumeConcentrationUnit.PartPerTrillion => baseUnitValue * 1e12,
+                        VolumeConcentrationUnit.Percent => baseUnitValue * 1e2,
+                        VolumeConcentrationUnit.PicolitersPerLiter => (baseUnitValue) / 1e-12d,
+                        VolumeConcentrationUnit.PicolitersPerMililiter => (baseUnitValue * 1e-3) / 1e-12d,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

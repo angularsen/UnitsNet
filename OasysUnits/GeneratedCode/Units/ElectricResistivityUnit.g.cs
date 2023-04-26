@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum ElectricResistivityUnit
     {
-        Undefined = 0,
         KiloohmCentimeter = 1,
         KiloohmMeter = 2,
         MegaohmCentimeter = 3,

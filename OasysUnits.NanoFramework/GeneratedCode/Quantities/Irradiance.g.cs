@@ -250,79 +250,79 @@ namespace OasysUnits
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(IrradianceUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(IrradianceUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public Irradiance ToUnit(IrradianceUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new Irradiance(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public Irradiance ToUnit(IrradianceUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new Irradiance(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                IrradianceUnit.KilowattPerSquareCentimeter => (_value * 10000) * 1e3d,
-                IrradianceUnit.KilowattPerSquareMeter => (_value) * 1e3d,
-                IrradianceUnit.MegawattPerSquareCentimeter => (_value * 10000) * 1e6d,
-                IrradianceUnit.MegawattPerSquareMeter => (_value) * 1e6d,
-                IrradianceUnit.MicrowattPerSquareCentimeter => (_value * 10000) * 1e-6d,
-                IrradianceUnit.MicrowattPerSquareMeter => (_value) * 1e-6d,
-                IrradianceUnit.MilliwattPerSquareCentimeter => (_value * 10000) * 1e-3d,
-                IrradianceUnit.MilliwattPerSquareMeter => (_value) * 1e-3d,
-                IrradianceUnit.NanowattPerSquareCentimeter => (_value * 10000) * 1e-9d,
-                IrradianceUnit.NanowattPerSquareMeter => (_value) * 1e-9d,
-                IrradianceUnit.PicowattPerSquareCentimeter => (_value * 10000) * 1e-12d,
-                IrradianceUnit.PicowattPerSquareMeter => (_value) * 1e-12d,
-                IrradianceUnit.WattPerSquareCentimeter => _value * 10000,
-                IrradianceUnit.WattPerSquareMeter => _value,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        IrradianceUnit.KilowattPerSquareCentimeter => (_value * 10000) * 1e3d,
+                        IrradianceUnit.KilowattPerSquareMeter => (_value) * 1e3d,
+                        IrradianceUnit.MegawattPerSquareCentimeter => (_value * 10000) * 1e6d,
+                        IrradianceUnit.MegawattPerSquareMeter => (_value) * 1e6d,
+                        IrradianceUnit.MicrowattPerSquareCentimeter => (_value * 10000) * 1e-6d,
+                        IrradianceUnit.MicrowattPerSquareMeter => (_value) * 1e-6d,
+                        IrradianceUnit.MilliwattPerSquareCentimeter => (_value * 10000) * 1e-3d,
+                        IrradianceUnit.MilliwattPerSquareMeter => (_value) * 1e-3d,
+                        IrradianceUnit.NanowattPerSquareCentimeter => (_value * 10000) * 1e-9d,
+                        IrradianceUnit.NanowattPerSquareMeter => (_value) * 1e-9d,
+                        IrradianceUnit.PicowattPerSquareCentimeter => (_value * 10000) * 1e-12d,
+                        IrradianceUnit.PicowattPerSquareMeter => (_value) * 1e-12d,
+                        IrradianceUnit.WattPerSquareCentimeter => _value * 10000,
+                        IrradianceUnit.WattPerSquareMeter => _value,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(IrradianceUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(IrradianceUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                IrradianceUnit.KilowattPerSquareCentimeter => (baseUnitValue * 0.0001) / 1e3d,
-                IrradianceUnit.KilowattPerSquareMeter => (baseUnitValue) / 1e3d,
-                IrradianceUnit.MegawattPerSquareCentimeter => (baseUnitValue * 0.0001) / 1e6d,
-                IrradianceUnit.MegawattPerSquareMeter => (baseUnitValue) / 1e6d,
-                IrradianceUnit.MicrowattPerSquareCentimeter => (baseUnitValue * 0.0001) / 1e-6d,
-                IrradianceUnit.MicrowattPerSquareMeter => (baseUnitValue) / 1e-6d,
-                IrradianceUnit.MilliwattPerSquareCentimeter => (baseUnitValue * 0.0001) / 1e-3d,
-                IrradianceUnit.MilliwattPerSquareMeter => (baseUnitValue) / 1e-3d,
-                IrradianceUnit.NanowattPerSquareCentimeter => (baseUnitValue * 0.0001) / 1e-9d,
-                IrradianceUnit.NanowattPerSquareMeter => (baseUnitValue) / 1e-9d,
-                IrradianceUnit.PicowattPerSquareCentimeter => (baseUnitValue * 0.0001) / 1e-12d,
-                IrradianceUnit.PicowattPerSquareMeter => (baseUnitValue) / 1e-12d,
-                IrradianceUnit.WattPerSquareCentimeter => baseUnitValue * 0.0001,
-                IrradianceUnit.WattPerSquareMeter => baseUnitValue,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        IrradianceUnit.KilowattPerSquareCentimeter => (baseUnitValue * 0.0001) / 1e3d,
+                        IrradianceUnit.KilowattPerSquareMeter => (baseUnitValue) / 1e3d,
+                        IrradianceUnit.MegawattPerSquareCentimeter => (baseUnitValue * 0.0001) / 1e6d,
+                        IrradianceUnit.MegawattPerSquareMeter => (baseUnitValue) / 1e6d,
+                        IrradianceUnit.MicrowattPerSquareCentimeter => (baseUnitValue * 0.0001) / 1e-6d,
+                        IrradianceUnit.MicrowattPerSquareMeter => (baseUnitValue) / 1e-6d,
+                        IrradianceUnit.MilliwattPerSquareCentimeter => (baseUnitValue * 0.0001) / 1e-3d,
+                        IrradianceUnit.MilliwattPerSquareMeter => (baseUnitValue) / 1e-3d,
+                        IrradianceUnit.NanowattPerSquareCentimeter => (baseUnitValue * 0.0001) / 1e-9d,
+                        IrradianceUnit.NanowattPerSquareMeter => (baseUnitValue) / 1e-9d,
+                        IrradianceUnit.PicowattPerSquareCentimeter => (baseUnitValue * 0.0001) / 1e-12d,
+                        IrradianceUnit.PicowattPerSquareMeter => (baseUnitValue) / 1e-12d,
+                        IrradianceUnit.WattPerSquareCentimeter => baseUnitValue * 0.0001,
+                        IrradianceUnit.WattPerSquareMeter => baseUnitValue,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

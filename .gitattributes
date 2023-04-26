@@ -56,7 +56,7 @@
 #*.svg text
 *.eps binary
 # Avoid messing up GitHub statistics on code language by excluding sample projects
-OasysUnitsNet.TestApps.Uwp.JavaScript/* linguist-vendored
-OasysUnitsNet.TestApps.Uwp.WinJS/* linguist-vendored
-OasysUnitsNet.TestApps.Uwp.Csharp/* linguist-vendored
+OasysUnits.TestApps.Uwp.JavaScript/* linguist-vendored
+OasysUnits.TestApps.Uwp.WinJS/* linguist-vendored
+OasysUnits.TestApps.Uwp.Csharp/* linguist-vendored
 *.exe filter=lfs diff=lfs merge=lfs -text

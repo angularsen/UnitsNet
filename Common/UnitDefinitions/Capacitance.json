@@ -1,7 +1,7 @@
 {
   "Name": "Capacitance",
   "BaseUnit": "Farad",
-  "XmlDoc": "Capacitance is the ability of a body to store an electric charge.",
+  "XmlDocSummary": "Capacitance is the ability of a body to store an electric charge.",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Capacitance",
   "BaseDimensions": {
     "L": -2,

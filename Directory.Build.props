@@ -17,6 +17,12 @@
   <PropertyGroup>
     <!-- Warning instead of compile error on obsolete errors.-->
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <!-- 612: obsolete, 618: obsolete with message -->
     <WarningsNotAsErrors>612,618</WarningsNotAsErrors>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)/NullableAttributes.cs" />
+  </ItemGroup>
+
 </Project>

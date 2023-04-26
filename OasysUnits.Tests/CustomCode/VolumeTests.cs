@@ -4,7 +4,7 @@
 using System;
 using Xunit;
 
-namespace OasysUnits.Tests.CustomCode
+namespace OasysUnits.Tests
 {
     public class VolumeTests : VolumeTestsBase
     {
@@ -63,6 +63,8 @@ namespace OasysUnits.Tests.CustomCode
         protected override double MicrolitersInOneCubicMeter => 1E9;
 
         protected override double MillilitersInOneCubicMeter => 1E6;
+
+        protected override double NanolitersInOneCubicMeter => 1E12;
 
         protected override double AuTablespoonsInOneCubicMeter => 50000;
 

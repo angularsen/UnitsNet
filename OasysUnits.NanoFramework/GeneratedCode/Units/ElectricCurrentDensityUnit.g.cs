@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum ElectricCurrentDensityUnit
     {
-        Undefined = 0,
         AmperePerSquareFoot = 1,
         AmperePerSquareInch = 2,
         AmperePerSquareMeter = 3,

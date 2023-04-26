@@ -52,5 +52,9 @@ namespace OasysUnits.NumberExtensions.NumberToElectricResistance
         public static ElectricResistance Ohms<T>(this T value) =>
             ElectricResistance.FromOhms(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="ElectricResistance.FromTeraohms(OasysUnits.QuantityValue)" />
+        public static ElectricResistance Teraohms<T>(this T value) =>
+            ElectricResistance.FromTeraohms(Convert.ToDouble(value));
+
     }
 }

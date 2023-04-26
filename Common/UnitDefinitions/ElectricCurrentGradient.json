@@ -1,7 +1,7 @@
 ﻿{
   "Name": "ElectricCurrentGradient",
   "BaseUnit": "AmperePerSecond",
-  "XmlDoc": "In electromagnetism, the current gradient describes how the current changes in time.",
+  "XmlDocSummary": "In electromagnetism, the current gradient describes how the current changes in time.",
   "BaseDimensions": {
     "T": -1,
     "I": 1

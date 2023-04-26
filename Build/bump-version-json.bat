@@ -1,10 +1,10 @@
 @echo off
-rem This scripts increases the version of nugets: UnitsNet.Serialization.JsonNet.
+rem This scripts increases the version of nugets: OasysUnits.Serialization.JsonNet.
 rem The change is committed and tagged locally, but must be pushed to origin/master to take effect.
 rem Only contributors with write access can perform this directly to master, others must perform via pull request.
 
 SET scriptdir=%~dp0
-echo Bump version UnitsNet.Serialization.JsonNet nuget:
+echo Bump version OasysUnits.Serialization.JsonNet nuget:
 echo.
 echo 1:   minor    4.90.0 to 4.91.0
 echo 2:   patch    4.90.0 to 4.90.1
@@ -24,5 +24,5 @@ if '%choice%'=='999' set bumpval=major
 if '%choice%'=='0' exit /b 0
 if '%choice%'=='' exit /b 0
 
-call powershell -NoProfile %scriptdir%\set-version-UnitsNet.Serialization.JsonNet.ps1 -bump %bumpval%
+call powershell -NoProfile %scriptdir%\set-version-OasysUnits.Serialization.JsonNet.ps1 -bump %bumpval%
 if %errorlevel% neq 0 exit /b %errorlevel%

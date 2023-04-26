@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Runtime.Serialization;
 using OasysUnits.Units;
 using Xunit;
@@ -32,7 +33,7 @@ namespace OasysUnits.Tests.Serialization.Xml
             writer.Write(xml);
             writer.Flush();
             stream.Position = 0;
-            return (T)serializer.ReadObject(stream);
+            return (T)(serializer.ReadObject(stream) ?? throw new InvalidOperationException("Read 'null' from stream."));
         }
 
         [Fact]

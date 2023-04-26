@@ -4,7 +4,7 @@
 using System.Globalization;
 using Xunit;
 
-namespace OasysUnits.Tests.CustomCode
+namespace OasysUnits.Tests
 {
     public class StonePoundsTests
     {
@@ -35,7 +35,7 @@ namespace OasysUnits.Tests.CustomCode
         {
             Mass m = Mass.FromStonePounds(3500, 1);
             StonePounds stonePounds = m.StonePounds;
-            string numberInCurrentCulture =  3500.ToString("n0", CultureInfo.CurrentUICulture); // Varies between machines, can't hard code it
+            string numberInCurrentCulture =  3500.ToString("n0", CultureInfo.CurrentCulture); // Varies between machines, can't hard code it
 
             Assert.Equal($"{numberInCurrentCulture} st 1 lb", stonePounds.ToString());
         }

@@ -3,7 +3,7 @@
 
 using Xunit;
 
-namespace OasysUnits.Tests.CustomCode
+namespace OasysUnits.Tests
 {
     public class ElectricPotentialTests : ElectricPotentialTestsBase
     {
@@ -17,6 +17,8 @@ namespace OasysUnits.Tests.CustomCode
         protected override double KilovoltsInOneVolt => 1e-3;
 
         protected override double MegavoltsInOneVolt => 1e-6;
+
+        protected override double NanovoltsInOneVolt => 1e9;
 
         [Theory]
         [InlineData(1, 1, 1)]

@@ -1,7 +1,7 @@
 {
   "Name": "Frequency",
   "BaseUnit": "Hertz",
-  "XmlDoc": "The number of occurrences of a repeating event per unit time.",
+  "XmlDocSummary": "The number of occurrences of a repeating event per unit time.",
   "BaseDimensions": {
     "T": -1
   },
@@ -11,7 +11,7 @@
       "PluralName": "Hertz",
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
-      "Prefixes": [ "Kilo", "Mega", "Giga", "Tera" ],
+      "Prefixes": [ "Micro", "Milli", "Kilo", "Mega", "Giga", "Tera" ],
       "Localization": [
         {
           "Culture": "en-US",

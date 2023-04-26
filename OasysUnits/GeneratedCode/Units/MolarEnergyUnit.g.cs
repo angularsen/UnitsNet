@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum MolarEnergyUnit
     {
-        Undefined = 0,
         JoulePerMole = 1,
         KilojoulePerMole = 2,
         MegajoulePerMole = 3,

@@ -4,7 +4,7 @@
 
 using Xunit;
 
-namespace OasysUnits.Tests.CustomCode
+namespace OasysUnits.Tests
 {
     public class DynamicViscosityTests : DynamicViscosityTestsBase
     {

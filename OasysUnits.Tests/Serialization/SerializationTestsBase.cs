@@ -73,6 +73,7 @@ namespace OasysUnits.Tests.Serialization
         }
 
         [Fact]
+        [SuppressMessage("ReSharper", "ParameterOnlyUsedForPreconditionCheck.Local")]
         public void ArrayOfDoubleValueQuantities_SerializationRoundTrips()
         {
             var quantities = new[] { new Mass(1.2, MassUnit.Milligram), new Mass(2, MassUnit.Gram) };
@@ -94,6 +95,7 @@ namespace OasysUnits.Tests.Serialization
         }
 
         [Fact]
+        [SuppressMessage("ReSharper", "ParameterOnlyUsedForPreconditionCheck.Local")]
         public void ArrayOfDecimalValueQuantities_SerializationRoundTrips()
         {
             var quantities = new[] { new Information(1.2m, InformationUnit.Exabit), new Information(2, InformationUnit.Exabyte) };
@@ -125,6 +127,7 @@ namespace OasysUnits.Tests.Serialization
         }
 
         [Fact]
+        [SuppressMessage("ReSharper", "ParameterOnlyUsedForPreconditionCheck.Local")]
         public virtual void EnumerableOfDoubleValueQuantities_SerializationRoundTrips()
         {
             var firstQuantity = new Mass(1.2, MassUnit.Milligram);
@@ -148,6 +151,7 @@ namespace OasysUnits.Tests.Serialization
         }
 
         [Fact]
+        [SuppressMessage("ReSharper", "ParameterOnlyUsedForPreconditionCheck.Local")]
         public virtual void EnumerableOfDecimalValueQuantities_SerializationRoundTrips()
         {
             var firstQuantity = new Information(1.2m, InformationUnit.Exabit);
@@ -196,7 +200,7 @@ namespace OasysUnits.Tests.Serialization
             var payload = SerializeObject(quantities);
             var results = DeserializeObject<Tuple<Mass?, Information?>>(payload);
 
-            Assert.Equal(quantity.Unit, results.Item1.Value.Unit);
+            Assert.Equal(quantity.Unit, results.Item1!.Value.Unit);
             Assert.Equal(quantity.Value, results.Item1.Value.Value);
             Assert.Equal(quantity, results.Item1);
             Assert.Null(results.Item2);
@@ -213,7 +217,7 @@ namespace OasysUnits.Tests.Serialization
             var results = DeserializeObject<Tuple<Mass?, Information?>>(payload);
 
             Assert.Null(results.Item1);
-            Assert.Equal(quantity.Unit, results.Item2.Value.Unit);
+            Assert.Equal(quantity.Unit, results.Item2!.Value.Unit);
             Assert.Equal(quantity.Value, results.Item2.Value.Value);
             Assert.Equal(quantity, results.Item2);
         }
@@ -265,7 +269,7 @@ namespace OasysUnits.Tests.Serialization
             Assert.Equal(doubleQuantity.Unit, results.Quantity.Unit);
             Assert.Equal(doubleQuantity.Value, results.Quantity.Value);
             Assert.Equal(doubleQuantity, results.Quantity);
-            Assert.Equal(doubleQuantity.Unit, results.NullableQuantity.Value.Unit);
+            Assert.Equal(doubleQuantity.Unit, results.NullableQuantity!.Value.Unit);
             Assert.Equal(doubleQuantity.Value, results.NullableQuantity.Value.Value);
             Assert.Equal(doubleQuantity, results.NullableQuantity);
             Assert.Equal(decimalQuantity.Unit, results.DecimalQuantity.Unit);
@@ -289,7 +293,7 @@ namespace OasysUnits.Tests.Serialization
         }
 
         [Fact]
-        public void ClassOfInterfaceDecimalQuantity_SerializationRoundTrips()
+        public void ClassOfInterfaceDecimalValueQuantity_SerializationRoundTrips()
         {
             var quantity = new Information(2, InformationUnit.Exabyte);
             var quantityObject = new TestInterfaceObject { Quantity = quantity };
@@ -298,9 +302,9 @@ namespace OasysUnits.Tests.Serialization
             var result = DeserializeObject<TestInterfaceObject>(payload);
 
             Assert.Equal(quantity.Unit, result.Quantity.Unit);
-            Assert.Equal(quantity.Value, ((IDecimalQuantity)result.Quantity).Value);
+            Assert.Equal(quantity.Value, ((IValueQuantity<decimal>)result.Quantity).Value);
             Assert.Equal(quantity, result.Quantity);
-            Assert.Equal("2", ((IDecimalQuantity)result.Quantity).Value.ToString(CultureInfo.InvariantCulture));
+            Assert.Equal("2", ((IValueQuantity<decimal>)result.Quantity).Value.ToString(CultureInfo.InvariantCulture));
         }
 
         [DataContract]

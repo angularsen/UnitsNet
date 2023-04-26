@@ -2,7 +2,7 @@
 $nugetOutDir = "$root\Artifacts\NuGet"
 $nuget = "$root\Tools\NuGet.exe"
 
-function Invoke-Build-NanoNugets {
+function Invoke-BuildNanoNugets {
 
   & $nuget pack "$root\OasysUnits.NanoFramework\GeneratedCode\Duration\OasysUnits.NanoFramework.Duration.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
   & $nuget pack "$root\OasysUnits.NanoFramework\GeneratedCode\ElectricCurrent\OasysUnits.NanoFramework.ElectricCurrent.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
@@ -25,4 +25,4 @@ function Invoke-Build-NanoNugets {
 
 }
 
-export-modulemember -function Invoke-Build-NanoNugets
+export-modulemember -function Invoke-BuildNanoNugets

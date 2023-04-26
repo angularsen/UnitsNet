@@ -36,5 +36,9 @@ namespace OasysUnits.Tests.CustomCode
         protected override double MegavoltamperesInOneVoltampere => 1E-6;
 
         protected override double GigavoltamperesInOneVoltampere => 1E-9;
+
+        protected override double MicrovoltamperesInOneVoltampere => 1E6;
+
+        protected override double MillivoltamperesInOneVoltampere => 1E3;
     }
 }

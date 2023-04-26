@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum ReciprocalLengthUnit
     {
-        Undefined = 0,
         InverseCentimeter = 1,
         InverseFoot = 2,
         InverseInch = 3,

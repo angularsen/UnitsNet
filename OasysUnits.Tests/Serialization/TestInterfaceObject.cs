@@ -19,6 +19,6 @@ namespace OasysUnits.Tests.Serialization
     public class TestInterfaceObject
     {
         [DataMember]
-        public IQuantity Quantity { get; set; }
+        public IQuantity Quantity { get; set; } = null!;
     }
 }

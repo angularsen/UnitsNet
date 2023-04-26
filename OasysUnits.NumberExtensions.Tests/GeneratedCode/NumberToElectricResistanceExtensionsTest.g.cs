@@ -48,5 +48,9 @@ namespace OasysUnits.Tests
         public void NumberToOhmsTest() =>
             Assert.Equal(ElectricResistance.FromOhms(2), 2.Ohms());
 
+        [Fact]
+        public void NumberToTeraohmsTest() =>
+            Assert.Equal(ElectricResistance.FromTeraohms(2), 2.Teraohms());
+
     }
 }

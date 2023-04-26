@@ -1,7 +1,7 @@
 {
   "Name": "Angle",
   "BaseUnit": "Degree",
-  "XmlDoc": "In geometry, an angle is the figure formed by two rays, called the sides of the angle, sharing a common endpoint, called the vertex of the angle.",
+  "XmlDocSummary": "In geometry, an angle is the figure formed by two rays, called the sides of the angle, sharing a common endpoint, called the vertex of the angle.",
   "Units": [
     {
       "SingularName": "Radian",

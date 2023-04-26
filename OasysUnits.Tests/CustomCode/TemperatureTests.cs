@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Xunit;
 
-namespace OasysUnits.Tests.CustomCode
+namespace OasysUnits.Tests
 {
     public class TemperatureTests : TemperatureTestsBase
     {
@@ -120,8 +120,6 @@ namespace OasysUnits.Tests.CustomCode
                 new object[] { Temperature.FromDegreesFahrenheit(-10), TemperatureDelta.FromDegreesFahrenheit(10), Temperature.FromDegreesFahrenheit(0) },
                 new object[] { Temperature.FromDegreesFahrenheit(-10), TemperatureDelta.FromDegreesFahrenheit(20), Temperature.FromDegreesFahrenheit(10) }
             };
-
-
 
         [Theory]
         [MemberData(nameof(TemperaturePlusTemperatureDeltaEqualsTemperatureData))]

@@ -1,7 +1,7 @@
 #!/bin/bash
-# Increments version of nugets UnitNets, UnitsNet.NumberExtensions.
+# Increments version of nugets UnitNets, OasysUnits.NumberExtensions.
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-set_version_script="$script_dir/set-version-UnitsNet.ps1"
+set_version_script="$script_dir/set-version-OasysUnits.ps1"
 
 names=(major minor patch suffix);
 if [[ " "${names[@]}" " == *" "$1" "* ]] ;then

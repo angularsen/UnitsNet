@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum ElectricAdmittanceUnit
     {
-        Undefined = 0,
         Microsiemens = 1,
         Millisiemens = 2,
         Nanosiemens = 3,

@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum EntropyUnit
     {
-        Undefined = 0,
         CaloriePerKelvin = 1,
         JoulePerDegreeCelsius = 2,
         JoulePerKelvin = 3,

@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum MagneticFluxUnit
     {
-        Undefined = 0,
         Weber = 1,
     }
 

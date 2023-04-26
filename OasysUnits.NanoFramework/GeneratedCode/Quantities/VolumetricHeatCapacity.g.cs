@@ -198,69 +198,69 @@ namespace OasysUnits
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(VolumetricHeatCapacityUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(VolumetricHeatCapacityUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public VolumetricHeatCapacity ToUnit(VolumetricHeatCapacityUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new VolumetricHeatCapacity(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public VolumetricHeatCapacity ToUnit(VolumetricHeatCapacityUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new VolumetricHeatCapacity(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit => _value / 1.4910660e-5,
-                VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius => _value / 2.388459e-7,
-                VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius => _value,
-                VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin => _value,
-                VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius => (_value / 2.388459e-7) * 1e3d,
-                VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius => (_value) * 1e3d,
-                VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin => (_value) * 1e3d,
-                VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius => (_value) * 1e6d,
-                VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin => (_value) * 1e6d,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit => _value / 1.4910660e-5,
+                        VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius => _value / 2.388459e-7,
+                        VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius => _value,
+                        VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin => _value,
+                        VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius => (_value / 2.388459e-7) * 1e3d,
+                        VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius => (_value) * 1e3d,
+                        VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin => (_value) * 1e3d,
+                        VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius => (_value) * 1e6d,
+                        VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin => (_value) * 1e6d,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(VolumetricHeatCapacityUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(VolumetricHeatCapacityUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit => baseUnitValue * 1.4910660e-5,
-                VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius => baseUnitValue * 2.388459e-7,
-                VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius => baseUnitValue,
-                VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin => baseUnitValue,
-                VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius => (baseUnitValue * 2.388459e-7) / 1e3d,
-                VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius => (baseUnitValue) / 1e3d,
-                VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin => (baseUnitValue) / 1e3d,
-                VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius => (baseUnitValue) / 1e6d,
-                VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin => (baseUnitValue) / 1e6d,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit => baseUnitValue * 1.4910660e-5,
+                        VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius => baseUnitValue * 2.388459e-7,
+                        VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius => baseUnitValue,
+                        VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin => baseUnitValue,
+                        VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius => (baseUnitValue * 2.388459e-7) / 1e3d,
+                        VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius => (baseUnitValue) / 1e3d,
+                        VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin => (baseUnitValue) / 1e3d,
+                        VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius => (baseUnitValue) / 1e6d,
+                        VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin => (baseUnitValue) / 1e6d,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

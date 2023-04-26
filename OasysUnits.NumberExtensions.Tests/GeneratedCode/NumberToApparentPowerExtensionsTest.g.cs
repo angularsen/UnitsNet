@@ -37,6 +37,14 @@ namespace OasysUnits.Tests
             Assert.Equal(ApparentPower.FromMegavoltamperes(2), 2.Megavoltamperes());
 
         [Fact]
+        public void NumberToMicrovoltamperesTest() =>
+            Assert.Equal(ApparentPower.FromMicrovoltamperes(2), 2.Microvoltamperes());
+
+        [Fact]
+        public void NumberToMillivoltamperesTest() =>
+            Assert.Equal(ApparentPower.FromMillivoltamperes(2), 2.Millivoltamperes());
+
+        [Fact]
         public void NumberToVoltamperesTest() =>
             Assert.Equal(ApparentPower.FromVoltamperes(2), 2.Voltamperes());
 

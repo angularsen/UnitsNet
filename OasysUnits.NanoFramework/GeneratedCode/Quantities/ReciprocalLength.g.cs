@@ -209,71 +209,71 @@ namespace OasysUnits
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(ReciprocalLengthUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(ReciprocalLengthUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public ReciprocalLength ToUnit(ReciprocalLengthUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new ReciprocalLength(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public ReciprocalLength ToUnit(ReciprocalLengthUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new ReciprocalLength(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                ReciprocalLengthUnit.InverseCentimeter => _value * 1e2,
-                ReciprocalLengthUnit.InverseFoot => _value / 0.3048,
-                ReciprocalLengthUnit.InverseInch => _value / 2.54e-2,
-                ReciprocalLengthUnit.InverseMeter => _value,
-                ReciprocalLengthUnit.InverseMicroinch => _value / 2.54e-8,
-                ReciprocalLengthUnit.InverseMil => _value / 2.54e-5,
-                ReciprocalLengthUnit.InverseMile => _value / 1609.34,
-                ReciprocalLengthUnit.InverseMillimeter => _value * 1e3,
-                ReciprocalLengthUnit.InverseUsSurveyFoot => _value * 3937 / 1200,
-                ReciprocalLengthUnit.InverseYard => _value / 0.9144,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        ReciprocalLengthUnit.InverseCentimeter => _value * 1e2,
+                        ReciprocalLengthUnit.InverseFoot => _value / 0.3048,
+                        ReciprocalLengthUnit.InverseInch => _value / 2.54e-2,
+                        ReciprocalLengthUnit.InverseMeter => _value,
+                        ReciprocalLengthUnit.InverseMicroinch => _value / 2.54e-8,
+                        ReciprocalLengthUnit.InverseMil => _value / 2.54e-5,
+                        ReciprocalLengthUnit.InverseMile => _value / 1609.34,
+                        ReciprocalLengthUnit.InverseMillimeter => _value * 1e3,
+                        ReciprocalLengthUnit.InverseUsSurveyFoot => _value * 3937 / 1200,
+                        ReciprocalLengthUnit.InverseYard => _value / 0.9144,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(ReciprocalLengthUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(ReciprocalLengthUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                ReciprocalLengthUnit.InverseCentimeter => baseUnitValue / 1e2,
-                ReciprocalLengthUnit.InverseFoot => baseUnitValue * 0.3048,
-                ReciprocalLengthUnit.InverseInch => baseUnitValue * 2.54e-2,
-                ReciprocalLengthUnit.InverseMeter => baseUnitValue,
-                ReciprocalLengthUnit.InverseMicroinch => baseUnitValue * 2.54e-8,
-                ReciprocalLengthUnit.InverseMil => baseUnitValue * 2.54e-5,
-                ReciprocalLengthUnit.InverseMile => baseUnitValue * 1609.34,
-                ReciprocalLengthUnit.InverseMillimeter => baseUnitValue / 1e3,
-                ReciprocalLengthUnit.InverseUsSurveyFoot => baseUnitValue * 1200 / 3937,
-                ReciprocalLengthUnit.InverseYard => baseUnitValue * 0.9144,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        ReciprocalLengthUnit.InverseCentimeter => baseUnitValue / 1e2,
+                        ReciprocalLengthUnit.InverseFoot => baseUnitValue * 0.3048,
+                        ReciprocalLengthUnit.InverseInch => baseUnitValue * 2.54e-2,
+                        ReciprocalLengthUnit.InverseMeter => baseUnitValue,
+                        ReciprocalLengthUnit.InverseMicroinch => baseUnitValue * 2.54e-8,
+                        ReciprocalLengthUnit.InverseMil => baseUnitValue * 2.54e-5,
+                        ReciprocalLengthUnit.InverseMile => baseUnitValue * 1609.34,
+                        ReciprocalLengthUnit.InverseMillimeter => baseUnitValue / 1e3,
+                        ReciprocalLengthUnit.InverseUsSurveyFoot => baseUnitValue * 1200 / 3937,
+                        ReciprocalLengthUnit.InverseYard => baseUnitValue * 0.9144,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 
