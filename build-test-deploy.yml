@@ -47,7 +47,7 @@ steps:
 - powershell: |
     $coverage_file = (Resolve-Path $(System.DefaultWorkingDirectory)/results/unitTests/*/coverage.cobertura.xml).Path
     echo $coverage_file
-    $coverage_file_numberExtensions = (Resolve-Path $(System.DefaultWorkingDirectory)/results/serialization/*/coverage.cobertura.xml).Path
+    $coverage_file_numberExtensions = (Resolve-Path $(System.DefaultWorkingDirectory)/results/numberExtensions/*/coverage.cobertura.xml).Path
     echo $coverage_file_numberExtensions
     $coverage_file_serialization = (Resolve-Path $(System.DefaultWorkingDirectory)/results/serialization/*/coverage.cobertura.xml).Path
     echo $coverage_file_serialization
