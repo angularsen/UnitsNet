@@ -2,28 +2,27 @@
   <!-- NuGet properties -->
   <PropertyGroup>
     <PackageId>OasysUnits.NumberExtensions</PackageId>
-    <Version>1.0.0</Version>
-    <Authors>Andreas Gullberg Larsen, Lu Li, Jon Suda, Oasys</Authors>
-    <Title>OasysUnits NumberExtensions</Title>
+    <Version>5.12.0</Version>
+    <Authors>Andreas Gullberg Larsen, Lu Li, Jon Suda</Authors>
+    <Title>Units.NET NumberExtensions</Title>
     <Description>Adds extension methods to number types to more easily create quantities, such as 5.Meters() instead of Length.FromMeters(5).</Description>
-    <Copyright>Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com), 2022 Oasys.</Copyright>
+    <Copyright>Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).</Copyright>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <RepositoryUrl>https://github.com/arup-group/OasysUnits</RepositoryUrl>
-    <PackageIcon>OasysUnits-32.png</PackageIcon>
+    <RepositoryUrl>https://github.com/angularsen/UnitsNet</RepositoryUrl>
+    <PackageIcon>logo-32.png</PackageIcon>
     <PackageIconUrl>https://raw.githubusercontent.com/angularsen/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</PackageIconUrl>
-    <PackageProjectUrl>https://github.com/arup-group/OasysUnits</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/angularsen/UnitsNet</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageTags>OasysUnits Extensions NumberToExtensions NumberToUnitsExtensions NumberExtensions NumberToUnits convert conversion parse</PackageTags>
-    <PackageReleaseNotes>This is a release of UnitsNet.NumberExtensions 4.145.0 with additional support for Oasys units.</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <AssemblyVersion>5.0.0.0</AssemblyVersion>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <RootNamespace>OasysUnits</RootNamespace>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -35,7 +34,6 @@
     <AssemblyOriginatorKeyFile>../OasysUnits.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
     <SignAssembly>true</SignAssembly>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <!-- Project references, will also generate the corresponding nuget dependencies -->
@@ -45,7 +43,7 @@
 
   <!-- Files to include in nuget package -->
   <ItemGroup>
-    <None Include="..\Docs\Images\OasysUnits-32.png" Pack="true" PackagePath="/" />
+    <None Include="../Docs/Images/logo-32.png" Pack="true" PackagePath="/" />
   </ItemGroup>
 
 </Project>
