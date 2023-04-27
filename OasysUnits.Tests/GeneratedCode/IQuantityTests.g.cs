@@ -88,6 +88,7 @@ namespace OasysUnits.Tests
             Assertion(3, IrradiationUnit.WattHourPerSquareMeter, Quantity.From(3, IrradiationUnit.WattHourPerSquareMeter));
             Assertion(3, JerkUnit.StandardGravitiesPerSecond, Quantity.From(3, JerkUnit.StandardGravitiesPerSecond));
             Assertion(3, KinematicViscosityUnit.Stokes, Quantity.From(3, KinematicViscosityUnit.Stokes));
+            Assertion(3, LapseRateUnit.DegreeCelsiusPerKilometer, Quantity.From(3, LapseRateUnit.DegreeCelsiusPerKilometer));
             Assertion(3, LeakRateUnit.TorrLiterPerSecond, Quantity.From(3, LeakRateUnit.TorrLiterPerSecond));
             Assertion(3, LengthUnit.Yard, Quantity.From(3, LengthUnit.Yard));
             Assertion(3, LevelUnit.Neper, Quantity.From(3, LevelUnit.Neper));
@@ -220,6 +221,7 @@ namespace OasysUnits.Tests
             Assertion(Irradiation.Info, Irradiation.Zero);
             Assertion(Jerk.Info, Jerk.Zero);
             Assertion(KinematicViscosity.Info, KinematicViscosity.Zero);
+            Assertion(LapseRate.Info, LapseRate.Zero);
             Assertion(LeakRate.Info, LeakRate.Zero);
             Assertion(Length.Info, Length.Zero);
             Assertion(Level.Info, Level.Zero);
@@ -352,6 +354,7 @@ namespace OasysUnits.Tests
             Assertion(Irradiation.BaseDimensions, Irradiation.Zero);
             Assertion(Jerk.BaseDimensions, Jerk.Zero);
             Assertion(KinematicViscosity.BaseDimensions, KinematicViscosity.Zero);
+            Assertion(LapseRate.BaseDimensions, LapseRate.Zero);
             Assertion(LeakRate.BaseDimensions, LeakRate.Zero);
             Assertion(Length.BaseDimensions, Length.Zero);
             Assertion(Level.BaseDimensions, Level.Zero);
