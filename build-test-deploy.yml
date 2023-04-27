@@ -32,9 +32,9 @@ steps:
     MSBUILDDISABLENODEREUSE: 1
 
 - powershell: |
-    dotnet test --collect:"XPlat Code Coverage" /TestAdapterPath:$env:UserProfile\.nuget\packages\coverlet.collector\3.1.2\build --results-directory .\results\unitTests --no-restore --logger trx .\Artifacts\OasysUnits.Tests\net6.0\OasysUnits.Tests.dll
-    dotnet test --collect:"XPlat Code Coverage" /TestAdapterPath:$env:UserProfile\.nuget\packages\coverlet.collector\3.1.2\build --results-directory .\results\numberExtensions --no-restore --logger trx .\Artifacts\OasysUnits.NumberExtensions.Tests\net6.0\OasysUnits.NumberExtensions.Tests.dll
-    dotnet test --collect:"XPlat Code Coverage" /TestAdapterPath:$env:UserProfile\.nuget\packages\coverlet.collector\3.1.2\build --results-directory .\results\serialization --no-restore --logger trx .\Artifacts\OasysUnits.Serialization.JsonNet.Tests\net6.0\OasysUnits.Serialization.JsonNet.Tests.dll
+    dotnet test --collect:"XPlat Code Coverage" /TestAdapterPath:$env:UserProfile\.nuget\packages\coverlet.collector\3.2.0\build --results-directory .\results\unitTests --no-restore --logger trx .\Artifacts\OasysUnits.Tests\net6.0\OasysUnits.Tests.dll
+    dotnet test --collect:"XPlat Code Coverage" /TestAdapterPath:$env:UserProfile\.nuget\packages\coverlet.collector\3.2.0\build --results-directory .\results\numberExtensions --no-restore --logger trx .\Artifacts\OasysUnits.NumberExtensions.Tests\net6.0\OasysUnits.NumberExtensions.Tests.dll
+    dotnet test --collect:"XPlat Code Coverage" /TestAdapterPath:$env:UserProfile\.nuget\packages\coverlet.collector\3.2.0\build --results-directory .\results\serialization --no-restore --logger trx .\Artifacts\OasysUnits.Serialization.JsonNet.Tests\net6.0\OasysUnits.Serialization.JsonNet.Tests.dll
   displayName: dotnet test
 
 - task: PublishCodeCoverageResults@1
