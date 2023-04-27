@@ -35,7 +35,6 @@ steps:
     dotnet test --collect:"XPlat Code Coverage" /TestAdapterPath:$env:UserProfile\.nuget\packages\coverlet.collector\3.1.2\build --results-directory .\results\unitTests --no-restore --logger trx .\Artifacts\OasysUnits.Tests\net6.0\OasysUnits.Tests.dll
     dotnet test --collect:"XPlat Code Coverage" /TestAdapterPath:$env:UserProfile\.nuget\packages\coverlet.collector\3.1.2\build --results-directory .\results\numberExtensions --no-restore --logger trx .\Artifacts\OasysUnits.NumberExtensions.Tests\net6.0\OasysUnits.NumberExtensions.Tests.dll
     dotnet test --collect:"XPlat Code Coverage" /TestAdapterPath:$env:UserProfile\.nuget\packages\coverlet.collector\3.1.2\build --results-directory .\results\serialization --no-restore --logger trx .\Artifacts\OasysUnits.Serialization.JsonNet.Tests\net6.0\OasysUnits.Serialization.JsonNet.Tests.dll
-    dotnet test --collect:"XPlat Code Coverage" /TestAdapterPath:$env:UserProfile\.nuget\packages\coverlet.collector\3.1.2\build --results-directory .\results\compatibility --no-restore --logger trx .\Artifacts\OasysUnits.Serialization.JsonNet.CompatibilityTests\net6.0\OasysUnits.Serialization.JsonNet.CompatibilityTests.dll
   displayName: dotnet test
 
 - task: PublishCodeCoverageResults@1
@@ -51,17 +50,13 @@ steps:
     echo $coverage_file_numberExtensions
     $coverage_file_serialization = (Resolve-Path $(System.DefaultWorkingDirectory)/results/serialization/*/coverage.cobertura.xml).Path
     echo $coverage_file_serialization
-    $coverage_file_compatibility = (Resolve-Path $(System.DefaultWorkingDirectory)/results/compatibility/*/coverage.cobertura.xml).Path
-    echo $coverage_file_compatibility
     Copy-Item $coverage_file $(System.DefaultWorkingDirectory)\results\coverage.xml
     Copy-Item $coverage_file_numberExtensions $(System.DefaultWorkingDirectory)\results\coverage_numberExtensions.xml
     Copy-Item $coverage_file_serialization $(System.DefaultWorkingDirectory)\results\coverage_serialization.xml
-    Copy-Item $coverage_file_compatibility $(System.DefaultWorkingDirectory)\results\coverage_compatibility.xml
     ls $(System.DefaultWorkingDirectory)\results\
     codecov -t $env:CODECOV_TOKEN --dir $(System.DefaultWorkingDirectory)\results --file coverage.xml -F unittests
     codecov -t $env:CODECOV_TOKEN --dir $(System.DefaultWorkingDirectory)\results --file coverage_numberExtensions.xml -F numberExtensions
     codecov -t $env:CODECOV_TOKEN --dir $(System.DefaultWorkingDirectory)\results --file coverage_serialization.xml -F serialization
-    codecov -t $env:CODECOV_TOKEN --dir $(System.DefaultWorkingDirectory)\results --file coverage_compatibility.xml -F compatibility
   env:
     CODECOV_TOKEN: $(CODECOV_TOKEN)
   displayName: Upload Code Coverage to codecovio
@@ -75,9 +70,6 @@ steps:
 
 - publish: $(System.DefaultWorkingDirectory)\results\coverage_serialization.xml
   artifact: OasysUnits.Serialization.JsonNet.Tests.Coverage
-
-- publish: $(System.DefaultWorkingDirectory)\results\coverage_compatibility.xml
-  artifact: OasysUnits.Serialization.JsonNet.CompatibilityTests.Coverage
 
 - task: PowerShell@2
   displayName: Check for existing tags
