@@ -2,11 +2,11 @@
   <!-- NuGet properties -->
   <PropertyGroup>
     <PackageId>OasysUnits</PackageId>
-    <Version>1.0.0</Version>
+    <Version>1.1.0</Version>
     <Authors>Andreas Gullberg Larsen, Oasys</Authors>
     <Title>OasysUnits</Title>
     <Description>Get all the common units of measurement and the conversions between them. It is light-weight and thoroughly tested.</Description>
-    <Copyright>Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com), 2022 Oasys.</Copyright>
+    <Copyright>Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com), 2023 Oasys.</Copyright>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <RepositoryUrl>https://github.com/arup-group/OasysUnits</RepositoryUrl>
     <PackageIcon>OasysUnits-32.png</PackageIcon>
@@ -20,7 +20,7 @@
 
   <!-- Assembly and msbuild properties -->
   <PropertyGroup>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion> <!-- Should reflect major part of Version -->
+    <AssemblyVersion>1.1.0.0</AssemblyVersion> <!-- Should reflect major part of Version -->
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <RootNamespace>OasysUnits</RootNamespace>
