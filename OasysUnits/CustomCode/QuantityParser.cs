@@ -11,22 +11,12 @@ using System.Text.RegularExpressions;
 // ReSharper disable once CheckNamespace
 namespace OasysUnits
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <typeparam name="TQuantity"></typeparam>
-    /// <typeparam name="TUnitType"></typeparam>
-    /// <param name="value"></param>
-    /// <param name="fromUnit"></param>
-    /// <returns></returns>
-    public delegate TQuantity QuantityFromDelegate<out TQuantity, in TUnitType>(QuantityValue value, TUnitType fromUnit)
+
+    internal delegate TQuantity QuantityFromDelegate<out TQuantity, in TUnitType>(QuantityValue value, TUnitType fromUnit)
         where TQuantity : IQuantity
         where TUnitType : Enum;
 
-    /// <summary>
-    ///
-    /// </summary>
-    public class QuantityParser
+    internal class QuantityParser
     {
         /// <summary>
         /// Allow integer, floating point or exponential number formats.
@@ -36,15 +26,8 @@ namespace OasysUnits
         private readonly UnitAbbreviationsCache _unitAbbreviationsCache;
         private readonly UnitParser _unitParser;
 
-        /// <summary>
-        /// 
-        /// </summary>
         public static QuantityParser Default { get; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="unitAbbreviationsCache"></param>
         public QuantityParser(UnitAbbreviationsCache? unitAbbreviationsCache)
         {
             _unitAbbreviationsCache = unitAbbreviationsCache ?? UnitAbbreviationsCache.Default;
@@ -56,18 +39,8 @@ namespace OasysUnits
             Default = new QuantityParser(UnitAbbreviationsCache.Default);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="TQuantity"></typeparam>
-        /// <typeparam name="TUnitType"></typeparam>
-        /// <param name="str"></param>
-        /// <param name="formatProvider"></param>
-        /// <param name="fromDelegate"></param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentNullException"></exception>
         [SuppressMessage("ReSharper", "UseStringInterpolation")]
-        public TQuantity Parse<TQuantity, TUnitType>(string str,
+        internal TQuantity Parse<TQuantity, TUnitType>(string str,
             IFormatProvider? formatProvider,
             QuantityFromDelegate<TQuantity, TUnitType> fromDelegate)
             where TQuantity : IQuantity
@@ -89,18 +62,8 @@ namespace OasysUnits
             return ParseWithRegex(valueString, unitString, fromDelegate, formatProvider);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="TQuantity"></typeparam>
-        /// <typeparam name="TUnitType"></typeparam>
-        /// <param name="str"></param>
-        /// <param name="formatProvider"></param>
-        /// <param name="fromDelegate"></param>
-        /// <param name="result"></param>
-        /// <returns></returns>
         [SuppressMessage("ReSharper", "UseStringInterpolation")]
-        public bool TryParse<TQuantity, TUnitType>(string? str,
+        internal bool TryParse<TQuantity, TUnitType>(string? str,
             IFormatProvider? formatProvider,
             QuantityFromDelegate<TQuantity, TUnitType> fromDelegate,
             out TQuantity result)

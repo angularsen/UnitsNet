@@ -7,7 +7,7 @@ namespace OasysUnits
     /// Compiled lambda expressions that can be invoked with generic run-time parameters. This is used for performance as
     /// it is far faster than reflection based alternatives.
     /// </summary>
-    public static class CompiledLambdas
+    internal static class CompiledLambdas
     {
         /// <summary>
         /// Multiplies the given values.
@@ -16,7 +16,7 @@ namespace OasysUnits
         /// <param name="left">The left hand side parameter.</param>
         /// <param name="right">The right hand side parameter.</param>
         /// <returns>The multiplied result.</returns>
-        public static T Multiply<T>(T left, T right) => MultiplyImplementation<T, T, T>.Invoke(left, right);
+        internal static T Multiply<T>(T left, T right) => MultiplyImplementation<T, T, T>.Invoke(left, right);
 
         /// <summary>
         /// Multiplies the given values.
@@ -27,7 +27,7 @@ namespace OasysUnits
         /// <param name="left">The left hand side parameter.</param>
         /// <param name="right">The right hand side parameter.</param>
         /// <returns>The multiplied result.</returns>
-        public static TResult Multiply<TLeft, TRight, TResult>(TLeft left, TRight right) =>
+        internal static TResult Multiply<TLeft, TRight, TResult>(TLeft left, TRight right) =>
             MultiplyImplementation<TLeft, TRight, TResult>.Invoke(left, right);
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace OasysUnits
         /// <param name="left">The left hand side parameter.</param>
         /// <param name="right">The right hand side parameter.</param>
         /// <returns>The divided result.</returns>
-        public static T Divide<T>(T left, T right) => DivideImplementation<T, T, T>.Invoke(left, right);
+        internal static T Divide<T>(T left, T right) => DivideImplementation<T, T, T>.Invoke(left, right);
 
         /// <summary>
         /// Divides the given values.
@@ -48,7 +48,7 @@ namespace OasysUnits
         /// <param name="left">The left hand side parameter.</param>
         /// <param name="right">The right hand side parameter.</param>
         /// <returns>The divided result.</returns>
-        public static TResult Divide<TLeft, TRight, TResult>(TLeft left, TRight right) =>
+        internal static TResult Divide<TLeft, TRight, TResult>(TLeft left, TRight right) =>
             DivideImplementation<TLeft, TRight, TResult>.Invoke(left, right);
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace OasysUnits
         /// <param name="left">The left hand side parameter.</param>
         /// <param name="right">The right hand side parameter.</param>
         /// <returns>The added result.</returns>
-        public static T Add<T>(T left, T right) => AddImplementation<T, T, T>.Invoke(left, right);
+        internal static T Add<T>(T left, T right) => AddImplementation<T, T, T>.Invoke(left, right);
 
         /// <summary>
         /// Adds the given values.
@@ -69,7 +69,7 @@ namespace OasysUnits
         /// <param name="left">The left hand side parameter.</param>
         /// <param name="right">The right hand side parameter.</param>
         /// <returns>The added result.</returns>
-        public static TResult Add<TLeft, TRight, TResult>(TLeft left, TRight right) =>
+        internal static TResult Add<TLeft, TRight, TResult>(TLeft left, TRight right) =>
             AddImplementation<TLeft, TRight, TResult>.Invoke(left, right);
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace OasysUnits
         /// <param name="left">The left hand side parameter.</param>
         /// <param name="right">The right hand side parameter.</param>
         /// <returns>The subtracted result.</returns>
-        public static T Subtract<T>(T left, T right) => SubtractImplementation<T, T, T>.Invoke(left, right);
+        internal static T Subtract<T>(T left, T right) => SubtractImplementation<T, T, T>.Invoke(left, right);
 
         /// <summary>
         /// Subtracts the given values.
@@ -90,7 +90,7 @@ namespace OasysUnits
         /// <param name="left">The left hand side parameter.</param>
         /// <param name="right">The right hand side parameter.</param>
         /// <returns>The subtracted result.</returns>
-        public static TResult Subtract<TLeft, TRight, TResult>(TLeft left, TRight right) =>
+        internal static TResult Subtract<TLeft, TRight, TResult>(TLeft left, TRight right) =>
             SubtractImplementation<TLeft, TRight, TResult>.Invoke(left, right);
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace OasysUnits
         /// <param name="left">The left hand side parameter.</param>
         /// <param name="right">The right hand side parameter.</param>
         /// <returns>The modulus.</returns>
-        public static T Modulo<T>(T left, T right) => ModuloImplementation<T, T, T>.Invoke(left, right);
+        internal static T Modulo<T>(T left, T right) => ModuloImplementation<T, T, T>.Invoke(left, right);
 
         /// <summary>
         /// Gets the modulus of the given values.
@@ -111,7 +111,7 @@ namespace OasysUnits
         /// <param name="left">The left hand side parameter.</param>
         /// <param name="right">The right hand side parameter.</param>
         /// <returns>The modulus.</returns>
-        public static TResult Modulo<TLeft, TRight, TResult>(TLeft left, TRight right) =>
+        internal static TResult Modulo<TLeft, TRight, TResult>(TLeft left, TRight right) =>
             ModuloImplementation<TLeft, TRight, TResult>.Invoke(left, right);
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace OasysUnits
         /// <param name="left">The left hand side parameter.</param>
         /// <param name="right">The right hand side parameter.</param>
         /// <returns>True if equal, otherwise false.</returns>
-        public static bool Equal<T>(T left, T right) => EqualImplementation<T, T>.Invoke(left, right);
+        internal static bool Equal<T>(T left, T right) => EqualImplementation<T, T>.Invoke(left, right);
 
         /// <summary>
         /// Checks if the left and right hand side are equal.
@@ -131,7 +131,7 @@ namespace OasysUnits
         /// <param name="left">The left hand side parameter.</param>
         /// <param name="right">The right hand side parameter.</param>
         /// <returns>True if equal, otherwise false.</returns>
-        public static bool Equal<TLeft, TRight>(TLeft left, TRight right) =>
+        internal static bool Equal<TLeft, TRight>(TLeft left, TRight right) =>
             EqualImplementation<TLeft, TRight>.Invoke(left, right);
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace OasysUnits
         /// <param name="left">The left hand side parameter.</param>
         /// <param name="right">The right hand side parameter.</param>
         /// <returns>True if not equal, otherwise false.</returns>
-        public static bool NotEqual<T>(T left, T right) => NotEqualImplementation<T, T>.Invoke(left, right);
+        internal static bool NotEqual<T>(T left, T right) => NotEqualImplementation<T, T>.Invoke(left, right);
 
         /// <summary>
         /// Checks if the left and right hand side are not equal.
@@ -151,7 +151,7 @@ namespace OasysUnits
         /// <param name="left">The left hand side parameter.</param>
         /// <param name="right">The right hand side parameter.</param>
         /// <returns>True if not equal, otherwise false.</returns>
-        public static bool NotEqual<TLeft, TRight>(TLeft left, TRight right) =>
+        internal static bool NotEqual<TLeft, TRight>(TLeft left, TRight right) =>
             NotEqualImplementation<TLeft, TRight>.Invoke(left, right);
 
         /// <summary>
@@ -162,7 +162,7 @@ namespace OasysUnits
         /// <param name="left">The left hand side parameter.</param>
         /// <param name="right">The right hand side parameter.</param>
         /// <returns>True if the left hand side is less than the right hand side, otherwise false.</returns>
-        public static bool LessThan<TLeft, TRight>(TLeft left, TRight right) =>
+        internal static bool LessThan<TLeft, TRight>(TLeft left, TRight right) =>
             LessThanImplementation<TLeft, TRight>.Invoke(left, right);
 
         /// <summary>
@@ -173,7 +173,7 @@ namespace OasysUnits
         /// <param name="left">The left hand side parameter.</param>
         /// <param name="right">The right hand side parameter.</param>
         /// <returns>True if the left hand side is less than or equal to the right hand side, otherwise false.</returns>
-        public static bool LessThanOrEqual<TLeft, TRight>(TLeft left, TRight right) =>
+        internal static bool LessThanOrEqual<TLeft, TRight>(TLeft left, TRight right) =>
             LessThanOrEqualImplementation<TLeft, TRight>.Invoke(left, right);
 
         /// <summary>
@@ -184,7 +184,7 @@ namespace OasysUnits
         /// <param name="left">The left hand side parameter.</param>
         /// <param name="right">The right hand side parameter.</param>
         /// <returns>True if the left hand side is greater than the right hand side, otherwise false.</returns>
-        public static bool GreaterThan<TLeft, TRight>(TLeft left, TRight right) =>
+        internal static bool GreaterThan<TLeft, TRight>(TLeft left, TRight right) =>
             GreaterThanImplementation<TLeft, TRight>.Invoke(left, right);
 
         /// <summary>
@@ -195,7 +195,7 @@ namespace OasysUnits
         /// <param name="left">The left hand side parameter.</param>
         /// <param name="right">The right hand side parameter.</param>
         /// <returns>True if the left hand side is greater than or equal to the right hand side, otherwise false.</returns>
-        public static bool GreaterThanOrEqual<TLeft, TRight>(TLeft left, TRight right) =>
+        internal static bool GreaterThanOrEqual<TLeft, TRight>(TLeft left, TRight right) =>
             GreaterThanOrEqualImplementation<TLeft, TRight>.Invoke(left, right);
 
         #region Implementation Classes
