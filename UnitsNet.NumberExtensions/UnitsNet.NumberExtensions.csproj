@@ -2,7 +2,7 @@
   <!-- NuGet properties -->
   <PropertyGroup>
     <PackageId>UnitsNet.NumberExtensions</PackageId>
-    <Version>5.12.0</Version>
+    <Version>5.13.0</Version>
     <Authors>Andreas Gullberg Larsen, Lu Li, Jon Suda</Authors>
     <Title>Units.NET NumberExtensions</Title>
     <Description>Adds extension methods to number types to more easily create quantities, such as 5.Meters() instead of Length.FromMeters(5).</Description>
