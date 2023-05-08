@@ -29,7 +29,7 @@ namespace UnitsNet
     /// <summary>
     ///     Dynamically parse or construct quantities when types are only known at runtime.
     /// </summary>
-    public static partial class Quantity
+    public partial class Quantity
     {
         /// <summary>
         /// All QuantityInfo instances mapped by quantity name that are present in UnitsNet by default.
@@ -62,7 +62,7 @@ namespace UnitsNet
             Writer.WL(@"
                 _ => throw new ArgumentException($""{quantityInfo.Name} is not a supported quantity."")
             };
-            }
+        }
 
         /// <summary>
         ///     Try to dynamically construct a quantity.
@@ -120,7 +120,7 @@ namespace UnitsNet
             Writer.WL(@"
                 _ => false
             };
-            }
+        }
 
         internal static IEnumerable<Type> GetQuantityTypes()
         {");
