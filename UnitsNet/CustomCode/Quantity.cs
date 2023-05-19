@@ -2,65 +2,48 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
 
 namespace UnitsNet
 {
     public partial class Quantity
     {
-        private static readonly Lazy<QuantityInfo[]> InfosLazy;
-        private static readonly Lazy<Dictionary<(Type, string), UnitInfo>> UnitTypeAndNameToUnitInfoLazy;
-
         static Quantity()
         {
-            ICollection<QuantityInfo> quantityInfos = ByName.Values;
-            Names = quantityInfos.Select(qt => qt.Name).ToArray();
+            Default = new QuantityInfoLookup();
+        }
 
-            InfosLazy = new Lazy<QuantityInfo[]>(() => quantityInfos
-                .OrderBy(quantityInfo => quantityInfo.Name)
-                .ToArray());
-
-            UnitTypeAndNameToUnitInfoLazy = new Lazy<Dictionary<(Type, string), UnitInfo>>(() =>
-            {
-                return Infos
-                    .SelectMany(quantityInfo => quantityInfo.UnitInfos
-                        .Select(unitInfo => new KeyValuePair<(Type, string), UnitInfo>(
-                            (unitInfo.Value.GetType(), unitInfo.Name),
-                            unitInfo)))
-                    .ToDictionary(x => x.Key, x => x.Value);
-            });
+        private static QuantityInfoLookup Default
+        {
+            get;
         }
 
         /// <summary>
         /// All enum value names of <see cref="Infos"/>, such as "Length" and "Mass".
         /// </summary>
-        public static string[] Names { get; }
+        public static string[] Names { get => Default.Names; }
 
         /// <summary>
         /// All quantity information objects, such as <see cref="Length.Info"/> and <see cref="Mass.Info"/>.
         /// </summary>
-        public static QuantityInfo[] Infos => InfosLazy.Value;
+        public static QuantityInfo[] Infos => Default.Infos;
 
         /// <summary>
         /// Get <see cref="UnitInfo"/> for a given unit enum value.
         /// </summary>
-        public static UnitInfo GetUnitInfo(Enum unitEnum) => UnitTypeAndNameToUnitInfoLazy.Value[(unitEnum.GetType(), unitEnum.ToString())];
+        public static UnitInfo GetUnitInfo(Enum unitEnum) => Default.GetUnitInfo(unitEnum);
 
         /// <summary>
         /// Try to get <see cref="UnitInfo"/> for a given unit enum value.
         /// </summary>
         public static bool TryGetUnitInfo(Enum unitEnum, [NotNullWhen(true)] out UnitInfo? unitInfo) =>
-            UnitTypeAndNameToUnitInfoLazy.Value.TryGetValue((unitEnum.GetType(), unitEnum.ToString()), out unitInfo);
+            Default.TryGetUnitInfo(unitEnum, out unitInfo);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="unit"></param>
         /// <param name="unitInfo"></param>
-        public static void AddUnitInfo(Enum unit, UnitInfo unitInfo)
-        {
-            UnitTypeAndNameToUnitInfoLazy.Value.Add((unit.GetType(), unit.ToString()), unitInfo);
-        }
+        public static void AddUnitInfo(Enum unit, UnitInfo unitInfo) => Default.AddUnitInfo(unit, unitInfo);
 
         /// <summary>
         ///     Dynamically construct a quantity.
@@ -71,29 +54,17 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">Unit value is not a know unit enum type.</exception>
         public static IQuantity From(QuantityValue value, Enum unit)
         {
-            if (TryFrom(value, unit, out IQuantity? quantity))
-                return quantity;
-
-            throw new ArgumentException(
-                $"Unit value {unit} of type {unit.GetType()} is not a known unit enum type. Expected types like UnitsNet.Units.LengthUnit. Did you pass in a third-party enum type defined outside UnitsNet library?");
+            return Default.From(value, unit);
         }
 
         /// <inheritdoc cref="TryFrom(QuantityValue,System.Enum,out UnitsNet.IQuantity)"/>
         public static bool TryFrom(double value, Enum unit, [NotNullWhen(true)] out IQuantity? quantity)
         {
-            // Implicit cast to QuantityValue would prevent TryFrom from being called,
-            // so we need to explicitly check this here for double arguments.
-            if (double.IsNaN(value) || double.IsInfinity(value))
-            {
-                quantity = default(IQuantity);
-                return false;
-            }
-
-            return TryFrom((QuantityValue)value, unit, out quantity);
+            return Default.TryFrom(value, unit, out quantity);
         }
 
         /// <inheritdoc cref="Parse(IFormatProvider, System.Type,string)"/>
-        public static IQuantity Parse(Type quantityType, string quantityString) => Parse(null, quantityType, quantityString);
+        public static IQuantity Parse(Type quantityType, string quantityString) => Default.Parse(null, quantityType, quantityString);
 
         /// <summary>
         ///     Dynamically parse a quantity string representation.
@@ -105,18 +76,12 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">Type must be of type UnitsNet.IQuantity -or- Type is not a known quantity type.</exception>
         public static IQuantity Parse(IFormatProvider? formatProvider, Type quantityType, string quantityString)
         {
-            if (!typeof(IQuantity).IsAssignableFrom(quantityType))
-                throw new ArgumentException($"Type {quantityType} must be of type UnitsNet.IQuantity.");
-
-            if (TryParse(formatProvider, quantityType, quantityString, out IQuantity? quantity))
-                return quantity;
-
-            throw new ArgumentException($"Quantity string could not be parsed to quantity {quantityType}.");
+            return Default.Parse(formatProvider, quantityType, quantityString);
         }
 
         /// <inheritdoc cref="TryParse(IFormatProvider,System.Type,string,out UnitsNet.IQuantity)"/>
         public static bool TryParse(Type quantityType, string quantityString, [NotNullWhen(true)] out IQuantity? quantity) =>
-            TryParse(null, quantityType, quantityString, out quantity);
+            Default.TryParse(quantityType, quantityString, out quantity);
 
         /// <summary>
         ///     Get a list of quantities that has the given base dimensions.
@@ -124,7 +89,7 @@ namespace UnitsNet
         /// <param name="baseDimensions">The base dimensions to match.</param>
         public static IEnumerable<QuantityInfo> GetQuantitiesWithBaseDimensions(BaseDimensions baseDimensions)
         {
-            return InfosLazy.Value.Where(info => info.BaseDimensions.Equals(baseDimensions));
+            return Default.GetQuantitiesWithBaseDimensions(baseDimensions);
         }
     }
 }

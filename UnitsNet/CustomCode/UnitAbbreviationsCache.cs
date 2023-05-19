@@ -32,11 +32,14 @@ namespace UnitsNet
         /// </summary>
         public static UnitAbbreviationsCache Default { get; }
 
+        private QuantityInfoLookup QuantityInfoLookup { get; }
+
         /// <summary>
         ///     Create an instance of the cache and load all the abbreviations defined in the library.
         /// </summary>
         public UnitAbbreviationsCache()
         {
+            QuantityInfoLookup= new QuantityInfoLookup();
         }
 
         static UnitAbbreviationsCache()
@@ -130,10 +133,10 @@ namespace UnitsNet
 
         internal void PerformAbbreviationMapping(Enum unitValue, IFormatProvider? formatProvider, bool setAsDefault, bool allowAbbreviationLookup, params string[] abbreviations)
         {
-            if(!Quantity.TryGetUnitInfo(unitValue, out var unitInfo))
+            if(!QuantityInfoLookup.TryGetUnitInfo(unitValue, out var unitInfo))
             {
                 unitInfo = new UnitInfo(unitValue, unitValue.ToString(), BaseUnits.Undefined);
-                Quantity.AddUnitInfo(unitValue, unitInfo);
+                QuantityInfoLookup.AddUnitInfo(unitValue, unitInfo);
             }
 
             unitInfo.AddAbbreviation(formatProvider, setAsDefault, allowAbbreviationLookup, abbreviations);
@@ -210,7 +213,7 @@ namespace UnitsNet
             var name = Enum.GetName(unitType, unitValue);
             var enumInstance = (Enum)Enum.Parse(unitType, name!);
 
-            if(Quantity.TryGetUnitInfo(enumInstance, out var unitInfo))
+            if(QuantityInfoLookup.TryGetUnitInfo(enumInstance, out var unitInfo))
             {
                 abbreviations = unitInfo.GetAbbreviations(formatProvider!).ToArray();
                 return true;
