@@ -25,6 +25,18 @@ namespace UnitsNet
             return Duration.FromSeconds(energy.Joules / (double)power.Watts);
         }
 
+        /// <summary>Get <see cref="ElectricCharge"/> from <see cref="Energy"/> divided by <see cref="ElectricPotential"/>.</summary>
+        public static ElectricCharge operator /(Energy energy, ElectricPotential potential)
+        {
+            return ElectricCharge.FromCoulombs(energy.Joules / potential.Volts);
+        }
+
+        /// <summary>Get <see cref="ElectricPotential"/> from <see cref="Energy"/> divided by <see cref="ElectricCharge"/>.</summary>
+        public static ElectricPotential operator /(Energy energy, ElectricCharge current)
+        {
+            return ElectricPotential.FromVolts(energy.Joules / current.Coulombs);
+        }
+
         /// <summary>Get <see cref="Power"/> from <see cref="Energy"/> times <see cref="Frequency"/>.</summary>
         public static Power operator *(Energy energy, Frequency frequency)
         {
