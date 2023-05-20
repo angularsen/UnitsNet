@@ -37,7 +37,8 @@ namespace UnitsNet
         /// <summary>
         ///     The default instance of <see cref="QuantityParser"/>, which uses <see cref="UnitAbbreviationsCache.Default"/> unit abbreviations.
         /// </summary>
-        public static QuantityParser Default { get; }
+        [Obsolete("Use UnitsNetSetup.Default.QuantityParser instead.")]
+        public static QuantityParser Default => UnitsNetSetup.Default.QuantityParser;
 
         /// <summary>
         ///     Creates an instance of <see cref="QuantityParser"/>, optionally specifying an <see cref="UnitAbbreviationsCache"/>
@@ -48,11 +49,6 @@ namespace UnitsNet
         {
             _unitAbbreviationsCache = unitAbbreviationsCache ?? UnitAbbreviationsCache.Default;
             _unitParser = new UnitParser(_unitAbbreviationsCache);
-        }
-
-        static QuantityParser()
-        {
-            Default = new QuantityParser(UnitAbbreviationsCache.Default);
         }
 
         /// <summary>
