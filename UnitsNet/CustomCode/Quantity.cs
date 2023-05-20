@@ -9,13 +9,10 @@ namespace UnitsNet
     {
         static Quantity()
         {
-            Default = new QuantityInfoLookup();
+            Default = UnitsNetSetup.Default.QuantityInfoLookup;
         }
 
-        private static QuantityInfoLookup Default
-        {
-            get;
-        }
+        private static QuantityInfoLookup Default { get; }
 
         /// <summary>
         /// All enum value names of <see cref="Infos"/>, such as "Length" and "Mass".
@@ -39,7 +36,7 @@ namespace UnitsNet
             Default.TryGetUnitInfo(unitEnum, out unitInfo);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="unit"></param>
         /// <param name="unitInfo"></param>

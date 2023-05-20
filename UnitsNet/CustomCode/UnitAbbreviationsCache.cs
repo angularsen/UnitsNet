@@ -30,22 +30,48 @@ namespace UnitsNet
         /// <summary>
         ///     The static instance used internally for ToString() and Parse() of quantities and units.
         /// </summary>
-        public static UnitAbbreviationsCache Default { get; }
+        [Obsolete("Use UnitsNetSetup.Default.UnitAbbreviations instead.")]
+        public static UnitAbbreviationsCache Default { get; } = UnitsNetSetup.Default.UnitAbbreviations;
 
         private QuantityInfoLookup QuantityInfoLookup { get; }
 
         /// <summary>
-        ///     Create an instance of the cache and load all the abbreviations defined in the library.
+        ///     Creates an empty instance of the cache.
         /// </summary>
+        /// <remarks>
+        ///     TODO Change this to create an empty cache in v6: https://github.com/angularsen/UnitsNet/issues/1200
+        /// </remarks>
+        [Obsolete("Use CreateDefault() instead to create an instance that loads the built-in units. The default ctor will change to create an empty cache in UnitsNet v6.")]
         public UnitAbbreviationsCache()
+            : this(new QuantityInfoLookup(Quantity.ByName.Values))
         {
-            QuantityInfoLookup= new QuantityInfoLookup();
         }
 
-        static UnitAbbreviationsCache()
+        /// <summary>
+        ///     Creates an instance of the cache and load all the abbreviations defined in the library.
+        /// </summary>
+        /// <remarks>
+        ///     Access type is <c>internal</c> until this class is matured and ready for external use.
+        /// </remarks>
+        internal UnitAbbreviationsCache(QuantityInfoLookup quantityInfoLookup)
         {
-            Default = new UnitAbbreviationsCache();
+            QuantityInfoLookup = quantityInfoLookup;
         }
+
+        /// <summary>
+        ///     Create an instance with empty cache.
+        /// </summary>
+        /// <remarks>
+        ///     TODO Workaround until v6 changes the default ctor to create an empty cache.
+        /// </remarks>
+        /// <returns></returns>
+        public static UnitAbbreviationsCache CreateEmpty() => new(new QuantityInfoLookup(new List<QuantityInfo>()));
+
+        /// <summary>
+        ///     Create an instance of the cache and load all the built-in unit abbreviations defined in the library.
+        /// </summary>
+        /// <returns></returns>
+        public static UnitAbbreviationsCache CreateDefault() => new(new QuantityInfoLookup(Quantity.ByName.Values));
 
         /// <summary>
         /// Adds one or more unit abbreviation for the given unit enum value.

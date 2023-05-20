@@ -26,17 +26,13 @@ namespace UnitsNet
         private readonly UnitAbbreviationsCache _unitAbbreviationsCache;
         private readonly UnitParser _unitParser;
 
-        public static QuantityParser Default { get; }
+        [Obsolete("Use UnitsNetSetup.Default.Parser instead.")]
+        public static QuantityParser Default { get; } = UnitsNetSetup.Default.QuantityParser;
 
         public QuantityParser(UnitAbbreviationsCache? unitAbbreviationsCache)
         {
             _unitAbbreviationsCache = unitAbbreviationsCache ?? UnitAbbreviationsCache.Default;
             _unitParser = new UnitParser(_unitAbbreviationsCache);
-        }
-
-        static QuantityParser()
-        {
-            Default = new QuantityParser(UnitAbbreviationsCache.Default);
         }
 
         [SuppressMessage("ReSharper", "UseStringInterpolation")]
