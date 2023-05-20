@@ -36,11 +36,9 @@ namespace UnitsNet
         private QuantityInfoLookup QuantityInfoLookup { get; }
 
         /// <summary>
-        ///     Creates an empty instance of the cache.
+        ///     Create an instance of the cache and load all the abbreviations defined in the library.
         /// </summary>
-        /// <remarks>
-        ///     TODO Change this to create an empty cache in v6: https://github.com/angularsen/UnitsNet/issues/1200
-        /// </remarks>
+        // TODO Change this to create an empty cache in v6: https://github.com/angularsen/UnitsNet/issues/1200
         [Obsolete("Use CreateDefault() instead to create an instance that loads the built-in units. The default ctor will change to create an empty cache in UnitsNet v6.")]
         public UnitAbbreviationsCache()
             : this(new QuantityInfoLookup(Quantity.ByName.Values))
@@ -62,15 +60,16 @@ namespace UnitsNet
         ///     Create an instance with empty cache.
         /// </summary>
         /// <remarks>
-        ///     TODO Workaround until v6 changes the default ctor to create an empty cache.
+        ///     Workaround until v6 changes the default ctor to create an empty cache.<br/>
         /// </remarks>
-        /// <returns></returns>
+        /// <returns>Instance with empty cache.</returns>
+        // TODO Remove in v6: https://github.com/angularsen/UnitsNet/issues/1200
         public static UnitAbbreviationsCache CreateEmpty() => new(new QuantityInfoLookup(new List<QuantityInfo>()));
 
         /// <summary>
         ///     Create an instance of the cache and load all the built-in unit abbreviations defined in the library.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Instance with default abbreviations cache.</returns>
         public static UnitAbbreviationsCache CreateDefault() => new(new QuantityInfoLookup(Quantity.ByName.Values));
 
         /// <summary>
