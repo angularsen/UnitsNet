@@ -7,12 +7,7 @@ namespace UnitsNet
 {
     public partial class Quantity
     {
-        static Quantity()
-        {
-            Default = UnitsNetSetup.Default.QuantityInfoLookup;
-        }
-
-        private static QuantityInfoLookup Default { get; }
+        private static QuantityInfoLookup Default => UnitsNetSetup.Default.QuantityInfoLookup;
 
         /// <summary>
         /// All enum value names of <see cref="Infos"/>, such as "Length" and "Mass".

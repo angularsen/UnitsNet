@@ -27,7 +27,7 @@ namespace UnitsNet
         private readonly UnitParser _unitParser;
 
         [Obsolete("Use UnitsNetSetup.Default.Parser instead.")]
-        public static QuantityParser Default { get; } = UnitsNetSetup.Default.QuantityParser;
+        public static QuantityParser Default => UnitsNetSetup.Default.QuantityParser;
 
         public QuantityParser(UnitAbbreviationsCache? unitAbbreviationsCache)
         {

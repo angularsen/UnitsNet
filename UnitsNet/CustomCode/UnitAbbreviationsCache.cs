@@ -31,7 +31,7 @@ namespace UnitsNet
         ///     The static instance used internally for ToString() and Parse() of quantities and units.
         /// </summary>
         [Obsolete("Use UnitsNetSetup.Default.UnitAbbreviations instead.")]
-        public static UnitAbbreviationsCache Default { get; } = UnitsNetSetup.Default.UnitAbbreviations;
+        public static UnitAbbreviationsCache Default => UnitsNetSetup.Default.UnitAbbreviations;
 
         private QuantityInfoLookup QuantityInfoLookup { get; }
 

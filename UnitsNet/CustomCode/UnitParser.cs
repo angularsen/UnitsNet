@@ -24,7 +24,7 @@ namespace UnitsNet
         ///     default abbreviations cache for all units and abbreviations defined in the library.
         /// </summary>
         [Obsolete("Use UnitsNetSetup.Default.UnitParser instead.")]
-        public static UnitParser Default { get; } = UnitsNetSetup.Default.UnitParser;
+        public static UnitParser Default => UnitsNetSetup.Default.UnitParser;
 
         /// <summary>
         ///     Create a parser using the given unit abbreviations cache.

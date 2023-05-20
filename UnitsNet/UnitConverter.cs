@@ -39,7 +39,7 @@ namespace UnitsNet
         /// as adding your own third-party units and quantities to convert between.
         /// </summary>
         [Obsolete("Use UnitsNetSetup.Default.UnitConverter instead.")]
-        public static UnitConverter Default { get; } = UnitsNetSetup.Default.UnitConverter;
+        public static UnitConverter Default => UnitsNetSetup.Default.UnitConverter;
 
         /// <summary>
         /// Creates a new <see cref="UnitConverter"/> instance.

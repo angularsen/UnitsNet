@@ -78,5 +78,8 @@ public sealed class UnitsNetSetup
     /// <summary>
     ///     The quantities and units that are loaded.
     /// </summary>
+    /// <remarks>
+    ///     Access type is <c>internal</c> until this class is matured and ready for external use.
+    /// </remarks>
     internal QuantityInfoLookup QuantityInfoLookup { get; }
 }
