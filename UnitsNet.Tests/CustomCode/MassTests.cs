@@ -119,6 +119,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void MassDividedByLengthEqualsLinearDensity()
+        {
+            LinearDensity linearDensity = Mass.FromKilograms(18) / Length.FromMeters(3);
+            Assert.Equal(linearDensity, LinearDensity.FromKilogramsPerMeter(6));
+        }
+
+        [Fact]
+        public void MassDividedByLinearDensityEqualsLength()
+        {
+            Length length = Mass.FromKilograms(18) / LinearDensity.FromKilogramsPerMeter(3);
+            Assert.Equal(length, Length.FromMeters(6));
+        }
+
+        [Fact]
         public void NegativeMassToStonePoundsReturnsCorrectValues()
         {
             var negativeMass = Mass.FromPounds(-1.0);
