@@ -150,6 +150,9 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<LengthUnit> Info { get; }
 
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        static QuantityInfo IQuantity.Info => Info;
+
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using UnitsNet.Tests.CustomQuantities;
 using UnitsNet.Units;
 using Xunit;
 
@@ -135,7 +136,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void TryParse_GivenInvalidQuantityType_ReturnsFalseAndNullQuantity()
         {
-            Assert.False(Quantity.TryParse(typeof(DummyIQuantity), "3.0 cm", out IQuantity? parsedLength));
+            Assert.False(Quantity.TryParse(typeof(HowMuch), "3.0 cm", out IQuantity? parsedLength));
             Assert.Null(parsedLength);
         }
 

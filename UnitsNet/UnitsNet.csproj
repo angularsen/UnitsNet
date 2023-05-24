@@ -64,5 +64,9 @@
     <None Include="../Docs/Images/logo-32.png" Pack="true" PackagePath="/" />
     <None Include="../README.md" Pack="true" PackagePath="/" />
   </ItemGroup>
+  <ItemGroup>
+    <!-- TODO Add me back -->
+<!--    <ProjectReference Include="..\UnitsNet.Core\UnitsNet.Core.csproj" />-->
+  </ItemGroup>
 
 </Project>
