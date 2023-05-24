@@ -1239,6 +1239,8 @@ namespace UnitsNet
 
             Mass? convertedOrNull = (Unit, unit) switch
             {
+                (MassUnit.Ounce, MassUnit.Pound) => new Mass(_value / 16.0, MassUnit.Pound),
+
                 // MassUnit -> BaseUnit
                 (MassUnit.Centigram, MassUnit.Kilogram) => new Mass((_value / 1e3) * 1e-2d, MassUnit.Kilogram),
                 (MassUnit.Decagram, MassUnit.Kilogram) => new Mass((_value / 1e3) * 1e1d, MassUnit.Kilogram),

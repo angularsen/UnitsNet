@@ -1020,7 +1020,22 @@ namespace UnitsNet
             }}
 
             {_quantity.Name}? convertedOrNull = (Unit, unit) switch
-            {{
+            {{");
+
+            foreach(Unit unit in _quantity.Units)
+            {
+                foreach(var conversion in unit.Conversions)
+                {
+                    var func2 = conversion.Formula.Replace("{x}", "_value");
+                    Writer.WL($@"
+                ({_quantity.Name}Unit.{unit.SingularName}, {_unitEnumName}.{conversion.Target}) => new {_quantity.Name}({func2}, {_unitEnumName}.{conversion.Target}),");
+                }
+            }
+
+            if(_quantity.Units.Any(unit => unit.Conversions.Any()))
+                Writer.WL();
+
+            Writer.WL($@"
                 // {_quantity.Name}Unit -> BaseUnit");
 
             foreach (Unit unit in _quantity.Units)
