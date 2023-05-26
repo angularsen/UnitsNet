@@ -14,6 +14,8 @@ namespace UnitsNet.Tests.CustomQuantities
             Value = value;
         }
 
+        public bool Equals(IQuantity? other, IQuantity tolerance) => throw new NotImplementedException();
+
         Enum IQuantity.Unit => Unit;
         public HowMuchUnit Unit { get; }
 
