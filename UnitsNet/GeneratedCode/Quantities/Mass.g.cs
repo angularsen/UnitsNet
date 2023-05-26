@@ -1113,12 +1113,13 @@ namespace UnitsNet
         public bool Equals(Mass other, double tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
-
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            return UnitsNet.Comparison.Equals(
+                referenceValue: this.Value,
+                otherValue: other.As(this.Unit),
+                tolerance: tolerance,
+                comparisonType: ComparisonType.Absolute);
         }
 
         /// <inheritdoc />
@@ -1134,12 +1135,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(Mass other, Mass tolerance)
         {
-            if (tolerance < Zero)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
-
-            double thisValue = this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
-
             return UnitsNet.Comparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
