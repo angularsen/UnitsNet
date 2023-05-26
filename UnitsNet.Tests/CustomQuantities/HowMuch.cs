@@ -44,11 +44,6 @@ namespace UnitsNet.Tests.CustomQuantities
 
         public double As(UnitSystem unitSystem) => throw new NotImplementedException();
 
-        public bool Equals(IQuantity? other, double tolerance, ComparisonType comparisonType)
-        {
-            return other is HowMuch otherTyped && otherTyped.Unit == Unit && otherTyped.Value.Equals(Value);
-        }
-
         public IQuantity ToUnit(Enum unit)
         {
             if (unit is HowMuchUnit howMuchUnit) return new HowMuch(As(unit), howMuchUnit);
