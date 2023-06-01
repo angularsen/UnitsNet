@@ -2,11 +2,11 @@
   <!-- NuGet properties -->
   <PropertyGroup>
     <PackageId>OasysUnits.Serialization.JsonNet</PackageId>
-    <Version>1.0.0</Version>
+    <Version>1.1.0</Version>
     <Authors>Andreas Gullberg Larsen, Oasys</Authors>
     <Title>OasysUnits Serialization with Json.NET</Title>
     <Description>A helper library for serializing and deserializing types in OasysUnits using Json.NET.</Description>
-    <Copyright>Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com), 2022 Oasys.</Copyright>
+    <Copyright>Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com), 2023 Oasys.</Copyright>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <RepositoryUrl>https://github.com/arup-group/OasysUnits</RepositoryUrl>
     <PackageIcon>OasysUnits-32.png</PackageIcon>
@@ -20,32 +20,30 @@
 
   <!-- Assembly and msbuild properties -->
   <PropertyGroup>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion> <!-- Should reflect major part of Version -->
+    <AssemblyVersion>5.0.0.0</AssemblyVersion> <!-- Should reflect major part of Version -->
     <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
     <RootNamespace>OasysUnits.Serialization.JsonNet</RootNamespace>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
-  <!-- SourceLink -->
+  <!-- SourceLink: https://github.com/dotnet/sourcelink -->
   <PropertyGroup>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
-  </PropertyGroup>
 
-  <!-- Strong name signing -->
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>../OasysUnits.snk</AssemblyOriginatorKeyFile>
-    <DelaySign>false</DelaySign>
-    <SignAssembly>true</SignAssembly>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <!-- Optional: Embed source files that are not tracked by the source control manager in the PDB -->
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+
+    <!-- Optional: Build symbol package (.snupkg) to distribute the PDB containing Source Link -->
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <!-- NuGet references that work for both signed and unsigned -->
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="2022.1.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
   </ItemGroup>
 
   <!-- Project references, will also generate the corresponding nuget dependencies -->
@@ -55,7 +53,7 @@
 
   <!-- Files to include in nuget package -->
   <ItemGroup>
-    <None Include="..\Docs\Images\OasysUnits-32.png" Pack="true" PackagePath="/" />
+<None Include="..\Docs\Images\OasysUnits-32.png" Pack="true" PackagePath="/" />
   </ItemGroup>
 
 </Project>

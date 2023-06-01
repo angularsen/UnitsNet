@@ -40,13 +40,37 @@ namespace OasysUnits.NumberExtensions.NumberToElectricCharge
         public static ElectricCharge KiloampereHours<T>(this T value) =>
             ElectricCharge.FromKiloampereHours(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="ElectricCharge.FromKilocoulombs(OasysUnits.QuantityValue)" />
+        public static ElectricCharge Kilocoulombs<T>(this T value) =>
+            ElectricCharge.FromKilocoulombs(Convert.ToDouble(value));
+
         /// <inheritdoc cref="ElectricCharge.FromMegaampereHours(OasysUnits.QuantityValue)" />
         public static ElectricCharge MegaampereHours<T>(this T value) =>
             ElectricCharge.FromMegaampereHours(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="ElectricCharge.FromMegacoulombs(OasysUnits.QuantityValue)" />
+        public static ElectricCharge Megacoulombs<T>(this T value) =>
+            ElectricCharge.FromMegacoulombs(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricCharge.FromMicrocoulombs(OasysUnits.QuantityValue)" />
+        public static ElectricCharge Microcoulombs<T>(this T value) =>
+            ElectricCharge.FromMicrocoulombs(Convert.ToDouble(value));
+
         /// <inheritdoc cref="ElectricCharge.FromMilliampereHours(OasysUnits.QuantityValue)" />
         public static ElectricCharge MilliampereHours<T>(this T value) =>
             ElectricCharge.FromMilliampereHours(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricCharge.FromMillicoulombs(OasysUnits.QuantityValue)" />
+        public static ElectricCharge Millicoulombs<T>(this T value) =>
+            ElectricCharge.FromMillicoulombs(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricCharge.FromNanocoulombs(OasysUnits.QuantityValue)" />
+        public static ElectricCharge Nanocoulombs<T>(this T value) =>
+            ElectricCharge.FromNanocoulombs(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricCharge.FromPicocoulombs(OasysUnits.QuantityValue)" />
+        public static ElectricCharge Picocoulombs<T>(this T value) =>
+            ElectricCharge.FromPicocoulombs(Convert.ToDouble(value));
 
     }
 }

@@ -11,7 +11,7 @@ namespace CodeGen.Generators.OasysUnitsGen
             _quantity = quantity;
         }
 
-        public override string Generate()
+        public string Generate()
         {
             Writer.WL(GeneratedFileHeader);
             Writer.WL($@"

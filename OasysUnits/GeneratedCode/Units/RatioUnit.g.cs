@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum RatioUnit
     {
-        Undefined = 0,
         DecimalFraction = 1,
         PartPerBillion = 2,
         PartPerMillion = 3,

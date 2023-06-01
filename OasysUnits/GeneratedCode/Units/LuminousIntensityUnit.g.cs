@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum LuminousIntensityUnit
     {
-        Undefined = 0,
         Candela = 1,
     }
 

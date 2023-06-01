@@ -5,7 +5,7 @@ using System;
 using OasysUnits.Units;
 using Xunit;
 
-namespace OasysUnits.Tests.CustomCode
+namespace OasysUnits.Tests
 {
     public class EnergyTests : EnergyTestsBase
     {
@@ -24,6 +24,10 @@ namespace OasysUnits.Tests.CustomCode
 
         protected override double MegajoulesInOneJoule => 1E-6;
 
+        protected override double TerajoulesInOneJoule => 1E-12;
+
+        protected override double PetajoulesInOneJoule => 1E-15;
+        
         protected override double BritishThermalUnitsInOneJoule => 0.00094781712;
 
         protected override double CaloriesInOneJoule => 0.239005736;

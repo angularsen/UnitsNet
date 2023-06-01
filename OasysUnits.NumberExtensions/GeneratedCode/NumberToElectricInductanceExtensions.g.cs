@@ -44,5 +44,9 @@ namespace OasysUnits.NumberExtensions.NumberToElectricInductance
         public static ElectricInductance Nanohenries<T>(this T value) =>
             ElectricInductance.FromNanohenries(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="ElectricInductance.FromPicohenries(OasysUnits.QuantityValue)" />
+        public static ElectricInductance Picohenries<T>(this T value) =>
+            ElectricInductance.FromPicohenries(Convert.ToDouble(value));
+
     }
 }

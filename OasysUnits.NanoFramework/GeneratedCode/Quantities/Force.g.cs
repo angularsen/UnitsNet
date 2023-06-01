@@ -261,81 +261,81 @@ namespace OasysUnits
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(ForceUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(ForceUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public Force ToUnit(ForceUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new Force(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public Force ToUnit(ForceUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new Force(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                ForceUnit.Decanewton => (_value) * 1e1d,
-                ForceUnit.Dyn => _value / 1e5,
-                ForceUnit.KilogramForce => _value * 9.80665002864,
-                ForceUnit.Kilonewton => (_value) * 1e3d,
-                ForceUnit.KiloPond => _value * 9.80665002864,
-                ForceUnit.KilopoundForce => (_value * 4.4482216152605095551842641431421) * 1e3d,
-                ForceUnit.Meganewton => (_value) * 1e6d,
-                ForceUnit.Micronewton => (_value) * 1e-6d,
-                ForceUnit.Millinewton => (_value) * 1e-3d,
-                ForceUnit.Newton => _value,
-                ForceUnit.OunceForce => _value * 2.780138509537812e-1,
-                ForceUnit.Poundal => _value * 0.13825502798973041652092282466083,
-                ForceUnit.PoundForce => _value * 4.4482216152605095551842641431421,
-                ForceUnit.ShortTonForce => _value * 8.896443230521e3,
-                ForceUnit.TonneForce => _value * 9.80665002864e3,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        ForceUnit.Decanewton => (_value) * 1e1d,
+                        ForceUnit.Dyn => _value / 1e5,
+                        ForceUnit.KilogramForce => _value * 9.80665002864,
+                        ForceUnit.Kilonewton => (_value) * 1e3d,
+                        ForceUnit.KiloPond => _value * 9.80665002864,
+                        ForceUnit.KilopoundForce => (_value * 4.4482216152605095551842641431421) * 1e3d,
+                        ForceUnit.Meganewton => (_value) * 1e6d,
+                        ForceUnit.Micronewton => (_value) * 1e-6d,
+                        ForceUnit.Millinewton => (_value) * 1e-3d,
+                        ForceUnit.Newton => _value,
+                        ForceUnit.OunceForce => _value * 2.780138509537812e-1,
+                        ForceUnit.Poundal => _value * 0.13825502798973041652092282466083,
+                        ForceUnit.PoundForce => _value * 4.4482216152605095551842641431421,
+                        ForceUnit.ShortTonForce => _value * 8.896443230521e3,
+                        ForceUnit.TonneForce => _value * 9.80665002864e3,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(ForceUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(ForceUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                ForceUnit.Decanewton => (baseUnitValue) / 1e1d,
-                ForceUnit.Dyn => baseUnitValue * 1e5,
-                ForceUnit.KilogramForce => baseUnitValue / 9.80665002864,
-                ForceUnit.Kilonewton => (baseUnitValue) / 1e3d,
-                ForceUnit.KiloPond => baseUnitValue / 9.80665002864,
-                ForceUnit.KilopoundForce => (baseUnitValue / 4.4482216152605095551842641431421) / 1e3d,
-                ForceUnit.Meganewton => (baseUnitValue) / 1e6d,
-                ForceUnit.Micronewton => (baseUnitValue) / 1e-6d,
-                ForceUnit.Millinewton => (baseUnitValue) / 1e-3d,
-                ForceUnit.Newton => baseUnitValue,
-                ForceUnit.OunceForce => baseUnitValue / 2.780138509537812e-1,
-                ForceUnit.Poundal => baseUnitValue / 0.13825502798973041652092282466083,
-                ForceUnit.PoundForce => baseUnitValue / 4.4482216152605095551842641431421,
-                ForceUnit.ShortTonForce => baseUnitValue / 8.896443230521e3,
-                ForceUnit.TonneForce => baseUnitValue / 9.80665002864e3,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        ForceUnit.Decanewton => (baseUnitValue) / 1e1d,
+                        ForceUnit.Dyn => baseUnitValue * 1e5,
+                        ForceUnit.KilogramForce => baseUnitValue / 9.80665002864,
+                        ForceUnit.Kilonewton => (baseUnitValue) / 1e3d,
+                        ForceUnit.KiloPond => baseUnitValue / 9.80665002864,
+                        ForceUnit.KilopoundForce => (baseUnitValue / 4.4482216152605095551842641431421) / 1e3d,
+                        ForceUnit.Meganewton => (baseUnitValue) / 1e6d,
+                        ForceUnit.Micronewton => (baseUnitValue) / 1e-6d,
+                        ForceUnit.Millinewton => (baseUnitValue) / 1e-3d,
+                        ForceUnit.Newton => baseUnitValue,
+                        ForceUnit.OunceForce => baseUnitValue / 2.780138509537812e-1,
+                        ForceUnit.Poundal => baseUnitValue / 0.13825502798973041652092282466083,
+                        ForceUnit.PoundForce => baseUnitValue / 4.4482216152605095551842641431421,
+                        ForceUnit.ShortTonForce => baseUnitValue / 8.896443230521e3,
+                        ForceUnit.TonneForce => baseUnitValue / 9.80665002864e3,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

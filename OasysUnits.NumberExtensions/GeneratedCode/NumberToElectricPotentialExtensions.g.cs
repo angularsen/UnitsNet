@@ -44,6 +44,10 @@ namespace OasysUnits.NumberExtensions.NumberToElectricPotential
         public static ElectricPotential Millivolts<T>(this T value) =>
             ElectricPotential.FromMillivolts(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="ElectricPotential.FromNanovolts(OasysUnits.QuantityValue)" />
+        public static ElectricPotential Nanovolts<T>(this T value) =>
+            ElectricPotential.FromNanovolts(Convert.ToDouble(value));
+
         /// <inheritdoc cref="ElectricPotential.FromVolts(OasysUnits.QuantityValue)" />
         public static ElectricPotential Volts<T>(this T value) =>
             ElectricPotential.FromVolts(Convert.ToDouble(value));

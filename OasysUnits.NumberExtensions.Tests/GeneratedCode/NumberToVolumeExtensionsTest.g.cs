@@ -189,6 +189,10 @@ namespace OasysUnits.Tests
             Assert.Equal(Volume.FromMilliliters(2), 2.Milliliters());
 
         [Fact]
+        public void NumberToNanolitersTest() =>
+            Assert.Equal(Volume.FromNanoliters(2), 2.Nanoliters());
+
+        [Fact]
         public void NumberToOilBarrelsTest() =>
             Assert.Equal(Volume.FromOilBarrels(2), 2.OilBarrels());
 

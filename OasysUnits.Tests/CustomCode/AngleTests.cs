@@ -4,7 +4,7 @@
 using System;
 using Xunit;
 
-namespace OasysUnits.Tests.CustomCode
+namespace OasysUnits.Tests
 {
     public class AngleTests : AngleTestsBase
     {

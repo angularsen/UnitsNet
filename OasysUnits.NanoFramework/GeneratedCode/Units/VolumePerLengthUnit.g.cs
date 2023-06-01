@@ -25,14 +25,15 @@ namespace OasysUnits.Units
 
     public enum VolumePerLengthUnit
     {
-        Undefined = 0,
         CubicMeterPerMeter = 1,
         CubicYardPerFoot = 2,
         CubicYardPerUsSurveyFoot = 3,
+        ImperialGallonPerMile = 11,
         LiterPerKilometer = 4,
         LiterPerMeter = 5,
         LiterPerMillimeter = 6,
         OilBarrelPerFoot = 7,
+        UsGallonPerMile = 8,
     }
 
     #pragma warning restore 1591

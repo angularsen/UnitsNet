@@ -25,12 +25,12 @@ namespace OasysUnits.Units
 
     public enum MolarMassUnit
     {
-        Undefined = 0,
         CentigramPerMole = 1,
         DecagramPerMole = 2,
         DecigramPerMole = 3,
         GramPerMole = 4,
         HectogramPerMole = 5,
+        KilogramPerKilomole = 15,
         KilogramPerMole = 6,
         KilopoundPerMole = 7,
         MegapoundPerMole = 8,

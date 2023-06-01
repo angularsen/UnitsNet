@@ -95,6 +95,11 @@ namespace OasysUnits
         public double CubicYardsPerUsSurveyFoot => As(VolumePerLengthUnit.CubicYardPerUsSurveyFoot);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumePerLengthUnit.ImperialGallonPerMile"/>
+        /// </summary>
+        public double ImperialGallonsPerMile => As(VolumePerLengthUnit.ImperialGallonPerMile);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumePerLengthUnit.LiterPerKilometer"/>
         /// </summary>
         public double LitersPerKilometer => As(VolumePerLengthUnit.LiterPerKilometer);
@@ -113,6 +118,11 @@ namespace OasysUnits
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumePerLengthUnit.OilBarrelPerFoot"/>
         /// </summary>
         public double OilBarrelsPerFoot => As(VolumePerLengthUnit.OilBarrelPerFoot);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumePerLengthUnit.UsGallonPerMile"/>
+        /// </summary>
+        public double UsGallonsPerMile => As(VolumePerLengthUnit.UsGallonPerMile);
 
         #endregion
 
@@ -135,6 +145,12 @@ namespace OasysUnits
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumePerLength FromCubicYardsPerUsSurveyFoot(double cubicyardsperussurveyfoot) => new VolumePerLength(cubicyardsperussurveyfoot, VolumePerLengthUnit.CubicYardPerUsSurveyFoot);
+
+        /// <summary>
+        ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.ImperialGallonPerMile"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumePerLength FromImperialGallonsPerMile(double imperialgallonspermile) => new VolumePerLength(imperialgallonspermile, VolumePerLengthUnit.ImperialGallonPerMile);
 
         /// <summary>
         ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.LiterPerKilometer"/>.
@@ -161,6 +177,12 @@ namespace OasysUnits
         public static VolumePerLength FromOilBarrelsPerFoot(double oilbarrelsperfoot) => new VolumePerLength(oilbarrelsperfoot, VolumePerLengthUnit.OilBarrelPerFoot);
 
         /// <summary>
+        ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.UsGallonPerMile"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumePerLength FromUsGallonsPerMile(double usgallonspermile) => new VolumePerLength(usgallonspermile, VolumePerLengthUnit.UsGallonPerMile);
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="VolumePerLengthUnit" /> to <see cref="VolumePerLength" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
@@ -173,65 +195,69 @@ namespace OasysUnits
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(VolumePerLengthUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(VolumePerLengthUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public VolumePerLength ToUnit(VolumePerLengthUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new VolumePerLength(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public VolumePerLength ToUnit(VolumePerLengthUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new VolumePerLength(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                VolumePerLengthUnit.CubicMeterPerMeter => _value,
-                VolumePerLengthUnit.CubicYardPerFoot => _value * 2.50838208,
-                VolumePerLengthUnit.CubicYardPerUsSurveyFoot => _value * 2.50837706323584,
-                VolumePerLengthUnit.LiterPerKilometer => _value / 1e6,
-                VolumePerLengthUnit.LiterPerMeter => _value / 1000,
-                VolumePerLengthUnit.LiterPerMillimeter => _value,
-                VolumePerLengthUnit.OilBarrelPerFoot => _value / 1.91713408,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        VolumePerLengthUnit.CubicMeterPerMeter => _value,
+                        VolumePerLengthUnit.CubicYardPerFoot => _value * 2.50838208,
+                        VolumePerLengthUnit.CubicYardPerUsSurveyFoot => _value * 2.50837706323584,
+                        VolumePerLengthUnit.ImperialGallonPerMile => _value / (1000 * 1609.344 / 4.54609),
+                        VolumePerLengthUnit.LiterPerKilometer => _value / 1e6,
+                        VolumePerLengthUnit.LiterPerMeter => _value / 1000,
+                        VolumePerLengthUnit.LiterPerMillimeter => _value,
+                        VolumePerLengthUnit.OilBarrelPerFoot => _value / 1.91713408,
+                        VolumePerLengthUnit.UsGallonPerMile => _value / (1000 * 1609.344 / 3.785411784),
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(VolumePerLengthUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(VolumePerLengthUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                VolumePerLengthUnit.CubicMeterPerMeter => baseUnitValue,
-                VolumePerLengthUnit.CubicYardPerFoot => baseUnitValue / 2.50838208,
-                VolumePerLengthUnit.CubicYardPerUsSurveyFoot => baseUnitValue / 2.50837706323584,
-                VolumePerLengthUnit.LiterPerKilometer => baseUnitValue * 1e6,
-                VolumePerLengthUnit.LiterPerMeter => baseUnitValue * 1000,
-                VolumePerLengthUnit.LiterPerMillimeter => baseUnitValue,
-                VolumePerLengthUnit.OilBarrelPerFoot => baseUnitValue * 1.91713408,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        VolumePerLengthUnit.CubicMeterPerMeter => baseUnitValue,
+                        VolumePerLengthUnit.CubicYardPerFoot => baseUnitValue / 2.50838208,
+                        VolumePerLengthUnit.CubicYardPerUsSurveyFoot => baseUnitValue / 2.50837706323584,
+                        VolumePerLengthUnit.ImperialGallonPerMile => baseUnitValue * (1000 * 1609.344 / 4.54609),
+                        VolumePerLengthUnit.LiterPerKilometer => baseUnitValue * 1e6,
+                        VolumePerLengthUnit.LiterPerMeter => baseUnitValue * 1000,
+                        VolumePerLengthUnit.LiterPerMillimeter => baseUnitValue,
+                        VolumePerLengthUnit.OilBarrelPerFoot => baseUnitValue * 1.91713408,
+                        VolumePerLengthUnit.UsGallonPerMile => baseUnitValue * (1000 * 1609.344 / 3.785411784),
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

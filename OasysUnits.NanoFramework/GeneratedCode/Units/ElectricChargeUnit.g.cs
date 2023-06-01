@@ -25,12 +25,17 @@ namespace OasysUnits.Units
 
     public enum ElectricChargeUnit
     {
-        Undefined = 0,
         AmpereHour = 1,
         Coulomb = 2,
         KiloampereHour = 3,
+        Kilocoulomb = 13,
         MegaampereHour = 4,
+        Megacoulomb = 6,
+        Microcoulomb = 11,
         MilliampereHour = 5,
+        Millicoulomb = 7,
+        Nanocoulomb = 9,
+        Picocoulomb = 8,
     }
 
     #pragma warning restore 1591

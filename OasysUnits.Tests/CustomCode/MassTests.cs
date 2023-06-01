@@ -5,7 +5,7 @@ using System;
 using OasysUnits.Units;
 using Xunit;
 
-namespace OasysUnits.Tests.CustomCode
+namespace OasysUnits.Tests
 {
     public class MassTests : MassTestsBase
     {
@@ -63,6 +63,10 @@ namespace OasysUnits.Tests.CustomCode
 
         protected override double SolarMassesInOneKilogram => 5.0264643347223100000000000E-31;
 
+        protected override double FemtogramsInOneKilogram => 1E18;
+
+        protected override double PicogramsInOneKilogram => 1E15;
+
         //protected override double SolarMassesTolerance => 0.1;
 
         [Fact]
@@ -91,6 +95,20 @@ namespace OasysUnits.Tests.CustomCode
         {
             Density density = Mass.FromKilograms(18)/Volume.FromCubicMeters(3);
             Assert.Equal(density, Density.FromKilogramsPerCubicMeter(6));
+        }
+
+        [Fact]
+        public void MassDividedByAreaEqualsAreaDensity()
+        {
+            AreaDensity grammage = Mass.FromKilograms(0.9) / Area.FromSquareMeters(3);
+            Assert.Equal(AreaDensity.FromKilogramsPerSquareMeter(0.3), grammage);
+        }
+
+        [Fact]
+        public void MassDividedByAreaDensityEqualsArea()
+        {
+            Area area = Mass.FromKilograms(10) / AreaDensity.FromKilogramsPerSquareMeter(5);
+            Assert.Equal(Area.FromSquareMeters(2), area);
         }
 
         [Fact]

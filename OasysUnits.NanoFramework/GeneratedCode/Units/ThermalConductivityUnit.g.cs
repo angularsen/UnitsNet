@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum ThermalConductivityUnit
     {
-        Undefined = 0,
         BtuPerHourFootFahrenheit = 1,
         WattPerMeterKelvin = 2,
     }

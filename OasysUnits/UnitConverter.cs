@@ -3,11 +3,10 @@
 
 using System;
 using System.Collections.Concurrent;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
 using System.Reflection;
-using JetBrains.Annotations;
-using OasysUnits.InternalHelpers;
+using System.Linq;
 using OasysUnits.Units;
 
 namespace OasysUnits
@@ -33,7 +32,6 @@ namespace OasysUnits
     /// <summary>
     ///     Convert between units of a quantity, such as converting from meters to centimeters of a given length.
     /// </summary>
-    [PublicAPI]
     public sealed class UnitConverter
     {
         /// <summary>
@@ -45,7 +43,6 @@ namespace OasysUnits
         static UnitConverter()
         {
             Default = new UnitConverter();
-
             RegisterDefaultConversions(Default);
         }
 
@@ -219,7 +216,7 @@ namespace OasysUnits
         /// <param name="to">To unit enum value, such as <see cref="LengthUnit.Centimeter"/>.</param>
         /// <param name="conversionFunction">The quantity conversion function.</param>
         /// <returns>true if set; otherwise, false.</returns>
-        public bool TryGetConversionFunction<TQuantity>(Enum from, Enum to, out ConversionFunction conversionFunction) where TQuantity : IQuantity
+        public bool TryGetConversionFunction<TQuantity>(Enum from, Enum to, [NotNullWhen(true)] out ConversionFunction? conversionFunction) where TQuantity : IQuantity
         {
             return TryGetConversionFunction(typeof(TQuantity), from, typeof(TQuantity), to, out conversionFunction);
         }
@@ -233,7 +230,7 @@ namespace OasysUnits
         /// <param name="to">To unit enum value, such as <see cref="LengthUnit.Centimeter"/>.</param>
         /// <param name="conversionFunction">The quantity conversion function.</param>
         /// <returns>true if set; otherwise, false.</returns>
-        public bool TryGetConversionFunction<TQuantityFrom, TQuantityTo>(Enum from, Enum to, out ConversionFunction conversionFunction)
+        public bool TryGetConversionFunction<TQuantityFrom, TQuantityTo>(Enum from, Enum to, [NotNullWhen(true)] out ConversionFunction? conversionFunction)
             where TQuantityFrom : IQuantity
             where TQuantityTo : IQuantity
         {
@@ -249,7 +246,7 @@ namespace OasysUnits
         /// <param name="to">To unit enum value, such as <see cref="LengthUnit.Centimeter"/>.</param>
         /// <param name="conversionFunction">The quantity conversion function.</param>
         /// <returns>true if set; otherwise, false.</returns>
-        public bool TryGetConversionFunction(Type fromType, Enum from, Type toType, Enum to, out ConversionFunction conversionFunction)
+        public bool TryGetConversionFunction(Type fromType, Enum from, Type toType, Enum to, [NotNullWhen(true)] out ConversionFunction? conversionFunction)
         {
             var conversionLookup = new ConversionFunctionLookupKey(fromType, from, toType, to);
             return TryGetConversionFunction(conversionLookup, out conversionFunction);
@@ -261,7 +258,7 @@ namespace OasysUnits
         /// <param name="lookupKey"></param>
         /// <param name="conversionFunction"></param>
         /// <returns>true if set; otherwise, false.</returns>
-        public bool TryGetConversionFunction(ConversionFunctionLookupKey lookupKey, out ConversionFunction conversionFunction)
+        public bool TryGetConversionFunction(ConversionFunctionLookupKey lookupKey, [NotNullWhen(true)] out ConversionFunction? conversionFunction)
         {
             return ConversionFunctions.TryGetValue(lookupKey, out conversionFunction);
         }
@@ -297,7 +294,7 @@ namespace OasysUnits
             try
             {
                 // We're not going to implement TryAs() in all quantities, so let's just try-catch here
-                convertedValue = fromQuantity!.As(toUnitValue);
+                convertedValue = fromQuantity.As(toUnitValue);
                 return true;
             }
             catch
@@ -468,7 +465,7 @@ namespace OasysUnits
             if (!TryGetUnitType(quantityName, out Type? unitType))
                 throw new UnitNotFoundException($"The unit type for the given quantity was not found: {quantityName}");
 
-            var cultureInfo = string.IsNullOrWhiteSpace(culture) ? CultureInfo.CurrentUICulture : new CultureInfo(culture);
+            var cultureInfo = string.IsNullOrWhiteSpace(culture) ? CultureInfo.CurrentCulture : new CultureInfo(culture);
 
             var fromUnit = UnitParser.Default.Parse(fromUnitAbbrev, unitType!, cultureInfo); // ex: ("m", LengthUnit) => LengthUnit.Meter
             var fromQuantity = Quantity.From(fromValue, fromUnit);
@@ -545,7 +542,7 @@ namespace OasysUnits
             if (!TryGetUnitType(quantityName, out Type? unitType))
                 return false;
 
-            var cultureInfo = string.IsNullOrWhiteSpace(culture) ? CultureInfo.CurrentUICulture : new CultureInfo(culture);
+            var cultureInfo = string.IsNullOrWhiteSpace(culture) ? CultureInfo.CurrentCulture : new CultureInfo(culture);
 
             if (!UnitParser.Default.TryParse(fromUnitAbbrev, unitType!, cultureInfo, out Enum? fromUnit)) // ex: ("m", LengthUnit) => LengthUnit.Meter
                 return false;
@@ -553,8 +550,8 @@ namespace OasysUnits
             if (!UnitParser.Default.TryParse(toUnitAbbrev, unitType!, cultureInfo, out Enum? toUnit)) // ex:("cm", LengthUnit) => LengthUnit.Centimeter
                 return false;
 
-            var fromQuantity = Quantity.From(fromValue, fromUnit!);
-            result = fromQuantity.As(toUnit!);
+            var fromQuantity = Quantity.From(fromValue, fromUnit);
+            result = fromQuantity.As(toUnit);
 
             return true;
         }
@@ -571,17 +568,17 @@ namespace OasysUnits
         {
             unitValue = null;
             var eNames = Enum.GetNames(unitType);
-            unitName = eNames.FirstOrDefault(x => x.Equals(unitName, StringComparison.OrdinalIgnoreCase));
-            if (unitName == null)
+            var matchedUnitName = eNames.FirstOrDefault(x => x.Equals(unitName, StringComparison.OrdinalIgnoreCase));
+            if (matchedUnitName == null)
                 return false;
 
-            unitValue = (Enum) Enum.Parse(unitType, unitName);
+            unitValue = (Enum) Enum.Parse(unitType, matchedUnitName);
             return true;
         }
 
         private static bool TryGetUnitType(string quantityName, out Type? unitType)
         {
-            var quantityInfo = Quantity.Infos.FirstOrDefault((info) => info.Name.Equals(quantityName, StringComparison.OrdinalIgnoreCase));
+            var quantityInfo = Quantity.Infos.FirstOrDefault(info => info.Name.Equals(quantityName, StringComparison.OrdinalIgnoreCase));
 
             unitType = quantityInfo?.UnitType;
             return quantityInfo != null;

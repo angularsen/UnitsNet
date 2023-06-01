@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
-using OasysUnits.Serialization.JsonNet;
+using OasysUnits.Tests.CustomQuantities;
 using Xunit;
 
-namespace OasysUnits.Tests.CustomQuantities
+namespace OasysUnits.Serialization.JsonNet.Tests.CustomQuantities
 {
     public class HowMuchTests
     {

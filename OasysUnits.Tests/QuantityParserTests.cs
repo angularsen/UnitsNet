@@ -1,4 +1,4 @@
-// Licensed under MIT No Attribution, see LICENSE file at the root.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using OasysUnits.Tests.CustomQuantities;
@@ -17,7 +17,7 @@ namespace OasysUnits.Tests
 
             HowMuch q = quantityParser.Parse<HowMuch, HowMuchUnit>("1 FOO",
                 null,
-                (value, unit) => new HowMuch((double) value, unit));
+                (value, unit) => new HowMuch((double)value, unit));
 
             Assert.Equal(HowMuchUnit.Some, q.Unit);
             Assert.Equal(1, q.Value);
@@ -33,7 +33,7 @@ namespace OasysUnits.Tests
 
             HowMuch q = quantityParser.Parse<HowMuch, HowMuchUnit>("1 FOO",
                 null,
-                (value, unit) => new HowMuch((double) value, unit));
+                (value, unit) => new HowMuch((double)value, unit));
 
             Assert.Equal(HowMuchUnit.ATon, q.Unit);
             Assert.Equal(1, q.Value);
@@ -49,7 +49,7 @@ namespace OasysUnits.Tests
 
             void Act()
             {
-                quantityParser.Parse<HowMuch, HowMuchUnit>("1 Foo", null, (value, unit) => new HowMuch((double) value, unit));
+                quantityParser.Parse<HowMuch, HowMuchUnit>("1 Foo", null, (value, unit) => new HowMuch((double)value, unit));
             }
 
             Assert.Throws<UnitNotFoundException>(Act);
@@ -64,7 +64,7 @@ namespace OasysUnits.Tests
 
             HowMuch q = quantityParser.Parse<HowMuch, HowMuchUnit>("1 fooh",
                 null,
-                (value, unit) => new HowMuch((double) value, unit));
+                (value, unit) => new HowMuch((double)value, unit));
 
             Assert.Equal(HowMuchUnit.Some, q.Unit);
             Assert.Equal(1, q.Value);
@@ -79,13 +79,12 @@ namespace OasysUnits.Tests
 
             bool success = quantityParser.TryParse<HowMuch, HowMuchUnit>("1 fooh",
                 null,
-                (value, unit) => new HowMuch((double) value, unit),
+                (value, unit) => new HowMuch((double)value, unit),
                 out HowMuch q);
 
             Assert.True(success);
             Assert.Equal(HowMuchUnit.Some, q.Unit);
             Assert.Equal(1, q.Value);
         }
-
     }
 }

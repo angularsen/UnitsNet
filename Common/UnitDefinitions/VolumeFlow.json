@@ -1,7 +1,7 @@
 {
   "Name": "VolumeFlow",
   "BaseUnit": "CubicMeterPerSecond",
-  "XmlDoc": "In physics and engineering, in particular fluid dynamics and hydrometry, the volumetric flow rate, (also known as volume flow rate, rate of fluid flow or volume velocity) is the volume of fluid which passes through a given surface per unit time. The SI unit is m³/s (cubic meters per second). In US Customary Units and British Imperial Units, volumetric flow rate is often expressed as ft³/s (cubic feet per second). It is usually represented by the symbol Q.",
+  "XmlDocSummary": "In physics and engineering, in particular fluid dynamics and hydrometry, the volumetric flow rate, (also known as volume flow rate, rate of fluid flow or volume velocity) is the volume of fluid which passes through a given surface per unit time. The SI unit is m³/s (cubic meters per second). In US Customary Units and British Imperial Units, volumetric flow rate is often expressed as ft³/s (cubic feet per second). It is usually represented by the symbol Q.",
   "BaseDimensions": {
     "L": 3,
     "T": -1
@@ -152,7 +152,7 @@
       ]
     },
     {
-      "SingularName": "MillionUsGallonsPerDay",
+      "SingularName": "MillionUsGallonPerDay",
       "PluralName": "MillionUsGallonsPerDay",
       "FromUnitToBaseFunc": "{x} / 22.824465227",
       "FromBaseToUnitFunc": "{x} * 22.824465227",
@@ -168,6 +168,7 @@
       "PluralName": "UsGallonsPerDay",
       "FromUnitToBaseFunc": "{x} / 22824465.227",
       "FromBaseToUnitFunc": "{x} * 22824465.227",
+      "Prefixes": [ "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -180,7 +181,7 @@
       "PluralName": "LitersPerSecond",
       "FromUnitToBaseFunc": "{x} / 1000",
       "FromBaseToUnitFunc": "{x} * 1000",
-      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -197,7 +198,7 @@
       "PluralName": "LitersPerMinute",
       "FromUnitToBaseFunc": "{x} / 60000.00000",
       "FromBaseToUnitFunc": "{x} * 60000.00000",
-      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -214,7 +215,7 @@
       "PluralName": "LitersPerHour",
       "FromUnitToBaseFunc": "{x} / 3600000.000",
       "FromBaseToUnitFunc": "{x} * 3600000.000",
-      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -268,6 +269,7 @@
       "PluralName": "UkGallonsPerDay",
       "FromUnitToBaseFunc": "{x} / 19005304",
       "FromBaseToUnitFunc": "{x} * 19005304",
+      "Prefixes": [ "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",

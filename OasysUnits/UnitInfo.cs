@@ -2,7 +2,6 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
-using JetBrains.Annotations;
 using OasysUnits.Units;
 
 namespace OasysUnits
@@ -24,7 +23,7 @@ namespace OasysUnits
         /// <param name="value">The enum value for this class, for example <see cref="LengthUnit.Meter"/>.</param>
         /// <param name="pluralName">The plural name of the unit, such as "Centimeters".</param>
         /// <param name="baseUnits">The <see cref="BaseUnits"/> for this unit.</param>
-        public UnitInfo([NotNull] Enum value, [NotNull] string pluralName, [NotNull] BaseUnits baseUnits)
+        public UnitInfo(Enum value, string pluralName, BaseUnits baseUnits)
         {
             Value = value ?? throw new ArgumentNullException(nameof(value));
             Name = value.ToString();

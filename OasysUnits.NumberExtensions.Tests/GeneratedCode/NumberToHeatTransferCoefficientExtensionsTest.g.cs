@@ -25,8 +25,20 @@ namespace OasysUnits.Tests
     public class NumberToHeatTransferCoefficientExtensionsTests
     {
         [Fact]
+        public void NumberToBtusPerHourSquareFootDegreeFahrenheitTest() =>
+            Assert.Equal(HeatTransferCoefficient.FromBtusPerHourSquareFootDegreeFahrenheit(2), 2.BtusPerHourSquareFootDegreeFahrenheit());
+
+        [Fact]
         public void NumberToBtusPerSquareFootDegreeFahrenheitTest() =>
             Assert.Equal(HeatTransferCoefficient.FromBtusPerSquareFootDegreeFahrenheit(2), 2.BtusPerSquareFootDegreeFahrenheit());
+
+        [Fact]
+        public void NumberToCaloriesPerHourSquareMeterDegreeCelsiusTest() =>
+            Assert.Equal(HeatTransferCoefficient.FromCaloriesPerHourSquareMeterDegreeCelsius(2), 2.CaloriesPerHourSquareMeterDegreeCelsius());
+
+        [Fact]
+        public void NumberToKilocaloriesPerHourSquareMeterDegreeCelsiusTest() =>
+            Assert.Equal(HeatTransferCoefficient.FromKilocaloriesPerHourSquareMeterDegreeCelsius(2), 2.KilocaloriesPerHourSquareMeterDegreeCelsius());
 
         [Fact]
         public void NumberToWattsPerSquareMeterCelsiusTest() =>

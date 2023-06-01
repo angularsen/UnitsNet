@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum AccelerationUnit
     {
-        Undefined = 0,
         CentimeterPerSecondSquared = 1,
         DecimeterPerSecondSquared = 2,
         FootPerSecondSquared = 3,

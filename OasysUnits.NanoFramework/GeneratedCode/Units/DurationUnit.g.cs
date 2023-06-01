@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum DurationUnit
     {
-        Undefined = 0,
         Day = 1,
         Hour = 2,
         JulianYear = 3,

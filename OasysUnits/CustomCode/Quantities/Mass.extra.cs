@@ -4,7 +4,6 @@
 using System;
 using System.Threading;
 using System.Globalization;
-using JetBrains.Annotations;
 using OasysUnits.Units;
 
 namespace OasysUnits
@@ -77,6 +76,18 @@ namespace OasysUnits
             return AmountOfSubstance.FromMoles(mass.Kilograms / molarMass.KilogramsPerMole);
         }
 
+        /// <summary>Get <see cref="AreaDensity" /> from <see cref="Mass" /> divided by <see cref="Area" />.</summary>
+        public static AreaDensity operator /(Mass mass, Area area)
+        {
+            return AreaDensity.FromKilogramsPerSquareMeter(mass.Kilograms / area.SquareMeters);
+        }
+
+        /// <summary>Get <see cref="Area" /> from <see cref="Mass" /> divided by <see cref="AreaDensity" />.</summary>
+        public static Area operator /(Mass mass, AreaDensity areaDensity)
+        {
+            return Area.FromSquareMeters(mass.Kilograms / areaDensity.KilogramsPerSquareMeter);
+        }
+
         /// <summary>Get <see cref="Force"/> from <see cref="Mass"/> times <see cref="Acceleration"/>.</summary>
         public static Force operator *(Mass mass, Acceleration acceleration)
         {
@@ -127,11 +138,11 @@ namespace OasysUnits
         /// <example>Mass.FromStonePounds(3,2).StonePounds.ToString() outputs: "3 st 2 lb"</example>
         /// <param name="cultureInfo">
         ///     Optional culture to format number and localize unit abbreviations.
-        ///     If null, defaults to <see cref="Thread.CurrentUICulture"/>.
+        ///     If null, defaults to <see cref="Thread.CurrentCulture"/>.
         /// </param>
         public string ToString(IFormatProvider? cultureInfo)
         {
-            cultureInfo = cultureInfo ?? CultureInfo.CurrentUICulture;
+            cultureInfo = cultureInfo ?? CultureInfo.CurrentCulture;
 
             var stoneUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(MassUnit.Stone, cultureInfo);
             var poundUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(MassUnit.Pound, cultureInfo);

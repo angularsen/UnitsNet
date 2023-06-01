@@ -44,6 +44,10 @@ namespace OasysUnits.NumberExtensions.NumberToMass
         public static Mass EarthMasses<T>(this T value) =>
             Mass.FromEarthMasses(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Mass.FromFemtograms(OasysUnits.QuantityValue)" />
+        public static Mass Femtograms<T>(this T value) =>
+            Mass.FromFemtograms(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Mass.FromGrains(OasysUnits.QuantityValue)" />
         public static Mass Grains<T>(this T value) =>
             Mass.FromGrains(Convert.ToDouble(value));
@@ -99,6 +103,10 @@ namespace OasysUnits.NumberExtensions.NumberToMass
         /// <inheritdoc cref="Mass.FromOunces(OasysUnits.QuantityValue)" />
         public static Mass Ounces<T>(this T value) =>
             Mass.FromOunces(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Mass.FromPicograms(OasysUnits.QuantityValue)" />
+        public static Mass Picograms<T>(this T value) =>
+            Mass.FromPicograms(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Mass.FromPounds(OasysUnits.QuantityValue)" />
         public static Mass Pounds<T>(this T value) =>

@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum EnergyUnit
     {
-        Undefined = 0,
         BritishThermalUnit = 1,
         Calorie = 2,
         DecathermEc = 3,
@@ -54,7 +53,9 @@ namespace OasysUnits.Units
         MegawattDay = 26,
         MegawattHour = 27,
         Millijoule = 28,
+        Petajoule = 43,
         TeraelectronVolt = 29,
+        Terajoule = 37,
         TerawattDay = 30,
         TerawattHour = 31,
         ThermEc = 32,

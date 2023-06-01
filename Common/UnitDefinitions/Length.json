@@ -1,7 +1,7 @@
 {
   "Name": "Length",
   "BaseUnit": "Meter",
-  "XmlDoc": "Many different units of length have been used around the world. The main units in modern use are U.S. customary units in the United States and the Metric system elsewhere. British Imperial units are still used for some purposes in the United Kingdom and some other countries. The metric system is sub-divided into SI and non-SI units.",
+  "XmlDocSummary": "Many different units of length have been used around the world. The main units in modern use are U.S. customary units in the United States and the Metric system elsewhere. British Imperial units are still used for some purposes in the United Kingdom and some other countries. The metric system is sub-divided into SI and non-SI units.",
   "BaseDimensions": {
     "L": 1
   },
@@ -14,7 +14,7 @@
       },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
-      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo" ],
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -36,8 +36,10 @@
       "BaseUnits": {
         "L": "Mile"
       },
-      "FromUnitToBaseFunc": "{x} * 1609.34",
-      "FromBaseToUnitFunc": "{x} / 1609.34",
+      "FromUnitToBaseFunc": "{x} * 1609.344",
+      "FromBaseToUnitFunc": "{x} / 1609.344",
+      "XmlDocSummary": "The statute mile was standardised between the British Commonwealth and the United States by an international agreement in 1959, when it was formally redefined with respect to SI units as exactly 1,609.344 metres.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Mile",
       "Localization": [
         {
           "Culture": "en-US",
@@ -61,6 +63,8 @@
       },
       "FromUnitToBaseFunc": "{x} * 0.9144",
       "FromBaseToUnitFunc": "{x} / 0.9144",
+      "XmlDocSummary": "The yard (symbol: yd) is an English unit of length in both the British imperial and US customary systems of measurement equalling 3 feet (or 36 inches). Since 1959 the yard has been by international agreement standardized as exactly 0.9144 meter. A distance of 1,760 yards is equal to 1 mile.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Yard",
       "Localization": [
         {
           "Culture": "en-US",
@@ -107,6 +111,8 @@
       },
       "FromUnitToBaseFunc": "{x} * 1200 / 3937",
       "FromBaseToUnitFunc": "{x} * 3937 / 1200",
+      "XmlDocSummary": "In the United States, the foot was defined as 12 inches, with the inch being defined by the Mendenhall Order of 1893 as 39.37 inches = 1 m. This makes a U.S. survey foot exactly 1200/3937 meters.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Foot_(unit)",
       "Localization": [
         {
           "Culture": "en-US",

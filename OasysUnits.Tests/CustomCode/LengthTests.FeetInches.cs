@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using Xunit;
 
-namespace OasysUnits.Tests.CustomCode
+namespace OasysUnits.Tests
 {
     public class FeetInchesTests
     {

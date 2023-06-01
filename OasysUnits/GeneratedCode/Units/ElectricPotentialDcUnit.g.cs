@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum ElectricPotentialDcUnit
     {
-        Undefined = 0,
         KilovoltDc = 1,
         MegavoltDc = 2,
         MicrovoltDc = 3,

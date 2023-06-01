@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using Newtonsoft.Json;
 using OasysUnits.Serialization.JsonNet.Tests.Infrastructure;
@@ -26,6 +27,7 @@ namespace OasysUnits.Serialization.JsonNet.Tests
         }
 
         [Fact]
+        [SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
         public void OasysUnitsIComparableJsonConverter_WriteJson_throws_NotImplementedException()
         {
             Assert.Throws<NotImplementedException>(() => _sut.WriteJson(null, null, null));
@@ -117,7 +119,7 @@ namespace OasysUnits.Serialization.JsonNet.Tests
 
             Assert.NotNull(result);
             Assert.IsType<Power>(result);
-            Assert.Equal(120D, ((Power)result).Watts);
+            Assert.Equal(120M, ((Power)result).Watts);
         }
     }
 }

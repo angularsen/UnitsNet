@@ -40,6 +40,10 @@ namespace OasysUnits.NumberExtensions.NumberToMolarity
         public static Molarity FemtomolesPerLiter<T>(this T value) =>
             Molarity.FromFemtomolesPerLiter(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Molarity.FromKilomolesPerCubicMeter(OasysUnits.QuantityValue)" />
+        public static Molarity KilomolesPerCubicMeter<T>(this T value) =>
+            Molarity.FromKilomolesPerCubicMeter(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Molarity.FromMicromolesPerLiter(OasysUnits.QuantityValue)" />
         public static Molarity MicromolesPerLiter<T>(this T value) =>
             Molarity.FromMicromolesPerLiter(Convert.ToDouble(value));
@@ -63,6 +67,10 @@ namespace OasysUnits.NumberExtensions.NumberToMolarity
         /// <inheritdoc cref="Molarity.FromPicomolesPerLiter(OasysUnits.QuantityValue)" />
         public static Molarity PicomolesPerLiter<T>(this T value) =>
             Molarity.FromPicomolesPerLiter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Molarity.FromPoundMolesPerCubicFoot(OasysUnits.QuantityValue)" />
+        public static Molarity PoundMolesPerCubicFoot<T>(this T value) =>
+            Molarity.FromPoundMolesPerCubicFoot(Convert.ToDouble(value));
 
     }
 }

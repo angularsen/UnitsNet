@@ -2,7 +2,6 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
-using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -16,7 +15,7 @@ namespace OasysUnits.Serialization.JsonNet
     /// Should only be used when OasysUnits types are assigned to properties of type IComparable.
     /// Requires TypeNameHandling on <see cref="JsonSerializerSettings"/> to be set to something other than <see cref="TypeNameHandling.None"/> so that it outputs $type when serializing.
     /// </summary>
-    public sealed class OasysUnitsIComparableJsonConverter : OasysUnitsBaseJsonConverter<IComparable>
+    public sealed class OasysUnitsIComparableJsonConverter : OasysUnitsBaseJsonConverter<IComparable?>
     {
         /// <summary>
         /// Indicates if this JsonConverter is capable of writing JSON
@@ -34,7 +33,7 @@ namespace OasysUnits.Serialization.JsonNet
         /// Because this converter should only be used in combination with the <see cref="OasysUnitsIQuantityJsonConverter"/>, the WriteJson method of that converter will always be used
         /// to serialize an IComparable in the context of OasysUnits.
         /// JsonNet is capable of serializing any IComparable implementation.</remarks>
-        public override void WriteJson(JsonWriter writer, IComparable value, JsonSerializer serializer)
+        public override void WriteJson(JsonWriter writer, IComparable? value, JsonSerializer serializer)
         {
             throw new NotImplementedException("Serialization of IComparable is handled by default serialization");
         }
@@ -48,15 +47,15 @@ namespace OasysUnits.Serialization.JsonNet
         /// <param name="hasExistingValue">Indicates if there is an existing value that should be updated (which is ignored)</param>
         /// <param name="serializer">The JsonSerializer to use for deserialization</param>
         /// <returns>A deserialized IComparable</returns>
-        public override IComparable ReadJson([NotNull] JsonReader reader, Type objectType, IComparable existingValue, bool hasExistingValue,
-            [NotNull] JsonSerializer serializer)
+        public override IComparable? ReadJson(JsonReader reader, Type objectType, IComparable? existingValue, bool hasExistingValue,
+            JsonSerializer serializer)
         {
             reader = reader ?? throw new ArgumentNullException(nameof(reader));
             serializer = serializer ?? throw new ArgumentNullException(nameof(serializer));
 
             if (reader.TokenType == JsonToken.Null)
             {
-                return null;
+                return existingValue;
             }
 
             var localSerializer = CreateLocalSerializer(serializer, this);
@@ -66,7 +65,7 @@ namespace OasysUnits.Serialization.JsonNet
             // If objectType is not IComparable but a type that implements IComparable, deserialize directly as this type instead.
             if (objectType != typeof(IComparable))
             {
-                return token.ToObject(objectType, localSerializer) as IComparable;
+                return (IComparable)token.ToObject(objectType, localSerializer)!;
             }
 
             var valueUnit = ReadValueUnit(token);
@@ -76,7 +75,7 @@ namespace OasysUnits.Serialization.JsonNet
                 return token.ToObject<IComparable>(localSerializer);
             }
 
-            return ConvertValueUnit(valueUnit) as IComparable;
+            return (IComparable)ConvertValueUnit(valueUnit);
         }
     }
 }

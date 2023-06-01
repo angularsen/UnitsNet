@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum SpeedUnit
     {
-        Undefined = 0,
         CentimeterPerHour = 1,
         CentimeterPerMinute = 2,
         CentimeterPerSecond = 3,
@@ -40,6 +39,11 @@ namespace OasysUnits.Units
         KilometerPerHour = 12,
         KilometerPerMinute = 13,
         KilometerPerSecond = 14,
+
+        /// <summary>
+        ///     The knot, by definition, is a unit of speed equals to 1 nautical mile per hour, which is exactly 1852.000 metres per hour. The length of the internationally agreed nautical mile is 1852 m. The US adopted the international definition in 1954, the UK adopted the international nautical mile definition in 1970.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Knot_(unit)</remarks>
         Knot = 15,
         Mach = 42,
         MeterPerHour = 16,

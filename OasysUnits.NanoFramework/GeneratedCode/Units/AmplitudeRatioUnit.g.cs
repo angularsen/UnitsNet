@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum AmplitudeRatioUnit
     {
-        Undefined = 0,
         DecibelMicrovolt = 1,
         DecibelMillivolt = 2,
         DecibelUnloaded = 3,

@@ -24,7 +24,7 @@ namespace OasysUnits
 {
     /// <inheritdoc />
     /// <summary>
-    ///     In fluid mechanics, permeability is the measure of the ability of a porous material to allow fluids to pass through it.
+    ///     
     /// </summary>
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Permeability_(Earth_sciences)
@@ -154,61 +154,61 @@ namespace OasysUnits
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(PorousMediumPermeabilityUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(PorousMediumPermeabilityUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public PorousMediumPermeability ToUnit(PorousMediumPermeabilityUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new PorousMediumPermeability(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public PorousMediumPermeability ToUnit(PorousMediumPermeabilityUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new PorousMediumPermeability(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                PorousMediumPermeabilityUnit.Darcy => _value * 9.869233e-13,
-                PorousMediumPermeabilityUnit.Microdarcy => (_value * 9.869233e-13) * 1e-6d,
-                PorousMediumPermeabilityUnit.Millidarcy => (_value * 9.869233e-13) * 1e-3d,
-                PorousMediumPermeabilityUnit.SquareCentimeter => _value * 1e-4,
-                PorousMediumPermeabilityUnit.SquareMeter => _value,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        PorousMediumPermeabilityUnit.Darcy => _value * 9.869233e-13,
+                        PorousMediumPermeabilityUnit.Microdarcy => (_value * 9.869233e-13) * 1e-6d,
+                        PorousMediumPermeabilityUnit.Millidarcy => (_value * 9.869233e-13) * 1e-3d,
+                        PorousMediumPermeabilityUnit.SquareCentimeter => _value * 1e-4,
+                        PorousMediumPermeabilityUnit.SquareMeter => _value,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(PorousMediumPermeabilityUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(PorousMediumPermeabilityUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                PorousMediumPermeabilityUnit.Darcy => baseUnitValue / 9.869233e-13,
-                PorousMediumPermeabilityUnit.Microdarcy => (baseUnitValue / 9.869233e-13) / 1e-6d,
-                PorousMediumPermeabilityUnit.Millidarcy => (baseUnitValue / 9.869233e-13) / 1e-3d,
-                PorousMediumPermeabilityUnit.SquareCentimeter => baseUnitValue / 1e-4,
-                PorousMediumPermeabilityUnit.SquareMeter => baseUnitValue,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        PorousMediumPermeabilityUnit.Darcy => baseUnitValue / 9.869233e-13,
+                        PorousMediumPermeabilityUnit.Microdarcy => (baseUnitValue / 9.869233e-13) / 1e-6d,
+                        PorousMediumPermeabilityUnit.Millidarcy => (baseUnitValue / 9.869233e-13) / 1e-3d,
+                        PorousMediumPermeabilityUnit.SquareCentimeter => baseUnitValue / 1e-4,
+                        PorousMediumPermeabilityUnit.SquareMeter => baseUnitValue,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

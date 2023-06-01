@@ -28,9 +28,17 @@ namespace OasysUnits.NumberExtensions.NumberToAreaDensity
     /// </summary>
     public static class NumberToAreaDensityExtensions
     {
+        /// <inheritdoc cref="AreaDensity.FromGramsPerSquareMeter(OasysUnits.QuantityValue)" />
+        public static AreaDensity GramsPerSquareMeter<T>(this T value) =>
+            AreaDensity.FromGramsPerSquareMeter(Convert.ToDouble(value));
+
         /// <inheritdoc cref="AreaDensity.FromKilogramsPerSquareMeter(OasysUnits.QuantityValue)" />
         public static AreaDensity KilogramsPerSquareMeter<T>(this T value) =>
             AreaDensity.FromKilogramsPerSquareMeter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="AreaDensity.FromMilligramsPerSquareMeter(OasysUnits.QuantityValue)" />
+        public static AreaDensity MilligramsPerSquareMeter<T>(this T value) =>
+            AreaDensity.FromMilligramsPerSquareMeter(Convert.ToDouble(value));
 
     }
 }

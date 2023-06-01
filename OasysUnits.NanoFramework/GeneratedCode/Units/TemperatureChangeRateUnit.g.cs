@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum TemperatureChangeRateUnit
     {
-        Undefined = 0,
         CentidegreeCelsiusPerSecond = 1,
         DecadegreeCelsiusPerSecond = 2,
         DecidegreeCelsiusPerSecond = 3,

@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum SpecificWeightUnit
     {
-        Undefined = 0,
         KilogramForcePerCubicCentimeter = 1,
         KilogramForcePerCubicMeter = 2,
         KilogramForcePerCubicMillimeter = 3,

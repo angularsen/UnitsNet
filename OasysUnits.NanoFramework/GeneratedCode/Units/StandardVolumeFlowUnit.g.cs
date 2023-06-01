@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum StandardVolumeFlowUnit
     {
-        Undefined = 0,
         StandardCubicCentimeterPerMinute = 1,
         StandardCubicFootPerHour = 2,
         StandardCubicFootPerMinute = 3,

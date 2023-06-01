@@ -60,6 +60,14 @@ namespace OasysUnits.NumberExtensions.NumberToFrequency
         public static Frequency Megahertz<T>(this T value) =>
             Frequency.FromMegahertz(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Frequency.FromMicrohertz(OasysUnits.QuantityValue)" />
+        public static Frequency Microhertz<T>(this T value) =>
+            Frequency.FromMicrohertz(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Frequency.FromMillihertz(OasysUnits.QuantityValue)" />
+        public static Frequency Millihertz<T>(this T value) =>
+            Frequency.FromMillihertz(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Frequency.FromPerSecond(OasysUnits.QuantityValue)" />
         public static Frequency PerSecond<T>(this T value) =>
             Frequency.FromPerSecond(Convert.ToDouble(value));

@@ -25,32 +25,17 @@ namespace OasysUnits.Units
 
     public enum MolarityUnit
     {
-        Undefined = 0,
         CentimolePerLiter = 1,
-        [System.Obsolete("Use the singular unit instead.")]
-        CentimolesPerLiter = 2,
         DecimolePerLiter = 3,
-        [System.Obsolete("Use the singular unit instead.")]
-        DecimolesPerLiter = 4,
         FemtomolePerLiter = 5,
+        KilomolePerCubicMeter = 25,
         MicromolePerLiter = 6,
-        [System.Obsolete("Use the singular unit instead.")]
-        MicromolesPerLiter = 7,
         MillimolePerLiter = 8,
-        [System.Obsolete("Use the singular unit instead.")]
-        MillimolesPerLiter = 9,
         MolePerCubicMeter = 10,
         MolePerLiter = 11,
-        [System.Obsolete("Use the singular unit instead.")]
-        MolesPerCubicMeter = 12,
-        [System.Obsolete("Use the singular unit instead.")]
-        MolesPerLiter = 13,
         NanomolePerLiter = 14,
-        [System.Obsolete("Use the singular unit instead.")]
-        NanomolesPerLiter = 15,
         PicomolePerLiter = 16,
-        [System.Obsolete("Use the singular unit instead.")]
-        PicomolesPerLiter = 17,
+        PoundMolePerCubicFoot = 18,
     }
 
     #pragma warning restore 1591

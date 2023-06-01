@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum PowerUnit
     {
-        Undefined = 0,
         BoilerHorsepower = 1,
         BritishThermalUnitPerHour = 2,
         Decawatt = 3,

@@ -6,7 +6,7 @@ using System.Globalization;
 using OasysUnits.Units;
 using Xunit;
 
-namespace OasysUnits.Tests.CustomCode
+namespace OasysUnits.Tests
 {
     /// <remarks>
     ///     These test methods would ideally be generated for each unit class,

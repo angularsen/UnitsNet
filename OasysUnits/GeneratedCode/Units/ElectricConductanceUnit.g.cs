@@ -25,9 +25,10 @@ namespace OasysUnits.Units
 
     public enum ElectricConductanceUnit
     {
-        Undefined = 0,
+        Kilosiemens = 6,
         Microsiemens = 1,
         Millisiemens = 2,
+        Nanosiemens = 10,
         Siemens = 3,
     }
 

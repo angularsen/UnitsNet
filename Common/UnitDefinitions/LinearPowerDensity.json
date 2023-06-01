@@ -1,7 +1,7 @@
 {
   "Name": "LinearPowerDensity",
   "BaseUnit": "WattPerMeter",
-  "XmlDoc": "The Linear Power Density of a substance is its power per unit length.  The term linear density is most often used when describing the characteristics of one-dimensional objects, although linear density can also be used to describe the density of a three-dimensional quantity along one particular dimension.",
+  "XmlDocSummary": "The Linear Power Density of a substance is its power per unit length.  The term linear density is most often used when describing the characteristics of one-dimensional objects, although linear density can also be used to describe the density of a three-dimensional quantity along one particular dimension.",
   "XmlDocRemarks": "http://en.wikipedia.org/wiki/Linear_density",
   "BaseDimensions": {
     "M": 1,

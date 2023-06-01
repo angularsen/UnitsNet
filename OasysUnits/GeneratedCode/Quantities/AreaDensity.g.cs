@@ -18,10 +18,10 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
-using JetBrains.Annotations;
 using OasysUnits.InternalHelpers;
 using OasysUnits.Units;
 
@@ -33,10 +33,16 @@ namespace OasysUnits
 {
     /// <inheritdoc />
     /// <summary>
-    ///     The area density of a two-dimensional object is calculated as the mass per unit area.
+    ///     The area density of a two-dimensional object is calculated as the mass per unit area. For paper this is also called grammage.
     /// </summary>
     [DataContract]
-    public partial struct AreaDensity : IQuantity<AreaDensityUnit>, IEquatable<AreaDensity>, IComparable, IComparable<AreaDensity>, IConvertible, IFormattable
+    public readonly partial struct AreaDensity :
+        IArithmeticQuantity<AreaDensity, AreaDensityUnit, double>,
+        IComparable,
+        IComparable<AreaDensity>,
+        IConvertible,
+        IEquatable<AreaDensity>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -54,17 +60,16 @@ namespace OasysUnits
         {
             BaseDimensions = new BaseDimensions(-2, 1, 0, 0, 0, 0, 0);
             BaseUnit = AreaDensityUnit.KilogramPerSquareMeter;
-            MaxValue = new AreaDensity(double.MaxValue, BaseUnit);
-            MinValue = new AreaDensity(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.AreaDensity;
-            Units = Enum.GetValues(typeof(AreaDensityUnit)).Cast<AreaDensityUnit>().Except(new AreaDensityUnit[]{ AreaDensityUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(AreaDensityUnit)).Cast<AreaDensityUnit>().ToArray();
             Zero = new AreaDensity(0, BaseUnit);
             Info = new QuantityInfo<AreaDensityUnit>("AreaDensity",
                 new UnitInfo<AreaDensityUnit>[]
                 {
+                    new UnitInfo<AreaDensityUnit>(AreaDensityUnit.GramPerSquareMeter, "GramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram)),
                     new UnitInfo<AreaDensityUnit>(AreaDensityUnit.KilogramPerSquareMeter, "KilogramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram)),
+                    new UnitInfo<AreaDensityUnit>(AreaDensityUnit.MilligramPerSquareMeter, "MilligramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram)),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.AreaDensity);
+                BaseUnit, Zero, BaseDimensions);
 
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
@@ -78,9 +83,6 @@ namespace OasysUnits
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public AreaDensity(double value, AreaDensityUnit unit)
         {
-            if (unit == AreaDensityUnit.Undefined)
-              throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
-
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
@@ -125,24 +127,6 @@ namespace OasysUnits
         public static AreaDensityUnit BaseUnit { get; }
 
         /// <summary>
-        /// Represents the largest possible value of AreaDensity
-        /// </summary>
-        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static AreaDensity MaxValue { get; }
-
-        /// <summary>
-        /// Represents the smallest possible value of AreaDensity
-        /// </summary>
-        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static AreaDensity MinValue { get; }
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; }
-
-        /// <summary>
         ///     All units of measurement for the AreaDensity quantity.
         /// </summary>
         public static AreaDensityUnit[] Units { get; }
@@ -152,14 +136,20 @@ namespace OasysUnits
         /// </summary>
         public static AreaDensity Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static AreaDensity AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        /// <inheritdoc />
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -173,12 +163,6 @@ namespace OasysUnits
         QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public QuantityType Type => QuantityType.AreaDensity;
-
-        /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public BaseDimensions Dimensions => AreaDensity.BaseDimensions;
@@ -188,9 +172,19 @@ namespace OasysUnits
         #region Conversion Properties
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaDensityUnit.GramPerSquareMeter"/>
+        /// </summary>
+        public double GramsPerSquareMeter => As(AreaDensityUnit.GramPerSquareMeter);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaDensityUnit.KilogramPerSquareMeter"/>
         /// </summary>
         public double KilogramsPerSquareMeter => As(AreaDensityUnit.KilogramPerSquareMeter);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaDensityUnit.MilligramPerSquareMeter"/>
+        /// </summary>
+        public double MilligramsPerSquareMeter => As(AreaDensityUnit.MilligramPerSquareMeter);
 
         #endregion
 
@@ -203,16 +197,22 @@ namespace OasysUnits
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: AreaDensityUnit -> BaseUnit
+            unitConverter.SetConversionFunction<AreaDensity>(AreaDensityUnit.GramPerSquareMeter, AreaDensityUnit.KilogramPerSquareMeter, quantity => quantity.ToUnit(AreaDensityUnit.KilogramPerSquareMeter));
+            unitConverter.SetConversionFunction<AreaDensity>(AreaDensityUnit.MilligramPerSquareMeter, AreaDensityUnit.KilogramPerSquareMeter, quantity => quantity.ToUnit(AreaDensityUnit.KilogramPerSquareMeter));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<AreaDensity>(AreaDensityUnit.KilogramPerSquareMeter, AreaDensityUnit.KilogramPerSquareMeter, quantity => quantity);
 
             // Register in unit converter: BaseUnit -> AreaDensityUnit
+            unitConverter.SetConversionFunction<AreaDensity>(AreaDensityUnit.KilogramPerSquareMeter, AreaDensityUnit.GramPerSquareMeter, quantity => quantity.ToUnit(AreaDensityUnit.GramPerSquareMeter));
+            unitConverter.SetConversionFunction<AreaDensity>(AreaDensityUnit.KilogramPerSquareMeter, AreaDensityUnit.MilligramPerSquareMeter, quantity => quantity.ToUnit(AreaDensityUnit.MilligramPerSquareMeter));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
+            unitAbbreviationsCache.PerformAbbreviationMapping(AreaDensityUnit.GramPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"g/m²", "gsm"});
             unitAbbreviationsCache.PerformAbbreviationMapping(AreaDensityUnit.KilogramPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"kg/m²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AreaDensityUnit.MilligramPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"mg/m²"});
         }
 
         /// <summary>
@@ -230,7 +230,7 @@ namespace OasysUnits
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(AreaDensityUnit unit, IFormatProvider? provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
@@ -241,6 +241,16 @@ namespace OasysUnits
         #region Static Factory Methods
 
         /// <summary>
+        ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.GramPerSquareMeter"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static AreaDensity FromGramsPerSquareMeter(QuantityValue gramspersquaremeter)
+        {
+            double value = (double) gramspersquaremeter;
+            return new AreaDensity(value, AreaDensityUnit.GramPerSquareMeter);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.KilogramPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -248,6 +258,16 @@ namespace OasysUnits
         {
             double value = (double) kilogramspersquaremeter;
             return new AreaDensity(value, AreaDensityUnit.KilogramPerSquareMeter);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.MilligramPerSquareMeter"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static AreaDensity FromMilligramsPerSquareMeter(QuantityValue milligramspersquaremeter)
+        {
+            double value = (double) milligramspersquaremeter;
+            return new AreaDensity(value, AreaDensityUnit.MilligramPerSquareMeter);
         }
 
         /// <summary>
@@ -314,7 +334,7 @@ namespace OasysUnits
         ///     We wrap exceptions in <see cref="OasysUnitsException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static AreaDensity Parse(string str, IFormatProvider? provider)
         {
             return QuantityParser.Default.Parse<AreaDensity, AreaDensityUnit>(
@@ -345,7 +365,7 @@ namespace OasysUnits
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out AreaDensity result)
         {
             return QuantityParser.Default.TryParse<AreaDensity, AreaDensityUnit>(
@@ -373,7 +393,7 @@ namespace OasysUnits
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -399,7 +419,7 @@ namespace OasysUnits
         /// <example>
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out AreaDensityUnit unit)
         {
             return UnitParser.Default.TryParse<AreaDensityUnit>(str, provider, out unit);
@@ -479,50 +499,83 @@ namespace OasysUnits
             return left.Value > right.ToUnit(left.Unit).Value;
         }
 
-        /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(AreaDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        // We use obsolete attribute to communicate the preferred equality members to use.
+        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
+        #pragma warning disable CS0809
+
+        /// <summary>Indicates strict equality of two <see cref="AreaDensity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(AreaDensity, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For quantity comparisons, use Equals(AreaDensity, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
         public static bool operator ==(AreaDensity left, AreaDensity right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(AreaDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <summary>Indicates strict inequality of two <see cref="AreaDensity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(AreaDensity, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
+        [Obsolete("For null checks, use `x is not null` syntax to not invoke overloads. For quantity comparisons, use Equals(AreaDensity, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
         public static bool operator !=(AreaDensity left, AreaDensity right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        public int CompareTo(object obj)
+        /// <summary>Indicates strict equality of two <see cref="AreaDensity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(AreaDensity, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
+        [Obsolete("Consider using Equals(AreaDensity, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        public override bool Equals(object? obj)
         {
-            if (obj is null) throw new ArgumentNullException(nameof(obj));
-            if (!(obj is AreaDensity objAreaDensity)) throw new ArgumentException("Expected type AreaDensity.", nameof(obj));
+            if (obj is null || !(obj is AreaDensity otherQuantity))
+                return false;
 
-            return CompareTo(objAreaDensity);
+            return Equals(otherQuantity);
         }
 
         /// <inheritdoc />
+        /// <summary>Indicates strict equality of two <see cref="AreaDensity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(AreaDensity, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
+        [Obsolete("Consider using Equals(AreaDensity, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        public bool Equals(AreaDensity other)
+        {
+            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+        }
+
+        #pragma warning restore CS0809
+
+        /// <summary>Compares the current <see cref="AreaDensity"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <param name="obj">An object to compare with this instance.</param>
+        /// <exception cref="T:System.ArgumentException">
+        ///    <paramref name="obj" /> is not the same type as this instance.
+        /// </exception>
+        /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
+        ///     <list type="table">
+        ///         <listheader><term> Value</term><description> Meaning</description></listheader>
+        ///         <item><term> Less than zero</term><description> This instance precedes <paramref name="obj" /> in the sort order.</description></item>
+        ///         <item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="obj" />.</description></item>
+        ///         <item><term> Greater than zero</term><description> This instance follows <paramref name="obj" /> in the sort order.</description></item>
+        ///     </list>
+        /// </returns>
+        public int CompareTo(object? obj)
+        {
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is AreaDensity otherQuantity)) throw new ArgumentException("Expected type AreaDensity.", nameof(obj));
+
+            return CompareTo(otherQuantity);
+        }
+
+        /// <summary>Compares the current <see cref="AreaDensity"/> with another <see cref="AreaDensity"/> and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <param name="other">A quantity to compare with this instance.</param>
+        /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
+        ///     <list type="table">
+        ///         <listheader><term> Value</term><description> Meaning</description></listheader>
+        ///         <item><term> Less than zero</term><description> This instance precedes <paramref name="other" /> in the sort order.</description></item>
+        ///         <item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="other" />.</description></item>
+        ///         <item><term> Greater than zero</term><description> This instance follows <paramref name="other" /> in the sort order.</description></item>
+        ///     </list>
+        /// </returns>
         public int CompareTo(AreaDensity other)
         {
             return _value.CompareTo(other.ToUnit(this.Unit).Value);
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(AreaDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public override bool Equals(object obj)
-        {
-            if (obj is null || !(obj is AreaDensity objAreaDensity))
-                return false;
-
-            return Equals(objAreaDensity);
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(AreaDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(AreaDensity other)
-        {
-            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -558,7 +611,7 @@ namespace OasysUnits
         ///     </para>
         ///     <para>
         ///     Note that it is advised against specifying zero difference, due to the nature
-        ///     of floating point operations and using System.Double internally.
+        ///     of floating-point operations and using double internally.
         ///     </para>
         /// </summary>
         /// <param name="other">The other quantity to compare to.</param>
@@ -570,7 +623,7 @@ namespace OasysUnits
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = (double)this.Value;
+            double thisValue = this.Value;
             double otherValueInThisUnits = other.As(this.Unit);
 
             return OasysUnits.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
@@ -596,10 +649,9 @@ namespace OasysUnits
         public double As(AreaDensityUnit unit)
         {
             if (Unit == unit)
-                return (double)Value;
+                return Value;
 
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
+            return ToUnit(unit).Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -620,10 +672,19 @@ namespace OasysUnits
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if (!(unit is AreaDensityUnit unitAsAreaDensityUnit))
+            if (!(unit is AreaDensityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AreaDensityUnit)} is supported.", nameof(unit));
 
-            return As(unitAsAreaDensityUnit);
+            return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is AreaDensityUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AreaDensityUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>
@@ -673,7 +734,7 @@ namespace OasysUnits
         /// <param name="unit">The unit to convert to.</param>
         /// <param name="converted">The converted <see cref="AreaDensity"/> in <paramref name="unit"/>, if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
-        private bool TryToUnit(AreaDensityUnit unit, out AreaDensity? converted)
+        private bool TryToUnit(AreaDensityUnit unit, [NotNullWhen(true)] out AreaDensity? converted)
         {
             if (Unit == unit)
             {
@@ -681,25 +742,36 @@ namespace OasysUnits
                 return true;
             }
 
-            converted = (Unit, unit) switch
+            AreaDensity? convertedOrNull = (Unit, unit) switch
             {
                 // AreaDensityUnit -> BaseUnit
+                (AreaDensityUnit.GramPerSquareMeter, AreaDensityUnit.KilogramPerSquareMeter) => new AreaDensity(_value / 1000, AreaDensityUnit.KilogramPerSquareMeter),
+                (AreaDensityUnit.MilligramPerSquareMeter, AreaDensityUnit.KilogramPerSquareMeter) => new AreaDensity(_value / 1000000, AreaDensityUnit.KilogramPerSquareMeter),
 
                 // BaseUnit -> AreaDensityUnit
+                (AreaDensityUnit.KilogramPerSquareMeter, AreaDensityUnit.GramPerSquareMeter) => new AreaDensity(_value * 1000, AreaDensityUnit.GramPerSquareMeter),
+                (AreaDensityUnit.KilogramPerSquareMeter, AreaDensityUnit.MilligramPerSquareMeter) => new AreaDensity(_value * 1000000, AreaDensityUnit.MilligramPerSquareMeter),
 
-                _ => null!
+                _ => null
             };
 
-            return converted != null;
+            if (convertedOrNull is null)
+            {
+                converted = default;
+                return false;
+            }
+
+            converted = convertedOrNull.Value;
+            return true;
         }
 
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if (!(unit is AreaDensityUnit unitAsAreaDensityUnit))
+            if (!(unit is AreaDensityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AreaDensityUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsAreaDensityUnit, DefaultConversionFunctions);
+            return ToUnit(typedUnit, DefaultConversionFunctions);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -726,6 +798,18 @@ namespace OasysUnits
         /// <inheritdoc />
         IQuantity<AreaDensityUnit> IQuantity<AreaDensityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
+        /// <inheritdoc />
+        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
+        {
+            if (unit is not AreaDensityUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AreaDensityUnit)} is supported.", nameof(unit));
+
+            return ToUnit(typedUnit);
+        }
+
+        /// <inheritdoc />
+        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
         #endregion
 
         #region ToString Methods
@@ -743,65 +827,31 @@ namespace OasysUnits
         ///     Gets the default string representation of value and unit using the given format provider.
         /// </summary>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
             return ToString("g", provider);
         }
 
+        /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
         /// <summary>
-        ///     Get string representation of value and unit.
+        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentCulture" />.
         /// </summary>
-        /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
-        /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
-        public string ToString(IFormatProvider? provider, int significantDigitsAfterRadix)
+        /// <param name="format">The format string.</param>
+        /// <returns>The string representation.</returns>
+        public string ToString(string? format)
         {
-            var value = Convert.ToDouble(Value);
-            var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(provider, format);
-        }
-
-        /// <summary>
-        ///     Get string representation of value and unit.
-        /// </summary>
-        /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
-        /// <param name="args">Arguments for string format. Value and unit are implicitly included as arguments 0 and 1.</param>
-        /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
-        public string ToString(IFormatProvider? provider, [NotNull] string format, [NotNull] params object[] args)
-        {
-            if (format == null) throw new ArgumentNullException(nameof(format));
-            if (args == null) throw new ArgumentNullException(nameof(args));
-
-            provider = provider ?? CultureInfo.CurrentUICulture;
-
-            var value = Convert.ToDouble(Value);
-            var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);
-            return string.Format(provider, format, formatArgs);
+            return ToString(format, CultureInfo.CurrentCulture);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
         /// <summary>
-        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentUICulture" />.
+        /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
         /// </summary>
         /// <param name="format">The format string.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <returns>The string representation.</returns>
-        public string ToString(string format)
-        {
-            return ToString(format, CultureInfo.CurrentUICulture);
-        }
-
-        /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
-        /// <summary>
-        /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentUICulture" /> if null.
-        /// </summary>
-        /// <param name="format">The format string.</param>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        /// <returns>The string representation.</returns>
-        public string ToString(string format, IFormatProvider? provider)
+        public string ToString(string? format, IFormatProvider? provider)
         {
             return QuantityFormatter.Format<AreaDensityUnit>(this, format, provider);
         }
@@ -815,74 +865,72 @@ namespace OasysUnits
             return TypeCode.Object;
         }
 
-        bool IConvertible.ToBoolean(IFormatProvider provider)
+        bool IConvertible.ToBoolean(IFormatProvider? provider)
         {
             throw new InvalidCastException($"Converting {typeof(AreaDensity)} to bool is not supported.");
         }
 
-        byte IConvertible.ToByte(IFormatProvider provider)
+        byte IConvertible.ToByte(IFormatProvider? provider)
         {
             return Convert.ToByte(_value);
         }
 
-        char IConvertible.ToChar(IFormatProvider provider)
+        char IConvertible.ToChar(IFormatProvider? provider)
         {
             throw new InvalidCastException($"Converting {typeof(AreaDensity)} to char is not supported.");
         }
 
-        DateTime IConvertible.ToDateTime(IFormatProvider provider)
+        DateTime IConvertible.ToDateTime(IFormatProvider? provider)
         {
             throw new InvalidCastException($"Converting {typeof(AreaDensity)} to DateTime is not supported.");
         }
 
-        decimal IConvertible.ToDecimal(IFormatProvider provider)
+        decimal IConvertible.ToDecimal(IFormatProvider? provider)
         {
             return Convert.ToDecimal(_value);
         }
 
-        double IConvertible.ToDouble(IFormatProvider provider)
+        double IConvertible.ToDouble(IFormatProvider? provider)
         {
             return Convert.ToDouble(_value);
         }
 
-        short IConvertible.ToInt16(IFormatProvider provider)
+        short IConvertible.ToInt16(IFormatProvider? provider)
         {
             return Convert.ToInt16(_value);
         }
 
-        int IConvertible.ToInt32(IFormatProvider provider)
+        int IConvertible.ToInt32(IFormatProvider? provider)
         {
             return Convert.ToInt32(_value);
         }
 
-        long IConvertible.ToInt64(IFormatProvider provider)
+        long IConvertible.ToInt64(IFormatProvider? provider)
         {
             return Convert.ToInt64(_value);
         }
 
-        sbyte IConvertible.ToSByte(IFormatProvider provider)
+        sbyte IConvertible.ToSByte(IFormatProvider? provider)
         {
             return Convert.ToSByte(_value);
         }
 
-        float IConvertible.ToSingle(IFormatProvider provider)
+        float IConvertible.ToSingle(IFormatProvider? provider)
         {
             return Convert.ToSingle(_value);
         }
 
-        string IConvertible.ToString(IFormatProvider provider)
+        string IConvertible.ToString(IFormatProvider? provider)
         {
             return ToString("g", provider);
         }
 
-        object IConvertible.ToType(Type conversionType, IFormatProvider provider)
+        object IConvertible.ToType(Type conversionType, IFormatProvider? provider)
         {
             if (conversionType == typeof(AreaDensity))
                 return this;
             else if (conversionType == typeof(AreaDensityUnit))
                 return Unit;
-            else if (conversionType == typeof(QuantityType))
-                return AreaDensity.QuantityType;
             else if (conversionType == typeof(QuantityInfo))
                 return AreaDensity.Info;
             else if (conversionType == typeof(BaseDimensions))
@@ -891,17 +939,17 @@ namespace OasysUnits
                 throw new InvalidCastException($"Converting {typeof(AreaDensity)} to {conversionType} is not supported.");
         }
 
-        ushort IConvertible.ToUInt16(IFormatProvider provider)
+        ushort IConvertible.ToUInt16(IFormatProvider? provider)
         {
             return Convert.ToUInt16(_value);
         }
 
-        uint IConvertible.ToUInt32(IFormatProvider provider)
+        uint IConvertible.ToUInt32(IFormatProvider? provider)
         {
             return Convert.ToUInt32(_value);
         }
 
-        ulong IConvertible.ToUInt64(IFormatProvider provider)
+        ulong IConvertible.ToUInt64(IFormatProvider? provider)
         {
             return Convert.ToUInt64(_value);
         }

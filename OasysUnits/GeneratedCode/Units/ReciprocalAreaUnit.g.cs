@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum ReciprocalAreaUnit
     {
-        Undefined = 0,
         InverseSquareCentimeter = 1,
         InverseSquareDecimeter = 2,
         InverseSquareFoot = 3,

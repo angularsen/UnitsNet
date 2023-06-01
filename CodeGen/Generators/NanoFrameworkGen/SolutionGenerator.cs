@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using CodeGen.Helpers;
 using CodeGen.JsonTypes;
 
 namespace CodeGen.Generators.NanoFrameworkGen
@@ -7,7 +8,7 @@ namespace CodeGen.Generators.NanoFrameworkGen
     class SolutionGenerator:GeneratorBase
     {
         private readonly Quantity[] _quantities;
-        private readonly Guid _globalGuid = new("d608a2b1-6ead-4383-a205-ad1ce69d9ef7");
+        private readonly Guid _globalGuid = new("d608a2b1-6ead-4383-a205-ad1ce69d9ef7"); // Randomly generated guids.
         private readonly Guid _solutionGuid = new("43971d92-3663-4f28-82ac-e63ce06ba1a3");
 
         public SolutionGenerator(Quantity[] quantities)
@@ -15,7 +16,7 @@ namespace CodeGen.Generators.NanoFrameworkGen
             _quantities = quantities;
         }
 
-        public override string Generate()
+        public string Generate()
         {
             StringBuilder sb = new();
             Writer.WL($@"Microsoft Visual Studio Solution File, Format Version 12.00

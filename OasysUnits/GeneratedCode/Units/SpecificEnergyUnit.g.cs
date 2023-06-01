@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum SpecificEnergyUnit
     {
-        Undefined = 0,
         BtuPerPound = 1,
         CaloriePerGram = 2,
         GigawattDayPerKilogram = 3,
@@ -42,6 +41,7 @@ namespace OasysUnits.Units
         KilowattHourPerKilogram = 14,
         KilowattHourPerPound = 15,
         MegajoulePerKilogram = 16,
+        MegaJoulePerTonne = 37,
         MegawattDayPerKilogram = 17,
         MegawattDayPerShortTon = 18,
         MegawattDayPerTonne = 19,

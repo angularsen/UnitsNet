@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum ElectricPotentialChangeRateUnit
     {
-        Undefined = 0,
         KilovoltPerHour = 1,
         KilovoltPerMicrosecond = 2,
         KilovoltPerMinute = 3,

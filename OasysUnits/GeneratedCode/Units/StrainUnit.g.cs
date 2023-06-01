@@ -25,11 +25,10 @@ namespace OasysUnits.Units
 
     public enum StrainUnit
     {
-        Undefined = 0,
-        MicroStrain = 4,
-        MilliStrain = 6,
-        Percent = 5,
-        Ratio = 8,
+        MicroStrain = 3,
+        MilliStrain = 7,
+        Percent = 4,
+        Ratio = 6,
     }
 
     #pragma warning restore 1591

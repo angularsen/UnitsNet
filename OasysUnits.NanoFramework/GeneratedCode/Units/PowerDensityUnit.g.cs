@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum PowerDensityUnit
     {
-        Undefined = 0,
         DecawattPerCubicFoot = 1,
         DecawattPerCubicInch = 2,
         DecawattPerCubicMeter = 3,

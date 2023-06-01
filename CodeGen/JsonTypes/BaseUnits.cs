@@ -9,19 +9,19 @@ namespace CodeGen.JsonTypes
 #pragma warning disable 0649
 
         /// <summary>AmountOfSubstance.</summary>
-        public string N;
+        public string? N;
         /// <summary>ElectricCurrent.</summary>
-        public string I;
+        public string? I;
         /// <summary>Length.</summary>
-        public string L;
+        public string? L;
         /// <summary>LuminousIntensity.</summary>
-        public string J;
+        public string? J;
         /// <summary>Mass.</summary>
-        public string M;
+        public string? M;
         /// <summary>Temperature.</summary>
-        public string Θ;
+        public string? Θ;
         /// <summary>Time.</summary>
-        public string T;
+        public string? T;
 
         // 0649 Field is never assigned to
 #pragma warning restore 0649

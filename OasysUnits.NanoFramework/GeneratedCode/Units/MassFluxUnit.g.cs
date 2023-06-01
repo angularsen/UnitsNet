@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum MassFluxUnit
     {
-        Undefined = 0,
         GramPerHourPerSquareCentimeter = 1,
         GramPerHourPerSquareMeter = 2,
         GramPerHourPerSquareMillimeter = 3,

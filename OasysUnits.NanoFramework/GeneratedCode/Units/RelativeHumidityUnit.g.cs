@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum RelativeHumidityUnit
     {
-        Undefined = 0,
         Percent = 1,
     }
 

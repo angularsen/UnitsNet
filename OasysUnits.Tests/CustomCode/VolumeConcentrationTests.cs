@@ -81,7 +81,7 @@ namespace OasysUnits.Tests.CustomCode
         [InlineData(29.19419518377693, VolumeConcentrationUnit.MillilitersPerLiter,
                     KnownQuantities.DensityOfEthanolInKgPerCubicMeter, DensityUnit.KilogramPerCubicMeter,
                     KnownQuantities.MolarMassOfEthanolInGramsPerMole, MolarMassUnit.GramPerMole,
-                    0.5, MolarityUnit.MolesPerLiter)]   // 29.19419518377693 = VolumeConcentration_0_5M_Ethanol
+                    0.5, MolarityUnit.MolePerLiter)]   // 29.19419518377693 = VolumeConcentration_0_5M_Ethanol
         public void MolarityFromVolumeConcentrationAndComponentDensityAndMolarMass(
             double volumeConcValue, VolumeConcentrationUnit volumeConcUnit,
             double componentDensityValue, DensityUnit componetDensityUnit,

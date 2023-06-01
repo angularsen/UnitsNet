@@ -22,7 +22,7 @@ namespace OasysUnits
         /// <summary>Get <see cref="Duration"/> from <see cref="Energy"/> divided by <see cref="Power"/>.</summary>
         public static Duration operator /(Energy energy, Power power)
         {
-            return Duration.FromSeconds(energy.Joules / power.Watts);
+            return Duration.FromSeconds(energy.Joules / (double)power.Watts);
         }
 
         /// <summary>Get <see cref="Power"/> from <see cref="Energy"/> times <see cref="Frequency"/>.</summary>

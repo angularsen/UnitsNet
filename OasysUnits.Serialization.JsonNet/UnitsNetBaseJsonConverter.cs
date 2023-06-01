@@ -5,7 +5,6 @@ using System;
 using System.Collections.Concurrent;
 using System.Globalization;
 using System.Linq;
-using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -18,7 +17,7 @@ namespace OasysUnits.Serialization.JsonNet
     /// <typeparam name="T">The type being converted. Should either be <see cref="IQuantity"/> or <see cref="IComparable"/></typeparam>
     public abstract class OasysUnitsBaseJsonConverter<T> : JsonConverter<T>
     {
-        private ConcurrentDictionary<string, (Type Quantity, Type Unit)> _registeredTypes = new();
+        private readonly ConcurrentDictionary<string, (Type Quantity, Type Unit)> _registeredTypes = new();
 
         /// <summary>
         /// Register custom types so that the converter can instantiate these quantities.
@@ -46,7 +45,7 @@ namespace OasysUnits.Serialization.JsonNet
         /// </summary>
         /// <param name="jsonToken">The JSON data to read from</param>
         /// <returns>A <see cref="ValueUnit"/></returns>
-        protected ValueUnit ReadValueUnit(JToken jsonToken)
+        protected ValueUnit? ReadValueUnit(JToken jsonToken)
         {
             if (!jsonToken.HasValues)
             {
@@ -72,7 +71,10 @@ namespace OasysUnits.Serialization.JsonNet
                     return null;
                 }
 
-                return new ValueUnit {Unit = unit.Value<string>(), Value = value.Value<double>()};
+                return new ValueUnit {
+                    Unit = unit.Value<string>() ?? throw new InvalidOperationException("Unit was not a string."),
+                    Value = value.Value<double>()
+                };
             }
 
             if (valueType.Type != JTokenType.String)
@@ -82,7 +84,7 @@ namespace OasysUnits.Serialization.JsonNet
 
             return new ExtendedValueUnit
             {
-                Unit = unit.Value<string>(),
+                Unit = unit.Value<string>() ?? throw new InvalidOperationException("Unit was not a string."),
                 Value = value.Value<double>(),
                 ValueType = valueType.Value<string>(),
                 ValueString = valueString?.Value<string>()
@@ -97,9 +99,9 @@ namespace OasysUnits.Serialization.JsonNet
         /// <returns>An IQuantity</returns>
         protected IQuantity ConvertValueUnit(ValueUnit valueUnit)
         {
-            if (string.IsNullOrWhiteSpace(valueUnit?.Unit))
+            if (string.IsNullOrWhiteSpace(valueUnit.Unit))
             {
-                return null;
+                throw new NotSupportedException("Unit must be specified.");
             }
 
             var unit = GetUnit(valueUnit.Unit);
@@ -112,14 +114,14 @@ namespace OasysUnits.Serialization.JsonNet
 
             return valueUnit switch
             {
-                ExtendedValueUnit {ValueType: "decimal"} extendedValueUnit => Quantity.From(decimal.Parse(extendedValueUnit.ValueString, CultureInfo.InvariantCulture), unit),
+                ExtendedValueUnit {ValueType: "decimal", ValueString: {}} extendedValueUnit => Quantity.From(decimal.Parse(extendedValueUnit.ValueString, CultureInfo.InvariantCulture), unit),
                 _ => Quantity.From(valueUnit.Value, unit)
             };
         }
 
-        private (Type Quantity, Type Unit) GetRegisteredType(string unit)
+        private (Type? Quantity, Type? Unit) GetRegisteredType(string unit)
         {
-            (var unitEnumTypeName, var _) = SplitUnitString(unit);
+            var (unitEnumTypeName, _) = SplitUnitString(unit);
             if (_registeredTypes.TryGetValue(unitEnumTypeName, out var registeredType))
             {
                 return registeredType;
@@ -130,7 +132,7 @@ namespace OasysUnits.Serialization.JsonNet
 
         private Enum GetUnit(string unit)
         {
-            (var unitEnumTypeName, var unitEnumValue) = SplitUnitString(unit);
+            var (unitEnumTypeName, unitEnumValue) = SplitUnitString(unit);
 
             // First try to find the name in the list of registered types.
             var unitEnumType = GetRegisteredType(unit).Unit;
@@ -150,7 +152,7 @@ namespace OasysUnits.Serialization.JsonNet
                     throw ex;
                 }
             }
-            
+
             var unitValue = (Enum) Enum.Parse(unitEnumType, unitEnumValue); // Ex: MassUnit.Kilogram
             return unitValue;
         }
@@ -179,18 +181,19 @@ namespace OasysUnits.Serialization.JsonNet
         {
             quantity = quantity ?? throw new ArgumentNullException(nameof(quantity));
 
-            if (quantity is IDecimalQuantity d)
+            if (quantity is IValueQuantity<decimal> d)
             {
                 return new ExtendedValueUnit
                 {
                     Unit = $"{quantity.QuantityInfo.UnitType.Name}.{quantity.Unit}",
-                    Value = quantity.Value,
+                    // The type of "Value" is still double
+                    Value = (double)quantity.Value,
                     ValueString = d.Value.ToString(CultureInfo.InvariantCulture),
                     ValueType = "decimal"
                 };
             }
 
-            return new ValueUnit {Value = quantity.Value, Unit = $"{quantity.QuantityInfo.UnitType.Name}.{quantity.Unit}"};
+            return new ValueUnit {Value = (double)quantity.Value, Unit = $"{quantity.QuantityInfo.UnitType.Name}.{quantity.Unit}"};
         }
 
         /// <summary>
@@ -251,13 +254,13 @@ namespace OasysUnits.Serialization.JsonNet
             /// <example>MassUnit.Pound</example>
             /// <example>InformationUnit.Kilobyte</example>
             [JsonProperty(Order = 1)]
-            public string Unit { get; [UsedImplicitly] set; }
+            public string Unit { get; set; } = null!;
 
             /// <summary>
             ///     The value.
             /// </summary>
             [JsonProperty(Order = 2)]
-            public double Value { get; [UsedImplicitly] set; }
+            public double Value { get; set; }
         }
 
         /// <summary>
@@ -273,13 +276,13 @@ namespace OasysUnits.Serialization.JsonNet
             ///     The value as a string.
             /// </summary>
             [JsonProperty(Order = 3)]
-            public string ValueString { get; [UsedImplicitly] set; }
+            public string? ValueString { get; set; }
 
             /// <summary>
             ///     The type of the value, e.g. "decimal".
             /// </summary>
             [JsonProperty(Order = 4)]
-            public string ValueType { get; [UsedImplicitly] set; }
+            public string? ValueType { get; set; }
         }
     }
 }

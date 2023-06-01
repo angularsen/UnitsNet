@@ -25,7 +25,6 @@ namespace OasysUnits.CustomCode.Units
 
     public enum PressureReference
     {
-        Undefined = 0,
         Absolute,
         Gauge,
         Vacuum,

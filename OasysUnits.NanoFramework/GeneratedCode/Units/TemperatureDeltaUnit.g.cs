@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum TemperatureDeltaUnit
     {
-        Undefined = 0,
         DegreeCelsius = 1,
         DegreeDelisle = 2,
         DegreeFahrenheit = 3,

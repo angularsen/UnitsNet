@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum VolumeFlowPerAreaUnit
     {
-        Undefined = 0,
         CubicFootPerMinutePerSquareFoot = 1,
         CubicMeterPerSecondPerSquareMeter = 2,
     }

@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum VolumeUnit
     {
-        Undefined = 0,
         AcreFoot = 1,
         AuTablespoon = 2,
         BoardFoot = 3,
@@ -50,6 +49,11 @@ namespace OasysUnits.Units
         Hectoliter = 22,
         HectousGallon = 23,
         ImperialBeerBarrel = 24,
+
+        /// <summary>
+        ///     The British imperial gallon (frequently called simply "gallon") is defined as exactly 4.54609 litres.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Gallon#Imperial_gallon</remarks>
         ImperialGallon = 25,
         ImperialOunce = 26,
         ImperialPint = 27,
@@ -67,10 +71,16 @@ namespace OasysUnits.Units
         MetricTeaspoon = 39,
         Microliter = 40,
         Milliliter = 41,
+        Nanoliter = 53,
         OilBarrel = 42,
         UkTablespoon = 43,
         UsBeerBarrel = 44,
         UsCustomaryCup = 45,
+
+        /// <summary>
+        ///     The US liquid gallon (frequently called simply "gallon") is legally defined as 231 cubic inches, which is exactly 3.785411784 litres.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Gallon#US_liquid_gallon</remarks>
         UsGallon = 46,
         UsLegalCup = 47,
         UsOunce = 48,

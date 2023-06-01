@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum TorquePerLengthUnit
     {
-        Undefined = 0,
         KilogramForceCentimeterPerMeter = 1,
         KilogramForceMeterPerMeter = 2,
         KilogramForceMillimeterPerMeter = 3,

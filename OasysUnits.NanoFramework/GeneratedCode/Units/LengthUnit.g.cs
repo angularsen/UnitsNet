@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum LengthUnit
     {
-        Undefined = 0,
 
         /// <summary>
         ///     Angstrom is a metric unit of length equal to 1e-10 meter
@@ -65,11 +64,17 @@ namespace OasysUnits.Units
         /// <remarks>https://en.wikipedia.org/wiki/Light-year</remarks>
         LightYear = 18,
         MegalightYear = 19,
+        Megameter = 41,
         Megaparsec = 20,
         Meter = 21,
         Microinch = 22,
         Micrometer = 23,
         Mil = 24,
+
+        /// <summary>
+        ///     The statute mile was standardised between the British Commonwealth and the United States by an international agreement in 1959, when it was formally redefined with respect to SI units as exactly 1,609.344 metres.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Mile</remarks>
         Mile = 25,
         Millimeter = 26,
         Nanometer = 27,
@@ -90,7 +95,17 @@ namespace OasysUnits.Units
         /// <remarks>https://en.wikipedia.org/wiki/Stellar_classification</remarks>
         SolarRadius = 33,
         Twip = 34,
+
+        /// <summary>
+        ///     In the United States, the foot was defined as 12 inches, with the inch being defined by the Mendenhall Order of 1893 as 39.37 inches = 1 m. This makes a U.S. survey foot exactly 1200/3937 meters.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Foot_(unit)</remarks>
         UsSurveyFoot = 35,
+
+        /// <summary>
+        ///     The yard (symbol: yd) is an English unit of length in both the British imperial and US customary systems of measurement equalling 3 feet (or 36 inches). Since 1959 the yard has been by international agreement standardized as exactly 0.9144 meter. A distance of 1,760 yards is equal to 1 mile.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Yard</remarks>
         Yard = 36,
     }
 

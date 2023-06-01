@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum WarpingMomentOfInertiaUnit
     {
-        Undefined = 0,
         CentimeterToTheSixth = 1,
         DecimeterToTheSixth = 2,
         FootToTheSixth = 3,

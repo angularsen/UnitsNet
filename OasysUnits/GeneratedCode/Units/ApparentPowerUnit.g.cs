@@ -25,10 +25,11 @@ namespace OasysUnits.Units
 
     public enum ApparentPowerUnit
     {
-        Undefined = 0,
         Gigavoltampere = 1,
         Kilovoltampere = 2,
         Megavoltampere = 3,
+        Microvoltampere = 6,
+        Millivoltampere = 7,
         Voltampere = 4,
     }
 

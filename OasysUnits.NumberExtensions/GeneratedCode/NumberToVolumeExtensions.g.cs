@@ -192,6 +192,10 @@ namespace OasysUnits.NumberExtensions.NumberToVolume
         public static Volume Milliliters<T>(this T value) =>
             Volume.FromMilliliters(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Volume.FromNanoliters(OasysUnits.QuantityValue)" />
+        public static Volume Nanoliters<T>(this T value) =>
+            Volume.FromNanoliters(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Volume.FromOilBarrels(OasysUnits.QuantityValue)" />
         public static Volume OilBarrels<T>(this T value) =>
             Volume.FromOilBarrels(Convert.ToDouble(value));

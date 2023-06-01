@@ -1,11 +1,11 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using Xunit;
-using OasysUnits.Units;
 using System;
+using OasysUnits.Units;
+using Xunit;
 
-namespace OasysUnits.Tests.CustomCode
+namespace OasysUnits.Tests
 {
     // Avoid accessing static prop DefaultToString in parallel from multiple tests:
     // UnitSystemTests.DefaultToStringFormatting()
@@ -82,6 +82,8 @@ namespace OasysUnits.Tests.CustomCode
 
         protected override double DataMilesInOneMeter => 0.000546807;
 
+        protected override double MegametersInOneMeter => 1e-6;
+
         [ Fact]
         public void AreaTimesLengthEqualsVolume()
         {
@@ -155,18 +157,6 @@ namespace OasysUnits.Tests.CustomCode
         }
 
         [Fact]
-        public void MaxValueIsCorrectForUnitWithBaseTypeDouble()
-        {
-            Assert.Equal(double.MaxValue, Length.MaxValue.Meters);
-        }
-
-        [Fact]
-        public void MinValueIsCorrectForUnitWithBaseTypeDouble()
-        {
-            Assert.Equal(double.MinValue, Length.MinValue.Meters);
-        }
-
-        [Fact]
         public void NegativeLengthToStonePoundsReturnsCorrectValues()
         {
             var negativeLength = Length.FromInches(-1.0);
@@ -185,7 +175,7 @@ namespace OasysUnits.Tests.CustomCode
         [Fact]
         public void Constructor_UnitSystemNull_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new Length(1.0, (UnitSystem)null));
+            Assert.Throws<ArgumentNullException>(() => new Length(1.0, unitSystem: null!));
         }
 
         [Fact]
@@ -228,7 +218,7 @@ namespace OasysUnits.Tests.CustomCode
         [InlineData(2.0, 0.5)]
         public static void InverseReturnsReciprocalLength(double value, double expected)
         {
-            var length = new Length(value, Units.LengthUnit.Meter);
+            var length = new Length(value, LengthUnit.Meter);
             var inverseLength = length.Inverse();
 
             Assert.Equal(expected, inverseLength.InverseMeters);

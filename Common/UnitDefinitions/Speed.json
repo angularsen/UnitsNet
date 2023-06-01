@@ -1,7 +1,7 @@
 {
   "Name": "Speed",
   "BaseUnit": "MeterPerSecond",
-  "XmlDoc": "In everyday use and in kinematics, the speed of an object is the magnitude of its velocity (the rate of change of its position); it is thus a scalar quantity.[1] The average speed of an object in an interval of time is the distance travelled by the object divided by the duration of the interval;[2] the instantaneous speed is the limit of the average speed as the duration of the time interval approaches zero.",
+  "XmlDocSummary": "In everyday use and in kinematics, the speed of an object is the magnitude of its velocity (the rate of change of its position); it is thus a scalar quantity.[1] The average speed of an object in an interval of time is the distance travelled by the object divided by the duration of the interval;[2] the instantaneous speed is the limit of the average speed as the duration of the time interval approaches zero.",
   "BaseDimensions": {
     "L": 1,
     "T": -1
@@ -281,8 +281,10 @@
         "L": "NauticalMile",
         "T": "Hour"
       },
-      "FromUnitToBaseFunc": "{x} * 0.514444",
-      "FromBaseToUnitFunc": "{x} / 0.514444",
+      "FromUnitToBaseFunc": "{x} * (1852.0 / 3600.0)",
+      "FromBaseToUnitFunc": "{x} / (1852.0 / 3600.0)",
+      "XmlDocSummary": "The knot, by definition, is a unit of speed equals to 1 nautical mile per hour, which is exactly 1852.000 metres per hour. The length of the internationally agreed nautical mile is 1852 m. The US adopted the international definition in 1954, the UK adopted the international nautical mile definition in 1970.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Knot_(unit)",
       "Localization": [
         {
           "Culture": "en-US",

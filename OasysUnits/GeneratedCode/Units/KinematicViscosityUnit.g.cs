@@ -25,7 +25,6 @@ namespace OasysUnits.Units
 
     public enum KinematicViscosityUnit
     {
-        Undefined = 0,
         Centistokes = 1,
         Decistokes = 2,
         Kilostokes = 3,

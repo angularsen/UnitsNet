@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>OasysUnits.nanoFramework.ThermalResistance</id>
-    <version>4.145.0</version>
+    <version>5.12.0</version>
     <title>Units.NET ThermalResistance - nanoFramework</title>
     <authors>Andreas Gullberg Larsen,nanoFramework project contributors</authors>
     <owners>OasysUnits</owners>
@@ -15,9 +15,9 @@
     </releaseNotes>
     <copyright>Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).</copyright>
     <language>en-US</language>
-    <tags>nanoframework unit units measurement si metric imperial abbreviation abbreviations convert conversion parse c# .net immutable uwp uap winrt win10 windows runtime component thermalresistance</tags>
+    <tags>nanoframework thermalresistance unit units quantity quantities measurement si metric imperial abbreviation abbreviations convert conversion parse immutable</tags>
     <dependencies>
-      <dependency id="nanoFramework.CoreLibrary" version="1.12.0" />
+      <dependency id="nanoFramework.CoreLibrary" version="1.14.2" />
     </dependencies>
   </metadata>
   <files>
