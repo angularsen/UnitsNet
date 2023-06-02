@@ -151,7 +151,7 @@ namespace UnitsNet
         public static Acceleration AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

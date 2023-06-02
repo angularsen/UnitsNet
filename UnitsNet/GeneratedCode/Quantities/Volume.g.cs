@@ -92,6 +92,7 @@ namespace UnitsNet
                     new UnitInfo<VolumeUnit>(VolumeUnit.ImperialGallon, "ImperialGallons", BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.ImperialOunce, "ImperialOunces", BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.ImperialPint, "ImperialPints", new BaseUnits(length: LengthUnit.Decimeter)),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.ImperialQuart, "ImperialQuarts", BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.KilocubicFoot, "KilocubicFeet", BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.KilocubicMeter, "KilocubicMeters", BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.KiloimperialGallon, "KiloimperialGallons", BaseUnits.Undefined),
@@ -357,6 +358,11 @@ namespace UnitsNet
         public double ImperialPints => As(VolumeUnit.ImperialPint);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.ImperialQuart"/>
+        /// </summary>
+        public double ImperialQuarts => As(VolumeUnit.ImperialQuart);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.KilocubicFoot"/>
         /// </summary>
         public double KilocubicFeet => As(VolumeUnit.KilocubicFoot);
@@ -523,6 +529,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.ImperialGallon, VolumeUnit.CubicMeter, quantity => quantity.ToUnit(VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.ImperialOunce, VolumeUnit.CubicMeter, quantity => quantity.ToUnit(VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.ImperialPint, VolumeUnit.CubicMeter, quantity => quantity.ToUnit(VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.ImperialQuart, VolumeUnit.CubicMeter, quantity => quantity.ToUnit(VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.KilocubicFoot, VolumeUnit.CubicMeter, quantity => quantity.ToUnit(VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.KilocubicMeter, VolumeUnit.CubicMeter, quantity => quantity.ToUnit(VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.KiloimperialGallon, VolumeUnit.CubicMeter, quantity => quantity.ToUnit(VolumeUnit.CubicMeter));
@@ -580,6 +587,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.ImperialGallon, quantity => quantity.ToUnit(VolumeUnit.ImperialGallon));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.ImperialOunce, quantity => quantity.ToUnit(VolumeUnit.ImperialOunce));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.ImperialPint, quantity => quantity.ToUnit(VolumeUnit.ImperialPint));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.ImperialQuart, quantity => quantity.ToUnit(VolumeUnit.ImperialQuart));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.KilocubicFoot, quantity => quantity.ToUnit(VolumeUnit.KilocubicFoot));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.KilocubicMeter, quantity => quantity.ToUnit(VolumeUnit.KilocubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.KiloimperialGallon, quantity => quantity.ToUnit(VolumeUnit.KiloimperialGallon));
@@ -662,6 +670,7 @@ namespace UnitsNet
             unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.ImperialOunce, new CultureInfo("en-US"), false, true, new string[]{"oz (imp.)"});
             unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.ImperialOunce, new CultureInfo("ru-RU"), false, true, new string[]{"Английская унция"});
             unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.ImperialPint, new CultureInfo("en-US"), false, true, new string[]{"pt (imp.)", "UK pt", "pt", "p"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.ImperialQuart, new CultureInfo("en-US"), false, true, new string[]{"qt (imp.)"});
             unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.KilocubicFoot, new CultureInfo("en-US"), false, true, new string[]{"kft³"});
             unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.KilocubicFoot, new CultureInfo("ru-RU"), false, true, new string[]{"кфут³"});
             unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.KilocubicMeter, new CultureInfo("en-US"), false, true, new string[]{"km³"});
@@ -1006,6 +1015,16 @@ namespace UnitsNet
         {
             double value = (double) imperialpints;
             return new Volume(value, VolumeUnit.ImperialPint);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.ImperialQuart"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Volume FromImperialQuarts(QuantityValue imperialquarts)
+        {
+            double value = (double) imperialquarts;
+            return new Volume(value, VolumeUnit.ImperialQuart);
         }
 
         /// <summary>
@@ -1787,6 +1806,7 @@ namespace UnitsNet
                 (VolumeUnit.ImperialGallon, VolumeUnit.CubicMeter) => new Volume(_value * 0.00454609, VolumeUnit.CubicMeter),
                 (VolumeUnit.ImperialOunce, VolumeUnit.CubicMeter) => new Volume(_value * 2.8413062499962901241875439064617e-5, VolumeUnit.CubicMeter),
                 (VolumeUnit.ImperialPint, VolumeUnit.CubicMeter) => new Volume(_value * 5.6826125e-4, VolumeUnit.CubicMeter),
+                (VolumeUnit.ImperialQuart, VolumeUnit.CubicMeter) => new Volume(_value * 1.1365225e-3, VolumeUnit.CubicMeter),
                 (VolumeUnit.KilocubicFoot, VolumeUnit.CubicMeter) => new Volume((_value * 2.8316846592e-2) * 1e3d, VolumeUnit.CubicMeter),
                 (VolumeUnit.KilocubicMeter, VolumeUnit.CubicMeter) => new Volume((_value) * 1e3d, VolumeUnit.CubicMeter),
                 (VolumeUnit.KiloimperialGallon, VolumeUnit.CubicMeter) => new Volume((_value * 0.00454609) * 1e3d, VolumeUnit.CubicMeter),
@@ -1841,6 +1861,7 @@ namespace UnitsNet
                 (VolumeUnit.CubicMeter, VolumeUnit.ImperialGallon) => new Volume(_value / 0.00454609, VolumeUnit.ImperialGallon),
                 (VolumeUnit.CubicMeter, VolumeUnit.ImperialOunce) => new Volume(_value / 2.8413062499962901241875439064617e-5, VolumeUnit.ImperialOunce),
                 (VolumeUnit.CubicMeter, VolumeUnit.ImperialPint) => new Volume(_value / 5.6826125e-4, VolumeUnit.ImperialPint),
+                (VolumeUnit.CubicMeter, VolumeUnit.ImperialQuart) => new Volume(_value / 1.1365225e-3, VolumeUnit.ImperialQuart),
                 (VolumeUnit.CubicMeter, VolumeUnit.KilocubicFoot) => new Volume((_value / 2.8316846592e-2) / 1e3d, VolumeUnit.KilocubicFoot),
                 (VolumeUnit.CubicMeter, VolumeUnit.KilocubicMeter) => new Volume((_value) / 1e3d, VolumeUnit.KilocubicMeter),
                 (VolumeUnit.CubicMeter, VolumeUnit.KiloimperialGallon) => new Volume((_value / 0.00454609) / 1e3d, VolumeUnit.KiloimperialGallon),

@@ -136,6 +136,10 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
         public static Volume ImperialPints<T>(this T value) =>
             Volume.FromImperialPints(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Volume.FromImperialQuarts(UnitsNet.QuantityValue)" />
+        public static Volume ImperialQuarts<T>(this T value) =>
+            Volume.FromImperialQuarts(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Volume.FromKilocubicFeet(UnitsNet.QuantityValue)" />
         public static Volume KilocubicFeet<T>(this T value) =>
             Volume.FromKilocubicFeet(Convert.ToDouble(value));

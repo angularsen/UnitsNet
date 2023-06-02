@@ -1556,7 +1556,8 @@
     "UsQuart": 50,
     "UsTablespoon": 51,
     "UsTeaspoon": 52,
-    "Nanoliter": 53
+    "Nanoliter": 53,
+    "ImperialQuart": 57
   },
   "VolumeConcentration": {
     "CentilitersPerLiter": 1,
