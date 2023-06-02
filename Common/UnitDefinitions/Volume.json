@@ -78,7 +78,7 @@
         }
       ]
     },
-	  {
+    {
       "SingularName": "CubicDecimeter",
       "PluralName": "CubicDecimeters",
       "FromUnitToBaseFunc": "{x} / 1e3",
@@ -458,6 +458,18 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "qt (U.S.)" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "ImperialQuart",
+      "PluralName": "ImperialQuarts",
+      "FromUnitToBaseFunc": "{x} * 1.1365225e-3",
+      "FromBaseToUnitFunc": "{x} / 1.1365225e-3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "qt (imp.)" ]
         }
       ]
     },
