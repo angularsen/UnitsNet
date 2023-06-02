@@ -76,7 +76,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-        $versionInfo = $(Get-Item .\Artifacts\OasysUnits\net47\OasysUnits.dll).VersionInfo
+        $versionInfo = $(Get-Item .\Artifacts\OasysUnits\net48\OasysUnits.dll).VersionInfo
         echo $versionInfo
         $fullVersion = [array]${versionInfo}.ProductVersion.split('+')[0].split('.')
         $currentTime = $(Get-Date -Format "dddd MM/dd/yyyy HH:mm")
