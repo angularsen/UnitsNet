@@ -1745,5 +1745,22 @@
     "PascalQubicMeterPerSecond": 1,
     "TorrLiterPerSecond": 4,
     "PascalCubicMeterPerSecond": 2
+  },
+  "AbsorbedDoseOfIonizingRadiation": {
+    "Centigray": 9,
+    "Femtogray": 8,
+    "Gigagray": 4,
+    "Gray": 1,
+    "Kilogray": 7,
+    "Kilorad": 2,
+    "Megagray": 6,
+    "Megarad": 5,
+    "Microgray": 10,
+    "Milligray": 3,
+    "Nanogray": 15,
+    "Petagray": 12,
+    "Picogray": 16,
+    "Rad": 17,
+    "Teragray": 13
   }
 }

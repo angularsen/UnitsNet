@@ -37,6 +37,7 @@ namespace UnitsNet
         /// </summary>
         public static readonly IDictionary<string, QuantityInfo> ByName = new Dictionary<string, QuantityInfo>
         {
+            { "AbsorbedDoseOfIonizingRadiation", AbsorbedDoseOfIonizingRadiation.Info },
             { "Acceleration", Acceleration.Info },
             { "AmountOfSubstance", AmountOfSubstance.Info },
             { "AmplitudeRatio", AmplitudeRatio.Info },
@@ -168,6 +169,7 @@ namespace UnitsNet
         {
             return quantityInfo.Name switch
             {
+                "AbsorbedDoseOfIonizingRadiation" => AbsorbedDoseOfIonizingRadiation.From(value, AbsorbedDoseOfIonizingRadiation.BaseUnit),
                 "Acceleration" => Acceleration.From(value, Acceleration.BaseUnit),
                 "AmountOfSubstance" => AmountOfSubstance.From(value, AmountOfSubstance.BaseUnit),
                 "AmplitudeRatio" => AmplitudeRatio.From(value, AmplitudeRatio.BaseUnit),
@@ -302,6 +304,9 @@ namespace UnitsNet
         {
             switch (unit)
             {
+                case AbsorbedDoseOfIonizingRadiationUnit absorbedDoseOfIonizingRadiationUnit:
+                    quantity = AbsorbedDoseOfIonizingRadiation.From(value, absorbedDoseOfIonizingRadiationUnit);
+                    return true;
                 case AccelerationUnit accelerationUnit:
                     quantity = Acceleration.From(value, accelerationUnit);
                     return true;
@@ -686,6 +691,7 @@ namespace UnitsNet
 
             return quantityType switch
             {
+                Type _ when quantityType == typeof(AbsorbedDoseOfIonizingRadiation) => parser.TryParse<AbsorbedDoseOfIonizingRadiation, AbsorbedDoseOfIonizingRadiationUnit>(quantityString, formatProvider, AbsorbedDoseOfIonizingRadiation.From, out quantity),
                 Type _ when quantityType == typeof(Acceleration) => parser.TryParse<Acceleration, AccelerationUnit>(quantityString, formatProvider, Acceleration.From, out quantity),
                 Type _ when quantityType == typeof(AmountOfSubstance) => parser.TryParse<AmountOfSubstance, AmountOfSubstanceUnit>(quantityString, formatProvider, AmountOfSubstance.From, out quantity),
                 Type _ when quantityType == typeof(AmplitudeRatio) => parser.TryParse<AmplitudeRatio, AmplitudeRatioUnit>(quantityString, formatProvider, AmplitudeRatio.From, out quantity),
@@ -811,6 +817,7 @@ namespace UnitsNet
 
         internal static IEnumerable<Type> GetQuantityTypes()
         {
+            yield return typeof(AbsorbedDoseOfIonizingRadiation);
             yield return typeof(Acceleration);
             yield return typeof(AmountOfSubstance);
             yield return typeof(AmplitudeRatio);

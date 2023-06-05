@@ -34,6 +34,7 @@ namespace UnitsNet.Tests
                 Assert.Equal(expectedValue, quantity.Value);
             }
 
+            Assertion(3, AbsorbedDoseOfIonizingRadiationUnit.Teragray, Quantity.From(3, AbsorbedDoseOfIonizingRadiationUnit.Teragray));
             Assertion(3, AccelerationUnit.StandardGravity, Quantity.From(3, AccelerationUnit.StandardGravity));
             Assertion(3, AmountOfSubstanceUnit.PoundMole, Quantity.From(3, AmountOfSubstanceUnit.PoundMole));
             Assertion(3, AmplitudeRatioUnit.DecibelVolt, Quantity.From(3, AmplitudeRatioUnit.DecibelVolt));
@@ -160,6 +161,7 @@ namespace UnitsNet.Tests
         {
             void Assertion(QuantityInfo expected, IQuantity quantity) => Assert.Same(expected, quantity.QuantityInfo);
 
+            Assertion(AbsorbedDoseOfIonizingRadiation.Info, AbsorbedDoseOfIonizingRadiation.Zero);
             Assertion(Acceleration.Info, Acceleration.Zero);
             Assertion(AmountOfSubstance.Info, AmountOfSubstance.Zero);
             Assertion(AmplitudeRatio.Info, AmplitudeRatio.Zero);
@@ -286,6 +288,7 @@ namespace UnitsNet.Tests
         {
             void Assertion(BaseDimensions expected, IQuantity quantity) => Assert.Equal(expected, quantity.Dimensions);
 
+            Assertion(AbsorbedDoseOfIonizingRadiation.BaseDimensions, AbsorbedDoseOfIonizingRadiation.Zero);
             Assertion(Acceleration.BaseDimensions, Acceleration.Zero);
             Assertion(AmountOfSubstance.BaseDimensions, AmountOfSubstance.Zero);
             Assertion(AmplitudeRatio.BaseDimensions, AmplitudeRatio.Zero);
