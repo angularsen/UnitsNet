@@ -2,6 +2,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "AbsorbedDoseOfIonizingRadiation", "AbsorbedDoseOfIonizingRadiation\AbsorbedDoseOfIonizingRadiation.nfproj", "{3d39134e-c97d-cba4-a559-fdb3a0da5e54}"
+EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Acceleration", "Acceleration\Acceleration.nfproj", "{8e3a6691-a05f-d71c-f12a-f537c0807f85}"
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "AmountOfSubstance", "AmountOfSubstance\AmountOfSubstance.nfproj", "{1cd282f3-3bdc-bc00-a63a-03a11a9b5c4d}"
@@ -246,6 +248,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+{3d39134e-c97d-cba4-a559-fdb3a0da5e54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+{3d39134e-c97d-cba4-a559-fdb3a0da5e54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+{3d39134e-c97d-cba4-a559-fdb3a0da5e54}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+{3d39134e-c97d-cba4-a559-fdb3a0da5e54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+{3d39134e-c97d-cba4-a559-fdb3a0da5e54}.Release|Any CPU.Build.0 = Release|Any CPU
+{3d39134e-c97d-cba4-a559-fdb3a0da5e54}.Release|Any CPU.Deploy.0 = Release|Any CPU
 {8e3a6691-a05f-d71c-f12a-f537c0807f85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 {8e3a6691-a05f-d71c-f12a-f537c0807f85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 {8e3a6691-a05f-d71c-f12a-f537c0807f85}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
