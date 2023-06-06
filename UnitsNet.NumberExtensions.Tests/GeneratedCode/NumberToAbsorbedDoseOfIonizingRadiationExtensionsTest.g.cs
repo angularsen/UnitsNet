@@ -65,6 +65,10 @@ namespace UnitsNet.Tests
             Assert.Equal(AbsorbedDoseOfIonizingRadiation.FromMilligrays(2), 2.Milligrays());
 
         [Fact]
+        public void NumberToMilliradsTest() =>
+            Assert.Equal(AbsorbedDoseOfIonizingRadiation.FromMillirads(2), 2.Millirads());
+
+        [Fact]
         public void NumberToNanograysTest() =>
             Assert.Equal(AbsorbedDoseOfIonizingRadiation.FromNanograys(2), 2.Nanograys());
 

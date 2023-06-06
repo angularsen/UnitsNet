@@ -25,31 +25,32 @@ namespace UnitsNet.Units
 
     public enum AbsorbedDoseOfIonizingRadiationUnit
     {
-        Centigray = 9,
-        Femtogray = 8,
-        Gigagray = 4,
+        Centigray = 6,
+        Femtogray = 7,
+        Gigagray = 8,
 
         /// <summary>
         ///     The gray is the unit of ionizing radiation dose in the SI, defined as the absorption of one joule of radiation energy per kilogram of matter.
         /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Gray_(unit)</remarks>
-        Gray = 1,
-        Kilogray = 7,
-        Kilorad = 2,
-        Megagray = 6,
-        Megarad = 5,
-        Microgray = 10,
-        Milligray = 3,
-        Nanogray = 15,
-        Petagray = 12,
-        Picogray = 16,
+        Gray = 5,
+        Kilogray = 9,
+        Kilorad = 4,
+        Megagray = 3,
+        Megarad = 2,
+        Microgray = 1,
+        Milligray = 10,
+        Millirad = 18,
+        Nanogray = 16,
+        Petagray = 19,
+        Picogray = 11,
 
         /// <summary>
         ///     The rad is a unit of absorbed radiation dose, defined as 1 rad = 0.01 Gy = 0.01 J/kg.
         /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Rad_(radiation_unit)</remarks>
         Rad = 17,
-        Teragray = 13,
+        Teragray = 14,
     }
 
     #pragma warning restore 1591

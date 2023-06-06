@@ -1747,20 +1747,21 @@
     "PascalCubicMeterPerSecond": 2
   },
   "AbsorbedDoseOfIonizingRadiation": {
-    "Centigray": 9,
-    "Femtogray": 8,
-    "Gigagray": 4,
-    "Gray": 1,
-    "Kilogray": 7,
-    "Kilorad": 2,
-    "Megagray": 6,
-    "Megarad": 5,
-    "Microgray": 10,
-    "Milligray": 3,
-    "Nanogray": 15,
-    "Petagray": 12,
-    "Picogray": 16,
+    "Centigray": 6,
+    "Femtogray": 7,
+    "Gigagray": 8,
+    "Gray": 5,
+    "Kilogray": 9,
+    "Kilorad": 4,
+    "Megagray": 3,
+    "Megarad": 2,
+    "Microgray": 1,
+    "Milligray": 10,
+    "Millirad": 18,
+    "Nanogray": 16,
+    "Petagray": 19,
+    "Picogray": 11,
     "Rad": 17,
-    "Teragray": 13
+    "Teragray": 14
   }
 }

@@ -133,6 +133,11 @@ namespace UnitsNet
         public double Milligrays => As(AbsorbedDoseOfIonizingRadiationUnit.Milligray);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Millirad"/>
+        /// </summary>
+        public double Millirads => As(AbsorbedDoseOfIonizingRadiationUnit.Millirad);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Nanogray"/>
         /// </summary>
         public double Nanograys => As(AbsorbedDoseOfIonizingRadiationUnit.Nanogray);
@@ -222,6 +227,12 @@ namespace UnitsNet
         public static AbsorbedDoseOfIonizingRadiation FromMilligrays(double milligrays) => new AbsorbedDoseOfIonizingRadiation(milligrays, AbsorbedDoseOfIonizingRadiationUnit.Milligray);
 
         /// <summary>
+        ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Millirad"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static AbsorbedDoseOfIonizingRadiation FromMillirads(double millirads) => new AbsorbedDoseOfIonizingRadiation(millirads, AbsorbedDoseOfIonizingRadiationUnit.Millirad);
+
+        /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Nanogray"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -301,6 +312,7 @@ namespace UnitsNet
                         AbsorbedDoseOfIonizingRadiationUnit.Megarad => (_value / 100) * 1e6d,
                         AbsorbedDoseOfIonizingRadiationUnit.Microgray => (_value) * 1e-6d,
                         AbsorbedDoseOfIonizingRadiationUnit.Milligray => (_value) * 1e-3d,
+                        AbsorbedDoseOfIonizingRadiationUnit.Millirad => (_value / 100) * 1e-3d,
                         AbsorbedDoseOfIonizingRadiationUnit.Nanogray => (_value) * 1e-9d,
                         AbsorbedDoseOfIonizingRadiationUnit.Petagray => (_value) * 1e15d,
                         AbsorbedDoseOfIonizingRadiationUnit.Picogray => (_value) * 1e-12d,
@@ -329,6 +341,7 @@ namespace UnitsNet
                         AbsorbedDoseOfIonizingRadiationUnit.Megarad => (baseUnitValue * 100) / 1e6d,
                         AbsorbedDoseOfIonizingRadiationUnit.Microgray => (baseUnitValue) / 1e-6d,
                         AbsorbedDoseOfIonizingRadiationUnit.Milligray => (baseUnitValue) / 1e-3d,
+                        AbsorbedDoseOfIonizingRadiationUnit.Millirad => (baseUnitValue * 100) / 1e-3d,
                         AbsorbedDoseOfIonizingRadiationUnit.Nanogray => (baseUnitValue) / 1e-9d,
                         AbsorbedDoseOfIonizingRadiationUnit.Petagray => (baseUnitValue) / 1e15d,
                         AbsorbedDoseOfIonizingRadiationUnit.Picogray => (baseUnitValue) / 1e-12d,

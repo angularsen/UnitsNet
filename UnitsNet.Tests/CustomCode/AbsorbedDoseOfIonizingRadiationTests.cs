@@ -35,6 +35,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double MegaradsInOneGray => 1E-4;
         protected override double MicrograysInOneGray => 1E+6;
         protected override double MilligraysInOneGray => 1E+3;
+        protected override double MilliradsInOneGray => 1E+5;
         protected override double NanograysInOneGray => 1E+9;
         protected override double PetagraysInOneGray => 1E-15;
         protected override double PicograysInOneGray => 1E+12;

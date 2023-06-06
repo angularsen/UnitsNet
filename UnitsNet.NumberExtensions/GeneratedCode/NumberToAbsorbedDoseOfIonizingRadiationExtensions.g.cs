@@ -68,6 +68,10 @@ namespace UnitsNet.NumberExtensions.NumberToAbsorbedDoseOfIonizingRadiation
         public static AbsorbedDoseOfIonizingRadiation Milligrays<T>(this T value) =>
             AbsorbedDoseOfIonizingRadiation.FromMilligrays(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromMillirads(UnitsNet.QuantityValue)" />
+        public static AbsorbedDoseOfIonizingRadiation Millirads<T>(this T value) =>
+            AbsorbedDoseOfIonizingRadiation.FromMillirads(Convert.ToDouble(value));
+
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromNanograys(UnitsNet.QuantityValue)" />
         public static AbsorbedDoseOfIonizingRadiation Nanograys<T>(this T value) =>
             AbsorbedDoseOfIonizingRadiation.FromNanograys(Convert.ToDouble(value));
