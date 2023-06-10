@@ -320,45 +320,7 @@ For more details, see [Precision](https://github.com/angularsen/UnitsNet/wiki/Pr
 
 ### Serialize to JSON, XML and more
 
-The recommended approach is to create your own data transfer object types (DTO) and map to/from `IQuantity`.
-This way you are in full control of the shape of your JSON, XML, etc. and also any breaking changes or deprecations to UnitsNet.
-
-It could be solved like this, storing the value, quantity name and unit name:
-
-```c#
-// Your custom DTO type for quantities.
-public record QuantityDto(double Value, string QuantityName, string UnitName);
-
-// The original quantity.
-IQuantity q = Length.FromCentimeters(5);
-
-// Map to your custom DTO type.
-QuantityDto dto = new(
-    Value: (double)q.Value,
-    QuantityName: q.QuantityInfo.Name,
-    UnitName: q.Unit.ToString());
-
-// Serialize to JSON.
-var json = System.Text.Json.JsonSerializer.Serialize(dto);
-
-// Deserialize from JSON.
-QuantityDto deserialized = System.Text.Json.JsonSerializer.Deserialize<QuantityDto>(json)!;
-
-// Map back to IQuantity.
-if (Quantity.TryFrom(deserialized.Value, deserialized.QuantityName, deserialized.UnitName, out IQuantity? deserializedQuantity))
-{
-    // Take your quantity and run with it.
-}
-```
-
-Alternatively, you can choose to use our custom serializers to map to/from `IQuantity` to JSON, XML etc.
-We strive to avoid breaking changes, but we can't guarantee it.
-
-* [UnitsNet.Serialization.JsonNet](https://www.nuget.org/packages/UnitsNet.Serialization.JsonNet) with Json.NET (Newtonsoft)
-* [DataContractSerializer](https://docs.microsoft.com/en-us/dotnet/api/system.runtime.serialization.datacontractserializer) XML
-* [DataContractJsonSerializer](https://docs.microsoft.com/en-us/dotnet/api/system.runtime.serialization.json.datacontractjsonserializer) JSON (not recommended*)
-
-Read more at [Serializing to JSON, XML and more](https://github.com/angularsen/UnitsNet/wiki/Serializing-to-JSON,-XML-and-more).
+Read the wiki on [Serializing to JSON, XML and more](https://github.com/angularsen/UnitsNet/wiki/Serializing-to-JSON,-XML-and-more).
 
 
 ### Want To Contribute?
