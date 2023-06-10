@@ -61,25 +61,53 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">Unit value is not a know unit enum type.</exception>
         public static IQuantity From(QuantityValue value, Enum unit)
         {
-            if (TryFrom(value, unit, out IQuantity? quantity))
-                return quantity;
+            return TryFrom(value, unit, out IQuantity? quantity)
+                ? quantity
+                : throw new ArgumentException($"Unit value {unit} of type {unit.GetType()} is not a known unit enum type. Expected types like UnitsNet.Units.LengthUnit. Did you pass in a third-party enum type defined outside UnitsNet library?");
+        }
 
-            throw new ArgumentException(
-                $"Unit value {unit} of type {unit.GetType()} is not a known unit enum type. Expected types like UnitsNet.Units.LengthUnit. Did you pass in a third-party enum type defined outside UnitsNet library?");
+        /// <summary>
+        ///     Dynamically construct a quantity from a value, the quantity name and the unit name.
+        /// </summary>
+        /// <param name="value">Numeric value.</param>
+        /// <param name="quantityName">The invariant quantity name, such as "Length". Does not support localization.</param>
+        /// <param name="unitName">The invariant unit enum name, such as "Meter". Does not support localization.</param>
+        /// <returns>An <see cref="IQuantity"/> object.</returns>
+        /// <exception cref="ArgumentException">Unit value is not a know unit enum type.</exception>
+        public static IQuantity From(QuantityValue value, string quantityName, string unitName)
+        {
+            // Get enum value for this unit, f.ex. LengthUnit.Meter for unit name "Meter".
+            return UnitConverter.TryParseUnit(quantityName, unitName, out Enum? unitValue)
+                ? From(value, unitValue)
+                : throw new UnitNotFoundException($"Unit [{unitName}] not found for quantity [{quantityName}].");
         }
 
         /// <inheritdoc cref="TryFrom(QuantityValue,System.Enum,out UnitsNet.IQuantity)"/>
         public static bool TryFrom(double value, Enum unit, [NotNullWhen(true)] out IQuantity? quantity)
         {
+            quantity = default;
+
             // Implicit cast to QuantityValue would prevent TryFrom from being called,
             // so we need to explicitly check this here for double arguments.
-            if (double.IsNaN(value) || double.IsInfinity(value))
-            {
-                quantity = default(IQuantity);
-                return false;
-            }
+            return !double.IsNaN(value) &&
+                   !double.IsInfinity(value) &&
+                   TryFrom((QuantityValue)value, unit, out quantity);
+        }
 
-            return TryFrom((QuantityValue)value, unit, out quantity);
+        /// <summary>
+        ///     Try to dynamically construct a quantity from a value, the quantity name and the unit name.
+        /// </summary>
+        /// <param name="value">Numeric value.</param>
+        /// <param name="unitName">The invariant unit enum name, such as "Meter". Does not support localization.</param>
+        /// <param name="quantityName">The invariant quantity name, such as "Length". Does not support localization.</param>
+        /// <param name="quantity">The constructed quantity, if successful, otherwise null.</param>
+        /// <returns><c>True</c> if successful with <paramref name="quantity"/> assigned the value, otherwise <c>false</c>.</returns>
+        public static bool TryFrom(double value, string quantityName, string unitName, [NotNullWhen(true)] out IQuantity? quantity)
+        {
+            quantity = default;
+
+            return UnitConverter.TryParseUnit(quantityName, unitName, out Enum? unitValue) &&
+                   TryFrom(value, unitValue, out quantity);
         }
 
         /// <inheritdoc cref="Parse(IFormatProvider, System.Type,string)"/>
