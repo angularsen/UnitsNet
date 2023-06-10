@@ -93,6 +93,56 @@ namespace UnitsNet.Tests
             Assert.False(q1.Equals(q2, tolerance));
         }
 
+        [Fact]
+        public void TryFrom_ValidQuantityNameAndUnitName_ReturnsTrueAndQuantity()
+        {
+            void AssertFrom(string quantityName, string unitName, Enum expectedUnit)
+            {
+                Assert.True(Quantity.TryFrom(5, quantityName, unitName, out IQuantity? quantity));
+                Assert.NotNull(quantity);
+                Assert.Equal(5, quantity!.Value);
+                Assert.Equal(expectedUnit, quantity.Unit);
+            }
+
+            AssertFrom("Length", "Centimeter", LengthUnit.Centimeter);
+            AssertFrom("Mass", "Kilogram", MassUnit.Kilogram);
+        }
+
+        [Fact]
+        public void TryFrom_InvalidQuantityNameAndUnitName_ReturnsFalseAndNull()
+        {
+            void AssertInvalid(string quantityName, string unitName)
+            {
+                Assert.False(Quantity.TryFrom(5, quantityName, unitName, out IQuantity? quantity));
+                Assert.Null(quantity);
+            }
+
+            AssertInvalid("Length", "InvalidUnit");
+            AssertInvalid("InvalidQuantity", "Kilogram");
+        }
+
+        [Fact]
+        public void From_ValidQuantityNameAndUnitName_ReturnsQuantity()
+        {
+            void AssertFrom(string quantityName, string unitName, Enum expectedUnit)
+            {
+                IQuantity quantity = Quantity.From(5, quantityName, unitName);
+                Assert.NotNull(quantity);
+                Assert.Equal(5, quantity.Value);
+                Assert.Equal(expectedUnit, quantity.Unit);
+            }
+
+            AssertFrom("Length", "Centimeter", LengthUnit.Centimeter);
+            AssertFrom("Mass", "Kilogram", MassUnit.Kilogram);
+        }
+
+        [Fact]
+        public void From_InvalidQuantityNameOrUnitName_ThrowsUnitNotFoundException()
+        {
+            Assert.Throws<UnitNotFoundException>(() => Quantity.From(5, "Length", "InvalidUnit"));
+            Assert.Throws<UnitNotFoundException>(() => Quantity.From(5, "InvalidQuantity", "Kilogram"));
+        }
+
         private static Length ParseLength(string str)
         {
             return Length.Parse(str, CultureInfo.InvariantCulture);

@@ -12,24 +12,23 @@ No more magic constants found on Stack Overflow, no more second-guessing the uni
 
 ### Overview
 
-* [How to install](#how-to-install)
-* [100+ quantities with 1400+ units](UnitsNet/GeneratedCode/Units) generated from [JSON](Common/UnitDefinitions/) by [C# CLI app](CodeGen)
-* [30k unit tests](https://dev.azure.com/unitsnet/Units.NET/_build?definitionId=1)
-* [Statically typed quantities and units](#static-typing) to avoid mistakes and communicate intent
-* Immutable structs
-* [Operator overloads](#operator-overloads) for arithmetic
-* [Parse and ToString()](#culture) supports localization
-* [Dynamically parse and convert](#dynamic-parsing) quantities and units
-* [Extensible with custom units](#custom-units)
-* [Example: Creating a unit converter app](#example-app)
-* [Example: WPF app using IValueConverter to parse quantities from input](#example-wpf-app-using-ivalueconverter-to-parse-quantities-from-input)
-* [Precision and accuracy](#precision)
-* [Serialize to JSON, XML and more](#serialization)
-* [Contribute](#contribute) if you are missing some units
-* [Continuous integration](#ci) posts status reports to pull requests and commits
-* [Who are using this?](#who-are-using)
+* [Overview](#overview)
+* [Installing via NuGet](#installing-via-nuget)
+* [Static Typing](#static-typing)
+* [Operator Overloads](#operator-overloads)
+* [Culture and Localization](#culture-and-localization)
+* [Dynamically Parse Quantities and Convert to Units](#dynamically-parse-quantities-and-convert-to-units)
+* [Custom units](#custom-units)
+* [Example: Unit converter app](#example-unit-converter-app)
+* [Example: WPF app using IValueConverter to parse input](#example-wpf-app-using-ivalueconverter-to-parse-input)
+* [Precision and Accuracy](#precision-and-accuracy)
+* [Serialize to JSON, XML and more](#serialize-to-json-xml-and-more)
+* [Want To Contribute?](#want-to-contribute)
+* [Continuous Integration](#continuous-integration)
+* [Who are Using This?](#who-are-using-this)
+* [Units.NET on other platforms](#unitsnet-on-other-platforms)
 
-### <a name="how-to-install"></a>Installing via NuGet
+### Installing via NuGet
 
 Add it via CLI
 
@@ -43,7 +42,7 @@ or go to [NuGet Gallery | UnitsNet](https://www.nuget.org/packages/UnitsNet) for
 * .NET Standard 2.0
 * [.NET nanoFramework](https://www.nanoframework.net/)
 
-### <a name="static-typing"></a>Static Typing
+### Static Typing
 
 ```C#
 // Construct
@@ -67,7 +66,7 @@ string PrintPersonWeight(Mass weight)
 }
 ```
 
-### <a name="operator-overloads"></a>Operator Overloads
+### Operator Overloads
 
 ```C#
 // Arithmetic
@@ -82,7 +81,7 @@ Acceleration a2 = Force.FromNewtons(100) / Mass.FromKilograms(20);
 RotationalSpeed r = Angle.FromDegrees(90) / TimeSpan.FromSeconds(2);
 ```
 
-### <a name="culture"></a>Culture and Localization
+### Culture and Localization
 
 The culture for abbreviations defaults to Thread.CurrentCulture and falls back to US English if not defined. Thread.CurrentCulture affects number formatting unless a custom culture is specified. The relevant methods are:
 
@@ -122,7 +121,7 @@ Unfortunately there is no built-in way to avoid this, either you need to ensure 
 Example:
 `Length.Parse("1 pt")` throws `AmbiguousUnitParseException` with message `Cannot parse "pt" since it could be either of these: DtpPoint, PrinterPoint`.
 
-### <a name="dynamic-parsing"></a>Dynamically Parse Quantities and Convert to Units
+### Dynamically Parse Quantities and Convert to Units
 Sometimes you need to work with quantities and units at runtime, such as parsing user input.
 
 There are a handful of classes to help with this:
@@ -169,6 +168,16 @@ if (Quantity.TryFrom(3, LengthUnit.Centimeter, out IQuantity quantity2))
 {
 }
 ```
+
+You can also construct from strings, such as mapping between DTO types in an API:
+```c#
+IQuantity quantity = Quantity.From(value: 3, quantityName: "Length", unitName: "Centimeter");
+
+if (Quantity.TryFrom(value: 3, quantityName: "Length", unitName: "Centimeter", out IQuantity? quantity2))
+{
+}
+```
+
 #### Parse quantity
 Parse any string to a quantity instance of the given the quantity type.
 
@@ -222,7 +231,7 @@ UnitConverter.ConvertByName(1, "Length", "Centimeter", "Millimeter"); // 10 mm
 UnitConverter.ConvertByAbbreviation(1, "Length", "cm", "mm"); // 10 mm
 ```
 
-### <a name="custom-units"></a>Custom units
+### Custom units
 
 Units.NET allows you to add your own units and quantities at runtime, to represent as `IQuantity` and reusing Units.NET for parsing and converting between units.
 
@@ -252,7 +261,7 @@ Console.WriteLine(Convert(HowMuchUnit.Lots)); // 100 lts
 Console.WriteLine(Convert(HowMuchUnit.Tons)); // 10 tns
 ```
 
-### <a name="example-app"></a>Example: Unit converter app
+### Example: Unit converter app
 [Source code](https://github.com/angularsen/UnitsNet/tree/master/Samples/UnitConverter.Wpf) for `Samples/UnitConverter.Wpf`<br/>
 [Download](https://github.com/angularsen/UnitsNet/releases/tag/UnitConverterWpf%2F2018-11-09) (release 2018-11-09 for Windows)
 
@@ -291,7 +300,7 @@ double convertedValue = UnitConverter.Convert(
     SelectedToUnit.UnitEnumValue);  // Enum, such as LengthUnit.Centimeter
 ```
 
-### Example: WPF app using IValueConverter to parse quantities from input
+### Example: WPF app using IValueConverter to parse input
 
 Src: [Samples/WpfMVVMSample](https://github.com/angularsen/UnitsNet/tree/master/Samples/WpfMVVMSample)
 
@@ -299,7 +308,7 @@ Src: [Samples/WpfMVVMSample](https://github.com/angularsen/UnitsNet/tree/master/
 
 The purpose of this app is to show how to create an `IValueConverter` in order to bind XAML to quantities.
 
-### <a name="precision"></a>Precision and Accuracy
+### Precision and Accuracy
 
 A base unit is chosen for each unit class, represented by a double value (64-bit), and all conversions go via this unit. This means that there will always be a small error in both representing other units than the base unit as well as converting between units.
 
@@ -309,28 +318,24 @@ The tests accept an error up to 1E-5 for most units added so far. Exceptions inc
 
 For more details, see [Precision](https://github.com/angularsen/UnitsNet/wiki/Precision).
 
-### <a name="serialization"></a>Serialize to JSON, XML and more
+### Serialize to JSON, XML and more
 
-* [UnitsNet.Serialization.JsonNet](https://www.nuget.org/packages/UnitsNet.Serialization.JsonNet) with Json.NET (Newtonsoft)
-* [DataContractSerializer](https://docs.microsoft.com/en-us/dotnet/api/system.runtime.serialization.datacontractserializer) XML
-* [DataContractJsonSerializer](https://docs.microsoft.com/en-us/dotnet/api/system.runtime.serialization.json.datacontractjsonserializer) JSON (not recommended*)
-
-Read more at [Serializing to JSON, XML and more](https://github.com/angularsen/UnitsNet/wiki/Serializing-to-JSON,-XML-and-more).
+Read the wiki on [Serializing to JSON, XML and more](https://github.com/angularsen/UnitsNet/wiki/Serializing-to-JSON,-XML-and-more).
 
 
-### <a name="contribute"></a>Want To Contribute?
+### Want To Contribute?
 
 - [Adding a New Unit](https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit) is fairly easy to do and we are happy to help.
 - Want a new feature or to report a bug? [Create an issue](https://github.com/angularsen/UnitsNet/issues/new/choose) or start a [discussion](https://github.com/angularsen/UnitsNet/discussions).
 
-### <a name="ci"></a>Continuous Integration
+### Continuous Integration
 
 [AppVeyor](https://ci.appveyor.com/project/angularsen/unitsnet) performs the following:
 * Build and test all branches
 * Build and test pull requests, notifies on success or error
 * Deploy nugets on master branch, if nuspec versions changed
 
-### <a name="who-are-using"></a>Who are Using This?
+### Who are Using This?
 
 It would be awesome to know who are using this library. If you would like your project listed here, [create an issue](https://github.com/angularsen/UnitsNet/issues) or edit the [README.md](https://github.com/angularsen/UnitsNet/edit/master/README.md) and send a pull request. Max logo size is `300x35 pixels` and should be in `.png`, `.gif` or `.jpg` formats.
 
@@ -411,7 +416,7 @@ https://github.com/StructuralAnalysisFormat/StructuralAnalysisFormat-SDK
 
 *- Dirk Schuermans, Software Engineer for [SCIA nv](https://www.scia.net)*
 
-## Units.NET on other platforms
+### Units.NET on other platforms
 
 Get the same strongly typed units on other platforms, based on the same [unit definitions](/Common/UnitDefinitions).
 
