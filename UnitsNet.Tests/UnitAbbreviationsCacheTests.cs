@@ -152,21 +152,21 @@ namespace UnitsNet.Tests
         [Fact]
         public void AllUnitsImplementToStringForInvariantCulture()
         {
-            Assert.Equal("1 °", Angle.FromDegrees(1).ToString());
-            Assert.Equal("1 m²", Area.FromSquareMeters(1).ToString());
-            Assert.Equal("1 V", ElectricPotential.FromVolts(1).ToString());
-            Assert.Equal("1 N", Force.FromNewtons(1).ToString());
-            Assert.Equal("1 m", Length.FromMeters(1).ToString());
-            Assert.Equal("1 kg", Mass.FromKilograms(1).ToString());
-            Assert.Equal("1 Pa", Pressure.FromPascals(1).ToString());
-            Assert.Equal("1 rad/s", RotationalSpeed.FromRadiansPerSecond(1).ToString());
-            Assert.Equal("1 K", Temperature.FromKelvins(1).ToString());
-            Assert.Equal("1 N·m", Torque.FromNewtonMeters(1).ToString());
-            Assert.Equal("1 m³", Volume.FromCubicMeters(1).ToString());
-            Assert.Equal("1 m³/s", VolumeFlow.FromCubicMetersPerSecond(1).ToString());
+            Assert.Equal("1 °", Angle.FromDegrees(1).ToString(CultureInfo.InvariantCulture));
+            Assert.Equal("1 m²", Area.FromSquareMeters(1).ToString(CultureInfo.InvariantCulture));
+            Assert.Equal("1 V", ElectricPotential.FromVolts(1).ToString(CultureInfo.InvariantCulture));
+            Assert.Equal("1 N", Force.FromNewtons(1).ToString(CultureInfo.InvariantCulture));
+            Assert.Equal("1 m", Length.FromMeters(1).ToString(CultureInfo.InvariantCulture));
+            Assert.Equal("1 kg", Mass.FromKilograms(1).ToString(CultureInfo.InvariantCulture));
+            Assert.Equal("1 Pa", Pressure.FromPascals(1).ToString(CultureInfo.InvariantCulture));
+            Assert.Equal("1 rad/s", RotationalSpeed.FromRadiansPerSecond(1).ToString(CultureInfo.InvariantCulture));
+            Assert.Equal("1 K", Temperature.FromKelvins(1).ToString(CultureInfo.InvariantCulture));
+            Assert.Equal("1 N·m", Torque.FromNewtonMeters(1).ToString(CultureInfo.InvariantCulture));
+            Assert.Equal("1 m³", Volume.FromCubicMeters(1).ToString(CultureInfo.InvariantCulture));
+            Assert.Equal("1 m³/s", VolumeFlow.FromCubicMetersPerSecond(1).ToString(CultureInfo.InvariantCulture));
 
-            Assert.Equal("2 ft 3 in", Length.FromFeetInches(2, 3).FeetInches.ToString());
-            Assert.Equal("3 st 7 lb", Mass.FromStonePounds(3, 7).StonePounds.ToString());
+            Assert.Equal("2 ft 3 in", Length.FromFeetInches(2, 3).FeetInches.ToString(CultureInfo.InvariantCulture));
+            Assert.Equal("3 st 7 lb", Mass.FromStonePounds(3, 7).StonePounds.ToString(CultureInfo.InvariantCulture));
         }
 
         [Fact]
@@ -244,7 +244,7 @@ namespace UnitsNet.Tests
             var cache = new UnitAbbreviationsCache();
             cache.MapUnitToAbbreviation(AreaUnit.SquareMeter, AmericanCulture, "m^2");
 
-            Assert.Equal("m²", cache.GetDefaultAbbreviation(AreaUnit.SquareMeter));
+            Assert.Equal("m²", cache.GetDefaultAbbreviation(AreaUnit.SquareMeter, AmericanCulture));
         }
 
         [Fact]

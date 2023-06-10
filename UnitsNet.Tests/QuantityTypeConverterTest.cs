@@ -160,7 +160,7 @@ namespace UnitsNet.Tests
 
             var convertedQuantity = (string?)converter.ConvertTo(length, typeof(string));
 
-            Assert.Equal("1 m", convertedQuantity);
+            Assert.Equal(Length.FromMeters(1).ToString(), convertedQuantity);
         }
 
         [Fact]
@@ -245,7 +245,7 @@ namespace UnitsNet.Tests
             string convertedQuantityDefaultCulture = (string)converter.ConvertTo(length, typeof(string))!;
             string convertedQuantitySpecificCulture = (string)converter.ConvertTo(context, Culture, length, typeof(string))!;
 
-            Assert.Equal("1 m", convertedQuantityDefaultCulture);
+            Assert.Equal(Length.FromMeters(1).ToString(), convertedQuantityDefaultCulture);
             Assert.Equal("10 dm", convertedQuantitySpecificCulture);
         }
 

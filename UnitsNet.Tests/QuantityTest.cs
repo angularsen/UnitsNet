@@ -135,30 +135,30 @@ namespace UnitsNet.Tests
         [Fact]
         public void TryParse_GivenInvalidQuantityType_ReturnsFalseAndNullQuantity()
         {
-            Assert.False(Quantity.TryParse(typeof(DummyIQuantity), "3.0 cm", out IQuantity? parsedLength));
+            Assert.False(Quantity.TryParse(CultureInfo.InvariantCulture, typeof(DummyIQuantity), "3.0 cm", out IQuantity? parsedLength));
             Assert.Null(parsedLength);
         }
 
         [Fact]
         public void TryParse_GivenInvalidString_ReturnsFalseAndNullQuantity()
         {
-            Assert.False(Quantity.TryParse(typeof(Length), "x cm", out IQuantity? parsedLength));
+            Assert.False(Quantity.TryParse(CultureInfo.InvariantCulture, typeof(Length), "x cm", out IQuantity? parsedLength));
             Assert.Null(parsedLength);
 
-            Assert.False(Quantity.TryParse(typeof(Mass), "xt", out IQuantity? parsedMass));
+            Assert.False(Quantity.TryParse(CultureInfo.InvariantCulture, typeof(Mass), "xt", out IQuantity? parsedMass));
             Assert.Null(parsedMass);
 
-            Assert.False(Quantity.TryParse(typeof(Pressure), "foo", out IQuantity? parsedPressure));
+            Assert.False(Quantity.TryParse(CultureInfo.InvariantCulture, typeof(Pressure), "foo", out IQuantity? parsedPressure));
             Assert.Null(parsedPressure);
         }
 
         [Fact]
         public void TryParse_GivenValueAndUnit_ReturnsQuantity()
         {
-            Assert.True(Quantity.TryParse(typeof(Length), "3 cm", out IQuantity? parsedLength));
+            Assert.True(Quantity.TryParse(CultureInfo.InvariantCulture, typeof(Length), "3 cm", out IQuantity? parsedLength));
             Assert.Equal(Length.FromCentimeters(3), parsedLength);
 
-            Assert.True(Quantity.TryParse(typeof(Mass), "03t", out IQuantity? parsedMass));
+            Assert.True(Quantity.TryParse(CultureInfo.InvariantCulture, typeof(Mass), "03t", out IQuantity? parsedMass));
             Assert.Equal(Mass.FromTonnes(3), parsedMass);
 
             Assert.True(Quantity.TryParse(NumberFormatInfo.InvariantInfo, typeof(Pressure), "3.0 Mbar", out IQuantity? parsedPressure));

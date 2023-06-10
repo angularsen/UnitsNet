@@ -35,9 +35,9 @@ namespace UnitsNet.Tests
         {
             Mass m = Mass.FromStonePounds(3500, 1);
             StonePounds stonePounds = m.StonePounds;
-            string numberInCurrentCulture =  3500.ToString("n0", CultureInfo.CurrentCulture); // Varies between machines, can't hard code it
+            string numberInCurrentCulture = 3500.ToString("n0", CultureInfo.InvariantCulture);
 
-            Assert.Equal($"{numberInCurrentCulture} st 1 lb", stonePounds.ToString());
+            Assert.Equal($"{numberInCurrentCulture} st 1 lb", stonePounds.ToString(CultureInfo.InvariantCulture));
         }
 
         // These cultures use a thin space in digit grouping
