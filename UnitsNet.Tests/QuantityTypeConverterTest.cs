@@ -242,10 +242,12 @@ namespace UnitsNet.Tests
             });
             Length length = Length.FromMeters(1);
 
-            string convertedQuantityDefaultCulture = (string)converter.ConvertTo(length, typeof(string))!;
+            CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
+
+            string convertedQuantityCurrentCulture = (string)converter.ConvertTo(length, typeof(string))!;
             string convertedQuantitySpecificCulture = (string)converter.ConvertTo(context, Culture, length, typeof(string))!;
 
-            Assert.Equal(Length.FromMeters(1).ToString(), convertedQuantityDefaultCulture);
+            Assert.Equal("1 m", convertedQuantityCurrentCulture);
             Assert.Equal("10 dm", convertedQuantitySpecificCulture);
         }
 
