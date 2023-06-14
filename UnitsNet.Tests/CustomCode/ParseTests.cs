@@ -96,8 +96,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ParseMultiWordAbbreviations()
         {
-            Assert.Equal(Mass.FromShortTons(333), Mass.Parse("333 short tn"));
-            Assert.Equal(Mass.FromLongTons(333), Mass.Parse("333 long tn"));
+            Assert.Equal(Mass.FromShortTons(333), Mass.Parse("333 short tn", CultureInfo.InvariantCulture));
+            Assert.Equal(Mass.FromLongTons(333), Mass.Parse("333 long tn", CultureInfo.InvariantCulture));
         }
 
         [Theory]

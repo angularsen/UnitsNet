@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Globalization;
 using UnitsNet.Units;
 using Xunit;
 
@@ -144,7 +145,7 @@ namespace UnitsNet.Tests
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnitWhichIsMeter()
         {
             var meter = Length.FromMeters(5);
-            string meterString = meter.ToString();
+            string meterString = meter.ToString(CultureInfo.InvariantCulture);
             Assert.Equal("5 m", meterString);
         }
 
@@ -152,7 +153,7 @@ namespace UnitsNet.Tests
         public void ToStringReturnsCorrectNumberAndUnitWithCentimeterAsDefualtUnit()
         {
             var value = Length.From(2, LengthUnit.Centimeter);
-            string valueString = value.ToString();
+            string valueString = value.ToString(CultureInfo.InvariantCulture);
             Assert.Equal("2 cm", valueString);
         }
 

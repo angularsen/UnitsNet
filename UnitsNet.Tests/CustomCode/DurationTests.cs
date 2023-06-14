@@ -192,7 +192,7 @@ namespace UnitsNet.Tests
         [InlineData("1000 мсек", 1, "ru-RU")]
         public void DurationFromStringUsingMultipleAbbreviationsParsedCorrectly(string textValue, double expectedSeconds, string? culture = null)
         {
-            var cultureInfo = culture == null ? null : new CultureInfo(culture);
+            var cultureInfo = culture == null ? CultureInfo.InvariantCulture : new CultureInfo(culture);
 
             AssertEx.EqualTolerance(expectedSeconds, Duration.Parse(textValue, cultureInfo).Seconds, SecondsTolerance);
         }
