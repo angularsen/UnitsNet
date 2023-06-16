@@ -60,7 +60,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">The string to parse, such as "1.2 kg".</param>
         /// <param name="formatProvider">The culture for looking up localized unit abbreviations for a language, and for parsing the number formatted in this culture. Defaults to <see cref="CultureInfo.CurrentCulture"/>.</param>
-        /// <param name="fromDelegate">A function to create a quantity from a numeric value and a unit enum value.</param>
+        /// <param name="fromDelegate">A function to create a quantity given a numeric value and a unit enum value.</param>
         /// <typeparam name="TQuantity">The type of quantity to create, such as <see cref="Length"/>.</typeparam>
         /// <typeparam name="TUnitType">The type of unit enum that belongs to this quantity, such as <see cref="LengthUnit"/> for <see cref="Length"/>.</typeparam>
         /// <returns>The parsed quantity if successful.</returns>
@@ -93,7 +93,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">The string to parse, such as "1.2 kg".</param>
         /// <param name="formatProvider">The culture for looking up localized unit abbreviations for a language, and for parsing the number formatted in this culture. Defaults to <see cref="CultureInfo.CurrentCulture"/>.</param>
-        /// <param name="fromDelegate">A function to create a quantity from a numeric value and a unit enum value.</param>
+        /// <param name="fromDelegate">A function to create a quantity given a numeric value and a unit enum value.</param>
         /// <param name="result">The parsed quantity if successful, otherwise null.</param>
         /// <typeparam name="TQuantity">The type of quantity to create, such as <see cref="Length"/>.</typeparam>
         /// <typeparam name="TUnitType">The type of unit enum that belongs to this quantity, such as <see cref="LengthUnit"/> for <see cref="Length"/>.</typeparam>
@@ -101,7 +101,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentNullException">The string was null.</exception>
         /// <exception cref="FormatException">Failed to parse quantity.</exception>
         [SuppressMessage("ReSharper", "UseStringInterpolation")]
-        internal bool TryParse<TQuantity, TUnitType>(string? str,
+        public bool TryParse<TQuantity, TUnitType>(string? str,
             IFormatProvider? formatProvider,
             QuantityFromDelegate<TQuantity, TUnitType> fromDelegate,
             out TQuantity result)
@@ -129,7 +129,7 @@ namespace UnitsNet
         /// </remarks>
         /// <param name="str">The string to parse, such as "1.2 kg".</param>
         /// <param name="formatProvider">The culture for looking up localized unit abbreviations for a language, and for parsing the number formatted in this culture. Defaults to <see cref="CultureInfo.CurrentCulture"/>.</param>
-        /// <param name="fromDelegate">A function to create a quantity from a numeric value and a unit enum value.</param>
+        /// <param name="fromDelegate">A function to create a quantity given a numeric value and a unit enum value.</param>
         /// <param name="result">The parsed quantity if successful, otherwise null.</param>
         /// <typeparam name="TQuantity">The type of quantity to create, such as <see cref="Length"/>.</typeparam>
         /// <typeparam name="TUnitType">The type of unit enum that belongs to this quantity, such as <see cref="LengthUnit"/> for <see cref="Length"/>.</typeparam>
@@ -137,7 +137,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentNullException">The string was null.</exception>
         /// <exception cref="FormatException">Failed to parse quantity.</exception>
         [SuppressMessage("ReSharper", "UseStringInterpolation")]
-        internal bool TryParse<TQuantity, TUnitType>(string str,
+        public bool TryParse<TQuantity, TUnitType>(string str,
             IFormatProvider? formatProvider,
             QuantityFromDelegate<TQuantity, TUnitType> fromDelegate,
             out IQuantity? result)
