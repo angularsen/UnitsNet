@@ -261,6 +261,25 @@ Console.WriteLine(Convert(HowMuchUnit.Lots)); // 100 lts
 Console.WriteLine(Convert(HowMuchUnit.Tons)); // 10 tns
 ```
 
+#### Parse custom quantity
+[QuantityParser](UnitsNet/CustomCode/QuantityParser.cs) parses quantity strings to `IQuantity` by providing a `UnitAbbreviationsCache` with custom units and unit abbreviations.
+
+```c#
+// Alternatively, manipulate the global UnitAbbreviationsCache.Default.
+var unitAbbreviationsCache = new UnitAbbreviationsCache();
+unitAbbreviationsCache.MapUnitToAbbreviation(HowMuchUnit.Some, "sm");
+unitAbbreviationsCache.MapUnitToAbbreviation(HowMuchUnit.ATon, "tn");
+
+var quantityParser = new QuantityParser(unitAbbreviationsCache);
+
+// 1 Some
+HowMuch q = quantityParser.Parse<HowMuch, HowMuchUnit>(
+    str: "1 sm",
+    formatProvider: null,
+    fromDelegate: (value, unit) => new HowMuch((double) value, unit));
+```
+
+
 ### Example: Unit converter app
 [Source code](https://github.com/angularsen/UnitsNet/tree/master/Samples/UnitConverter.Wpf) for `Samples/UnitConverter.Wpf`<br/>
 [Download](https://github.com/angularsen/UnitsNet/releases/tag/UnitConverterWpf%2F2018-11-09) (release 2018-11-09 for Windows)
