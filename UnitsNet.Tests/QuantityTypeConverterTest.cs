@@ -137,7 +137,7 @@ namespace UnitsNet.Tests
             var converter = new QuantityTypeConverter<Length>();
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[] { });
 
-            Assert.Throws<ArgumentException>(() => converter.ConvertFrom(context, Culture, "1m^2"));
+            Assert.Throws<UnitNotFoundException>(() => converter.ConvertFrom(context, Culture, "1m^2"));
         }
 
         [Theory]

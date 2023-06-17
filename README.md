@@ -178,6 +178,16 @@ if (Quantity.TryFrom(value: 3, quantityName: "Length", unitName: "Centimeter", o
 }
 ```
 
+Or create by just the unit abbreviation, as long as there is exactly one unit with this abbreviation.
+```c#
+// Length with unit LengthUnit.Centimeter
+IQuantity quantity = Quantity.FromUnitAbbreviation(3, "cm");
+
+if (Quantity.TryFromUnitAbbreviation(3, "cm", out IQuantity? quantity2))
+{
+}
+```
+
 #### Parse quantity
 Parse any string to a quantity instance of the given the quantity type.
 
@@ -260,6 +270,25 @@ Console.WriteLine(Convert(HowMuchUnit.Some)); // 200 sm
 Console.WriteLine(Convert(HowMuchUnit.Lots)); // 100 lts
 Console.WriteLine(Convert(HowMuchUnit.Tons)); // 10 tns
 ```
+
+#### Parse custom quantity
+[QuantityParser](UnitsNet/CustomCode/QuantityParser.cs) parses quantity strings to `IQuantity` by providing a `UnitAbbreviationsCache` with custom units and unit abbreviations.
+
+```c#
+// Alternatively, manipulate the global UnitAbbreviationsCache.Default.
+var unitAbbreviationsCache = new UnitAbbreviationsCache();
+unitAbbreviationsCache.MapUnitToAbbreviation(HowMuchUnit.Some, "sm");
+unitAbbreviationsCache.MapUnitToAbbreviation(HowMuchUnit.ATon, "tn");
+
+var quantityParser = new QuantityParser(unitAbbreviationsCache);
+
+// 1 Some
+HowMuch q = quantityParser.Parse<HowMuch, HowMuchUnit>(
+    str: "1 sm",
+    formatProvider: null,
+    fromDelegate: (value, unit) => new HowMuch((double) value, unit));
+```
+
 
 ### Example: Unit converter app
 [Source code](https://github.com/angularsen/UnitsNet/tree/master/Samples/UnitConverter.Wpf) for `Samples/UnitConverter.Wpf`<br/>

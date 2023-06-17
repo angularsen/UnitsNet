@@ -10,6 +10,8 @@ namespace UnitsNet.Tests
 {
     public partial class QuantityTests
     {
+        private static readonly CultureInfo Russian = CultureInfo.GetCultureInfo("ru-RU");
+
         [Fact]
         public void GetHashCodeForDifferentQuantitiesWithSameValuesAreNotEqual()
         {
@@ -141,6 +143,79 @@ namespace UnitsNet.Tests
         {
             Assert.Throws<UnitNotFoundException>(() => Quantity.From(5, "Length", "InvalidUnit"));
             Assert.Throws<UnitNotFoundException>(() => Quantity.From(5, "InvalidQuantity", "Kilogram"));
+        }
+
+        [Fact]
+        public void FromUnitAbbreviation_ReturnsQuantity()
+        {
+            IQuantity q = Quantity.FromUnitAbbreviation(5, "cm");
+            Assert.Equal(5, q.Value);
+            Assert.Equal(LengthUnit.Centimeter, q.Unit);
+        }
+
+        [Fact]
+        public void TryFromUnitAbbreviation_ReturnsQuantity()
+        {
+            Assert.True(Quantity.TryFromUnitAbbreviation(5, "cm", out IQuantity? q));
+            Assert.Equal(LengthUnit.Centimeter, q!.Unit);
+        }
+
+        [Fact]
+        public void FromUnitAbbreviation_MatchingCulture_ReturnsQuantity()
+        {
+            IQuantity q = Quantity.FromUnitAbbreviation(Russian, 5, "см");
+            Assert.Equal(5, q.Value);
+            Assert.Equal(LengthUnit.Centimeter, q.Unit);
+        }
+
+        [Fact]
+        public void TryFromUnitAbbreviation_MatchingCulture_ReturnsQuantity()
+        {
+            Assert.False(Quantity.TryFromUnitAbbreviation(Russian, 5, "cm", out IQuantity? q));
+        }
+
+        [Fact]
+        public void FromUnitAbbreviation_MismatchingCulture_ThrowsUnitNotFoundException()
+        {
+            Assert.Throws<UnitNotFoundException>(() => Quantity.FromUnitAbbreviation(Russian, 5, "cm")); // Expected "см"
+        }
+
+        [Fact]
+        public void TryFromUnitAbbreviation_MismatchingCulture_ThrowsUnitNotFoundException()
+        {
+            Assert.Throws<UnitNotFoundException>(() => Quantity.FromUnitAbbreviation(Russian, 5, "cm")); // Expected "см"
+        }
+
+        [Fact]
+        public void FromUnitAbbreviation_InvalidAbbreviation_ThrowsUnitNotFoundException()
+        {
+            Assert.Throws<UnitNotFoundException>(() => Quantity.FromUnitAbbreviation(5, "nonexisting-unit"));
+        }
+
+        [Fact]
+        public void TryFromUnitAbbreviation_InvalidAbbreviation_ThrowsUnitNotFoundException()
+        {
+            Assert.False(Quantity.TryFromUnitAbbreviation(5, "nonexisting-unit", out IQuantity? q));
+            Assert.Null(q);
+        }
+
+        [Fact]
+        public void FromUnitAbbreviation_AmbiguousAbbreviation_ThrowsAmbiguousUnitParseException()
+        {
+            // MassFraction.Percent
+            // Ratio.Percent
+            // VolumeConcentration.Percent
+            Assert.Throws<AmbiguousUnitParseException>(() => Quantity.FromUnitAbbreviation(5, "%"));
+        }
+
+        [Fact]
+        public void TryFromUnitAbbreviation_AmbiguousAbbreviation_ReturnsFalse()
+        {
+            // MassFraction.Percent
+            // Ratio.Percent
+            // VolumeConcentration.Percent
+            Assert.False(Quantity.TryFromUnitAbbreviation(5, "%", out IQuantity? q));
+            Assert.Null(q);
         }
 
         private static Length ParseLength(string str)

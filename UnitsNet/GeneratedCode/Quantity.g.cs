@@ -22,6 +22,7 @@ using System.Globalization;
 using UnitsNet.Units;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 #nullable enable
 
@@ -300,7 +301,7 @@ namespace UnitsNet
         /// <param name="unit">Unit enum value.</param>
         /// <param name="quantity">The resulting quantity if successful, otherwise <c>default</c>.</param>
         /// <returns><c>True</c> if successful with <paramref name="quantity"/> assigned the value, otherwise <c>false</c>.</returns>
-        public static bool TryFrom(QuantityValue value, Enum unit, [NotNullWhen(true)] out IQuantity? quantity)
+        public static bool TryFrom(QuantityValue value, Enum? unit, [NotNullWhen(true)] out IQuantity? quantity)
         {
             switch (unit)
             {
