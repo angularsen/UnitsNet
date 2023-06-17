@@ -178,6 +178,16 @@ if (Quantity.TryFrom(value: 3, quantityName: "Length", unitName: "Centimeter", o
 }
 ```
 
+Or create by just the unit abbreviation, as long as there is exactly one unit with this abbreviation.
+```c#
+// Length with unit LengthUnit.Centimeter
+IQuantity quantity = Quantity.FromUnitAbbreviation(3, "cm");
+
+if (Quantity.TryFromUnitAbbreviation(3, "cm", out IQuantity? quantity2))
+{
+}
+```
+
 #### Parse quantity
 Parse any string to a quantity instance of the given the quantity type.
 
