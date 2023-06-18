@@ -59,7 +59,7 @@ namespace UnitsNet
             UnitTypeAndNameToUnitInfoLazy.Value.TryGetValue((unitEnum.GetType(), unitEnum.ToString()), out unitInfo);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="unit"></param>
         /// <param name="unitInfo"></param>
@@ -77,11 +77,9 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">Unit value is not a know unit enum type.</exception>
         public IQuantity From(QuantityValue value, Enum unit)
         {
-            if (Quantity.TryFrom(value, unit, out IQuantity? quantity))
-                return quantity;
-
-            throw new ArgumentException(
-                $"Unit value {unit} of type {unit.GetType()} is not a known unit enum type. Expected types like UnitsNet.Units.LengthUnit. Did you pass in a third-party enum type defined outside UnitsNet library?");
+            return Quantity.TryFrom(value, unit, out IQuantity? quantity)
+                ? quantity
+                : throw new UnitNotFoundException($"Unit value {unit} of type {unit.GetType()} is not a known unit enum type. Expected types like UnitsNet.Units.LengthUnit. Did you pass in a custom enum type defined outside the UnitsNet library?");
         }
 
         /// <inheritdoc cref="Quantity.TryFrom(QuantityValue,System.Enum,out UnitsNet.IQuantity)"/>
@@ -117,7 +115,7 @@ namespace UnitsNet
             if (Quantity.TryParse(formatProvider, quantityType, quantityString, out IQuantity? quantity))
                 return quantity;
 
-            throw new ArgumentException($"Quantity string could not be parsed to quantity {quantityType}.");
+            throw new UnitNotFoundException($"Quantity string '{quantityString}' could not be parsed to quantity '{quantityType}'.");
         }
 
         /// <inheritdoc cref="Quantity.TryParse(IFormatProvider,System.Type,string,out UnitsNet.IQuantity)"/>

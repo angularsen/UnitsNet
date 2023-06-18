@@ -68,22 +68,22 @@ namespace UnitsNet
             Info = new QuantityInfo<AbsorbedDoseOfIonizingRadiationUnit>("AbsorbedDoseOfIonizingRadiation",
                 new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>[]
                 {
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Centigray, "Centigrays", BaseUnits.Undefined),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Femtogray, "Femtograys", BaseUnits.Undefined),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Gigagray, "Gigagrays", BaseUnits.Undefined),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Gray, "Grays", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second)),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Kilogray, "Kilograys", BaseUnits.Undefined),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Kilorad, "Kilorads", BaseUnits.Undefined),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Megagray, "Megagrays", BaseUnits.Undefined),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Megarad, "Megarads", BaseUnits.Undefined),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Microgray, "Micrograys", BaseUnits.Undefined),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Milligray, "Milligrays", BaseUnits.Undefined),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Millirad, "Millirads", BaseUnits.Undefined),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Nanogray, "Nanograys", BaseUnits.Undefined),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Petagray, "Petagrays", BaseUnits.Undefined),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Picogray, "Picograys", BaseUnits.Undefined),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Rad, "Rads", BaseUnits.Undefined),
-                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Teragray, "Teragrays", BaseUnits.Undefined),
+                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Centigray, "Centigrays", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
+                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Femtogray, "Femtograys", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
+                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Gigagray, "Gigagrays", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
+                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Gray, "Grays", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second), "AbsorbedDoseOfIonizingRadiation"),
+                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Kilogray, "Kilograys", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
+                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Kilorad, "Kilorads", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
+                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Megagray, "Megagrays", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
+                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Megarad, "Megarads", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
+                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Microgray, "Micrograys", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
+                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Milligray, "Milligrays", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
+                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Millirad, "Millirads", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
+                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Nanogray, "Nanograys", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
+                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Petagray, "Petagrays", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
+                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Picogray, "Picograys", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
+                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Rad, "Rads", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
+                    new UnitInfo<AbsorbedDoseOfIonizingRadiationUnit>(AbsorbedDoseOfIonizingRadiationUnit.Teragray, "Teragrays", BaseUnits.Undefined, "AbsorbedDoseOfIonizingRadiation"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -313,42 +313,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<AbsorbedDoseOfIonizingRadiation>(AbsorbedDoseOfIonizingRadiationUnit.Gray, AbsorbedDoseOfIonizingRadiationUnit.Picogray, quantity => quantity.ToUnit(AbsorbedDoseOfIonizingRadiationUnit.Picogray));
             unitConverter.SetConversionFunction<AbsorbedDoseOfIonizingRadiation>(AbsorbedDoseOfIonizingRadiationUnit.Gray, AbsorbedDoseOfIonizingRadiationUnit.Rad, quantity => quantity.ToUnit(AbsorbedDoseOfIonizingRadiationUnit.Rad));
             unitConverter.SetConversionFunction<AbsorbedDoseOfIonizingRadiation>(AbsorbedDoseOfIonizingRadiationUnit.Gray, AbsorbedDoseOfIonizingRadiationUnit.Teragray, quantity => quantity.ToUnit(AbsorbedDoseOfIonizingRadiationUnit.Teragray));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(AbsorbedDoseOfIonizingRadiationUnit.Centigray, new CultureInfo("en-US"), false, true, new string[]{"cGy"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AbsorbedDoseOfIonizingRadiationUnit.Centigray, new CultureInfo("ru-RU"), false, true, new string[]{"сГр"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AbsorbedDoseOfIonizingRadiationUnit.Femtogray, new CultureInfo("en-US"), false, true, new string[]{"fGy"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AbsorbedDoseOfIonizingRadiationUnit.Femtogray, new CultureInfo("ru-RU"), false, true, new string[]{"фГр"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AbsorbedDoseOfIonizingRadiationUnit.Gigagray, new CultureInfo("en-US"), false, true, new string[]{"GGy"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AbsorbedDoseOfIonizingRadiationUnit.Gigagray, new CultureInfo("ru-RU"), false, true, new string[]{"ГГр"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AbsorbedDoseOfIonizingRadiationUnit.Gray, new CultureInfo("en-US"), false, true, new string[]{"Gy"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AbsorbedDoseOfIonizingRadiationUnit.Gray, new CultureInfo("ru-RU"), false, true, new string[]{"Гр"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AbsorbedDoseOfIonizingRadiationUnit.Kilogray, new CultureInfo("en-US"), false, true, new string[]{"kGy"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AbsorbedDoseOfIonizingRadiationUnit.Kilogray, new CultureInfo("ru-RU"), false, true, new string[]{"кГр"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AbsorbedDoseOfIonizingRadiationUnit.Kilorad, new CultureInfo("en-US"), false, true, new string[]{"krad"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AbsorbedDoseOfIonizingRadiationUnit.Kilorad, new CultureInfo("ru-RU"), false, true, new string[]{"крад"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AbsorbedDoseOfIonizingRadiationUnit.Megagray, new CultureInfo("en-US"), false, true, new string[]{"MGy"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AbsorbedDoseOfIonizingRadiationUnit.Megagray, new CultureInfo("ru-RU"), false, true, new string[]{"МГр"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AbsorbedDoseOfIonizingRadiationUnit.Megarad, new CultureInfo("en-US"), false, true, new string[]{"Mrad"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AbsorbedDoseOfIonizingRadiationUnit.Megarad, new CultureInfo("ru-RU"), false, true, new string[]{"Мрад"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AbsorbedDoseOfIonizingRadiationUnit.Microgray, new CultureInfo("en-US"), false, true, new string[]{"µGy"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AbsorbedDoseOfIonizingRadiationUnit.Microgray, new CultureInfo("ru-RU"), false, true, new string[]{"мкГр"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AbsorbedDoseOfIonizingRadiationUnit.Milligray, new CultureInfo("en-US"), false, true, new string[]{"mGy"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AbsorbedDoseOfIonizingRadiationUnit.Milligray, new CultureInfo("ru-RU"), false, true, new string[]{"мГр"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AbsorbedDoseOfIonizingRadiationUnit.Millirad, new CultureInfo("en-US"), false, true, new string[]{"mrad"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AbsorbedDoseOfIonizingRadiationUnit.Millirad, new CultureInfo("ru-RU"), false, true, new string[]{"мрад"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AbsorbedDoseOfIonizingRadiationUnit.Nanogray, new CultureInfo("en-US"), false, true, new string[]{"nGy"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AbsorbedDoseOfIonizingRadiationUnit.Nanogray, new CultureInfo("ru-RU"), false, true, new string[]{"нГр"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AbsorbedDoseOfIonizingRadiationUnit.Petagray, new CultureInfo("en-US"), false, true, new string[]{"PGy"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AbsorbedDoseOfIonizingRadiationUnit.Petagray, new CultureInfo("ru-RU"), false, true, new string[]{"ПГр"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AbsorbedDoseOfIonizingRadiationUnit.Picogray, new CultureInfo("en-US"), false, true, new string[]{"pGy"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AbsorbedDoseOfIonizingRadiationUnit.Picogray, new CultureInfo("ru-RU"), false, true, new string[]{"пГр"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AbsorbedDoseOfIonizingRadiationUnit.Rad, new CultureInfo("en-US"), false, true, new string[]{"rad"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AbsorbedDoseOfIonizingRadiationUnit.Rad, new CultureInfo("ru-RU"), false, true, new string[]{"рад"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AbsorbedDoseOfIonizingRadiationUnit.Teragray, new CultureInfo("en-US"), false, true, new string[]{"TGy"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AbsorbedDoseOfIonizingRadiationUnit.Teragray, new CultureInfo("ru-RU"), false, true, new string[]{"ТГр"});
         }
 
         /// <summary>

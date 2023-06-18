@@ -305,6 +305,7 @@ namespace UnitsNet
         {
             quantity = unit switch
             {
+                AbsorbedDoseOfIonizingRadiationUnit absorbedDoseOfIonizingRadiationUnit => AbsorbedDoseOfIonizingRadiation.From(value, absorbedDoseOfIonizingRadiationUnit),
                 AccelerationUnit accelerationUnit => Acceleration.From(value, accelerationUnit),
                 AmountOfSubstanceUnit amountOfSubstanceUnit => AmountOfSubstance.From(value, amountOfSubstanceUnit),
                 AmplitudeRatioUnit amplitudeRatioUnit => AmplitudeRatio.From(value, amplitudeRatioUnit),

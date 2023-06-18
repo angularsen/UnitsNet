@@ -132,7 +132,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ConvertFrom_GivenWrongQuantity_ThrowsArgumentException()
+        public void ConvertFrom_GivenWrongQuantity_ThrowsUnitNotFoundException()
         {
             var converter = new QuantityTypeConverter<Length>();
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[] { });

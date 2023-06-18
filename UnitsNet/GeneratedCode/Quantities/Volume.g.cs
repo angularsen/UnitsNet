@@ -92,6 +92,7 @@ namespace UnitsNet
                     new UnitInfo<VolumeUnit>(VolumeUnit.ImperialGallon, "ImperialGallons", BaseUnits.Undefined, "Volume"),
                     new UnitInfo<VolumeUnit>(VolumeUnit.ImperialOunce, "ImperialOunces", BaseUnits.Undefined, "Volume"),
                     new UnitInfo<VolumeUnit>(VolumeUnit.ImperialPint, "ImperialPints", new BaseUnits(length: LengthUnit.Decimeter), "Volume"),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.ImperialQuart, "ImperialQuarts", BaseUnits.Undefined, "Volume"),
                     new UnitInfo<VolumeUnit>(VolumeUnit.KilocubicFoot, "KilocubicFeet", BaseUnits.Undefined, "Volume"),
                     new UnitInfo<VolumeUnit>(VolumeUnit.KilocubicMeter, "KilocubicMeters", BaseUnits.Undefined, "Volume"),
                     new UnitInfo<VolumeUnit>(VolumeUnit.KiloimperialGallon, "KiloimperialGallons", BaseUnits.Undefined, "Volume"),
