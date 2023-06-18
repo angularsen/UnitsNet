@@ -16,9 +16,9 @@ namespace UnitsNet.Tests
         private const string RussianCultureName = "ru-RU";
         private const string NorwegianCultureName = "nb-NO";
 
-        private static readonly IFormatProvider AmericanCulture = new CultureInfo(AmericanCultureName);
-        private static readonly IFormatProvider NorwegianCulture = new CultureInfo(NorwegianCultureName);
-        private static readonly IFormatProvider RussianCulture = new CultureInfo(RussianCultureName);
+        private static readonly IFormatProvider AmericanCulture = CultureInfo.GetCultureInfo(AmericanCultureName);
+        private static readonly IFormatProvider NorwegianCulture = CultureInfo.GetCultureInfo(NorwegianCultureName);
+        private static readonly IFormatProvider RussianCulture = CultureInfo.GetCultureInfo(RussianCultureName);
 
         // The default, parameterless ToString() method uses 2 sigifnificant digits after the radix point.
         [Theory]
@@ -220,7 +220,7 @@ namespace UnitsNet.Tests
                 // CurrentCulture affects number formatting, such as comma or dot as decimal separator.
                 // CurrentCulture affects localization, in this case the abbreviation.
                 // Zulu (South Africa)
-                var zuluCulture = new CultureInfo("zu-ZA");
+                var zuluCulture = CultureInfo.GetCultureInfo("zu-ZA");
                 CultureInfo.CurrentCulture = zuluCulture;
 
                 var abbreviationsCache = new UnitAbbreviationsCache();
@@ -298,7 +298,7 @@ namespace UnitsNet.Tests
         /// </summary>
         private static CultureInfo GetCulture(string cultureName)
         {
-            return new CultureInfo(cultureName);
+            return CultureInfo.GetCultureInfo(cultureName);
         }
     }
 }

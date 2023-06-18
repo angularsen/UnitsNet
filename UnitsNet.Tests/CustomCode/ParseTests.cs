@@ -27,7 +27,7 @@ namespace UnitsNet.Tests
         [InlineData("500,005 m", 500005)]
         public void ParseLengthToMetersUsEnglish(string s, double expected)
         {
-            CultureInfo usEnglish = new CultureInfo("en-US");
+            CultureInfo usEnglish = CultureInfo.GetCultureInfo("en-US");
             double actual = Length.Parse(s, usEnglish).Meters;
             Assert.Equal(expected, actual);
         }
@@ -41,7 +41,7 @@ namespace UnitsNet.Tests
         [InlineData("1ft 1invalid", typeof(FormatException))] // Valid
         public void ParseLength_InvalidString_USEnglish_ThrowsException(string s, Type expectedExceptionType)
         {
-            var usEnglish = new CultureInfo("en-US");
+            var usEnglish = CultureInfo.GetCultureInfo("en-US");
             Assert.Throws(expectedExceptionType, () => Length.Parse(s, usEnglish));
         }
 
@@ -117,7 +117,7 @@ namespace UnitsNet.Tests
         [InlineData("m", LengthUnit.Meter)]
         public void ParseLengthUnitUsEnglish(string s, LengthUnit expected)
         {
-            CultureInfo usEnglish = new CultureInfo("en-US");
+            CultureInfo usEnglish = CultureInfo.GetCultureInfo("en-US");
             LengthUnit actual = Length.ParseUnit(s, usEnglish);
             Assert.Equal(expected, actual);
         }
@@ -127,7 +127,7 @@ namespace UnitsNet.Tests
         [InlineData(null, typeof(ArgumentNullException))]
         public void ParseLengthUnitUsEnglish_ThrowsExceptionOnInvalidString(string s, Type expectedExceptionType)
         {
-            var usEnglish = new CultureInfo("en-US");
+            var usEnglish = CultureInfo.GetCultureInfo("en-US");
             Assert.Throws(expectedExceptionType, () => Length.ParseUnit(s, usEnglish));
         }
 
@@ -139,7 +139,7 @@ namespace UnitsNet.Tests
         [InlineData("foo", false)]
         public void TryParseLengthUnitUsEnglish(string s, bool expected)
         {
-            CultureInfo usEnglish = new CultureInfo("en-US");
+            CultureInfo usEnglish = CultureInfo.GetCultureInfo("en-US");
             bool actual = Length.TryParse(s, usEnglish, out Length _);
             Assert.Equal(expected, actual);
         }
@@ -153,7 +153,7 @@ namespace UnitsNet.Tests
         [InlineData("1 кг", "ru-RU", 1, MassUnit.Kilogram)]
         public void ParseMassWithPrefixUnits_GivenCulture_ReturnsQuantityWithSameUnitAndValue(string str, string cultureName, double expectedValue, Enum expectedUnit)
         {
-            var actual = Mass.Parse(str, new CultureInfo(cultureName));
+            var actual = Mass.Parse(str, CultureInfo.GetCultureInfo(cultureName));
 
             Assert.Equal(expectedUnit, actual.Unit);
             Assert.Equal(expectedValue, actual.Value);
@@ -168,7 +168,7 @@ namespace UnitsNet.Tests
         [InlineData("1 км", "ru-RU", 1, LengthUnit.Kilometer)]
         public void ParseLengthWithPrefixUnits_GivenCulture_ReturnsQuantityWithSameUnitAndValue(string str, string cultureName, double expectedValue, Enum expectedUnit)
         {
-            var actual = Length.Parse(str, new CultureInfo(cultureName));
+            var actual = Length.Parse(str, CultureInfo.GetCultureInfo(cultureName));
 
             Assert.Equal(expectedUnit, actual.Unit);
             Assert.Equal(expectedValue, actual.Value);
@@ -183,7 +183,7 @@ namespace UnitsNet.Tests
         [InlineData("1 кН", "ru-RU", 1, ForceUnit.Kilonewton)]
         public void ParseForceWithPrefixUnits_GivenCulture_ReturnsQuantityWithSameUnitAndValue(string str, string cultureName, double expectedValue, Enum expectedUnit)
         {
-            var actual = Force.Parse(str, new CultureInfo(cultureName));
+            var actual = Force.Parse(str, CultureInfo.GetCultureInfo(cultureName));
 
             Assert.Equal(expectedUnit, actual.Unit);
             Assert.Equal(expectedValue, actual.Value);
@@ -204,7 +204,7 @@ namespace UnitsNet.Tests
         [InlineData("1 MiB", "ru-RU", 1, InformationUnit.Mebibyte)]
         public void ParseInformationWithPrefixUnits_GivenCulture_ReturnsQuantityWithSameUnitAndValue(string str, string cultureName, decimal expectedValue, Enum expectedUnit)
         {
-            var actual = Information.Parse(str, new CultureInfo(cultureName));
+            var actual = Information.Parse(str, CultureInfo.GetCultureInfo(cultureName));
 
             Assert.Equal(expectedUnit, actual.Unit);
             Assert.Equal(expectedValue, actual.Value);

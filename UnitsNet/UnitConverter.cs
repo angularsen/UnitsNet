@@ -420,7 +420,7 @@ namespace UnitsNet
             if (!TryGetUnitType(quantityName, out Type? unitType))
                 throw new UnitNotFoundException($"The unit type for the given quantity was not found: {quantityName}");
 
-            var cultureInfo = string.IsNullOrWhiteSpace(culture) ? CultureInfo.CurrentCulture : new CultureInfo(culture);
+            var cultureInfo = string.IsNullOrWhiteSpace(culture) ? CultureInfo.CurrentCulture : CultureInfo.GetCultureInfo(culture);
 
             var fromUnit = UnitParser.Default.Parse(fromUnitAbbrev, unitType, cultureInfo); // ex: ("m", LengthUnit) => LengthUnit.Meter
             var fromQuantity = Quantity.From(fromValue, fromUnit);
@@ -479,7 +479,7 @@ namespace UnitsNet
             if (!TryGetUnitType(quantityName, out Type? unitType))
                 return false;
 
-            var cultureInfo = string.IsNullOrWhiteSpace(culture) ? CultureInfo.CurrentCulture : new CultureInfo(culture);
+            var cultureInfo = string.IsNullOrWhiteSpace(culture) ? CultureInfo.CurrentCulture : CultureInfo.GetCultureInfo(culture);
 
             if (!UnitParser.Default.TryParse(fromUnitAbbrev, unitType, cultureInfo, out Enum? fromUnit)) // ex: ("m", LengthUnit) => LengthUnit.Meter
                 return false;

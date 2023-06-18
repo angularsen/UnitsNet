@@ -45,7 +45,7 @@ namespace UnitsNet.Tests
         [InlineData("fr-FR")]
         public void StonePoundsToString_GivenCultureWithThinSpaceDigitGroup_ReturnsNumberWithThinSpaceDigitGroup(string cultureName)
         {
-            var formatProvider = new CultureInfo(cultureName);
+            var formatProvider = CultureInfo.GetCultureInfo(cultureName);
             Mass m = Mass.FromStonePounds(3500, 1);
             StonePounds stonePounds = m.StonePounds;
 
