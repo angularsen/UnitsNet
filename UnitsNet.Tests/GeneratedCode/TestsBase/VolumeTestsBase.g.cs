@@ -765,6 +765,20 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = Volume.Parse("1 cl", CultureInfo.GetCultureInfo("en"));
+                AssertEx.EqualTolerance(1, parsed.Centiliters, CentilitersTolerance);
+                Assert.Equal(VolumeUnit.Centiliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Volume.Parse("1 cL", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Centiliters, CentilitersTolerance);
+                Assert.Equal(VolumeUnit.Centiliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = Volume.Parse("1 cl", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Centiliters, CentilitersTolerance);
                 Assert.Equal(VolumeUnit.Centiliter, parsed.Unit);
@@ -933,6 +947,20 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = Volume.Parse("1 dal", CultureInfo.GetCultureInfo("en"));
+                AssertEx.EqualTolerance(1, parsed.Decaliters, DecalitersTolerance);
+                Assert.Equal(VolumeUnit.Decaliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Volume.Parse("1 daL", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Decaliters, DecalitersTolerance);
+                Assert.Equal(VolumeUnit.Decaliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = Volume.Parse("1 dal", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Decaliters, DecalitersTolerance);
                 Assert.Equal(VolumeUnit.Decaliter, parsed.Unit);
@@ -957,6 +985,20 @@ namespace UnitsNet.Tests
                 var parsed = Volume.Parse("1 даАмериканский галлон", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.DecausGallons, DecausGallonsTolerance);
                 Assert.Equal(VolumeUnit.DecausGallon, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Volume.Parse("1 dl", CultureInfo.GetCultureInfo("en"));
+                AssertEx.EqualTolerance(1, parsed.Deciliters, DecilitersTolerance);
+                Assert.Equal(VolumeUnit.Deciliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Volume.Parse("1 dL", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Deciliters, DecilitersTolerance);
+                Assert.Equal(VolumeUnit.Deciliter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
@@ -1013,6 +1055,20 @@ namespace UnitsNet.Tests
                 var parsed = Volume.Parse("1 гм³", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.HectocubicMeters, HectocubicMetersTolerance);
                 Assert.Equal(VolumeUnit.HectocubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Volume.Parse("1 hl", CultureInfo.GetCultureInfo("en"));
+                AssertEx.EqualTolerance(1, parsed.Hectoliters, HectolitersTolerance);
+                Assert.Equal(VolumeUnit.Hectoliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Volume.Parse("1 hL", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Hectoliters, HectolitersTolerance);
+                Assert.Equal(VolumeUnit.Hectoliter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
@@ -1157,6 +1213,20 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = Volume.Parse("1 kl", CultureInfo.GetCultureInfo("en"));
+                AssertEx.EqualTolerance(1, parsed.Kiloliters, KilolitersTolerance);
+                Assert.Equal(VolumeUnit.Kiloliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Volume.Parse("1 kL", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Kiloliters, KilolitersTolerance);
+                Assert.Equal(VolumeUnit.Kiloliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = Volume.Parse("1 kl", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Kiloliters, KilolitersTolerance);
                 Assert.Equal(VolumeUnit.Kiloliter, parsed.Unit);
@@ -1181,6 +1251,20 @@ namespace UnitsNet.Tests
                 var parsed = Volume.Parse("1 кАмериканский галлон", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.KilousGallons, KilousGallonsTolerance);
                 Assert.Equal(VolumeUnit.KilousGallon, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Volume.Parse("1 l", CultureInfo.GetCultureInfo("en"));
+                AssertEx.EqualTolerance(1, parsed.Liters, LitersTolerance);
+                Assert.Equal(VolumeUnit.Liter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Volume.Parse("1 L", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Liters, LitersTolerance);
+                Assert.Equal(VolumeUnit.Liter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
@@ -1223,6 +1307,20 @@ namespace UnitsNet.Tests
                 var parsed = Volume.Parse("1 МАнглийский галлон", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.MegaimperialGallons, MegaimperialGallonsTolerance);
                 Assert.Equal(VolumeUnit.MegaimperialGallon, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Volume.Parse("1 Ml", CultureInfo.GetCultureInfo("en"));
+                AssertEx.EqualTolerance(1, parsed.Megaliters, MegalitersTolerance);
+                Assert.Equal(VolumeUnit.Megaliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Volume.Parse("1 ML", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Megaliters, MegalitersTolerance);
+                Assert.Equal(VolumeUnit.Megaliter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
@@ -1318,6 +1416,20 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = Volume.Parse("1 µl", CultureInfo.GetCultureInfo("en"));
+                AssertEx.EqualTolerance(1, parsed.Microliters, MicrolitersTolerance);
+                Assert.Equal(VolumeUnit.Microliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Volume.Parse("1 µL", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Microliters, MicrolitersTolerance);
+                Assert.Equal(VolumeUnit.Microliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = Volume.Parse("1 µl", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Microliters, MicrolitersTolerance);
                 Assert.Equal(VolumeUnit.Microliter, parsed.Unit);
@@ -1332,6 +1444,20 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = Volume.Parse("1 ml", CultureInfo.GetCultureInfo("en"));
+                AssertEx.EqualTolerance(1, parsed.Milliliters, MillilitersTolerance);
+                Assert.Equal(VolumeUnit.Milliliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Volume.Parse("1 mL", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Milliliters, MillilitersTolerance);
+                Assert.Equal(VolumeUnit.Milliliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = Volume.Parse("1 ml", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Milliliters, MillilitersTolerance);
                 Assert.Equal(VolumeUnit.Milliliter, parsed.Unit);
@@ -1342,6 +1468,20 @@ namespace UnitsNet.Tests
                 var parsed = Volume.Parse("1 мл", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Milliliters, MillilitersTolerance);
                 Assert.Equal(VolumeUnit.Milliliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Volume.Parse("1 nl", CultureInfo.GetCultureInfo("en"));
+                AssertEx.EqualTolerance(1, parsed.Nanoliters, NanolitersTolerance);
+                Assert.Equal(VolumeUnit.Nanoliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Volume.Parse("1 nL", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Nanoliters, NanolitersTolerance);
+                Assert.Equal(VolumeUnit.Nanoliter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
@@ -1474,6 +1614,18 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(Volume.TryParse("1 cl", CultureInfo.GetCultureInfo("en"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Centiliters, CentilitersTolerance);
+                Assert.Equal(VolumeUnit.Centiliter, parsed.Unit);
+            }
+
+            {
+                Assert.True(Volume.TryParse("1 cL", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Centiliters, CentilitersTolerance);
+                Assert.Equal(VolumeUnit.Centiliter, parsed.Unit);
+            }
+
+            {
                 Assert.True(Volume.TryParse("1 cl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Centiliters, CentilitersTolerance);
                 Assert.Equal(VolumeUnit.Centiliter, parsed.Unit);
@@ -1594,6 +1746,18 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(Volume.TryParse("1 dal", CultureInfo.GetCultureInfo("en"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Decaliters, DecalitersTolerance);
+                Assert.Equal(VolumeUnit.Decaliter, parsed.Unit);
+            }
+
+            {
+                Assert.True(Volume.TryParse("1 daL", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Decaliters, DecalitersTolerance);
+                Assert.Equal(VolumeUnit.Decaliter, parsed.Unit);
+            }
+
+            {
                 Assert.True(Volume.TryParse("1 dal", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Decaliters, DecalitersTolerance);
                 Assert.Equal(VolumeUnit.Decaliter, parsed.Unit);
@@ -1615,6 +1779,18 @@ namespace UnitsNet.Tests
                 Assert.True(Volume.TryParse("1 даАмериканский галлон", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.DecausGallons, DecausGallonsTolerance);
                 Assert.Equal(VolumeUnit.DecausGallon, parsed.Unit);
+            }
+
+            {
+                Assert.True(Volume.TryParse("1 dl", CultureInfo.GetCultureInfo("en"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Deciliters, DecilitersTolerance);
+                Assert.Equal(VolumeUnit.Deciliter, parsed.Unit);
+            }
+
+            {
+                Assert.True(Volume.TryParse("1 dL", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Deciliters, DecilitersTolerance);
+                Assert.Equal(VolumeUnit.Deciliter, parsed.Unit);
             }
 
             {
@@ -1651,6 +1827,18 @@ namespace UnitsNet.Tests
                 Assert.True(Volume.TryParse("1 гфут³", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.HectocubicFeet, HectocubicFeetTolerance);
                 Assert.Equal(VolumeUnit.HectocubicFoot, parsed.Unit);
+            }
+
+            {
+                Assert.True(Volume.TryParse("1 hl", CultureInfo.GetCultureInfo("en"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Hectoliters, HectolitersTolerance);
+                Assert.Equal(VolumeUnit.Hectoliter, parsed.Unit);
+            }
+
+            {
+                Assert.True(Volume.TryParse("1 hL", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Hectoliters, HectolitersTolerance);
+                Assert.Equal(VolumeUnit.Hectoliter, parsed.Unit);
             }
 
             {
@@ -1762,6 +1950,18 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(Volume.TryParse("1 kl", CultureInfo.GetCultureInfo("en"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kiloliters, KilolitersTolerance);
+                Assert.Equal(VolumeUnit.Kiloliter, parsed.Unit);
+            }
+
+            {
+                Assert.True(Volume.TryParse("1 kL", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kiloliters, KilolitersTolerance);
+                Assert.Equal(VolumeUnit.Kiloliter, parsed.Unit);
+            }
+
+            {
                 Assert.True(Volume.TryParse("1 kl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Kiloliters, KilolitersTolerance);
                 Assert.Equal(VolumeUnit.Kiloliter, parsed.Unit);
@@ -1783,6 +1983,18 @@ namespace UnitsNet.Tests
                 Assert.True(Volume.TryParse("1 кАмериканский галлон", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KilousGallons, KilousGallonsTolerance);
                 Assert.Equal(VolumeUnit.KilousGallon, parsed.Unit);
+            }
+
+            {
+                Assert.True(Volume.TryParse("1 l", CultureInfo.GetCultureInfo("en"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Liters, LitersTolerance);
+                Assert.Equal(VolumeUnit.Liter, parsed.Unit);
+            }
+
+            {
+                Assert.True(Volume.TryParse("1 L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Liters, LitersTolerance);
+                Assert.Equal(VolumeUnit.Liter, parsed.Unit);
             }
 
             {
@@ -1888,6 +2100,18 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(Volume.TryParse("1 µl", CultureInfo.GetCultureInfo("en"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Microliters, MicrolitersTolerance);
+                Assert.Equal(VolumeUnit.Microliter, parsed.Unit);
+            }
+
+            {
+                Assert.True(Volume.TryParse("1 µL", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Microliters, MicrolitersTolerance);
+                Assert.Equal(VolumeUnit.Microliter, parsed.Unit);
+            }
+
+            {
                 Assert.True(Volume.TryParse("1 µl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Microliters, MicrolitersTolerance);
                 Assert.Equal(VolumeUnit.Microliter, parsed.Unit);
@@ -1897,6 +2121,18 @@ namespace UnitsNet.Tests
                 Assert.True(Volume.TryParse("1 мкл", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Microliters, MicrolitersTolerance);
                 Assert.Equal(VolumeUnit.Microliter, parsed.Unit);
+            }
+
+            {
+                Assert.True(Volume.TryParse("1 nl", CultureInfo.GetCultureInfo("en"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Nanoliters, NanolitersTolerance);
+                Assert.Equal(VolumeUnit.Nanoliter, parsed.Unit);
+            }
+
+            {
+                Assert.True(Volume.TryParse("1 nL", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Nanoliters, NanolitersTolerance);
+                Assert.Equal(VolumeUnit.Nanoliter, parsed.Unit);
             }
 
             {
@@ -2016,6 +2252,18 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = Volume.ParseUnit("pied de planche", CultureInfo.GetCultureInfo("fr-CA"));
                 Assert.Equal(VolumeUnit.BoardFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Volume.ParseUnit("cl", CultureInfo.GetCultureInfo("en"));
+                Assert.Equal(VolumeUnit.Centiliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Volume.ParseUnit("cL", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumeUnit.Centiliter, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
@@ -2164,6 +2412,18 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsedUnit = Volume.ParseUnit("dal", CultureInfo.GetCultureInfo("en"));
+                Assert.Equal(VolumeUnit.Decaliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Volume.ParseUnit("daL", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumeUnit.Decaliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsedUnit = Volume.ParseUnit("dal", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(VolumeUnit.Decaliter, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -2184,6 +2444,18 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = Volume.ParseUnit("даАмериканский галлон", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(VolumeUnit.DecausGallon, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Volume.ParseUnit("dl", CultureInfo.GetCultureInfo("en"));
+                Assert.Equal(VolumeUnit.Deciliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Volume.ParseUnit("dL", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumeUnit.Deciliter, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
@@ -2232,6 +2504,18 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = Volume.ParseUnit("гм³", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(VolumeUnit.HectocubicMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Volume.ParseUnit("hl", CultureInfo.GetCultureInfo("en"));
+                Assert.Equal(VolumeUnit.Hectoliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Volume.ParseUnit("hL", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumeUnit.Hectoliter, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
@@ -2356,6 +2640,18 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsedUnit = Volume.ParseUnit("kl", CultureInfo.GetCultureInfo("en"));
+                Assert.Equal(VolumeUnit.Kiloliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Volume.ParseUnit("kL", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumeUnit.Kiloliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsedUnit = Volume.ParseUnit("kl", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(VolumeUnit.Kiloliter, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -2376,6 +2672,18 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = Volume.ParseUnit("кАмериканский галлон", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(VolumeUnit.KilousGallon, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Volume.ParseUnit("l", CultureInfo.GetCultureInfo("en"));
+                Assert.Equal(VolumeUnit.Liter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Volume.ParseUnit("L", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumeUnit.Liter, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
@@ -2412,6 +2720,18 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = Volume.ParseUnit("МАнглийский галлон", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(VolumeUnit.MegaimperialGallon, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Volume.ParseUnit("Ml", CultureInfo.GetCultureInfo("en"));
+                Assert.Equal(VolumeUnit.Megaliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Volume.ParseUnit("ML", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumeUnit.Megaliter, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
@@ -2494,6 +2814,18 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsedUnit = Volume.ParseUnit("µl", CultureInfo.GetCultureInfo("en"));
+                Assert.Equal(VolumeUnit.Microliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Volume.ParseUnit("µL", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumeUnit.Microliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsedUnit = Volume.ParseUnit("µl", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(VolumeUnit.Microliter, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -2506,6 +2838,18 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsedUnit = Volume.ParseUnit("ml", CultureInfo.GetCultureInfo("en"));
+                Assert.Equal(VolumeUnit.Milliliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Volume.ParseUnit("mL", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumeUnit.Milliliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsedUnit = Volume.ParseUnit("ml", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(VolumeUnit.Milliliter, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -2514,6 +2858,18 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = Volume.ParseUnit("мл", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(VolumeUnit.Milliliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Volume.ParseUnit("nl", CultureInfo.GetCultureInfo("en"));
+                Assert.Equal(VolumeUnit.Nanoliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Volume.ParseUnit("nL", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumeUnit.Nanoliter, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
@@ -2627,6 +2983,16 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(Volume.TryParseUnit("cl", CultureInfo.GetCultureInfo("en"), out var parsedUnit));
+                Assert.Equal(VolumeUnit.Centiliter, parsedUnit);
+            }
+
+            {
+                Assert.True(Volume.TryParseUnit("cL", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumeUnit.Centiliter, parsedUnit);
+            }
+
+            {
                 Assert.True(Volume.TryParseUnit("cl", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(VolumeUnit.Centiliter, parsedUnit);
             }
@@ -2727,6 +3093,16 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(Volume.TryParseUnit("dal", CultureInfo.GetCultureInfo("en"), out var parsedUnit));
+                Assert.Equal(VolumeUnit.Decaliter, parsedUnit);
+            }
+
+            {
+                Assert.True(Volume.TryParseUnit("daL", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumeUnit.Decaliter, parsedUnit);
+            }
+
+            {
                 Assert.True(Volume.TryParseUnit("dal", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(VolumeUnit.Decaliter, parsedUnit);
             }
@@ -2744,6 +3120,16 @@ namespace UnitsNet.Tests
             {
                 Assert.True(Volume.TryParseUnit("даАмериканский галлон", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(VolumeUnit.DecausGallon, parsedUnit);
+            }
+
+            {
+                Assert.True(Volume.TryParseUnit("dl", CultureInfo.GetCultureInfo("en"), out var parsedUnit));
+                Assert.Equal(VolumeUnit.Deciliter, parsedUnit);
+            }
+
+            {
+                Assert.True(Volume.TryParseUnit("dL", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumeUnit.Deciliter, parsedUnit);
             }
 
             {
@@ -2774,6 +3160,16 @@ namespace UnitsNet.Tests
             {
                 Assert.True(Volume.TryParseUnit("гфут³", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(VolumeUnit.HectocubicFoot, parsedUnit);
+            }
+
+            {
+                Assert.True(Volume.TryParseUnit("hl", CultureInfo.GetCultureInfo("en"), out var parsedUnit));
+                Assert.Equal(VolumeUnit.Hectoliter, parsedUnit);
+            }
+
+            {
+                Assert.True(Volume.TryParseUnit("hL", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumeUnit.Hectoliter, parsedUnit);
             }
 
             {
@@ -2867,6 +3263,16 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(Volume.TryParseUnit("kl", CultureInfo.GetCultureInfo("en"), out var parsedUnit));
+                Assert.Equal(VolumeUnit.Kiloliter, parsedUnit);
+            }
+
+            {
+                Assert.True(Volume.TryParseUnit("kL", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumeUnit.Kiloliter, parsedUnit);
+            }
+
+            {
                 Assert.True(Volume.TryParseUnit("kl", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(VolumeUnit.Kiloliter, parsedUnit);
             }
@@ -2884,6 +3290,16 @@ namespace UnitsNet.Tests
             {
                 Assert.True(Volume.TryParseUnit("кАмериканский галлон", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(VolumeUnit.KilousGallon, parsedUnit);
+            }
+
+            {
+                Assert.True(Volume.TryParseUnit("l", CultureInfo.GetCultureInfo("en"), out var parsedUnit));
+                Assert.Equal(VolumeUnit.Liter, parsedUnit);
+            }
+
+            {
+                Assert.True(Volume.TryParseUnit("L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumeUnit.Liter, parsedUnit);
             }
 
             {
@@ -2972,6 +3388,16 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(Volume.TryParseUnit("µl", CultureInfo.GetCultureInfo("en"), out var parsedUnit));
+                Assert.Equal(VolumeUnit.Microliter, parsedUnit);
+            }
+
+            {
+                Assert.True(Volume.TryParseUnit("µL", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumeUnit.Microliter, parsedUnit);
+            }
+
+            {
                 Assert.True(Volume.TryParseUnit("µl", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(VolumeUnit.Microliter, parsedUnit);
             }
@@ -2979,6 +3405,16 @@ namespace UnitsNet.Tests
             {
                 Assert.True(Volume.TryParseUnit("мкл", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(VolumeUnit.Microliter, parsedUnit);
+            }
+
+            {
+                Assert.True(Volume.TryParseUnit("nl", CultureInfo.GetCultureInfo("en"), out var parsedUnit));
+                Assert.Equal(VolumeUnit.Nanoliter, parsedUnit);
+            }
+
+            {
+                Assert.True(Volume.TryParseUnit("nL", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumeUnit.Nanoliter, parsedUnit);
             }
 
             {
@@ -3283,7 +3719,7 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 ac-ft", new Volume(1, VolumeUnit.AcreFoot).ToString());
                 Assert.Equal("1", new Volume(1, VolumeUnit.AuTablespoon).ToString());
                 Assert.Equal("1 bf", new Volume(1, VolumeUnit.BoardFoot).ToString());
-                Assert.Equal("1 cl", new Volume(1, VolumeUnit.Centiliter).ToString());
+                Assert.Equal("1 cL", new Volume(1, VolumeUnit.Centiliter).ToString());
                 Assert.Equal("1 cm³", new Volume(1, VolumeUnit.CubicCentimeter).ToString());
                 Assert.Equal("1 dm³", new Volume(1, VolumeUnit.CubicDecimeter).ToString());
                 Assert.Equal("1 ft³", new Volume(1, VolumeUnit.CubicFoot).ToString());
@@ -3295,13 +3731,13 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 mi³", new Volume(1, VolumeUnit.CubicMile).ToString());
                 Assert.Equal("1 mm³", new Volume(1, VolumeUnit.CubicMillimeter).ToString());
                 Assert.Equal("1 yd³", new Volume(1, VolumeUnit.CubicYard).ToString());
-                Assert.Equal("1 dal", new Volume(1, VolumeUnit.Decaliter).ToString());
+                Assert.Equal("1 daL", new Volume(1, VolumeUnit.Decaliter).ToString());
                 Assert.Equal("1 dagal (U.S.)", new Volume(1, VolumeUnit.DecausGallon).ToString());
-                Assert.Equal("1 dl", new Volume(1, VolumeUnit.Deciliter).ToString());
+                Assert.Equal("1 dL", new Volume(1, VolumeUnit.Deciliter).ToString());
                 Assert.Equal("1 dgal (U.S.)", new Volume(1, VolumeUnit.DeciusGallon).ToString());
                 Assert.Equal("1 hft³", new Volume(1, VolumeUnit.HectocubicFoot).ToString());
                 Assert.Equal("1 hm³", new Volume(1, VolumeUnit.HectocubicMeter).ToString());
-                Assert.Equal("1 hl", new Volume(1, VolumeUnit.Hectoliter).ToString());
+                Assert.Equal("1 hL", new Volume(1, VolumeUnit.Hectoliter).ToString());
                 Assert.Equal("1 hgal (U.S.)", new Volume(1, VolumeUnit.HectousGallon).ToString());
                 Assert.Equal("1 bl (imp.)", new Volume(1, VolumeUnit.ImperialBeerBarrel).ToString());
                 Assert.Equal("1 gal (imp.)", new Volume(1, VolumeUnit.ImperialGallon).ToString());
@@ -3311,18 +3747,18 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 kft³", new Volume(1, VolumeUnit.KilocubicFoot).ToString());
                 Assert.Equal("1 km³", new Volume(1, VolumeUnit.KilocubicMeter).ToString());
                 Assert.Equal("1 kgal (imp.)", new Volume(1, VolumeUnit.KiloimperialGallon).ToString());
-                Assert.Equal("1 kl", new Volume(1, VolumeUnit.Kiloliter).ToString());
+                Assert.Equal("1 kL", new Volume(1, VolumeUnit.Kiloliter).ToString());
                 Assert.Equal("1 kgal (U.S.)", new Volume(1, VolumeUnit.KilousGallon).ToString());
-                Assert.Equal("1 l", new Volume(1, VolumeUnit.Liter).ToString());
+                Assert.Equal("1 L", new Volume(1, VolumeUnit.Liter).ToString());
                 Assert.Equal("1 Mft³", new Volume(1, VolumeUnit.MegacubicFoot).ToString());
                 Assert.Equal("1 Mgal (imp.)", new Volume(1, VolumeUnit.MegaimperialGallon).ToString());
-                Assert.Equal("1 Ml", new Volume(1, VolumeUnit.Megaliter).ToString());
+                Assert.Equal("1 ML", new Volume(1, VolumeUnit.Megaliter).ToString());
                 Assert.Equal("1 Mgal (U.S.)", new Volume(1, VolumeUnit.MegausGallon).ToString());
                 Assert.Equal("1", new Volume(1, VolumeUnit.MetricCup).ToString());
                 Assert.Equal("1 tsp", new Volume(1, VolumeUnit.MetricTeaspoon).ToString());
-                Assert.Equal("1 µl", new Volume(1, VolumeUnit.Microliter).ToString());
-                Assert.Equal("1 ml", new Volume(1, VolumeUnit.Milliliter).ToString());
-                Assert.Equal("1 nl", new Volume(1, VolumeUnit.Nanoliter).ToString());
+                Assert.Equal("1 µL", new Volume(1, VolumeUnit.Microliter).ToString());
+                Assert.Equal("1 mL", new Volume(1, VolumeUnit.Milliliter).ToString());
+                Assert.Equal("1 nL", new Volume(1, VolumeUnit.Nanoliter).ToString());
                 Assert.Equal("1 bbl", new Volume(1, VolumeUnit.OilBarrel).ToString());
                 Assert.Equal("1", new Volume(1, VolumeUnit.UkTablespoon).ToString());
                 Assert.Equal("1 bl (U.S.)", new Volume(1, VolumeUnit.UsBeerBarrel).ToString());
@@ -3350,7 +3786,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 ac-ft", new Volume(1, VolumeUnit.AcreFoot).ToString(swedishCulture));
             Assert.Equal("1", new Volume(1, VolumeUnit.AuTablespoon).ToString(swedishCulture));
             Assert.Equal("1 bf", new Volume(1, VolumeUnit.BoardFoot).ToString(swedishCulture));
-            Assert.Equal("1 cl", new Volume(1, VolumeUnit.Centiliter).ToString(swedishCulture));
+            Assert.Equal("1 cL", new Volume(1, VolumeUnit.Centiliter).ToString(swedishCulture));
             Assert.Equal("1 cm³", new Volume(1, VolumeUnit.CubicCentimeter).ToString(swedishCulture));
             Assert.Equal("1 dm³", new Volume(1, VolumeUnit.CubicDecimeter).ToString(swedishCulture));
             Assert.Equal("1 ft³", new Volume(1, VolumeUnit.CubicFoot).ToString(swedishCulture));
@@ -3362,13 +3798,13 @@ namespace UnitsNet.Tests
             Assert.Equal("1 mi³", new Volume(1, VolumeUnit.CubicMile).ToString(swedishCulture));
             Assert.Equal("1 mm³", new Volume(1, VolumeUnit.CubicMillimeter).ToString(swedishCulture));
             Assert.Equal("1 yd³", new Volume(1, VolumeUnit.CubicYard).ToString(swedishCulture));
-            Assert.Equal("1 dal", new Volume(1, VolumeUnit.Decaliter).ToString(swedishCulture));
+            Assert.Equal("1 daL", new Volume(1, VolumeUnit.Decaliter).ToString(swedishCulture));
             Assert.Equal("1 dagal (U.S.)", new Volume(1, VolumeUnit.DecausGallon).ToString(swedishCulture));
-            Assert.Equal("1 dl", new Volume(1, VolumeUnit.Deciliter).ToString(swedishCulture));
+            Assert.Equal("1 dL", new Volume(1, VolumeUnit.Deciliter).ToString(swedishCulture));
             Assert.Equal("1 dgal (U.S.)", new Volume(1, VolumeUnit.DeciusGallon).ToString(swedishCulture));
             Assert.Equal("1 hft³", new Volume(1, VolumeUnit.HectocubicFoot).ToString(swedishCulture));
             Assert.Equal("1 hm³", new Volume(1, VolumeUnit.HectocubicMeter).ToString(swedishCulture));
-            Assert.Equal("1 hl", new Volume(1, VolumeUnit.Hectoliter).ToString(swedishCulture));
+            Assert.Equal("1 hL", new Volume(1, VolumeUnit.Hectoliter).ToString(swedishCulture));
             Assert.Equal("1 hgal (U.S.)", new Volume(1, VolumeUnit.HectousGallon).ToString(swedishCulture));
             Assert.Equal("1 bl (imp.)", new Volume(1, VolumeUnit.ImperialBeerBarrel).ToString(swedishCulture));
             Assert.Equal("1 gal (imp.)", new Volume(1, VolumeUnit.ImperialGallon).ToString(swedishCulture));
@@ -3378,18 +3814,18 @@ namespace UnitsNet.Tests
             Assert.Equal("1 kft³", new Volume(1, VolumeUnit.KilocubicFoot).ToString(swedishCulture));
             Assert.Equal("1 km³", new Volume(1, VolumeUnit.KilocubicMeter).ToString(swedishCulture));
             Assert.Equal("1 kgal (imp.)", new Volume(1, VolumeUnit.KiloimperialGallon).ToString(swedishCulture));
-            Assert.Equal("1 kl", new Volume(1, VolumeUnit.Kiloliter).ToString(swedishCulture));
+            Assert.Equal("1 kL", new Volume(1, VolumeUnit.Kiloliter).ToString(swedishCulture));
             Assert.Equal("1 kgal (U.S.)", new Volume(1, VolumeUnit.KilousGallon).ToString(swedishCulture));
-            Assert.Equal("1 l", new Volume(1, VolumeUnit.Liter).ToString(swedishCulture));
+            Assert.Equal("1 L", new Volume(1, VolumeUnit.Liter).ToString(swedishCulture));
             Assert.Equal("1 Mft³", new Volume(1, VolumeUnit.MegacubicFoot).ToString(swedishCulture));
             Assert.Equal("1 Mgal (imp.)", new Volume(1, VolumeUnit.MegaimperialGallon).ToString(swedishCulture));
-            Assert.Equal("1 Ml", new Volume(1, VolumeUnit.Megaliter).ToString(swedishCulture));
+            Assert.Equal("1 ML", new Volume(1, VolumeUnit.Megaliter).ToString(swedishCulture));
             Assert.Equal("1 Mgal (U.S.)", new Volume(1, VolumeUnit.MegausGallon).ToString(swedishCulture));
             Assert.Equal("1", new Volume(1, VolumeUnit.MetricCup).ToString(swedishCulture));
             Assert.Equal("1 tsp", new Volume(1, VolumeUnit.MetricTeaspoon).ToString(swedishCulture));
-            Assert.Equal("1 µl", new Volume(1, VolumeUnit.Microliter).ToString(swedishCulture));
-            Assert.Equal("1 ml", new Volume(1, VolumeUnit.Milliliter).ToString(swedishCulture));
-            Assert.Equal("1 nl", new Volume(1, VolumeUnit.Nanoliter).ToString(swedishCulture));
+            Assert.Equal("1 µL", new Volume(1, VolumeUnit.Microliter).ToString(swedishCulture));
+            Assert.Equal("1 mL", new Volume(1, VolumeUnit.Milliliter).ToString(swedishCulture));
+            Assert.Equal("1 nL", new Volume(1, VolumeUnit.Nanoliter).ToString(swedishCulture));
             Assert.Equal("1 bbl", new Volume(1, VolumeUnit.OilBarrel).ToString(swedishCulture));
             Assert.Equal("1", new Volume(1, VolumeUnit.UkTablespoon).ToString(swedishCulture));
             Assert.Equal("1 bl (U.S.)", new Volume(1, VolumeUnit.UsBeerBarrel).ToString(swedishCulture));
