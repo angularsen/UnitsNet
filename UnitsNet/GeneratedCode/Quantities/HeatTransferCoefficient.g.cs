@@ -65,12 +65,12 @@ namespace UnitsNet
             Info = new QuantityInfo<HeatTransferCoefficientUnit>("HeatTransferCoefficient",
                 new UnitInfo<HeatTransferCoefficientUnit>[]
                 {
-                    new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit, "BtusPerHourSquareFootDegreeFahrenheit", BaseUnits.Undefined),
-                    new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit, "BtusPerSquareFootDegreeFahrenheit", BaseUnits.Undefined),
-                    new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius, "CaloriesPerHourSquareMeterDegreeCelsius", BaseUnits.Undefined),
-                    new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius, "KilocaloriesPerHourSquareMeterDegreeCelsius", BaseUnits.Undefined),
-                    new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, "WattsPerSquareMeterCelsius", BaseUnits.Undefined),
-                    new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, "WattsPerSquareMeterKelvin", BaseUnits.Undefined),
+                    new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit, "BtusPerHourSquareFootDegreeFahrenheit", BaseUnits.Undefined, "HeatTransferCoefficient"),
+                    new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit, "BtusPerSquareFootDegreeFahrenheit", BaseUnits.Undefined, "HeatTransferCoefficient"),
+                    new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius, "CaloriesPerHourSquareMeterDegreeCelsius", BaseUnits.Undefined, "HeatTransferCoefficient"),
+                    new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius, "KilocaloriesPerHourSquareMeterDegreeCelsius", BaseUnits.Undefined, "HeatTransferCoefficient"),
+                    new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, "WattsPerSquareMeterCelsius", BaseUnits.Undefined, "HeatTransferCoefficient"),
+                    new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, "WattsPerSquareMeterKelvin", BaseUnits.Undefined, "HeatTransferCoefficient"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -231,16 +231,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius, quantity => quantity.ToUnit(HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius));
             unitConverter.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius, quantity => quantity.ToUnit(HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius));
             unitConverter.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, quantity => quantity.ToUnit(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit, new CultureInfo("en-US"), false, true, new string[]{"Btu/h·ft²·°F", "Btu/ft²·h·°F", "Btu/hr·ft²·°F", "Btu/ft²·hr·°F"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit, new CultureInfo("en-US"), false, true, new string[]{"Btu/ft²·°F"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius, new CultureInfo("en-US"), false, true, new string[]{"kcal/h·m²·°C", "kcal/m²·h·°C", "kcal/hr·m²·°C", "kcal/m²·hr·°C"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius, new CultureInfo("en-US"), false, true, new string[]{"kkcal/h·m²·°C", "kkcal/m²·h·°C", "kkcal/hr·m²·°C", "kkcal/m²·hr·°C"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, new CultureInfo("en-US"), false, true, new string[]{"W/m²·°C"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, new CultureInfo("en-US"), false, true, new string[]{"W/m²·K"});
         }
 
         /// <summary>

@@ -65,15 +65,15 @@ namespace UnitsNet
             Info = new QuantityInfo<SpecificEntropyUnit>("SpecificEntropy",
                 new UnitInfo<SpecificEntropyUnit>[]
                 {
-                    new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.BtuPerPoundFahrenheit, "BtusPerPoundFahrenheit", BaseUnits.Undefined),
-                    new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.CaloriePerGramKelvin, "CaloriesPerGramKelvin", BaseUnits.Undefined),
-                    new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.JoulePerKilogramDegreeCelsius, "JoulesPerKilogramDegreeCelsius", BaseUnits.Undefined),
-                    new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.JoulePerKilogramKelvin, "JoulesPerKilogramKelvin", BaseUnits.Undefined),
-                    new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.KilocaloriePerGramKelvin, "KilocaloriesPerGramKelvin", BaseUnits.Undefined),
-                    new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius, "KilojoulesPerKilogramDegreeCelsius", BaseUnits.Undefined),
-                    new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.KilojoulePerKilogramKelvin, "KilojoulesPerKilogramKelvin", BaseUnits.Undefined),
-                    new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, "MegajoulesPerKilogramDegreeCelsius", BaseUnits.Undefined),
-                    new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.MegajoulePerKilogramKelvin, "MegajoulesPerKilogramKelvin", BaseUnits.Undefined),
+                    new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.BtuPerPoundFahrenheit, "BtusPerPoundFahrenheit", BaseUnits.Undefined, "SpecificEntropy"),
+                    new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.CaloriePerGramKelvin, "CaloriesPerGramKelvin", BaseUnits.Undefined, "SpecificEntropy"),
+                    new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.JoulePerKilogramDegreeCelsius, "JoulesPerKilogramDegreeCelsius", BaseUnits.Undefined, "SpecificEntropy"),
+                    new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.JoulePerKilogramKelvin, "JoulesPerKilogramKelvin", BaseUnits.Undefined, "SpecificEntropy"),
+                    new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.KilocaloriePerGramKelvin, "KilocaloriesPerGramKelvin", BaseUnits.Undefined, "SpecificEntropy"),
+                    new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius, "KilojoulesPerKilogramDegreeCelsius", BaseUnits.Undefined, "SpecificEntropy"),
+                    new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.KilojoulePerKilogramKelvin, "KilojoulesPerKilogramKelvin", BaseUnits.Undefined, "SpecificEntropy"),
+                    new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, "MegajoulesPerKilogramDegreeCelsius", BaseUnits.Undefined, "SpecificEntropy"),
+                    new UnitInfo<SpecificEntropyUnit>(SpecificEntropyUnit.MegajoulePerKilogramKelvin, "MegajoulesPerKilogramKelvin", BaseUnits.Undefined, "SpecificEntropy"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -254,19 +254,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.JoulePerKilogramKelvin, SpecificEntropyUnit.KilojoulePerKilogramKelvin, quantity => quantity.ToUnit(SpecificEntropyUnit.KilojoulePerKilogramKelvin));
             unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.JoulePerKilogramKelvin, SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, quantity => quantity.ToUnit(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius));
             unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.JoulePerKilogramKelvin, SpecificEntropyUnit.MegajoulePerKilogramKelvin, quantity => quantity.ToUnit(SpecificEntropyUnit.MegajoulePerKilogramKelvin));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEntropyUnit.BtuPerPoundFahrenheit, new CultureInfo("en-US"), false, true, new string[]{"BTU/lb·°F", "BTU/lbm·°F"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEntropyUnit.CaloriePerGramKelvin, new CultureInfo("en-US"), false, true, new string[]{"cal/g.K"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEntropyUnit.JoulePerKilogramDegreeCelsius, new CultureInfo("en-US"), false, true, new string[]{"J/kg.C"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEntropyUnit.JoulePerKilogramKelvin, new CultureInfo("en-US"), false, true, new string[]{"J/kg.K"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEntropyUnit.KilocaloriePerGramKelvin, new CultureInfo("en-US"), false, true, new string[]{"kcal/g.K"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius, new CultureInfo("en-US"), false, true, new string[]{"kJ/kg.C"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEntropyUnit.KilojoulePerKilogramKelvin, new CultureInfo("en-US"), false, true, new string[]{"kJ/kg.K"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, new CultureInfo("en-US"), false, true, new string[]{"MJ/kg.C"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEntropyUnit.MegajoulePerKilogramKelvin, new CultureInfo("en-US"), false, true, new string[]{"MJ/kg.K"});
         }
 
         /// <summary>

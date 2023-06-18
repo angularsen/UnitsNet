@@ -68,31 +68,31 @@ namespace UnitsNet
             Info = new QuantityInfo<LinearPowerDensityUnit>("LinearPowerDensity",
                 new UnitInfo<LinearPowerDensityUnit>[]
                 {
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.GigawattPerCentimeter, "GigawattsPerCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.GigawattPerFoot, "GigawattsPerFoot", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.GigawattPerInch, "GigawattsPerInch", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.GigawattPerMeter, "GigawattsPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.GigawattPerMillimeter, "GigawattsPerMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.KilowattPerCentimeter, "KilowattsPerCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.KilowattPerFoot, "KilowattsPerFoot", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.KilowattPerInch, "KilowattsPerInch", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.KilowattPerMeter, "KilowattsPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.KilowattPerMillimeter, "KilowattsPerMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MegawattPerCentimeter, "MegawattsPerCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MegawattPerFoot, "MegawattsPerFoot", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MegawattPerInch, "MegawattsPerInch", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MegawattPerMeter, "MegawattsPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MegawattPerMillimeter, "MegawattsPerMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MilliwattPerCentimeter, "MilliwattsPerCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MilliwattPerFoot, "MilliwattsPerFoot", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MilliwattPerInch, "MilliwattsPerInch", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MilliwattPerMeter, "MilliwattsPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MilliwattPerMillimeter, "MilliwattsPerMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerCentimeter, "WattsPerCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerFoot, "WattsPerFoot", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerInch, "WattsPerInch", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerMeter, "WattsPerMeter", BaseUnits.Undefined),
-                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerMillimeter, "WattsPerMillimeter", BaseUnits.Undefined),
+                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.GigawattPerCentimeter, "GigawattsPerCentimeter", BaseUnits.Undefined, "LinearPowerDensity"),
+                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.GigawattPerFoot, "GigawattsPerFoot", BaseUnits.Undefined, "LinearPowerDensity"),
+                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.GigawattPerInch, "GigawattsPerInch", BaseUnits.Undefined, "LinearPowerDensity"),
+                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.GigawattPerMeter, "GigawattsPerMeter", BaseUnits.Undefined, "LinearPowerDensity"),
+                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.GigawattPerMillimeter, "GigawattsPerMillimeter", BaseUnits.Undefined, "LinearPowerDensity"),
+                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.KilowattPerCentimeter, "KilowattsPerCentimeter", BaseUnits.Undefined, "LinearPowerDensity"),
+                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.KilowattPerFoot, "KilowattsPerFoot", BaseUnits.Undefined, "LinearPowerDensity"),
+                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.KilowattPerInch, "KilowattsPerInch", BaseUnits.Undefined, "LinearPowerDensity"),
+                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.KilowattPerMeter, "KilowattsPerMeter", BaseUnits.Undefined, "LinearPowerDensity"),
+                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.KilowattPerMillimeter, "KilowattsPerMillimeter", BaseUnits.Undefined, "LinearPowerDensity"),
+                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MegawattPerCentimeter, "MegawattsPerCentimeter", BaseUnits.Undefined, "LinearPowerDensity"),
+                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MegawattPerFoot, "MegawattsPerFoot", BaseUnits.Undefined, "LinearPowerDensity"),
+                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MegawattPerInch, "MegawattsPerInch", BaseUnits.Undefined, "LinearPowerDensity"),
+                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MegawattPerMeter, "MegawattsPerMeter", BaseUnits.Undefined, "LinearPowerDensity"),
+                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MegawattPerMillimeter, "MegawattsPerMillimeter", BaseUnits.Undefined, "LinearPowerDensity"),
+                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MilliwattPerCentimeter, "MilliwattsPerCentimeter", BaseUnits.Undefined, "LinearPowerDensity"),
+                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MilliwattPerFoot, "MilliwattsPerFoot", BaseUnits.Undefined, "LinearPowerDensity"),
+                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MilliwattPerInch, "MilliwattsPerInch", BaseUnits.Undefined, "LinearPowerDensity"),
+                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MilliwattPerMeter, "MilliwattsPerMeter", BaseUnits.Undefined, "LinearPowerDensity"),
+                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.MilliwattPerMillimeter, "MilliwattsPerMillimeter", BaseUnits.Undefined, "LinearPowerDensity"),
+                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerCentimeter, "WattsPerCentimeter", BaseUnits.Undefined, "LinearPowerDensity"),
+                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerFoot, "WattsPerFoot", BaseUnits.Undefined, "LinearPowerDensity"),
+                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerInch, "WattsPerInch", BaseUnits.Undefined, "LinearPowerDensity"),
+                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerMeter, "WattsPerMeter", BaseUnits.Undefined, "LinearPowerDensity"),
+                    new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerMillimeter, "WattsPerMillimeter", BaseUnits.Undefined, "LinearPowerDensity"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -385,35 +385,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.WattPerFoot, quantity => quantity.ToUnit(LinearPowerDensityUnit.WattPerFoot));
             unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.WattPerInch, quantity => quantity.ToUnit(LinearPowerDensityUnit.WattPerInch));
             unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.WattPerMillimeter, quantity => quantity.ToUnit(LinearPowerDensityUnit.WattPerMillimeter));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearPowerDensityUnit.GigawattPerCentimeter, new CultureInfo("en-US"), false, true, new string[]{"GW/cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearPowerDensityUnit.GigawattPerFoot, new CultureInfo("en-US"), false, true, new string[]{"GW/ft"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearPowerDensityUnit.GigawattPerInch, new CultureInfo("en-US"), false, true, new string[]{"GW/in"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearPowerDensityUnit.GigawattPerMeter, new CultureInfo("en-US"), false, true, new string[]{"GW/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearPowerDensityUnit.GigawattPerMillimeter, new CultureInfo("en-US"), false, true, new string[]{"GW/mm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearPowerDensityUnit.KilowattPerCentimeter, new CultureInfo("en-US"), false, true, new string[]{"kW/cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearPowerDensityUnit.KilowattPerFoot, new CultureInfo("en-US"), false, true, new string[]{"kW/ft"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearPowerDensityUnit.KilowattPerInch, new CultureInfo("en-US"), false, true, new string[]{"kW/in"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearPowerDensityUnit.KilowattPerMeter, new CultureInfo("en-US"), false, true, new string[]{"kW/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearPowerDensityUnit.KilowattPerMillimeter, new CultureInfo("en-US"), false, true, new string[]{"kW/mm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearPowerDensityUnit.MegawattPerCentimeter, new CultureInfo("en-US"), false, true, new string[]{"MW/cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearPowerDensityUnit.MegawattPerFoot, new CultureInfo("en-US"), false, true, new string[]{"MW/ft"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearPowerDensityUnit.MegawattPerInch, new CultureInfo("en-US"), false, true, new string[]{"MW/in"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearPowerDensityUnit.MegawattPerMeter, new CultureInfo("en-US"), false, true, new string[]{"MW/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearPowerDensityUnit.MegawattPerMillimeter, new CultureInfo("en-US"), false, true, new string[]{"MW/mm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearPowerDensityUnit.MilliwattPerCentimeter, new CultureInfo("en-US"), false, true, new string[]{"mW/cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearPowerDensityUnit.MilliwattPerFoot, new CultureInfo("en-US"), false, true, new string[]{"mW/ft"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearPowerDensityUnit.MilliwattPerInch, new CultureInfo("en-US"), false, true, new string[]{"mW/in"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearPowerDensityUnit.MilliwattPerMeter, new CultureInfo("en-US"), false, true, new string[]{"mW/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearPowerDensityUnit.MilliwattPerMillimeter, new CultureInfo("en-US"), false, true, new string[]{"mW/mm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearPowerDensityUnit.WattPerCentimeter, new CultureInfo("en-US"), false, true, new string[]{"W/cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearPowerDensityUnit.WattPerFoot, new CultureInfo("en-US"), false, true, new string[]{"W/ft"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearPowerDensityUnit.WattPerInch, new CultureInfo("en-US"), false, true, new string[]{"W/in"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearPowerDensityUnit.WattPerMeter, new CultureInfo("en-US"), false, true, new string[]{"W/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearPowerDensityUnit.WattPerMillimeter, new CultureInfo("en-US"), false, true, new string[]{"W/mm"});
         }
 
         /// <summary>

@@ -68,13 +68,13 @@ namespace UnitsNet
             Info = new QuantityInfo<CapacitanceUnit>("Capacitance",
                 new UnitInfo<CapacitanceUnit>[]
                 {
-                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Farad, "Farads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
-                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Kilofarad, "Kilofarads", BaseUnits.Undefined),
-                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Megafarad, "Megafarads", BaseUnits.Undefined),
-                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Microfarad, "Microfarads", BaseUnits.Undefined),
-                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Millifarad, "Millifarads", BaseUnits.Undefined),
-                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Nanofarad, "Nanofarads", BaseUnits.Undefined),
-                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Picofarad, "Picofarads", BaseUnits.Undefined),
+                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Farad, "Farads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "Capacitance"),
+                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Kilofarad, "Kilofarads", BaseUnits.Undefined, "Capacitance"),
+                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Megafarad, "Megafarads", BaseUnits.Undefined, "Capacitance"),
+                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Microfarad, "Microfarads", BaseUnits.Undefined, "Capacitance"),
+                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Millifarad, "Millifarads", BaseUnits.Undefined, "Capacitance"),
+                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Nanofarad, "Nanofarads", BaseUnits.Undefined, "Capacitance"),
+                    new UnitInfo<CapacitanceUnit>(CapacitanceUnit.Picofarad, "Picofarads", BaseUnits.Undefined, "Capacitance"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -241,17 +241,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Farad, CapacitanceUnit.Millifarad, quantity => quantity.ToUnit(CapacitanceUnit.Millifarad));
             unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Farad, CapacitanceUnit.Nanofarad, quantity => quantity.ToUnit(CapacitanceUnit.Nanofarad));
             unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Farad, CapacitanceUnit.Picofarad, quantity => quantity.ToUnit(CapacitanceUnit.Picofarad));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(CapacitanceUnit.Farad, new CultureInfo("en-US"), false, true, new string[]{"F"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(CapacitanceUnit.Kilofarad, new CultureInfo("en-US"), false, true, new string[]{"kF"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(CapacitanceUnit.Megafarad, new CultureInfo("en-US"), false, true, new string[]{"MF"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(CapacitanceUnit.Microfarad, new CultureInfo("en-US"), false, true, new string[]{"µF"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(CapacitanceUnit.Millifarad, new CultureInfo("en-US"), false, true, new string[]{"mF"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(CapacitanceUnit.Nanofarad, new CultureInfo("en-US"), false, true, new string[]{"nF"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(CapacitanceUnit.Picofarad, new CultureInfo("en-US"), false, true, new string[]{"pF"});
         }
 
         /// <summary>

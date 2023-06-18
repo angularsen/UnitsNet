@@ -68,17 +68,17 @@ namespace UnitsNet
             Info = new QuantityInfo<ElectricChargeUnit>("ElectricCharge",
                 new UnitInfo<ElectricChargeUnit>[]
                 {
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.AmpereHour, "AmpereHours", BaseUnits.Undefined),
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Coulomb, "Coulombs", BaseUnits.Undefined),
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.KiloampereHour, "KiloampereHours", BaseUnits.Undefined),
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Kilocoulomb, "Kilocoulombs", BaseUnits.Undefined),
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.MegaampereHour, "MegaampereHours", BaseUnits.Undefined),
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Megacoulomb, "Megacoulombs", BaseUnits.Undefined),
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Microcoulomb, "Microcoulombs", BaseUnits.Undefined),
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.MilliampereHour, "MilliampereHours", BaseUnits.Undefined),
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Millicoulomb, "Millicoulombs", BaseUnits.Undefined),
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Nanocoulomb, "Nanocoulombs", BaseUnits.Undefined),
-                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Picocoulomb, "Picocoulombs", BaseUnits.Undefined),
+                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.AmpereHour, "AmpereHours", BaseUnits.Undefined, "ElectricCharge"),
+                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Coulomb, "Coulombs", BaseUnits.Undefined, "ElectricCharge"),
+                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.KiloampereHour, "KiloampereHours", BaseUnits.Undefined, "ElectricCharge"),
+                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Kilocoulomb, "Kilocoulombs", BaseUnits.Undefined, "ElectricCharge"),
+                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.MegaampereHour, "MegaampereHours", BaseUnits.Undefined, "ElectricCharge"),
+                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Megacoulomb, "Megacoulombs", BaseUnits.Undefined, "ElectricCharge"),
+                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Microcoulomb, "Microcoulombs", BaseUnits.Undefined, "ElectricCharge"),
+                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.MilliampereHour, "MilliampereHours", BaseUnits.Undefined, "ElectricCharge"),
+                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Millicoulomb, "Millicoulombs", BaseUnits.Undefined, "ElectricCharge"),
+                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Nanocoulomb, "Nanocoulombs", BaseUnits.Undefined, "ElectricCharge"),
+                    new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Picocoulomb, "Picocoulombs", BaseUnits.Undefined, "ElectricCharge"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -273,21 +273,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.Coulomb, ElectricChargeUnit.Millicoulomb, quantity => quantity.ToUnit(ElectricChargeUnit.Millicoulomb));
             unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.Coulomb, ElectricChargeUnit.Nanocoulomb, quantity => quantity.ToUnit(ElectricChargeUnit.Nanocoulomb));
             unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.Coulomb, ElectricChargeUnit.Picocoulomb, quantity => quantity.ToUnit(ElectricChargeUnit.Picocoulomb));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricChargeUnit.AmpereHour, new CultureInfo("en-US"), false, true, new string[]{"A-h", "Ah"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricChargeUnit.Coulomb, new CultureInfo("en-US"), false, true, new string[]{"C"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricChargeUnit.KiloampereHour, new CultureInfo("en-US"), false, true, new string[]{"kA-h", "kAh"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricChargeUnit.Kilocoulomb, new CultureInfo("en-US"), false, true, new string[]{"kC"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricChargeUnit.MegaampereHour, new CultureInfo("en-US"), false, true, new string[]{"MA-h", "MAh"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricChargeUnit.Megacoulomb, new CultureInfo("en-US"), false, true, new string[]{"MC"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricChargeUnit.Microcoulomb, new CultureInfo("en-US"), false, true, new string[]{"µC"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricChargeUnit.MilliampereHour, new CultureInfo("en-US"), false, true, new string[]{"mA-h", "mAh"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricChargeUnit.Millicoulomb, new CultureInfo("en-US"), false, true, new string[]{"mC"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricChargeUnit.Nanocoulomb, new CultureInfo("en-US"), false, true, new string[]{"nC"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricChargeUnit.Picocoulomb, new CultureInfo("en-US"), false, true, new string[]{"pC"});
         }
 
         /// <summary>

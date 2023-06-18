@@ -65,10 +65,10 @@ namespace UnitsNet
             Info = new QuantityInfo<TemperatureGradientUnit>("TemperatureGradient",
                 new UnitInfo<TemperatureGradientUnit>[]
                 {
-                    new UnitInfo<TemperatureGradientUnit>(TemperatureGradientUnit.DegreeCelsiusPerKilometer, "DegreesCelciusPerKilometer", new BaseUnits(length: LengthUnit.Kilometer, temperature: TemperatureUnit.DegreeCelsius)),
-                    new UnitInfo<TemperatureGradientUnit>(TemperatureGradientUnit.DegreeCelsiusPerMeter, "DegreesCelciusPerMeter", new BaseUnits(length: LengthUnit.Meter, temperature: TemperatureUnit.DegreeCelsius)),
-                    new UnitInfo<TemperatureGradientUnit>(TemperatureGradientUnit.DegreeFahrenheitPerFoot, "DegreesFahrenheitPerFoot", new BaseUnits(length: LengthUnit.Foot, temperature: TemperatureUnit.DegreeFahrenheit)),
-                    new UnitInfo<TemperatureGradientUnit>(TemperatureGradientUnit.KelvinPerMeter, "KelvinsPerMeter", new BaseUnits(length: LengthUnit.Meter, temperature: TemperatureUnit.Kelvin)),
+                    new UnitInfo<TemperatureGradientUnit>(TemperatureGradientUnit.DegreeCelsiusPerKilometer, "DegreesCelciusPerKilometer", new BaseUnits(length: LengthUnit.Kilometer, temperature: TemperatureUnit.DegreeCelsius), "TemperatureGradient"),
+                    new UnitInfo<TemperatureGradientUnit>(TemperatureGradientUnit.DegreeCelsiusPerMeter, "DegreesCelciusPerMeter", new BaseUnits(length: LengthUnit.Meter, temperature: TemperatureUnit.DegreeCelsius), "TemperatureGradient"),
+                    new UnitInfo<TemperatureGradientUnit>(TemperatureGradientUnit.DegreeFahrenheitPerFoot, "DegreesFahrenheitPerFoot", new BaseUnits(length: LengthUnit.Foot, temperature: TemperatureUnit.DegreeFahrenheit), "TemperatureGradient"),
+                    new UnitInfo<TemperatureGradientUnit>(TemperatureGradientUnit.KelvinPerMeter, "KelvinsPerMeter", new BaseUnits(length: LengthUnit.Meter, temperature: TemperatureUnit.Kelvin), "TemperatureGradient"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -214,14 +214,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.KelvinPerMeter, TemperatureGradientUnit.DegreeCelsiusPerKilometer, quantity => quantity.ToUnit(TemperatureGradientUnit.DegreeCelsiusPerKilometer));
             unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.KelvinPerMeter, TemperatureGradientUnit.DegreeCelsiusPerMeter, quantity => quantity.ToUnit(TemperatureGradientUnit.DegreeCelsiusPerMeter));
             unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.KelvinPerMeter, TemperatureGradientUnit.DegreeFahrenheitPerFoot, quantity => quantity.ToUnit(TemperatureGradientUnit.DegreeFahrenheitPerFoot));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureGradientUnit.DegreeCelsiusPerKilometer, new CultureInfo("en-US"), false, true, new string[]{"∆°C/km"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureGradientUnit.DegreeCelsiusPerMeter, new CultureInfo("en-US"), false, true, new string[]{"∆°C/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureGradientUnit.DegreeFahrenheitPerFoot, new CultureInfo("en-US"), false, true, new string[]{"∆°F/ft"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureGradientUnit.KelvinPerMeter, new CultureInfo("en-US"), false, true, new string[]{"∆°K/m"});
         }
 
         /// <summary>

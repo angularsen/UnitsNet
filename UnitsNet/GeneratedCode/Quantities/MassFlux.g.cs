@@ -65,18 +65,18 @@ namespace UnitsNet
             Info = new QuantityInfo<MassFluxUnit>("MassFlux",
                 new UnitInfo<MassFluxUnit>[]
                 {
-                    new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerHourPerSquareCentimeter, "GramsPerHourPerSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerHourPerSquareMeter, "GramsPerHourPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerHourPerSquareMillimeter, "GramsPerHourPerSquareMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerSecondPerSquareCentimeter, "GramsPerSecondPerSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerSecondPerSquareMeter, "GramsPerSecondPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerSecondPerSquareMillimeter, "GramsPerSecondPerSquareMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerHourPerSquareCentimeter, "KilogramsPerHourPerSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerHourPerSquareMeter, "KilogramsPerHourPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerHourPerSquareMillimeter, "KilogramsPerHourPerSquareMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareCentimeter, "KilogramsPerSecondPerSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareMeter, "KilogramsPerSecondPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareMillimeter, "KilogramsPerSecondPerSquareMillimeter", BaseUnits.Undefined),
+                    new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerHourPerSquareCentimeter, "GramsPerHourPerSquareCentimeter", BaseUnits.Undefined, "MassFlux"),
+                    new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerHourPerSquareMeter, "GramsPerHourPerSquareMeter", BaseUnits.Undefined, "MassFlux"),
+                    new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerHourPerSquareMillimeter, "GramsPerHourPerSquareMillimeter", BaseUnits.Undefined, "MassFlux"),
+                    new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerSecondPerSquareCentimeter, "GramsPerSecondPerSquareCentimeter", BaseUnits.Undefined, "MassFlux"),
+                    new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerSecondPerSquareMeter, "GramsPerSecondPerSquareMeter", BaseUnits.Undefined, "MassFlux"),
+                    new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerSecondPerSquareMillimeter, "GramsPerSecondPerSquareMillimeter", BaseUnits.Undefined, "MassFlux"),
+                    new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerHourPerSquareCentimeter, "KilogramsPerHourPerSquareCentimeter", BaseUnits.Undefined, "MassFlux"),
+                    new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerHourPerSquareMeter, "KilogramsPerHourPerSquareMeter", BaseUnits.Undefined, "MassFlux"),
+                    new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerHourPerSquareMillimeter, "KilogramsPerHourPerSquareMillimeter", BaseUnits.Undefined, "MassFlux"),
+                    new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareCentimeter, "KilogramsPerSecondPerSquareCentimeter", BaseUnits.Undefined, "MassFlux"),
+                    new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareMeter, "KilogramsPerSecondPerSquareMeter", BaseUnits.Undefined, "MassFlux"),
+                    new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareMillimeter, "KilogramsPerSecondPerSquareMillimeter", BaseUnits.Undefined, "MassFlux"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -278,22 +278,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.KilogramPerHourPerSquareMillimeter, quantity => quantity.ToUnit(MassFluxUnit.KilogramPerHourPerSquareMillimeter));
             unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.KilogramPerSecondPerSquareCentimeter, quantity => quantity.ToUnit(MassFluxUnit.KilogramPerSecondPerSquareCentimeter));
             unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.KilogramPerSecondPerSquareMillimeter, quantity => quantity.ToUnit(MassFluxUnit.KilogramPerSecondPerSquareMillimeter));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.GramPerHourPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"g·h⁻¹·cm⁻²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.GramPerHourPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"g·h⁻¹·m⁻²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.GramPerHourPerSquareMillimeter, new CultureInfo("en-US"), false, true, new string[]{"g·h⁻¹·mm⁻²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.GramPerSecondPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"g·s⁻¹·cm⁻²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.GramPerSecondPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"g·s⁻¹·m⁻²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.GramPerSecondPerSquareMillimeter, new CultureInfo("en-US"), false, true, new string[]{"g·s⁻¹·mm⁻²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.KilogramPerHourPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"kg·h⁻¹·cm⁻²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.KilogramPerHourPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"kg·h⁻¹·m⁻²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.KilogramPerHourPerSquareMillimeter, new CultureInfo("en-US"), false, true, new string[]{"kg·h⁻¹·mm⁻²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.KilogramPerSecondPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"kg·s⁻¹·cm⁻²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.KilogramPerSecondPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"kg·s⁻¹·m⁻²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.KilogramPerSecondPerSquareMillimeter, new CultureInfo("en-US"), false, true, new string[]{"kg·s⁻¹·mm⁻²"});
         }
 
         /// <summary>

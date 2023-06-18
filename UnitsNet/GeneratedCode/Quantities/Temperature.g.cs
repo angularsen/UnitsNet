@@ -65,16 +65,16 @@ namespace UnitsNet
             Info = new QuantityInfo<TemperatureUnit>("Temperature",
                 new UnitInfo<TemperatureUnit>[]
                 {
-                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeCelsius, "DegreesCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius)),
-                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeDelisle, "DegreesDelisle", new BaseUnits(temperature: TemperatureUnit.DegreeDelisle)),
-                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeFahrenheit, "DegreesFahrenheit", new BaseUnits(temperature: TemperatureUnit.DegreeFahrenheit)),
-                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeNewton, "DegreesNewton", new BaseUnits(temperature: TemperatureUnit.DegreeNewton)),
-                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeRankine, "DegreesRankine", new BaseUnits(temperature: TemperatureUnit.DegreeRankine)),
-                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeReaumur, "DegreesReaumur", new BaseUnits(temperature: TemperatureUnit.DegreeReaumur)),
-                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeRoemer, "DegreesRoemer", new BaseUnits(temperature: TemperatureUnit.DegreeRoemer)),
-                    new UnitInfo<TemperatureUnit>(TemperatureUnit.Kelvin, "Kelvins", new BaseUnits(temperature: TemperatureUnit.Kelvin)),
-                    new UnitInfo<TemperatureUnit>(TemperatureUnit.MillidegreeCelsius, "MillidegreesCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius)),
-                    new UnitInfo<TemperatureUnit>(TemperatureUnit.SolarTemperature, "SolarTemperatures", BaseUnits.Undefined),
+                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeCelsius, "DegreesCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius), "Temperature"),
+                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeDelisle, "DegreesDelisle", new BaseUnits(temperature: TemperatureUnit.DegreeDelisle), "Temperature"),
+                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeFahrenheit, "DegreesFahrenheit", new BaseUnits(temperature: TemperatureUnit.DegreeFahrenheit), "Temperature"),
+                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeNewton, "DegreesNewton", new BaseUnits(temperature: TemperatureUnit.DegreeNewton), "Temperature"),
+                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeRankine, "DegreesRankine", new BaseUnits(temperature: TemperatureUnit.DegreeRankine), "Temperature"),
+                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeReaumur, "DegreesReaumur", new BaseUnits(temperature: TemperatureUnit.DegreeReaumur), "Temperature"),
+                    new UnitInfo<TemperatureUnit>(TemperatureUnit.DegreeRoemer, "DegreesRoemer", new BaseUnits(temperature: TemperatureUnit.DegreeRoemer), "Temperature"),
+                    new UnitInfo<TemperatureUnit>(TemperatureUnit.Kelvin, "Kelvins", new BaseUnits(temperature: TemperatureUnit.Kelvin), "Temperature"),
+                    new UnitInfo<TemperatureUnit>(TemperatureUnit.MillidegreeCelsius, "MillidegreesCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius), "Temperature"),
+                    new UnitInfo<TemperatureUnit>(TemperatureUnit.SolarTemperature, "SolarTemperatures", BaseUnits.Undefined, "Temperature"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -259,20 +259,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Temperature>(TemperatureUnit.Kelvin, TemperatureUnit.DegreeRoemer, quantity => quantity.ToUnit(TemperatureUnit.DegreeRoemer));
             unitConverter.SetConversionFunction<Temperature>(TemperatureUnit.Kelvin, TemperatureUnit.MillidegreeCelsius, quantity => quantity.ToUnit(TemperatureUnit.MillidegreeCelsius));
             unitConverter.SetConversionFunction<Temperature>(TemperatureUnit.Kelvin, TemperatureUnit.SolarTemperature, quantity => quantity.ToUnit(TemperatureUnit.SolarTemperature));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureUnit.DegreeCelsius, new CultureInfo("en-US"), false, true, new string[]{"°C"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureUnit.DegreeDelisle, new CultureInfo("en-US"), false, true, new string[]{"°De"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureUnit.DegreeFahrenheit, new CultureInfo("en-US"), false, true, new string[]{"°F"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureUnit.DegreeNewton, new CultureInfo("en-US"), false, true, new string[]{"°N"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureUnit.DegreeRankine, new CultureInfo("en-US"), false, true, new string[]{"°R"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureUnit.DegreeReaumur, new CultureInfo("en-US"), false, true, new string[]{"°Ré"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureUnit.DegreeRoemer, new CultureInfo("en-US"), false, true, new string[]{"°Rø"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureUnit.Kelvin, new CultureInfo("en-US"), false, true, new string[]{"K"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureUnit.MillidegreeCelsius, new CultureInfo("en-US"), false, true, new string[]{"m°C"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureUnit.SolarTemperature, new CultureInfo("en-US"), false, true, new string[]{"T⊙"});
         }
 
         /// <summary>

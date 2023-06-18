@@ -68,16 +68,16 @@ namespace UnitsNet
             Info = new QuantityInfo<ReciprocalLengthUnit>("ReciprocalLength",
                 new UnitInfo<ReciprocalLengthUnit>[]
                 {
-                    new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseCentimeter, "InverseCentimeters", BaseUnits.Undefined),
-                    new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseFoot, "InverseFeet", BaseUnits.Undefined),
-                    new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseInch, "InverseInches", BaseUnits.Undefined),
-                    new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseMeter, "InverseMeters", BaseUnits.Undefined),
-                    new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseMicroinch, "InverseMicroinches", BaseUnits.Undefined),
-                    new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseMil, "InverseMils", BaseUnits.Undefined),
-                    new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseMile, "InverseMiles", BaseUnits.Undefined),
-                    new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseMillimeter, "InverseMillimeters", BaseUnits.Undefined),
-                    new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseUsSurveyFoot, "InverseUsSurveyFeet", BaseUnits.Undefined),
-                    new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseYard, "InverseYards", BaseUnits.Undefined),
+                    new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseCentimeter, "InverseCentimeters", BaseUnits.Undefined, "ReciprocalLength"),
+                    new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseFoot, "InverseFeet", BaseUnits.Undefined, "ReciprocalLength"),
+                    new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseInch, "InverseInches", BaseUnits.Undefined, "ReciprocalLength"),
+                    new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseMeter, "InverseMeters", BaseUnits.Undefined, "ReciprocalLength"),
+                    new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseMicroinch, "InverseMicroinches", BaseUnits.Undefined, "ReciprocalLength"),
+                    new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseMil, "InverseMils", BaseUnits.Undefined, "ReciprocalLength"),
+                    new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseMile, "InverseMiles", BaseUnits.Undefined, "ReciprocalLength"),
+                    new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseMillimeter, "InverseMillimeters", BaseUnits.Undefined, "ReciprocalLength"),
+                    new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseUsSurveyFoot, "InverseUsSurveyFeet", BaseUnits.Undefined, "ReciprocalLength"),
+                    new UnitInfo<ReciprocalLengthUnit>(ReciprocalLengthUnit.InverseYard, "InverseYards", BaseUnits.Undefined, "ReciprocalLength"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -265,20 +265,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseMillimeter, quantity => quantity.ToUnit(ReciprocalLengthUnit.InverseMillimeter));
             unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseUsSurveyFoot, quantity => quantity.ToUnit(ReciprocalLengthUnit.InverseUsSurveyFoot));
             unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseYard, quantity => quantity.ToUnit(ReciprocalLengthUnit.InverseYard));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalLengthUnit.InverseCentimeter, new CultureInfo("en-US"), false, true, new string[]{"cm⁻¹", "1/cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalLengthUnit.InverseFoot, new CultureInfo("en-US"), false, true, new string[]{"ft⁻¹", "1/ft"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalLengthUnit.InverseInch, new CultureInfo("en-US"), false, true, new string[]{"in⁻¹", "1/in"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalLengthUnit.InverseMeter, new CultureInfo("en-US"), false, true, new string[]{"m⁻¹", "1/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalLengthUnit.InverseMicroinch, new CultureInfo("en-US"), false, true, new string[]{"µin⁻¹", "1/µin"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalLengthUnit.InverseMil, new CultureInfo("en-US"), false, true, new string[]{"mil⁻¹", "1/mil"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalLengthUnit.InverseMile, new CultureInfo("en-US"), false, true, new string[]{"mi⁻¹", "1/mi"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalLengthUnit.InverseMillimeter, new CultureInfo("en-US"), false, true, new string[]{"mm⁻¹", "1/mm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalLengthUnit.InverseUsSurveyFoot, new CultureInfo("en-US"), false, true, new string[]{"ftUS⁻¹", "1/ftUS"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalLengthUnit.InverseYard, new CultureInfo("en-US"), false, true, new string[]{"yd⁻¹", "1/yd"});
         }
 
         /// <summary>

@@ -65,16 +65,16 @@ namespace UnitsNet
             Info = new QuantityInfo<TemperatureChangeRateUnit>("TemperatureChangeRate",
                 new UnitInfo<TemperatureChangeRateUnit>[]
                 {
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, "CentidegreesCelsiusPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond, "DecadegreesCelsiusPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond, "DecidegreesCelsiusPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DegreeCelsiusPerMinute, "DegreesCelsiusPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, "DegreesCelsiusPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond, "HectodegreesCelsiusPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond, "KilodegreesCelsiusPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond, "MicrodegreesCelsiusPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond, "MillidegreesCelsiusPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, "NanodegreesCelsiusPerSecond", BaseUnits.Undefined),
+                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, "CentidegreesCelsiusPerSecond", BaseUnits.Undefined, "TemperatureChangeRate"),
+                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond, "DecadegreesCelsiusPerSecond", BaseUnits.Undefined, "TemperatureChangeRate"),
+                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond, "DecidegreesCelsiusPerSecond", BaseUnits.Undefined, "TemperatureChangeRate"),
+                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DegreeCelsiusPerMinute, "DegreesCelsiusPerMinute", BaseUnits.Undefined, "TemperatureChangeRate"),
+                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, "DegreesCelsiusPerSecond", BaseUnits.Undefined, "TemperatureChangeRate"),
+                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond, "HectodegreesCelsiusPerSecond", BaseUnits.Undefined, "TemperatureChangeRate"),
+                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond, "KilodegreesCelsiusPerSecond", BaseUnits.Undefined, "TemperatureChangeRate"),
+                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond, "MicrodegreesCelsiusPerSecond", BaseUnits.Undefined, "TemperatureChangeRate"),
+                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond, "MillidegreesCelsiusPerSecond", BaseUnits.Undefined, "TemperatureChangeRate"),
+                    new UnitInfo<TemperatureChangeRateUnit>(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, "NanodegreesCelsiusPerSecond", BaseUnits.Undefined, "TemperatureChangeRate"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -262,20 +262,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond, quantity => quantity.ToUnit(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond));
             unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond, quantity => quantity.ToUnit(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond));
             unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, quantity => quantity.ToUnit(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, new CultureInfo("en-US"), false, true, new string[]{"c°C/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond, new CultureInfo("en-US"), false, true, new string[]{"da°C/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond, new CultureInfo("en-US"), false, true, new string[]{"d°C/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureChangeRateUnit.DegreeCelsiusPerMinute, new CultureInfo("en-US"), false, true, new string[]{"°C/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, new CultureInfo("en-US"), false, true, new string[]{"°C/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond, new CultureInfo("en-US"), false, true, new string[]{"h°C/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond, new CultureInfo("en-US"), false, true, new string[]{"k°C/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond, new CultureInfo("en-US"), false, true, new string[]{"µ°C/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond, new CultureInfo("en-US"), false, true, new string[]{"m°C/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, new CultureInfo("en-US"), false, true, new string[]{"n°C/s"});
         }
 
         /// <summary>

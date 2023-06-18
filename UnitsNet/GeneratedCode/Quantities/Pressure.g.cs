@@ -65,55 +65,55 @@ namespace UnitsNet
             Info = new QuantityInfo<PressureUnit>("Pressure",
                 new UnitInfo<PressureUnit>[]
                 {
-                    new UnitInfo<PressureUnit>(PressureUnit.Atmosphere, "Atmospheres", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.Bar, "Bars", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.Centibar, "Centibars", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.CentimeterOfWaterColumn, "CentimetersOfWaterColumn", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.Decapascal, "Decapascals", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.Decibar, "Decibars", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.DynePerSquareCentimeter, "DynesPerSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.FootOfElevation, "FeetOfElevation", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.FootOfHead, "FeetOfHead", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.Gigapascal, "Gigapascals", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.Hectopascal, "Hectopascals", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.InchOfMercury, "InchesOfMercury", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.InchOfWaterColumn, "InchesOfWaterColumn", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.Kilobar, "Kilobars", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.KilogramForcePerSquareCentimeter, "KilogramsForcePerSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.KilogramForcePerSquareMeter, "KilogramsForcePerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.KilogramForcePerSquareMillimeter, "KilogramsForcePerSquareMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.KilonewtonPerSquareCentimeter, "KilonewtonsPerSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.KilonewtonPerSquareMeter, "KilonewtonsPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.KilonewtonPerSquareMillimeter, "KilonewtonsPerSquareMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.Kilopascal, "Kilopascals", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.KilopoundForcePerSquareFoot, "KilopoundsForcePerSquareFoot", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.KilopoundForcePerSquareInch, "KilopoundsForcePerSquareInch", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.KilopoundForcePerSquareMil, "KilopoundsForcePerSquareMil", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.Megabar, "Megabars", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.MeganewtonPerSquareMeter, "MeganewtonsPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.Megapascal, "Megapascals", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.MeterOfElevation, "MetersOfElevation", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.MeterOfHead, "MetersOfHead", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.MeterOfWaterColumn, "MetersOfWaterColumn", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.Microbar, "Microbars", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.Micropascal, "Micropascals", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.Millibar, "Millibars", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.MillimeterOfMercury, "MillimetersOfMercury", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.MillimeterOfWaterColumn, "MillimetersOfWaterColumn", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.Millipascal, "Millipascals", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.NewtonPerSquareCentimeter, "NewtonsPerSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.NewtonPerSquareMeter, "NewtonsPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.NewtonPerSquareMillimeter, "NewtonsPerSquareMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.Pascal, "Pascals", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second)),
-                    new UnitInfo<PressureUnit>(PressureUnit.PoundForcePerSquareFoot, "PoundsForcePerSquareFoot", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.PoundForcePerSquareInch, "PoundsForcePerSquareInch", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.PoundForcePerSquareMil, "PoundsForcePerSquareMil", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.PoundPerInchSecondSquared, "PoundsPerInchSecondSquared", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.TechnicalAtmosphere, "TechnicalAtmospheres", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.TonneForcePerSquareCentimeter, "TonnesForcePerSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.TonneForcePerSquareMeter, "TonnesForcePerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.TonneForcePerSquareMillimeter, "TonnesForcePerSquareMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.Torr, "Torrs", BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.Atmosphere, "Atmospheres", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.Bar, "Bars", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.Centibar, "Centibars", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.CentimeterOfWaterColumn, "CentimetersOfWaterColumn", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.Decapascal, "Decapascals", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.Decibar, "Decibars", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.DynePerSquareCentimeter, "DynesPerSquareCentimeter", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.FootOfElevation, "FeetOfElevation", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.FootOfHead, "FeetOfHead", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.Gigapascal, "Gigapascals", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.Hectopascal, "Hectopascals", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.InchOfMercury, "InchesOfMercury", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.InchOfWaterColumn, "InchesOfWaterColumn", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.Kilobar, "Kilobars", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.KilogramForcePerSquareCentimeter, "KilogramsForcePerSquareCentimeter", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.KilogramForcePerSquareMeter, "KilogramsForcePerSquareMeter", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.KilogramForcePerSquareMillimeter, "KilogramsForcePerSquareMillimeter", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.KilonewtonPerSquareCentimeter, "KilonewtonsPerSquareCentimeter", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.KilonewtonPerSquareMeter, "KilonewtonsPerSquareMeter", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.KilonewtonPerSquareMillimeter, "KilonewtonsPerSquareMillimeter", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.Kilopascal, "Kilopascals", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.KilopoundForcePerSquareFoot, "KilopoundsForcePerSquareFoot", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.KilopoundForcePerSquareInch, "KilopoundsForcePerSquareInch", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.KilopoundForcePerSquareMil, "KilopoundsForcePerSquareMil", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.Megabar, "Megabars", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.MeganewtonPerSquareMeter, "MeganewtonsPerSquareMeter", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.Megapascal, "Megapascals", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.MeterOfElevation, "MetersOfElevation", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.MeterOfHead, "MetersOfHead", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.MeterOfWaterColumn, "MetersOfWaterColumn", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.Microbar, "Microbars", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.Micropascal, "Micropascals", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.Millibar, "Millibars", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.MillimeterOfMercury, "MillimetersOfMercury", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.MillimeterOfWaterColumn, "MillimetersOfWaterColumn", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.Millipascal, "Millipascals", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.NewtonPerSquareCentimeter, "NewtonsPerSquareCentimeter", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.NewtonPerSquareMeter, "NewtonsPerSquareMeter", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.NewtonPerSquareMillimeter, "NewtonsPerSquareMillimeter", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.Pascal, "Pascals", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.PoundForcePerSquareFoot, "PoundsForcePerSquareFoot", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.PoundForcePerSquareInch, "PoundsForcePerSquareInch", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.PoundForcePerSquareMil, "PoundsForcePerSquareMil", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.PoundPerInchSecondSquared, "PoundsPerInchSecondSquared", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.TechnicalAtmosphere, "TechnicalAtmospheres", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.TonneForcePerSquareCentimeter, "TonnesForcePerSquareCentimeter", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.TonneForcePerSquareMeter, "TonnesForcePerSquareMeter", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.TonneForcePerSquareMillimeter, "TonnesForcePerSquareMillimeter", BaseUnits.Undefined, "Pressure"),
+                    new UnitInfo<PressureUnit>(PressureUnit.Torr, "Torrs", BaseUnits.Undefined, "Pressure"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -574,90 +574,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.TonneForcePerSquareMeter, quantity => quantity.ToUnit(PressureUnit.TonneForcePerSquareMeter));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.TonneForcePerSquareMillimeter, quantity => quantity.ToUnit(PressureUnit.TonneForcePerSquareMillimeter));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.Torr, quantity => quantity.ToUnit(PressureUnit.Torr));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.Atmosphere, new CultureInfo("en-US"), false, true, new string[]{"atm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.Atmosphere, new CultureInfo("ru-RU"), false, true, new string[]{"атм"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.Bar, new CultureInfo("en-US"), false, true, new string[]{"bar"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.Bar, new CultureInfo("ru-RU"), false, true, new string[]{"бар"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.Centibar, new CultureInfo("en-US"), false, true, new string[]{"cbar"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.Centibar, new CultureInfo("ru-RU"), false, true, new string[]{"сбар"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.CentimeterOfWaterColumn, new CultureInfo("en-US"), false, true, new string[]{"cmH₂O", "cmH2O", "cm wc", "cm wg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.Decapascal, new CultureInfo("en-US"), false, true, new string[]{"daPa"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.Decapascal, new CultureInfo("ru-RU"), false, true, new string[]{"даПа"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.Decibar, new CultureInfo("en-US"), false, true, new string[]{"dbar"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.Decibar, new CultureInfo("ru-RU"), false, true, new string[]{"дбар"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.DynePerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"dyn/cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.FootOfElevation, new CultureInfo("en-US"), false, true, new string[]{"ft of elevation"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.FootOfHead, new CultureInfo("en-US"), false, true, new string[]{"ft of head"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.Gigapascal, new CultureInfo("en-US"), false, true, new string[]{"GPa"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.Gigapascal, new CultureInfo("ru-RU"), false, true, new string[]{"ГПа"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.Hectopascal, new CultureInfo("en-US"), false, true, new string[]{"hPa"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.Hectopascal, new CultureInfo("ru-RU"), false, true, new string[]{"гПа"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.InchOfMercury, new CultureInfo("en-US"), false, true, new string[]{"inHg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.InchOfWaterColumn, new CultureInfo("en-US"), false, true, new string[]{"inH2O", "inch wc", "wc"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.Kilobar, new CultureInfo("en-US"), false, true, new string[]{"kbar"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.Kilobar, new CultureInfo("ru-RU"), false, true, new string[]{"кбар"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.KilogramForcePerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"kgf/cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.KilogramForcePerSquareCentimeter, new CultureInfo("ru-RU"), false, true, new string[]{"кгс/см²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.KilogramForcePerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"kgf/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.KilogramForcePerSquareMeter, new CultureInfo("ru-RU"), false, true, new string[]{"кгс/м²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.KilogramForcePerSquareMillimeter, new CultureInfo("en-US"), false, true, new string[]{"kgf/mm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.KilogramForcePerSquareMillimeter, new CultureInfo("ru-RU"), false, true, new string[]{"кгс/мм²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.KilonewtonPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"kN/cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.KilonewtonPerSquareCentimeter, new CultureInfo("ru-RU"), false, true, new string[]{"кН/см²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.KilonewtonPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"kN/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.KilonewtonPerSquareMeter, new CultureInfo("ru-RU"), false, true, new string[]{"кН/м²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.KilonewtonPerSquareMillimeter, new CultureInfo("en-US"), false, true, new string[]{"kN/mm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.KilonewtonPerSquareMillimeter, new CultureInfo("ru-RU"), false, true, new string[]{"кН/мм²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.Kilopascal, new CultureInfo("en-US"), false, true, new string[]{"kPa"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.Kilopascal, new CultureInfo("ru-RU"), false, true, new string[]{"кПа"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.KilopoundForcePerSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"kipf/ft²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.KilopoundForcePerSquareInch, new CultureInfo("en-US"), false, true, new string[]{"ksi", "kipf/in²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.KilopoundForcePerSquareInch, new CultureInfo("ru-RU"), false, true, new string[]{"ksi", "kipf/in²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.KilopoundForcePerSquareMil, new CultureInfo("en-US"), false, true, new string[]{"kipf/mil²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.Megabar, new CultureInfo("en-US"), false, true, new string[]{"Mbar"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.Megabar, new CultureInfo("ru-RU"), false, true, new string[]{"Мбар"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.MeganewtonPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"MN/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.MeganewtonPerSquareMeter, new CultureInfo("ru-RU"), false, true, new string[]{"МН/м²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.Megapascal, new CultureInfo("en-US"), false, true, new string[]{"MPa"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.Megapascal, new CultureInfo("ru-RU"), false, true, new string[]{"МПа"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.MeterOfElevation, new CultureInfo("en-US"), false, true, new string[]{"m of elevation"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.MeterOfHead, new CultureInfo("en-US"), false, true, new string[]{"m of head"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.MeterOfWaterColumn, new CultureInfo("en-US"), false, true, new string[]{"mH₂O", "mH2O", "m wc", "m wg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.Microbar, new CultureInfo("en-US"), false, true, new string[]{"µbar"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.Microbar, new CultureInfo("ru-RU"), false, true, new string[]{"мкбар"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.Micropascal, new CultureInfo("en-US"), false, true, new string[]{"µPa"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.Micropascal, new CultureInfo("ru-RU"), false, true, new string[]{"мкПа"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.Millibar, new CultureInfo("en-US"), false, true, new string[]{"mbar"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.Millibar, new CultureInfo("ru-RU"), false, true, new string[]{"мбар"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.MillimeterOfMercury, new CultureInfo("en-US"), false, true, new string[]{"mmHg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.MillimeterOfMercury, new CultureInfo("ru-RU"), false, true, new string[]{"мм рт.ст."});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.MillimeterOfWaterColumn, new CultureInfo("en-US"), false, true, new string[]{"mmH₂O", "mmH2O", "mm wc", "mm wg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.Millipascal, new CultureInfo("en-US"), false, true, new string[]{"mPa"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.Millipascal, new CultureInfo("ru-RU"), false, true, new string[]{"мПа"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.NewtonPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"N/cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.NewtonPerSquareCentimeter, new CultureInfo("ru-RU"), false, true, new string[]{"Н/см²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.NewtonPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"N/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.NewtonPerSquareMeter, new CultureInfo("ru-RU"), false, true, new string[]{"Н/м²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.NewtonPerSquareMillimeter, new CultureInfo("en-US"), false, true, new string[]{"N/mm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.NewtonPerSquareMillimeter, new CultureInfo("ru-RU"), false, true, new string[]{"Н/мм²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.Pascal, new CultureInfo("en-US"), false, true, new string[]{"Pa"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.Pascal, new CultureInfo("ru-RU"), false, true, new string[]{"Па"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.PoundForcePerSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"lb/ft²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.PoundForcePerSquareInch, new CultureInfo("en-US"), false, true, new string[]{"psi", "lb/in²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.PoundForcePerSquareInch, new CultureInfo("ru-RU"), false, true, new string[]{"psi", "lb/in²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.PoundForcePerSquareMil, new CultureInfo("en-US"), false, true, new string[]{"lb/mil²", "lbs/mil²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.PoundPerInchSecondSquared, new CultureInfo("en-US"), false, true, new string[]{"lbm/(in·s²)", "lb/(in·s²)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.TechnicalAtmosphere, new CultureInfo("en-US"), false, true, new string[]{"at"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.TechnicalAtmosphere, new CultureInfo("ru-RU"), false, true, new string[]{"ат"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.TonneForcePerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"tf/cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.TonneForcePerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"tf/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.TonneForcePerSquareMillimeter, new CultureInfo("en-US"), false, true, new string[]{"tf/mm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.Torr, new CultureInfo("en-US"), false, true, new string[]{"torr"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.Torr, new CultureInfo("ru-RU"), false, true, new string[]{"торр"});
         }
 
         /// <summary>

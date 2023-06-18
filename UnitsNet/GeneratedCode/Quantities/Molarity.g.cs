@@ -68,17 +68,17 @@ namespace UnitsNet
             Info = new QuantityInfo<MolarityUnit>("Molarity",
                 new UnitInfo<MolarityUnit>[]
                 {
-                    new UnitInfo<MolarityUnit>(MolarityUnit.CentimolePerLiter, "CentimolesPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.DecimolePerLiter, "DecimolesPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.FemtomolePerLiter, "FemtomolesPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.KilomolePerCubicMeter, "KilomolesPerCubicMeter", BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.MicromolePerLiter, "MicromolesPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.MillimolePerLiter, "MillimolesPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.MolePerCubicMeter, "MolesPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, amount: AmountOfSubstanceUnit.Mole)),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.MolePerLiter, "MolesPerLiter", new BaseUnits(length: LengthUnit.Decimeter, amount: AmountOfSubstanceUnit.Mole)),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.NanomolePerLiter, "NanomolesPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.PicomolePerLiter, "PicomolesPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.PoundMolePerCubicFoot, "PoundMolesPerCubicFoot", new BaseUnits(length: LengthUnit.Foot, amount: AmountOfSubstanceUnit.PoundMole)),
+                    new UnitInfo<MolarityUnit>(MolarityUnit.CentimolePerLiter, "CentimolesPerLiter", BaseUnits.Undefined, "Molarity"),
+                    new UnitInfo<MolarityUnit>(MolarityUnit.DecimolePerLiter, "DecimolesPerLiter", BaseUnits.Undefined, "Molarity"),
+                    new UnitInfo<MolarityUnit>(MolarityUnit.FemtomolePerLiter, "FemtomolesPerLiter", BaseUnits.Undefined, "Molarity"),
+                    new UnitInfo<MolarityUnit>(MolarityUnit.KilomolePerCubicMeter, "KilomolesPerCubicMeter", BaseUnits.Undefined, "Molarity"),
+                    new UnitInfo<MolarityUnit>(MolarityUnit.MicromolePerLiter, "MicromolesPerLiter", BaseUnits.Undefined, "Molarity"),
+                    new UnitInfo<MolarityUnit>(MolarityUnit.MillimolePerLiter, "MillimolesPerLiter", BaseUnits.Undefined, "Molarity"),
+                    new UnitInfo<MolarityUnit>(MolarityUnit.MolePerCubicMeter, "MolesPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, amount: AmountOfSubstanceUnit.Mole), "Molarity"),
+                    new UnitInfo<MolarityUnit>(MolarityUnit.MolePerLiter, "MolesPerLiter", new BaseUnits(length: LengthUnit.Decimeter, amount: AmountOfSubstanceUnit.Mole), "Molarity"),
+                    new UnitInfo<MolarityUnit>(MolarityUnit.NanomolePerLiter, "NanomolesPerLiter", BaseUnits.Undefined, "Molarity"),
+                    new UnitInfo<MolarityUnit>(MolarityUnit.PicomolePerLiter, "PicomolesPerLiter", BaseUnits.Undefined, "Molarity"),
+                    new UnitInfo<MolarityUnit>(MolarityUnit.PoundMolePerCubicFoot, "PoundMolesPerCubicFoot", new BaseUnits(length: LengthUnit.Foot, amount: AmountOfSubstanceUnit.PoundMole), "Molarity"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -273,21 +273,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolePerCubicMeter, MolarityUnit.NanomolePerLiter, quantity => quantity.ToUnit(MolarityUnit.NanomolePerLiter));
             unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolePerCubicMeter, MolarityUnit.PicomolePerLiter, quantity => quantity.ToUnit(MolarityUnit.PicomolePerLiter));
             unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolePerCubicMeter, MolarityUnit.PoundMolePerCubicFoot, quantity => quantity.ToUnit(MolarityUnit.PoundMolePerCubicFoot));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.CentimolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"cmol/L", "cM"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.DecimolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"dmol/L", "dM"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.FemtomolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"fmol/L", "fM"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.KilomolePerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"kmol/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MicromolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"µmol/L", "µM"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MillimolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"mmol/L", "mM"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MolePerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"mol/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"mol/L", "M"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.NanomolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"nmol/L", "nM"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.PicomolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"pmol/L", "pM"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.PoundMolePerCubicFoot, new CultureInfo("en-US"), false, true, new string[]{"lbmol/ft³"});
         }
 
         /// <summary>

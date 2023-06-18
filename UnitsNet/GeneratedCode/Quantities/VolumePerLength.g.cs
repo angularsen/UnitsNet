@@ -65,15 +65,15 @@ namespace UnitsNet
             Info = new QuantityInfo<VolumePerLengthUnit>("VolumePerLength",
                 new UnitInfo<VolumePerLengthUnit>[]
                 {
-                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.CubicMeterPerMeter, "CubicMetersPerMeter", new BaseUnits(length: LengthUnit.Meter)),
-                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.CubicYardPerFoot, "CubicYardsPerFoot", BaseUnits.Undefined),
-                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.CubicYardPerUsSurveyFoot, "CubicYardsPerUsSurveyFoot", BaseUnits.Undefined),
-                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.ImperialGallonPerMile, "ImperialGallonsPerMile", BaseUnits.Undefined),
-                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.LiterPerKilometer, "LitersPerKilometer", BaseUnits.Undefined),
-                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.LiterPerMeter, "LitersPerMeter", new BaseUnits(length: LengthUnit.Decimeter)),
-                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.LiterPerMillimeter, "LitersPerMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.OilBarrelPerFoot, "OilBarrelsPerFoot", BaseUnits.Undefined),
-                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.UsGallonPerMile, "UsGallonsPerMile", BaseUnits.Undefined),
+                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.CubicMeterPerMeter, "CubicMetersPerMeter", new BaseUnits(length: LengthUnit.Meter), "VolumePerLength"),
+                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.CubicYardPerFoot, "CubicYardsPerFoot", BaseUnits.Undefined, "VolumePerLength"),
+                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.CubicYardPerUsSurveyFoot, "CubicYardsPerUsSurveyFoot", BaseUnits.Undefined, "VolumePerLength"),
+                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.ImperialGallonPerMile, "ImperialGallonsPerMile", BaseUnits.Undefined, "VolumePerLength"),
+                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.LiterPerKilometer, "LitersPerKilometer", BaseUnits.Undefined, "VolumePerLength"),
+                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.LiterPerMeter, "LitersPerMeter", new BaseUnits(length: LengthUnit.Decimeter), "VolumePerLength"),
+                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.LiterPerMillimeter, "LitersPerMillimeter", BaseUnits.Undefined, "VolumePerLength"),
+                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.OilBarrelPerFoot, "OilBarrelsPerFoot", BaseUnits.Undefined, "VolumePerLength"),
+                    new UnitInfo<VolumePerLengthUnit>(VolumePerLengthUnit.UsGallonPerMile, "UsGallonsPerMile", BaseUnits.Undefined, "VolumePerLength"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -254,19 +254,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<VolumePerLength>(VolumePerLengthUnit.CubicMeterPerMeter, VolumePerLengthUnit.LiterPerMillimeter, quantity => quantity.ToUnit(VolumePerLengthUnit.LiterPerMillimeter));
             unitConverter.SetConversionFunction<VolumePerLength>(VolumePerLengthUnit.CubicMeterPerMeter, VolumePerLengthUnit.OilBarrelPerFoot, quantity => quantity.ToUnit(VolumePerLengthUnit.OilBarrelPerFoot));
             unitConverter.SetConversionFunction<VolumePerLength>(VolumePerLengthUnit.CubicMeterPerMeter, VolumePerLengthUnit.UsGallonPerMile, quantity => quantity.ToUnit(VolumePerLengthUnit.UsGallonPerMile));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumePerLengthUnit.CubicMeterPerMeter, new CultureInfo("en-US"), false, true, new string[]{"m³/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumePerLengthUnit.CubicYardPerFoot, new CultureInfo("en-US"), false, true, new string[]{"yd³/ft"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumePerLengthUnit.CubicYardPerUsSurveyFoot, new CultureInfo("en-US"), false, true, new string[]{"yd³/ftUS"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumePerLengthUnit.ImperialGallonPerMile, new CultureInfo("en-US"), false, true, new string[]{"gal (imp.)/mi"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumePerLengthUnit.LiterPerKilometer, new CultureInfo("en-US"), false, true, new string[]{"l/km"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumePerLengthUnit.LiterPerMeter, new CultureInfo("en-US"), false, true, new string[]{"l/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumePerLengthUnit.LiterPerMillimeter, new CultureInfo("en-US"), false, true, new string[]{"l/mm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumePerLengthUnit.OilBarrelPerFoot, new CultureInfo("en-US"), false, true, new string[]{"bbl/ft"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumePerLengthUnit.UsGallonPerMile, new CultureInfo("en-US"), false, true, new string[]{"gal (U.S.)/mi"});
         }
 
         /// <summary>

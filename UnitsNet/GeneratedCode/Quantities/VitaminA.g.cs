@@ -65,7 +65,7 @@ namespace UnitsNet
             Info = new QuantityInfo<VitaminAUnit>("VitaminA",
                 new UnitInfo<VitaminAUnit>[]
                 {
-                    new UnitInfo<VitaminAUnit>(VitaminAUnit.InternationalUnit, "InternationalUnits", BaseUnits.Undefined),
+                    new UnitInfo<VitaminAUnit>(VitaminAUnit.InternationalUnit, "InternationalUnits", BaseUnits.Undefined, "VitaminA"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -190,11 +190,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<VitaminA>(VitaminAUnit.InternationalUnit, VitaminAUnit.InternationalUnit, quantity => quantity);
 
             // Register in unit converter: BaseUnit -> VitaminAUnit
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(VitaminAUnit.InternationalUnit, new CultureInfo("en-US"), false, true, new string[]{"IU"});
         }
 
         /// <summary>

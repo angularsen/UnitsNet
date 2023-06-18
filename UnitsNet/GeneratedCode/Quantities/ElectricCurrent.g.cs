@@ -65,15 +65,15 @@ namespace UnitsNet
             Info = new QuantityInfo<ElectricCurrentUnit>("ElectricCurrent",
                 new UnitInfo<ElectricCurrentUnit>[]
                 {
-                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Ampere, "Amperes", new BaseUnits(current: ElectricCurrentUnit.Ampere)),
-                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Centiampere, "Centiamperes", BaseUnits.Undefined),
-                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Femtoampere, "Femtoamperes", BaseUnits.Undefined),
-                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Kiloampere, "Kiloamperes", BaseUnits.Undefined),
-                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Megaampere, "Megaamperes", BaseUnits.Undefined),
-                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Microampere, "Microamperes", BaseUnits.Undefined),
-                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Milliampere, "Milliamperes", BaseUnits.Undefined),
-                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Nanoampere, "Nanoamperes", BaseUnits.Undefined),
-                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Picoampere, "Picoamperes", BaseUnits.Undefined),
+                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Ampere, "Amperes", new BaseUnits(current: ElectricCurrentUnit.Ampere), "ElectricCurrent"),
+                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Centiampere, "Centiamperes", BaseUnits.Undefined, "ElectricCurrent"),
+                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Femtoampere, "Femtoamperes", BaseUnits.Undefined, "ElectricCurrent"),
+                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Kiloampere, "Kiloamperes", BaseUnits.Undefined, "ElectricCurrent"),
+                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Megaampere, "Megaamperes", BaseUnits.Undefined, "ElectricCurrent"),
+                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Microampere, "Microamperes", BaseUnits.Undefined, "ElectricCurrent"),
+                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Milliampere, "Milliamperes", BaseUnits.Undefined, "ElectricCurrent"),
+                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Nanoampere, "Nanoamperes", BaseUnits.Undefined, "ElectricCurrent"),
+                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Picoampere, "Picoamperes", BaseUnits.Undefined, "ElectricCurrent"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -254,19 +254,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Milliampere, quantity => quantity.ToUnit(ElectricCurrentUnit.Milliampere));
             unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Nanoampere, quantity => quantity.ToUnit(ElectricCurrentUnit.Nanoampere));
             unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Picoampere, quantity => quantity.ToUnit(ElectricCurrentUnit.Picoampere));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentUnit.Ampere, new CultureInfo("en-US"), false, true, new string[]{"A"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentUnit.Centiampere, new CultureInfo("en-US"), false, true, new string[]{"cA"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentUnit.Femtoampere, new CultureInfo("en-US"), false, true, new string[]{"fA"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentUnit.Kiloampere, new CultureInfo("en-US"), false, true, new string[]{"kA"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentUnit.Megaampere, new CultureInfo("en-US"), false, true, new string[]{"MA"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentUnit.Microampere, new CultureInfo("en-US"), false, true, new string[]{"µA"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentUnit.Milliampere, new CultureInfo("en-US"), false, true, new string[]{"mA"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentUnit.Nanoampere, new CultureInfo("en-US"), false, true, new string[]{"nA"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentUnit.Picoampere, new CultureInfo("en-US"), false, true, new string[]{"pA"});
         }
 
         /// <summary>

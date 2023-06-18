@@ -65,12 +65,12 @@ namespace UnitsNet
             Info = new QuantityInfo<ElectricPotentialUnit>("ElectricPotential",
                 new UnitInfo<ElectricPotentialUnit>[]
                 {
-                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Kilovolt, "Kilovolts", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Megavolt, "Megavolts", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Microvolt, "Microvolts", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Millivolt, "Millivolts", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Nanovolt, "Nanovolts", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Volt, "Volts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
+                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Kilovolt, "Kilovolts", BaseUnits.Undefined, "ElectricPotential"),
+                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Megavolt, "Megavolts", BaseUnits.Undefined, "ElectricPotential"),
+                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Microvolt, "Microvolts", BaseUnits.Undefined, "ElectricPotential"),
+                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Millivolt, "Millivolts", BaseUnits.Undefined, "ElectricPotential"),
+                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Nanovolt, "Nanovolts", BaseUnits.Undefined, "ElectricPotential"),
+                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Volt, "Volts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricPotential"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -230,22 +230,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricPotential>(ElectricPotentialUnit.Volt, ElectricPotentialUnit.Microvolt, quantity => quantity.ToUnit(ElectricPotentialUnit.Microvolt));
             unitConverter.SetConversionFunction<ElectricPotential>(ElectricPotentialUnit.Volt, ElectricPotentialUnit.Millivolt, quantity => quantity.ToUnit(ElectricPotentialUnit.Millivolt));
             unitConverter.SetConversionFunction<ElectricPotential>(ElectricPotentialUnit.Volt, ElectricPotentialUnit.Nanovolt, quantity => quantity.ToUnit(ElectricPotentialUnit.Nanovolt));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Kilovolt, new CultureInfo("en-US"), false, true, new string[]{"kV"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Kilovolt, new CultureInfo("ru-RU"), false, true, new string[]{"кВ"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Megavolt, new CultureInfo("en-US"), false, true, new string[]{"MV"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Megavolt, new CultureInfo("ru-RU"), false, true, new string[]{"МВ"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Microvolt, new CultureInfo("en-US"), false, true, new string[]{"µV"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Microvolt, new CultureInfo("ru-RU"), false, true, new string[]{"мкВ"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Millivolt, new CultureInfo("en-US"), false, true, new string[]{"mV"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Millivolt, new CultureInfo("ru-RU"), false, true, new string[]{"мВ"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Nanovolt, new CultureInfo("en-US"), false, true, new string[]{"nV"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Nanovolt, new CultureInfo("ru-RU"), false, true, new string[]{"нВ"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Volt, new CultureInfo("en-US"), false, true, new string[]{"V"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Volt, new CultureInfo("ru-RU"), false, true, new string[]{"В"});
         }
 
         /// <summary>

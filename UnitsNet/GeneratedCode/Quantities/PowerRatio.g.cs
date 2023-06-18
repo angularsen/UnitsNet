@@ -65,8 +65,8 @@ namespace UnitsNet
             Info = new QuantityInfo<PowerRatioUnit>("PowerRatio",
                 new UnitInfo<PowerRatioUnit>[]
                 {
-                    new UnitInfo<PowerRatioUnit>(PowerRatioUnit.DecibelMilliwatt, "DecibelMilliwatts", BaseUnits.Undefined),
-                    new UnitInfo<PowerRatioUnit>(PowerRatioUnit.DecibelWatt, "DecibelWatts", BaseUnits.Undefined),
+                    new UnitInfo<PowerRatioUnit>(PowerRatioUnit.DecibelMilliwatt, "DecibelMilliwatts", BaseUnits.Undefined, "PowerRatio"),
+                    new UnitInfo<PowerRatioUnit>(PowerRatioUnit.DecibelWatt, "DecibelWatts", BaseUnits.Undefined, "PowerRatio"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -198,12 +198,6 @@ namespace UnitsNet
 
             // Register in unit converter: BaseUnit -> PowerRatioUnit
             unitConverter.SetConversionFunction<PowerRatio>(PowerRatioUnit.DecibelWatt, PowerRatioUnit.DecibelMilliwatt, quantity => quantity.ToUnit(PowerRatioUnit.DecibelMilliwatt));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerRatioUnit.DecibelMilliwatt, new CultureInfo("en-US"), false, true, new string[]{"dBmW", "dBm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerRatioUnit.DecibelWatt, new CultureInfo("en-US"), false, true, new string[]{"dBW"});
         }
 
         /// <summary>

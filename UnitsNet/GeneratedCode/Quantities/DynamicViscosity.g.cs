@@ -68,16 +68,16 @@ namespace UnitsNet
             Info = new QuantityInfo<DynamicViscosityUnit>("DynamicViscosity",
                 new UnitInfo<DynamicViscosityUnit>[]
                 {
-                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.Centipoise, "Centipoise", BaseUnits.Undefined),
-                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.MicropascalSecond, "MicropascalSeconds", BaseUnits.Undefined),
-                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.MillipascalSecond, "MillipascalSeconds", BaseUnits.Undefined),
-                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.NewtonSecondPerMeterSquared, "NewtonSecondsPerMeterSquared", BaseUnits.Undefined),
-                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.PascalSecond, "PascalSeconds", BaseUnits.Undefined),
-                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.Poise, "Poise", BaseUnits.Undefined),
-                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.PoundForceSecondPerSquareFoot, "PoundsForceSecondPerSquareFoot", BaseUnits.Undefined),
-                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.PoundForceSecondPerSquareInch, "PoundsForceSecondPerSquareInch", BaseUnits.Undefined),
-                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.PoundPerFootSecond, "PoundsPerFootSecond", BaseUnits.Undefined),
-                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.Reyn, "Reyns", BaseUnits.Undefined),
+                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.Centipoise, "Centipoise", BaseUnits.Undefined, "DynamicViscosity"),
+                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.MicropascalSecond, "MicropascalSeconds", BaseUnits.Undefined, "DynamicViscosity"),
+                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.MillipascalSecond, "MillipascalSeconds", BaseUnits.Undefined, "DynamicViscosity"),
+                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.NewtonSecondPerMeterSquared, "NewtonSecondsPerMeterSquared", BaseUnits.Undefined, "DynamicViscosity"),
+                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.PascalSecond, "PascalSeconds", BaseUnits.Undefined, "DynamicViscosity"),
+                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.Poise, "Poise", BaseUnits.Undefined, "DynamicViscosity"),
+                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.PoundForceSecondPerSquareFoot, "PoundsForceSecondPerSquareFoot", BaseUnits.Undefined, "DynamicViscosity"),
+                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.PoundForceSecondPerSquareInch, "PoundsForceSecondPerSquareInch", BaseUnits.Undefined, "DynamicViscosity"),
+                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.PoundPerFootSecond, "PoundsPerFootSecond", BaseUnits.Undefined, "DynamicViscosity"),
+                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.Reyn, "Reyns", BaseUnits.Undefined, "DynamicViscosity"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -265,20 +265,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.NewtonSecondPerMeterSquared, DynamicViscosityUnit.PoundForceSecondPerSquareInch, quantity => quantity.ToUnit(DynamicViscosityUnit.PoundForceSecondPerSquareInch));
             unitConverter.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.NewtonSecondPerMeterSquared, DynamicViscosityUnit.PoundPerFootSecond, quantity => quantity.ToUnit(DynamicViscosityUnit.PoundPerFootSecond));
             unitConverter.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.NewtonSecondPerMeterSquared, DynamicViscosityUnit.Reyn, quantity => quantity.ToUnit(DynamicViscosityUnit.Reyn));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(DynamicViscosityUnit.Centipoise, new CultureInfo("en-US"), false, true, new string[]{"cP"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DynamicViscosityUnit.MicropascalSecond, new CultureInfo("en-US"), false, true, new string[]{"µPa·s", "µPaS"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DynamicViscosityUnit.MillipascalSecond, new CultureInfo("en-US"), false, true, new string[]{"mPa·s", "mPaS"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DynamicViscosityUnit.NewtonSecondPerMeterSquared, new CultureInfo("en-US"), false, true, new string[]{"Ns/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DynamicViscosityUnit.PascalSecond, new CultureInfo("en-US"), false, true, new string[]{"Pa·s", "PaS"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DynamicViscosityUnit.Poise, new CultureInfo("en-US"), false, true, new string[]{"P"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DynamicViscosityUnit.PoundForceSecondPerSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"lbf·s/ft²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DynamicViscosityUnit.PoundForceSecondPerSquareInch, new CultureInfo("en-US"), false, true, new string[]{"lbf·s/in²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DynamicViscosityUnit.PoundPerFootSecond, new CultureInfo("en-US"), false, true, new string[]{"lb/ft·s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DynamicViscosityUnit.Reyn, new CultureInfo("en-US"), false, true, new string[]{"reyn"});
         }
 
         /// <summary>

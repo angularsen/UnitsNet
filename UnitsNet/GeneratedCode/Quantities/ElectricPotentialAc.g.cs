@@ -65,11 +65,11 @@ namespace UnitsNet
             Info = new QuantityInfo<ElectricPotentialAcUnit>("ElectricPotentialAc",
                 new UnitInfo<ElectricPotentialAcUnit>[]
                 {
-                    new UnitInfo<ElectricPotentialAcUnit>(ElectricPotentialAcUnit.KilovoltAc, "KilovoltsAc", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialAcUnit>(ElectricPotentialAcUnit.MegavoltAc, "MegavoltsAc", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialAcUnit>(ElectricPotentialAcUnit.MicrovoltAc, "MicrovoltsAc", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialAcUnit>(ElectricPotentialAcUnit.MillivoltAc, "MillivoltsAc", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialAcUnit>(ElectricPotentialAcUnit.VoltAc, "VoltsAc", BaseUnits.Undefined),
+                    new UnitInfo<ElectricPotentialAcUnit>(ElectricPotentialAcUnit.KilovoltAc, "KilovoltsAc", BaseUnits.Undefined, "ElectricPotentialAc"),
+                    new UnitInfo<ElectricPotentialAcUnit>(ElectricPotentialAcUnit.MegavoltAc, "MegavoltsAc", BaseUnits.Undefined, "ElectricPotentialAc"),
+                    new UnitInfo<ElectricPotentialAcUnit>(ElectricPotentialAcUnit.MicrovoltAc, "MicrovoltsAc", BaseUnits.Undefined, "ElectricPotentialAc"),
+                    new UnitInfo<ElectricPotentialAcUnit>(ElectricPotentialAcUnit.MillivoltAc, "MillivoltsAc", BaseUnits.Undefined, "ElectricPotentialAc"),
+                    new UnitInfo<ElectricPotentialAcUnit>(ElectricPotentialAcUnit.VoltAc, "VoltsAc", BaseUnits.Undefined, "ElectricPotentialAc"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -222,15 +222,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricPotentialAc>(ElectricPotentialAcUnit.VoltAc, ElectricPotentialAcUnit.MegavoltAc, quantity => quantity.ToUnit(ElectricPotentialAcUnit.MegavoltAc));
             unitConverter.SetConversionFunction<ElectricPotentialAc>(ElectricPotentialAcUnit.VoltAc, ElectricPotentialAcUnit.MicrovoltAc, quantity => quantity.ToUnit(ElectricPotentialAcUnit.MicrovoltAc));
             unitConverter.SetConversionFunction<ElectricPotentialAc>(ElectricPotentialAcUnit.VoltAc, ElectricPotentialAcUnit.MillivoltAc, quantity => quantity.ToUnit(ElectricPotentialAcUnit.MillivoltAc));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialAcUnit.KilovoltAc, new CultureInfo("en-US"), false, true, new string[]{"kVac"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialAcUnit.MegavoltAc, new CultureInfo("en-US"), false, true, new string[]{"MVac"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialAcUnit.MicrovoltAc, new CultureInfo("en-US"), false, true, new string[]{"µVac"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialAcUnit.MillivoltAc, new CultureInfo("en-US"), false, true, new string[]{"mVac"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialAcUnit.VoltAc, new CultureInfo("en-US"), false, true, new string[]{"Vac"});
         }
 
         /// <summary>

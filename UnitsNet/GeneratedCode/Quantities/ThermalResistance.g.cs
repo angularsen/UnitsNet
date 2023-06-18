@@ -65,12 +65,12 @@ namespace UnitsNet
             Info = new QuantityInfo<ThermalResistanceUnit>("ThermalResistance",
                 new UnitInfo<ThermalResistanceUnit>[]
                 {
-                    new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, "HourSquareFeetDegreesFahrenheitPerBtu", BaseUnits.Undefined),
-                    new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, "SquareCentimeterHourDegreesCelsiusPerKilocalorie", BaseUnits.Undefined),
-                    new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.SquareCentimeterKelvinPerWatt, "SquareCentimeterKelvinsPerWatt", BaseUnits.Undefined),
-                    new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt, "SquareMeterDegreesCelsiusPerWatt", BaseUnits.Undefined),
-                    new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, "SquareMeterKelvinsPerKilowatt", BaseUnits.Undefined),
-                    new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.SquareMeterKelvinPerWatt, "SquareMeterKelvinsPerWatt", BaseUnits.Undefined),
+                    new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, "HourSquareFeetDegreesFahrenheitPerBtu", BaseUnits.Undefined, "ThermalResistance"),
+                    new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, "SquareCentimeterHourDegreesCelsiusPerKilocalorie", BaseUnits.Undefined, "ThermalResistance"),
+                    new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.SquareCentimeterKelvinPerWatt, "SquareCentimeterKelvinsPerWatt", BaseUnits.Undefined, "ThermalResistance"),
+                    new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt, "SquareMeterDegreesCelsiusPerWatt", BaseUnits.Undefined, "ThermalResistance"),
+                    new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, "SquareMeterKelvinsPerKilowatt", BaseUnits.Undefined, "ThermalResistance"),
+                    new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.SquareMeterKelvinPerWatt, "SquareMeterKelvinsPerWatt", BaseUnits.Undefined, "ThermalResistance"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -230,16 +230,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareCentimeterKelvinPerWatt, quantity => quantity.ToUnit(ThermalResistanceUnit.SquareCentimeterKelvinPerWatt));
             unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt, quantity => quantity.ToUnit(ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt));
             unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareMeterKelvinPerWatt, quantity => quantity.ToUnit(ThermalResistanceUnit.SquareMeterKelvinPerWatt));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, new CultureInfo("en-US"), false, true, new string[]{"Hrft²°F/Btu"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, new CultureInfo("en-US"), false, true, new string[]{"cm²Hr°C/kcal"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ThermalResistanceUnit.SquareCentimeterKelvinPerWatt, new CultureInfo("en-US"), false, true, new string[]{"cm²K/W"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt, new CultureInfo("en-US"), false, true, new string[]{"m²°C/W"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, new CultureInfo("en-US"), false, true, new string[]{"m²K/kW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ThermalResistanceUnit.SquareMeterKelvinPerWatt, new CultureInfo("en-US"), false, true, new string[]{"m²K/W"});
         }
 
         /// <summary>

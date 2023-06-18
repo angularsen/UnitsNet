@@ -68,7 +68,7 @@ namespace UnitsNet
             Info = new QuantityInfo<MagnetizationUnit>("Magnetization",
                 new UnitInfo<MagnetizationUnit>[]
                 {
-                    new UnitInfo<MagnetizationUnit>(MagnetizationUnit.AmperePerMeter, "AmperesPerMeter", new BaseUnits(length: LengthUnit.Meter, current: ElectricCurrentUnit.Ampere)),
+                    new UnitInfo<MagnetizationUnit>(MagnetizationUnit.AmperePerMeter, "AmperesPerMeter", new BaseUnits(length: LengthUnit.Meter, current: ElectricCurrentUnit.Ampere), "Magnetization"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -193,11 +193,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Magnetization>(MagnetizationUnit.AmperePerMeter, MagnetizationUnit.AmperePerMeter, quantity => quantity);
 
             // Register in unit converter: BaseUnit -> MagnetizationUnit
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(MagnetizationUnit.AmperePerMeter, new CultureInfo("en-US"), false, true, new string[]{"A/m"});
         }
 
         /// <summary>

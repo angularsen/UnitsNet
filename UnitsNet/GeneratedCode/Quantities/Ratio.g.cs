@@ -65,12 +65,12 @@ namespace UnitsNet
             Info = new QuantityInfo<RatioUnit>("Ratio",
                 new UnitInfo<RatioUnit>[]
                 {
-                    new UnitInfo<RatioUnit>(RatioUnit.DecimalFraction, "DecimalFractions", BaseUnits.Undefined),
-                    new UnitInfo<RatioUnit>(RatioUnit.PartPerBillion, "PartsPerBillion", BaseUnits.Undefined),
-                    new UnitInfo<RatioUnit>(RatioUnit.PartPerMillion, "PartsPerMillion", BaseUnits.Undefined),
-                    new UnitInfo<RatioUnit>(RatioUnit.PartPerThousand, "PartsPerThousand", BaseUnits.Undefined),
-                    new UnitInfo<RatioUnit>(RatioUnit.PartPerTrillion, "PartsPerTrillion", BaseUnits.Undefined),
-                    new UnitInfo<RatioUnit>(RatioUnit.Percent, "Percent", BaseUnits.Undefined),
+                    new UnitInfo<RatioUnit>(RatioUnit.DecimalFraction, "DecimalFractions", BaseUnits.Undefined, "Ratio"),
+                    new UnitInfo<RatioUnit>(RatioUnit.PartPerBillion, "PartsPerBillion", BaseUnits.Undefined, "Ratio"),
+                    new UnitInfo<RatioUnit>(RatioUnit.PartPerMillion, "PartsPerMillion", BaseUnits.Undefined, "Ratio"),
+                    new UnitInfo<RatioUnit>(RatioUnit.PartPerThousand, "PartsPerThousand", BaseUnits.Undefined, "Ratio"),
+                    new UnitInfo<RatioUnit>(RatioUnit.PartPerTrillion, "PartsPerTrillion", BaseUnits.Undefined, "Ratio"),
+                    new UnitInfo<RatioUnit>(RatioUnit.Percent, "Percent", BaseUnits.Undefined, "Ratio"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -230,16 +230,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.PartPerThousand, quantity => quantity.ToUnit(RatioUnit.PartPerThousand));
             unitConverter.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.PartPerTrillion, quantity => quantity.ToUnit(RatioUnit.PartPerTrillion));
             unitConverter.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.Percent, quantity => quantity.ToUnit(RatioUnit.Percent));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(RatioUnit.DecimalFraction, new CultureInfo("en-US"), false, true, new string[]{""});
-            unitAbbreviationsCache.PerformAbbreviationMapping(RatioUnit.PartPerBillion, new CultureInfo("en-US"), false, true, new string[]{"ppb"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(RatioUnit.PartPerMillion, new CultureInfo("en-US"), false, true, new string[]{"ppm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(RatioUnit.PartPerThousand, new CultureInfo("en-US"), false, true, new string[]{"‰"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(RatioUnit.PartPerTrillion, new CultureInfo("en-US"), false, true, new string[]{"ppt"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(RatioUnit.Percent, new CultureInfo("en-US"), false, true, new string[]{"%"});
         }
 
         /// <summary>

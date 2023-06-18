@@ -65,9 +65,9 @@ namespace UnitsNet
             Info = new QuantityInfo<ApparentEnergyUnit>("ApparentEnergy",
                 new UnitInfo<ApparentEnergyUnit>[]
                 {
-                    new UnitInfo<ApparentEnergyUnit>(ApparentEnergyUnit.KilovoltampereHour, "KilovoltampereHours", BaseUnits.Undefined),
-                    new UnitInfo<ApparentEnergyUnit>(ApparentEnergyUnit.MegavoltampereHour, "MegavoltampereHours", BaseUnits.Undefined),
-                    new UnitInfo<ApparentEnergyUnit>(ApparentEnergyUnit.VoltampereHour, "VoltampereHours", BaseUnits.Undefined),
+                    new UnitInfo<ApparentEnergyUnit>(ApparentEnergyUnit.KilovoltampereHour, "KilovoltampereHours", BaseUnits.Undefined, "ApparentEnergy"),
+                    new UnitInfo<ApparentEnergyUnit>(ApparentEnergyUnit.MegavoltampereHour, "MegavoltampereHours", BaseUnits.Undefined, "ApparentEnergy"),
+                    new UnitInfo<ApparentEnergyUnit>(ApparentEnergyUnit.VoltampereHour, "VoltampereHours", BaseUnits.Undefined, "ApparentEnergy"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -206,13 +206,6 @@ namespace UnitsNet
             // Register in unit converter: BaseUnit -> ApparentEnergyUnit
             unitConverter.SetConversionFunction<ApparentEnergy>(ApparentEnergyUnit.VoltampereHour, ApparentEnergyUnit.KilovoltampereHour, quantity => quantity.ToUnit(ApparentEnergyUnit.KilovoltampereHour));
             unitConverter.SetConversionFunction<ApparentEnergy>(ApparentEnergyUnit.VoltampereHour, ApparentEnergyUnit.MegavoltampereHour, quantity => quantity.ToUnit(ApparentEnergyUnit.MegavoltampereHour));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ApparentEnergyUnit.KilovoltampereHour, new CultureInfo("en-US"), false, true, new string[]{"kVAh"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ApparentEnergyUnit.MegavoltampereHour, new CultureInfo("en-US"), false, true, new string[]{"MVAh"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ApparentEnergyUnit.VoltampereHour, new CultureInfo("en-US"), false, true, new string[]{"VAh"});
         }
 
         /// <summary>

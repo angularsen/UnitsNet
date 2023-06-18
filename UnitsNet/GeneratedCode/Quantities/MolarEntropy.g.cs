@@ -65,9 +65,9 @@ namespace UnitsNet
             Info = new QuantityInfo<MolarEntropyUnit>("MolarEntropy",
                 new UnitInfo<MolarEntropyUnit>[]
                 {
-                    new UnitInfo<MolarEntropyUnit>(MolarEntropyUnit.JoulePerMoleKelvin, "JoulesPerMoleKelvin", BaseUnits.Undefined),
-                    new UnitInfo<MolarEntropyUnit>(MolarEntropyUnit.KilojoulePerMoleKelvin, "KilojoulesPerMoleKelvin", BaseUnits.Undefined),
-                    new UnitInfo<MolarEntropyUnit>(MolarEntropyUnit.MegajoulePerMoleKelvin, "MegajoulesPerMoleKelvin", BaseUnits.Undefined),
+                    new UnitInfo<MolarEntropyUnit>(MolarEntropyUnit.JoulePerMoleKelvin, "JoulesPerMoleKelvin", BaseUnits.Undefined, "MolarEntropy"),
+                    new UnitInfo<MolarEntropyUnit>(MolarEntropyUnit.KilojoulePerMoleKelvin, "KilojoulesPerMoleKelvin", BaseUnits.Undefined, "MolarEntropy"),
+                    new UnitInfo<MolarEntropyUnit>(MolarEntropyUnit.MegajoulePerMoleKelvin, "MegajoulesPerMoleKelvin", BaseUnits.Undefined, "MolarEntropy"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -206,13 +206,6 @@ namespace UnitsNet
             // Register in unit converter: BaseUnit -> MolarEntropyUnit
             unitConverter.SetConversionFunction<MolarEntropy>(MolarEntropyUnit.JoulePerMoleKelvin, MolarEntropyUnit.KilojoulePerMoleKelvin, quantity => quantity.ToUnit(MolarEntropyUnit.KilojoulePerMoleKelvin));
             unitConverter.SetConversionFunction<MolarEntropy>(MolarEntropyUnit.JoulePerMoleKelvin, MolarEntropyUnit.MegajoulePerMoleKelvin, quantity => quantity.ToUnit(MolarEntropyUnit.MegajoulePerMoleKelvin));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarEntropyUnit.JoulePerMoleKelvin, new CultureInfo("en-US"), false, true, new string[]{"J/(mol*K)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarEntropyUnit.KilojoulePerMoleKelvin, new CultureInfo("en-US"), false, true, new string[]{"kJ/(mol*K)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarEntropyUnit.MegajoulePerMoleKelvin, new CultureInfo("en-US"), false, true, new string[]{"MJ/(mol*K)"});
         }
 
         /// <summary>

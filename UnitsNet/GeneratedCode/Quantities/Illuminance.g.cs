@@ -68,10 +68,10 @@ namespace UnitsNet
             Info = new QuantityInfo<IlluminanceUnit>("Illuminance",
                 new UnitInfo<IlluminanceUnit>[]
                 {
-                    new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Kilolux, "Kilolux", BaseUnits.Undefined),
-                    new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Lux, "Lux", BaseUnits.Undefined),
-                    new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Megalux, "Megalux", BaseUnits.Undefined),
-                    new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Millilux, "Millilux", BaseUnits.Undefined),
+                    new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Kilolux, "Kilolux", BaseUnits.Undefined, "Illuminance"),
+                    new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Lux, "Lux", BaseUnits.Undefined, "Illuminance"),
+                    new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Megalux, "Megalux", BaseUnits.Undefined, "Illuminance"),
+                    new UnitInfo<IlluminanceUnit>(IlluminanceUnit.Millilux, "Millilux", BaseUnits.Undefined, "Illuminance"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -217,14 +217,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Illuminance>(IlluminanceUnit.Lux, IlluminanceUnit.Kilolux, quantity => quantity.ToUnit(IlluminanceUnit.Kilolux));
             unitConverter.SetConversionFunction<Illuminance>(IlluminanceUnit.Lux, IlluminanceUnit.Megalux, quantity => quantity.ToUnit(IlluminanceUnit.Megalux));
             unitConverter.SetConversionFunction<Illuminance>(IlluminanceUnit.Lux, IlluminanceUnit.Millilux, quantity => quantity.ToUnit(IlluminanceUnit.Millilux));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(IlluminanceUnit.Kilolux, new CultureInfo("en-US"), false, true, new string[]{"klx"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IlluminanceUnit.Lux, new CultureInfo("en-US"), false, true, new string[]{"lx"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IlluminanceUnit.Megalux, new CultureInfo("en-US"), false, true, new string[]{"Mlx"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IlluminanceUnit.Millilux, new CultureInfo("en-US"), false, true, new string[]{"mlx"});
         }
 
         /// <summary>

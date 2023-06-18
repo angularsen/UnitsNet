@@ -65,9 +65,9 @@ namespace UnitsNet
             Info = new QuantityInfo<CoefficientOfThermalExpansionUnit>("CoefficientOfThermalExpansion",
                 new UnitInfo<CoefficientOfThermalExpansionUnit>[]
                 {
-                    new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, "InverseDegreeCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius)),
-                    new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, "InverseDegreeFahrenheit", new BaseUnits(temperature: TemperatureUnit.DegreeFahrenheit)),
-                    new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseKelvin, "InverseKelvin", new BaseUnits(temperature: TemperatureUnit.Kelvin)),
+                    new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, "InverseDegreeCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius), "CoefficientOfThermalExpansion"),
+                    new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, "InverseDegreeFahrenheit", new BaseUnits(temperature: TemperatureUnit.DegreeFahrenheit), "CoefficientOfThermalExpansion"),
+                    new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseKelvin, "InverseKelvin", new BaseUnits(temperature: TemperatureUnit.Kelvin), "CoefficientOfThermalExpansion"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -206,13 +206,6 @@ namespace UnitsNet
             // Register in unit converter: BaseUnit -> CoefficientOfThermalExpansionUnit
             unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.InverseKelvin, CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, quantity => quantity.ToUnit(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius));
             unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.InverseKelvin, CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, quantity => quantity.ToUnit(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, new CultureInfo("en-US"), false, true, new string[]{"°C⁻¹", "1/°C"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, new CultureInfo("en-US"), false, true, new string[]{"°F⁻¹", "1/°F"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(CoefficientOfThermalExpansionUnit.InverseKelvin, new CultureInfo("en-US"), false, true, new string[]{"K⁻¹", "1/K"});
         }
 
         /// <summary>

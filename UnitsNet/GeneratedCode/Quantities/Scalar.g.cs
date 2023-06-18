@@ -65,7 +65,7 @@ namespace UnitsNet
             Info = new QuantityInfo<ScalarUnit>("Scalar",
                 new UnitInfo<ScalarUnit>[]
                 {
-                    new UnitInfo<ScalarUnit>(ScalarUnit.Amount, "Amount", BaseUnits.Undefined),
+                    new UnitInfo<ScalarUnit>(ScalarUnit.Amount, "Amount", BaseUnits.Undefined, "Scalar"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -190,11 +190,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Scalar>(ScalarUnit.Amount, ScalarUnit.Amount, quantity => quantity);
 
             // Register in unit converter: BaseUnit -> ScalarUnit
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ScalarUnit.Amount, new CultureInfo("en-US"), false, true, new string[]{""});
         }
 
         /// <summary>

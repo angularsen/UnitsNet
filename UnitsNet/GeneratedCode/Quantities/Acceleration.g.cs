@@ -65,20 +65,20 @@ namespace UnitsNet
             Info = new QuantityInfo<AccelerationUnit>("Acceleration",
                 new UnitInfo<AccelerationUnit>[]
                 {
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.CentimeterPerSecondSquared, "CentimetersPerSecondSquared", BaseUnits.Undefined),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.DecimeterPerSecondSquared, "DecimetersPerSecondSquared", BaseUnits.Undefined),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.FootPerSecondSquared, "FeetPerSecondSquared", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Second)),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.InchPerSecondSquared, "InchesPerSecondSquared", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Second)),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.KilometerPerSecondSquared, "KilometersPerSecondSquared", BaseUnits.Undefined),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.KnotPerHour, "KnotsPerHour", new BaseUnits(length: LengthUnit.NauticalMile, time: DurationUnit.Hour)),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.KnotPerMinute, "KnotsPerMinute", new BaseUnits(length: LengthUnit.NauticalMile, time: DurationUnit.Minute)),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.KnotPerSecond, "KnotsPerSecond", new BaseUnits(length: LengthUnit.NauticalMile, time: DurationUnit.Second)),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.MeterPerSecondSquared, "MetersPerSecondSquared", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second)),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.MicrometerPerSecondSquared, "MicrometersPerSecondSquared", BaseUnits.Undefined),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.MillimeterPerSecondSquared, "MillimetersPerSecondSquared", BaseUnits.Undefined),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.MillistandardGravity, "MillistandardGravity", BaseUnits.Undefined),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.NanometerPerSecondSquared, "NanometersPerSecondSquared", BaseUnits.Undefined),
-                    new UnitInfo<AccelerationUnit>(AccelerationUnit.StandardGravity, "StandardGravity", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second)),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.CentimeterPerSecondSquared, "CentimetersPerSecondSquared", BaseUnits.Undefined, "Acceleration"),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.DecimeterPerSecondSquared, "DecimetersPerSecondSquared", BaseUnits.Undefined, "Acceleration"),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.FootPerSecondSquared, "FeetPerSecondSquared", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Second), "Acceleration"),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.InchPerSecondSquared, "InchesPerSecondSquared", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Second), "Acceleration"),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.KilometerPerSecondSquared, "KilometersPerSecondSquared", BaseUnits.Undefined, "Acceleration"),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.KnotPerHour, "KnotsPerHour", new BaseUnits(length: LengthUnit.NauticalMile, time: DurationUnit.Hour), "Acceleration"),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.KnotPerMinute, "KnotsPerMinute", new BaseUnits(length: LengthUnit.NauticalMile, time: DurationUnit.Minute), "Acceleration"),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.KnotPerSecond, "KnotsPerSecond", new BaseUnits(length: LengthUnit.NauticalMile, time: DurationUnit.Second), "Acceleration"),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.MeterPerSecondSquared, "MetersPerSecondSquared", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second), "Acceleration"),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.MicrometerPerSecondSquared, "MicrometersPerSecondSquared", BaseUnits.Undefined, "Acceleration"),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.MillimeterPerSecondSquared, "MillimetersPerSecondSquared", BaseUnits.Undefined, "Acceleration"),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.MillistandardGravity, "MillistandardGravity", BaseUnits.Undefined, "Acceleration"),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.NanometerPerSecondSquared, "NanometersPerSecondSquared", BaseUnits.Undefined, "Acceleration"),
+                    new UnitInfo<AccelerationUnit>(AccelerationUnit.StandardGravity, "StandardGravity", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second), "Acceleration"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -294,38 +294,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.MillistandardGravity, quantity => quantity.ToUnit(AccelerationUnit.MillistandardGravity));
             unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.NanometerPerSecondSquared, quantity => quantity.ToUnit(AccelerationUnit.NanometerPerSecondSquared));
             unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.StandardGravity, quantity => quantity.ToUnit(AccelerationUnit.StandardGravity));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.CentimeterPerSecondSquared, new CultureInfo("en-US"), false, true, new string[]{"cm/s²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.CentimeterPerSecondSquared, new CultureInfo("ru-RU"), false, true, new string[]{"см/с²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.DecimeterPerSecondSquared, new CultureInfo("en-US"), false, true, new string[]{"dm/s²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.DecimeterPerSecondSquared, new CultureInfo("ru-RU"), false, true, new string[]{"дм/с²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.FootPerSecondSquared, new CultureInfo("en-US"), false, true, new string[]{"ft/s²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.FootPerSecondSquared, new CultureInfo("ru-RU"), false, true, new string[]{"фут/с²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.InchPerSecondSquared, new CultureInfo("en-US"), false, true, new string[]{"in/s²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.InchPerSecondSquared, new CultureInfo("ru-RU"), false, true, new string[]{"дюйм/с²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.KilometerPerSecondSquared, new CultureInfo("en-US"), false, true, new string[]{"km/s²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.KilometerPerSecondSquared, new CultureInfo("ru-RU"), false, true, new string[]{"км/с²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.KnotPerHour, new CultureInfo("en-US"), false, true, new string[]{"kn/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.KnotPerHour, new CultureInfo("ru-RU"), false, true, new string[]{"узел/час"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.KnotPerMinute, new CultureInfo("en-US"), false, true, new string[]{"kn/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.KnotPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"узел/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.KnotPerSecond, new CultureInfo("en-US"), false, true, new string[]{"kn/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.KnotPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"узел/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.MeterPerSecondSquared, new CultureInfo("en-US"), false, true, new string[]{"m/s²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.MeterPerSecondSquared, new CultureInfo("ru-RU"), false, true, new string[]{"м/с²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.MicrometerPerSecondSquared, new CultureInfo("en-US"), false, true, new string[]{"µm/s²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.MicrometerPerSecondSquared, new CultureInfo("ru-RU"), false, true, new string[]{"мкм/с²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.MillimeterPerSecondSquared, new CultureInfo("en-US"), false, true, new string[]{"mm/s²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.MillimeterPerSecondSquared, new CultureInfo("ru-RU"), false, true, new string[]{"мм/с²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.MillistandardGravity, new CultureInfo("en-US"), false, true, new string[]{"mg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.MillistandardGravity, new CultureInfo("ru-RU"), false, true, new string[]{"мg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.NanometerPerSecondSquared, new CultureInfo("en-US"), false, true, new string[]{"nm/s²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.NanometerPerSecondSquared, new CultureInfo("ru-RU"), false, true, new string[]{"нм/с²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.StandardGravity, new CultureInfo("en-US"), false, true, new string[]{"g"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.StandardGravity, new CultureInfo("ru-RU"), false, true, new string[]{"g"});
         }
 
         /// <summary>

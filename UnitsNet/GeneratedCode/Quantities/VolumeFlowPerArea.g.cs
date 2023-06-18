@@ -65,8 +65,8 @@ namespace UnitsNet
             Info = new QuantityInfo<VolumeFlowPerAreaUnit>("VolumeFlowPerArea",
                 new UnitInfo<VolumeFlowPerAreaUnit>[]
                 {
-                    new UnitInfo<VolumeFlowPerAreaUnit>(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, "CubicFeetPerMinutePerSquareFoot", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Minute)),
-                    new UnitInfo<VolumeFlowPerAreaUnit>(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, "CubicMetersPerSecondPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second)),
+                    new UnitInfo<VolumeFlowPerAreaUnit>(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, "CubicFeetPerMinutePerSquareFoot", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Minute), "VolumeFlowPerArea"),
+                    new UnitInfo<VolumeFlowPerAreaUnit>(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, "CubicMetersPerSecondPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second), "VolumeFlowPerArea"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -198,12 +198,6 @@ namespace UnitsNet
 
             // Register in unit converter: BaseUnit -> VolumeFlowPerAreaUnit
             unitConverter.SetConversionFunction<VolumeFlowPerArea>(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, quantity => quantity.ToUnit(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"CFM/ft²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"m³/(s·m²)"});
         }
 
         /// <summary>

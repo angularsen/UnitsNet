@@ -68,7 +68,7 @@ namespace UnitsNet
             Info = new QuantityInfo<PermeabilityUnit>("Permeability",
                 new UnitInfo<PermeabilityUnit>[]
                 {
-                    new UnitInfo<PermeabilityUnit>(PermeabilityUnit.HenryPerMeter, "HenriesPerMeter", BaseUnits.Undefined),
+                    new UnitInfo<PermeabilityUnit>(PermeabilityUnit.HenryPerMeter, "HenriesPerMeter", BaseUnits.Undefined, "Permeability"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -193,11 +193,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Permeability>(PermeabilityUnit.HenryPerMeter, PermeabilityUnit.HenryPerMeter, quantity => quantity);
 
             // Register in unit converter: BaseUnit -> PermeabilityUnit
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(PermeabilityUnit.HenryPerMeter, new CultureInfo("en-US"), false, true, new string[]{"H/m"});
         }
 
         /// <summary>

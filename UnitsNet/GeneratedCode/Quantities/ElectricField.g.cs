@@ -68,7 +68,7 @@ namespace UnitsNet
             Info = new QuantityInfo<ElectricFieldUnit>("ElectricField",
                 new UnitInfo<ElectricFieldUnit>[]
                 {
-                    new UnitInfo<ElectricFieldUnit>(ElectricFieldUnit.VoltPerMeter, "VoltsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
+                    new UnitInfo<ElectricFieldUnit>(ElectricFieldUnit.VoltPerMeter, "VoltsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricField"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -193,11 +193,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricField>(ElectricFieldUnit.VoltPerMeter, ElectricFieldUnit.VoltPerMeter, quantity => quantity);
 
             // Register in unit converter: BaseUnit -> ElectricFieldUnit
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricFieldUnit.VoltPerMeter, new CultureInfo("en-US"), false, true, new string[]{"V/m"});
         }
 
         /// <summary>

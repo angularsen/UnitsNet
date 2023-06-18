@@ -65,18 +65,18 @@ namespace UnitsNet
             Info = new QuantityInfo<EnergyDensityUnit>("EnergyDensity",
                 new UnitInfo<EnergyDensityUnit>[]
                 {
-                    new UnitInfo<EnergyDensityUnit>(EnergyDensityUnit.GigajoulePerCubicMeter, "GigajoulesPerCubicMeter", BaseUnits.Undefined),
-                    new UnitInfo<EnergyDensityUnit>(EnergyDensityUnit.GigawattHourPerCubicMeter, "GigawattHoursPerCubicMeter", BaseUnits.Undefined),
-                    new UnitInfo<EnergyDensityUnit>(EnergyDensityUnit.JoulePerCubicMeter, "JoulesPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second)),
-                    new UnitInfo<EnergyDensityUnit>(EnergyDensityUnit.KilojoulePerCubicMeter, "KilojoulesPerCubicMeter", BaseUnits.Undefined),
-                    new UnitInfo<EnergyDensityUnit>(EnergyDensityUnit.KilowattHourPerCubicMeter, "KilowattHoursPerCubicMeter", BaseUnits.Undefined),
-                    new UnitInfo<EnergyDensityUnit>(EnergyDensityUnit.MegajoulePerCubicMeter, "MegajoulesPerCubicMeter", BaseUnits.Undefined),
-                    new UnitInfo<EnergyDensityUnit>(EnergyDensityUnit.MegawattHourPerCubicMeter, "MegawattHoursPerCubicMeter", BaseUnits.Undefined),
-                    new UnitInfo<EnergyDensityUnit>(EnergyDensityUnit.PetajoulePerCubicMeter, "PetajoulesPerCubicMeter", BaseUnits.Undefined),
-                    new UnitInfo<EnergyDensityUnit>(EnergyDensityUnit.PetawattHourPerCubicMeter, "PetawattHoursPerCubicMeter", BaseUnits.Undefined),
-                    new UnitInfo<EnergyDensityUnit>(EnergyDensityUnit.TerajoulePerCubicMeter, "TerajoulesPerCubicMeter", BaseUnits.Undefined),
-                    new UnitInfo<EnergyDensityUnit>(EnergyDensityUnit.TerawattHourPerCubicMeter, "TerawattHoursPerCubicMeter", BaseUnits.Undefined),
-                    new UnitInfo<EnergyDensityUnit>(EnergyDensityUnit.WattHourPerCubicMeter, "WattHoursPerCubicMeter", BaseUnits.Undefined),
+                    new UnitInfo<EnergyDensityUnit>(EnergyDensityUnit.GigajoulePerCubicMeter, "GigajoulesPerCubicMeter", BaseUnits.Undefined, "EnergyDensity"),
+                    new UnitInfo<EnergyDensityUnit>(EnergyDensityUnit.GigawattHourPerCubicMeter, "GigawattHoursPerCubicMeter", BaseUnits.Undefined, "EnergyDensity"),
+                    new UnitInfo<EnergyDensityUnit>(EnergyDensityUnit.JoulePerCubicMeter, "JoulesPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "EnergyDensity"),
+                    new UnitInfo<EnergyDensityUnit>(EnergyDensityUnit.KilojoulePerCubicMeter, "KilojoulesPerCubicMeter", BaseUnits.Undefined, "EnergyDensity"),
+                    new UnitInfo<EnergyDensityUnit>(EnergyDensityUnit.KilowattHourPerCubicMeter, "KilowattHoursPerCubicMeter", BaseUnits.Undefined, "EnergyDensity"),
+                    new UnitInfo<EnergyDensityUnit>(EnergyDensityUnit.MegajoulePerCubicMeter, "MegajoulesPerCubicMeter", BaseUnits.Undefined, "EnergyDensity"),
+                    new UnitInfo<EnergyDensityUnit>(EnergyDensityUnit.MegawattHourPerCubicMeter, "MegawattHoursPerCubicMeter", BaseUnits.Undefined, "EnergyDensity"),
+                    new UnitInfo<EnergyDensityUnit>(EnergyDensityUnit.PetajoulePerCubicMeter, "PetajoulesPerCubicMeter", BaseUnits.Undefined, "EnergyDensity"),
+                    new UnitInfo<EnergyDensityUnit>(EnergyDensityUnit.PetawattHourPerCubicMeter, "PetawattHoursPerCubicMeter", BaseUnits.Undefined, "EnergyDensity"),
+                    new UnitInfo<EnergyDensityUnit>(EnergyDensityUnit.TerajoulePerCubicMeter, "TerajoulesPerCubicMeter", BaseUnits.Undefined, "EnergyDensity"),
+                    new UnitInfo<EnergyDensityUnit>(EnergyDensityUnit.TerawattHourPerCubicMeter, "TerawattHoursPerCubicMeter", BaseUnits.Undefined, "EnergyDensity"),
+                    new UnitInfo<EnergyDensityUnit>(EnergyDensityUnit.WattHourPerCubicMeter, "WattHoursPerCubicMeter", BaseUnits.Undefined, "EnergyDensity"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -278,22 +278,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<EnergyDensity>(EnergyDensityUnit.JoulePerCubicMeter, EnergyDensityUnit.TerajoulePerCubicMeter, quantity => quantity.ToUnit(EnergyDensityUnit.TerajoulePerCubicMeter));
             unitConverter.SetConversionFunction<EnergyDensity>(EnergyDensityUnit.JoulePerCubicMeter, EnergyDensityUnit.TerawattHourPerCubicMeter, quantity => quantity.ToUnit(EnergyDensityUnit.TerawattHourPerCubicMeter));
             unitConverter.SetConversionFunction<EnergyDensity>(EnergyDensityUnit.JoulePerCubicMeter, EnergyDensityUnit.WattHourPerCubicMeter, quantity => quantity.ToUnit(EnergyDensityUnit.WattHourPerCubicMeter));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyDensityUnit.GigajoulePerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"GJ/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyDensityUnit.GigawattHourPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"GWh/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyDensityUnit.JoulePerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"J/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyDensityUnit.KilojoulePerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"kJ/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyDensityUnit.KilowattHourPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"kWh/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyDensityUnit.MegajoulePerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"MJ/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyDensityUnit.MegawattHourPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"MWh/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyDensityUnit.PetajoulePerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"PJ/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyDensityUnit.PetawattHourPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"PWh/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyDensityUnit.TerajoulePerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"TJ/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyDensityUnit.TerawattHourPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"TWh/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyDensityUnit.WattHourPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"Wh/m³"});
         }
 
         /// <summary>

@@ -65,21 +65,21 @@ namespace UnitsNet
             Info = new QuantityInfo<AmountOfSubstanceUnit>("AmountOfSubstance",
                 new UnitInfo<AmountOfSubstanceUnit>[]
                 {
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Centimole, "Centimoles", BaseUnits.Undefined),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.CentipoundMole, "CentipoundMoles", BaseUnits.Undefined),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Decimole, "Decimoles", BaseUnits.Undefined),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.DecipoundMole, "DecipoundMoles", BaseUnits.Undefined),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Kilomole, "Kilomoles", BaseUnits.Undefined),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.KilopoundMole, "KilopoundMoles", BaseUnits.Undefined),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Megamole, "Megamoles", BaseUnits.Undefined),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Micromole, "Micromoles", BaseUnits.Undefined),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.MicropoundMole, "MicropoundMoles", BaseUnits.Undefined),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Millimole, "Millimoles", BaseUnits.Undefined),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.MillipoundMole, "MillipoundMoles", BaseUnits.Undefined),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Mole, "Moles", new BaseUnits(amount: AmountOfSubstanceUnit.Mole)),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Nanomole, "Nanomoles", BaseUnits.Undefined),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.NanopoundMole, "NanopoundMoles", BaseUnits.Undefined),
-                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.PoundMole, "PoundMoles", new BaseUnits(amount: AmountOfSubstanceUnit.PoundMole)),
+                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Centimole, "Centimoles", BaseUnits.Undefined, "AmountOfSubstance"),
+                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.CentipoundMole, "CentipoundMoles", BaseUnits.Undefined, "AmountOfSubstance"),
+                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Decimole, "Decimoles", BaseUnits.Undefined, "AmountOfSubstance"),
+                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.DecipoundMole, "DecipoundMoles", BaseUnits.Undefined, "AmountOfSubstance"),
+                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Kilomole, "Kilomoles", BaseUnits.Undefined, "AmountOfSubstance"),
+                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.KilopoundMole, "KilopoundMoles", BaseUnits.Undefined, "AmountOfSubstance"),
+                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Megamole, "Megamoles", BaseUnits.Undefined, "AmountOfSubstance"),
+                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Micromole, "Micromoles", BaseUnits.Undefined, "AmountOfSubstance"),
+                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.MicropoundMole, "MicropoundMoles", BaseUnits.Undefined, "AmountOfSubstance"),
+                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Millimole, "Millimoles", BaseUnits.Undefined, "AmountOfSubstance"),
+                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.MillipoundMole, "MillipoundMoles", BaseUnits.Undefined, "AmountOfSubstance"),
+                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Mole, "Moles", new BaseUnits(amount: AmountOfSubstanceUnit.Mole), "AmountOfSubstance"),
+                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Nanomole, "Nanomoles", BaseUnits.Undefined, "AmountOfSubstance"),
+                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.NanopoundMole, "NanopoundMoles", BaseUnits.Undefined, "AmountOfSubstance"),
+                    new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.PoundMole, "PoundMoles", new BaseUnits(amount: AmountOfSubstanceUnit.PoundMole), "AmountOfSubstance"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -302,25 +302,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Nanomole, quantity => quantity.ToUnit(AmountOfSubstanceUnit.Nanomole));
             unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.NanopoundMole, quantity => quantity.ToUnit(AmountOfSubstanceUnit.NanopoundMole));
             unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.PoundMole, quantity => quantity.ToUnit(AmountOfSubstanceUnit.PoundMole));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.Centimole, new CultureInfo("en-US"), false, true, new string[]{"cmol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.CentipoundMole, new CultureInfo("en-US"), false, true, new string[]{"clbmol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.Decimole, new CultureInfo("en-US"), false, true, new string[]{"dmol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.DecipoundMole, new CultureInfo("en-US"), false, true, new string[]{"dlbmol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.Kilomole, new CultureInfo("en-US"), false, true, new string[]{"kmol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.KilopoundMole, new CultureInfo("en-US"), false, true, new string[]{"klbmol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.Megamole, new CultureInfo("en-US"), false, true, new string[]{"Mmol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.Micromole, new CultureInfo("en-US"), false, true, new string[]{"µmol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.MicropoundMole, new CultureInfo("en-US"), false, true, new string[]{"µlbmol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.Millimole, new CultureInfo("en-US"), false, true, new string[]{"mmol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.MillipoundMole, new CultureInfo("en-US"), false, true, new string[]{"mlbmol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.Mole, new CultureInfo("en-US"), false, true, new string[]{"mol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.Nanomole, new CultureInfo("en-US"), false, true, new string[]{"nmol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.NanopoundMole, new CultureInfo("en-US"), false, true, new string[]{"nlbmol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.PoundMole, new CultureInfo("en-US"), false, true, new string[]{"lbmol"});
         }
 
         /// <summary>

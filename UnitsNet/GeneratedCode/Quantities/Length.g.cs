@@ -65,43 +65,43 @@ namespace UnitsNet
             Info = new QuantityInfo<LengthUnit>("Length",
                 new UnitInfo<LengthUnit>[]
                 {
-                    new UnitInfo<LengthUnit>(LengthUnit.Angstrom, "Angstroms", BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.AstronomicalUnit, "AstronomicalUnits", BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.Centimeter, "Centimeters", BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.Chain, "Chains", new BaseUnits(length: LengthUnit.Chain)),
-                    new UnitInfo<LengthUnit>(LengthUnit.DataMile, "DataMiles", BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.Decameter, "Decameters", BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.Decimeter, "Decimeters", BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.DtpPica, "DtpPicas", new BaseUnits(length: LengthUnit.DtpPica)),
-                    new UnitInfo<LengthUnit>(LengthUnit.DtpPoint, "DtpPoints", new BaseUnits(length: LengthUnit.DtpPoint)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Fathom, "Fathoms", new BaseUnits(length: LengthUnit.Fathom)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Foot, "Feet", new BaseUnits(length: LengthUnit.Foot)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Hand, "Hands", new BaseUnits(length: LengthUnit.Hand)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Hectometer, "Hectometers", BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.Inch, "Inches", new BaseUnits(length: LengthUnit.Inch)),
-                    new UnitInfo<LengthUnit>(LengthUnit.KilolightYear, "KilolightYears", BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.Kilometer, "Kilometers", BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.Kiloparsec, "Kiloparsecs", BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.LightYear, "LightYears", BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.MegalightYear, "MegalightYears", BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.Megameter, "Megameters", BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.Megaparsec, "Megaparsecs", BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.Meter, "Meters", new BaseUnits(length: LengthUnit.Meter)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Microinch, "Microinches", new BaseUnits(length: LengthUnit.Microinch)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Micrometer, "Micrometers", BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.Mil, "Mils", new BaseUnits(length: LengthUnit.Mil)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Mile, "Miles", new BaseUnits(length: LengthUnit.Mile)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Millimeter, "Millimeters", BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.Nanometer, "Nanometers", BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.NauticalMile, "NauticalMiles", new BaseUnits(length: LengthUnit.NauticalMile)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Parsec, "Parsecs", BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.PrinterPica, "PrinterPicas", new BaseUnits(length: LengthUnit.PrinterPica)),
-                    new UnitInfo<LengthUnit>(LengthUnit.PrinterPoint, "PrinterPoints", new BaseUnits(length: LengthUnit.PrinterPoint)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Shackle, "Shackles", new BaseUnits(length: LengthUnit.Shackle)),
-                    new UnitInfo<LengthUnit>(LengthUnit.SolarRadius, "SolarRadiuses", BaseUnits.Undefined),
-                    new UnitInfo<LengthUnit>(LengthUnit.Twip, "Twips", new BaseUnits(length: LengthUnit.Twip)),
-                    new UnitInfo<LengthUnit>(LengthUnit.UsSurveyFoot, "UsSurveyFeet", new BaseUnits(length: LengthUnit.UsSurveyFoot)),
-                    new UnitInfo<LengthUnit>(LengthUnit.Yard, "Yards", new BaseUnits(length: LengthUnit.Yard)),
+                    new UnitInfo<LengthUnit>(LengthUnit.Angstrom, "Angstroms", BaseUnits.Undefined, "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.AstronomicalUnit, "AstronomicalUnits", BaseUnits.Undefined, "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.Centimeter, "Centimeters", BaseUnits.Undefined, "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.Chain, "Chains", new BaseUnits(length: LengthUnit.Chain), "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.DataMile, "DataMiles", BaseUnits.Undefined, "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.Decameter, "Decameters", BaseUnits.Undefined, "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.Decimeter, "Decimeters", BaseUnits.Undefined, "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.DtpPica, "DtpPicas", new BaseUnits(length: LengthUnit.DtpPica), "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.DtpPoint, "DtpPoints", new BaseUnits(length: LengthUnit.DtpPoint), "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.Fathom, "Fathoms", new BaseUnits(length: LengthUnit.Fathom), "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.Foot, "Feet", new BaseUnits(length: LengthUnit.Foot), "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.Hand, "Hands", new BaseUnits(length: LengthUnit.Hand), "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.Hectometer, "Hectometers", BaseUnits.Undefined, "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.Inch, "Inches", new BaseUnits(length: LengthUnit.Inch), "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.KilolightYear, "KilolightYears", BaseUnits.Undefined, "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.Kilometer, "Kilometers", BaseUnits.Undefined, "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.Kiloparsec, "Kiloparsecs", BaseUnits.Undefined, "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.LightYear, "LightYears", BaseUnits.Undefined, "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.MegalightYear, "MegalightYears", BaseUnits.Undefined, "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.Megameter, "Megameters", BaseUnits.Undefined, "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.Megaparsec, "Megaparsecs", BaseUnits.Undefined, "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.Meter, "Meters", new BaseUnits(length: LengthUnit.Meter), "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.Microinch, "Microinches", new BaseUnits(length: LengthUnit.Microinch), "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.Micrometer, "Micrometers", BaseUnits.Undefined, "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.Mil, "Mils", new BaseUnits(length: LengthUnit.Mil), "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.Mile, "Miles", new BaseUnits(length: LengthUnit.Mile), "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.Millimeter, "Millimeters", BaseUnits.Undefined, "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.Nanometer, "Nanometers", BaseUnits.Undefined, "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.NauticalMile, "NauticalMiles", new BaseUnits(length: LengthUnit.NauticalMile), "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.Parsec, "Parsecs", BaseUnits.Undefined, "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.PrinterPica, "PrinterPicas", new BaseUnits(length: LengthUnit.PrinterPica), "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.PrinterPoint, "PrinterPoints", new BaseUnits(length: LengthUnit.PrinterPoint), "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.Shackle, "Shackles", new BaseUnits(length: LengthUnit.Shackle), "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.SolarRadius, "SolarRadiuses", BaseUnits.Undefined, "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.Twip, "Twips", new BaseUnits(length: LengthUnit.Twip), "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.UsSurveyFoot, "UsSurveyFeet", new BaseUnits(length: LengthUnit.UsSurveyFoot), "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.Yard, "Yards", new BaseUnits(length: LengthUnit.Yard), "Length"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -478,81 +478,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Twip, quantity => quantity.ToUnit(LengthUnit.Twip));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.UsSurveyFoot, quantity => quantity.ToUnit(LengthUnit.UsSurveyFoot));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Yard, quantity => quantity.ToUnit(LengthUnit.Yard));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Angstrom, new CultureInfo("en-US"), false, true, new string[]{"Å", "A"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.AstronomicalUnit, new CultureInfo("en-US"), false, true, new string[]{"au", "ua"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Centimeter, new CultureInfo("en-US"), false, true, new string[]{"cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Centimeter, new CultureInfo("ru-RU"), false, true, new string[]{"см"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Centimeter, new CultureInfo("zh-CN"), false, true, new string[]{"厘米"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Chain, new CultureInfo("en-US"), false, true, new string[]{"ch"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.DataMile, new CultureInfo("en-US"), false, true, new string[]{"DM"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Decameter, new CultureInfo("en-US"), false, true, new string[]{"dam"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Decameter, new CultureInfo("ru-RU"), false, true, new string[]{"дам"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Decameter, new CultureInfo("zh-CN"), false, true, new string[]{"十米"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Decimeter, new CultureInfo("en-US"), false, true, new string[]{"dm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Decimeter, new CultureInfo("ru-RU"), false, true, new string[]{"дм"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Decimeter, new CultureInfo("zh-CN"), false, true, new string[]{"分米"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.DtpPica, new CultureInfo("en-US"), false, true, new string[]{"pica"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.DtpPoint, new CultureInfo("en-US"), false, true, new string[]{"pt"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Fathom, new CultureInfo("en-US"), false, true, new string[]{"fathom"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Foot, new CultureInfo("en-US"), false, true, new string[]{"ft", "'", "′"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Foot, new CultureInfo("ru-RU"), false, true, new string[]{"фут"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Foot, new CultureInfo("zh-CN"), false, true, new string[]{"英尺"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Hand, new CultureInfo("en-US"), false, true, new string[]{"h", "hh"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Hectometer, new CultureInfo("en-US"), false, true, new string[]{"hm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Hectometer, new CultureInfo("ru-RU"), false, true, new string[]{"гм"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Hectometer, new CultureInfo("zh-CN"), false, true, new string[]{"百米"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Inch, new CultureInfo("en-US"), false, true, new string[]{"in", "\"", "″"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Inch, new CultureInfo("ru-RU"), false, true, new string[]{"дюйм"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Inch, new CultureInfo("zh-CN"), false, true, new string[]{"英寸"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.KilolightYear, new CultureInfo("en-US"), false, true, new string[]{"kly"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Kilometer, new CultureInfo("en-US"), false, true, new string[]{"km"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Kilometer, new CultureInfo("ru-RU"), false, true, new string[]{"км"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Kilometer, new CultureInfo("zh-CN"), false, true, new string[]{"千米"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Kiloparsec, new CultureInfo("en-US"), false, true, new string[]{"kpc"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.LightYear, new CultureInfo("en-US"), false, true, new string[]{"ly"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.MegalightYear, new CultureInfo("en-US"), false, true, new string[]{"Mly"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Megameter, new CultureInfo("en-US"), false, true, new string[]{"Mm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Megameter, new CultureInfo("ru-RU"), false, true, new string[]{"Мм"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Megameter, new CultureInfo("zh-CN"), false, true, new string[]{"兆米"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Megaparsec, new CultureInfo("en-US"), false, true, new string[]{"Mpc"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Meter, new CultureInfo("en-US"), false, true, new string[]{"m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Meter, new CultureInfo("ru-RU"), false, true, new string[]{"м"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Meter, new CultureInfo("zh-CN"), false, true, new string[]{"米"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Microinch, new CultureInfo("en-US"), false, true, new string[]{"µin"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Microinch, new CultureInfo("ru-RU"), false, true, new string[]{"микродюйм"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Microinch, new CultureInfo("zh-CN"), false, true, new string[]{"微英寸"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Micrometer, new CultureInfo("en-US"), false, true, new string[]{"µm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Micrometer, new CultureInfo("ru-RU"), false, true, new string[]{"мкм"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Micrometer, new CultureInfo("zh-CN"), false, true, new string[]{"微米"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Mil, new CultureInfo("en-US"), false, true, new string[]{"mil"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Mil, new CultureInfo("ru-RU"), false, true, new string[]{"мил"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Mil, new CultureInfo("zh-CN"), false, true, new string[]{"密耳"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Mile, new CultureInfo("en-US"), false, true, new string[]{"mi"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Mile, new CultureInfo("ru-RU"), false, true, new string[]{"миля"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Mile, new CultureInfo("zh-CN"), false, true, new string[]{"英里"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Millimeter, new CultureInfo("en-US"), false, true, new string[]{"mm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Millimeter, new CultureInfo("ru-RU"), false, true, new string[]{"мм"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Millimeter, new CultureInfo("zh-CN"), false, true, new string[]{"毫米"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Nanometer, new CultureInfo("en-US"), false, true, new string[]{"nm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Nanometer, new CultureInfo("ru-RU"), false, true, new string[]{"нм"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Nanometer, new CultureInfo("zh-CN"), false, true, new string[]{"纳米"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.NauticalMile, new CultureInfo("en-US"), false, true, new string[]{"NM"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.NauticalMile, new CultureInfo("ru-RU"), false, true, new string[]{"мил"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.NauticalMile, new CultureInfo("zh-CN"), false, true, new string[]{"纳米"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Parsec, new CultureInfo("en-US"), false, true, new string[]{"pc"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.PrinterPica, new CultureInfo("en-US"), false, true, new string[]{"pica"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.PrinterPoint, new CultureInfo("en-US"), false, true, new string[]{"pt"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Shackle, new CultureInfo("en-US"), false, true, new string[]{"shackle"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.SolarRadius, new CultureInfo("en-US"), false, true, new string[]{"R⊙"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Twip, new CultureInfo("en-US"), false, true, new string[]{"twip"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.UsSurveyFoot, new CultureInfo("en-US"), false, true, new string[]{"ftUS"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Yard, new CultureInfo("en-US"), false, true, new string[]{"yd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Yard, new CultureInfo("ru-RU"), false, true, new string[]{"ярд"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Yard, new CultureInfo("zh-CN"), false, true, new string[]{"码"});
         }
 
         /// <summary>

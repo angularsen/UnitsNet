@@ -65,9 +65,9 @@ namespace UnitsNet
             Info = new QuantityInfo<ReactiveEnergyUnit>("ReactiveEnergy",
                 new UnitInfo<ReactiveEnergyUnit>[]
                 {
-                    new UnitInfo<ReactiveEnergyUnit>(ReactiveEnergyUnit.KilovoltampereReactiveHour, "KilovoltampereReactiveHours", BaseUnits.Undefined),
-                    new UnitInfo<ReactiveEnergyUnit>(ReactiveEnergyUnit.MegavoltampereReactiveHour, "MegavoltampereReactiveHours", BaseUnits.Undefined),
-                    new UnitInfo<ReactiveEnergyUnit>(ReactiveEnergyUnit.VoltampereReactiveHour, "VoltampereReactiveHours", BaseUnits.Undefined),
+                    new UnitInfo<ReactiveEnergyUnit>(ReactiveEnergyUnit.KilovoltampereReactiveHour, "KilovoltampereReactiveHours", BaseUnits.Undefined, "ReactiveEnergy"),
+                    new UnitInfo<ReactiveEnergyUnit>(ReactiveEnergyUnit.MegavoltampereReactiveHour, "MegavoltampereReactiveHours", BaseUnits.Undefined, "ReactiveEnergy"),
+                    new UnitInfo<ReactiveEnergyUnit>(ReactiveEnergyUnit.VoltampereReactiveHour, "VoltampereReactiveHours", BaseUnits.Undefined, "ReactiveEnergy"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -206,13 +206,6 @@ namespace UnitsNet
             // Register in unit converter: BaseUnit -> ReactiveEnergyUnit
             unitConverter.SetConversionFunction<ReactiveEnergy>(ReactiveEnergyUnit.VoltampereReactiveHour, ReactiveEnergyUnit.KilovoltampereReactiveHour, quantity => quantity.ToUnit(ReactiveEnergyUnit.KilovoltampereReactiveHour));
             unitConverter.SetConversionFunction<ReactiveEnergy>(ReactiveEnergyUnit.VoltampereReactiveHour, ReactiveEnergyUnit.MegavoltampereReactiveHour, quantity => quantity.ToUnit(ReactiveEnergyUnit.MegavoltampereReactiveHour));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ReactiveEnergyUnit.KilovoltampereReactiveHour, new CultureInfo("en-US"), false, true, new string[]{"kvarh"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ReactiveEnergyUnit.MegavoltampereReactiveHour, new CultureInfo("en-US"), false, true, new string[]{"Mvarh"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ReactiveEnergyUnit.VoltampereReactiveHour, new CultureInfo("en-US"), false, true, new string[]{"varh"});
         }
 
         /// <summary>

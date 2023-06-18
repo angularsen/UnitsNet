@@ -65,17 +65,17 @@ namespace UnitsNet
             Info = new QuantityInfo<JerkUnit>("Jerk",
                 new UnitInfo<JerkUnit>[]
                 {
-                    new UnitInfo<JerkUnit>(JerkUnit.CentimeterPerSecondCubed, "CentimetersPerSecondCubed", BaseUnits.Undefined),
-                    new UnitInfo<JerkUnit>(JerkUnit.DecimeterPerSecondCubed, "DecimetersPerSecondCubed", BaseUnits.Undefined),
-                    new UnitInfo<JerkUnit>(JerkUnit.FootPerSecondCubed, "FeetPerSecondCubed", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Second)),
-                    new UnitInfo<JerkUnit>(JerkUnit.InchPerSecondCubed, "InchesPerSecondCubed", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Second)),
-                    new UnitInfo<JerkUnit>(JerkUnit.KilometerPerSecondCubed, "KilometersPerSecondCubed", BaseUnits.Undefined),
-                    new UnitInfo<JerkUnit>(JerkUnit.MeterPerSecondCubed, "MetersPerSecondCubed", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second)),
-                    new UnitInfo<JerkUnit>(JerkUnit.MicrometerPerSecondCubed, "MicrometersPerSecondCubed", BaseUnits.Undefined),
-                    new UnitInfo<JerkUnit>(JerkUnit.MillimeterPerSecondCubed, "MillimetersPerSecondCubed", BaseUnits.Undefined),
-                    new UnitInfo<JerkUnit>(JerkUnit.MillistandardGravitiesPerSecond, "MillistandardGravitiesPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<JerkUnit>(JerkUnit.NanometerPerSecondCubed, "NanometersPerSecondCubed", BaseUnits.Undefined),
-                    new UnitInfo<JerkUnit>(JerkUnit.StandardGravitiesPerSecond, "StandardGravitiesPerSecond", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second)),
+                    new UnitInfo<JerkUnit>(JerkUnit.CentimeterPerSecondCubed, "CentimetersPerSecondCubed", BaseUnits.Undefined, "Jerk"),
+                    new UnitInfo<JerkUnit>(JerkUnit.DecimeterPerSecondCubed, "DecimetersPerSecondCubed", BaseUnits.Undefined, "Jerk"),
+                    new UnitInfo<JerkUnit>(JerkUnit.FootPerSecondCubed, "FeetPerSecondCubed", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Second), "Jerk"),
+                    new UnitInfo<JerkUnit>(JerkUnit.InchPerSecondCubed, "InchesPerSecondCubed", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Second), "Jerk"),
+                    new UnitInfo<JerkUnit>(JerkUnit.KilometerPerSecondCubed, "KilometersPerSecondCubed", BaseUnits.Undefined, "Jerk"),
+                    new UnitInfo<JerkUnit>(JerkUnit.MeterPerSecondCubed, "MetersPerSecondCubed", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second), "Jerk"),
+                    new UnitInfo<JerkUnit>(JerkUnit.MicrometerPerSecondCubed, "MicrometersPerSecondCubed", BaseUnits.Undefined, "Jerk"),
+                    new UnitInfo<JerkUnit>(JerkUnit.MillimeterPerSecondCubed, "MillimetersPerSecondCubed", BaseUnits.Undefined, "Jerk"),
+                    new UnitInfo<JerkUnit>(JerkUnit.MillistandardGravitiesPerSecond, "MillistandardGravitiesPerSecond", BaseUnits.Undefined, "Jerk"),
+                    new UnitInfo<JerkUnit>(JerkUnit.NanometerPerSecondCubed, "NanometersPerSecondCubed", BaseUnits.Undefined, "Jerk"),
+                    new UnitInfo<JerkUnit>(JerkUnit.StandardGravitiesPerSecond, "StandardGravitiesPerSecond", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second), "Jerk"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -270,32 +270,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Jerk>(JerkUnit.MeterPerSecondCubed, JerkUnit.MillistandardGravitiesPerSecond, quantity => quantity.ToUnit(JerkUnit.MillistandardGravitiesPerSecond));
             unitConverter.SetConversionFunction<Jerk>(JerkUnit.MeterPerSecondCubed, JerkUnit.NanometerPerSecondCubed, quantity => quantity.ToUnit(JerkUnit.NanometerPerSecondCubed));
             unitConverter.SetConversionFunction<Jerk>(JerkUnit.MeterPerSecondCubed, JerkUnit.StandardGravitiesPerSecond, quantity => quantity.ToUnit(JerkUnit.StandardGravitiesPerSecond));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.CentimeterPerSecondCubed, new CultureInfo("en-US"), false, true, new string[]{"cm/s³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.CentimeterPerSecondCubed, new CultureInfo("ru-RU"), false, true, new string[]{"см/с³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.DecimeterPerSecondCubed, new CultureInfo("en-US"), false, true, new string[]{"dm/s³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.DecimeterPerSecondCubed, new CultureInfo("ru-RU"), false, true, new string[]{"дм/с³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.FootPerSecondCubed, new CultureInfo("en-US"), false, true, new string[]{"ft/s³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.FootPerSecondCubed, new CultureInfo("ru-RU"), false, true, new string[]{"фут/с³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.InchPerSecondCubed, new CultureInfo("en-US"), false, true, new string[]{"in/s³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.InchPerSecondCubed, new CultureInfo("ru-RU"), false, true, new string[]{"дюйм/с³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.KilometerPerSecondCubed, new CultureInfo("en-US"), false, true, new string[]{"km/s³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.KilometerPerSecondCubed, new CultureInfo("ru-RU"), false, true, new string[]{"км/с³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.MeterPerSecondCubed, new CultureInfo("en-US"), false, true, new string[]{"m/s³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.MeterPerSecondCubed, new CultureInfo("ru-RU"), false, true, new string[]{"м/с³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.MicrometerPerSecondCubed, new CultureInfo("en-US"), false, true, new string[]{"µm/s³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.MicrometerPerSecondCubed, new CultureInfo("ru-RU"), false, true, new string[]{"мкм/с³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.MillimeterPerSecondCubed, new CultureInfo("en-US"), false, true, new string[]{"mm/s³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.MillimeterPerSecondCubed, new CultureInfo("ru-RU"), false, true, new string[]{"мм/с³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.MillistandardGravitiesPerSecond, new CultureInfo("en-US"), false, true, new string[]{"mg/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.MillistandardGravitiesPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"мg/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.NanometerPerSecondCubed, new CultureInfo("en-US"), false, true, new string[]{"nm/s³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.NanometerPerSecondCubed, new CultureInfo("ru-RU"), false, true, new string[]{"нм/с³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.StandardGravitiesPerSecond, new CultureInfo("en-US"), false, true, new string[]{"g/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.StandardGravitiesPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"g/s"});
         }
 
         /// <summary>

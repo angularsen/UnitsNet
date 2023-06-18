@@ -65,12 +65,12 @@ namespace UnitsNet
             Info = new QuantityInfo<ApparentPowerUnit>("ApparentPower",
                 new UnitInfo<ApparentPowerUnit>[]
                 {
-                    new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Gigavoltampere, "Gigavoltamperes", BaseUnits.Undefined),
-                    new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Kilovoltampere, "Kilovoltamperes", BaseUnits.Undefined),
-                    new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Megavoltampere, "Megavoltamperes", BaseUnits.Undefined),
-                    new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Microvoltampere, "Microvoltamperes", BaseUnits.Undefined),
-                    new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Millivoltampere, "Millivoltamperes", BaseUnits.Undefined),
-                    new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Voltampere, "Voltamperes", BaseUnits.Undefined),
+                    new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Gigavoltampere, "Gigavoltamperes", BaseUnits.Undefined, "ApparentPower"),
+                    new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Kilovoltampere, "Kilovoltamperes", BaseUnits.Undefined, "ApparentPower"),
+                    new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Megavoltampere, "Megavoltamperes", BaseUnits.Undefined, "ApparentPower"),
+                    new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Microvoltampere, "Microvoltamperes", BaseUnits.Undefined, "ApparentPower"),
+                    new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Millivoltampere, "Millivoltamperes", BaseUnits.Undefined, "ApparentPower"),
+                    new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Voltampere, "Voltamperes", BaseUnits.Undefined, "ApparentPower"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -230,16 +230,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Voltampere, ApparentPowerUnit.Megavoltampere, quantity => quantity.ToUnit(ApparentPowerUnit.Megavoltampere));
             unitConverter.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Voltampere, ApparentPowerUnit.Microvoltampere, quantity => quantity.ToUnit(ApparentPowerUnit.Microvoltampere));
             unitConverter.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Voltampere, ApparentPowerUnit.Millivoltampere, quantity => quantity.ToUnit(ApparentPowerUnit.Millivoltampere));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ApparentPowerUnit.Gigavoltampere, new CultureInfo("en-US"), false, true, new string[]{"GVA"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ApparentPowerUnit.Kilovoltampere, new CultureInfo("en-US"), false, true, new string[]{"kVA"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ApparentPowerUnit.Megavoltampere, new CultureInfo("en-US"), false, true, new string[]{"MVA"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ApparentPowerUnit.Microvoltampere, new CultureInfo("en-US"), false, true, new string[]{"µVA"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ApparentPowerUnit.Millivoltampere, new CultureInfo("en-US"), false, true, new string[]{"mVA"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ApparentPowerUnit.Voltampere, new CultureInfo("en-US"), false, true, new string[]{"VA"});
         }
 
         /// <summary>

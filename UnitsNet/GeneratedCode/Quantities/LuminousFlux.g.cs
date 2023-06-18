@@ -68,7 +68,7 @@ namespace UnitsNet
             Info = new QuantityInfo<LuminousFluxUnit>("LuminousFlux",
                 new UnitInfo<LuminousFluxUnit>[]
                 {
-                    new UnitInfo<LuminousFluxUnit>(LuminousFluxUnit.Lumen, "Lumens", BaseUnits.Undefined),
+                    new UnitInfo<LuminousFluxUnit>(LuminousFluxUnit.Lumen, "Lumens", BaseUnits.Undefined, "LuminousFlux"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -193,11 +193,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<LuminousFlux>(LuminousFluxUnit.Lumen, LuminousFluxUnit.Lumen, quantity => quantity);
 
             // Register in unit converter: BaseUnit -> LuminousFluxUnit
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminousFluxUnit.Lumen, new CultureInfo("en-US"), false, true, new string[]{"lm"});
         }
 
         /// <summary>

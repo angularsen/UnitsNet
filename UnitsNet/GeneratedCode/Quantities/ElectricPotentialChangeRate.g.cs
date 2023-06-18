@@ -65,26 +65,26 @@ namespace UnitsNet
             Info = new QuantityInfo<ElectricPotentialChangeRateUnit>("ElectricPotentialChangeRate",
                 new UnitInfo<ElectricPotentialChangeRateUnit>[]
                 {
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.KilovoltPerHour, "KilovoltsPerHours", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond, "KilovoltsPerMicroseconds", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.KilovoltPerMinute, "KilovoltsPerMinutes", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.KilovoltPerSecond, "KilovoltsPerSeconds", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MegavoltPerHour, "MegavoltsPerHours", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond, "MegavoltsPerMicroseconds", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MegavoltPerMinute, "MegavoltsPerMinutes", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MegavoltPerSecond, "MegavoltsPerSeconds", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MicrovoltPerHour, "MicrovoltsPerHours", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond, "MicrovoltsPerMicroseconds", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MicrovoltPerMinute, "MicrovoltsPerMinutes", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MicrovoltPerSecond, "MicrovoltsPerSeconds", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MillivoltPerHour, "MillivoltsPerHours", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond, "MillivoltsPerMicroseconds", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MillivoltPerMinute, "MillivoltsPerMinutes", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MillivoltPerSecond, "MillivoltsPerSeconds", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.VoltPerHour, "VoltsPerHours", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Hour, current: ElectricCurrentUnit.Ampere)),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.VoltPerMicrosecond, "VoltsPerMicroseconds", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Microsecond, current: ElectricCurrentUnit.Ampere)),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.VoltPerMinute, "VoltsPerMinutes", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Minute, current: ElectricCurrentUnit.Ampere)),
-                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.VoltPerSecond, "VoltsPerSeconds", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
+                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.KilovoltPerHour, "KilovoltsPerHours", BaseUnits.Undefined, "ElectricPotentialChangeRate"),
+                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond, "KilovoltsPerMicroseconds", BaseUnits.Undefined, "ElectricPotentialChangeRate"),
+                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.KilovoltPerMinute, "KilovoltsPerMinutes", BaseUnits.Undefined, "ElectricPotentialChangeRate"),
+                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.KilovoltPerSecond, "KilovoltsPerSeconds", BaseUnits.Undefined, "ElectricPotentialChangeRate"),
+                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MegavoltPerHour, "MegavoltsPerHours", BaseUnits.Undefined, "ElectricPotentialChangeRate"),
+                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond, "MegavoltsPerMicroseconds", BaseUnits.Undefined, "ElectricPotentialChangeRate"),
+                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MegavoltPerMinute, "MegavoltsPerMinutes", BaseUnits.Undefined, "ElectricPotentialChangeRate"),
+                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MegavoltPerSecond, "MegavoltsPerSeconds", BaseUnits.Undefined, "ElectricPotentialChangeRate"),
+                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MicrovoltPerHour, "MicrovoltsPerHours", BaseUnits.Undefined, "ElectricPotentialChangeRate"),
+                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond, "MicrovoltsPerMicroseconds", BaseUnits.Undefined, "ElectricPotentialChangeRate"),
+                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MicrovoltPerMinute, "MicrovoltsPerMinutes", BaseUnits.Undefined, "ElectricPotentialChangeRate"),
+                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MicrovoltPerSecond, "MicrovoltsPerSeconds", BaseUnits.Undefined, "ElectricPotentialChangeRate"),
+                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MillivoltPerHour, "MillivoltsPerHours", BaseUnits.Undefined, "ElectricPotentialChangeRate"),
+                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond, "MillivoltsPerMicroseconds", BaseUnits.Undefined, "ElectricPotentialChangeRate"),
+                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MillivoltPerMinute, "MillivoltsPerMinutes", BaseUnits.Undefined, "ElectricPotentialChangeRate"),
+                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.MillivoltPerSecond, "MillivoltsPerSeconds", BaseUnits.Undefined, "ElectricPotentialChangeRate"),
+                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.VoltPerHour, "VoltsPerHours", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Hour, current: ElectricCurrentUnit.Ampere), "ElectricPotentialChangeRate"),
+                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.VoltPerMicrosecond, "VoltsPerMicroseconds", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Microsecond, current: ElectricCurrentUnit.Ampere), "ElectricPotentialChangeRate"),
+                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.VoltPerMinute, "VoltsPerMinutes", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Minute, current: ElectricCurrentUnit.Ampere), "ElectricPotentialChangeRate"),
+                    new UnitInfo<ElectricPotentialChangeRateUnit>(ElectricPotentialChangeRateUnit.VoltPerSecond, "VoltsPerSeconds", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricPotentialChangeRate"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -342,30 +342,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.VoltPerHour, quantity => quantity.ToUnit(ElectricPotentialChangeRateUnit.VoltPerHour));
             unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.VoltPerMicrosecond, quantity => quantity.ToUnit(ElectricPotentialChangeRateUnit.VoltPerMicrosecond));
             unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.VoltPerMinute, quantity => quantity.ToUnit(ElectricPotentialChangeRateUnit.VoltPerMinute));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.KilovoltPerHour, new CultureInfo("en-US"), false, true, new string[]{"kV/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond, new CultureInfo("en-US"), false, true, new string[]{"kV/μs"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.KilovoltPerMinute, new CultureInfo("en-US"), false, true, new string[]{"kV/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.KilovoltPerSecond, new CultureInfo("en-US"), false, true, new string[]{"kV/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.MegavoltPerHour, new CultureInfo("en-US"), false, true, new string[]{"MV/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond, new CultureInfo("en-US"), false, true, new string[]{"MV/μs"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.MegavoltPerMinute, new CultureInfo("en-US"), false, true, new string[]{"MV/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.MegavoltPerSecond, new CultureInfo("en-US"), false, true, new string[]{"MV/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.MicrovoltPerHour, new CultureInfo("en-US"), false, true, new string[]{"µV/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond, new CultureInfo("en-US"), false, true, new string[]{"µV/μs"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.MicrovoltPerMinute, new CultureInfo("en-US"), false, true, new string[]{"µV/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.MicrovoltPerSecond, new CultureInfo("en-US"), false, true, new string[]{"µV/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.MillivoltPerHour, new CultureInfo("en-US"), false, true, new string[]{"mV/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond, new CultureInfo("en-US"), false, true, new string[]{"mV/μs"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.MillivoltPerMinute, new CultureInfo("en-US"), false, true, new string[]{"mV/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.MillivoltPerSecond, new CultureInfo("en-US"), false, true, new string[]{"mV/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.VoltPerHour, new CultureInfo("en-US"), false, true, new string[]{"V/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.VoltPerMicrosecond, new CultureInfo("en-US"), false, true, new string[]{"V/μs"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.VoltPerMinute, new CultureInfo("en-US"), false, true, new string[]{"V/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.VoltPerSecond, new CultureInfo("en-US"), false, true, new string[]{"V/s"});
         }
 
         /// <summary>

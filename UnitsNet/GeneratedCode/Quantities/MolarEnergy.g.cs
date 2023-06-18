@@ -65,9 +65,9 @@ namespace UnitsNet
             Info = new QuantityInfo<MolarEnergyUnit>("MolarEnergy",
                 new UnitInfo<MolarEnergyUnit>[]
                 {
-                    new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.JoulePerMole, "JoulesPerMole", BaseUnits.Undefined),
-                    new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.KilojoulePerMole, "KilojoulesPerMole", BaseUnits.Undefined),
-                    new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.MegajoulePerMole, "MegajoulesPerMole", BaseUnits.Undefined),
+                    new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.JoulePerMole, "JoulesPerMole", BaseUnits.Undefined, "MolarEnergy"),
+                    new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.KilojoulePerMole, "KilojoulesPerMole", BaseUnits.Undefined, "MolarEnergy"),
+                    new UnitInfo<MolarEnergyUnit>(MolarEnergyUnit.MegajoulePerMole, "MegajoulesPerMole", BaseUnits.Undefined, "MolarEnergy"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -206,13 +206,6 @@ namespace UnitsNet
             // Register in unit converter: BaseUnit -> MolarEnergyUnit
             unitConverter.SetConversionFunction<MolarEnergy>(MolarEnergyUnit.JoulePerMole, MolarEnergyUnit.KilojoulePerMole, quantity => quantity.ToUnit(MolarEnergyUnit.KilojoulePerMole));
             unitConverter.SetConversionFunction<MolarEnergy>(MolarEnergyUnit.JoulePerMole, MolarEnergyUnit.MegajoulePerMole, quantity => quantity.ToUnit(MolarEnergyUnit.MegajoulePerMole));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarEnergyUnit.JoulePerMole, new CultureInfo("en-US"), false, true, new string[]{"J/mol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarEnergyUnit.KilojoulePerMole, new CultureInfo("en-US"), false, true, new string[]{"kJ/mol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarEnergyUnit.MegajoulePerMole, new CultureInfo("en-US"), false, true, new string[]{"MJ/mol"});
         }
 
         /// <summary>

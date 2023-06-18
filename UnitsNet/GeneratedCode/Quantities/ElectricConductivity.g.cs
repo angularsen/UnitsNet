@@ -68,12 +68,12 @@ namespace UnitsNet
             Info = new QuantityInfo<ElectricConductivityUnit>("ElectricConductivity",
                 new UnitInfo<ElectricConductivityUnit>[]
                 {
-                    new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.MicrosiemensPerCentimeter, "MicrosiemensPerCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.MillisiemensPerCentimeter, "MillisiemensPerCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerCentimeter, "SiemensPerCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerFoot, "SiemensPerFoot", BaseUnits.Undefined),
-                    new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerInch, "SiemensPerInch", BaseUnits.Undefined),
-                    new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerMeter, "SiemensPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
+                    new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.MicrosiemensPerCentimeter, "MicrosiemensPerCentimeter", BaseUnits.Undefined, "ElectricConductivity"),
+                    new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.MillisiemensPerCentimeter, "MillisiemensPerCentimeter", BaseUnits.Undefined, "ElectricConductivity"),
+                    new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerCentimeter, "SiemensPerCentimeter", BaseUnits.Undefined, "ElectricConductivity"),
+                    new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerFoot, "SiemensPerFoot", BaseUnits.Undefined, "ElectricConductivity"),
+                    new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerInch, "SiemensPerInch", BaseUnits.Undefined, "ElectricConductivity"),
+                    new UnitInfo<ElectricConductivityUnit>(ElectricConductivityUnit.SiemensPerMeter, "SiemensPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricConductivity"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -233,16 +233,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricConductivity>(ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerCentimeter, quantity => quantity.ToUnit(ElectricConductivityUnit.SiemensPerCentimeter));
             unitConverter.SetConversionFunction<ElectricConductivity>(ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerFoot, quantity => quantity.ToUnit(ElectricConductivityUnit.SiemensPerFoot));
             unitConverter.SetConversionFunction<ElectricConductivity>(ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerInch, quantity => quantity.ToUnit(ElectricConductivityUnit.SiemensPerInch));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricConductivityUnit.MicrosiemensPerCentimeter, new CultureInfo("en-US"), false, true, new string[]{"µS/cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricConductivityUnit.MillisiemensPerCentimeter, new CultureInfo("en-US"), false, true, new string[]{"mS/cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricConductivityUnit.SiemensPerCentimeter, new CultureInfo("en-US"), false, true, new string[]{"S/cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricConductivityUnit.SiemensPerFoot, new CultureInfo("en-US"), false, true, new string[]{"S/ft"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricConductivityUnit.SiemensPerInch, new CultureInfo("en-US"), false, true, new string[]{"S/in"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricConductivityUnit.SiemensPerMeter, new CultureInfo("en-US"), false, true, new string[]{"S/m"});
         }
 
         /// <summary>

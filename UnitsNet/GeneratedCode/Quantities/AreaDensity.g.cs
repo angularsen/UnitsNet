@@ -65,9 +65,9 @@ namespace UnitsNet
             Info = new QuantityInfo<AreaDensityUnit>("AreaDensity",
                 new UnitInfo<AreaDensityUnit>[]
                 {
-                    new UnitInfo<AreaDensityUnit>(AreaDensityUnit.GramPerSquareMeter, "GramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram)),
-                    new UnitInfo<AreaDensityUnit>(AreaDensityUnit.KilogramPerSquareMeter, "KilogramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram)),
-                    new UnitInfo<AreaDensityUnit>(AreaDensityUnit.MilligramPerSquareMeter, "MilligramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram)),
+                    new UnitInfo<AreaDensityUnit>(AreaDensityUnit.GramPerSquareMeter, "GramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram), "AreaDensity"),
+                    new UnitInfo<AreaDensityUnit>(AreaDensityUnit.KilogramPerSquareMeter, "KilogramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram), "AreaDensity"),
+                    new UnitInfo<AreaDensityUnit>(AreaDensityUnit.MilligramPerSquareMeter, "MilligramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram), "AreaDensity"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -206,13 +206,6 @@ namespace UnitsNet
             // Register in unit converter: BaseUnit -> AreaDensityUnit
             unitConverter.SetConversionFunction<AreaDensity>(AreaDensityUnit.KilogramPerSquareMeter, AreaDensityUnit.GramPerSquareMeter, quantity => quantity.ToUnit(AreaDensityUnit.GramPerSquareMeter));
             unitConverter.SetConversionFunction<AreaDensity>(AreaDensityUnit.KilogramPerSquareMeter, AreaDensityUnit.MilligramPerSquareMeter, quantity => quantity.ToUnit(AreaDensityUnit.MilligramPerSquareMeter));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaDensityUnit.GramPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"g/m²", "gsm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaDensityUnit.KilogramPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"kg/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaDensityUnit.MilligramPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"mg/m²"});
         }
 
         /// <summary>

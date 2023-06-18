@@ -68,30 +68,30 @@ namespace UnitsNet
             Info = new QuantityInfo<MassFractionUnit>("MassFraction",
                 new UnitInfo<MassFractionUnit>[]
                 {
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.CentigramPerGram, "CentigramsPerGram", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.CentigramPerKilogram, "CentigramsPerKilogram", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.DecagramPerGram, "DecagramsPerGram", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.DecagramPerKilogram, "DecagramsPerKilogram", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.DecigramPerGram, "DecigramsPerGram", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.DecigramPerKilogram, "DecigramsPerKilogram", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.DecimalFraction, "DecimalFractions", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.GramPerGram, "GramsPerGram", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.GramPerKilogram, "GramsPerKilogram", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.HectogramPerGram, "HectogramsPerGram", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.HectogramPerKilogram, "HectogramsPerKilogram", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.KilogramPerGram, "KilogramsPerGram", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.KilogramPerKilogram, "KilogramsPerKilogram", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.MicrogramPerGram, "MicrogramsPerGram", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.MicrogramPerKilogram, "MicrogramsPerKilogram", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.MilligramPerGram, "MilligramsPerGram", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.MilligramPerKilogram, "MilligramsPerKilogram", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.NanogramPerGram, "NanogramsPerGram", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.NanogramPerKilogram, "NanogramsPerKilogram", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerBillion, "PartsPerBillion", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerMillion, "PartsPerMillion", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerThousand, "PartsPerThousand", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerTrillion, "PartsPerTrillion", BaseUnits.Undefined),
-                    new UnitInfo<MassFractionUnit>(MassFractionUnit.Percent, "Percent", BaseUnits.Undefined),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.CentigramPerGram, "CentigramsPerGram", BaseUnits.Undefined, "MassFraction"),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.CentigramPerKilogram, "CentigramsPerKilogram", BaseUnits.Undefined, "MassFraction"),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.DecagramPerGram, "DecagramsPerGram", BaseUnits.Undefined, "MassFraction"),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.DecagramPerKilogram, "DecagramsPerKilogram", BaseUnits.Undefined, "MassFraction"),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.DecigramPerGram, "DecigramsPerGram", BaseUnits.Undefined, "MassFraction"),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.DecigramPerKilogram, "DecigramsPerKilogram", BaseUnits.Undefined, "MassFraction"),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.DecimalFraction, "DecimalFractions", BaseUnits.Undefined, "MassFraction"),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.GramPerGram, "GramsPerGram", BaseUnits.Undefined, "MassFraction"),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.GramPerKilogram, "GramsPerKilogram", BaseUnits.Undefined, "MassFraction"),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.HectogramPerGram, "HectogramsPerGram", BaseUnits.Undefined, "MassFraction"),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.HectogramPerKilogram, "HectogramsPerKilogram", BaseUnits.Undefined, "MassFraction"),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.KilogramPerGram, "KilogramsPerGram", BaseUnits.Undefined, "MassFraction"),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.KilogramPerKilogram, "KilogramsPerKilogram", BaseUnits.Undefined, "MassFraction"),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.MicrogramPerGram, "MicrogramsPerGram", BaseUnits.Undefined, "MassFraction"),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.MicrogramPerKilogram, "MicrogramsPerKilogram", BaseUnits.Undefined, "MassFraction"),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.MilligramPerGram, "MilligramsPerGram", BaseUnits.Undefined, "MassFraction"),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.MilligramPerKilogram, "MilligramsPerKilogram", BaseUnits.Undefined, "MassFraction"),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.NanogramPerGram, "NanogramsPerGram", BaseUnits.Undefined, "MassFraction"),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.NanogramPerKilogram, "NanogramsPerKilogram", BaseUnits.Undefined, "MassFraction"),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerBillion, "PartsPerBillion", BaseUnits.Undefined, "MassFraction"),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerMillion, "PartsPerMillion", BaseUnits.Undefined, "MassFraction"),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerThousand, "PartsPerThousand", BaseUnits.Undefined, "MassFraction"),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.PartPerTrillion, "PartsPerTrillion", BaseUnits.Undefined, "MassFraction"),
+                    new UnitInfo<MassFractionUnit>(MassFractionUnit.Percent, "Percent", BaseUnits.Undefined, "MassFraction"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -377,34 +377,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MassFraction>(MassFractionUnit.DecimalFraction, MassFractionUnit.PartPerThousand, quantity => quantity.ToUnit(MassFractionUnit.PartPerThousand));
             unitConverter.SetConversionFunction<MassFraction>(MassFractionUnit.DecimalFraction, MassFractionUnit.PartPerTrillion, quantity => quantity.ToUnit(MassFractionUnit.PartPerTrillion));
             unitConverter.SetConversionFunction<MassFraction>(MassFractionUnit.DecimalFraction, MassFractionUnit.Percent, quantity => quantity.ToUnit(MassFractionUnit.Percent));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.CentigramPerGram, new CultureInfo("en-US"), false, true, new string[]{"cg/g"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.CentigramPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"cg/kg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.DecagramPerGram, new CultureInfo("en-US"), false, true, new string[]{"dag/g"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.DecagramPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"dag/kg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.DecigramPerGram, new CultureInfo("en-US"), false, true, new string[]{"dg/g"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.DecigramPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"dg/kg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.DecimalFraction, new CultureInfo("en-US"), false, true, new string[]{""});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.GramPerGram, new CultureInfo("en-US"), false, true, new string[]{"g/g"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.GramPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"g/kg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.HectogramPerGram, new CultureInfo("en-US"), false, true, new string[]{"hg/g"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.HectogramPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"hg/kg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.KilogramPerGram, new CultureInfo("en-US"), false, true, new string[]{"kg/g"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.KilogramPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"kg/kg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.MicrogramPerGram, new CultureInfo("en-US"), false, true, new string[]{"µg/g"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.MicrogramPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"µg/kg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.MilligramPerGram, new CultureInfo("en-US"), false, true, new string[]{"mg/g"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.MilligramPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"mg/kg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.NanogramPerGram, new CultureInfo("en-US"), false, true, new string[]{"ng/g"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.NanogramPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"ng/kg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.PartPerBillion, new CultureInfo("en-US"), false, true, new string[]{"ppb"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.PartPerMillion, new CultureInfo("en-US"), false, true, new string[]{"ppm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.PartPerThousand, new CultureInfo("en-US"), false, true, new string[]{"‰"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.PartPerTrillion, new CultureInfo("en-US"), false, true, new string[]{"ppt"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFractionUnit.Percent, new CultureInfo("en-US"), false, true, new string[]{"%", "% (w/w)"});
         }
 
         /// <summary>

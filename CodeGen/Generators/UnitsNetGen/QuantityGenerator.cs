@@ -135,7 +135,7 @@ namespace UnitsNet
                 if (baseUnits == null)
                 {
                     Writer.WL($@"
-                    new UnitInfo<{_unitEnumName}>({_unitEnumName}.{unit.SingularName}, ""{unit.PluralName}"", BaseUnits.Undefined),");
+                    new UnitInfo<{_unitEnumName}>({_unitEnumName}.{unit.SingularName}, ""{unit.PluralName}"", BaseUnits.Undefined, ""{_quantity.Name}""),");
                 }
                 else
                 {
@@ -152,7 +152,7 @@ namespace UnitsNet
                         }.Where(str => str != null));
 
                     Writer.WL($@"
-                    new UnitInfo<{_unitEnumName}>({_unitEnumName}.{unit.SingularName}, ""{unit.PluralName}"", new BaseUnits({baseUnitsCtorArgs})),");
+                    new UnitInfo<{_unitEnumName}>({_unitEnumName}.{unit.SingularName}, ""{unit.PluralName}"", new BaseUnits({baseUnitsCtorArgs}), ""{_quantity.Name}""),");
                 }
             }
 
@@ -354,25 +354,6 @@ namespace UnitsNet
 
                 Writer.WL($@"
             unitConverter.SetConversionFunction<{_quantity.Name}>({_unitEnumName}.{_quantity.BaseUnit}, {_unitEnumName}.{unit.SingularName}, quantity => quantity.ToUnit({_unitEnumName}.{unit.SingularName}));");
-            }
-
-            Writer.WL($@"
-        }}
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {{");
-            foreach(Unit unit in _quantity.Units)
-            {
-                foreach(Localization localization in unit.Localization)
-                {
-                    // All units must have a unit abbreviation, so fallback to "" for units with no abbreviations defined in JSON
-                    var abbreviationParams = localization.Abbreviations.Any() ?
-                        string.Join(", ", localization.Abbreviations.Select(abbr => $@"""{abbr}""")) :
-                        $@"""""";
-
-                    Writer.WL($@"
-            unitAbbreviationsCache.PerformAbbreviationMapping({_unitEnumName}.{unit.SingularName}, new CultureInfo(""{localization.Culture}""), false, {unit.AllowAbbreviationLookup.ToString().ToLower()}, new string[]{{{abbreviationParams}}});");
-                }
             }
 
             Writer.WL($@"

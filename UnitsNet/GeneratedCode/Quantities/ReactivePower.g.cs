@@ -65,10 +65,10 @@ namespace UnitsNet
             Info = new QuantityInfo<ReactivePowerUnit>("ReactivePower",
                 new UnitInfo<ReactivePowerUnit>[]
                 {
-                    new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.GigavoltampereReactive, "GigavoltamperesReactive", BaseUnits.Undefined),
-                    new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.KilovoltampereReactive, "KilovoltamperesReactive", BaseUnits.Undefined),
-                    new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.MegavoltampereReactive, "MegavoltamperesReactive", BaseUnits.Undefined),
-                    new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.VoltampereReactive, "VoltamperesReactive", BaseUnits.Undefined),
+                    new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.GigavoltampereReactive, "GigavoltamperesReactive", BaseUnits.Undefined, "ReactivePower"),
+                    new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.KilovoltampereReactive, "KilovoltamperesReactive", BaseUnits.Undefined, "ReactivePower"),
+                    new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.MegavoltampereReactive, "MegavoltamperesReactive", BaseUnits.Undefined, "ReactivePower"),
+                    new UnitInfo<ReactivePowerUnit>(ReactivePowerUnit.VoltampereReactive, "VoltamperesReactive", BaseUnits.Undefined, "ReactivePower"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -214,14 +214,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ReactivePower>(ReactivePowerUnit.VoltampereReactive, ReactivePowerUnit.GigavoltampereReactive, quantity => quantity.ToUnit(ReactivePowerUnit.GigavoltampereReactive));
             unitConverter.SetConversionFunction<ReactivePower>(ReactivePowerUnit.VoltampereReactive, ReactivePowerUnit.KilovoltampereReactive, quantity => quantity.ToUnit(ReactivePowerUnit.KilovoltampereReactive));
             unitConverter.SetConversionFunction<ReactivePower>(ReactivePowerUnit.VoltampereReactive, ReactivePowerUnit.MegavoltampereReactive, quantity => quantity.ToUnit(ReactivePowerUnit.MegavoltampereReactive));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ReactivePowerUnit.GigavoltampereReactive, new CultureInfo("en-US"), false, true, new string[]{"Gvar"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ReactivePowerUnit.KilovoltampereReactive, new CultureInfo("en-US"), false, true, new string[]{"kvar"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ReactivePowerUnit.MegavoltampereReactive, new CultureInfo("en-US"), false, true, new string[]{"Mvar"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ReactivePowerUnit.VoltampereReactive, new CultureInfo("en-US"), false, true, new string[]{"var"});
         }
 
         /// <summary>

@@ -68,13 +68,13 @@ namespace UnitsNet
             Info = new QuantityInfo<IrradiationUnit>("Irradiation",
                 new UnitInfo<IrradiationUnit>[]
                 {
-                    new UnitInfo<IrradiationUnit>(IrradiationUnit.JoulePerSquareCentimeter, "JoulesPerSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradiationUnit>(IrradiationUnit.JoulePerSquareMeter, "JoulesPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradiationUnit>(IrradiationUnit.JoulePerSquareMillimeter, "JoulesPerSquareMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradiationUnit>(IrradiationUnit.KilojoulePerSquareMeter, "KilojoulesPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradiationUnit>(IrradiationUnit.KilowattHourPerSquareMeter, "KilowattHoursPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradiationUnit>(IrradiationUnit.MillijoulePerSquareCentimeter, "MillijoulesPerSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradiationUnit>(IrradiationUnit.WattHourPerSquareMeter, "WattHoursPerSquareMeter", BaseUnits.Undefined),
+                    new UnitInfo<IrradiationUnit>(IrradiationUnit.JoulePerSquareCentimeter, "JoulesPerSquareCentimeter", BaseUnits.Undefined, "Irradiation"),
+                    new UnitInfo<IrradiationUnit>(IrradiationUnit.JoulePerSquareMeter, "JoulesPerSquareMeter", BaseUnits.Undefined, "Irradiation"),
+                    new UnitInfo<IrradiationUnit>(IrradiationUnit.JoulePerSquareMillimeter, "JoulesPerSquareMillimeter", BaseUnits.Undefined, "Irradiation"),
+                    new UnitInfo<IrradiationUnit>(IrradiationUnit.KilojoulePerSquareMeter, "KilojoulesPerSquareMeter", BaseUnits.Undefined, "Irradiation"),
+                    new UnitInfo<IrradiationUnit>(IrradiationUnit.KilowattHourPerSquareMeter, "KilowattHoursPerSquareMeter", BaseUnits.Undefined, "Irradiation"),
+                    new UnitInfo<IrradiationUnit>(IrradiationUnit.MillijoulePerSquareCentimeter, "MillijoulesPerSquareCentimeter", BaseUnits.Undefined, "Irradiation"),
+                    new UnitInfo<IrradiationUnit>(IrradiationUnit.WattHourPerSquareMeter, "WattHoursPerSquareMeter", BaseUnits.Undefined, "Irradiation"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -241,17 +241,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.KilowattHourPerSquareMeter, quantity => quantity.ToUnit(IrradiationUnit.KilowattHourPerSquareMeter));
             unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.MillijoulePerSquareCentimeter, quantity => quantity.ToUnit(IrradiationUnit.MillijoulePerSquareCentimeter));
             unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.WattHourPerSquareMeter, quantity => quantity.ToUnit(IrradiationUnit.WattHourPerSquareMeter));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradiationUnit.JoulePerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"J/cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradiationUnit.JoulePerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"J/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradiationUnit.JoulePerSquareMillimeter, new CultureInfo("en-US"), false, true, new string[]{"J/mm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradiationUnit.KilojoulePerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"kJ/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradiationUnit.KilowattHourPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"kWh/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradiationUnit.MillijoulePerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"mJ/cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradiationUnit.WattHourPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"Wh/m²"});
         }
 
         /// <summary>

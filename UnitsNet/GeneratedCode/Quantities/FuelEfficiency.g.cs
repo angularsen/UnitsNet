@@ -68,10 +68,10 @@ namespace UnitsNet
             Info = new QuantityInfo<FuelEfficiencyUnit>("FuelEfficiency",
                 new UnitInfo<FuelEfficiencyUnit>[]
                 {
-                    new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.KilometerPerLiter, "KilometersPerLiters", BaseUnits.Undefined),
-                    new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.LiterPer100Kilometers, "LitersPer100Kilometers", BaseUnits.Undefined),
-                    new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.MilePerUkGallon, "MilesPerUkGallon", BaseUnits.Undefined),
-                    new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.MilePerUsGallon, "MilesPerUsGallon", BaseUnits.Undefined),
+                    new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.KilometerPerLiter, "KilometersPerLiters", BaseUnits.Undefined, "FuelEfficiency"),
+                    new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.LiterPer100Kilometers, "LitersPer100Kilometers", BaseUnits.Undefined, "FuelEfficiency"),
+                    new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.MilePerUkGallon, "MilesPerUkGallon", BaseUnits.Undefined, "FuelEfficiency"),
+                    new UnitInfo<FuelEfficiencyUnit>(FuelEfficiencyUnit.MilePerUsGallon, "MilesPerUsGallon", BaseUnits.Undefined, "FuelEfficiency"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -217,14 +217,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<FuelEfficiency>(FuelEfficiencyUnit.LiterPer100Kilometers, FuelEfficiencyUnit.KilometerPerLiter, quantity => quantity.ToUnit(FuelEfficiencyUnit.KilometerPerLiter));
             unitConverter.SetConversionFunction<FuelEfficiency>(FuelEfficiencyUnit.LiterPer100Kilometers, FuelEfficiencyUnit.MilePerUkGallon, quantity => quantity.ToUnit(FuelEfficiencyUnit.MilePerUkGallon));
             unitConverter.SetConversionFunction<FuelEfficiency>(FuelEfficiencyUnit.LiterPer100Kilometers, FuelEfficiencyUnit.MilePerUsGallon, quantity => quantity.ToUnit(FuelEfficiencyUnit.MilePerUsGallon));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(FuelEfficiencyUnit.KilometerPerLiter, new CultureInfo("en-US"), false, true, new string[]{"km/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(FuelEfficiencyUnit.LiterPer100Kilometers, new CultureInfo("en-US"), false, true, new string[]{"L/100km"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(FuelEfficiencyUnit.MilePerUkGallon, new CultureInfo("en-US"), false, true, new string[]{"mpg (imp.)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(FuelEfficiencyUnit.MilePerUsGallon, new CultureInfo("en-US"), false, true, new string[]{"mpg (U.S.)"});
         }
 
         /// <summary>

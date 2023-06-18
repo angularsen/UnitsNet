@@ -65,21 +65,21 @@ namespace UnitsNet
             Info = new QuantityInfo<ForceChangeRateUnit>("ForceChangeRate",
                 new UnitInfo<ForceChangeRateUnit>[]
                 {
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.CentinewtonPerSecond, "CentinewtonsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.DecanewtonPerMinute, "DecanewtonsPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.DecanewtonPerSecond, "DecanewtonsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.DecinewtonPerSecond, "DecinewtonsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.KilonewtonPerMinute, "KilonewtonsPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.KilonewtonPerSecond, "KilonewtonsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.KilopoundForcePerMinute, "KilopoundsForcePerMinute", BaseUnits.Undefined),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.KilopoundForcePerSecond, "KilopoundsForcePerSecond", BaseUnits.Undefined),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.MicronewtonPerSecond, "MicronewtonsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.MillinewtonPerSecond, "MillinewtonsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.NanonewtonPerSecond, "NanonewtonsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.NewtonPerMinute, "NewtonsPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.NewtonPerSecond, "NewtonsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.PoundForcePerMinute, "PoundsForcePerMinute", BaseUnits.Undefined),
-                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.PoundForcePerSecond, "PoundsForcePerSecond", BaseUnits.Undefined),
+                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.CentinewtonPerSecond, "CentinewtonsPerSecond", BaseUnits.Undefined, "ForceChangeRate"),
+                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.DecanewtonPerMinute, "DecanewtonsPerMinute", BaseUnits.Undefined, "ForceChangeRate"),
+                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.DecanewtonPerSecond, "DecanewtonsPerSecond", BaseUnits.Undefined, "ForceChangeRate"),
+                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.DecinewtonPerSecond, "DecinewtonsPerSecond", BaseUnits.Undefined, "ForceChangeRate"),
+                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.KilonewtonPerMinute, "KilonewtonsPerMinute", BaseUnits.Undefined, "ForceChangeRate"),
+                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.KilonewtonPerSecond, "KilonewtonsPerSecond", BaseUnits.Undefined, "ForceChangeRate"),
+                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.KilopoundForcePerMinute, "KilopoundsForcePerMinute", BaseUnits.Undefined, "ForceChangeRate"),
+                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.KilopoundForcePerSecond, "KilopoundsForcePerSecond", BaseUnits.Undefined, "ForceChangeRate"),
+                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.MicronewtonPerSecond, "MicronewtonsPerSecond", BaseUnits.Undefined, "ForceChangeRate"),
+                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.MillinewtonPerSecond, "MillinewtonsPerSecond", BaseUnits.Undefined, "ForceChangeRate"),
+                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.NanonewtonPerSecond, "NanonewtonsPerSecond", BaseUnits.Undefined, "ForceChangeRate"),
+                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.NewtonPerMinute, "NewtonsPerMinute", BaseUnits.Undefined, "ForceChangeRate"),
+                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.NewtonPerSecond, "NewtonsPerSecond", BaseUnits.Undefined, "ForceChangeRate"),
+                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.PoundForcePerMinute, "PoundsForcePerMinute", BaseUnits.Undefined, "ForceChangeRate"),
+                    new UnitInfo<ForceChangeRateUnit>(ForceChangeRateUnit.PoundForcePerSecond, "PoundsForcePerSecond", BaseUnits.Undefined, "ForceChangeRate"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -302,25 +302,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ForceChangeRate>(ForceChangeRateUnit.NewtonPerSecond, ForceChangeRateUnit.NewtonPerMinute, quantity => quantity.ToUnit(ForceChangeRateUnit.NewtonPerMinute));
             unitConverter.SetConversionFunction<ForceChangeRate>(ForceChangeRateUnit.NewtonPerSecond, ForceChangeRateUnit.PoundForcePerMinute, quantity => quantity.ToUnit(ForceChangeRateUnit.PoundForcePerMinute));
             unitConverter.SetConversionFunction<ForceChangeRate>(ForceChangeRateUnit.NewtonPerSecond, ForceChangeRateUnit.PoundForcePerSecond, quantity => quantity.ToUnit(ForceChangeRateUnit.PoundForcePerSecond));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForceChangeRateUnit.CentinewtonPerSecond, new CultureInfo("en-US"), false, true, new string[]{"cN/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForceChangeRateUnit.DecanewtonPerMinute, new CultureInfo("en-US"), false, true, new string[]{"daN/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForceChangeRateUnit.DecanewtonPerSecond, new CultureInfo("en-US"), false, true, new string[]{"daN/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForceChangeRateUnit.DecinewtonPerSecond, new CultureInfo("en-US"), false, true, new string[]{"dN/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForceChangeRateUnit.KilonewtonPerMinute, new CultureInfo("en-US"), false, true, new string[]{"kN/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForceChangeRateUnit.KilonewtonPerSecond, new CultureInfo("en-US"), false, true, new string[]{"kN/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForceChangeRateUnit.KilopoundForcePerMinute, new CultureInfo("en-US"), false, true, new string[]{"kipf/min", "kip/min", "k/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForceChangeRateUnit.KilopoundForcePerSecond, new CultureInfo("en-US"), false, true, new string[]{"kipf/s", "kip/s", "k/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForceChangeRateUnit.MicronewtonPerSecond, new CultureInfo("en-US"), false, true, new string[]{"µN/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForceChangeRateUnit.MillinewtonPerSecond, new CultureInfo("en-US"), false, true, new string[]{"mN/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForceChangeRateUnit.NanonewtonPerSecond, new CultureInfo("en-US"), false, true, new string[]{"nN/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForceChangeRateUnit.NewtonPerMinute, new CultureInfo("en-US"), false, true, new string[]{"N/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForceChangeRateUnit.NewtonPerSecond, new CultureInfo("en-US"), false, true, new string[]{"N/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForceChangeRateUnit.PoundForcePerMinute, new CultureInfo("en-US"), false, true, new string[]{"lbf/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForceChangeRateUnit.PoundForcePerSecond, new CultureInfo("en-US"), false, true, new string[]{"lbf/s"});
         }
 
         /// <summary>

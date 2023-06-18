@@ -68,20 +68,20 @@ namespace UnitsNet
             Info = new QuantityInfo<ElectricResistivityUnit>("ElectricResistivity",
                 new UnitInfo<ElectricResistivityUnit>[]
                 {
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.KiloohmCentimeter, "KiloohmsCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.KiloohmMeter, "KiloohmMeters", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MegaohmCentimeter, "MegaohmsCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MegaohmMeter, "MegaohmMeters", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MicroohmCentimeter, "MicroohmsCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MicroohmMeter, "MicroohmMeters", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MilliohmCentimeter, "MilliohmsCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MilliohmMeter, "MilliohmMeters", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.NanoohmCentimeter, "NanoohmsCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.NanoohmMeter, "NanoohmMeters", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.OhmCentimeter, "OhmsCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.OhmMeter, "OhmMeters", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.PicoohmCentimeter, "PicoohmsCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.PicoohmMeter, "PicoohmMeters", BaseUnits.Undefined),
+                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.KiloohmCentimeter, "KiloohmsCentimeter", BaseUnits.Undefined, "ElectricResistivity"),
+                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.KiloohmMeter, "KiloohmMeters", BaseUnits.Undefined, "ElectricResistivity"),
+                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MegaohmCentimeter, "MegaohmsCentimeter", BaseUnits.Undefined, "ElectricResistivity"),
+                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MegaohmMeter, "MegaohmMeters", BaseUnits.Undefined, "ElectricResistivity"),
+                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MicroohmCentimeter, "MicroohmsCentimeter", BaseUnits.Undefined, "ElectricResistivity"),
+                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MicroohmMeter, "MicroohmMeters", BaseUnits.Undefined, "ElectricResistivity"),
+                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MilliohmCentimeter, "MilliohmsCentimeter", BaseUnits.Undefined, "ElectricResistivity"),
+                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MilliohmMeter, "MilliohmMeters", BaseUnits.Undefined, "ElectricResistivity"),
+                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.NanoohmCentimeter, "NanoohmsCentimeter", BaseUnits.Undefined, "ElectricResistivity"),
+                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.NanoohmMeter, "NanoohmMeters", BaseUnits.Undefined, "ElectricResistivity"),
+                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.OhmCentimeter, "OhmsCentimeter", BaseUnits.Undefined, "ElectricResistivity"),
+                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.OhmMeter, "OhmMeters", BaseUnits.Undefined, "ElectricResistivity"),
+                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.PicoohmCentimeter, "PicoohmsCentimeter", BaseUnits.Undefined, "ElectricResistivity"),
+                    new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.PicoohmMeter, "PicoohmMeters", BaseUnits.Undefined, "ElectricResistivity"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -297,24 +297,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.OhmCentimeter, quantity => quantity.ToUnit(ElectricResistivityUnit.OhmCentimeter));
             unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.PicoohmCentimeter, quantity => quantity.ToUnit(ElectricResistivityUnit.PicoohmCentimeter));
             unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.PicoohmMeter, quantity => quantity.ToUnit(ElectricResistivityUnit.PicoohmMeter));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.KiloohmCentimeter, new CultureInfo("en-US"), false, true, new string[]{"kΩ·cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.KiloohmMeter, new CultureInfo("en-US"), false, true, new string[]{"kΩ·m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.MegaohmCentimeter, new CultureInfo("en-US"), false, true, new string[]{"MΩ·cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.MegaohmMeter, new CultureInfo("en-US"), false, true, new string[]{"MΩ·m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.MicroohmCentimeter, new CultureInfo("en-US"), false, true, new string[]{"µΩ·cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.MicroohmMeter, new CultureInfo("en-US"), false, true, new string[]{"µΩ·m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.MilliohmCentimeter, new CultureInfo("en-US"), false, true, new string[]{"mΩ·cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.MilliohmMeter, new CultureInfo("en-US"), false, true, new string[]{"mΩ·m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.NanoohmCentimeter, new CultureInfo("en-US"), false, true, new string[]{"nΩ·cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.NanoohmMeter, new CultureInfo("en-US"), false, true, new string[]{"nΩ·m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.OhmCentimeter, new CultureInfo("en-US"), false, true, new string[]{"Ω·cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.OhmMeter, new CultureInfo("en-US"), false, true, new string[]{"Ω·m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.PicoohmCentimeter, new CultureInfo("en-US"), false, true, new string[]{"pΩ·cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.PicoohmMeter, new CultureInfo("en-US"), false, true, new string[]{"pΩ·m"});
         }
 
         /// <summary>

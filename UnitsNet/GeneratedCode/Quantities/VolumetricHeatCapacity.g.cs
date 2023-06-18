@@ -68,15 +68,15 @@ namespace UnitsNet
             Info = new QuantityInfo<VolumetricHeatCapacityUnit>("VolumetricHeatCapacity",
                 new UnitInfo<VolumetricHeatCapacityUnit>[]
                 {
-                    new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit, "BtusPerCubicFootDegreeFahrenheit", BaseUnits.Undefined),
-                    new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius, "CaloriesPerCubicCentimeterDegreeCelsius", BaseUnits.Undefined),
-                    new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius, "JoulesPerCubicMeterDegreeCelsius", BaseUnits.Undefined),
-                    new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, "JoulesPerCubicMeterKelvin", BaseUnits.Undefined),
-                    new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius, "KilocaloriesPerCubicCentimeterDegreeCelsius", BaseUnits.Undefined),
-                    new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius, "KilojoulesPerCubicMeterDegreeCelsius", BaseUnits.Undefined),
-                    new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin, "KilojoulesPerCubicMeterKelvin", BaseUnits.Undefined),
-                    new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius, "MegajoulesPerCubicMeterDegreeCelsius", BaseUnits.Undefined),
-                    new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, "MegajoulesPerCubicMeterKelvin", BaseUnits.Undefined),
+                    new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit, "BtusPerCubicFootDegreeFahrenheit", BaseUnits.Undefined, "VolumetricHeatCapacity"),
+                    new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius, "CaloriesPerCubicCentimeterDegreeCelsius", BaseUnits.Undefined, "VolumetricHeatCapacity"),
+                    new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius, "JoulesPerCubicMeterDegreeCelsius", BaseUnits.Undefined, "VolumetricHeatCapacity"),
+                    new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, "JoulesPerCubicMeterKelvin", BaseUnits.Undefined, "VolumetricHeatCapacity"),
+                    new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius, "KilocaloriesPerCubicCentimeterDegreeCelsius", BaseUnits.Undefined, "VolumetricHeatCapacity"),
+                    new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius, "KilojoulesPerCubicMeterDegreeCelsius", BaseUnits.Undefined, "VolumetricHeatCapacity"),
+                    new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin, "KilojoulesPerCubicMeterKelvin", BaseUnits.Undefined, "VolumetricHeatCapacity"),
+                    new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius, "MegajoulesPerCubicMeterDegreeCelsius", BaseUnits.Undefined, "VolumetricHeatCapacity"),
+                    new UnitInfo<VolumetricHeatCapacityUnit>(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, "MegajoulesPerCubicMeterKelvin", BaseUnits.Undefined, "VolumetricHeatCapacity"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -257,19 +257,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin, quantity => quantity.ToUnit(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin));
             unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius, quantity => quantity.ToUnit(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius));
             unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, quantity => quantity.ToUnit(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit, new CultureInfo("en-US"), false, true, new string[]{"BTU/ft³·°F"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius, new CultureInfo("en-US"), false, true, new string[]{"cal/cm³·°C"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius, new CultureInfo("en-US"), false, true, new string[]{"J/m³·°C"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, new CultureInfo("en-US"), false, true, new string[]{"J/m³·K"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius, new CultureInfo("en-US"), false, true, new string[]{"kcal/cm³·°C"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius, new CultureInfo("en-US"), false, true, new string[]{"kJ/m³·°C"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin, new CultureInfo("en-US"), false, true, new string[]{"kJ/m³·K"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius, new CultureInfo("en-US"), false, true, new string[]{"MJ/m³·°C"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, new CultureInfo("en-US"), false, true, new string[]{"MJ/m³·K"});
         }
 
         /// <summary>

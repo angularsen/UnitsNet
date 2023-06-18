@@ -68,20 +68,20 @@ namespace UnitsNet
             Info = new QuantityInfo<LuminosityUnit>("Luminosity",
                 new UnitInfo<LuminosityUnit>[]
                 {
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Decawatt, "Decawatts", BaseUnits.Undefined),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Deciwatt, "Deciwatts", BaseUnits.Undefined),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Femtowatt, "Femtowatts", BaseUnits.Undefined),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Gigawatt, "Gigawatts", BaseUnits.Undefined),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Kilowatt, "Kilowatts", BaseUnits.Undefined),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Megawatt, "Megawatts", BaseUnits.Undefined),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Microwatt, "Microwatts", BaseUnits.Undefined),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Milliwatt, "Milliwatts", BaseUnits.Undefined),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Nanowatt, "Nanowatts", BaseUnits.Undefined),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Petawatt, "Petawatts", BaseUnits.Undefined),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Picowatt, "Picowatts", BaseUnits.Undefined),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.SolarLuminosity, "SolarLuminosities", BaseUnits.Undefined),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Terawatt, "Terawatts", BaseUnits.Undefined),
-                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Watt, "Watts", BaseUnits.Undefined),
+                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Decawatt, "Decawatts", BaseUnits.Undefined, "Luminosity"),
+                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Deciwatt, "Deciwatts", BaseUnits.Undefined, "Luminosity"),
+                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Femtowatt, "Femtowatts", BaseUnits.Undefined, "Luminosity"),
+                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Gigawatt, "Gigawatts", BaseUnits.Undefined, "Luminosity"),
+                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Kilowatt, "Kilowatts", BaseUnits.Undefined, "Luminosity"),
+                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Megawatt, "Megawatts", BaseUnits.Undefined, "Luminosity"),
+                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Microwatt, "Microwatts", BaseUnits.Undefined, "Luminosity"),
+                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Milliwatt, "Milliwatts", BaseUnits.Undefined, "Luminosity"),
+                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Nanowatt, "Nanowatts", BaseUnits.Undefined, "Luminosity"),
+                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Petawatt, "Petawatts", BaseUnits.Undefined, "Luminosity"),
+                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Picowatt, "Picowatts", BaseUnits.Undefined, "Luminosity"),
+                    new UnitInfo<LuminosityUnit>(LuminosityUnit.SolarLuminosity, "SolarLuminosities", BaseUnits.Undefined, "Luminosity"),
+                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Terawatt, "Terawatts", BaseUnits.Undefined, "Luminosity"),
+                    new UnitInfo<LuminosityUnit>(LuminosityUnit.Watt, "Watts", BaseUnits.Undefined, "Luminosity"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -297,24 +297,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Watt, LuminosityUnit.Picowatt, quantity => quantity.ToUnit(LuminosityUnit.Picowatt));
             unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Watt, LuminosityUnit.SolarLuminosity, quantity => quantity.ToUnit(LuminosityUnit.SolarLuminosity));
             unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Watt, LuminosityUnit.Terawatt, quantity => quantity.ToUnit(LuminosityUnit.Terawatt));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Decawatt, new CultureInfo("en-US"), false, true, new string[]{"daW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Deciwatt, new CultureInfo("en-US"), false, true, new string[]{"dW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Femtowatt, new CultureInfo("en-US"), false, true, new string[]{"fW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Gigawatt, new CultureInfo("en-US"), false, true, new string[]{"GW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Kilowatt, new CultureInfo("en-US"), false, true, new string[]{"kW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Megawatt, new CultureInfo("en-US"), false, true, new string[]{"MW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Microwatt, new CultureInfo("en-US"), false, true, new string[]{"µW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Milliwatt, new CultureInfo("en-US"), false, true, new string[]{"mW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Nanowatt, new CultureInfo("en-US"), false, true, new string[]{"nW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Petawatt, new CultureInfo("en-US"), false, true, new string[]{"PW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Picowatt, new CultureInfo("en-US"), false, true, new string[]{"pW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.SolarLuminosity, new CultureInfo("en-US"), false, true, new string[]{"L⊙"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Terawatt, new CultureInfo("en-US"), false, true, new string[]{"TW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Watt, new CultureInfo("en-US"), false, true, new string[]{"W"});
         }
 
         /// <summary>

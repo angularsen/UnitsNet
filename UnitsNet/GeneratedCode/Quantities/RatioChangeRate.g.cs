@@ -65,8 +65,8 @@ namespace UnitsNet
             Info = new QuantityInfo<RatioChangeRateUnit>("RatioChangeRate",
                 new UnitInfo<RatioChangeRateUnit>[]
                 {
-                    new UnitInfo<RatioChangeRateUnit>(RatioChangeRateUnit.DecimalFractionPerSecond, "DecimalFractionsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<RatioChangeRateUnit>(RatioChangeRateUnit.PercentPerSecond, "PercentsPerSecond", BaseUnits.Undefined),
+                    new UnitInfo<RatioChangeRateUnit>(RatioChangeRateUnit.DecimalFractionPerSecond, "DecimalFractionsPerSecond", BaseUnits.Undefined, "RatioChangeRate"),
+                    new UnitInfo<RatioChangeRateUnit>(RatioChangeRateUnit.PercentPerSecond, "PercentsPerSecond", BaseUnits.Undefined, "RatioChangeRate"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -198,12 +198,6 @@ namespace UnitsNet
 
             // Register in unit converter: BaseUnit -> RatioChangeRateUnit
             unitConverter.SetConversionFunction<RatioChangeRate>(RatioChangeRateUnit.DecimalFractionPerSecond, RatioChangeRateUnit.PercentPerSecond, quantity => quantity.ToUnit(RatioChangeRateUnit.PercentPerSecond));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(RatioChangeRateUnit.DecimalFractionPerSecond, new CultureInfo("en-US"), false, true, new string[]{"/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(RatioChangeRateUnit.PercentPerSecond, new CultureInfo("en-US"), false, true, new string[]{"%/s"});
         }
 
         /// <summary>

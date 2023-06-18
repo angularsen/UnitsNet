@@ -68,11 +68,11 @@ namespace UnitsNet
             Info = new QuantityInfo<PorousMediumPermeabilityUnit>("PorousMediumPermeability",
                 new UnitInfo<PorousMediumPermeabilityUnit>[]
                 {
-                    new UnitInfo<PorousMediumPermeabilityUnit>(PorousMediumPermeabilityUnit.Darcy, "Darcys", BaseUnits.Undefined),
-                    new UnitInfo<PorousMediumPermeabilityUnit>(PorousMediumPermeabilityUnit.Microdarcy, "Microdarcys", BaseUnits.Undefined),
-                    new UnitInfo<PorousMediumPermeabilityUnit>(PorousMediumPermeabilityUnit.Millidarcy, "Millidarcys", BaseUnits.Undefined),
-                    new UnitInfo<PorousMediumPermeabilityUnit>(PorousMediumPermeabilityUnit.SquareCentimeter, "SquareCentimeters", new BaseUnits(length: LengthUnit.Centimeter)),
-                    new UnitInfo<PorousMediumPermeabilityUnit>(PorousMediumPermeabilityUnit.SquareMeter, "SquareMeters", new BaseUnits(length: LengthUnit.Meter)),
+                    new UnitInfo<PorousMediumPermeabilityUnit>(PorousMediumPermeabilityUnit.Darcy, "Darcys", BaseUnits.Undefined, "PorousMediumPermeability"),
+                    new UnitInfo<PorousMediumPermeabilityUnit>(PorousMediumPermeabilityUnit.Microdarcy, "Microdarcys", BaseUnits.Undefined, "PorousMediumPermeability"),
+                    new UnitInfo<PorousMediumPermeabilityUnit>(PorousMediumPermeabilityUnit.Millidarcy, "Millidarcys", BaseUnits.Undefined, "PorousMediumPermeability"),
+                    new UnitInfo<PorousMediumPermeabilityUnit>(PorousMediumPermeabilityUnit.SquareCentimeter, "SquareCentimeters", new BaseUnits(length: LengthUnit.Centimeter), "PorousMediumPermeability"),
+                    new UnitInfo<PorousMediumPermeabilityUnit>(PorousMediumPermeabilityUnit.SquareMeter, "SquareMeters", new BaseUnits(length: LengthUnit.Meter), "PorousMediumPermeability"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -225,15 +225,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<PorousMediumPermeability>(PorousMediumPermeabilityUnit.SquareMeter, PorousMediumPermeabilityUnit.Microdarcy, quantity => quantity.ToUnit(PorousMediumPermeabilityUnit.Microdarcy));
             unitConverter.SetConversionFunction<PorousMediumPermeability>(PorousMediumPermeabilityUnit.SquareMeter, PorousMediumPermeabilityUnit.Millidarcy, quantity => quantity.ToUnit(PorousMediumPermeabilityUnit.Millidarcy));
             unitConverter.SetConversionFunction<PorousMediumPermeability>(PorousMediumPermeabilityUnit.SquareMeter, PorousMediumPermeabilityUnit.SquareCentimeter, quantity => quantity.ToUnit(PorousMediumPermeabilityUnit.SquareCentimeter));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(PorousMediumPermeabilityUnit.Darcy, new CultureInfo("en-US"), false, true, new string[]{"D"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PorousMediumPermeabilityUnit.Microdarcy, new CultureInfo("en-US"), false, true, new string[]{"µD"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PorousMediumPermeabilityUnit.Millidarcy, new CultureInfo("en-US"), false, true, new string[]{"mD"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PorousMediumPermeabilityUnit.SquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PorousMediumPermeabilityUnit.SquareMeter, new CultureInfo("en-US"), false, true, new string[]{"m²"});
         }
 
         /// <summary>

@@ -65,11 +65,11 @@ namespace UnitsNet
             Info = new QuantityInfo<ElectricPotentialDcUnit>("ElectricPotentialDc",
                 new UnitInfo<ElectricPotentialDcUnit>[]
                 {
-                    new UnitInfo<ElectricPotentialDcUnit>(ElectricPotentialDcUnit.KilovoltDc, "KilovoltsDc", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialDcUnit>(ElectricPotentialDcUnit.MegavoltDc, "MegavoltsDc", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialDcUnit>(ElectricPotentialDcUnit.MicrovoltDc, "MicrovoltsDc", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialDcUnit>(ElectricPotentialDcUnit.MillivoltDc, "MillivoltsDc", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialDcUnit>(ElectricPotentialDcUnit.VoltDc, "VoltsDc", BaseUnits.Undefined),
+                    new UnitInfo<ElectricPotentialDcUnit>(ElectricPotentialDcUnit.KilovoltDc, "KilovoltsDc", BaseUnits.Undefined, "ElectricPotentialDc"),
+                    new UnitInfo<ElectricPotentialDcUnit>(ElectricPotentialDcUnit.MegavoltDc, "MegavoltsDc", BaseUnits.Undefined, "ElectricPotentialDc"),
+                    new UnitInfo<ElectricPotentialDcUnit>(ElectricPotentialDcUnit.MicrovoltDc, "MicrovoltsDc", BaseUnits.Undefined, "ElectricPotentialDc"),
+                    new UnitInfo<ElectricPotentialDcUnit>(ElectricPotentialDcUnit.MillivoltDc, "MillivoltsDc", BaseUnits.Undefined, "ElectricPotentialDc"),
+                    new UnitInfo<ElectricPotentialDcUnit>(ElectricPotentialDcUnit.VoltDc, "VoltsDc", BaseUnits.Undefined, "ElectricPotentialDc"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -222,15 +222,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricPotentialDc>(ElectricPotentialDcUnit.VoltDc, ElectricPotentialDcUnit.MegavoltDc, quantity => quantity.ToUnit(ElectricPotentialDcUnit.MegavoltDc));
             unitConverter.SetConversionFunction<ElectricPotentialDc>(ElectricPotentialDcUnit.VoltDc, ElectricPotentialDcUnit.MicrovoltDc, quantity => quantity.ToUnit(ElectricPotentialDcUnit.MicrovoltDc));
             unitConverter.SetConversionFunction<ElectricPotentialDc>(ElectricPotentialDcUnit.VoltDc, ElectricPotentialDcUnit.MillivoltDc, quantity => quantity.ToUnit(ElectricPotentialDcUnit.MillivoltDc));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialDcUnit.KilovoltDc, new CultureInfo("en-US"), false, true, new string[]{"kVdc"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialDcUnit.MegavoltDc, new CultureInfo("en-US"), false, true, new string[]{"MVdc"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialDcUnit.MicrovoltDc, new CultureInfo("en-US"), false, true, new string[]{"µVdc"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialDcUnit.MillivoltDc, new CultureInfo("en-US"), false, true, new string[]{"mVdc"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialDcUnit.VoltDc, new CultureInfo("en-US"), false, true, new string[]{"Vdc"});
         }
 
         /// <summary>

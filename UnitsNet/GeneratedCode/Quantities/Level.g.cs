@@ -65,8 +65,8 @@ namespace UnitsNet
             Info = new QuantityInfo<LevelUnit>("Level",
                 new UnitInfo<LevelUnit>[]
                 {
-                    new UnitInfo<LevelUnit>(LevelUnit.Decibel, "Decibels", BaseUnits.Undefined),
-                    new UnitInfo<LevelUnit>(LevelUnit.Neper, "Nepers", BaseUnits.Undefined),
+                    new UnitInfo<LevelUnit>(LevelUnit.Decibel, "Decibels", BaseUnits.Undefined, "Level"),
+                    new UnitInfo<LevelUnit>(LevelUnit.Neper, "Nepers", BaseUnits.Undefined, "Level"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -198,12 +198,6 @@ namespace UnitsNet
 
             // Register in unit converter: BaseUnit -> LevelUnit
             unitConverter.SetConversionFunction<Level>(LevelUnit.Decibel, LevelUnit.Neper, quantity => quantity.ToUnit(LevelUnit.Neper));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(LevelUnit.Decibel, new CultureInfo("en-US"), false, true, new string[]{"dB"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LevelUnit.Neper, new CultureInfo("en-US"), false, true, new string[]{"Np"});
         }
 
         /// <summary>

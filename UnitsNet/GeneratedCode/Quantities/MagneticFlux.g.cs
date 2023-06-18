@@ -68,7 +68,7 @@ namespace UnitsNet
             Info = new QuantityInfo<MagneticFluxUnit>("MagneticFlux",
                 new UnitInfo<MagneticFluxUnit>[]
                 {
-                    new UnitInfo<MagneticFluxUnit>(MagneticFluxUnit.Weber, "Webers", BaseUnits.Undefined),
+                    new UnitInfo<MagneticFluxUnit>(MagneticFluxUnit.Weber, "Webers", BaseUnits.Undefined, "MagneticFlux"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -193,11 +193,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MagneticFlux>(MagneticFluxUnit.Weber, MagneticFluxUnit.Weber, quantity => quantity);
 
             // Register in unit converter: BaseUnit -> MagneticFluxUnit
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(MagneticFluxUnit.Weber, new CultureInfo("en-US"), false, true, new string[]{"Wb"});
         }
 
         /// <summary>

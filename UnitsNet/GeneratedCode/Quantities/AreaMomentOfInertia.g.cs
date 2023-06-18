@@ -65,12 +65,12 @@ namespace UnitsNet
             Info = new QuantityInfo<AreaMomentOfInertiaUnit>("AreaMomentOfInertia",
                 new UnitInfo<AreaMomentOfInertiaUnit>[]
                 {
-                    new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.CentimeterToTheFourth, "CentimetersToTheFourth", new BaseUnits(length: LengthUnit.Centimeter)),
-                    new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.DecimeterToTheFourth, "DecimetersToTheFourth", new BaseUnits(length: LengthUnit.Decimeter)),
-                    new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.FootToTheFourth, "FeetToTheFourth", new BaseUnits(length: LengthUnit.Foot)),
-                    new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.InchToTheFourth, "InchesToTheFourth", new BaseUnits(length: LengthUnit.Inch)),
-                    new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.MeterToTheFourth, "MetersToTheFourth", new BaseUnits(length: LengthUnit.Meter)),
-                    new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.MillimeterToTheFourth, "MillimetersToTheFourth", new BaseUnits(length: LengthUnit.Millimeter)),
+                    new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.CentimeterToTheFourth, "CentimetersToTheFourth", new BaseUnits(length: LengthUnit.Centimeter), "AreaMomentOfInertia"),
+                    new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.DecimeterToTheFourth, "DecimetersToTheFourth", new BaseUnits(length: LengthUnit.Decimeter), "AreaMomentOfInertia"),
+                    new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.FootToTheFourth, "FeetToTheFourth", new BaseUnits(length: LengthUnit.Foot), "AreaMomentOfInertia"),
+                    new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.InchToTheFourth, "InchesToTheFourth", new BaseUnits(length: LengthUnit.Inch), "AreaMomentOfInertia"),
+                    new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.MeterToTheFourth, "MetersToTheFourth", new BaseUnits(length: LengthUnit.Meter), "AreaMomentOfInertia"),
+                    new UnitInfo<AreaMomentOfInertiaUnit>(AreaMomentOfInertiaUnit.MillimeterToTheFourth, "MillimetersToTheFourth", new BaseUnits(length: LengthUnit.Millimeter), "AreaMomentOfInertia"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -230,16 +230,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.FootToTheFourth, quantity => quantity.ToUnit(AreaMomentOfInertiaUnit.FootToTheFourth));
             unitConverter.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.InchToTheFourth, quantity => quantity.ToUnit(AreaMomentOfInertiaUnit.InchToTheFourth));
             unitConverter.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.MillimeterToTheFourth, quantity => quantity.ToUnit(AreaMomentOfInertiaUnit.MillimeterToTheFourth));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaMomentOfInertiaUnit.CentimeterToTheFourth, new CultureInfo("en-US"), false, true, new string[]{"cm⁴", "cm^4"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaMomentOfInertiaUnit.DecimeterToTheFourth, new CultureInfo("en-US"), false, true, new string[]{"dm⁴", "dm^4"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaMomentOfInertiaUnit.FootToTheFourth, new CultureInfo("en-US"), false, true, new string[]{"ft⁴", "ft^4"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaMomentOfInertiaUnit.InchToTheFourth, new CultureInfo("en-US"), false, true, new string[]{"in⁴", "in^4"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaMomentOfInertiaUnit.MeterToTheFourth, new CultureInfo("en-US"), false, true, new string[]{"m⁴", "m^4"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaMomentOfInertiaUnit.MillimeterToTheFourth, new CultureInfo("en-US"), false, true, new string[]{"mm⁴", "mm^4"});
         }
 
         /// <summary>

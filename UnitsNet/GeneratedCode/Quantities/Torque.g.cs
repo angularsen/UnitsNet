@@ -65,31 +65,31 @@ namespace UnitsNet
             Info = new QuantityInfo<TorqueUnit>("Torque",
                 new UnitInfo<TorqueUnit>[]
                 {
-                    new UnitInfo<TorqueUnit>(TorqueUnit.GramForceCentimeter, "GramForceCentimeters", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.GramForceMeter, "GramForceMeters", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.GramForceMillimeter, "GramForceMillimeters", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.KilogramForceCentimeter, "KilogramForceCentimeters", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.KilogramForceMeter, "KilogramForceMeters", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.KilogramForceMillimeter, "KilogramForceMillimeters", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.KilonewtonCentimeter, "KilonewtonCentimeters", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.KilonewtonMeter, "KilonewtonMeters", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.KilonewtonMillimeter, "KilonewtonMillimeters", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.KilopoundForceFoot, "KilopoundForceFeet", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.KilopoundForceInch, "KilopoundForceInches", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.MeganewtonCentimeter, "MeganewtonCentimeters", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.MeganewtonMeter, "MeganewtonMeters", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.MeganewtonMillimeter, "MeganewtonMillimeters", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.MegapoundForceFoot, "MegapoundForceFeet", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.MegapoundForceInch, "MegapoundForceInches", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.NewtonCentimeter, "NewtonCentimeters", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.NewtonMeter, "NewtonMeters", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.NewtonMillimeter, "NewtonMillimeters", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.PoundalFoot, "PoundalFeet", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.PoundForceFoot, "PoundForceFeet", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.PoundForceInch, "PoundForceInches", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceCentimeter, "TonneForceCentimeters", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceMeter, "TonneForceMeters", BaseUnits.Undefined),
-                    new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceMillimeter, "TonneForceMillimeters", BaseUnits.Undefined),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.GramForceCentimeter, "GramForceCentimeters", BaseUnits.Undefined, "Torque"),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.GramForceMeter, "GramForceMeters", BaseUnits.Undefined, "Torque"),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.GramForceMillimeter, "GramForceMillimeters", BaseUnits.Undefined, "Torque"),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.KilogramForceCentimeter, "KilogramForceCentimeters", BaseUnits.Undefined, "Torque"),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.KilogramForceMeter, "KilogramForceMeters", BaseUnits.Undefined, "Torque"),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.KilogramForceMillimeter, "KilogramForceMillimeters", BaseUnits.Undefined, "Torque"),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.KilonewtonCentimeter, "KilonewtonCentimeters", BaseUnits.Undefined, "Torque"),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.KilonewtonMeter, "KilonewtonMeters", BaseUnits.Undefined, "Torque"),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.KilonewtonMillimeter, "KilonewtonMillimeters", BaseUnits.Undefined, "Torque"),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.KilopoundForceFoot, "KilopoundForceFeet", BaseUnits.Undefined, "Torque"),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.KilopoundForceInch, "KilopoundForceInches", BaseUnits.Undefined, "Torque"),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.MeganewtonCentimeter, "MeganewtonCentimeters", BaseUnits.Undefined, "Torque"),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.MeganewtonMeter, "MeganewtonMeters", BaseUnits.Undefined, "Torque"),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.MeganewtonMillimeter, "MeganewtonMillimeters", BaseUnits.Undefined, "Torque"),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.MegapoundForceFoot, "MegapoundForceFeet", BaseUnits.Undefined, "Torque"),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.MegapoundForceInch, "MegapoundForceInches", BaseUnits.Undefined, "Torque"),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.NewtonCentimeter, "NewtonCentimeters", BaseUnits.Undefined, "Torque"),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.NewtonMeter, "NewtonMeters", BaseUnits.Undefined, "Torque"),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.NewtonMillimeter, "NewtonMillimeters", BaseUnits.Undefined, "Torque"),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.PoundalFoot, "PoundalFeet", BaseUnits.Undefined, "Torque"),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.PoundForceFoot, "PoundForceFeet", BaseUnits.Undefined, "Torque"),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.PoundForceInch, "PoundForceInches", BaseUnits.Undefined, "Torque"),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceCentimeter, "TonneForceCentimeters", BaseUnits.Undefined, "Torque"),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceMeter, "TonneForceMeters", BaseUnits.Undefined, "Torque"),
+                    new UnitInfo<TorqueUnit>(TorqueUnit.TonneForceMillimeter, "TonneForceMillimeters", BaseUnits.Undefined, "Torque"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -382,38 +382,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Torque>(TorqueUnit.NewtonMeter, TorqueUnit.TonneForceCentimeter, quantity => quantity.ToUnit(TorqueUnit.TonneForceCentimeter));
             unitConverter.SetConversionFunction<Torque>(TorqueUnit.NewtonMeter, TorqueUnit.TonneForceMeter, quantity => quantity.ToUnit(TorqueUnit.TonneForceMeter));
             unitConverter.SetConversionFunction<Torque>(TorqueUnit.NewtonMeter, TorqueUnit.TonneForceMillimeter, quantity => quantity.ToUnit(TorqueUnit.TonneForceMillimeter));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.GramForceCentimeter, new CultureInfo("en-US"), false, true, new string[]{"gf·cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.GramForceMeter, new CultureInfo("en-US"), false, true, new string[]{"gf·m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.GramForceMillimeter, new CultureInfo("en-US"), false, true, new string[]{"gf·mm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.KilogramForceCentimeter, new CultureInfo("en-US"), false, true, new string[]{"kgf·cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.KilogramForceMeter, new CultureInfo("en-US"), false, true, new string[]{"kgf·m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.KilogramForceMillimeter, new CultureInfo("en-US"), false, true, new string[]{"kgf·mm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.KilonewtonCentimeter, new CultureInfo("en-US"), false, true, new string[]{"kN·cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.KilonewtonMeter, new CultureInfo("en-US"), false, true, new string[]{"kN·m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.KilonewtonMeter, new CultureInfo("ru-RU"), false, true, new string[]{"кН·м"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.KilonewtonMillimeter, new CultureInfo("en-US"), false, true, new string[]{"kN·mm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.KilopoundForceFoot, new CultureInfo("en-US"), false, true, new string[]{"kipf·ft"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.KilopoundForceInch, new CultureInfo("en-US"), false, true, new string[]{"kipf·in"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.MeganewtonCentimeter, new CultureInfo("en-US"), false, true, new string[]{"MN·cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.MeganewtonMeter, new CultureInfo("en-US"), false, true, new string[]{"MN·m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.MeganewtonMeter, new CultureInfo("ru-RU"), false, true, new string[]{"МН·м"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.MeganewtonMillimeter, new CultureInfo("en-US"), false, true, new string[]{"MN·mm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.MegapoundForceFoot, new CultureInfo("en-US"), false, true, new string[]{"Mlbf·ft"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.MegapoundForceInch, new CultureInfo("en-US"), false, true, new string[]{"Mlbf·in"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.NewtonCentimeter, new CultureInfo("en-US"), false, true, new string[]{"N·cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.NewtonMeter, new CultureInfo("en-US"), false, true, new string[]{"N·m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.NewtonMeter, new CultureInfo("ru-RU"), false, true, new string[]{"Н·м"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.NewtonMillimeter, new CultureInfo("en-US"), false, true, new string[]{"N·mm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.PoundalFoot, new CultureInfo("en-US"), false, true, new string[]{"pdl·ft"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.PoundForceFoot, new CultureInfo("en-US"), false, true, new string[]{"lbf·ft"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.PoundForceInch, new CultureInfo("en-US"), false, true, new string[]{"lbf·in"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.TonneForceCentimeter, new CultureInfo("en-US"), false, true, new string[]{"tf·cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.TonneForceMeter, new CultureInfo("en-US"), false, true, new string[]{"tf·m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.TonneForceMillimeter, new CultureInfo("en-US"), false, true, new string[]{"tf·mm"});
         }
 
         /// <summary>

@@ -65,20 +65,20 @@ namespace UnitsNet
             Info = new QuantityInfo<IrradianceUnit>("Irradiance",
                 new UnitInfo<IrradianceUnit>[]
                 {
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.KilowattPerSquareCentimeter, "KilowattsPerSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.KilowattPerSquareMeter, "KilowattsPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MegawattPerSquareCentimeter, "MegawattsPerSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MegawattPerSquareMeter, "MegawattsPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MicrowattPerSquareCentimeter, "MicrowattsPerSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MicrowattPerSquareMeter, "MicrowattsPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MilliwattPerSquareCentimeter, "MilliwattsPerSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MilliwattPerSquareMeter, "MilliwattsPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.NanowattPerSquareCentimeter, "NanowattsPerSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.NanowattPerSquareMeter, "NanowattsPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.PicowattPerSquareCentimeter, "PicowattsPerSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.PicowattPerSquareMeter, "PicowattsPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.WattPerSquareCentimeter, "WattsPerSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<IrradianceUnit>(IrradianceUnit.WattPerSquareMeter, "WattsPerSquareMeter", BaseUnits.Undefined),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.KilowattPerSquareCentimeter, "KilowattsPerSquareCentimeter", BaseUnits.Undefined, "Irradiance"),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.KilowattPerSquareMeter, "KilowattsPerSquareMeter", BaseUnits.Undefined, "Irradiance"),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MegawattPerSquareCentimeter, "MegawattsPerSquareCentimeter", BaseUnits.Undefined, "Irradiance"),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MegawattPerSquareMeter, "MegawattsPerSquareMeter", BaseUnits.Undefined, "Irradiance"),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MicrowattPerSquareCentimeter, "MicrowattsPerSquareCentimeter", BaseUnits.Undefined, "Irradiance"),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MicrowattPerSquareMeter, "MicrowattsPerSquareMeter", BaseUnits.Undefined, "Irradiance"),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MilliwattPerSquareCentimeter, "MilliwattsPerSquareCentimeter", BaseUnits.Undefined, "Irradiance"),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.MilliwattPerSquareMeter, "MilliwattsPerSquareMeter", BaseUnits.Undefined, "Irradiance"),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.NanowattPerSquareCentimeter, "NanowattsPerSquareCentimeter", BaseUnits.Undefined, "Irradiance"),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.NanowattPerSquareMeter, "NanowattsPerSquareMeter", BaseUnits.Undefined, "Irradiance"),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.PicowattPerSquareCentimeter, "PicowattsPerSquareCentimeter", BaseUnits.Undefined, "Irradiance"),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.PicowattPerSquareMeter, "PicowattsPerSquareMeter", BaseUnits.Undefined, "Irradiance"),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.WattPerSquareCentimeter, "WattsPerSquareCentimeter", BaseUnits.Undefined, "Irradiance"),
+                    new UnitInfo<IrradianceUnit>(IrradianceUnit.WattPerSquareMeter, "WattsPerSquareMeter", BaseUnits.Undefined, "Irradiance"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -294,24 +294,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.WattPerSquareMeter, IrradianceUnit.PicowattPerSquareCentimeter, quantity => quantity.ToUnit(IrradianceUnit.PicowattPerSquareCentimeter));
             unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.WattPerSquareMeter, IrradianceUnit.PicowattPerSquareMeter, quantity => quantity.ToUnit(IrradianceUnit.PicowattPerSquareMeter));
             unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.WattPerSquareMeter, IrradianceUnit.WattPerSquareCentimeter, quantity => quantity.ToUnit(IrradianceUnit.WattPerSquareCentimeter));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.KilowattPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"kW/cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.KilowattPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"kW/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.MegawattPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"MW/cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.MegawattPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"MW/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.MicrowattPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"µW/cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.MicrowattPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"µW/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.MilliwattPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"mW/cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.MilliwattPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"mW/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.NanowattPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"nW/cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.NanowattPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"nW/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.PicowattPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"pW/cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.PicowattPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"pW/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.WattPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"W/cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.WattPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"W/m²"});
         }
 
         /// <summary>

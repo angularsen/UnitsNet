@@ -68,7 +68,7 @@ namespace UnitsNet
             Info = new QuantityInfo<TurbidityUnit>("Turbidity",
                 new UnitInfo<TurbidityUnit>[]
                 {
-                    new UnitInfo<TurbidityUnit>(TurbidityUnit.NTU, "NTU", BaseUnits.Undefined),
+                    new UnitInfo<TurbidityUnit>(TurbidityUnit.NTU, "NTU", BaseUnits.Undefined, "Turbidity"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -193,11 +193,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Turbidity>(TurbidityUnit.NTU, TurbidityUnit.NTU, quantity => quantity);
 
             // Register in unit converter: BaseUnit -> TurbidityUnit
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(TurbidityUnit.NTU, new CultureInfo("en-US"), false, true, new string[]{"NTU"});
         }
 
         /// <summary>

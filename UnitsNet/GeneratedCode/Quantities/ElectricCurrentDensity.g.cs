@@ -68,9 +68,9 @@ namespace UnitsNet
             Info = new QuantityInfo<ElectricCurrentDensityUnit>("ElectricCurrentDensity",
                 new UnitInfo<ElectricCurrentDensityUnit>[]
                 {
-                    new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareFoot, "AmperesPerSquareFoot", new BaseUnits(length: LengthUnit.Foot, current: ElectricCurrentUnit.Ampere)),
-                    new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareInch, "AmperesPerSquareInch", new BaseUnits(length: LengthUnit.Inch, current: ElectricCurrentUnit.Ampere)),
-                    new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareMeter, "AmperesPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, current: ElectricCurrentUnit.Ampere)),
+                    new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareFoot, "AmperesPerSquareFoot", new BaseUnits(length: LengthUnit.Foot, current: ElectricCurrentUnit.Ampere), "ElectricCurrentDensity"),
+                    new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareInch, "AmperesPerSquareInch", new BaseUnits(length: LengthUnit.Inch, current: ElectricCurrentUnit.Ampere), "ElectricCurrentDensity"),
+                    new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareMeter, "AmperesPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, current: ElectricCurrentUnit.Ampere), "ElectricCurrentDensity"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -209,13 +209,6 @@ namespace UnitsNet
             // Register in unit converter: BaseUnit -> ElectricCurrentDensityUnit
             unitConverter.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensityUnit.AmperePerSquareMeter, ElectricCurrentDensityUnit.AmperePerSquareFoot, quantity => quantity.ToUnit(ElectricCurrentDensityUnit.AmperePerSquareFoot));
             unitConverter.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensityUnit.AmperePerSquareMeter, ElectricCurrentDensityUnit.AmperePerSquareInch, quantity => quantity.ToUnit(ElectricCurrentDensityUnit.AmperePerSquareInch));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentDensityUnit.AmperePerSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"A/ft²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentDensityUnit.AmperePerSquareInch, new CultureInfo("en-US"), false, true, new string[]{"A/in²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentDensityUnit.AmperePerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"A/m²"});
         }
 
         /// <summary>

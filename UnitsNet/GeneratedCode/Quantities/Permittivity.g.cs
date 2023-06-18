@@ -68,7 +68,7 @@ namespace UnitsNet
             Info = new QuantityInfo<PermittivityUnit>("Permittivity",
                 new UnitInfo<PermittivityUnit>[]
                 {
-                    new UnitInfo<PermittivityUnit>(PermittivityUnit.FaradPerMeter, "FaradsPerMeter", BaseUnits.Undefined),
+                    new UnitInfo<PermittivityUnit>(PermittivityUnit.FaradPerMeter, "FaradsPerMeter", BaseUnits.Undefined, "Permittivity"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -193,11 +193,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Permittivity>(PermittivityUnit.FaradPerMeter, PermittivityUnit.FaradPerMeter, quantity => quantity);
 
             // Register in unit converter: BaseUnit -> PermittivityUnit
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(PermittivityUnit.FaradPerMeter, new CultureInfo("en-US"), false, true, new string[]{"F/m"});
         }
 
         /// <summary>

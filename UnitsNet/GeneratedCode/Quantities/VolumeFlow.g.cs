@@ -65,73 +65,73 @@ namespace UnitsNet
             Info = new QuantityInfo<VolumeFlowUnit>("VolumeFlow",
                 new UnitInfo<VolumeFlowUnit>[]
                 {
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.AcreFootPerDay, "AcreFeetPerDay", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.AcreFootPerHour, "AcreFeetPerHour", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.AcreFootPerMinute, "AcreFeetPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.AcreFootPerSecond, "AcreFeetPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CentiliterPerDay, "CentilitersPerDay", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CentiliterPerHour, "CentilitersPerHour", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CentiliterPerMinute, "CentilitersPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CentiliterPerSecond, "CentilitersPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicCentimeterPerMinute, "CubicCentimetersPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicDecimeterPerMinute, "CubicDecimetersPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicFootPerHour, "CubicFeetPerHour", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicFootPerMinute, "CubicFeetPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicFootPerSecond, "CubicFeetPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicMeterPerDay, "CubicMetersPerDay", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicMeterPerHour, "CubicMetersPerHour", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicMeterPerMinute, "CubicMetersPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicMeterPerSecond, "CubicMetersPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicMillimeterPerSecond, "CubicMillimetersPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicYardPerDay, "CubicYardsPerDay", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicYardPerHour, "CubicYardsPerHour", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicYardPerMinute, "CubicYardsPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicYardPerSecond, "CubicYardsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.DeciliterPerDay, "DecilitersPerDay", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.DeciliterPerHour, "DecilitersPerHour", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.DeciliterPerMinute, "DecilitersPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.DeciliterPerSecond, "DecilitersPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.KiloliterPerDay, "KilolitersPerDay", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.KiloliterPerHour, "KilolitersPerHour", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.KiloliterPerMinute, "KilolitersPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.KiloliterPerSecond, "KilolitersPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.KilousGallonPerMinute, "KilousGallonsPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.LiterPerDay, "LitersPerDay", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.LiterPerHour, "LitersPerHour", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.LiterPerMinute, "LitersPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.LiterPerSecond, "LitersPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MegaliterPerDay, "MegalitersPerDay", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MegaliterPerHour, "MegalitersPerHour", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MegaliterPerMinute, "MegalitersPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MegaliterPerSecond, "MegalitersPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MegaukGallonPerDay, "MegaukGallonsPerDay", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MegaukGallonPerSecond, "MegaukGallonsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MegausGallonPerDay, "MegausGallonsPerDay", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MicroliterPerDay, "MicrolitersPerDay", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MicroliterPerHour, "MicrolitersPerHour", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MicroliterPerMinute, "MicrolitersPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MicroliterPerSecond, "MicrolitersPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MilliliterPerDay, "MillilitersPerDay", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MilliliterPerHour, "MillilitersPerHour", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MilliliterPerMinute, "MillilitersPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MilliliterPerSecond, "MillilitersPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MillionUsGallonPerDay, "MillionUsGallonsPerDay", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.NanoliterPerDay, "NanolitersPerDay", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.NanoliterPerHour, "NanolitersPerHour", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.NanoliterPerMinute, "NanolitersPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.NanoliterPerSecond, "NanolitersPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.OilBarrelPerDay, "OilBarrelsPerDay", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.OilBarrelPerHour, "OilBarrelsPerHour", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.OilBarrelPerMinute, "OilBarrelsPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.OilBarrelPerSecond, "OilBarrelsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UkGallonPerDay, "UkGallonsPerDay", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UkGallonPerHour, "UkGallonsPerHour", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UkGallonPerMinute, "UkGallonsPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UkGallonPerSecond, "UkGallonsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerDay, "UsGallonsPerDay", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerHour, "UsGallonsPerHour", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerMinute, "UsGallonsPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerSecond, "UsGallonsPerSecond", BaseUnits.Undefined),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.AcreFootPerDay, "AcreFeetPerDay", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.AcreFootPerHour, "AcreFeetPerHour", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.AcreFootPerMinute, "AcreFeetPerMinute", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.AcreFootPerSecond, "AcreFeetPerSecond", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CentiliterPerDay, "CentilitersPerDay", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CentiliterPerHour, "CentilitersPerHour", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CentiliterPerMinute, "CentilitersPerMinute", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CentiliterPerSecond, "CentilitersPerSecond", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicCentimeterPerMinute, "CubicCentimetersPerMinute", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicDecimeterPerMinute, "CubicDecimetersPerMinute", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicFootPerHour, "CubicFeetPerHour", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicFootPerMinute, "CubicFeetPerMinute", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicFootPerSecond, "CubicFeetPerSecond", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicMeterPerDay, "CubicMetersPerDay", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicMeterPerHour, "CubicMetersPerHour", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicMeterPerMinute, "CubicMetersPerMinute", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicMeterPerSecond, "CubicMetersPerSecond", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicMillimeterPerSecond, "CubicMillimetersPerSecond", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicYardPerDay, "CubicYardsPerDay", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicYardPerHour, "CubicYardsPerHour", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicYardPerMinute, "CubicYardsPerMinute", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicYardPerSecond, "CubicYardsPerSecond", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.DeciliterPerDay, "DecilitersPerDay", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.DeciliterPerHour, "DecilitersPerHour", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.DeciliterPerMinute, "DecilitersPerMinute", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.DeciliterPerSecond, "DecilitersPerSecond", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.KiloliterPerDay, "KilolitersPerDay", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.KiloliterPerHour, "KilolitersPerHour", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.KiloliterPerMinute, "KilolitersPerMinute", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.KiloliterPerSecond, "KilolitersPerSecond", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.KilousGallonPerMinute, "KilousGallonsPerMinute", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.LiterPerDay, "LitersPerDay", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.LiterPerHour, "LitersPerHour", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.LiterPerMinute, "LitersPerMinute", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.LiterPerSecond, "LitersPerSecond", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MegaliterPerDay, "MegalitersPerDay", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MegaliterPerHour, "MegalitersPerHour", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MegaliterPerMinute, "MegalitersPerMinute", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MegaliterPerSecond, "MegalitersPerSecond", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MegaukGallonPerDay, "MegaukGallonsPerDay", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MegaukGallonPerSecond, "MegaukGallonsPerSecond", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MegausGallonPerDay, "MegausGallonsPerDay", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MicroliterPerDay, "MicrolitersPerDay", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MicroliterPerHour, "MicrolitersPerHour", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MicroliterPerMinute, "MicrolitersPerMinute", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MicroliterPerSecond, "MicrolitersPerSecond", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MilliliterPerDay, "MillilitersPerDay", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MilliliterPerHour, "MillilitersPerHour", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MilliliterPerMinute, "MillilitersPerMinute", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MilliliterPerSecond, "MillilitersPerSecond", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MillionUsGallonPerDay, "MillionUsGallonsPerDay", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.NanoliterPerDay, "NanolitersPerDay", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.NanoliterPerHour, "NanolitersPerHour", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.NanoliterPerMinute, "NanolitersPerMinute", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.NanoliterPerSecond, "NanolitersPerSecond", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.OilBarrelPerDay, "OilBarrelsPerDay", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.OilBarrelPerHour, "OilBarrelsPerHour", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.OilBarrelPerMinute, "OilBarrelsPerMinute", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.OilBarrelPerSecond, "OilBarrelsPerSecond", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UkGallonPerDay, "UkGallonsPerDay", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UkGallonPerHour, "UkGallonsPerHour", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UkGallonPerMinute, "UkGallonsPerMinute", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UkGallonPerSecond, "UkGallonsPerSecond", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerDay, "UsGallonsPerDay", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerHour, "UsGallonsPerHour", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerMinute, "UsGallonsPerMinute", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerSecond, "UsGallonsPerSecond", BaseUnits.Undefined, "VolumeFlow"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -718,107 +718,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.UsGallonPerHour, quantity => quantity.ToUnit(VolumeFlowUnit.UsGallonPerHour));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.UsGallonPerMinute, quantity => quantity.ToUnit(VolumeFlowUnit.UsGallonPerMinute));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.UsGallonPerSecond, quantity => quantity.ToUnit(VolumeFlowUnit.UsGallonPerSecond));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.AcreFootPerDay, new CultureInfo("en-US"), false, true, new string[]{"af/d"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.AcreFootPerHour, new CultureInfo("en-US"), false, true, new string[]{"af/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.AcreFootPerMinute, new CultureInfo("en-US"), false, true, new string[]{"af/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.AcreFootPerSecond, new CultureInfo("en-US"), false, true, new string[]{"af/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.CentiliterPerDay, new CultureInfo("en-US"), false, true, new string[]{"cl/day", "cL/d", "cLPD"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.CentiliterPerHour, new CultureInfo("en-US"), false, true, new string[]{"cL/h", "cLPH"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.CentiliterPerHour, new CultureInfo("ru-RU"), false, true, new string[]{"сл/ч"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.CentiliterPerMinute, new CultureInfo("en-US"), false, true, new string[]{"cL/min", "cLPM"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.CentiliterPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"сл/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.CentiliterPerSecond, new CultureInfo("en-US"), false, true, new string[]{"cL/s", "cLPS"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.CentiliterPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"сл/c"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.CubicCentimeterPerMinute, new CultureInfo("en-US"), false, true, new string[]{"cm³/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.CubicCentimeterPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"см³/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.CubicDecimeterPerMinute, new CultureInfo("en-US"), false, true, new string[]{"dm³/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.CubicDecimeterPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"дм³/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.CubicFootPerHour, new CultureInfo("en-US"), false, true, new string[]{"ft³/h", "cf/hr"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.CubicFootPerMinute, new CultureInfo("en-US"), false, true, new string[]{"ft³/min", "CFM"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.CubicFootPerSecond, new CultureInfo("en-US"), false, true, new string[]{"ft³/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.CubicMeterPerDay, new CultureInfo("en-US"), false, true, new string[]{"m³/d"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.CubicMeterPerHour, new CultureInfo("en-US"), false, true, new string[]{"m³/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.CubicMeterPerHour, new CultureInfo("ru-RU"), false, true, new string[]{"м³/ч"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.CubicMeterPerMinute, new CultureInfo("en-US"), false, true, new string[]{"m³/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.CubicMeterPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"м³/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.CubicMeterPerSecond, new CultureInfo("en-US"), false, true, new string[]{"m³/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.CubicMeterPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"м³/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.CubicMillimeterPerSecond, new CultureInfo("en-US"), false, true, new string[]{"mm³/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.CubicMillimeterPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"мм³/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.CubicYardPerDay, new CultureInfo("en-US"), false, true, new string[]{"cy/day"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.CubicYardPerHour, new CultureInfo("en-US"), false, true, new string[]{"yd³/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.CubicYardPerMinute, new CultureInfo("en-US"), false, true, new string[]{"yd³/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.CubicYardPerSecond, new CultureInfo("en-US"), false, true, new string[]{"yd³/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.DeciliterPerDay, new CultureInfo("en-US"), false, true, new string[]{"dl/day", "dL/d", "dLPD"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.DeciliterPerHour, new CultureInfo("en-US"), false, true, new string[]{"dL/h", "dLPH"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.DeciliterPerHour, new CultureInfo("ru-RU"), false, true, new string[]{"дл/ч"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.DeciliterPerMinute, new CultureInfo("en-US"), false, true, new string[]{"dL/min", "dLPM"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.DeciliterPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"дл/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.DeciliterPerSecond, new CultureInfo("en-US"), false, true, new string[]{"dL/s", "dLPS"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.DeciliterPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"дл/c"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.KiloliterPerDay, new CultureInfo("en-US"), false, true, new string[]{"kl/day", "kL/d", "kLPD"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.KiloliterPerHour, new CultureInfo("en-US"), false, true, new string[]{"kL/h", "kLPH"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.KiloliterPerHour, new CultureInfo("ru-RU"), false, true, new string[]{"кл/ч"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.KiloliterPerMinute, new CultureInfo("en-US"), false, true, new string[]{"kL/min", "kLPM"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.KiloliterPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"кл/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.KiloliterPerSecond, new CultureInfo("en-US"), false, true, new string[]{"kL/s", "kLPS"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.KiloliterPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"кл/c"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.KilousGallonPerMinute, new CultureInfo("en-US"), false, true, new string[]{"kgal (U.S.)/min", "KGPM"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.LiterPerDay, new CultureInfo("en-US"), false, true, new string[]{"l/day", "L/d", "LPD"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.LiterPerHour, new CultureInfo("en-US"), false, true, new string[]{"L/h", "LPH"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.LiterPerHour, new CultureInfo("ru-RU"), false, true, new string[]{"л/ч"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.LiterPerMinute, new CultureInfo("en-US"), false, true, new string[]{"L/min", "LPM"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.LiterPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"л/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.LiterPerSecond, new CultureInfo("en-US"), false, true, new string[]{"L/s", "LPS"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.LiterPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"л/c"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.MegaliterPerDay, new CultureInfo("en-US"), false, true, new string[]{"Ml/day", "ML/d", "MLPD"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.MegaliterPerHour, new CultureInfo("en-US"), false, true, new string[]{"ML/h", "MLPH"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.MegaliterPerHour, new CultureInfo("ru-RU"), false, true, new string[]{"Мл/ч"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.MegaliterPerMinute, new CultureInfo("en-US"), false, true, new string[]{"ML/min", "MLPM"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.MegaliterPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"Мл/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.MegaliterPerSecond, new CultureInfo("en-US"), false, true, new string[]{"ML/s", "MLPS"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.MegaliterPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"Мл/c"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.MegaukGallonPerDay, new CultureInfo("en-US"), false, true, new string[]{"Mgal (U. K.)/d"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.MegaukGallonPerSecond, new CultureInfo("en-US"), false, true, new string[]{"Mgal (imp.)/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.MegausGallonPerDay, new CultureInfo("en-US"), false, true, new string[]{"Mgpd", "Mgal/d"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.MicroliterPerDay, new CultureInfo("en-US"), false, true, new string[]{"µl/day", "µL/d", "µLPD"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.MicroliterPerHour, new CultureInfo("en-US"), false, true, new string[]{"µL/h", "µLPH"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.MicroliterPerHour, new CultureInfo("ru-RU"), false, true, new string[]{"мкл/ч"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.MicroliterPerMinute, new CultureInfo("en-US"), false, true, new string[]{"µL/min", "µLPM"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.MicroliterPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"мкл/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.MicroliterPerSecond, new CultureInfo("en-US"), false, true, new string[]{"µL/s", "µLPS"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.MicroliterPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"мкл/c"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.MilliliterPerDay, new CultureInfo("en-US"), false, true, new string[]{"ml/day", "mL/d", "mLPD"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.MilliliterPerHour, new CultureInfo("en-US"), false, true, new string[]{"mL/h", "mLPH"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.MilliliterPerHour, new CultureInfo("ru-RU"), false, true, new string[]{"мл/ч"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.MilliliterPerMinute, new CultureInfo("en-US"), false, true, new string[]{"mL/min", "mLPM"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.MilliliterPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"мл/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.MilliliterPerSecond, new CultureInfo("en-US"), false, true, new string[]{"mL/s", "mLPS"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.MilliliterPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"мл/c"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.MillionUsGallonPerDay, new CultureInfo("en-US"), false, true, new string[]{"MGD"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.NanoliterPerDay, new CultureInfo("en-US"), false, true, new string[]{"nl/day", "nL/d", "nLPD"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.NanoliterPerHour, new CultureInfo("en-US"), false, true, new string[]{"nL/h", "nLPH"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.NanoliterPerHour, new CultureInfo("ru-RU"), false, true, new string[]{"нл/ч"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.NanoliterPerMinute, new CultureInfo("en-US"), false, true, new string[]{"nL/min", "nLPM"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.NanoliterPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"нл/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.NanoliterPerSecond, new CultureInfo("en-US"), false, true, new string[]{"nL/s", "nLPS"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.NanoliterPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"нл/c"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.OilBarrelPerDay, new CultureInfo("en-US"), false, true, new string[]{"bbl/d", "BOPD"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.OilBarrelPerHour, new CultureInfo("en-US"), false, true, new string[]{"bbl/hr", "bph"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.OilBarrelPerMinute, new CultureInfo("en-US"), false, true, new string[]{"bbl/min", "bpm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.OilBarrelPerSecond, new CultureInfo("en-US"), false, true, new string[]{"bbl/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.UkGallonPerDay, new CultureInfo("en-US"), false, true, new string[]{"gal (U. K.)/d"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.UkGallonPerHour, new CultureInfo("en-US"), false, true, new string[]{"gal (imp.)/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.UkGallonPerMinute, new CultureInfo("en-US"), false, true, new string[]{"gal (imp.)/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.UkGallonPerSecond, new CultureInfo("en-US"), false, true, new string[]{"gal (imp.)/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.UsGallonPerDay, new CultureInfo("en-US"), false, true, new string[]{"gpd", "gal/d"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.UsGallonPerHour, new CultureInfo("en-US"), false, true, new string[]{"gal (U.S.)/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.UsGallonPerMinute, new CultureInfo("en-US"), false, true, new string[]{"gal (U.S.)/min", "GPM"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowUnit.UsGallonPerSecond, new CultureInfo("en-US"), false, true, new string[]{"gal (U.S.)/s"});
         }
 
         /// <summary>

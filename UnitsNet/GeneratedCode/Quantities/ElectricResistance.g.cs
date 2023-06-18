@@ -65,13 +65,13 @@ namespace UnitsNet
             Info = new QuantityInfo<ElectricResistanceUnit>("ElectricResistance",
                 new UnitInfo<ElectricResistanceUnit>[]
                 {
-                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Gigaohm, "Gigaohms", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Kiloohm, "Kiloohms", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Megaohm, "Megaohms", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Microohm, "Microohms", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Milliohm, "Milliohms", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Ohm, "Ohms", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Teraohm, "Teraohms", BaseUnits.Undefined),
+                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Gigaohm, "Gigaohms", BaseUnits.Undefined, "ElectricResistance"),
+                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Kiloohm, "Kiloohms", BaseUnits.Undefined, "ElectricResistance"),
+                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Megaohm, "Megaohms", BaseUnits.Undefined, "ElectricResistance"),
+                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Microohm, "Microohms", BaseUnits.Undefined, "ElectricResistance"),
+                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Milliohm, "Milliohms", BaseUnits.Undefined, "ElectricResistance"),
+                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Ohm, "Ohms", BaseUnits.Undefined, "ElectricResistance"),
+                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Teraohm, "Teraohms", BaseUnits.Undefined, "ElectricResistance"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -238,17 +238,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistanceUnit.Ohm, ElectricResistanceUnit.Microohm, quantity => quantity.ToUnit(ElectricResistanceUnit.Microohm));
             unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistanceUnit.Ohm, ElectricResistanceUnit.Milliohm, quantity => quantity.ToUnit(ElectricResistanceUnit.Milliohm));
             unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistanceUnit.Ohm, ElectricResistanceUnit.Teraohm, quantity => quantity.ToUnit(ElectricResistanceUnit.Teraohm));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistanceUnit.Gigaohm, new CultureInfo("en-US"), false, true, new string[]{"GΩ"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistanceUnit.Kiloohm, new CultureInfo("en-US"), false, true, new string[]{"kΩ"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistanceUnit.Megaohm, new CultureInfo("en-US"), false, true, new string[]{"MΩ"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistanceUnit.Microohm, new CultureInfo("en-US"), false, true, new string[]{"µΩ"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistanceUnit.Milliohm, new CultureInfo("en-US"), false, true, new string[]{"mΩ"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistanceUnit.Ohm, new CultureInfo("en-US"), false, true, new string[]{"Ω"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistanceUnit.Teraohm, new CultureInfo("en-US"), false, true, new string[]{"TΩ"});
         }
 
         /// <summary>

@@ -68,8 +68,8 @@ namespace UnitsNet
             Info = new QuantityInfo<ThermalConductivityUnit>("ThermalConductivity",
                 new UnitInfo<ThermalConductivityUnit>[]
                 {
-                    new UnitInfo<ThermalConductivityUnit>(ThermalConductivityUnit.BtuPerHourFootFahrenheit, "BtusPerHourFootFahrenheit", BaseUnits.Undefined),
-                    new UnitInfo<ThermalConductivityUnit>(ThermalConductivityUnit.WattPerMeterKelvin, "WattsPerMeterKelvin", BaseUnits.Undefined),
+                    new UnitInfo<ThermalConductivityUnit>(ThermalConductivityUnit.BtuPerHourFootFahrenheit, "BtusPerHourFootFahrenheit", BaseUnits.Undefined, "ThermalConductivity"),
+                    new UnitInfo<ThermalConductivityUnit>(ThermalConductivityUnit.WattPerMeterKelvin, "WattsPerMeterKelvin", BaseUnits.Undefined, "ThermalConductivity"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -201,12 +201,6 @@ namespace UnitsNet
 
             // Register in unit converter: BaseUnit -> ThermalConductivityUnit
             unitConverter.SetConversionFunction<ThermalConductivity>(ThermalConductivityUnit.WattPerMeterKelvin, ThermalConductivityUnit.BtuPerHourFootFahrenheit, quantity => quantity.ToUnit(ThermalConductivityUnit.BtuPerHourFootFahrenheit));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ThermalConductivityUnit.BtuPerHourFootFahrenheit, new CultureInfo("en-US"), false, true, new string[]{"BTU/h·ft·°F"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ThermalConductivityUnit.WattPerMeterKelvin, new CultureInfo("en-US"), false, true, new string[]{"W/m·K"});
         }
 
         /// <summary>

@@ -65,17 +65,17 @@ namespace UnitsNet
             Info = new QuantityInfo<DurationUnit>("Duration",
                 new UnitInfo<DurationUnit>[]
                 {
-                    new UnitInfo<DurationUnit>(DurationUnit.Day, "Days", new BaseUnits(time: DurationUnit.Day)),
-                    new UnitInfo<DurationUnit>(DurationUnit.Hour, "Hours", new BaseUnits(time: DurationUnit.Hour)),
-                    new UnitInfo<DurationUnit>(DurationUnit.JulianYear, "JulianYears", new BaseUnits(time: DurationUnit.JulianYear)),
-                    new UnitInfo<DurationUnit>(DurationUnit.Microsecond, "Microseconds", BaseUnits.Undefined),
-                    new UnitInfo<DurationUnit>(DurationUnit.Millisecond, "Milliseconds", BaseUnits.Undefined),
-                    new UnitInfo<DurationUnit>(DurationUnit.Minute, "Minutes", new BaseUnits(time: DurationUnit.Minute)),
-                    new UnitInfo<DurationUnit>(DurationUnit.Month30, "Months30", new BaseUnits(time: DurationUnit.Month30)),
-                    new UnitInfo<DurationUnit>(DurationUnit.Nanosecond, "Nanoseconds", BaseUnits.Undefined),
-                    new UnitInfo<DurationUnit>(DurationUnit.Second, "Seconds", new BaseUnits(time: DurationUnit.Second)),
-                    new UnitInfo<DurationUnit>(DurationUnit.Week, "Weeks", new BaseUnits(time: DurationUnit.Week)),
-                    new UnitInfo<DurationUnit>(DurationUnit.Year365, "Years365", new BaseUnits(time: DurationUnit.Year365)),
+                    new UnitInfo<DurationUnit>(DurationUnit.Day, "Days", new BaseUnits(time: DurationUnit.Day), "Duration"),
+                    new UnitInfo<DurationUnit>(DurationUnit.Hour, "Hours", new BaseUnits(time: DurationUnit.Hour), "Duration"),
+                    new UnitInfo<DurationUnit>(DurationUnit.JulianYear, "JulianYears", new BaseUnits(time: DurationUnit.JulianYear), "Duration"),
+                    new UnitInfo<DurationUnit>(DurationUnit.Microsecond, "Microseconds", BaseUnits.Undefined, "Duration"),
+                    new UnitInfo<DurationUnit>(DurationUnit.Millisecond, "Milliseconds", BaseUnits.Undefined, "Duration"),
+                    new UnitInfo<DurationUnit>(DurationUnit.Minute, "Minutes", new BaseUnits(time: DurationUnit.Minute), "Duration"),
+                    new UnitInfo<DurationUnit>(DurationUnit.Month30, "Months30", new BaseUnits(time: DurationUnit.Month30), "Duration"),
+                    new UnitInfo<DurationUnit>(DurationUnit.Nanosecond, "Nanoseconds", BaseUnits.Undefined, "Duration"),
+                    new UnitInfo<DurationUnit>(DurationUnit.Second, "Seconds", new BaseUnits(time: DurationUnit.Second), "Duration"),
+                    new UnitInfo<DurationUnit>(DurationUnit.Week, "Weeks", new BaseUnits(time: DurationUnit.Week), "Duration"),
+                    new UnitInfo<DurationUnit>(DurationUnit.Year365, "Years365", new BaseUnits(time: DurationUnit.Year365), "Duration"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -270,31 +270,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Nanosecond, quantity => quantity.ToUnit(DurationUnit.Nanosecond));
             unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Week, quantity => quantity.ToUnit(DurationUnit.Week));
             unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Year365, quantity => quantity.ToUnit(DurationUnit.Year365));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Day, new CultureInfo("en-US"), false, true, new string[]{"d", "day", "days"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Day, new CultureInfo("ru-RU"), false, true, new string[]{"сут", "д"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Hour, new CultureInfo("en-US"), false, true, new string[]{"h", "hr", "hrs", "hour", "hours"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Hour, new CultureInfo("ru-RU"), false, true, new string[]{"ч", "час"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.JulianYear, new CultureInfo("en-US"), false, true, new string[]{"jyr", "jyear", "jyears"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Microsecond, new CultureInfo("en-US"), false, true, new string[]{"µs", "µsec", "µsecs", "µsecond", "µseconds"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Microsecond, new CultureInfo("ru-RU"), false, true, new string[]{"мксек", "мкс"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Millisecond, new CultureInfo("en-US"), false, true, new string[]{"ms", "msec", "msecs", "msecond", "mseconds"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Millisecond, new CultureInfo("ru-RU"), false, true, new string[]{"мсек", "мс"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Minute, new CultureInfo("en-US"), false, true, new string[]{"m", "min", "minute", "minutes"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Minute, new CultureInfo("ru-RU"), false, true, new string[]{"мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Month30, new CultureInfo("en-US"), false, true, new string[]{"mo", "month", "months"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Month30, new CultureInfo("ru-RU"), false, true, new string[]{"месяц"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Nanosecond, new CultureInfo("en-US"), false, true, new string[]{"ns", "nsec", "nsecs", "nsecond", "nseconds"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Nanosecond, new CultureInfo("ru-RU"), false, true, new string[]{"нсек", "нс"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Second, new CultureInfo("en-US"), false, true, new string[]{"s", "sec", "secs", "second", "seconds"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Second, new CultureInfo("ru-RU"), false, true, new string[]{"сек", "с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Week, new CultureInfo("en-US"), false, true, new string[]{"wk", "week", "weeks"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Week, new CultureInfo("ru-RU"), false, true, new string[]{"нед"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Year365, new CultureInfo("en-US"), false, true, new string[]{"yr", "year", "years"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Year365, new CultureInfo("ru-RU"), false, true, new string[]{"год"});
         }
 
         /// <summary>

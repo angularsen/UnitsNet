@@ -68,15 +68,15 @@ namespace UnitsNet
             Info = new QuantityInfo<KinematicViscosityUnit>("KinematicViscosity",
                 new UnitInfo<KinematicViscosityUnit>[]
                 {
-                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Centistokes, "Centistokes", BaseUnits.Undefined),
-                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Decistokes, "Decistokes", BaseUnits.Undefined),
-                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Kilostokes, "Kilostokes", BaseUnits.Undefined),
-                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Microstokes, "Microstokes", BaseUnits.Undefined),
-                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Millistokes, "Millistokes", BaseUnits.Undefined),
-                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Nanostokes, "Nanostokes", BaseUnits.Undefined),
-                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.SquareFootPerSecond, "SquareFeetPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.SquareMeterPerSecond, "SquareMetersPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Stokes, "Stokes", BaseUnits.Undefined),
+                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Centistokes, "Centistokes", BaseUnits.Undefined, "KinematicViscosity"),
+                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Decistokes, "Decistokes", BaseUnits.Undefined, "KinematicViscosity"),
+                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Kilostokes, "Kilostokes", BaseUnits.Undefined, "KinematicViscosity"),
+                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Microstokes, "Microstokes", BaseUnits.Undefined, "KinematicViscosity"),
+                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Millistokes, "Millistokes", BaseUnits.Undefined, "KinematicViscosity"),
+                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Nanostokes, "Nanostokes", BaseUnits.Undefined, "KinematicViscosity"),
+                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.SquareFootPerSecond, "SquareFeetPerSecond", BaseUnits.Undefined, "KinematicViscosity"),
+                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.SquareMeterPerSecond, "SquareMetersPerSecond", BaseUnits.Undefined, "KinematicViscosity"),
+                    new UnitInfo<KinematicViscosityUnit>(KinematicViscosityUnit.Stokes, "Stokes", BaseUnits.Undefined, "KinematicViscosity"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -257,27 +257,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.Nanostokes, quantity => quantity.ToUnit(KinematicViscosityUnit.Nanostokes));
             unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.SquareFootPerSecond, quantity => quantity.ToUnit(KinematicViscosityUnit.SquareFootPerSecond));
             unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.Stokes, quantity => quantity.ToUnit(KinematicViscosityUnit.Stokes));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Centistokes, new CultureInfo("en-US"), false, true, new string[]{"cSt"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Centistokes, new CultureInfo("ru-RU"), false, true, new string[]{"сСт"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Decistokes, new CultureInfo("en-US"), false, true, new string[]{"dSt"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Decistokes, new CultureInfo("ru-RU"), false, true, new string[]{"дСт"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Kilostokes, new CultureInfo("en-US"), false, true, new string[]{"kSt"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Kilostokes, new CultureInfo("ru-RU"), false, true, new string[]{"кСт"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Microstokes, new CultureInfo("en-US"), false, true, new string[]{"µSt"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Microstokes, new CultureInfo("ru-RU"), false, true, new string[]{"мкСт"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Millistokes, new CultureInfo("en-US"), false, true, new string[]{"mSt"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Millistokes, new CultureInfo("ru-RU"), false, true, new string[]{"мСт"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Nanostokes, new CultureInfo("en-US"), false, true, new string[]{"nSt"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Nanostokes, new CultureInfo("ru-RU"), false, true, new string[]{"нСт"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.SquareFootPerSecond, new CultureInfo("en-US"), false, true, new string[]{"ft²/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.SquareMeterPerSecond, new CultureInfo("en-US"), false, true, new string[]{"m²/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.SquareMeterPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"м²/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Stokes, new CultureInfo("en-US"), false, true, new string[]{"St"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Stokes, new CultureInfo("ru-RU"), false, true, new string[]{"Ст"});
         }
 
         /// <summary>

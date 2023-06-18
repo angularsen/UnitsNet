@@ -65,10 +65,10 @@ namespace UnitsNet
             Info = new QuantityInfo<AmplitudeRatioUnit>("AmplitudeRatio",
                 new UnitInfo<AmplitudeRatioUnit>[]
                 {
-                    new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelMicrovolt, "DecibelMicrovolts", BaseUnits.Undefined),
-                    new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelMillivolt, "DecibelMillivolts", BaseUnits.Undefined),
-                    new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelUnloaded, "DecibelsUnloaded", BaseUnits.Undefined),
-                    new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelVolt, "DecibelVolts", BaseUnits.Undefined),
+                    new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelMicrovolt, "DecibelMicrovolts", BaseUnits.Undefined, "AmplitudeRatio"),
+                    new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelMillivolt, "DecibelMillivolts", BaseUnits.Undefined, "AmplitudeRatio"),
+                    new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelUnloaded, "DecibelsUnloaded", BaseUnits.Undefined, "AmplitudeRatio"),
+                    new UnitInfo<AmplitudeRatioUnit>(AmplitudeRatioUnit.DecibelVolt, "DecibelVolts", BaseUnits.Undefined, "AmplitudeRatio"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -214,14 +214,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelVolt, AmplitudeRatioUnit.DecibelMicrovolt, quantity => quantity.ToUnit(AmplitudeRatioUnit.DecibelMicrovolt));
             unitConverter.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelVolt, AmplitudeRatioUnit.DecibelMillivolt, quantity => quantity.ToUnit(AmplitudeRatioUnit.DecibelMillivolt));
             unitConverter.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelVolt, AmplitudeRatioUnit.DecibelUnloaded, quantity => quantity.ToUnit(AmplitudeRatioUnit.DecibelUnloaded));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(AmplitudeRatioUnit.DecibelMicrovolt, new CultureInfo("en-US"), false, true, new string[]{"dBµV"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AmplitudeRatioUnit.DecibelMillivolt, new CultureInfo("en-US"), false, true, new string[]{"dBmV"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AmplitudeRatioUnit.DecibelUnloaded, new CultureInfo("en-US"), false, true, new string[]{"dBu"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AmplitudeRatioUnit.DecibelVolt, new CultureInfo("en-US"), false, true, new string[]{"dBV"});
         }
 
         /// <summary>

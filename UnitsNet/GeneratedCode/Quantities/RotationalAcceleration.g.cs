@@ -65,10 +65,10 @@ namespace UnitsNet
             Info = new QuantityInfo<RotationalAccelerationUnit>("RotationalAcceleration",
                 new UnitInfo<RotationalAccelerationUnit>[]
                 {
-                    new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.DegreePerSecondSquared, "DegreesPerSecondSquared", BaseUnits.Undefined),
-                    new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.RadianPerSecondSquared, "RadiansPerSecondSquared", BaseUnits.Undefined),
-                    new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.RevolutionPerMinutePerSecond, "RevolutionsPerMinutePerSecond", BaseUnits.Undefined),
-                    new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.RevolutionPerSecondSquared, "RevolutionsPerSecondSquared", BaseUnits.Undefined),
+                    new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.DegreePerSecondSquared, "DegreesPerSecondSquared", BaseUnits.Undefined, "RotationalAcceleration"),
+                    new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.RadianPerSecondSquared, "RadiansPerSecondSquared", BaseUnits.Undefined, "RotationalAcceleration"),
+                    new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.RevolutionPerMinutePerSecond, "RevolutionsPerMinutePerSecond", BaseUnits.Undefined, "RotationalAcceleration"),
+                    new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.RevolutionPerSecondSquared, "RevolutionsPerSecondSquared", BaseUnits.Undefined, "RotationalAcceleration"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -214,14 +214,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.RadianPerSecondSquared, RotationalAccelerationUnit.DegreePerSecondSquared, quantity => quantity.ToUnit(RotationalAccelerationUnit.DegreePerSecondSquared));
             unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.RadianPerSecondSquared, RotationalAccelerationUnit.RevolutionPerMinutePerSecond, quantity => quantity.ToUnit(RotationalAccelerationUnit.RevolutionPerMinutePerSecond));
             unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.RadianPerSecondSquared, RotationalAccelerationUnit.RevolutionPerSecondSquared, quantity => quantity.ToUnit(RotationalAccelerationUnit.RevolutionPerSecondSquared));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalAccelerationUnit.DegreePerSecondSquared, new CultureInfo("en-US"), false, true, new string[]{"°/s²", "deg/s²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalAccelerationUnit.RadianPerSecondSquared, new CultureInfo("en-US"), false, true, new string[]{"rad/s²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalAccelerationUnit.RevolutionPerMinutePerSecond, new CultureInfo("en-US"), false, true, new string[]{"rpm/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalAccelerationUnit.RevolutionPerSecondSquared, new CultureInfo("en-US"), false, true, new string[]{"r/s²"});
         }
 
         /// <summary>

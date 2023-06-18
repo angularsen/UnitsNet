@@ -68,11 +68,11 @@ namespace UnitsNet
             Info = new QuantityInfo<ElectricInductanceUnit>("ElectricInductance",
                 new UnitInfo<ElectricInductanceUnit>[]
                 {
-                    new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Henry, "Henries", BaseUnits.Undefined),
-                    new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Microhenry, "Microhenries", BaseUnits.Undefined),
-                    new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Millihenry, "Millihenries", BaseUnits.Undefined),
-                    new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Nanohenry, "Nanohenries", BaseUnits.Undefined),
-                    new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Picohenry, "Picohenries", BaseUnits.Undefined),
+                    new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Henry, "Henries", BaseUnits.Undefined, "ElectricInductance"),
+                    new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Microhenry, "Microhenries", BaseUnits.Undefined, "ElectricInductance"),
+                    new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Millihenry, "Millihenries", BaseUnits.Undefined, "ElectricInductance"),
+                    new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Nanohenry, "Nanohenries", BaseUnits.Undefined, "ElectricInductance"),
+                    new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Picohenry, "Picohenries", BaseUnits.Undefined, "ElectricInductance"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -225,15 +225,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Henry, ElectricInductanceUnit.Millihenry, quantity => quantity.ToUnit(ElectricInductanceUnit.Millihenry));
             unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Henry, ElectricInductanceUnit.Nanohenry, quantity => quantity.ToUnit(ElectricInductanceUnit.Nanohenry));
             unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Henry, ElectricInductanceUnit.Picohenry, quantity => quantity.ToUnit(ElectricInductanceUnit.Picohenry));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricInductanceUnit.Henry, new CultureInfo("en-US"), false, true, new string[]{"H"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricInductanceUnit.Microhenry, new CultureInfo("en-US"), false, true, new string[]{"µH"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricInductanceUnit.Millihenry, new CultureInfo("en-US"), false, true, new string[]{"mH"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricInductanceUnit.Nanohenry, new CultureInfo("en-US"), false, true, new string[]{"nH"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricInductanceUnit.Picohenry, new CultureInfo("en-US"), false, true, new string[]{"pH"});
         }
 
         /// <summary>

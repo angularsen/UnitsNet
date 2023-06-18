@@ -65,19 +65,19 @@ namespace UnitsNet
             Info = new QuantityInfo<ImpulseUnit>("Impulse",
                 new UnitInfo<ImpulseUnit>[]
                 {
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.CentinewtonSecond, "CentinewtonSeconds", BaseUnits.Undefined),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.DecanewtonSecond, "DecanewtonSeconds", BaseUnits.Undefined),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.DecinewtonSecond, "DecinewtonSeconds", BaseUnits.Undefined),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.KilogramMeterPerSecond, "KilogramMetersPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.KilonewtonSecond, "KilonewtonSeconds", BaseUnits.Undefined),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.MeganewtonSecond, "MeganewtonSeconds", BaseUnits.Undefined),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.MicronewtonSecond, "MicronewtonSeconds", BaseUnits.Undefined),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.MillinewtonSecond, "MillinewtonSeconds", BaseUnits.Undefined),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.NanonewtonSecond, "NanonewtonSeconds", BaseUnits.Undefined),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.NewtonSecond, "NewtonSeconds", BaseUnits.Undefined),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.PoundFootPerSecond, "PoundFeetPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.PoundForceSecond, "PoundForceSeconds", BaseUnits.Undefined),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.SlugFootPerSecond, "SlugFeetPerSecond", BaseUnits.Undefined),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.CentinewtonSecond, "CentinewtonSeconds", BaseUnits.Undefined, "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.DecanewtonSecond, "DecanewtonSeconds", BaseUnits.Undefined, "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.DecinewtonSecond, "DecinewtonSeconds", BaseUnits.Undefined, "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.KilogramMeterPerSecond, "KilogramMetersPerSecond", BaseUnits.Undefined, "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.KilonewtonSecond, "KilonewtonSeconds", BaseUnits.Undefined, "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.MeganewtonSecond, "MeganewtonSeconds", BaseUnits.Undefined, "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.MicronewtonSecond, "MicronewtonSeconds", BaseUnits.Undefined, "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.MillinewtonSecond, "MillinewtonSeconds", BaseUnits.Undefined, "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.NanonewtonSecond, "NanonewtonSeconds", BaseUnits.Undefined, "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.NewtonSecond, "NewtonSeconds", BaseUnits.Undefined, "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.PoundFootPerSecond, "PoundFeetPerSecond", BaseUnits.Undefined, "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.PoundForceSecond, "PoundForceSeconds", BaseUnits.Undefined, "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.SlugFootPerSecond, "SlugFeetPerSecond", BaseUnits.Undefined, "Impulse"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -286,23 +286,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Impulse>(ImpulseUnit.NewtonSecond, ImpulseUnit.PoundFootPerSecond, quantity => quantity.ToUnit(ImpulseUnit.PoundFootPerSecond));
             unitConverter.SetConversionFunction<Impulse>(ImpulseUnit.NewtonSecond, ImpulseUnit.PoundForceSecond, quantity => quantity.ToUnit(ImpulseUnit.PoundForceSecond));
             unitConverter.SetConversionFunction<Impulse>(ImpulseUnit.NewtonSecond, ImpulseUnit.SlugFootPerSecond, quantity => quantity.ToUnit(ImpulseUnit.SlugFootPerSecond));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ImpulseUnit.CentinewtonSecond, new CultureInfo("en-US"), false, true, new string[]{"cN·s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ImpulseUnit.DecanewtonSecond, new CultureInfo("en-US"), false, true, new string[]{"daN·s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ImpulseUnit.DecinewtonSecond, new CultureInfo("en-US"), false, true, new string[]{"dN·s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ImpulseUnit.KilogramMeterPerSecond, new CultureInfo("en-US"), false, true, new string[]{"kg·m/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ImpulseUnit.KilonewtonSecond, new CultureInfo("en-US"), false, true, new string[]{"kN·s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ImpulseUnit.MeganewtonSecond, new CultureInfo("en-US"), false, true, new string[]{"MN·s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ImpulseUnit.MicronewtonSecond, new CultureInfo("en-US"), false, true, new string[]{"µN·s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ImpulseUnit.MillinewtonSecond, new CultureInfo("en-US"), false, true, new string[]{"mN·s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ImpulseUnit.NanonewtonSecond, new CultureInfo("en-US"), false, true, new string[]{"nN·s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ImpulseUnit.NewtonSecond, new CultureInfo("en-US"), false, true, new string[]{"N·s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ImpulseUnit.PoundFootPerSecond, new CultureInfo("en-US"), false, true, new string[]{"lb·ft/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ImpulseUnit.PoundForceSecond, new CultureInfo("en-US"), false, true, new string[]{"lbf·s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ImpulseUnit.SlugFootPerSecond, new CultureInfo("en-US"), false, true, new string[]{"slug·ft/s"});
         }
 
         /// <summary>

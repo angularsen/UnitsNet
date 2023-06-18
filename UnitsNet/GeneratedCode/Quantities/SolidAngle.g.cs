@@ -68,7 +68,7 @@ namespace UnitsNet
             Info = new QuantityInfo<SolidAngleUnit>("SolidAngle",
                 new UnitInfo<SolidAngleUnit>[]
                 {
-                    new UnitInfo<SolidAngleUnit>(SolidAngleUnit.Steradian, "Steradians", BaseUnits.Undefined),
+                    new UnitInfo<SolidAngleUnit>(SolidAngleUnit.Steradian, "Steradians", BaseUnits.Undefined, "SolidAngle"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -193,11 +193,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<SolidAngle>(SolidAngleUnit.Steradian, SolidAngleUnit.Steradian, quantity => quantity);
 
             // Register in unit converter: BaseUnit -> SolidAngleUnit
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(SolidAngleUnit.Steradian, new CultureInfo("en-US"), false, true, new string[]{"sr"});
         }
 
         /// <summary>

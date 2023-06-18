@@ -65,9 +65,9 @@ namespace UnitsNet
             Info = new QuantityInfo<SpecificVolumeUnit>("SpecificVolume",
                 new UnitInfo<SpecificVolumeUnit>[]
                 {
-                    new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.CubicFootPerPound, "CubicFeetPerPound", BaseUnits.Undefined),
-                    new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.CubicMeterPerKilogram, "CubicMetersPerKilogram", BaseUnits.Undefined),
-                    new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.MillicubicMeterPerKilogram, "MillicubicMetersPerKilogram", BaseUnits.Undefined),
+                    new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.CubicFootPerPound, "CubicFeetPerPound", BaseUnits.Undefined, "SpecificVolume"),
+                    new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.CubicMeterPerKilogram, "CubicMetersPerKilogram", BaseUnits.Undefined, "SpecificVolume"),
+                    new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.MillicubicMeterPerKilogram, "MillicubicMetersPerKilogram", BaseUnits.Undefined, "SpecificVolume"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -206,13 +206,6 @@ namespace UnitsNet
             // Register in unit converter: BaseUnit -> SpecificVolumeUnit
             unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.CubicFootPerPound, quantity => quantity.ToUnit(SpecificVolumeUnit.CubicFootPerPound));
             unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.MillicubicMeterPerKilogram, quantity => quantity.ToUnit(SpecificVolumeUnit.MillicubicMeterPerKilogram));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificVolumeUnit.CubicFootPerPound, new CultureInfo("en-US"), false, true, new string[]{"ft³/lb"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificVolumeUnit.CubicMeterPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"m³/kg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificVolumeUnit.MillicubicMeterPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"mm³/kg"});
         }
 
         /// <summary>

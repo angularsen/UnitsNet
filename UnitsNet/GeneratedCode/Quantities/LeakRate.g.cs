@@ -68,9 +68,9 @@ namespace UnitsNet
             Info = new QuantityInfo<LeakRateUnit>("LeakRate",
                 new UnitInfo<LeakRateUnit>[]
                 {
-                    new UnitInfo<LeakRateUnit>(LeakRateUnit.MillibarLiterPerSecond, "MillibarLitersPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<LeakRateUnit>(LeakRateUnit.PascalCubicMeterPerSecond, "PascalCubicMetersPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<LeakRateUnit>(LeakRateUnit.TorrLiterPerSecond, "TorrLitersPerSecond", BaseUnits.Undefined),
+                    new UnitInfo<LeakRateUnit>(LeakRateUnit.MillibarLiterPerSecond, "MillibarLitersPerSecond", BaseUnits.Undefined, "LeakRate"),
+                    new UnitInfo<LeakRateUnit>(LeakRateUnit.PascalCubicMeterPerSecond, "PascalCubicMetersPerSecond", BaseUnits.Undefined, "LeakRate"),
+                    new UnitInfo<LeakRateUnit>(LeakRateUnit.TorrLiterPerSecond, "TorrLitersPerSecond", BaseUnits.Undefined, "LeakRate"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -209,13 +209,6 @@ namespace UnitsNet
             // Register in unit converter: BaseUnit -> LeakRateUnit
             unitConverter.SetConversionFunction<LeakRate>(LeakRateUnit.PascalCubicMeterPerSecond, LeakRateUnit.MillibarLiterPerSecond, quantity => quantity.ToUnit(LeakRateUnit.MillibarLiterPerSecond));
             unitConverter.SetConversionFunction<LeakRate>(LeakRateUnit.PascalCubicMeterPerSecond, LeakRateUnit.TorrLiterPerSecond, quantity => quantity.ToUnit(LeakRateUnit.TorrLiterPerSecond));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(LeakRateUnit.MillibarLiterPerSecond, new CultureInfo("en-US"), false, true, new string[]{"mbar·l/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LeakRateUnit.PascalCubicMeterPerSecond, new CultureInfo("en-US"), false, true, new string[]{"Pa·m³/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LeakRateUnit.TorrLiterPerSecond, new CultureInfo("en-US"), false, true, new string[]{"Torr·l/s"});
         }
 
         /// <summary>

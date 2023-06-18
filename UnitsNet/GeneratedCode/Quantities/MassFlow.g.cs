@@ -65,39 +65,39 @@ namespace UnitsNet
             Info = new QuantityInfo<MassFlowUnit>("MassFlow",
                 new UnitInfo<MassFlowUnit>[]
                 {
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.CentigramPerDay, "CentigramsPerDay", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.CentigramPerSecond, "CentigramsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.DecagramPerDay, "DecagramsPerDay", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.DecagramPerSecond, "DecagramsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.DecigramPerDay, "DecigramsPerDay", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.DecigramPerSecond, "DecigramsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.GramPerDay, "GramsPerDay", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.GramPerHour, "GramsPerHour", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.GramPerSecond, "GramsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.HectogramPerDay, "HectogramsPerDay", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.HectogramPerSecond, "HectogramsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerDay, "KilogramsPerDay", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerHour, "KilogramsPerHour", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerMinute, "KilogramsPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerSecond, "KilogramsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MegagramPerDay, "MegagramsPerDay", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MegapoundPerDay, "MegapoundsPerDay", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MegapoundPerHour, "MegapoundsPerHour", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MegapoundPerMinute, "MegapoundsPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MegapoundPerSecond, "MegapoundsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MicrogramPerDay, "MicrogramsPerDay", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MicrogramPerSecond, "MicrogramsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MilligramPerDay, "MilligramsPerDay", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MilligramPerSecond, "MilligramsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.NanogramPerDay, "NanogramsPerDay", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.NanogramPerSecond, "NanogramsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerDay, "PoundsPerDay", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerHour, "PoundsPerHour", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerMinute, "PoundsPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerSecond, "PoundsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.ShortTonPerHour, "ShortTonsPerHour", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerDay, "TonnesPerDay", BaseUnits.Undefined),
-                    new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerHour, "TonnesPerHour", BaseUnits.Undefined),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.CentigramPerDay, "CentigramsPerDay", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.CentigramPerSecond, "CentigramsPerSecond", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.DecagramPerDay, "DecagramsPerDay", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.DecagramPerSecond, "DecagramsPerSecond", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.DecigramPerDay, "DecigramsPerDay", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.DecigramPerSecond, "DecigramsPerSecond", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.GramPerDay, "GramsPerDay", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.GramPerHour, "GramsPerHour", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.GramPerSecond, "GramsPerSecond", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.HectogramPerDay, "HectogramsPerDay", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.HectogramPerSecond, "HectogramsPerSecond", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerDay, "KilogramsPerDay", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerHour, "KilogramsPerHour", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerMinute, "KilogramsPerMinute", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.KilogramPerSecond, "KilogramsPerSecond", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MegagramPerDay, "MegagramsPerDay", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MegapoundPerDay, "MegapoundsPerDay", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MegapoundPerHour, "MegapoundsPerHour", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MegapoundPerMinute, "MegapoundsPerMinute", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MegapoundPerSecond, "MegapoundsPerSecond", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MicrogramPerDay, "MicrogramsPerDay", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MicrogramPerSecond, "MicrogramsPerSecond", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MilligramPerDay, "MilligramsPerDay", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.MilligramPerSecond, "MilligramsPerSecond", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.NanogramPerDay, "NanogramsPerDay", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.NanogramPerSecond, "NanogramsPerSecond", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerDay, "PoundsPerDay", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerHour, "PoundsPerHour", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerMinute, "PoundsPerMinute", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.PoundPerSecond, "PoundsPerSecond", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.ShortTonPerHour, "ShortTonsPerHour", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerDay, "TonnesPerDay", BaseUnits.Undefined, "MassFlow"),
+                    new UnitInfo<MassFlowUnit>(MassFlowUnit.TonnePerHour, "TonnesPerHour", BaseUnits.Undefined, "MassFlow"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -446,45 +446,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.ShortTonPerHour, quantity => quantity.ToUnit(MassFlowUnit.ShortTonPerHour));
             unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.TonnePerDay, quantity => quantity.ToUnit(MassFlowUnit.TonnePerDay));
             unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.TonnePerHour, quantity => quantity.ToUnit(MassFlowUnit.TonnePerHour));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.CentigramPerDay, new CultureInfo("en-US"), false, true, new string[]{"cg/d"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.CentigramPerSecond, new CultureInfo("en-US"), false, true, new string[]{"cg/s", "cg/S"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.DecagramPerDay, new CultureInfo("en-US"), false, true, new string[]{"dag/d"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.DecagramPerSecond, new CultureInfo("en-US"), false, true, new string[]{"dag/s", "dag/S"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.DecigramPerDay, new CultureInfo("en-US"), false, true, new string[]{"dg/d"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.DecigramPerSecond, new CultureInfo("en-US"), false, true, new string[]{"dg/s", "dg/S"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.GramPerDay, new CultureInfo("en-US"), false, true, new string[]{"g/d"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.GramPerHour, new CultureInfo("en-US"), false, true, new string[]{"g/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.GramPerSecond, new CultureInfo("en-US"), false, true, new string[]{"g/s", "g/S"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.HectogramPerDay, new CultureInfo("en-US"), false, true, new string[]{"hg/d"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.HectogramPerSecond, new CultureInfo("en-US"), false, true, new string[]{"hg/s", "hg/S"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.KilogramPerDay, new CultureInfo("en-US"), false, true, new string[]{"kg/d"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.KilogramPerHour, new CultureInfo("en-US"), false, true, new string[]{"kg/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.KilogramPerHour, new CultureInfo("ru-RU"), false, true, new string[]{"кг/ч"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.KilogramPerMinute, new CultureInfo("en-US"), false, true, new string[]{"kg/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.KilogramPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"кг/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.KilogramPerSecond, new CultureInfo("en-US"), false, true, new string[]{"kg/s", "kg/S"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.MegagramPerDay, new CultureInfo("en-US"), false, true, new string[]{"Mg/d"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.MegapoundPerDay, new CultureInfo("en-US"), false, true, new string[]{"Mlb/d"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.MegapoundPerHour, new CultureInfo("en-US"), false, true, new string[]{"Mlb/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.MegapoundPerMinute, new CultureInfo("en-US"), false, true, new string[]{"Mlb/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.MegapoundPerSecond, new CultureInfo("en-US"), false, true, new string[]{"Mlb/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.MicrogramPerDay, new CultureInfo("en-US"), false, true, new string[]{"µg/d"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.MicrogramPerSecond, new CultureInfo("en-US"), false, true, new string[]{"µg/s", "µg/S"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.MilligramPerDay, new CultureInfo("en-US"), false, true, new string[]{"mg/d"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.MilligramPerSecond, new CultureInfo("en-US"), false, true, new string[]{"mg/s", "mg/S"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.NanogramPerDay, new CultureInfo("en-US"), false, true, new string[]{"ng/d"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.NanogramPerSecond, new CultureInfo("en-US"), false, true, new string[]{"ng/s", "ng/S"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.PoundPerDay, new CultureInfo("en-US"), false, true, new string[]{"lb/d"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.PoundPerHour, new CultureInfo("en-US"), false, true, new string[]{"lb/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.PoundPerMinute, new CultureInfo("en-US"), false, true, new string[]{"lb/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.PoundPerSecond, new CultureInfo("en-US"), false, true, new string[]{"lb/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.ShortTonPerHour, new CultureInfo("en-US"), false, true, new string[]{"short tn/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.TonnePerDay, new CultureInfo("en-US"), false, true, new string[]{"t/d"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.TonnePerHour, new CultureInfo("en-US"), false, true, new string[]{"t/h"});
         }
 
         /// <summary>

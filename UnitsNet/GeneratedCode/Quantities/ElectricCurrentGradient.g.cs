@@ -65,10 +65,10 @@ namespace UnitsNet
             Info = new QuantityInfo<ElectricCurrentGradientUnit>("ElectricCurrentGradient",
                 new UnitInfo<ElectricCurrentGradientUnit>[]
                 {
-                    new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerMicrosecond, "AmperesPerMicrosecond", new BaseUnits(time: DurationUnit.Microsecond, current: ElectricCurrentUnit.Ampere)),
-                    new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerMillisecond, "AmperesPerMillisecond", new BaseUnits(time: DurationUnit.Millisecond, current: ElectricCurrentUnit.Ampere)),
-                    new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerNanosecond, "AmperesPerNanosecond", new BaseUnits(time: DurationUnit.Nanosecond, current: ElectricCurrentUnit.Ampere)),
-                    new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerSecond, "AmperesPerSecond", BaseUnits.Undefined),
+                    new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerMicrosecond, "AmperesPerMicrosecond", new BaseUnits(time: DurationUnit.Microsecond, current: ElectricCurrentUnit.Ampere), "ElectricCurrentGradient"),
+                    new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerMillisecond, "AmperesPerMillisecond", new BaseUnits(time: DurationUnit.Millisecond, current: ElectricCurrentUnit.Ampere), "ElectricCurrentGradient"),
+                    new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerNanosecond, "AmperesPerNanosecond", new BaseUnits(time: DurationUnit.Nanosecond, current: ElectricCurrentUnit.Ampere), "ElectricCurrentGradient"),
+                    new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerSecond, "AmperesPerSecond", BaseUnits.Undefined, "ElectricCurrentGradient"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -214,14 +214,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerSecond, ElectricCurrentGradientUnit.AmperePerMicrosecond, quantity => quantity.ToUnit(ElectricCurrentGradientUnit.AmperePerMicrosecond));
             unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerSecond, ElectricCurrentGradientUnit.AmperePerMillisecond, quantity => quantity.ToUnit(ElectricCurrentGradientUnit.AmperePerMillisecond));
             unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerSecond, ElectricCurrentGradientUnit.AmperePerNanosecond, quantity => quantity.ToUnit(ElectricCurrentGradientUnit.AmperePerNanosecond));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentGradientUnit.AmperePerMicrosecond, new CultureInfo("en-US"), false, true, new string[]{"A/μs"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentGradientUnit.AmperePerMillisecond, new CultureInfo("en-US"), false, true, new string[]{"A/ms"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentGradientUnit.AmperePerNanosecond, new CultureInfo("en-US"), false, true, new string[]{"A/ns"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentGradientUnit.AmperePerSecond, new CultureInfo("en-US"), false, true, new string[]{"A/s"});
         }
 
         /// <summary>

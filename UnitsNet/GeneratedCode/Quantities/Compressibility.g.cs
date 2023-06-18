@@ -65,13 +65,13 @@ namespace UnitsNet
             Info = new QuantityInfo<CompressibilityUnit>("Compressibility",
                 new UnitInfo<CompressibilityUnit>[]
                 {
-                    new UnitInfo<CompressibilityUnit>(CompressibilityUnit.InverseAtmosphere, "InverseAtmospheres", BaseUnits.Undefined),
-                    new UnitInfo<CompressibilityUnit>(CompressibilityUnit.InverseBar, "InverseBars", BaseUnits.Undefined),
-                    new UnitInfo<CompressibilityUnit>(CompressibilityUnit.InverseKilopascal, "InverseKilopascals", BaseUnits.Undefined),
-                    new UnitInfo<CompressibilityUnit>(CompressibilityUnit.InverseMegapascal, "InverseMegapascals", BaseUnits.Undefined),
-                    new UnitInfo<CompressibilityUnit>(CompressibilityUnit.InverseMillibar, "InverseMillibars", BaseUnits.Undefined),
-                    new UnitInfo<CompressibilityUnit>(CompressibilityUnit.InversePascal, "InversePascals", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second)),
-                    new UnitInfo<CompressibilityUnit>(CompressibilityUnit.InversePoundForcePerSquareInch, "InversePoundsForcePerSquareInch", BaseUnits.Undefined),
+                    new UnitInfo<CompressibilityUnit>(CompressibilityUnit.InverseAtmosphere, "InverseAtmospheres", BaseUnits.Undefined, "Compressibility"),
+                    new UnitInfo<CompressibilityUnit>(CompressibilityUnit.InverseBar, "InverseBars", BaseUnits.Undefined, "Compressibility"),
+                    new UnitInfo<CompressibilityUnit>(CompressibilityUnit.InverseKilopascal, "InverseKilopascals", BaseUnits.Undefined, "Compressibility"),
+                    new UnitInfo<CompressibilityUnit>(CompressibilityUnit.InverseMegapascal, "InverseMegapascals", BaseUnits.Undefined, "Compressibility"),
+                    new UnitInfo<CompressibilityUnit>(CompressibilityUnit.InverseMillibar, "InverseMillibars", BaseUnits.Undefined, "Compressibility"),
+                    new UnitInfo<CompressibilityUnit>(CompressibilityUnit.InversePascal, "InversePascals", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Compressibility"),
+                    new UnitInfo<CompressibilityUnit>(CompressibilityUnit.InversePoundForcePerSquareInch, "InversePoundsForcePerSquareInch", BaseUnits.Undefined, "Compressibility"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -238,17 +238,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Compressibility>(CompressibilityUnit.InversePascal, CompressibilityUnit.InverseMegapascal, quantity => quantity.ToUnit(CompressibilityUnit.InverseMegapascal));
             unitConverter.SetConversionFunction<Compressibility>(CompressibilityUnit.InversePascal, CompressibilityUnit.InverseMillibar, quantity => quantity.ToUnit(CompressibilityUnit.InverseMillibar));
             unitConverter.SetConversionFunction<Compressibility>(CompressibilityUnit.InversePascal, CompressibilityUnit.InversePoundForcePerSquareInch, quantity => quantity.ToUnit(CompressibilityUnit.InversePoundForcePerSquareInch));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(CompressibilityUnit.InverseAtmosphere, new CultureInfo("en-US"), false, true, new string[]{"atm⁻¹", "1/atm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(CompressibilityUnit.InverseBar, new CultureInfo("en-US"), false, true, new string[]{"bar⁻¹", "1/bar"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(CompressibilityUnit.InverseKilopascal, new CultureInfo("en-US"), false, true, new string[]{"kPa⁻¹", "1/kPa"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(CompressibilityUnit.InverseMegapascal, new CultureInfo("en-US"), false, true, new string[]{"MPa⁻¹", "1/MPa"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(CompressibilityUnit.InverseMillibar, new CultureInfo("en-US"), false, true, new string[]{"mbar⁻¹", "1/mbar"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(CompressibilityUnit.InversePascal, new CultureInfo("en-US"), false, true, new string[]{"Pa⁻¹", "1/Pa"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(CompressibilityUnit.InversePoundForcePerSquareInch, new CultureInfo("en-US"), false, true, new string[]{"psi⁻¹", "1/psi"});
         }
 
         /// <summary>

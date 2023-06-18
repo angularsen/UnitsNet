@@ -65,12 +65,12 @@ namespace UnitsNet
             Info = new QuantityInfo<WarpingMomentOfInertiaUnit>("WarpingMomentOfInertia",
                 new UnitInfo<WarpingMomentOfInertiaUnit>[]
                 {
-                    new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.CentimeterToTheSixth, "CentimetersToTheSixth", new BaseUnits(length: LengthUnit.Centimeter)),
-                    new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.DecimeterToTheSixth, "DecimetersToTheSixth", new BaseUnits(length: LengthUnit.Decimeter)),
-                    new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.FootToTheSixth, "FeetToTheSixth", new BaseUnits(length: LengthUnit.Foot)),
-                    new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.InchToTheSixth, "InchesToTheSixth", new BaseUnits(length: LengthUnit.Inch)),
-                    new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.MeterToTheSixth, "MetersToTheSixth", new BaseUnits(length: LengthUnit.Meter)),
-                    new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.MillimeterToTheSixth, "MillimetersToTheSixth", new BaseUnits(length: LengthUnit.Millimeter)),
+                    new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.CentimeterToTheSixth, "CentimetersToTheSixth", new BaseUnits(length: LengthUnit.Centimeter), "WarpingMomentOfInertia"),
+                    new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.DecimeterToTheSixth, "DecimetersToTheSixth", new BaseUnits(length: LengthUnit.Decimeter), "WarpingMomentOfInertia"),
+                    new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.FootToTheSixth, "FeetToTheSixth", new BaseUnits(length: LengthUnit.Foot), "WarpingMomentOfInertia"),
+                    new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.InchToTheSixth, "InchesToTheSixth", new BaseUnits(length: LengthUnit.Inch), "WarpingMomentOfInertia"),
+                    new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.MeterToTheSixth, "MetersToTheSixth", new BaseUnits(length: LengthUnit.Meter), "WarpingMomentOfInertia"),
+                    new UnitInfo<WarpingMomentOfInertiaUnit>(WarpingMomentOfInertiaUnit.MillimeterToTheSixth, "MillimetersToTheSixth", new BaseUnits(length: LengthUnit.Millimeter), "WarpingMomentOfInertia"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -230,16 +230,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<WarpingMomentOfInertia>(WarpingMomentOfInertiaUnit.MeterToTheSixth, WarpingMomentOfInertiaUnit.FootToTheSixth, quantity => quantity.ToUnit(WarpingMomentOfInertiaUnit.FootToTheSixth));
             unitConverter.SetConversionFunction<WarpingMomentOfInertia>(WarpingMomentOfInertiaUnit.MeterToTheSixth, WarpingMomentOfInertiaUnit.InchToTheSixth, quantity => quantity.ToUnit(WarpingMomentOfInertiaUnit.InchToTheSixth));
             unitConverter.SetConversionFunction<WarpingMomentOfInertia>(WarpingMomentOfInertiaUnit.MeterToTheSixth, WarpingMomentOfInertiaUnit.MillimeterToTheSixth, quantity => quantity.ToUnit(WarpingMomentOfInertiaUnit.MillimeterToTheSixth));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(WarpingMomentOfInertiaUnit.CentimeterToTheSixth, new CultureInfo("en-US"), false, true, new string[]{"cm⁶", "cm^6"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(WarpingMomentOfInertiaUnit.DecimeterToTheSixth, new CultureInfo("en-US"), false, true, new string[]{"dm⁶", "dm^6"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(WarpingMomentOfInertiaUnit.FootToTheSixth, new CultureInfo("en-US"), false, true, new string[]{"ft⁶", "ft^6"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(WarpingMomentOfInertiaUnit.InchToTheSixth, new CultureInfo("en-US"), false, true, new string[]{"in⁶", "in^6"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(WarpingMomentOfInertiaUnit.MeterToTheSixth, new CultureInfo("en-US"), false, true, new string[]{"m⁶", "m^6"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(WarpingMomentOfInertiaUnit.MillimeterToTheSixth, new CultureInfo("en-US"), false, true, new string[]{"mm⁶", "mm^6"});
         }
 
         /// <summary>

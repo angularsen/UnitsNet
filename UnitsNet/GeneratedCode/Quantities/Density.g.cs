@@ -68,57 +68,57 @@ namespace UnitsNet
             Info = new QuantityInfo<DensityUnit>("Density",
                 new UnitInfo<DensityUnit>[]
                 {
-                    new UnitInfo<DensityUnit>(DensityUnit.CentigramPerDeciliter, "CentigramsPerDeciLiter", BaseUnits.Undefined),
-                    new UnitInfo<DensityUnit>(DensityUnit.CentigramPerLiter, "CentigramsPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<DensityUnit>(DensityUnit.CentigramPerMilliliter, "CentigramsPerMilliliter", BaseUnits.Undefined),
-                    new UnitInfo<DensityUnit>(DensityUnit.DecigramPerDeciliter, "DecigramsPerDeciLiter", BaseUnits.Undefined),
-                    new UnitInfo<DensityUnit>(DensityUnit.DecigramPerLiter, "DecigramsPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<DensityUnit>(DensityUnit.DecigramPerMilliliter, "DecigramsPerMilliliter", BaseUnits.Undefined),
-                    new UnitInfo<DensityUnit>(DensityUnit.GramPerCubicCentimeter, "GramsPerCubicCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram)),
-                    new UnitInfo<DensityUnit>(DensityUnit.GramPerCubicFoot, "GramsPerCubicFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Gram)),
-                    new UnitInfo<DensityUnit>(DensityUnit.GramPerCubicInch, "GramsPerCubicInch", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Gram)),
-                    new UnitInfo<DensityUnit>(DensityUnit.GramPerCubicMeter, "GramsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram)),
-                    new UnitInfo<DensityUnit>(DensityUnit.GramPerCubicMillimeter, "GramsPerCubicMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Gram)),
-                    new UnitInfo<DensityUnit>(DensityUnit.GramPerDeciliter, "GramsPerDeciLiter", BaseUnits.Undefined),
-                    new UnitInfo<DensityUnit>(DensityUnit.GramPerLiter, "GramsPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<DensityUnit>(DensityUnit.GramPerMilliliter, "GramsPerMilliliter", BaseUnits.Undefined),
-                    new UnitInfo<DensityUnit>(DensityUnit.KilogramPerCubicCentimeter, "KilogramsPerCubicCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<DensityUnit>(DensityUnit.KilogramPerCubicMeter, "KilogramsPerCubicMeter", BaseUnits.Undefined),
-                    new UnitInfo<DensityUnit>(DensityUnit.KilogramPerCubicMillimeter, "KilogramsPerCubicMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<DensityUnit>(DensityUnit.KilogramPerLiter, "KilogramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram)),
-                    new UnitInfo<DensityUnit>(DensityUnit.KilopoundPerCubicFoot, "KilopoundsPerCubicFoot", BaseUnits.Undefined),
-                    new UnitInfo<DensityUnit>(DensityUnit.KilopoundPerCubicInch, "KilopoundsPerCubicInch", BaseUnits.Undefined),
-                    new UnitInfo<DensityUnit>(DensityUnit.MicrogramPerCubicMeter, "MicrogramsPerCubicMeter", BaseUnits.Undefined),
-                    new UnitInfo<DensityUnit>(DensityUnit.MicrogramPerDeciliter, "MicrogramsPerDeciLiter", BaseUnits.Undefined),
-                    new UnitInfo<DensityUnit>(DensityUnit.MicrogramPerLiter, "MicrogramsPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<DensityUnit>(DensityUnit.MicrogramPerMilliliter, "MicrogramsPerMilliliter", BaseUnits.Undefined),
-                    new UnitInfo<DensityUnit>(DensityUnit.MilligramPerCubicMeter, "MilligramsPerCubicMeter", BaseUnits.Undefined),
-                    new UnitInfo<DensityUnit>(DensityUnit.MilligramPerDeciliter, "MilligramsPerDeciLiter", BaseUnits.Undefined),
-                    new UnitInfo<DensityUnit>(DensityUnit.MilligramPerLiter, "MilligramsPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<DensityUnit>(DensityUnit.MilligramPerMilliliter, "MilligramsPerMilliliter", BaseUnits.Undefined),
-                    new UnitInfo<DensityUnit>(DensityUnit.NanogramPerDeciliter, "NanogramsPerDeciLiter", BaseUnits.Undefined),
-                    new UnitInfo<DensityUnit>(DensityUnit.NanogramPerLiter, "NanogramsPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<DensityUnit>(DensityUnit.NanogramPerMilliliter, "NanogramsPerMilliliter", BaseUnits.Undefined),
-                    new UnitInfo<DensityUnit>(DensityUnit.PicogramPerDeciliter, "PicogramsPerDeciLiter", BaseUnits.Undefined),
-                    new UnitInfo<DensityUnit>(DensityUnit.PicogramPerLiter, "PicogramsPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<DensityUnit>(DensityUnit.PicogramPerMilliliter, "PicogramsPerMilliliter", BaseUnits.Undefined),
-                    new UnitInfo<DensityUnit>(DensityUnit.PoundPerCubicCentimeter, "PoundsPerCubicCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Pound)),
-                    new UnitInfo<DensityUnit>(DensityUnit.PoundPerCubicFoot, "PoundsPerCubicFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound)),
-                    new UnitInfo<DensityUnit>(DensityUnit.PoundPerCubicInch, "PoundsPerCubicInch", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Pound)),
-                    new UnitInfo<DensityUnit>(DensityUnit.PoundPerCubicMeter, "PoundsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Pound)),
-                    new UnitInfo<DensityUnit>(DensityUnit.PoundPerCubicMillimeter, "PoundsPerCubicMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Pound)),
-                    new UnitInfo<DensityUnit>(DensityUnit.PoundPerImperialGallon, "PoundsPerImperialGallon", BaseUnits.Undefined),
-                    new UnitInfo<DensityUnit>(DensityUnit.PoundPerUSGallon, "PoundsPerUSGallon", BaseUnits.Undefined),
-                    new UnitInfo<DensityUnit>(DensityUnit.SlugPerCubicCentimeter, "SlugsPerCubicCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Slug)),
-                    new UnitInfo<DensityUnit>(DensityUnit.SlugPerCubicFoot, "SlugsPerCubicFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Slug)),
-                    new UnitInfo<DensityUnit>(DensityUnit.SlugPerCubicInch, "SlugsPerCubicInch", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Slug)),
-                    new UnitInfo<DensityUnit>(DensityUnit.SlugPerCubicMeter, "SlugsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Slug)),
-                    new UnitInfo<DensityUnit>(DensityUnit.SlugPerCubicMillimeter, "SlugsPerCubicMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Slug)),
-                    new UnitInfo<DensityUnit>(DensityUnit.TonnePerCubicCentimeter, "TonnesPerCubicCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Tonne)),
-                    new UnitInfo<DensityUnit>(DensityUnit.TonnePerCubicFoot, "TonnesPerCubicFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Tonne)),
-                    new UnitInfo<DensityUnit>(DensityUnit.TonnePerCubicInch, "TonnesPerCubicInch", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Tonne)),
-                    new UnitInfo<DensityUnit>(DensityUnit.TonnePerCubicMeter, "TonnesPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Tonne)),
-                    new UnitInfo<DensityUnit>(DensityUnit.TonnePerCubicMillimeter, "TonnesPerCubicMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Tonne)),
+                    new UnitInfo<DensityUnit>(DensityUnit.CentigramPerDeciliter, "CentigramsPerDeciLiter", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.CentigramPerLiter, "CentigramsPerLiter", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.CentigramPerMilliliter, "CentigramsPerMilliliter", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.DecigramPerDeciliter, "DecigramsPerDeciLiter", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.DecigramPerLiter, "DecigramsPerLiter", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.DecigramPerMilliliter, "DecigramsPerMilliliter", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.GramPerCubicCentimeter, "GramsPerCubicCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram), "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.GramPerCubicFoot, "GramsPerCubicFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Gram), "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.GramPerCubicInch, "GramsPerCubicInch", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Gram), "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.GramPerCubicMeter, "GramsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram), "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.GramPerCubicMillimeter, "GramsPerCubicMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Gram), "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.GramPerDeciliter, "GramsPerDeciLiter", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.GramPerLiter, "GramsPerLiter", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.GramPerMilliliter, "GramsPerMilliliter", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.KilogramPerCubicCentimeter, "KilogramsPerCubicCentimeter", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.KilogramPerCubicMeter, "KilogramsPerCubicMeter", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.KilogramPerCubicMillimeter, "KilogramsPerCubicMillimeter", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.KilogramPerLiter, "KilogramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram), "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.KilopoundPerCubicFoot, "KilopoundsPerCubicFoot", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.KilopoundPerCubicInch, "KilopoundsPerCubicInch", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.MicrogramPerCubicMeter, "MicrogramsPerCubicMeter", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.MicrogramPerDeciliter, "MicrogramsPerDeciLiter", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.MicrogramPerLiter, "MicrogramsPerLiter", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.MicrogramPerMilliliter, "MicrogramsPerMilliliter", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.MilligramPerCubicMeter, "MilligramsPerCubicMeter", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.MilligramPerDeciliter, "MilligramsPerDeciLiter", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.MilligramPerLiter, "MilligramsPerLiter", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.MilligramPerMilliliter, "MilligramsPerMilliliter", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.NanogramPerDeciliter, "NanogramsPerDeciLiter", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.NanogramPerLiter, "NanogramsPerLiter", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.NanogramPerMilliliter, "NanogramsPerMilliliter", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.PicogramPerDeciliter, "PicogramsPerDeciLiter", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.PicogramPerLiter, "PicogramsPerLiter", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.PicogramPerMilliliter, "PicogramsPerMilliliter", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.PoundPerCubicCentimeter, "PoundsPerCubicCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Pound), "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.PoundPerCubicFoot, "PoundsPerCubicFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound), "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.PoundPerCubicInch, "PoundsPerCubicInch", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Pound), "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.PoundPerCubicMeter, "PoundsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Pound), "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.PoundPerCubicMillimeter, "PoundsPerCubicMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Pound), "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.PoundPerImperialGallon, "PoundsPerImperialGallon", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.PoundPerUSGallon, "PoundsPerUSGallon", BaseUnits.Undefined, "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.SlugPerCubicCentimeter, "SlugsPerCubicCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Slug), "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.SlugPerCubicFoot, "SlugsPerCubicFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Slug), "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.SlugPerCubicInch, "SlugsPerCubicInch", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Slug), "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.SlugPerCubicMeter, "SlugsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Slug), "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.SlugPerCubicMillimeter, "SlugsPerCubicMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Slug), "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.TonnePerCubicCentimeter, "TonnesPerCubicCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Tonne), "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.TonnePerCubicFoot, "TonnesPerCubicFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Tonne), "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.TonnePerCubicInch, "TonnesPerCubicInch", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Tonne), "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.TonnePerCubicMeter, "TonnesPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Tonne), "Density"),
+                    new UnitInfo<DensityUnit>(DensityUnit.TonnePerCubicMillimeter, "TonnesPerCubicMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Tonne), "Density"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -593,65 +593,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.TonnePerCubicInch, quantity => quantity.ToUnit(DensityUnit.TonnePerCubicInch));
             unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.TonnePerCubicMeter, quantity => quantity.ToUnit(DensityUnit.TonnePerCubicMeter));
             unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.TonnePerCubicMillimeter, quantity => quantity.ToUnit(DensityUnit.TonnePerCubicMillimeter));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.CentigramPerDeciliter, new CultureInfo("en-US"), false, true, new string[]{"cg/dl"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.CentigramPerLiter, new CultureInfo("en-US"), false, true, new string[]{"cg/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.CentigramPerMilliliter, new CultureInfo("en-US"), false, true, new string[]{"cg/ml"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.DecigramPerDeciliter, new CultureInfo("en-US"), false, true, new string[]{"dg/dl"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.DecigramPerLiter, new CultureInfo("en-US"), false, true, new string[]{"dg/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.DecigramPerMilliliter, new CultureInfo("en-US"), false, true, new string[]{"dg/ml"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.GramPerCubicCentimeter, new CultureInfo("en-US"), false, true, new string[]{"g/cm³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.GramPerCubicFoot, new CultureInfo("en-US"), false, true, new string[]{"g/ft³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.GramPerCubicInch, new CultureInfo("en-US"), false, true, new string[]{"g/in³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.GramPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"g/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.GramPerCubicMeter, new CultureInfo("ru-RU"), false, true, new string[]{"г/м³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.GramPerCubicMillimeter, new CultureInfo("en-US"), false, true, new string[]{"g/mm³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.GramPerDeciliter, new CultureInfo("en-US"), false, true, new string[]{"g/dl"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.GramPerLiter, new CultureInfo("en-US"), false, true, new string[]{"g/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.GramPerMilliliter, new CultureInfo("en-US"), false, true, new string[]{"g/ml"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.KilogramPerCubicCentimeter, new CultureInfo("en-US"), false, true, new string[]{"kg/cm³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.KilogramPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"kg/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.KilogramPerCubicMeter, new CultureInfo("ru-RU"), false, true, new string[]{"кг/м³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.KilogramPerCubicMillimeter, new CultureInfo("en-US"), false, true, new string[]{"kg/mm³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.KilogramPerLiter, new CultureInfo("en-US"), false, true, new string[]{"kg/l"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.KilopoundPerCubicFoot, new CultureInfo("en-US"), false, true, new string[]{"kip/ft³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.KilopoundPerCubicInch, new CultureInfo("en-US"), false, true, new string[]{"kip/in³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.MicrogramPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"µg/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.MicrogramPerCubicMeter, new CultureInfo("ru-RU"), false, true, new string[]{"мкг/м³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.MicrogramPerDeciliter, new CultureInfo("en-US"), false, true, new string[]{"µg/dl"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.MicrogramPerLiter, new CultureInfo("en-US"), false, true, new string[]{"µg/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.MicrogramPerMilliliter, new CultureInfo("en-US"), false, true, new string[]{"µg/ml"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.MilligramPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"mg/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.MilligramPerCubicMeter, new CultureInfo("ru-RU"), false, true, new string[]{"мг/м³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.MilligramPerDeciliter, new CultureInfo("en-US"), false, true, new string[]{"mg/dl"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.MilligramPerLiter, new CultureInfo("en-US"), false, true, new string[]{"mg/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.MilligramPerMilliliter, new CultureInfo("en-US"), false, true, new string[]{"mg/ml"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.NanogramPerDeciliter, new CultureInfo("en-US"), false, true, new string[]{"ng/dl"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.NanogramPerLiter, new CultureInfo("en-US"), false, true, new string[]{"ng/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.NanogramPerMilliliter, new CultureInfo("en-US"), false, true, new string[]{"ng/ml"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.PicogramPerDeciliter, new CultureInfo("en-US"), false, true, new string[]{"pg/dl"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.PicogramPerLiter, new CultureInfo("en-US"), false, true, new string[]{"pg/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.PicogramPerMilliliter, new CultureInfo("en-US"), false, true, new string[]{"pg/ml"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.PoundPerCubicCentimeter, new CultureInfo("en-US"), false, true, new string[]{"lb/cm³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.PoundPerCubicFoot, new CultureInfo("en-US"), false, true, new string[]{"lb/ft³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.PoundPerCubicInch, new CultureInfo("en-US"), false, true, new string[]{"lb/in³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.PoundPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"lb/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.PoundPerCubicMillimeter, new CultureInfo("en-US"), false, true, new string[]{"lb/mm³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.PoundPerImperialGallon, new CultureInfo("en-US"), false, true, new string[]{"ppg (imp.)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.PoundPerUSGallon, new CultureInfo("en-US"), false, true, new string[]{"ppg (U.S.)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.SlugPerCubicCentimeter, new CultureInfo("en-US"), false, true, new string[]{"slug/cm³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.SlugPerCubicFoot, new CultureInfo("en-US"), false, true, new string[]{"slug/ft³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.SlugPerCubicInch, new CultureInfo("en-US"), false, true, new string[]{"slug/in³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.SlugPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"slug/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.SlugPerCubicMillimeter, new CultureInfo("en-US"), false, true, new string[]{"slug/mm³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.TonnePerCubicCentimeter, new CultureInfo("en-US"), false, true, new string[]{"t/cm³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.TonnePerCubicFoot, new CultureInfo("en-US"), false, true, new string[]{"t/ft³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.TonnePerCubicInch, new CultureInfo("en-US"), false, true, new string[]{"t/in³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.TonnePerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"t/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.TonnePerCubicMillimeter, new CultureInfo("en-US"), false, true, new string[]{"t/mm³"});
         }
 
         /// <summary>

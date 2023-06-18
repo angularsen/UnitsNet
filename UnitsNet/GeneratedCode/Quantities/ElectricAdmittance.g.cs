@@ -65,10 +65,10 @@ namespace UnitsNet
             Info = new QuantityInfo<ElectricAdmittanceUnit>("ElectricAdmittance",
                 new UnitInfo<ElectricAdmittanceUnit>[]
                 {
-                    new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Microsiemens, "Microsiemens", BaseUnits.Undefined),
-                    new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Millisiemens, "Millisiemens", BaseUnits.Undefined),
-                    new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Nanosiemens, "Nanosiemens", BaseUnits.Undefined),
-                    new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Siemens, "Siemens", BaseUnits.Undefined),
+                    new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Microsiemens, "Microsiemens", BaseUnits.Undefined, "ElectricAdmittance"),
+                    new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Millisiemens, "Millisiemens", BaseUnits.Undefined, "ElectricAdmittance"),
+                    new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Nanosiemens, "Nanosiemens", BaseUnits.Undefined, "ElectricAdmittance"),
+                    new UnitInfo<ElectricAdmittanceUnit>(ElectricAdmittanceUnit.Siemens, "Siemens", BaseUnits.Undefined, "ElectricAdmittance"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -214,14 +214,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricAdmittance>(ElectricAdmittanceUnit.Siemens, ElectricAdmittanceUnit.Microsiemens, quantity => quantity.ToUnit(ElectricAdmittanceUnit.Microsiemens));
             unitConverter.SetConversionFunction<ElectricAdmittance>(ElectricAdmittanceUnit.Siemens, ElectricAdmittanceUnit.Millisiemens, quantity => quantity.ToUnit(ElectricAdmittanceUnit.Millisiemens));
             unitConverter.SetConversionFunction<ElectricAdmittance>(ElectricAdmittanceUnit.Siemens, ElectricAdmittanceUnit.Nanosiemens, quantity => quantity.ToUnit(ElectricAdmittanceUnit.Nanosiemens));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricAdmittanceUnit.Microsiemens, new CultureInfo("en-US"), false, true, new string[]{"µS"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricAdmittanceUnit.Millisiemens, new CultureInfo("en-US"), false, true, new string[]{"mS"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricAdmittanceUnit.Nanosiemens, new CultureInfo("en-US"), false, true, new string[]{"nS"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricAdmittanceUnit.Siemens, new CultureInfo("en-US"), false, true, new string[]{"S"});
         }
 
         /// <summary>

@@ -65,7 +65,7 @@ namespace UnitsNet
             Info = new QuantityInfo<RelativeHumidityUnit>("RelativeHumidity",
                 new UnitInfo<RelativeHumidityUnit>[]
                 {
-                    new UnitInfo<RelativeHumidityUnit>(RelativeHumidityUnit.Percent, "Percent", BaseUnits.Undefined),
+                    new UnitInfo<RelativeHumidityUnit>(RelativeHumidityUnit.Percent, "Percent", BaseUnits.Undefined, "RelativeHumidity"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -190,11 +190,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<RelativeHumidity>(RelativeHumidityUnit.Percent, RelativeHumidityUnit.Percent, quantity => quantity);
 
             // Register in unit converter: BaseUnit -> RelativeHumidityUnit
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(RelativeHumidityUnit.Percent, new CultureInfo("en-US"), false, true, new string[]{"%RH"});
         }
 
         /// <summary>

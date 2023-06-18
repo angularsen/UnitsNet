@@ -68,7 +68,7 @@ namespace UnitsNet
             Info = new QuantityInfo<LuminousIntensityUnit>("LuminousIntensity",
                 new UnitInfo<LuminousIntensityUnit>[]
                 {
-                    new UnitInfo<LuminousIntensityUnit>(LuminousIntensityUnit.Candela, "Candela", new BaseUnits(luminousIntensity: LuminousIntensityUnit.Candela)),
+                    new UnitInfo<LuminousIntensityUnit>(LuminousIntensityUnit.Candela, "Candela", new BaseUnits(luminousIntensity: LuminousIntensityUnit.Candela), "LuminousIntensity"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -193,11 +193,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<LuminousIntensity>(LuminousIntensityUnit.Candela, LuminousIntensityUnit.Candela, quantity => quantity);
 
             // Register in unit converter: BaseUnit -> LuminousIntensityUnit
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminousIntensityUnit.Candela, new CultureInfo("en-US"), false, true, new string[]{"cd"});
         }
 
         /// <summary>

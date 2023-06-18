@@ -68,11 +68,11 @@ namespace UnitsNet
             Info = new QuantityInfo<ElectricConductanceUnit>("ElectricConductance",
                 new UnitInfo<ElectricConductanceUnit>[]
                 {
-                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Kilosiemens, "Kilosiemens", BaseUnits.Undefined),
-                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Microsiemens, "Microsiemens", BaseUnits.Undefined),
-                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Millisiemens, "Millisiemens", BaseUnits.Undefined),
-                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Nanosiemens, "Nanosiemens", BaseUnits.Undefined),
-                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Siemens, "Siemens", BaseUnits.Undefined),
+                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Kilosiemens, "Kilosiemens", BaseUnits.Undefined, "ElectricConductance"),
+                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Microsiemens, "Microsiemens", BaseUnits.Undefined, "ElectricConductance"),
+                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Millisiemens, "Millisiemens", BaseUnits.Undefined, "ElectricConductance"),
+                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Nanosiemens, "Nanosiemens", BaseUnits.Undefined, "ElectricConductance"),
+                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Siemens, "Siemens", BaseUnits.Undefined, "ElectricConductance"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -225,15 +225,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Microsiemens, quantity => quantity.ToUnit(ElectricConductanceUnit.Microsiemens));
             unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Millisiemens, quantity => quantity.ToUnit(ElectricConductanceUnit.Millisiemens));
             unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Nanosiemens, quantity => quantity.ToUnit(ElectricConductanceUnit.Nanosiemens));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricConductanceUnit.Kilosiemens, new CultureInfo("en-US"), false, true, new string[]{"kS"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricConductanceUnit.Microsiemens, new CultureInfo("en-US"), false, true, new string[]{"µS"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricConductanceUnit.Millisiemens, new CultureInfo("en-US"), false, true, new string[]{"mS"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricConductanceUnit.Nanosiemens, new CultureInfo("en-US"), false, true, new string[]{"nS"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricConductanceUnit.Siemens, new CultureInfo("en-US"), false, true, new string[]{"S"});
         }
 
         /// <summary>
