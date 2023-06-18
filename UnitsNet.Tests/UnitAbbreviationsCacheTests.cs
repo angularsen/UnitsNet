@@ -213,29 +213,20 @@ namespace UnitsNet.Tests
         [Fact]
         public void GetDefaultAbbreviationFallsBackToUsEnglishCulture()
         {
-            var oldCurrentCulture = CultureInfo.CurrentCulture;
+            // CurrentCulture affects number formatting, such as comma or dot as decimal separator.
+            // CurrentCulture also affects localization of unit abbreviations.
+            // Zulu (South Africa)
+            var zuluCulture = CultureInfo.GetCultureInfo("zu-ZA");
+            // CultureInfo.CurrentCulture = zuluCulture;
 
-            try
-            {
-                // CurrentCulture affects number formatting, such as comma or dot as decimal separator.
-                // CurrentCulture affects localization, in this case the abbreviation.
-                // Zulu (South Africa)
-                var zuluCulture = CultureInfo.GetCultureInfo("zu-ZA");
-                CultureInfo.CurrentCulture = zuluCulture;
+            var abbreviationsCache = new UnitAbbreviationsCache();
+            abbreviationsCache.MapUnitToAbbreviation(CustomUnit.Unit1, AmericanCulture, "US english abbreviation for Unit1");
 
-                var abbreviationsCache = new UnitAbbreviationsCache();
-                abbreviationsCache.MapUnitToAbbreviation(CustomUnit.Unit1, AmericanCulture, "US english abbreviation for Unit1");
+            // Act
+            string abbreviation = abbreviationsCache.GetDefaultAbbreviation(CustomUnit.Unit1, zuluCulture);
 
-                // Act
-                string abbreviation = abbreviationsCache.GetDefaultAbbreviation(CustomUnit.Unit1, zuluCulture);
-
-                // Assert
-                Assert.Equal("US english abbreviation for Unit1", abbreviation);
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCurrentCulture;
-            }
+            // Assert
+            Assert.Equal("US english abbreviation for Unit1", abbreviation);
         }
 
         [Fact]
