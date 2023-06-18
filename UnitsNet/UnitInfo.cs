@@ -36,7 +36,7 @@ namespace UnitsNet
             PluralName = pluralName;
             BaseUnits = baseUnits ?? throw new ArgumentNullException(nameof(baseUnits));
 
-            AbbreviationsMap = new ConcurrentDictionary<CultureInfo, Lazy<IReadOnlyList<string>>>();
+            AbbreviationsMap = new ConcurrentDictionary<string, Lazy<IReadOnlyList<string>>>();
         }
 
         /// <summary>
@@ -75,12 +75,12 @@ namespace UnitsNet
         private string? QuantityName { get; }
 
         /// <summary>
-        /// The per-culture abbreviations. To add a custom default abbreviation, add to the beginning of the list.
+        /// Culture name to abbreviations. To add a custom default abbreviation, add to the beginning of the list.
         /// </summary>
-        private IDictionary<CultureInfo, Lazy<IReadOnlyList<string>>> AbbreviationsMap { get; }
+        private IDictionary<string, Lazy<IReadOnlyList<string>>> AbbreviationsMap { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="formatProvider"></param>
         /// <returns></returns>
@@ -91,9 +91,10 @@ namespace UnitsNet
                 formatProvider = CultureInfo.CurrentCulture;
 
             var culture = (CultureInfo)formatProvider;
+            var cultureName = GetCultureNameOrEnglish(culture);
 
-            if(!AbbreviationsMap.TryGetValue(culture, out var abbreviations))
-                AbbreviationsMap[culture] = abbreviations = new Lazy<IReadOnlyList<string>>(() => ReadAbbreviationsFromResourceFile(culture));
+            if(!AbbreviationsMap.TryGetValue(cultureName, out var abbreviations))
+                AbbreviationsMap[cultureName] = abbreviations = new Lazy<IReadOnlyList<string>>(() => ReadAbbreviationsFromResourceFile(culture));
 
             if(abbreviations.Value.Count == 0 && !culture.Equals(UnitAbbreviationsCache.FallbackCulture))
                 return GetAbbreviations(UnitAbbreviationsCache.FallbackCulture);
@@ -102,7 +103,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="formatProvider"></param>
         /// <param name="setAsDefault"></param>
@@ -114,6 +115,7 @@ namespace UnitsNet
                 formatProvider = CultureInfo.CurrentCulture;
 
             var culture = (CultureInfo)formatProvider;
+            var cultureName = GetCultureNameOrEnglish(culture);
 
             // Restrict concurrency on writes.
             // By using ConcurrencyDictionary and immutable IReadOnlyList instances, we don't need to lock on reads.
@@ -132,8 +134,17 @@ namespace UnitsNet
                     }
                 }
 
-                AbbreviationsMap[culture] = new Lazy<IReadOnlyList<string>>(() => currentAbbreviationsList.AsReadOnly());
+                AbbreviationsMap[cultureName] = new Lazy<IReadOnlyList<string>>(() => currentAbbreviationsList.AsReadOnly());
             }
+        }
+
+        private static string GetCultureNameOrEnglish(CultureInfo culture)
+        {
+            // Fallback culture is invariant to support DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1,
+            // but we need to map that to the primary localization, English.
+            return culture.Equals(CultureInfo.InvariantCulture)
+                ? "en-US"
+                : culture.Name;
         }
 
         private IReadOnlyList<string> ReadAbbreviationsFromResourceFile(CultureInfo culture)

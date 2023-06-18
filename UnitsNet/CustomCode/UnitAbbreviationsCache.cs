@@ -25,7 +25,7 @@ namespace UnitsNet
         ///     culture, but no translation is defined, so we return the US English definition as a last resort. If it's not
         ///     defined there either, an exception is thrown.
         /// </example>
-        internal static readonly CultureInfo FallbackCulture = CultureInfo.GetCultureInfo("en-US");
+        internal static readonly CultureInfo FallbackCulture = CultureInfo.InvariantCulture;
 
         /// <summary>
         ///     The static instance used internally for ToString() and Parse() of quantities and units.
