@@ -31,13 +31,12 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void StonePoundsToString_FormatsNumberInDefaultCulture()
+        public void StonePoundsToString_FormatsNumberInCurrentCulture()
         {
-            Mass m = Mass.FromStonePounds(3500, 1);
-            StonePounds stonePounds = m.StonePounds;
-            string numberInCurrentCulture =  3500.ToString("n0", CultureInfo.CurrentCulture); // Varies between machines, can't hard code it
+            CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
+            StonePounds stonePounds = Mass.FromStonePounds(3500, 1).StonePounds;
 
-            Assert.Equal($"{numberInCurrentCulture} st 1 lb", stonePounds.ToString());
+            Assert.Equal("3,500 st 1 lb", stonePounds.ToString());
         }
 
         // These cultures use a thin space in digit grouping

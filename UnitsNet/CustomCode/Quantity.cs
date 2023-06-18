@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using UnitsNet.Units;
 
 namespace UnitsNet
 {
@@ -46,12 +47,12 @@ namespace UnitsNet
         public static void AddUnitInfo(Enum unit, UnitInfo unitInfo) => Default.AddUnitInfo(unit, unitInfo);
 
         /// <summary>
-        ///     Dynamically construct a quantity.
+        ///     Dynamically constructs a quantity from a numeric value and a unit enum value.
         /// </summary>
         /// <param name="value">Numeric value.</param>
         /// <param name="unit">Unit enum value.</param>
         /// <returns>An <see cref="IQuantity"/> object.</returns>
-        /// <exception cref="ArgumentException">Unit value is not a know unit enum type.</exception>
+        /// <exception cref="UnitNotFoundException">Unit value is not a known unit enum type.</exception>
         public static IQuantity From(QuantityValue value, Enum unit)
         {
             return Default.From(value, unit);
@@ -74,6 +75,7 @@ namespace UnitsNet
         /// <param name="quantityString">Quantity string representation, such as "1.5 kg". Must be compatible with given quantity type.</param>
         /// <returns>The parsed quantity.</returns>
         /// <exception cref="ArgumentException">Type must be of type UnitsNet.IQuantity -or- Type is not a known quantity type.</exception>
+        /// <exception cref="UnitNotFoundException">Type must be of type UnitsNet.IQuantity -or- Type is not a known quantity type.</exception>
         public static IQuantity Parse(IFormatProvider? formatProvider, Type quantityType, string quantityString)
         {
             return Default.Parse(formatProvider, quantityType, quantityString);
@@ -90,6 +92,24 @@ namespace UnitsNet
         public static IEnumerable<QuantityInfo> GetQuantitiesWithBaseDimensions(BaseDimensions baseDimensions)
         {
             return Default.GetQuantitiesWithBaseDimensions(baseDimensions);
+        }
+
+        private static List<Enum> GetUnitsForAbbreviation(IFormatProvider? formatProvider, string unitAbbreviation)
+        {
+            // Use case-sensitive match to reduce ambiguity.
+            // Don't use UnitParser.TryParse() here, since it allows case-insensitive match per quantity as long as there are no ambiguous abbreviations for
+            // units of that quantity, but here we try all quantities and this results in too high of a chance for ambiguous matches,
+            // such as "cm" matching both LengthUnit.Centimeter (cm) and MolarityUnit.CentimolePerLiter (cM).
+            return Infos
+                .SelectMany(i => i.UnitInfos)
+                .Select(ui => UnitAbbreviationsCache.Default
+                    .GetUnitAbbreviations(ui.Value.GetType(), Convert.ToInt32(ui.Value), formatProvider)
+                    .Contains(unitAbbreviation, StringComparer.Ordinal)
+                    ? ui.Value
+                    : null)
+                .Where(unitValue => unitValue != null)
+                .Select(unitValue => unitValue!)
+                .ToList();
         }
     }
 }

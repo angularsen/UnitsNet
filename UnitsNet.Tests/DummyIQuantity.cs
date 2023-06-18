@@ -9,6 +9,8 @@ namespace UnitsNet.Tests
 
         public QuantityInfo QuantityInfo => throw new NotImplementedException();
 
+        bool IQuantity.Equals(IQuantity? other, IQuantity tolerance) => throw new NotImplementedException();
+
         public Enum Unit => throw new NotImplementedException();
 
         public QuantityValue Value => throw new NotImplementedException();
@@ -16,6 +18,8 @@ namespace UnitsNet.Tests
         public double As(Enum unit ) => throw new NotImplementedException();
 
         public double As(UnitSystem unitSystem ) => throw new NotImplementedException();
+
+        public bool Equals(IQuantity? other, double tolerance, ComparisonType comparisonType) => throw new NotImplementedException();
 
         public string ToString(IFormatProvider? provider) => throw new NotImplementedException();
 

@@ -215,6 +215,11 @@ namespace UnitsNet
         public double ImperialPints => As(VolumeUnit.ImperialPint);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.ImperialQuart"/>
+        /// </summary>
+        public double ImperialQuarts => As(VolumeUnit.ImperialQuart);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.KilocubicFoot"/>
         /// </summary>
         public double KilocubicFeet => As(VolumeUnit.KilocubicFoot);
@@ -511,6 +516,12 @@ namespace UnitsNet
         public static Volume FromImperialPints(double imperialpints) => new Volume(imperialpints, VolumeUnit.ImperialPint);
 
         /// <summary>
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.ImperialQuart"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Volume FromImperialQuarts(double imperialquarts) => new Volume(imperialquarts, VolumeUnit.ImperialQuart);
+
+        /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.KilocubicFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -733,6 +744,7 @@ namespace UnitsNet
                         VolumeUnit.ImperialGallon => _value * 0.00454609,
                         VolumeUnit.ImperialOunce => _value * 2.8413062499962901241875439064617e-5,
                         VolumeUnit.ImperialPint => _value * 5.6826125e-4,
+                        VolumeUnit.ImperialQuart => _value * 1.1365225e-3,
                         VolumeUnit.KilocubicFoot => (_value * 2.8316846592e-2) * 1e3d,
                         VolumeUnit.KilocubicMeter => (_value) * 1e3d,
                         VolumeUnit.KiloimperialGallon => (_value * 0.00454609) * 1e3d,
@@ -799,6 +811,7 @@ namespace UnitsNet
                         VolumeUnit.ImperialGallon => baseUnitValue / 0.00454609,
                         VolumeUnit.ImperialOunce => baseUnitValue / 2.8413062499962901241875439064617e-5,
                         VolumeUnit.ImperialPint => baseUnitValue / 5.6826125e-4,
+                        VolumeUnit.ImperialQuart => baseUnitValue / 1.1365225e-3,
                         VolumeUnit.KilocubicFoot => (baseUnitValue / 2.8316846592e-2) / 1e3d,
                         VolumeUnit.KilocubicMeter => (baseUnitValue) / 1e3d,
                         VolumeUnit.KiloimperialGallon => (baseUnitValue / 0.00454609) / 1e3d,

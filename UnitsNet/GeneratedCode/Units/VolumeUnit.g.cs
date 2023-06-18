@@ -57,6 +57,7 @@ namespace UnitsNet.Units
         ImperialGallon = 25,
         ImperialOunce = 26,
         ImperialPint = 27,
+        ImperialQuart = 57,
         KilocubicFoot = 28,
         KilocubicMeter = 29,
         KiloimperialGallon = 30,

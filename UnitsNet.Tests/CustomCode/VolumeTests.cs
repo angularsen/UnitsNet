@@ -106,6 +106,11 @@ namespace UnitsNet.Tests
 
         protected override double DecalitersInOneCubicMeter => 1e2;
 
+        /// <summary>
+        /// https://www.legislation.gov.uk/uksi/1995/1804/made
+        /// </summary>
+        protected override double ImperialQuartsInOneCubicMeter => 879.876993196;
+
         [Fact]
         public void VolumeDividedByAreaEqualsLength()
         {

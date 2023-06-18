@@ -1556,7 +1556,8 @@
     "UsQuart": 50,
     "UsTablespoon": 51,
     "UsTeaspoon": 52,
-    "Nanoliter": 53
+    "Nanoliter": 53,
+    "ImperialQuart": 57
   },
   "VolumeConcentration": {
     "CentilitersPerLiter": 1,
@@ -1744,5 +1745,23 @@
     "PascalQubicMeterPerSecond": 1,
     "TorrLiterPerSecond": 4,
     "PascalCubicMeterPerSecond": 2
+  },
+  "AbsorbedDoseOfIonizingRadiation": {
+    "Centigray": 6,
+    "Femtogray": 7,
+    "Gigagray": 8,
+    "Gray": 5,
+    "Kilogray": 9,
+    "Kilorad": 4,
+    "Megagray": 3,
+    "Megarad": 2,
+    "Microgray": 1,
+    "Milligray": 10,
+    "Millirad": 18,
+    "Nanogray": 16,
+    "Petagray": 19,
+    "Picogray": 11,
+    "Rad": 17,
+    "Teragray": 14
   }
 }

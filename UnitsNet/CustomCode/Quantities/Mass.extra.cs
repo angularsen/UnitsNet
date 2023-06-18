@@ -99,6 +99,18 @@ namespace UnitsNet
         {
             return Force.FromNewtons(mass.Kilograms*acceleration.MetersPerSecondSquared);
         }
+
+        /// <summary>Get <see cref="LinearDensity"/> from <see cref="Mass"/> times <see cref="Length"/>.</summary>
+        public static LinearDensity operator /(Mass mass, Length length)
+        {
+            return LinearDensity.FromKilogramsPerMeter(mass.Kilograms / length.Meters);
+        }
+
+        /// <summary>Get <see cref="Length"/> from <see cref="Mass"/> divided by <see cref="LinearDensity"/>.</summary>
+        public static Length operator /(Mass mass, LinearDensity linearDensity)
+        {
+            return Length.FromMeters(mass.Kilograms / linearDensity.KilogramsPerMeter);
+        }
     }
 
     /// <summary>

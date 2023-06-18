@@ -357,6 +357,11 @@ namespace UnitsNet
         public double ImperialPints => As(VolumeUnit.ImperialPint);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.ImperialQuart"/>
+        /// </summary>
+        public double ImperialQuarts => As(VolumeUnit.ImperialQuart);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.KilocubicFoot"/>
         /// </summary>
         public double KilocubicFeet => As(VolumeUnit.KilocubicFoot);
@@ -523,6 +528,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.ImperialGallon, VolumeUnit.CubicMeter, quantity => quantity.ToUnit(VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.ImperialOunce, VolumeUnit.CubicMeter, quantity => quantity.ToUnit(VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.ImperialPint, VolumeUnit.CubicMeter, quantity => quantity.ToUnit(VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.ImperialQuart, VolumeUnit.CubicMeter, quantity => quantity.ToUnit(VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.KilocubicFoot, VolumeUnit.CubicMeter, quantity => quantity.ToUnit(VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.KilocubicMeter, VolumeUnit.CubicMeter, quantity => quantity.ToUnit(VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.KiloimperialGallon, VolumeUnit.CubicMeter, quantity => quantity.ToUnit(VolumeUnit.CubicMeter));
@@ -580,6 +586,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.ImperialGallon, quantity => quantity.ToUnit(VolumeUnit.ImperialGallon));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.ImperialOunce, quantity => quantity.ToUnit(VolumeUnit.ImperialOunce));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.ImperialPint, quantity => quantity.ToUnit(VolumeUnit.ImperialPint));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.ImperialQuart, quantity => quantity.ToUnit(VolumeUnit.ImperialQuart));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.KilocubicFoot, quantity => quantity.ToUnit(VolumeUnit.KilocubicFoot));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.KilocubicMeter, quantity => quantity.ToUnit(VolumeUnit.KilocubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.KiloimperialGallon, quantity => quantity.ToUnit(VolumeUnit.KiloimperialGallon));
@@ -901,6 +908,16 @@ namespace UnitsNet
         {
             double value = (double) imperialpints;
             return new Volume(value, VolumeUnit.ImperialPint);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.ImperialQuart"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Volume FromImperialQuarts(QuantityValue imperialquarts)
+        {
+            double value = (double) imperialquarts;
+            return new Volume(value, VolumeUnit.ImperialQuart);
         }
 
         /// <summary>
@@ -1397,16 +1414,14 @@ namespace UnitsNet
         #pragma warning disable CS0809
 
         /// <summary>Indicates strict equality of two <see cref="Volume"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Volume, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For quantity comparisons, use Equals(Volume, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Volume other, Volume tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public static bool operator ==(Volume left, Volume right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Indicates strict inequality of two <see cref="Volume"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Volume, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is not null` syntax to not invoke overloads. For quantity comparisons, use Equals(Volume, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Volume other, Volume tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public static bool operator !=(Volume left, Volume right)
         {
             return !(left == right);
@@ -1414,8 +1429,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="Volume"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Volume, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Volume, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Use Equals(Volume other, Volume tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is Volume otherQuantity))
@@ -1426,8 +1440,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="Volume"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Volume, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Volume, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Use Equals(Volume other, Volume tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public bool Equals(Volume other)
         {
             return new { Value, Unit }.Equals(new { other.Value, other.Unit });
@@ -1511,15 +1524,37 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
+        [Obsolete("Use Equals(Volume other, Volume tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public bool Equals(Volume other, double tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(
+                referenceValue: this.Value,
+                otherValue: other.As(this.Unit),
+                tolerance: tolerance,
+                comparisonType: ComparisonType.Absolute);
+        }
 
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+        /// <inheritdoc />
+        public bool Equals(IQuantity? other, IQuantity tolerance)
+        {
+            return other is Volume otherTyped
+                   && (tolerance is Volume toleranceTyped
+                       ? true
+                       : throw new ArgumentException($"Tolerance quantity ({tolerance.QuantityInfo.Name}) did not match the other quantities of type 'Volume'.", nameof(tolerance)))
+                   && Equals(otherTyped, toleranceTyped);
+        }
+
+        /// <inheritdoc />
+        public bool Equals(Volume other, Volume tolerance)
+        {
+            return UnitsNet.Comparison.Equals(
+                referenceValue: this.Value,
+                otherValue: other.As(this.Unit),
+                tolerance: tolerance.As(this.Unit),
+                comparisonType: ComparisonType.Absolute);
         }
 
         /// <summary>
@@ -1664,6 +1699,7 @@ namespace UnitsNet
                 (VolumeUnit.ImperialGallon, VolumeUnit.CubicMeter) => new Volume(_value * 0.00454609, VolumeUnit.CubicMeter),
                 (VolumeUnit.ImperialOunce, VolumeUnit.CubicMeter) => new Volume(_value * 2.8413062499962901241875439064617e-5, VolumeUnit.CubicMeter),
                 (VolumeUnit.ImperialPint, VolumeUnit.CubicMeter) => new Volume(_value * 5.6826125e-4, VolumeUnit.CubicMeter),
+                (VolumeUnit.ImperialQuart, VolumeUnit.CubicMeter) => new Volume(_value * 1.1365225e-3, VolumeUnit.CubicMeter),
                 (VolumeUnit.KilocubicFoot, VolumeUnit.CubicMeter) => new Volume((_value * 2.8316846592e-2) * 1e3d, VolumeUnit.CubicMeter),
                 (VolumeUnit.KilocubicMeter, VolumeUnit.CubicMeter) => new Volume((_value) * 1e3d, VolumeUnit.CubicMeter),
                 (VolumeUnit.KiloimperialGallon, VolumeUnit.CubicMeter) => new Volume((_value * 0.00454609) * 1e3d, VolumeUnit.CubicMeter),
@@ -1718,6 +1754,7 @@ namespace UnitsNet
                 (VolumeUnit.CubicMeter, VolumeUnit.ImperialGallon) => new Volume(_value / 0.00454609, VolumeUnit.ImperialGallon),
                 (VolumeUnit.CubicMeter, VolumeUnit.ImperialOunce) => new Volume(_value / 2.8413062499962901241875439064617e-5, VolumeUnit.ImperialOunce),
                 (VolumeUnit.CubicMeter, VolumeUnit.ImperialPint) => new Volume(_value / 5.6826125e-4, VolumeUnit.ImperialPint),
+                (VolumeUnit.CubicMeter, VolumeUnit.ImperialQuart) => new Volume(_value / 1.1365225e-3, VolumeUnit.ImperialQuart),
                 (VolumeUnit.CubicMeter, VolumeUnit.KilocubicFoot) => new Volume((_value / 2.8316846592e-2) / 1e3d, VolumeUnit.KilocubicFoot),
                 (VolumeUnit.CubicMeter, VolumeUnit.KilocubicMeter) => new Volume((_value) / 1e3d, VolumeUnit.KilocubicMeter),
                 (VolumeUnit.CubicMeter, VolumeUnit.KiloimperialGallon) => new Volume((_value / 0.00454609) / 1e3d, VolumeUnit.KiloimperialGallon),
