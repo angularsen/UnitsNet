@@ -298,7 +298,10 @@
     "AmperePerMicrosecond": 1,
     "AmperePerMillisecond": 2,
     "AmperePerNanosecond": 3,
-    "AmperePerSecond": 4
+    "AmperePerSecond": 4,
+    "AmperePerMinute": 11,
+    "MilliamperePerMinute": 6,
+    "MilliamperePerSecond": 14
   },
   "ElectricField": {
     "VoltPerMeter": 1
@@ -1153,7 +1156,11 @@
     "PascalPerMinute": 11,
     "PascalPerSecond": 12,
     "PoundForcePerSquareInchPerMinute": 13,
-    "PoundForcePerSquareInchPerSecond": 14
+    "PoundForcePerSquareInchPerSecond": 14,
+    "BarPerMinute": 16,
+    "BarPerSecond": 23,
+    "MillibarPerMinute": 24,
+    "MillibarPerSecond": 20
   },
   "Ratio": {
     "DecimalFraction": 1,

@@ -33,5 +33,13 @@ namespace UnitsNet.Tests
         protected override double PascalsPerMinuteInOnePascalPerSecond => 60;
 
         protected override double MillimetersOfMercuryPerSecondInOnePascalPerSecond => 7.500637554192106e-3;
+
+        protected override double BarsPerMinuteInOnePascalPerSecond => 6e-4;
+
+        protected override double BarsPerSecondInOnePascalPerSecond => 1e-5;
+
+        protected override double MillibarsPerMinuteInOnePascalPerSecond => 0.6;
+
+        protected override double MillibarsPerSecondInOnePascalPerSecond => 1e-2;
     }
 }

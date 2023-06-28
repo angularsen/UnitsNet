@@ -42,7 +42,7 @@
         }
       ]
     },
-	{
+    {
       "SingularName": "MillimeterOfMercuryPerSecond",
       "PluralName": "MillimetersOfMercuryPerSecond",
       "FromUnitToBaseFunc": "{x} * 133.322",
@@ -74,7 +74,7 @@
         }
       ]
     },
-	    {
+    {
       "SingularName": "PoundForcePerSquareInchPerSecond",
       "PluralName": "PoundsForcePerSquareInchPerSecond",
       "FromUnitToBaseFunc": "{x} * 6.894757293168361e3",
@@ -109,6 +109,40 @@
           "Culture": "ru-RU",
           "Abbreviations": [ "psi/мин", "lb/in²/мин" ],
           "AbbreviationsForPrefixes": { "Kilo": [ "ksi/мин", "kipf/in²/мин" ]}
+        }
+      ]
+    },
+    {
+      "SingularName": "BarPerSecond",
+      "PluralName": "BarsPerSecond",
+      "FromUnitToBaseFunc": "{x} * 1e5",
+      "FromBaseToUnitFunc": "{x} / 1e5",
+      "Prefixes": [ "Milli" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "bar/s" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "бар/с" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "BarPerMinute",
+      "PluralName": "BarsPerMinute",
+      "FromUnitToBaseFunc": "{x} * 1e5 / 60",
+      "FromBaseToUnitFunc": "{x} / 1e5 * 60",
+      "Prefixes": [ "Milli" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "bar/min" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "бар/мин" ]
         }
       ]
     }
