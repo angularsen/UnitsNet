@@ -23,6 +23,8 @@
 
 using System;
 
+using Xunit;
+
 namespace UnitsNet.Tests.CustomCode
 {
     public class ElectricCurrentGradientTests : ElectricCurrentGradientTestsBase
@@ -36,5 +38,19 @@ namespace UnitsNet.Tests.CustomCode
         protected override double AmperesPerMinuteInOneAmperePerSecond => 60;
         protected override double MilliamperesPerMinuteInOneAmperePerSecond => 6e4;
         protected override double MilliamperesPerSecondInOneAmperePerSecond => 1e3;
+
+        [Fact]
+        public void ElectricCurrentGradientTimesDurationEqualsElectricCurrent()
+        {
+            ElectricCurrent electricCurrent = ElectricCurrentGradient.FromAmperesPerSecond(10) * Duration.FromSeconds(2);
+            Assert.Equal(ElectricCurrent.FromAmperes(20) ,electricCurrent);
+        }
+
+        [Fact]
+        public void ElectricCurrentGradientTimesTimeSpanEqualsElectricCurrent()
+        {
+            ElectricCurrent electricCurrent = ElectricCurrentGradient.FromAmperesPerSecond(10) * TimeSpan.FromSeconds(2);
+            Assert.Equal(ElectricCurrent.FromAmperes(20), electricCurrent);
+        }
     }
 }

@@ -1,6 +1,8 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using System;
+
 namespace UnitsNet
 {
     public partial struct ElectricCurrent
@@ -23,6 +25,18 @@ namespace UnitsNet
         public static ElectricCharge operator *(ElectricCurrent current, Duration time)
         {
             return ElectricCharge.FromAmpereHours(current.Amperes * time.Hours);
+        }
+
+        /// <summary>Get <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrent"/> divided by <see cref="Duration"/>.</summary>
+        public static ElectricCurrentGradient operator /(ElectricCurrent current, Duration duration)
+        {
+            return ElectricCurrentGradient.FromAmperesPerSecond(current.Amperes / duration.Seconds);
+        }
+
+        /// <summary>Get <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrent"/> divided by <see cref="TimeSpan"/>.</summary>
+        public static ElectricCurrentGradient operator /(ElectricCurrent current, TimeSpan timeSpan)
+        {
+            return ElectricCurrentGradient.FromAmperesPerSecond(current.Amperes / timeSpan.TotalSeconds);
         }
     }
 }
