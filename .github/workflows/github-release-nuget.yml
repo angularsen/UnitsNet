@@ -1,0 +1,32 @@
+name: Push GsaGH NuGet
+
+# On run when release is published
+on:
+  release:
+    types: [published]
+
+jobs:
+  pushNuGetPackage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download NuGet Package
+        uses: i3h/download-release-asset@v1
+        with:
+          owner: ${{ github.repository_owner }}
+          repo: OasysUnits
+          tag: ${{ github.event.release.tag_name }}
+          file: /.*\.nupkg/
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Download Symbols
+        uses: i3h/download-release-asset@v1
+        with:
+          owner: ${{ github.repository_owner }}
+          repo: OasysUnits
+          tag: ${{ github.event.release.tag_name }}
+          file: /.*\.snupkg/
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push nupkg file to nuget.org
+        run: |
+          dotnet nuget push "*.nupkg" --api-key ${{ SECRETS.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
