@@ -106,7 +106,7 @@ steps:
 
 - task: GitHubRelease@1
   inputs:
-    gitHubConnection: 'github.com_peterjgrainger'
+    gitHubConnection: 'github.com_MJCramp'
     repositoryName: 'arup-group/OasysUnits'
     action: 'edit'
     target: '$(Build.SourceVersion)'
