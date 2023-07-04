@@ -135,7 +135,7 @@ steps:
       Created from commit https://github.com/arup-group/OasysUnits/commit/$(Build.SourceVersion)
     assets: |
       $(System.DefaultWorkingDirectory)/**/*.nupkg
-      $(System.DefaultWorkingDirectory)/**/*.symbols.nupkg
+      $(System.DefaultWorkingDirectory)/**/*.snupkg
     assetUploadMode: 'replace'
     isDraft: true
     isPreRelease: true
