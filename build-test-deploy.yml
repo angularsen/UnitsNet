@@ -106,20 +106,17 @@ steps:
 
 - powershell: |
     cd OasysUnits
-    cd OasysUnits
     & 'C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Current\Bin\amd64\MSBuild.exe' OasysUnits.csproj /t:pack /p:IncludeSymbols=true /p:SymbolPackageFormat=snupkg /p:DebugType=portable /property:Configuration=Debug
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'), ne(variables.TAG_EXISTS, 'true'))
   displayName: Package OasysUnits NuGet
 
 - powershell: |
-    cd OasysUnits
     cd OasysUnits.NumberExtensions
     & 'C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Current\Bin\amd64\MSBuild.exe' OasysUnits.NumberExtensions.csproj /t:pack /p:IncludeSymbols=true /p:SymbolPackageFormat=snupkg /p:DebugType=portable /property:Configuration=Debug
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'), ne(variables.TAG_EXISTS, 'true'))
   displayName: Package OasysUnits.NumberExtensions NuGet
 
 - powershell: |
-    cd OasysUnits
     cd OasysUnits.Serialization.JsonNet
     & 'C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Current\Bin\amd64\MSBuild.exe' OasysUnits.Serialization.JsonNet.csproj /t:pack /p:IncludeSymbols=true /p:SymbolPackageFormat=snupkg /p:DebugType=portable /property:Configuration=Debug
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'), ne(variables.TAG_EXISTS, 'true'))
