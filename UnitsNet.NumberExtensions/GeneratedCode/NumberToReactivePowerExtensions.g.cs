@@ -19,6 +19,10 @@
 
 using System;
 
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
+
 #nullable enable
 
 namespace UnitsNet.NumberExtensions.NumberToReactivePower
@@ -29,20 +33,36 @@ namespace UnitsNet.NumberExtensions.NumberToReactivePower
     public static class NumberToReactivePowerExtensions
     {
         /// <inheritdoc cref="ReactivePower.FromGigavoltamperesReactive(UnitsNet.QuantityValue)" />
-        public static ReactivePower GigavoltamperesReactive<T>(this T value) =>
-            ReactivePower.FromGigavoltamperesReactive(Convert.ToDouble(value));
+        public static ReactivePower GigavoltamperesReactive<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ReactivePower.FromGigavoltamperesReactive(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ReactivePower.FromKilovoltamperesReactive(UnitsNet.QuantityValue)" />
-        public static ReactivePower KilovoltamperesReactive<T>(this T value) =>
-            ReactivePower.FromKilovoltamperesReactive(Convert.ToDouble(value));
+        public static ReactivePower KilovoltamperesReactive<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ReactivePower.FromKilovoltamperesReactive(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ReactivePower.FromMegavoltamperesReactive(UnitsNet.QuantityValue)" />
-        public static ReactivePower MegavoltamperesReactive<T>(this T value) =>
-            ReactivePower.FromMegavoltamperesReactive(Convert.ToDouble(value));
+        public static ReactivePower MegavoltamperesReactive<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ReactivePower.FromMegavoltamperesReactive(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ReactivePower.FromVoltamperesReactive(UnitsNet.QuantityValue)" />
-        public static ReactivePower VoltamperesReactive<T>(this T value) =>
-            ReactivePower.FromVoltamperesReactive(Convert.ToDouble(value));
+        public static ReactivePower VoltamperesReactive<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ReactivePower.FromVoltamperesReactive(Convert.ToDouble(value));
 
     }
 }

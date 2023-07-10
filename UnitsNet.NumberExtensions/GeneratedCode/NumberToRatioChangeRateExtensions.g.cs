@@ -19,6 +19,10 @@
 
 using System;
 
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
+
 #nullable enable
 
 namespace UnitsNet.NumberExtensions.NumberToRatioChangeRate
@@ -29,12 +33,20 @@ namespace UnitsNet.NumberExtensions.NumberToRatioChangeRate
     public static class NumberToRatioChangeRateExtensions
     {
         /// <inheritdoc cref="RatioChangeRate.FromDecimalFractionsPerSecond(UnitsNet.QuantityValue)" />
-        public static RatioChangeRate DecimalFractionsPerSecond<T>(this T value) =>
-            RatioChangeRate.FromDecimalFractionsPerSecond(Convert.ToDouble(value));
+        public static RatioChangeRate DecimalFractionsPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => RatioChangeRate.FromDecimalFractionsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="RatioChangeRate.FromPercentsPerSecond(UnitsNet.QuantityValue)" />
-        public static RatioChangeRate PercentsPerSecond<T>(this T value) =>
-            RatioChangeRate.FromPercentsPerSecond(Convert.ToDouble(value));
+        public static RatioChangeRate PercentsPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => RatioChangeRate.FromPercentsPerSecond(Convert.ToDouble(value));
 
     }
 }

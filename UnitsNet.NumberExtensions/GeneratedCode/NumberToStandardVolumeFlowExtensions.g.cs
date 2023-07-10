@@ -19,6 +19,10 @@
 
 using System;
 
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
+
 #nullable enable
 
 namespace UnitsNet.NumberExtensions.NumberToStandardVolumeFlow
@@ -29,40 +33,76 @@ namespace UnitsNet.NumberExtensions.NumberToStandardVolumeFlow
     public static class NumberToStandardVolumeFlowExtensions
     {
         /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicCentimetersPerMinute(UnitsNet.QuantityValue)" />
-        public static StandardVolumeFlow StandardCubicCentimetersPerMinute<T>(this T value) =>
-            StandardVolumeFlow.FromStandardCubicCentimetersPerMinute(Convert.ToDouble(value));
+        public static StandardVolumeFlow StandardCubicCentimetersPerMinute<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => StandardVolumeFlow.FromStandardCubicCentimetersPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicFeetPerHour(UnitsNet.QuantityValue)" />
-        public static StandardVolumeFlow StandardCubicFeetPerHour<T>(this T value) =>
-            StandardVolumeFlow.FromStandardCubicFeetPerHour(Convert.ToDouble(value));
+        public static StandardVolumeFlow StandardCubicFeetPerHour<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => StandardVolumeFlow.FromStandardCubicFeetPerHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicFeetPerMinute(UnitsNet.QuantityValue)" />
-        public static StandardVolumeFlow StandardCubicFeetPerMinute<T>(this T value) =>
-            StandardVolumeFlow.FromStandardCubicFeetPerMinute(Convert.ToDouble(value));
+        public static StandardVolumeFlow StandardCubicFeetPerMinute<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => StandardVolumeFlow.FromStandardCubicFeetPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicFeetPerSecond(UnitsNet.QuantityValue)" />
-        public static StandardVolumeFlow StandardCubicFeetPerSecond<T>(this T value) =>
-            StandardVolumeFlow.FromStandardCubicFeetPerSecond(Convert.ToDouble(value));
+        public static StandardVolumeFlow StandardCubicFeetPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => StandardVolumeFlow.FromStandardCubicFeetPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicMetersPerDay(UnitsNet.QuantityValue)" />
-        public static StandardVolumeFlow StandardCubicMetersPerDay<T>(this T value) =>
-            StandardVolumeFlow.FromStandardCubicMetersPerDay(Convert.ToDouble(value));
+        public static StandardVolumeFlow StandardCubicMetersPerDay<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => StandardVolumeFlow.FromStandardCubicMetersPerDay(Convert.ToDouble(value));
 
         /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicMetersPerHour(UnitsNet.QuantityValue)" />
-        public static StandardVolumeFlow StandardCubicMetersPerHour<T>(this T value) =>
-            StandardVolumeFlow.FromStandardCubicMetersPerHour(Convert.ToDouble(value));
+        public static StandardVolumeFlow StandardCubicMetersPerHour<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => StandardVolumeFlow.FromStandardCubicMetersPerHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicMetersPerMinute(UnitsNet.QuantityValue)" />
-        public static StandardVolumeFlow StandardCubicMetersPerMinute<T>(this T value) =>
-            StandardVolumeFlow.FromStandardCubicMetersPerMinute(Convert.ToDouble(value));
+        public static StandardVolumeFlow StandardCubicMetersPerMinute<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => StandardVolumeFlow.FromStandardCubicMetersPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicMetersPerSecond(UnitsNet.QuantityValue)" />
-        public static StandardVolumeFlow StandardCubicMetersPerSecond<T>(this T value) =>
-            StandardVolumeFlow.FromStandardCubicMetersPerSecond(Convert.ToDouble(value));
+        public static StandardVolumeFlow StandardCubicMetersPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => StandardVolumeFlow.FromStandardCubicMetersPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="StandardVolumeFlow.FromStandardLitersPerMinute(UnitsNet.QuantityValue)" />
-        public static StandardVolumeFlow StandardLitersPerMinute<T>(this T value) =>
-            StandardVolumeFlow.FromStandardLitersPerMinute(Convert.ToDouble(value));
+        public static StandardVolumeFlow StandardLitersPerMinute<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => StandardVolumeFlow.FromStandardLitersPerMinute(Convert.ToDouble(value));
 
     }
 }

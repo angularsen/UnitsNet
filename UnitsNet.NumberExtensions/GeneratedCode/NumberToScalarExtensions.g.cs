@@ -19,6 +19,10 @@
 
 using System;
 
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
+
 #nullable enable
 
 namespace UnitsNet.NumberExtensions.NumberToScalar
@@ -29,8 +33,12 @@ namespace UnitsNet.NumberExtensions.NumberToScalar
     public static class NumberToScalarExtensions
     {
         /// <inheritdoc cref="Scalar.FromAmount(UnitsNet.QuantityValue)" />
-        public static Scalar Amount<T>(this T value) =>
-            Scalar.FromAmount(Convert.ToDouble(value));
+        public static Scalar Amount<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Scalar.FromAmount(Convert.ToDouble(value));
 
     }
 }

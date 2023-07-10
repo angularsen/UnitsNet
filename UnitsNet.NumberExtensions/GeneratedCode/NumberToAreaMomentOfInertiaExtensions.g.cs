@@ -19,6 +19,10 @@
 
 using System;
 
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
+
 #nullable enable
 
 namespace UnitsNet.NumberExtensions.NumberToAreaMomentOfInertia
@@ -29,28 +33,52 @@ namespace UnitsNet.NumberExtensions.NumberToAreaMomentOfInertia
     public static class NumberToAreaMomentOfInertiaExtensions
     {
         /// <inheritdoc cref="AreaMomentOfInertia.FromCentimetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia CentimetersToTheFourth<T>(this T value) =>
-            AreaMomentOfInertia.FromCentimetersToTheFourth(Convert.ToDouble(value));
+        public static AreaMomentOfInertia CentimetersToTheFourth<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => AreaMomentOfInertia.FromCentimetersToTheFourth(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AreaMomentOfInertia.FromDecimetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia DecimetersToTheFourth<T>(this T value) =>
-            AreaMomentOfInertia.FromDecimetersToTheFourth(Convert.ToDouble(value));
+        public static AreaMomentOfInertia DecimetersToTheFourth<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => AreaMomentOfInertia.FromDecimetersToTheFourth(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AreaMomentOfInertia.FromFeetToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia FeetToTheFourth<T>(this T value) =>
-            AreaMomentOfInertia.FromFeetToTheFourth(Convert.ToDouble(value));
+        public static AreaMomentOfInertia FeetToTheFourth<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => AreaMomentOfInertia.FromFeetToTheFourth(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AreaMomentOfInertia.FromInchesToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia InchesToTheFourth<T>(this T value) =>
-            AreaMomentOfInertia.FromInchesToTheFourth(Convert.ToDouble(value));
+        public static AreaMomentOfInertia InchesToTheFourth<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => AreaMomentOfInertia.FromInchesToTheFourth(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AreaMomentOfInertia.FromMetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia MetersToTheFourth<T>(this T value) =>
-            AreaMomentOfInertia.FromMetersToTheFourth(Convert.ToDouble(value));
+        public static AreaMomentOfInertia MetersToTheFourth<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => AreaMomentOfInertia.FromMetersToTheFourth(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AreaMomentOfInertia.FromMillimetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia MillimetersToTheFourth<T>(this T value) =>
-            AreaMomentOfInertia.FromMillimetersToTheFourth(Convert.ToDouble(value));
+        public static AreaMomentOfInertia MillimetersToTheFourth<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => AreaMomentOfInertia.FromMillimetersToTheFourth(Convert.ToDouble(value));
 
     }
 }

@@ -19,6 +19,10 @@
 
 using System;
 
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
+
 #nullable enable
 
 namespace UnitsNet.NumberExtensions.NumberToFuelEfficiency
@@ -29,20 +33,36 @@ namespace UnitsNet.NumberExtensions.NumberToFuelEfficiency
     public static class NumberToFuelEfficiencyExtensions
     {
         /// <inheritdoc cref="FuelEfficiency.FromKilometersPerLiters(UnitsNet.QuantityValue)" />
-        public static FuelEfficiency KilometersPerLiters<T>(this T value) =>
-            FuelEfficiency.FromKilometersPerLiters(Convert.ToDouble(value));
+        public static FuelEfficiency KilometersPerLiters<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => FuelEfficiency.FromKilometersPerLiters(Convert.ToDouble(value));
 
         /// <inheritdoc cref="FuelEfficiency.FromLitersPer100Kilometers(UnitsNet.QuantityValue)" />
-        public static FuelEfficiency LitersPer100Kilometers<T>(this T value) =>
-            FuelEfficiency.FromLitersPer100Kilometers(Convert.ToDouble(value));
+        public static FuelEfficiency LitersPer100Kilometers<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => FuelEfficiency.FromLitersPer100Kilometers(Convert.ToDouble(value));
 
         /// <inheritdoc cref="FuelEfficiency.FromMilesPerUkGallon(UnitsNet.QuantityValue)" />
-        public static FuelEfficiency MilesPerUkGallon<T>(this T value) =>
-            FuelEfficiency.FromMilesPerUkGallon(Convert.ToDouble(value));
+        public static FuelEfficiency MilesPerUkGallon<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => FuelEfficiency.FromMilesPerUkGallon(Convert.ToDouble(value));
 
         /// <inheritdoc cref="FuelEfficiency.FromMilesPerUsGallon(UnitsNet.QuantityValue)" />
-        public static FuelEfficiency MilesPerUsGallon<T>(this T value) =>
-            FuelEfficiency.FromMilesPerUsGallon(Convert.ToDouble(value));
+        public static FuelEfficiency MilesPerUsGallon<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => FuelEfficiency.FromMilesPerUsGallon(Convert.ToDouble(value));
 
     }
 }

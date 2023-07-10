@@ -19,6 +19,10 @@
 
 using System;
 
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
+
 #nullable enable
 
 namespace UnitsNet.NumberExtensions.NumberToElectricCurrentGradient
@@ -29,20 +33,36 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrentGradient
     public static class NumberToElectricCurrentGradientExtensions
     {
         /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerMicrosecond(UnitsNet.QuantityValue)" />
-        public static ElectricCurrentGradient AmperesPerMicrosecond<T>(this T value) =>
-            ElectricCurrentGradient.FromAmperesPerMicrosecond(Convert.ToDouble(value));
+        public static ElectricCurrentGradient AmperesPerMicrosecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricCurrentGradient.FromAmperesPerMicrosecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerMillisecond(UnitsNet.QuantityValue)" />
-        public static ElectricCurrentGradient AmperesPerMillisecond<T>(this T value) =>
-            ElectricCurrentGradient.FromAmperesPerMillisecond(Convert.ToDouble(value));
+        public static ElectricCurrentGradient AmperesPerMillisecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricCurrentGradient.FromAmperesPerMillisecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerNanosecond(UnitsNet.QuantityValue)" />
-        public static ElectricCurrentGradient AmperesPerNanosecond<T>(this T value) =>
-            ElectricCurrentGradient.FromAmperesPerNanosecond(Convert.ToDouble(value));
+        public static ElectricCurrentGradient AmperesPerNanosecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricCurrentGradient.FromAmperesPerNanosecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerSecond(UnitsNet.QuantityValue)" />
-        public static ElectricCurrentGradient AmperesPerSecond<T>(this T value) =>
-            ElectricCurrentGradient.FromAmperesPerSecond(Convert.ToDouble(value));
+        public static ElectricCurrentGradient AmperesPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricCurrentGradient.FromAmperesPerSecond(Convert.ToDouble(value));
 
     }
 }

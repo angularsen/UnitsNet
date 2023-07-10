@@ -19,6 +19,10 @@
 
 using System;
 
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
+
 #nullable enable
 
 namespace UnitsNet.NumberExtensions.NumberToAbsorbedDoseOfIonizingRadiation
@@ -29,68 +33,132 @@ namespace UnitsNet.NumberExtensions.NumberToAbsorbedDoseOfIonizingRadiation
     public static class NumberToAbsorbedDoseOfIonizingRadiationExtensions
     {
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromCentigrays(UnitsNet.QuantityValue)" />
-        public static AbsorbedDoseOfIonizingRadiation Centigrays<T>(this T value) =>
-            AbsorbedDoseOfIonizingRadiation.FromCentigrays(Convert.ToDouble(value));
+        public static AbsorbedDoseOfIonizingRadiation Centigrays<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => AbsorbedDoseOfIonizingRadiation.FromCentigrays(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromFemtograys(UnitsNet.QuantityValue)" />
-        public static AbsorbedDoseOfIonizingRadiation Femtograys<T>(this T value) =>
-            AbsorbedDoseOfIonizingRadiation.FromFemtograys(Convert.ToDouble(value));
+        public static AbsorbedDoseOfIonizingRadiation Femtograys<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => AbsorbedDoseOfIonizingRadiation.FromFemtograys(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromGigagrays(UnitsNet.QuantityValue)" />
-        public static AbsorbedDoseOfIonizingRadiation Gigagrays<T>(this T value) =>
-            AbsorbedDoseOfIonizingRadiation.FromGigagrays(Convert.ToDouble(value));
+        public static AbsorbedDoseOfIonizingRadiation Gigagrays<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => AbsorbedDoseOfIonizingRadiation.FromGigagrays(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromGrays(UnitsNet.QuantityValue)" />
-        public static AbsorbedDoseOfIonizingRadiation Grays<T>(this T value) =>
-            AbsorbedDoseOfIonizingRadiation.FromGrays(Convert.ToDouble(value));
+        public static AbsorbedDoseOfIonizingRadiation Grays<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => AbsorbedDoseOfIonizingRadiation.FromGrays(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromKilograys(UnitsNet.QuantityValue)" />
-        public static AbsorbedDoseOfIonizingRadiation Kilograys<T>(this T value) =>
-            AbsorbedDoseOfIonizingRadiation.FromKilograys(Convert.ToDouble(value));
+        public static AbsorbedDoseOfIonizingRadiation Kilograys<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => AbsorbedDoseOfIonizingRadiation.FromKilograys(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromKilorads(UnitsNet.QuantityValue)" />
-        public static AbsorbedDoseOfIonizingRadiation Kilorads<T>(this T value) =>
-            AbsorbedDoseOfIonizingRadiation.FromKilorads(Convert.ToDouble(value));
+        public static AbsorbedDoseOfIonizingRadiation Kilorads<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => AbsorbedDoseOfIonizingRadiation.FromKilorads(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromMegagrays(UnitsNet.QuantityValue)" />
-        public static AbsorbedDoseOfIonizingRadiation Megagrays<T>(this T value) =>
-            AbsorbedDoseOfIonizingRadiation.FromMegagrays(Convert.ToDouble(value));
+        public static AbsorbedDoseOfIonizingRadiation Megagrays<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => AbsorbedDoseOfIonizingRadiation.FromMegagrays(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromMegarads(UnitsNet.QuantityValue)" />
-        public static AbsorbedDoseOfIonizingRadiation Megarads<T>(this T value) =>
-            AbsorbedDoseOfIonizingRadiation.FromMegarads(Convert.ToDouble(value));
+        public static AbsorbedDoseOfIonizingRadiation Megarads<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => AbsorbedDoseOfIonizingRadiation.FromMegarads(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromMicrograys(UnitsNet.QuantityValue)" />
-        public static AbsorbedDoseOfIonizingRadiation Micrograys<T>(this T value) =>
-            AbsorbedDoseOfIonizingRadiation.FromMicrograys(Convert.ToDouble(value));
+        public static AbsorbedDoseOfIonizingRadiation Micrograys<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => AbsorbedDoseOfIonizingRadiation.FromMicrograys(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromMilligrays(UnitsNet.QuantityValue)" />
-        public static AbsorbedDoseOfIonizingRadiation Milligrays<T>(this T value) =>
-            AbsorbedDoseOfIonizingRadiation.FromMilligrays(Convert.ToDouble(value));
+        public static AbsorbedDoseOfIonizingRadiation Milligrays<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => AbsorbedDoseOfIonizingRadiation.FromMilligrays(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromMillirads(UnitsNet.QuantityValue)" />
-        public static AbsorbedDoseOfIonizingRadiation Millirads<T>(this T value) =>
-            AbsorbedDoseOfIonizingRadiation.FromMillirads(Convert.ToDouble(value));
+        public static AbsorbedDoseOfIonizingRadiation Millirads<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => AbsorbedDoseOfIonizingRadiation.FromMillirads(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromNanograys(UnitsNet.QuantityValue)" />
-        public static AbsorbedDoseOfIonizingRadiation Nanograys<T>(this T value) =>
-            AbsorbedDoseOfIonizingRadiation.FromNanograys(Convert.ToDouble(value));
+        public static AbsorbedDoseOfIonizingRadiation Nanograys<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => AbsorbedDoseOfIonizingRadiation.FromNanograys(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromPetagrays(UnitsNet.QuantityValue)" />
-        public static AbsorbedDoseOfIonizingRadiation Petagrays<T>(this T value) =>
-            AbsorbedDoseOfIonizingRadiation.FromPetagrays(Convert.ToDouble(value));
+        public static AbsorbedDoseOfIonizingRadiation Petagrays<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => AbsorbedDoseOfIonizingRadiation.FromPetagrays(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromPicograys(UnitsNet.QuantityValue)" />
-        public static AbsorbedDoseOfIonizingRadiation Picograys<T>(this T value) =>
-            AbsorbedDoseOfIonizingRadiation.FromPicograys(Convert.ToDouble(value));
+        public static AbsorbedDoseOfIonizingRadiation Picograys<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => AbsorbedDoseOfIonizingRadiation.FromPicograys(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromRads(UnitsNet.QuantityValue)" />
-        public static AbsorbedDoseOfIonizingRadiation Rads<T>(this T value) =>
-            AbsorbedDoseOfIonizingRadiation.FromRads(Convert.ToDouble(value));
+        public static AbsorbedDoseOfIonizingRadiation Rads<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => AbsorbedDoseOfIonizingRadiation.FromRads(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromTeragrays(UnitsNet.QuantityValue)" />
-        public static AbsorbedDoseOfIonizingRadiation Teragrays<T>(this T value) =>
-            AbsorbedDoseOfIonizingRadiation.FromTeragrays(Convert.ToDouble(value));
+        public static AbsorbedDoseOfIonizingRadiation Teragrays<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => AbsorbedDoseOfIonizingRadiation.FromTeragrays(Convert.ToDouble(value));
 
     }
 }

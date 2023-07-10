@@ -19,6 +19,10 @@
 
 using System;
 
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
+
 #nullable enable
 
 namespace UnitsNet.NumberExtensions.NumberToTemperatureGradient
@@ -29,20 +33,36 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureGradient
     public static class NumberToTemperatureGradientExtensions
     {
         /// <inheritdoc cref="TemperatureGradient.FromDegreesCelciusPerKilometer(UnitsNet.QuantityValue)" />
-        public static TemperatureGradient DegreesCelciusPerKilometer<T>(this T value) =>
-            TemperatureGradient.FromDegreesCelciusPerKilometer(Convert.ToDouble(value));
+        public static TemperatureGradient DegreesCelciusPerKilometer<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => TemperatureGradient.FromDegreesCelciusPerKilometer(Convert.ToDouble(value));
 
         /// <inheritdoc cref="TemperatureGradient.FromDegreesCelciusPerMeter(UnitsNet.QuantityValue)" />
-        public static TemperatureGradient DegreesCelciusPerMeter<T>(this T value) =>
-            TemperatureGradient.FromDegreesCelciusPerMeter(Convert.ToDouble(value));
+        public static TemperatureGradient DegreesCelciusPerMeter<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => TemperatureGradient.FromDegreesCelciusPerMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="TemperatureGradient.FromDegreesFahrenheitPerFoot(UnitsNet.QuantityValue)" />
-        public static TemperatureGradient DegreesFahrenheitPerFoot<T>(this T value) =>
-            TemperatureGradient.FromDegreesFahrenheitPerFoot(Convert.ToDouble(value));
+        public static TemperatureGradient DegreesFahrenheitPerFoot<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => TemperatureGradient.FromDegreesFahrenheitPerFoot(Convert.ToDouble(value));
 
         /// <inheritdoc cref="TemperatureGradient.FromKelvinsPerMeter(UnitsNet.QuantityValue)" />
-        public static TemperatureGradient KelvinsPerMeter<T>(this T value) =>
-            TemperatureGradient.FromKelvinsPerMeter(Convert.ToDouble(value));
+        public static TemperatureGradient KelvinsPerMeter<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => TemperatureGradient.FromKelvinsPerMeter(Convert.ToDouble(value));
 
     }
 }

@@ -19,6 +19,10 @@
 
 using System;
 
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
+
 #nullable enable
 
 namespace UnitsNet.NumberExtensions.NumberToLevel
@@ -29,12 +33,20 @@ namespace UnitsNet.NumberExtensions.NumberToLevel
     public static class NumberToLevelExtensions
     {
         /// <inheritdoc cref="Level.FromDecibels(UnitsNet.QuantityValue)" />
-        public static Level Decibels<T>(this T value) =>
-            Level.FromDecibels(Convert.ToDouble(value));
+        public static Level Decibels<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Level.FromDecibels(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Level.FromNepers(UnitsNet.QuantityValue)" />
-        public static Level Nepers<T>(this T value) =>
-            Level.FromNepers(Convert.ToDouble(value));
+        public static Level Nepers<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Level.FromNepers(Convert.ToDouble(value));
 
     }
 }

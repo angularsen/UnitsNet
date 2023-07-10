@@ -19,6 +19,10 @@
 
 using System;
 
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
+
 #nullable enable
 
 namespace UnitsNet.NumberExtensions.NumberToPorousMediumPermeability
@@ -29,24 +33,44 @@ namespace UnitsNet.NumberExtensions.NumberToPorousMediumPermeability
     public static class NumberToPorousMediumPermeabilityExtensions
     {
         /// <inheritdoc cref="PorousMediumPermeability.FromDarcys(UnitsNet.QuantityValue)" />
-        public static PorousMediumPermeability Darcys<T>(this T value) =>
-            PorousMediumPermeability.FromDarcys(Convert.ToDouble(value));
+        public static PorousMediumPermeability Darcys<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => PorousMediumPermeability.FromDarcys(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PorousMediumPermeability.FromMicrodarcys(UnitsNet.QuantityValue)" />
-        public static PorousMediumPermeability Microdarcys<T>(this T value) =>
-            PorousMediumPermeability.FromMicrodarcys(Convert.ToDouble(value));
+        public static PorousMediumPermeability Microdarcys<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => PorousMediumPermeability.FromMicrodarcys(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PorousMediumPermeability.FromMillidarcys(UnitsNet.QuantityValue)" />
-        public static PorousMediumPermeability Millidarcys<T>(this T value) =>
-            PorousMediumPermeability.FromMillidarcys(Convert.ToDouble(value));
+        public static PorousMediumPermeability Millidarcys<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => PorousMediumPermeability.FromMillidarcys(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PorousMediumPermeability.FromSquareCentimeters(UnitsNet.QuantityValue)" />
-        public static PorousMediumPermeability SquareCentimeters<T>(this T value) =>
-            PorousMediumPermeability.FromSquareCentimeters(Convert.ToDouble(value));
+        public static PorousMediumPermeability SquareCentimeters<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => PorousMediumPermeability.FromSquareCentimeters(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PorousMediumPermeability.FromSquareMeters(UnitsNet.QuantityValue)" />
-        public static PorousMediumPermeability SquareMeters<T>(this T value) =>
-            PorousMediumPermeability.FromSquareMeters(Convert.ToDouble(value));
+        public static PorousMediumPermeability SquareMeters<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => PorousMediumPermeability.FromSquareMeters(Convert.ToDouble(value));
 
     }
 }

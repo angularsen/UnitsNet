@@ -19,6 +19,10 @@
 
 using System;
 
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
+
 #nullable enable
 
 namespace UnitsNet.NumberExtensions.NumberToElectricPotential
@@ -29,28 +33,52 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotential
     public static class NumberToElectricPotentialExtensions
     {
         /// <inheritdoc cref="ElectricPotential.FromKilovolts(UnitsNet.QuantityValue)" />
-        public static ElectricPotential Kilovolts<T>(this T value) =>
-            ElectricPotential.FromKilovolts(Convert.ToDouble(value));
+        public static ElectricPotential Kilovolts<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricPotential.FromKilovolts(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricPotential.FromMegavolts(UnitsNet.QuantityValue)" />
-        public static ElectricPotential Megavolts<T>(this T value) =>
-            ElectricPotential.FromMegavolts(Convert.ToDouble(value));
+        public static ElectricPotential Megavolts<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricPotential.FromMegavolts(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricPotential.FromMicrovolts(UnitsNet.QuantityValue)" />
-        public static ElectricPotential Microvolts<T>(this T value) =>
-            ElectricPotential.FromMicrovolts(Convert.ToDouble(value));
+        public static ElectricPotential Microvolts<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricPotential.FromMicrovolts(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricPotential.FromMillivolts(UnitsNet.QuantityValue)" />
-        public static ElectricPotential Millivolts<T>(this T value) =>
-            ElectricPotential.FromMillivolts(Convert.ToDouble(value));
+        public static ElectricPotential Millivolts<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricPotential.FromMillivolts(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricPotential.FromNanovolts(UnitsNet.QuantityValue)" />
-        public static ElectricPotential Nanovolts<T>(this T value) =>
-            ElectricPotential.FromNanovolts(Convert.ToDouble(value));
+        public static ElectricPotential Nanovolts<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricPotential.FromNanovolts(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricPotential.FromVolts(UnitsNet.QuantityValue)" />
-        public static ElectricPotential Volts<T>(this T value) =>
-            ElectricPotential.FromVolts(Convert.ToDouble(value));
+        public static ElectricPotential Volts<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricPotential.FromVolts(Convert.ToDouble(value));
 
     }
 }
