@@ -24,7 +24,7 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///     Molar concentration, also called molarity, amount concentration or substance concentration, is a measure of the concentration of a solute in a solution, or of any chemical species, in terms of amount of substance in a given volume. 
+    ///     Molar concentration, also called molarity, amount concentration or substance concentration, is a measure of the concentration of a solute in a solution, or of any chemical species, in terms of amount of substance in a given volume.
     /// </summary>
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Molar_concentration

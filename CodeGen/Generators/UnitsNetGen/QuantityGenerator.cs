@@ -257,7 +257,7 @@ namespace UnitsNet
 
             Writer.WL($@"
         #endregion
- ");
+");
         }
 
         private void GenerateProperties()

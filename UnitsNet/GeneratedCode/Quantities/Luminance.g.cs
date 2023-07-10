@@ -33,7 +33,7 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///
+    ///     
     /// </summary>
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Luminance
