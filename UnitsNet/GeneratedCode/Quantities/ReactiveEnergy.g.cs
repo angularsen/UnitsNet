@@ -140,7 +140,7 @@ namespace UnitsNet
         public static ReactiveEnergy AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

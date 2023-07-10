@@ -143,7 +143,7 @@ namespace UnitsNet
         public static LeakRate AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

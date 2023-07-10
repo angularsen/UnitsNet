@@ -151,7 +151,7 @@ namespace UnitsNet
         public static ReciprocalArea AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

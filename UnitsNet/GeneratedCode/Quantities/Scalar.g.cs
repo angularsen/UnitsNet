@@ -138,7 +138,7 @@ namespace UnitsNet
         public static Scalar AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

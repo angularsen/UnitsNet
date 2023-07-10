@@ -147,7 +147,7 @@ namespace UnitsNet
         public static Irradiation AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

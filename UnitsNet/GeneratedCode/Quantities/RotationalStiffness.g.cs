@@ -170,7 +170,7 @@ namespace UnitsNet
         public static RotationalStiffness AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

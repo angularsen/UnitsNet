@@ -140,7 +140,7 @@ namespace UnitsNet
         public static CoefficientOfThermalExpansion AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

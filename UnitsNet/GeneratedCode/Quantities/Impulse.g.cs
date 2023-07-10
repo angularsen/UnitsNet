@@ -150,7 +150,7 @@ namespace UnitsNet
         public static Impulse AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

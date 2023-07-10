@@ -189,7 +189,7 @@ namespace UnitsNet
         public static MassConcentration AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

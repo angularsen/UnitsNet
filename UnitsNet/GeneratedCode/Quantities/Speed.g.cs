@@ -170,7 +170,7 @@ namespace UnitsNet
         public static Speed AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

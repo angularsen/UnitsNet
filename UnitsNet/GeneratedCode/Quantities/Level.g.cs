@@ -139,7 +139,7 @@ namespace UnitsNet
         public static Level AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

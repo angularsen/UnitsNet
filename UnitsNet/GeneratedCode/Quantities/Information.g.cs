@@ -164,7 +164,7 @@ namespace UnitsNet
         public static Information AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

@@ -151,7 +151,7 @@ namespace UnitsNet
         public static Area AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

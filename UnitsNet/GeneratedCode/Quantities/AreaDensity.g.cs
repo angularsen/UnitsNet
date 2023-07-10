@@ -140,7 +140,7 @@ namespace UnitsNet
         public static AreaDensity AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

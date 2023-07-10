@@ -146,7 +146,7 @@ namespace UnitsNet
         public static SpecificEntropy AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

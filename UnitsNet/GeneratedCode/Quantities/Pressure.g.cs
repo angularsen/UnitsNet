@@ -186,7 +186,7 @@ namespace UnitsNet
         public static Pressure AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

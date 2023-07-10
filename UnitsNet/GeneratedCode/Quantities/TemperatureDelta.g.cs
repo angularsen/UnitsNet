@@ -146,7 +146,7 @@ namespace UnitsNet
         public static TemperatureDelta AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

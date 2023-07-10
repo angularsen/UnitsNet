@@ -141,7 +141,7 @@ namespace UnitsNet
         public static Permeability AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

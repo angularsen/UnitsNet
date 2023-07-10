@@ -151,7 +151,7 @@ namespace UnitsNet
         public static PressureChangeRate AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

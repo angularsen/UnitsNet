@@ -138,7 +138,7 @@ namespace UnitsNet
         public static VitaminA AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

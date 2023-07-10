@@ -154,7 +154,7 @@ namespace UnitsNet
         public static LinearDensity AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

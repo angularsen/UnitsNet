@@ -140,7 +140,7 @@ namespace UnitsNet
         public static BrakeSpecificFuelConsumption AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

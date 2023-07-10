@@ -149,7 +149,7 @@ namespace UnitsNet
         public static MassFlux AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

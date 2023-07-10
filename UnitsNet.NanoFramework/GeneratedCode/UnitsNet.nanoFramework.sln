@@ -28,6 +28,8 @@ Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "BrakeSpecificFuelConsumptio
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Capacitance", "Capacitance\Capacitance.nfproj", "{c1351fc7-d3d8-c3ce-0715-ad8e18ab8c94}"
 EndProject
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "CellDensity", "CellDensity\CellDensity.nfproj", "{f30fec23-fb80-3be1-0e9c-4c2061a313cc}"
+EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "CoefficientOfThermalExpansion", "CoefficientOfThermalExpansion\CoefficientOfThermalExpansion.nfproj", "{a9514ce6-d4e7-88ca-051e-e9e53610c519}"
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Compressibility", "Compressibility\Compressibility.nfproj", "{daf647be-be87-88b9-ee92-dece21fe0dff}"
@@ -326,6 +328,12 @@ Global
 {c1351fc7-d3d8-c3ce-0715-ad8e18ab8c94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 {c1351fc7-d3d8-c3ce-0715-ad8e18ab8c94}.Release|Any CPU.Build.0 = Release|Any CPU
 {c1351fc7-d3d8-c3ce-0715-ad8e18ab8c94}.Release|Any CPU.Deploy.0 = Release|Any CPU
+{f30fec23-fb80-3be1-0e9c-4c2061a313cc}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+{f30fec23-fb80-3be1-0e9c-4c2061a313cc}.Debug|Any CPU.Build.0 = Debug|Any CPU
+{f30fec23-fb80-3be1-0e9c-4c2061a313cc}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+{f30fec23-fb80-3be1-0e9c-4c2061a313cc}.Release|Any CPU.ActiveCfg = Release|Any CPU
+{f30fec23-fb80-3be1-0e9c-4c2061a313cc}.Release|Any CPU.Build.0 = Release|Any CPU
+{f30fec23-fb80-3be1-0e9c-4c2061a313cc}.Release|Any CPU.Deploy.0 = Release|Any CPU
 {a9514ce6-d4e7-88ca-051e-e9e53610c519}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 {a9514ce6-d4e7-88ca-051e-e9e53610c519}.Debug|Any CPU.Build.0 = Debug|Any CPU
 {a9514ce6-d4e7-88ca-051e-e9e53610c519}.Debug|Any CPU.Deploy.0 = Debug|Any CPU

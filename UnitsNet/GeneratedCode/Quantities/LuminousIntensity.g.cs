@@ -141,7 +141,7 @@ namespace UnitsNet
         public static LuminousIntensity AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

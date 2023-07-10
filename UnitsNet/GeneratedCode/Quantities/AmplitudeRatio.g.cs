@@ -141,7 +141,7 @@ namespace UnitsNet
         public static AmplitudeRatio AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

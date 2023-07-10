@@ -144,7 +144,7 @@ namespace UnitsNet
         public static Temperature Zero { get; }
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

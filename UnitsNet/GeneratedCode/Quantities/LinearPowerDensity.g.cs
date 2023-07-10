@@ -165,7 +165,7 @@ namespace UnitsNet
         public static LinearPowerDensity AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

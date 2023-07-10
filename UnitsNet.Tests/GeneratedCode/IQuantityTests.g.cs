@@ -47,6 +47,7 @@ namespace UnitsNet.Tests
             Assertion(3, BitRateUnit.TerabytePerSecond, Quantity.From(3, BitRateUnit.TerabytePerSecond));
             Assertion(3, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, Quantity.From(3, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour));
             Assertion(3, CapacitanceUnit.Picofarad, Quantity.From(3, CapacitanceUnit.Picofarad));
+            Assertion(3, CellDensityUnit.CellPerSquareCentimeter, Quantity.From(3, CellDensityUnit.CellPerSquareCentimeter));
             Assertion(3, CoefficientOfThermalExpansionUnit.InverseKelvin, Quantity.From(3, CoefficientOfThermalExpansionUnit.InverseKelvin));
             Assertion(3, CompressibilityUnit.InversePoundForcePerSquareInch, Quantity.From(3, CompressibilityUnit.InversePoundForcePerSquareInch));
             Assertion(3, DensityUnit.TonnePerCubicMillimeter, Quantity.From(3, DensityUnit.TonnePerCubicMillimeter));
@@ -174,6 +175,7 @@ namespace UnitsNet.Tests
             Assertion(BitRate.Info, BitRate.Zero);
             Assertion(BrakeSpecificFuelConsumption.Info, BrakeSpecificFuelConsumption.Zero);
             Assertion(Capacitance.Info, Capacitance.Zero);
+            Assertion(CellDensity.Info, CellDensity.Zero);
             Assertion(CoefficientOfThermalExpansion.Info, CoefficientOfThermalExpansion.Zero);
             Assertion(Compressibility.Info, Compressibility.Zero);
             Assertion(Density.Info, Density.Zero);
@@ -301,6 +303,7 @@ namespace UnitsNet.Tests
             Assertion(BitRate.BaseDimensions, BitRate.Zero);
             Assertion(BrakeSpecificFuelConsumption.BaseDimensions, BrakeSpecificFuelConsumption.Zero);
             Assertion(Capacitance.BaseDimensions, Capacitance.Zero);
+            Assertion(CellDensity.BaseDimensions, CellDensity.Zero);
             Assertion(CoefficientOfThermalExpansion.BaseDimensions, CoefficientOfThermalExpansion.Zero);
             Assertion(Compressibility.BaseDimensions, Compressibility.Zero);
             Assertion(Density.BaseDimensions, Density.Zero);

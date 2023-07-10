@@ -33,7 +33,7 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///
+    ///     
     /// </summary>
     [DataContract]
     public readonly partial struct VolumeFlowPerArea :
@@ -139,7 +139,7 @@ namespace UnitsNet
         public static VolumeFlowPerArea AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

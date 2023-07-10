@@ -162,7 +162,7 @@ namespace UnitsNet
         public static Torque AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

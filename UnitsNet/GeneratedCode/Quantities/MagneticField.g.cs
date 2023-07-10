@@ -146,7 +146,7 @@ namespace UnitsNet
         public static MagneticField AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

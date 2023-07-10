@@ -141,7 +141,7 @@ namespace UnitsNet
         public static ElectricAdmittance AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

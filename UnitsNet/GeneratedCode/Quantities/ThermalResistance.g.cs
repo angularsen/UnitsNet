@@ -143,7 +143,7 @@ namespace UnitsNet
         public static ThermalResistance AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

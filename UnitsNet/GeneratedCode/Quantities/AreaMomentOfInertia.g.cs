@@ -143,7 +143,7 @@ namespace UnitsNet
         public static AreaMomentOfInertia AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

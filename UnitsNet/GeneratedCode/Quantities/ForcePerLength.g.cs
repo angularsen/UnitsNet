@@ -175,7 +175,7 @@ namespace UnitsNet
         public static ForcePerLength AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

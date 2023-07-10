@@ -175,7 +175,7 @@ namespace UnitsNet
         public static Energy AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

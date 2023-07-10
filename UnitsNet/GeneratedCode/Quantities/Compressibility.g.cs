@@ -33,7 +33,7 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///
+    ///     
     /// </summary>
     [DataContract]
     public readonly partial struct Compressibility :
@@ -144,7 +144,7 @@ namespace UnitsNet
         public static Compressibility AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

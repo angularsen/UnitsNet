@@ -149,7 +149,7 @@ namespace UnitsNet
         public static KinematicViscosity AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

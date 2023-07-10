@@ -33,7 +33,7 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///
+    ///     
     /// </summary>
     [DataContract]
     public readonly partial struct EnergyDensity :
@@ -149,7 +149,7 @@ namespace UnitsNet
         public static EnergyDensity AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

@@ -141,7 +141,7 @@ namespace UnitsNet
         public static LuminousFlux AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

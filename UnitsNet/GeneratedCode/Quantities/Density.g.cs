@@ -191,7 +191,7 @@ namespace UnitsNet
         public static Density AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

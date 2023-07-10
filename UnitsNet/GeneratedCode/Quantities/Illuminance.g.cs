@@ -144,7 +144,7 @@ namespace UnitsNet
         public static Illuminance AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

@@ -147,7 +147,7 @@ namespace UnitsNet
         public static Capacitance AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

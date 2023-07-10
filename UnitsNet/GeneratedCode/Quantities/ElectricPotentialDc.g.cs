@@ -142,7 +142,7 @@ namespace UnitsNet
         public static ElectricPotentialDc AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

@@ -167,7 +167,7 @@ namespace UnitsNet
         public static BitRate AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

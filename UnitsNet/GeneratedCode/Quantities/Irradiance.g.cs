@@ -151,7 +151,7 @@ namespace UnitsNet
         public static Irradiance AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

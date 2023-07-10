@@ -143,7 +143,7 @@ namespace UnitsNet
         public static Ratio AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

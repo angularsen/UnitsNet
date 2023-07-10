@@ -150,7 +150,7 @@ namespace UnitsNet
         public static RotationalSpeed AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

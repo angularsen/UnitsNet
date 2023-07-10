@@ -33,7 +33,7 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///
+    ///     
     /// </summary>
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Luminance
@@ -150,7 +150,7 @@ namespace UnitsNet
         public static Luminance AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

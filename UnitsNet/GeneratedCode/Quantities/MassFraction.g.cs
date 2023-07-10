@@ -164,7 +164,7 @@ namespace UnitsNet
         public static MassFraction AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

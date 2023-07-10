@@ -148,7 +148,7 @@ namespace UnitsNet
         public static Duration AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

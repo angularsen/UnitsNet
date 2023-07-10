@@ -51,6 +51,7 @@ namespace UnitsNet
             { "BitRate", BitRate.Info },
             { "BrakeSpecificFuelConsumption", BrakeSpecificFuelConsumption.Info },
             { "Capacitance", Capacitance.Info },
+            { "CellDensity", CellDensity.Info },
             { "CoefficientOfThermalExpansion", CoefficientOfThermalExpansion.Info },
             { "Compressibility", Compressibility.Info },
             { "Density", Density.Info },
@@ -183,6 +184,7 @@ namespace UnitsNet
                 "BitRate" => BitRate.From(value, BitRate.BaseUnit),
                 "BrakeSpecificFuelConsumption" => BrakeSpecificFuelConsumption.From(value, BrakeSpecificFuelConsumption.BaseUnit),
                 "Capacitance" => Capacitance.From(value, Capacitance.BaseUnit),
+                "CellDensity" => CellDensity.From(value, CellDensity.BaseUnit),
                 "CoefficientOfThermalExpansion" => CoefficientOfThermalExpansion.From(value, CoefficientOfThermalExpansion.BaseUnit),
                 "Compressibility" => Compressibility.From(value, Compressibility.BaseUnit),
                 "Density" => Density.From(value, Density.BaseUnit),
@@ -318,6 +320,7 @@ namespace UnitsNet
                 BitRateUnit bitRateUnit => BitRate.From(value, bitRateUnit),
                 BrakeSpecificFuelConsumptionUnit brakeSpecificFuelConsumptionUnit => BrakeSpecificFuelConsumption.From(value, brakeSpecificFuelConsumptionUnit),
                 CapacitanceUnit capacitanceUnit => Capacitance.From(value, capacitanceUnit),
+                CellDensityUnit cellDensityUnit => CellDensity.From(value, cellDensityUnit),
                 CoefficientOfThermalExpansionUnit coefficientOfThermalExpansionUnit => CoefficientOfThermalExpansion.From(value, coefficientOfThermalExpansionUnit),
                 CompressibilityUnit compressibilityUnit => Compressibility.From(value, compressibilityUnit),
                 DensityUnit densityUnit => Density.From(value, densityUnit),
@@ -463,6 +466,7 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(BitRate) => parser.TryParse<BitRate, BitRateUnit>(quantityString, formatProvider, BitRate.From, out quantity),
                 Type _ when quantityType == typeof(BrakeSpecificFuelConsumption) => parser.TryParse<BrakeSpecificFuelConsumption, BrakeSpecificFuelConsumptionUnit>(quantityString, formatProvider, BrakeSpecificFuelConsumption.From, out quantity),
                 Type _ when quantityType == typeof(Capacitance) => parser.TryParse<Capacitance, CapacitanceUnit>(quantityString, formatProvider, Capacitance.From, out quantity),
+                Type _ when quantityType == typeof(CellDensity) => parser.TryParse<CellDensity, CellDensityUnit>(quantityString, formatProvider, CellDensity.From, out quantity),
                 Type _ when quantityType == typeof(CoefficientOfThermalExpansion) => parser.TryParse<CoefficientOfThermalExpansion, CoefficientOfThermalExpansionUnit>(quantityString, formatProvider, CoefficientOfThermalExpansion.From, out quantity),
                 Type _ when quantityType == typeof(Compressibility) => parser.TryParse<Compressibility, CompressibilityUnit>(quantityString, formatProvider, Compressibility.From, out quantity),
                 Type _ when quantityType == typeof(Density) => parser.TryParse<Density, DensityUnit>(quantityString, formatProvider, Density.From, out quantity),
@@ -589,6 +593,7 @@ namespace UnitsNet
             yield return typeof(BitRate);
             yield return typeof(BrakeSpecificFuelConsumption);
             yield return typeof(Capacitance);
+            yield return typeof(CellDensity);
             yield return typeof(CoefficientOfThermalExpansion);
             yield return typeof(Compressibility);
             yield return typeof(Density);

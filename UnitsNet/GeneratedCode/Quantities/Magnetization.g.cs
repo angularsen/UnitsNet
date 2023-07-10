@@ -141,7 +141,7 @@ namespace UnitsNet
         public static Magnetization AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

@@ -150,7 +150,7 @@ namespace UnitsNet
         public static Frequency AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

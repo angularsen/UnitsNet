@@ -146,7 +146,7 @@ namespace UnitsNet
         public static ElectricCurrent AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

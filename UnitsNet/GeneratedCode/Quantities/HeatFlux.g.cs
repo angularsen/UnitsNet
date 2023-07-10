@@ -155,7 +155,7 @@ namespace UnitsNet
         public static HeatFlux AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

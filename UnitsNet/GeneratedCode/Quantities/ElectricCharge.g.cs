@@ -151,7 +151,7 @@ namespace UnitsNet
         public static ElectricCharge AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

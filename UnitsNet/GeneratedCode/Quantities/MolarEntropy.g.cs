@@ -140,7 +140,7 @@ namespace UnitsNet
         public static MolarEntropy AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

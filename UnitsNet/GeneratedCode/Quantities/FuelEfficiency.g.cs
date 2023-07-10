@@ -144,7 +144,7 @@ namespace UnitsNet
         public static FuelEfficiency AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

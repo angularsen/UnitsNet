@@ -164,7 +164,7 @@ namespace UnitsNet
         public static Mass AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

@@ -157,7 +157,7 @@ namespace UnitsNet
         public static SpecificWeight AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

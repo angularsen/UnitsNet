@@ -150,7 +150,7 @@ namespace UnitsNet
         public static ReciprocalLength AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

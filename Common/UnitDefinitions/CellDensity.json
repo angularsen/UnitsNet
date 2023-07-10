@@ -1,0 +1,38 @@
+{
+  "Name": "CellDensity",
+  "BaseUnit": "CellPerSquareCentimeter",
+  "XmlDocSummary": "The cell seeding density refers to the number of cells on the growth surface.",
+  "XmlDocRemarks": "https://en.wikipedia.org/wiki/Cell_counting",
+  "BaseDimensions": {
+    "L": 2
+  },
+  "Units": [
+    {
+      "SingularName": "CellPerSquareCentimeter",
+      "PluralName": "CellsPerSquareCentimeter",
+      "BaseUnits": {
+        "L": "Centimeter"
+      },
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "cells/cm²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CellPerMilliliter",
+      "PluralName": "CellsPerMilliliter",
+      "FromUnitToBaseFunc": "{x} / 100",
+      "FromBaseToUnitFunc": "{x} * 100",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "cells/mL" ]
+        }
+      ]
+    }
+  ]
+}

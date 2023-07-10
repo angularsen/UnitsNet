@@ -33,7 +33,7 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///
+    ///     
     /// </summary>
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Permeability_(Earth_sciences)
@@ -145,7 +145,7 @@ namespace UnitsNet
         public static PorousMediumPermeability AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

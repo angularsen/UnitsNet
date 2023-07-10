@@ -152,7 +152,7 @@ namespace UnitsNet
         public static Force AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

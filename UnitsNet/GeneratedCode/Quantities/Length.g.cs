@@ -174,7 +174,7 @@ namespace UnitsNet
         public static Length AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

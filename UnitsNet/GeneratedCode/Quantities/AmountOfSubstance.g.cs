@@ -152,7 +152,7 @@ namespace UnitsNet
         public static AmountOfSubstance AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

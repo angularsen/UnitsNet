@@ -143,7 +143,7 @@ namespace UnitsNet
         public static WarpingMomentOfInertia AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

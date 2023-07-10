@@ -139,7 +139,7 @@ namespace UnitsNet
         public static RatioChangeRate AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

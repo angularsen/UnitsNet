@@ -143,7 +143,7 @@ namespace UnitsNet
         public static HeatTransferCoefficient AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

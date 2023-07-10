@@ -139,7 +139,7 @@ namespace UnitsNet
         public static PowerRatio AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

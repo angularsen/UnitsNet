@@ -153,7 +153,7 @@ namespace UnitsNet
         public static Angle AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

@@ -143,7 +143,7 @@ namespace UnitsNet
         public static ElectricCurrentDensity AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

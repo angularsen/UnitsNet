@@ -181,7 +181,7 @@ namespace UnitsNet
         public static PowerDensity AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

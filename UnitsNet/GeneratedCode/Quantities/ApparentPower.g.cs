@@ -143,7 +143,7 @@ namespace UnitsNet
         public static ApparentPower AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

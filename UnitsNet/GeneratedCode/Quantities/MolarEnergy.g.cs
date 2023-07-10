@@ -140,7 +140,7 @@ namespace UnitsNet
         public static MolarEnergy AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

@@ -156,7 +156,7 @@ namespace UnitsNet
         public static AbsorbedDoseOfIonizingRadiation AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

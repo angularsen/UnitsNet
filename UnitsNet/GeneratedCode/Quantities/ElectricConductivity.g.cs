@@ -146,7 +146,7 @@ namespace UnitsNet
         public static ElectricConductivity AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

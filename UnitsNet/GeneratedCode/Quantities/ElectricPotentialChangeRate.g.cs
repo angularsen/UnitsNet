@@ -157,7 +157,7 @@ namespace UnitsNet
         public static ElectricPotentialChangeRate AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

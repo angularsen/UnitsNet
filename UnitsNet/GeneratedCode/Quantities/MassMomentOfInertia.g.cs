@@ -165,7 +165,7 @@ namespace UnitsNet
         public static MassMomentOfInertia AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

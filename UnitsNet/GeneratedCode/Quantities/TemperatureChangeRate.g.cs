@@ -147,7 +147,7 @@ namespace UnitsNet
         public static TemperatureChangeRate AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

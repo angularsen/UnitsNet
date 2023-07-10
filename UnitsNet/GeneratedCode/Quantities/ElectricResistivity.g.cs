@@ -154,7 +154,7 @@ namespace UnitsNet
         public static ElectricResistivity AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

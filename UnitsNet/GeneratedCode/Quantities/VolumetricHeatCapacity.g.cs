@@ -149,7 +149,7 @@ namespace UnitsNet
         public static VolumetricHeatCapacity AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>

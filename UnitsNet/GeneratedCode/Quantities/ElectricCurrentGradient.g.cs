@@ -141,7 +141,7 @@ namespace UnitsNet
         public static ElectricCurrentGradient AdditiveIdentity => Zero;
 
         #endregion
-
+ 
         #region Properties
 
         /// <summary>
