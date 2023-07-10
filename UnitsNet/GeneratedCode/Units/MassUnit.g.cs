@@ -34,6 +34,7 @@ namespace UnitsNet.Units
         /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Earth_mass</remarks>
         EarthMass = 4,
+        Femtogram = 35,
 
         /// <summary>
         ///     A grain is a unit of measurement of mass, and in the troy weight, avoirdupois, and Apothecaries' system, equal to exactly 64.79891 milligrams.
@@ -64,14 +65,16 @@ namespace UnitsNet.Units
         Nanogram = 17,
 
         /// <summary>
-        ///     An ounce (abbreviated oz) is usually the international avoirdupois ounce as used in the United States customary and British imperial systems, which is equal to one-sixteenth of a pound or approximately 28 grams. The abbreviation 'oz' derives from the Italian word onza (now spelled oncia).
+        ///     The international avoirdupois ounce (abbreviated oz) is defined as exactly 28.349523125 g under the international yard and pound agreement of 1959, signed by the United States and countries of the Commonwealth of Nations. 16 oz make up an avoirdupois pound.
         /// </summary>
-        /// <remarks>http://en.wikipedia.org/wiki/Ounce</remarks>
+        /// <remarks>https://en.wikipedia.org/wiki/Ounce</remarks>
         Ounce = 18,
+        Picogram = 29,
 
         /// <summary>
         ///     The pound or pound-mass (abbreviations: lb, lbm) is a unit of mass used in the imperial, United States customary and other systems of measurement. A number of different definitions have been used, the most common today being the international avoirdupois pound which is legally defined as exactly 0.45359237 kilograms, and which is divided into 16 avoirdupois ounces.
         /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Pound_(mass)</remarks>
         Pound = 19,
 
         /// <summary>

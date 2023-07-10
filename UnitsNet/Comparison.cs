@@ -52,7 +52,7 @@ namespace UnitsNet
         public static bool Equals(double referenceValue, double otherValue, double tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0");
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             switch (comparisonType)
             {
@@ -107,7 +107,7 @@ namespace UnitsNet
         public static bool Equals(decimal referenceValue, decimal otherValue, decimal tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0");
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             switch (comparisonType)
             {
@@ -144,7 +144,7 @@ namespace UnitsNet
         public static bool EqualsRelative(double referenceValue, double otherValue, double tolerance)
         {
             if (tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0");
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             var maxVariation = Math.Abs(referenceValue * tolerance);
             return Math.Abs(referenceValue - otherValue) <= maxVariation;
@@ -174,7 +174,7 @@ namespace UnitsNet
         public static bool EqualsRelative(decimal referenceValue, decimal otherValue, decimal tolerance)
         {
             if (tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0");
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             var maxVariation = Math.Abs(referenceValue * tolerance);
             return Math.Abs(referenceValue - otherValue) <= maxVariation;
@@ -202,7 +202,7 @@ namespace UnitsNet
         public static bool EqualsAbsolute(double value1, double value2, double tolerance)
         {
             if (tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0");
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             return Math.Abs(value1 - value2) <= tolerance;
         }
@@ -229,7 +229,7 @@ namespace UnitsNet
         public static bool EqualsAbsolute(decimal value1, decimal value2, decimal tolerance)
         {
             if (tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0");
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
             return Math.Abs(value1 - value2) <= tolerance;
         }

@@ -293,7 +293,7 @@ namespace UnitsNet.Tests.Serialization
         }
 
         [Fact]
-        public void ClassOfInterfaceDecimalQuantity_SerializationRoundTrips()
+        public void ClassOfInterfaceDecimalValueQuantity_SerializationRoundTrips()
         {
             var quantity = new Information(2, InformationUnit.Exabyte);
             var quantityObject = new TestInterfaceObject { Quantity = quantity };
@@ -302,9 +302,9 @@ namespace UnitsNet.Tests.Serialization
             var result = DeserializeObject<TestInterfaceObject>(payload);
 
             Assert.Equal(quantity.Unit, result.Quantity.Unit);
-            Assert.Equal(quantity.Value, ((IDecimalQuantity)result.Quantity).Value);
+            Assert.Equal(quantity.Value, ((IValueQuantity<decimal>)result.Quantity).Value);
             Assert.Equal(quantity, result.Quantity);
-            Assert.Equal("2", ((IDecimalQuantity)result.Quantity).Value.ToString(CultureInfo.InvariantCulture));
+            Assert.Equal("2", ((IValueQuantity<decimal>)result.Quantity).Value.ToString(CultureInfo.InvariantCulture));
         }
 
         [DataContract]

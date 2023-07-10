@@ -39,7 +39,14 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Bit_rate
     /// </remarks>
     [DataContract]
-    public readonly partial struct BitRate : IArithmeticQuantity<BitRate, BitRateUnit, decimal>, IDecimalQuantity, IEquatable<BitRate>, IComparable, IComparable<BitRate>, IConvertible, IFormattable
+    public readonly partial struct BitRate :
+        IArithmeticQuantity<BitRate, BitRateUnit, decimal>,
+        IDecimalQuantity,
+        IComparable,
+        IComparable<BitRate>,
+        IConvertible,
+        IEquatable<BitRate>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -62,32 +69,32 @@ namespace UnitsNet
             Info = new QuantityInfo<BitRateUnit>("BitRate",
                 new UnitInfo<BitRateUnit>[]
                 {
-                    new UnitInfo<BitRateUnit>(BitRateUnit.BitPerSecond, "BitsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.BytePerSecond, "BytesPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.ExabitPerSecond, "ExabitsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.ExabytePerSecond, "ExabytesPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.ExbibitPerSecond, "ExbibitsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.ExbibytePerSecond, "ExbibytesPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.GibibitPerSecond, "GibibitsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.GibibytePerSecond, "GibibytesPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.GigabitPerSecond, "GigabitsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.GigabytePerSecond, "GigabytesPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.KibibitPerSecond, "KibibitsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.KibibytePerSecond, "KibibytesPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.KilobitPerSecond, "KilobitsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.KilobytePerSecond, "KilobytesPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.MebibitPerSecond, "MebibitsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.MebibytePerSecond, "MebibytesPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.MegabitPerSecond, "MegabitsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.MegabytePerSecond, "MegabytesPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.PebibitPerSecond, "PebibitsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.PebibytePerSecond, "PebibytesPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.PetabitPerSecond, "PetabitsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.PetabytePerSecond, "PetabytesPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.TebibitPerSecond, "TebibitsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.TebibytePerSecond, "TebibytesPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.TerabitPerSecond, "TerabitsPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<BitRateUnit>(BitRateUnit.TerabytePerSecond, "TerabytesPerSecond", BaseUnits.Undefined),
+                    new UnitInfo<BitRateUnit>(BitRateUnit.BitPerSecond, "BitsPerSecond", BaseUnits.Undefined, "BitRate"),
+                    new UnitInfo<BitRateUnit>(BitRateUnit.BytePerSecond, "BytesPerSecond", BaseUnits.Undefined, "BitRate"),
+                    new UnitInfo<BitRateUnit>(BitRateUnit.ExabitPerSecond, "ExabitsPerSecond", BaseUnits.Undefined, "BitRate"),
+                    new UnitInfo<BitRateUnit>(BitRateUnit.ExabytePerSecond, "ExabytesPerSecond", BaseUnits.Undefined, "BitRate"),
+                    new UnitInfo<BitRateUnit>(BitRateUnit.ExbibitPerSecond, "ExbibitsPerSecond", BaseUnits.Undefined, "BitRate"),
+                    new UnitInfo<BitRateUnit>(BitRateUnit.ExbibytePerSecond, "ExbibytesPerSecond", BaseUnits.Undefined, "BitRate"),
+                    new UnitInfo<BitRateUnit>(BitRateUnit.GibibitPerSecond, "GibibitsPerSecond", BaseUnits.Undefined, "BitRate"),
+                    new UnitInfo<BitRateUnit>(BitRateUnit.GibibytePerSecond, "GibibytesPerSecond", BaseUnits.Undefined, "BitRate"),
+                    new UnitInfo<BitRateUnit>(BitRateUnit.GigabitPerSecond, "GigabitsPerSecond", BaseUnits.Undefined, "BitRate"),
+                    new UnitInfo<BitRateUnit>(BitRateUnit.GigabytePerSecond, "GigabytesPerSecond", BaseUnits.Undefined, "BitRate"),
+                    new UnitInfo<BitRateUnit>(BitRateUnit.KibibitPerSecond, "KibibitsPerSecond", BaseUnits.Undefined, "BitRate"),
+                    new UnitInfo<BitRateUnit>(BitRateUnit.KibibytePerSecond, "KibibytesPerSecond", BaseUnits.Undefined, "BitRate"),
+                    new UnitInfo<BitRateUnit>(BitRateUnit.KilobitPerSecond, "KilobitsPerSecond", BaseUnits.Undefined, "BitRate"),
+                    new UnitInfo<BitRateUnit>(BitRateUnit.KilobytePerSecond, "KilobytesPerSecond", BaseUnits.Undefined, "BitRate"),
+                    new UnitInfo<BitRateUnit>(BitRateUnit.MebibitPerSecond, "MebibitsPerSecond", BaseUnits.Undefined, "BitRate"),
+                    new UnitInfo<BitRateUnit>(BitRateUnit.MebibytePerSecond, "MebibytesPerSecond", BaseUnits.Undefined, "BitRate"),
+                    new UnitInfo<BitRateUnit>(BitRateUnit.MegabitPerSecond, "MegabitsPerSecond", BaseUnits.Undefined, "BitRate"),
+                    new UnitInfo<BitRateUnit>(BitRateUnit.MegabytePerSecond, "MegabytesPerSecond", BaseUnits.Undefined, "BitRate"),
+                    new UnitInfo<BitRateUnit>(BitRateUnit.PebibitPerSecond, "PebibitsPerSecond", BaseUnits.Undefined, "BitRate"),
+                    new UnitInfo<BitRateUnit>(BitRateUnit.PebibytePerSecond, "PebibytesPerSecond", BaseUnits.Undefined, "BitRate"),
+                    new UnitInfo<BitRateUnit>(BitRateUnit.PetabitPerSecond, "PetabitsPerSecond", BaseUnits.Undefined, "BitRate"),
+                    new UnitInfo<BitRateUnit>(BitRateUnit.PetabytePerSecond, "PetabytesPerSecond", BaseUnits.Undefined, "BitRate"),
+                    new UnitInfo<BitRateUnit>(BitRateUnit.TebibitPerSecond, "TebibitsPerSecond", BaseUnits.Undefined, "BitRate"),
+                    new UnitInfo<BitRateUnit>(BitRateUnit.TebibytePerSecond, "TebibytesPerSecond", BaseUnits.Undefined, "BitRate"),
+                    new UnitInfo<BitRateUnit>(BitRateUnit.TerabitPerSecond, "TerabitsPerSecond", BaseUnits.Undefined, "BitRate"),
+                    new UnitInfo<BitRateUnit>(BitRateUnit.TerabytePerSecond, "TerabytesPerSecond", BaseUnits.Undefined, "BitRate"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -160,7 +167,7 @@ namespace UnitsNet
         public static BitRate AdditiveIdentity => Zero;
 
         #endregion
- 
+
         #region Properties
 
         /// <summary>
@@ -170,9 +177,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         QuantityValue IQuantity.Value => _value;
-
-        /// <inheritdoc cref="IDecimalQuantity.Value"/>
-        decimal IDecimalQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -390,36 +394,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.TebibytePerSecond, quantity => quantity.ToUnit(BitRateUnit.TebibytePerSecond));
             unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.TerabitPerSecond, quantity => quantity.ToUnit(BitRateUnit.TerabitPerSecond));
             unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.TerabytePerSecond, quantity => quantity.ToUnit(BitRateUnit.TerabytePerSecond));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.BitPerSecond, new CultureInfo("en-US"), false, true, new string[]{"bit/s", "bps"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.BytePerSecond, new CultureInfo("en-US"), false, true, new string[]{"B/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.ExabitPerSecond, new CultureInfo("en-US"), false, true, new string[]{"Ebit/s", "Ebps"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.ExabytePerSecond, new CultureInfo("en-US"), false, true, new string[]{"EB/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.ExbibitPerSecond, new CultureInfo("en-US"), false, true, new string[]{"Eibit/s", "Eibps"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.ExbibytePerSecond, new CultureInfo("en-US"), false, true, new string[]{"EiB/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.GibibitPerSecond, new CultureInfo("en-US"), false, true, new string[]{"Gibit/s", "Gibps"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.GibibytePerSecond, new CultureInfo("en-US"), false, true, new string[]{"GiB/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.GigabitPerSecond, new CultureInfo("en-US"), false, true, new string[]{"Gbit/s", "Gbps"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.GigabytePerSecond, new CultureInfo("en-US"), false, true, new string[]{"GB/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.KibibitPerSecond, new CultureInfo("en-US"), false, true, new string[]{"Kibit/s", "Kibps"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.KibibytePerSecond, new CultureInfo("en-US"), false, true, new string[]{"KiB/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.KilobitPerSecond, new CultureInfo("en-US"), false, true, new string[]{"kbit/s", "kbps"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.KilobytePerSecond, new CultureInfo("en-US"), false, true, new string[]{"kB/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.MebibitPerSecond, new CultureInfo("en-US"), false, true, new string[]{"Mibit/s", "Mibps"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.MebibytePerSecond, new CultureInfo("en-US"), false, true, new string[]{"MiB/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.MegabitPerSecond, new CultureInfo("en-US"), false, true, new string[]{"Mbit/s", "Mbps"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.MegabytePerSecond, new CultureInfo("en-US"), false, true, new string[]{"MB/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.PebibitPerSecond, new CultureInfo("en-US"), false, true, new string[]{"Pibit/s", "Pibps"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.PebibytePerSecond, new CultureInfo("en-US"), false, true, new string[]{"PiB/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.PetabitPerSecond, new CultureInfo("en-US"), false, true, new string[]{"Pbit/s", "Pbps"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.PetabytePerSecond, new CultureInfo("en-US"), false, true, new string[]{"PB/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.TebibitPerSecond, new CultureInfo("en-US"), false, true, new string[]{"Tibit/s", "Tibps"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.TebibytePerSecond, new CultureInfo("en-US"), false, true, new string[]{"TiB/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.TerabitPerSecond, new CultureInfo("en-US"), false, true, new string[]{"Tbit/s", "Tbps"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.TerabytePerSecond, new CultureInfo("en-US"), false, true, new string[]{"TB/s"});
         }
 
         /// <summary>
@@ -727,7 +701,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="ArgumentException">
@@ -754,7 +728,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="ArgumentException">
@@ -786,7 +760,7 @@ namespace UnitsNet
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         public static bool TryParse(string? str, out BitRate result)
         {
@@ -800,7 +774,7 @@ namespace UnitsNet
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out BitRate result)
@@ -817,7 +791,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
@@ -832,7 +806,7 @@ namespace UnitsNet
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
@@ -854,7 +828,7 @@ namespace UnitsNet
         /// <param name="unit">The parsed unit if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
-        ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out BitRateUnit unit)
@@ -941,16 +915,14 @@ namespace UnitsNet
         #pragma warning disable CS0809
 
         /// <summary>Indicates strict equality of two <see cref="BitRate"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(BitRate, decimal, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, decimal, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(BitRate other, BitRate tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public static bool operator ==(BitRate left, BitRate right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Indicates strict inequality of two <see cref="BitRate"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(BitRate, decimal, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is not null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, decimal, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(BitRate other, BitRate tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public static bool operator !=(BitRate left, BitRate right)
         {
             return !(left == right);
@@ -958,8 +930,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="BitRate"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(BitRate, decimal, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, decimal, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Use Equals(BitRate other, BitRate tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is BitRate otherQuantity))
@@ -970,8 +941,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="BitRate"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(BitRate, decimal, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, decimal, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Use Equals(BitRate other, BitRate tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public bool Equals(BitRate other)
         {
             return new { Value, Unit }.Equals(new { other.Value, other.Unit });
@@ -1055,15 +1025,37 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
+        [Obsolete("Use Equals(BitRate other, BitRate tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public bool Equals(BitRate other, decimal tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            decimal thisValue = this.Value;
-            decimal otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(
+                referenceValue: this.Value,
+                otherValue: other.As(this.Unit),
+                tolerance: tolerance,
+                comparisonType: ComparisonType.Absolute);
+        }
 
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+        /// <inheritdoc />
+        public bool Equals(IQuantity? other, IQuantity tolerance)
+        {
+            return other is BitRate otherTyped
+                   && (tolerance is BitRate toleranceTyped
+                       ? true
+                       : throw new ArgumentException($"Tolerance quantity ({tolerance.QuantityInfo.Name}) did not match the other quantities of type 'BitRate'.", nameof(tolerance)))
+                   && Equals(otherTyped, toleranceTyped);
+        }
+
+        /// <inheritdoc />
+        public bool Equals(BitRate other, BitRate tolerance)
+        {
+            return UnitsNet.Comparison.Equals(
+                referenceValue: this.Value,
+                otherValue: other.As(this.Unit),
+                tolerance: tolerance.As(this.Unit),
+                comparisonType: ComparisonType.Absolute);
         }
 
         /// <summary>
@@ -1124,6 +1116,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(BitRateUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        decimal IValueQuantity<decimal>.As(Enum unit)
+        {
+            if (!(unit is BitRateUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(BitRateUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>
@@ -1282,6 +1283,18 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<BitRateUnit> IQuantity<BitRateUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IValueQuantity<decimal> IValueQuantity<decimal>.ToUnit(Enum unit)
+        {
+            if (unit is not BitRateUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(BitRateUnit)} is supported.", nameof(unit));
+
+            return ToUnit(typedUnit);
+        }
+
+        /// <inheritdoc />
+        IValueQuantity<decimal> IValueQuantity<decimal>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

@@ -21,6 +21,7 @@ using System.Globalization;
 using UnitsNet.Units;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 #nullable enable
 
@@ -29,7 +30,7 @@ namespace UnitsNet
     /// <summary>
     ///     Dynamically parse or construct quantities when types are only known at runtime.
     /// </summary>
-    public static partial class Quantity
+    public partial class Quantity
     {
         /// <summary>
         /// All QuantityInfo instances mapped by quantity name that are present in UnitsNet by default.
@@ -62,7 +63,7 @@ namespace UnitsNet
             Writer.WL(@"
                 _ => throw new ArgumentException($""{quantityInfo.Name} is not a supported quantity."")
             };
-            }
+        }
 
         /// <summary>
         ///     Try to dynamically construct a quantity.
@@ -71,9 +72,9 @@ namespace UnitsNet
         /// <param name=""unit"">Unit enum value.</param>
         /// <param name=""quantity"">The resulting quantity if successful, otherwise <c>default</c>.</param>
         /// <returns><c>True</c> if successful with <paramref name=""quantity""/> assigned the value, otherwise <c>false</c>.</returns>
-        public static bool TryFrom(QuantityValue value, Enum unit, [NotNullWhen(true)] out IQuantity? quantity)
+        public static bool TryFrom(QuantityValue value, Enum? unit, [NotNullWhen(true)] out IQuantity? quantity)
         {
-            switch (unit)
+            quantity = unit switch
             {");
             foreach (var quantity in _quantities)
             {
@@ -81,18 +82,14 @@ namespace UnitsNet
                 var unitTypeName = $"{quantityName}Unit";
                 var unitValue = unitTypeName.ToCamelCase();
                 Writer.WL($@"
-                case {unitTypeName} {unitValue}:
-                    quantity = {quantityName}.From(value, {unitValue});
-                    return true;");
+                {unitTypeName} {unitValue} => {quantityName}.From(value, {unitValue}),");
             }
 
             Writer.WL(@"
-                default:
-                {
-                    quantity = default(IQuantity);
-                    return false;
-                }
-            }
+                _ => null
+            };
+
+            return quantity is not null;
         }
 
         /// <summary>
@@ -124,7 +121,7 @@ namespace UnitsNet
             Writer.WL(@"
                 _ => false
             };
-            }
+        }
 
         internal static IEnumerable<Type> GetQuantityTypes()
         {");

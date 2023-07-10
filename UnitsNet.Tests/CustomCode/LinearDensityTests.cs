@@ -63,5 +63,12 @@ namespace UnitsNet.Tests.CustomCode
             Area area = LinearDensity.FromGramsPerCentimeter(10) / Density.FromGramsPerCubicCentimeter(2);
             Assert.Equal(5, area.SquareCentimeters);
         }
+
+        [Fact]
+        public void LinearDensityTimesLengthEqualsMass()
+        {
+            Mass mass = LinearDensity.FromGramsPerCentimeter(10) * Length.FromCentimeters(2);
+            Assert.Equal(20, mass.Grams);
+        }
     }
 }

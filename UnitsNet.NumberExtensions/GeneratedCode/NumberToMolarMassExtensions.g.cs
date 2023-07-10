@@ -48,6 +48,10 @@ namespace UnitsNet.NumberExtensions.NumberToMolarMass
         public static MolarMass HectogramsPerMole<T>(this T value) =>
             MolarMass.FromHectogramsPerMole(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="MolarMass.FromKilogramsPerKilomole(UnitsNet.QuantityValue)" />
+        public static MolarMass KilogramsPerKilomole<T>(this T value) =>
+            MolarMass.FromKilogramsPerKilomole(Convert.ToDouble(value));
+
         /// <inheritdoc cref="MolarMass.FromKilogramsPerMole(UnitsNet.QuantityValue)" />
         public static MolarMass KilogramsPerMole<T>(this T value) =>
             MolarMass.FromKilogramsPerMole(Convert.ToDouble(value));

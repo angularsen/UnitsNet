@@ -90,6 +90,11 @@ namespace UnitsNet
         public double Centiamperes => As(ElectricCurrentUnit.Centiampere);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Femtoampere"/>
+        /// </summary>
+        public double Femtoamperes => As(ElectricCurrentUnit.Femtoampere);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Kiloampere"/>
         /// </summary>
         public double Kiloamperes => As(ElectricCurrentUnit.Kiloampere);
@@ -134,6 +139,12 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrent FromCentiamperes(double centiamperes) => new ElectricCurrent(centiamperes, ElectricCurrentUnit.Centiampere);
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Femtoampere"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricCurrent FromFemtoamperes(double femtoamperes) => new ElectricCurrent(femtoamperes, ElectricCurrentUnit.Femtoampere);
 
         /// <summary>
         ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Kiloampere"/>.
@@ -213,6 +224,7 @@ namespace UnitsNet
                     {
                         ElectricCurrentUnit.Ampere => _value,
                         ElectricCurrentUnit.Centiampere => (_value) * 1e-2d,
+                        ElectricCurrentUnit.Femtoampere => (_value) * 1e-15d,
                         ElectricCurrentUnit.Kiloampere => (_value) * 1e3d,
                         ElectricCurrentUnit.Megaampere => (_value) * 1e6d,
                         ElectricCurrentUnit.Microampere => (_value) * 1e-6d,
@@ -234,6 +246,7 @@ namespace UnitsNet
                     {
                         ElectricCurrentUnit.Ampere => baseUnitValue,
                         ElectricCurrentUnit.Centiampere => (baseUnitValue) / 1e-2d,
+                        ElectricCurrentUnit.Femtoampere => (baseUnitValue) / 1e-15d,
                         ElectricCurrentUnit.Kiloampere => (baseUnitValue) / 1e3d,
                         ElectricCurrentUnit.Megaampere => (baseUnitValue) / 1e6d,
                         ElectricCurrentUnit.Microampere => (baseUnitValue) / 1e-6d,

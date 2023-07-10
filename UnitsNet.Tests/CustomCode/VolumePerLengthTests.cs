@@ -40,5 +40,11 @@ namespace UnitsNet.Tests.CustomCode
         protected override double LitersPerKilometerInOneCubicMeterPerMeter => 1E6;
 
         protected override double LitersPerMillimeterInOneCubicMeterPerMeter => 1;
+
+        // https://www.wolframalpha.com/input?i=1.0000000000000000+cubic+meter+per+meter+to+us+gallon+per+mile
+        protected override double UsGallonsPerMileInOneCubicMeterPerMeter => 4.25143707430272e5;
+
+        // https://www.wolframalpha.com/input?i=1.0000000000000000+cubic+meter+per+meter+to+imperial+gallon+per+mile
+        protected override double ImperialGallonsPerMileInOneCubicMeterPerMeter => 3.540061899346471e5;
     }
 }

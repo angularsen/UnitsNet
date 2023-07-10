@@ -107,7 +107,7 @@ namespace UnitsNet.Tests
             var exception1 = Assert.Throws<AmbiguousUnitParseException>(() => UnitParser.Default.Parse<LengthUnit>("pt"));
 
             // Act 2
-            var exception2 = Assert.Throws<AmbiguousUnitParseException>(() => Length.Parse("1 pt"));
+            var exception2 = Assert.Throws<AmbiguousUnitParseException>(() => Length.Parse("1 pt", CultureInfo.InvariantCulture));
 
             // Assert
             Assert.Equal("Cannot parse \"pt\" since it could be either of these: DtpPoint, PrinterPoint", exception1.Message);
@@ -123,7 +123,7 @@ namespace UnitsNet.Tests
         [InlineData("кг", "ru-RU", MassUnit.Kilogram)]
         public void ParseMassUnit_GivenCulture(string str, string cultureName, Enum expectedUnit)
         {
-            Assert.Equal(expectedUnit, UnitParser.Default.Parse<MassUnit>(str, new CultureInfo(cultureName)));
+            Assert.Equal(expectedUnit, UnitParser.Default.Parse<MassUnit>(str, CultureInfo.GetCultureInfo(cultureName)));
         }
 
         [Fact]

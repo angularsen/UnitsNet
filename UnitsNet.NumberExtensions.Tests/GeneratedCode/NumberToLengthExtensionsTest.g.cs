@@ -101,6 +101,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Length.FromMegalightYears(2), 2.MegalightYears());
 
         [Fact]
+        public void NumberToMegametersTest() =>
+            Assert.Equal(Length.FromMegameters(2), 2.Megameters());
+
+        [Fact]
         public void NumberToMegaparsecsTest() =>
             Assert.Equal(Length.FromMegaparsecs(2), 2.Megaparsecs());
 

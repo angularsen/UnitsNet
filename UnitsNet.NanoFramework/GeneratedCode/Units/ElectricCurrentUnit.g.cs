@@ -27,6 +27,7 @@ namespace UnitsNet.Units
     {
         Ampere = 1,
         Centiampere = 2,
+        Femtoampere = 9,
         Kiloampere = 3,
         Megaampere = 4,
         Microampere = 5,

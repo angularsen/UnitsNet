@@ -169,8 +169,28 @@ namespace UnitsNet.Tests
             Assert.Equal(VolumeFlow.FromMegalitersPerDay(2), 2.MegalitersPerDay());
 
         [Fact]
+        public void NumberToMegalitersPerHourTest() =>
+            Assert.Equal(VolumeFlow.FromMegalitersPerHour(2), 2.MegalitersPerHour());
+
+        [Fact]
+        public void NumberToMegalitersPerMinuteTest() =>
+            Assert.Equal(VolumeFlow.FromMegalitersPerMinute(2), 2.MegalitersPerMinute());
+
+        [Fact]
+        public void NumberToMegalitersPerSecondTest() =>
+            Assert.Equal(VolumeFlow.FromMegalitersPerSecond(2), 2.MegalitersPerSecond());
+
+        [Fact]
+        public void NumberToMegaukGallonsPerDayTest() =>
+            Assert.Equal(VolumeFlow.FromMegaukGallonsPerDay(2), 2.MegaukGallonsPerDay());
+
+        [Fact]
         public void NumberToMegaukGallonsPerSecondTest() =>
             Assert.Equal(VolumeFlow.FromMegaukGallonsPerSecond(2), 2.MegaukGallonsPerSecond());
+
+        [Fact]
+        public void NumberToMegausGallonsPerDayTest() =>
+            Assert.Equal(VolumeFlow.FromMegausGallonsPerDay(2), 2.MegausGallonsPerDay());
 
         [Fact]
         public void NumberToMicrolitersPerDayTest() =>

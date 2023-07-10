@@ -41,6 +41,10 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricPotential.FromMillivolts(2), 2.Millivolts());
 
         [Fact]
+        public void NumberToNanovoltsTest() =>
+            Assert.Equal(ElectricPotential.FromNanovolts(2), 2.Nanovolts());
+
+        [Fact]
         public void NumberToVoltsTest() =>
             Assert.Equal(ElectricPotential.FromVolts(2), 2.Volts());
 

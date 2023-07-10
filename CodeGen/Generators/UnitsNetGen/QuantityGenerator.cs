@@ -62,15 +62,21 @@ namespace UnitsNet
     /// </remarks>");
 
             Writer.WLIfText(1, GetObsoleteAttributeOrNull(_quantity));
-            Writer.W(@$"
+            Writer.WL(@$"
     [DataContract]
-    public readonly partial struct {_quantity.Name} : {(_quantity.GenerateArithmetic ? "IArithmeticQuantity" : "IQuantity")}<{_quantity.Name}, {_unitEnumName}, {_quantity.ValueType}>, ");
-            if (_quantity.ValueType == "decimal")
-            {
-                Writer.W("IDecimalQuantity, ");
-            }
+    public readonly partial struct {_quantity.Name} :
+        {(_quantity.GenerateArithmetic ? "IArithmeticQuantity" : "IQuantity")}<{_quantity.Name}, {_unitEnumName}, {_quantity.ValueType}>,");
 
-            Writer.WL($"IEquatable<{_quantity.Name}>, IComparable, IComparable<{_quantity.Name}>, IConvertible, IFormattable");
+            if (_quantity.ValueType == "decimal") Writer.WL(@$"
+        IDecimalQuantity,");
+
+            Writer.WL(@$"
+        IComparable,
+        IComparable<{_quantity.Name}>,
+        IConvertible,
+        IEquatable<{_quantity.Name}>,
+        IFormattable");
+
             Writer.WL($@"
     {{
         /// <summary>
@@ -129,7 +135,7 @@ namespace UnitsNet
                 if (baseUnits == null)
                 {
                     Writer.WL($@"
-                    new UnitInfo<{_unitEnumName}>({_unitEnumName}.{unit.SingularName}, ""{unit.PluralName}"", BaseUnits.Undefined),");
+                    new UnitInfo<{_unitEnumName}>({_unitEnumName}.{unit.SingularName}, ""{unit.PluralName}"", BaseUnits.Undefined, ""{_quantity.Name}""),");
                 }
                 else
                 {
@@ -146,7 +152,7 @@ namespace UnitsNet
                         }.Where(str => str != null));
 
                     Writer.WL($@"
-                    new UnitInfo<{_unitEnumName}>({_unitEnumName}.{unit.SingularName}, ""{unit.PluralName}"", new BaseUnits({baseUnitsCtorArgs})),");
+                    new UnitInfo<{_unitEnumName}>({_unitEnumName}.{unit.SingularName}, ""{unit.PluralName}"", new BaseUnits({baseUnitsCtorArgs}), ""{_quantity.Name}""),");
                 }
             }
 
@@ -251,7 +257,7 @@ namespace UnitsNet
 
             Writer.WL($@"
         #endregion
- ");
+");
         }
 
         private void GenerateProperties()
@@ -263,20 +269,10 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public {_valueType} Value => _value;
-");
 
-            Writer.WL(@"
         /// <inheritdoc />
         QuantityValue IQuantity.Value => _value;
-");
-            // Need to provide explicit interface implementation for decimal quantities like Information
-            if (_quantity.ValueType == "decimal")
-                Writer.WL(@"
-        /// <inheritdoc cref=""IDecimalQuantity.Value""/>
-        decimal IDecimalQuantity.Value => _value;
-");
 
-            Writer.WL($@"
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
@@ -334,14 +330,14 @@ namespace UnitsNet
         /// <param name=""unitConverter"">The <see cref=""UnitConverter""/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {{
-            // Register in unit converter: {_quantity.Name}Unit -> BaseUnit");
+            // Register in unit converter: {_unitEnumName} -> BaseUnit");
 
             foreach (Unit unit in _quantity.Units)
             {
                 if (unit.SingularName == _quantity.BaseUnit) continue;
 
                 Writer.WL($@"
-            unitConverter.SetConversionFunction<{_quantity.Name}>({_quantity.Name}Unit.{unit.SingularName}, {_unitEnumName}.{_quantity.BaseUnit}, quantity => quantity.ToUnit({_unitEnumName}.{_quantity.BaseUnit}));");
+            unitConverter.SetConversionFunction<{_quantity.Name}>({_unitEnumName}.{unit.SingularName}, {_unitEnumName}.{_quantity.BaseUnit}, quantity => quantity.ToUnit({_unitEnumName}.{_quantity.BaseUnit}));");
             }
 
             Writer.WL();
@@ -350,33 +346,14 @@ namespace UnitsNet
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<{_quantity.Name}>({_unitEnumName}.{_quantity.BaseUnit}, {_unitEnumName}.{_quantity.BaseUnit}, quantity => quantity);
 
-            // Register in unit converter: BaseUnit -> {_quantity.Name}Unit");
+            // Register in unit converter: BaseUnit -> {_unitEnumName}");
 
             foreach (Unit unit in _quantity.Units)
             {
                 if (unit.SingularName == _quantity.BaseUnit) continue;
 
                 Writer.WL($@"
-            unitConverter.SetConversionFunction<{_quantity.Name}>({_unitEnumName}.{_quantity.BaseUnit}, {_quantity.Name}Unit.{unit.SingularName}, quantity => quantity.ToUnit({_quantity.Name}Unit.{unit.SingularName}));");
-            }
-
-            Writer.WL($@"
-        }}
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {{");
-            foreach(Unit unit in _quantity.Units)
-            {
-                foreach(Localization localization in unit.Localization)
-                {
-                    // All units must have a unit abbreviation, so fallback to "" for units with no abbreviations defined in JSON
-                    var abbreviationParams = localization.Abbreviations.Any() ?
-                        string.Join(", ", localization.Abbreviations.Select(abbr => $@"""{abbr}""")) :
-                        $@"""""";
-
-                    Writer.WL($@"
-            unitAbbreviationsCache.PerformAbbreviationMapping({_unitEnumName}.{unit.SingularName}, new CultureInfo(""{localization.Culture}""), false, {unit.AllowAbbreviationLookup.ToString().ToLower()}, new string[]{{{abbreviationParams}}});");
-                }
+            unitConverter.SetConversionFunction<{_quantity.Name}>({_unitEnumName}.{_quantity.BaseUnit}, {_unitEnumName}.{unit.SingularName}, quantity => quantity.ToUnit({_unitEnumName}.{unit.SingularName}));");
             }
 
             Writer.WL($@"
@@ -458,7 +435,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name=""str"">String to parse. Typically in the form: {{number}} {{unit}}</param>
         /// <example>
-        ///     Length.Parse(""5.5 m"", new CultureInfo(""en-US""));
+        ///     Length.Parse(""5.5 m"", CultureInfo.GetCultureInfo(""en-US""));
         /// </example>
         /// <exception cref=""ArgumentNullException"">The value of 'str' cannot be null. </exception>
         /// <exception cref=""ArgumentException"">
@@ -485,7 +462,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name=""str"">String to parse. Typically in the form: {{number}} {{unit}}</param>
         /// <example>
-        ///     Length.Parse(""5.5 m"", new CultureInfo(""en-US""));
+        ///     Length.Parse(""5.5 m"", CultureInfo.GetCultureInfo(""en-US""));
         /// </example>
         /// <exception cref=""ArgumentNullException"">The value of 'str' cannot be null. </exception>
         /// <exception cref=""ArgumentException"">
@@ -517,7 +494,7 @@ namespace UnitsNet
         /// <param name=""str"">String to parse. Typically in the form: {{number}} {{unit}}</param>
         /// <param name=""result"">Resulting unit quantity if successful.</param>
         /// <example>
-        ///     Length.Parse(""5.5 m"", new CultureInfo(""en-US""));
+        ///     Length.Parse(""5.5 m"", CultureInfo.GetCultureInfo(""en-US""));
         /// </example>
         public static bool TryParse(string? str, out {_quantity.Name} result)
         {{
@@ -531,7 +508,7 @@ namespace UnitsNet
         /// <param name=""result"">Resulting unit quantity if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
-        ///     Length.Parse(""5.5 m"", new CultureInfo(""en-US""));
+        ///     Length.Parse(""5.5 m"", CultureInfo.GetCultureInfo(""en-US""));
         /// </example>
         /// <param name=""provider"">Format to use when parsing number and unit. Defaults to <see cref=""CultureInfo.CurrentCulture"" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out {_quantity.Name} result)
@@ -548,7 +525,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name=""str"">String to parse. Typically in the form: {{number}} {{unit}}</param>
         /// <example>
-        ///     Length.ParseUnit(""m"", new CultureInfo(""en-US""));
+        ///     Length.ParseUnit(""m"", CultureInfo.GetCultureInfo(""en-US""));
         /// </example>
         /// <exception cref=""ArgumentNullException"">The value of 'str' cannot be null. </exception>
         /// <exception cref=""UnitsNetException"">Error parsing string.</exception>
@@ -563,7 +540,7 @@ namespace UnitsNet
         /// <param name=""str"">String to parse. Typically in the form: {{number}} {{unit}}</param>
         /// <param name=""provider"">Format to use when parsing number and unit. Defaults to <see cref=""CultureInfo.CurrentCulture"" /> if null.</param>
         /// <example>
-        ///     Length.ParseUnit(""m"", new CultureInfo(""en-US""));
+        ///     Length.ParseUnit(""m"", CultureInfo.GetCultureInfo(""en-US""));
         /// </example>
         /// <exception cref=""ArgumentNullException"">The value of 'str' cannot be null. </exception>
         /// <exception cref=""UnitsNetException"">Error parsing string.</exception>
@@ -585,7 +562,7 @@ namespace UnitsNet
         /// <param name=""unit"">The parsed unit if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
-        ///     Length.TryParseUnit(""m"", new CultureInfo(""en-US""));
+        ///     Length.TryParseUnit(""m"", CultureInfo.GetCultureInfo(""en-US""));
         /// </example>
         /// <param name=""provider"">Format to use when parsing number and unit. Defaults to <see cref=""CultureInfo.CurrentCulture"" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out {_unitEnumName} unit)
@@ -753,16 +730,14 @@ namespace UnitsNet
         #pragma warning disable CS0809
 
         /// <summary>Indicates strict equality of two <see cref=""{_quantity.Name}""/> quantities, where both <see cref=""Value"" /> and <see cref=""Unit"" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, {_valueType}, ComparisonType)""/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete(""For null checks, use `x is null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, {_valueType}, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance."")]
+        [Obsolete(""For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals({_quantity.Name} other, {_quantity.Name} tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units."")]
         public static bool operator ==({_quantity.Name} left, {_quantity.Name} right)
         {{
             return left.Equals(right);
         }}
 
         /// <summary>Indicates strict inequality of two <see cref=""{_quantity.Name}""/> quantities, where both <see cref=""Value"" /> and <see cref=""Unit"" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, {_valueType}, ComparisonType)""/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete(""For null checks, use `x is not null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, {_valueType}, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance."")]
+        [Obsolete(""For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals({_quantity.Name} other, {_quantity.Name} tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units."")]
         public static bool operator !=({_quantity.Name} left, {_quantity.Name} right)
         {{
             return !(left == right);
@@ -770,8 +745,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref=""{_quantity.Name}""/> quantities, where both <see cref=""Value"" /> and <see cref=""Unit"" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, {_valueType}, ComparisonType)""/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete(""Consider using Equals(Angle, {_valueType}, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance."")]
+        [Obsolete(""Use Equals({_quantity.Name} other, {_quantity.Name} tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units."")]
         public override bool Equals(object? obj)
         {{
             if (obj is null || !(obj is {_quantity.Name} otherQuantity))
@@ -782,8 +756,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref=""{_quantity.Name}""/> quantities, where both <see cref=""Value"" /> and <see cref=""Unit"" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, {_valueType}, ComparisonType)""/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete(""Consider using Equals(Angle, {_valueType}, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance."")]
+        [Obsolete(""Use Equals({_quantity.Name} other, {_quantity.Name} tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units."")]
         public bool Equals({_quantity.Name} other)
         {{
             return new {{ Value, Unit }}.Equals(new {{ other.Value, other.Unit }});
@@ -867,15 +840,37 @@ namespace UnitsNet
         /// <param name=""tolerance"">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name=""comparisonType"">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
+        [Obsolete(""Use Equals({_quantity.Name} other, {_quantity.Name} tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units."")]
         public bool Equals({_quantity.Name} other, {_quantity.ValueType} tolerance, ComparisonType comparisonType)
         {{
             if (tolerance < 0)
-                throw new ArgumentOutOfRangeException(""tolerance"", ""Tolerance must be greater than or equal to 0."");
+                throw new ArgumentOutOfRangeException(nameof(tolerance), ""Tolerance must be greater than or equal to 0."");
 
-            {_quantity.ValueType} thisValue = this.Value;
-            {_quantity.ValueType} otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(
+                referenceValue: this.Value,
+                otherValue: other.As(this.Unit),
+                tolerance: tolerance,
+                comparisonType: ComparisonType.Absolute);
+        }}
 
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+        /// <inheritdoc />
+        public bool Equals(IQuantity? other, IQuantity tolerance)
+        {{
+            return other is {_quantity.Name} otherTyped
+                   && (tolerance is {_quantity.Name} toleranceTyped
+                       ? true
+                       : throw new ArgumentException($""Tolerance quantity ({{tolerance.QuantityInfo.Name}}) did not match the other quantities of type '{_quantity.Name}'."", nameof(tolerance)))
+                   && Equals(otherTyped, toleranceTyped);
+        }}
+
+        /// <inheritdoc />
+        public bool Equals({_quantity.Name} other, {_quantity.Name} tolerance)
+        {{
+            return UnitsNet.Comparison.Equals(
+                referenceValue: this.Value,
+                otherValue: other.As(this.Unit),
+                tolerance: tolerance.As(this.Unit),
+                comparisonType: ComparisonType.Absolute);
         }}
 
         /// <summary>
@@ -959,6 +954,15 @@ namespace UnitsNet
             return (double)As(typedUnit);
         }}
 
+        /// <inheritdoc />
+        {_quantity.ValueType} IValueQuantity<{_quantity.ValueType}>.As(Enum unit)
+        {{
+            if (!(unit is {_unitEnumName} typedUnit))
+                throw new ArgumentException($""The given unit is of type {{unit.GetType()}}. Only {{typeof({_unitEnumName})}} is supported."", nameof(unit));
+
+            return As(typedUnit);
+        }}
+
         /// <summary>
         ///     Converts this {_quantity.Name} to another {_quantity.Name} with the unit representation <paramref name=""unit"" />.
         /// </summary>
@@ -1006,7 +1010,7 @@ namespace UnitsNet
         /// <param name=""unit"">The unit to convert to.</param>
         /// <param name=""converted"">The converted <see cref=""{_quantity.Name}""/> in <paramref name=""unit""/>, if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
-        private bool TryToUnit({_quantity.Name}Unit unit, [NotNullWhen(true)] out {_quantity.Name}? converted)
+        private bool TryToUnit({_unitEnumName} unit, [NotNullWhen(true)] out {_quantity.Name}? converted)
         {{
             if (Unit == unit)
             {{
@@ -1016,7 +1020,7 @@ namespace UnitsNet
 
             {_quantity.Name}? convertedOrNull = (Unit, unit) switch
             {{
-                // {_quantity.Name}Unit -> BaseUnit");
+                // {_unitEnumName} -> BaseUnit");
 
             foreach (Unit unit in _quantity.Units)
             {
@@ -1024,20 +1028,20 @@ namespace UnitsNet
 
                 var func = unit.FromUnitToBaseFunc.Replace("{x}", "_value");
                 Writer.WL($@"
-                ({_quantity.Name}Unit.{unit.SingularName}, {_unitEnumName}.{_quantity.BaseUnit}) => new {_quantity.Name}({func}, {_unitEnumName}.{_quantity.BaseUnit}),");
+                ({_unitEnumName}.{unit.SingularName}, {_unitEnumName}.{_quantity.BaseUnit}) => new {_quantity.Name}({func}, {_unitEnumName}.{_quantity.BaseUnit}),");
             }
 
             Writer.WL();
             Writer.WL($@"
 
-                // BaseUnit -> {_quantity.Name}Unit");
+                // BaseUnit -> {_unitEnumName}");
             foreach(Unit unit in _quantity.Units)
             {
                 if (unit.SingularName == _quantity.BaseUnit) continue;
 
                 var func = unit.FromBaseToUnitFunc.Replace("{x}", "_value");
                 Writer.WL($@"
-                ({_unitEnumName}.{_quantity.BaseUnit}, {_quantity.Name}Unit.{unit.SingularName}) => new {_quantity.Name}({func}, {_quantity.Name}Unit.{unit.SingularName}),");
+                ({_unitEnumName}.{_quantity.BaseUnit}, {_unitEnumName}.{unit.SingularName}) => new {_quantity.Name}({func}, {_unitEnumName}.{unit.SingularName}),");
             }
 
             Writer.WL();
@@ -1087,6 +1091,18 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<{_unitEnumName}> IQuantity<{_unitEnumName}>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IValueQuantity<{_quantity.ValueType}> IValueQuantity<{_quantity.ValueType}>.ToUnit(Enum unit)
+        {{
+            if (unit is not {_unitEnumName} typedUnit)
+                throw new ArgumentException($""The given unit is of type {{unit.GetType()}}. Only {{typeof({_unitEnumName})}} is supported."", nameof(unit));
+
+            return ToUnit(typedUnit);
+        }}
+
+        /// <inheritdoc />
+        IValueQuantity<{_quantity.ValueType}> IValueQuantity<{_quantity.ValueType}>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 ");
