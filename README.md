@@ -359,7 +359,7 @@ Read the wiki on [Serializing to JSON, XML and more](https://github.com/angulars
 
 ### Continuous Integration
 
-[AppVeyor](https://ci.appveyor.com/project/angularsen/unitsnet) performs the following:
+[Azure DevOps](https://dev.azure.com/unitsnet/Units.NET/) performs the following:
 * Build and test all branches
 * Build and test pull requests, notifies on success or error
 * Deploy nugets on master branch, if nuspec versions changed

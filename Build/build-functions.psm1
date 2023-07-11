@@ -33,11 +33,7 @@ function Start-Build([boolean] $IncludeNanoFramework = $false) {
 
   $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$logsDir\UnitsNet.msbuild.log"
 
-  $appVeyorLoggerDll = "C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
-  $appVeyorLoggerNetCoreDll = "C:\Program Files\AppVeyor\BuildAgent\dotnetcore\Appveyor.MSBuildLogger.dll"
-  $appVeyorLoggerArg = if (Test-Path "$appVeyorLoggerNetCoreDll") { "/logger:$appVeyorLoggerNetCoreDll" } else { "" }
-
-  dotnet build --configuration Release /p:ContinuousIntegrationBuild=true "$root\UnitsNet.sln" $fileLoggerArg $appVeyorLoggerArg
+  dotnet build --configuration Release /p:ContinuousIntegrationBuild=true "$root\UnitsNet.sln" $fileLoggerArg
   if ($lastexitcode -ne 0) { exit 1 }
 
   if (-not $IncludeNanoFramework)
@@ -48,7 +44,6 @@ function Start-Build([boolean] $IncludeNanoFramework = $false) {
   {
     write-host -foreground green "Build .NET nanoFramework."
     $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$logsDir\UnitsNet.NanoFramework.msbuild.log"
-    $appVeyorLoggerArg = if (Test-Path "$appVeyorLoggerDll") { "/logger:$appVeyorLoggerDll" } else { "" }
 
     # msbuild does not auto-restore nugets for this project type
     & "nuget" restore "$root\UnitsNet.NanoFramework\GeneratedCode\UnitsNet.nanoFramework.sln"
