@@ -50,6 +50,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{71C6EF60
 		Build\init.ps1 = Build\init.ps1
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerfTest_Startup", "PerfTests\PerfTest_Startup\PerfTest_Startup.csproj", "{BFF3DD22-0F58-4E79-86CD-662D1A174224}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerfTest_Startup_v4_144_0", "PerfTests\PerfTest_Startup_v4_144_0\PerfTest_Startup_v4_144_0.csproj", "{2E68C361-F6FA-49DC-BB0E-85ADE776391E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PerfTests", "PerfTests", "{126F0393-A678-4609-9341-7028F1B2BC2B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -88,6 +94,14 @@ Global
 		{B4996AF5-9A8B-481A-9018-EC7F5B1605FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4996AF5-9A8B-481A-9018-EC7F5B1605FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4996AF5-9A8B-481A-9018-EC7F5B1605FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFF3DD22-0F58-4E79-86CD-662D1A174224}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFF3DD22-0F58-4E79-86CD-662D1A174224}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFF3DD22-0F58-4E79-86CD-662D1A174224}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFF3DD22-0F58-4E79-86CD-662D1A174224}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E68C361-F6FA-49DC-BB0E-85ADE776391E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E68C361-F6FA-49DC-BB0E-85ADE776391E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E68C361-F6FA-49DC-BB0E-85ADE776391E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E68C361-F6FA-49DC-BB0E-85ADE776391E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -97,5 +111,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{71C6EF60-7E52-4DF4-BA93-5FAF6D89AEC6} = {B92B01BE-243E-4CCB-B5E5-AF469ADB1F54}
+		{BFF3DD22-0F58-4E79-86CD-662D1A174224} = {126F0393-A678-4609-9341-7028F1B2BC2B}
+		{2E68C361-F6FA-49DC-BB0E-85ADE776391E} = {126F0393-A678-4609-9341-7028F1B2BC2B}
 	EndGlobalSection
 EndGlobal

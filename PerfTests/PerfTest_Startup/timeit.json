@@ -1,0 +1,8 @@
+{
+  "warmUpCount": 10,
+  "count": 20,
+  "scenarios": [{ "name": "Default" }],
+  "processName": "../../Artifacts/PerfTest_Startup/net7.0/PerfTest_Startup.exe",
+  "workingDirectory": "$(CWD)/",
+  "processTimeout": 15
+}
