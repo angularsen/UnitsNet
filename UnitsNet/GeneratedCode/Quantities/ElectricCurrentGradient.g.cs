@@ -67,8 +67,11 @@ namespace UnitsNet
                 {
                     new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerMicrosecond, "AmperesPerMicrosecond", new BaseUnits(time: DurationUnit.Microsecond, current: ElectricCurrentUnit.Ampere), "ElectricCurrentGradient"),
                     new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerMillisecond, "AmperesPerMillisecond", new BaseUnits(time: DurationUnit.Millisecond, current: ElectricCurrentUnit.Ampere), "ElectricCurrentGradient"),
+                    new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerMinute, "AmperesPerMinute", new BaseUnits(time: DurationUnit.Minute, current: ElectricCurrentUnit.Ampere), "ElectricCurrentGradient"),
                     new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerNanosecond, "AmperesPerNanosecond", new BaseUnits(time: DurationUnit.Nanosecond, current: ElectricCurrentUnit.Ampere), "ElectricCurrentGradient"),
-                    new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerSecond, "AmperesPerSecond", BaseUnits.Undefined, "ElectricCurrentGradient"),
+                    new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.AmperePerSecond, "AmperesPerSecond", new BaseUnits(time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricCurrentGradient"),
+                    new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.MilliamperePerMinute, "MilliamperesPerMinute", BaseUnits.Undefined, "ElectricCurrentGradient"),
+                    new UnitInfo<ElectricCurrentGradientUnit>(ElectricCurrentGradientUnit.MilliamperePerSecond, "MilliamperesPerSecond", BaseUnits.Undefined, "ElectricCurrentGradient"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -183,6 +186,11 @@ namespace UnitsNet
         public double AmperesPerMillisecond => As(ElectricCurrentGradientUnit.AmperePerMillisecond);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentGradientUnit.AmperePerMinute"/>
+        /// </summary>
+        public double AmperesPerMinute => As(ElectricCurrentGradientUnit.AmperePerMinute);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentGradientUnit.AmperePerNanosecond"/>
         /// </summary>
         public double AmperesPerNanosecond => As(ElectricCurrentGradientUnit.AmperePerNanosecond);
@@ -191,6 +199,16 @@ namespace UnitsNet
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentGradientUnit.AmperePerSecond"/>
         /// </summary>
         public double AmperesPerSecond => As(ElectricCurrentGradientUnit.AmperePerSecond);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentGradientUnit.MilliamperePerMinute"/>
+        /// </summary>
+        public double MilliamperesPerMinute => As(ElectricCurrentGradientUnit.MilliamperePerMinute);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentGradientUnit.MilliamperePerSecond"/>
+        /// </summary>
+        public double MilliamperesPerSecond => As(ElectricCurrentGradientUnit.MilliamperePerSecond);
 
         #endregion
 
@@ -205,7 +223,10 @@ namespace UnitsNet
             // Register in unit converter: ElectricCurrentGradientUnit -> BaseUnit
             unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerMicrosecond, ElectricCurrentGradientUnit.AmperePerSecond, quantity => quantity.ToUnit(ElectricCurrentGradientUnit.AmperePerSecond));
             unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerMillisecond, ElectricCurrentGradientUnit.AmperePerSecond, quantity => quantity.ToUnit(ElectricCurrentGradientUnit.AmperePerSecond));
+            unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerMinute, ElectricCurrentGradientUnit.AmperePerSecond, quantity => quantity.ToUnit(ElectricCurrentGradientUnit.AmperePerSecond));
             unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerNanosecond, ElectricCurrentGradientUnit.AmperePerSecond, quantity => quantity.ToUnit(ElectricCurrentGradientUnit.AmperePerSecond));
+            unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.MilliamperePerMinute, ElectricCurrentGradientUnit.AmperePerSecond, quantity => quantity.ToUnit(ElectricCurrentGradientUnit.AmperePerSecond));
+            unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.MilliamperePerSecond, ElectricCurrentGradientUnit.AmperePerSecond, quantity => quantity.ToUnit(ElectricCurrentGradientUnit.AmperePerSecond));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerSecond, ElectricCurrentGradientUnit.AmperePerSecond, quantity => quantity);
@@ -213,7 +234,10 @@ namespace UnitsNet
             // Register in unit converter: BaseUnit -> ElectricCurrentGradientUnit
             unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerSecond, ElectricCurrentGradientUnit.AmperePerMicrosecond, quantity => quantity.ToUnit(ElectricCurrentGradientUnit.AmperePerMicrosecond));
             unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerSecond, ElectricCurrentGradientUnit.AmperePerMillisecond, quantity => quantity.ToUnit(ElectricCurrentGradientUnit.AmperePerMillisecond));
+            unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerSecond, ElectricCurrentGradientUnit.AmperePerMinute, quantity => quantity.ToUnit(ElectricCurrentGradientUnit.AmperePerMinute));
             unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerSecond, ElectricCurrentGradientUnit.AmperePerNanosecond, quantity => quantity.ToUnit(ElectricCurrentGradientUnit.AmperePerNanosecond));
+            unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerSecond, ElectricCurrentGradientUnit.MilliamperePerMinute, quantity => quantity.ToUnit(ElectricCurrentGradientUnit.MilliamperePerMinute));
+            unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerSecond, ElectricCurrentGradientUnit.MilliamperePerSecond, quantity => quantity.ToUnit(ElectricCurrentGradientUnit.MilliamperePerSecond));
         }
 
         /// <summary>
@@ -262,6 +286,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrentGradientUnit.AmperePerMinute"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricCurrentGradient FromAmperesPerMinute(QuantityValue amperesperminute)
+        {
+            double value = (double) amperesperminute;
+            return new ElectricCurrentGradient(value, ElectricCurrentGradientUnit.AmperePerMinute);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrentGradientUnit.AmperePerNanosecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -279,6 +313,26 @@ namespace UnitsNet
         {
             double value = (double) amperespersecond;
             return new ElectricCurrentGradient(value, ElectricCurrentGradientUnit.AmperePerSecond);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrentGradientUnit.MilliamperePerMinute"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricCurrentGradient FromMilliamperesPerMinute(QuantityValue milliamperesperminute)
+        {
+            double value = (double) milliamperesperminute;
+            return new ElectricCurrentGradient(value, ElectricCurrentGradientUnit.MilliamperePerMinute);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrentGradientUnit.MilliamperePerSecond"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricCurrentGradient FromMilliamperesPerSecond(QuantityValue milliamperespersecond)
+        {
+            double value = (double) milliamperespersecond;
+            return new ElectricCurrentGradient(value, ElectricCurrentGradientUnit.MilliamperePerSecond);
         }
 
         /// <summary>
@@ -776,12 +830,18 @@ namespace UnitsNet
                 // ElectricCurrentGradientUnit -> BaseUnit
                 (ElectricCurrentGradientUnit.AmperePerMicrosecond, ElectricCurrentGradientUnit.AmperePerSecond) => new ElectricCurrentGradient(_value * 1E6, ElectricCurrentGradientUnit.AmperePerSecond),
                 (ElectricCurrentGradientUnit.AmperePerMillisecond, ElectricCurrentGradientUnit.AmperePerSecond) => new ElectricCurrentGradient(_value * 1E3, ElectricCurrentGradientUnit.AmperePerSecond),
+                (ElectricCurrentGradientUnit.AmperePerMinute, ElectricCurrentGradientUnit.AmperePerSecond) => new ElectricCurrentGradient(_value / 60, ElectricCurrentGradientUnit.AmperePerSecond),
                 (ElectricCurrentGradientUnit.AmperePerNanosecond, ElectricCurrentGradientUnit.AmperePerSecond) => new ElectricCurrentGradient(_value * 1E9, ElectricCurrentGradientUnit.AmperePerSecond),
+                (ElectricCurrentGradientUnit.MilliamperePerMinute, ElectricCurrentGradientUnit.AmperePerSecond) => new ElectricCurrentGradient((_value / 60) * 1e-3d, ElectricCurrentGradientUnit.AmperePerSecond),
+                (ElectricCurrentGradientUnit.MilliamperePerSecond, ElectricCurrentGradientUnit.AmperePerSecond) => new ElectricCurrentGradient((_value) * 1e-3d, ElectricCurrentGradientUnit.AmperePerSecond),
 
                 // BaseUnit -> ElectricCurrentGradientUnit
                 (ElectricCurrentGradientUnit.AmperePerSecond, ElectricCurrentGradientUnit.AmperePerMicrosecond) => new ElectricCurrentGradient(_value / 1E6, ElectricCurrentGradientUnit.AmperePerMicrosecond),
                 (ElectricCurrentGradientUnit.AmperePerSecond, ElectricCurrentGradientUnit.AmperePerMillisecond) => new ElectricCurrentGradient(_value / 1E3, ElectricCurrentGradientUnit.AmperePerMillisecond),
+                (ElectricCurrentGradientUnit.AmperePerSecond, ElectricCurrentGradientUnit.AmperePerMinute) => new ElectricCurrentGradient(_value * 60, ElectricCurrentGradientUnit.AmperePerMinute),
                 (ElectricCurrentGradientUnit.AmperePerSecond, ElectricCurrentGradientUnit.AmperePerNanosecond) => new ElectricCurrentGradient(_value / 1E9, ElectricCurrentGradientUnit.AmperePerNanosecond),
+                (ElectricCurrentGradientUnit.AmperePerSecond, ElectricCurrentGradientUnit.MilliamperePerMinute) => new ElectricCurrentGradient((_value * 60) / 1e-3d, ElectricCurrentGradientUnit.MilliamperePerMinute),
+                (ElectricCurrentGradientUnit.AmperePerSecond, ElectricCurrentGradientUnit.MilliamperePerSecond) => new ElectricCurrentGradient((_value) / 1e-3d, ElectricCurrentGradientUnit.MilliamperePerSecond),
 
                 _ => null
             };

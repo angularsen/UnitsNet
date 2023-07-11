@@ -26,6 +26,8 @@ namespace UnitsNet.Units
     public enum PressureChangeRateUnit
     {
         AtmospherePerSecond = 1,
+        BarPerMinute = 16,
+        BarPerSecond = 23,
         KilopascalPerMinute = 2,
         KilopascalPerSecond = 3,
         KilopoundForcePerSquareInchPerMinute = 4,
@@ -34,6 +36,8 @@ namespace UnitsNet.Units
         MegapascalPerSecond = 7,
         MegapoundForcePerSquareInchPerMinute = 8,
         MegapoundForcePerSquareInchPerSecond = 9,
+        MillibarPerMinute = 24,
+        MillibarPerSecond = 20,
         MillimeterOfMercuryPerSecond = 10,
         PascalPerMinute = 11,
         PascalPerSecond = 12,

@@ -59,7 +59,7 @@ namespace UnitsNet.Tests
             Assertion(3, ElectricConductivityUnit.SiemensPerMeter, Quantity.From(3, ElectricConductivityUnit.SiemensPerMeter));
             Assertion(3, ElectricCurrentUnit.Picoampere, Quantity.From(3, ElectricCurrentUnit.Picoampere));
             Assertion(3, ElectricCurrentDensityUnit.AmperePerSquareMeter, Quantity.From(3, ElectricCurrentDensityUnit.AmperePerSquareMeter));
-            Assertion(3, ElectricCurrentGradientUnit.AmperePerSecond, Quantity.From(3, ElectricCurrentGradientUnit.AmperePerSecond));
+            Assertion(3, ElectricCurrentGradientUnit.MilliamperePerSecond, Quantity.From(3, ElectricCurrentGradientUnit.MilliamperePerSecond));
             Assertion(3, ElectricFieldUnit.VoltPerMeter, Quantity.From(3, ElectricFieldUnit.VoltPerMeter));
             Assertion(3, ElectricInductanceUnit.Picohenry, Quantity.From(3, ElectricInductanceUnit.Picohenry));
             Assertion(3, ElectricPotentialUnit.Volt, Quantity.From(3, ElectricPotentialUnit.Volt));

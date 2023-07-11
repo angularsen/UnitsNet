@@ -36,6 +36,10 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrentGradient
         public static ElectricCurrentGradient AmperesPerMillisecond<T>(this T value) =>
             ElectricCurrentGradient.FromAmperesPerMillisecond(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerMinute(UnitsNet.QuantityValue)" />
+        public static ElectricCurrentGradient AmperesPerMinute<T>(this T value) =>
+            ElectricCurrentGradient.FromAmperesPerMinute(Convert.ToDouble(value));
+
         /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerNanosecond(UnitsNet.QuantityValue)" />
         public static ElectricCurrentGradient AmperesPerNanosecond<T>(this T value) =>
             ElectricCurrentGradient.FromAmperesPerNanosecond(Convert.ToDouble(value));
@@ -43,6 +47,14 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrentGradient
         /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerSecond(UnitsNet.QuantityValue)" />
         public static ElectricCurrentGradient AmperesPerSecond<T>(this T value) =>
             ElectricCurrentGradient.FromAmperesPerSecond(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricCurrentGradient.FromMilliamperesPerMinute(UnitsNet.QuantityValue)" />
+        public static ElectricCurrentGradient MilliamperesPerMinute<T>(this T value) =>
+            ElectricCurrentGradient.FromMilliamperesPerMinute(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricCurrentGradient.FromMilliamperesPerSecond(UnitsNet.QuantityValue)" />
+        public static ElectricCurrentGradient MilliamperesPerSecond<T>(this T value) =>
+            ElectricCurrentGradient.FromMilliamperesPerSecond(Convert.ToDouble(value));
 
     }
 }

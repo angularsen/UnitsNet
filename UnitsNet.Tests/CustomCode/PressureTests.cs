@@ -248,5 +248,19 @@ namespace UnitsNet.Tests
             Force force = Pressure.FromPascals(200) / ReciprocalArea.FromInverseSquareMeters(5);
             Assert.Equal(force, Force.FromNewtons(40));
         }
+
+        [Fact]
+        public void PressureDividedByDurationEqualsPressureChangeRate()
+        {
+            PressureChangeRate pressureChangeRate = Pressure.FromPascals(500) / Duration.FromSeconds(2);
+            Assert.Equal(PressureChangeRate.FromPascalsPerSecond(250), pressureChangeRate);
+        }
+
+        [Fact]
+        public void PressureDividedByTimeSpanEqualsPressurechangeRate()
+        {
+            PressureChangeRate pressureChangeRate = Pressure.FromPascals(50) / TimeSpan.FromSeconds(5);
+            Assert.Equal(PressureChangeRate.FromPascalsPerSecond(10), pressureChangeRate);
+        }
     }
 }
