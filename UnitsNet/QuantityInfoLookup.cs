@@ -51,6 +51,31 @@ namespace UnitsNet
         public QuantityInfo[] Infos => _infosLazy.Value;
 
         /// <summary>
+        /// Gets the <see cref="QuantityInfo"/> for a given unit.
+        /// </summary>
+        public QuantityInfo GetQuantityInfo(UnitInfo unitInfo)
+        {
+            Type unitType = unitInfo.Value.GetType();
+            return _infosLazy.Value.First(i => i.UnitType == unitType);
+        }
+
+        /// <summary>
+        /// Try to get the <see cref="QuantityInfo"/> for a given unit.
+        /// </summary>
+        public bool TryGetQuantityInfo(UnitInfo unitInfo, [NotNullWhen(true)] out QuantityInfo? quantityInfo)
+        {
+            Type unitType = unitInfo.Value.GetType();
+            if (_infosLazy.Value.FirstOrDefault(i => i.UnitType == unitType) is { } qi)
+            {
+                quantityInfo = qi;
+                return true;
+            }
+
+            quantityInfo = default;
+            return false;
+        }
+
+        /// <summary>
         /// Get <see cref="UnitInfo"/> for a given unit enum value.
         /// </summary>
         public UnitInfo GetUnitInfo(Enum unitEnum) => _unitTypeAndNameToUnitInfoLazy.Value[(unitEnum.GetType(), unitEnum.ToString())];

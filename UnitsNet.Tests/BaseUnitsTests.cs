@@ -140,13 +140,14 @@ namespace UnitsNet.Tests
                 AmountOfSubstanceUnit.Mole,
                 LuminousIntensityUnit.Candela);
 
-            var m = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(LengthUnit.Meter);
-            var kg = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(MassUnit.Kilogram);
-            var s = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(DurationUnit.Second);
-            var A = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(ElectricCurrentUnit.Ampere);
-            var K = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(TemperatureUnit.Kelvin);
-            var mol = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(AmountOfSubstanceUnit.Mole);
-            var cd = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(LuminousIntensityUnit.Candela);
+            UnitAbbreviationsCache cache = UnitsNetSetup.Default.UnitAbbreviations;
+            var m = cache.GetDefaultAbbreviation(LengthUnit.Meter);
+            var kg = cache.GetDefaultAbbreviation(MassUnit.Kilogram);
+            var s = cache.GetDefaultAbbreviation(DurationUnit.Second);
+            var A = cache.GetDefaultAbbreviation(ElectricCurrentUnit.Ampere);
+            var K = cache.GetDefaultAbbreviation(TemperatureUnit.Kelvin);
+            var mol = cache.GetDefaultAbbreviation(AmountOfSubstanceUnit.Mole);
+            var cd = cache.GetDefaultAbbreviation(LuminousIntensityUnit.Candela);
 
             Assert.Equal($"[Length]: {m}, [Mass]: {kg}, [Time]: {s}, [Current]: {A}, [Temperature]: {K}, [Amount]: {mol}, [LuminousIntensity]: {cd}", siBaseUnits.ToString());
         }
