@@ -79,10 +79,10 @@ namespace UnitsNet
                     new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MillibarPerMinute, "MillibarsPerMinute", BaseUnits.Undefined, "PressureChangeRate"),
                     new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MillibarPerSecond, "MillibarsPerSecond", BaseUnits.Undefined, "PressureChangeRate"),
                     new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MillimeterOfMercuryPerSecond, "MillimetersOfMercuryPerSecond", BaseUnits.Undefined, "PressureChangeRate"),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PascalPerMinute, "PascalsPerMinute", BaseUnits.Undefined, "PressureChangeRate"),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PascalPerSecond, "PascalsPerSecond", BaseUnits.Undefined, "PressureChangeRate"),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PoundForcePerSquareInchPerMinute, "PoundsForcePerSquareInchPerMinute", BaseUnits.Undefined, "PressureChangeRate"),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PoundForcePerSquareInchPerSecond, "PoundsForcePerSquareInchPerSecond", BaseUnits.Undefined, "PressureChangeRate"),
+                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PascalPerMinute, "PascalsPerMinute", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Minute), "PressureChangeRate"),
+                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PascalPerSecond, "PascalsPerSecond", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "PressureChangeRate"),
+                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PoundForcePerSquareInchPerMinute, "PoundsForcePerSquareInchPerMinute", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Pound, time: DurationUnit.Minute), "PressureChangeRate"),
+                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PoundForcePerSquareInchPerSecond, "PoundsForcePerSquareInchPerSecond", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Pound, time: DurationUnit.Second), "PressureChangeRate"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 

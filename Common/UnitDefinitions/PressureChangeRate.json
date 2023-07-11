@@ -11,6 +11,11 @@
     {
       "SingularName": "PascalPerSecond",
       "PluralName": "PascalsPerSecond",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Kilo", "Mega" ],
@@ -28,6 +33,11 @@
     {
       "SingularName": "PascalPerMinute",
       "PluralName": "PascalsPerMinute",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Minute"
+      },
       "FromUnitToBaseFunc": "{x} / 60",
       "FromBaseToUnitFunc": "{x} * 60",
       "Prefixes": [ "Kilo", "Mega" ],
@@ -77,6 +87,11 @@
     {
       "SingularName": "PoundForcePerSquareInchPerSecond",
       "PluralName": "PoundsForcePerSquareInchPerSecond",
+      "BaseUnits": {
+        "L": "Inch",
+        "M": "Pound",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x} * 6.894757293168361e3",
       "FromBaseToUnitFunc": "{x} / 6.894757293168361e3",
       "Prefixes": [ "Kilo", "Mega" ],
@@ -96,6 +111,11 @@
     {
       "SingularName": "PoundForcePerSquareInchPerMinute",
       "PluralName": "PoundsForcePerSquareInchPerMinute",
+      "BaseUnits": {
+        "L": "Inch",
+        "M": "Pound",
+        "T": "Minute"
+      },
       "FromUnitToBaseFunc": "{x} * 6.894757293168361e3 / 60",
       "FromBaseToUnitFunc": "{x} / 6.894757293168361e3 * 60",
       "Prefixes": [ "Kilo", "Mega" ],

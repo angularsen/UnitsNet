@@ -9,7 +9,7 @@ namespace UnitsNet.Tests
 {
     public class PressureChangeRateTests : PressureChangeRateTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
+        protected override bool SupportsSIUnitSystem => true;
         protected override double AtmospheresPerSecondInOnePascalPerSecond => 9.8692 * 1E-6;
 
         protected override double KilopascalsPerSecondInOnePascalPerSecond => 1e-3;
