@@ -25,21 +25,20 @@ namespace UnitsNet.Units
 
     public enum ElectricResistivityUnit
     {
-        Undefined = 0,
-        KiloohmCentimeter,
-        KiloohmMeter,
-        MegaohmCentimeter,
-        MegaohmMeter,
-        MicroohmCentimeter,
-        MicroohmMeter,
-        MilliohmCentimeter,
-        MilliohmMeter,
-        NanoohmCentimeter,
-        NanoohmMeter,
-        OhmCentimeter,
-        OhmMeter,
-        PicoohmCentimeter,
-        PicoohmMeter,
+        KiloohmCentimeter = 1,
+        KiloohmMeter = 2,
+        MegaohmCentimeter = 3,
+        MegaohmMeter = 4,
+        MicroohmCentimeter = 5,
+        MicroohmMeter = 6,
+        MilliohmCentimeter = 7,
+        MilliohmMeter = 8,
+        NanoohmCentimeter = 9,
+        NanoohmMeter = 10,
+        OhmCentimeter = 11,
+        OhmMeter = 12,
+        PicoohmCentimeter = 13,
+        PicoohmMeter = 14,
     }
 
     #pragma warning restore 1591

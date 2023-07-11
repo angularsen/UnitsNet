@@ -25,11 +25,10 @@ namespace UnitsNet.Units
 
     public enum RotationalAccelerationUnit
     {
-        Undefined = 0,
-        DegreePerSecondSquared,
-        RadianPerSecondSquared,
-        RevolutionPerMinutePerSecond,
-        RevolutionPerSecondSquared,
+        DegreePerSecondSquared = 1,
+        RadianPerSecondSquared = 2,
+        RevolutionPerMinutePerSecond = 3,
+        RevolutionPerSecondSquared = 4,
     }
 
     #pragma warning restore 1591

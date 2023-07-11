@@ -115,19 +115,12 @@ namespace UnitsNet.Tests
         };
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new Force((double)0.0, ForceUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new Force();
             Assert.Equal(0, quantity.Value);
             Assert.Equal(ForceUnit.Newton, quantity.Unit);
         }
-
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
@@ -172,14 +165,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Force.Zero, quantityInfo.Zero);
             Assert.Equal("Force", quantityInfo.Name);
-            Assert.Equal(QuantityType.Force, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<ForceUnit>().Except(new[] {ForceUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<ForceUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
-
-            // Obsolete members
-            Assert.Equal(units, quantityInfo.Units);
-            Assert.Equal(unitNames, quantityInfo.UnitNames);
         }
 
         [Fact]
@@ -310,13 +298,807 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else
             {
                 Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
             }
+        }
+
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = Force.Parse("1 daN", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Decanewtons, DecanewtonsTolerance);
+                Assert.Equal(ForceUnit.Decanewton, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 даН", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Decanewtons, DecanewtonsTolerance);
+                Assert.Equal(ForceUnit.Decanewton, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 dyn", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Dyne, DyneTolerance);
+                Assert.Equal(ForceUnit.Dyn, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 дин", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Dyne, DyneTolerance);
+                Assert.Equal(ForceUnit.Dyn, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 kgf", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilogramsForce, KilogramsForceTolerance);
+                Assert.Equal(ForceUnit.KilogramForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 кгс", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.KilogramsForce, KilogramsForceTolerance);
+                Assert.Equal(ForceUnit.KilogramForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 kN", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Kilonewtons, KilonewtonsTolerance);
+                Assert.Equal(ForceUnit.Kilonewton, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 кН", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Kilonewtons, KilonewtonsTolerance);
+                Assert.Equal(ForceUnit.Kilonewton, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 kp", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KiloPonds, KiloPondsTolerance);
+                Assert.Equal(ForceUnit.KiloPond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 кгс", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.KiloPonds, KiloPondsTolerance);
+                Assert.Equal(ForceUnit.KiloPond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 kipf", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForce, KilopoundsForceTolerance);
+                Assert.Equal(ForceUnit.KilopoundForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 kip", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForce, KilopoundsForceTolerance);
+                Assert.Equal(ForceUnit.KilopoundForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 k", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForce, KilopoundsForceTolerance);
+                Assert.Equal(ForceUnit.KilopoundForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 кипф", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForce, KilopoundsForceTolerance);
+                Assert.Equal(ForceUnit.KilopoundForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 койка", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForce, KilopoundsForceTolerance);
+                Assert.Equal(ForceUnit.KilopoundForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 К", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForce, KilopoundsForceTolerance);
+                Assert.Equal(ForceUnit.KilopoundForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 MN", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Meganewtons, MeganewtonsTolerance);
+                Assert.Equal(ForceUnit.Meganewton, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 МН", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Meganewtons, MeganewtonsTolerance);
+                Assert.Equal(ForceUnit.Meganewton, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 µN", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Micronewtons, MicronewtonsTolerance);
+                Assert.Equal(ForceUnit.Micronewton, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 мкН", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Micronewtons, MicronewtonsTolerance);
+                Assert.Equal(ForceUnit.Micronewton, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 mN", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Millinewtons, MillinewtonsTolerance);
+                Assert.Equal(ForceUnit.Millinewton, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 мН", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Millinewtons, MillinewtonsTolerance);
+                Assert.Equal(ForceUnit.Millinewton, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 N", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Newtons, NewtonsTolerance);
+                Assert.Equal(ForceUnit.Newton, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 Н", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Newtons, NewtonsTolerance);
+                Assert.Equal(ForceUnit.Newton, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 ozf", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.OunceForce, OunceForceTolerance);
+                Assert.Equal(ForceUnit.OunceForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 pdl", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Poundals, PoundalsTolerance);
+                Assert.Equal(ForceUnit.Poundal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 паундаль", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Poundals, PoundalsTolerance);
+                Assert.Equal(ForceUnit.Poundal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 lbf", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundsForce, PoundsForceTolerance);
+                Assert.Equal(ForceUnit.PoundForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 фунт-сила", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.PoundsForce, PoundsForceTolerance);
+                Assert.Equal(ForceUnit.PoundForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 tf (short)", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.ShortTonsForce, ShortTonsForceTolerance);
+                Assert.Equal(ForceUnit.ShortTonForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 t (US)f", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.ShortTonsForce, ShortTonsForceTolerance);
+                Assert.Equal(ForceUnit.ShortTonForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 short tons-force", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.ShortTonsForce, ShortTonsForceTolerance);
+                Assert.Equal(ForceUnit.ShortTonForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 tf", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.TonnesForce, TonnesForceTolerance);
+                Assert.Equal(ForceUnit.TonneForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 Ton", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.TonnesForce, TonnesForceTolerance);
+                Assert.Equal(ForceUnit.TonneForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 тс", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.TonnesForce, TonnesForceTolerance);
+                Assert.Equal(ForceUnit.TonneForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            {
+                Assert.True(Force.TryParse("1 daN", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Decanewtons, DecanewtonsTolerance);
+                Assert.Equal(ForceUnit.Decanewton, parsed.Unit);
+            }
+
+            {
+                Assert.True(Force.TryParse("1 даН", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Decanewtons, DecanewtonsTolerance);
+                Assert.Equal(ForceUnit.Decanewton, parsed.Unit);
+            }
+
+            {
+                Assert.True(Force.TryParse("1 dyn", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Dyne, DyneTolerance);
+                Assert.Equal(ForceUnit.Dyn, parsed.Unit);
+            }
+
+            {
+                Assert.True(Force.TryParse("1 дин", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Dyne, DyneTolerance);
+                Assert.Equal(ForceUnit.Dyn, parsed.Unit);
+            }
+
+            {
+                Assert.True(Force.TryParse("1 kgf", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilogramsForce, KilogramsForceTolerance);
+                Assert.Equal(ForceUnit.KilogramForce, parsed.Unit);
+            }
+
+            {
+                Assert.True(Force.TryParse("1 kN", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kilonewtons, KilonewtonsTolerance);
+                Assert.Equal(ForceUnit.Kilonewton, parsed.Unit);
+            }
+
+            {
+                Assert.True(Force.TryParse("1 кН", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kilonewtons, KilonewtonsTolerance);
+                Assert.Equal(ForceUnit.Kilonewton, parsed.Unit);
+            }
+
+            {
+                Assert.True(Force.TryParse("1 kp", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KiloPonds, KiloPondsTolerance);
+                Assert.Equal(ForceUnit.KiloPond, parsed.Unit);
+            }
+
+            {
+                Assert.True(Force.TryParse("1 kipf", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForce, KilopoundsForceTolerance);
+                Assert.Equal(ForceUnit.KilopoundForce, parsed.Unit);
+            }
+
+            {
+                Assert.True(Force.TryParse("1 kip", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForce, KilopoundsForceTolerance);
+                Assert.Equal(ForceUnit.KilopoundForce, parsed.Unit);
+            }
+
+            {
+                Assert.True(Force.TryParse("1 k", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForce, KilopoundsForceTolerance);
+                Assert.Equal(ForceUnit.KilopoundForce, parsed.Unit);
+            }
+
+            {
+                Assert.True(Force.TryParse("1 кипф", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForce, KilopoundsForceTolerance);
+                Assert.Equal(ForceUnit.KilopoundForce, parsed.Unit);
+            }
+
+            {
+                Assert.True(Force.TryParse("1 койка", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForce, KilopoundsForceTolerance);
+                Assert.Equal(ForceUnit.KilopoundForce, parsed.Unit);
+            }
+
+            {
+                Assert.True(Force.TryParse("1 К", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForce, KilopoundsForceTolerance);
+                Assert.Equal(ForceUnit.KilopoundForce, parsed.Unit);
+            }
+
+            {
+                Assert.True(Force.TryParse("1 µN", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Micronewtons, MicronewtonsTolerance);
+                Assert.Equal(ForceUnit.Micronewton, parsed.Unit);
+            }
+
+            {
+                Assert.True(Force.TryParse("1 мкН", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Micronewtons, MicronewtonsTolerance);
+                Assert.Equal(ForceUnit.Micronewton, parsed.Unit);
+            }
+
+            {
+                Assert.True(Force.TryParse("1 N", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Newtons, NewtonsTolerance);
+                Assert.Equal(ForceUnit.Newton, parsed.Unit);
+            }
+
+            {
+                Assert.True(Force.TryParse("1 Н", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Newtons, NewtonsTolerance);
+                Assert.Equal(ForceUnit.Newton, parsed.Unit);
+            }
+
+            {
+                Assert.True(Force.TryParse("1 ozf", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.OunceForce, OunceForceTolerance);
+                Assert.Equal(ForceUnit.OunceForce, parsed.Unit);
+            }
+
+            {
+                Assert.True(Force.TryParse("1 pdl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Poundals, PoundalsTolerance);
+                Assert.Equal(ForceUnit.Poundal, parsed.Unit);
+            }
+
+            {
+                Assert.True(Force.TryParse("1 паундаль", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Poundals, PoundalsTolerance);
+                Assert.Equal(ForceUnit.Poundal, parsed.Unit);
+            }
+
+            {
+                Assert.True(Force.TryParse("1 lbf", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundsForce, PoundsForceTolerance);
+                Assert.Equal(ForceUnit.PoundForce, parsed.Unit);
+            }
+
+            {
+                Assert.True(Force.TryParse("1 фунт-сила", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundsForce, PoundsForceTolerance);
+                Assert.Equal(ForceUnit.PoundForce, parsed.Unit);
+            }
+
+            {
+                Assert.True(Force.TryParse("1 tf (short)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.ShortTonsForce, ShortTonsForceTolerance);
+                Assert.Equal(ForceUnit.ShortTonForce, parsed.Unit);
+            }
+
+            {
+                Assert.True(Force.TryParse("1 t (US)f", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.ShortTonsForce, ShortTonsForceTolerance);
+                Assert.Equal(ForceUnit.ShortTonForce, parsed.Unit);
+            }
+
+            {
+                Assert.True(Force.TryParse("1 short tons-force", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.ShortTonsForce, ShortTonsForceTolerance);
+                Assert.Equal(ForceUnit.ShortTonForce, parsed.Unit);
+            }
+
+            {
+                Assert.True(Force.TryParse("1 tf", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.TonnesForce, TonnesForceTolerance);
+                Assert.Equal(ForceUnit.TonneForce, parsed.Unit);
+            }
+
+            {
+                Assert.True(Force.TryParse("1 Ton", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.TonnesForce, TonnesForceTolerance);
+                Assert.Equal(ForceUnit.TonneForce, parsed.Unit);
+            }
+
+            {
+                Assert.True(Force.TryParse("1 тс", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.TonnesForce, TonnesForceTolerance);
+                Assert.Equal(ForceUnit.TonneForce, parsed.Unit);
+            }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = Force.ParseUnit("daN", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.Decanewton, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("даН", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(ForceUnit.Decanewton, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("dyn", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.Dyn, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("дин", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(ForceUnit.Dyn, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("kgf", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.KilogramForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("кгс", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(ForceUnit.KilogramForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("kN", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.Kilonewton, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("кН", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(ForceUnit.Kilonewton, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("kp", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.KiloPond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("кгс", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(ForceUnit.KiloPond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("kipf", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.KilopoundForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("kip", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.KilopoundForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("k", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.KilopoundForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("кипф", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(ForceUnit.KilopoundForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("койка", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(ForceUnit.KilopoundForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("К", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(ForceUnit.KilopoundForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("MN", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.Meganewton, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("МН", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(ForceUnit.Meganewton, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("µN", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.Micronewton, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("мкН", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(ForceUnit.Micronewton, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("mN", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.Millinewton, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("мН", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(ForceUnit.Millinewton, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("N", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.Newton, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("Н", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(ForceUnit.Newton, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("ozf", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.OunceForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("pdl", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.Poundal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("паундаль", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(ForceUnit.Poundal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("lbf", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.PoundForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("фунт-сила", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(ForceUnit.PoundForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("tf (short)", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.ShortTonForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("t (US)f", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.ShortTonForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("short tons-force", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.ShortTonForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("tf", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.TonneForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("Ton", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.TonneForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("тс", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(ForceUnit.TonneForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            {
+                Assert.True(Force.TryParseUnit("daN", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.Decanewton, parsedUnit);
+            }
+
+            {
+                Assert.True(Force.TryParseUnit("даН", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(ForceUnit.Decanewton, parsedUnit);
+            }
+
+            {
+                Assert.True(Force.TryParseUnit("dyn", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.Dyn, parsedUnit);
+            }
+
+            {
+                Assert.True(Force.TryParseUnit("дин", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(ForceUnit.Dyn, parsedUnit);
+            }
+
+            {
+                Assert.True(Force.TryParseUnit("kgf", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.KilogramForce, parsedUnit);
+            }
+
+            {
+                Assert.True(Force.TryParseUnit("kN", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.Kilonewton, parsedUnit);
+            }
+
+            {
+                Assert.True(Force.TryParseUnit("кН", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(ForceUnit.Kilonewton, parsedUnit);
+            }
+
+            {
+                Assert.True(Force.TryParseUnit("kp", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.KiloPond, parsedUnit);
+            }
+
+            {
+                Assert.True(Force.TryParseUnit("kipf", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.KilopoundForce, parsedUnit);
+            }
+
+            {
+                Assert.True(Force.TryParseUnit("kip", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.KilopoundForce, parsedUnit);
+            }
+
+            {
+                Assert.True(Force.TryParseUnit("k", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.KilopoundForce, parsedUnit);
+            }
+
+            {
+                Assert.True(Force.TryParseUnit("кипф", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(ForceUnit.KilopoundForce, parsedUnit);
+            }
+
+            {
+                Assert.True(Force.TryParseUnit("койка", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(ForceUnit.KilopoundForce, parsedUnit);
+            }
+
+            {
+                Assert.True(Force.TryParseUnit("К", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(ForceUnit.KilopoundForce, parsedUnit);
+            }
+
+            {
+                Assert.True(Force.TryParseUnit("µN", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.Micronewton, parsedUnit);
+            }
+
+            {
+                Assert.True(Force.TryParseUnit("мкН", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(ForceUnit.Micronewton, parsedUnit);
+            }
+
+            {
+                Assert.True(Force.TryParseUnit("N", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.Newton, parsedUnit);
+            }
+
+            {
+                Assert.True(Force.TryParseUnit("Н", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(ForceUnit.Newton, parsedUnit);
+            }
+
+            {
+                Assert.True(Force.TryParseUnit("ozf", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.OunceForce, parsedUnit);
+            }
+
+            {
+                Assert.True(Force.TryParseUnit("pdl", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.Poundal, parsedUnit);
+            }
+
+            {
+                Assert.True(Force.TryParseUnit("паундаль", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(ForceUnit.Poundal, parsedUnit);
+            }
+
+            {
+                Assert.True(Force.TryParseUnit("lbf", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.PoundForce, parsedUnit);
+            }
+
+            {
+                Assert.True(Force.TryParseUnit("фунт-сила", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(ForceUnit.PoundForce, parsedUnit);
+            }
+
+            {
+                Assert.True(Force.TryParseUnit("tf (short)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.ShortTonForce, parsedUnit);
+            }
+
+            {
+                Assert.True(Force.TryParseUnit("t (US)f", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.ShortTonForce, parsedUnit);
+            }
+
+            {
+                Assert.True(Force.TryParseUnit("short tons-force", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.ShortTonForce, parsedUnit);
+            }
+
+            {
+                Assert.True(Force.TryParseUnit("tf", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.TonneForce, parsedUnit);
+            }
+
+            {
+                Assert.True(Force.TryParseUnit("Ton", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.TonneForce, parsedUnit);
+            }
+
+            {
+                Assert.True(Force.TryParseUnit("тс", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(ForceUnit.TonneForce, parsedUnit);
+            }
+
         }
 
         [Theory]
@@ -327,7 +1109,7 @@ namespace UnitsNet.Tests
             var converted = inBaseUnits.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
         }
 
@@ -344,14 +1126,19 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ForceUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = Force.Units.FirstOrDefault(u => u != Force.BaseUnit && u != ForceUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if (fromUnit == ForceUnit.Undefined)
-                fromUnit = Force.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = Force.Units.First(u => u != Force.BaseUnit);
 
             var quantity = Force.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(ForceUnit unit)
+        {
+            var quantity = default(Force);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }
@@ -430,47 +1217,45 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => newton.CompareTo(null));
         }
 
-        [Fact]
-        public void EqualityOperators()
+        [Theory]
+        [InlineData(1, ForceUnit.Newton, 1, ForceUnit.Newton, true)]  // Same value and unit.
+        [InlineData(1, ForceUnit.Newton, 2, ForceUnit.Newton, false)] // Different value.
+        [InlineData(2, ForceUnit.Newton, 1, ForceUnit.Decanewton, false)] // Different value and unit.
+        [InlineData(1, ForceUnit.Newton, 1, ForceUnit.Decanewton, false)] // Different unit.
+        public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ForceUnit unitA, double valueB, ForceUnit unitB, bool expectEqual)
         {
-            var a = Force.FromNewtons(1);
-            var b = Force.FromNewtons(2);
+            var a = new Force(valueA, unitA);
+            var b = new Force(valueB, unitB);
 
-#pragma warning disable CS8073
-// ReSharper disable EqualExpressionComparison
+            // Operator overloads.
+            Assert.Equal(expectEqual, a == b);
+            Assert.Equal(expectEqual, b == a);
+            Assert.Equal(!expectEqual, a != b);
+            Assert.Equal(!expectEqual, b != a);
 
-            Assert.True(a == a);
-            Assert.False(a != a);
+            // IEquatable<T>
+            Assert.Equal(expectEqual, a.Equals(b));
+            Assert.Equal(expectEqual, b.Equals(a));
 
-            Assert.True(a != b);
-            Assert.False(a == b);
+            // IEquatable
+            Assert.Equal(expectEqual, a.Equals((object)b));
+            Assert.Equal(expectEqual, b.Equals((object)a));
+        }
 
+        [Fact]
+        public void Equals_Null_ReturnsFalse()
+        {
+            var a = Force.Zero;
+
+            Assert.False(a.Equals((object)null));
+
+            // "The result of the expression is always 'false'..."
+            #pragma warning disable CS8073
             Assert.False(a == null);
             Assert.False(null == a);
-
-// ReSharper restore EqualExpressionComparison
-#pragma warning restore CS8073
-        }
-
-        [Fact]
-        public void Equals_SameType_IsImplemented()
-        {
-            var a = Force.FromNewtons(1);
-            var b = Force.FromNewtons(2);
-
-            Assert.True(a.Equals(a));
-            Assert.False(a.Equals(b));
-        }
-
-        [Fact]
-        public void Equals_QuantityAsObject_IsImplemented()
-        {
-            object a = Force.FromNewtons(1);
-            object b = Force.FromNewtons(2);
-
-            Assert.True(a.Equals(a));
-            Assert.False(a.Equals(b));
-            Assert.False(a.Equals((object)null));
+            Assert.True(a != null);
+            Assert.True(null != a);
+            #pragma warning restore CS8073
         }
 
         [Fact]
@@ -503,20 +1288,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(ForceUnit.Undefined, Force.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(ForceUnit)).Cast<ForceUnit>();
-            foreach(var unit in units)
+            foreach (var unit in units)
             {
-                if (unit == ForceUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }
@@ -530,8 +1306,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentUICulture;
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            var prevCulture = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             try {
                 Assert.Equal("1 daN", new Force(1, ForceUnit.Decanewton).ToString());
                 Assert.Equal("1 dyn", new Force(1, ForceUnit.Dyn).ToString());
@@ -551,7 +1327,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                Thread.CurrentThread.CurrentUICulture = prevCulture;
+                Thread.CurrentThread.CurrentCulture = prevCulture;
             }
         }
 
@@ -581,10 +1357,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentUICulture;
+            var oldCulture = CultureInfo.CurrentCulture;
             try
             {
-                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
                 Assert.Equal("0.1 N", new Force(0.123456, ForceUnit.Newton).ToString("s1"));
                 Assert.Equal("0.12 N", new Force(0.123456, ForceUnit.Newton).ToString("s2"));
                 Assert.Equal("0.123 N", new Force(0.123456, ForceUnit.Newton).ToString("s3"));
@@ -592,7 +1368,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                CultureInfo.CurrentUICulture = oldCulture;
+                CultureInfo.CurrentCulture = oldCulture;
             }
         }
 
@@ -606,28 +1382,27 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 N", new Force(0.123456, ForceUnit.Newton).ToString("s4", culture));
         }
 
-
-        [Fact]
-        public void ToString_NullFormat_ThrowsArgumentNullException()
+        [Theory]
+        [InlineData(null)]
+        [InlineData("en-US")]
+        public void ToString_NullFormat_DefaultsToGeneralFormat(string cultureName)
         {
             var quantity = Force.FromNewtons(1.0);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, null, null));
+            CultureInfo formatProvider = cultureName == null
+                ? null
+                : CultureInfo.GetCultureInfo(cultureName);
+
+            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
         }
 
-        [Fact]
-        public void ToString_NullArgs_ThrowsArgumentNullException()
+        [Theory]
+        [InlineData(null)]
+        [InlineData("g")]
+        public void ToString_NullProvider_EqualsCurrentCulture(string format)
         {
             var quantity = Force.FromNewtons(1.0);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, "g", null));
+            Assert.Equal(quantity.ToString(format, CultureInfo.CurrentCulture), quantity.ToString(format, null));
         }
-
-        [Fact]
-        public void ToString_NullProvider_EqualsCurrentUICulture()
-        {
-            var quantity = Force.FromNewtons(1.0);
-            Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
-        }
-
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()
@@ -746,13 +1521,6 @@ namespace UnitsNet.Tests
         {
             var quantity = Force.FromNewtons(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(ForceUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = Force.FromNewtons(1.0);
-            Assert.Equal(QuantityType.Force, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

@@ -1,11 +1,11 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using Xunit;
 using System;
 using System.Globalization;
+using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     public class DurationTests : DurationTestsBase
     {
@@ -61,6 +61,17 @@ namespace UnitsNet.Tests.CustomCode
             Duration duration = Duration.FromSeconds(TimeSpan.MaxValue.TotalSeconds - 1);
             TimeSpan timeSpan = duration.ToTimeSpan();
             AssertEx.EqualTolerance(duration.Seconds, timeSpan.TotalSeconds, 1e-3);
+        }
+
+        [Theory]
+        [InlineData(100, Units.DurationUnit.Nanosecond)]
+        [InlineData(1, Units.DurationUnit.Microsecond)]
+        [InlineData(1.234, Units.DurationUnit.Millisecond)]
+        public static void ToTimeSpanShouldNotRoundToMillisecond(double value, Units.DurationUnit unit)
+        {
+            Duration duration = Duration.From(value, unit);
+            TimeSpan timeSpan = duration.ToTimeSpan();
+            AssertEx.EqualTolerance(duration.Milliseconds, timeSpan.TotalMilliseconds, 1e-10);
         }
 
         [Fact]
@@ -179,9 +190,9 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData("1 сек", 1, "ru-RU")]
         [InlineData("1000 мс", 1, "ru-RU")]
         [InlineData("1000 мсек", 1, "ru-RU")]
-        public void DurationFromStringUsingMultipleAbbreviationsParsedCorrectly(string textValue, double expectedSeconds, string culture = null)
+        public void DurationFromStringUsingMultipleAbbreviationsParsedCorrectly(string textValue, double expectedSeconds, string? culture = null)
         {
-            var cultureInfo = culture == null ? null : new CultureInfo(culture);
+            var cultureInfo = culture == null ? CultureInfo.InvariantCulture : CultureInfo.GetCultureInfo(culture);
 
             AssertEx.EqualTolerance(expectedSeconds, Duration.Parse(textValue, cultureInfo).Seconds, SecondsTolerance);
         }

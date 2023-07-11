@@ -25,22 +25,21 @@ namespace UnitsNet.Units
 
     public enum ForceChangeRateUnit
     {
-        Undefined = 0,
-        CentinewtonPerSecond,
-        DecanewtonPerMinute,
-        DecanewtonPerSecond,
-        DecinewtonPerSecond,
-        KilonewtonPerMinute,
-        KilonewtonPerSecond,
-        KilopoundForcePerMinute,
-        KilopoundForcePerSecond,
-        MicronewtonPerSecond,
-        MillinewtonPerSecond,
-        NanonewtonPerSecond,
-        NewtonPerMinute,
-        NewtonPerSecond,
-        PoundForcePerMinute,
-        PoundForcePerSecond,
+        CentinewtonPerSecond = 1,
+        DecanewtonPerMinute = 2,
+        DecanewtonPerSecond = 3,
+        DecinewtonPerSecond = 4,
+        KilonewtonPerMinute = 5,
+        KilonewtonPerSecond = 6,
+        KilopoundForcePerMinute = 7,
+        KilopoundForcePerSecond = 8,
+        MicronewtonPerSecond = 9,
+        MillinewtonPerSecond = 10,
+        NanonewtonPerSecond = 11,
+        NewtonPerMinute = 12,
+        NewtonPerSecond = 13,
+        PoundForcePerMinute = 14,
+        PoundForcePerSecond = 15,
     }
 
     #pragma warning restore 1591

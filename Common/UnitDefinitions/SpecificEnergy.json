@@ -1,7 +1,7 @@
 {
   "Name": "SpecificEnergy",
   "BaseUnit": "JoulePerKilogram",
-  "XmlDoc": "The SpecificEnergy",
+  "XmlDocSummary": "The SpecificEnergy",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Specific_energy",
   "BaseDimensions": {
     "L": 2,
@@ -18,6 +18,18 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "J/kg" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MegaJoulePerTonne",
+      "PluralName": "MegaJoulesPerTonne",
+      "FromUnitToBaseFunc": "{x} * 1e3",
+      "FromBaseToUnitFunc": "{x} / 1e3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "MJ/t" ]
         }
       ]
     },
@@ -83,6 +95,19 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "Wd/ST" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "WattHourPerPound",
+      "PluralName": "WattHoursPerPound",
+      "FromUnitToBaseFunc": "{x} * 7.93664e3",
+      "FromBaseToUnitFunc": "{x} / 7.93664e3",
+      "Prefixes": [ "Kilo", "Mega", "Giga" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Wh/lbs" ]
         }
       ]
     },

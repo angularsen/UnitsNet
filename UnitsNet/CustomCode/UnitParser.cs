@@ -2,9 +2,9 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using JetBrains.Annotations;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -23,20 +23,17 @@ namespace UnitsNet
         ///     The default static instance used internally to parse quantities and units using the
         ///     default abbreviations cache for all units and abbreviations defined in the library.
         /// </summary>
-        public static UnitParser Default { get; }
+        [Obsolete("Use UnitsNetSetup.Default.UnitParser instead.")]
+        public static UnitParser Default => UnitsNetSetup.Default.UnitParser;
 
         /// <summary>
         ///     Create a parser using the given unit abbreviations cache.
         /// </summary>
         /// <param name="unitAbbreviationsCache"></param>
-        public UnitParser(UnitAbbreviationsCache unitAbbreviationsCache)
+        // TODO Change this to not fallback to built-in units abbreviations when given null, in v6: https://github.com/angularsen/UnitsNet/issues/1200
+        public UnitParser(UnitAbbreviationsCache? unitAbbreviationsCache)
         {
             _unitAbbreviationsCache = unitAbbreviationsCache ?? UnitAbbreviationsCache.Default;
-        }
-
-        static UnitParser()
-        {
-            Default = new UnitParser(UnitAbbreviationsCache.Default);
         }
 
         /// <summary>
@@ -44,10 +41,9 @@ namespace UnitsNet
         /// Example: Parse&lt;LengthUnit&gt;("km") => LengthUnit.Kilometer
         /// </summary>
         /// <param name="unitAbbreviation"></param>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <typeparam name="TUnitType"></typeparam>
         /// <returns></returns>
-        [PublicAPI]
         public TUnitType Parse<TUnitType>(string unitAbbreviation, IFormatProvider? formatProvider = null) where TUnitType : Enum
         {
             return (TUnitType)Parse(unitAbbreviation, typeof(TUnitType), formatProvider);
@@ -62,39 +58,43 @@ namespace UnitsNet
         ///     <see cref="LengthUnit.Meter" /> respectively.
         /// </param>
         /// <param name="unitType">Unit enum type, such as <see cref="MassUnit" /> and <see cref="LengthUnit" />.</param>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <returns>Unit enum value, such as <see cref="MassUnit.Kilogram" />.</returns>
         /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
         /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
-        [PublicAPI]
-        public Enum Parse([NotNull] string unitAbbreviation, Type unitType, IFormatProvider? formatProvider = null)
+        public Enum Parse(string? unitAbbreviation, Type unitType, IFormatProvider? formatProvider = null)
         {
             if (unitAbbreviation == null) throw new ArgumentNullException(nameof(unitAbbreviation));
             unitAbbreviation = unitAbbreviation.Trim();
 
-            if (!_unitAbbreviationsCache.TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var abbreviations))
-                throw new UnitNotFoundException($"No abbreviations defined for unit type [{unitType}] for culture [{formatProvider}].");
+            var enumValues = Enum.GetValues(unitType).Cast<Enum>();
+            var stringUnitPairs = _unitAbbreviationsCache.GetStringUnitPairs(enumValues, formatProvider);
+            var matches = stringUnitPairs.Where(pair => pair.Item1.Equals(unitAbbreviation, StringComparison.OrdinalIgnoreCase)).ToArray();
 
-            var unitIntValues = abbreviations!.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: true);
-
-            if (unitIntValues.Count == 0)
+            if(matches.Length == 0)
             {
                 unitAbbreviation = NormalizeUnitString(unitAbbreviation);
-                unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: true);
+                matches = stringUnitPairs.Where(pair => pair.Item1.Equals(unitAbbreviation, StringComparison.OrdinalIgnoreCase)).ToArray();
             }
 
             // Narrow the search if too many hits, for example Megabar "Mbar" and Millibar "mbar" need to be distinguished
-            if (unitIntValues.Count > 1)
-                unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: false);
+            if(matches.Length > 1)
+                matches = stringUnitPairs.Where(pair => pair.Item1.Equals(unitAbbreviation)).ToArray();
 
-            switch (unitIntValues.Count)
+            switch(matches.Length)
             {
                 case 1:
-                    return (Enum) Enum.ToObject(unitType, unitIntValues[0]);
+                    return (Enum)Enum.ToObject(unitType, matches[0].Unit);
                 case 0:
+                    // Retry with fallback culture, if different.
+                    if(!Equals(formatProvider, UnitAbbreviationsCache.FallbackCulture))
+                    {
+                        return Parse(unitAbbreviation, unitType, UnitAbbreviationsCache.FallbackCulture);
+                    }
+
                     throw new UnitNotFoundException($"Unit not found with abbreviation [{unitAbbreviation}] for unit type [{unitType}].");
                 default:
-                    string unitsCsv = string.Join(", ", unitIntValues.Select(x => Enum.GetName(unitType, x)).ToArray());
+                    string unitsCsv = string.Join(", ", matches.Select(x => Enum.GetName(unitType, x.Unit)).ToArray());
                     throw new AmbiguousUnitParseException(
                         $"Cannot parse \"{unitAbbreviation}\" since it could be either of these: {unitsCsv}");
             }
@@ -138,7 +138,6 @@ namespace UnitsNet
         /// <param name="unit">The unit enum value as out result.</param>
         /// <typeparam name="TUnitType">Type of unit enum.</typeparam>
         /// <returns>True if successful.</returns>
-        [PublicAPI]
         public bool TryParse<TUnitType>(string unitAbbreviation, out TUnitType unit) where TUnitType : struct, Enum
         {
             return TryParse(unitAbbreviation, null, out unit);
@@ -148,11 +147,10 @@ namespace UnitsNet
         /// Try to parse a unit abbreviation.
         /// </summary>
         /// <param name="unitAbbreviation">The string value.</param>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <param name="unit">The unit enum value as out result.</param>
         /// <typeparam name="TUnitType">Type of unit enum.</typeparam>
         /// <returns>True if successful.</returns>
-        [PublicAPI]
         public bool TryParse<TUnitType>(string? unitAbbreviation, IFormatProvider? formatProvider, out TUnitType unit) where TUnitType : struct, Enum
         {
             unit = default;
@@ -160,7 +158,7 @@ namespace UnitsNet
             if (!TryParse(unitAbbreviation, typeof(TUnitType), formatProvider, out var unitObj))
                 return false;
 
-            unit = (TUnitType)unitObj!;
+            unit = (TUnitType)unitObj;
             return true;
         }
 
@@ -171,8 +169,7 @@ namespace UnitsNet
         /// <param name="unitType">Type of unit enum.</param>
         /// <param name="unit">The unit enum value as out result.</param>
         /// <returns>True if successful.</returns>
-        [PublicAPI]
-        public bool TryParse(string unitAbbreviation, Type unitType, out Enum? unit)
+        public bool TryParse(string unitAbbreviation, Type unitType, [NotNullWhen(true)] out Enum? unit)
         {
             return TryParse(unitAbbreviation, unitType, null, out unit);
         }
@@ -182,11 +179,10 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unitAbbreviation">The string value.</param>
         /// <param name="unitType">Type of unit enum.</param>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <param name="unit">The unit enum value as out result.</param>
         /// <returns>True if successful.</returns>
-        [PublicAPI]
-        public bool TryParse(string? unitAbbreviation, Type unitType, IFormatProvider? formatProvider, out Enum? unit)
+        public bool TryParse(string? unitAbbreviation, Type unitType, IFormatProvider? formatProvider, [NotNullWhen(true)] out Enum? unit)
         {
             if (unitAbbreviation == null)
             {
@@ -197,25 +193,24 @@ namespace UnitsNet
             unitAbbreviation = unitAbbreviation.Trim();
             unit = default;
 
-            if (!_unitAbbreviationsCache.TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var abbreviations))
-                return false;
+            var enumValues = Enum.GetValues(unitType).Cast<Enum>();
+            var stringUnitPairs = _unitAbbreviationsCache.GetStringUnitPairs(enumValues, formatProvider);
+            var matches = stringUnitPairs.Where(pair => pair.Item1.Equals(unitAbbreviation, StringComparison.OrdinalIgnoreCase)).ToArray();
 
-            var unitIntValues = abbreviations!.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: true);
-
-            if (unitIntValues.Count == 0)
+            if(matches.Length == 0)
             {
                 unitAbbreviation = NormalizeUnitString(unitAbbreviation);
-                unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: true);
+                matches = stringUnitPairs.Where(pair => pair.Item1.Equals(unitAbbreviation, StringComparison.OrdinalIgnoreCase)).ToArray();
             }
 
             // Narrow the search if too many hits, for example Megabar "Mbar" and Millibar "mbar" need to be distinguished
-            if (unitIntValues.Count > 1)
-                unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation, ignoreCase: false);
+            if(matches.Length > 1)
+                matches = stringUnitPairs.Where(pair => pair.Item1.Equals(unitAbbreviation)).ToArray();
 
-            if (unitIntValues.Count != 1)
+            if(matches.Length != 1)
                 return false;
 
-            unit = (Enum)Enum.ToObject(unitType, unitIntValues[0]);
+            unit = (Enum)Enum.ToObject(unitType, matches[ 0 ].Unit);
             return true;
         }
     }

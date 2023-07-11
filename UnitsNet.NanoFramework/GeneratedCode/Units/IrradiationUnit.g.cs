@@ -25,14 +25,13 @@ namespace UnitsNet.Units
 
     public enum IrradiationUnit
     {
-        Undefined = 0,
-        JoulePerSquareCentimeter,
-        JoulePerSquareMeter,
-        JoulePerSquareMillimeter,
-        KilojoulePerSquareMeter,
-        KilowattHourPerSquareMeter,
-        MillijoulePerSquareCentimeter,
-        WattHourPerSquareMeter,
+        JoulePerSquareCentimeter = 1,
+        JoulePerSquareMeter = 2,
+        JoulePerSquareMillimeter = 3,
+        KilojoulePerSquareMeter = 4,
+        KilowattHourPerSquareMeter = 5,
+        MillijoulePerSquareCentimeter = 6,
+        WattHourPerSquareMeter = 7,
     }
 
     #pragma warning restore 1591

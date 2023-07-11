@@ -25,17 +25,16 @@ namespace UnitsNet.Units
 
     public enum DynamicViscosityUnit
     {
-        Undefined = 0,
-        Centipoise,
-        MicropascalSecond,
-        MillipascalSecond,
-        NewtonSecondPerMeterSquared,
-        PascalSecond,
-        Poise,
-        PoundForceSecondPerSquareFoot,
-        PoundForceSecondPerSquareInch,
-        PoundPerFootSecond,
-        Reyn,
+        Centipoise = 1,
+        MicropascalSecond = 2,
+        MillipascalSecond = 3,
+        NewtonSecondPerMeterSquared = 4,
+        PascalSecond = 5,
+        Poise = 6,
+        PoundForceSecondPerSquareFoot = 7,
+        PoundForceSecondPerSquareInch = 8,
+        PoundPerFootSecond = 9,
+        Reyn = 10,
     }
 
     #pragma warning restore 1591

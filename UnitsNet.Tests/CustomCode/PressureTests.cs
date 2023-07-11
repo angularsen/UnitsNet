@@ -3,10 +3,10 @@
 
 using System;
 using UnitsNet.CustomCode.Units;
-using UnitsNet.CustomCode.Wrappers;
+using UnitsNet.Wrappers;
 using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     public class PressureTests : PressureTestsBase
     {
@@ -33,6 +33,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double KilopoundsForcePerSquareInchInOnePascal => 1.450377377302092e-7;
 
+        protected override double KilopoundsForcePerSquareMilInOnePascal => 1.450377377302092e-13;
+
         protected override double MegapascalsInOnePascal => 1E-6;
 
         protected override double MetersOfHeadInOnePascal => 0.00010199773339984054;
@@ -50,6 +52,8 @@ namespace UnitsNet.Tests.CustomCode
         protected override double PoundsForcePerSquareFootInOnePascal => 0.0208854342;
 
         protected override double PoundsForcePerSquareInchInOnePascal => 1.450377377302092e-4;
+
+        protected override double PoundsForcePerSquareMilInOnePascal => 1.450377377302092e-10;
 
         protected override double TechnicalAtmospheresInOnePascal => 1.0197 * 1E-5;
 
@@ -84,7 +88,11 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MillimetersOfMercuryInOnePascal => 7.50061561302643e-3;
 
-        protected override double MillimeterOfWaterColumnInOnePascal => 1.0197162129779283e-1;
+        protected override double MetersOfWaterColumnInOnePascal => 1.0197162129779283e-4;
+
+        protected override double CentimetersOfWaterColumnInOnePascal => 1.0197162129779283e-2;
+
+        protected override double MillimetersOfWaterColumnInOnePascal => 1.0197162129779283e-1;
 
         protected override double InchesOfMercuryInOnePascal => 2.95299830714159e-4;
 
@@ -210,13 +218,7 @@ namespace UnitsNet.Tests.CustomCode
         public void Reference_WithDefaultPressureReference_IsAbsolute()
         {
             var refPressure = new ReferencePressure(Pressure.FromAtmospheres(3));
-            Equals(PressureReference.Absolute, refPressure.Reference);
-        }
-
-        [Fact]
-        public void ReferencesDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(PressureReference.Undefined, ReferencePressure.References);
+            Assert.Equal(PressureReference.Absolute, refPressure.Reference);
         }
 
         [Fact]
@@ -245,6 +247,20 @@ namespace UnitsNet.Tests.CustomCode
         {
             Force force = Pressure.FromPascals(200) / ReciprocalArea.FromInverseSquareMeters(5);
             Assert.Equal(force, Force.FromNewtons(40));
+        }
+
+        [Fact]
+        public void PressureDividedByDurationEqualsPressureChangeRate()
+        {
+            PressureChangeRate pressureChangeRate = Pressure.FromPascals(500) / Duration.FromSeconds(2);
+            Assert.Equal(PressureChangeRate.FromPascalsPerSecond(250), pressureChangeRate);
+        }
+
+        [Fact]
+        public void PressureDividedByTimeSpanEqualsPressurechangeRate()
+        {
+            PressureChangeRate pressureChangeRate = Pressure.FromPascals(50) / TimeSpan.FromSeconds(5);
+            Assert.Equal(PressureChangeRate.FromPascalsPerSecond(10), pressureChangeRate);
         }
     }
 }

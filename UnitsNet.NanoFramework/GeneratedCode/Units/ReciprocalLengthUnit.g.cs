@@ -25,17 +25,16 @@ namespace UnitsNet.Units
 
     public enum ReciprocalLengthUnit
     {
-        Undefined = 0,
-        InverseCentimeter,
-        InverseFoot,
-        InverseInch,
-        InverseMeter,
-        InverseMicroinch,
-        InverseMil,
-        InverseMile,
-        InverseMillimeter,
-        InverseUsSurveyFoot,
-        InverseYard,
+        InverseCentimeter = 1,
+        InverseFoot = 2,
+        InverseInch = 3,
+        InverseMeter = 4,
+        InverseMicroinch = 5,
+        InverseMil = 6,
+        InverseMile = 7,
+        InverseMillimeter = 8,
+        InverseUsSurveyFoot = 9,
+        InverseYard = 10,
     }
 
     #pragma warning restore 1591

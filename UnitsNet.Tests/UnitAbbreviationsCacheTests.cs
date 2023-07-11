@@ -2,31 +2,23 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
+using UnitsNet.Tests.CustomQuantities;
 using UnitsNet.Units;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace UnitsNet.Tests
 {
     [Collection(nameof(UnitAbbreviationsCacheFixture))]
     public class UnitAbbreviationsCacheTests
     {
-        private readonly ITestOutputHelper _output;
         private const string AmericanCultureName = "en-US";
         private const string RussianCultureName = "ru-RU";
         private const string NorwegianCultureName = "nb-NO";
 
-        private static readonly IFormatProvider AmericanCulture = new CultureInfo(AmericanCultureName);
-        private static readonly IFormatProvider NorwegianCulture = new CultureInfo(NorwegianCultureName);
-        private static readonly IFormatProvider RussianCulture = new CultureInfo(RussianCultureName);
-
-        public UnitAbbreviationsCacheTests(ITestOutputHelper output)
-        {
-            _output = output;
-        }
+        private static readonly IFormatProvider AmericanCulture = CultureInfo.GetCultureInfo(AmericanCultureName);
+        private static readonly IFormatProvider NorwegianCulture = CultureInfo.GetCultureInfo(NorwegianCultureName);
+        private static readonly IFormatProvider RussianCulture = CultureInfo.GetCultureInfo(RussianCultureName);
 
         // The default, parameterless ToString() method uses 2 sigifnificant digits after the radix point.
         [Theory]
@@ -160,21 +152,21 @@ namespace UnitsNet.Tests
         [Fact]
         public void AllUnitsImplementToStringForInvariantCulture()
         {
-            Assert.Equal("1 °", Angle.FromDegrees(1).ToString());
-            Assert.Equal("1 m²", Area.FromSquareMeters(1).ToString());
-            Assert.Equal("1 V", ElectricPotential.FromVolts(1).ToString());
-            Assert.Equal("1 N", Force.FromNewtons(1).ToString());
-            Assert.Equal("1 m", Length.FromMeters(1).ToString());
-            Assert.Equal("1 kg", Mass.FromKilograms(1).ToString());
-            Assert.Equal("1 Pa", Pressure.FromPascals(1).ToString());
-            Assert.Equal("1 rad/s", RotationalSpeed.FromRadiansPerSecond(1).ToString());
-            Assert.Equal("1 K", Temperature.FromKelvins(1).ToString());
-            Assert.Equal("1 N·m", Torque.FromNewtonMeters(1).ToString());
-            Assert.Equal("1 m³", Volume.FromCubicMeters(1).ToString());
-            Assert.Equal("1 m³/s", VolumeFlow.FromCubicMetersPerSecond(1).ToString());
+            Assert.Equal("1 °", Angle.FromDegrees(1).ToString(CultureInfo.InvariantCulture));
+            Assert.Equal("1 m²", Area.FromSquareMeters(1).ToString(CultureInfo.InvariantCulture));
+            Assert.Equal("1 V", ElectricPotential.FromVolts(1).ToString(CultureInfo.InvariantCulture));
+            Assert.Equal("1 N", Force.FromNewtons(1).ToString(CultureInfo.InvariantCulture));
+            Assert.Equal("1 m", Length.FromMeters(1).ToString(CultureInfo.InvariantCulture));
+            Assert.Equal("1 kg", Mass.FromKilograms(1).ToString(CultureInfo.InvariantCulture));
+            Assert.Equal("1 Pa", Pressure.FromPascals(1).ToString(CultureInfo.InvariantCulture));
+            Assert.Equal("1 rad/s", RotationalSpeed.FromRadiansPerSecond(1).ToString(CultureInfo.InvariantCulture));
+            Assert.Equal("1 K", Temperature.FromKelvins(1).ToString(CultureInfo.InvariantCulture));
+            Assert.Equal("1 N·m", Torque.FromNewtonMeters(1).ToString(CultureInfo.InvariantCulture));
+            Assert.Equal("1 m³", Volume.FromCubicMeters(1).ToString(CultureInfo.InvariantCulture));
+            Assert.Equal("1 m³/s", VolumeFlow.FromCubicMetersPerSecond(1).ToString(CultureInfo.InvariantCulture));
 
-            Assert.Equal("2 ft 3 in", Length.FromFeetInches(2, 3).FeetInches.ToString());
-            Assert.Equal("3 st 7 lb", Mass.FromStonePounds(3, 7).StonePounds.ToString());
+            Assert.Equal("2 ft 3 in", Length.FromFeetInches(2, 3).FeetInches.ToString(CultureInfo.InvariantCulture));
+            Assert.Equal("3 st 7 lb", Mass.FromStonePounds(3, 7).StonePounds.ToString(CultureInfo.InvariantCulture));
         }
 
         [Fact]
@@ -221,31 +213,38 @@ namespace UnitsNet.Tests
         [Fact]
         public void GetDefaultAbbreviationFallsBackToUsEnglishCulture()
         {
-            var oldCurrentCulture = CultureInfo.CurrentCulture;
-            var oldCurrentUICulture = CultureInfo.CurrentUICulture;
+            // CurrentCulture affects number formatting, such as comma or dot as decimal separator.
+            // CurrentCulture also affects localization of unit abbreviations.
+            // Zulu (South Africa)
+            var zuluCulture = CultureInfo.GetCultureInfo("zu-ZA");
+            // CultureInfo.CurrentCulture = zuluCulture;
 
-            try
-            {
-                // CurrentCulture affects number formatting, such as comma or dot as decimal separator.
-                // CurrentUICulture affects localization, in this case the abbreviation.
-                // Zulu (South Africa)
-                var zuluCulture = new CultureInfo("zu-ZA");
-                CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture = zuluCulture;
+            var abbreviationsCache = new UnitAbbreviationsCache();
+            abbreviationsCache.MapUnitToAbbreviation(CustomUnit.Unit1, AmericanCulture, "US english abbreviation for Unit1");
 
-                var abbreviationsCache = new UnitAbbreviationsCache();
-                abbreviationsCache.MapUnitToAbbreviation(CustomUnit.Unit1, AmericanCulture, "US english abbreviation for Unit1");
+            // Act
+            string abbreviation = abbreviationsCache.GetDefaultAbbreviation(CustomUnit.Unit1, zuluCulture);
 
-                // Act
-                string abbreviation = abbreviationsCache.GetDefaultAbbreviation(CustomUnit.Unit1, zuluCulture);
+            // Assert
+            Assert.Equal("US english abbreviation for Unit1", abbreviation);
+        }
 
-                // Assert
-                Assert.Equal("US english abbreviation for Unit1", abbreviation);
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCurrentCulture;
-                CultureInfo.CurrentUICulture = oldCurrentUICulture;
-            }
+        [Fact]
+        public void MapUnitToAbbreviation_DoesNotAffectOtherCacheInstances()
+        {
+            var culture = AmericanCulture;
+            var unit = AreaUnit.SquareMeter;
+
+            var cache1 = new UnitAbbreviationsCache();
+            cache1.MapUnitToAbbreviation(unit, culture, "m^2");
+
+            var cache2 = new UnitAbbreviationsCache();
+            cache2.MapUnitToAbbreviation(unit, culture, "m2");
+
+            Assert.Equal(new[] { "m²", "m^2" }, cache1.GetUnitAbbreviations(unit, culture));
+            Assert.Equal(new[] { "m²", "m2" }, cache2.GetUnitAbbreviations(unit, culture));
+            Assert.Equal("m²", cache1.GetDefaultAbbreviation(unit, culture));
+            Assert.Equal("m²", cache2.GetDefaultAbbreviation(unit, culture));
         }
 
         [Fact]
@@ -254,7 +253,7 @@ namespace UnitsNet.Tests
             var cache = new UnitAbbreviationsCache();
             cache.MapUnitToAbbreviation(AreaUnit.SquareMeter, AmericanCulture, "m^2");
 
-            Assert.Equal("m²", cache.GetDefaultAbbreviation(AreaUnit.SquareMeter));
+            Assert.Equal("m²", cache.GetDefaultAbbreviation(AreaUnit.SquareMeter, AmericanCulture));
         }
 
         [Fact]
@@ -276,12 +275,39 @@ namespace UnitsNet.Tests
             Assert.Equal("1 m^2", Area.FromSquareMeters(1).ToString(newZealandCulture));
         }
 
+        [Fact]
+        public void MapUnitToAbbreviation_DoesNotInsertDuplicates()
+        {
+            var cache = new UnitAbbreviationsCache();
+
+            cache.MapUnitToAbbreviation(HowMuchUnit.Some, "soome");
+            cache.MapUnitToAbbreviation(HowMuchUnit.Some, "soome");
+            cache.MapUnitToAbbreviation(HowMuchUnit.Some, "soome");
+
+            Assert.Equal("soome", cache.GetDefaultAbbreviation(HowMuchUnit.Some));
+            Assert.Equal(new[] { "soome" }, cache.GetUnitAbbreviations(HowMuchUnit.Some));
+            Assert.Equal(new[] { "soome" }, cache.GetAllUnitAbbreviationsForQuantity(typeof(HowMuchUnit)));
+        }
+
+        [Fact]
+        public void MapUnitToDefaultAbbreviation_Twice_SetsNewDefaultAndKeepsOrderOfExistingAbbreviations()
+        {
+            var cache = new UnitAbbreviationsCache();
+
+            cache.MapUnitToAbbreviation(HowMuchUnit.Some, "soome");
+            cache.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, "1st default");
+            cache.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, "2nd default");
+
+            Assert.Equal("2nd default", cache.GetDefaultAbbreviation(HowMuchUnit.Some));
+            Assert.Equal(new[] { "2nd default", "1st default", "soome" }, cache.GetUnitAbbreviations(HowMuchUnit.Some));
+        }
+
         /// <summary>
         ///     Convenience method to the proper culture parameter type.
         /// </summary>
         private static CultureInfo GetCulture(string cultureName)
         {
-            return new CultureInfo(cultureName);
+            return CultureInfo.GetCultureInfo(cultureName);
         }
     }
 }

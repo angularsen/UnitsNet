@@ -1,69 +1,69 @@
 name: UnitsNet Benchmarks (auto)
 on:
   push:
-    branches: [master]    
+    branches: [master]
     paths:
       - "UnitsNet/*"
       - "UnitsNet.Benchmark/*"
       - ".github/workflows/**"
       - ".github/actions/**"
-      
+
 env:
-  FRAMEWORK: net5.0 
+  FRAMEWORK: net6.0
   EXECUTION_OPTIONS: --iterationTime 500 --disableLogFile # see https://benchmarkdotnet.org/articles/guides/console-args.html
   BENCHMARK_PAGES_BRANCH: gh-pages
   BENCHMARK_DATA_FOLDER: benchmarks
-  
+
 jobs:
   benchmark:
     if: github.repository_owner == 'angularsen' # (by default) the workflow doesn't need to run in a fork
     runs-on: windows-latest # required by the older frameworks
     strategy:
       # max-parallel: 1 # is it better to avoid running in parallel?
-      matrix: 
-        runtime: ["netcoreapp50", "netcoreapp21", "net472"]        
+      matrix:
+        runtime: ["net6.0", "netcoreapp21", "net472"]
     steps:
-      - run: echo Starting benchmarks for ${{ matrix.runtime }} 
-      
+      - run: echo Starting benchmarks for ${{ matrix.runtime }}
+
       # checkout the current branch
-      - uses: actions/checkout@v2 
-      
+      - uses: actions/checkout@v2
+
       # we need all frameworks (even if only running one target at a time)
       - uses: actions/setup-dotnet@v1
-        with: 
-          dotnet-version: '2.1.x'
-            
+        with:
+          dotnet-version: "2.1.x"
+
       - uses: actions/setup-dotnet@v1
-        with: 
-          dotnet-version: '3.1.x'
-            
+        with:
+          dotnet-version: "3.1.x"
+
       - uses: actions/setup-dotnet@v1
-        with: 
-          dotnet-version: '5.0.x'
-            
-      # executing the benchmark for the current framework, placing the result in a corresponding sub-folder              
+        with:
+          dotnet-version: "5.0.x"
+
+      # executing the benchmark for the current framework, placing the result in a corresponding sub-folder
       - uses: ./.github/actions/run-benchmarks
         with:
           framework: ${{ env.FRAMEWORK }}
           runtimes: ${{ matrix.runtime }}
           output-folder: Artifacts/Benchmark/${{ matrix.runtime }}
           execution-options: ${{ env.EXECUTION_OPTIONS }}
-            
-      # saving the current artifact (downloadable until the expiration date of this action)        
+
+      # saving the current artifact (downloadable until the expiration date of this action)
       - name: Store benchmark artifact
         uses: actions/upload-artifact@v2
         with:
           name: UnitsNet Benchmarks (${{ matrix.runtime }})
           path: Artifacts/Benchmark/${{ matrix.runtime }}/results/
-          
+
   publish-results:
     needs: [benchmark]
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 1 # cannot commit on the same branch in parallel
-      matrix: 
-        runtime: ["netcoreapp50", "netcoreapp21", "net472"]
-    steps:        
+      matrix:
+        runtime: ["net6.0", "netcoreapp21", "net472"]
+    steps:
       - name: Initializing git folder ️
         uses: actions/checkout@v2.3.1
 
@@ -71,8 +71,8 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: UnitsNet Benchmarks (${{ matrix.runtime }})
-          path: ${{ matrix.runtime }}        
-        
+          path: ${{ matrix.runtime }}
+
       # publishing the current results to the benchmark-pages branch (overriding the previous result)
       - name: Saving benchmark results to ${{ env.BENCHMARK_PAGES_BRANCH }}/${{ env.BENCHMARK_DATA_FOLDER }}/${{ matrix.runtime }}/results
         uses: JamesIves/github-pages-deploy-action@4.1.1
@@ -81,22 +81,21 @@ jobs:
           branch: ${{ env.BENCHMARK_PAGES_BRANCH }}
           target-folder: ${{ env.BENCHMARK_DATA_FOLDER }}/${{ matrix.runtime }}/results
           commit-message: Automatic benchmark generation for ${{ github.sha }}
-      
+
       # appending to the running benchmark data on the benchmark-pages branch
       - name: Updating benchmark charts
         uses: starburst997/github-action-benchmark@v1.8.7
         with:
           name: UnitsNet Benchmarks (${{ matrix.runtime }})
-          tool: 'benchmarkdotnet'
+          tool: "benchmarkdotnet"
           output-file-path: ${{ matrix.runtime }}/UnitsNet.Benchmark.UnitsNetBenchmarks-report-full.json
           gh-pages-branch: ${{ env.BENCHMARK_PAGES_BRANCH }}
           benchmark-data-dir-path: ${{ env.BENCHMARK_DATA_FOLDER }}/${{ matrix.runtime }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           auto-push: true
           # Show alert with commit comment on detecting possible performance regression
-          alert-threshold: '200%'
+          alert-threshold: "200%"
           comment-always: true
           comment-on-alert: true
           fail-on-alert: false
-          alert-comment-cc-users: '@lipchev'
-     
+          alert-comment-cc-users: "@lipchev"

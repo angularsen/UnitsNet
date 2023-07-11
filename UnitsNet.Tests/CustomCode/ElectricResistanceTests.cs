@@ -3,7 +3,7 @@
 
 using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     public class ElectricResistanceTests : ElectricResistanceTestsBase
     {
@@ -20,6 +20,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double GigaohmsInOneOhm => 1e-9;
 
+        protected override double TeraohmsInOneOhm => 1e-12;
 
         [Theory]
         [InlineData(1, 1, 1)]
@@ -29,7 +30,7 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData(-10, -2, 20)]
         public void ElectricResistanceTimesElectricCurrentEqualsElectricPotential(float resistance, float current, float expected)
         {
-            ElectricPotential potential = ElectricResistance.FromOhms(resistance) *  ElectricCurrent.FromAmperes(current) ;
+            ElectricPotential potential = ElectricResistance.FromOhms(resistance) * ElectricCurrent.FromAmperes(current);
             Assert.Equal(expected, potential.Volts);
         }
     }

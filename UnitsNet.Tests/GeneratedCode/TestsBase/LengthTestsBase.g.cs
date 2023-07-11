@@ -42,6 +42,7 @@ namespace UnitsNet.Tests
         protected abstract double AstronomicalUnitsInOneMeter { get; }
         protected abstract double CentimetersInOneMeter { get; }
         protected abstract double ChainsInOneMeter { get; }
+        protected abstract double DataMilesInOneMeter { get; }
         protected abstract double DecametersInOneMeter { get; }
         protected abstract double DecimetersInOneMeter { get; }
         protected abstract double DtpPicasInOneMeter { get; }
@@ -56,6 +57,7 @@ namespace UnitsNet.Tests
         protected abstract double KiloparsecsInOneMeter { get; }
         protected abstract double LightYearsInOneMeter { get; }
         protected abstract double MegalightYearsInOneMeter { get; }
+        protected abstract double MegametersInOneMeter { get; }
         protected abstract double MegaparsecsInOneMeter { get; }
         protected abstract double MetersInOneMeter { get; }
         protected abstract double MicroinchesInOneMeter { get; }
@@ -79,6 +81,7 @@ namespace UnitsNet.Tests
         protected virtual double AstronomicalUnitsTolerance { get { return 1e-5; } }
         protected virtual double CentimetersTolerance { get { return 1e-5; } }
         protected virtual double ChainsTolerance { get { return 1e-5; } }
+        protected virtual double DataMilesTolerance { get { return 1e-5; } }
         protected virtual double DecametersTolerance { get { return 1e-5; } }
         protected virtual double DecimetersTolerance { get { return 1e-5; } }
         protected virtual double DtpPicasTolerance { get { return 1e-5; } }
@@ -93,6 +96,7 @@ namespace UnitsNet.Tests
         protected virtual double KiloparsecsTolerance { get { return 1e-5; } }
         protected virtual double LightYearsTolerance { get { return 1e-5; } }
         protected virtual double MegalightYearsTolerance { get { return 1e-5; } }
+        protected virtual double MegametersTolerance { get { return 1e-5; } }
         protected virtual double MegaparsecsTolerance { get { return 1e-5; } }
         protected virtual double MetersTolerance { get { return 1e-5; } }
         protected virtual double MicroinchesTolerance { get { return 1e-5; } }
@@ -120,6 +124,7 @@ namespace UnitsNet.Tests
                 LengthUnit.AstronomicalUnit => (AstronomicalUnitsInOneMeter, AstronomicalUnitsTolerance),
                 LengthUnit.Centimeter => (CentimetersInOneMeter, CentimetersTolerance),
                 LengthUnit.Chain => (ChainsInOneMeter, ChainsTolerance),
+                LengthUnit.DataMile => (DataMilesInOneMeter, DataMilesTolerance),
                 LengthUnit.Decameter => (DecametersInOneMeter, DecametersTolerance),
                 LengthUnit.Decimeter => (DecimetersInOneMeter, DecimetersTolerance),
                 LengthUnit.DtpPica => (DtpPicasInOneMeter, DtpPicasTolerance),
@@ -134,6 +139,7 @@ namespace UnitsNet.Tests
                 LengthUnit.Kiloparsec => (KiloparsecsInOneMeter, KiloparsecsTolerance),
                 LengthUnit.LightYear => (LightYearsInOneMeter, LightYearsTolerance),
                 LengthUnit.MegalightYear => (MegalightYearsInOneMeter, MegalightYearsTolerance),
+                LengthUnit.Megameter => (MegametersInOneMeter, MegametersTolerance),
                 LengthUnit.Megaparsec => (MegaparsecsInOneMeter, MegaparsecsTolerance),
                 LengthUnit.Meter => (MetersInOneMeter, MetersTolerance),
                 LengthUnit.Microinch => (MicroinchesInOneMeter, MicroinchesTolerance),
@@ -161,6 +167,7 @@ namespace UnitsNet.Tests
             new object[] { LengthUnit.AstronomicalUnit },
             new object[] { LengthUnit.Centimeter },
             new object[] { LengthUnit.Chain },
+            new object[] { LengthUnit.DataMile },
             new object[] { LengthUnit.Decameter },
             new object[] { LengthUnit.Decimeter },
             new object[] { LengthUnit.DtpPica },
@@ -175,6 +182,7 @@ namespace UnitsNet.Tests
             new object[] { LengthUnit.Kiloparsec },
             new object[] { LengthUnit.LightYear },
             new object[] { LengthUnit.MegalightYear },
+            new object[] { LengthUnit.Megameter },
             new object[] { LengthUnit.Megaparsec },
             new object[] { LengthUnit.Meter },
             new object[] { LengthUnit.Microinch },
@@ -195,19 +203,12 @@ namespace UnitsNet.Tests
         };
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new Length((double)0.0, LengthUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new Length();
             Assert.Equal(0, quantity.Value);
             Assert.Equal(LengthUnit.Meter, quantity.Unit);
         }
-
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
@@ -252,14 +253,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Length.Zero, quantityInfo.Zero);
             Assert.Equal("Length", quantityInfo.Name);
-            Assert.Equal(QuantityType.Length, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<LengthUnit>().Except(new[] {LengthUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<LengthUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
-
-            // Obsolete members
-            Assert.Equal(units, quantityInfo.Units);
-            Assert.Equal(unitNames, quantityInfo.UnitNames);
         }
 
         [Fact]
@@ -270,6 +266,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(AstronomicalUnitsInOneMeter, meter.AstronomicalUnits, AstronomicalUnitsTolerance);
             AssertEx.EqualTolerance(CentimetersInOneMeter, meter.Centimeters, CentimetersTolerance);
             AssertEx.EqualTolerance(ChainsInOneMeter, meter.Chains, ChainsTolerance);
+            AssertEx.EqualTolerance(DataMilesInOneMeter, meter.DataMiles, DataMilesTolerance);
             AssertEx.EqualTolerance(DecametersInOneMeter, meter.Decameters, DecametersTolerance);
             AssertEx.EqualTolerance(DecimetersInOneMeter, meter.Decimeters, DecimetersTolerance);
             AssertEx.EqualTolerance(DtpPicasInOneMeter, meter.DtpPicas, DtpPicasTolerance);
@@ -284,6 +281,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(KiloparsecsInOneMeter, meter.Kiloparsecs, KiloparsecsTolerance);
             AssertEx.EqualTolerance(LightYearsInOneMeter, meter.LightYears, LightYearsTolerance);
             AssertEx.EqualTolerance(MegalightYearsInOneMeter, meter.MegalightYears, MegalightYearsTolerance);
+            AssertEx.EqualTolerance(MegametersInOneMeter, meter.Megameters, MegametersTolerance);
             AssertEx.EqualTolerance(MegaparsecsInOneMeter, meter.Megaparsecs, MegaparsecsTolerance);
             AssertEx.EqualTolerance(MetersInOneMeter, meter.Meters, MetersTolerance);
             AssertEx.EqualTolerance(MicroinchesInOneMeter, meter.Microinches, MicroinchesTolerance);
@@ -322,129 +320,137 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity03.Chains, ChainsTolerance);
             Assert.Equal(LengthUnit.Chain, quantity03.Unit);
 
-            var quantity04 = Length.From(1, LengthUnit.Decameter);
-            AssertEx.EqualTolerance(1, quantity04.Decameters, DecametersTolerance);
-            Assert.Equal(LengthUnit.Decameter, quantity04.Unit);
+            var quantity04 = Length.From(1, LengthUnit.DataMile);
+            AssertEx.EqualTolerance(1, quantity04.DataMiles, DataMilesTolerance);
+            Assert.Equal(LengthUnit.DataMile, quantity04.Unit);
 
-            var quantity05 = Length.From(1, LengthUnit.Decimeter);
-            AssertEx.EqualTolerance(1, quantity05.Decimeters, DecimetersTolerance);
-            Assert.Equal(LengthUnit.Decimeter, quantity05.Unit);
+            var quantity05 = Length.From(1, LengthUnit.Decameter);
+            AssertEx.EqualTolerance(1, quantity05.Decameters, DecametersTolerance);
+            Assert.Equal(LengthUnit.Decameter, quantity05.Unit);
 
-            var quantity06 = Length.From(1, LengthUnit.DtpPica);
-            AssertEx.EqualTolerance(1, quantity06.DtpPicas, DtpPicasTolerance);
-            Assert.Equal(LengthUnit.DtpPica, quantity06.Unit);
+            var quantity06 = Length.From(1, LengthUnit.Decimeter);
+            AssertEx.EqualTolerance(1, quantity06.Decimeters, DecimetersTolerance);
+            Assert.Equal(LengthUnit.Decimeter, quantity06.Unit);
 
-            var quantity07 = Length.From(1, LengthUnit.DtpPoint);
-            AssertEx.EqualTolerance(1, quantity07.DtpPoints, DtpPointsTolerance);
-            Assert.Equal(LengthUnit.DtpPoint, quantity07.Unit);
+            var quantity07 = Length.From(1, LengthUnit.DtpPica);
+            AssertEx.EqualTolerance(1, quantity07.DtpPicas, DtpPicasTolerance);
+            Assert.Equal(LengthUnit.DtpPica, quantity07.Unit);
 
-            var quantity08 = Length.From(1, LengthUnit.Fathom);
-            AssertEx.EqualTolerance(1, quantity08.Fathoms, FathomsTolerance);
-            Assert.Equal(LengthUnit.Fathom, quantity08.Unit);
+            var quantity08 = Length.From(1, LengthUnit.DtpPoint);
+            AssertEx.EqualTolerance(1, quantity08.DtpPoints, DtpPointsTolerance);
+            Assert.Equal(LengthUnit.DtpPoint, quantity08.Unit);
 
-            var quantity09 = Length.From(1, LengthUnit.Foot);
-            AssertEx.EqualTolerance(1, quantity09.Feet, FeetTolerance);
-            Assert.Equal(LengthUnit.Foot, quantity09.Unit);
+            var quantity09 = Length.From(1, LengthUnit.Fathom);
+            AssertEx.EqualTolerance(1, quantity09.Fathoms, FathomsTolerance);
+            Assert.Equal(LengthUnit.Fathom, quantity09.Unit);
 
-            var quantity10 = Length.From(1, LengthUnit.Hand);
-            AssertEx.EqualTolerance(1, quantity10.Hands, HandsTolerance);
-            Assert.Equal(LengthUnit.Hand, quantity10.Unit);
+            var quantity10 = Length.From(1, LengthUnit.Foot);
+            AssertEx.EqualTolerance(1, quantity10.Feet, FeetTolerance);
+            Assert.Equal(LengthUnit.Foot, quantity10.Unit);
 
-            var quantity11 = Length.From(1, LengthUnit.Hectometer);
-            AssertEx.EqualTolerance(1, quantity11.Hectometers, HectometersTolerance);
-            Assert.Equal(LengthUnit.Hectometer, quantity11.Unit);
+            var quantity11 = Length.From(1, LengthUnit.Hand);
+            AssertEx.EqualTolerance(1, quantity11.Hands, HandsTolerance);
+            Assert.Equal(LengthUnit.Hand, quantity11.Unit);
 
-            var quantity12 = Length.From(1, LengthUnit.Inch);
-            AssertEx.EqualTolerance(1, quantity12.Inches, InchesTolerance);
-            Assert.Equal(LengthUnit.Inch, quantity12.Unit);
+            var quantity12 = Length.From(1, LengthUnit.Hectometer);
+            AssertEx.EqualTolerance(1, quantity12.Hectometers, HectometersTolerance);
+            Assert.Equal(LengthUnit.Hectometer, quantity12.Unit);
 
-            var quantity13 = Length.From(1, LengthUnit.KilolightYear);
-            AssertEx.EqualTolerance(1, quantity13.KilolightYears, KilolightYearsTolerance);
-            Assert.Equal(LengthUnit.KilolightYear, quantity13.Unit);
+            var quantity13 = Length.From(1, LengthUnit.Inch);
+            AssertEx.EqualTolerance(1, quantity13.Inches, InchesTolerance);
+            Assert.Equal(LengthUnit.Inch, quantity13.Unit);
 
-            var quantity14 = Length.From(1, LengthUnit.Kilometer);
-            AssertEx.EqualTolerance(1, quantity14.Kilometers, KilometersTolerance);
-            Assert.Equal(LengthUnit.Kilometer, quantity14.Unit);
+            var quantity14 = Length.From(1, LengthUnit.KilolightYear);
+            AssertEx.EqualTolerance(1, quantity14.KilolightYears, KilolightYearsTolerance);
+            Assert.Equal(LengthUnit.KilolightYear, quantity14.Unit);
 
-            var quantity15 = Length.From(1, LengthUnit.Kiloparsec);
-            AssertEx.EqualTolerance(1, quantity15.Kiloparsecs, KiloparsecsTolerance);
-            Assert.Equal(LengthUnit.Kiloparsec, quantity15.Unit);
+            var quantity15 = Length.From(1, LengthUnit.Kilometer);
+            AssertEx.EqualTolerance(1, quantity15.Kilometers, KilometersTolerance);
+            Assert.Equal(LengthUnit.Kilometer, quantity15.Unit);
 
-            var quantity16 = Length.From(1, LengthUnit.LightYear);
-            AssertEx.EqualTolerance(1, quantity16.LightYears, LightYearsTolerance);
-            Assert.Equal(LengthUnit.LightYear, quantity16.Unit);
+            var quantity16 = Length.From(1, LengthUnit.Kiloparsec);
+            AssertEx.EqualTolerance(1, quantity16.Kiloparsecs, KiloparsecsTolerance);
+            Assert.Equal(LengthUnit.Kiloparsec, quantity16.Unit);
 
-            var quantity17 = Length.From(1, LengthUnit.MegalightYear);
-            AssertEx.EqualTolerance(1, quantity17.MegalightYears, MegalightYearsTolerance);
-            Assert.Equal(LengthUnit.MegalightYear, quantity17.Unit);
+            var quantity17 = Length.From(1, LengthUnit.LightYear);
+            AssertEx.EqualTolerance(1, quantity17.LightYears, LightYearsTolerance);
+            Assert.Equal(LengthUnit.LightYear, quantity17.Unit);
 
-            var quantity18 = Length.From(1, LengthUnit.Megaparsec);
-            AssertEx.EqualTolerance(1, quantity18.Megaparsecs, MegaparsecsTolerance);
-            Assert.Equal(LengthUnit.Megaparsec, quantity18.Unit);
+            var quantity18 = Length.From(1, LengthUnit.MegalightYear);
+            AssertEx.EqualTolerance(1, quantity18.MegalightYears, MegalightYearsTolerance);
+            Assert.Equal(LengthUnit.MegalightYear, quantity18.Unit);
 
-            var quantity19 = Length.From(1, LengthUnit.Meter);
-            AssertEx.EqualTolerance(1, quantity19.Meters, MetersTolerance);
-            Assert.Equal(LengthUnit.Meter, quantity19.Unit);
+            var quantity19 = Length.From(1, LengthUnit.Megameter);
+            AssertEx.EqualTolerance(1, quantity19.Megameters, MegametersTolerance);
+            Assert.Equal(LengthUnit.Megameter, quantity19.Unit);
 
-            var quantity20 = Length.From(1, LengthUnit.Microinch);
-            AssertEx.EqualTolerance(1, quantity20.Microinches, MicroinchesTolerance);
-            Assert.Equal(LengthUnit.Microinch, quantity20.Unit);
+            var quantity20 = Length.From(1, LengthUnit.Megaparsec);
+            AssertEx.EqualTolerance(1, quantity20.Megaparsecs, MegaparsecsTolerance);
+            Assert.Equal(LengthUnit.Megaparsec, quantity20.Unit);
 
-            var quantity21 = Length.From(1, LengthUnit.Micrometer);
-            AssertEx.EqualTolerance(1, quantity21.Micrometers, MicrometersTolerance);
-            Assert.Equal(LengthUnit.Micrometer, quantity21.Unit);
+            var quantity21 = Length.From(1, LengthUnit.Meter);
+            AssertEx.EqualTolerance(1, quantity21.Meters, MetersTolerance);
+            Assert.Equal(LengthUnit.Meter, quantity21.Unit);
 
-            var quantity22 = Length.From(1, LengthUnit.Mil);
-            AssertEx.EqualTolerance(1, quantity22.Mils, MilsTolerance);
-            Assert.Equal(LengthUnit.Mil, quantity22.Unit);
+            var quantity22 = Length.From(1, LengthUnit.Microinch);
+            AssertEx.EqualTolerance(1, quantity22.Microinches, MicroinchesTolerance);
+            Assert.Equal(LengthUnit.Microinch, quantity22.Unit);
 
-            var quantity23 = Length.From(1, LengthUnit.Mile);
-            AssertEx.EqualTolerance(1, quantity23.Miles, MilesTolerance);
-            Assert.Equal(LengthUnit.Mile, quantity23.Unit);
+            var quantity23 = Length.From(1, LengthUnit.Micrometer);
+            AssertEx.EqualTolerance(1, quantity23.Micrometers, MicrometersTolerance);
+            Assert.Equal(LengthUnit.Micrometer, quantity23.Unit);
 
-            var quantity24 = Length.From(1, LengthUnit.Millimeter);
-            AssertEx.EqualTolerance(1, quantity24.Millimeters, MillimetersTolerance);
-            Assert.Equal(LengthUnit.Millimeter, quantity24.Unit);
+            var quantity24 = Length.From(1, LengthUnit.Mil);
+            AssertEx.EqualTolerance(1, quantity24.Mils, MilsTolerance);
+            Assert.Equal(LengthUnit.Mil, quantity24.Unit);
 
-            var quantity25 = Length.From(1, LengthUnit.Nanometer);
-            AssertEx.EqualTolerance(1, quantity25.Nanometers, NanometersTolerance);
-            Assert.Equal(LengthUnit.Nanometer, quantity25.Unit);
+            var quantity25 = Length.From(1, LengthUnit.Mile);
+            AssertEx.EqualTolerance(1, quantity25.Miles, MilesTolerance);
+            Assert.Equal(LengthUnit.Mile, quantity25.Unit);
 
-            var quantity26 = Length.From(1, LengthUnit.NauticalMile);
-            AssertEx.EqualTolerance(1, quantity26.NauticalMiles, NauticalMilesTolerance);
-            Assert.Equal(LengthUnit.NauticalMile, quantity26.Unit);
+            var quantity26 = Length.From(1, LengthUnit.Millimeter);
+            AssertEx.EqualTolerance(1, quantity26.Millimeters, MillimetersTolerance);
+            Assert.Equal(LengthUnit.Millimeter, quantity26.Unit);
 
-            var quantity27 = Length.From(1, LengthUnit.Parsec);
-            AssertEx.EqualTolerance(1, quantity27.Parsecs, ParsecsTolerance);
-            Assert.Equal(LengthUnit.Parsec, quantity27.Unit);
+            var quantity27 = Length.From(1, LengthUnit.Nanometer);
+            AssertEx.EqualTolerance(1, quantity27.Nanometers, NanometersTolerance);
+            Assert.Equal(LengthUnit.Nanometer, quantity27.Unit);
 
-            var quantity28 = Length.From(1, LengthUnit.PrinterPica);
-            AssertEx.EqualTolerance(1, quantity28.PrinterPicas, PrinterPicasTolerance);
-            Assert.Equal(LengthUnit.PrinterPica, quantity28.Unit);
+            var quantity28 = Length.From(1, LengthUnit.NauticalMile);
+            AssertEx.EqualTolerance(1, quantity28.NauticalMiles, NauticalMilesTolerance);
+            Assert.Equal(LengthUnit.NauticalMile, quantity28.Unit);
 
-            var quantity29 = Length.From(1, LengthUnit.PrinterPoint);
-            AssertEx.EqualTolerance(1, quantity29.PrinterPoints, PrinterPointsTolerance);
-            Assert.Equal(LengthUnit.PrinterPoint, quantity29.Unit);
+            var quantity29 = Length.From(1, LengthUnit.Parsec);
+            AssertEx.EqualTolerance(1, quantity29.Parsecs, ParsecsTolerance);
+            Assert.Equal(LengthUnit.Parsec, quantity29.Unit);
 
-            var quantity30 = Length.From(1, LengthUnit.Shackle);
-            AssertEx.EqualTolerance(1, quantity30.Shackles, ShacklesTolerance);
-            Assert.Equal(LengthUnit.Shackle, quantity30.Unit);
+            var quantity30 = Length.From(1, LengthUnit.PrinterPica);
+            AssertEx.EqualTolerance(1, quantity30.PrinterPicas, PrinterPicasTolerance);
+            Assert.Equal(LengthUnit.PrinterPica, quantity30.Unit);
 
-            var quantity31 = Length.From(1, LengthUnit.SolarRadius);
-            AssertEx.EqualTolerance(1, quantity31.SolarRadiuses, SolarRadiusesTolerance);
-            Assert.Equal(LengthUnit.SolarRadius, quantity31.Unit);
+            var quantity31 = Length.From(1, LengthUnit.PrinterPoint);
+            AssertEx.EqualTolerance(1, quantity31.PrinterPoints, PrinterPointsTolerance);
+            Assert.Equal(LengthUnit.PrinterPoint, quantity31.Unit);
 
-            var quantity32 = Length.From(1, LengthUnit.Twip);
-            AssertEx.EqualTolerance(1, quantity32.Twips, TwipsTolerance);
-            Assert.Equal(LengthUnit.Twip, quantity32.Unit);
+            var quantity32 = Length.From(1, LengthUnit.Shackle);
+            AssertEx.EqualTolerance(1, quantity32.Shackles, ShacklesTolerance);
+            Assert.Equal(LengthUnit.Shackle, quantity32.Unit);
 
-            var quantity33 = Length.From(1, LengthUnit.UsSurveyFoot);
-            AssertEx.EqualTolerance(1, quantity33.UsSurveyFeet, UsSurveyFeetTolerance);
-            Assert.Equal(LengthUnit.UsSurveyFoot, quantity33.Unit);
+            var quantity33 = Length.From(1, LengthUnit.SolarRadius);
+            AssertEx.EqualTolerance(1, quantity33.SolarRadiuses, SolarRadiusesTolerance);
+            Assert.Equal(LengthUnit.SolarRadius, quantity33.Unit);
 
-            var quantity34 = Length.From(1, LengthUnit.Yard);
-            AssertEx.EqualTolerance(1, quantity34.Yards, YardsTolerance);
-            Assert.Equal(LengthUnit.Yard, quantity34.Unit);
+            var quantity34 = Length.From(1, LengthUnit.Twip);
+            AssertEx.EqualTolerance(1, quantity34.Twips, TwipsTolerance);
+            Assert.Equal(LengthUnit.Twip, quantity34.Unit);
+
+            var quantity35 = Length.From(1, LengthUnit.UsSurveyFoot);
+            AssertEx.EqualTolerance(1, quantity35.UsSurveyFeet, UsSurveyFeetTolerance);
+            Assert.Equal(LengthUnit.UsSurveyFoot, quantity35.Unit);
+
+            var quantity36 = Length.From(1, LengthUnit.Yard);
+            AssertEx.EqualTolerance(1, quantity36.Yards, YardsTolerance);
+            Assert.Equal(LengthUnit.Yard, quantity36.Unit);
 
         }
 
@@ -469,6 +475,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(AstronomicalUnitsInOneMeter, meter.As(LengthUnit.AstronomicalUnit), AstronomicalUnitsTolerance);
             AssertEx.EqualTolerance(CentimetersInOneMeter, meter.As(LengthUnit.Centimeter), CentimetersTolerance);
             AssertEx.EqualTolerance(ChainsInOneMeter, meter.As(LengthUnit.Chain), ChainsTolerance);
+            AssertEx.EqualTolerance(DataMilesInOneMeter, meter.As(LengthUnit.DataMile), DataMilesTolerance);
             AssertEx.EqualTolerance(DecametersInOneMeter, meter.As(LengthUnit.Decameter), DecametersTolerance);
             AssertEx.EqualTolerance(DecimetersInOneMeter, meter.As(LengthUnit.Decimeter), DecimetersTolerance);
             AssertEx.EqualTolerance(DtpPicasInOneMeter, meter.As(LengthUnit.DtpPica), DtpPicasTolerance);
@@ -483,6 +490,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(KiloparsecsInOneMeter, meter.As(LengthUnit.Kiloparsec), KiloparsecsTolerance);
             AssertEx.EqualTolerance(LightYearsInOneMeter, meter.As(LengthUnit.LightYear), LightYearsTolerance);
             AssertEx.EqualTolerance(MegalightYearsInOneMeter, meter.As(LengthUnit.MegalightYear), MegalightYearsTolerance);
+            AssertEx.EqualTolerance(MegametersInOneMeter, meter.As(LengthUnit.Megameter), MegametersTolerance);
             AssertEx.EqualTolerance(MegaparsecsInOneMeter, meter.As(LengthUnit.Megaparsec), MegaparsecsTolerance);
             AssertEx.EqualTolerance(MetersInOneMeter, meter.As(LengthUnit.Meter), MetersTolerance);
             AssertEx.EqualTolerance(MicroinchesInOneMeter, meter.As(LengthUnit.Microinch), MicroinchesTolerance);
@@ -510,13 +518,1729 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else
             {
                 Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
             }
+        }
+
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = Length.Parse("1 Å", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Angstroms, AngstromsTolerance);
+                Assert.Equal(LengthUnit.Angstrom, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 A", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Angstroms, AngstromsTolerance);
+                Assert.Equal(LengthUnit.Angstrom, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 au", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.AstronomicalUnits, AstronomicalUnitsTolerance);
+                Assert.Equal(LengthUnit.AstronomicalUnit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 ua", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.AstronomicalUnits, AstronomicalUnitsTolerance);
+                Assert.Equal(LengthUnit.AstronomicalUnit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 cm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Centimeters, CentimetersTolerance);
+                Assert.Equal(LengthUnit.Centimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 см", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Centimeters, CentimetersTolerance);
+                Assert.Equal(LengthUnit.Centimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 厘米", CultureInfo.GetCultureInfo("zh-CN"));
+                AssertEx.EqualTolerance(1, parsed.Centimeters, CentimetersTolerance);
+                Assert.Equal(LengthUnit.Centimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 ch", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Chains, ChainsTolerance);
+                Assert.Equal(LengthUnit.Chain, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 DM", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DataMiles, DataMilesTolerance);
+                Assert.Equal(LengthUnit.DataMile, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 dam", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Decameters, DecametersTolerance);
+                Assert.Equal(LengthUnit.Decameter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 дам", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Decameters, DecametersTolerance);
+                Assert.Equal(LengthUnit.Decameter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 十米", CultureInfo.GetCultureInfo("zh-CN"));
+                AssertEx.EqualTolerance(1, parsed.Decameters, DecametersTolerance);
+                Assert.Equal(LengthUnit.Decameter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 dm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Decimeters, DecimetersTolerance);
+                Assert.Equal(LengthUnit.Decimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 дм", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Decimeters, DecimetersTolerance);
+                Assert.Equal(LengthUnit.Decimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 分米", CultureInfo.GetCultureInfo("zh-CN"));
+                AssertEx.EqualTolerance(1, parsed.Decimeters, DecimetersTolerance);
+                Assert.Equal(LengthUnit.Decimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 pica", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DtpPicas, DtpPicasTolerance);
+                Assert.Equal(LengthUnit.DtpPica, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 pt", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DtpPoints, DtpPointsTolerance);
+                Assert.Equal(LengthUnit.DtpPoint, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 fathom", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Fathoms, FathomsTolerance);
+                Assert.Equal(LengthUnit.Fathom, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 ft", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Feet, FeetTolerance);
+                Assert.Equal(LengthUnit.Foot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 '", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Feet, FeetTolerance);
+                Assert.Equal(LengthUnit.Foot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 ′", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Feet, FeetTolerance);
+                Assert.Equal(LengthUnit.Foot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 фут", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Feet, FeetTolerance);
+                Assert.Equal(LengthUnit.Foot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 英尺", CultureInfo.GetCultureInfo("zh-CN"));
+                AssertEx.EqualTolerance(1, parsed.Feet, FeetTolerance);
+                Assert.Equal(LengthUnit.Foot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 h", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Hands, HandsTolerance);
+                Assert.Equal(LengthUnit.Hand, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 hh", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Hands, HandsTolerance);
+                Assert.Equal(LengthUnit.Hand, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 hm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Hectometers, HectometersTolerance);
+                Assert.Equal(LengthUnit.Hectometer, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 гм", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Hectometers, HectometersTolerance);
+                Assert.Equal(LengthUnit.Hectometer, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 百米", CultureInfo.GetCultureInfo("zh-CN"));
+                AssertEx.EqualTolerance(1, parsed.Hectometers, HectometersTolerance);
+                Assert.Equal(LengthUnit.Hectometer, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 in", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Inches, InchesTolerance);
+                Assert.Equal(LengthUnit.Inch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 \"", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Inches, InchesTolerance);
+                Assert.Equal(LengthUnit.Inch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 ″", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Inches, InchesTolerance);
+                Assert.Equal(LengthUnit.Inch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 дюйм", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Inches, InchesTolerance);
+                Assert.Equal(LengthUnit.Inch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 英寸", CultureInfo.GetCultureInfo("zh-CN"));
+                AssertEx.EqualTolerance(1, parsed.Inches, InchesTolerance);
+                Assert.Equal(LengthUnit.Inch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 kly", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilolightYears, KilolightYearsTolerance);
+                Assert.Equal(LengthUnit.KilolightYear, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 km", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Kilometers, KilometersTolerance);
+                Assert.Equal(LengthUnit.Kilometer, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 км", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Kilometers, KilometersTolerance);
+                Assert.Equal(LengthUnit.Kilometer, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 千米", CultureInfo.GetCultureInfo("zh-CN"));
+                AssertEx.EqualTolerance(1, parsed.Kilometers, KilometersTolerance);
+                Assert.Equal(LengthUnit.Kilometer, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 kpc", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Kiloparsecs, KiloparsecsTolerance);
+                Assert.Equal(LengthUnit.Kiloparsec, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 ly", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.LightYears, LightYearsTolerance);
+                Assert.Equal(LengthUnit.LightYear, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 Mly", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MegalightYears, MegalightYearsTolerance);
+                Assert.Equal(LengthUnit.MegalightYear, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 Mm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Megameters, MegametersTolerance);
+                Assert.Equal(LengthUnit.Megameter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 Мм", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Megameters, MegametersTolerance);
+                Assert.Equal(LengthUnit.Megameter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 兆米", CultureInfo.GetCultureInfo("zh-CN"));
+                AssertEx.EqualTolerance(1, parsed.Megameters, MegametersTolerance);
+                Assert.Equal(LengthUnit.Megameter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 Mpc", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Megaparsecs, MegaparsecsTolerance);
+                Assert.Equal(LengthUnit.Megaparsec, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 m", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Meters, MetersTolerance);
+                Assert.Equal(LengthUnit.Meter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 м", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Meters, MetersTolerance);
+                Assert.Equal(LengthUnit.Meter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 米", CultureInfo.GetCultureInfo("zh-CN"));
+                AssertEx.EqualTolerance(1, parsed.Meters, MetersTolerance);
+                Assert.Equal(LengthUnit.Meter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 µin", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Microinches, MicroinchesTolerance);
+                Assert.Equal(LengthUnit.Microinch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 микродюйм", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Microinches, MicroinchesTolerance);
+                Assert.Equal(LengthUnit.Microinch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 微英寸", CultureInfo.GetCultureInfo("zh-CN"));
+                AssertEx.EqualTolerance(1, parsed.Microinches, MicroinchesTolerance);
+                Assert.Equal(LengthUnit.Microinch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 µm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Micrometers, MicrometersTolerance);
+                Assert.Equal(LengthUnit.Micrometer, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 мкм", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Micrometers, MicrometersTolerance);
+                Assert.Equal(LengthUnit.Micrometer, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 微米", CultureInfo.GetCultureInfo("zh-CN"));
+                AssertEx.EqualTolerance(1, parsed.Micrometers, MicrometersTolerance);
+                Assert.Equal(LengthUnit.Micrometer, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 mil", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Mils, MilsTolerance);
+                Assert.Equal(LengthUnit.Mil, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 мил", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Mils, MilsTolerance);
+                Assert.Equal(LengthUnit.Mil, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 密耳", CultureInfo.GetCultureInfo("zh-CN"));
+                AssertEx.EqualTolerance(1, parsed.Mils, MilsTolerance);
+                Assert.Equal(LengthUnit.Mil, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 mi", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Miles, MilesTolerance);
+                Assert.Equal(LengthUnit.Mile, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 миля", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Miles, MilesTolerance);
+                Assert.Equal(LengthUnit.Mile, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 英里", CultureInfo.GetCultureInfo("zh-CN"));
+                AssertEx.EqualTolerance(1, parsed.Miles, MilesTolerance);
+                Assert.Equal(LengthUnit.Mile, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 mm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Millimeters, MillimetersTolerance);
+                Assert.Equal(LengthUnit.Millimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 мм", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Millimeters, MillimetersTolerance);
+                Assert.Equal(LengthUnit.Millimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 毫米", CultureInfo.GetCultureInfo("zh-CN"));
+                AssertEx.EqualTolerance(1, parsed.Millimeters, MillimetersTolerance);
+                Assert.Equal(LengthUnit.Millimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 nm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Nanometers, NanometersTolerance);
+                Assert.Equal(LengthUnit.Nanometer, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 нм", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Nanometers, NanometersTolerance);
+                Assert.Equal(LengthUnit.Nanometer, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 纳米", CultureInfo.GetCultureInfo("zh-CN"));
+                AssertEx.EqualTolerance(1, parsed.Nanometers, NanometersTolerance);
+                Assert.Equal(LengthUnit.Nanometer, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 NM", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.NauticalMiles, NauticalMilesTolerance);
+                Assert.Equal(LengthUnit.NauticalMile, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 мил", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.NauticalMiles, NauticalMilesTolerance);
+                Assert.Equal(LengthUnit.NauticalMile, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 纳米", CultureInfo.GetCultureInfo("zh-CN"));
+                AssertEx.EqualTolerance(1, parsed.NauticalMiles, NauticalMilesTolerance);
+                Assert.Equal(LengthUnit.NauticalMile, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 pc", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Parsecs, ParsecsTolerance);
+                Assert.Equal(LengthUnit.Parsec, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 pica", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PrinterPicas, PrinterPicasTolerance);
+                Assert.Equal(LengthUnit.PrinterPica, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 pt", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PrinterPoints, PrinterPointsTolerance);
+                Assert.Equal(LengthUnit.PrinterPoint, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 shackle", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Shackles, ShacklesTolerance);
+                Assert.Equal(LengthUnit.Shackle, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 R⊙", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.SolarRadiuses, SolarRadiusesTolerance);
+                Assert.Equal(LengthUnit.SolarRadius, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 twip", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Twips, TwipsTolerance);
+                Assert.Equal(LengthUnit.Twip, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 ftUS", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.UsSurveyFeet, UsSurveyFeetTolerance);
+                Assert.Equal(LengthUnit.UsSurveyFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 yd", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Yards, YardsTolerance);
+                Assert.Equal(LengthUnit.Yard, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 ярд", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Yards, YardsTolerance);
+                Assert.Equal(LengthUnit.Yard, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 码", CultureInfo.GetCultureInfo("zh-CN"));
+                AssertEx.EqualTolerance(1, parsed.Yards, YardsTolerance);
+                Assert.Equal(LengthUnit.Yard, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            {
+                Assert.True(Length.TryParse("1 Å", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Angstroms, AngstromsTolerance);
+                Assert.Equal(LengthUnit.Angstrom, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 A", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Angstroms, AngstromsTolerance);
+                Assert.Equal(LengthUnit.Angstrom, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 au", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.AstronomicalUnits, AstronomicalUnitsTolerance);
+                Assert.Equal(LengthUnit.AstronomicalUnit, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 ua", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.AstronomicalUnits, AstronomicalUnitsTolerance);
+                Assert.Equal(LengthUnit.AstronomicalUnit, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 cm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Centimeters, CentimetersTolerance);
+                Assert.Equal(LengthUnit.Centimeter, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 см", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Centimeters, CentimetersTolerance);
+                Assert.Equal(LengthUnit.Centimeter, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 厘米", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Centimeters, CentimetersTolerance);
+                Assert.Equal(LengthUnit.Centimeter, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 ch", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Chains, ChainsTolerance);
+                Assert.Equal(LengthUnit.Chain, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 dam", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Decameters, DecametersTolerance);
+                Assert.Equal(LengthUnit.Decameter, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 дам", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Decameters, DecametersTolerance);
+                Assert.Equal(LengthUnit.Decameter, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 十米", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Decameters, DecametersTolerance);
+                Assert.Equal(LengthUnit.Decameter, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 дм", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Decimeters, DecimetersTolerance);
+                Assert.Equal(LengthUnit.Decimeter, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 分米", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Decimeters, DecimetersTolerance);
+                Assert.Equal(LengthUnit.Decimeter, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 fathom", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Fathoms, FathomsTolerance);
+                Assert.Equal(LengthUnit.Fathom, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 ft", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Feet, FeetTolerance);
+                Assert.Equal(LengthUnit.Foot, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 '", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Feet, FeetTolerance);
+                Assert.Equal(LengthUnit.Foot, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 ′", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Feet, FeetTolerance);
+                Assert.Equal(LengthUnit.Foot, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 фут", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Feet, FeetTolerance);
+                Assert.Equal(LengthUnit.Foot, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 英尺", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Feet, FeetTolerance);
+                Assert.Equal(LengthUnit.Foot, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Hands, HandsTolerance);
+                Assert.Equal(LengthUnit.Hand, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 hh", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Hands, HandsTolerance);
+                Assert.Equal(LengthUnit.Hand, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 hm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Hectometers, HectometersTolerance);
+                Assert.Equal(LengthUnit.Hectometer, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 гм", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Hectometers, HectometersTolerance);
+                Assert.Equal(LengthUnit.Hectometer, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 百米", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Hectometers, HectometersTolerance);
+                Assert.Equal(LengthUnit.Hectometer, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 in", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Inches, InchesTolerance);
+                Assert.Equal(LengthUnit.Inch, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 \"", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Inches, InchesTolerance);
+                Assert.Equal(LengthUnit.Inch, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 ″", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Inches, InchesTolerance);
+                Assert.Equal(LengthUnit.Inch, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 дюйм", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Inches, InchesTolerance);
+                Assert.Equal(LengthUnit.Inch, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 英寸", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Inches, InchesTolerance);
+                Assert.Equal(LengthUnit.Inch, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 kly", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilolightYears, KilolightYearsTolerance);
+                Assert.Equal(LengthUnit.KilolightYear, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 km", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kilometers, KilometersTolerance);
+                Assert.Equal(LengthUnit.Kilometer, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 км", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kilometers, KilometersTolerance);
+                Assert.Equal(LengthUnit.Kilometer, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 千米", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kilometers, KilometersTolerance);
+                Assert.Equal(LengthUnit.Kilometer, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 kpc", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kiloparsecs, KiloparsecsTolerance);
+                Assert.Equal(LengthUnit.Kiloparsec, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 ly", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.LightYears, LightYearsTolerance);
+                Assert.Equal(LengthUnit.LightYear, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 Mly", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MegalightYears, MegalightYearsTolerance);
+                Assert.Equal(LengthUnit.MegalightYear, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 兆米", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Megameters, MegametersTolerance);
+                Assert.Equal(LengthUnit.Megameter, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 Mpc", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Megaparsecs, MegaparsecsTolerance);
+                Assert.Equal(LengthUnit.Megaparsec, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Meters, MetersTolerance);
+                Assert.Equal(LengthUnit.Meter, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 м", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Meters, MetersTolerance);
+                Assert.Equal(LengthUnit.Meter, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 米", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Meters, MetersTolerance);
+                Assert.Equal(LengthUnit.Meter, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 µin", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Microinches, MicroinchesTolerance);
+                Assert.Equal(LengthUnit.Microinch, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 микродюйм", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Microinches, MicroinchesTolerance);
+                Assert.Equal(LengthUnit.Microinch, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 微英寸", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Microinches, MicroinchesTolerance);
+                Assert.Equal(LengthUnit.Microinch, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 µm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Micrometers, MicrometersTolerance);
+                Assert.Equal(LengthUnit.Micrometer, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 мкм", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Micrometers, MicrometersTolerance);
+                Assert.Equal(LengthUnit.Micrometer, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 微米", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Micrometers, MicrometersTolerance);
+                Assert.Equal(LengthUnit.Micrometer, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 mil", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Mils, MilsTolerance);
+                Assert.Equal(LengthUnit.Mil, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 密耳", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Mils, MilsTolerance);
+                Assert.Equal(LengthUnit.Mil, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 mi", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Miles, MilesTolerance);
+                Assert.Equal(LengthUnit.Mile, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 миля", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Miles, MilesTolerance);
+                Assert.Equal(LengthUnit.Mile, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 英里", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Miles, MilesTolerance);
+                Assert.Equal(LengthUnit.Mile, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 毫米", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Millimeters, MillimetersTolerance);
+                Assert.Equal(LengthUnit.Millimeter, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 нм", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Nanometers, NanometersTolerance);
+                Assert.Equal(LengthUnit.Nanometer, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 pc", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Parsecs, ParsecsTolerance);
+                Assert.Equal(LengthUnit.Parsec, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 shackle", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Shackles, ShacklesTolerance);
+                Assert.Equal(LengthUnit.Shackle, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 R⊙", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SolarRadiuses, SolarRadiusesTolerance);
+                Assert.Equal(LengthUnit.SolarRadius, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 twip", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Twips, TwipsTolerance);
+                Assert.Equal(LengthUnit.Twip, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 ftUS", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.UsSurveyFeet, UsSurveyFeetTolerance);
+                Assert.Equal(LengthUnit.UsSurveyFoot, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 yd", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Yards, YardsTolerance);
+                Assert.Equal(LengthUnit.Yard, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 ярд", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Yards, YardsTolerance);
+                Assert.Equal(LengthUnit.Yard, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 码", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Yards, YardsTolerance);
+                Assert.Equal(LengthUnit.Yard, parsed.Unit);
+            }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = Length.ParseUnit("Å", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.Angstrom, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("A", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.Angstrom, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("au", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.AstronomicalUnit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("ua", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.AstronomicalUnit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("cm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.Centimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("см", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(LengthUnit.Centimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("厘米", CultureInfo.GetCultureInfo("zh-CN"));
+                Assert.Equal(LengthUnit.Centimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("ch", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.Chain, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("DM", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.DataMile, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("dam", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.Decameter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("дам", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(LengthUnit.Decameter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("十米", CultureInfo.GetCultureInfo("zh-CN"));
+                Assert.Equal(LengthUnit.Decameter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("dm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.Decimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("дм", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(LengthUnit.Decimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("分米", CultureInfo.GetCultureInfo("zh-CN"));
+                Assert.Equal(LengthUnit.Decimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("pica", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.DtpPica, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("pt", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.DtpPoint, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("fathom", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.Fathom, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("ft", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.Foot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("'", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.Foot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("′", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.Foot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("фут", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(LengthUnit.Foot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("英尺", CultureInfo.GetCultureInfo("zh-CN"));
+                Assert.Equal(LengthUnit.Foot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("h", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.Hand, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("hh", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.Hand, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("hm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.Hectometer, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("гм", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(LengthUnit.Hectometer, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("百米", CultureInfo.GetCultureInfo("zh-CN"));
+                Assert.Equal(LengthUnit.Hectometer, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("in", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.Inch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("\"", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.Inch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("″", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.Inch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("дюйм", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(LengthUnit.Inch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("英寸", CultureInfo.GetCultureInfo("zh-CN"));
+                Assert.Equal(LengthUnit.Inch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("kly", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.KilolightYear, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("km", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.Kilometer, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("км", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(LengthUnit.Kilometer, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("千米", CultureInfo.GetCultureInfo("zh-CN"));
+                Assert.Equal(LengthUnit.Kilometer, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("kpc", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.Kiloparsec, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("ly", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.LightYear, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("Mly", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.MegalightYear, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("Mm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.Megameter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("Мм", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(LengthUnit.Megameter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("兆米", CultureInfo.GetCultureInfo("zh-CN"));
+                Assert.Equal(LengthUnit.Megameter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("Mpc", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.Megaparsec, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.Meter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("м", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(LengthUnit.Meter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("米", CultureInfo.GetCultureInfo("zh-CN"));
+                Assert.Equal(LengthUnit.Meter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("µin", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.Microinch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("микродюйм", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(LengthUnit.Microinch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("微英寸", CultureInfo.GetCultureInfo("zh-CN"));
+                Assert.Equal(LengthUnit.Microinch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("µm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.Micrometer, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("мкм", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(LengthUnit.Micrometer, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("微米", CultureInfo.GetCultureInfo("zh-CN"));
+                Assert.Equal(LengthUnit.Micrometer, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("mil", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.Mil, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("мил", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(LengthUnit.Mil, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("密耳", CultureInfo.GetCultureInfo("zh-CN"));
+                Assert.Equal(LengthUnit.Mil, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("mi", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.Mile, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("миля", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(LengthUnit.Mile, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("英里", CultureInfo.GetCultureInfo("zh-CN"));
+                Assert.Equal(LengthUnit.Mile, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("mm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.Millimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("мм", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(LengthUnit.Millimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("毫米", CultureInfo.GetCultureInfo("zh-CN"));
+                Assert.Equal(LengthUnit.Millimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("nm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.Nanometer, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("нм", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(LengthUnit.Nanometer, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("纳米", CultureInfo.GetCultureInfo("zh-CN"));
+                Assert.Equal(LengthUnit.Nanometer, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("NM", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.NauticalMile, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("мил", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(LengthUnit.NauticalMile, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("纳米", CultureInfo.GetCultureInfo("zh-CN"));
+                Assert.Equal(LengthUnit.NauticalMile, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("pc", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.Parsec, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("pica", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.PrinterPica, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("pt", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.PrinterPoint, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("shackle", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.Shackle, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("R⊙", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.SolarRadius, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("twip", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.Twip, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("ftUS", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.UsSurveyFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("yd", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.Yard, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("ярд", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(LengthUnit.Yard, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("码", CultureInfo.GetCultureInfo("zh-CN"));
+                Assert.Equal(LengthUnit.Yard, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            {
+                Assert.True(Length.TryParseUnit("Å", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Angstrom, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("A", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Angstrom, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("au", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LengthUnit.AstronomicalUnit, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("ua", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LengthUnit.AstronomicalUnit, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("cm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Centimeter, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("см", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Centimeter, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("厘米", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Centimeter, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("ch", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Chain, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("dam", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Decameter, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("дам", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Decameter, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("十米", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Decameter, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("дм", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Decimeter, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("分米", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Decimeter, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("fathom", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Fathom, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("ft", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Foot, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("'", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Foot, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("′", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Foot, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("фут", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Foot, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("英尺", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Foot, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Hand, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("hh", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Hand, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("hm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Hectometer, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("гм", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Hectometer, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("百米", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Hectometer, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("in", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Inch, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("\"", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Inch, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("″", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Inch, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("дюйм", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Inch, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("英寸", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Inch, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("kly", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LengthUnit.KilolightYear, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("km", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Kilometer, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("км", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Kilometer, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("千米", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Kilometer, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("kpc", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Kiloparsec, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("ly", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LengthUnit.LightYear, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("Mly", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LengthUnit.MegalightYear, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("兆米", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Megameter, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("Mpc", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Megaparsec, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Meter, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("м", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Meter, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("米", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Meter, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("µin", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Microinch, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("микродюйм", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Microinch, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("微英寸", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Microinch, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("µm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Micrometer, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("мкм", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Micrometer, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("微米", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Micrometer, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("mil", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Mil, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("密耳", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Mil, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("mi", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Mile, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("миля", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Mile, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("英里", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Mile, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("毫米", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Millimeter, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("нм", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Nanometer, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("pc", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Parsec, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("shackle", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Shackle, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("R⊙", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LengthUnit.SolarRadius, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("twip", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Twip, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("ftUS", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LengthUnit.UsSurveyFoot, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("yd", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Yard, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("ярд", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Yard, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("码", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Yard, parsedUnit);
+            }
+
         }
 
         [Theory]
@@ -527,7 +2251,7 @@ namespace UnitsNet.Tests
             var converted = inBaseUnits.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
         }
 
@@ -544,14 +2268,19 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(LengthUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = Length.Units.FirstOrDefault(u => u != Length.BaseUnit && u != LengthUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if (fromUnit == LengthUnit.Undefined)
-                fromUnit = Length.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = Length.Units.First(u => u != Length.BaseUnit);
 
             var quantity = Length.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(LengthUnit unit)
+        {
+            var quantity = default(Length);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }
@@ -564,6 +2293,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Length.FromAstronomicalUnits(meter.AstronomicalUnits).Meters, AstronomicalUnitsTolerance);
             AssertEx.EqualTolerance(1, Length.FromCentimeters(meter.Centimeters).Meters, CentimetersTolerance);
             AssertEx.EqualTolerance(1, Length.FromChains(meter.Chains).Meters, ChainsTolerance);
+            AssertEx.EqualTolerance(1, Length.FromDataMiles(meter.DataMiles).Meters, DataMilesTolerance);
             AssertEx.EqualTolerance(1, Length.FromDecameters(meter.Decameters).Meters, DecametersTolerance);
             AssertEx.EqualTolerance(1, Length.FromDecimeters(meter.Decimeters).Meters, DecimetersTolerance);
             AssertEx.EqualTolerance(1, Length.FromDtpPicas(meter.DtpPicas).Meters, DtpPicasTolerance);
@@ -578,6 +2308,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Length.FromKiloparsecs(meter.Kiloparsecs).Meters, KiloparsecsTolerance);
             AssertEx.EqualTolerance(1, Length.FromLightYears(meter.LightYears).Meters, LightYearsTolerance);
             AssertEx.EqualTolerance(1, Length.FromMegalightYears(meter.MegalightYears).Meters, MegalightYearsTolerance);
+            AssertEx.EqualTolerance(1, Length.FromMegameters(meter.Megameters).Meters, MegametersTolerance);
             AssertEx.EqualTolerance(1, Length.FromMegaparsecs(meter.Megaparsecs).Meters, MegaparsecsTolerance);
             AssertEx.EqualTolerance(1, Length.FromMeters(meter.Meters).Meters, MetersTolerance);
             AssertEx.EqualTolerance(1, Length.FromMicroinches(meter.Microinches).Meters, MicroinchesTolerance);
@@ -650,47 +2381,45 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => meter.CompareTo(null));
         }
 
-        [Fact]
-        public void EqualityOperators()
+        [Theory]
+        [InlineData(1, LengthUnit.Meter, 1, LengthUnit.Meter, true)]  // Same value and unit.
+        [InlineData(1, LengthUnit.Meter, 2, LengthUnit.Meter, false)] // Different value.
+        [InlineData(2, LengthUnit.Meter, 1, LengthUnit.Angstrom, false)] // Different value and unit.
+        [InlineData(1, LengthUnit.Meter, 1, LengthUnit.Angstrom, false)] // Different unit.
+        public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, LengthUnit unitA, double valueB, LengthUnit unitB, bool expectEqual)
         {
-            var a = Length.FromMeters(1);
-            var b = Length.FromMeters(2);
+            var a = new Length(valueA, unitA);
+            var b = new Length(valueB, unitB);
 
-#pragma warning disable CS8073
-// ReSharper disable EqualExpressionComparison
+            // Operator overloads.
+            Assert.Equal(expectEqual, a == b);
+            Assert.Equal(expectEqual, b == a);
+            Assert.Equal(!expectEqual, a != b);
+            Assert.Equal(!expectEqual, b != a);
 
-            Assert.True(a == a);
-            Assert.False(a != a);
+            // IEquatable<T>
+            Assert.Equal(expectEqual, a.Equals(b));
+            Assert.Equal(expectEqual, b.Equals(a));
 
-            Assert.True(a != b);
-            Assert.False(a == b);
+            // IEquatable
+            Assert.Equal(expectEqual, a.Equals((object)b));
+            Assert.Equal(expectEqual, b.Equals((object)a));
+        }
 
+        [Fact]
+        public void Equals_Null_ReturnsFalse()
+        {
+            var a = Length.Zero;
+
+            Assert.False(a.Equals((object)null));
+
+            // "The result of the expression is always 'false'..."
+            #pragma warning disable CS8073
             Assert.False(a == null);
             Assert.False(null == a);
-
-// ReSharper restore EqualExpressionComparison
-#pragma warning restore CS8073
-        }
-
-        [Fact]
-        public void Equals_SameType_IsImplemented()
-        {
-            var a = Length.FromMeters(1);
-            var b = Length.FromMeters(2);
-
-            Assert.True(a.Equals(a));
-            Assert.False(a.Equals(b));
-        }
-
-        [Fact]
-        public void Equals_QuantityAsObject_IsImplemented()
-        {
-            object a = Length.FromMeters(1);
-            object b = Length.FromMeters(2);
-
-            Assert.True(a.Equals(a));
-            Assert.False(a.Equals(b));
-            Assert.False(a.Equals((object)null));
+            Assert.True(a != null);
+            Assert.True(null != a);
+            #pragma warning restore CS8073
         }
 
         [Fact]
@@ -723,20 +2452,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(LengthUnit.Undefined, Length.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(LengthUnit)).Cast<LengthUnit>();
-            foreach(var unit in units)
+            foreach (var unit in units)
             {
-                if (unit == LengthUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }
@@ -750,13 +2470,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentUICulture;
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            var prevCulture = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             try {
                 Assert.Equal("1 Å", new Length(1, LengthUnit.Angstrom).ToString());
                 Assert.Equal("1 au", new Length(1, LengthUnit.AstronomicalUnit).ToString());
                 Assert.Equal("1 cm", new Length(1, LengthUnit.Centimeter).ToString());
                 Assert.Equal("1 ch", new Length(1, LengthUnit.Chain).ToString());
+                Assert.Equal("1 DM", new Length(1, LengthUnit.DataMile).ToString());
                 Assert.Equal("1 dam", new Length(1, LengthUnit.Decameter).ToString());
                 Assert.Equal("1 dm", new Length(1, LengthUnit.Decimeter).ToString());
                 Assert.Equal("1 pica", new Length(1, LengthUnit.DtpPica).ToString());
@@ -771,6 +2492,7 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 kpc", new Length(1, LengthUnit.Kiloparsec).ToString());
                 Assert.Equal("1 ly", new Length(1, LengthUnit.LightYear).ToString());
                 Assert.Equal("1 Mly", new Length(1, LengthUnit.MegalightYear).ToString());
+                Assert.Equal("1 Mm", new Length(1, LengthUnit.Megameter).ToString());
                 Assert.Equal("1 Mpc", new Length(1, LengthUnit.Megaparsec).ToString());
                 Assert.Equal("1 m", new Length(1, LengthUnit.Meter).ToString());
                 Assert.Equal("1 µin", new Length(1, LengthUnit.Microinch).ToString());
@@ -791,7 +2513,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                Thread.CurrentThread.CurrentUICulture = prevCulture;
+                Thread.CurrentThread.CurrentCulture = prevCulture;
             }
         }
 
@@ -805,6 +2527,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 au", new Length(1, LengthUnit.AstronomicalUnit).ToString(swedishCulture));
             Assert.Equal("1 cm", new Length(1, LengthUnit.Centimeter).ToString(swedishCulture));
             Assert.Equal("1 ch", new Length(1, LengthUnit.Chain).ToString(swedishCulture));
+            Assert.Equal("1 DM", new Length(1, LengthUnit.DataMile).ToString(swedishCulture));
             Assert.Equal("1 dam", new Length(1, LengthUnit.Decameter).ToString(swedishCulture));
             Assert.Equal("1 dm", new Length(1, LengthUnit.Decimeter).ToString(swedishCulture));
             Assert.Equal("1 pica", new Length(1, LengthUnit.DtpPica).ToString(swedishCulture));
@@ -819,6 +2542,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 kpc", new Length(1, LengthUnit.Kiloparsec).ToString(swedishCulture));
             Assert.Equal("1 ly", new Length(1, LengthUnit.LightYear).ToString(swedishCulture));
             Assert.Equal("1 Mly", new Length(1, LengthUnit.MegalightYear).ToString(swedishCulture));
+            Assert.Equal("1 Mm", new Length(1, LengthUnit.Megameter).ToString(swedishCulture));
             Assert.Equal("1 Mpc", new Length(1, LengthUnit.Megaparsec).ToString(swedishCulture));
             Assert.Equal("1 m", new Length(1, LengthUnit.Meter).ToString(swedishCulture));
             Assert.Equal("1 µin", new Length(1, LengthUnit.Microinch).ToString(swedishCulture));
@@ -841,10 +2565,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentUICulture;
+            var oldCulture = CultureInfo.CurrentCulture;
             try
             {
-                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
                 Assert.Equal("0.1 m", new Length(0.123456, LengthUnit.Meter).ToString("s1"));
                 Assert.Equal("0.12 m", new Length(0.123456, LengthUnit.Meter).ToString("s2"));
                 Assert.Equal("0.123 m", new Length(0.123456, LengthUnit.Meter).ToString("s3"));
@@ -852,7 +2576,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                CultureInfo.CurrentUICulture = oldCulture;
+                CultureInfo.CurrentCulture = oldCulture;
             }
         }
 
@@ -866,28 +2590,27 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 m", new Length(0.123456, LengthUnit.Meter).ToString("s4", culture));
         }
 
-
-        [Fact]
-        public void ToString_NullFormat_ThrowsArgumentNullException()
+        [Theory]
+        [InlineData(null)]
+        [InlineData("en-US")]
+        public void ToString_NullFormat_DefaultsToGeneralFormat(string cultureName)
         {
             var quantity = Length.FromMeters(1.0);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, null, null));
+            CultureInfo formatProvider = cultureName == null
+                ? null
+                : CultureInfo.GetCultureInfo(cultureName);
+
+            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
         }
 
-        [Fact]
-        public void ToString_NullArgs_ThrowsArgumentNullException()
+        [Theory]
+        [InlineData(null)]
+        [InlineData("g")]
+        public void ToString_NullProvider_EqualsCurrentCulture(string format)
         {
             var quantity = Length.FromMeters(1.0);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, "g", null));
+            Assert.Equal(quantity.ToString(format, CultureInfo.CurrentCulture), quantity.ToString(format, null));
         }
-
-        [Fact]
-        public void ToString_NullProvider_EqualsCurrentUICulture()
-        {
-            var quantity = Length.FromMeters(1.0);
-            Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
-        }
-
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()
@@ -1006,13 +2729,6 @@ namespace UnitsNet.Tests
         {
             var quantity = Length.FromMeters(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(LengthUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = Length.FromMeters(1.0);
-            Assert.Equal(QuantityType.Length, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

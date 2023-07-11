@@ -25,18 +25,19 @@ namespace UnitsNet.Units
 
     public enum FrequencyUnit
     {
-        Undefined = 0,
-        BeatPerMinute,
-        BUnit,
-        CyclePerHour,
-        CyclePerMinute,
-        Gigahertz,
-        Hertz,
-        Kilohertz,
-        Megahertz,
-        PerSecond,
-        RadianPerSecond,
-        Terahertz,
+        BeatPerMinute = 1,
+        BUnit = 2,
+        CyclePerHour = 3,
+        CyclePerMinute = 4,
+        Gigahertz = 5,
+        Hertz = 6,
+        Kilohertz = 7,
+        Megahertz = 8,
+        Microhertz = 16,
+        Millihertz = 21,
+        PerSecond = 9,
+        RadianPerSecond = 10,
+        Terahertz = 11,
     }
 
     #pragma warning restore 1591

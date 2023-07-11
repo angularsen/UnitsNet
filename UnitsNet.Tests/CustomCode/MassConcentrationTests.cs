@@ -88,7 +88,7 @@ namespace UnitsNet.Tests.CustomCode
         [Theory]
         [InlineData(60.02, MassConcentrationUnit.KilogramPerCubicMeter,
                     58.443, MolarMassUnit.GramPerMole,
-                    1026.98355, MolarityUnit.MolesPerCubicMeter)]    // test from JonathanDavies626
+                    1026.98355, MolarityUnit.MolePerCubicMeter)]    // test from JonathanDavies626
         public void MolarityFromMassConcentrationAndMolarMass(
             double massConcValue, MassConcentrationUnit massConcUnit,
             double molarMassValue, MolarMassUnit molarMassUnit,
@@ -135,7 +135,6 @@ namespace UnitsNet.Tests.CustomCode
 
             AssertEx.EqualTolerance(expectedMassValue, massComponent.As(expectedMassUnit), tolerance);
         }
-
 
         [Fact(Skip = "No BaseUnit defined: see https://github.com/angularsen/UnitsNet/issues/651")]
         public void DefaultSIUnitIsKgPerCubicMeter()

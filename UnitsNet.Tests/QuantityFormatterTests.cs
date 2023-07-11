@@ -109,8 +109,17 @@ namespace UnitsNet.Tests
         {
             var length = Length.FromMeters(123456789.987654321);
 
-            var expected = string.Format(CultureInfo.CurrentUICulture, $"{{0:{format}}} {{1:a}}", length.Value, length);
+            var expected = string.Format(CultureInfo.CurrentCulture, $"{{0:{format}}} {{1:a}}", length.Value, length);
             Assert.Equal(expected, QuantityFormatter.Format(length, format));
+        }
+
+        [Fact]
+        public static void StandardNumericFormatStringsAsPartOfLongerFormatStringsWork()
+        {
+            var length = Length.FromMeters(123.321);
+            var expected = "The distance is 123.3 m";
+            var actual = $"The distance is {length.ToString("F1", CultureInfo.InvariantCulture)}";
+            Assert.Equal(expected, actual);
         }
 
         [Theory]
@@ -133,7 +142,7 @@ namespace UnitsNet.Tests
         {
             var length = Length.FromMeters(123456789.987654321);
 
-            var expected = string.Format(CultureInfo.CurrentUICulture, $"{{0:{format}}} {{1:a}}", length.Value, length);
+            var expected = string.Format(CultureInfo.CurrentCulture, $"{{0:{format}}} {{1:a}}", length.Value, length);
             Assert.Equal(expected, QuantityFormatter.Format(length, format));
         }
     }

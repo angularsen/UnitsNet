@@ -404,107 +404,107 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(MassMomentOfInertiaUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(MassMomentOfInertiaUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public MassMomentOfInertia ToUnit(MassMomentOfInertiaUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new MassMomentOfInertia(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public MassMomentOfInertia ToUnit(MassMomentOfInertiaUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new MassMomentOfInertia(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                MassMomentOfInertiaUnit.GramSquareCentimeter => _value / 1e7,
-                MassMomentOfInertiaUnit.GramSquareDecimeter => _value / 1e5,
-                MassMomentOfInertiaUnit.GramSquareMeter => _value / 1e3,
-                MassMomentOfInertiaUnit.GramSquareMillimeter => _value / 1e9,
-                MassMomentOfInertiaUnit.KilogramSquareCentimeter => (_value / 1e7) * 1e3d,
-                MassMomentOfInertiaUnit.KilogramSquareDecimeter => (_value / 1e5) * 1e3d,
-                MassMomentOfInertiaUnit.KilogramSquareMeter => (_value / 1e3) * 1e3d,
-                MassMomentOfInertiaUnit.KilogramSquareMillimeter => (_value / 1e9) * 1e3d,
-                MassMomentOfInertiaUnit.KilotonneSquareCentimeter => (_value / 1e1) * 1e3d,
-                MassMomentOfInertiaUnit.KilotonneSquareDecimeter => (_value / 1e-1) * 1e3d,
-                MassMomentOfInertiaUnit.KilotonneSquareMeter => (_value / 1e-3) * 1e3d,
-                MassMomentOfInertiaUnit.KilotonneSquareMilimeter => (_value / 1e3) * 1e3d,
-                MassMomentOfInertiaUnit.MegatonneSquareCentimeter => (_value / 1e1) * 1e6d,
-                MassMomentOfInertiaUnit.MegatonneSquareDecimeter => (_value / 1e-1) * 1e6d,
-                MassMomentOfInertiaUnit.MegatonneSquareMeter => (_value / 1e-3) * 1e6d,
-                MassMomentOfInertiaUnit.MegatonneSquareMilimeter => (_value / 1e3) * 1e6d,
-                MassMomentOfInertiaUnit.MilligramSquareCentimeter => (_value / 1e7) * 1e-3d,
-                MassMomentOfInertiaUnit.MilligramSquareDecimeter => (_value / 1e5) * 1e-3d,
-                MassMomentOfInertiaUnit.MilligramSquareMeter => (_value / 1e3) * 1e-3d,
-                MassMomentOfInertiaUnit.MilligramSquareMillimeter => (_value / 1e9) * 1e-3d,
-                MassMomentOfInertiaUnit.PoundSquareFoot => _value * 4.21401101e-2,
-                MassMomentOfInertiaUnit.PoundSquareInch => _value * 2.9263965e-4,
-                MassMomentOfInertiaUnit.SlugSquareFoot => _value * 1.3558179619,
-                MassMomentOfInertiaUnit.SlugSquareInch => _value * 9.41540242e-3,
-                MassMomentOfInertiaUnit.TonneSquareCentimeter => _value / 1e1,
-                MassMomentOfInertiaUnit.TonneSquareDecimeter => _value / 1e-1,
-                MassMomentOfInertiaUnit.TonneSquareMeter => _value / 1e-3,
-                MassMomentOfInertiaUnit.TonneSquareMilimeter => _value / 1e3,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        MassMomentOfInertiaUnit.GramSquareCentimeter => _value / 1e7,
+                        MassMomentOfInertiaUnit.GramSquareDecimeter => _value / 1e5,
+                        MassMomentOfInertiaUnit.GramSquareMeter => _value / 1e3,
+                        MassMomentOfInertiaUnit.GramSquareMillimeter => _value / 1e9,
+                        MassMomentOfInertiaUnit.KilogramSquareCentimeter => (_value / 1e7) * 1e3d,
+                        MassMomentOfInertiaUnit.KilogramSquareDecimeter => (_value / 1e5) * 1e3d,
+                        MassMomentOfInertiaUnit.KilogramSquareMeter => (_value / 1e3) * 1e3d,
+                        MassMomentOfInertiaUnit.KilogramSquareMillimeter => (_value / 1e9) * 1e3d,
+                        MassMomentOfInertiaUnit.KilotonneSquareCentimeter => (_value / 1e1) * 1e3d,
+                        MassMomentOfInertiaUnit.KilotonneSquareDecimeter => (_value / 1e-1) * 1e3d,
+                        MassMomentOfInertiaUnit.KilotonneSquareMeter => (_value / 1e-3) * 1e3d,
+                        MassMomentOfInertiaUnit.KilotonneSquareMilimeter => (_value / 1e3) * 1e3d,
+                        MassMomentOfInertiaUnit.MegatonneSquareCentimeter => (_value / 1e1) * 1e6d,
+                        MassMomentOfInertiaUnit.MegatonneSquareDecimeter => (_value / 1e-1) * 1e6d,
+                        MassMomentOfInertiaUnit.MegatonneSquareMeter => (_value / 1e-3) * 1e6d,
+                        MassMomentOfInertiaUnit.MegatonneSquareMilimeter => (_value / 1e3) * 1e6d,
+                        MassMomentOfInertiaUnit.MilligramSquareCentimeter => (_value / 1e7) * 1e-3d,
+                        MassMomentOfInertiaUnit.MilligramSquareDecimeter => (_value / 1e5) * 1e-3d,
+                        MassMomentOfInertiaUnit.MilligramSquareMeter => (_value / 1e3) * 1e-3d,
+                        MassMomentOfInertiaUnit.MilligramSquareMillimeter => (_value / 1e9) * 1e-3d,
+                        MassMomentOfInertiaUnit.PoundSquareFoot => _value * 4.21401101e-2,
+                        MassMomentOfInertiaUnit.PoundSquareInch => _value * 2.9263965e-4,
+                        MassMomentOfInertiaUnit.SlugSquareFoot => _value * 1.3558179619,
+                        MassMomentOfInertiaUnit.SlugSquareInch => _value * 9.41540242e-3,
+                        MassMomentOfInertiaUnit.TonneSquareCentimeter => _value / 1e1,
+                        MassMomentOfInertiaUnit.TonneSquareDecimeter => _value / 1e-1,
+                        MassMomentOfInertiaUnit.TonneSquareMeter => _value / 1e-3,
+                        MassMomentOfInertiaUnit.TonneSquareMilimeter => _value / 1e3,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(MassMomentOfInertiaUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(MassMomentOfInertiaUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                MassMomentOfInertiaUnit.GramSquareCentimeter => baseUnitValue * 1e7,
-                MassMomentOfInertiaUnit.GramSquareDecimeter => baseUnitValue * 1e5,
-                MassMomentOfInertiaUnit.GramSquareMeter => baseUnitValue * 1e3,
-                MassMomentOfInertiaUnit.GramSquareMillimeter => baseUnitValue * 1e9,
-                MassMomentOfInertiaUnit.KilogramSquareCentimeter => (baseUnitValue * 1e7) / 1e3d,
-                MassMomentOfInertiaUnit.KilogramSquareDecimeter => (baseUnitValue * 1e5) / 1e3d,
-                MassMomentOfInertiaUnit.KilogramSquareMeter => (baseUnitValue * 1e3) / 1e3d,
-                MassMomentOfInertiaUnit.KilogramSquareMillimeter => (baseUnitValue * 1e9) / 1e3d,
-                MassMomentOfInertiaUnit.KilotonneSquareCentimeter => (baseUnitValue * 1e1) / 1e3d,
-                MassMomentOfInertiaUnit.KilotonneSquareDecimeter => (baseUnitValue * 1e-1) / 1e3d,
-                MassMomentOfInertiaUnit.KilotonneSquareMeter => (baseUnitValue * 1e-3) / 1e3d,
-                MassMomentOfInertiaUnit.KilotonneSquareMilimeter => (baseUnitValue * 1e3) / 1e3d,
-                MassMomentOfInertiaUnit.MegatonneSquareCentimeter => (baseUnitValue * 1e1) / 1e6d,
-                MassMomentOfInertiaUnit.MegatonneSquareDecimeter => (baseUnitValue * 1e-1) / 1e6d,
-                MassMomentOfInertiaUnit.MegatonneSquareMeter => (baseUnitValue * 1e-3) / 1e6d,
-                MassMomentOfInertiaUnit.MegatonneSquareMilimeter => (baseUnitValue * 1e3) / 1e6d,
-                MassMomentOfInertiaUnit.MilligramSquareCentimeter => (baseUnitValue * 1e7) / 1e-3d,
-                MassMomentOfInertiaUnit.MilligramSquareDecimeter => (baseUnitValue * 1e5) / 1e-3d,
-                MassMomentOfInertiaUnit.MilligramSquareMeter => (baseUnitValue * 1e3) / 1e-3d,
-                MassMomentOfInertiaUnit.MilligramSquareMillimeter => (baseUnitValue * 1e9) / 1e-3d,
-                MassMomentOfInertiaUnit.PoundSquareFoot => baseUnitValue / 4.21401101e-2,
-                MassMomentOfInertiaUnit.PoundSquareInch => baseUnitValue / 2.9263965e-4,
-                MassMomentOfInertiaUnit.SlugSquareFoot => baseUnitValue / 1.3558179619,
-                MassMomentOfInertiaUnit.SlugSquareInch => baseUnitValue / 9.41540242e-3,
-                MassMomentOfInertiaUnit.TonneSquareCentimeter => baseUnitValue * 1e1,
-                MassMomentOfInertiaUnit.TonneSquareDecimeter => baseUnitValue * 1e-1,
-                MassMomentOfInertiaUnit.TonneSquareMeter => baseUnitValue * 1e-3,
-                MassMomentOfInertiaUnit.TonneSquareMilimeter => baseUnitValue * 1e3,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        MassMomentOfInertiaUnit.GramSquareCentimeter => baseUnitValue * 1e7,
+                        MassMomentOfInertiaUnit.GramSquareDecimeter => baseUnitValue * 1e5,
+                        MassMomentOfInertiaUnit.GramSquareMeter => baseUnitValue * 1e3,
+                        MassMomentOfInertiaUnit.GramSquareMillimeter => baseUnitValue * 1e9,
+                        MassMomentOfInertiaUnit.KilogramSquareCentimeter => (baseUnitValue * 1e7) / 1e3d,
+                        MassMomentOfInertiaUnit.KilogramSquareDecimeter => (baseUnitValue * 1e5) / 1e3d,
+                        MassMomentOfInertiaUnit.KilogramSquareMeter => (baseUnitValue * 1e3) / 1e3d,
+                        MassMomentOfInertiaUnit.KilogramSquareMillimeter => (baseUnitValue * 1e9) / 1e3d,
+                        MassMomentOfInertiaUnit.KilotonneSquareCentimeter => (baseUnitValue * 1e1) / 1e3d,
+                        MassMomentOfInertiaUnit.KilotonneSquareDecimeter => (baseUnitValue * 1e-1) / 1e3d,
+                        MassMomentOfInertiaUnit.KilotonneSquareMeter => (baseUnitValue * 1e-3) / 1e3d,
+                        MassMomentOfInertiaUnit.KilotonneSquareMilimeter => (baseUnitValue * 1e3) / 1e3d,
+                        MassMomentOfInertiaUnit.MegatonneSquareCentimeter => (baseUnitValue * 1e1) / 1e6d,
+                        MassMomentOfInertiaUnit.MegatonneSquareDecimeter => (baseUnitValue * 1e-1) / 1e6d,
+                        MassMomentOfInertiaUnit.MegatonneSquareMeter => (baseUnitValue * 1e-3) / 1e6d,
+                        MassMomentOfInertiaUnit.MegatonneSquareMilimeter => (baseUnitValue * 1e3) / 1e6d,
+                        MassMomentOfInertiaUnit.MilligramSquareCentimeter => (baseUnitValue * 1e7) / 1e-3d,
+                        MassMomentOfInertiaUnit.MilligramSquareDecimeter => (baseUnitValue * 1e5) / 1e-3d,
+                        MassMomentOfInertiaUnit.MilligramSquareMeter => (baseUnitValue * 1e3) / 1e-3d,
+                        MassMomentOfInertiaUnit.MilligramSquareMillimeter => (baseUnitValue * 1e9) / 1e-3d,
+                        MassMomentOfInertiaUnit.PoundSquareFoot => baseUnitValue / 4.21401101e-2,
+                        MassMomentOfInertiaUnit.PoundSquareInch => baseUnitValue / 2.9263965e-4,
+                        MassMomentOfInertiaUnit.SlugSquareFoot => baseUnitValue / 1.3558179619,
+                        MassMomentOfInertiaUnit.SlugSquareInch => baseUnitValue / 9.41540242e-3,
+                        MassMomentOfInertiaUnit.TonneSquareCentimeter => baseUnitValue * 1e1,
+                        MassMomentOfInertiaUnit.TonneSquareDecimeter => baseUnitValue * 1e-1,
+                        MassMomentOfInertiaUnit.TonneSquareMeter => baseUnitValue * 1e-3,
+                        MassMomentOfInertiaUnit.TonneSquareMilimeter => baseUnitValue * 1e3,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

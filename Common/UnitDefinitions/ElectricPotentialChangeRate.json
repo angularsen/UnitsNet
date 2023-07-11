@@ -1,7 +1,7 @@
 {
   "Name": "ElectricPotentialChangeRate",
   "BaseUnit": "VoltPerSecond",
-  "XmlDoc": "ElectricPotential change rate is the ratio of the electric potential change to the time during which the change occurred (value of electric potential changes per unit time).",
+  "XmlDocSummary": "ElectricPotential change rate is the ratio of the electric potential change to the time during which the change occurred (value of electric potential changes per unit time).",
   "BaseDimensions": {
     "L": 2,
     "M": 1,

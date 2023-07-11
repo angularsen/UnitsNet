@@ -1,0 +1,21 @@
+name: trigger-js-package-release # Trigger JS package re-generate and publish to NPM (https://github.com/haimkastner/unitsnet-js)
+
+on: # Trigger re-generate JS units once a new relaese created
+  release:
+    types: [created]
+  workflow_dispatch: {}
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call re-run generate & publish job 
+        env:
+          UNITSNET_JS_WORKFLOW_TOKEN: ${{ secrets.UNITSNET_JS_WORKFLOW_TOKEN }}
+        run: |
+          # Trigger dispatches event to rebuild unitsnet-js package 
+          curl --fail --location --request POST 'https://api.github.com/repos/haimkastner/unitsnet-js/actions/workflows/nodejs.yml/dispatches' \
+          --header 'Accept: application/vnd.github.everest-preview+json' \
+          --header 'Content-Type: application/json' \
+          --header "Authorization: Basic $UNITSNET_JS_WORKFLOW_TOKEN" \
+          --data-raw '{"ref": "master" }'

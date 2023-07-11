@@ -1,7 +1,7 @@
 ﻿$root = "$PSScriptRoot\.."
 $nugetOutDir = "$root\Artifacts\NuGet"
 
-function Invoke-Build-NanoNugets {
+function Invoke-BuildNanoNugets {
 
   & nuget pack "$root\UnitsNet.NanoFramework\GeneratedCode\Duration\UnitsNet.NanoFramework.Duration.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
   & nuget pack "$root\UnitsNet.NanoFramework\GeneratedCode\ElectricCurrent\UnitsNet.NanoFramework.ElectricCurrent.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
@@ -18,7 +18,10 @@ function Invoke-Build-NanoNugets {
   & nuget pack "$root\UnitsNet.NanoFramework\GeneratedCode\VolumeConcentration\UnitsNet.NanoFramework.VolumeConcentration.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
   & nuget pack "$root\UnitsNet.NanoFramework\GeneratedCode\Power\UnitsNet.NanoFramework.Power.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
   & nuget pack "$root\UnitsNet.NanoFramework\GeneratedCode\Density\UnitsNet.NanoFramework.Density.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
+  & nuget pack "$root\UnitsNet.NanoFramework\GeneratedCode\Mass\UnitsNet.NanoFramework.Mass.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
+  & nuget pack "$root\UnitsNet.NanoFramework\GeneratedCode\MassConcentration\UnitsNet.NanoFramework.MassConcentration.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
+  & nuget pack "$root\UnitsNet.NanoFramework\GeneratedCode\Angle\UnitsNet.NanoFramework.Angle.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
 
 }
 
-export-modulemember -function Invoke-Build-NanoNugets
+export-modulemember -function Invoke-BuildNanoNugets

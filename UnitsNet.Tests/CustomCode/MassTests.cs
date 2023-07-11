@@ -5,7 +5,7 @@ using System;
 using UnitsNet.Units;
 using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     public class MassTests : MassTestsBase
     {
@@ -63,6 +63,10 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double SolarMassesInOneKilogram => 5.0264643347223100000000000E-31;
 
+        protected override double FemtogramsInOneKilogram => 1E18;
+
+        protected override double PicogramsInOneKilogram => 1E15;
+
         //protected override double SolarMassesTolerance => 0.1;
 
         [Fact]
@@ -94,10 +98,38 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Fact]
+        public void MassDividedByAreaEqualsAreaDensity()
+        {
+            AreaDensity grammage = Mass.FromKilograms(0.9) / Area.FromSquareMeters(3);
+            Assert.Equal(AreaDensity.FromKilogramsPerSquareMeter(0.3), grammage);
+        }
+
+        [Fact]
+        public void MassDividedByAreaDensityEqualsArea()
+        {
+            Area area = Mass.FromKilograms(10) / AreaDensity.FromKilogramsPerSquareMeter(5);
+            Assert.Equal(Area.FromSquareMeters(2), area);
+        }
+
+        [Fact]
         public void MassTimesAccelerationEqualsForce()
         {
             Force force = Mass.FromKilograms(18)*Acceleration.FromMetersPerSecondSquared(3);
             Assert.Equal(force, Force.FromNewtons(54));
+        }
+
+        [Fact]
+        public void MassDividedByLengthEqualsLinearDensity()
+        {
+            LinearDensity linearDensity = Mass.FromKilograms(18) / Length.FromMeters(3);
+            Assert.Equal(linearDensity, LinearDensity.FromKilogramsPerMeter(6));
+        }
+
+        [Fact]
+        public void MassDividedByLinearDensityEqualsLength()
+        {
+            Length length = Mass.FromKilograms(18) / LinearDensity.FromKilogramsPerMeter(3);
+            Assert.Equal(length, Length.FromMeters(6));
         }
 
         [Fact]

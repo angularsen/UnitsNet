@@ -16,5 +16,11 @@ namespace UnitsNet
         {
             return Duration.FromHours(charge.AmpereHours / current.Amperes);
         }
+
+        /// <summary>Get <see cref="Energy"/> from <see cref="ElectricCharge"/> times <see cref="ElectricPotential"/> .</summary>
+        public static Energy operator *(ElectricCharge charge, ElectricPotential potential)
+        {
+            return Energy.FromJoules(potential.Volts * charge.Coulombs);
+        }
     }
 }

@@ -151,61 +151,61 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(ElectricPotentialDcUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(ElectricPotentialDcUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public ElectricPotentialDc ToUnit(ElectricPotentialDcUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new ElectricPotentialDc(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public ElectricPotentialDc ToUnit(ElectricPotentialDcUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new ElectricPotentialDc(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                ElectricPotentialDcUnit.KilovoltDc => (_value) * 1e3d,
-                ElectricPotentialDcUnit.MegavoltDc => (_value) * 1e6d,
-                ElectricPotentialDcUnit.MicrovoltDc => (_value) * 1e-6d,
-                ElectricPotentialDcUnit.MillivoltDc => (_value) * 1e-3d,
-                ElectricPotentialDcUnit.VoltDc => _value,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        ElectricPotentialDcUnit.KilovoltDc => (_value) * 1e3d,
+                        ElectricPotentialDcUnit.MegavoltDc => (_value) * 1e6d,
+                        ElectricPotentialDcUnit.MicrovoltDc => (_value) * 1e-6d,
+                        ElectricPotentialDcUnit.MillivoltDc => (_value) * 1e-3d,
+                        ElectricPotentialDcUnit.VoltDc => _value,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(ElectricPotentialDcUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(ElectricPotentialDcUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                ElectricPotentialDcUnit.KilovoltDc => (baseUnitValue) / 1e3d,
-                ElectricPotentialDcUnit.MegavoltDc => (baseUnitValue) / 1e6d,
-                ElectricPotentialDcUnit.MicrovoltDc => (baseUnitValue) / 1e-6d,
-                ElectricPotentialDcUnit.MillivoltDc => (baseUnitValue) / 1e-3d,
-                ElectricPotentialDcUnit.VoltDc => baseUnitValue,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        ElectricPotentialDcUnit.KilovoltDc => (baseUnitValue) / 1e3d,
+                        ElectricPotentialDcUnit.MegavoltDc => (baseUnitValue) / 1e6d,
+                        ElectricPotentialDcUnit.MicrovoltDc => (baseUnitValue) / 1e-6d,
+                        ElectricPotentialDcUnit.MillivoltDc => (baseUnitValue) / 1e-3d,
+                        ElectricPotentialDcUnit.VoltDc => baseUnitValue,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

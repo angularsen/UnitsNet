@@ -1,7 +1,7 @@
 {
   "Name": "Pressure",
   "BaseUnit": "Pascal",
-  "XmlDoc": "Pressure (symbol: P or p) is the ratio of force to the area over which that force is distributed. Pressure is force per unit area applied in a direction perpendicular to the surface of an object. Gauge pressure (also spelled gage pressure)[a] is the pressure relative to the local atmospheric or ambient pressure. Pressure is measured in any unit of force divided by any unit of area. The SI unit of pressure is the newton per square metre, which is called the pascal (Pa) after the seventeenth-century philosopher and scientist Blaise Pascal. A pressure of 1 Pa is small; it approximately equals the pressure exerted by a dollar bill resting flat on a table. Everyday pressures are often stated in kilopascals (1 kPa = 1000 Pa).",
+  "XmlDocSummary": "Pressure (symbol: P or p) is the ratio of force to the area over which that force is distributed. Pressure is force per unit area applied in a direction perpendicular to the surface of an object. Gauge pressure (also spelled gage pressure)[a] is the pressure relative to the local atmospheric or ambient pressure. Pressure is measured in any unit of force divided by any unit of area. The SI unit of pressure is the newton per square metre, which is called the pascal (Pa) after the seventeenth-century philosopher and scientist Blaise Pascal. A pressure of 1 Pa is small; it approximately equals the pressure exerted by a dollar bill resting flat on a table. Everyday pressures are often stated in kilopascals (1 kPa = 1000 Pa).",
   "BaseDimensions": {
     "L": -1,
     "M": 1,
@@ -82,6 +82,11 @@
     {
       "SingularName": "KilogramForcePerSquareCentimeter",
       "PluralName": "KilogramsForcePerSquareCentimeter",
+      "BaseUnits": {
+        "L": "Centimeter",
+        "M": "Kilogram",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x} * 9.80665e4",
       "FromBaseToUnitFunc": "{x} / 9.80665e4",
       "Localization": [
@@ -197,6 +202,11 @@
     {
       "SingularName": "PoundForcePerSquareInch",
       "PluralName": "PoundsForcePerSquareInch",
+      "BaseUnits": {
+        "L": "Inch",
+        "M": "Pound",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x} * 6.894757293168361e3",
       "FromBaseToUnitFunc": "{x} / 6.894757293168361e3",
       "Prefixes": [ "Kilo" ],
@@ -214,8 +224,32 @@
       ]
     },
     {
+      "SingularName": "PoundForcePerSquareMil",
+      "PluralName": "PoundsForcePerSquareMil",
+      "BaseUnits": {
+        "L": "Mil",
+        "M": "Pound",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "{x} * 6.894757293168361e9",
+      "FromBaseToUnitFunc": "{x} / 6.894757293168361e9",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lb/mil²", "lbs/mil²" ],
+          "AbbreviationsForPrefixes": { "Kilo": "kipf/mil²" }
+        }
+      ]
+    },
+    {
       "SingularName": "PoundForcePerSquareFoot",
       "PluralName": "PoundsForcePerSquareFoot",
+      "BaseUnits": {
+        "L": "Foot",
+        "M": "Pound",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x} * 4.788025898033584e1",
       "FromBaseToUnitFunc": "{x} / 4.788025898033584e1",
       "Prefixes": [ "Kilo" ],
@@ -230,6 +264,11 @@
     {
       "SingularName": "TonneForcePerSquareMillimeter",
       "PluralName": "TonnesForcePerSquareMillimeter",
+      "BaseUnits": {
+        "L": "Millimeter",
+        "M": "Tonne",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x} * 9.80665e9",
       "FromBaseToUnitFunc": "{x} / 9.80665e9",
       "Localization": [
@@ -242,6 +281,11 @@
     {
       "SingularName": "TonneForcePerSquareMeter",
       "PluralName": "TonnesForcePerSquareMeter",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Tonne",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x} * 9.80665e3",
       "FromBaseToUnitFunc": "{x} / 9.80665e3",
       "Localization": [
@@ -266,6 +310,11 @@
     {
       "SingularName": "TonneForcePerSquareCentimeter",
       "PluralName": "TonnesForcePerSquareCentimeter",
+      "BaseUnits": {
+        "L": "Centimeter",
+        "M": "Tonne",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x} * 9.80665e7",
       "FromBaseToUnitFunc": "{x} / 9.80665e7",
       "Localization": [
@@ -340,14 +389,15 @@
       ]
     },
     {
-      "SingularName": "MillimeterOfWaterColumn",
-      "PluralName": "MillimeterOfWaterColumn",
-      "FromUnitToBaseFunc": "{x} * 9.806650000000272e0",
-      "FromBaseToUnitFunc": "{x} / 9.806650000000272e0",
+      "SingularName": "MeterOfWaterColumn",
+      "PluralName": "MetersOfWaterColumn",
+      "FromUnitToBaseFunc": "{x} * 9.806650000000272e3",
+      "FromBaseToUnitFunc": "{x} / 9.806650000000272e3",
+      "Prefixes": [ "Milli", "Centi" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "mmH2O", "mm wc" ]
+          "Abbreviations": [ "mH₂O", "mH2O", "m wc", "m wg" ]
         }
       ]
     },

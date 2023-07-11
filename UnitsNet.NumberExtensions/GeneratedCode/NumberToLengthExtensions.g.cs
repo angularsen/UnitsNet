@@ -44,6 +44,10 @@ namespace UnitsNet.NumberExtensions.NumberToLength
         public static Length Chains<T>(this T value) =>
             Length.FromChains(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Length.FromDataMiles(UnitsNet.QuantityValue)" />
+        public static Length DataMiles<T>(this T value) =>
+            Length.FromDataMiles(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Length.FromDecameters(UnitsNet.QuantityValue)" />
         public static Length Decameters<T>(this T value) =>
             Length.FromDecameters(Convert.ToDouble(value));
@@ -99,6 +103,10 @@ namespace UnitsNet.NumberExtensions.NumberToLength
         /// <inheritdoc cref="Length.FromMegalightYears(UnitsNet.QuantityValue)" />
         public static Length MegalightYears<T>(this T value) =>
             Length.FromMegalightYears(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Length.FromMegameters(UnitsNet.QuantityValue)" />
+        public static Length Megameters<T>(this T value) =>
+            Length.FromMegameters(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Length.FromMegaparsecs(UnitsNet.QuantityValue)" />
         public static Length Megaparsecs<T>(this T value) =>

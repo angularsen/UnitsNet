@@ -43,7 +43,6 @@ namespace UnitsNet.Tests.CustomCode
         protected override double KilogramsPerHourPerSquareCentimeterInOneKilogramPerSecondPerSquareMeter => 3.6E-1;
         protected override double KilogramsPerHourPerSquareMillimeterInOneKilogramPerSecondPerSquareMeter => 3.6E-3;
 
-
         [Fact]
         public void MassFluxDividedBySpeedEqualsDensity()
         {
@@ -62,7 +61,7 @@ namespace UnitsNet.Tests.CustomCode
         public void MassFluxTimesAreaEqualsMassFlow()
         {
             MassFlow massFlow = MassFlux.FromKilogramsPerSecondPerSquareMeter(20) * Area.FromSquareMeters(2);
-            Assert.Equal(massFlow, MassFlow.FromKilogramsPerSecond(40));
+            Assert.Equal(40, massFlow.KilogramsPerSecond);
         }
     }
 }

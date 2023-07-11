@@ -54,16 +54,8 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
             Assert.NotNull(result);
             Assert.IsType<Power>(result);
-            Assert.True(Power.FromWatts(10.2365m).Equals((Power)result, 1E-5, ComparisonType.Absolute));
+            Assert.True(Power.FromWatts(10.2365m).Equals((Power)result, 1E-5m, ComparisonType.Absolute));
 
-        }
-
-        [Fact]
-        public void UnitsNetBaseJsonConverter_ConvertValueUnit_works_with_NULL_value()
-        {
-            var result = _sut.Test_ConvertValueUnit();
-
-            Assert.Null(result);
         }
 
         [Fact]
@@ -157,7 +149,6 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             Assert.Null(result);
         }
 
-
         [Fact]
         public void UnitsNetBaseJsonConverter_ReadDoubleValueUnit_works_with_empty_token()
         {
@@ -210,7 +201,6 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 {valueTypePropertyName, "decimal"}
             };
 
-
             var result = _sut.Test_ReadDecimalValueUnit(token);
 
             Assert.NotNull(result);
@@ -252,7 +242,6 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 Unit = unit, Value = (double) value, ValueString = value.ToString(CultureInfo.InvariantCulture), ValueType = "decimal"
             });
 
-            public IQuantity Test_ConvertValueUnit() => Test_ConvertValueUnit(null);
             private IQuantity Test_ConvertValueUnit(ValueUnit valueUnit) => ConvertValueUnit(valueUnit);
 
             public JsonSerializer Test_CreateLocalSerializer(JsonSerializer serializer) => CreateLocalSerializer(serializer, this);

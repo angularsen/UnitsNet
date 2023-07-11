@@ -41,6 +41,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Length.FromChains(2), 2.Chains());
 
         [Fact]
+        public void NumberToDataMilesTest() =>
+            Assert.Equal(Length.FromDataMiles(2), 2.DataMiles());
+
+        [Fact]
         public void NumberToDecametersTest() =>
             Assert.Equal(Length.FromDecameters(2), 2.Decameters());
 
@@ -95,6 +99,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToMegalightYearsTest() =>
             Assert.Equal(Length.FromMegalightYears(2), 2.MegalightYears());
+
+        [Fact]
+        public void NumberToMegametersTest() =>
+            Assert.Equal(Length.FromMegameters(2), 2.Megameters());
 
         [Fact]
         public void NumberToMegaparsecsTest() =>

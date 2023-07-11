@@ -27,9 +27,8 @@ namespace UnitsNet.Tests
             var copyrightAttribute = assembly
                 .CustomAttributes
                 .Single(x => x.AttributeType == typeof(AssemblyCopyrightAttribute));
-            string copyrightString = copyrightAttribute.ConstructorArguments.Single().Value.ToString();
-            string expectedYear = "2013";
-            Assert.Contains(expectedYear, copyrightString);
+            var copyrightString = copyrightAttribute.ConstructorArguments.Single().Value!.ToString()!;
+            Assert.Contains("2013", copyrightString);
         }
     }
 }

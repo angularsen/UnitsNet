@@ -4,7 +4,7 @@
 using System;
 using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     public class VolumeTests : VolumeTestsBase
     {
@@ -64,6 +64,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MillilitersInOneCubicMeter => 1E6;
 
+        protected override double NanolitersInOneCubicMeter => 1E12;
+
         protected override double AuTablespoonsInOneCubicMeter => 50000;
 
         protected override double UsTablespoonsInOneCubicMeter => 67628.0454;
@@ -103,6 +105,11 @@ namespace UnitsNet.Tests.CustomCode
         protected override double BoardFeetInOneCubicMeter => 423.7760007;
 
         protected override double DecalitersInOneCubicMeter => 1e2;
+
+        /// <summary>
+        /// https://www.legislation.gov.uk/uksi/1995/1804/made
+        /// </summary>
+        protected override double ImperialQuartsInOneCubicMeter => 879.876993196;
 
         [Fact]
         public void VolumeDividedByAreaEqualsLength()

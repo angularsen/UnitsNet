@@ -1,7 +1,7 @@
 {
   "Name": "ThermalResistance",
   "BaseUnit": "SquareMeterKelvinPerKilowatt",
-  "XmlDoc": "Heat Transfer Coefficient or Thermal conductivity - indicates a materials ability to conduct heat.",
+  "XmlDocSummary": "Heat Transfer Coefficient or Thermal conductivity - indicates a materials ability to conduct heat.",
   "BaseDimensions": {
     "M": -1,
     "T": 3,
@@ -35,8 +35,8 @@
     {
       "SingularName": "SquareMeterDegreeCelsiusPerWatt",
       "PluralName": "SquareMeterDegreesCelsiusPerWatt",
-      "FromUnitToBaseFunc": "{x} * 1000.088056074108",
-      "FromBaseToUnitFunc": "{x} / 1000.088056074108",
+      "FromUnitToBaseFunc": "{x} * 1000.0",
+      "FromBaseToUnitFunc": "{x} / 1000.0",
       "Localization": [
         {
           "Culture": "en-US",
@@ -47,8 +47,8 @@
     {
       "SingularName": "SquareCentimeterKelvinPerWatt",
       "PluralName": "SquareCentimeterKelvinsPerWatt",
-      "FromUnitToBaseFunc": "{x} * 0.0999964777570357",
-      "FromBaseToUnitFunc": "{x} / 0.0999964777570357",
+      "FromUnitToBaseFunc": "{x} * 0.1",
+      "FromBaseToUnitFunc": "{x} / 0.1",
       "Localization": [
         {
           "Culture": "en-US",

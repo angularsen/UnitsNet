@@ -25,14 +25,13 @@ namespace UnitsNet.Units
 
     public enum BrakeSpecificFuelConsumptionUnit
     {
-        Undefined = 0,
-        GramPerKiloWattHour,
-        KilogramPerJoule,
+        GramPerKiloWattHour = 1,
+        KilogramPerJoule = 2,
 
         /// <summary>
         ///     The pound per horse power hour uses mechanical horse power and the imperial pound
         /// </summary>
-        PoundPerMechanicalHorsepowerHour,
+        PoundPerMechanicalHorsepowerHour = 3,
     }
 
     #pragma warning restore 1591

@@ -31,17 +31,17 @@ namespace UnitsNet.Tests
             [Fact]
             public void FormatsNumberUsingGivenCulture()
             {
-                var oldCulture = CultureInfo.CurrentUICulture;
+                var oldCulture = CultureInfo.CurrentCulture;
                 try
                 {
-                    CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
-                    Assert.Equal("0.05 m", Length.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString((IFormatProvider)null));
+                    CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
+                    Assert.Equal("0.05 m", Length.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString((IFormatProvider?)null));
                     Assert.Equal("0.05 m", Length.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString(CultureInfo.InvariantCulture));
-                    Assert.Equal("0,05 m", Length.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString(new CultureInfo("nb-NO")));
+                    Assert.Equal("0,05 m", Length.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString(CultureInfo.GetCultureInfo("nb-NO")));
                 }
                 finally
                 {
-                    CultureInfo.CurrentUICulture = oldCulture;
+                    CultureInfo.CurrentCulture = oldCulture;
                 }
             }
         }

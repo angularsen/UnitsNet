@@ -25,12 +25,11 @@ namespace UnitsNet.Units
 
     public enum RotationalStiffnessPerLengthUnit
     {
-        Undefined = 0,
-        KilonewtonMeterPerRadianPerMeter,
-        KilopoundForceFootPerDegreesPerFoot,
-        MeganewtonMeterPerRadianPerMeter,
-        NewtonMeterPerRadianPerMeter,
-        PoundForceFootPerDegreesPerFoot,
+        KilonewtonMeterPerRadianPerMeter = 1,
+        KilopoundForceFootPerDegreesPerFoot = 2,
+        MeganewtonMeterPerRadianPerMeter = 3,
+        NewtonMeterPerRadianPerMeter = 4,
+        PoundForceFootPerDegreesPerFoot = 5,
     }
 
     #pragma warning restore 1591

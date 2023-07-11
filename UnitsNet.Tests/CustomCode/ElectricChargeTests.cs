@@ -3,7 +3,7 @@
 
 using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     public class ElectricChargeTests : ElectricChargeTestsBase
     {
@@ -13,6 +13,18 @@ namespace UnitsNet.Tests.CustomCode
         protected override double AmpereHoursInOneCoulomb => 2.77777777777e-4;
         protected override double KiloampereHoursInOneCoulomb => 2.77777777777e-7;
         protected override double MegaampereHoursInOneCoulomb => 2.77777777777e-10;
+
+        protected override double KilocoulombsInOneCoulomb => 1e-3;
+
+        protected override double MegacoulombsInOneCoulomb => 1e-6;
+
+        protected override double MicrocoulombsInOneCoulomb => 1e6;
+
+        protected override double MillicoulombsInOneCoulomb => 1e3;
+
+        protected override double NanocoulombsInOneCoulomb => 1e9;
+
+        protected override double PicocoulombsInOneCoulomb => 1e12;
 
         [Fact]
         public void ElectricChargeDividedByElectricCurrentEqualsDuration()
@@ -26,6 +38,18 @@ namespace UnitsNet.Tests.CustomCode
         {
             ElectricCurrent i = ElectricCharge.FromAmpereHours(20) / Duration.FromHours(4);
             Assert.Equal(5, i.Amperes);
+        }
+        
+        [Theory]
+        [InlineData(1, 1, 1)]
+        [InlineData(0, int.MaxValue, 0)]
+        [InlineData(10, 2, 20)]
+        [InlineData(-10, 2, -20)]
+        [InlineData(-10, -2, 20)]
+        public void ElectricChargeMultipliedByElectricPotentialEqualsEnergy(float current, float potential, float expected)
+        {
+            Energy j = ElectricCharge.FromCoulombs(current) * ElectricPotential.FromVolts(potential);
+            Assert.Equal(expected, j.Joules);
         }
     }
 }

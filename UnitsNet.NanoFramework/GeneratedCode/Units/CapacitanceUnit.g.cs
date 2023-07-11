@@ -25,14 +25,13 @@ namespace UnitsNet.Units
 
     public enum CapacitanceUnit
     {
-        Undefined = 0,
-        Farad,
-        Kilofarad,
-        Megafarad,
-        Microfarad,
-        Millifarad,
-        Nanofarad,
-        Picofarad,
+        Farad = 1,
+        Kilofarad = 2,
+        Megafarad = 3,
+        Microfarad = 4,
+        Millifarad = 5,
+        Nanofarad = 6,
+        Picofarad = 7,
     }
 
     #pragma warning restore 1591

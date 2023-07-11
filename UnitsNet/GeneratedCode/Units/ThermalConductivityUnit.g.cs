@@ -25,9 +25,8 @@ namespace UnitsNet.Units
 
     public enum ThermalConductivityUnit
     {
-        Undefined = 0,
-        BtuPerHourFootFahrenheit,
-        WattPerMeterKelvin,
+        BtuPerHourFootFahrenheit = 1,
+        WattPerMeterKelvin = 2,
     }
 
     #pragma warning restore 1591

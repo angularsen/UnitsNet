@@ -1,7 +1,7 @@
 {
   "Name": "SpecificEntropy",
   "BaseUnit": "JoulePerKilogramKelvin",
-  "XmlDoc": "Specific entropy is an amount of energy required to raise temperature of a substance by 1 Kelvin per unit mass.",
+  "XmlDocSummary": "Specific entropy is an amount of energy required to raise temperature of a substance by 1 Kelvin per unit mass.",
   "BaseDimensions": {
     "L": 2,
     "T": -2,

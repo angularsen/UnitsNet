@@ -25,18 +25,17 @@ namespace UnitsNet.Units
 
     public enum ReciprocalAreaUnit
     {
-        Undefined = 0,
-        InverseSquareCentimeter,
-        InverseSquareDecimeter,
-        InverseSquareFoot,
-        InverseSquareInch,
-        InverseSquareKilometer,
-        InverseSquareMeter,
-        InverseSquareMicrometer,
-        InverseSquareMile,
-        InverseSquareMillimeter,
-        InverseSquareYard,
-        InverseUsSurveySquareFoot,
+        InverseSquareCentimeter = 1,
+        InverseSquareDecimeter = 2,
+        InverseSquareFoot = 3,
+        InverseSquareInch = 4,
+        InverseSquareKilometer = 5,
+        InverseSquareMeter = 6,
+        InverseSquareMicrometer = 7,
+        InverseSquareMile = 8,
+        InverseSquareMillimeter = 9,
+        InverseSquareYard = 10,
+        InverseUsSurveySquareFoot = 11,
     }
 
     #pragma warning restore 1591

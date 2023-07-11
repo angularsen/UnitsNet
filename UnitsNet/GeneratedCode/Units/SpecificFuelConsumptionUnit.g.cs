@@ -25,11 +25,10 @@ namespace UnitsNet.Units
 
     public enum SpecificFuelConsumptionUnit
     {
-        Undefined = 0,
-        GramPerKiloNewtonSecond,
-        KilogramPerKilogramForceHour,
-        KilogramPerKiloNewtonSecond,
-        PoundMassPerPoundForceHour,
+        GramPerKiloNewtonSecond = 1,
+        KilogramPerKilogramForceHour = 2,
+        KilogramPerKiloNewtonSecond = 3,
+        PoundMassPerPoundForceHour = 4,
     }
 
     #pragma warning restore 1591

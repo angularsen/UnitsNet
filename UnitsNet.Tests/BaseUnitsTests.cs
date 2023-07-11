@@ -9,13 +9,13 @@ namespace UnitsNet.Tests
 {
     public class BaseUnitsTests
     {
-        private static BaseUnits siBaseUnits = new BaseUnits(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second,
+        private static readonly BaseUnits SIBaseUnits = new(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second,
                 ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela);
 
-        private static BaseUnits siBaseUnitsCopy = new BaseUnits(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second,
+        private static readonly BaseUnits SIBaseUnitsCopy = new(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second,
                 ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela);
 
-        private static BaseUnits nonSiBaseUnits = new BaseUnits(LengthUnit.Foot, MassUnit.Pound, DurationUnit.Second,
+        private static readonly BaseUnits NonSiBaseUnits = new(LengthUnit.Foot, MassUnit.Pound, DurationUnit.Second,
             ElectricCurrentUnit.Ampere, TemperatureUnit.DegreeFahrenheit, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela);
 
         [Fact]
@@ -36,39 +36,40 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsObjectIsImplementedCorrectly()
         {
-            Assert.True(siBaseUnits.Equals((object)siBaseUnitsCopy));
-            Assert.False(siBaseUnits.Equals((object)nonSiBaseUnits));
+            Assert.True(SIBaseUnits.Equals((object)SIBaseUnitsCopy));
+            Assert.False(SIBaseUnits.Equals((object)NonSiBaseUnits));
 
-            Assert.False(siBaseUnits.Equals("Some object."));
-            Assert.False(siBaseUnits.Equals((IFormatProvider)null));
+            // ReSharper disable once SuspiciousTypeConversion.Global
+            Assert.False(SIBaseUnits.Equals("Some object."));
+            Assert.False(SIBaseUnits.Equals((IFormatProvider?)null));
         }
 
         [Fact]
         public void EqualsBaseUnitsIsImplementedCorrectly()
         {
-            Assert.True(siBaseUnits.Equals(siBaseUnitsCopy));
-            Assert.True(siBaseUnitsCopy.Equals(siBaseUnits));
+            Assert.True(SIBaseUnits.Equals(SIBaseUnitsCopy));
+            Assert.True(SIBaseUnitsCopy.Equals(SIBaseUnits));
 
-            Assert.False(siBaseUnits.Equals(nonSiBaseUnits));
-            Assert.False(nonSiBaseUnits.Equals(siBaseUnits));
+            Assert.False(SIBaseUnits.Equals(NonSiBaseUnits));
+            Assert.False(NonSiBaseUnits.Equals(SIBaseUnits));
 
-            Assert.False(siBaseUnits.Equals(null));
+            Assert.False(SIBaseUnits.Equals(null!));
         }
 
         [Fact]
         public void EqualityOperatorIsImplementedCorrectly()
         {
-            Assert.True(siBaseUnits == siBaseUnitsCopy);
-            Assert.True(siBaseUnitsCopy == siBaseUnits);
+            Assert.True(SIBaseUnits == SIBaseUnitsCopy);
+            Assert.True(SIBaseUnitsCopy == SIBaseUnits);
 
-            Assert.False(siBaseUnits == nonSiBaseUnits);
-            Assert.False(nonSiBaseUnits == siBaseUnits);
+            Assert.False(SIBaseUnits == NonSiBaseUnits);
+            Assert.False(NonSiBaseUnits == SIBaseUnits);
 
-            Assert.False(siBaseUnits == null);
-            Assert.False(null == siBaseUnits);
+            Assert.False(SIBaseUnits == null);
+            Assert.False(null == SIBaseUnits);
 
-            BaseUnits nullBaseUnits1 = null;
-            BaseUnits nullBaseUnits2 = null;
+            BaseUnits? nullBaseUnits1 = null;
+            BaseUnits? nullBaseUnits2 = null;
 
             Assert.True(nullBaseUnits1 == nullBaseUnits2);
         }
@@ -76,17 +77,17 @@ namespace UnitsNet.Tests
         [Fact]
         public void InequalityOperatorIsImplementedCorrectly()
         {
-            Assert.False(siBaseUnits != siBaseUnitsCopy);
-            Assert.False(siBaseUnitsCopy != siBaseUnits);
+            Assert.False(SIBaseUnits != SIBaseUnitsCopy);
+            Assert.False(SIBaseUnitsCopy != SIBaseUnits);
 
-            Assert.True(siBaseUnits != nonSiBaseUnits);
-            Assert.True(nonSiBaseUnits != siBaseUnits);
+            Assert.True(SIBaseUnits != NonSiBaseUnits);
+            Assert.True(NonSiBaseUnits != SIBaseUnits);
 
-            Assert.True(siBaseUnits != null);
-            Assert.True(null != siBaseUnits);
+            Assert.True(SIBaseUnits != null!);
+            Assert.True(null! != SIBaseUnits!);
 
-            BaseUnits nullBaseUnits1 = null;
-            BaseUnits nullBaseUnits2 = null;
+            BaseUnits? nullBaseUnits1 = null;
+            BaseUnits? nullBaseUnits2 = null;
 
             Assert.False(nullBaseUnits1 != nullBaseUnits2);
         }
@@ -94,13 +95,13 @@ namespace UnitsNet.Tests
         [Fact]
         public void UndefinedHasAllBaseUnitsAsUndefined()
         {
-            Assert.Equal(LengthUnit.Undefined, BaseUnits.Undefined.Length);
-            Assert.Equal(MassUnit.Undefined, BaseUnits.Undefined.Mass);
-            Assert.Equal(DurationUnit.Undefined, BaseUnits.Undefined.Time);
-            Assert.Equal(ElectricCurrentUnit.Undefined, BaseUnits.Undefined.Current);
-            Assert.Equal(TemperatureUnit.Undefined, BaseUnits.Undefined.Temperature);
-            Assert.Equal(AmountOfSubstanceUnit.Undefined, BaseUnits.Undefined.Amount);
-            Assert.Equal(LuminousIntensityUnit.Undefined, BaseUnits.Undefined.LuminousIntensity);
+            Assert.Null(BaseUnits.Undefined.Length);
+            Assert.Null(BaseUnits.Undefined.Mass);
+            Assert.Null(BaseUnits.Undefined.Time);
+            Assert.Null(BaseUnits.Undefined.Current);
+            Assert.Null(BaseUnits.Undefined.Temperature);
+            Assert.Null(BaseUnits.Undefined.Amount);
+            Assert.Null(BaseUnits.Undefined.LuminousIntensity);
         }
 
         [Fact]
@@ -112,29 +113,43 @@ namespace UnitsNet.Tests
         [Fact]
         public void IsSubsetOfReturnsFalseWithNull()
         {
-            Assert.False(siBaseUnits.IsSubsetOf(null));
+            Assert.Throws<ArgumentNullException>(() => SIBaseUnits.IsSubsetOf(null!));
         }
 
         [Fact]
         public void ExistsInWorksCorrectly()
         {
-            Assert.False(BaseUnits.Undefined.IsSubsetOf(siBaseUnits));
-            Assert.False(siBaseUnits.IsSubsetOf(BaseUnits.Undefined));
+            Assert.False(BaseUnits.Undefined.IsSubsetOf(SIBaseUnits));
+            Assert.False(SIBaseUnits.IsSubsetOf(BaseUnits.Undefined));
 
             var meterBaseUnits = new BaseUnits(LengthUnit.Meter);
-            Assert.True(meterBaseUnits.IsSubsetOf(siBaseUnits));
+            Assert.True(meterBaseUnits.IsSubsetOf(SIBaseUnits));
 
             // Not all units in siBaseUnits will exist in meterBaseUnits
-            Assert.False(siBaseUnits.IsSubsetOf(meterBaseUnits));
+            Assert.False(SIBaseUnits.IsSubsetOf(meterBaseUnits));
         }
 
         [Fact]
         public void ToStringGivesExpectedResult()
         {
-            var siBaseUnits = new BaseUnits(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second,
-                ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela);
+            var siBaseUnits = new BaseUnits(LengthUnit.Meter,
+                MassUnit.Kilogram,
+                DurationUnit.Second,
+                ElectricCurrentUnit.Ampere,
+                TemperatureUnit.Kelvin,
+                AmountOfSubstanceUnit.Mole,
+                LuminousIntensityUnit.Candela);
 
-            Assert.Equal("[Length]: m, [Mass]: kg, [Time]: s, [Current]: A, [Temperature]: K, [Amount]: mol, [LuminousIntensity]: cd", siBaseUnits.ToString());
+            UnitAbbreviationsCache cache = UnitsNetSetup.Default.UnitAbbreviations;
+            var m = cache.GetDefaultAbbreviation(LengthUnit.Meter);
+            var kg = cache.GetDefaultAbbreviation(MassUnit.Kilogram);
+            var s = cache.GetDefaultAbbreviation(DurationUnit.Second);
+            var A = cache.GetDefaultAbbreviation(ElectricCurrentUnit.Ampere);
+            var K = cache.GetDefaultAbbreviation(TemperatureUnit.Kelvin);
+            var mol = cache.GetDefaultAbbreviation(AmountOfSubstanceUnit.Mole);
+            var cd = cache.GetDefaultAbbreviation(LuminousIntensityUnit.Candela);
+
+            Assert.Equal($"[Length]: {m}, [Mass]: {kg}, [Time]: {s}, [Current]: {A}, [Temperature]: {K}, [Amount]: {mol}, [LuminousIntensity]: {cd}", siBaseUnits.ToString());
         }
 
         [Fact]
@@ -144,7 +159,7 @@ namespace UnitsNet.Tests
                 ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole,
                 LuminousIntensityUnit.Candela).IsFullyDefined);
         }
-    
+
         [Fact]
         public void IsFullyDefined_FalseIfAnyBaseUnitIsUndefined()
         {

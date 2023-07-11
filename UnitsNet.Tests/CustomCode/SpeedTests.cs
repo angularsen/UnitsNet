@@ -4,7 +4,7 @@
 using System;
 using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     public class SpeedTests : SpeedTestsBase
     {
@@ -73,6 +73,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double UsSurveyFeetPerHourInOneMeterPerSecond => 1.1811E4;
 
+        protected override double MachInOneMeterPerSecond =>2.9386699579770E-3;
+
         [Fact]
         public void DurationSpeedTimesEqualsLength()
         {
@@ -99,6 +101,13 @@ namespace UnitsNet.Tests.CustomCode
         {
             Acceleration acceleration = Speed.FromMetersPerSecond(20)/Duration.FromSeconds(2);
             Assert.Equal(acceleration, Acceleration.FromMetersPerSecondSquared(10));
+        }
+
+        [Fact]
+        public void SpeedDividedByAccelerationEqualsDuration()
+        {
+            Duration duration = Speed.FromMetersPerSecond(20)/Acceleration.FromMetersPerSecondSquared(2);
+            Assert.Equal(Duration.FromSeconds(10), duration);
         }
 
         [Fact]

@@ -81,6 +81,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Power.FromMechanicalHorsepower(2), 2.MechanicalHorsepower());
 
         [Fact]
+        public void NumberToMegabritishThermalUnitsPerHourTest() =>
+            Assert.Equal(Power.FromMegabritishThermalUnitsPerHour(2), 2.MegabritishThermalUnitsPerHour());
+
+        [Fact]
         public void NumberToMegajoulesPerHourTest() =>
             Assert.Equal(Power.FromMegajoulesPerHour(2), 2.MegajoulesPerHour());
 

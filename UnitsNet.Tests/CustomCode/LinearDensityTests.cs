@@ -54,14 +54,21 @@ namespace UnitsNet.Tests.CustomCode
         public void LinearDensityDividedByAreaEqualsDensity()
         {
             Density density = LinearDensity.FromGramsPerCentimeter(10) / Area.FromSquareCentimeters(2);
-            Assert.Equal(Density.FromGramsPerCubicCentimeter(5), density);
+            Assert.Equal(5, density.GramsPerCubicCentimeter);
         }
 
         [Fact]
         public void LinearDensityDividedByDensityEqualsArea()
         {
             Area area = LinearDensity.FromGramsPerCentimeter(10) / Density.FromGramsPerCubicCentimeter(2);
-            Assert.Equal(Area.FromSquareCentimeters(5), area);
+            Assert.Equal(5, area.SquareCentimeters);
+        }
+
+        [Fact]
+        public void LinearDensityTimesLengthEqualsMass()
+        {
+            Mass mass = LinearDensity.FromGramsPerCentimeter(10) * Length.FromCentimeters(2);
+            Assert.Equal(20, mass.Grams);
         }
     }
 }

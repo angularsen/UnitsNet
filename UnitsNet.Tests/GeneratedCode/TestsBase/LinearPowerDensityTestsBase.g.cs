@@ -155,19 +155,12 @@ namespace UnitsNet.Tests
         };
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new LinearPowerDensity((double)0.0, LinearPowerDensityUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new LinearPowerDensity();
             Assert.Equal(0, quantity.Value);
             Assert.Equal(LinearPowerDensityUnit.WattPerMeter, quantity.Unit);
         }
-
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
@@ -212,14 +205,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(LinearPowerDensity.Zero, quantityInfo.Zero);
             Assert.Equal("LinearPowerDensity", quantityInfo.Name);
-            Assert.Equal(QuantityType.LinearPowerDensity, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<LinearPowerDensityUnit>().Except(new[] {LinearPowerDensityUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<LinearPowerDensityUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
-
-            // Obsolete members
-            Assert.Equal(units, quantityInfo.Units);
-            Assert.Equal(unitNames, quantityInfo.UnitNames);
         }
 
         [Fact]
@@ -410,13 +398,523 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else
             {
                 Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
             }
+        }
+
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 GW/cm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.GigawattsPerCentimeter, GigawattsPerCentimeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 GW/ft", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.GigawattsPerFoot, GigawattsPerFootTolerance);
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 GW/in", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.GigawattsPerInch, GigawattsPerInchTolerance);
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 GW/m", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.GigawattsPerMeter, GigawattsPerMeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 GW/mm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.GigawattsPerMillimeter, GigawattsPerMillimeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 kW/cm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilowattsPerCentimeter, KilowattsPerCentimeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 kW/ft", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilowattsPerFoot, KilowattsPerFootTolerance);
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 kW/in", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilowattsPerInch, KilowattsPerInchTolerance);
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 kW/m", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilowattsPerMeter, KilowattsPerMeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 kW/mm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilowattsPerMillimeter, KilowattsPerMillimeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 MW/cm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MegawattsPerCentimeter, MegawattsPerCentimeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.MegawattPerCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 MW/ft", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MegawattsPerFoot, MegawattsPerFootTolerance);
+                Assert.Equal(LinearPowerDensityUnit.MegawattPerFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 MW/in", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MegawattsPerInch, MegawattsPerInchTolerance);
+                Assert.Equal(LinearPowerDensityUnit.MegawattPerInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 MW/m", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MegawattsPerMeter, MegawattsPerMeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.MegawattPerMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 MW/mm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MegawattsPerMillimeter, MegawattsPerMillimeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.MegawattPerMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 mW/cm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MilliwattsPerCentimeter, MilliwattsPerCentimeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.MilliwattPerCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 mW/ft", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MilliwattsPerFoot, MilliwattsPerFootTolerance);
+                Assert.Equal(LinearPowerDensityUnit.MilliwattPerFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 mW/in", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MilliwattsPerInch, MilliwattsPerInchTolerance);
+                Assert.Equal(LinearPowerDensityUnit.MilliwattPerInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 mW/m", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MilliwattsPerMeter, MilliwattsPerMeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.MilliwattPerMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 mW/mm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MilliwattsPerMillimeter, MilliwattsPerMillimeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.MilliwattPerMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 W/cm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.WattsPerCentimeter, WattsPerCentimeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.WattPerCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 W/ft", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.WattsPerFoot, WattsPerFootTolerance);
+                Assert.Equal(LinearPowerDensityUnit.WattPerFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 W/in", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.WattsPerInch, WattsPerInchTolerance);
+                Assert.Equal(LinearPowerDensityUnit.WattPerInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 W/m", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.WattsPerMeter, WattsPerMeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.WattPerMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 W/mm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.WattsPerMillimeter, WattsPerMillimeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.WattPerMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 GW/cm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.GigawattsPerCentimeter, GigawattsPerCentimeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerCentimeter, parsed.Unit);
+            }
+
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 GW/ft", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.GigawattsPerFoot, GigawattsPerFootTolerance);
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerFoot, parsed.Unit);
+            }
+
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 GW/in", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.GigawattsPerInch, GigawattsPerInchTolerance);
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerInch, parsed.Unit);
+            }
+
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 GW/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.GigawattsPerMeter, GigawattsPerMeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerMeter, parsed.Unit);
+            }
+
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 GW/mm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.GigawattsPerMillimeter, GigawattsPerMillimeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerMillimeter, parsed.Unit);
+            }
+
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 kW/cm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilowattsPerCentimeter, KilowattsPerCentimeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerCentimeter, parsed.Unit);
+            }
+
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 kW/ft", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilowattsPerFoot, KilowattsPerFootTolerance);
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerFoot, parsed.Unit);
+            }
+
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 kW/in", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilowattsPerInch, KilowattsPerInchTolerance);
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerInch, parsed.Unit);
+            }
+
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 kW/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilowattsPerMeter, KilowattsPerMeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerMeter, parsed.Unit);
+            }
+
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 kW/mm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilowattsPerMillimeter, KilowattsPerMillimeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerMillimeter, parsed.Unit);
+            }
+
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 W/cm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.WattsPerCentimeter, WattsPerCentimeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.WattPerCentimeter, parsed.Unit);
+            }
+
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 W/ft", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.WattsPerFoot, WattsPerFootTolerance);
+                Assert.Equal(LinearPowerDensityUnit.WattPerFoot, parsed.Unit);
+            }
+
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 W/in", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.WattsPerInch, WattsPerInchTolerance);
+                Assert.Equal(LinearPowerDensityUnit.WattPerInch, parsed.Unit);
+            }
+
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 W/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.WattsPerMeter, WattsPerMeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.WattPerMeter, parsed.Unit);
+            }
+
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 W/mm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.WattsPerMillimeter, WattsPerMillimeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.WattPerMillimeter, parsed.Unit);
+            }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("GW/cm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("GW/ft", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("GW/in", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("GW/m", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("GW/mm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("kW/cm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("kW/ft", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("kW/in", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("kW/m", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("kW/mm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("MW/cm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.MegawattPerCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("MW/ft", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.MegawattPerFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("MW/in", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.MegawattPerInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("MW/m", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.MegawattPerMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("MW/mm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.MegawattPerMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("mW/cm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.MilliwattPerCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("mW/ft", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.MilliwattPerFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("mW/in", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.MilliwattPerInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("mW/m", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.MilliwattPerMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("mW/mm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.MilliwattPerMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("W/cm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.WattPerCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("W/ft", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.WattPerFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("W/in", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.WattPerInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("W/m", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.WattPerMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("W/mm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.WattPerMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("GW/cm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerCentimeter, parsedUnit);
+            }
+
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("GW/ft", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerFoot, parsedUnit);
+            }
+
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("GW/in", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerInch, parsedUnit);
+            }
+
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("GW/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerMeter, parsedUnit);
+            }
+
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("GW/mm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerMillimeter, parsedUnit);
+            }
+
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("kW/cm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerCentimeter, parsedUnit);
+            }
+
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("kW/ft", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerFoot, parsedUnit);
+            }
+
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("kW/in", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerInch, parsedUnit);
+            }
+
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("kW/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerMeter, parsedUnit);
+            }
+
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("kW/mm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerMillimeter, parsedUnit);
+            }
+
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("W/cm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.WattPerCentimeter, parsedUnit);
+            }
+
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("W/ft", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.WattPerFoot, parsedUnit);
+            }
+
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("W/in", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.WattPerInch, parsedUnit);
+            }
+
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("W/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.WattPerMeter, parsedUnit);
+            }
+
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("W/mm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.WattPerMillimeter, parsedUnit);
+            }
+
         }
 
         [Theory]
@@ -427,7 +925,7 @@ namespace UnitsNet.Tests
             var converted = inBaseUnits.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
         }
 
@@ -444,14 +942,19 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(LinearPowerDensityUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = LinearPowerDensity.Units.FirstOrDefault(u => u != LinearPowerDensity.BaseUnit && u != LinearPowerDensityUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if (fromUnit == LinearPowerDensityUnit.Undefined)
-                fromUnit = LinearPowerDensity.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = LinearPowerDensity.Units.First(u => u != LinearPowerDensity.BaseUnit);
 
             var quantity = LinearPowerDensity.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(LinearPowerDensityUnit unit)
+        {
+            var quantity = default(LinearPowerDensity);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }
@@ -540,47 +1043,45 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => wattpermeter.CompareTo(null));
         }
 
-        [Fact]
-        public void EqualityOperators()
+        [Theory]
+        [InlineData(1, LinearPowerDensityUnit.WattPerMeter, 1, LinearPowerDensityUnit.WattPerMeter, true)]  // Same value and unit.
+        [InlineData(1, LinearPowerDensityUnit.WattPerMeter, 2, LinearPowerDensityUnit.WattPerMeter, false)] // Different value.
+        [InlineData(2, LinearPowerDensityUnit.WattPerMeter, 1, LinearPowerDensityUnit.GigawattPerCentimeter, false)] // Different value and unit.
+        [InlineData(1, LinearPowerDensityUnit.WattPerMeter, 1, LinearPowerDensityUnit.GigawattPerCentimeter, false)] // Different unit.
+        public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, LinearPowerDensityUnit unitA, double valueB, LinearPowerDensityUnit unitB, bool expectEqual)
         {
-            var a = LinearPowerDensity.FromWattsPerMeter(1);
-            var b = LinearPowerDensity.FromWattsPerMeter(2);
+            var a = new LinearPowerDensity(valueA, unitA);
+            var b = new LinearPowerDensity(valueB, unitB);
 
-#pragma warning disable CS8073
-// ReSharper disable EqualExpressionComparison
+            // Operator overloads.
+            Assert.Equal(expectEqual, a == b);
+            Assert.Equal(expectEqual, b == a);
+            Assert.Equal(!expectEqual, a != b);
+            Assert.Equal(!expectEqual, b != a);
 
-            Assert.True(a == a);
-            Assert.False(a != a);
+            // IEquatable<T>
+            Assert.Equal(expectEqual, a.Equals(b));
+            Assert.Equal(expectEqual, b.Equals(a));
 
-            Assert.True(a != b);
-            Assert.False(a == b);
+            // IEquatable
+            Assert.Equal(expectEqual, a.Equals((object)b));
+            Assert.Equal(expectEqual, b.Equals((object)a));
+        }
 
+        [Fact]
+        public void Equals_Null_ReturnsFalse()
+        {
+            var a = LinearPowerDensity.Zero;
+
+            Assert.False(a.Equals((object)null));
+
+            // "The result of the expression is always 'false'..."
+            #pragma warning disable CS8073
             Assert.False(a == null);
             Assert.False(null == a);
-
-// ReSharper restore EqualExpressionComparison
-#pragma warning restore CS8073
-        }
-
-        [Fact]
-        public void Equals_SameType_IsImplemented()
-        {
-            var a = LinearPowerDensity.FromWattsPerMeter(1);
-            var b = LinearPowerDensity.FromWattsPerMeter(2);
-
-            Assert.True(a.Equals(a));
-            Assert.False(a.Equals(b));
-        }
-
-        [Fact]
-        public void Equals_QuantityAsObject_IsImplemented()
-        {
-            object a = LinearPowerDensity.FromWattsPerMeter(1);
-            object b = LinearPowerDensity.FromWattsPerMeter(2);
-
-            Assert.True(a.Equals(a));
-            Assert.False(a.Equals(b));
-            Assert.False(a.Equals((object)null));
+            Assert.True(a != null);
+            Assert.True(null != a);
+            #pragma warning restore CS8073
         }
 
         [Fact]
@@ -613,20 +1114,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(LinearPowerDensityUnit.Undefined, LinearPowerDensity.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(LinearPowerDensityUnit)).Cast<LinearPowerDensityUnit>();
-            foreach(var unit in units)
+            foreach (var unit in units)
             {
-                if (unit == LinearPowerDensityUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }
@@ -640,8 +1132,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentUICulture;
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            var prevCulture = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             try {
                 Assert.Equal("1 GW/cm", new LinearPowerDensity(1, LinearPowerDensityUnit.GigawattPerCentimeter).ToString());
                 Assert.Equal("1 GW/ft", new LinearPowerDensity(1, LinearPowerDensityUnit.GigawattPerFoot).ToString());
@@ -671,7 +1163,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                Thread.CurrentThread.CurrentUICulture = prevCulture;
+                Thread.CurrentThread.CurrentCulture = prevCulture;
             }
         }
 
@@ -711,10 +1203,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentUICulture;
+            var oldCulture = CultureInfo.CurrentCulture;
             try
             {
-                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
                 Assert.Equal("0.1 W/m", new LinearPowerDensity(0.123456, LinearPowerDensityUnit.WattPerMeter).ToString("s1"));
                 Assert.Equal("0.12 W/m", new LinearPowerDensity(0.123456, LinearPowerDensityUnit.WattPerMeter).ToString("s2"));
                 Assert.Equal("0.123 W/m", new LinearPowerDensity(0.123456, LinearPowerDensityUnit.WattPerMeter).ToString("s3"));
@@ -722,7 +1214,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                CultureInfo.CurrentUICulture = oldCulture;
+                CultureInfo.CurrentCulture = oldCulture;
             }
         }
 
@@ -736,28 +1228,27 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 W/m", new LinearPowerDensity(0.123456, LinearPowerDensityUnit.WattPerMeter).ToString("s4", culture));
         }
 
-
-        [Fact]
-        public void ToString_NullFormat_ThrowsArgumentNullException()
+        [Theory]
+        [InlineData(null)]
+        [InlineData("en-US")]
+        public void ToString_NullFormat_DefaultsToGeneralFormat(string cultureName)
         {
             var quantity = LinearPowerDensity.FromWattsPerMeter(1.0);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, null, null));
+            CultureInfo formatProvider = cultureName == null
+                ? null
+                : CultureInfo.GetCultureInfo(cultureName);
+
+            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
         }
 
-        [Fact]
-        public void ToString_NullArgs_ThrowsArgumentNullException()
+        [Theory]
+        [InlineData(null)]
+        [InlineData("g")]
+        public void ToString_NullProvider_EqualsCurrentCulture(string format)
         {
             var quantity = LinearPowerDensity.FromWattsPerMeter(1.0);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, "g", null));
+            Assert.Equal(quantity.ToString(format, CultureInfo.CurrentCulture), quantity.ToString(format, null));
         }
-
-        [Fact]
-        public void ToString_NullProvider_EqualsCurrentUICulture()
-        {
-            var quantity = LinearPowerDensity.FromWattsPerMeter(1.0);
-            Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
-        }
-
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()
@@ -876,13 +1367,6 @@ namespace UnitsNet.Tests
         {
             var quantity = LinearPowerDensity.FromWattsPerMeter(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(LinearPowerDensityUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = LinearPowerDensity.FromWattsPerMeter(1.0);
-            Assert.Equal(QuantityType.LinearPowerDensity, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

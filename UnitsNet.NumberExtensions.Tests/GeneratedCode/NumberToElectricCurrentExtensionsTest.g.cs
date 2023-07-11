@@ -33,6 +33,10 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricCurrent.FromCentiamperes(2), 2.Centiamperes());
 
         [Fact]
+        public void NumberToFemtoamperesTest() =>
+            Assert.Equal(ElectricCurrent.FromFemtoamperes(2), 2.Femtoamperes());
+
+        [Fact]
         public void NumberToKiloamperesTest() =>
             Assert.Equal(ElectricCurrent.FromKiloamperes(2), 2.Kiloamperes());
 

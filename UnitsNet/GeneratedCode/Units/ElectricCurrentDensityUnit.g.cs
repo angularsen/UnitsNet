@@ -25,10 +25,9 @@ namespace UnitsNet.Units
 
     public enum ElectricCurrentDensityUnit
     {
-        Undefined = 0,
-        AmperePerSquareFoot,
-        AmperePerSquareInch,
-        AmperePerSquareMeter,
+        AmperePerSquareFoot = 1,
+        AmperePerSquareInch = 2,
+        AmperePerSquareMeter = 3,
     }
 
     #pragma warning restore 1591

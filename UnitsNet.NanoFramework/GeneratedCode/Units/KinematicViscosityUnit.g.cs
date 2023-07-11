@@ -25,16 +25,15 @@ namespace UnitsNet.Units
 
     public enum KinematicViscosityUnit
     {
-        Undefined = 0,
-        Centistokes,
-        Decistokes,
-        Kilostokes,
-        Microstokes,
-        Millistokes,
-        Nanostokes,
-        SquareFootPerSecond,
-        SquareMeterPerSecond,
-        Stokes,
+        Centistokes = 1,
+        Decistokes = 2,
+        Kilostokes = 3,
+        Microstokes = 4,
+        Millistokes = 5,
+        Nanostokes = 6,
+        SquareFootPerSecond = 7,
+        SquareMeterPerSecond = 8,
+        Stokes = 9,
     }
 
     #pragma warning restore 1591

@@ -3,7 +3,7 @@
 
 using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     public class ElectricPotentialTests : ElectricPotentialTestsBase
     {
@@ -17,6 +17,8 @@ namespace UnitsNet.Tests.CustomCode
         protected override double KilovoltsInOneVolt => 1e-3;
 
         protected override double MegavoltsInOneVolt => 1e-6;
+
+        protected override double NanovoltsInOneVolt => 1e9;
 
         [Theory]
         [InlineData(1, 1, 1)]
@@ -47,6 +49,18 @@ namespace UnitsNet.Tests.CustomCode
         {
             Power p = ElectricPotential.FromVolts(10) * ElectricCurrent.FromAmperes(2);
             Assert.Equal(20, p.Watts);
+        }
+        
+        [Theory]
+        [InlineData(1, 1, 1)]
+        [InlineData(0, int.MaxValue, 0)]
+        [InlineData(10, 2, 20)]
+        [InlineData(-10, 2, -20)]
+        [InlineData(-10, -2, 20)]
+        public void ElectricPotentialMultipliedByElectricChargeEqualsEnergy(float potential, float current, float expected)
+        {
+            Energy j = ElectricPotential.FromVolts(potential) * ElectricCharge.FromCoulombs(current);
+            Assert.Equal(expected, j.Joules);
         }
     }
 }

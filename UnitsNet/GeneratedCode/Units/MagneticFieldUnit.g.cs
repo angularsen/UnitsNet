@@ -25,13 +25,12 @@ namespace UnitsNet.Units
 
     public enum MagneticFieldUnit
     {
-        Undefined = 0,
-        Gauss,
-        Microtesla,
-        Milligauss,
-        Millitesla,
-        Nanotesla,
-        Tesla,
+        Gauss = 1,
+        Microtesla = 2,
+        Milligauss = 3,
+        Millitesla = 4,
+        Nanotesla = 5,
+        Tesla = 6,
     }
 
     #pragma warning restore 1591

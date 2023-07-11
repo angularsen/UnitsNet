@@ -1,21 +1,23 @@
 ﻿using CodeGen.Helpers;
+using CodeGen.Helpers.UnitEnumValueAllocation;
 using CodeGen.JsonTypes;
 
 namespace CodeGen.Generators.NanoFrameworkGen
-
 {
     internal class UnitTypeGenerator : GeneratorBase
     {
         private readonly Quantity _quantity;
+        private readonly UnitEnumNameToValue _unitEnumNameToValue;
         private readonly string _unitEnumName;
 
-        public UnitTypeGenerator(Quantity quantity)
+        public UnitTypeGenerator(Quantity quantity, UnitEnumNameToValue unitEnumNameToValue)
         {
             _quantity = quantity;
+            _unitEnumNameToValue = unitEnumNameToValue;
             _unitEnumName = $"{quantity.Name}Unit";
         }
 
-        public override string Generate()
+        public string Generate()
         {
             Writer.WL(GeneratedFileHeader);
             Writer.WL($@"
@@ -26,10 +28,8 @@ namespace UnitsNet.Units
     #pragma warning disable 1591
 
     public enum {_unitEnumName}
-    {{
-        Undefined = 0,");
-
-            foreach (var unit in _quantity.Units)
+    {{");
+            foreach (Unit unit in _quantity.Units)
             {
                 if (unit.XmlDocSummary.HasText())
                 {
@@ -48,7 +48,7 @@ namespace UnitsNet.Units
 
                 Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit.ObsoleteText));
                 Writer.WL($@"
-        {unit.SingularName},");
+        {unit.SingularName} = {_unitEnumNameToValue[unit.SingularName]},");
             }
 
             Writer.WL($@"
@@ -59,7 +59,7 @@ namespace UnitsNet.Units
             return Writer.ToString();
         }
 
-        private string? GetObsoleteAttributeOrNull(string obsoleteText) =>
+        private static string? GetObsoleteAttributeOrNull(string? obsoleteText) =>
             string.IsNullOrWhiteSpace(obsoleteText) ?
             null :
             $"[System.Obsolete(\"{obsoleteText}\")]";

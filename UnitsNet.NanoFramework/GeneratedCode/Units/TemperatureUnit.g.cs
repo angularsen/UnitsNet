@@ -25,17 +25,16 @@ namespace UnitsNet.Units
 
     public enum TemperatureUnit
     {
-        Undefined = 0,
-        DegreeCelsius,
-        DegreeDelisle,
-        DegreeFahrenheit,
-        DegreeNewton,
-        DegreeRankine,
-        DegreeReaumur,
-        DegreeRoemer,
-        Kelvin,
-        MillidegreeCelsius,
-        SolarTemperature,
+        DegreeCelsius = 1,
+        DegreeDelisle = 2,
+        DegreeFahrenheit = 3,
+        DegreeNewton = 4,
+        DegreeRankine = 5,
+        DegreeReaumur = 6,
+        DegreeRoemer = 7,
+        Kelvin = 8,
+        MillidegreeCelsius = 9,
+        SolarTemperature = 10,
     }
 
     #pragma warning restore 1591

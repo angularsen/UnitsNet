@@ -25,27 +25,26 @@ namespace UnitsNet.Units
 
     public enum ForceUnit
     {
-        Undefined = 0,
-        Decanewton,
-        Dyn,
-        KilogramForce,
-        Kilonewton,
-        KiloPond,
-        KilopoundForce,
-        Meganewton,
-        Micronewton,
-        Millinewton,
-        Newton,
-        OunceForce,
-        Poundal,
-        PoundForce,
+        Decanewton = 1,
+        Dyn = 2,
+        KilogramForce = 3,
+        Kilonewton = 4,
+        KiloPond = 5,
+        KilopoundForce = 6,
+        Meganewton = 7,
+        Micronewton = 8,
+        Millinewton = 9,
+        Newton = 10,
+        OunceForce = 11,
+        Poundal = 12,
+        PoundForce = 13,
 
         /// <summary>
         ///     The short ton-force is a unit of force equal to 2,000 pounds-force (907.18474 kgf), that is most commonly used in the United States – known there simply as the ton or US ton.
         /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Ton-force#Short_ton-force</remarks>
-        ShortTonForce,
-        TonneForce,
+        ShortTonForce = 14,
+        TonneForce = 15,
     }
 
     #pragma warning restore 1591

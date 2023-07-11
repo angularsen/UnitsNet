@@ -176,65 +176,65 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(CapacitanceUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(CapacitanceUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public Capacitance ToUnit(CapacitanceUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new Capacitance(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public Capacitance ToUnit(CapacitanceUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new Capacitance(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                CapacitanceUnit.Farad => _value,
-                CapacitanceUnit.Kilofarad => (_value) * 1e3d,
-                CapacitanceUnit.Megafarad => (_value) * 1e6d,
-                CapacitanceUnit.Microfarad => (_value) * 1e-6d,
-                CapacitanceUnit.Millifarad => (_value) * 1e-3d,
-                CapacitanceUnit.Nanofarad => (_value) * 1e-9d,
-                CapacitanceUnit.Picofarad => (_value) * 1e-12d,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        CapacitanceUnit.Farad => _value,
+                        CapacitanceUnit.Kilofarad => (_value) * 1e3d,
+                        CapacitanceUnit.Megafarad => (_value) * 1e6d,
+                        CapacitanceUnit.Microfarad => (_value) * 1e-6d,
+                        CapacitanceUnit.Millifarad => (_value) * 1e-3d,
+                        CapacitanceUnit.Nanofarad => (_value) * 1e-9d,
+                        CapacitanceUnit.Picofarad => (_value) * 1e-12d,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(CapacitanceUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(CapacitanceUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                CapacitanceUnit.Farad => baseUnitValue,
-                CapacitanceUnit.Kilofarad => (baseUnitValue) / 1e3d,
-                CapacitanceUnit.Megafarad => (baseUnitValue) / 1e6d,
-                CapacitanceUnit.Microfarad => (baseUnitValue) / 1e-6d,
-                CapacitanceUnit.Millifarad => (baseUnitValue) / 1e-3d,
-                CapacitanceUnit.Nanofarad => (baseUnitValue) / 1e-9d,
-                CapacitanceUnit.Picofarad => (baseUnitValue) / 1e-12d,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        CapacitanceUnit.Farad => baseUnitValue,
+                        CapacitanceUnit.Kilofarad => (baseUnitValue) / 1e3d,
+                        CapacitanceUnit.Megafarad => (baseUnitValue) / 1e6d,
+                        CapacitanceUnit.Microfarad => (baseUnitValue) / 1e-6d,
+                        CapacitanceUnit.Millifarad => (baseUnitValue) / 1e-3d,
+                        CapacitanceUnit.Nanofarad => (baseUnitValue) / 1e-9d,
+                        CapacitanceUnit.Picofarad => (baseUnitValue) / 1e-12d,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

@@ -25,67 +25,88 @@ namespace UnitsNet.Units
 
     public enum LengthUnit
     {
-        Undefined = 0,
 
         /// <summary>
         ///     Angstrom is a metric unit of length equal to 1e-10 meter
         /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Angstrom</remarks>
-        Angstrom,
+        Angstrom = 1,
 
         /// <summary>
         ///     One Astronomical Unit is the distance from the solar system Star, the sun, to planet Earth.
         /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Astronomical_unit</remarks>
-        AstronomicalUnit,
-        Centimeter,
-        Chain,
-        Decameter,
-        Decimeter,
-        DtpPica,
-        DtpPoint,
-        Fathom,
-        Foot,
-        Hand,
-        Hectometer,
-        Inch,
-        KilolightYear,
-        Kilometer,
-        Kiloparsec,
+        AstronomicalUnit = 2,
+        Centimeter = 3,
+        Chain = 4,
+
+        /// <summary>
+        ///     In radar-related subjects and in JTIDS, a data mile is a unit of distance equal to 6000 feet (1.8288 kilometres or 0.987 nautical miles).
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Data_mile</remarks>
+        DataMile = 5,
+        Decameter = 6,
+        Decimeter = 7,
+        DtpPica = 8,
+        DtpPoint = 9,
+        Fathom = 10,
+        Foot = 11,
+        Hand = 12,
+        Hectometer = 13,
+        Inch = 14,
+        KilolightYear = 15,
+        Kilometer = 16,
+        Kiloparsec = 17,
 
         /// <summary>
         ///     A Light Year (ly) is the distance that light travel during an Earth year, ie 365 days.
         /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Light-year</remarks>
-        LightYear,
-        MegalightYear,
-        Megaparsec,
-        Meter,
-        Microinch,
-        Micrometer,
-        Mil,
-        Mile,
-        Millimeter,
-        Nanometer,
-        NauticalMile,
+        LightYear = 18,
+        MegalightYear = 19,
+        Megameter = 41,
+        Megaparsec = 20,
+        Meter = 21,
+        Microinch = 22,
+        Micrometer = 23,
+        Mil = 24,
+
+        /// <summary>
+        ///     The statute mile was standardised between the British Commonwealth and the United States by an international agreement in 1959, when it was formally redefined with respect to SI units as exactly 1,609.344 metres.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Mile</remarks>
+        Mile = 25,
+        Millimeter = 26,
+        Nanometer = 27,
+        NauticalMile = 28,
 
         /// <summary>
         ///     A parsec is defined as the distance at which one astronomical unit (AU) subtends an angle of one arcsecond.
         /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Parsec</remarks>
-        Parsec,
-        PrinterPica,
-        PrinterPoint,
-        Shackle,
+        Parsec = 29,
+        PrinterPica = 30,
+        PrinterPoint = 31,
+        Shackle = 32,
 
         /// <summary>
         ///     Solar radius is a ratio unit to the radius of the solar system star, the sun.
         /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Stellar_classification</remarks>
-        SolarRadius,
-        Twip,
-        UsSurveyFoot,
-        Yard,
+        SolarRadius = 33,
+        Twip = 34,
+
+        /// <summary>
+        ///     In the United States, the foot was defined as 12 inches, with the inch being defined by the Mendenhall Order of 1893 as 39.37 inches = 1 m. This makes a U.S. survey foot exactly 1200/3937 meters.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Foot_(unit)</remarks>
+        UsSurveyFoot = 35,
+
+        /// <summary>
+        ///     The yard (symbol: yd) is an English unit of length in both the British imperial and US customary systems of measurement equalling 3 feet (or 36 inches). Since 1959 the yard has been by international agreement standardized as exactly 0.9144 meter. A distance of 1,760 yards is equal to 1 mile.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Yard</remarks>
+        Yard = 36,
     }
 
     #pragma warning restore 1591

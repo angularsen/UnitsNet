@@ -1,10 +1,11 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using System;
 using UnitsNet.Units;
 using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     public class EnergyTests : EnergyTestsBase
     {
@@ -23,6 +24,10 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MegajoulesInOneJoule => 1E-6;
 
+        protected override double TerajoulesInOneJoule => 1E-12;
+
+        protected override double PetajoulesInOneJoule => 1E-15;
+        
         protected override double BritishThermalUnitsInOneJoule => 0.00094781712;
 
         protected override double CaloriesInOneJoule => 0.239005736;
@@ -104,6 +109,83 @@ namespace UnitsNet.Tests.CustomCode
 
             Assert.Equal(2110.11170524, inSI.Value);
             Assert.Equal(EnergyUnit.Joule, inSI.Unit);
+        }
+
+        [Fact]
+        public void EnergyDividedByTimeSpanEqualsPower()
+        {
+            Power p = Energy.FromWattHours(10) / TimeSpan.FromHours(2);
+            Assert.Equal(5, p.Watts);
+        }
+
+        [Fact]
+        public void EnergyDividedByDurationEqualsPower()
+        {
+            Power p = Energy.FromWattHours(20) / Duration.FromHours(5);
+            Assert.Equal(4, p.Watts);
+        }
+
+        [Fact]
+        public void EnergyDividedByPowerEqualsDuration()
+        {
+            Duration d = Energy.FromKilowattHours(100) / Power.FromKilowatts(20);
+            Assert.Equal(5, d.Hours);
+        }
+
+        [Fact]
+        public void EnergyDividedByElectricPotentialEqualsElectricCharge()
+        {
+            ElectricCharge c = Energy.FromJoules(20) / ElectricPotential.FromVolts(5);
+            Assert.Equal(4, c.Coulombs);
+        }
+
+        [Fact]
+        public void EnergyDividedByElectricChargeEqualsElectricPotential()
+        {
+            ElectricPotential v = Energy.FromJoules(20) / ElectricCharge.FromCoulombs(5);
+            Assert.Equal(4, v.Volts);
+        }
+
+        [Fact]
+        public void EnergyTimesFrequencyEqualsPower()
+        {
+            Power p = Energy.FromJoules(25) * Frequency.FromPerSecond(5);
+            Assert.Equal(125, p.Watts);
+        }
+
+        [Fact]
+        public void FrequencyTimesEnergyEqualsPower()
+        {
+            Power p = Frequency.FromCyclesPerHour(100) * Energy.FromWattHours(2);
+            Assert.Equal(200, p.Watts);
+        }
+
+        [Fact]
+        public void EnergyDividedByTemperatureDeltaEqualsEntropy()
+        {
+            Entropy e = Energy.FromJoules(16) / TemperatureDelta.FromKelvins(8);
+            Assert.Equal(Entropy.FromJoulesPerKelvin(2), e);
+        }
+
+        [Fact]
+        public void EnergyDividedByEntropyEqualsTemperatureDelta()
+        {
+            TemperatureDelta t = Energy.FromJoules(15) / Entropy.FromJoulesPerKelvin(3);
+            Assert.Equal(TemperatureDelta.FromKelvins(5), t);
+        }
+
+        [Fact]
+        public void EnergyDividedByMassEqualsSpecificEnergy()
+        {
+            SpecificEnergy e = Energy.FromJoules(10) / Mass.FromKilograms(2);
+            Assert.Equal(SpecificEnergy.FromJoulesPerKilogram(5), e);
+        }
+
+        [Fact]
+        public void EnergyDividedBySpecificEnergyEqualsMass()
+        {
+            Mass m = Energy.FromJoules(24) / SpecificEnergy.FromJoulesPerKilogram(8);
+            Assert.Equal(Mass.FromKilograms(3), m);
         }
     }
 }

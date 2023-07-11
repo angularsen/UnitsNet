@@ -25,9 +25,8 @@ namespace UnitsNet.Units
 
     public enum VolumeFlowPerAreaUnit
     {
-        Undefined = 0,
-        CubicFootPerMinutePerSquareFoot,
-        CubicMeterPerSecondPerSquareMeter,
+        CubicFootPerMinutePerSquareFoot = 1,
+        CubicMeterPerSecondPerSquareMeter = 2,
     }
 
     #pragma warning restore 1591

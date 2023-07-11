@@ -25,9 +25,8 @@ namespace UnitsNet.Units
 
     public enum RatioChangeRateUnit
     {
-        Undefined = 0,
-        DecimalFractionPerSecond,
-        PercentPerSecond,
+        DecimalFractionPerSecond = 1,
+        PercentPerSecond = 2,
     }
 
     #pragma warning restore 1591

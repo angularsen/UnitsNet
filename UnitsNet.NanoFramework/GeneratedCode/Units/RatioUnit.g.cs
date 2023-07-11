@@ -25,13 +25,12 @@ namespace UnitsNet.Units
 
     public enum RatioUnit
     {
-        Undefined = 0,
-        DecimalFraction,
-        PartPerBillion,
-        PartPerMillion,
-        PartPerThousand,
-        PartPerTrillion,
-        Percent,
+        DecimalFraction = 1,
+        PartPerBillion = 2,
+        PartPerMillion = 3,
+        PartPerThousand = 4,
+        PartPerTrillion = 5,
+        Percent = 6,
     }
 
     #pragma warning restore 1591

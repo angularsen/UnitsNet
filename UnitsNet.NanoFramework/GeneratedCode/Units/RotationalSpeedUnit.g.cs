@@ -25,20 +25,19 @@ namespace UnitsNet.Units
 
     public enum RotationalSpeedUnit
     {
-        Undefined = 0,
-        CentiradianPerSecond,
-        DeciradianPerSecond,
-        DegreePerMinute,
-        DegreePerSecond,
-        MicrodegreePerSecond,
-        MicroradianPerSecond,
-        MillidegreePerSecond,
-        MilliradianPerSecond,
-        NanodegreePerSecond,
-        NanoradianPerSecond,
-        RadianPerSecond,
-        RevolutionPerMinute,
-        RevolutionPerSecond,
+        CentiradianPerSecond = 1,
+        DeciradianPerSecond = 2,
+        DegreePerMinute = 3,
+        DegreePerSecond = 4,
+        MicrodegreePerSecond = 5,
+        MicroradianPerSecond = 6,
+        MillidegreePerSecond = 7,
+        MilliradianPerSecond = 8,
+        NanodegreePerSecond = 9,
+        NanoradianPerSecond = 10,
+        RadianPerSecond = 11,
+        RevolutionPerMinute = 12,
+        RevolutionPerSecond = 13,
     }
 
     #pragma warning restore 1591

@@ -111,19 +111,12 @@ namespace UnitsNet.Tests
         };
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new Area((double)0.0, AreaUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new Area();
             Assert.Equal(0, quantity.Value);
             Assert.Equal(AreaUnit.SquareMeter, quantity.Unit);
         }
-
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
@@ -168,14 +161,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Area.Zero, quantityInfo.Zero);
             Assert.Equal("Area", quantityInfo.Name);
-            Assert.Equal(QuantityType.Area, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<AreaUnit>().Except(new[] {AreaUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<AreaUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
-
-            // Obsolete members
-            Assert.Equal(units, quantityInfo.Units);
-            Assert.Equal(unitNames, quantityInfo.UnitNames);
         }
 
         [Fact]
@@ -300,13 +288,995 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else
             {
                 Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
             }
+        }
+
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = Area.Parse("1 ac", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Acres, AcresTolerance);
+                Assert.Equal(AreaUnit.Acre, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 акр", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Acres, AcresTolerance);
+                Assert.Equal(AreaUnit.Acre, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 英亩", CultureInfo.GetCultureInfo("zh-CN"));
+                AssertEx.EqualTolerance(1, parsed.Acres, AcresTolerance);
+                Assert.Equal(AreaUnit.Acre, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 ha", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Hectares, HectaresTolerance);
+                Assert.Equal(AreaUnit.Hectare, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 га", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Hectares, HectaresTolerance);
+                Assert.Equal(AreaUnit.Hectare, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 英亩", CultureInfo.GetCultureInfo("zh-CN"));
+                AssertEx.EqualTolerance(1, parsed.Hectares, HectaresTolerance);
+                Assert.Equal(AreaUnit.Hectare, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 cm²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.SquareCentimeters, SquareCentimetersTolerance);
+                Assert.Equal(AreaUnit.SquareCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 см²", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.SquareCentimeters, SquareCentimetersTolerance);
+                Assert.Equal(AreaUnit.SquareCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 平方厘米", CultureInfo.GetCultureInfo("zh-CN"));
+                AssertEx.EqualTolerance(1, parsed.SquareCentimeters, SquareCentimetersTolerance);
+                Assert.Equal(AreaUnit.SquareCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 dm²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.SquareDecimeters, SquareDecimetersTolerance);
+                Assert.Equal(AreaUnit.SquareDecimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 дм²", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.SquareDecimeters, SquareDecimetersTolerance);
+                Assert.Equal(AreaUnit.SquareDecimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 平方分米", CultureInfo.GetCultureInfo("zh-CN"));
+                AssertEx.EqualTolerance(1, parsed.SquareDecimeters, SquareDecimetersTolerance);
+                Assert.Equal(AreaUnit.SquareDecimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 ft²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.SquareFeet, SquareFeetTolerance);
+                Assert.Equal(AreaUnit.SquareFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 фут²", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.SquareFeet, SquareFeetTolerance);
+                Assert.Equal(AreaUnit.SquareFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 平方英尺", CultureInfo.GetCultureInfo("zh-CN"));
+                AssertEx.EqualTolerance(1, parsed.SquareFeet, SquareFeetTolerance);
+                Assert.Equal(AreaUnit.SquareFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 in²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.SquareInches, SquareInchesTolerance);
+                Assert.Equal(AreaUnit.SquareInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 дюйм²", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.SquareInches, SquareInchesTolerance);
+                Assert.Equal(AreaUnit.SquareInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 平方英寸", CultureInfo.GetCultureInfo("zh-CN"));
+                AssertEx.EqualTolerance(1, parsed.SquareInches, SquareInchesTolerance);
+                Assert.Equal(AreaUnit.SquareInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 km²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.SquareKilometers, SquareKilometersTolerance);
+                Assert.Equal(AreaUnit.SquareKilometer, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 км²", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.SquareKilometers, SquareKilometersTolerance);
+                Assert.Equal(AreaUnit.SquareKilometer, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 平方公里", CultureInfo.GetCultureInfo("zh-CN"));
+                AssertEx.EqualTolerance(1, parsed.SquareKilometers, SquareKilometersTolerance);
+                Assert.Equal(AreaUnit.SquareKilometer, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 m²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.SquareMeters, SquareMetersTolerance);
+                Assert.Equal(AreaUnit.SquareMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 м²", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.SquareMeters, SquareMetersTolerance);
+                Assert.Equal(AreaUnit.SquareMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 平方米", CultureInfo.GetCultureInfo("zh-CN"));
+                AssertEx.EqualTolerance(1, parsed.SquareMeters, SquareMetersTolerance);
+                Assert.Equal(AreaUnit.SquareMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 µm²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.SquareMicrometers, SquareMicrometersTolerance);
+                Assert.Equal(AreaUnit.SquareMicrometer, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 мкм²", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.SquareMicrometers, SquareMicrometersTolerance);
+                Assert.Equal(AreaUnit.SquareMicrometer, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 平方微米", CultureInfo.GetCultureInfo("zh-CN"));
+                AssertEx.EqualTolerance(1, parsed.SquareMicrometers, SquareMicrometersTolerance);
+                Assert.Equal(AreaUnit.SquareMicrometer, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 mi²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.SquareMiles, SquareMilesTolerance);
+                Assert.Equal(AreaUnit.SquareMile, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 миля²", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.SquareMiles, SquareMilesTolerance);
+                Assert.Equal(AreaUnit.SquareMile, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 平方英里", CultureInfo.GetCultureInfo("zh-CN"));
+                AssertEx.EqualTolerance(1, parsed.SquareMiles, SquareMilesTolerance);
+                Assert.Equal(AreaUnit.SquareMile, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 mm²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.SquareMillimeters, SquareMillimetersTolerance);
+                Assert.Equal(AreaUnit.SquareMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 мм²", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.SquareMillimeters, SquareMillimetersTolerance);
+                Assert.Equal(AreaUnit.SquareMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 平方毫米", CultureInfo.GetCultureInfo("zh-CN"));
+                AssertEx.EqualTolerance(1, parsed.SquareMillimeters, SquareMillimetersTolerance);
+                Assert.Equal(AreaUnit.SquareMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 nmi²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.SquareNauticalMiles, SquareNauticalMilesTolerance);
+                Assert.Equal(AreaUnit.SquareNauticalMile, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 морск.миля²", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.SquareNauticalMiles, SquareNauticalMilesTolerance);
+                Assert.Equal(AreaUnit.SquareNauticalMile, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 平方海里", CultureInfo.GetCultureInfo("zh-CN"));
+                AssertEx.EqualTolerance(1, parsed.SquareNauticalMiles, SquareNauticalMilesTolerance);
+                Assert.Equal(AreaUnit.SquareNauticalMile, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 yd²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.SquareYards, SquareYardsTolerance);
+                Assert.Equal(AreaUnit.SquareYard, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 ярд²", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.SquareYards, SquareYardsTolerance);
+                Assert.Equal(AreaUnit.SquareYard, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 平方码", CultureInfo.GetCultureInfo("zh-CN"));
+                AssertEx.EqualTolerance(1, parsed.SquareYards, SquareYardsTolerance);
+                Assert.Equal(AreaUnit.SquareYard, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 ft² (US)", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.UsSurveySquareFeet, UsSurveySquareFeetTolerance);
+                Assert.Equal(AreaUnit.UsSurveySquareFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Area.Parse("1 фут² (US)", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.UsSurveySquareFeet, UsSurveySquareFeetTolerance);
+                Assert.Equal(AreaUnit.UsSurveySquareFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            {
+                Assert.True(Area.TryParse("1 ac", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Acres, AcresTolerance);
+                Assert.Equal(AreaUnit.Acre, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 акр", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Acres, AcresTolerance);
+                Assert.Equal(AreaUnit.Acre, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 ha", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Hectares, HectaresTolerance);
+                Assert.Equal(AreaUnit.Hectare, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 га", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Hectares, HectaresTolerance);
+                Assert.Equal(AreaUnit.Hectare, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 cm²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareCentimeters, SquareCentimetersTolerance);
+                Assert.Equal(AreaUnit.SquareCentimeter, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 см²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareCentimeters, SquareCentimetersTolerance);
+                Assert.Equal(AreaUnit.SquareCentimeter, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 平方厘米", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareCentimeters, SquareCentimetersTolerance);
+                Assert.Equal(AreaUnit.SquareCentimeter, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 dm²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareDecimeters, SquareDecimetersTolerance);
+                Assert.Equal(AreaUnit.SquareDecimeter, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 дм²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareDecimeters, SquareDecimetersTolerance);
+                Assert.Equal(AreaUnit.SquareDecimeter, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 平方分米", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareDecimeters, SquareDecimetersTolerance);
+                Assert.Equal(AreaUnit.SquareDecimeter, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 ft²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareFeet, SquareFeetTolerance);
+                Assert.Equal(AreaUnit.SquareFoot, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 фут²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareFeet, SquareFeetTolerance);
+                Assert.Equal(AreaUnit.SquareFoot, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 平方英尺", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareFeet, SquareFeetTolerance);
+                Assert.Equal(AreaUnit.SquareFoot, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 in²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareInches, SquareInchesTolerance);
+                Assert.Equal(AreaUnit.SquareInch, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 дюйм²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareInches, SquareInchesTolerance);
+                Assert.Equal(AreaUnit.SquareInch, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 平方英寸", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareInches, SquareInchesTolerance);
+                Assert.Equal(AreaUnit.SquareInch, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 km²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareKilometers, SquareKilometersTolerance);
+                Assert.Equal(AreaUnit.SquareKilometer, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 км²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareKilometers, SquareKilometersTolerance);
+                Assert.Equal(AreaUnit.SquareKilometer, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 平方公里", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareKilometers, SquareKilometersTolerance);
+                Assert.Equal(AreaUnit.SquareKilometer, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 m²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareMeters, SquareMetersTolerance);
+                Assert.Equal(AreaUnit.SquareMeter, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 м²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareMeters, SquareMetersTolerance);
+                Assert.Equal(AreaUnit.SquareMeter, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 平方米", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareMeters, SquareMetersTolerance);
+                Assert.Equal(AreaUnit.SquareMeter, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 µm²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareMicrometers, SquareMicrometersTolerance);
+                Assert.Equal(AreaUnit.SquareMicrometer, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 мкм²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareMicrometers, SquareMicrometersTolerance);
+                Assert.Equal(AreaUnit.SquareMicrometer, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 平方微米", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareMicrometers, SquareMicrometersTolerance);
+                Assert.Equal(AreaUnit.SquareMicrometer, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 mi²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareMiles, SquareMilesTolerance);
+                Assert.Equal(AreaUnit.SquareMile, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 миля²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareMiles, SquareMilesTolerance);
+                Assert.Equal(AreaUnit.SquareMile, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 平方英里", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareMiles, SquareMilesTolerance);
+                Assert.Equal(AreaUnit.SquareMile, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 mm²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareMillimeters, SquareMillimetersTolerance);
+                Assert.Equal(AreaUnit.SquareMillimeter, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 мм²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareMillimeters, SquareMillimetersTolerance);
+                Assert.Equal(AreaUnit.SquareMillimeter, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 平方毫米", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareMillimeters, SquareMillimetersTolerance);
+                Assert.Equal(AreaUnit.SquareMillimeter, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 nmi²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareNauticalMiles, SquareNauticalMilesTolerance);
+                Assert.Equal(AreaUnit.SquareNauticalMile, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 морск.миля²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareNauticalMiles, SquareNauticalMilesTolerance);
+                Assert.Equal(AreaUnit.SquareNauticalMile, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 平方海里", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareNauticalMiles, SquareNauticalMilesTolerance);
+                Assert.Equal(AreaUnit.SquareNauticalMile, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 yd²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareYards, SquareYardsTolerance);
+                Assert.Equal(AreaUnit.SquareYard, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 ярд²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareYards, SquareYardsTolerance);
+                Assert.Equal(AreaUnit.SquareYard, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 平方码", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareYards, SquareYardsTolerance);
+                Assert.Equal(AreaUnit.SquareYard, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 ft² (US)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.UsSurveySquareFeet, UsSurveySquareFeetTolerance);
+                Assert.Equal(AreaUnit.UsSurveySquareFoot, parsed.Unit);
+            }
+
+            {
+                Assert.True(Area.TryParse("1 фут² (US)", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.UsSurveySquareFeet, UsSurveySquareFeetTolerance);
+                Assert.Equal(AreaUnit.UsSurveySquareFoot, parsed.Unit);
+            }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = Area.ParseUnit("ac", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(AreaUnit.Acre, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("акр", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(AreaUnit.Acre, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("英亩", CultureInfo.GetCultureInfo("zh-CN"));
+                Assert.Equal(AreaUnit.Acre, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("ha", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(AreaUnit.Hectare, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("га", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(AreaUnit.Hectare, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("英亩", CultureInfo.GetCultureInfo("zh-CN"));
+                Assert.Equal(AreaUnit.Hectare, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("cm²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(AreaUnit.SquareCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("см²", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(AreaUnit.SquareCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("平方厘米", CultureInfo.GetCultureInfo("zh-CN"));
+                Assert.Equal(AreaUnit.SquareCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("dm²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(AreaUnit.SquareDecimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("дм²", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(AreaUnit.SquareDecimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("平方分米", CultureInfo.GetCultureInfo("zh-CN"));
+                Assert.Equal(AreaUnit.SquareDecimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("ft²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(AreaUnit.SquareFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("фут²", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(AreaUnit.SquareFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("平方英尺", CultureInfo.GetCultureInfo("zh-CN"));
+                Assert.Equal(AreaUnit.SquareFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("in²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(AreaUnit.SquareInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("дюйм²", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(AreaUnit.SquareInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("平方英寸", CultureInfo.GetCultureInfo("zh-CN"));
+                Assert.Equal(AreaUnit.SquareInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("km²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(AreaUnit.SquareKilometer, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("км²", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(AreaUnit.SquareKilometer, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("平方公里", CultureInfo.GetCultureInfo("zh-CN"));
+                Assert.Equal(AreaUnit.SquareKilometer, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("m²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(AreaUnit.SquareMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("м²", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(AreaUnit.SquareMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("平方米", CultureInfo.GetCultureInfo("zh-CN"));
+                Assert.Equal(AreaUnit.SquareMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("µm²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(AreaUnit.SquareMicrometer, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("мкм²", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(AreaUnit.SquareMicrometer, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("平方微米", CultureInfo.GetCultureInfo("zh-CN"));
+                Assert.Equal(AreaUnit.SquareMicrometer, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("mi²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(AreaUnit.SquareMile, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("миля²", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(AreaUnit.SquareMile, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("平方英里", CultureInfo.GetCultureInfo("zh-CN"));
+                Assert.Equal(AreaUnit.SquareMile, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("mm²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(AreaUnit.SquareMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("мм²", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(AreaUnit.SquareMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("平方毫米", CultureInfo.GetCultureInfo("zh-CN"));
+                Assert.Equal(AreaUnit.SquareMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("nmi²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(AreaUnit.SquareNauticalMile, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("морск.миля²", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(AreaUnit.SquareNauticalMile, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("平方海里", CultureInfo.GetCultureInfo("zh-CN"));
+                Assert.Equal(AreaUnit.SquareNauticalMile, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("yd²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(AreaUnit.SquareYard, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("ярд²", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(AreaUnit.SquareYard, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("平方码", CultureInfo.GetCultureInfo("zh-CN"));
+                Assert.Equal(AreaUnit.SquareYard, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("ft² (US)", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(AreaUnit.UsSurveySquareFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Area.ParseUnit("фут² (US)", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(AreaUnit.UsSurveySquareFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            {
+                Assert.True(Area.TryParseUnit("ac", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(AreaUnit.Acre, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("акр", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(AreaUnit.Acre, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("ha", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(AreaUnit.Hectare, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("га", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(AreaUnit.Hectare, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("cm²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(AreaUnit.SquareCentimeter, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("см²", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(AreaUnit.SquareCentimeter, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("平方厘米", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
+                Assert.Equal(AreaUnit.SquareCentimeter, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("dm²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(AreaUnit.SquareDecimeter, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("дм²", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(AreaUnit.SquareDecimeter, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("平方分米", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
+                Assert.Equal(AreaUnit.SquareDecimeter, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("ft²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(AreaUnit.SquareFoot, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("фут²", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(AreaUnit.SquareFoot, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("平方英尺", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
+                Assert.Equal(AreaUnit.SquareFoot, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("in²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(AreaUnit.SquareInch, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("дюйм²", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(AreaUnit.SquareInch, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("平方英寸", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
+                Assert.Equal(AreaUnit.SquareInch, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("km²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(AreaUnit.SquareKilometer, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("км²", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(AreaUnit.SquareKilometer, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("平方公里", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
+                Assert.Equal(AreaUnit.SquareKilometer, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("m²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(AreaUnit.SquareMeter, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("м²", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(AreaUnit.SquareMeter, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("平方米", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
+                Assert.Equal(AreaUnit.SquareMeter, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("µm²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(AreaUnit.SquareMicrometer, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("мкм²", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(AreaUnit.SquareMicrometer, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("平方微米", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
+                Assert.Equal(AreaUnit.SquareMicrometer, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("mi²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(AreaUnit.SquareMile, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("миля²", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(AreaUnit.SquareMile, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("平方英里", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
+                Assert.Equal(AreaUnit.SquareMile, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("mm²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(AreaUnit.SquareMillimeter, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("мм²", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(AreaUnit.SquareMillimeter, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("平方毫米", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
+                Assert.Equal(AreaUnit.SquareMillimeter, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("nmi²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(AreaUnit.SquareNauticalMile, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("морск.миля²", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(AreaUnit.SquareNauticalMile, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("平方海里", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
+                Assert.Equal(AreaUnit.SquareNauticalMile, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("yd²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(AreaUnit.SquareYard, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("ярд²", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(AreaUnit.SquareYard, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("平方码", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
+                Assert.Equal(AreaUnit.SquareYard, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("ft² (US)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(AreaUnit.UsSurveySquareFoot, parsedUnit);
+            }
+
+            {
+                Assert.True(Area.TryParseUnit("фут² (US)", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(AreaUnit.UsSurveySquareFoot, parsedUnit);
+            }
+
         }
 
         [Theory]
@@ -317,7 +1287,7 @@ namespace UnitsNet.Tests
             var converted = inBaseUnits.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
         }
 
@@ -334,14 +1304,19 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(AreaUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = Area.Units.FirstOrDefault(u => u != Area.BaseUnit && u != AreaUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if (fromUnit == AreaUnit.Undefined)
-                fromUnit = Area.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = Area.Units.First(u => u != Area.BaseUnit);
 
             var quantity = Area.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(AreaUnit unit)
+        {
+            var quantity = default(Area);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }
@@ -419,47 +1394,45 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => squaremeter.CompareTo(null));
         }
 
-        [Fact]
-        public void EqualityOperators()
+        [Theory]
+        [InlineData(1, AreaUnit.SquareMeter, 1, AreaUnit.SquareMeter, true)]  // Same value and unit.
+        [InlineData(1, AreaUnit.SquareMeter, 2, AreaUnit.SquareMeter, false)] // Different value.
+        [InlineData(2, AreaUnit.SquareMeter, 1, AreaUnit.Acre, false)] // Different value and unit.
+        [InlineData(1, AreaUnit.SquareMeter, 1, AreaUnit.Acre, false)] // Different unit.
+        public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, AreaUnit unitA, double valueB, AreaUnit unitB, bool expectEqual)
         {
-            var a = Area.FromSquareMeters(1);
-            var b = Area.FromSquareMeters(2);
+            var a = new Area(valueA, unitA);
+            var b = new Area(valueB, unitB);
 
-#pragma warning disable CS8073
-// ReSharper disable EqualExpressionComparison
+            // Operator overloads.
+            Assert.Equal(expectEqual, a == b);
+            Assert.Equal(expectEqual, b == a);
+            Assert.Equal(!expectEqual, a != b);
+            Assert.Equal(!expectEqual, b != a);
 
-            Assert.True(a == a);
-            Assert.False(a != a);
+            // IEquatable<T>
+            Assert.Equal(expectEqual, a.Equals(b));
+            Assert.Equal(expectEqual, b.Equals(a));
 
-            Assert.True(a != b);
-            Assert.False(a == b);
+            // IEquatable
+            Assert.Equal(expectEqual, a.Equals((object)b));
+            Assert.Equal(expectEqual, b.Equals((object)a));
+        }
 
+        [Fact]
+        public void Equals_Null_ReturnsFalse()
+        {
+            var a = Area.Zero;
+
+            Assert.False(a.Equals((object)null));
+
+            // "The result of the expression is always 'false'..."
+            #pragma warning disable CS8073
             Assert.False(a == null);
             Assert.False(null == a);
-
-// ReSharper restore EqualExpressionComparison
-#pragma warning restore CS8073
-        }
-
-        [Fact]
-        public void Equals_SameType_IsImplemented()
-        {
-            var a = Area.FromSquareMeters(1);
-            var b = Area.FromSquareMeters(2);
-
-            Assert.True(a.Equals(a));
-            Assert.False(a.Equals(b));
-        }
-
-        [Fact]
-        public void Equals_QuantityAsObject_IsImplemented()
-        {
-            object a = Area.FromSquareMeters(1);
-            object b = Area.FromSquareMeters(2);
-
-            Assert.True(a.Equals(a));
-            Assert.False(a.Equals(b));
-            Assert.False(a.Equals((object)null));
+            Assert.True(a != null);
+            Assert.True(null != a);
+            #pragma warning restore CS8073
         }
 
         [Fact]
@@ -492,20 +1465,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(AreaUnit.Undefined, Area.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(AreaUnit)).Cast<AreaUnit>();
-            foreach(var unit in units)
+            foreach (var unit in units)
             {
-                if (unit == AreaUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }
@@ -519,8 +1483,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentUICulture;
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            var prevCulture = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             try {
                 Assert.Equal("1 ac", new Area(1, AreaUnit.Acre).ToString());
                 Assert.Equal("1 ha", new Area(1, AreaUnit.Hectare).ToString());
@@ -539,7 +1503,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                Thread.CurrentThread.CurrentUICulture = prevCulture;
+                Thread.CurrentThread.CurrentCulture = prevCulture;
             }
         }
 
@@ -568,10 +1532,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentUICulture;
+            var oldCulture = CultureInfo.CurrentCulture;
             try
             {
-                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
                 Assert.Equal("0.1 m²", new Area(0.123456, AreaUnit.SquareMeter).ToString("s1"));
                 Assert.Equal("0.12 m²", new Area(0.123456, AreaUnit.SquareMeter).ToString("s2"));
                 Assert.Equal("0.123 m²", new Area(0.123456, AreaUnit.SquareMeter).ToString("s3"));
@@ -579,7 +1543,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                CultureInfo.CurrentUICulture = oldCulture;
+                CultureInfo.CurrentCulture = oldCulture;
             }
         }
 
@@ -593,28 +1557,27 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 m²", new Area(0.123456, AreaUnit.SquareMeter).ToString("s4", culture));
         }
 
-
-        [Fact]
-        public void ToString_NullFormat_ThrowsArgumentNullException()
+        [Theory]
+        [InlineData(null)]
+        [InlineData("en-US")]
+        public void ToString_NullFormat_DefaultsToGeneralFormat(string cultureName)
         {
             var quantity = Area.FromSquareMeters(1.0);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, null, null));
+            CultureInfo formatProvider = cultureName == null
+                ? null
+                : CultureInfo.GetCultureInfo(cultureName);
+
+            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
         }
 
-        [Fact]
-        public void ToString_NullArgs_ThrowsArgumentNullException()
+        [Theory]
+        [InlineData(null)]
+        [InlineData("g")]
+        public void ToString_NullProvider_EqualsCurrentCulture(string format)
         {
             var quantity = Area.FromSquareMeters(1.0);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, "g", null));
+            Assert.Equal(quantity.ToString(format, CultureInfo.CurrentCulture), quantity.ToString(format, null));
         }
-
-        [Fact]
-        public void ToString_NullProvider_EqualsCurrentUICulture()
-        {
-            var quantity = Area.FromSquareMeters(1.0);
-            Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
-        }
-
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()
@@ -733,13 +1696,6 @@ namespace UnitsNet.Tests
         {
             var quantity = Area.FromSquareMeters(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(AreaUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = Area.FromSquareMeters(1.0);
-            Assert.Equal(QuantityType.Area, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]
