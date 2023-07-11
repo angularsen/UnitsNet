@@ -81,6 +81,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Length.FromInches(2), 2.Inches());
 
         [Fact]
+        public void NumberToKilofeetTest() =>
+            Assert.Equal(Length.FromKilofeet(2), 2.Kilofeet());
+
+        [Fact]
         public void NumberToKilolightYearsTest() =>
             Assert.Equal(Length.FromKilolightYears(2), 2.KilolightYears());
 

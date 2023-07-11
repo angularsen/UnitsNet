@@ -85,6 +85,8 @@ namespace UnitsNet.Tests
 
         protected override double MegametersInOneMeter => 1e-6;
 
+        protected override double KilofeetInOneMeter => 3.28083989501312335958005249344e-3;
+
         [ Fact]
         public void AreaTimesLengthEqualsVolume()
         {
