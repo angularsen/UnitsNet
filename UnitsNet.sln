@@ -48,6 +48,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{71C6EF60
 		Build\build-functions.psm1 = Build\build-functions.psm1
 		Build\build-pack-nano-nugets.psm1 = Build\build-pack-nano-nugets.psm1
 		Build\init.ps1 = Build\init.ps1
+		Build\clean.ps1 = Build\clean.ps1
+		Build\bump-version.bat = Build\bump-version.bat
+		Build\bump-version.sh = Build\bump-version.sh
+		Build\bump-version-json.bat = Build\bump-version-json.bat
+		Build\bump-version-json.sh = Build\bump-version-json.sh
+		Build\codecov.sh = Build\codecov.sh
+		Build\set-version.psm1 = Build\set-version.psm1
+		Build\set-version.sh = Build\set-version.sh
+		Build\set-version-json.sh = Build\set-version-json.sh
+		Build\set-version-UnitsNet.ps1 = Build\set-version-UnitsNet.ps1
+		Build\set-version-UnitsNet.Serialization.JsonNet.ps1 = Build\set-version-UnitsNet.Serialization.JsonNet.ps1
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerfTest_Startup", "PerfTests\PerfTest_Startup\PerfTest_Startup.csproj", "{BFF3DD22-0F58-4E79-86CD-662D1A174224}"
