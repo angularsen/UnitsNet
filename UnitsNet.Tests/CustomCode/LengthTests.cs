@@ -21,7 +21,7 @@ namespace UnitsNet.Tests
         protected override double DtpPicasInOneMeter => 236.22047244;
         protected override double DtpPointsInOneMeter => 2834.6456693;
 
-        protected override double FeetInOneMeter => 3.28084;
+        protected override double FeetInOneMeter => 3.28083989501;
 
         protected override double HectometersInOneMeter => 1E-2;
 
@@ -84,6 +84,8 @@ namespace UnitsNet.Tests
         protected override double DataMilesInOneMeter => 0.000546807;
 
         protected override double MegametersInOneMeter => 1e-6;
+
+        protected override double KilofeetInOneMeter => 3.28083989501e-3;
 
         [ Fact]
         public void AreaTimesLengthEqualsVolume()

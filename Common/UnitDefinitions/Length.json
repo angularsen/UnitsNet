@@ -88,6 +88,7 @@
       },
       "FromUnitToBaseFunc": "{x} * 0.3048",
       "FromBaseToUnitFunc": "{x} / 0.3048",
+      "Prefixes": [ "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",

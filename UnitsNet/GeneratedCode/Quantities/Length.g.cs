@@ -79,6 +79,7 @@ namespace UnitsNet
                     new UnitInfo<LengthUnit>(LengthUnit.Hand, "Hands", new BaseUnits(length: LengthUnit.Hand), "Length"),
                     new UnitInfo<LengthUnit>(LengthUnit.Hectometer, "Hectometers", BaseUnits.Undefined, "Length"),
                     new UnitInfo<LengthUnit>(LengthUnit.Inch, "Inches", new BaseUnits(length: LengthUnit.Inch), "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.Kilofoot, "Kilofeet", BaseUnits.Undefined, "Length"),
                     new UnitInfo<LengthUnit>(LengthUnit.KilolightYear, "KilolightYears", BaseUnits.Undefined, "Length"),
                     new UnitInfo<LengthUnit>(LengthUnit.Kilometer, "Kilometers", BaseUnits.Undefined, "Length"),
                     new UnitInfo<LengthUnit>(LengthUnit.Kiloparsec, "Kiloparsecs", BaseUnits.Undefined, "Length"),
@@ -276,6 +277,11 @@ namespace UnitsNet
         public double Inches => As(LengthUnit.Inch);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Kilofoot"/>
+        /// </summary>
+        public double Kilofeet => As(LengthUnit.Kilofoot);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.KilolightYear"/>
         /// </summary>
         public double KilolightYears => As(LengthUnit.KilolightYear);
@@ -415,6 +421,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Length>(LengthUnit.Hand, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Hectometer, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Inch, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Kilofoot, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.KilolightYear, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Kilometer, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Kiloparsec, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
@@ -456,6 +463,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Hand, quantity => quantity.ToUnit(LengthUnit.Hand));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Hectometer, quantity => quantity.ToUnit(LengthUnit.Hectometer));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Inch, quantity => quantity.ToUnit(LengthUnit.Inch));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Kilofoot, quantity => quantity.ToUnit(LengthUnit.Kilofoot));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.KilolightYear, quantity => quantity.ToUnit(LengthUnit.KilolightYear));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Kilometer, quantity => quantity.ToUnit(LengthUnit.Kilometer));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Kiloparsec, quantity => quantity.ToUnit(LengthUnit.Kiloparsec));
@@ -643,6 +651,16 @@ namespace UnitsNet
         {
             double value = (double) inches;
             return new Length(value, LengthUnit.Inch);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Kilofoot"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromKilofeet(QuantityValue kilofeet)
+        {
+            double value = (double) kilofeet;
+            return new Length(value, LengthUnit.Kilofoot);
         }
 
         /// <summary>
@@ -1382,6 +1400,7 @@ namespace UnitsNet
                 (LengthUnit.Hand, LengthUnit.Meter) => new Length(_value * 1.016e-1, LengthUnit.Meter),
                 (LengthUnit.Hectometer, LengthUnit.Meter) => new Length((_value) * 1e2d, LengthUnit.Meter),
                 (LengthUnit.Inch, LengthUnit.Meter) => new Length(_value * 2.54e-2, LengthUnit.Meter),
+                (LengthUnit.Kilofoot, LengthUnit.Meter) => new Length((_value * 0.3048) * 1e3d, LengthUnit.Meter),
                 (LengthUnit.KilolightYear, LengthUnit.Meter) => new Length((_value * 9.46073047258e15) * 1e3d, LengthUnit.Meter),
                 (LengthUnit.Kilometer, LengthUnit.Meter) => new Length((_value) * 1e3d, LengthUnit.Meter),
                 (LengthUnit.Kiloparsec, LengthUnit.Meter) => new Length((_value * 3.08567758128e16) * 1e3d, LengthUnit.Meter),
@@ -1420,6 +1439,7 @@ namespace UnitsNet
                 (LengthUnit.Meter, LengthUnit.Hand) => new Length(_value / 1.016e-1, LengthUnit.Hand),
                 (LengthUnit.Meter, LengthUnit.Hectometer) => new Length((_value) / 1e2d, LengthUnit.Hectometer),
                 (LengthUnit.Meter, LengthUnit.Inch) => new Length(_value / 2.54e-2, LengthUnit.Inch),
+                (LengthUnit.Meter, LengthUnit.Kilofoot) => new Length((_value / 0.3048) / 1e3d, LengthUnit.Kilofoot),
                 (LengthUnit.Meter, LengthUnit.KilolightYear) => new Length((_value / 9.46073047258e15) / 1e3d, LengthUnit.KilolightYear),
                 (LengthUnit.Meter, LengthUnit.Kilometer) => new Length((_value) / 1e3d, LengthUnit.Kilometer),
                 (LengthUnit.Meter, LengthUnit.Kiloparsec) => new Length((_value / 3.08567758128e16) / 1e3d, LengthUnit.Kiloparsec),

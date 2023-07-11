@@ -682,7 +682,8 @@
     "Twip": 34,
     "UsSurveyFoot": 35,
     "Yard": 36,
-    "Megameter": 41
+    "Megameter": 41,
+    "Kilofoot": 45
   },
   "Level": {
     "Decibel": 1,
