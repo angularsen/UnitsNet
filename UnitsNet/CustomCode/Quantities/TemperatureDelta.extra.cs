@@ -38,7 +38,7 @@ namespace UnitsNet
         /// <summary>Get a scalar from a <see cref="TemperatureDelta"/> multiplied by a <see cref="CoefficientOfThermalExpansion"/>.</summary>
         public static double operator *(TemperatureDelta temperatureDelta, CoefficientOfThermalExpansion cte)
         {
-            return cte * temperatureDelta;
+            return temperatureDelta.Kelvins * cte.InverseKelvin;
         }
     }
 }
