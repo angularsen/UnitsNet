@@ -93,7 +93,7 @@ function Start-Tests {
   }
 
   # Generate a summarized code coverage report for all test projects
-  & ".tools/reportgenerator.exe" -reports:"$root/Artifacts/Coverage/*.coverage.xml" -targetdir:"$root/Artifacts/Coverage" -reporttypes:HtmlSummary
+  & "$toolsDir/reportgenerator.exe" -reports:"$testCoverageDir/*.coverage.xml" -targetdir:"$testCoverageDir" -reporttypes:HtmlSummary
 
   write-host -foreground blue "Run tests...END`n"
 }
