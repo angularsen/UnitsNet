@@ -19,6 +19,10 @@
 
 using System;
 
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
+
 #nullable enable
 
 namespace UnitsNet.NumberExtensions.NumberToAngle
@@ -29,68 +33,132 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
     public static class NumberToAngleExtensions
     {
         /// <inheritdoc cref="Angle.FromArcminutes(UnitsNet.QuantityValue)" />
-        public static Angle Arcminutes<T>(this T value) =>
-            Angle.FromArcminutes(Convert.ToDouble(value));
+        public static Angle Arcminutes<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Angle.FromArcminutes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromArcseconds(UnitsNet.QuantityValue)" />
-        public static Angle Arcseconds<T>(this T value) =>
-            Angle.FromArcseconds(Convert.ToDouble(value));
+        public static Angle Arcseconds<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Angle.FromArcseconds(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromCentiradians(UnitsNet.QuantityValue)" />
-        public static Angle Centiradians<T>(this T value) =>
-            Angle.FromCentiradians(Convert.ToDouble(value));
+        public static Angle Centiradians<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Angle.FromCentiradians(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromDeciradians(UnitsNet.QuantityValue)" />
-        public static Angle Deciradians<T>(this T value) =>
-            Angle.FromDeciradians(Convert.ToDouble(value));
+        public static Angle Deciradians<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Angle.FromDeciradians(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromDegrees(UnitsNet.QuantityValue)" />
-        public static Angle Degrees<T>(this T value) =>
-            Angle.FromDegrees(Convert.ToDouble(value));
+        public static Angle Degrees<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Angle.FromDegrees(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromGradians(UnitsNet.QuantityValue)" />
-        public static Angle Gradians<T>(this T value) =>
-            Angle.FromGradians(Convert.ToDouble(value));
+        public static Angle Gradians<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Angle.FromGradians(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromMicrodegrees(UnitsNet.QuantityValue)" />
-        public static Angle Microdegrees<T>(this T value) =>
-            Angle.FromMicrodegrees(Convert.ToDouble(value));
+        public static Angle Microdegrees<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Angle.FromMicrodegrees(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromMicroradians(UnitsNet.QuantityValue)" />
-        public static Angle Microradians<T>(this T value) =>
-            Angle.FromMicroradians(Convert.ToDouble(value));
+        public static Angle Microradians<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Angle.FromMicroradians(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromMillidegrees(UnitsNet.QuantityValue)" />
-        public static Angle Millidegrees<T>(this T value) =>
-            Angle.FromMillidegrees(Convert.ToDouble(value));
+        public static Angle Millidegrees<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Angle.FromMillidegrees(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromMilliradians(UnitsNet.QuantityValue)" />
-        public static Angle Milliradians<T>(this T value) =>
-            Angle.FromMilliradians(Convert.ToDouble(value));
+        public static Angle Milliradians<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Angle.FromMilliradians(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromNanodegrees(UnitsNet.QuantityValue)" />
-        public static Angle Nanodegrees<T>(this T value) =>
-            Angle.FromNanodegrees(Convert.ToDouble(value));
+        public static Angle Nanodegrees<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Angle.FromNanodegrees(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromNanoradians(UnitsNet.QuantityValue)" />
-        public static Angle Nanoradians<T>(this T value) =>
-            Angle.FromNanoradians(Convert.ToDouble(value));
+        public static Angle Nanoradians<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Angle.FromNanoradians(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromNatoMils(UnitsNet.QuantityValue)" />
-        public static Angle NatoMils<T>(this T value) =>
-            Angle.FromNatoMils(Convert.ToDouble(value));
+        public static Angle NatoMils<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Angle.FromNatoMils(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromRadians(UnitsNet.QuantityValue)" />
-        public static Angle Radians<T>(this T value) =>
-            Angle.FromRadians(Convert.ToDouble(value));
+        public static Angle Radians<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Angle.FromRadians(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromRevolutions(UnitsNet.QuantityValue)" />
-        public static Angle Revolutions<T>(this T value) =>
-            Angle.FromRevolutions(Convert.ToDouble(value));
+        public static Angle Revolutions<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Angle.FromRevolutions(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromTilt(UnitsNet.QuantityValue)" />
-        public static Angle Tilt<T>(this T value) =>
-            Angle.FromTilt(Convert.ToDouble(value));
+        public static Angle Tilt<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Angle.FromTilt(Convert.ToDouble(value));
 
     }
 }

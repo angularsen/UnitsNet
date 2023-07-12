@@ -19,6 +19,10 @@
 
 using System;
 
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
+
 #nullable enable
 
 namespace UnitsNet.NumberExtensions.NumberToApparentEnergy
@@ -29,16 +33,28 @@ namespace UnitsNet.NumberExtensions.NumberToApparentEnergy
     public static class NumberToApparentEnergyExtensions
     {
         /// <inheritdoc cref="ApparentEnergy.FromKilovoltampereHours(UnitsNet.QuantityValue)" />
-        public static ApparentEnergy KilovoltampereHours<T>(this T value) =>
-            ApparentEnergy.FromKilovoltampereHours(Convert.ToDouble(value));
+        public static ApparentEnergy KilovoltampereHours<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ApparentEnergy.FromKilovoltampereHours(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ApparentEnergy.FromMegavoltampereHours(UnitsNet.QuantityValue)" />
-        public static ApparentEnergy MegavoltampereHours<T>(this T value) =>
-            ApparentEnergy.FromMegavoltampereHours(Convert.ToDouble(value));
+        public static ApparentEnergy MegavoltampereHours<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ApparentEnergy.FromMegavoltampereHours(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ApparentEnergy.FromVoltampereHours(UnitsNet.QuantityValue)" />
-        public static ApparentEnergy VoltampereHours<T>(this T value) =>
-            ApparentEnergy.FromVoltampereHours(Convert.ToDouble(value));
+        public static ApparentEnergy VoltampereHours<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ApparentEnergy.FromVoltampereHours(Convert.ToDouble(value));
 
     }
 }

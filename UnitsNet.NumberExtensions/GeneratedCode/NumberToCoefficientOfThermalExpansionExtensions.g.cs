@@ -19,6 +19,10 @@
 
 using System;
 
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
+
 #nullable enable
 
 namespace UnitsNet.NumberExtensions.NumberToCoefficientOfThermalExpansion
@@ -29,16 +33,28 @@ namespace UnitsNet.NumberExtensions.NumberToCoefficientOfThermalExpansion
     public static class NumberToCoefficientOfThermalExpansionExtensions
     {
         /// <inheritdoc cref="CoefficientOfThermalExpansion.FromInverseDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static CoefficientOfThermalExpansion InverseDegreeCelsius<T>(this T value) =>
-            CoefficientOfThermalExpansion.FromInverseDegreeCelsius(Convert.ToDouble(value));
+        public static CoefficientOfThermalExpansion InverseDegreeCelsius<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => CoefficientOfThermalExpansion.FromInverseDegreeCelsius(Convert.ToDouble(value));
 
         /// <inheritdoc cref="CoefficientOfThermalExpansion.FromInverseDegreeFahrenheit(UnitsNet.QuantityValue)" />
-        public static CoefficientOfThermalExpansion InverseDegreeFahrenheit<T>(this T value) =>
-            CoefficientOfThermalExpansion.FromInverseDegreeFahrenheit(Convert.ToDouble(value));
+        public static CoefficientOfThermalExpansion InverseDegreeFahrenheit<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => CoefficientOfThermalExpansion.FromInverseDegreeFahrenheit(Convert.ToDouble(value));
 
         /// <inheritdoc cref="CoefficientOfThermalExpansion.FromInverseKelvin(UnitsNet.QuantityValue)" />
-        public static CoefficientOfThermalExpansion InverseKelvin<T>(this T value) =>
-            CoefficientOfThermalExpansion.FromInverseKelvin(Convert.ToDouble(value));
+        public static CoefficientOfThermalExpansion InverseKelvin<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => CoefficientOfThermalExpansion.FromInverseKelvin(Convert.ToDouble(value));
 
     }
 }

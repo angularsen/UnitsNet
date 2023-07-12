@@ -19,6 +19,10 @@
 
 using System;
 
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
+
 #nullable enable
 
 namespace UnitsNet.NumberExtensions.NumberToMolarFlow
@@ -29,40 +33,76 @@ namespace UnitsNet.NumberExtensions.NumberToMolarFlow
     public static class NumberToMolarFlowExtensions
     {
         /// <inheritdoc cref="MolarFlow.FromKilomolesPerHour(UnitsNet.QuantityValue)" />
-        public static MolarFlow KilomolesPerHour<T>(this T value) =>
-            MolarFlow.FromKilomolesPerHour(Convert.ToDouble(value));
+        public static MolarFlow KilomolesPerHour<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => MolarFlow.FromKilomolesPerHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MolarFlow.FromKilomolesPerMinute(UnitsNet.QuantityValue)" />
-        public static MolarFlow KilomolesPerMinute<T>(this T value) =>
-            MolarFlow.FromKilomolesPerMinute(Convert.ToDouble(value));
+        public static MolarFlow KilomolesPerMinute<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => MolarFlow.FromKilomolesPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MolarFlow.FromKilomolesPerSecond(UnitsNet.QuantityValue)" />
-        public static MolarFlow KilomolesPerSecond<T>(this T value) =>
-            MolarFlow.FromKilomolesPerSecond(Convert.ToDouble(value));
+        public static MolarFlow KilomolesPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => MolarFlow.FromKilomolesPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MolarFlow.FromMolesPerHour(UnitsNet.QuantityValue)" />
-        public static MolarFlow MolesPerHour<T>(this T value) =>
-            MolarFlow.FromMolesPerHour(Convert.ToDouble(value));
+        public static MolarFlow MolesPerHour<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => MolarFlow.FromMolesPerHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MolarFlow.FromMolesPerMinute(UnitsNet.QuantityValue)" />
-        public static MolarFlow MolesPerMinute<T>(this T value) =>
-            MolarFlow.FromMolesPerMinute(Convert.ToDouble(value));
+        public static MolarFlow MolesPerMinute<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => MolarFlow.FromMolesPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MolarFlow.FromMolesPerSecond(UnitsNet.QuantityValue)" />
-        public static MolarFlow MolesPerSecond<T>(this T value) =>
-            MolarFlow.FromMolesPerSecond(Convert.ToDouble(value));
+        public static MolarFlow MolesPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => MolarFlow.FromMolesPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MolarFlow.FromPoundMolesPerHour(UnitsNet.QuantityValue)" />
-        public static MolarFlow PoundMolesPerHour<T>(this T value) =>
-            MolarFlow.FromPoundMolesPerHour(Convert.ToDouble(value));
+        public static MolarFlow PoundMolesPerHour<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => MolarFlow.FromPoundMolesPerHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MolarFlow.FromPoundMolesPerMinute(UnitsNet.QuantityValue)" />
-        public static MolarFlow PoundMolesPerMinute<T>(this T value) =>
-            MolarFlow.FromPoundMolesPerMinute(Convert.ToDouble(value));
+        public static MolarFlow PoundMolesPerMinute<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => MolarFlow.FromPoundMolesPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MolarFlow.FromPoundMolesPerSecond(UnitsNet.QuantityValue)" />
-        public static MolarFlow PoundMolesPerSecond<T>(this T value) =>
-            MolarFlow.FromPoundMolesPerSecond(Convert.ToDouble(value));
+        public static MolarFlow PoundMolesPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => MolarFlow.FromPoundMolesPerSecond(Convert.ToDouble(value));
 
     }
 }

@@ -19,6 +19,10 @@
 
 using System;
 
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
+
 #nullable enable
 
 namespace UnitsNet.NumberExtensions.NumberToForce
@@ -29,64 +33,124 @@ namespace UnitsNet.NumberExtensions.NumberToForce
     public static class NumberToForceExtensions
     {
         /// <inheritdoc cref="Force.FromDecanewtons(UnitsNet.QuantityValue)" />
-        public static Force Decanewtons<T>(this T value) =>
-            Force.FromDecanewtons(Convert.ToDouble(value));
+        public static Force Decanewtons<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Force.FromDecanewtons(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Force.FromDyne(UnitsNet.QuantityValue)" />
-        public static Force Dyne<T>(this T value) =>
-            Force.FromDyne(Convert.ToDouble(value));
+        public static Force Dyne<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Force.FromDyne(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Force.FromKilogramsForce(UnitsNet.QuantityValue)" />
-        public static Force KilogramsForce<T>(this T value) =>
-            Force.FromKilogramsForce(Convert.ToDouble(value));
+        public static Force KilogramsForce<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Force.FromKilogramsForce(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Force.FromKilonewtons(UnitsNet.QuantityValue)" />
-        public static Force Kilonewtons<T>(this T value) =>
-            Force.FromKilonewtons(Convert.ToDouble(value));
+        public static Force Kilonewtons<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Force.FromKilonewtons(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Force.FromKiloPonds(UnitsNet.QuantityValue)" />
-        public static Force KiloPonds<T>(this T value) =>
-            Force.FromKiloPonds(Convert.ToDouble(value));
+        public static Force KiloPonds<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Force.FromKiloPonds(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Force.FromKilopoundsForce(UnitsNet.QuantityValue)" />
-        public static Force KilopoundsForce<T>(this T value) =>
-            Force.FromKilopoundsForce(Convert.ToDouble(value));
+        public static Force KilopoundsForce<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Force.FromKilopoundsForce(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Force.FromMeganewtons(UnitsNet.QuantityValue)" />
-        public static Force Meganewtons<T>(this T value) =>
-            Force.FromMeganewtons(Convert.ToDouble(value));
+        public static Force Meganewtons<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Force.FromMeganewtons(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Force.FromMicronewtons(UnitsNet.QuantityValue)" />
-        public static Force Micronewtons<T>(this T value) =>
-            Force.FromMicronewtons(Convert.ToDouble(value));
+        public static Force Micronewtons<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Force.FromMicronewtons(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Force.FromMillinewtons(UnitsNet.QuantityValue)" />
-        public static Force Millinewtons<T>(this T value) =>
-            Force.FromMillinewtons(Convert.ToDouble(value));
+        public static Force Millinewtons<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Force.FromMillinewtons(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Force.FromNewtons(UnitsNet.QuantityValue)" />
-        public static Force Newtons<T>(this T value) =>
-            Force.FromNewtons(Convert.ToDouble(value));
+        public static Force Newtons<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Force.FromNewtons(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Force.FromOunceForce(UnitsNet.QuantityValue)" />
-        public static Force OunceForce<T>(this T value) =>
-            Force.FromOunceForce(Convert.ToDouble(value));
+        public static Force OunceForce<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Force.FromOunceForce(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Force.FromPoundals(UnitsNet.QuantityValue)" />
-        public static Force Poundals<T>(this T value) =>
-            Force.FromPoundals(Convert.ToDouble(value));
+        public static Force Poundals<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Force.FromPoundals(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Force.FromPoundsForce(UnitsNet.QuantityValue)" />
-        public static Force PoundsForce<T>(this T value) =>
-            Force.FromPoundsForce(Convert.ToDouble(value));
+        public static Force PoundsForce<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Force.FromPoundsForce(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Force.FromShortTonsForce(UnitsNet.QuantityValue)" />
-        public static Force ShortTonsForce<T>(this T value) =>
-            Force.FromShortTonsForce(Convert.ToDouble(value));
+        public static Force ShortTonsForce<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Force.FromShortTonsForce(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Force.FromTonnesForce(UnitsNet.QuantityValue)" />
-        public static Force TonnesForce<T>(this T value) =>
-            Force.FromTonnesForce(Convert.ToDouble(value));
+        public static Force TonnesForce<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Force.FromTonnesForce(Convert.ToDouble(value));
 
     }
 }

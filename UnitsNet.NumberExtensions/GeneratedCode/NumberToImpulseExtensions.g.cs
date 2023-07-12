@@ -19,6 +19,10 @@
 
 using System;
 
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
+
 #nullable enable
 
 namespace UnitsNet.NumberExtensions.NumberToImpulse
@@ -29,56 +33,108 @@ namespace UnitsNet.NumberExtensions.NumberToImpulse
     public static class NumberToImpulseExtensions
     {
         /// <inheritdoc cref="Impulse.FromCentinewtonSeconds(UnitsNet.QuantityValue)" />
-        public static Impulse CentinewtonSeconds<T>(this T value) =>
-            Impulse.FromCentinewtonSeconds(Convert.ToDouble(value));
+        public static Impulse CentinewtonSeconds<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Impulse.FromCentinewtonSeconds(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Impulse.FromDecanewtonSeconds(UnitsNet.QuantityValue)" />
-        public static Impulse DecanewtonSeconds<T>(this T value) =>
-            Impulse.FromDecanewtonSeconds(Convert.ToDouble(value));
+        public static Impulse DecanewtonSeconds<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Impulse.FromDecanewtonSeconds(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Impulse.FromDecinewtonSeconds(UnitsNet.QuantityValue)" />
-        public static Impulse DecinewtonSeconds<T>(this T value) =>
-            Impulse.FromDecinewtonSeconds(Convert.ToDouble(value));
+        public static Impulse DecinewtonSeconds<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Impulse.FromDecinewtonSeconds(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Impulse.FromKilogramMetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Impulse KilogramMetersPerSecond<T>(this T value) =>
-            Impulse.FromKilogramMetersPerSecond(Convert.ToDouble(value));
+        public static Impulse KilogramMetersPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Impulse.FromKilogramMetersPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Impulse.FromKilonewtonSeconds(UnitsNet.QuantityValue)" />
-        public static Impulse KilonewtonSeconds<T>(this T value) =>
-            Impulse.FromKilonewtonSeconds(Convert.ToDouble(value));
+        public static Impulse KilonewtonSeconds<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Impulse.FromKilonewtonSeconds(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Impulse.FromMeganewtonSeconds(UnitsNet.QuantityValue)" />
-        public static Impulse MeganewtonSeconds<T>(this T value) =>
-            Impulse.FromMeganewtonSeconds(Convert.ToDouble(value));
+        public static Impulse MeganewtonSeconds<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Impulse.FromMeganewtonSeconds(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Impulse.FromMicronewtonSeconds(UnitsNet.QuantityValue)" />
-        public static Impulse MicronewtonSeconds<T>(this T value) =>
-            Impulse.FromMicronewtonSeconds(Convert.ToDouble(value));
+        public static Impulse MicronewtonSeconds<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Impulse.FromMicronewtonSeconds(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Impulse.FromMillinewtonSeconds(UnitsNet.QuantityValue)" />
-        public static Impulse MillinewtonSeconds<T>(this T value) =>
-            Impulse.FromMillinewtonSeconds(Convert.ToDouble(value));
+        public static Impulse MillinewtonSeconds<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Impulse.FromMillinewtonSeconds(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Impulse.FromNanonewtonSeconds(UnitsNet.QuantityValue)" />
-        public static Impulse NanonewtonSeconds<T>(this T value) =>
-            Impulse.FromNanonewtonSeconds(Convert.ToDouble(value));
+        public static Impulse NanonewtonSeconds<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Impulse.FromNanonewtonSeconds(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Impulse.FromNewtonSeconds(UnitsNet.QuantityValue)" />
-        public static Impulse NewtonSeconds<T>(this T value) =>
-            Impulse.FromNewtonSeconds(Convert.ToDouble(value));
+        public static Impulse NewtonSeconds<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Impulse.FromNewtonSeconds(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Impulse.FromPoundFeetPerSecond(UnitsNet.QuantityValue)" />
-        public static Impulse PoundFeetPerSecond<T>(this T value) =>
-            Impulse.FromPoundFeetPerSecond(Convert.ToDouble(value));
+        public static Impulse PoundFeetPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Impulse.FromPoundFeetPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Impulse.FromPoundForceSeconds(UnitsNet.QuantityValue)" />
-        public static Impulse PoundForceSeconds<T>(this T value) =>
-            Impulse.FromPoundForceSeconds(Convert.ToDouble(value));
+        public static Impulse PoundForceSeconds<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Impulse.FromPoundForceSeconds(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Impulse.FromSlugFeetPerSecond(UnitsNet.QuantityValue)" />
-        public static Impulse SlugFeetPerSecond<T>(this T value) =>
-            Impulse.FromSlugFeetPerSecond(Convert.ToDouble(value));
+        public static Impulse SlugFeetPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Impulse.FromSlugFeetPerSecond(Convert.ToDouble(value));
 
     }
 }

@@ -19,6 +19,10 @@
 
 using System;
 
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
+
 #nullable enable
 
 namespace UnitsNet.NumberExtensions.NumberToBrakeSpecificFuelConsumption
@@ -29,16 +33,28 @@ namespace UnitsNet.NumberExtensions.NumberToBrakeSpecificFuelConsumption
     public static class NumberToBrakeSpecificFuelConsumptionExtensions
     {
         /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(UnitsNet.QuantityValue)" />
-        public static BrakeSpecificFuelConsumption GramsPerKiloWattHour<T>(this T value) =>
-            BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(Convert.ToDouble(value));
+        public static BrakeSpecificFuelConsumption GramsPerKiloWattHour<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromKilogramsPerJoule(UnitsNet.QuantityValue)" />
-        public static BrakeSpecificFuelConsumption KilogramsPerJoule<T>(this T value) =>
-            BrakeSpecificFuelConsumption.FromKilogramsPerJoule(Convert.ToDouble(value));
+        public static BrakeSpecificFuelConsumption KilogramsPerJoule<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => BrakeSpecificFuelConsumption.FromKilogramsPerJoule(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(UnitsNet.QuantityValue)" />
-        public static BrakeSpecificFuelConsumption PoundsPerMechanicalHorsepowerHour<T>(this T value) =>
-            BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(Convert.ToDouble(value));
+        public static BrakeSpecificFuelConsumption PoundsPerMechanicalHorsepowerHour<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(Convert.ToDouble(value));
 
     }
 }

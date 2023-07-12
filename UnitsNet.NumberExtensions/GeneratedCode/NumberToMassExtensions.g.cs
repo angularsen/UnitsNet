@@ -19,6 +19,10 @@
 
 using System;
 
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
+
 #nullable enable
 
 namespace UnitsNet.NumberExtensions.NumberToMass
@@ -29,112 +33,220 @@ namespace UnitsNet.NumberExtensions.NumberToMass
     public static class NumberToMassExtensions
     {
         /// <inheritdoc cref="Mass.FromCentigrams(UnitsNet.QuantityValue)" />
-        public static Mass Centigrams<T>(this T value) =>
-            Mass.FromCentigrams(Convert.ToDouble(value));
+        public static Mass Centigrams<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Mass.FromCentigrams(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Mass.FromDecagrams(UnitsNet.QuantityValue)" />
-        public static Mass Decagrams<T>(this T value) =>
-            Mass.FromDecagrams(Convert.ToDouble(value));
+        public static Mass Decagrams<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Mass.FromDecagrams(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Mass.FromDecigrams(UnitsNet.QuantityValue)" />
-        public static Mass Decigrams<T>(this T value) =>
-            Mass.FromDecigrams(Convert.ToDouble(value));
+        public static Mass Decigrams<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Mass.FromDecigrams(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Mass.FromEarthMasses(UnitsNet.QuantityValue)" />
-        public static Mass EarthMasses<T>(this T value) =>
-            Mass.FromEarthMasses(Convert.ToDouble(value));
+        public static Mass EarthMasses<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Mass.FromEarthMasses(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Mass.FromFemtograms(UnitsNet.QuantityValue)" />
-        public static Mass Femtograms<T>(this T value) =>
-            Mass.FromFemtograms(Convert.ToDouble(value));
+        public static Mass Femtograms<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Mass.FromFemtograms(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Mass.FromGrains(UnitsNet.QuantityValue)" />
-        public static Mass Grains<T>(this T value) =>
-            Mass.FromGrains(Convert.ToDouble(value));
+        public static Mass Grains<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Mass.FromGrains(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Mass.FromGrams(UnitsNet.QuantityValue)" />
-        public static Mass Grams<T>(this T value) =>
-            Mass.FromGrams(Convert.ToDouble(value));
+        public static Mass Grams<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Mass.FromGrams(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Mass.FromHectograms(UnitsNet.QuantityValue)" />
-        public static Mass Hectograms<T>(this T value) =>
-            Mass.FromHectograms(Convert.ToDouble(value));
+        public static Mass Hectograms<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Mass.FromHectograms(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Mass.FromKilograms(UnitsNet.QuantityValue)" />
-        public static Mass Kilograms<T>(this T value) =>
-            Mass.FromKilograms(Convert.ToDouble(value));
+        public static Mass Kilograms<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Mass.FromKilograms(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Mass.FromKilopounds(UnitsNet.QuantityValue)" />
-        public static Mass Kilopounds<T>(this T value) =>
-            Mass.FromKilopounds(Convert.ToDouble(value));
+        public static Mass Kilopounds<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Mass.FromKilopounds(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Mass.FromKilotonnes(UnitsNet.QuantityValue)" />
-        public static Mass Kilotonnes<T>(this T value) =>
-            Mass.FromKilotonnes(Convert.ToDouble(value));
+        public static Mass Kilotonnes<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Mass.FromKilotonnes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Mass.FromLongHundredweight(UnitsNet.QuantityValue)" />
-        public static Mass LongHundredweight<T>(this T value) =>
-            Mass.FromLongHundredweight(Convert.ToDouble(value));
+        public static Mass LongHundredweight<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Mass.FromLongHundredweight(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Mass.FromLongTons(UnitsNet.QuantityValue)" />
-        public static Mass LongTons<T>(this T value) =>
-            Mass.FromLongTons(Convert.ToDouble(value));
+        public static Mass LongTons<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Mass.FromLongTons(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Mass.FromMegapounds(UnitsNet.QuantityValue)" />
-        public static Mass Megapounds<T>(this T value) =>
-            Mass.FromMegapounds(Convert.ToDouble(value));
+        public static Mass Megapounds<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Mass.FromMegapounds(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Mass.FromMegatonnes(UnitsNet.QuantityValue)" />
-        public static Mass Megatonnes<T>(this T value) =>
-            Mass.FromMegatonnes(Convert.ToDouble(value));
+        public static Mass Megatonnes<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Mass.FromMegatonnes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Mass.FromMicrograms(UnitsNet.QuantityValue)" />
-        public static Mass Micrograms<T>(this T value) =>
-            Mass.FromMicrograms(Convert.ToDouble(value));
+        public static Mass Micrograms<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Mass.FromMicrograms(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Mass.FromMilligrams(UnitsNet.QuantityValue)" />
-        public static Mass Milligrams<T>(this T value) =>
-            Mass.FromMilligrams(Convert.ToDouble(value));
+        public static Mass Milligrams<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Mass.FromMilligrams(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Mass.FromNanograms(UnitsNet.QuantityValue)" />
-        public static Mass Nanograms<T>(this T value) =>
-            Mass.FromNanograms(Convert.ToDouble(value));
+        public static Mass Nanograms<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Mass.FromNanograms(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Mass.FromOunces(UnitsNet.QuantityValue)" />
-        public static Mass Ounces<T>(this T value) =>
-            Mass.FromOunces(Convert.ToDouble(value));
+        public static Mass Ounces<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Mass.FromOunces(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Mass.FromPicograms(UnitsNet.QuantityValue)" />
-        public static Mass Picograms<T>(this T value) =>
-            Mass.FromPicograms(Convert.ToDouble(value));
+        public static Mass Picograms<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Mass.FromPicograms(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Mass.FromPounds(UnitsNet.QuantityValue)" />
-        public static Mass Pounds<T>(this T value) =>
-            Mass.FromPounds(Convert.ToDouble(value));
+        public static Mass Pounds<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Mass.FromPounds(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Mass.FromShortHundredweight(UnitsNet.QuantityValue)" />
-        public static Mass ShortHundredweight<T>(this T value) =>
-            Mass.FromShortHundredweight(Convert.ToDouble(value));
+        public static Mass ShortHundredweight<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Mass.FromShortHundredweight(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Mass.FromShortTons(UnitsNet.QuantityValue)" />
-        public static Mass ShortTons<T>(this T value) =>
-            Mass.FromShortTons(Convert.ToDouble(value));
+        public static Mass ShortTons<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Mass.FromShortTons(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Mass.FromSlugs(UnitsNet.QuantityValue)" />
-        public static Mass Slugs<T>(this T value) =>
-            Mass.FromSlugs(Convert.ToDouble(value));
+        public static Mass Slugs<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Mass.FromSlugs(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Mass.FromSolarMasses(UnitsNet.QuantityValue)" />
-        public static Mass SolarMasses<T>(this T value) =>
-            Mass.FromSolarMasses(Convert.ToDouble(value));
+        public static Mass SolarMasses<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Mass.FromSolarMasses(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Mass.FromStone(UnitsNet.QuantityValue)" />
-        public static Mass Stone<T>(this T value) =>
-            Mass.FromStone(Convert.ToDouble(value));
+        public static Mass Stone<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Mass.FromStone(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Mass.FromTonnes(UnitsNet.QuantityValue)" />
-        public static Mass Tonnes<T>(this T value) =>
-            Mass.FromTonnes(Convert.ToDouble(value));
+        public static Mass Tonnes<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Mass.FromTonnes(Convert.ToDouble(value));
 
     }
 }
