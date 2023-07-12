@@ -49,8 +49,12 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrentGradient
             => ElectricCurrentGradient.FromAmperesPerMillisecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerMinute(UnitsNet.QuantityValue)" />
-        public static ElectricCurrentGradient AmperesPerMinute<T>(this T value) =>
-            ElectricCurrentGradient.FromAmperesPerMinute(Convert.ToDouble(value));
+        public static ElectricCurrentGradient AmperesPerMinute<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricCurrentGradient.FromAmperesPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerNanosecond(UnitsNet.QuantityValue)" />
         public static ElectricCurrentGradient AmperesPerNanosecond<T>(this T value)
@@ -69,12 +73,20 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrentGradient
             => ElectricCurrentGradient.FromAmperesPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricCurrentGradient.FromMilliamperesPerMinute(UnitsNet.QuantityValue)" />
-        public static ElectricCurrentGradient MilliamperesPerMinute<T>(this T value) =>
-            ElectricCurrentGradient.FromMilliamperesPerMinute(Convert.ToDouble(value));
+        public static ElectricCurrentGradient MilliamperesPerMinute<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricCurrentGradient.FromMilliamperesPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricCurrentGradient.FromMilliamperesPerSecond(UnitsNet.QuantityValue)" />
-        public static ElectricCurrentGradient MilliamperesPerSecond<T>(this T value) =>
-            ElectricCurrentGradient.FromMilliamperesPerSecond(Convert.ToDouble(value));
+        public static ElectricCurrentGradient MilliamperesPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricCurrentGradient.FromMilliamperesPerSecond(Convert.ToDouble(value));
 
     }
 }
