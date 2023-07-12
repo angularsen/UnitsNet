@@ -82,6 +82,11 @@
     {
       "SingularName": "KilogramForcePerSquareCentimeter",
       "PluralName": "KilogramsForcePerSquareCentimeter",
+      "BaseUnits": {
+        "L": "Centimeter",
+        "M": "Kilogram",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x} * 9.80665e4",
       "FromBaseToUnitFunc": "{x} / 9.80665e4",
       "Localization": [
@@ -197,6 +202,11 @@
     {
       "SingularName": "PoundForcePerSquareInch",
       "PluralName": "PoundsForcePerSquareInch",
+      "BaseUnits": {
+        "L": "Inch",
+        "M": "Pound",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x} * 6.894757293168361e3",
       "FromBaseToUnitFunc": "{x} / 6.894757293168361e3",
       "Prefixes": [ "Kilo" ],
@@ -216,6 +226,11 @@
     {
       "SingularName": "PoundForcePerSquareMil",
       "PluralName": "PoundsForcePerSquareMil",
+      "BaseUnits": {
+        "L": "Mil",
+        "M": "Pound",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x} * 6.894757293168361e9",
       "FromBaseToUnitFunc": "{x} / 6.894757293168361e9",
       "Prefixes": [ "Kilo" ],
@@ -230,6 +245,11 @@
     {
       "SingularName": "PoundForcePerSquareFoot",
       "PluralName": "PoundsForcePerSquareFoot",
+      "BaseUnits": {
+        "L": "Foot",
+        "M": "Pound",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x} * 4.788025898033584e1",
       "FromBaseToUnitFunc": "{x} / 4.788025898033584e1",
       "Prefixes": [ "Kilo" ],
@@ -244,6 +264,11 @@
     {
       "SingularName": "TonneForcePerSquareMillimeter",
       "PluralName": "TonnesForcePerSquareMillimeter",
+      "BaseUnits": {
+        "L": "Millimeter",
+        "M": "Tonne",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x} * 9.80665e9",
       "FromBaseToUnitFunc": "{x} / 9.80665e9",
       "Localization": [
@@ -256,6 +281,11 @@
     {
       "SingularName": "TonneForcePerSquareMeter",
       "PluralName": "TonnesForcePerSquareMeter",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Tonne",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x} * 9.80665e3",
       "FromBaseToUnitFunc": "{x} / 9.80665e3",
       "Localization": [
@@ -280,6 +310,11 @@
     {
       "SingularName": "TonneForcePerSquareCentimeter",
       "PluralName": "TonnesForcePerSquareCentimeter",
+      "BaseUnits": {
+        "L": "Centimeter",
+        "M": "Tonne",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x} * 9.80665e7",
       "FromBaseToUnitFunc": "{x} / 9.80665e7",
       "Localization": [

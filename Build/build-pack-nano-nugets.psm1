@@ -1,6 +1,7 @@
-﻿$root = "$PSScriptRoot\.."
+﻿$root = (Resolve-Path "$PSScriptRoot\..").Path
 $nugetOutDir = "$root\Artifacts\NuGet"
-$nuget = "$root\Tools\NuGet.exe"
+$toolsDir = "$root\.tools"
+$nuget = "$toolsDir\NuGet.exe"
 
 function Invoke-BuildNanoNugets {
 

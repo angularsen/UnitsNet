@@ -40,6 +40,14 @@ namespace UnitsNet.NumberExtensions.NumberToPressureChangeRate
 #endif
             => PressureChangeRate.FromAtmospheresPerSecond(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="PressureChangeRate.FromBarsPerMinute(UnitsNet.QuantityValue)" />
+        public static PressureChangeRate BarsPerMinute<T>(this T value) =>
+            PressureChangeRate.FromBarsPerMinute(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="PressureChangeRate.FromBarsPerSecond(UnitsNet.QuantityValue)" />
+        public static PressureChangeRate BarsPerSecond<T>(this T value) =>
+            PressureChangeRate.FromBarsPerSecond(Convert.ToDouble(value));
+
         /// <inheritdoc cref="PressureChangeRate.FromKilopascalsPerMinute(UnitsNet.QuantityValue)" />
         public static PressureChangeRate KilopascalsPerMinute<T>(this T value)
             where T : notnull
@@ -103,6 +111,14 @@ namespace UnitsNet.NumberExtensions.NumberToPressureChangeRate
             , INumber<T>
 #endif
             => PressureChangeRate.FromMegapoundsForcePerSquareInchPerSecond(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="PressureChangeRate.FromMillibarsPerMinute(UnitsNet.QuantityValue)" />
+        public static PressureChangeRate MillibarsPerMinute<T>(this T value) =>
+            PressureChangeRate.FromMillibarsPerMinute(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="PressureChangeRate.FromMillibarsPerSecond(UnitsNet.QuantityValue)" />
+        public static PressureChangeRate MillibarsPerSecond<T>(this T value) =>
+            PressureChangeRate.FromMillibarsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PressureChangeRate.FromMillimetersOfMercuryPerSecond(UnitsNet.QuantityValue)" />
         public static PressureChangeRate MillimetersOfMercuryPerSecond<T>(this T value)

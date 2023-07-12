@@ -1,4 +1,6 @@
 AtmospheresPerSecond=atm/s
+BarsPerMinute=bar/min
+BarsPerSecond=bar/s
 KilopascalsPerMinute=kPa/min
 KilopascalsPerSecond=kPa/s
 KilopoundsForcePerSquareInchPerMinute=ksi/min,kipf/in²/min
@@ -7,6 +9,8 @@ MegapascalsPerMinute=MPa/min
 MegapascalsPerSecond=MPa/s
 MegapoundsForcePerSquareInchPerMinute=Mpsi/min,Mlb/in²/min
 MegapoundsForcePerSquareInchPerSecond=Mpsi/s,Mlb/in²/s
+MillibarsPerMinute=mbar/min
+MillibarsPerSecond=mbar/s
 MillimetersOfMercuryPerSecond=mmHg/s
 PascalsPerMinute=Pa/min
 PascalsPerSecond=Pa/s

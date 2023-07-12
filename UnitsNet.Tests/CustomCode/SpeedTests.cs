@@ -104,6 +104,13 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void SpeedDividedByAccelerationEqualsDuration()
+        {
+            Duration duration = Speed.FromMetersPerSecond(20)/Acceleration.FromMetersPerSecondSquared(2);
+            Assert.Equal(Duration.FromSeconds(10), duration);
+        }
+
+        [Fact]
         public void SpeedDividedByTimeSpanEqualsAcceleration()
         {
             Acceleration acceleration = Speed.FromMetersPerSecond(20)/TimeSpan.FromSeconds(2);

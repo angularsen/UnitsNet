@@ -1,14 +1,16 @@
-﻿$root = "$PSScriptRoot\.."
+﻿$root = (Resolve-Path "$PSScriptRoot\..").Path
 $artifactsDir = "$root\Artifacts"
-$nugetOutDir = "$root\Artifacts\NuGet"
-$logsDir = "$root\Artifacts\Logs"
-$testReportDir = "$root\Artifacts\TestResults"
-$testCoverageDir = "$root\Artifacts\Coverage"
-$nuget = "$root\Tools\NuGet.exe"
+$nugetOutDir = "$artifactsDir\NuGet"
+$logsDir = "$artifactsDir\Logs"
+$testReportDir = "$artifactsDir\TestResults"
+$testCoverageDir = "$artifactsDir\Coverage"
+$toolsDir = "$root\.tools"
+
+$nuget = "$toolsDir\NuGet.exe"
 $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
 $msbuildPath = & $vswhere -latest -products * -requires Microsoft.Component.MSBuild -property installationPath
+
 if ($msbuildPath) {
-  $msbuild = join-path $msbuildPath 'MSBuild\Current\Bin\MSBuild.exe'
   $msbuildx64 = join-path $msbuildPath 'MSBuild\Current\Bin\amd64\MSBuild.exe'
 }
 
@@ -34,11 +36,7 @@ function Start-Build([boolean] $IncludeNanoFramework = $false) {
 
   $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$logsDir\UnitsNet.msbuild.log"
 
-  $appVeyorLoggerDll = "C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
-  $appVeyorLoggerNetCoreDll = "C:\Program Files\AppVeyor\BuildAgent\dotnetcore\Appveyor.MSBuildLogger.dll"
-  $appVeyorLoggerArg = if (Test-Path "$appVeyorLoggerNetCoreDll") { "/logger:$appVeyorLoggerNetCoreDll" } else { "" }
-
-  dotnet build --configuration Release /p:ContinuousIntegrationBuild=true "$root\UnitsNet.sln" $fileLoggerArg $appVeyorLoggerArg
+  dotnet build --configuration Release /p:ContinuousIntegrationBuild=true "$root\UnitsNet.sln" $fileLoggerArg
   if ($lastexitcode -ne 0) { exit 1 }
 
   if (-not $IncludeNanoFramework)
@@ -49,12 +47,12 @@ function Start-Build([boolean] $IncludeNanoFramework = $false) {
   {
     write-host -foreground green "Build .NET nanoFramework."
     $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$logsDir\UnitsNet.NanoFramework.msbuild.log"
-    $appVeyorLoggerArg = if (Test-Path "$appVeyorLoggerDll") { "/logger:$appVeyorLoggerDll" } else { "" }
 
     # msbuild does not auto-restore nugets for this project type
     & "$nuget" restore "$root\UnitsNet.NanoFramework\GeneratedCode\UnitsNet.nanoFramework.sln"
+
     # now build
-    & "$msbuildx64" "$root\UnitsNet.NanoFramework\GeneratedCode\UnitsNet.nanoFramework.sln" /verbosity:minimal /p:Configuration=Release /p:Platform="Any CPU" /p:ContinuousIntegrationBuild=true $fileLoggerArg $appVeyorLoggerArg
+    & "$msbuildx64" "$root\UnitsNet.NanoFramework\GeneratedCode\UnitsNet.nanoFramework.sln" /verbosity:minimal /p:Configuration=Release /p:Platform="Any CPU" /p:ContinuousIntegrationBuild=true $fileLoggerArg
     if ($lastexitcode -ne 0) { exit 1 }
   }
 
@@ -95,7 +93,7 @@ function Start-Tests {
   }
 
   # Generate a summarized code coverage report for all test projects
-  & "Tools/reportgenerator.exe" -reports:"$root/Artifacts/Coverage/*.coverage.xml" -targetdir:"$root/Artifacts/Coverage" -reporttypes:HtmlSummary
+  & "$toolsDir/reportgenerator.exe" -reports:"$testCoverageDir/*.coverage.xml" -targetdir:"$testCoverageDir" -reporttypes:HtmlSummary
 
   write-host -foreground blue "Run tests...END`n"
 }

@@ -1,6 +1,8 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using System;
+
 using Xunit;
 
 namespace UnitsNet.Tests
@@ -51,6 +53,20 @@ namespace UnitsNet.Tests
         {
             ElectricCharge ah = ElectricCurrent.FromAmperes(4) * Duration.FromHours(5);
             Assert.Equal(20, ah.AmpereHours);
+        }
+
+        [Fact]
+        public void ElectricCurrentDividedByDurationEqualsElectricCurrentGradient()
+        {
+            ElectricCurrentGradient electricCurrentGradient = ElectricCurrent.FromAmperes(10) / Duration.FromSeconds(2);
+            Assert.Equal(ElectricCurrentGradient.FromAmperesPerSecond(5), electricCurrentGradient);
+        }
+
+        [Fact]
+        public void ElectricCurrentDividedByTimeSpanEqualsElectricCurrentGradient()
+        {
+            ElectricCurrentGradient electricCurrentGradient = ElectricCurrent.FromAmperes(10) / TimeSpan.FromSeconds(2);
+            Assert.Equal(ElectricCurrentGradient.FromAmperesPerSecond(5), electricCurrentGradient);
         }
     }
 }

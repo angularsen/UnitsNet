@@ -144,6 +144,10 @@ namespace UnitsNet.NumberExtensions.NumberToLength
 #endif
             => Length.FromInches(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Length.FromKilofeet(UnitsNet.QuantityValue)" />
+        public static Length Kilofeet<T>(this T value) =>
+            Length.FromKilofeet(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Length.FromKilolightYears(UnitsNet.QuantityValue)" />
         public static Length KilolightYears<T>(this T value)
             where T : notnull

@@ -39,13 +39,8 @@ namespace UnitsNet
         /// The static instance used by Units.NET to convert between units. Modify this to add/remove conversion functions at runtime, such
         /// as adding your own third-party units and quantities to convert between.
         /// </summary>
-        public static UnitConverter Default { get; }
-
-        static UnitConverter()
-        {
-            Default = new UnitConverter();
-            RegisterDefaultConversions(Default);
-        }
+        [Obsolete("Use UnitsNetSetup.Default.UnitConverter instead.")]
+        public static UnitConverter Default => UnitsNetSetup.Default.UnitConverter;
 
         /// <summary>
         /// Creates a new <see cref="UnitConverter"/> instance.
@@ -62,6 +57,18 @@ namespace UnitsNet
         public UnitConverter(UnitConverter other)
         {
             ConversionFunctions = new ConcurrentDictionary<ConversionFunctionLookupKey, ConversionFunction>(other.ConversionFunctions);
+        }
+
+        /// <summary>
+        ///     Create an instance of the unit converter with all the built-in unit conversions defined in the library.
+        /// </summary>
+        /// <returns>The unit converter.</returns>
+        public static UnitConverter CreateDefault()
+        {
+            var unitConverter = new UnitConverter();
+            RegisterDefaultConversions(unitConverter);
+
+            return unitConverter;
         }
 
         private ConcurrentDictionary<ConversionFunctionLookupKey, ConversionFunction> ConversionFunctions

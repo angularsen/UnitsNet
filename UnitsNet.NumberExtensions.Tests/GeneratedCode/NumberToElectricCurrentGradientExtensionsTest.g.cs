@@ -33,12 +33,24 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricCurrentGradient.FromAmperesPerMillisecond(2), 2.AmperesPerMillisecond());
 
         [Fact]
+        public void NumberToAmperesPerMinuteTest() =>
+            Assert.Equal(ElectricCurrentGradient.FromAmperesPerMinute(2), 2.AmperesPerMinute());
+
+        [Fact]
         public void NumberToAmperesPerNanosecondTest() =>
             Assert.Equal(ElectricCurrentGradient.FromAmperesPerNanosecond(2), 2.AmperesPerNanosecond());
 
         [Fact]
         public void NumberToAmperesPerSecondTest() =>
             Assert.Equal(ElectricCurrentGradient.FromAmperesPerSecond(2), 2.AmperesPerSecond());
+
+        [Fact]
+        public void NumberToMilliamperesPerMinuteTest() =>
+            Assert.Equal(ElectricCurrentGradient.FromMilliamperesPerMinute(2), 2.MilliamperesPerMinute());
+
+        [Fact]
+        public void NumberToMilliamperesPerSecondTest() =>
+            Assert.Equal(ElectricCurrentGradient.FromMilliamperesPerSecond(2), 2.MilliamperesPerSecond());
 
     }
 }

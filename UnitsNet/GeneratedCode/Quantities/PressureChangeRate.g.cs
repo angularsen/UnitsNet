@@ -66,6 +66,8 @@ namespace UnitsNet
                 new UnitInfo<PressureChangeRateUnit>[]
                 {
                     new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.AtmospherePerSecond, "AtmospheresPerSecond", BaseUnits.Undefined, "PressureChangeRate"),
+                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.BarPerMinute, "BarsPerMinute", BaseUnits.Undefined, "PressureChangeRate"),
+                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.BarPerSecond, "BarsPerSecond", BaseUnits.Undefined, "PressureChangeRate"),
                     new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.KilopascalPerMinute, "KilopascalsPerMinute", BaseUnits.Undefined, "PressureChangeRate"),
                     new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.KilopascalPerSecond, "KilopascalsPerSecond", BaseUnits.Undefined, "PressureChangeRate"),
                     new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute, "KilopoundsForcePerSquareInchPerMinute", BaseUnits.Undefined, "PressureChangeRate"),
@@ -74,11 +76,13 @@ namespace UnitsNet
                     new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MegapascalPerSecond, "MegapascalsPerSecond", BaseUnits.Undefined, "PressureChangeRate"),
                     new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute, "MegapoundsForcePerSquareInchPerMinute", BaseUnits.Undefined, "PressureChangeRate"),
                     new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond, "MegapoundsForcePerSquareInchPerSecond", BaseUnits.Undefined, "PressureChangeRate"),
+                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MillibarPerMinute, "MillibarsPerMinute", BaseUnits.Undefined, "PressureChangeRate"),
+                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MillibarPerSecond, "MillibarsPerSecond", BaseUnits.Undefined, "PressureChangeRate"),
                     new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.MillimeterOfMercuryPerSecond, "MillimetersOfMercuryPerSecond", BaseUnits.Undefined, "PressureChangeRate"),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PascalPerMinute, "PascalsPerMinute", BaseUnits.Undefined, "PressureChangeRate"),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PascalPerSecond, "PascalsPerSecond", BaseUnits.Undefined, "PressureChangeRate"),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PoundForcePerSquareInchPerMinute, "PoundsForcePerSquareInchPerMinute", BaseUnits.Undefined, "PressureChangeRate"),
-                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PoundForcePerSquareInchPerSecond, "PoundsForcePerSquareInchPerSecond", BaseUnits.Undefined, "PressureChangeRate"),
+                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PascalPerMinute, "PascalsPerMinute", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Minute), "PressureChangeRate"),
+                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PascalPerSecond, "PascalsPerSecond", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "PressureChangeRate"),
+                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PoundForcePerSquareInchPerMinute, "PoundsForcePerSquareInchPerMinute", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Pound, time: DurationUnit.Minute), "PressureChangeRate"),
+                    new UnitInfo<PressureChangeRateUnit>(PressureChangeRateUnit.PoundForcePerSquareInchPerSecond, "PoundsForcePerSquareInchPerSecond", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Pound, time: DurationUnit.Second), "PressureChangeRate"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -188,6 +192,16 @@ namespace UnitsNet
         public double AtmospheresPerSecond => As(PressureChangeRateUnit.AtmospherePerSecond);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureChangeRateUnit.BarPerMinute"/>
+        /// </summary>
+        public double BarsPerMinute => As(PressureChangeRateUnit.BarPerMinute);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureChangeRateUnit.BarPerSecond"/>
+        /// </summary>
+        public double BarsPerSecond => As(PressureChangeRateUnit.BarPerSecond);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureChangeRateUnit.KilopascalPerMinute"/>
         /// </summary>
         public double KilopascalsPerMinute => As(PressureChangeRateUnit.KilopascalPerMinute);
@@ -228,6 +242,16 @@ namespace UnitsNet
         public double MegapoundsForcePerSquareInchPerSecond => As(PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureChangeRateUnit.MillibarPerMinute"/>
+        /// </summary>
+        public double MillibarsPerMinute => As(PressureChangeRateUnit.MillibarPerMinute);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureChangeRateUnit.MillibarPerSecond"/>
+        /// </summary>
+        public double MillibarsPerSecond => As(PressureChangeRateUnit.MillibarPerSecond);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureChangeRateUnit.MillimeterOfMercuryPerSecond"/>
         /// </summary>
         public double MillimetersOfMercuryPerSecond => As(PressureChangeRateUnit.MillimeterOfMercuryPerSecond);
@@ -264,6 +288,8 @@ namespace UnitsNet
         {
             // Register in unit converter: PressureChangeRateUnit -> BaseUnit
             unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.AtmospherePerSecond, PressureChangeRateUnit.PascalPerSecond, quantity => quantity.ToUnit(PressureChangeRateUnit.PascalPerSecond));
+            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.BarPerMinute, PressureChangeRateUnit.PascalPerSecond, quantity => quantity.ToUnit(PressureChangeRateUnit.PascalPerSecond));
+            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.BarPerSecond, PressureChangeRateUnit.PascalPerSecond, quantity => quantity.ToUnit(PressureChangeRateUnit.PascalPerSecond));
             unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.KilopascalPerMinute, PressureChangeRateUnit.PascalPerSecond, quantity => quantity.ToUnit(PressureChangeRateUnit.PascalPerSecond));
             unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.KilopascalPerSecond, PressureChangeRateUnit.PascalPerSecond, quantity => quantity.ToUnit(PressureChangeRateUnit.PascalPerSecond));
             unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute, PressureChangeRateUnit.PascalPerSecond, quantity => quantity.ToUnit(PressureChangeRateUnit.PascalPerSecond));
@@ -272,6 +298,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.MegapascalPerSecond, PressureChangeRateUnit.PascalPerSecond, quantity => quantity.ToUnit(PressureChangeRateUnit.PascalPerSecond));
             unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute, PressureChangeRateUnit.PascalPerSecond, quantity => quantity.ToUnit(PressureChangeRateUnit.PascalPerSecond));
             unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond, PressureChangeRateUnit.PascalPerSecond, quantity => quantity.ToUnit(PressureChangeRateUnit.PascalPerSecond));
+            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.MillibarPerMinute, PressureChangeRateUnit.PascalPerSecond, quantity => quantity.ToUnit(PressureChangeRateUnit.PascalPerSecond));
+            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.MillibarPerSecond, PressureChangeRateUnit.PascalPerSecond, quantity => quantity.ToUnit(PressureChangeRateUnit.PascalPerSecond));
             unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.MillimeterOfMercuryPerSecond, PressureChangeRateUnit.PascalPerSecond, quantity => quantity.ToUnit(PressureChangeRateUnit.PascalPerSecond));
             unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerMinute, PressureChangeRateUnit.PascalPerSecond, quantity => quantity.ToUnit(PressureChangeRateUnit.PascalPerSecond));
             unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PoundForcePerSquareInchPerMinute, PressureChangeRateUnit.PascalPerSecond, quantity => quantity.ToUnit(PressureChangeRateUnit.PascalPerSecond));
@@ -282,6 +310,8 @@ namespace UnitsNet
 
             // Register in unit converter: BaseUnit -> PressureChangeRateUnit
             unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.AtmospherePerSecond, quantity => quantity.ToUnit(PressureChangeRateUnit.AtmospherePerSecond));
+            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.BarPerMinute, quantity => quantity.ToUnit(PressureChangeRateUnit.BarPerMinute));
+            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.BarPerSecond, quantity => quantity.ToUnit(PressureChangeRateUnit.BarPerSecond));
             unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.KilopascalPerMinute, quantity => quantity.ToUnit(PressureChangeRateUnit.KilopascalPerMinute));
             unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.KilopascalPerSecond, quantity => quantity.ToUnit(PressureChangeRateUnit.KilopascalPerSecond));
             unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute, quantity => quantity.ToUnit(PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute));
@@ -290,6 +320,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.MegapascalPerSecond, quantity => quantity.ToUnit(PressureChangeRateUnit.MegapascalPerSecond));
             unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute, quantity => quantity.ToUnit(PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute));
             unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond, quantity => quantity.ToUnit(PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond));
+            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.MillibarPerMinute, quantity => quantity.ToUnit(PressureChangeRateUnit.MillibarPerMinute));
+            unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.MillibarPerSecond, quantity => quantity.ToUnit(PressureChangeRateUnit.MillibarPerSecond));
             unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.MillimeterOfMercuryPerSecond, quantity => quantity.ToUnit(PressureChangeRateUnit.MillimeterOfMercuryPerSecond));
             unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.PascalPerMinute, quantity => quantity.ToUnit(PressureChangeRateUnit.PascalPerMinute));
             unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.PoundForcePerSquareInchPerMinute, quantity => quantity.ToUnit(PressureChangeRateUnit.PoundForcePerSquareInchPerMinute));
@@ -329,6 +361,26 @@ namespace UnitsNet
         {
             double value = (double) atmospherespersecond;
             return new PressureChangeRate(value, PressureChangeRateUnit.AtmospherePerSecond);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.BarPerMinute"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PressureChangeRate FromBarsPerMinute(QuantityValue barsperminute)
+        {
+            double value = (double) barsperminute;
+            return new PressureChangeRate(value, PressureChangeRateUnit.BarPerMinute);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.BarPerSecond"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PressureChangeRate FromBarsPerSecond(QuantityValue barspersecond)
+        {
+            double value = (double) barspersecond;
+            return new PressureChangeRate(value, PressureChangeRateUnit.BarPerSecond);
         }
 
         /// <summary>
@@ -409,6 +461,26 @@ namespace UnitsNet
         {
             double value = (double) megapoundsforcepersquareinchpersecond;
             return new PressureChangeRate(value, PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.MillibarPerMinute"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PressureChangeRate FromMillibarsPerMinute(QuantityValue millibarsperminute)
+        {
+            double value = (double) millibarsperminute;
+            return new PressureChangeRate(value, PressureChangeRateUnit.MillibarPerMinute);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.MillibarPerSecond"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static PressureChangeRate FromMillibarsPerSecond(QuantityValue millibarspersecond)
+        {
+            double value = (double) millibarspersecond;
+            return new PressureChangeRate(value, PressureChangeRateUnit.MillibarPerSecond);
         }
 
         /// <summary>
@@ -955,6 +1027,8 @@ namespace UnitsNet
             {
                 // PressureChangeRateUnit -> BaseUnit
                 (PressureChangeRateUnit.AtmospherePerSecond, PressureChangeRateUnit.PascalPerSecond) => new PressureChangeRate(_value * 1.01325 * 1e5, PressureChangeRateUnit.PascalPerSecond),
+                (PressureChangeRateUnit.BarPerMinute, PressureChangeRateUnit.PascalPerSecond) => new PressureChangeRate(_value * 1e5 / 60, PressureChangeRateUnit.PascalPerSecond),
+                (PressureChangeRateUnit.BarPerSecond, PressureChangeRateUnit.PascalPerSecond) => new PressureChangeRate(_value * 1e5, PressureChangeRateUnit.PascalPerSecond),
                 (PressureChangeRateUnit.KilopascalPerMinute, PressureChangeRateUnit.PascalPerSecond) => new PressureChangeRate((_value / 60) * 1e3d, PressureChangeRateUnit.PascalPerSecond),
                 (PressureChangeRateUnit.KilopascalPerSecond, PressureChangeRateUnit.PascalPerSecond) => new PressureChangeRate((_value) * 1e3d, PressureChangeRateUnit.PascalPerSecond),
                 (PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute, PressureChangeRateUnit.PascalPerSecond) => new PressureChangeRate((_value * 6.894757293168361e3 / 60) * 1e3d, PressureChangeRateUnit.PascalPerSecond),
@@ -963,6 +1037,8 @@ namespace UnitsNet
                 (PressureChangeRateUnit.MegapascalPerSecond, PressureChangeRateUnit.PascalPerSecond) => new PressureChangeRate((_value) * 1e6d, PressureChangeRateUnit.PascalPerSecond),
                 (PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute, PressureChangeRateUnit.PascalPerSecond) => new PressureChangeRate((_value * 6.894757293168361e3 / 60) * 1e6d, PressureChangeRateUnit.PascalPerSecond),
                 (PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond, PressureChangeRateUnit.PascalPerSecond) => new PressureChangeRate((_value * 6.894757293168361e3) * 1e6d, PressureChangeRateUnit.PascalPerSecond),
+                (PressureChangeRateUnit.MillibarPerMinute, PressureChangeRateUnit.PascalPerSecond) => new PressureChangeRate((_value * 1e5 / 60) * 1e-3d, PressureChangeRateUnit.PascalPerSecond),
+                (PressureChangeRateUnit.MillibarPerSecond, PressureChangeRateUnit.PascalPerSecond) => new PressureChangeRate((_value * 1e5) * 1e-3d, PressureChangeRateUnit.PascalPerSecond),
                 (PressureChangeRateUnit.MillimeterOfMercuryPerSecond, PressureChangeRateUnit.PascalPerSecond) => new PressureChangeRate(_value * 133.322, PressureChangeRateUnit.PascalPerSecond),
                 (PressureChangeRateUnit.PascalPerMinute, PressureChangeRateUnit.PascalPerSecond) => new PressureChangeRate(_value / 60, PressureChangeRateUnit.PascalPerSecond),
                 (PressureChangeRateUnit.PoundForcePerSquareInchPerMinute, PressureChangeRateUnit.PascalPerSecond) => new PressureChangeRate(_value * 6.894757293168361e3 / 60, PressureChangeRateUnit.PascalPerSecond),
@@ -970,6 +1046,8 @@ namespace UnitsNet
 
                 // BaseUnit -> PressureChangeRateUnit
                 (PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.AtmospherePerSecond) => new PressureChangeRate(_value / (1.01325 * 1e5), PressureChangeRateUnit.AtmospherePerSecond),
+                (PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.BarPerMinute) => new PressureChangeRate(_value / 1e5 * 60, PressureChangeRateUnit.BarPerMinute),
+                (PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.BarPerSecond) => new PressureChangeRate(_value / 1e5, PressureChangeRateUnit.BarPerSecond),
                 (PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.KilopascalPerMinute) => new PressureChangeRate((_value * 60) / 1e3d, PressureChangeRateUnit.KilopascalPerMinute),
                 (PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.KilopascalPerSecond) => new PressureChangeRate((_value) / 1e3d, PressureChangeRateUnit.KilopascalPerSecond),
                 (PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute) => new PressureChangeRate((_value / 6.894757293168361e3 * 60) / 1e3d, PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute),
@@ -978,6 +1056,8 @@ namespace UnitsNet
                 (PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.MegapascalPerSecond) => new PressureChangeRate((_value) / 1e6d, PressureChangeRateUnit.MegapascalPerSecond),
                 (PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute) => new PressureChangeRate((_value / 6.894757293168361e3 * 60) / 1e6d, PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute),
                 (PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond) => new PressureChangeRate((_value / 6.894757293168361e3) / 1e6d, PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond),
+                (PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.MillibarPerMinute) => new PressureChangeRate((_value / 1e5 * 60) / 1e-3d, PressureChangeRateUnit.MillibarPerMinute),
+                (PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.MillibarPerSecond) => new PressureChangeRate((_value / 1e5) / 1e-3d, PressureChangeRateUnit.MillibarPerSecond),
                 (PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.MillimeterOfMercuryPerSecond) => new PressureChangeRate(_value / 133.322, PressureChangeRateUnit.MillimeterOfMercuryPerSecond),
                 (PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.PascalPerMinute) => new PressureChangeRate(_value * 60, PressureChangeRateUnit.PascalPerMinute),
                 (PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.PoundForcePerSquareInchPerMinute) => new PressureChangeRate(_value / 6.894757293168361e3 * 60, PressureChangeRateUnit.PoundForcePerSquareInchPerMinute),

@@ -27,11 +27,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void AFormatGetsAbbreviations()
         {
-            Assert.Equal(UnitAbbreviationsCache.Default.GetDefaultAbbreviation(MyLength.Unit, CultureInfo.InvariantCulture), MyLength.ToString("a", CultureInfo.InvariantCulture));
-            Assert.Equal(UnitAbbreviationsCache.Default.GetDefaultAbbreviation(MyLength.Unit, CultureInfo.InvariantCulture), MyLength.ToString("a0", CultureInfo.InvariantCulture));
+            UnitAbbreviationsCache cache = UnitsNetSetup.Default.UnitAbbreviations;
+            Assert.Equal(cache.GetDefaultAbbreviation(MyLength.Unit, CultureInfo.InvariantCulture), MyLength.ToString("a", CultureInfo.InvariantCulture));
+            Assert.Equal(cache.GetDefaultAbbreviation(MyLength.Unit, CultureInfo.InvariantCulture), MyLength.ToString("a0", CultureInfo.InvariantCulture));
 
-            Assert.Equal(UnitAbbreviationsCache.Default.GetUnitAbbreviations(MyLength.Unit, CultureInfo.InvariantCulture)[1], MyLength.ToString("a1", CultureInfo.InvariantCulture));
-            Assert.Equal(UnitAbbreviationsCache.Default.GetUnitAbbreviations(MyLength.Unit, CultureInfo.InvariantCulture)[2], MyLength.ToString("a2", CultureInfo.InvariantCulture));
+            Assert.Equal(cache.GetUnitAbbreviations(MyLength.Unit, CultureInfo.InvariantCulture)[1], MyLength.ToString("a1", CultureInfo.InvariantCulture));
+            Assert.Equal(cache.GetUnitAbbreviations(MyLength.Unit, CultureInfo.InvariantCulture)[2], MyLength.ToString("a2", CultureInfo.InvariantCulture));
         }
 
         [Fact]
