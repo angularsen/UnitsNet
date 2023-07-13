@@ -28,6 +28,9 @@ namespace UnitsNet.Units
         InverseDegreeCelsius = 1,
         InverseDegreeFahrenheit = 2,
         InverseKelvin = 3,
+        PartsPerMillionPerDegreeCelsius = 10,
+        PartsPerMillionPerDegreeFahrenheit = 5,
+        PartsPerMillionPerKelvin = 9,
     }
 
     #pragma warning restore 1591

@@ -36,5 +36,17 @@ namespace UnitsNet.Tests
         public void NumberToInverseKelvinTest() =>
             Assert.Equal(CoefficientOfThermalExpansion.FromInverseKelvin(2), 2.InverseKelvin());
 
+        [Fact]
+        public void NumberToPartsPerMillionPerDegreeCelsiusTest() =>
+            Assert.Equal(CoefficientOfThermalExpansion.FromPartsPerMillionPerDegreeCelsius(2), 2.PartsPerMillionPerDegreeCelsius());
+
+        [Fact]
+        public void NumberToPartsPerMillionPerDegreeFahrenheitTest() =>
+            Assert.Equal(CoefficientOfThermalExpansion.FromPartsPerMillionPerDegreeFahrenheit(2), 2.PartsPerMillionPerDegreeFahrenheit());
+
+        [Fact]
+        public void NumberToPartsPerMillionPerKelvinTest() =>
+            Assert.Equal(CoefficientOfThermalExpansion.FromPartsPerMillionPerKelvin(2), 2.PartsPerMillionPerKelvin());
+
     }
 }

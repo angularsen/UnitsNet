@@ -56,5 +56,29 @@ namespace UnitsNet.NumberExtensions.NumberToCoefficientOfThermalExpansion
 #endif
             => CoefficientOfThermalExpansion.FromInverseKelvin(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="CoefficientOfThermalExpansion.FromPartsPerMillionPerDegreeCelsius(UnitsNet.QuantityValue)" />
+        public static CoefficientOfThermalExpansion PartsPerMillionPerDegreeCelsius<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => CoefficientOfThermalExpansion.FromPartsPerMillionPerDegreeCelsius(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="CoefficientOfThermalExpansion.FromPartsPerMillionPerDegreeFahrenheit(UnitsNet.QuantityValue)" />
+        public static CoefficientOfThermalExpansion PartsPerMillionPerDegreeFahrenheit<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => CoefficientOfThermalExpansion.FromPartsPerMillionPerDegreeFahrenheit(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="CoefficientOfThermalExpansion.FromPartsPerMillionPerKelvin(UnitsNet.QuantityValue)" />
+        public static CoefficientOfThermalExpansion PartsPerMillionPerKelvin<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => CoefficientOfThermalExpansion.FromPartsPerMillionPerKelvin(Convert.ToDouble(value));
+
     }
 }

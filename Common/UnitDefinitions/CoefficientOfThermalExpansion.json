@@ -50,6 +50,51 @@
           "Abbreviations": [ "°F⁻¹", "1/°F" ]
         }
       ]
+    },
+    {
+      "SingularName": "PartsPerMillionPerKelvin",
+      "PluralName": "PartsPerMillionPerKelvin",
+      "BaseUnits": {
+        "Θ": "Kelvin"
+      },
+      "FromUnitToBaseFunc": "{x} / 1e6",
+      "FromBaseToUnitFunc": "{x} * 1e6",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ppm/K" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PartsPerMillionPerDegreeCelsius",
+      "PluralName": "PartsPerMillionPerDegreeCelsius",
+      "BaseUnits": {
+        "Θ": "DegreeCelsius"
+      },
+      "FromUnitToBaseFunc": "{x} / 1e6",
+      "FromBaseToUnitFunc": "{x} * 1e6",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ppm/°C" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PartsPerMillionPerDegreeFahrenheit",
+      "PluralName": "PartsPerMillionPerDegreeFahrenheit",
+      "BaseUnits": {
+        "Θ": "DegreeFahrenheit"
+      },
+      "FromUnitToBaseFunc": "{x} * 9 / 5e6",
+      "FromBaseToUnitFunc": "{x} * 5e6 / 9",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ppm/°F" ]
+        }
+      ]
     }
   ]
 }

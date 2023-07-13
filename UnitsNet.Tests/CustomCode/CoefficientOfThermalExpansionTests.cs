@@ -35,6 +35,12 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double InverseKelvinInOneInverseKelvin => 1.0;
 
+        protected override double PartsPerMillionPerDegreeCelsiusInOneInverseKelvin => 1e6;
+
+        protected override double PartsPerMillionPerDegreeFahrenheitInOneInverseKelvin => 5.5555555555555556e5;
+
+        protected override double PartsPerMillionPerKelvinInOneInverseKelvin => 1e6;
+
         [Fact]
         public void CoefficientOfThermalExpansionTimesTemperatureDelta()
         {
