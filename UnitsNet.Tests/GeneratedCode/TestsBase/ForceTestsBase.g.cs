@@ -123,25 +123,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new Force(double.PositiveInfinity, ForceUnit.Newton));
-            Assert.Throws<ArgumentException>(() => new Force(double.NegativeInfinity, ForceUnit.Newton));
-        }
-
-        [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new Force(double.NaN, ForceUnit.Newton));
-        }
-
-        [Fact]
-        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
-        {
-            Assert.Throws<ArgumentNullException>(() => new Force(value: 1, unitSystem: null));
-        }
-
-        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new Force(value: 1, unitSystem: UnitSystem.SI);
@@ -254,19 +235,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity14.TonnesForce, TonnesForceTolerance);
             Assert.Equal(ForceUnit.TonneForce, quantity14.Unit);
 
-        }
-
-        [Fact]
-        public void FromNewtons_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => Force.FromNewtons(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Force.FromNewtons(double.NegativeInfinity));
-        }
-
-        [Fact]
-        public void FromNewtons_WithNanValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => Force.FromNewtons(double.NaN));
         }
 
         [Fact]

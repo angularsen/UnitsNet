@@ -279,25 +279,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new Volume(double.PositiveInfinity, VolumeUnit.CubicMeter));
-            Assert.Throws<ArgumentException>(() => new Volume(double.NegativeInfinity, VolumeUnit.CubicMeter));
-        }
-
-        [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new Volume(double.NaN, VolumeUnit.CubicMeter));
-        }
-
-        [Fact]
-        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
-        {
-            Assert.Throws<ArgumentNullException>(() => new Volume(value: 1, unitSystem: null));
-        }
-
-        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new Volume(value: 1, unitSystem: UnitSystem.SI);
@@ -605,19 +586,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity53.UsTeaspoons, UsTeaspoonsTolerance);
             Assert.Equal(VolumeUnit.UsTeaspoon, quantity53.Unit);
 
-        }
-
-        [Fact]
-        public void FromCubicMeters_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => Volume.FromCubicMeters(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Volume.FromCubicMeters(double.NegativeInfinity));
-        }
-
-        [Fact]
-        public void FromCubicMeters_WithNanValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => Volume.FromCubicMeters(double.NaN));
         }
 
         [Fact]

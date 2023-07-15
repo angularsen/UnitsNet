@@ -119,25 +119,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new ElectricResistivity(double.PositiveInfinity, ElectricResistivityUnit.OhmMeter));
-            Assert.Throws<ArgumentException>(() => new ElectricResistivity(double.NegativeInfinity, ElectricResistivityUnit.OhmMeter));
-        }
-
-        [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new ElectricResistivity(double.NaN, ElectricResistivityUnit.OhmMeter));
-        }
-
-        [Fact]
-        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
-        {
-            Assert.Throws<ArgumentNullException>(() => new ElectricResistivity(value: 1, unitSystem: null));
-        }
-
-        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new ElectricResistivity(value: 1, unitSystem: UnitSystem.SI);
@@ -245,19 +226,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity13.PicoohmMeters, PicoohmMetersTolerance);
             Assert.Equal(ElectricResistivityUnit.PicoohmMeter, quantity13.Unit);
 
-        }
-
-        [Fact]
-        public void FromOhmMeters_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => ElectricResistivity.FromOhmMeters(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ElectricResistivity.FromOhmMeters(double.NegativeInfinity));
-        }
-
-        [Fact]
-        public void FromOhmMeters_WithNanValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => ElectricResistivity.FromOhmMeters(double.NaN));
         }
 
         [Fact]

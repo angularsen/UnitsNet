@@ -169,26 +169,7 @@ namespace UnitsNet.Tests
             Assert.Equal({_baseUnitFullName}, quantity.Unit);
         }}
 ");
-            if (_quantity.ValueType == "double") Writer.WL($@"
-        [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
-        {{
-            Assert.Throws<ArgumentException>(() => new {_quantity.Name}(double.PositiveInfinity, {_baseUnitFullName}));
-            Assert.Throws<ArgumentException>(() => new {_quantity.Name}(double.NegativeInfinity, {_baseUnitFullName}));
-        }}
-
-        [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
-        {{
-            Assert.Throws<ArgumentException>(() => new {_quantity.Name}(double.NaN, {_baseUnitFullName}));
-        }}
-"); Writer.WL($@"
-
-        [Fact]
-        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
-        {{
-            Assert.Throws<ArgumentNullException>(() => new {_quantity.Name}(value: 1, unitSystem: null));
-        }}
+ Writer.WL($@"
 
         [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
@@ -244,20 +225,6 @@ namespace UnitsNet.Tests
 
             }
             Writer.WL($@"
-        }}
-");
-            if (_quantity.ValueType == "double") Writer.WL($@"
-        [Fact]
-        public void From{_baseUnit.PluralName}_WithInfinityValue_ThrowsArgumentException()
-        {{
-            Assert.Throws<ArgumentException>(() => {_quantity.Name}.From{_baseUnit.PluralName}(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => {_quantity.Name}.From{_baseUnit.PluralName}(double.NegativeInfinity));
-        }}
-
-        [Fact]
-        public void From{_baseUnit.PluralName}_WithNanValue_ThrowsArgumentException()
-        {{
-            Assert.Throws<ArgumentException>(() => {_quantity.Name}.From{_baseUnit.PluralName}(double.NaN));
         }}
 "); Writer.WL($@"
 

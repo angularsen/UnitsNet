@@ -71,25 +71,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new VolumeFlowPerArea(double.PositiveInfinity, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter));
-            Assert.Throws<ArgumentException>(() => new VolumeFlowPerArea(double.NegativeInfinity, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter));
-        }
-
-        [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new VolumeFlowPerArea(double.NaN, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter));
-        }
-
-        [Fact]
-        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
-        {
-            Assert.Throws<ArgumentNullException>(() => new VolumeFlowPerArea(value: 1, unitSystem: null));
-        }
-
-        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new VolumeFlowPerArea(value: 1, unitSystem: UnitSystem.SI);
@@ -137,19 +118,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity01.CubicMetersPerSecondPerSquareMeter, CubicMetersPerSecondPerSquareMeterTolerance);
             Assert.Equal(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, quantity01.Unit);
 
-        }
-
-        [Fact]
-        public void FromCubicMetersPerSecondPerSquareMeter_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => VolumeFlowPerArea.FromCubicMetersPerSecondPerSquareMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => VolumeFlowPerArea.FromCubicMetersPerSecondPerSquareMeter(double.NegativeInfinity));
-        }
-
-        [Fact]
-        public void FromCubicMetersPerSecondPerSquareMeter_WithNanValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => VolumeFlowPerArea.FromCubicMetersPerSecondPerSquareMeter(double.NaN));
         }
 
         [Fact]

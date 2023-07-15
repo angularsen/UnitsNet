@@ -67,25 +67,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new Permeability(double.PositiveInfinity, PermeabilityUnit.HenryPerMeter));
-            Assert.Throws<ArgumentException>(() => new Permeability(double.NegativeInfinity, PermeabilityUnit.HenryPerMeter));
-        }
-
-        [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new Permeability(double.NaN, PermeabilityUnit.HenryPerMeter));
-        }
-
-        [Fact]
-        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
-        {
-            Assert.Throws<ArgumentNullException>(() => new Permeability(value: 1, unitSystem: null));
-        }
-
-        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new Permeability(value: 1, unitSystem: UnitSystem.SI);
@@ -128,19 +109,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity00.HenriesPerMeter, HenriesPerMeterTolerance);
             Assert.Equal(PermeabilityUnit.HenryPerMeter, quantity00.Unit);
 
-        }
-
-        [Fact]
-        public void FromHenriesPerMeter_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => Permeability.FromHenriesPerMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Permeability.FromHenriesPerMeter(double.NegativeInfinity));
-        }
-
-        [Fact]
-        public void FromHenriesPerMeter_WithNanValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => Permeability.FromHenriesPerMeter(double.NaN));
         }
 
         [Fact]

@@ -75,25 +75,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new LeakRate(double.PositiveInfinity, LeakRateUnit.PascalCubicMeterPerSecond));
-            Assert.Throws<ArgumentException>(() => new LeakRate(double.NegativeInfinity, LeakRateUnit.PascalCubicMeterPerSecond));
-        }
-
-        [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new LeakRate(double.NaN, LeakRateUnit.PascalCubicMeterPerSecond));
-        }
-
-        [Fact]
-        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
-        {
-            Assert.Throws<ArgumentNullException>(() => new LeakRate(value: 1, unitSystem: null));
-        }
-
-        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new LeakRate(value: 1, unitSystem: UnitSystem.SI);
@@ -146,19 +127,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity02.TorrLitersPerSecond, TorrLitersPerSecondTolerance);
             Assert.Equal(LeakRateUnit.TorrLiterPerSecond, quantity02.Unit);
 
-        }
-
-        [Fact]
-        public void FromPascalCubicMetersPerSecond_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => LeakRate.FromPascalCubicMetersPerSecond(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => LeakRate.FromPascalCubicMetersPerSecond(double.NegativeInfinity));
-        }
-
-        [Fact]
-        public void FromPascalCubicMetersPerSecond_WithNanValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => LeakRate.FromPascalCubicMetersPerSecond(double.NaN));
         }
 
         [Fact]

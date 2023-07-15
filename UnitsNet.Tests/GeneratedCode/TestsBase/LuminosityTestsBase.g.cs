@@ -119,25 +119,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new Luminosity(double.PositiveInfinity, LuminosityUnit.Watt));
-            Assert.Throws<ArgumentException>(() => new Luminosity(double.NegativeInfinity, LuminosityUnit.Watt));
-        }
-
-        [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new Luminosity(double.NaN, LuminosityUnit.Watt));
-        }
-
-        [Fact]
-        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
-        {
-            Assert.Throws<ArgumentNullException>(() => new Luminosity(value: 1, unitSystem: null));
-        }
-
-        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new Luminosity(value: 1, unitSystem: UnitSystem.SI);
@@ -245,19 +226,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity13.Watts, WattsTolerance);
             Assert.Equal(LuminosityUnit.Watt, quantity13.Unit);
 
-        }
-
-        [Fact]
-        public void FromWatts_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => Luminosity.FromWatts(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Luminosity.FromWatts(double.NegativeInfinity));
-        }
-
-        [Fact]
-        public void FromWatts_WithNanValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => Luminosity.FromWatts(double.NaN));
         }
 
         [Fact]

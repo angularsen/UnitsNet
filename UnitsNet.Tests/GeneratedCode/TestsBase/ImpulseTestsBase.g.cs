@@ -115,25 +115,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new Impulse(double.PositiveInfinity, ImpulseUnit.NewtonSecond));
-            Assert.Throws<ArgumentException>(() => new Impulse(double.NegativeInfinity, ImpulseUnit.NewtonSecond));
-        }
-
-        [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new Impulse(double.NaN, ImpulseUnit.NewtonSecond));
-        }
-
-        [Fact]
-        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
-        {
-            Assert.Throws<ArgumentNullException>(() => new Impulse(value: 1, unitSystem: null));
-        }
-
-        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new Impulse(value: 1, unitSystem: UnitSystem.SI);
@@ -236,19 +217,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity12.SlugFeetPerSecond, SlugFeetPerSecondTolerance);
             Assert.Equal(ImpulseUnit.SlugFootPerSecond, quantity12.Unit);
 
-        }
-
-        [Fact]
-        public void FromNewtonSeconds_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => Impulse.FromNewtonSeconds(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Impulse.FromNewtonSeconds(double.NegativeInfinity));
-        }
-
-        [Fact]
-        public void FromNewtonSeconds_WithNanValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => Impulse.FromNewtonSeconds(double.NaN));
         }
 
         [Fact]

@@ -103,25 +103,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new ReciprocalLength(double.PositiveInfinity, ReciprocalLengthUnit.InverseMeter));
-            Assert.Throws<ArgumentException>(() => new ReciprocalLength(double.NegativeInfinity, ReciprocalLengthUnit.InverseMeter));
-        }
-
-        [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new ReciprocalLength(double.NaN, ReciprocalLengthUnit.InverseMeter));
-        }
-
-        [Fact]
-        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
-        {
-            Assert.Throws<ArgumentNullException>(() => new ReciprocalLength(value: 1, unitSystem: null));
-        }
-
-        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new ReciprocalLength(value: 1, unitSystem: UnitSystem.SI);
@@ -209,19 +190,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity09.InverseYards, InverseYardsTolerance);
             Assert.Equal(ReciprocalLengthUnit.InverseYard, quantity09.Unit);
 
-        }
-
-        [Fact]
-        public void FromInverseMeters_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => ReciprocalLength.FromInverseMeters(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ReciprocalLength.FromInverseMeters(double.NegativeInfinity));
-        }
-
-        [Fact]
-        public void FromInverseMeters_WithNanValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => ReciprocalLength.FromInverseMeters(double.NaN));
         }
 
         [Fact]

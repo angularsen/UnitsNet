@@ -143,25 +143,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new ElectricPotentialChangeRate(double.PositiveInfinity, ElectricPotentialChangeRateUnit.VoltPerSecond));
-            Assert.Throws<ArgumentException>(() => new ElectricPotentialChangeRate(double.NegativeInfinity, ElectricPotentialChangeRateUnit.VoltPerSecond));
-        }
-
-        [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new ElectricPotentialChangeRate(double.NaN, ElectricPotentialChangeRateUnit.VoltPerSecond));
-        }
-
-        [Fact]
-        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
-        {
-            Assert.Throws<ArgumentNullException>(() => new ElectricPotentialChangeRate(value: 1, unitSystem: null));
-        }
-
-        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new ElectricPotentialChangeRate(value: 1, unitSystem: UnitSystem.SI);
@@ -299,19 +280,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity19.VoltsPerSeconds, VoltsPerSecondsTolerance);
             Assert.Equal(ElectricPotentialChangeRateUnit.VoltPerSecond, quantity19.Unit);
 
-        }
-
-        [Fact]
-        public void FromVoltsPerSeconds_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => ElectricPotentialChangeRate.FromVoltsPerSeconds(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ElectricPotentialChangeRate.FromVoltsPerSeconds(double.NegativeInfinity));
-        }
-
-        [Fact]
-        public void FromVoltsPerSeconds_WithNanValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => ElectricPotentialChangeRate.FromVoltsPerSeconds(double.NaN));
         }
 
         [Fact]

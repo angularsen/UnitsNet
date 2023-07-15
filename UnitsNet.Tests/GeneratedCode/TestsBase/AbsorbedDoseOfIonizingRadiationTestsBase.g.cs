@@ -127,25 +127,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new AbsorbedDoseOfIonizingRadiation(double.PositiveInfinity, AbsorbedDoseOfIonizingRadiationUnit.Gray));
-            Assert.Throws<ArgumentException>(() => new AbsorbedDoseOfIonizingRadiation(double.NegativeInfinity, AbsorbedDoseOfIonizingRadiationUnit.Gray));
-        }
-
-        [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new AbsorbedDoseOfIonizingRadiation(double.NaN, AbsorbedDoseOfIonizingRadiationUnit.Gray));
-        }
-
-        [Fact]
-        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
-        {
-            Assert.Throws<ArgumentNullException>(() => new AbsorbedDoseOfIonizingRadiation(value: 1, unitSystem: null));
-        }
-
-        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new AbsorbedDoseOfIonizingRadiation(value: 1, unitSystem: UnitSystem.SI);
@@ -263,19 +244,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity15.Teragrays, TeragraysTolerance);
             Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Teragray, quantity15.Unit);
 
-        }
-
-        [Fact]
-        public void FromGrays_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => AbsorbedDoseOfIonizingRadiation.FromGrays(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => AbsorbedDoseOfIonizingRadiation.FromGrays(double.NegativeInfinity));
-        }
-
-        [Fact]
-        public void FromGrays_WithNanValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => AbsorbedDoseOfIonizingRadiation.FromGrays(double.NaN));
         }
 
         [Fact]

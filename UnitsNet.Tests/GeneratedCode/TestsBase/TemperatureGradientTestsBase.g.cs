@@ -79,25 +79,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new TemperatureGradient(double.PositiveInfinity, TemperatureGradientUnit.KelvinPerMeter));
-            Assert.Throws<ArgumentException>(() => new TemperatureGradient(double.NegativeInfinity, TemperatureGradientUnit.KelvinPerMeter));
-        }
-
-        [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new TemperatureGradient(double.NaN, TemperatureGradientUnit.KelvinPerMeter));
-        }
-
-        [Fact]
-        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
-        {
-            Assert.Throws<ArgumentNullException>(() => new TemperatureGradient(value: 1, unitSystem: null));
-        }
-
-        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new TemperatureGradient(value: 1, unitSystem: UnitSystem.SI);
@@ -155,19 +136,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity03.KelvinsPerMeter, KelvinsPerMeterTolerance);
             Assert.Equal(TemperatureGradientUnit.KelvinPerMeter, quantity03.Unit);
 
-        }
-
-        [Fact]
-        public void FromKelvinsPerMeter_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => TemperatureGradient.FromKelvinsPerMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => TemperatureGradient.FromKelvinsPerMeter(double.NegativeInfinity));
-        }
-
-        [Fact]
-        public void FromKelvinsPerMeter_WithNanValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => TemperatureGradient.FromKelvinsPerMeter(double.NaN));
         }
 
         [Fact]

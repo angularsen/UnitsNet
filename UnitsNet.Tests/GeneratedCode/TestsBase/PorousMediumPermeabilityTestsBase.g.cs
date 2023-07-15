@@ -83,25 +83,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new PorousMediumPermeability(double.PositiveInfinity, PorousMediumPermeabilityUnit.SquareMeter));
-            Assert.Throws<ArgumentException>(() => new PorousMediumPermeability(double.NegativeInfinity, PorousMediumPermeabilityUnit.SquareMeter));
-        }
-
-        [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new PorousMediumPermeability(double.NaN, PorousMediumPermeabilityUnit.SquareMeter));
-        }
-
-        [Fact]
-        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
-        {
-            Assert.Throws<ArgumentNullException>(() => new PorousMediumPermeability(value: 1, unitSystem: null));
-        }
-
-        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new PorousMediumPermeability(value: 1, unitSystem: UnitSystem.SI);
@@ -164,19 +145,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity04.SquareMeters, SquareMetersTolerance);
             Assert.Equal(PorousMediumPermeabilityUnit.SquareMeter, quantity04.Unit);
 
-        }
-
-        [Fact]
-        public void FromSquareMeters_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => PorousMediumPermeability.FromSquareMeters(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => PorousMediumPermeability.FromSquareMeters(double.NegativeInfinity));
-        }
-
-        [Fact]
-        public void FromSquareMeters_WithNanValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => PorousMediumPermeability.FromSquareMeters(double.NaN));
         }
 
         [Fact]

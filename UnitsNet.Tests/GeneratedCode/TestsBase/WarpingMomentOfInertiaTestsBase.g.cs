@@ -87,25 +87,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new WarpingMomentOfInertia(double.PositiveInfinity, WarpingMomentOfInertiaUnit.MeterToTheSixth));
-            Assert.Throws<ArgumentException>(() => new WarpingMomentOfInertia(double.NegativeInfinity, WarpingMomentOfInertiaUnit.MeterToTheSixth));
-        }
-
-        [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new WarpingMomentOfInertia(double.NaN, WarpingMomentOfInertiaUnit.MeterToTheSixth));
-        }
-
-        [Fact]
-        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
-        {
-            Assert.Throws<ArgumentNullException>(() => new WarpingMomentOfInertia(value: 1, unitSystem: null));
-        }
-
-        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new WarpingMomentOfInertia(value: 1, unitSystem: UnitSystem.SI);
@@ -173,19 +154,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity05.MillimetersToTheSixth, MillimetersToTheSixthTolerance);
             Assert.Equal(WarpingMomentOfInertiaUnit.MillimeterToTheSixth, quantity05.Unit);
 
-        }
-
-        [Fact]
-        public void FromMetersToTheSixth_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => WarpingMomentOfInertia.FromMetersToTheSixth(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => WarpingMomentOfInertia.FromMetersToTheSixth(double.NegativeInfinity));
-        }
-
-        [Fact]
-        public void FromMetersToTheSixth_WithNanValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => WarpingMomentOfInertia.FromMetersToTheSixth(double.NaN));
         }
 
         [Fact]

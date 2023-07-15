@@ -2,7 +2,7 @@
 using CodeGen.JsonTypes;
 
 namespace CodeGen.Generators.UnitsNetGen
-{
+{ 
     internal class StaticQuantityGenerator : GeneratorBase
     {
         private readonly Quantity[] _quantities;

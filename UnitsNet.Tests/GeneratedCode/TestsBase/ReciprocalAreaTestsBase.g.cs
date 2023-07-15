@@ -107,25 +107,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new ReciprocalArea(double.PositiveInfinity, ReciprocalAreaUnit.InverseSquareMeter));
-            Assert.Throws<ArgumentException>(() => new ReciprocalArea(double.NegativeInfinity, ReciprocalAreaUnit.InverseSquareMeter));
-        }
-
-        [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new ReciprocalArea(double.NaN, ReciprocalAreaUnit.InverseSquareMeter));
-        }
-
-        [Fact]
-        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
-        {
-            Assert.Throws<ArgumentNullException>(() => new ReciprocalArea(value: 1, unitSystem: null));
-        }
-
-        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new ReciprocalArea(value: 1, unitSystem: UnitSystem.SI);
@@ -218,19 +199,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity10.InverseUsSurveySquareFeet, InverseUsSurveySquareFeetTolerance);
             Assert.Equal(ReciprocalAreaUnit.InverseUsSurveySquareFoot, quantity10.Unit);
 
-        }
-
-        [Fact]
-        public void FromInverseSquareMeters_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => ReciprocalArea.FromInverseSquareMeters(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ReciprocalArea.FromInverseSquareMeters(double.NegativeInfinity));
-        }
-
-        [Fact]
-        public void FromInverseSquareMeters_WithNanValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => ReciprocalArea.FromInverseSquareMeters(double.NaN));
         }
 
         [Fact]

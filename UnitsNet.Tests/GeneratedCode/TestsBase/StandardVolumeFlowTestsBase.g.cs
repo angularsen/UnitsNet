@@ -99,25 +99,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new StandardVolumeFlow(double.PositiveInfinity, StandardVolumeFlowUnit.StandardCubicMeterPerSecond));
-            Assert.Throws<ArgumentException>(() => new StandardVolumeFlow(double.NegativeInfinity, StandardVolumeFlowUnit.StandardCubicMeterPerSecond));
-        }
-
-        [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new StandardVolumeFlow(double.NaN, StandardVolumeFlowUnit.StandardCubicMeterPerSecond));
-        }
-
-        [Fact]
-        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
-        {
-            Assert.Throws<ArgumentNullException>(() => new StandardVolumeFlow(value: 1, unitSystem: null));
-        }
-
-        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new StandardVolumeFlow(value: 1, unitSystem: UnitSystem.SI);
@@ -200,19 +181,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity08.StandardLitersPerMinute, StandardLitersPerMinuteTolerance);
             Assert.Equal(StandardVolumeFlowUnit.StandardLiterPerMinute, quantity08.Unit);
 
-        }
-
-        [Fact]
-        public void FromStandardCubicMetersPerSecond_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => StandardVolumeFlow.FromStandardCubicMetersPerSecond(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => StandardVolumeFlow.FromStandardCubicMetersPerSecond(double.NegativeInfinity));
-        }
-
-        [Fact]
-        public void FromStandardCubicMetersPerSecond_WithNanValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => StandardVolumeFlow.FromStandardCubicMetersPerSecond(double.NaN));
         }
 
         [Fact]

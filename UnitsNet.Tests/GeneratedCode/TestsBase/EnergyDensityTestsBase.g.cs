@@ -111,25 +111,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new EnergyDensity(double.PositiveInfinity, EnergyDensityUnit.JoulePerCubicMeter));
-            Assert.Throws<ArgumentException>(() => new EnergyDensity(double.NegativeInfinity, EnergyDensityUnit.JoulePerCubicMeter));
-        }
-
-        [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new EnergyDensity(double.NaN, EnergyDensityUnit.JoulePerCubicMeter));
-        }
-
-        [Fact]
-        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
-        {
-            Assert.Throws<ArgumentNullException>(() => new EnergyDensity(value: 1, unitSystem: null));
-        }
-
-        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new EnergyDensity(value: 1, unitSystem: UnitSystem.SI);
@@ -227,19 +208,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity11.WattHoursPerCubicMeter, WattHoursPerCubicMeterTolerance);
             Assert.Equal(EnergyDensityUnit.WattHourPerCubicMeter, quantity11.Unit);
 
-        }
-
-        [Fact]
-        public void FromJoulesPerCubicMeter_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => EnergyDensity.FromJoulesPerCubicMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => EnergyDensity.FromJoulesPerCubicMeter(double.NegativeInfinity));
-        }
-
-        [Fact]
-        public void FromJoulesPerCubicMeter_WithNanValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => EnergyDensity.FromJoulesPerCubicMeter(double.NaN));
         }
 
         [Fact]

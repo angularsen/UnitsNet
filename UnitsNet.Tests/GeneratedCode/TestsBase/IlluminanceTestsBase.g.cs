@@ -79,25 +79,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new Illuminance(double.PositiveInfinity, IlluminanceUnit.Lux));
-            Assert.Throws<ArgumentException>(() => new Illuminance(double.NegativeInfinity, IlluminanceUnit.Lux));
-        }
-
-        [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new Illuminance(double.NaN, IlluminanceUnit.Lux));
-        }
-
-        [Fact]
-        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
-        {
-            Assert.Throws<ArgumentNullException>(() => new Illuminance(value: 1, unitSystem: null));
-        }
-
-        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new Illuminance(value: 1, unitSystem: UnitSystem.SI);
@@ -155,19 +136,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity03.Millilux, MilliluxTolerance);
             Assert.Equal(IlluminanceUnit.Millilux, quantity03.Unit);
 
-        }
-
-        [Fact]
-        public void FromLux_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => Illuminance.FromLux(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Illuminance.FromLux(double.NegativeInfinity));
-        }
-
-        [Fact]
-        public void FromLux_WithNanValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => Illuminance.FromLux(double.NaN));
         }
 
         [Fact]

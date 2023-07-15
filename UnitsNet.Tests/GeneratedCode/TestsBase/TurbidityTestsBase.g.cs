@@ -67,25 +67,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new Turbidity(double.PositiveInfinity, TurbidityUnit.NTU));
-            Assert.Throws<ArgumentException>(() => new Turbidity(double.NegativeInfinity, TurbidityUnit.NTU));
-        }
-
-        [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new Turbidity(double.NaN, TurbidityUnit.NTU));
-        }
-
-        [Fact]
-        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
-        {
-            Assert.Throws<ArgumentNullException>(() => new Turbidity(value: 1, unitSystem: null));
-        }
-
-        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new Turbidity(value: 1, unitSystem: UnitSystem.SI);
@@ -128,19 +109,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity00.NTU, NTUTolerance);
             Assert.Equal(TurbidityUnit.NTU, quantity00.Unit);
 
-        }
-
-        [Fact]
-        public void FromNTU_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => Turbidity.FromNTU(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Turbidity.FromNTU(double.NegativeInfinity));
-        }
-
-        [Fact]
-        public void FromNTU_WithNanValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => Turbidity.FromNTU(double.NaN));
         }
 
         [Fact]

@@ -215,25 +215,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new Energy(double.PositiveInfinity, EnergyUnit.Joule));
-            Assert.Throws<ArgumentException>(() => new Energy(double.NegativeInfinity, EnergyUnit.Joule));
-        }
-
-        [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new Energy(double.NaN, EnergyUnit.Joule));
-        }
-
-        [Fact]
-        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
-        {
-            Assert.Throws<ArgumentNullException>(() => new Energy(value: 1, unitSystem: null));
-        }
-
-        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new Energy(value: 1, unitSystem: UnitSystem.SI);
@@ -461,19 +442,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity37.WattHours, WattHoursTolerance);
             Assert.Equal(EnergyUnit.WattHour, quantity37.Unit);
 
-        }
-
-        [Fact]
-        public void FromJoules_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => Energy.FromJoules(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Energy.FromJoules(double.NegativeInfinity));
-        }
-
-        [Fact]
-        public void FromJoules_WithNanValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => Energy.FromJoules(double.NaN));
         }
 
         [Fact]

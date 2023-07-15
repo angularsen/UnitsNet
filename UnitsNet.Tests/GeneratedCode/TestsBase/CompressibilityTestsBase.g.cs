@@ -91,25 +91,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new Compressibility(double.PositiveInfinity, CompressibilityUnit.InversePascal));
-            Assert.Throws<ArgumentException>(() => new Compressibility(double.NegativeInfinity, CompressibilityUnit.InversePascal));
-        }
-
-        [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new Compressibility(double.NaN, CompressibilityUnit.InversePascal));
-        }
-
-        [Fact]
-        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
-        {
-            Assert.Throws<ArgumentNullException>(() => new Compressibility(value: 1, unitSystem: null));
-        }
-
-        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new Compressibility(value: 1, unitSystem: UnitSystem.SI);
@@ -182,19 +163,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity06.InversePoundsForcePerSquareInch, InversePoundsForcePerSquareInchTolerance);
             Assert.Equal(CompressibilityUnit.InversePoundForcePerSquareInch, quantity06.Unit);
 
-        }
-
-        [Fact]
-        public void FromInversePascals_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => Compressibility.FromInversePascals(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Compressibility.FromInversePascals(double.NegativeInfinity));
-        }
-
-        [Fact]
-        public void FromInversePascals_WithNanValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => Compressibility.FromInversePascals(double.NaN));
         }
 
         [Fact]

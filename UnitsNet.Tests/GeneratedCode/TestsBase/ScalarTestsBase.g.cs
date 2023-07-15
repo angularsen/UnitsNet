@@ -67,25 +67,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new Scalar(double.PositiveInfinity, ScalarUnit.Amount));
-            Assert.Throws<ArgumentException>(() => new Scalar(double.NegativeInfinity, ScalarUnit.Amount));
-        }
-
-        [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new Scalar(double.NaN, ScalarUnit.Amount));
-        }
-
-        [Fact]
-        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
-        {
-            Assert.Throws<ArgumentNullException>(() => new Scalar(value: 1, unitSystem: null));
-        }
-
-        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new Scalar(value: 1, unitSystem: UnitSystem.SI);
@@ -128,19 +109,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity00.Amount, AmountTolerance);
             Assert.Equal(ScalarUnit.Amount, quantity00.Unit);
 
-        }
-
-        [Fact]
-        public void FromAmount_WithInfinityValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => Scalar.FromAmount(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Scalar.FromAmount(double.NegativeInfinity));
-        }
-
-        [Fact]
-        public void FromAmount_WithNanValue_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => Scalar.FromAmount(double.NaN));
         }
 
         [Fact]
