@@ -37,6 +37,10 @@ namespace UnitsNet.Tests
             Assert.Equal(VolumePerLength.FromCubicYardsPerUsSurveyFoot(2), 2.CubicYardsPerUsSurveyFoot());
 
         [Fact]
+        public void NumberToImperialGallonsPerMileTest() =>
+            Assert.Equal(VolumePerLength.FromImperialGallonsPerMile(2), 2.ImperialGallonsPerMile());
+
+        [Fact]
         public void NumberToLitersPerKilometerTest() =>
             Assert.Equal(VolumePerLength.FromLitersPerKilometer(2), 2.LitersPerKilometer());
 
@@ -51,6 +55,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToOilBarrelsPerFootTest() =>
             Assert.Equal(VolumePerLength.FromOilBarrelsPerFoot(2), 2.OilBarrelsPerFoot());
+
+        [Fact]
+        public void NumberToUsGallonsPerMileTest() =>
+            Assert.Equal(VolumePerLength.FromUsGallonsPerMile(2), 2.UsGallonsPerMile());
 
     }
 }

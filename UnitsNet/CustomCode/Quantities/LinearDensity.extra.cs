@@ -17,5 +17,11 @@ namespace UnitsNet
         {
             return Area.FromSquareMeters(linearDensity.KilogramsPerMeter / density.KilogramsPerCubicMeter);
         }
+
+        /// <summary>Get <see cref="Mass"/> from <see cref="LinearDensity"/> times <see cref="Length"/>.</summary>
+        public static Mass operator *(LinearDensity linearDensity, Length length)
+        {
+            return Mass.FromKilograms(linearDensity.KilogramsPerMeter * length.Meters);
+        }
     }
 }

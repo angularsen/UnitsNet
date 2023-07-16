@@ -34,6 +34,7 @@ namespace UnitsNet.Tests
                 Assert.Equal(expectedValue, quantity.Value);
             }
 
+            Assertion(3, AbsorbedDoseOfIonizingRadiationUnit.Teragray, Quantity.From(3, AbsorbedDoseOfIonizingRadiationUnit.Teragray));
             Assertion(3, AccelerationUnit.StandardGravity, Quantity.From(3, AccelerationUnit.StandardGravity));
             Assertion(3, AmountOfSubstanceUnit.PoundMole, Quantity.From(3, AmountOfSubstanceUnit.PoundMole));
             Assertion(3, AmplitudeRatioUnit.DecibelVolt, Quantity.From(3, AmplitudeRatioUnit.DecibelVolt));
@@ -58,7 +59,7 @@ namespace UnitsNet.Tests
             Assertion(3, ElectricConductivityUnit.SiemensPerMeter, Quantity.From(3, ElectricConductivityUnit.SiemensPerMeter));
             Assertion(3, ElectricCurrentUnit.Picoampere, Quantity.From(3, ElectricCurrentUnit.Picoampere));
             Assertion(3, ElectricCurrentDensityUnit.AmperePerSquareMeter, Quantity.From(3, ElectricCurrentDensityUnit.AmperePerSquareMeter));
-            Assertion(3, ElectricCurrentGradientUnit.AmperePerSecond, Quantity.From(3, ElectricCurrentGradientUnit.AmperePerSecond));
+            Assertion(3, ElectricCurrentGradientUnit.MilliamperePerSecond, Quantity.From(3, ElectricCurrentGradientUnit.MilliamperePerSecond));
             Assertion(3, ElectricFieldUnit.VoltPerMeter, Quantity.From(3, ElectricFieldUnit.VoltPerMeter));
             Assertion(3, ElectricInductanceUnit.Picohenry, Quantity.From(3, ElectricInductanceUnit.Picohenry));
             Assertion(3, ElectricPotentialUnit.Volt, Quantity.From(3, ElectricPotentialUnit.Volt));
@@ -85,6 +86,7 @@ namespace UnitsNet.Tests
             Assertion(3, IrradiationUnit.WattHourPerSquareMeter, Quantity.From(3, IrradiationUnit.WattHourPerSquareMeter));
             Assertion(3, JerkUnit.StandardGravitiesPerSecond, Quantity.From(3, JerkUnit.StandardGravitiesPerSecond));
             Assertion(3, KinematicViscosityUnit.Stokes, Quantity.From(3, KinematicViscosityUnit.Stokes));
+            Assertion(3, LeakRateUnit.TorrLiterPerSecond, Quantity.From(3, LeakRateUnit.TorrLiterPerSecond));
             Assertion(3, LengthUnit.Yard, Quantity.From(3, LengthUnit.Yard));
             Assertion(3, LevelUnit.Neper, Quantity.From(3, LevelUnit.Neper));
             Assertion(3, LinearDensityUnit.PoundPerInch, Quantity.From(3, LinearDensityUnit.PoundPerInch));
@@ -149,7 +151,7 @@ namespace UnitsNet.Tests
             Assertion(3, VolumeConcentrationUnit.PicolitersPerMililiter, Quantity.From(3, VolumeConcentrationUnit.PicolitersPerMililiter));
             Assertion(3, VolumeFlowUnit.UsGallonPerSecond, Quantity.From(3, VolumeFlowUnit.UsGallonPerSecond));
             Assertion(3, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, Quantity.From(3, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter));
-            Assertion(3, VolumePerLengthUnit.OilBarrelPerFoot, Quantity.From(3, VolumePerLengthUnit.OilBarrelPerFoot));
+            Assertion(3, VolumePerLengthUnit.UsGallonPerMile, Quantity.From(3, VolumePerLengthUnit.UsGallonPerMile));
             Assertion(3, VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, Quantity.From(3, VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin));
             Assertion(3, WarpingMomentOfInertiaUnit.MillimeterToTheSixth, Quantity.From(3, WarpingMomentOfInertiaUnit.MillimeterToTheSixth));
         }
@@ -159,6 +161,7 @@ namespace UnitsNet.Tests
         {
             void Assertion(QuantityInfo expected, IQuantity quantity) => Assert.Same(expected, quantity.QuantityInfo);
 
+            Assertion(AbsorbedDoseOfIonizingRadiation.Info, AbsorbedDoseOfIonizingRadiation.Zero);
             Assertion(Acceleration.Info, Acceleration.Zero);
             Assertion(AmountOfSubstance.Info, AmountOfSubstance.Zero);
             Assertion(AmplitudeRatio.Info, AmplitudeRatio.Zero);
@@ -210,6 +213,7 @@ namespace UnitsNet.Tests
             Assertion(Irradiation.Info, Irradiation.Zero);
             Assertion(Jerk.Info, Jerk.Zero);
             Assertion(KinematicViscosity.Info, KinematicViscosity.Zero);
+            Assertion(LeakRate.Info, LeakRate.Zero);
             Assertion(Length.Info, Length.Zero);
             Assertion(Level.Info, Level.Zero);
             Assertion(LinearDensity.Info, LinearDensity.Zero);
@@ -284,6 +288,7 @@ namespace UnitsNet.Tests
         {
             void Assertion(BaseDimensions expected, IQuantity quantity) => Assert.Equal(expected, quantity.Dimensions);
 
+            Assertion(AbsorbedDoseOfIonizingRadiation.BaseDimensions, AbsorbedDoseOfIonizingRadiation.Zero);
             Assertion(Acceleration.BaseDimensions, Acceleration.Zero);
             Assertion(AmountOfSubstance.BaseDimensions, AmountOfSubstance.Zero);
             Assertion(AmplitudeRatio.BaseDimensions, AmplitudeRatio.Zero);
@@ -335,6 +340,7 @@ namespace UnitsNet.Tests
             Assertion(Irradiation.BaseDimensions, Irradiation.Zero);
             Assertion(Jerk.BaseDimensions, Jerk.Zero);
             Assertion(KinematicViscosity.BaseDimensions, KinematicViscosity.Zero);
+            Assertion(LeakRate.BaseDimensions, LeakRate.Zero);
             Assertion(Length.BaseDimensions, Length.Zero);
             Assertion(Level.BaseDimensions, Level.Zero);
             Assertion(LinearDensity.BaseDimensions, LinearDensity.Zero);

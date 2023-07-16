@@ -227,8 +227,8 @@ namespace UnitsNet
         {
             cultureInfo = cultureInfo ?? CultureInfo.CurrentCulture;
 
-            var footUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(LengthUnit.Foot, cultureInfo);
-            var inchUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(LengthUnit.Inch, cultureInfo);
+            var footUnit = Length.GetAbbreviation(LengthUnit.Foot, cultureInfo);
+            var inchUnit = Length.GetAbbreviation(LengthUnit.Inch, cultureInfo);
 
             // Note that it isn't customary to use fractions - one wouldn't say "I am 5 feet and 4.5 inches".
             // So inches are rounded when converting from base units to feet/inches.

@@ -54,6 +54,7 @@ namespace UnitsNet.Units
         Hand = 12,
         Hectometer = 13,
         Inch = 14,
+        Kilofoot = 45,
         KilolightYear = 15,
         Kilometer = 16,
         Kiloparsec = 17,

@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Globalization;
 using UnitsNet.Units;
 using Xunit;
 
@@ -20,7 +21,7 @@ namespace UnitsNet.Tests
         protected override double DtpPicasInOneMeter => 236.22047244;
         protected override double DtpPointsInOneMeter => 2834.6456693;
 
-        protected override double FeetInOneMeter => 3.28084;
+        protected override double FeetInOneMeter => 3.28083989501;
 
         protected override double HectometersInOneMeter => 1E-2;
 
@@ -84,6 +85,8 @@ namespace UnitsNet.Tests
 
         protected override double MegametersInOneMeter => 1e-6;
 
+        protected override double KilofeetInOneMeter => 3.28083989501e-3;
+
         [ Fact]
         public void AreaTimesLengthEqualsVolume()
         {
@@ -144,7 +147,7 @@ namespace UnitsNet.Tests
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnitWhichIsMeter()
         {
             var meter = Length.FromMeters(5);
-            string meterString = meter.ToString();
+            string meterString = meter.ToString(CultureInfo.InvariantCulture);
             Assert.Equal("5 m", meterString);
         }
 
@@ -152,7 +155,7 @@ namespace UnitsNet.Tests
         public void ToStringReturnsCorrectNumberAndUnitWithCentimeterAsDefualtUnit()
         {
             var value = Length.From(2, LengthUnit.Centimeter);
-            string valueString = value.ToString();
+            string valueString = value.ToString(CultureInfo.InvariantCulture);
             Assert.Equal("2 cm", valueString);
         }
 

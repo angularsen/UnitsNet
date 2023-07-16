@@ -132,12 +132,12 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ConvertFrom_GivenWrongQuantity_ThrowsArgumentException()
+        public void ConvertFrom_GivenWrongQuantity_ThrowsUnitNotFoundException()
         {
             var converter = new QuantityTypeConverter<Length>();
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[] { });
 
-            Assert.Throws<ArgumentException>(() => converter.ConvertFrom(context, Culture, "1m^2"));
+            Assert.Throws<UnitNotFoundException>(() => converter.ConvertFrom(context, Culture, "1m^2"));
         }
 
         [Theory]
@@ -160,7 +160,7 @@ namespace UnitsNet.Tests
 
             var convertedQuantity = (string?)converter.ConvertTo(length, typeof(string));
 
-            Assert.Equal("1 m", convertedQuantity);
+            Assert.Equal(Length.FromMeters(1).ToString(), convertedQuantity);
         }
 
         [Fact]
@@ -242,10 +242,12 @@ namespace UnitsNet.Tests
             });
             Length length = Length.FromMeters(1);
 
-            string convertedQuantityDefaultCulture = (string)converter.ConvertTo(length, typeof(string))!;
+            CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
+
+            string convertedQuantityCurrentCulture = (string)converter.ConvertTo(length, typeof(string))!;
             string convertedQuantitySpecificCulture = (string)converter.ConvertTo(context, Culture, length, typeof(string))!;
 
-            Assert.Equal("1 m", convertedQuantityDefaultCulture);
+            Assert.Equal("1 m", convertedQuantityCurrentCulture);
             Assert.Equal("10 dm", convertedQuantitySpecificCulture);
         }
 

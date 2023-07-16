@@ -1,0 +1,85 @@
+name: PR_$(Date:yyyy.MM.dd)$(Rev:.rrr)
+
+# PR pipeline
+# - Build all targets (netstandard2.0, .NET nanoFramework)
+# - Run tests and upload test coverage to codecov.io
+
+trigger: none
+pr:
+  branches:
+    include:
+    - master
+    - release/*
+  paths:
+    exclude:
+    - '*.md'
+    - '*.png'
+    - '*.gitignore'
+
+pool:
+  vmImage: windows-latest
+
+variables:
+- group: common
+
+stages:
+- stage: Build
+  displayName: Build & test
+  jobs:
+  - job: Build
+    displayName: Build & test
+    steps:
+    - checkout: self
+      fetchDepth: 1
+      clean: false
+      lfs: true
+      submodules: false
+      fetchTags: false
+
+    - task: PowerShell@2
+      displayName: 'Build, test, pack'
+      inputs:
+        filePath: 'Build/build.ps1'
+        arguments: '-IncludeNanoFramework'
+        failOnStderr: true
+        showWarnings: true
+        pwsh: true
+        workingDirectory: '$(Build.SourcesDirectory)'
+
+    - task: PublishTestResults@2
+      condition: always()
+      inputs:
+        testResultsFormat: "VSTest"
+        testResultsFiles: "*.trx"
+        searchFolder: $(Build.SourcesDirectory)\Artifacts\TestResults
+        mergeTestResults: true
+
+    - task: PowerShell@2
+      displayName: Upload to codecov.io
+      env:
+        CODECOV_TOKEN: $(CODECOV_TOKEN)
+      inputs:
+        targetType: 'inline'
+        script: |
+          Write-Host -Foreground Green "Downloading codecov binaries..."
+
+          Invoke-WebRequest -Uri https://uploader.codecov.io/verification.gpg -OutFile codecov.asc
+          gpg.exe --import codecov.asc
+
+          Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe -Outfile codecov.exe
+          Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe.SHA256SUM -Outfile codecov.exe.SHA256SUM
+          Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe.SHA256SUM.sig -Outfile codecov.exe.SHA256SUM.sig
+
+          gpg.exe --verify codecov.exe.SHA256SUM.sig codecov.exe.SHA256SUM
+          If ($(Compare-Object -ReferenceObject  $(($(certUtil -hashfile codecov.exe SHA256)[1], "codecov.exe") -join "  ") -DifferenceObject $(Get-Content codecov.exe.SHA256SUM)).length -eq 0) { echo "SHASUM verified" } Else {exit 1}
+
+          Write-Host -Foreground Green "Uploading to codecov..."
+
+          .\codecov.exe --dir "Artifacts/Coverage" -t "$env:CODECOV_TOKEN" --build "$(Build.BuildNumber)"
+
+          Write-Host -Foreground Green "✅ Uploaded to codecov."
+        pwsh: true
+
+    - publish: $(Build.SourcesDirectory)/Artifacts
+      displayName: 'Publish Artifacts'
+      artifact: 'Artifacts'

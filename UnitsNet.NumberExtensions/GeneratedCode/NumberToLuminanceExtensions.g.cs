@@ -19,6 +19,10 @@
 
 using System;
 
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
+
 #nullable enable
 
 namespace UnitsNet.NumberExtensions.NumberToLuminance
@@ -29,44 +33,84 @@ namespace UnitsNet.NumberExtensions.NumberToLuminance
     public static class NumberToLuminanceExtensions
     {
         /// <inheritdoc cref="Luminance.FromCandelasPerSquareFoot(UnitsNet.QuantityValue)" />
-        public static Luminance CandelasPerSquareFoot<T>(this T value) =>
-            Luminance.FromCandelasPerSquareFoot(Convert.ToDouble(value));
+        public static Luminance CandelasPerSquareFoot<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Luminance.FromCandelasPerSquareFoot(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Luminance.FromCandelasPerSquareInch(UnitsNet.QuantityValue)" />
-        public static Luminance CandelasPerSquareInch<T>(this T value) =>
-            Luminance.FromCandelasPerSquareInch(Convert.ToDouble(value));
+        public static Luminance CandelasPerSquareInch<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Luminance.FromCandelasPerSquareInch(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Luminance.FromCandelasPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Luminance CandelasPerSquareMeter<T>(this T value) =>
-            Luminance.FromCandelasPerSquareMeter(Convert.ToDouble(value));
+        public static Luminance CandelasPerSquareMeter<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Luminance.FromCandelasPerSquareMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Luminance.FromCenticandelasPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Luminance CenticandelasPerSquareMeter<T>(this T value) =>
-            Luminance.FromCenticandelasPerSquareMeter(Convert.ToDouble(value));
+        public static Luminance CenticandelasPerSquareMeter<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Luminance.FromCenticandelasPerSquareMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Luminance.FromDecicandelasPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Luminance DecicandelasPerSquareMeter<T>(this T value) =>
-            Luminance.FromDecicandelasPerSquareMeter(Convert.ToDouble(value));
+        public static Luminance DecicandelasPerSquareMeter<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Luminance.FromDecicandelasPerSquareMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Luminance.FromKilocandelasPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Luminance KilocandelasPerSquareMeter<T>(this T value) =>
-            Luminance.FromKilocandelasPerSquareMeter(Convert.ToDouble(value));
+        public static Luminance KilocandelasPerSquareMeter<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Luminance.FromKilocandelasPerSquareMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Luminance.FromMicrocandelasPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Luminance MicrocandelasPerSquareMeter<T>(this T value) =>
-            Luminance.FromMicrocandelasPerSquareMeter(Convert.ToDouble(value));
+        public static Luminance MicrocandelasPerSquareMeter<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Luminance.FromMicrocandelasPerSquareMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Luminance.FromMillicandelasPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Luminance MillicandelasPerSquareMeter<T>(this T value) =>
-            Luminance.FromMillicandelasPerSquareMeter(Convert.ToDouble(value));
+        public static Luminance MillicandelasPerSquareMeter<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Luminance.FromMillicandelasPerSquareMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Luminance.FromNanocandelasPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Luminance NanocandelasPerSquareMeter<T>(this T value) =>
-            Luminance.FromNanocandelasPerSquareMeter(Convert.ToDouble(value));
+        public static Luminance NanocandelasPerSquareMeter<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Luminance.FromNanocandelasPerSquareMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Luminance.FromNits(UnitsNet.QuantityValue)" />
-        public static Luminance Nits<T>(this T value) =>
-            Luminance.FromNits(Convert.ToDouble(value));
+        public static Luminance Nits<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Luminance.FromNits(Convert.ToDouble(value));
 
     }
 }

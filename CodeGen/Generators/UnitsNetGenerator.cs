@@ -1,6 +1,7 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using CodeGen.Generators.UnitsNetGen;
@@ -71,6 +72,7 @@ namespace CodeGen.Generators
             Log.Information("");
             GenerateIQuantityTests(quantities, $"{testProjectDir}/GeneratedCode/IQuantityTests.g.cs");
             GenerateStaticQuantity(quantities, $"{outputDir}/Quantity.g.cs");
+            GenerateResourceFiles(quantities, $"{outputDir}/Resources");
 
             var unitCount = quantities.SelectMany(q => q.Units).Count();
             Log.Information("");
@@ -129,6 +131,55 @@ namespace CodeGen.Generators
             var content = new StaticQuantityGenerator(quantities).Generate();
             File.WriteAllText(filePath, content);
             Log.Information("✅ Quantity.g.cs");
+        }
+
+        private static void GenerateResourceFiles(Quantity[] quantities, string resourcesDirectory)
+        {
+            foreach(var quantity in quantities)
+            {
+                var cultures = new HashSet<string>();
+
+                foreach(Unit unit in quantity.Units)
+                {
+                    foreach(Localization localization in unit.Localization)
+                    {
+                        cultures.Add(localization.Culture);
+                    }
+                }
+
+                foreach(var culture in cultures)
+                {
+                    var fileName = culture.Equals("en-US", System.StringComparison.InvariantCultureIgnoreCase) ?
+                        $"{resourcesDirectory}/{quantity.Name}.restext" :
+                        $"{resourcesDirectory}/{quantity.Name}.{culture}.restext";
+
+                    using var writer = File.CreateText(fileName);
+
+                    foreach(Unit unit in quantity.Units)
+                    {
+                        foreach(Localization localization in unit.Localization)
+                        {
+                            if(localization.Culture == culture)
+                            {
+                                if(localization.Abbreviations.Any())
+                                {
+                                    writer.Write($"{unit.PluralName}=");
+
+                                    for(int i = 0; i < localization.Abbreviations.Length; i++)
+                                    {
+                                        writer.Write($"{localization.Abbreviations[i]}");
+
+                                        if(i != localization.Abbreviations.Length - 1)
+                                            writer.Write(",");
+                                    }
+
+                                    writer.WriteLine();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -99,6 +99,18 @@ namespace UnitsNet
         {
             return Force.FromNewtons(mass.Kilograms*acceleration.MetersPerSecondSquared);
         }
+
+        /// <summary>Get <see cref="LinearDensity"/> from <see cref="Mass"/> times <see cref="Length"/>.</summary>
+        public static LinearDensity operator /(Mass mass, Length length)
+        {
+            return LinearDensity.FromKilogramsPerMeter(mass.Kilograms / length.Meters);
+        }
+
+        /// <summary>Get <see cref="Length"/> from <see cref="Mass"/> divided by <see cref="LinearDensity"/>.</summary>
+        public static Length operator /(Mass mass, LinearDensity linearDensity)
+        {
+            return Length.FromMeters(mass.Kilograms / linearDensity.KilogramsPerMeter);
+        }
     }
 
     /// <summary>
@@ -144,8 +156,8 @@ namespace UnitsNet
         {
             cultureInfo = cultureInfo ?? CultureInfo.CurrentCulture;
 
-            var stoneUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(MassUnit.Stone, cultureInfo);
-            var poundUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(MassUnit.Pound, cultureInfo);
+            var stoneUnit = Mass.GetAbbreviation(MassUnit.Stone, cultureInfo);
+            var poundUnit = Mass.GetAbbreviation(MassUnit.Pound, cultureInfo);
 
             // Note that it isn't customary to use fractions - one wouldn't say "I am 11 stone and 4.5 pounds".
             // So pounds are rounded here.

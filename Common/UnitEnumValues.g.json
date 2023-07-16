@@ -298,7 +298,10 @@
     "AmperePerMicrosecond": 1,
     "AmperePerMillisecond": 2,
     "AmperePerNanosecond": 3,
-    "AmperePerSecond": 4
+    "AmperePerSecond": 4,
+    "AmperePerMinute": 11,
+    "MilliamperePerMinute": 6,
+    "MilliamperePerSecond": 14
   },
   "ElectricField": {
     "VoltPerMeter": 1
@@ -679,7 +682,8 @@
     "Twip": 34,
     "UsSurveyFoot": 35,
     "Yard": 36,
-    "Megameter": 41
+    "Megameter": 41,
+    "Kilofoot": 45
   },
   "Level": {
     "Decibel": 1,
@@ -789,7 +793,9 @@
     "Slug": 22,
     "SolarMass": 23,
     "Stone": 24,
-    "Tonne": 25
+    "Tonne": 25,
+    "Femtogram": 35,
+    "Picogram": 29
   },
   "MassConcentration": {
     "CentigramPerDeciliter": 1,
@@ -1133,7 +1139,9 @@
     "TonneForcePerSquareCentimeter": 44,
     "TonneForcePerSquareMeter": 45,
     "TonneForcePerSquareMillimeter": 46,
-    "Torr": 47
+    "Torr": 47,
+    "MeterOfWaterColumn": 57,
+    "CentimeterOfWaterColumn": 48
   },
   "PressureChangeRate": {
     "AtmospherePerSecond": 1,
@@ -1149,7 +1157,11 @@
     "PascalPerMinute": 11,
     "PascalPerSecond": 12,
     "PoundForcePerSquareInchPerMinute": 13,
-    "PoundForcePerSquareInchPerSecond": 14
+    "PoundForcePerSquareInchPerSecond": 14,
+    "BarPerMinute": 16,
+    "BarPerSecond": 23,
+    "MillibarPerMinute": 24,
+    "MillibarPerSecond": 20
   },
   "Ratio": {
     "DecimalFraction": 1,
@@ -1552,7 +1564,8 @@
     "UsQuart": 50,
     "UsTablespoon": 51,
     "UsTeaspoon": 52,
-    "Nanoliter": 53
+    "Nanoliter": 53,
+    "ImperialQuart": 57
   },
   "VolumeConcentration": {
     "CentilitersPerLiter": 1,
@@ -1639,7 +1652,12 @@
     "UsGallonPerHour": 60,
     "UsGallonPerMinute": 61,
     "UsGallonPerSecond": 62,
-    "MillionUsGallonPerDay": 66
+    "MillionUsGallonPerDay": 66,
+    "MegaliterPerHour": 68,
+    "MegaliterPerMinute": 64,
+    "MegaliterPerSecond": 65,
+    "MegaukGallonPerDay": 73,
+    "MegausGallonPerDay": 77
   },
   "VolumeFlowPerArea": {
     "CubicFootPerMinutePerSquareFoot": 1,
@@ -1652,7 +1670,9 @@
     "LiterPerKilometer": 4,
     "LiterPerMeter": 5,
     "LiterPerMillimeter": 6,
-    "OilBarrelPerFoot": 7
+    "OilBarrelPerFoot": 7,
+    "UsGallonPerMile": 8,
+    "ImperialGallonPerMile": 11
   },
   "VolumetricHeatCapacity": {
     "BtuPerCubicFootDegreeFahrenheit": 1,
@@ -1727,5 +1747,29 @@
     "MolePerHour": 8,
     "MolePerMinute": 18,
     "MolePerSecond": 3
+  },
+  "LeakRate": {
+    "MillibarLiterPerSecond": 7,
+    "PascalQubicMeterPerSecond": 1,
+    "TorrLiterPerSecond": 4,
+    "PascalCubicMeterPerSecond": 2
+  },
+  "AbsorbedDoseOfIonizingRadiation": {
+    "Centigray": 6,
+    "Femtogray": 7,
+    "Gigagray": 8,
+    "Gray": 5,
+    "Kilogray": 9,
+    "Kilorad": 4,
+    "Megagray": 3,
+    "Megarad": 2,
+    "Microgray": 1,
+    "Milligray": 10,
+    "Millirad": 18,
+    "Nanogray": 16,
+    "Petagray": 19,
+    "Picogray": 11,
+    "Rad": 17,
+    "Teragray": 14
   }
 }

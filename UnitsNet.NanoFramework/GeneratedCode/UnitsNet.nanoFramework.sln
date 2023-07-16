@@ -2,6 +2,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "AbsorbedDoseOfIonizingRadiation", "AbsorbedDoseOfIonizingRadiation\AbsorbedDoseOfIonizingRadiation.nfproj", "{3d39134e-c97d-cba4-a559-fdb3a0da5e54}"
+EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Acceleration", "Acceleration\Acceleration.nfproj", "{8e3a6691-a05f-d71c-f12a-f537c0807f85}"
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "AmountOfSubstance", "AmountOfSubstance\AmountOfSubstance.nfproj", "{1cd282f3-3bdc-bc00-a63a-03a11a9b5c4d}"
@@ -103,6 +105,8 @@ EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Jerk", "Jerk\Jerk.nfproj", "{8540cfb1-fe4a-dcc3-a70e-840262803cfc}"
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "KinematicViscosity", "KinematicViscosity\KinematicViscosity.nfproj", "{733e533d-9ff2-4c72-3da9-200f758dc6e3}"
+EndProject
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "LeakRate", "LeakRate\LeakRate.nfproj", "{ff162d83-3229-2000-71ed-08999160dca3}"
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Length", "Length\Length.nfproj", "{0556c9ad-b3a1-730c-959f-baf21e60f972}"
 EndProject
@@ -244,6 +248,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+{3d39134e-c97d-cba4-a559-fdb3a0da5e54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+{3d39134e-c97d-cba4-a559-fdb3a0da5e54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+{3d39134e-c97d-cba4-a559-fdb3a0da5e54}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+{3d39134e-c97d-cba4-a559-fdb3a0da5e54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+{3d39134e-c97d-cba4-a559-fdb3a0da5e54}.Release|Any CPU.Build.0 = Release|Any CPU
+{3d39134e-c97d-cba4-a559-fdb3a0da5e54}.Release|Any CPU.Deploy.0 = Release|Any CPU
 {8e3a6691-a05f-d71c-f12a-f537c0807f85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 {8e3a6691-a05f-d71c-f12a-f537c0807f85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 {8e3a6691-a05f-d71c-f12a-f537c0807f85}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
@@ -550,6 +560,12 @@ Global
 {733e533d-9ff2-4c72-3da9-200f758dc6e3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 {733e533d-9ff2-4c72-3da9-200f758dc6e3}.Release|Any CPU.Build.0 = Release|Any CPU
 {733e533d-9ff2-4c72-3da9-200f758dc6e3}.Release|Any CPU.Deploy.0 = Release|Any CPU
+{ff162d83-3229-2000-71ed-08999160dca3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+{ff162d83-3229-2000-71ed-08999160dca3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+{ff162d83-3229-2000-71ed-08999160dca3}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+{ff162d83-3229-2000-71ed-08999160dca3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+{ff162d83-3229-2000-71ed-08999160dca3}.Release|Any CPU.Build.0 = Release|Any CPU
+{ff162d83-3229-2000-71ed-08999160dca3}.Release|Any CPU.Deploy.0 = Release|Any CPU
 {0556c9ad-b3a1-730c-959f-baf21e60f972}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 {0556c9ad-b3a1-730c-959f-baf21e60f972}.Debug|Any CPU.Build.0 = Debug|Any CPU
 {0556c9ad-b3a1-730c-959f-baf21e60f972}.Debug|Any CPU.Deploy.0 = Debug|Any CPU

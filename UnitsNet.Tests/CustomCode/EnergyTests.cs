@@ -133,6 +133,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void EnergyDividedByElectricPotentialEqualsElectricCharge()
+        {
+            ElectricCharge c = Energy.FromJoules(20) / ElectricPotential.FromVolts(5);
+            Assert.Equal(4, c.Coulombs);
+        }
+
+        [Fact]
+        public void EnergyDividedByElectricChargeEqualsElectricPotential()
+        {
+            ElectricPotential v = Energy.FromJoules(20) / ElectricCharge.FromCoulombs(5);
+            Assert.Equal(4, v.Volts);
+        }
+
+        [Fact]
         public void EnergyTimesFrequencyEqualsPower()
         {
             Power p = Energy.FromJoules(25) * Frequency.FromPerSecond(5);

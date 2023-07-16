@@ -14,6 +14,8 @@ namespace UnitsNet.Tests.CustomQuantities
             Value = value;
         }
 
+        public bool Equals(IQuantity? other, IQuantity tolerance) => throw new NotImplementedException();
+
         Enum IQuantity.Unit => Unit;
         public HowMuchUnit Unit { get; }
 
@@ -30,9 +32,9 @@ namespace UnitsNet.Tests.CustomQuantities
             typeof(HowMuchUnit),
             new UnitInfo[]
             {
-                new UnitInfo<HowMuchUnit>(HowMuchUnit.Some, "Some", BaseUnits.Undefined),
-                new UnitInfo<HowMuchUnit>(HowMuchUnit.ATon, "Tons", BaseUnits.Undefined),
-                new UnitInfo<HowMuchUnit>(HowMuchUnit.AShitTon, "ShitTons", BaseUnits.Undefined),
+                new UnitInfo<HowMuchUnit>(HowMuchUnit.Some, "Some", BaseUnits.Undefined, nameof(HowMuch)),
+                new UnitInfo<HowMuchUnit>(HowMuchUnit.ATon, "Tons", BaseUnits.Undefined, nameof(HowMuch)),
+                new UnitInfo<HowMuchUnit>(HowMuchUnit.AShitTon, "ShitTons", BaseUnits.Undefined, nameof(HowMuch)),
             },
             HowMuchUnit.Some,
             Zero,

@@ -1,0 +1,54 @@
+{
+  "Name": "AbsorbedDoseOfIonizingRadiation",
+  "BaseUnit": "Gray",
+  "XmlDocSummary": "Absorbed dose is a dose quantity which is the measure of the energy deposited in matter by ionizing radiation per unit mass.",
+  "XmlDocRemarks": "https://en.wikipedia.org/wiki/Absorbed_dose",
+  "BaseDimensions": {
+    "L": 2,
+    "T": -2
+  },
+  "Units": [
+    {
+      "SingularName": "Gray",
+      "PluralName": "Grays",
+      "BaseUnits": {
+        "L": "Meter",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "XmlDocSummary": "The gray is the unit of ionizing radiation dose in the SI, defined as the absorption of one joule of radiation energy per kilogram of matter.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Gray_(unit)",
+      "Prefixes": [ "Femto", "Pico", "Nano", "Micro", "Milli", "Centi", "Kilo", "Mega", "Giga", "Tera", "Peta" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Gy" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "Гр" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Rad",
+      "PluralName": "Rads",
+      "FromUnitToBaseFunc": "{x} / 100",
+      "FromBaseToUnitFunc": "{x} * 100",
+      "XmlDocSummary": "The rad is a unit of absorbed radiation dose, defined as 1 rad = 0.01 Gy = 0.01 J/kg.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Rad_(radiation_unit)",
+      "Prefixes": [ "Milli", "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "rad" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "рад" ]
+        }
+      ]
+    }
+  ]
+}

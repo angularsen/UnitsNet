@@ -21,8 +21,7 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-
-using System;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -35,5 +34,25 @@ namespace UnitsNet.Tests.CustomCode
         protected override double InverseDegreeFahrenheitInOneInverseKelvin => 0.5555555555555556;
 
         protected override double InverseKelvinInOneInverseKelvin => 1.0;
+
+        [Fact]
+        public void CoefficientOfThermalExpansionTimesTemperatureDelta()
+        {
+            double temperatureDeltaDegC = 2.0;
+            double ctePerDegC = 0.001;
+            CoefficientOfThermalExpansion cte = CoefficientOfThermalExpansion.FromInverseDegreeCelsius(ctePerDegC);
+            TemperatureDelta dT = TemperatureDelta.FromDegreesCelsius(temperatureDeltaDegC);
+            AssertEx.EqualTolerance(cte * dT, ctePerDegC * temperatureDeltaDegC, 1e-10);
+        }
+
+        [Fact]
+        public void TemperatureDeltaTimesCoefficientOfThermalExpansion()
+        {
+            double temperatureDeltaDegC = 2.0;
+            double ctePerDegC = 0.001;
+            CoefficientOfThermalExpansion cte = CoefficientOfThermalExpansion.FromInverseDegreeCelsius(ctePerDegC);
+            TemperatureDelta dT = TemperatureDelta.FromDegreesCelsius(temperatureDeltaDegC);
+            AssertEx.EqualTolerance(dT * cte, temperatureDeltaDegC * ctePerDegC, 1e-10);
+        }
     }
 }

@@ -65,44 +65,44 @@ namespace UnitsNet
             Info = new QuantityInfo<EnergyUnit>("Energy",
                 new UnitInfo<EnergyUnit>[]
                 {
-                    new UnitInfo<EnergyUnit>(EnergyUnit.BritishThermalUnit, "BritishThermalUnits", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Calorie, "Calories", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.DecathermEc, "DecathermsEc", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.DecathermImperial, "DecathermsImperial", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.DecathermUs, "DecathermsUs", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.ElectronVolt, "ElectronVolts", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Erg, "Ergs", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.FootPound, "FootPounds", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.GigabritishThermalUnit, "GigabritishThermalUnits", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.GigaelectronVolt, "GigaelectronVolts", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Gigajoule, "Gigajoules", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.GigawattDay, "GigawattDays", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.GigawattHour, "GigawattHours", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.HorsepowerHour, "HorsepowerHours", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Joule, "Joules", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second)),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.KilobritishThermalUnit, "KilobritishThermalUnits", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Kilocalorie, "Kilocalories", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.KiloelectronVolt, "KiloelectronVolts", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Kilojoule, "Kilojoules", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.KilowattDay, "KilowattDays", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.KilowattHour, "KilowattHours", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.MegabritishThermalUnit, "MegabritishThermalUnits", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Megacalorie, "Megacalories", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.MegaelectronVolt, "MegaelectronVolts", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Megajoule, "Megajoules", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.MegawattDay, "MegawattDays", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.MegawattHour, "MegawattHours", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Millijoule, "Millijoules", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Petajoule, "Petajoules", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.TeraelectronVolt, "TeraelectronVolts", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.Terajoule, "Terajoules", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.TerawattDay, "TerawattDays", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.TerawattHour, "TerawattHours", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.ThermEc, "ThermsEc", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.ThermImperial, "ThermsImperial", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.ThermUs, "ThermsUs", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.WattDay, "WattDays", BaseUnits.Undefined),
-                    new UnitInfo<EnergyUnit>(EnergyUnit.WattHour, "WattHours", BaseUnits.Undefined),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.BritishThermalUnit, "BritishThermalUnits", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Calorie, "Calories", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.DecathermEc, "DecathermsEc", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.DecathermImperial, "DecathermsImperial", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.DecathermUs, "DecathermsUs", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.ElectronVolt, "ElectronVolts", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Erg, "Ergs", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.FootPound, "FootPounds", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.GigabritishThermalUnit, "GigabritishThermalUnits", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.GigaelectronVolt, "GigaelectronVolts", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Gigajoule, "Gigajoules", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.GigawattDay, "GigawattDays", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.GigawattHour, "GigawattHours", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.HorsepowerHour, "HorsepowerHours", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Joule, "Joules", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.KilobritishThermalUnit, "KilobritishThermalUnits", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Kilocalorie, "Kilocalories", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.KiloelectronVolt, "KiloelectronVolts", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Kilojoule, "Kilojoules", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.KilowattDay, "KilowattDays", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.KilowattHour, "KilowattHours", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.MegabritishThermalUnit, "MegabritishThermalUnits", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Megacalorie, "Megacalories", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.MegaelectronVolt, "MegaelectronVolts", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Megajoule, "Megajoules", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.MegawattDay, "MegawattDays", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.MegawattHour, "MegawattHours", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Millijoule, "Millijoules", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Petajoule, "Petajoules", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.TeraelectronVolt, "TeraelectronVolts", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Terajoule, "Terajoules", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.TerawattDay, "TerawattDays", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.TerawattHour, "TerawattHours", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.ThermEc, "ThermsEc", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.ThermImperial, "ThermsImperial", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.ThermUs, "ThermsUs", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.WattDay, "WattDays", BaseUnits.Undefined, "Energy"),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.WattHour, "WattHours", BaseUnits.Undefined, "Energy"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -175,7 +175,7 @@ namespace UnitsNet
         public static Energy AdditiveIdentity => Zero;
 
         #endregion
- 
+
         #region Properties
 
         /// <summary>
@@ -486,69 +486,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.ThermUs, quantity => quantity.ToUnit(EnergyUnit.ThermUs));
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.WattDay, quantity => quantity.ToUnit(EnergyUnit.WattDay));
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.WattHour, quantity => quantity.ToUnit(EnergyUnit.WattHour));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.BritishThermalUnit, new CultureInfo("en-US"), false, true, new string[]{"BTU"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.Calorie, new CultureInfo("en-US"), false, true, new string[]{"cal"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.DecathermEc, new CultureInfo("en-US"), false, true, new string[]{"Dth (E.C.)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.DecathermEc, new CultureInfo("ru-RU"), false, true, new string[]{"Европейский декатерм"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.DecathermImperial, new CultureInfo("en-US"), false, true, new string[]{"Dth (imp.)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.DecathermImperial, new CultureInfo("ru-RU"), false, true, new string[]{"Английский декатерм"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.DecathermUs, new CultureInfo("en-US"), false, true, new string[]{"Dth (U.S.)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.DecathermUs, new CultureInfo("ru-RU"), false, true, new string[]{"Американский декатерм"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.ElectronVolt, new CultureInfo("en-US"), false, true, new string[]{"eV"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.ElectronVolt, new CultureInfo("ru-RU"), false, true, new string[]{"эВ"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.Erg, new CultureInfo("en-US"), false, true, new string[]{"erg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.FootPound, new CultureInfo("en-US"), false, true, new string[]{"ft·lb"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.GigabritishThermalUnit, new CultureInfo("en-US"), false, true, new string[]{"GBTU"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.GigaelectronVolt, new CultureInfo("en-US"), false, true, new string[]{"GeV"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.GigaelectronVolt, new CultureInfo("ru-RU"), false, true, new string[]{"ГэВ"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.Gigajoule, new CultureInfo("en-US"), false, true, new string[]{"GJ"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.GigawattDay, new CultureInfo("en-US"), false, true, new string[]{"GWd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.GigawattDay, new CultureInfo("ru-RU"), false, true, new string[]{"ГВт/д"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.GigawattHour, new CultureInfo("en-US"), false, true, new string[]{"GWh"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.GigawattHour, new CultureInfo("ru-RU"), false, true, new string[]{"ГВт/ч"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.HorsepowerHour, new CultureInfo("en-US"), false, true, new string[]{"hp·h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.Joule, new CultureInfo("en-US"), false, true, new string[]{"J"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.KilobritishThermalUnit, new CultureInfo("en-US"), false, true, new string[]{"kBTU"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.Kilocalorie, new CultureInfo("en-US"), false, true, new string[]{"kcal"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.KiloelectronVolt, new CultureInfo("en-US"), false, true, new string[]{"keV"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.KiloelectronVolt, new CultureInfo("ru-RU"), false, true, new string[]{"кэВ"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.Kilojoule, new CultureInfo("en-US"), false, true, new string[]{"kJ"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.KilowattDay, new CultureInfo("en-US"), false, true, new string[]{"kWd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.KilowattDay, new CultureInfo("ru-RU"), false, true, new string[]{"кВт/д"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.KilowattHour, new CultureInfo("en-US"), false, true, new string[]{"kWh"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.KilowattHour, new CultureInfo("ru-RU"), false, true, new string[]{"кВт/ч"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.MegabritishThermalUnit, new CultureInfo("en-US"), false, true, new string[]{"MBTU"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.Megacalorie, new CultureInfo("en-US"), false, true, new string[]{"Mcal"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.MegaelectronVolt, new CultureInfo("en-US"), false, true, new string[]{"MeV"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.MegaelectronVolt, new CultureInfo("ru-RU"), false, true, new string[]{"МэВ"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.Megajoule, new CultureInfo("en-US"), false, true, new string[]{"MJ"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.MegawattDay, new CultureInfo("en-US"), false, true, new string[]{"MWd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.MegawattDay, new CultureInfo("ru-RU"), false, true, new string[]{"МВт/д"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.MegawattHour, new CultureInfo("en-US"), false, true, new string[]{"MWh"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.MegawattHour, new CultureInfo("ru-RU"), false, true, new string[]{"МВт/ч"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.Millijoule, new CultureInfo("en-US"), false, true, new string[]{"mJ"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.Petajoule, new CultureInfo("en-US"), false, true, new string[]{"PJ"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.TeraelectronVolt, new CultureInfo("en-US"), false, true, new string[]{"TeV"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.TeraelectronVolt, new CultureInfo("ru-RU"), false, true, new string[]{"ТэВ"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.Terajoule, new CultureInfo("en-US"), false, true, new string[]{"TJ"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.TerawattDay, new CultureInfo("en-US"), false, true, new string[]{"TWd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.TerawattDay, new CultureInfo("ru-RU"), false, true, new string[]{"ТВт/д"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.TerawattHour, new CultureInfo("en-US"), false, true, new string[]{"TWh"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.TerawattHour, new CultureInfo("ru-RU"), false, true, new string[]{"ТВт/ч"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.ThermEc, new CultureInfo("en-US"), false, true, new string[]{"th (E.C.)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.ThermEc, new CultureInfo("ru-RU"), false, true, new string[]{"Европейский терм"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.ThermImperial, new CultureInfo("en-US"), false, true, new string[]{"th (imp.)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.ThermImperial, new CultureInfo("ru-RU"), false, true, new string[]{"Английский терм"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.ThermUs, new CultureInfo("en-US"), false, true, new string[]{"th (U.S.)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.ThermUs, new CultureInfo("ru-RU"), false, true, new string[]{"Американский терм"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.WattDay, new CultureInfo("en-US"), false, true, new string[]{"Wd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.WattDay, new CultureInfo("ru-RU"), false, true, new string[]{"Вт/д"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.WattHour, new CultureInfo("en-US"), false, true, new string[]{"Wh"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.WattHour, new CultureInfo("ru-RU"), false, true, new string[]{"Вт/ч"});
         }
 
         /// <summary>
@@ -976,7 +913,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="ArgumentException">
@@ -1003,7 +940,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="ArgumentException">
@@ -1035,7 +972,7 @@ namespace UnitsNet
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         public static bool TryParse(string? str, out Energy result)
         {
@@ -1049,7 +986,7 @@ namespace UnitsNet
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out Energy result)
@@ -1066,7 +1003,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
@@ -1081,7 +1018,7 @@ namespace UnitsNet
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
@@ -1103,7 +1040,7 @@ namespace UnitsNet
         /// <param name="unit">The parsed unit if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
-        ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out EnergyUnit unit)
@@ -1190,16 +1127,14 @@ namespace UnitsNet
         #pragma warning disable CS0809
 
         /// <summary>Indicates strict equality of two <see cref="Energy"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Energy, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Energy other, Energy tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public static bool operator ==(Energy left, Energy right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Indicates strict inequality of two <see cref="Energy"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Energy, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is not null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Energy other, Energy tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public static bool operator !=(Energy left, Energy right)
         {
             return !(left == right);
@@ -1207,8 +1142,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="Energy"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Energy, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Use Equals(Energy other, Energy tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is Energy otherQuantity))
@@ -1219,8 +1153,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="Energy"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Energy, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Use Equals(Energy other, Energy tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public bool Equals(Energy other)
         {
             return new { Value, Unit }.Equals(new { other.Value, other.Unit });
@@ -1304,15 +1237,37 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
+        [Obsolete("Use Equals(Energy other, Energy tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public bool Equals(Energy other, double tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(
+                referenceValue: this.Value,
+                otherValue: other.As(this.Unit),
+                tolerance: tolerance,
+                comparisonType: ComparisonType.Absolute);
+        }
 
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+        /// <inheritdoc />
+        public bool Equals(IQuantity? other, IQuantity tolerance)
+        {
+            return other is Energy otherTyped
+                   && (tolerance is Energy toleranceTyped
+                       ? true
+                       : throw new ArgumentException($"Tolerance quantity ({tolerance.QuantityInfo.Name}) did not match the other quantities of type 'Energy'.", nameof(tolerance)))
+                   && Equals(otherTyped, toleranceTyped);
+        }
+
+        /// <inheritdoc />
+        public bool Equals(Energy other, Energy tolerance)
+        {
+            return UnitsNet.Comparison.Equals(
+                referenceValue: this.Value,
+                otherValue: other.As(this.Unit),
+                tolerance: tolerance.As(this.Unit),
+                comparisonType: ComparisonType.Absolute);
         }
 
         /// <summary>
@@ -1553,6 +1508,18 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<EnergyUnit> IQuantity<EnergyUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
+        {
+            if (unit is not EnergyUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(EnergyUnit)} is supported.", nameof(unit));
+
+            return ToUnit(typedUnit);
+        }
+
+        /// <inheritdoc />
+        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

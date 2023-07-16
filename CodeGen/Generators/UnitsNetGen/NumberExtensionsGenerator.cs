@@ -25,6 +25,10 @@ namespace CodeGen.Generators.UnitsNetGen
 $@"
 using System;
 
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
+
 #nullable enable
 
 namespace UnitsNet.NumberExtensions.NumberTo{_quantityName}
@@ -45,8 +49,12 @@ namespace UnitsNet.NumberExtensions.NumberTo{_quantityName}
 
                 Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit.ObsoleteText));
 
-                Writer.WL(2, $@"public static {_quantityName} {unit.PluralName}<T>(this T value) =>
-            {_quantityName}.From{unit.PluralName}(Convert.ToDouble(value));
+                Writer.WL(2, $@"public static {_quantityName} {unit.PluralName}<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => {_quantityName}.From{unit.PluralName}(Convert.ToDouble(value));
 ");
             }
 
