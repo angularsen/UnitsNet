@@ -1,21 +1,13 @@
-name: Auto-label when user responds
-permissions:
-  issues: write
-  pull-requests: write
-  discussions: write
-
+name: Pending author response
 on:
   issue_comment:
     types: [created]
 
 jobs:
-  run-check:
+  issue_commented:
     runs-on: ubuntu-latest
     steps:
-      - name: Add/remove labels when user responds
-        uses: weibullguy/labeler@master
-        # if: ${{ github.event.comment.user.login == github.event.issue.user.login && contains(github.event.issue.labels.*.name, 'wait-for-author') && !contains(github.event.issue.labels.*.name, 'author-responded') }}
-        if: ${{ github.event.comment.user.login == github.event.issue.user.login && contains(github.event.issue.labels.*.name, 'wait-for-author') }}
+      - uses: siegerts/pending-author-response@v1
         with:
-          # add-labels: 'author-responded'
-          remove-labels: 'wait-for-author'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          pending-response-label: pending-response
