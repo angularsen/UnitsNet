@@ -1,6 +1,8 @@
 name: Auto-label when user responds
 permissions:
   issues: write
+  pull-requests: write
+  discussions: write
 
 on:
   issue_comment:
@@ -11,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Add/remove labels when user responds
-        uses: andymckay/labeler@master
+        uses: weibullguy/labeler@master
         # if: ${{ github.event.comment.user.login == github.event.issue.user.login && contains(github.event.issue.labels.*.name, 'wait-for-author') && !contains(github.event.issue.labels.*.name, 'author-responded') }}
         if: ${{ github.event.comment.user.login == github.event.issue.user.login && contains(github.event.issue.labels.*.name, 'wait-for-author') }}
         with:
