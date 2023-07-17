@@ -39,7 +39,9 @@
     "Mole": 12,
     "Nanomole": 13,
     "NanopoundMole": 14,
-    "PoundMole": 15
+    "PoundMole": 15,
+    "Femtomole": 19,
+    "Picomole": 18
   },
   "AmplitudeRatio": {
     "DecibelMicrovolt": 1,

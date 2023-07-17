@@ -64,6 +64,14 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
 #endif
             => AmountOfSubstance.FromDecipoundMoles(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="AmountOfSubstance.FromFemtomoles(UnitsNet.QuantityValue)" />
+        public static AmountOfSubstance Femtomoles<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => AmountOfSubstance.FromFemtomoles(Convert.ToDouble(value));
+
         /// <inheritdoc cref="AmountOfSubstance.FromKilomoles(UnitsNet.QuantityValue)" />
         public static AmountOfSubstance Kilomoles<T>(this T value)
             where T : notnull
@@ -143,6 +151,14 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
             , INumber<T>
 #endif
             => AmountOfSubstance.FromNanopoundMoles(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="AmountOfSubstance.FromPicomoles(UnitsNet.QuantityValue)" />
+        public static AmountOfSubstance Picomoles<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => AmountOfSubstance.FromPicomoles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AmountOfSubstance.FromPoundMoles(UnitsNet.QuantityValue)" />
         public static AmountOfSubstance PoundMoles<T>(this T value)

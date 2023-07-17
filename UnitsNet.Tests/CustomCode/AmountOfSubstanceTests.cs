@@ -45,6 +45,8 @@ namespace UnitsNet.Tests.CustomCode
         protected override double NanopoundMolesInOneMole => 0.002204622621848776 * 1e9;
         protected override double PoundMolesInOneMole => 0.002204622621848776;
         protected override double MegamolesInOneMole => 1e-6;
+        protected override double PicomolesInOneMole => 1e12;
+        protected override double FemtomolesInOneMole => 1e15;
 
         [Fact]
         public void NumberOfParticlesInOneMoleEqualsAvogadroConstant()
