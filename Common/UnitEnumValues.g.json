@@ -153,9 +153,12 @@
     "InverseDegreeCelsius": 1,
     "InverseDegreeFahrenheit": 2,
     "InverseKelvin": 3,
-    "PartsPerMillionPerDegreeCelsius": 10,
-    "PartsPerMillionPerDegreeFahrenheit": 5,
-    "PartsPerMillionPerKelvin": 9
+    "PerDegreeCelsius": 9,
+    "PerDegreeFahrenheit": 11,
+    "PerKelvin": 13,
+    "PpmPerDegreeCelsius": 6,
+    "PpmPerDegreeFahrenheit": 4,
+    "PpmPerKelvin": 7
   },
   "Compressibility": {
     "InverseAtmosphere": 1,

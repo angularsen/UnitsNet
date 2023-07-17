@@ -1,6 +1,6 @@
 {
   "Name": "CoefficientOfThermalExpansion",
-  "BaseUnit": "InverseKelvin",
+  "BaseUnit": "PerKelvin",
   "XmlDocSummary": "A unit that represents a fractional change in size in response to a change in temperature.",
   "BaseDimensions": {
     "Θ": -1
@@ -9,6 +9,54 @@
     {
       "SingularName": "InverseKelvin",
       "PluralName": "InverseKelvin",
+      "ObsoleteText": "Use PerKelvin instead.",
+      "BaseUnits": {
+        "Θ": "Kelvin"
+      },
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": []
+        }
+      ]
+    },
+    {
+      "SingularName": "InverseDegreeCelsius",
+      "PluralName": "InverseDegreeCelsius",
+      "ObsoleteText": "Use PerDegreeCelsius instead.",
+      "BaseUnits": {
+        "Θ": "DegreeCelsius"
+      },
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": []
+        }
+      ]
+    },
+    {
+      "SingularName": "InverseDegreeFahrenheit",
+      "PluralName": "InverseDegreeFahrenheit",
+      "ObsoleteText": "Use PerDegreeFahrenheit instead.",
+      "BaseUnits": {
+        "Θ": "DegreeFahrenheit"
+      },
+      "FromUnitToBaseFunc": "{x} * 9 / 5",
+      "FromBaseToUnitFunc": "{x} * 5 / 9",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": []
+        }
+      ]
+    },
+    {
+      "SingularName": "PerKelvin",
+      "PluralName": "PerKelvin",
       "BaseUnits": {
         "Θ": "Kelvin"
       },
@@ -22,8 +70,8 @@
       ]
     },
     {
-      "SingularName": "InverseDegreeCelsius",
-      "PluralName": "InverseDegreeCelsius",
+      "SingularName": "PerDegreeCelsius",
+      "PluralName": "PerDegreeCelsius",
       "BaseUnits": {
         "Θ": "DegreeCelsius"
       },
@@ -37,8 +85,8 @@
       ]
     },
     {
-      "SingularName": "InverseDegreeFahrenheit",
-      "PluralName": "InverseDegreeFahrenheit",
+      "SingularName": "PerDegreeFahrenheit",
+      "PluralName": "PerDegreeFahrenheit",
       "BaseUnits": {
         "Θ": "DegreeFahrenheit"
       },
@@ -52,8 +100,8 @@
       ]
     },
     {
-      "SingularName": "PartsPerMillionPerKelvin",
-      "PluralName": "PartsPerMillionPerKelvin",
+      "SingularName": "PpmPerKelvin",
+      "PluralName": "PpmPerKelvin",
       "BaseUnits": {
         "Θ": "Kelvin"
       },
@@ -67,8 +115,8 @@
       ]
     },
     {
-      "SingularName": "PartsPerMillionPerDegreeCelsius",
-      "PluralName": "PartsPerMillionPerDegreeCelsius",
+      "SingularName": "PpmPerDegreeCelsius",
+      "PluralName": "PpmPerDegreeCelsius",
       "BaseUnits": {
         "Θ": "DegreeCelsius"
       },
@@ -82,8 +130,8 @@
       ]
     },
     {
-      "SingularName": "PartsPerMillionPerDegreeFahrenheit",
-      "PluralName": "PartsPerMillionPerDegreeFahrenheit",
+      "SingularName": "PpmPerDegreeFahrenheit",
+      "PluralName": "PpmPerDegreeFahrenheit",
       "BaseUnits": {
         "Θ": "DegreeFahrenheit"
       },

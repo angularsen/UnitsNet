@@ -47,7 +47,7 @@ namespace UnitsNet.Tests
             Assertion(3, BitRateUnit.TerabytePerSecond, Quantity.From(3, BitRateUnit.TerabytePerSecond));
             Assertion(3, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, Quantity.From(3, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour));
             Assertion(3, CapacitanceUnit.Picofarad, Quantity.From(3, CapacitanceUnit.Picofarad));
-            Assertion(3, CoefficientOfThermalExpansionUnit.PartsPerMillionPerKelvin, Quantity.From(3, CoefficientOfThermalExpansionUnit.PartsPerMillionPerKelvin));
+            Assertion(3, CoefficientOfThermalExpansionUnit.PpmPerKelvin, Quantity.From(3, CoefficientOfThermalExpansionUnit.PpmPerKelvin));
             Assertion(3, CompressibilityUnit.InversePoundForcePerSquareInch, Quantity.From(3, CompressibilityUnit.InversePoundForcePerSquareInch));
             Assertion(3, DensityUnit.TonnePerCubicMillimeter, Quantity.From(3, DensityUnit.TonnePerCubicMillimeter));
             Assertion(3, DurationUnit.Year365, Quantity.From(3, DurationUnit.Year365));

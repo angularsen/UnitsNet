@@ -1,6 +1,6 @@
-InverseDegreeCelsius=°C⁻¹,1/°C
-InverseDegreeFahrenheit=°F⁻¹,1/°F
-InverseKelvin=K⁻¹,1/K
-PartsPerMillionPerDegreeCelsius=ppm/°C
-PartsPerMillionPerDegreeFahrenheit=ppm/°F
-PartsPerMillionPerKelvin=ppm/K
+PerDegreeCelsius=°C⁻¹,1/°C
+PerDegreeFahrenheit=°F⁻¹,1/°F
+PerKelvin=K⁻¹,1/K
+PpmPerDegreeCelsius=ppm/°C
+PpmPerDegreeFahrenheit=ppm/°F
+PpmPerKelvin=ppm/K

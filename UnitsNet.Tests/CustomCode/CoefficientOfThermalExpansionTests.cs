@@ -29,17 +29,23 @@ namespace UnitsNet.Tests.CustomCode
     {
         protected override bool SupportsSIUnitSystem => true;
 
-        protected override double InverseDegreeCelsiusInOneInverseKelvin => 1.0;
+        protected override double InverseDegreeCelsiusInOnePerKelvin => 1.0;
 
-        protected override double InverseDegreeFahrenheitInOneInverseKelvin => 0.5555555555555556;
+        protected override double InverseDegreeFahrenheitInOnePerKelvin => 0.5555555555555556;
 
-        protected override double InverseKelvinInOneInverseKelvin => 1.0;
+        protected override double InverseKelvinInOnePerKelvin => 1.0;
 
-        protected override double PartsPerMillionPerDegreeCelsiusInOneInverseKelvin => 1e6;
+        protected override double PerDegreeCelsiusInOnePerKelvin => 1.0;
 
-        protected override double PartsPerMillionPerDegreeFahrenheitInOneInverseKelvin => 5.5555555555555556e5;
+        protected override double PerDegreeFahrenheitInOnePerKelvin => 0.5555555555555556;
 
-        protected override double PartsPerMillionPerKelvinInOneInverseKelvin => 1e6;
+        protected override double PerKelvinInOnePerKelvin => 1.0;
+
+        protected override double PpmPerDegreeCelsiusInOnePerKelvin => 1e6;
+
+        protected override double PpmPerDegreeFahrenheitInOnePerKelvin => 5.5555555555555556e5;
+
+        protected override double PpmPerKelvinInOnePerKelvin => 1e6;
 
         [Fact]
         public void CoefficientOfThermalExpansionTimesTemperatureDelta()
