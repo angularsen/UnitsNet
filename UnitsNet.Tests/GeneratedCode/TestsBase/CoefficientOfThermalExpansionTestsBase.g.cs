@@ -259,13 +259,6 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = CoefficientOfThermalExpansion.Parse("1 1/°C", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PerDegreeCelsius, PerDegreeCelsiusTolerance);
-                Assert.Equal(CoefficientOfThermalExpansionUnit.PerDegreeCelsius, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
                 var parsed = CoefficientOfThermalExpansion.Parse("1 °F⁻¹", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.PerDegreeFahrenheit, PerDegreeFahrenheitTolerance);
                 Assert.Equal(CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit, parsed.Unit);
@@ -273,21 +266,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = CoefficientOfThermalExpansion.Parse("1 1/°F", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PerDegreeFahrenheit, PerDegreeFahrenheitTolerance);
-                Assert.Equal(CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
                 var parsed = CoefficientOfThermalExpansion.Parse("1 K⁻¹", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PerKelvin, PerKelvinTolerance);
-                Assert.Equal(CoefficientOfThermalExpansionUnit.PerKelvin, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = CoefficientOfThermalExpansion.Parse("1 1/K", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.PerKelvin, PerKelvinTolerance);
                 Assert.Equal(CoefficientOfThermalExpansionUnit.PerKelvin, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -325,31 +304,13 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(CoefficientOfThermalExpansion.TryParse("1 1/°C", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PerDegreeCelsius, PerDegreeCelsiusTolerance);
-                Assert.Equal(CoefficientOfThermalExpansionUnit.PerDegreeCelsius, parsed.Unit);
-            }
-
-            {
                 Assert.True(CoefficientOfThermalExpansion.TryParse("1 °F⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.PerDegreeFahrenheit, PerDegreeFahrenheitTolerance);
                 Assert.Equal(CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit, parsed.Unit);
             }
 
             {
-                Assert.True(CoefficientOfThermalExpansion.TryParse("1 1/°F", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PerDegreeFahrenheit, PerDegreeFahrenheitTolerance);
-                Assert.Equal(CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit, parsed.Unit);
-            }
-
-            {
                 Assert.True(CoefficientOfThermalExpansion.TryParse("1 K⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PerKelvin, PerKelvinTolerance);
-                Assert.Equal(CoefficientOfThermalExpansionUnit.PerKelvin, parsed.Unit);
-            }
-
-            {
-                Assert.True(CoefficientOfThermalExpansion.TryParse("1 1/K", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.PerKelvin, PerKelvinTolerance);
                 Assert.Equal(CoefficientOfThermalExpansionUnit.PerKelvin, parsed.Unit);
             }
@@ -385,31 +346,13 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsedUnit = CoefficientOfThermalExpansion.ParseUnit("1/°C", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(CoefficientOfThermalExpansionUnit.PerDegreeCelsius, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
                 var parsedUnit = CoefficientOfThermalExpansion.ParseUnit("°F⁻¹", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
-                var parsedUnit = CoefficientOfThermalExpansion.ParseUnit("1/°F", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
                 var parsedUnit = CoefficientOfThermalExpansion.ParseUnit("K⁻¹", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(CoefficientOfThermalExpansionUnit.PerKelvin, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = CoefficientOfThermalExpansion.ParseUnit("1/K", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(CoefficientOfThermalExpansionUnit.PerKelvin, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
@@ -442,27 +385,12 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(CoefficientOfThermalExpansion.TryParseUnit("1/°C", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(CoefficientOfThermalExpansionUnit.PerDegreeCelsius, parsedUnit);
-            }
-
-            {
                 Assert.True(CoefficientOfThermalExpansion.TryParseUnit("°F⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit, parsedUnit);
             }
 
             {
-                Assert.True(CoefficientOfThermalExpansion.TryParseUnit("1/°F", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit, parsedUnit);
-            }
-
-            {
                 Assert.True(CoefficientOfThermalExpansion.TryParseUnit("K⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(CoefficientOfThermalExpansionUnit.PerKelvin, parsedUnit);
-            }
-
-            {
-                Assert.True(CoefficientOfThermalExpansion.TryParseUnit("1/K", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(CoefficientOfThermalExpansionUnit.PerKelvin, parsedUnit);
             }
 
@@ -685,9 +613,9 @@ namespace UnitsNet.Tests
             var prevCulture = Thread.CurrentThread.CurrentCulture;
             Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             try {
-                Assert.Equal("1", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.InverseDegreeCelsius).ToString());
-                Assert.Equal("1", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit).ToString());
-                Assert.Equal("1", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.InverseKelvin).ToString());
+                Assert.Equal("1 1/°C", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.InverseDegreeCelsius).ToString());
+                Assert.Equal("1 1/°F", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit).ToString());
+                Assert.Equal("1 1/K", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.InverseKelvin).ToString());
                 Assert.Equal("1 °C⁻¹", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.PerDegreeCelsius).ToString());
                 Assert.Equal("1 °F⁻¹", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit).ToString());
                 Assert.Equal("1 K⁻¹", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.PerKelvin).ToString());
@@ -707,9 +635,9 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.InverseDegreeCelsius).ToString(swedishCulture));
-            Assert.Equal("1", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit).ToString(swedishCulture));
-            Assert.Equal("1", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.InverseKelvin).ToString(swedishCulture));
+            Assert.Equal("1 1/°C", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.InverseDegreeCelsius).ToString(swedishCulture));
+            Assert.Equal("1 1/°F", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit).ToString(swedishCulture));
+            Assert.Equal("1 1/K", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.InverseKelvin).ToString(swedishCulture));
             Assert.Equal("1 °C⁻¹", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.PerDegreeCelsius).ToString(swedishCulture));
             Assert.Equal("1 °F⁻¹", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit).ToString(swedishCulture));
             Assert.Equal("1 K⁻¹", new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.PerKelvin).ToString(swedishCulture));

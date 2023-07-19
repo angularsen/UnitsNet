@@ -18,7 +18,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": []
+          "Abbreviations": [ "1/K" ]
         }
       ]
     },
@@ -34,7 +34,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": []
+          "Abbreviations": [ "1/°C" ]
         }
       ]
     },
@@ -50,7 +50,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": []
+          "Abbreviations": [ "1/°F" ]
         }
       ]
     },
@@ -65,7 +65,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "K⁻¹", "1/K" ]
+          "Abbreviations": [ "K⁻¹" ]
         }
       ]
     },
@@ -80,7 +80,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "°C⁻¹", "1/°C" ]
+          "Abbreviations": [ "°C⁻¹" ]
         }
       ]
     },
@@ -95,7 +95,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "°F⁻¹", "1/°F" ]
+          "Abbreviations": [ "°F⁻¹" ]
         }
       ]
     },
