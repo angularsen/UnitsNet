@@ -36,5 +36,29 @@ namespace UnitsNet.Tests
         public void NumberToInverseKelvinTest() =>
             Assert.Equal(CoefficientOfThermalExpansion.FromInverseKelvin(2), 2.InverseKelvin());
 
+        [Fact]
+        public void NumberToPerDegreeCelsiusTest() =>
+            Assert.Equal(CoefficientOfThermalExpansion.FromPerDegreeCelsius(2), 2.PerDegreeCelsius());
+
+        [Fact]
+        public void NumberToPerDegreeFahrenheitTest() =>
+            Assert.Equal(CoefficientOfThermalExpansion.FromPerDegreeFahrenheit(2), 2.PerDegreeFahrenheit());
+
+        [Fact]
+        public void NumberToPerKelvinTest() =>
+            Assert.Equal(CoefficientOfThermalExpansion.FromPerKelvin(2), 2.PerKelvin());
+
+        [Fact]
+        public void NumberToPpmPerDegreeCelsiusTest() =>
+            Assert.Equal(CoefficientOfThermalExpansion.FromPpmPerDegreeCelsius(2), 2.PpmPerDegreeCelsius());
+
+        [Fact]
+        public void NumberToPpmPerDegreeFahrenheitTest() =>
+            Assert.Equal(CoefficientOfThermalExpansion.FromPpmPerDegreeFahrenheit(2), 2.PpmPerDegreeFahrenheit());
+
+        [Fact]
+        public void NumberToPpmPerKelvinTest() =>
+            Assert.Equal(CoefficientOfThermalExpansion.FromPpmPerKelvin(2), 2.PpmPerKelvin());
+
     }
 }

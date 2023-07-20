@@ -6,6 +6,6 @@ namespace UnitsNet
     public partial struct CoefficientOfThermalExpansion
     {
         /// <summary>Get a scalar from a <see cref="CoefficientOfThermalExpansion"/> multiplied by a <see cref="TemperatureDelta"/>.</summary>
-        public static double operator *(CoefficientOfThermalExpansion cte, TemperatureDelta temperatureDelta) => cte.InverseKelvin * temperatureDelta.Kelvins;
+        public static double operator *(CoefficientOfThermalExpansion cte, TemperatureDelta temperatureDelta) => cte.PerKelvin * temperatureDelta.Kelvins;
     }
 }

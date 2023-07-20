@@ -59,7 +59,7 @@ namespace UnitsNet
         static CoefficientOfThermalExpansion()
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, -1, 0, 0);
-            BaseUnit = CoefficientOfThermalExpansionUnit.InverseKelvin;
+            BaseUnit = CoefficientOfThermalExpansionUnit.PerKelvin;
             Units = Enum.GetValues(typeof(CoefficientOfThermalExpansionUnit)).Cast<CoefficientOfThermalExpansionUnit>().ToArray();
             Zero = new CoefficientOfThermalExpansion(0, BaseUnit);
             Info = new QuantityInfo<CoefficientOfThermalExpansionUnit>("CoefficientOfThermalExpansion",
@@ -68,6 +68,12 @@ namespace UnitsNet
                     new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, "InverseDegreeCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius), "CoefficientOfThermalExpansion"),
                     new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, "InverseDegreeFahrenheit", new BaseUnits(temperature: TemperatureUnit.DegreeFahrenheit), "CoefficientOfThermalExpansion"),
                     new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseKelvin, "InverseKelvin", new BaseUnits(temperature: TemperatureUnit.Kelvin), "CoefficientOfThermalExpansion"),
+                    new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.PerDegreeCelsius, "PerDegreeCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius), "CoefficientOfThermalExpansion"),
+                    new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit, "PerDegreeFahrenheit", new BaseUnits(temperature: TemperatureUnit.DegreeFahrenheit), "CoefficientOfThermalExpansion"),
+                    new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.PerKelvin, "PerKelvin", new BaseUnits(temperature: TemperatureUnit.Kelvin), "CoefficientOfThermalExpansion"),
+                    new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius, "PpmPerDegreeCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius), "CoefficientOfThermalExpansion"),
+                    new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit, "PpmPerDegreeFahrenheit", new BaseUnits(temperature: TemperatureUnit.DegreeFahrenheit), "CoefficientOfThermalExpansion"),
+                    new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.PpmPerKelvin, "PpmPerKelvin", new BaseUnits(temperature: TemperatureUnit.Kelvin), "CoefficientOfThermalExpansion"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -122,7 +128,7 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of CoefficientOfThermalExpansion, which is InverseKelvin. All conversions go via this value.
+        ///     The base unit of CoefficientOfThermalExpansion, which is PerKelvin. All conversions go via this value.
         /// </summary>
         public static CoefficientOfThermalExpansionUnit BaseUnit { get; }
 
@@ -132,7 +138,7 @@ namespace UnitsNet
         public static CoefficientOfThermalExpansionUnit[] Units { get; }
 
         /// <summary>
-        ///     Gets an instance of this quantity with a value of 0 in the base unit InverseKelvin.
+        ///     Gets an instance of this quantity with a value of 0 in the base unit PerKelvin.
         /// </summary>
         public static CoefficientOfThermalExpansion Zero { get; }
 
@@ -174,17 +180,50 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CoefficientOfThermalExpansionUnit.InverseDegreeCelsius"/>
         /// </summary>
+        [Obsolete("Use PerDegreeCelsius instead.")]
         public double InverseDegreeCelsius => As(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit"/>
         /// </summary>
+        [Obsolete("Use PerDegreeFahrenheit instead.")]
         public double InverseDegreeFahrenheit => As(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CoefficientOfThermalExpansionUnit.InverseKelvin"/>
         /// </summary>
+        [Obsolete("Use PerKelvin instead.")]
         public double InverseKelvin => As(CoefficientOfThermalExpansionUnit.InverseKelvin);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CoefficientOfThermalExpansionUnit.PerDegreeCelsius"/>
+        /// </summary>
+        public double PerDegreeCelsius => As(CoefficientOfThermalExpansionUnit.PerDegreeCelsius);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit"/>
+        /// </summary>
+        public double PerDegreeFahrenheit => As(CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CoefficientOfThermalExpansionUnit.PerKelvin"/>
+        /// </summary>
+        public double PerKelvin => As(CoefficientOfThermalExpansionUnit.PerKelvin);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius"/>
+        /// </summary>
+        public double PpmPerDegreeCelsius => As(CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit"/>
+        /// </summary>
+        public double PpmPerDegreeFahrenheit => As(CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CoefficientOfThermalExpansionUnit.PpmPerKelvin"/>
+        /// </summary>
+        public double PpmPerKelvin => As(CoefficientOfThermalExpansionUnit.PpmPerKelvin);
 
         #endregion
 
@@ -197,15 +236,27 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: CoefficientOfThermalExpansionUnit -> BaseUnit
-            unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, CoefficientOfThermalExpansionUnit.InverseKelvin, quantity => quantity.ToUnit(CoefficientOfThermalExpansionUnit.InverseKelvin));
-            unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, CoefficientOfThermalExpansionUnit.InverseKelvin, quantity => quantity.ToUnit(CoefficientOfThermalExpansionUnit.InverseKelvin));
+            unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, CoefficientOfThermalExpansionUnit.PerKelvin, quantity => quantity.ToUnit(CoefficientOfThermalExpansionUnit.PerKelvin));
+            unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, CoefficientOfThermalExpansionUnit.PerKelvin, quantity => quantity.ToUnit(CoefficientOfThermalExpansionUnit.PerKelvin));
+            unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.InverseKelvin, CoefficientOfThermalExpansionUnit.PerKelvin, quantity => quantity.ToUnit(CoefficientOfThermalExpansionUnit.PerKelvin));
+            unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.PerDegreeCelsius, CoefficientOfThermalExpansionUnit.PerKelvin, quantity => quantity.ToUnit(CoefficientOfThermalExpansionUnit.PerKelvin));
+            unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit, CoefficientOfThermalExpansionUnit.PerKelvin, quantity => quantity.ToUnit(CoefficientOfThermalExpansionUnit.PerKelvin));
+            unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius, CoefficientOfThermalExpansionUnit.PerKelvin, quantity => quantity.ToUnit(CoefficientOfThermalExpansionUnit.PerKelvin));
+            unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit, CoefficientOfThermalExpansionUnit.PerKelvin, quantity => quantity.ToUnit(CoefficientOfThermalExpansionUnit.PerKelvin));
+            unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.PpmPerKelvin, CoefficientOfThermalExpansionUnit.PerKelvin, quantity => quantity.ToUnit(CoefficientOfThermalExpansionUnit.PerKelvin));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
-            unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.InverseKelvin, CoefficientOfThermalExpansionUnit.InverseKelvin, quantity => quantity);
+            unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.PerKelvin, CoefficientOfThermalExpansionUnit.PerKelvin, quantity => quantity);
 
             // Register in unit converter: BaseUnit -> CoefficientOfThermalExpansionUnit
-            unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.InverseKelvin, CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, quantity => quantity.ToUnit(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius));
-            unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.InverseKelvin, CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, quantity => quantity.ToUnit(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit));
+            unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.PerKelvin, CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, quantity => quantity.ToUnit(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius));
+            unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.PerKelvin, CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, quantity => quantity.ToUnit(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit));
+            unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.PerKelvin, CoefficientOfThermalExpansionUnit.InverseKelvin, quantity => quantity.ToUnit(CoefficientOfThermalExpansionUnit.InverseKelvin));
+            unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.PerKelvin, CoefficientOfThermalExpansionUnit.PerDegreeCelsius, quantity => quantity.ToUnit(CoefficientOfThermalExpansionUnit.PerDegreeCelsius));
+            unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.PerKelvin, CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit, quantity => quantity.ToUnit(CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit));
+            unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.PerKelvin, CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius, quantity => quantity.ToUnit(CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius));
+            unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.PerKelvin, CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit, quantity => quantity.ToUnit(CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit));
+            unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.PerKelvin, CoefficientOfThermalExpansionUnit.PpmPerKelvin, quantity => quantity.ToUnit(CoefficientOfThermalExpansionUnit.PpmPerKelvin));
         }
 
         /// <summary>
@@ -237,6 +288,7 @@ namespace UnitsNet
         ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.InverseDegreeCelsius"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Obsolete("Use PerDegreeCelsius instead.")]
         public static CoefficientOfThermalExpansion FromInverseDegreeCelsius(QuantityValue inversedegreecelsius)
         {
             double value = (double) inversedegreecelsius;
@@ -247,6 +299,7 @@ namespace UnitsNet
         ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Obsolete("Use PerDegreeFahrenheit instead.")]
         public static CoefficientOfThermalExpansion FromInverseDegreeFahrenheit(QuantityValue inversedegreefahrenheit)
         {
             double value = (double) inversedegreefahrenheit;
@@ -257,10 +310,71 @@ namespace UnitsNet
         ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.InverseKelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Obsolete("Use PerKelvin instead.")]
         public static CoefficientOfThermalExpansion FromInverseKelvin(QuantityValue inversekelvin)
         {
             double value = (double) inversekelvin;
             return new CoefficientOfThermalExpansion(value, CoefficientOfThermalExpansionUnit.InverseKelvin);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.PerDegreeCelsius"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static CoefficientOfThermalExpansion FromPerDegreeCelsius(QuantityValue perdegreecelsius)
+        {
+            double value = (double) perdegreecelsius;
+            return new CoefficientOfThermalExpansion(value, CoefficientOfThermalExpansionUnit.PerDegreeCelsius);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static CoefficientOfThermalExpansion FromPerDegreeFahrenheit(QuantityValue perdegreefahrenheit)
+        {
+            double value = (double) perdegreefahrenheit;
+            return new CoefficientOfThermalExpansion(value, CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.PerKelvin"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static CoefficientOfThermalExpansion FromPerKelvin(QuantityValue perkelvin)
+        {
+            double value = (double) perkelvin;
+            return new CoefficientOfThermalExpansion(value, CoefficientOfThermalExpansionUnit.PerKelvin);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static CoefficientOfThermalExpansion FromPpmPerDegreeCelsius(QuantityValue ppmperdegreecelsius)
+        {
+            double value = (double) ppmperdegreecelsius;
+            return new CoefficientOfThermalExpansion(value, CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static CoefficientOfThermalExpansion FromPpmPerDegreeFahrenheit(QuantityValue ppmperdegreefahrenheit)
+        {
+            double value = (double) ppmperdegreefahrenheit;
+            return new CoefficientOfThermalExpansion(value, CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.PpmPerKelvin"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static CoefficientOfThermalExpansion FromPpmPerKelvin(QuantityValue ppmperkelvin)
+        {
+            double value = (double) ppmperkelvin;
+            return new CoefficientOfThermalExpansion(value, CoefficientOfThermalExpansionUnit.PpmPerKelvin);
         }
 
         /// <summary>
@@ -461,7 +575,7 @@ namespace UnitsNet
         /// <summary>Get ratio value from dividing <see cref="CoefficientOfThermalExpansion"/> by <see cref="CoefficientOfThermalExpansion"/>.</summary>
         public static double operator /(CoefficientOfThermalExpansion left, CoefficientOfThermalExpansion right)
         {
-            return left.InverseKelvin / right.InverseKelvin;
+            return left.PerKelvin / right.PerKelvin;
         }
 
         #endregion
@@ -756,12 +870,24 @@ namespace UnitsNet
             CoefficientOfThermalExpansion? convertedOrNull = (Unit, unit) switch
             {
                 // CoefficientOfThermalExpansionUnit -> BaseUnit
-                (CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, CoefficientOfThermalExpansionUnit.InverseKelvin) => new CoefficientOfThermalExpansion(_value, CoefficientOfThermalExpansionUnit.InverseKelvin),
-                (CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, CoefficientOfThermalExpansionUnit.InverseKelvin) => new CoefficientOfThermalExpansion(_value * 9 / 5, CoefficientOfThermalExpansionUnit.InverseKelvin),
+                (CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, CoefficientOfThermalExpansionUnit.PerKelvin) => new CoefficientOfThermalExpansion(_value, CoefficientOfThermalExpansionUnit.PerKelvin),
+                (CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, CoefficientOfThermalExpansionUnit.PerKelvin) => new CoefficientOfThermalExpansion(_value * 9 / 5, CoefficientOfThermalExpansionUnit.PerKelvin),
+                (CoefficientOfThermalExpansionUnit.InverseKelvin, CoefficientOfThermalExpansionUnit.PerKelvin) => new CoefficientOfThermalExpansion(_value, CoefficientOfThermalExpansionUnit.PerKelvin),
+                (CoefficientOfThermalExpansionUnit.PerDegreeCelsius, CoefficientOfThermalExpansionUnit.PerKelvin) => new CoefficientOfThermalExpansion(_value, CoefficientOfThermalExpansionUnit.PerKelvin),
+                (CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit, CoefficientOfThermalExpansionUnit.PerKelvin) => new CoefficientOfThermalExpansion(_value * 9 / 5, CoefficientOfThermalExpansionUnit.PerKelvin),
+                (CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius, CoefficientOfThermalExpansionUnit.PerKelvin) => new CoefficientOfThermalExpansion(_value / 1e6, CoefficientOfThermalExpansionUnit.PerKelvin),
+                (CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit, CoefficientOfThermalExpansionUnit.PerKelvin) => new CoefficientOfThermalExpansion(_value * 9 / 5e6, CoefficientOfThermalExpansionUnit.PerKelvin),
+                (CoefficientOfThermalExpansionUnit.PpmPerKelvin, CoefficientOfThermalExpansionUnit.PerKelvin) => new CoefficientOfThermalExpansion(_value / 1e6, CoefficientOfThermalExpansionUnit.PerKelvin),
 
                 // BaseUnit -> CoefficientOfThermalExpansionUnit
-                (CoefficientOfThermalExpansionUnit.InverseKelvin, CoefficientOfThermalExpansionUnit.InverseDegreeCelsius) => new CoefficientOfThermalExpansion(_value, CoefficientOfThermalExpansionUnit.InverseDegreeCelsius),
-                (CoefficientOfThermalExpansionUnit.InverseKelvin, CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit) => new CoefficientOfThermalExpansion(_value * 5 / 9, CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit),
+                (CoefficientOfThermalExpansionUnit.PerKelvin, CoefficientOfThermalExpansionUnit.InverseDegreeCelsius) => new CoefficientOfThermalExpansion(_value, CoefficientOfThermalExpansionUnit.InverseDegreeCelsius),
+                (CoefficientOfThermalExpansionUnit.PerKelvin, CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit) => new CoefficientOfThermalExpansion(_value * 5 / 9, CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit),
+                (CoefficientOfThermalExpansionUnit.PerKelvin, CoefficientOfThermalExpansionUnit.InverseKelvin) => new CoefficientOfThermalExpansion(_value, CoefficientOfThermalExpansionUnit.InverseKelvin),
+                (CoefficientOfThermalExpansionUnit.PerKelvin, CoefficientOfThermalExpansionUnit.PerDegreeCelsius) => new CoefficientOfThermalExpansion(_value, CoefficientOfThermalExpansionUnit.PerDegreeCelsius),
+                (CoefficientOfThermalExpansionUnit.PerKelvin, CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit) => new CoefficientOfThermalExpansion(_value * 5 / 9, CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit),
+                (CoefficientOfThermalExpansionUnit.PerKelvin, CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius) => new CoefficientOfThermalExpansion(_value * 1e6, CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius),
+                (CoefficientOfThermalExpansionUnit.PerKelvin, CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit) => new CoefficientOfThermalExpansion(_value * 5e6 / 9, CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit),
+                (CoefficientOfThermalExpansionUnit.PerKelvin, CoefficientOfThermalExpansionUnit.PpmPerKelvin) => new CoefficientOfThermalExpansion(_value * 1e6, CoefficientOfThermalExpansionUnit.PpmPerKelvin),
 
                 _ => null
             };
