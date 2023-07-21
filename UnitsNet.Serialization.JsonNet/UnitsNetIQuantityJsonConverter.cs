@@ -64,12 +64,12 @@ namespace UnitsNet.Serialization.JsonNet
                 return existingValue;
             }
 
-            // Try to read value and unit from JSON, otherwise return existing value.
+            // Try to read value and unit from JSON, otherwise throw.
             ValueUnit? valueUnit = ReadValueUnit(token);
 
             return valueUnit != null
                 ? ConvertValueUnit(valueUnit)
-                : throw new JsonSerializationException("Failed to deserialize IQuantity, expected a numeric Value property and a string Unit property.");
+                : throw new JsonSerializationException("Failed to deserialize IQuantity, expected properties Unit and Value. See https://github.com/angularsen/UnitsNet/wiki/Serializing-to-JSON,-XML-and-more#unitsnetserializationjsonnet-with-jsonnet-newtonsoft.");
         }
     }
 }
