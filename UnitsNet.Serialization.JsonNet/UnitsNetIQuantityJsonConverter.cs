@@ -69,10 +69,7 @@ namespace UnitsNet.Serialization.JsonNet
 
             return valueUnit != null
                 ? ConvertValueUnit(valueUnit)
-                : hasExistingValue
-                    ? existingValue
-                    : throw new JsonSerializationException(
-                        "Failed to deserialize IQuantity, expected a numeric Value property and a string Unit property.");
+                : throw new JsonSerializationException("Failed to deserialize IQuantity, expected a numeric Value property and a string Unit property.");
         }
     }
 }
