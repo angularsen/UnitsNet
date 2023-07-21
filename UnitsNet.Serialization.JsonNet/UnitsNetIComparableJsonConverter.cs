@@ -53,7 +53,7 @@ namespace UnitsNet.Serialization.JsonNet
             if (reader == null) throw new ArgumentNullException(nameof(reader));
             if (serializer == null) throw new ArgumentNullException(nameof(serializer));
 
-            if (reader.TokenType == JsonToken.Null)
+            if (reader.TokenType is JsonToken.Null or JsonToken.None)
             {
                 return existingValue;
             }

@@ -99,10 +99,9 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
-        public void EmptyJsonValue_NullableType_ExpectNullReturned()
+        public void EmptyJsonValue_NullableType_ExpectJsonSerializationException()
         {
-            Mass? deserializedNullMass = DeserializeObject<Mass?>("{}");
-            Assert.Null(deserializedNullMass);
+            Assert.Throws<JsonSerializationException>(() => DeserializeObject<Mass?>("{}"));
         }
 
         [Fact]

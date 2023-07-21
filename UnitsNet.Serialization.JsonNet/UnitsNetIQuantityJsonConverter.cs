@@ -57,7 +57,7 @@ namespace UnitsNet.Serialization.JsonNet
             if (reader == null) throw new ArgumentNullException(nameof(reader));
             if (serializer == null) throw new ArgumentNullException(nameof(serializer));
 
-            if (reader.TokenType == JsonToken.Null)
+            if (reader.TokenType is JsonToken.Null or JsonToken.None)
             {
                 return existingValue;
             }
@@ -69,7 +69,10 @@ namespace UnitsNet.Serialization.JsonNet
 
             return valueUnit != null
                 ? ConvertValueUnit(valueUnit)
-                : existingValue;
+                : hasExistingValue
+                    ? existingValue
+                    : throw new JsonSerializationException(
+                        "Failed to deserialize IQuantity, expected a numeric Value property and a string Unit property.");
         }
     }
 }
