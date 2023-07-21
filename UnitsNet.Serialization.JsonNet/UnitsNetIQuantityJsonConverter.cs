@@ -54,35 +54,21 @@ namespace UnitsNet.Serialization.JsonNet
         public override IQuantity? ReadJson(JsonReader reader, Type objectType, IQuantity? existingValue, bool hasExistingValue,
             JsonSerializer serializer)
         {
-            var ret = existingValue;
-
-            reader = reader ?? throw new ArgumentNullException(nameof(reader));
-            serializer = serializer ?? throw new ArgumentNullException(nameof(serializer));
+            if (reader == null) throw new ArgumentNullException(nameof(reader));
+            if (serializer == null) throw new ArgumentNullException(nameof(serializer));
 
             if (reader.TokenType == JsonToken.Null)
             {
-                return ret;
+                return existingValue;
             }
 
             var token = JToken.Load(reader);
 
-            var json = token.ToString();
-
-            if (!string.IsNullOrWhiteSpace(json) && !IsEmptyJson(json))
-            {
-                var valueUnit = ReadValueUnit(token);
-
-                if (valueUnit == null)
-                {
-                    ret = token.ToObject<IQuantity>(serializer);
-                }
-                else
-                {
-                    ret = ConvertValueUnit(valueUnit);
-                }
-            }
-
-            return ret;
+            // Try to read value and unit from JSON.
+            ValueUnit? valueUnit = ReadValueUnit(token);
+            return valueUnit != null
+                ? ConvertValueUnit(valueUnit)
+                : existingValue;
         }
     }
 }
