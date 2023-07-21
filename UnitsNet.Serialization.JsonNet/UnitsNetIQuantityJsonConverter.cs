@@ -64,8 +64,9 @@ namespace UnitsNet.Serialization.JsonNet
 
             var token = JToken.Load(reader);
 
-            // Try to read value and unit from JSON.
+            // Try to read value and unit from JSON, otherwise return existing value.
             ValueUnit? valueUnit = ReadValueUnit(token);
+
             return valueUnit != null
                 ? ConvertValueUnit(valueUnit)
                 : existingValue;
