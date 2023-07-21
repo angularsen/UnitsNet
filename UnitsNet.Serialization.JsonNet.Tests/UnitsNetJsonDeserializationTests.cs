@@ -99,6 +99,15 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
+        public void EmptyJsonValue_ExpectNullReturned()
+        {
+            var json = "{}";
+            var deserializedNullMass = DeserializeObject<Mass?>(json);
+
+            Assert.Null(deserializedNullMass);
+        }
+
+        [Fact]
         public void NullValueNestedInObject_ExpectValueDeserializedToNullCorrectly()
         {
             var testObj = new TestObject()

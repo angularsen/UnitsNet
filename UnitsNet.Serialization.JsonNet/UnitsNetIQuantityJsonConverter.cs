@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -36,6 +37,8 @@ namespace UnitsNet.Serialization.JsonNet
             serializer.Serialize(writer, valueUnit);
         }
 
+        private static bool IsEmptyJson(string source) => Regex.IsMatch(source, @"^\s*{\s*}\s*", RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant);
+
         /// <summary>
         /// Reads the JSON representation of the object.
         /// </summary>
@@ -51,24 +54,35 @@ namespace UnitsNet.Serialization.JsonNet
         public override IQuantity? ReadJson(JsonReader reader, Type objectType, IQuantity? existingValue, bool hasExistingValue,
             JsonSerializer serializer)
         {
+            var ret = existingValue;
+
             reader = reader ?? throw new ArgumentNullException(nameof(reader));
             serializer = serializer ?? throw new ArgumentNullException(nameof(serializer));
 
             if (reader.TokenType == JsonToken.Null)
             {
-                return existingValue;
+                return ret;
             }
 
             var token = JToken.Load(reader);
 
-            var valueUnit = ReadValueUnit(token);
+            var json = token.ToString();
 
-            if (valueUnit == null)
+            if (!string.IsNullOrWhiteSpace(json) && !IsEmptyJson(json))
             {
-                return token.ToObject<IQuantity>(serializer);
+                var valueUnit = ReadValueUnit(token);
+
+                if (valueUnit == null)
+                {
+                    ret = token.ToObject<IQuantity>(serializer);
+                }
+                else
+                {
+                    ret = ConvertValueUnit(valueUnit);
+                }
             }
 
-            return ConvertValueUnit(valueUnit);
+            return ret;
         }
     }
 }
