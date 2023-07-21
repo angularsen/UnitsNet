@@ -57,12 +57,12 @@ namespace UnitsNet.Serialization.JsonNet
             if (reader == null) throw new ArgumentNullException(nameof(reader));
             if (serializer == null) throw new ArgumentNullException(nameof(serializer));
 
-            if (reader.TokenType is JsonToken.Null or JsonToken.None)
+            var token = JToken.Load(reader);
+
+            if (token.Type is JTokenType.Null)
             {
                 return existingValue;
             }
-
-            var token = JToken.Load(reader);
 
             // Try to read value and unit from JSON, otherwise return existing value.
             ValueUnit? valueUnit = ReadValueUnit(token);

@@ -53,19 +53,18 @@ namespace UnitsNet.Serialization.JsonNet
             if (reader == null) throw new ArgumentNullException(nameof(reader));
             if (serializer == null) throw new ArgumentNullException(nameof(serializer));
 
-            if (reader.TokenType is JsonToken.Null or JsonToken.None)
+            var token = JToken.Load(reader);
+
+            if (token.Type is JTokenType.Null)
             {
                 return existingValue;
             }
 
-            // Remove the current converter from the list of converters to avoid infinite recursion.
-            JsonSerializer localSerializer = CreateLocalSerializer(serializer, this);
-
-            var token = JToken.Load(reader);
-
             // If objectType is not IComparable but a type that implements IComparable, deserialize directly as this type instead.
             if (objectType != typeof(IComparable))
             {
+                // Remove the current converter from the list of converters to avoid infinite recursion.
+                JsonSerializer localSerializer = CreateLocalSerializer(serializer, this);
                 return (IComparable)token.ToObject(objectType, localSerializer)!;
             }
 
@@ -73,6 +72,8 @@ namespace UnitsNet.Serialization.JsonNet
 
             if (valueUnit == null)
             {
+                // Remove the current converter from the list of converters to avoid infinite recursion.
+                JsonSerializer localSerializer = CreateLocalSerializer(serializer, this);
                 return token.ToObject<IComparable>(localSerializer);
             }
 
