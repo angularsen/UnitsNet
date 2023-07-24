@@ -37,8 +37,6 @@ namespace UnitsNet.Serialization.JsonNet
             serializer.Serialize(writer, valueUnit);
         }
 
-        private static bool IsEmptyJson(string source) => Regex.IsMatch(source, @"^\s*{\s*}\s*", RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant);
-
         /// <summary>
         /// Reads the JSON representation of the object.
         /// </summary>
