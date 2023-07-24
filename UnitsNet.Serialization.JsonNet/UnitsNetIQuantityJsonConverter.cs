@@ -2,7 +2,6 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
-using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -32,7 +31,7 @@ namespace UnitsNet.Serialization.JsonNet
                 return;
             }
 
-            var valueUnit = ConvertIQuantity(value);
+            ValueUnit valueUnit = ConvertIQuantity(value);
 
             serializer.Serialize(writer, valueUnit);
         }
@@ -67,7 +66,13 @@ namespace UnitsNet.Serialization.JsonNet
 
             return valueUnit != null
                 ? ConvertValueUnit(valueUnit)
-                : throw new JsonSerializationException($"Failed to deserialize IQuantity '{token.ToString().Truncate(50)}', expected properties Unit and Value. See https://github.com/angularsen/UnitsNet/wiki/Serializing-to-JSON,-XML-and-more#unitsnetserializationjsonnet-with-jsonnet-newtonsoft.");
+                : throw new JsonSerializationException(
+                    $"Failed to deserialize IQuantity for target type {objectType} from JSON '{token.ToString().Truncate(100)}', expected properties Unit and Value.")
+                {
+                    HelpLink =
+                        "https://github.com/angularsen/UnitsNet/wiki/Serializing-to-JSON,-XML-and-more#unitsnetserializationjsonnet-with-jsonnet-newtonsoft",
+                    Data = { { "JsonToken", token.ToString() }, }
+                };
         }
     }
 }
