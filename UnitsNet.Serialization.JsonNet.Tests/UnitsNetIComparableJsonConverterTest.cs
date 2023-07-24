@@ -13,7 +13,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 {
     public sealed class UnitsNetIComparableJsonConverterTest
     {
-        private UnitsNetIComparableJsonConverter _sut;
+        private readonly UnitsNetIComparableJsonConverter _sut;
 
         public UnitsNetIComparableJsonConverterTest()
         {
