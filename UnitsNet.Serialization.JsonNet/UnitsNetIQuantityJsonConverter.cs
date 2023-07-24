@@ -69,7 +69,7 @@ namespace UnitsNet.Serialization.JsonNet
 
             return valueUnit != null
                 ? ConvertValueUnit(valueUnit)
-                : throw new JsonSerializationException("Failed to deserialize IQuantity, expected properties Unit and Value. See https://github.com/angularsen/UnitsNet/wiki/Serializing-to-JSON,-XML-and-more#unitsnetserializationjsonnet-with-jsonnet-newtonsoft.");
+                : throw new JsonSerializationException($"Failed to deserialize IQuantity '{token}', expected properties Unit and Value. See https://github.com/angularsen/UnitsNet/wiki/Serializing-to-JSON,-XML-and-more#unitsnetserializationjsonnet-with-jsonnet-newtonsoft.");
         }
     }
 }
