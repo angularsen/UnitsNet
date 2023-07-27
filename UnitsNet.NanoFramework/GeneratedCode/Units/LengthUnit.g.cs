@@ -50,6 +50,7 @@ namespace UnitsNet.Units
         DtpPica = 8,
         DtpPoint = 9,
         Fathom = 10,
+        Femtometer = 48,
         Foot = 11,
         Hand = 12,
         Hectometer = 13,
@@ -86,6 +87,7 @@ namespace UnitsNet.Units
         /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Parsec</remarks>
         Parsec = 29,
+        Picometer = 43,
         PrinterPica = 30,
         PrinterPoint = 31,
         Shackle = 32,

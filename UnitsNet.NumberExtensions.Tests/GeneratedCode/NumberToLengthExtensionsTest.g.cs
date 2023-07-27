@@ -65,6 +65,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Length.FromFathoms(2), 2.Fathoms());
 
         [Fact]
+        public void NumberToFemtometersTest() =>
+            Assert.Equal(Length.FromFemtometers(2), 2.Femtometers());
+
+        [Fact]
         public void NumberToFeetTest() =>
             Assert.Equal(Length.FromFeet(2), 2.Feet());
 
@@ -147,6 +151,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToParsecsTest() =>
             Assert.Equal(Length.FromParsecs(2), 2.Parsecs());
+
+        [Fact]
+        public void NumberToPicometersTest() =>
+            Assert.Equal(Length.FromPicometers(2), 2.Picometers());
 
         [Fact]
         public void NumberToPrinterPicasTest() =>

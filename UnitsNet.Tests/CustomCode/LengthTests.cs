@@ -21,6 +21,7 @@ namespace UnitsNet.Tests
         protected override double DtpPicasInOneMeter => 236.22047244;
         protected override double DtpPointsInOneMeter => 2834.6456693;
 
+        protected override double FemtometersInOneMeter => 1E+15;
         protected override double FeetInOneMeter => 3.28083989501;
 
         protected override double HectometersInOneMeter => 1E-2;
@@ -50,6 +51,7 @@ namespace UnitsNet.Tests
 
         protected override double FathomsInOneMeter => 0.546806649;
 
+        protected override double PicometersInOneMeter => 1E+12;
         protected override double PrinterPicasInOneMeter => 237.10630158;
         protected override double PrinterPointsInOneMeter => 2845.2755906;
 
