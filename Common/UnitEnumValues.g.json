@@ -691,7 +691,9 @@
     "UsSurveyFoot": 35,
     "Yard": 36,
     "Megameter": 41,
-    "Kilofoot": 45
+    "Kilofoot": 45,
+    "Femtometer": 48,
+    "Picometer": 43
   },
   "Level": {
     "Decibel": 1,
