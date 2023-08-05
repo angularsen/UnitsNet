@@ -146,7 +146,7 @@ UnitInfo cmInfo = Quantity.GetUnitInfo(LengthUnit.Centimeter);
 ```
 
 #### QuantityInfo - Information about a quantity
-`QuantityInfo` makes it easy to enumerate names, units, types and values for the quantity type.
+`QuantityInfo` makes it easy to get names, units, types and values for a quantity.
 This is useful for populating lists of quantities and units for the user to choose.
 
 ```c#
@@ -166,7 +166,7 @@ lengthInfo.Zero;            // Length.Zero
 ```
 
 #### UnitInfo - Information about a unit
-`UnitInfo` describes a unit, such as its abbreviation, value, type and quantity.
+`UnitInfo` describes a unit, such as its enum value, names and its representation in SI base units.
 
 ```c#
 // Different ways to look up the unit info.
