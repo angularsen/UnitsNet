@@ -325,7 +325,7 @@ namespace UnitsNet.Tests
 
         /// <inheritdoc cref="MapAndLookup_WithSpecificEnumType"/>
         [Fact]
-        public void MapWithSpecificEnumType_LookupWithEnumType()
+        public void MapAndLookup_MapWithSpecificEnumType_LookupWithEnumType()
         {
             UnitAbbreviationsCache.Default.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, "sm");
             Assert.Equal("sm", UnitAbbreviationsCache.Default.GetDefaultAbbreviation((Enum)HowMuchUnit.Some));
