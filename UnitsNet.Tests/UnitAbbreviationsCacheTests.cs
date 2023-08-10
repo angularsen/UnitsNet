@@ -280,13 +280,13 @@ namespace UnitsNet.Tests
         {
             var cache = new UnitAbbreviationsCache();
 
-            cache.MapUnitToAbbreviation(HowMuchUnit.Some, "soome");
-            cache.MapUnitToAbbreviation(HowMuchUnit.Some, "soome");
-            cache.MapUnitToAbbreviation(HowMuchUnit.Some, "soome");
+            cache.MapUnitToAbbreviation(HowMuchUnit.Some, "sm");
+            cache.MapUnitToAbbreviation(HowMuchUnit.Some, "sm");
+            cache.MapUnitToAbbreviation(HowMuchUnit.Some, "sm");
 
-            Assert.Equal("soome", cache.GetDefaultAbbreviation(HowMuchUnit.Some));
-            Assert.Equal(new[] { "soome" }, cache.GetUnitAbbreviations(HowMuchUnit.Some));
-            Assert.Equal(new[] { "soome" }, cache.GetAllUnitAbbreviationsForQuantity(typeof(HowMuchUnit)));
+            Assert.Equal("sm", cache.GetDefaultAbbreviation(HowMuchUnit.Some));
+            Assert.Equal(new[] { "sm" }, cache.GetUnitAbbreviations(HowMuchUnit.Some));
+            Assert.Equal(new[] { "sm" }, cache.GetAllUnitAbbreviationsForQuantity(typeof(HowMuchUnit)));
         }
 
         [Fact]
@@ -294,12 +294,41 @@ namespace UnitsNet.Tests
         {
             var cache = new UnitAbbreviationsCache();
 
-            cache.MapUnitToAbbreviation(HowMuchUnit.Some, "soome");
+            cache.MapUnitToAbbreviation(HowMuchUnit.Some, "sm");
             cache.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, "1st default");
             cache.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, "2nd default");
 
             Assert.Equal("2nd default", cache.GetDefaultAbbreviation(HowMuchUnit.Some));
-            Assert.Equal(new[] { "2nd default", "1st default", "soome" }, cache.GetUnitAbbreviations(HowMuchUnit.Some));
+            Assert.Equal(new[] { "2nd default", "1st default", "sm" }, cache.GetUnitAbbreviations(HowMuchUnit.Some));
+        }
+
+        /// <summary>
+        /// Test that lookup works when specifying unit enum value both as cast to <see cref="Enum"/> and as specific enum value type.
+        /// We have had subtle bugs when <see cref="Enum"/> is passed to generic methods with constraint TUnitEnum : Enum,
+        /// which the Enum type satisfies, but trying to use typeof(TUnitEnum) no longer represent the actual enum type so unitEnumValue.GetType() should be used.
+        /// </summary>
+        [Fact]
+        public void MappingAndLookup_WithSpecificEnumType()
+        {
+            UnitAbbreviationsCache.Default.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, "sm");
+            Assert.Equal("sm", UnitAbbreviationsCache.Default.GetDefaultAbbreviation(HowMuchUnit.Some));
+        }
+
+        /// <inheritdoc cref="MappingAndLookup_WithSpecificEnumType"/>
+        [Fact]
+        public void MappingAndLookup_WithEnumType()
+        {
+            Enum valueAsEnumType = HowMuchUnit.Some;
+            UnitAbbreviationsCache.Default.MapUnitToDefaultAbbreviation(valueAsEnumType, "sm");
+            Assert.Equal("sm", UnitAbbreviationsCache.Default.GetDefaultAbbreviation(valueAsEnumType));
+        }
+
+        /// <inheritdoc cref="MappingAndLookup_WithSpecificEnumType"/>
+        [Fact]
+        public void MappingWithSpecificEnumType_LookupWithEnumType()
+        {
+            UnitAbbreviationsCache.Default.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, "sm");
+            Assert.Equal("sm", UnitAbbreviationsCache.Default.GetDefaultAbbreviation((Enum)HowMuchUnit.Some));
         }
 
         /// <summary>
