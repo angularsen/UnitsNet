@@ -187,6 +187,10 @@ namespace UnitsNet
         public string GetDefaultAbbreviation<TUnitType>(TUnitType unit, IFormatProvider? formatProvider = null) where TUnitType : Enum
         {
             Type unitType = typeof(TUnitType);
+
+            // Edge-case: If the value was cast to Enum, it still satisfies the generic constraint so we must get the type from the value instead.
+            if (unitType == typeof(Enum)) unitType = unit.GetType();
+
             return GetDefaultAbbreviation(unitType, Convert.ToInt32(unit), formatProvider);
         }
 
