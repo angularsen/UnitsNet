@@ -308,24 +308,24 @@ namespace UnitsNet.Tests
         /// which the Enum type satisfies, but trying to use typeof(TUnitEnum) no longer represent the actual enum type so unitEnumValue.GetType() should be used.
         /// </summary>
         [Fact]
-        public void MappingAndLookup_WithSpecificEnumType()
+        public void MapAndLookup_WithSpecificEnumType()
         {
             UnitAbbreviationsCache.Default.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, "sm");
             Assert.Equal("sm", UnitAbbreviationsCache.Default.GetDefaultAbbreviation(HowMuchUnit.Some));
         }
 
-        /// <inheritdoc cref="MappingAndLookup_WithSpecificEnumType"/>
+        /// <inheritdoc cref="MapAndLookup_WithSpecificEnumType"/>
         [Fact]
-        public void MappingAndLookup_WithEnumType()
+        public void MapAndLookup_WithEnumType()
         {
             Enum valueAsEnumType = HowMuchUnit.Some;
             UnitAbbreviationsCache.Default.MapUnitToDefaultAbbreviation(valueAsEnumType, "sm");
             Assert.Equal("sm", UnitAbbreviationsCache.Default.GetDefaultAbbreviation(valueAsEnumType));
         }
 
-        /// <inheritdoc cref="MappingAndLookup_WithSpecificEnumType"/>
+        /// <inheritdoc cref="MapAndLookup_WithSpecificEnumType"/>
         [Fact]
-        public void MappingWithSpecificEnumType_LookupWithEnumType()
+        public void MapWithSpecificEnumType_LookupWithEnumType()
         {
             UnitAbbreviationsCache.Default.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, "sm");
             Assert.Equal("sm", UnitAbbreviationsCache.Default.GetDefaultAbbreviation((Enum)HowMuchUnit.Some));
