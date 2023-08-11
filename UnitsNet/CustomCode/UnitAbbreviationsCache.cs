@@ -310,12 +310,15 @@ namespace UnitsNet
             var cultureName = GetCultureNameOrEnglish(culture);
 
             AbbreviationMapKey key = GetAbbreviationMapKey(unitInfo, cultureName);
-            if (!AbbreviationsMap.TryGetValue(key, out IReadOnlyList<string>? abbreviations))
-                AbbreviationsMap[key] = abbreviations = ReadAbbreviationsFromResourceFile(unitInfo.QuantityName, unitInfo.PluralName, culture);
+            lock(_syncRoot)
+            {
+                if (!AbbreviationsMap.TryGetValue(key, out IReadOnlyList<string>? abbreviations))
+                    AbbreviationsMap[key] = abbreviations = ReadAbbreviationsFromResourceFile(unitInfo.QuantityName, unitInfo.PluralName, culture);
 
-            return abbreviations.Count == 0 && !culture.Equals(FallbackCulture)
-                ? GetAbbreviations(unitInfo, FallbackCulture)
-                : abbreviations;
+                return abbreviations.Count == 0 && !culture.Equals(FallbackCulture)
+                    ? GetAbbreviations(unitInfo, FallbackCulture)
+                    : abbreviations;
+            }
         }
 
         /// <summary>
