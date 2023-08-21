@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using Xunit;
@@ -103,6 +103,14 @@ namespace UnitsNet.Tests
         {
             Duration duration = Force.FromNewtons(200) / ForceChangeRate.FromNewtonsPerSecond(50);
             Assert.Equal(duration, Duration.FromSeconds(4));
+        }
+
+        [Fact]
+        public void KilogramForceDividedByNewtonEqualsStandardGravity()
+        {
+            const double standardGravity = 9.80665;
+            double duration = Force.FromKilogramsForce(1) / Force.FromNewtons(1);
+            Assert.Equal(standardGravity, duration);
         }
     }
 }
