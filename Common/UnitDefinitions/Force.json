@@ -34,8 +34,8 @@
     {
       "SingularName": "KilogramForce",
       "PluralName": "KilogramsForce",
-      "FromUnitToBaseFunc": "{x} * 9.80665002864",
-      "FromBaseToUnitFunc": "{x} / 9.80665002864",
+      "FromUnitToBaseFunc": "{x} * 9.80665",
+      "FromBaseToUnitFunc": "{x} / 9.80665",
       "XmlDocSummary": "The kilogram-force, or kilopond, is equal to the magnitude of the force exerted on one kilogram of mass in a 9.80665 m/s2 gravitational field (standard gravity). Therefore, one kilogram-force is by definition equal to 9.80665 N.",
       "XmlDocRemarks": "https://en.wikipedia.org/wiki/Kilogram-force",
       "Localization": [
@@ -52,8 +52,8 @@
     {
       "SingularName": "TonneForce",
       "PluralName": "TonnesForce",
-      "FromUnitToBaseFunc": "{x} * 9.80665002864e3",
-      "FromBaseToUnitFunc": "{x} / 9.80665002864e3",
+      "FromUnitToBaseFunc": "{x} * 9.80665e3",
+      "FromBaseToUnitFunc": "{x} / 9.80665e3",
       "XmlDocSummary": "The tonne-force, metric ton-force, megagram-force, and megapond (Mp) are each 1000 kilograms-force.",
       "XmlDocRemarks": "https://en.wikipedia.org/wiki/Kilogram-force#Related_units",
       "Localization": [
@@ -94,8 +94,8 @@
     {
       "SingularName": "KiloPond",
       "PluralName": "KiloPonds",
-      "FromUnitToBaseFunc": "{x} * 9.80665002864",
-      "FromBaseToUnitFunc": "{x} / 9.80665002864",
+      "FromUnitToBaseFunc": "{x} * 9.80665",
+      "FromBaseToUnitFunc": "{x} / 9.80665",
       "XmlDocSummary": "The kilogram-force, or kilopond, is equal to the magnitude of the force exerted on one kilogram of mass in a 9.80665 m/s2 gravitational field (standard gravity). Therefore, one kilogram-force is by definition equal to 9.80665 N.",
       "XmlDocRemarks": "https://en.wikipedia.org/wiki/Kilogram-force",
       "Localization": [
@@ -117,8 +117,8 @@
         "M": "Pound",
         "T": "Second"
       },
-      "FromUnitToBaseFunc": "{x} * 0.13825502798973041652092282466083",
-      "FromBaseToUnitFunc": "{x} / 0.13825502798973041652092282466083",
+      "FromUnitToBaseFunc": "{x} * 0.138254954376",
+      "FromBaseToUnitFunc": "{x} / 0.138254954376",
       "XmlDocSummary": "The poundal is defined as the force necessary to accelerate 1 pound-mass at 1 foot per second per second. 1 pdl = 0.138254954376 N exactly.",
       "XmlDocRemarks": "https://en.wikipedia.org/wiki/Poundal",
       "Localization": [
@@ -135,8 +135,8 @@
     {
       "SingularName": "PoundForce",
       "PluralName": "PoundsForce",
-      "FromUnitToBaseFunc": "{x} * 4.4482216152605095551842641431421",
-      "FromBaseToUnitFunc": "{x} / 4.4482216152605095551842641431421",
+      "FromUnitToBaseFunc": "{x} * 4.4482216152605",
+      "FromBaseToUnitFunc": "{x} / 4.4482216152605",
       "XmlDocSummary": "The standard values of acceleration of the standard gravitational field (gn) and the international avoirdupois pound (lb) result in a pound-force equal to 4.4482216152605 N.",
       "XmlDocRemarks": "https://en.wikipedia.org/wiki/Pound_(force)#Definitions",
       "Prefixes": [ "Kilo" ],
@@ -156,8 +156,8 @@
     {
       "SingularName": "OunceForce",
       "PluralName": "OunceForce",
-      "FromUnitToBaseFunc": "{x} * 2.780138509537812e-1",
-      "FromBaseToUnitFunc": "{x} / 2.780138509537812e-1",
+      "FromUnitToBaseFunc": "{x} * 0.27801385095378125",
+      "FromBaseToUnitFunc": "{x} / 0.27801385095378125",
       "XmlDocSummary": "An ounce-force is 1⁄16 of a pound-force, or about 0.2780139 newtons.",
       "XmlDocRemarks": "https://en.wikipedia.org/wiki/Ounce#Ounce-force",
       "Localization": [
