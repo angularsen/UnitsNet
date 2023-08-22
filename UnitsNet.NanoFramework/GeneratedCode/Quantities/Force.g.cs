@@ -298,11 +298,11 @@ namespace UnitsNet
                         ForceUnit.Micronewton => (_value) * 1e-6d,
                         ForceUnit.Millinewton => (_value) * 1e-3d,
                         ForceUnit.Newton => _value,
-                        ForceUnit.OunceForce => _value * 0.27801385095378125,
+                        ForceUnit.OunceForce => _value * (4.4482216152605 / 16),
                         ForceUnit.Poundal => _value * 0.138254954376,
                         ForceUnit.PoundForce => _value * 4.4482216152605,
-                        ForceUnit.ShortTonForce => _value * 8.896443230521e3,
-                        ForceUnit.TonneForce => _value * 9.80665e3,
+                        ForceUnit.ShortTonForce => _value * (4.4482216152605 * 2000),
+                        ForceUnit.TonneForce => _value * (9.80665 * 1000),
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
                     };
                     }
@@ -326,11 +326,11 @@ namespace UnitsNet
                         ForceUnit.Micronewton => (baseUnitValue) / 1e-6d,
                         ForceUnit.Millinewton => (baseUnitValue) / 1e-3d,
                         ForceUnit.Newton => baseUnitValue,
-                        ForceUnit.OunceForce => baseUnitValue / 0.27801385095378125,
+                        ForceUnit.OunceForce => baseUnitValue / (4.4482216152605 / 16),
                         ForceUnit.Poundal => baseUnitValue / 0.138254954376,
                         ForceUnit.PoundForce => baseUnitValue / 4.4482216152605,
-                        ForceUnit.ShortTonForce => baseUnitValue / 8.896443230521e3,
-                        ForceUnit.TonneForce => baseUnitValue / 9.80665e3,
+                        ForceUnit.ShortTonForce => baseUnitValue / (4.4482216152605 * 2000),
+                        ForceUnit.TonneForce => baseUnitValue / (9.80665 * 1000),
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
                     };
                     }

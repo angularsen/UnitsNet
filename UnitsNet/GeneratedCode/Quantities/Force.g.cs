@@ -981,11 +981,11 @@ namespace UnitsNet
                 (ForceUnit.Meganewton, ForceUnit.Newton) => new Force((_value) * 1e6d, ForceUnit.Newton),
                 (ForceUnit.Micronewton, ForceUnit.Newton) => new Force((_value) * 1e-6d, ForceUnit.Newton),
                 (ForceUnit.Millinewton, ForceUnit.Newton) => new Force((_value) * 1e-3d, ForceUnit.Newton),
-                (ForceUnit.OunceForce, ForceUnit.Newton) => new Force(_value * 0.27801385095378125, ForceUnit.Newton),
+                (ForceUnit.OunceForce, ForceUnit.Newton) => new Force(_value * (4.4482216152605 / 16), ForceUnit.Newton),
                 (ForceUnit.Poundal, ForceUnit.Newton) => new Force(_value * 0.138254954376, ForceUnit.Newton),
                 (ForceUnit.PoundForce, ForceUnit.Newton) => new Force(_value * 4.4482216152605, ForceUnit.Newton),
-                (ForceUnit.ShortTonForce, ForceUnit.Newton) => new Force(_value * 8.896443230521e3, ForceUnit.Newton),
-                (ForceUnit.TonneForce, ForceUnit.Newton) => new Force(_value * 9.80665e3, ForceUnit.Newton),
+                (ForceUnit.ShortTonForce, ForceUnit.Newton) => new Force(_value * (4.4482216152605 * 2000), ForceUnit.Newton),
+                (ForceUnit.TonneForce, ForceUnit.Newton) => new Force(_value * (9.80665 * 1000), ForceUnit.Newton),
 
                 // BaseUnit -> ForceUnit
                 (ForceUnit.Newton, ForceUnit.Decanewton) => new Force((_value) / 1e1d, ForceUnit.Decanewton),
@@ -997,11 +997,11 @@ namespace UnitsNet
                 (ForceUnit.Newton, ForceUnit.Meganewton) => new Force((_value) / 1e6d, ForceUnit.Meganewton),
                 (ForceUnit.Newton, ForceUnit.Micronewton) => new Force((_value) / 1e-6d, ForceUnit.Micronewton),
                 (ForceUnit.Newton, ForceUnit.Millinewton) => new Force((_value) / 1e-3d, ForceUnit.Millinewton),
-                (ForceUnit.Newton, ForceUnit.OunceForce) => new Force(_value / 0.27801385095378125, ForceUnit.OunceForce),
+                (ForceUnit.Newton, ForceUnit.OunceForce) => new Force(_value / (4.4482216152605 / 16), ForceUnit.OunceForce),
                 (ForceUnit.Newton, ForceUnit.Poundal) => new Force(_value / 0.138254954376, ForceUnit.Poundal),
                 (ForceUnit.Newton, ForceUnit.PoundForce) => new Force(_value / 4.4482216152605, ForceUnit.PoundForce),
-                (ForceUnit.Newton, ForceUnit.ShortTonForce) => new Force(_value / 8.896443230521e3, ForceUnit.ShortTonForce),
-                (ForceUnit.Newton, ForceUnit.TonneForce) => new Force(_value / 9.80665e3, ForceUnit.TonneForce),
+                (ForceUnit.Newton, ForceUnit.ShortTonForce) => new Force(_value / (4.4482216152605 * 2000), ForceUnit.ShortTonForce),
+                (ForceUnit.Newton, ForceUnit.TonneForce) => new Force(_value / (9.80665 * 1000), ForceUnit.TonneForce),
 
                 _ => null
             };

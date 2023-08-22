@@ -52,8 +52,8 @@
     {
       "SingularName": "TonneForce",
       "PluralName": "TonnesForce",
-      "FromUnitToBaseFunc": "{x} * 9.80665e3",
-      "FromBaseToUnitFunc": "{x} / 9.80665e3",
+      "FromUnitToBaseFunc": "{x} * (9.80665 * 1000)",
+      "FromBaseToUnitFunc": "{x} / (9.80665 * 1000)",
       "XmlDocSummary": "The tonne-force, metric ton-force, megagram-force, and megapond (Mp) are each 1000 kilograms-force.",
       "XmlDocRemarks": "https://en.wikipedia.org/wiki/Kilogram-force#Related_units",
       "Localization": [
@@ -156,8 +156,8 @@
     {
       "SingularName": "OunceForce",
       "PluralName": "OunceForce",
-      "FromUnitToBaseFunc": "{x} * 0.27801385095378125",
-      "FromBaseToUnitFunc": "{x} / 0.27801385095378125",
+      "FromUnitToBaseFunc": "{x} * (4.4482216152605 / 16)",
+      "FromBaseToUnitFunc": "{x} / (4.4482216152605 / 16)",
       "XmlDocSummary": "An ounce-force is 1⁄16 of a pound-force, or about 0.2780139 newtons.",
       "XmlDocRemarks": "https://en.wikipedia.org/wiki/Ounce#Ounce-force",
       "Localization": [
@@ -170,8 +170,8 @@
     {
       "SingularName": "ShortTonForce",
       "PluralName": "ShortTonsForce",
-      "FromUnitToBaseFunc": "{x} * 8.896443230521e3",
-      "FromBaseToUnitFunc": "{x} / 8.896443230521e3",
+      "FromUnitToBaseFunc": "{x} * (4.4482216152605 * 2000)",
+      "FromBaseToUnitFunc": "{x} / (4.4482216152605 * 2000)",
       "XmlDocSummary": "The short ton-force is a unit of force equal to 2,000 pounds-force (907.18474 kgf), that is most commonly used in the United States – known there simply as the ton or US ton.",
       "XmlDocRemarks": "https://en.wikipedia.org/wiki/Ton-force#Short_ton-force",
       "Localization": [
