@@ -1,7 +1,7 @@
-﻿{
+{
   "Name": "Duration",
   "BaseUnit": "Second",
-  "XmlDoc": "Time is a dimension in which events can be ordered from the past through the present into the future, and also the measure of durations of events and the intervals between them.",
+  "XmlDocSummary": "Time is a dimension in which events can be ordered from the past through the present into the future, and also the measure of durations of events and the intervals between them.",
   "BaseDimensions": {
     "T": 1
   },
@@ -12,8 +12,8 @@
       "BaseUnits": {
         "T": "Year365"
       },
-      "FromUnitToBaseFunc": "x*365*24*3600",
-      "FromBaseToUnitFunc": "x/(365*24*3600)",
+      "FromUnitToBaseFunc": "{x} * 365 * 24 * 3600",
+      "FromBaseToUnitFunc": "{x} / (365 * 24 * 3600)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -31,8 +31,8 @@
       "BaseUnits": {
         "T": "Month30"
       },
-      "FromUnitToBaseFunc": "x*30*24*3600",
-      "FromBaseToUnitFunc": "x/(30*24*3600)",
+      "FromUnitToBaseFunc": "{x} * 30 * 24 * 3600",
+      "FromBaseToUnitFunc": "{x} / (30 * 24 * 3600)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -50,8 +50,8 @@
       "BaseUnits": {
         "T": "Week"
       },
-      "FromUnitToBaseFunc": "x*7*24*3600",
-      "FromBaseToUnitFunc": "x/(7*24*3600)",
+      "FromUnitToBaseFunc": "{x} * 7 * 24 * 3600",
+      "FromBaseToUnitFunc": "{x} / (7 * 24 * 3600)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -59,7 +59,7 @@
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "мин" ]
+          "Abbreviations": [ "нед" ]
         }
       ]
     },
@@ -69,8 +69,8 @@
       "BaseUnits": {
         "T": "Day"
       },
-      "FromUnitToBaseFunc": "x*24*3600",
-      "FromBaseToUnitFunc": "x/(24*3600)",
+      "FromUnitToBaseFunc": "{x} * 24 * 3600",
+      "FromBaseToUnitFunc": "{x} / (24 * 3600)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -78,7 +78,7 @@
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "д" ]
+          "Abbreviations": [ "сут","д" ]
         }
       ]
     },
@@ -88,8 +88,8 @@
       "BaseUnits": {
         "T": "Hour"
       },
-      "FromUnitToBaseFunc": "x*3600",
-      "FromBaseToUnitFunc": "x/3600",
+      "FromUnitToBaseFunc": "{x} * 3600",
+      "FromBaseToUnitFunc": "{x} / 3600",
       "Localization": [
         {
           "Culture": "en-US",
@@ -97,7 +97,7 @@
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "ч" ]
+          "Abbreviations": [ "ч", "час" ]
         }
       ]
     },
@@ -107,8 +107,8 @@
       "BaseUnits": {
         "T": "Minute"
       },
-      "FromUnitToBaseFunc": "x*60",
-      "FromBaseToUnitFunc": "x/60",
+      "FromUnitToBaseFunc": "{x} * 60",
+      "FromBaseToUnitFunc": "{x} / 60",
       "Localization": [
         {
           "Culture": "en-US",
@@ -126,8 +126,8 @@
       "BaseUnits": {
         "T": "Second"
       },
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Nano", "Micro", "Milli" ],
       "Localization": [
         {
@@ -136,8 +136,22 @@
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "с" ],
-          "AbbreviationsWithPrefixes": [ "нс", "мкс", "мс" ]
+          "Abbreviations": [ "сек", "с" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "JulianYear",
+      "PluralName": "JulianYears",
+      "BaseUnits": {
+        "T": "JulianYear"
+      },
+      "FromUnitToBaseFunc": "{x} * 365.25 * 24 * 3600",
+      "FromBaseToUnitFunc": "{x} / (365.25 * 24 * 3600)",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "jyr", "jyear", "jyears" ]
         }
       ]
     }

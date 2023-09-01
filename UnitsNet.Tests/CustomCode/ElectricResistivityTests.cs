@@ -22,12 +22,14 @@
 
 
 using System;
+using UnitsNet.Units;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
     public class ElectricResistivityTests : ElectricResistivityTestsBase
     {
-        // TODO Override properties in base class here
+        protected override bool SupportsSIUnitSystem => false;
         protected override double KiloohmsCentimeterInOneOhmMeter => 1e-1;
 
         protected override double KiloohmMetersInOneOhmMeter => 1e-3;
@@ -55,5 +57,19 @@ namespace UnitsNet.Tests.CustomCode
         protected override double PicoohmsCentimeterInOneOhmMeter => 1e14;
 
         protected override double PicoohmMetersInOneOhmMeter => 1e+12;
+
+        [Theory]
+        [InlineData( -1.0, -1.0 )]
+        [InlineData( -2.0, -0.5 )]
+        [InlineData( 0.0, 0.0 )]
+        [InlineData( 1.0, 1.0 )]
+        [InlineData( 2.0, 0.5 )]
+        public static void InverseTest( double value, double expected )
+        {
+            var unit = new ElectricResistivity( value, ElectricResistivityUnit.OhmMeter );
+            var inverse = unit.Inverse();
+
+            Assert.Equal( expected, inverse.SiemensPerMeter );
+        }
     }
 }

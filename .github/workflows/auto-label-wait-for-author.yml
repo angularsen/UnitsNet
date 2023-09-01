@@ -1,0 +1,13 @@
+name: Pending author response
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  issue_commented:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: siegerts/pending-author-response@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          pending-response-label: pending-response

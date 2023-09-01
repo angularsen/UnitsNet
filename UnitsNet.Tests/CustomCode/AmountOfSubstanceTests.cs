@@ -21,12 +21,15 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using UnitsNet.Units;
 using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
     public class AmountOfSubstanceTests : AmountOfSubstanceTestsBase
     {
+        protected override bool SupportsSIUnitSystem => true;
+
         protected override double CentimolesInOneMole => 1e2;
         protected override double CentipoundMolesInOneMole => 0.002204622621848776 * 1e2;
         protected override double DecimolesInOneMole => 1e1;
@@ -42,6 +45,8 @@ namespace UnitsNet.Tests.CustomCode
         protected override double NanopoundMolesInOneMole => 0.002204622621848776 * 1e9;
         protected override double PoundMolesInOneMole => 0.002204622621848776;
         protected override double MegamolesInOneMole => 1e-6;
+        protected override double PicomolesInOneMole => 1e12;
+        protected override double FemtomolesInOneMole => 1e15;
 
         [Fact]
         public void NumberOfParticlesInOneMoleEqualsAvogadroConstant()
@@ -57,6 +62,65 @@ namespace UnitsNet.Tests.CustomCode
             var twoMoles = AmountOfSubstance.FromMoles(2);
             var numberOfParticles = twoMoles.NumberOfParticles();
             Assert.Equal(AmountOfSubstance.AvogadroConstant * 2, numberOfParticles);
+        }
+
+        [Theory]
+        [InlineData(10, AmountOfSubstanceUnit.Mole,
+                    KnownQuantities.MolarMassOfOxygen, MolarMassUnit.GramPerMole,
+                    10 * KnownQuantities.MolarMassOfOxygen, MassUnit.Gram)]     // 10 Moles of Oxygen weight 10 times as much as 1 Mole of Oxygen (MolarMass)
+        public void MassFromAmountOfSubstanceAndMolarMass(
+            double amountOfSubstanceValue, AmountOfSubstanceUnit amountOfSubstanceUnit,
+            double molarMassValue, MolarMassUnit molarMassUnit,
+            double expectedMass, MassUnit expectedMassUnit, double tolerence = 1e-5)
+        {
+            AmountOfSubstance amountOfSubstance = new AmountOfSubstance(amountOfSubstanceValue, amountOfSubstanceUnit);
+            MolarMass molarMass = new MolarMass(molarMassValue, molarMassUnit);
+
+            Mass mass = amountOfSubstance * molarMass;
+
+            AssertEx.EqualTolerance(expectedMass, mass.As(expectedMassUnit), tolerence);
+        }
+
+        [Theory]
+        [InlineData(5, MassUnit.Gram,
+                    KnownQuantities.MolarMassHClInGramsPerMole, MolarMassUnit.GramPerMole,
+                    1.2, VolumeUnit.Liter,
+                    0.1142805, MolarityUnit.MolePerLiter)]     // molarity(HCl) = 5g / (1.2L * 36.46) = 0.114 mol/l = 0.114 M
+        public void MolarityFromComponentMassAndSolutionVolume(
+            double componentMassValue, MassUnit componentMassUnit,
+            double componentMolarMassValue, MolarMassUnit componentMolarMassUnit,
+            double solutionVolumeValue, VolumeUnit solutionVolumeUnit,
+            double expectedMolarityValue, MolarityUnit expectedMolarityUnit, double tolerence = 1e-5)
+        {
+            var componentMass = new Mass(componentMassValue, componentMassUnit);
+            var componentMolarMass = new MolarMass(componentMolarMassValue, componentMolarMassUnit);
+            var volumeSolution = new Volume(solutionVolumeValue, solutionVolumeUnit);
+            AmountOfSubstance amountOfSubstance = componentMass / componentMolarMass;
+
+            Molarity molarity = amountOfSubstance / volumeSolution;
+
+            AssertEx.EqualTolerance(expectedMolarityValue, molarity.As(expectedMolarityUnit), tolerence);
+        }
+
+        [Theory]
+        [InlineData(5, MassUnit.Gram,
+                    KnownQuantities.MolarMassHClInGramsPerMole, MolarMassUnit.GramPerMole,
+                    0.1142805, MolarityUnit.MolePerLiter,
+                    1.2, VolumeUnit.Liter)]     // 1.2 L of solution required for obtaining 0.1142805 Moles/L from 5g HCl
+        public void VolumeSolutionFromComponentMassAndDesiredConcentration(
+            double componentMassValue, MassUnit componentMassUnit,
+            double componentMolarMassValue, MolarMassUnit componentMolarMassUnit,
+            double desiredMolarityValue, MolarityUnit desiredMolarityUnit,
+            double expectedSolutionVolumeValue, VolumeUnit expectedSolutionVolumeUnit, double tolerence = 1e-5)
+        {
+            var componentMass = new Mass(componentMassValue, componentMassUnit);
+            var componentMolarMass = new MolarMass(componentMolarMassValue, componentMolarMassUnit);
+            var desiredMolarity = new Molarity(desiredMolarityValue, desiredMolarityUnit);
+            AmountOfSubstance amountOfSubstance = componentMass / componentMolarMass;
+
+            Volume volumeSolution = amountOfSubstance / desiredMolarity;
+
+            AssertEx.EqualTolerance(expectedSolutionVolumeValue, volumeSolution.As(expectedSolutionVolumeUnit), tolerence);
         }
     }
 }

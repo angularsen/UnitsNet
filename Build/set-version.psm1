@@ -16,30 +16,37 @@ function Get-NewProjectVersion(
   }
 }
 
-function Invoke-CommitAndTagVersion(
-  [string]$projectName,
-  [string[]]$projectPaths,
+function Invoke-StashPush() {
+  $oldSha=$(git rev-parse -q --verify refs/stash)
+  git reset --quiet
+  git stash push --include-untracked --message "Before version bump" --quiet
+  $newSha=$(git rev-parse -q --verify refs/stash)
+  return $oldSha -ne $newSha
+}
+
+function Invoke-StashPop() {
+  git stash pop --quiet
+}
+
+function Invoke-CommitVersionBump(
+  [string[]]$projectNames,
   [string] $newSemVer) {
   try {
-    Write-Host -Foreground Green Resetting git index.
-    git reset
-
-    ForEach ($path in $projectPaths) {
-      $path = Resolve-Path $path
-      Write-Host -Foreground Green "Staging file: $path"
-      git add $path
-    }
-
-    Write-Host -Foreground Green "Committing new versions: $projectName/$newSemVer"
-    git commit -m "${projectName}: $newSemVer"
-    Write-Host -Foreground Green "Tagging version: $projectName/$newSemVer"
-    git tag -a "$projectName/$newSemVer" -m "$projectName/$newSemVer" -m "TODO List changes here"
+    $projectNamesConcat = [string]::Join(", ", $projectNames)
+    Write-Host -Foreground Green "Committing new version: $newSemVer"
+    git commit -a -m "${projectNamesConcat}: $newSemVer"
   }
   catch {
     $err = $PSItem.Exception
-    Write-Error "ERROR: Failed to commit and tag version: `n---`n$err`n---`n$($PSItem.ScriptStackTrace)"
+    Write-Error "ERROR: Failed to commit version: `n---`n$err`n---`n$($PSItem.ScriptStackTrace)"
     exit 1
   }
+}
+
+function Invoke-TagVersionBump(
+  [string] $projectName,
+  [string] $newSemVer) {
+    git tag -a "$projectName/$newSemVer" -m "$projectName/$newSemVer" -m "TODO List changes here"
 }
 
 function Set-ProjectVersion([string] $file, [string] $version) {
@@ -109,14 +116,21 @@ function BumpSuffix([string] $oldSuffix) {
 
   # A suffix is a dash '-', then a sequcence of word characters followed by an optional number
   # Example:
-  # -alpha => -alpha2
-  # -alpha1 => -alpha2
+  # ""      => "-alpha001"
+  # "-beta" => "-beta001"
+  # "-beta1"=> "-beta002"
   $match = [regex]::Match($oldSuffix, '^-([a-zA-Z]+)(\d+)?$');
   $oldSuffix = $match.Groups[1].Value
+  if (!$oldSuffix) {
+    $oldSuffix = "alpha"
+  }
+
   $numberGroup = $match.Groups[2]
 
-  $number = if ($numberGroup.Success) { 1+$match.Groups[2].Value } else { 2 }
-  return [string]::Format("-{0}{1}", $oldSuffix, $number)
+  $number = if ($numberGroup.Success) { 1+$match.Groups[2].Value } else { 1 }
+
+  # Use 3 digits for the number "-alpha003", for 999 releases lexically sorted.
+  return [string]::Format("-{0}{1:D3}", $oldSuffix, $number)
 }
 
 # Returns object with properties: Version, Suffix
@@ -154,4 +168,11 @@ function Resolve-Error ($ErrorRecord=$Error[0])
   }
 }
 
-export-modulemember -function Get-NewProjectVersion, Set-ProjectVersion, Set-AssemblyInfoVersion, Invoke-CommitAndTagVersion, Set-NuspecVersion
+export-modulemember -function Get-NewProjectVersion,
+  Invoke-CommitVersionBump,
+  Invoke-TagVersionBump,
+  Set-ProjectVersion,
+  Set-AssemblyInfoVersion,
+  Set-NuspecVersion,
+  Invoke-StashPush,
+  Invoke-StashPop

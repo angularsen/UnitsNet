@@ -1,7 +1,7 @@
-﻿{
+{
   "Name": "AreaMomentOfInertia",
   "BaseUnit": "MeterToTheFourth",
-  "XmlDoc": "A geometric property of an area that reflects how its points are distributed with regard to an axis.",
+  "XmlDocSummary": "A geometric property of an area that reflects how its points are distributed with regard to an axis.",
   "BaseDimensions": {
     "L": 4
   },
@@ -12,8 +12,8 @@
       "BaseUnits": {
         "L": "Meter"
       },
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Localization": [
         {
           "Culture": "en-US",
@@ -27,8 +27,8 @@
       "BaseUnits": {
         "L": "Decimeter"
       },
-      "FromUnitToBaseFunc": "x/1e4",
-      "FromBaseToUnitFunc": "x*1e4",
+      "FromUnitToBaseFunc": "{x} / 1e4",
+      "FromBaseToUnitFunc": "{x} * 1e4",
       "Localization": [
         {
           "Culture": "en-US",
@@ -42,8 +42,8 @@
       "BaseUnits": {
         "L": "Centimeter"
       },
-      "FromUnitToBaseFunc": "x/1e8",
-      "FromBaseToUnitFunc": "x*1e8",
+      "FromUnitToBaseFunc": "{x} / 1e8",
+      "FromBaseToUnitFunc": "{x} * 1e8",
       "Localization": [
         {
           "Culture": "en-US",
@@ -57,8 +57,8 @@
       "BaseUnits": {
         "L": "Millimeter"
       },
-      "FromUnitToBaseFunc": "x/1e12",
-      "FromBaseToUnitFunc": "x*1e12",
+      "FromUnitToBaseFunc": "{x} / 1e12",
+      "FromBaseToUnitFunc": "{x} * 1e12",
       "Localization": [
         {
           "Culture": "en-US",
@@ -72,8 +72,8 @@
       "BaseUnits": {
         "L": "Foot"
       },
-      "FromUnitToBaseFunc": "x*Math.Pow(0.3048, 4)",
-      "FromBaseToUnitFunc": "x/Math.Pow(0.3048, 4)",
+      "FromUnitToBaseFunc": "{x} * Math.Pow(0.3048, 4)",
+      "FromBaseToUnitFunc": "{x} / Math.Pow(0.3048, 4)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -87,8 +87,8 @@
       "BaseUnits": {
         "L": "Inch"
       },
-      "FromUnitToBaseFunc": "x*Math.Pow(2.54e-2, 4)",
-      "FromBaseToUnitFunc": "x/Math.Pow(2.54e-2, 4)",
+      "FromUnitToBaseFunc": "{x} * Math.Pow(2.54e-2, 4)",
+      "FromBaseToUnitFunc": "{x} / Math.Pow(2.54e-2, 4)",
       "Localization": [
         {
           "Culture": "en-US",

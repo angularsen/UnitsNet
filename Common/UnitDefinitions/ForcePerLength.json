@@ -1,7 +1,7 @@
-﻿{
+{
   "Name": "ForcePerLength",
   "BaseUnit": "NewtonPerMeter",
-  "XmlDoc": "The magnitude of force per unit length.",
+  "XmlDocSummary": "The magnitude of force per unit length.",
   "BaseDimensions": {
     "M": 1,
     "T": -2
@@ -10,9 +10,9 @@
     {
       "SingularName": "NewtonPerMeter",
       "PluralName": "NewtonsPerMeter",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo", "Mega" ],
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -20,11 +20,37 @@
         }
       ]
     },
+	{
+      "SingularName": "NewtonPerCentimeter",
+      "PluralName": "NewtonsPerCentimeter",
+      "FromUnitToBaseFunc": "{x} * 1e2",
+      "FromBaseToUnitFunc": "{x} / 1e2",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "N/cm" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "NewtonPerMillimeter",
+      "PluralName": "NewtonsPerMillimeter",
+      "FromUnitToBaseFunc": "{x} * 1e3",
+      "FromBaseToUnitFunc": "{x} / 1e3",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "N/mm" ]
+        }
+      ]
+    },
     {
       "SingularName": "KilogramForcePerMeter",
       "PluralName": "KilogramsForcePerMeter",
-      "FromUnitToBaseFunc": "x*9.80665002864",
-      "FromBaseToUnitFunc": "x/9.80665002864",
+      "FromUnitToBaseFunc": "{x} * 9.80665002864",
+      "FromBaseToUnitFunc": "{x} / 9.80665002864",
       "Localization": [
         {
           "Culture": "en-US",
@@ -33,6 +59,146 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "кгс/м" ]
+        }
+      ]
+    },
+	{
+      "SingularName": "KilogramForcePerCentimeter",
+      "PluralName": "KilogramsForcePerCentimeter",
+      "FromUnitToBaseFunc": "{x} * 980.665002864",
+      "FromBaseToUnitFunc": "{x} / 980.665002864",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kgf/cm" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "кгс/см" ]
+        }
+      ]
+    },
+	{
+      "SingularName": "KilogramForcePerMillimeter",
+      "PluralName": "KilogramsForcePerMillimeter",
+      "FromUnitToBaseFunc": "{x} * 9.80665002864e3",
+      "FromBaseToUnitFunc": "{x} / 9.80665002864e3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kgf/mm" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "кгс/мм" ]
+        }
+      ]
+    },
+	{
+      "SingularName": "TonneForcePerMeter",
+      "PluralName": "TonnesForcePerMeter",
+      "FromUnitToBaseFunc": "{x} * 9.80665002864e3",
+      "FromBaseToUnitFunc": "{x} / 9.80665002864e3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "tf/m" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "тс/м" ]
+        }
+      ]
+    },
+	{
+      "SingularName": "TonneForcePerCentimeter",
+      "PluralName": "TonnesForcePerCentimeter",
+      "FromUnitToBaseFunc": "{x} * 9.80665002864e5",
+      "FromBaseToUnitFunc": "{x} / 9.80665002864e5",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "tf/cm" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "тс/см" ]
+        }
+      ]
+    },
+	{
+      "SingularName": "TonneForcePerMillimeter",
+      "PluralName": "TonnesForcePerMillimeter",
+      "FromUnitToBaseFunc": "{x} * 9.80665002864e6",
+      "FromBaseToUnitFunc": "{x} / 9.80665002864e6",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "tf/mm" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "тс/мм" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundForcePerFoot",
+      "PluralName": "PoundsForcePerFoot",
+      "FromUnitToBaseFunc": "{x} * 14.59390292",
+      "FromBaseToUnitFunc": "{x} / 14.59390292",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lbf/ft" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundForcePerInch",
+      "PluralName": "PoundsForcePerInch",
+      "FromUnitToBaseFunc": "{x} * 1.75126835e2",
+      "FromBaseToUnitFunc": "{x} / 1.75126835e2",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lbf/in" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundForcePerYard",
+      "PluralName": "PoundsForcePerYard",
+      "FromUnitToBaseFunc": "{x} * 4.864634307",
+      "FromBaseToUnitFunc": "{x} / 4.864634307",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lbf/yd" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilopoundForcePerFoot",
+      "PluralName": "KilopoundsForcePerFoot",
+      "FromUnitToBaseFunc": "{x} * 14593.90292",
+      "FromBaseToUnitFunc": "{x} / 14593.90292",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kipf/ft", "kip/ft", "k/ft" ]
+        }
+      ]
+    },
+	    {
+      "SingularName": "KilopoundForcePerInch",
+      "PluralName": "KilopoundsForcePerInch",
+      "FromUnitToBaseFunc": "{x} * 1.75126835e5",
+      "FromBaseToUnitFunc": "{x} / 1.75126835e5",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kipf/in", "kip/in", "k/in" ]
         }
       ]
     }

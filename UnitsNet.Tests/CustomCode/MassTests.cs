@@ -5,10 +5,12 @@ using System;
 using UnitsNet.Units;
 using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     public class MassTests : MassTestsBase
     {
+        protected override bool SupportsSIUnitSystem => false; // Should be true, but prefixes on "Gram" not supported yet.
+
         protected override double CentigramsInOneKilogram => 1E5;
 
         protected override double DecagramsInOneKilogram => 1E2;
@@ -57,6 +59,16 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double ShortHundredweightInOneKilogram => 0.022046226218487758;
 
+        protected override double EarthMassesInOneKilogram => 1.6744248350691500000000000E-25;
+
+        protected override double SolarMassesInOneKilogram => 5.0264643347223100000000000E-31;
+
+        protected override double FemtogramsInOneKilogram => 1E18;
+
+        protected override double PicogramsInOneKilogram => 1E15;
+
+        //protected override double SolarMassesTolerance => 0.1;
+
         [Fact]
         public void AccelerationTimesMassEqualsForce()
         {
@@ -86,10 +98,38 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Fact]
+        public void MassDividedByAreaEqualsAreaDensity()
+        {
+            AreaDensity grammage = Mass.FromKilograms(0.9) / Area.FromSquareMeters(3);
+            Assert.Equal(AreaDensity.FromKilogramsPerSquareMeter(0.3), grammage);
+        }
+
+        [Fact]
+        public void MassDividedByAreaDensityEqualsArea()
+        {
+            Area area = Mass.FromKilograms(10) / AreaDensity.FromKilogramsPerSquareMeter(5);
+            Assert.Equal(Area.FromSquareMeters(2), area);
+        }
+
+        [Fact]
         public void MassTimesAccelerationEqualsForce()
         {
             Force force = Mass.FromKilograms(18)*Acceleration.FromMetersPerSecondSquared(3);
             Assert.Equal(force, Force.FromNewtons(54));
+        }
+
+        [Fact]
+        public void MassDividedByLengthEqualsLinearDensity()
+        {
+            LinearDensity linearDensity = Mass.FromKilograms(18) / Length.FromMeters(3);
+            Assert.Equal(linearDensity, LinearDensity.FromKilogramsPerMeter(6));
+        }
+
+        [Fact]
+        public void MassDividedByLinearDensityEqualsLength()
+        {
+            Length length = Mass.FromKilograms(18) / LinearDensity.FromKilogramsPerMeter(3);
+            Assert.Equal(length, Length.FromMeters(6));
         }
 
         [Fact]
@@ -106,6 +146,23 @@ namespace UnitsNet.Tests.CustomCode
 
             Assert.Equal(-1.0, stonePounds.Stone);
             Assert.Equal(-11.0, stonePounds.Pounds);
+        }
+
+        [Theory]
+        [InlineData(10, MassUnit.Gram,
+                    KnownQuantities.MolarMassOfOxygen, MolarMassUnit.GramPerMole,
+                    0.625023438378939, AmountOfSubstanceUnit.Mole)]     // 10 grams Of Oxygen contain 0.625023438378939 Moles
+        public void AmountOfSubstanceFromMassAndMolarMass(
+            double massValue, MassUnit massUnit,
+            double molarMassValue, MolarMassUnit molarMassUnit,
+            double expectedAmountOfSubstanceValue, AmountOfSubstanceUnit expectedAmountOfSubstanceUnit, double tolerence = 1e-5)
+        {
+            var mass = new Mass(massValue, massUnit);
+            var molarMass = new MolarMass(molarMassValue, molarMassUnit);
+
+            AmountOfSubstance amountOfSubstance = mass / molarMass;
+
+            AssertEx.EqualTolerance(expectedAmountOfSubstanceValue, amountOfSubstance.As(expectedAmountOfSubstanceUnit), tolerence);
         }
     }
 }

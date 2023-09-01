@@ -3,15 +3,17 @@
 
 using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     public class ForceTests : ForceTestsBase
     {
+        protected override bool SupportsSIUnitSystem => true;
         protected override double DecanewtonsInOneNewton => 1E-1;
         protected override double DyneInOneNewton => 1E5;
 
         protected override double KilogramsForceInOneNewton => 0.101972;
 
+        protected override double KilopoundsForceInOneNewton => 0.22481e-3;
         protected override double MeganewtonsInOneNewton => 1E-6;
         protected override double KilonewtonsInOneNewton => 1E-3;
 
@@ -31,11 +33,13 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double OunceForceInOneNewton => 3.596943089595368;
 
+        protected override double ShortTonsForceInOneNewton => 1.12404471549816e-4;
+
         [Fact]
         public void ForceDividedByAreaEqualsPressure()
         {
             Pressure pressure = Force.FromNewtons(90)/Area.FromSquareMeters(9);
-            Assert.Equal(pressure, Pressure.FromNewtonsPerSquareMeter(10));
+            Assert.Equal(10, pressure.NewtonsPerSquareMeter);
         }
 
         [Fact]
@@ -85,6 +89,20 @@ namespace UnitsNet.Tests.CustomCode
         {
             Power power = Speed.FromMetersPerSecond(10.0)*Force.FromNewtons(27.0);
             Assert.Equal(power, Power.FromWatts(270));
+        }
+
+        [Fact]
+        public void ForceTimesReciprocalAreaEqualsPressure()
+        {
+            Pressure pressure = Force.FromNewtons(2) * ReciprocalArea.FromInverseSquareMeters(25);
+            Assert.Equal(pressure, Pressure.FromNewtonsPerSquareMeter(50));
+        }
+
+        [Fact]
+        public void ForceDividedByForceChangeRateEqualsDuration()
+        {
+            Duration duration = Force.FromNewtons(200) / ForceChangeRate.FromNewtonsPerSecond(50);
+            Assert.Equal(duration, Duration.FromSeconds(4));
         }
     }
 }

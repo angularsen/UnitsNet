@@ -4,79 +4,67 @@
 using System;
 using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     public class InformationTests : InformationTestsBase
     {
-        protected override double BitsInOneBit => 1d;
+        protected override bool SupportsSIUnitSystem => false;
+        protected override decimal BitsInOneBit => 1m;
 
-        protected override double BytesInOneBit => 0.125d;
+        protected override decimal BytesInOneBit => 0.125m;
 
-        protected override double ExabitsInOneBit => 1e-18d;
+        protected override decimal ExabitsInOneBit => 1e-18m;
 
-        protected override double ExabytesInOneBit => 0.125d*1e-18d;
+        protected override decimal ExabytesInOneBit => 0.125m*1e-18m;
 
-        protected override double ExbibitsInOneBit => 1d/Math.Pow(1024, 6);
+        protected override decimal ExbibitsInOneBit => 1m/(decimal)Math.Pow(1024, 6);
 
-        protected override double ExbibytesInOneBit => 1/8d/Math.Pow(1024, 6);
+        protected override decimal ExbibytesInOneBit => 1m/8m/(decimal)Math.Pow(1024, 6);
 
-        protected override double GibibitsInOneBit => 1d/Math.Pow(1024, 3);
+        protected override decimal GibibitsInOneBit => 1m/(decimal)Math.Pow(1024, 3);
 
-        protected override double GibibytesInOneBit => 1d/8/Math.Pow(1024, 3);
+        protected override decimal GibibytesInOneBit => 1m/8m/(decimal)Math.Pow(1024, 3);
 
-        protected override double GigabitsInOneBit => 1e-9d;
+        protected override decimal GigabitsInOneBit => 1e-9m;
 
-        protected override double GigabytesInOneBit => 0.125d*1e-9d;
+        protected override decimal GigabytesInOneBit => 0.125m*1e-9m;
 
-        protected override double KibibitsInOneBit => 1d/1024d;
+        protected override decimal KibibitsInOneBit => 1m/1024m;
 
-        protected override double KibibytesInOneBit => 1d/8/1024d;
+        protected override decimal KibibytesInOneBit => 1m/8/1024m;
 
-        protected override double KilobitsInOneBit => 0.001d;
+        protected override decimal KilobitsInOneBit => 0.001m;
 
-        protected override double KilobytesInOneBit => 0.000125d;
+        protected override decimal KilobytesInOneBit => 0.000125m;
 
-        protected override double MebibitsInOneBit => 1d/Math.Pow(1024, 2);
+        protected override decimal MebibitsInOneBit => 1m/(decimal)Math.Pow(1024, 2);
 
-        protected override double MebibytesInOneBit => 1d/8/Math.Pow(1024, 2);
+        protected override decimal MebibytesInOneBit => 1m/8m/(decimal)Math.Pow(1024, 2);
 
-        protected override double MegabitsInOneBit => 1e-6d;
+        protected override decimal MegabitsInOneBit => 1e-6m;
 
-        protected override double MegabytesInOneBit => 0.125d*1e-6d;
+        protected override decimal MegabytesInOneBit => 0.125m*1e-6m;
 
-        protected override double PebibitsInOneBit => 1d/Math.Pow(1024, 5);
+        protected override decimal PebibitsInOneBit => 1m/(decimal)Math.Pow(1024, 5);
 
-        protected override double PebibytesInOneBit => 1d/8/Math.Pow(1024, 5);
+        protected override decimal PebibytesInOneBit => 1m/8m/(decimal)Math.Pow(1024, 5);
 
-        protected override double PetabitsInOneBit => 1e-15d;
+        protected override decimal PetabitsInOneBit => 1e-15m;
 
-        protected override double PetabytesInOneBit => 0.125d*1e-15d;
+        protected override decimal PetabytesInOneBit => 0.125m*1e-15m;
 
-        protected override double TebibitsInOneBit => 1d/Math.Pow(1024, 4);
+        protected override decimal TebibitsInOneBit => 1m/(decimal)Math.Pow(1024, 4);
 
-        protected override double TebibytesInOneBit => 1d/8/Math.Pow(1024, 4);
+        protected override decimal TebibytesInOneBit => 1m/8m/(decimal)Math.Pow(1024, 4);
 
-        protected override double TerabitsInOneBit => 1e-12d;
+        protected override decimal TerabitsInOneBit => 1e-12m;
 
-        protected override double TerabytesInOneBit => 0.125d*1e-12d;
+        protected override decimal TerabytesInOneBit => 0.125m*1e-12m;
 
-// ReSharper disable once InconsistentNaming
         [Fact]
         public void OneKBHas1000Bytes()
         {
             Assert.Equal(1000, Information.FromKilobytes(1).Bytes);
-        }
-
-        [Fact]
-        public void MaxValueIsCorrectForUnitWithBaseTypeDecimal()
-        {
-            Assert.Equal((double) decimal.MaxValue, Information.MaxValue.Bits);
-        }
-
-        [Fact]
-        public void MinValueIsCorrectForUnitWithBaseTypeDecimal()
-        {
-            Assert.Equal((double) decimal.MinValue, Information.MinValue.Bits);
         }
     }
 }

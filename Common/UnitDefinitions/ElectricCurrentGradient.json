@@ -1,7 +1,7 @@
 ﻿{
   "Name": "ElectricCurrentGradient",
   "BaseUnit": "AmperePerSecond",
-  "XmlDoc": "In electromagnetism, the current gradient describes how the current changes in time.",
+  "XmlDocSummary": "In electromagnetism, the current gradient describes how the current changes in time.",
   "BaseDimensions": {
     "T": -1,
     "I": 1
@@ -10,12 +10,82 @@
     {
       "SingularName": "AmperePerSecond",
       "PluralName": "AmperesPerSecond",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "BaseUnits": {
+        "T": "Second",
+        "I": "Ampere"
+      },
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Prefixes": [ "Milli" ],
       "Localization": [
         {
           "Culture": "en-US",
           "Abbreviations": [ "A/s" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "AmperePerMinute",
+      "PluralName": "AmperesPerMinute",
+      "BaseUnits": {
+        "T": "Minute",
+        "I": "Ampere"
+      },
+      "FromUnitToBaseFunc": "{x} / 60",
+      "FromBaseToUnitFunc": "{x} * 60",
+      "Prefixes": [ "Milli" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "A/min" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "AmperePerMillisecond",
+      "PluralName": "AmperesPerMillisecond",
+      "BaseUnits": {
+        "T": "Millisecond",
+        "I": "Ampere"
+      },
+      "FromUnitToBaseFunc": "{x} * 1E3",
+      "FromBaseToUnitFunc": "{x} / 1E3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "A/ms" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "AmperePerMicrosecond",
+      "PluralName": "AmperesPerMicrosecond",
+      "BaseUnits": {
+        "T": "Microsecond",
+        "I": "Ampere"
+      },
+      "FromUnitToBaseFunc": "{x} * 1E6",
+      "FromBaseToUnitFunc": "{x} / 1E6",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "A/μs" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "AmperePerNanosecond",
+      "PluralName": "AmperesPerNanosecond",
+      "BaseUnits": {
+        "T": "Nanosecond",
+        "I": "Ampere"
+      },
+      "FromUnitToBaseFunc": "{x} * 1E9",
+      "FromBaseToUnitFunc": "{x} / 1E9",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "A/ns" ]
         }
       ]
     }

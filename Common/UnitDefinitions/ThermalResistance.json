@@ -1,7 +1,7 @@
-﻿{
+{
   "Name": "ThermalResistance",
   "BaseUnit": "SquareMeterKelvinPerKilowatt",
-  "XmlDoc": "Heat Transfer Coefficient or Thermal conductivity - indicates a materials ability to conduct heat.",
+  "XmlDocSummary": "Heat Transfer Coefficient or Thermal conductivity - indicates a materials ability to conduct heat.",
   "BaseDimensions": {
     "M": -1,
     "T": 3,
@@ -11,8 +11,8 @@
     {
       "SingularName": "SquareMeterKelvinPerKilowatt",
       "PluralName": "SquareMeterKelvinsPerKilowatt",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Localization": [
         {
           "Culture": "en-US",
@@ -21,10 +21,22 @@
       ]
     },
     {
+      "SingularName": "SquareMeterKelvinPerWatt",
+      "PluralName": "SquareMeterKelvinsPerWatt",
+      "FromUnitToBaseFunc": "{x} * 1000",
+      "FromBaseToUnitFunc": "{x} / 1000",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m²K/W" ]
+        }
+      ]
+    },
+    {
       "SingularName": "SquareMeterDegreeCelsiusPerWatt",
       "PluralName": "SquareMeterDegreesCelsiusPerWatt",
-      "FromUnitToBaseFunc": "x*1000.088056074108",
-      "FromBaseToUnitFunc": "x/1000.088056074108",
+      "FromUnitToBaseFunc": "{x} * 1000.0",
+      "FromBaseToUnitFunc": "{x} / 1000.0",
       "Localization": [
         {
           "Culture": "en-US",
@@ -35,8 +47,8 @@
     {
       "SingularName": "SquareCentimeterKelvinPerWatt",
       "PluralName": "SquareCentimeterKelvinsPerWatt",
-      "FromUnitToBaseFunc": "x*0.0999964777570357",
-      "FromBaseToUnitFunc": "x/0.0999964777570357",
+      "FromUnitToBaseFunc": "{x} * 0.1",
+      "FromBaseToUnitFunc": "{x} / 0.1",
       "Localization": [
         {
           "Culture": "en-US",
@@ -47,8 +59,8 @@
     {
       "SingularName": "SquareCentimeterHourDegreeCelsiusPerKilocalorie",
       "PluralName": "SquareCentimeterHourDegreesCelsiusPerKilocalorie",
-      "FromUnitToBaseFunc": "x*0.0859779507590433",
-      "FromBaseToUnitFunc": "x/0.0859779507590433",
+      "FromUnitToBaseFunc": "{x} * 0.0859779507590433",
+      "FromBaseToUnitFunc": "{x} / 0.0859779507590433",
       "Localization": [
         {
           "Culture": "en-US",
@@ -59,8 +71,8 @@
     {
       "SingularName": "HourSquareFeetDegreeFahrenheitPerBtu",
       "PluralName": "HourSquareFeetDegreesFahrenheitPerBtu",
-      "FromUnitToBaseFunc": "x*176.1121482159839",
-      "FromBaseToUnitFunc": "x/176.1121482159839",
+      "FromUnitToBaseFunc": "{x} * 176.1121482159839",
+      "FromBaseToUnitFunc": "{x} / 176.1121482159839",
       "Localization": [
         {
           "Culture": "en-US",

@@ -4,10 +4,11 @@
 using UnitsNet.Units;
 using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     public class AreaTests : AreaTestsBase
     {
+        protected override bool SupportsSIUnitSystem => true;
 
         protected override double SquareKilometersInOneSquareMeter => 1E-6;
 
@@ -23,7 +24,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double SquareMillimetersInOneSquareMeter => 1E6;
 
-        protected override double SquareFeetInOneSquareMeter => 10.76391;
+        protected override double SquareFeetInOneSquareMeter => 10.7639104167097223083335055559;
 
         protected override double SquareMicrometersInOneSquareMeter => 1E12;
 
@@ -34,6 +35,8 @@ namespace UnitsNet.Tests.CustomCode
         protected override double SquareYardsInOneSquareMeter => 1.19599;
 
         protected override double UsSurveySquareFeetInOneSquareMeter => 10.76386736111121;
+
+        protected override double SquareNauticalMilesInOneSquareMeter => 0.00000029155335;
 
         [Fact]
         public void AreaDividedByLengthEqualsLength()
@@ -46,7 +49,14 @@ namespace UnitsNet.Tests.CustomCode
         public void AreaTimesMassFluxEqualsMassFlow()
         {
             MassFlow massFlow = Area.FromSquareMeters(20) * MassFlux.FromKilogramsPerSecondPerSquareMeter(2);
-            Assert.Equal(massFlow, MassFlow.FromKilogramsPerSecond(40));
+            Assert.Equal(40, massFlow.KilogramsPerSecond);
+        }
+
+        [Fact]
+        public void AreaTimesDensityEqualsLinearDensity()
+        {
+            LinearDensity linearDensity = Area.FromSquareCentimeters(2) * Density.FromGramsPerCubicCentimeter(10);
+            Assert.Equal(20, linearDensity.GramsPerCentimeter);
         }
 
         [Theory]
@@ -107,6 +117,26 @@ namespace UnitsNet.Tests.CustomCode
 
             Assert.Equal(0.00129032, inSI.Value);
             Assert.Equal(AreaUnit.SquareMeter, inSI.Unit);
+        }
+
+        [Theory]
+        [InlineData(-2.0, -0.5)]
+        [InlineData(-1.0, -1.0)]
+        [InlineData(0.0, 0.0)]
+        [InlineData(1.0, 1.0)]
+        [InlineData(2.0, 0.5)]
+        public void InverseReturnsReciprocalArea(double value, double expected)
+        {
+            var area = new Area(value, AreaUnit.SquareMeter);
+            var inverseArea = area.Inverse();
+            Assert.Equal(expected, inverseArea.InverseSquareMeters);
+        }
+
+        [Fact]
+        public void AreaTimesReciprocalAreaEqualsRatio()
+        {
+            Ratio ratio = Area.FromSquareMeters(0.5) * ReciprocalArea.FromInverseSquareMeters(10);
+            Assert.Equal(5.0, ratio.Value);
         }
     }
 }

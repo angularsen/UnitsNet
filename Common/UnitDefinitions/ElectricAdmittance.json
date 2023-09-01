@@ -1,7 +1,7 @@
-﻿{
+{
   "Name": "ElectricAdmittance",
   "BaseUnit": "Siemens",
-  "XmlDoc": "Electric admittance is a measure of how easily a circuit or device will allow a current to flow. It is defined as the inverse of impedance. The SI unit of admittance is the siemens (symbol S).",
+  "XmlDocSummary": "Electric admittance is a measure of how easily a circuit or device will allow a current to flow. It is defined as the inverse of impedance. The SI unit of admittance is the siemens (symbol S).",
   "BaseDimensions": {
     "L": -2,
     "M": -1,
@@ -12,8 +12,8 @@
     {
       "SingularName": "Siemens",
       "PluralName": "Siemens",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Nano", "Micro", "Milli" ],
       "Localization": [
         {

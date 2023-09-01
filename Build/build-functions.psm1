@@ -1,13 +1,20 @@
-﻿$root = "$PSScriptRoot\.."
+﻿$root = (Resolve-Path "$PSScriptRoot\..").Path
 $artifactsDir = "$root\Artifacts"
-$nugetOutDir = "$root\Artifacts\NuGet"
-$testReportDir = "$root\Artifacts\Logs"
-$nuget = "$root\Tools\NuGet.exe"
+$nugetOutDir = "$artifactsDir\NuGet"
+$logsDir = "$artifactsDir\Logs"
+$testReportDir = "$artifactsDir\TestResults"
+$testCoverageDir = "$artifactsDir\Coverage"
+$toolsDir = "$root\.tools"
+
+$nuget = "$toolsDir\NuGet.exe"
 $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
-$msbuild = & $vswhere -latest -products * -requires Microsoft.Component.MSBuild -property installationPath
-if ($msbuild) {
-  $msbuild = join-path $msbuild 'MSBuild\15.0\Bin\MSBuild.exe'
+$msbuildPath = & $vswhere -latest -products * -requires Microsoft.Component.MSBuild -property installationPath
+
+if ($msbuildPath) {
+  $msbuildx64 = join-path $msbuildPath 'MSBuild\Current\Bin\amd64\MSBuild.exe'
 }
+
+import-module $PSScriptRoot\build-pack-nano-nugets.psm1
 
 function Remove-ArtifactsDir {
   if (Test-Path $artifactsDir) {
@@ -18,53 +25,34 @@ function Remove-ArtifactsDir {
 }
 
 function Update-GeneratedCode {
-  # Regenerate source code since it occasionally happens that merged pull requests did not include all the regenerated code
-  $genScriptDotNet = "$root/UnitsNet/Scripts/GenerateUnits.ps1"
-  $genScriptWrc = "$root/UnitsNet.WindowsRuntimeComponent/Scripts/GenerateUnits.ps1"
-
-  write-host -foreground blue "Generate code for .NET...`n---"
-  write-host $genScriptDotNet
-  & $genScriptDotNet
+  write-host -foreground blue "Generate code...`n---"
+  dotnet run --project "$root/CodeGen"
   if ($lastexitcode -ne 0) { exit 1 }
-
-  # Regenerate WRC code even if we are not building that target.
-  # The reason is that build.bat will skip WRC build since most people don't have that dependency installed.
-  # AppVeyor build server would still regen and build WRC regardless, but this way we also get the changes
-  # into pull requests so they are visible and master branch is kept up-to-date.
-  write-host -foreground blue "Generate code for Windows Runtime Component...`n---"
-  write-host $genScriptWrc
-  & $genScriptWrc
-  if ($lastexitcode -ne 0) { exit 1 }
-
   write-host -foreground blue "Generate code...END`n"
 }
 
-function Start-Build([boolean] $IncludeWindowsRuntimeComponent = $false) {
+function Start-Build([boolean] $IncludeNanoFramework = $false) {
   write-host -foreground blue "Start-Build...`n---"
 
-  $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$testReportDir\UnitsNet.msbuild.log"
+  $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$logsDir\UnitsNet.msbuild.log"
 
-  $appVeyorLoggerDll = "C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
-  $appVeyorLoggerNetCoreDll = "C:\Program Files\AppVeyor\BuildAgent\dotnetcore\Appveyor.MSBuildLogger.dll"
-  $appVeyorLoggerArg = if (Test-Path "$appVeyorLoggerNetCoreDll") { "/logger:$appVeyorLoggerNetCoreDll" } else { "" }
-
-  dotnet build --configuration Release "$root\UnitsNet.sln" $fileLoggerArg $appVeyorLoggerArg
+  dotnet build --configuration Release /p:ContinuousIntegrationBuild=true "$root\UnitsNet.sln" $fileLoggerArg
   if ($lastexitcode -ne 0) { exit 1 }
 
-  if (-not $IncludeWindowsRuntimeComponent)
+  if (-not $IncludeNanoFramework)
   {
-    write-host -foreground yellow "Skipping WindowsRuntimeComponent build."
+    write-host -foreground yellow "Skipping .NET nanoFramework build."
   }
   else
   {
-    $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$testReportDir\UnitsNet.WindowsRuntimeComponent.msbuild.log"
-    $appVeyorLoggerArg = if (Test-Path "$appVeyorLoggerDll") { "/logger:$appVeyorLoggerDll" } else { "" }
+    write-host -foreground green "Build .NET nanoFramework."
+    $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$logsDir\UnitsNet.NanoFramework.msbuild.log"
 
-    # dontnet CLI does not support WindowsRuntimeComponent project type yet
     # msbuild does not auto-restore nugets for this project type
-    write-host -foreground yellow "WindowsRuntimeComponent project not yet supported by dotnet CLI, using MSBuild15 instead"
-    & "$msbuild" "$root\UnitsNet.WindowsRuntimeComponent.sln" /verbosity:minimal /p:Configuration=Release /t:restore
-    & "$msbuild" "$root\UnitsNet.WindowsRuntimeComponent.sln" /verbosity:minimal /p:Configuration=Release $fileLoggerArg $appVeyorLoggerArg
+    & "$nuget" restore "$root\UnitsNet.NanoFramework\GeneratedCode\UnitsNet.nanoFramework.sln"
+
+    # now build
+    & "$msbuildx64" "$root\UnitsNet.NanoFramework\GeneratedCode\UnitsNet.nanoFramework.sln" /verbosity:minimal /p:Configuration=Release /p:Platform="Any CPU" /p:ContinuousIntegrationBuild=true $fileLoggerArg
     if ($lastexitcode -ne 0) { exit 1 }
   }
 
@@ -73,49 +61,66 @@ function Start-Build([boolean] $IncludeWindowsRuntimeComponent = $false) {
 
 function Start-Tests {
   $projectPaths = @(
-    "UnitsNet.Tests\UnitsNet.Tests.NetCore.csproj",
-    "UnitsNet.Serialization.JsonNet.Tests\UnitsNet.Serialization.JsonNet.Tests.NetCore.csproj",
-    "UnitsNet.Serialization.JsonNet.CompatibilityTests\UnitsNet.Serialization.JsonNet.CompatibilityTests.NetCore.csproj"
+    "UnitsNet.Tests\UnitsNet.Tests.csproj",
+    "UnitsNet.NumberExtensions.Tests\UnitsNet.NumberExtensions.Tests.csproj",
+    "UnitsNet.Serialization.JsonNet.Tests\UnitsNet.Serialization.JsonNet.Tests.csproj"
     )
 
   # Parent dir must exist before xunit tries to write files to it
   new-item -type directory -force $testReportDir 1> $null
+  new-item -type directory -force $testCoverageDir 1> $null
 
   write-host -foreground blue "Run tests...`n---"
   foreach ($projectPath in $projectPaths) {
     $projectFileNameNoEx = [System.IO.Path]::GetFileNameWithoutExtension($projectPath)
-    $reportFile = "$testReportDir\${projectFileNameNoEx}.xunit.xml"
+    $coverageReportFile = "$testCoverageDir\${projectFileNameNoEx}.coverage.xml"
     $projectDir = [System.IO.Path]::GetDirectoryName($projectPath)
 
-    # dotnet-xunit command must run in same dir as project
-    # https://github.com/xunit/xunit/issues/1216
+    # dotnet commands (xunit, dotcover) must run in same dir as project
     push-location $projectDir
-    # -nobuild  <-- this gives an error, but might want to use this to avoid extra builds
-    dotnet xunit -configuration Release -framework netcoreapp2.0 -xml $reportFile -nobuild
+
+    # Create coverage report for this test project
+    & dotnet dotcover test `
+      --no-build `
+      --logger trx `
+      --results-directory "$testReportDir" `
+      --dotCoverFilters="+:module=UnitsNet*;-:module=*Tests" `
+      --dotCoverOutput="$coverageReportFile" `
+      --dcReportType=DetailedXML
+
     if ($lastexitcode -ne 0) { exit 1 }
     pop-location
   }
 
+  # Generate a summarized code coverage report for all test projects
+  & "$toolsDir/reportgenerator.exe" -reports:"$testCoverageDir/*.coverage.xml" -targetdir:"$testCoverageDir" -reporttypes:HtmlSummary
+
   write-host -foreground blue "Run tests...END`n"
 }
 
-function Start-PackNugets {
+function Start-PackNugets([boolean] $IncludeNanoFramework = $false) {
   $projectPaths = @(
     "UnitsNet\UnitsNet.csproj",
-    "UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.csproj"
+    "UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.csproj",
+    "UnitsNet.NumberExtensions\UnitsNet.NumberExtensions.csproj"
     )
 
   write-host -foreground blue "Pack nugets...`n---"
   foreach ($projectPath in $projectPaths) {
-    dotnet pack --configuration Release -o $nugetOutDir "$root\$projectPath"
+    dotnet pack --configuration Release `
+      --no-build `
+      --output $nugetOutDir `
+      /p:ContinuousIntegrationBuild=true `
+      "$root\$projectPath"
+
     if ($lastexitcode -ne 0) { exit 1 }
   }
 
-  if (-not $IncludeWindowsRuntimeComponent) {
-    write-host -foreground yellow "Skipping WindowsRuntimeComponent nuget pack."
+  if (-not $IncludeNanoFramework) {
+    write-host -foreground yellow "Skipping nanoFramework nuget pack."
   } else {
-    write-host -foreground yellow "WindowsRuntimeComponent project not yet supported by dotnet CLI, using nuget.exe instead"
-    & $nuget pack "$root\UnitsNet.WindowsRuntimeComponent\UnitsNet.WindowsRuntimeComponent.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
+    write-host -foreground yellow "nanoFramework project not yet supported by dotnet CLI, using nuget.exe instead"
+    Invoke-BuildNanoNugets
   }
 
   write-host -foreground blue "Pack nugets...END`n"

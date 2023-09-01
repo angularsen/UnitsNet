@@ -1,7 +1,7 @@
-﻿{
+{
   "Name": "DynamicViscosity",
   "BaseUnit": "NewtonSecondPerMeterSquared",
-  "XmlDoc": "The dynamic (shear) viscosity of a fluid expresses its resistance to shearing flows, where adjacent layers move parallel to each other with different speeds",
+  "XmlDocSummary": "The dynamic (shear) viscosity of a fluid expresses its resistance to shearing flows, where adjacent layers move parallel to each other with different speeds",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Viscosity#Dynamic_.28shear.29_viscosity",
   "BaseDimensions": {
     "L": -1,
@@ -12,8 +12,8 @@
     {
       "SingularName": "NewtonSecondPerMeterSquared",
       "PluralName": "NewtonSecondsPerMeterSquared",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Localization": [
         {
           "Culture": "en-US",
@@ -24,26 +24,74 @@
     {
       "SingularName": "PascalSecond",
       "PluralName": "PascalSeconds",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Milli", "Micro" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "PaS" ]
+          "Abbreviations": [ "Pa·s", "PaS" ]
         }
       ]
     },
     {
       "SingularName": "Poise",
       "PluralName": "Poise",
-      "FromUnitToBaseFunc": "x/10",
-      "FromBaseToUnitFunc": "x*10",
+      "FromUnitToBaseFunc": "{x} / 10",
+      "FromBaseToUnitFunc": "{x} * 10",
       "Prefixes": [ "Centi" ],
       "Localization": [
         {
           "Culture": "en-US",
           "Abbreviations": [ "P" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Reyn",
+      "PluralName": "Reyns",
+      "FromUnitToBaseFunc": "{x} * 6.8947572931683613e3",
+      "FromBaseToUnitFunc": "{x} / 6.8947572931683613e3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "reyn" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundForceSecondPerSquareInch",
+      "PluralName": "PoundsForceSecondPerSquareInch",
+      "FromUnitToBaseFunc": "{x} * 6.8947572931683613e3",
+      "FromBaseToUnitFunc": "{x} / 6.8947572931683613e3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lbf·s/in²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundForceSecondPerSquareFoot",
+      "PluralName": "PoundsForceSecondPerSquareFoot",
+      "FromUnitToBaseFunc": "{x} * 4.7880258980335843e1",
+      "FromBaseToUnitFunc": "{x} / 4.7880258980335843e1",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lbf·s/ft²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundPerFootSecond",
+      "PluralName": "PoundsPerFootSecond",
+      "FromUnitToBaseFunc": "{x} * 1.4881639",
+      "FromBaseToUnitFunc": "{x} / 1.4881639",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lb/ft·s" ]
         }
       ]
     }

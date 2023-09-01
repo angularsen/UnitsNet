@@ -4,16 +4,22 @@
 
 using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     public class DynamicViscosityTests : DynamicViscosityTestsBase
     {
+        protected override bool SupportsSIUnitSystem => false;
+
         protected override double CentipoiseInOneNewtonSecondPerMeterSquared => 1e3;
         protected override double MicropascalSecondsInOneNewtonSecondPerMeterSquared => 1e6;
         protected override double MillipascalSecondsInOneNewtonSecondPerMeterSquared => 1e3;
         protected override double NewtonSecondsPerMeterSquaredInOneNewtonSecondPerMeterSquared => 1;
         protected override double PascalSecondsInOneNewtonSecondPerMeterSquared => 1;
         protected override double PoiseInOneNewtonSecondPerMeterSquared => 10;
+        protected override double PoundsPerFootSecondInOneNewtonSecondPerMeterSquared => 0.671968994813;
+        protected override double ReynsInOneNewtonSecondPerMeterSquared => 1.4503773773020922e-4;
+        protected override double PoundsForceSecondPerSquareInchInOneNewtonSecondPerMeterSquared => 1.4503773773020922e-4;
+        protected override double PoundsForceSecondPerSquareFootInOneNewtonSecondPerMeterSquared => 2.0885434233150127e-2;
 
         [Fact]
         public static void DynamicViscosityDividedByDensityEqualsKinematicViscosity()

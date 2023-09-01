@@ -21,40 +21,98 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 
+using UnitsNet.Units;
 using Xunit;
-using System;
 
 namespace UnitsNet.Tests.CustomCode
 {
     public class MolarityTests : MolarityTestsBase
     {
-        protected override double CentimolesPerLiterInOneMolesPerCubicMeter => 1e-1;
-        protected override double DecimolesPerLiterInOneMolesPerCubicMeter => 1e-2;
-        protected override double MicromolesPerLiterInOneMolesPerCubicMeter => 1e3;
-        protected override double MillimolesPerLiterInOneMolesPerCubicMeter => 1;
-        protected override double MolesPerLiterInOneMolesPerCubicMeter => 1e-3;
-        protected override double NanomolesPerLiterInOneMolesPerCubicMeter => 1e6;
-        protected override double PicomolesPerLiterInOneMolesPerCubicMeter => 1e9;
-        protected override double MolesPerCubicMeterInOneMolesPerCubicMeter => 1;
+        protected override bool SupportsSIUnitSystem => true;
 
-        [Fact]
-        public void ExpectDensityConvertedToMolarityCorrectly()
+        #region Unit Conversion Coefficients
+
+        protected override double CentimolesPerLiterInOneMolePerCubicMeter => 1e-1;
+        protected override double DecimolesPerLiterInOneMolePerCubicMeter => 1e-2;
+        protected override double FemtomolesPerLiterInOneMolePerCubicMeter => 1e12;
+        protected override double MolesPerLiterInOneMolePerCubicMeter => 1e-3;
+        protected override double MillimolesPerLiterInOneMolePerCubicMeter => 1;
+        protected override double MolesPerCubicMeterInOneMolePerCubicMeter => 1;
+        protected override double MicromolesPerLiterInOneMolePerCubicMeter => 1e3;
+        protected override double NanomolesPerLiterInOneMolePerCubicMeter => 1e6;
+        protected override double PicomolesPerLiterInOneMolePerCubicMeter => 1e9;
+        protected override double KilomolesPerCubicMeterInOneMolePerCubicMeter => 1e-3;
+        protected override double PoundMolesPerCubicFootInOneMolePerCubicMeter => 6.242796e-5;
+
+        #endregion
+
+        [Theory]
+        [InlineData(0.5, MolarityUnit.MolePerLiter,
+                    KnownQuantities.DensityOfEthanolInKgPerCubicMeter, DensityUnit.KilogramPerCubicMeter,
+                    KnownQuantities.MolarMassOfEthanolInGramsPerMole, MolarMassUnit.GramPerMole,
+                    29.19419518377693, VolumeConcentrationUnit.MillilitersPerLiter)]    // 0.5M ethanol
+        public void VolumeConcentrationFromComponentDensityAndMolarity(
+            double molarityValue, MolarityUnit molarityUnit,
+            double componentDensityValue, DensityUnit componentDensityUnit,
+            double componentMolarMassValue, MolarMassUnit compontMolarMassUnit,
+            double expectedVolumeConcValue, VolumeConcentrationUnit expectedVolumeConcUnit, double tolerence = 1e-5)
         {
-            var density = Density.FromKilogramsPerCubicMeter(60.02);
-            var mw = Mass.FromGrams(58.443);
-            var molarity = (density / mw).MolesPerCubicMeter;
-            AssertEx.EqualTolerance(1026.98355, molarity, MolesPerCubicMeterTolerance);
+            var molarity = new Molarity(molarityValue, molarityUnit);
+            var componentDensity = new Density(componentDensityValue, componentDensityUnit);
+            var componentMolarMass = new MolarMass(componentMolarMassValue, compontMolarMassUnit);
+
+            VolumeConcentration volumeConcentration = molarity.ToVolumeConcentration(componentDensity, componentMolarMass);
+
+            AssertEx.EqualTolerance(expectedVolumeConcValue, volumeConcentration.As(expectedVolumeConcUnit), tolerence);
+        }
+
+        [Theory]
+        [InlineData(1.02698355, MolarityUnit.MolePerLiter,
+                    58.443, MolarMassUnit.GramPerMole,
+                    60.02, MassConcentrationUnit.KilogramPerCubicMeter)]    // test from JonathanDavies626
+        [InlineData(0.1142805, MolarityUnit.MolePerLiter,
+                    KnownQuantities.MolarMassHClInGramsPerMole, MolarMassUnit.GramPerMole,
+                    4.16667, MassConcentrationUnit.KilogramPerCubicMeter)]    // HCL solution
+        public void ExpectMolarityConvertedToMassConcentrationCorrectly(
+            double molarityValue, MolarityUnit molarityUnit,
+            double componentMolarMassValue, MolarMassUnit compontMolarMassUnit,
+            double expectedMassConcValue, MassConcentrationUnit expectedMassConcUnit, double tolerence = 1e-5)
+        {
+            var molarity = new Molarity(molarityValue, molarityUnit);
+            var componentMolarMass = new MolarMass(componentMolarMassValue, compontMolarMassUnit);
+
+            MassConcentration concentration = molarity.ToMassConcentration(componentMolarMass);  // molarity * molarMass
+
+            AssertEx.EqualTolerance(expectedMassConcValue, concentration.As(expectedMassConcUnit), tolerence);
+        }
+
+        [Theory]
+        [InlineData(0.1142805, MolarityUnit.MolePerLiter,
+                    10, VolumeConcentrationUnit.Percent,
+                    0.01142805, MolarityUnit.MolePerLiter)]    // 10 % dilution of HCL
+        public void MolarityFromDilutedSolution(
+            double startingMolarityValue, MolarityUnit startingMolarityUnit,
+            double newConcentration, VolumeConcentrationUnit newConcentrationUnit,
+            double expectedMolarityValue, MolarityUnit expectedMolarityUnit, double tolerence = 1e-5)
+        {
+            var startingMolarity = new Molarity(startingMolarityValue, startingMolarityUnit);
+            var newVolumeConc = new VolumeConcentration(newConcentration, newConcentrationUnit);
+
+            Molarity dilutedMolarity = startingMolarity * newVolumeConc;
+
+            AssertEx.EqualTolerance(expectedMolarityValue, dilutedMolarity.As(expectedMolarityUnit), tolerence);
         }
 
         [Fact]
-        public void ExpectMolarityConvertedToDensityCorrectly()
+        public void OneMolarFromStringParsedCorrectly()
         {
-            var molarity = Molarity.FromMolesPerLiter(1.02698355);
-            var mw = Mass.FromGrams(58.443);
-            var density = molarity.ToDensity(mw).KilogramsPerCubicMeter;
-            AssertEx.EqualTolerance(60.02, density, MolesPerCubicMeterTolerance);
+            Assert.Equal(Molarity.Parse("1M"), Molarity.Parse("1 mol/L"));
         }
 
+        [Fact]
+        public void OneMilliMolarFromStringParsedCorrectly()
+        {
+            Assert.Equal(1, Molarity.Parse("1000 mM").MolesPerLiter);
+        }
     }
-
 }

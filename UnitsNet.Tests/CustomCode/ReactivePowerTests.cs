@@ -27,6 +27,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ReactivePowerTests : ReactivePowerTestsBase
     {
+        protected override bool SupportsSIUnitSystem => false;
         protected override double VoltamperesReactiveInOneVoltampereReactive => 1;
 
         protected override double KilovoltamperesReactiveInOneVoltampereReactive => 1E-3;

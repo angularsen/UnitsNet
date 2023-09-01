@@ -1,7 +1,7 @@
-﻿{
+{
   "Name": "Frequency",
   "BaseUnit": "Hertz",
-  "XmlDoc": "The number of occurrences of a repeating event per unit time.",
+  "XmlDocSummary": "The number of occurrences of a repeating event per unit time.",
   "BaseDimensions": {
     "T": -1
   },
@@ -9,34 +9,42 @@
     {
       "SingularName": "Hertz",
       "PluralName": "Hertz",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Kilo", "Mega", "Giga", "Tera" ],
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Prefixes": [ "Micro", "Milli", "Kilo", "Mega", "Giga", "Tera" ],
       "Localization": [
         {
           "Culture": "en-US",
           "Abbreviations": [ "Hz" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "Гц" ]
         }
       ]
     },
     {
       "SingularName": "RadianPerSecond",
       "PluralName": "RadiansPerSecond",
-      "FromUnitToBaseFunc": "x/6.2831853072",
-      "FromBaseToUnitFunc": "x*6.2831853072",
+      "FromUnitToBaseFunc": "{x} / 6.2831853072",
+      "FromBaseToUnitFunc": "{x} * 6.2831853072",
       "OmitExtensionMethod": true,
       "Localization": [
         {
           "Culture": "en-US",
           "Abbreviations": [ "rad/s" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "рад/с" ]
         }
       ]
     },
     {
       "SingularName": "CyclePerMinute",
       "PluralName": "CyclesPerMinute",
-      "FromUnitToBaseFunc": "x/60",
-      "FromBaseToUnitFunc": "x*60",
+      "FromUnitToBaseFunc": "{x} / 60",
+      "FromBaseToUnitFunc": "{x} * 60",
       "Localization": [
         {
           "Culture": "en-US",
@@ -47,8 +55,8 @@
     {
       "SingularName": "CyclePerHour",
       "PluralName": "CyclesPerHour",
-      "FromUnitToBaseFunc": "x/3600",
-      "FromBaseToUnitFunc": "x*3600",
+      "FromUnitToBaseFunc": "{x} / 3600",
+      "FromBaseToUnitFunc": "{x} * 3600",
       "Localization": [
         {
           "Culture": "en-US",
@@ -59,12 +67,40 @@
     {
       "SingularName": "BeatPerMinute",
       "PluralName": "BeatsPerMinute",
-      "FromUnitToBaseFunc": "x/60",
-      "FromBaseToUnitFunc": "x*60",
+      "FromUnitToBaseFunc": "{x} / 60",
+      "FromBaseToUnitFunc": "{x} * 60",
       "Localization": [
         {
           "Culture": "en-US",
           "Abbreviations": [ "bpm" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PerSecond",
+      "PluralName": "PerSecond",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "s⁻¹" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "с⁻¹" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "BUnit",
+      "PluralName": "BUnits",
+      "FromUnitToBaseFunc": "Math.Sqrt({x} * 1e3)",
+      "FromBaseToUnitFunc": "{x} * {x} * 1e-3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "B Units" ]
         }
       ]
     }

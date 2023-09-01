@@ -22,11 +22,25 @@
 
 
 using System;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
     public class AreaDensityTests : AreaDensityTestsBase
     {
+        protected override bool SupportsSIUnitSystem => true;
+
+        protected override double GramsPerSquareMeterInOneKilogramPerSquareMeter => 1000;
+
         protected override double KilogramsPerSquareMeterInOneKilogramPerSquareMeter => 1;
+
+        protected override double MilligramsPerSquareMeterInOneKilogramPerSquareMeter => 1000000;
+
+        [Fact]
+        public void AreaDensityTimesAreaEqualsMass()
+        {
+            Mass massOfOneA4Paper = AreaDensity.FromGramsPerSquareMeter(120) * Area.FromSquareCentimeters(625);
+            Assert.Equal(7.5, massOfOneA4Paper.Grams);
+        }
     }
 }

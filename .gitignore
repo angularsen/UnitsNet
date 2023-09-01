@@ -258,3 +258,4 @@ Artifacts
 
 # Build server tooling
 /secure-file
+/.tools/

@@ -1,7 +1,7 @@
-﻿{
+{
   "Name": "AmountOfSubstance",
   "BaseUnit": "Mole",
-  "XmlDoc": "Mole is the amount of substance containing Avagadro's Number (6.02 x 10 ^ 23) of real particles such as molecules,atoms, ions or radicals.",
+  "XmlDocSummary": "Mole is the amount of substance containing Avagadro's Number (6.02 x 10 ^ 23) of real particles such as molecules,atoms, ions or radicals.",
   "BaseDimensions": {
     "N": 1
   },
@@ -9,12 +9,12 @@
     {
       "SingularName": "Mole",
       "PluralName": "Moles",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "BaseUnits": {
         "N": "Mole"
       },
-      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo", "Mega"],
+      "Prefixes": [ "Femto", "Pico", "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo", "Mega"],
       "Localization": [
         {
           "Culture": "en-US",
@@ -28,8 +28,8 @@
       "BaseUnits": {
         "N": "PoundMole"
       },
-      "FromUnitToBaseFunc": "x*453.59237",
-      "FromBaseToUnitFunc": "x/453.59237",
+      "FromUnitToBaseFunc": "{x} * 453.59237",
+      "FromBaseToUnitFunc": "{x} / 453.59237",
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
       "Localization": [
         {

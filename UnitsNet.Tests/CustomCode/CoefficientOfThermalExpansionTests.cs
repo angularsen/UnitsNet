@@ -21,17 +21,50 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-
-using System;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
     public class CoefficientOfThermalExpansionTests : CoefficientOfThermalExpansionTestsBase
     {
-        protected override double InverseDegreeCelsiusInOneInverseKelvin => 1.0;
+        protected override bool SupportsSIUnitSystem => true;
 
-        protected override double InverseDegreeFahrenheitInOneInverseKelvin => 1.8;
+        protected override double InverseDegreeCelsiusInOnePerKelvin => 1.0;
 
-        protected override double InverseKelvinInOneInverseKelvin => 1.0;
+        protected override double InverseDegreeFahrenheitInOnePerKelvin => 0.5555555555555556;
+
+        protected override double InverseKelvinInOnePerKelvin => 1.0;
+
+        protected override double PerDegreeCelsiusInOnePerKelvin => 1.0;
+
+        protected override double PerDegreeFahrenheitInOnePerKelvin => 0.5555555555555556;
+
+        protected override double PerKelvinInOnePerKelvin => 1.0;
+
+        protected override double PpmPerDegreeCelsiusInOnePerKelvin => 1e6;
+
+        protected override double PpmPerDegreeFahrenheitInOnePerKelvin => 5.5555555555555556e5;
+
+        protected override double PpmPerKelvinInOnePerKelvin => 1e6;
+
+        [Fact]
+        public void CoefficientOfThermalExpansionTimesTemperatureDelta()
+        {
+            double temperatureDeltaDegC = 2.0;
+            double ctePerDegC = 0.001;
+            CoefficientOfThermalExpansion cte = CoefficientOfThermalExpansion.FromInverseDegreeCelsius(ctePerDegC);
+            TemperatureDelta dT = TemperatureDelta.FromDegreesCelsius(temperatureDeltaDegC);
+            AssertEx.EqualTolerance(cte * dT, ctePerDegC * temperatureDeltaDegC, 1e-10);
+        }
+
+        [Fact]
+        public void TemperatureDeltaTimesCoefficientOfThermalExpansion()
+        {
+            double temperatureDeltaDegC = 2.0;
+            double ctePerDegC = 0.001;
+            CoefficientOfThermalExpansion cte = CoefficientOfThermalExpansion.FromInverseDegreeCelsius(ctePerDegC);
+            TemperatureDelta dT = TemperatureDelta.FromDegreesCelsius(temperatureDeltaDegC);
+            AssertEx.EqualTolerance(dT * cte, temperatureDeltaDegC * ctePerDegC, 1e-10);
+        }
     }
 }

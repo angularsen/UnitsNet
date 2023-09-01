@@ -1,0 +1,93 @@
+{
+  "Name": "Jerk",
+  "BaseUnit": "MeterPerSecondCubed",
+  "XmlDoc": "Jerk or Jolt, in physics, is the rate at which the acceleration of an object changes over time. The SI unit for jerk is the Meter per second cubed (m/s³). Jerks are vector quantities (they have magnitude and direction) and add according to the parallelogram law.",
+  "BaseDimensions": {
+    "L": 1,
+    "T": -3
+  },
+  "Units": [
+    {
+      "SingularName": "MeterPerSecondCubed",
+      "PluralName": "MetersPerSecondCubed",
+      "BaseUnits": {
+        "L": "Meter",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m/s³" ]
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": [ "м/с³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "InchPerSecondCubed",
+      "PluralName": "InchesPerSecondCubed",
+      "BaseUnits": {
+        "L": "Inch",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "{x} * 0.0254",
+      "FromBaseToUnitFunc": "{x} / 0.0254",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "in/s³" ]
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": [ "дюйм/с³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "FootPerSecondCubed",
+      "PluralName": "FeetPerSecondCubed",
+      "BaseUnits": {
+        "L": "Foot",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "{x} * 0.304800",
+      "FromBaseToUnitFunc": "{x} / 0.304800",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ft/s³" ]
+        },
+		{
+          "Culture": "ru-RU",
+          "Abbreviations": [ "фут/с³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "StandardGravitiesPerSecond",
+      "PluralName": "StandardGravitiesPerSecond",
+      "BaseUnits": {
+        "L": "Meter",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "{x} * 9.80665",
+      "FromBaseToUnitFunc": "{x} / 9.80665",
+      "Prefixes": [ "Milli"],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g/s" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "g/s" ]
+        }
+      ]
+    }
+  ]
+}

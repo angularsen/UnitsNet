@@ -27,8 +27,47 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class RotationalStiffnessTests : RotationalStiffnessTestsBase
     {
-        protected override double NewtonMetersPerRadianInOneNewtonMeterPerRadian => 1;
-        protected override double MeganewtonMetersPerRadianInOneNewtonMeterPerRadian => 1e-6;
-        protected override double KilonewtonMetersPerRadianInOneNewtonMeterPerRadian => 1e-3;
+        protected override bool SupportsSIUnitSystem => false;
+        protected override double KilopoundForceFeetPerDegreesInOneNewtonMeterPerRadian     => 0.0128729e-3;
+        protected override double PoundForceFeetPerRadianInOneNewtonMeterPerRadian          => 7.375621e-1;
+        protected override double PoundForceFeetPerDegreesInOneNewtonMeterPerRadian         => 1.287290e-2;
+
+        // Newton meters per radian
+        protected override double MeganewtonMetersPerRadianInOneNewtonMeterPerRadian        => 1e-6;
+        protected override double KilonewtonMetersPerRadianInOneNewtonMeterPerRadian        => 1e-3;
+        protected override double NewtonMetersPerRadianInOneNewtonMeterPerRadian            => 1;
+
+        // Newton millimeters per radian
+        protected override double MeganewtonMillimetersPerRadianInOneNewtonMeterPerRadian    => 1e-3;
+        protected override double KilonewtonMillimetersPerRadianInOneNewtonMeterPerRadian    => 1;
+        protected override double DecanewtonMillimetersPerRadianInOneNewtonMeterPerRadian    => 1e2;
+        protected override double NewtonMillimetersPerRadianInOneNewtonMeterPerRadian        => 1e3;
+        protected override double DecinewtonMillimetersPerRadianInOneNewtonMeterPerRadian    => 1e4;
+        protected override double CentinewtonMillimetersPerRadianInOneNewtonMeterPerRadian   => 1e5;
+        protected override double MillinewtonMillimetersPerRadianInOneNewtonMeterPerRadian   => 1e6;
+        protected override double MicronewtonMillimetersPerRadianInOneNewtonMeterPerRadian   => 1e9;
+        protected override double NanonewtonMillimetersPerRadianInOneNewtonMeterPerRadian    => 1e12;
+
+        // Newton millimeters per degree
+        protected override double MeganewtonMillimetersPerDegreeInOneNewtonMeterPerRadian   => 1.745329e-5;
+        protected override double KilonewtonMillimetersPerDegreeInOneNewtonMeterPerRadian   => 1.745329e-2;
+        protected override double DecanewtonMillimetersPerDegreeInOneNewtonMeterPerRadian   => 1.745329;
+        protected override double NewtonMillimetersPerDegreeInOneNewtonMeterPerRadian       => 1.745329e1;
+        protected override double DecinewtonMillimetersPerDegreeInOneNewtonMeterPerRadian   => 1.745329e2;
+        protected override double CentinewtonMillimetersPerDegreeInOneNewtonMeterPerRadian  => 1.745329e3;
+        protected override double MillinewtonMillimetersPerDegreeInOneNewtonMeterPerRadian  => 1.745329e4;
+        protected override double MicronewtonMillimetersPerDegreeInOneNewtonMeterPerRadian  => 1.745329e7;
+        protected override double NanonewtonMillimetersPerDegreeInOneNewtonMeterPerRadian   => 1.745329e10;
+
+        // Newton meters per degree
+        protected override double MeganewtonMetersPerDegreeInOneNewtonMeterPerRadian        => 1.745329e-8;
+        protected override double KilonewtonMetersPerDegreeInOneNewtonMeterPerRadian        => 1.745329e-5;
+        protected override double DecanewtonMetersPerDegreeInOneNewtonMeterPerRadian        => 1.745329e-3;
+        protected override double NewtonMetersPerDegreeInOneNewtonMeterPerRadian            => 1.745329e-2;
+        protected override double DecinewtonMetersPerDegreeInOneNewtonMeterPerRadian        => 1.745329e-1;
+        protected override double CentinewtonMetersPerDegreeInOneNewtonMeterPerRadian       => 1.745329;
+        protected override double MillinewtonMetersPerDegreeInOneNewtonMeterPerRadian       => 1.745329e1;
+        protected override double MicronewtonMetersPerDegreeInOneNewtonMeterPerRadian       => 1.745329e4;
+        protected override double NanonewtonMetersPerDegreeInOneNewtonMeterPerRadian        => 1.745329e7;
     }
 }

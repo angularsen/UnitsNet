@@ -46,20 +46,42 @@
   }
 
 # Import functions: Get-NewProjectVersion, Set-ProjectVersion, Set-AssemblyInfoVersion, Invoke-CommitAndTagVersion
+Remove-Module set-version -ErrorAction Ignore
 Import-Module "$PSScriptRoot\set-version.psm1"
 
 $root = Resolve-Path "$PSScriptRoot\.."
 $paramSet = $PsCmdlet.ParameterSetName
 $projFile = "$root\UnitsNet\UnitsNet.csproj"
-$winrtAssemblyInfoFile = "$root\UnitsNet.WindowsRuntimeComponent\Properties\AssemblyInfo.cs"
-$winrtNuspecFile = "$root\UnitsNet.WindowsRuntimeComponent\UnitsNet.WindowsRuntimeComponent.nuspec"
-$versionFiles = @($projFile, $winrtAssemblyInfoFile, $winrtNuspecFile)
-$projectName = "UnitsNet"
+$numberExtensionsProjFile = "$root\UnitsNet.NumberExtensions\UnitsNet.NumberExtensions.csproj"
+$nanoFrameworkNuspecGeneratorFile = "$root\CodeGen\Generators\NanoFrameworkGen\NuspecGenerator.cs"
+$nanoFrameworkAssemblyInfoFile = "$root\UnitsNet.NanoFramework\GeneratedCode\Properties\AssemblyInfo.cs"
 
 # Use UnitsNet.Common.props version as base if bumping major/minor/patch
 $newVersion = Get-NewProjectVersion $projFile $paramSet $setVersion $bumpVersion
 
+# Reset and stash any other local changes.
+$didStash = Invoke-StashPush
+
+# Update project files
 Set-ProjectVersion $projFile $newVersion
-Set-AssemblyInfoVersion $winrtAssemblyInfoFile $newVersion
-Set-NuspecVersion $winrtNuspecFile $newVersion
-Invoke-CommitAndTagVersion $projectName $versionFiles $newVersion
+Set-ProjectVersion $numberExtensionsProjFile $newVersion
+
+# Update AssemblyInfo.cs file for .NET nanoFramework
+Set-AssemblyInfoVersion $nanoFrameworkAssemblyInfoFile $newVersion
+
+# Update codegen and .nuspec files for nanoFramework
+Set-NuspecVersion $nanoFrameworkNuspecGeneratorFile $newVersion
+Get-ChildItem -Path "$root\UnitsNet.NanoFramework\GeneratedCode" -Include '*.nuspec' -Recurse |
+    Foreach-object {
+        Set-NuspecVersion $_.FullName $newVersion
+        $versionFiles += $_.FullName
+    }
+
+# Git commit and tag
+Invoke-CommitVersionBump @("UnitsNet") $newVersion
+Invoke-TagVersionBump "UnitsNet" $newVersion
+
+# Restore any local changes.
+if ($didStash) {
+  Invoke-StashPop
+}

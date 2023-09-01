@@ -3,10 +3,16 @@
 
 using System;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     public class FrequencyTests : FrequencyTestsBase
     {
+        protected override bool SupportsSIUnitSystem => false;
+        
+        protected override double MicrohertzInOneHertz => 1e6;
+        
+        protected override double MillihertzInOneHertz => 1e3;
+        
         protected override double HertzInOneHertz => 1;
 
         protected override double KilohertzInOneHertz => 1e-3;
@@ -17,12 +23,16 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double TerahertzInOneHertz => 1e-12;
 
+        protected override double PerSecondInOneHertz => 1;
+
         protected override double CyclesPerHourInOneHertz => 3600;
 
         protected override double CyclesPerMinuteInOneHertz => 60;
 
-        protected override double RadiansPerSecondInOneHertz => 2*Math.PI;
+        protected override double RadiansPerSecondInOneHertz => 2 * Math.PI;
 
         protected override double BeatsPerMinuteInOneHertz => 60;
+
+        protected override double BUnitsInOneHertz => 0.001;
     }
 }

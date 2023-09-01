@@ -1,0 +1,43 @@
+name: 'Run benchmark'
+inputs:
+  framework:
+    description: 'The runtime version to use (e.g. net5.0)'
+    required: false
+    default: 'net5.0'
+  runtimes:
+    description: 'The runtime version to use (e.g. netcoreapp31, net5.0)'
+    required: false
+    default: 'net5.0'
+  output-folder:
+    description: 'The output folder for the benchmark (a results folder is created inside)'
+    required: false
+    default: 'Artifacts/Benchmark'
+  exporters:
+    description: 'The exporter(s) used for this run (GitHub/StackOverflow/RPlot/CSV/JSON/HTML/XML)'
+    required: false
+    default: fulljson rplot
+  filter:
+    description: 'An optional class filter to apply'
+    required: false
+    default: '*'
+  categories:
+    description: 'An optional categories filter to apply'
+    required: false
+    default: ''
+  execution-options:
+    description: 'Any additional parameters passed to the benchmark'
+    required: false
+    default: ''
+runs:
+  using: "composite"
+  steps:
+    - name: Generating benchmark results
+      run: >
+        dotnet run --project UnitsNet.Benchmark -c Release 
+        --framework ${{ inputs.framework }} 
+        --runtimes ${{ inputs.runtimes }} 
+        --artifacts '${{ inputs.output-folder }}' 
+        --exporters ${{ inputs.exporters }} 
+        --filter '${{ inputs.filter }}' 
+        ${{ inputs.categories }} ${{ inputs.execution-options }}
+      shell: bash

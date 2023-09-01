@@ -4,10 +4,12 @@
 
 using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     public class BrakeSpecificFuelConsumptionTests : BrakeSpecificFuelConsumptionTestsBase
     {
+        protected override bool SupportsSIUnitSystem => false;
+
         protected override double GramsPerKiloWattHourInOneKilogramPerJoule => 3600000000;
 
         protected override double KilogramsPerJouleInOneKilogramPerJoule => 1.0;

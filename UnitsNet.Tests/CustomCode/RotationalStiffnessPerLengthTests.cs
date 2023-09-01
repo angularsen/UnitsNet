@@ -27,8 +27,11 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class RotationalStiffnessPerLengthTests : RotationalStiffnessPerLengthTestsBase
     {
+        protected override bool SupportsSIUnitSystem => false;
         protected override double KilonewtonMetersPerRadianPerMeterInOneNewtonMeterPerRadianPerMeter => 1E-3;
+        protected override double KilopoundForceFeetPerDegreesPerFeetInOneNewtonMeterPerRadianPerMeter => 3.92365625e-6;
         protected override double MeganewtonMetersPerRadianPerMeterInOneNewtonMeterPerRadianPerMeter => 1E-6;
         protected override double NewtonMetersPerRadianPerMeterInOneNewtonMeterPerRadianPerMeter => 1;
+        protected override double PoundForceFeetPerDegreesPerFeetInOneNewtonMeterPerRadianPerMeter => 3.92365625e-3;
     }
 }

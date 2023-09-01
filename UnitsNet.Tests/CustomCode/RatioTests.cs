@@ -1,10 +1,11 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     public class RatioTests : RatioTestsBase
     {
+        protected override bool SupportsSIUnitSystem => false;
         protected override double DecimalFractionsInOneDecimalFraction => 1;
 
         protected override double PartsPerBillionInOneDecimalFraction => 1e9;

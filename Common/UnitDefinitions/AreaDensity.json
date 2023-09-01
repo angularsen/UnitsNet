@@ -1,7 +1,7 @@
-﻿{
+{
   "Name": "AreaDensity",
   "BaseUnit": "KilogramPerSquareMeter",
-  "XmlDoc": "The area density of a two-dimensional object is calculated as the mass per unit area.",
+  "XmlDocSummary": "The area density of a two-dimensional object is calculated as the mass per unit area. For paper this is also called grammage.",
   "BaseDimensions": {
     "L": -2,
     "M": 1
@@ -14,12 +14,46 @@
         "L": "Meter",
         "M": "Kilogram"
       },
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Localization": [
         {
           "Culture": "en-US",
           "Abbreviations": [ "kg/m²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GramPerSquareMeter",
+      "PluralName": "GramsPerSquareMeter",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Gram"
+      },
+      "FromUnitToBaseFunc": "{x} / 1000",
+      "FromBaseToUnitFunc": "{x} * 1000",
+      "XmlDocSummary": "Also known as grammage for paper industry. In fiber industry used with abbreviation 'gsm'.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Grammage",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g/m²", "gsm" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MilligramPerSquareMeter",
+      "PluralName": "MilligramsPerSquareMeter",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Milligram"
+      },
+      "FromUnitToBaseFunc": "{x} / 1000000",
+      "FromBaseToUnitFunc": "{x} * 1000000",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mg/m²" ]
         }
       ]
     }

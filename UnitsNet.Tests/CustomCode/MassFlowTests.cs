@@ -4,11 +4,12 @@
 using System;
 using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     public class MassFlowTests : MassFlowTestsBase
     {
-        /// <inheritdoc />
+        protected override bool SupportsSIUnitSystem => false;
+
         protected override double GramsPerSecondInOneGramPerSecond => 1;
 
         protected override double DecagramsPerSecondInOneGramPerSecond => 1E-1;
@@ -41,7 +42,11 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double PoundsPerMinuteInOneGramPerSecond => 0.132277;
 
+        protected override double PoundsPerSecondInOneGramPerSecond => 2.2046226218487758e-3;
+
         protected override double MegapoundsPerMinuteInOneGramPerSecond => 0.132277e-6;
+
+        protected override double MegapoundsPerSecondInOneGramPerSecond => 2.2046226218487758e-9;
 
         protected override double KilogramsPerMinuteInOneGramPerSecond => 0.06;
 
@@ -70,7 +75,6 @@ namespace UnitsNet.Tests.CustomCode
         protected override double PoundsPerDayInOneGramPerSecond => 1.9047936e2;
 
         protected override double GramsPerHourInOneGramPerSecond => 3600;
-
 
         [Fact]
         public void DurationTimesMassFlowEqualsMass()
@@ -104,7 +108,7 @@ namespace UnitsNet.Tests.CustomCode
         public void MassFlowDividedByBrakeSpecificFuelConsumptionEqualsPower()
         {
             Power power = MassFlow.FromTonnesPerDay(20) / BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(180.0);
-            Assert.Equal(20.0 / 24.0 * 1e6 / 180.0, power.Kilowatts);
+            AssertEx.EqualTolerance(20.0m / 24.0m * 1e6m / 180.0m, power.Kilowatts, 1E-11m);
         }
 
         [Fact]

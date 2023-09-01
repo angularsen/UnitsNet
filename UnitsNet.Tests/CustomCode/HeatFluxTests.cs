@@ -28,6 +28,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class HeatFluxTests : HeatFluxTestsBase
     {
+        protected override bool SupportsSIUnitSystem => true;
         protected override double BtusPerHourSquareFootInOneWattPerSquareMeter => 3.16998331e-1;
         protected override double BtusPerMinuteSquareFootInOneWattPerSquareMeter => 5.28330551e-3;
         protected override double BtusPerSecondSquareFootInOneWattPerSquareMeter => 8.80550918e-5;

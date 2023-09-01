@@ -1,44 +1,71 @@
-﻿using System;
-using UnitsNet.Units;
+﻿using UnitsNet.Units;
 
 namespace UnitsNet
 {
     public partial struct Molarity
     {
         /// <summary>
-        ///     Construct from <see cref="Density"/> divided by <see cref="Mass"/>.
+        ///     Get a <see cref="MassConcentration"/> from this <see cref="Molarity"/>.
         /// </summary>
-        /// <seealso cref="Density.op_Division(UnitsNet.Density,UnitsNet.Mass)"/>
-        [Obsolete("This constructor will be removed in favor of operator overload Density.op_Division(UnitsNet.Density,UnitsNet.Mass).")]
-        public Molarity(Density density, Mass molecularWeight)
-            : this()
+        /// <param name="molecularWeight"></param>
+        public MassConcentration ToMassConcentration(MolarMass molecularWeight)
         {
-            _value = density.KilogramsPerCubicMeter / molecularWeight.Kilograms;
-            _unit = MolarityUnit.MolesPerCubicMeter;
+            return this * molecularWeight;
         }
 
         /// <summary>
-        ///     Get a <see cref="Density"/> from this <see cref="Molarity"/>.
+        ///     Get a <see cref="MassConcentration"/> from this <see cref="Molarity"/>.
         /// </summary>
-        /// <param name="molecularWeight"></param>
-        public Density ToDensity(Mass molecularWeight)
+        /// <param name="componentDensity"></param>
+        /// <param name="componentMass"></param>
+        public VolumeConcentration ToVolumeConcentration(Density componentDensity, MolarMass componentMass)
         {
-            return Density.FromKilogramsPerCubicMeter(MolesPerCubicMeter * molecularWeight.Kilograms);
+            return this * componentMass / componentDensity;
         }
 
         #region Static Methods
 
         /// <summary>
-        ///     Get <see cref="Molarity"/> from <see cref="Density"/>.
+        ///  Get <see cref="Molarity"/> from <see cref="VolumeConcentration"/> and known component <see cref="Density"/> and <see cref="MolarMass"/>.
         /// </summary>
-        /// <param name="density"></param>
-        /// <param name="molecularWeight"></param>
-        [Obsolete("Use Density / Mass operator overload instead.")]
-        public static Molarity FromDensity(Density density, Mass molecularWeight)
+        /// <param name="volumeConcentration"></param>
+        /// <param name="componentDensity"></param>
+        /// <param name="componentMass"></param>
+        /// <returns></returns>
+        public static Molarity FromVolumeConcentration(VolumeConcentration volumeConcentration, Density componentDensity, MolarMass componentMass)
         {
-            return density / molecularWeight;
+            return volumeConcentration * componentDensity / componentMass;
         }
 
         #endregion
+
+        #region Operators
+
+        /// <summary>Get <see cref="MassConcentration" /> from <see cref="Molarity" /> times the <see cref="MolarMass" />.</summary>
+        public static MassConcentration operator *(Molarity molarity, MolarMass componentMass)
+        {
+            return MassConcentration.FromGramsPerCubicMeter(molarity.MolesPerCubicMeter * componentMass.GramsPerMole);
+        }
+
+        /// <summary>Get <see cref="MassConcentration" /> from <see cref="MolarMass" /> times the <see cref="Molarity" />.</summary>
+        public static MassConcentration operator *(MolarMass componentMass, Molarity molarity)
+        {
+            return MassConcentration.FromGramsPerCubicMeter(molarity.MolesPerCubicMeter * componentMass.GramsPerMole);
+        }
+
+        /// <summary>Get <see cref="Molarity" /> from diluting the current <see cref="Molarity" /> by the given <see cref="VolumeConcentration" />.</summary>
+        public static Molarity operator *(Molarity molarity, VolumeConcentration volumeConcentration)
+        {
+            return new Molarity(molarity.MolesPerCubicMeter * volumeConcentration.DecimalFractions, MolarityUnit.MolePerCubicMeter);
+        }
+
+        /// <summary>Get <see cref="Molarity" /> from diluting the current <see cref="Molarity" /> by the given <see cref="VolumeConcentration" />.</summary>
+        public static Molarity operator *(VolumeConcentration volumeConcentration, Molarity molarity)
+        {
+            return new Molarity(molarity.MolesPerCubicMeter * volumeConcentration.DecimalFractions, MolarityUnit.MolePerCubicMeter);
+        }
+
+        #endregion
+
     }
 }

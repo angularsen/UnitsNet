@@ -5,10 +5,11 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     public class TemperatureTests : TemperatureTestsBase
     {
+        protected override bool SupportsSIUnitSystem => true;
         protected override double DegreesCelsiusInOneKelvin => -272.15;
 
         protected override double DegreesDelisleInOneKelvin => 558.2249999999999;
@@ -24,6 +25,10 @@ namespace UnitsNet.Tests.CustomCode
         protected override double DegreesRoemerInOneKelvin => -135.378750000;
 
         protected override double KelvinsInOneKelvin => 1;
+
+        protected override double MillidegreesCelsiusInOneKelvin => -272150;
+
+        protected override double SolarTemperaturesInOneKelvin => 1.73070266528210E-04;
 
         public static IEnumerable<object[]> DividedByTemperatureDeltaEqualsTemperatureData { get; } =
             new List<object[]>

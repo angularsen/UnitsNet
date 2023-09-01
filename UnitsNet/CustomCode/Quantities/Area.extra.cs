@@ -24,6 +24,18 @@ namespace UnitsNet
 
         #endregion
 
+        /// <summary>
+        /// Calculates the inverse of this quantity.
+        /// </summary>
+        /// <returns>The corresponding inverse quantity, <see cref="ReciprocalArea"/>.</returns>
+        public ReciprocalArea Inverse()
+        {
+            if (SquareMeters == 0.0)
+                return new ReciprocalArea(0.0, UnitsNet.Units.ReciprocalAreaUnit.InverseSquareMeter);
+
+            return new ReciprocalArea(1 / SquareMeters, UnitsNet.Units.ReciprocalAreaUnit.InverseSquareMeter);
+        }
+
         /// <summary>Get <see cref="Length"/> from <see cref="Area"/> divided by <see cref="Length"/>.</summary>
         public static Length operator /(Area area, Length length)
         {
@@ -40,6 +52,18 @@ namespace UnitsNet
         public static VolumeFlow operator *(Area area, Speed speed)
         {
             return VolumeFlow.FromCubicMetersPerSecond(area.SquareMeters * speed.MetersPerSecond);
+        }
+
+        /// <summary>Get <see cref="LinearDensity"/> from <see cref="Area"/> times <see cref="Density"/>.</summary>
+        public static LinearDensity operator *(Area area, Density density)
+        {
+            return LinearDensity.FromKilogramsPerMeter(area.SquareMeters * density.KilogramsPerCubicMeter);
+        }
+
+        /// <summary>Get <see cref="Ratio"/> from <see cref="Area"/> times <see cref="ReciprocalArea"/>.</summary>
+        public static Ratio operator *(Area area, ReciprocalArea reciprocalArea)
+        {
+            return Ratio.FromDecimalFractions(area.SquareMeters * reciprocalArea.InverseSquareMeters);
         }
     }
 }

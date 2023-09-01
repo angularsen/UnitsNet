@@ -1,7 +1,7 @@
-﻿{
+{
   "Name": "LuminousFlux",
   "BaseUnit": "Lumen",
-  "XmlDoc": "In photometry, luminous flux or luminous power is the measure of the perceived power of light.",
+  "XmlDocSummary": "In photometry, luminous flux or luminous power is the measure of the perceived power of light.",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Luminous_flux",
   "BaseDimensions": {
     "J": 1
@@ -10,8 +10,8 @@
     {
       "SingularName": "Lumen",
       "PluralName": "Lumens",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Localization": [
         {
           "Culture": "en-US",

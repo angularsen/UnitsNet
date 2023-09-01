@@ -1,7 +1,7 @@
-﻿{
+{
   "Name": "ReactiveEnergy",
   "BaseUnit": "VoltampereReactiveHour",
-  "XmlDoc": "The Volt-ampere reactive hour (expressed as varh) is the reactive power of one Volt-ampere reactive produced in one hour.",
+  "XmlDocSummary": "The Volt-ampere reactive hour (expressed as varh) is the reactive power of one Volt-ampere reactive produced in one hour.",
   "BaseDimensions": {
     "L": 2,
     "M": 1,
@@ -11,8 +11,8 @@
     {
       "SingularName": "VoltampereReactiveHour",
       "PluralName": "VoltampereReactiveHours",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {

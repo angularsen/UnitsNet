@@ -6,7 +6,7 @@ using System.Globalization;
 using UnitsNet.Units;
 using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     /// <remarks>
     ///     These test methods would ideally be generated for each unit class,
@@ -27,7 +27,7 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData("500,005 m", 500005)]
         public void ParseLengthToMetersUsEnglish(string s, double expected)
         {
-            CultureInfo usEnglish = new CultureInfo("en-US");
+            CultureInfo usEnglish = CultureInfo.GetCultureInfo("en-US");
             double actual = Length.Parse(s, usEnglish).Meters;
             Assert.Equal(expected, actual);
         }
@@ -41,7 +41,7 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData("1ft 1invalid", typeof(FormatException))] // Valid
         public void ParseLength_InvalidString_USEnglish_ThrowsException(string s, Type expectedExceptionType)
         {
-            var usEnglish = new CultureInfo("en-US");
+            var usEnglish = CultureInfo.GetCultureInfo("en-US");
             Assert.Throws(expectedExceptionType, () => Length.Parse(s, usEnglish));
         }
 
@@ -96,8 +96,8 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void ParseMultiWordAbbreviations()
         {
-            Assert.Equal(Mass.FromShortTons(333), Mass.Parse("333 short tn"));
-            Assert.Equal(Mass.FromLongTons(333), Mass.Parse("333 long tn"));
+            Assert.Equal(Mass.FromShortTons(333), Mass.Parse("333 short tn", CultureInfo.InvariantCulture));
+            Assert.Equal(Mass.FromLongTons(333), Mass.Parse("333 long tn", CultureInfo.InvariantCulture));
         }
 
         [Theory]
@@ -117,7 +117,7 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData("m", LengthUnit.Meter)]
         public void ParseLengthUnitUsEnglish(string s, LengthUnit expected)
         {
-            CultureInfo usEnglish = new CultureInfo("en-US");
+            CultureInfo usEnglish = CultureInfo.GetCultureInfo("en-US");
             LengthUnit actual = Length.ParseUnit(s, usEnglish);
             Assert.Equal(expected, actual);
         }
@@ -127,7 +127,7 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData(null, typeof(ArgumentNullException))]
         public void ParseLengthUnitUsEnglish_ThrowsExceptionOnInvalidString(string s, Type expectedExceptionType)
         {
-            var usEnglish = new CultureInfo("en-US");
+            var usEnglish = CultureInfo.GetCultureInfo("en-US");
             Assert.Throws(expectedExceptionType, () => Length.ParseUnit(s, usEnglish));
         }
 
@@ -139,9 +139,75 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData("foo", false)]
         public void TryParseLengthUnitUsEnglish(string s, bool expected)
         {
-            CultureInfo usEnglish = new CultureInfo("en-US");
+            CultureInfo usEnglish = CultureInfo.GetCultureInfo("en-US");
             bool actual = Length.TryParse(s, usEnglish, out Length _);
             Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("1 ng", "en-US", 1, MassUnit.Nanogram)]
+        [InlineData("1 нг", "ru-RU", 1, MassUnit.Nanogram)]
+        [InlineData("1 g", "en-US", 1, MassUnit.Gram)]
+        [InlineData("1 г", "ru-RU", 1, MassUnit.Gram)]
+        [InlineData("1 kg", "en-US", 1, MassUnit.Kilogram)]
+        [InlineData("1 кг", "ru-RU", 1, MassUnit.Kilogram)]
+        public void ParseMassWithPrefixUnits_GivenCulture_ReturnsQuantityWithSameUnitAndValue(string str, string cultureName, double expectedValue, Enum expectedUnit)
+        {
+            var actual = Mass.Parse(str, CultureInfo.GetCultureInfo(cultureName));
+
+            Assert.Equal(expectedUnit, actual.Unit);
+            Assert.Equal(expectedValue, actual.Value);
+        }
+
+        [Theory]
+        [InlineData("1 nm", "en-US", 1, LengthUnit.Nanometer)]
+        [InlineData("1 нм", "ru-RU", 1, LengthUnit.Nanometer)]
+        [InlineData("1 m", "en-US", 1, LengthUnit.Meter)]
+        [InlineData("1 м", "ru-RU", 1, LengthUnit.Meter)]
+        [InlineData("1 km", "en-US", 1, LengthUnit.Kilometer)]
+        [InlineData("1 км", "ru-RU", 1, LengthUnit.Kilometer)]
+        public void ParseLengthWithPrefixUnits_GivenCulture_ReturnsQuantityWithSameUnitAndValue(string str, string cultureName, double expectedValue, Enum expectedUnit)
+        {
+            var actual = Length.Parse(str, CultureInfo.GetCultureInfo(cultureName));
+
+            Assert.Equal(expectedUnit, actual.Unit);
+            Assert.Equal(expectedValue, actual.Value);
+        }
+
+        [Theory]
+        [InlineData("1 µN", "en-US", 1, ForceUnit.Micronewton)]
+        [InlineData("1 мкН", "ru-RU", 1, ForceUnit.Micronewton)]
+        [InlineData("1 N", "en-US", 1, ForceUnit.Newton)]
+        [InlineData("1 Н", "ru-RU", 1, ForceUnit.Newton)]
+        [InlineData("1 kN", "en-US", 1, ForceUnit.Kilonewton)]
+        [InlineData("1 кН", "ru-RU", 1, ForceUnit.Kilonewton)]
+        public void ParseForceWithPrefixUnits_GivenCulture_ReturnsQuantityWithSameUnitAndValue(string str, string cultureName, double expectedValue, Enum expectedUnit)
+        {
+            var actual = Force.Parse(str, CultureInfo.GetCultureInfo(cultureName));
+
+            Assert.Equal(expectedUnit, actual.Unit);
+            Assert.Equal(expectedValue, actual.Value);
+        }
+
+        [Theory]
+        [InlineData("1 b", "en-US", 1, InformationUnit.Bit)]
+        [InlineData("1 b", "ru-RU", 1, InformationUnit.Bit)]
+        [InlineData("1 B", "en-US", 1, InformationUnit.Byte)]
+        [InlineData("1 B", "ru-RU", 1, InformationUnit.Byte)]
+        [InlineData("1 Mb", "en-US", 1, InformationUnit.Megabit)]
+        [InlineData("1 Mb", "ru-RU", 1, InformationUnit.Megabit)]
+        [InlineData("1 Mib", "en-US", 1, InformationUnit.Mebibit)]
+        [InlineData("1 Mib", "ru-RU", 1, InformationUnit.Mebibit)]
+        [InlineData("1 MB", "en-US", 1, InformationUnit.Megabyte)]
+        [InlineData("1 MB", "ru-RU", 1, InformationUnit.Megabyte)]
+        [InlineData("1 MiB", "en-US", 1, InformationUnit.Mebibyte)]
+        [InlineData("1 MiB", "ru-RU", 1, InformationUnit.Mebibyte)]
+        public void ParseInformationWithPrefixUnits_GivenCulture_ReturnsQuantityWithSameUnitAndValue(string str, string cultureName, decimal expectedValue, Enum expectedUnit)
+        {
+            var actual = Information.Parse(str, CultureInfo.GetCultureInfo(cultureName));
+
+            Assert.Equal(expectedUnit, actual.Unit);
+            Assert.Equal(expectedValue, actual.Value);
         }
     }
 }

@@ -32,6 +32,18 @@ namespace UnitsNet
             return Power.FromWatts(force.Newtons * speed.MetersPerSecond);
         }
 
+        /// <summary>Get <see cref="ForcePerLength"/> from <see cref="Force"/> times <see cref="ReciprocalLength"/>.</summary>
+        public static ForcePerLength operator *(Force force, ReciprocalLength reciprocalLength)
+        {
+            return ForcePerLength.FromNewtonsPerMeter(force.Newtons * reciprocalLength.InverseMeters);
+        }
+
+        /// <summary>Get <see cref="Pressure"/> from <see cref="Force"/> times <see cref="ReciprocalArea"/>.</summary>
+        public static Pressure operator *(Force force, ReciprocalArea reciprocalArea)
+        {
+            return Pressure.FromNewtonsPerSquareMeter(force.Newtons * reciprocalArea.InverseSquareMeters);
+        }
+
         /// <summary>Get <see cref="Acceleration"/> from <see cref="Force"/> divided by <see cref="Mass"/>.</summary>
         public static Acceleration operator /(Force force, Mass mass)
         {
@@ -54,6 +66,12 @@ namespace UnitsNet
         public static ForcePerLength operator /(Force force, Length length)
         {
             return ForcePerLength.FromNewtonsPerMeter(force.Newtons / length.Meters);
+        }
+
+        /// <summary>Get <see cref="Duration"/> from <see cref="Force"/> divided by <see cref="ForceChangeRate"/>.</summary>
+        public static Duration operator /(Force force, ForceChangeRate forceChangeRate)
+        {
+            return new Duration(force.Newtons / forceChangeRate.NewtonsPerSecond, DurationUnit.Second);
         }
     }
 }

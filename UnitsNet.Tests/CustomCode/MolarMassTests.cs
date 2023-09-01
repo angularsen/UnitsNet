@@ -22,11 +22,13 @@
 
 
 using System;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
     public class MolarMassTests : MolarMassTestsBase
     {
+        protected override bool SupportsSIUnitSystem => false;
         protected override double CentigramsPerMoleInOneKilogramPerMole => 1e5;
         protected override double DecagramsPerMoleInOneKilogramPerMole => 1e2;
         protected override double DecigramsPerMoleInOneKilogramPerMole => 1e4;
@@ -40,5 +42,6 @@ namespace UnitsNet.Tests.CustomCode
         protected override double NanogramsPerMoleTolerance => 1e-3;
         protected override double NanogramsPerMoleInOneKilogramPerMole => 1e12;
         protected override double PoundsPerMoleInOneKilogramPerMole => 2.2046226218487757;
+        protected override double KilogramsPerKilomoleInOneKilogramPerMole => 1e3;
     }
 }

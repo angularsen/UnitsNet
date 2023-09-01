@@ -1,7 +1,7 @@
-﻿{
+{
   "Name": "Length",
   "BaseUnit": "Meter",
-  "XmlDoc": "Many different units of length have been used around the world. The main units in modern use are U.S. customary units in the United States and the Metric system elsewhere. British Imperial units are still used for some purposes in the United Kingdom and some other countries. The metric system is sub-divided into SI and non-SI units.",
+  "XmlDocSummary": "Many different units of length have been used around the world. The main units in modern use are U.S. customary units in the United States and the Metric system elsewhere. British Imperial units are still used for some purposes in the United Kingdom and some other countries. The metric system is sub-divided into SI and non-SI units.",
   "BaseDimensions": {
     "L": 1
   },
@@ -12,9 +12,9 @@
       "BaseUnits": {
         "L": "Meter"
       },
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Hecto", "Kilo" ],
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Prefixes": [ "Femto", "Pico", "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -22,8 +22,11 @@
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "м" ],
-          "AbbreviationsWithPrefixes": [ "нм", "мкм", "мм", "см", "дм", "гм", "км" ]
+          "Abbreviations": [ "м" ]
+        },
+        {
+          "Culture": "zh-CN",
+          "Abbreviations": [ "米" ]
         }
       ]
     },
@@ -33,8 +36,10 @@
       "BaseUnits": {
         "L": "Mile"
       },
-      "FromUnitToBaseFunc": "x*1609.34",
-      "FromBaseToUnitFunc": "x/1609.34",
+      "FromUnitToBaseFunc": "{x} * 1609.344",
+      "FromBaseToUnitFunc": "{x} / 1609.344",
+      "XmlDocSummary": "The statute mile was standardised between the British Commonwealth and the United States by an international agreement in 1959, when it was formally redefined with respect to SI units as exactly 1,609.344 metres.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Mile",
       "Localization": [
         {
           "Culture": "en-US",
@@ -43,6 +48,10 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "миля" ]
+        },
+        {
+          "Culture": "zh-CN",
+          "Abbreviations": [ "英里" ]
         }
       ]
     },
@@ -52,8 +61,10 @@
       "BaseUnits": {
         "L": "Yard"
       },
-      "FromUnitToBaseFunc": "x*0.9144",
-      "FromBaseToUnitFunc": "x/0.9144",
+      "FromUnitToBaseFunc": "{x} * 0.9144",
+      "FromBaseToUnitFunc": "{x} / 0.9144",
+      "XmlDocSummary": "The yard (symbol: yd) is an English unit of length in both the British imperial and US customary systems of measurement equalling 3 feet (or 36 inches). Since 1959 the yard has been by international agreement standardized as exactly 0.9144 meter. A distance of 1,760 yards is equal to 1 mile.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Yard",
       "Localization": [
         {
           "Culture": "en-US",
@@ -62,6 +73,10 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "ярд" ]
+        },
+        {
+          "Culture": "zh-CN",
+          "Abbreviations": [ "码" ]
         }
       ]
     },
@@ -71,8 +86,9 @@
       "BaseUnits": {
         "L": "Foot"
       },
-      "FromUnitToBaseFunc": "x*0.3048",
-      "FromBaseToUnitFunc": "x/0.3048",
+      "FromUnitToBaseFunc": "{x} * 0.3048",
+      "FromBaseToUnitFunc": "{x} / 0.3048",
+      "Prefixes": [ "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -81,6 +97,10 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "фут" ]
+        },
+        {
+          "Culture": "zh-CN",
+          "Abbreviations": [ "英尺" ]
         }
       ]
     },
@@ -90,8 +110,10 @@
       "BaseUnits": {
         "L": "UsSurveyFoot"
       },
-      "FromUnitToBaseFunc": "x*1200/3937",
-      "FromBaseToUnitFunc": "x*3937/1200",
+      "FromUnitToBaseFunc": "{x} * 1200 / 3937",
+      "FromBaseToUnitFunc": "{x} * 3937 / 1200",
+      "XmlDocSummary": "In the United States, the foot was defined as 12 inches, with the inch being defined by the Mendenhall Order of 1893 as 39.37 inches = 1 m. This makes a U.S. survey foot exactly 1200/3937 meters.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Foot_(unit)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -105,8 +127,8 @@
       "BaseUnits": {
         "L": "Inch"
       },
-      "FromUnitToBaseFunc": "x*2.54e-2",
-      "FromBaseToUnitFunc": "x/2.54e-2",
+      "FromUnitToBaseFunc": "{x} * 2.54e-2",
+      "FromBaseToUnitFunc": "{x} / 2.54e-2",
       "Localization": [
         {
           "Culture": "en-US",
@@ -115,6 +137,10 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "дюйм" ]
+        },
+        {
+          "Culture": "zh-CN",
+          "Abbreviations": [ "英寸" ]
         }
       ]
     },
@@ -124,8 +150,8 @@
       "BaseUnits": {
         "L": "Mil"
       },
-      "FromUnitToBaseFunc": "x*2.54e-5",
-      "FromBaseToUnitFunc": "x/2.54e-5",
+      "FromUnitToBaseFunc": "{x} * 2.54e-5",
+      "FromBaseToUnitFunc": "{x} / 2.54e-5",
       "Localization": [
         {
           "Culture": "en-US",
@@ -134,6 +160,10 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "мил" ]
+        },
+        {
+          "Culture": "zh-CN",
+          "Abbreviations": [ "密耳" ]
         }
       ]
     },
@@ -143,8 +173,8 @@
       "BaseUnits": {
         "L": "NauticalMile"
       },
-      "FromUnitToBaseFunc": "x*1852",
-      "FromBaseToUnitFunc": "x/1852",
+      "FromUnitToBaseFunc": "{x} * 1852",
+      "FromBaseToUnitFunc": "{x} / 1852",
       "Localization": [
         {
           "Culture": "en-US",
@@ -153,6 +183,10 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "мил" ]
+        },
+        {
+          "Culture": "zh-CN",
+          "Abbreviations": [ "纳米" ]
         }
       ]
     },
@@ -162,8 +196,8 @@
       "BaseUnits": {
         "L": "Fathom"
       },
-      "FromUnitToBaseFunc": "x*1.8288",
-      "FromBaseToUnitFunc": "x/1.8288",
+      "FromUnitToBaseFunc": "{x} * 1.8288",
+      "FromBaseToUnitFunc": "{x} / 1.8288",
       "Localization": [
         {
           "Culture": "en-US",
@@ -177,8 +211,8 @@
       "BaseUnits": {
         "L": "Shackle"
       },
-      "FromUnitToBaseFunc": "x*27.432",
-      "FromBaseToUnitFunc": "x/27.432",
+      "FromUnitToBaseFunc": "{x} * 27.432",
+      "FromBaseToUnitFunc": "{x} / 27.432",
       "Localization": [
         {
           "Culture": "en-US",
@@ -192,8 +226,8 @@
       "BaseUnits": {
         "L": "Microinch"
       },
-      "FromUnitToBaseFunc": "x*2.54e-8",
-      "FromBaseToUnitFunc": "x/2.54e-8",
+      "FromUnitToBaseFunc": "{x} * 2.54e-8",
+      "FromBaseToUnitFunc": "{x} / 2.54e-8",
       "Localization": [
         {
           "Culture": "en-US",
@@ -202,6 +236,10 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "микродюйм" ]
+        },
+        {
+          "Culture": "zh-CN",
+          "Abbreviations": [ "微英寸" ]
         }
       ]
     },
@@ -211,8 +249,8 @@
       "BaseUnits": {
         "L": "PrinterPoint"
       },
-      "FromUnitToBaseFunc": "(x/72.27)*2.54e-2",
-      "FromBaseToUnitFunc": "(x/2.54e-2)*72.27",
+      "FromUnitToBaseFunc": "({x} / 72.27) * 2.54e-2",
+      "FromBaseToUnitFunc": "({x} / 2.54e-2) * 72.27",
       "Localization": [
         {
           "Culture": "en-US",
@@ -226,8 +264,8 @@
       "BaseUnits": {
         "L": "DtpPoint"
       },
-      "FromUnitToBaseFunc": "(x/72)*2.54e-2",
-      "FromBaseToUnitFunc": "(x/2.54e-2)*72",
+      "FromUnitToBaseFunc": "({x} / 72) * 2.54e-2",
+      "FromBaseToUnitFunc": "({x} / 2.54e-2) * 72",
       "Localization": [
         {
           "Culture": "en-US",
@@ -241,8 +279,8 @@
       "BaseUnits": {
         "L": "PrinterPica"
       },
-      "FromUnitToBaseFunc": "x/237.106301584",
-      "FromBaseToUnitFunc": "x*237.106301584",
+      "FromUnitToBaseFunc": "{x} / 237.106301584",
+      "FromBaseToUnitFunc": "{x} * 237.106301584",
       "Localization": [
         {
           "Culture": "en-US",
@@ -256,8 +294,8 @@
       "BaseUnits": {
         "L": "DtpPica"
       },
-      "FromUnitToBaseFunc": "x/236.220472441",
-      "FromBaseToUnitFunc": "x*236.220472441",
+      "FromUnitToBaseFunc": "{x} / 236.220472441",
+      "FromBaseToUnitFunc": "{x} * 236.220472441",
       "Localization": [
         {
           "Culture": "en-US",
@@ -271,8 +309,8 @@
       "BaseUnits": {
         "L": "Twip"
       },
-      "FromUnitToBaseFunc": "x/56692.913385826",
-      "FromBaseToUnitFunc": "x*56692.913385826",
+      "FromUnitToBaseFunc": "{x} / 56692.913385826",
+      "FromBaseToUnitFunc": "{x} * 56692.913385826",
       "Localization": [
         {
           "Culture": "en-US",
@@ -286,12 +324,113 @@
       "BaseUnits": {
         "L": "Hand"
       },
-      "FromUnitToBaseFunc": "x * 1.016e-1",
-      "FromBaseToUnitFunc": "x / 1.016e-1",
+      "FromUnitToBaseFunc": "{x} * 1.016e-1",
+      "FromBaseToUnitFunc": "{x} / 1.016e-1",
       "Localization": [
         {
           "Culture": "en-US",
           "Abbreviations": [ "h", "hh" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "AstronomicalUnit",
+      "PluralName": "AstronomicalUnits",
+      "FromUnitToBaseFunc": "{x} * 1.4959787070e11",
+      "FromBaseToUnitFunc": "{x} / 1.4959787070e11",
+      "XmlDocSummary": "One Astronomical Unit is the distance from the solar system Star, the sun, to planet Earth.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Astronomical_unit",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "au", "ua" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Parsec",
+      "PluralName": "Parsecs",
+      "FromUnitToBaseFunc": "{x} * 3.08567758128e16",
+      "FromBaseToUnitFunc": "{x} / 3.08567758128e16",
+      "XmlDocSummary": "A parsec is defined as the distance at which one astronomical unit (AU) subtends an angle of one arcsecond.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Parsec",
+      "Prefixes": [ "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "pc" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "LightYear",
+      "PluralName": "LightYears",
+      "FromUnitToBaseFunc": "{x} * 9.46073047258e15",
+      "FromBaseToUnitFunc": "{x} / 9.46073047258e15",
+      "XmlDocSummary": "A Light Year (ly) is the distance that light travel during an Earth year, ie 365 days.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Light-year",
+      "Prefixes": [ "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ly" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "SolarRadius",
+      "PluralName": "SolarRadiuses",
+      "FromUnitToBaseFunc": "{x} * 6.95510000E+08",
+      "FromBaseToUnitFunc": "{x} / 6.95510000E+08",
+      "XmlDocSummary": "Solar radius is a ratio unit to the radius of the solar system star, the sun.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Stellar_classification",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "R⊙" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Chain",
+      "PluralName": "Chains",
+      "BaseUnits": {
+        "L": "Chain"
+      },
+      "FromUnitToBaseFunc": "{x} * 20.1168",
+      "FromBaseToUnitFunc": "{x} / 20.1168",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ch" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Angstrom",
+      "PluralName": "Angstroms",
+      "FromUnitToBaseFunc": "{x} * 1e-10",
+      "FromBaseToUnitFunc": "{x} / 1e-10",
+      "XmlDocSummary": "Angstrom is a metric unit of length equal to 1e-10 meter",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Angstrom",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Å", "A" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DataMile",
+      "PluralName": "DataMiles",
+      "FromUnitToBaseFunc": "{x} * 1828.8",
+      "FromBaseToUnitFunc": "{x} / 1828.8",
+      "XmlDocSummary": "In radar-related subjects and in JTIDS, a data mile is a unit of distance equal to 6000 feet (1.8288 kilometres or 0.987 nautical miles).",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Data_mile",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "DM" ]
         }
       ]
     }

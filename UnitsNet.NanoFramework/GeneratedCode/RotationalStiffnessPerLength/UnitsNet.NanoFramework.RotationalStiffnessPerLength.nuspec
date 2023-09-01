@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>UnitsNet.nanoFramework.RotationalStiffnessPerLength</id>
+    <version>5.31.0</version>
+    <title>Units.NET RotationalStiffnessPerLength - nanoFramework</title>
+    <authors>Andreas Gullberg Larsen,nanoFramework project contributors</authors>
+    <owners>UnitsNet</owners>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/angularsen/UnitsNet</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Adds RotationalStiffnessPerLength units for Units.NET on .NET nanoFramework. For .NET or .NET Core, use UnitsNet instead.</description>
+    <iconUrl>https://raw.githubusercontent.com/angularsen/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</iconUrl>
+    <releaseNotes>
+    </releaseNotes>
+    <copyright>Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).</copyright>
+    <language>en-US</language>
+    <tags>nanoframework rotationalstiffnessperlength unit units quantity quantities measurement si metric imperial abbreviation abbreviations convert conversion parse immutable</tags>
+    <dependencies>
+      <dependency id="nanoFramework.CoreLibrary" version="1.14.2" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\..\..\Artifacts\UnitsNet.NanoFramework\RotationalStiffnessPerLength\UnitsNet.*" target="lib" />
+  </files>
+</package>

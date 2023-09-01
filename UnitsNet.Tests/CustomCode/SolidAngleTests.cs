@@ -27,6 +27,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class SolidAngleTests : SolidAngleTestsBase
     {
+        protected override bool SupportsSIUnitSystem => false;
         protected override double SteradiansInOneSteradian => 1;
     }
 }

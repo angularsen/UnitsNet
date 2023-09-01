@@ -1,0 +1,143 @@
+{
+  "Name": "ReciprocalArea",
+  "BaseUnit": "InverseSquareMeter",
+  "XmlDocSummary": "Reciprocal area (Inverse-square) quantity is used to specify a physical quantity inversely proportional to the square of the distance.",
+  "XmlDocRemarks": "https://en.wikipedia.org/wiki/Inverse-square_law",
+  "BaseDimensions": {
+    "L": -2
+  },
+  "Units": [
+    {
+      "SingularName": "InverseSquareMeter",
+      "PluralName": "InverseSquareMeters",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m⁻²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "InverseSquareKilometer",
+      "PluralName": "InverseSquareKilometers",
+      "FromUnitToBaseFunc": "{x} / 1e6",
+      "FromBaseToUnitFunc": "{x} * 1e6",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "km⁻²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "InverseSquareDecimeter",
+      "PluralName": "InverseSquareDecimeters",
+      "FromUnitToBaseFunc": "{x} / 1e-2",
+      "FromBaseToUnitFunc": "{x} * 1e-2",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "dm⁻²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "InverseSquareCentimeter",
+      "PluralName": "InverseSquareCentimeters",
+      "FromUnitToBaseFunc": "{x} / 1e-4",
+      "FromBaseToUnitFunc": "{x} * 1e-4",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "cm⁻²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "InverseSquareMillimeter",
+      "PluralName": "InverseSquareMillimeters",
+      "FromUnitToBaseFunc": "{x} / 1e-6",
+      "FromBaseToUnitFunc": "{x} * 1e-6",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mm⁻²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "InverseSquareMicrometer",
+      "PluralName": "InverseSquareMicrometers",
+      "FromUnitToBaseFunc": "{x} / 1e-12",
+      "FromBaseToUnitFunc": "{x} * 1e-12",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "µm⁻²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "InverseSquareMile",
+      "PluralName": "InverseSquareMiles",
+      "FromUnitToBaseFunc": "{x} / 2.59e6",
+      "FromBaseToUnitFunc": "{x} * 2.59e6",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mi⁻²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "InverseSquareYard",
+      "PluralName": "InverseSquareYards",
+      "FromUnitToBaseFunc": "{x} / 0.836127",
+      "FromBaseToUnitFunc": "{x} * 0.836127",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "yd⁻²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "InverseSquareFoot",
+      "PluralName": "InverseSquareFeet",
+      "FromUnitToBaseFunc": "{x} / 0.092903",
+      "FromBaseToUnitFunc": "{x} * 0.092903",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ft⁻²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "InverseUsSurveySquareFoot",
+      "PluralName": "InverseUsSurveySquareFeet",
+      "FromUnitToBaseFunc": "{x} / 0.09290341161",
+      "FromBaseToUnitFunc": "{x} * 0.09290341161",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ft⁻² (US)" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "InverseSquareInch",
+      "PluralName": "InverseSquareInches",
+      "FromUnitToBaseFunc": "{x} / 0.00064516",
+      "FromBaseToUnitFunc": "{x} * 0.00064516",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "in⁻²" ]
+        }
+      ]
+    }
+  ]
+}

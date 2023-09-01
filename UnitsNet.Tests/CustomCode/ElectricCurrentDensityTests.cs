@@ -27,6 +27,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ElectricCurrentDensityTests : ElectricCurrentDensityTestsBase
     {
+        protected override bool SupportsSIUnitSystem => true;
         protected override double AmperesPerSquareMeterInOneAmperePerSquareMeter => 1;
         protected override double AmperesPerSquareInchInOneAmperePerSquareMeter => 6.4516e-4;
         protected override double AmperesPerSquareFootInOneAmperePerSquareMeter => 9.290304e-2;

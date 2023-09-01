@@ -4,10 +4,12 @@
 using System;
 using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     public class AngleTests : AngleTestsBase
     {
+        protected override bool SupportsSIUnitSystem => false;
+
         protected override double DegreesInOneDegree => 1;
 
         protected override double GradiansInOneDegree => 400 / 360.0;
@@ -35,6 +37,10 @@ namespace UnitsNet.Tests.CustomCode
         protected override double ArcsecondsInOneDegree => 3600.0;
 
         protected override double RevolutionsInOneDegree => 2.777777777777777e-3;
+
+        protected override double TiltInOneDegree => 0.01745240643728351281941897851632;
+
+        protected override double NatoMilsInOneDegree => 17.777777777777777777777777777778;
 
         [Fact]
         public void AngleDividedByDurationEqualsRotationalSpeed()

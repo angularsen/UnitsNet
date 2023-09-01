@@ -27,6 +27,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class PermeabilityTests : PermeabilityTestsBase
     {
+        protected override bool SupportsSIUnitSystem => false;
         protected override double HenriesPerMeterInOneHenryPerMeter => 1;
     }
 }

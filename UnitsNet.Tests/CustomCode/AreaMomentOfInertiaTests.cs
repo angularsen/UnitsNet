@@ -22,11 +22,14 @@
 
 
 using System;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
     public class AreaMomentOfInertiaTests : AreaMomentOfInertiaTestsBase
     {
+        protected override bool SupportsSIUnitSystem => true;
+
         protected override double CentimetersToTheFourthInOneMeterToTheFourth => 1e8;
 
         protected override double DecimetersToTheFourthInOneMeterToTheFourth => 1e4;
@@ -38,5 +41,12 @@ namespace UnitsNet.Tests.CustomCode
         protected override double MetersToTheFourthInOneMeterToTheFourth => 1;
 
         protected override double MillimetersToTheFourthInOneMeterToTheFourth => 1e12;
+
+        [Fact]
+        public void AreaMomentOfInertiaDividedByLengthEqualsVolume()
+        {
+            Volume volume = AreaMomentOfInertia.FromMetersToTheFourth(20) / Length.FromMeters(10);
+            Assert.Equal(Volume.FromCubicMeters(2), volume);
+        }
     }
 }

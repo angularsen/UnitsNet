@@ -1,7 +1,7 @@
-﻿{
+{
   "Name": "Pressure",
   "BaseUnit": "Pascal",
-  "XmlDoc": "Pressure (symbol: P or p) is the ratio of force to the area over which that force is distributed. Pressure is force per unit area applied in a direction perpendicular to the surface of an object. Gauge pressure (also spelled gage pressure)[a] is the pressure relative to the local atmospheric or ambient pressure. Pressure is measured in any unit of force divided by any unit of area. The SI unit of pressure is the newton per square metre, which is called the pascal (Pa) after the seventeenth-century philosopher and scientist Blaise Pascal. A pressure of 1 Pa is small; it approximately equals the pressure exerted by a dollar bill resting flat on a table. Everyday pressures are often stated in kilopascals (1 kPa = 1000 Pa).",
+  "XmlDocSummary": "Pressure (symbol: P or p) is the ratio of force to the area over which that force is distributed. Pressure is force per unit area applied in a direction perpendicular to the surface of an object. Gauge pressure (also spelled gage pressure)[a] is the pressure relative to the local atmospheric or ambient pressure. Pressure is measured in any unit of force divided by any unit of area. The SI unit of pressure is the newton per square metre, which is called the pascal (Pa) after the seventeenth-century philosopher and scientist Blaise Pascal. A pressure of 1 Pa is small; it approximately equals the pressure exerted by a dollar bill resting flat on a table. Everyday pressures are often stated in kilopascals (1 kPa = 1000 Pa).",
   "BaseDimensions": {
     "L": -1,
     "M": 1,
@@ -11,26 +11,30 @@
     {
       "SingularName": "Pascal",
       "PluralName": "Pascals",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Micro", "Milli", "Deca", "Hecto", "Kilo", "Mega", "Giga" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "Pa" ] 
+          "Abbreviations": [ "Pa" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "Па" ],
-          "AbbreviationsWithPrefixes": [ "мкПа", "ммПа", "даПа", "гПа", "кПа", "МПа", "ГПа" ]
+          "Abbreviations": [ "Па" ]
         }
       ]
     },
     {
       "SingularName": "Atmosphere",
       "PluralName": "Atmospheres",
-      "FromUnitToBaseFunc": "x*1.01325*1e5",
-      "FromBaseToUnitFunc": "x/(1.01325*1e5)",
+      "FromUnitToBaseFunc": "{x} * 1.01325 * 1e5",
+      "FromBaseToUnitFunc": "{x} / (1.01325 * 1e5)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -45,8 +49,8 @@
     {
       "SingularName": "Bar",
       "PluralName": "Bars",
-      "FromUnitToBaseFunc": "x*1e5",
-      "FromBaseToUnitFunc": "x/1e5",
+      "FromUnitToBaseFunc": "{x} * 1e5",
+      "FromBaseToUnitFunc": "{x} / 1e5",
       "Prefixes": [ "Micro", "Milli", "Centi", "Deci", "Kilo", "Mega" ],
       "Localization": [
         {
@@ -62,8 +66,8 @@
     {
       "SingularName": "KilogramForcePerSquareMeter",
       "PluralName": "KilogramsForcePerSquareMeter",
-      "FromUnitToBaseFunc": "x*9.80665019960652",
-      "FromBaseToUnitFunc": "x*0.101971619222242",
+      "FromUnitToBaseFunc": "{x} * 9.80665019960652",
+      "FromBaseToUnitFunc": "{x} * 0.101971619222242",
       "Localization": [
         {
           "Culture": "en-US",
@@ -78,8 +82,13 @@
     {
       "SingularName": "KilogramForcePerSquareCentimeter",
       "PluralName": "KilogramsForcePerSquareCentimeter",
-      "FromUnitToBaseFunc": "x*9.80665e4",
-      "FromBaseToUnitFunc": "x/9.80665e4",
+      "BaseUnits": {
+        "L": "Centimeter",
+        "M": "Kilogram",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "{x} * 9.80665e4",
+      "FromBaseToUnitFunc": "{x} / 9.80665e4",
       "Localization": [
         {
           "Culture": "en-US",
@@ -94,8 +103,8 @@
     {
       "SingularName": "KilogramForcePerSquareMillimeter",
       "PluralName": "KilogramsForcePerSquareMillimeter",
-      "FromUnitToBaseFunc": "x*9.80665e6",
-      "FromBaseToUnitFunc": "x/9.80665e6",
+      "FromUnitToBaseFunc": "{x} * 9.80665e6",
+      "FromBaseToUnitFunc": "{x} / 9.80665e6",
       "Localization": [
         {
           "Culture": "en-US",
@@ -110,8 +119,8 @@
     {
       "SingularName": "NewtonPerSquareMeter",
       "PluralName": "NewtonsPerSquareMeter",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
@@ -120,16 +129,15 @@
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "Н/м²" ],
-          "AbbreviationsWithPrefixes": [ "кН/м²", "Мн/м²" ]
+          "Abbreviations": [ "Н/м²" ]
         }
       ]
     },
     {
       "SingularName": "NewtonPerSquareCentimeter",
       "PluralName": "NewtonsPerSquareCentimeter",
-      "FromUnitToBaseFunc": "x*1e4",
-      "FromBaseToUnitFunc": "x/1e4",
+      "FromUnitToBaseFunc": "{x} * 1e4",
+      "FromBaseToUnitFunc": "{x} / 1e4",
       "Prefixes": [ "Kilo" ],
       "Localization": [
         {
@@ -138,16 +146,15 @@
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "Н/см²" ],
-          "AbbreviationsWithPrefixes": [ "кН/см²" ]
+          "Abbreviations": [ "Н/см²" ]
         }
       ]
     },
     {
       "SingularName": "NewtonPerSquareMillimeter",
       "PluralName": "NewtonsPerSquareMillimeter",
-      "FromUnitToBaseFunc": "x*1e6",
-      "FromBaseToUnitFunc": "x/1e6",
+      "FromUnitToBaseFunc": "{x} * 1e6",
+      "FromBaseToUnitFunc": "{x} / 1e6",
       "Prefixes": [ "Kilo" ],
       "Localization": [
         {
@@ -156,16 +163,15 @@
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "Н/мм²" ],
-          "AbbreviationsWithPrefixes": [ "кН/мм²" ]
+          "Abbreviations": [ "Н/мм²" ]
         }
       ]
     },
     {
       "SingularName": "TechnicalAtmosphere",
       "PluralName": "TechnicalAtmospheres",
-      "FromUnitToBaseFunc": "x*9.80680592331*1e4",
-      "FromBaseToUnitFunc": "x/(9.80680592331*1e4)",
+      "FromUnitToBaseFunc": "{x} * 9.80680592331 * 1e4",
+      "FromBaseToUnitFunc": "{x} / (9.80680592331 * 1e4)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -180,8 +186,8 @@
     {
       "SingularName": "Torr",
       "PluralName": "Torrs",
-      "FromUnitToBaseFunc": "x*1.3332266752*1e2",
-      "FromBaseToUnitFunc": "x/(1.3332266752*1e2)",
+      "FromUnitToBaseFunc": "{x} * 1.3332266752 * 1e2",
+      "FromBaseToUnitFunc": "{x} / (1.3332266752 * 1e2)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -196,36 +202,75 @@
     {
       "SingularName": "PoundForcePerSquareInch",
       "PluralName": "PoundsForcePerSquareInch",
-      "FromUnitToBaseFunc": "x*6.894757293168361e3",
-      "FromBaseToUnitFunc": "x/6.894757293168361e3",
+      "BaseUnits": {
+        "L": "Inch",
+        "M": "Pound",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "{x} * 6.894757293168361e3",
+      "FromBaseToUnitFunc": "{x} / 6.894757293168361e3",
       "Prefixes": [ "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
           "Abbreviations": [ "psi", "lb/in²" ],
-          "AbbreviationsWithPrefixes": [ "kipf/in²" ]
+          "AbbreviationsForPrefixes": { "Kilo": [ "ksi", "kipf/in²" ] }
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "psi", "lb/in²" ],
+          "AbbreviationsForPrefixes": { "Kilo": [ "ksi", "kipf/in²" ] }
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundForcePerSquareMil",
+      "PluralName": "PoundsForcePerSquareMil",
+      "BaseUnits": {
+        "L": "Mil",
+        "M": "Pound",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "{x} * 6.894757293168361e9",
+      "FromBaseToUnitFunc": "{x} / 6.894757293168361e9",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lb/mil²", "lbs/mil²" ],
+          "AbbreviationsForPrefixes": { "Kilo": "kipf/mil²" }
         }
       ]
     },
     {
       "SingularName": "PoundForcePerSquareFoot",
       "PluralName": "PoundsForcePerSquareFoot",
-      "FromUnitToBaseFunc": "x*4.788025898033584e1",
-      "FromBaseToUnitFunc": "x/4.788025898033584e1",
+      "BaseUnits": {
+        "L": "Foot",
+        "M": "Pound",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "{x} * 4.788025898033584e1",
+      "FromBaseToUnitFunc": "{x} / 4.788025898033584e1",
       "Prefixes": [ "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
           "Abbreviations": [ "lb/ft²" ],
-          "AbbreviationsWithPrefixes": [ "kipf/ft²" ]
+          "AbbreviationsForPrefixes": { "Kilo": "kipf/ft²" }
         }
       ]
     },
     {
       "SingularName": "TonneForcePerSquareMillimeter",
       "PluralName": "TonnesForcePerSquareMillimeter",
-      "FromUnitToBaseFunc": "x*9.80665e9",
-      "FromBaseToUnitFunc": "x/9.80665e9",
+      "BaseUnits": {
+        "L": "Millimeter",
+        "M": "Tonne",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "{x} * 9.80665e9",
+      "FromBaseToUnitFunc": "{x} / 9.80665e9",
       "Localization": [
         {
           "Culture": "en-US",
@@ -236,8 +281,13 @@
     {
       "SingularName": "TonneForcePerSquareMeter",
       "PluralName": "TonnesForcePerSquareMeter",
-      "FromUnitToBaseFunc": "x*9.80665e3",
-      "FromBaseToUnitFunc": "x/9.80665e3",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Tonne",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "{x} * 9.80665e3",
+      "FromBaseToUnitFunc": "{x} / 9.80665e3",
       "Localization": [
         {
           "Culture": "en-US",
@@ -248,8 +298,8 @@
     {
       "SingularName": "MeterOfHead",
       "PluralName": "MetersOfHead",
-      "FromUnitToBaseFunc": "x*9804.139432",
-      "FromBaseToUnitFunc": "x*0.0001019977334",
+      "FromUnitToBaseFunc": "{x} * 9804.139432",
+      "FromBaseToUnitFunc": "{x} * 0.0001019977334",
       "Localization": [
         {
           "Culture": "en-US",
@@ -260,8 +310,13 @@
     {
       "SingularName": "TonneForcePerSquareCentimeter",
       "PluralName": "TonnesForcePerSquareCentimeter",
-      "FromUnitToBaseFunc": "x*9.80665e7",
-      "FromBaseToUnitFunc": "x/9.80665e7",
+      "BaseUnits": {
+        "L": "Centimeter",
+        "M": "Tonne",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "{x} * 9.80665e7",
+      "FromBaseToUnitFunc": "{x} / 9.80665e7",
       "Localization": [
         {
           "Culture": "en-US",
@@ -272,8 +327,8 @@
     {
       "SingularName": "FootOfHead",
       "PluralName": "FeetOfHead",
-      "FromUnitToBaseFunc": "x*2989.0669",
-      "FromBaseToUnitFunc": "x*0.000334552565551",
+      "FromUnitToBaseFunc": "{x} * 2989.0669",
+      "FromBaseToUnitFunc": "{x} * 0.000334552565551",
       "Localization": [
         {
           "Culture": "en-US",
@@ -284,20 +339,24 @@
     {
       "SingularName": "MillimeterOfMercury",
       "PluralName": "MillimetersOfMercury",
-      "FromUnitToBaseFunc": "x/7.50061561302643e-3",
-      "FromBaseToUnitFunc": "x*7.50061561302643e-3",
+      "FromUnitToBaseFunc": "{x} / 7.50061561302643e-3",
+      "FromBaseToUnitFunc": "{x} * 7.50061561302643e-3",
       "Localization": [
         {
           "Culture": "en-US",
           "Abbreviations": [ "mmHg" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "мм рт.ст." ]
         }
       ]
     },
     {
       "SingularName": "InchOfMercury",
       "PluralName": "InchesOfMercury",
-      "FromUnitToBaseFunc": "x/2.95299830714159e-4",
-      "FromBaseToUnitFunc": "x*2.95299830714159e-4",
+      "FromUnitToBaseFunc": "{x} / 2.95299830714159e-4",
+      "FromBaseToUnitFunc": "{x} * 2.95299830714159e-4",
       "Localization": [
         {
           "Culture": "en-US",
@@ -308,8 +367,8 @@
     {
       "SingularName": "DynePerSquareCentimeter",
       "PluralName": "DynesPerSquareCentimeter",
-      "FromUnitToBaseFunc": "x*1.0e-1",
-      "FromBaseToUnitFunc": "x/1.0e-1",
+      "FromUnitToBaseFunc": "{x} * 1.0e-1",
+      "FromBaseToUnitFunc": "{x} / 1.0e-1",
       "Localization": [
         {
           "Culture": "en-US",
@@ -320,8 +379,8 @@
     {
       "SingularName": "PoundPerInchSecondSquared",
       "PluralName": "PoundsPerInchSecondSquared",
-      "FromUnitToBaseFunc": "x*1.785796732283465e1",
-      "FromBaseToUnitFunc": "x/1.785796732283465e1",
+      "FromUnitToBaseFunc": "{x} * 1.785796732283465e1",
+      "FromBaseToUnitFunc": "{x} / 1.785796732283465e1",
       "Localization": [
         {
           "Culture": "en-US",
@@ -330,14 +389,51 @@
       ]
     },
     {
-      "SingularName": "InchOfWaterColumn",
-      "PluralName": "InchesOfWaterColumn",
-      "FromUnitToBaseFunc": "x*249.08890833333",
-      "FromBaseToUnitFunc": "x/249.08890833333",
+      "SingularName": "MeterOfWaterColumn",
+      "PluralName": "MetersOfWaterColumn",
+      "FromUnitToBaseFunc": "{x} * 9.806650000000272e3",
+      "FromBaseToUnitFunc": "{x} / 9.806650000000272e3",
+      "Prefixes": [ "Milli", "Centi" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "wc" ]
+          "Abbreviations": [ "mH₂O", "mH2O", "m wc", "m wg" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "InchOfWaterColumn",
+      "PluralName": "InchesOfWaterColumn",
+      "FromUnitToBaseFunc": "{x} * 249.08890833333",
+      "FromBaseToUnitFunc": "{x} / 249.08890833333",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "inH2O", "inch wc", "wc" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MeterOfElevation",
+      "PluralName": "MetersOfElevation",
+      "FromUnitToBaseFunc": "Math.Pow(1.0 - ({x} / 44307.69396), 5.2553026003237266401799415610351) * 101325.0",
+      "FromBaseToUnitFunc": "(1.0 - Math.Pow({x} / 101325.0, 0.190284)) * 44307.69396",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m of elevation" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "FootOfElevation",
+      "PluralName": "FeetOfElevation",
+      "FromUnitToBaseFunc": "Math.Pow(1.0 - ({x} / 145366.45), 5.2553026003237266401799415610351) * 101325.0",
+      "FromBaseToUnitFunc": "(1.0 - Math.Pow({x} / 101325.0, 0.190284)) * 145366.45",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ft of elevation" ]
         }
       ]
     }

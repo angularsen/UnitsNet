@@ -4,7 +4,7 @@
 using System.Globalization;
 using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     public class StonePoundsTests
     {
@@ -31,13 +31,12 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Fact]
-        public void StonePoundsToString_FormatsNumberInDefaultCulture()
+        public void StonePoundsToString_FormatsNumberInCurrentCulture()
         {
-            Mass m = Mass.FromStonePounds(3500, 1);
-            StonePounds stonePounds = m.StonePounds;
-            string numberInCurrentCulture =  3500.ToString("n0", CultureInfo.CurrentUICulture); // Varies between machines, can't hard code it
+            CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
+            StonePounds stonePounds = Mass.FromStonePounds(3500, 1).StonePounds;
 
-            Assert.Equal($"{numberInCurrentCulture} st 1 lb", stonePounds.ToString());
+            Assert.Equal("3,500 st 1 lb", stonePounds.ToString());
         }
 
         // These cultures use a thin space in digit grouping
@@ -46,11 +45,12 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData("fr-FR")]
         public void StonePoundsToString_GivenCultureWithThinSpaceDigitGroup_ReturnsNumberWithThinSpaceDigitGroup(string cultureName)
         {
-            var formatProvider = new CultureInfo(cultureName);
+            var formatProvider = CultureInfo.GetCultureInfo(cultureName);
             Mass m = Mass.FromStonePounds(3500, 1);
             StonePounds stonePounds = m.StonePounds;
 
-            Assert.Equal("3 500 st 1 lb", stonePounds.ToString(formatProvider));
+            string gs = formatProvider.NumberFormat.NumberGroupSeparator;
+            Assert.Equal($"3{gs}500 st 1 lb", stonePounds.ToString(formatProvider));
         }
     }
 }

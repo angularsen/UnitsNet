@@ -27,6 +27,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class PowerDensityTests : PowerDensityTestsBase
     {
+        protected override bool SupportsSIUnitSystem => true;
         protected override double WattsPerCubicMeterInOneWattPerCubicMeter => 1;
         protected override double PicowattsPerCubicMeterInOneWattPerCubicMeter => 1e12;
         protected override double NanowattsPerCubicMeterInOneWattPerCubicMeter => 1e9;

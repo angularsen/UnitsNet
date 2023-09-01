@@ -1,7 +1,7 @@
-﻿{
+{
   "Name": "SpecificVolume",
   "BaseUnit": "CubicMeterPerKilogram",
-  "XmlDoc": "In thermodynamics, the specific volume of a substance is the ratio of the substance's volume to its mass. It is the reciprocal of density and an intrinsic property of matter as well.",
+  "XmlDocSummary": "In thermodynamics, the specific volume of a substance is the ratio of the substance's volume to its mass. It is the reciprocal of density and an intrinsic property of matter as well.",
   "BaseDimensions": {
     "L": 3,
     "M": -1
@@ -10,8 +10,8 @@
     {
       "SingularName": "CubicMeterPerKilogram",
       "PluralName": "CubicMetersPerKilogram",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Milli" ],
       "Localization": [
         {
@@ -23,8 +23,8 @@
     {
       "SingularName": "CubicFootPerPound",
       "PluralName": "CubicFeetPerPound",
-      "FromUnitToBaseFunc": "x/16.01846353",
-      "FromBaseToUnitFunc": "x*16.01846353",
+      "FromUnitToBaseFunc": "{x} / 16.01846353",
+      "FromBaseToUnitFunc": "{x} * 16.01846353",
       "Prefixes": [],
       "Localization": [
         {

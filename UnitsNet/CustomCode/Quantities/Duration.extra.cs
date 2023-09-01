@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using UnitsNet.Units;
 
 namespace UnitsNet
 {
@@ -14,10 +15,10 @@ namespace UnitsNet
         /// <returns>The TimeSpan with the same time as the duration</returns>
         public TimeSpan ToTimeSpan()
         {
-            if( Seconds > TimeSpan.MaxValue.TotalSeconds ||
+            if ( Seconds > TimeSpan.MaxValue.TotalSeconds ||
                 Seconds < TimeSpan.MinValue.TotalSeconds )
                 throw new ArgumentOutOfRangeException( nameof( Duration ), "The duration is too large or small to fit in a TimeSpan" );
-            return TimeSpan.FromSeconds( Seconds );
+            return TimeSpan.FromTicks((long)(Seconds * TimeSpan.TicksPerSecond));
         }
 
         /// <summary>Get <see cref="DateTime"/> from <see cref="DateTime"/> plus <see cref="Duration"/>.</summary>
@@ -92,10 +93,28 @@ namespace UnitsNet
             return timeSpan.TotalSeconds >= duration.Seconds;
         }
 
-        /// <summary>Get <see cref="Volume"/> from <see cref="Duration"/> times <see cref="VolumeFlow"/>.</summary>
+        /// <summary>Get <see cref="Volume"/> from <see cref="Duration"/> multiplied by <see cref="VolumeFlow"/>.</summary>
         public static Volume operator *(Duration duration, VolumeFlow volumeFlow)
         {
             return Volume.FromCubicMeters(volumeFlow.CubicMetersPerSecond * duration.Seconds);
+        }
+
+        /// <summary>Get <see cref="ElectricCharge"/> from <see cref="Duration"/> multiplied by <see cref="ElectricCurrent"/>.</summary>
+        public static ElectricCharge operator *(Duration time, ElectricCurrent current)
+        {
+            return ElectricCharge.FromAmpereHours(current.Amperes * time.Hours);
+        }
+
+        /// <summary>Get <see cref="Speed"/> from <see cref="Duration"/> multiplied by <see cref="Acceleration"/>.</summary>
+        public static Speed operator *(Duration duration, Acceleration acceleration)
+        {
+            return new Speed(acceleration.MetersPerSecondSquared * duration.Seconds, SpeedUnit.MeterPerSecond);
+        }
+
+        /// <summary>Get <see cref="Force"/> from <see cref="Duration"/> multiplied by <see cref="ForceChangeRate"/>.</summary>
+        public static Force operator *(Duration duration, ForceChangeRate forceChangeRate)
+        {
+            return new Force(forceChangeRate.NewtonsPerSecond * duration.Seconds, ForceUnit.Newton);
         }
     }
 }

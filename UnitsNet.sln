@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2027
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet", "UnitsNet\UnitsNet.csproj", "{CBEAD842-07BC-4B08-9D9D-D6659813776F}"
 EndProject
@@ -11,7 +11,63 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Serialization.Json
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Tests", "UnitsNet.Tests\UnitsNet.Tests.csproj", "{0E3B7567-5DF2-44BD-88DB-CCF050D3F943}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Serialization.JsonNet.CompatibilityTests", "UnitsNet.Serialization.JsonNet.CompatibilityTests\UnitsNet.Serialization.JsonNet.CompatibilityTests.csproj", "{21F2FFAC-BF39-487F-9ADE-37100162F955}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Benchmark", "UnitsNet.Benchmark\UnitsNet.Benchmark.csproj", "{76B9C7C8-E3D3-4FA7-B782-78E4BA1D0AD8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeGen", "CodeGen\CodeGen.csproj", "{078E3D44-4F60-46B3-9099-91A7CBF0B213}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.NumberExtensions", "UnitsNet.NumberExtensions\UnitsNet.NumberExtensions.csproj", "{41763DBA-0F2D-40D2-853C-2CBF719C7208}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.NumberExtensions.Tests", "UnitsNet.NumberExtensions.Tests\UnitsNet.NumberExtensions.Tests.csproj", "{B4996AF5-9A8B-481A-9018-EC7F5B1605FF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Files", "_Files", "{B92B01BE-243E-4CCB-B5E5-AF469ADB1F54}"
+ProjectSection(SolutionItems) = preProject
+	.editorconfig = .editorconfig
+	.gitattributes = .gitattributes
+	.gitignore = .gitignore
+	build.bat = build.bat
+	build-all-targets.bat = build-all-targets.bat
+	clean.bat = clean.bat
+	CODE_OF_CONDUCT.md = CODE_OF_CONDUCT.md
+	CONTRIBUTING.md = CONTRIBUTING.md
+	Directory.Build.props = Directory.Build.props
+	generate-code.bat = generate-code.bat
+	init.bat = init.bat
+	LICENSE = LICENSE
+	nuget.config = nuget.config
+	publish-unitsnet.bat = publish-unitsnet.bat
+	README.md = README.md
+	test.bat = test.bat
+	UnitsNet.sln.DotSettings = UnitsNet.sln.DotSettings
+	UnitsNet.snk = UnitsNet.snk
+	azure-pipelines.yml = azure-pipelines.yml
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{71C6EF60-7E52-4DF4-BA93-5FAF6D89AEC6}"
+	ProjectSection(SolutionItems) = preProject
+		Build\build.ps1 = Build\build.ps1
+		Build\build-functions.psm1 = Build\build-functions.psm1
+		Build\build-pack-nano-nugets.psm1 = Build\build-pack-nano-nugets.psm1
+		Build\init.ps1 = Build\init.ps1
+		Build\clean.ps1 = Build\clean.ps1
+		Build\bump-version.bat = Build\bump-version.bat
+		Build\bump-version.sh = Build\bump-version.sh
+		Build\bump-version-json.bat = Build\bump-version-json.bat
+		Build\bump-version-json.sh = Build\bump-version-json.sh
+		Build\codecov.sh = Build\codecov.sh
+		Build\set-version.psm1 = Build\set-version.psm1
+		Build\set-version.sh = Build\set-version.sh
+		Build\set-version-json.sh = Build\set-version-json.sh
+		Build\set-version-UnitsNet.ps1 = Build\set-version-UnitsNet.ps1
+		Build\set-version-UnitsNet.Serialization.JsonNet.ps1 = Build\set-version-UnitsNet.Serialization.JsonNet.ps1
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerfTest_Startup", "PerfTests\PerfTest_Startup\PerfTest_Startup.csproj", "{BFF3DD22-0F58-4E79-86CD-662D1A174224}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerfTest_Startup_v4_144_0", "PerfTests\PerfTest_Startup_v4_144_0\PerfTest_Startup_v4_144_0.csproj", "{2E68C361-F6FA-49DC-BB0E-85ADE776391E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PerfTests", "PerfTests", "{126F0393-A678-4609-9341-7028F1B2BC2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerfTest_Startup_v4_72_0", "PerfTests\PerfTest_Startup_v4_72_0\PerfTest_Startup_v4_72_0.csproj", "{7131F7CC-BD7F-44EB-AD50-AE80CE38F28E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,15 +91,45 @@ Global
 		{0E3B7567-5DF2-44BD-88DB-CCF050D3F943}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E3B7567-5DF2-44BD-88DB-CCF050D3F943}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E3B7567-5DF2-44BD-88DB-CCF050D3F943}.Release|Any CPU.Build.0 = Release|Any CPU
-		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76B9C7C8-E3D3-4FA7-B782-78E4BA1D0AD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76B9C7C8-E3D3-4FA7-B782-78E4BA1D0AD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76B9C7C8-E3D3-4FA7-B782-78E4BA1D0AD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76B9C7C8-E3D3-4FA7-B782-78E4BA1D0AD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{078E3D44-4F60-46B3-9099-91A7CBF0B213}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{078E3D44-4F60-46B3-9099-91A7CBF0B213}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{078E3D44-4F60-46B3-9099-91A7CBF0B213}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{078E3D44-4F60-46B3-9099-91A7CBF0B213}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41763DBA-0F2D-40D2-853C-2CBF719C7208}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41763DBA-0F2D-40D2-853C-2CBF719C7208}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41763DBA-0F2D-40D2-853C-2CBF719C7208}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41763DBA-0F2D-40D2-853C-2CBF719C7208}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4996AF5-9A8B-481A-9018-EC7F5B1605FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4996AF5-9A8B-481A-9018-EC7F5B1605FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4996AF5-9A8B-481A-9018-EC7F5B1605FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4996AF5-9A8B-481A-9018-EC7F5B1605FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFF3DD22-0F58-4E79-86CD-662D1A174224}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFF3DD22-0F58-4E79-86CD-662D1A174224}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFF3DD22-0F58-4E79-86CD-662D1A174224}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFF3DD22-0F58-4E79-86CD-662D1A174224}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E68C361-F6FA-49DC-BB0E-85ADE776391E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E68C361-F6FA-49DC-BB0E-85ADE776391E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E68C361-F6FA-49DC-BB0E-85ADE776391E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E68C361-F6FA-49DC-BB0E-85ADE776391E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7131F7CC-BD7F-44EB-AD50-AE80CE38F28E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7131F7CC-BD7F-44EB-AD50-AE80CE38F28E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7131F7CC-BD7F-44EB-AD50-AE80CE38F28E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7131F7CC-BD7F-44EB-AD50-AE80CE38F28E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {554906B2-5972-4EBF-9DD5-EEFA77D735D8}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{71C6EF60-7E52-4DF4-BA93-5FAF6D89AEC6} = {B92B01BE-243E-4CCB-B5E5-AF469ADB1F54}
+		{BFF3DD22-0F58-4E79-86CD-662D1A174224} = {126F0393-A678-4609-9341-7028F1B2BC2B}
+		{2E68C361-F6FA-49DC-BB0E-85ADE776391E} = {126F0393-A678-4609-9341-7028F1B2BC2B}
+		{7131F7CC-BD7F-44EB-AD50-AE80CE38F28E} = {126F0393-A678-4609-9341-7028F1B2BC2B}
 	EndGlobalSection
 EndGlobal

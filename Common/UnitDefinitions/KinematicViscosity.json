@@ -1,7 +1,7 @@
-﻿{
+{
   "Name": "KinematicViscosity",
   "BaseUnit": "SquareMeterPerSecond",
-  "XmlDoc": "The viscosity of a fluid is a measure of its resistance to gradual deformation by shear stress or tensile stress.",
+  "XmlDocSummary": "The viscosity of a fluid is a measure of its resistance to gradual deformation by shear stress or tensile stress.",
   "XmlDocRemarks": "http://en.wikipedia.org/wiki/Viscosity",
   "BaseDimensions": {
     "L": 2,
@@ -11,8 +11,8 @@
     {
       "SingularName": "SquareMeterPerSecond",
       "PluralName": "SquareMetersPerSecond",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Localization": [
         {
           "Culture": "en-US",
@@ -27,8 +27,8 @@
     {
       "SingularName": "Stokes",
       "PluralName": "Stokes",
-      "FromUnitToBaseFunc": "x/1e4",
-      "FromBaseToUnitFunc": "x*1e4",
+      "FromUnitToBaseFunc": "{x} / 1e4",
+      "FromBaseToUnitFunc": "{x} * 1e4",
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
       "Localization": [
         {
@@ -37,8 +37,19 @@
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "Ст" ],
-          "AbbreviationsWithPrefixes": [ "нСт", "мкСт", "мСт", "сСт", "дСт", "кСт" ]
+          "Abbreviations": [ "Ст" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "SquareFootPerSecond",
+      "PluralName": "SquareFeetPerSecond",
+      "FromUnitToBaseFunc": "{x} / 10.7639",
+      "FromBaseToUnitFunc": "{x} * 10.7639",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ft²/s" ]
         }
       ]
     }

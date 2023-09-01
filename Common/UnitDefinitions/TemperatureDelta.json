@@ -1,13 +1,16 @@
-﻿{
+{
   "Name": "TemperatureDelta",
   "BaseUnit": "Kelvin",
-  "XmlDoc": "Difference between two temperatures. The conversions are different than for Temperature.",
+  "XmlDocSummary": "Difference between two temperatures. The conversions are different than for Temperature.",
+  "BaseDimensions": {
+    "Θ": 1
+  },
   "Units": [
     {
       "SingularName": "Kelvin",
       "PluralName": "Kelvins",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Localization": [
         {
           "Culture": "en-US",
@@ -18,20 +21,22 @@
     {
       "SingularName": "DegreeCelsius",
       "PluralName": "DegreesCelsius",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Prefixes": [ "Milli" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "∆°C" ]
+          "Abbreviations": [ "∆°C" ],
+          "AbbreviationsForPrefixes": { "Milli": "∆m°C" }
         }
       ]
     },
     {
       "SingularName": "DegreeDelisle",
       "PluralName": "DegreesDelisle",
-      "FromUnitToBaseFunc": "x*-2/3",
-      "FromBaseToUnitFunc": "x*-3/2",
+      "FromUnitToBaseFunc": "{x} * -2 / 3",
+      "FromBaseToUnitFunc": "{x} * -3 / 2",
       "Localization": [
         {
           "Culture": "en-US",
@@ -42,8 +47,8 @@
     {
       "SingularName": "DegreeFahrenheit",
       "PluralName": "DegreesFahrenheit",
-      "FromUnitToBaseFunc": "x*5/9",
-      "FromBaseToUnitFunc": "x*9/5",
+      "FromUnitToBaseFunc": "{x} * 5 / 9",
+      "FromBaseToUnitFunc": "{x} * 9 / 5",
       "Localization": [
         {
           "Culture": "en-US",
@@ -54,8 +59,8 @@
     {
       "SingularName": "DegreeNewton",
       "PluralName": "DegreesNewton",
-      "FromUnitToBaseFunc": "x*100/33",
-      "FromBaseToUnitFunc": "x*33/100",
+      "FromUnitToBaseFunc": "{x} * 100 / 33",
+      "FromBaseToUnitFunc": "{x} * 33 / 100",
       "Localization": [
         {
           "Culture": "en-US",
@@ -66,8 +71,8 @@
     {
       "SingularName": "DegreeRankine",
       "PluralName": "DegreesRankine",
-      "FromUnitToBaseFunc": "x*5/9",
-      "FromBaseToUnitFunc": "x*9/5",
+      "FromUnitToBaseFunc": "{x} * 5 / 9",
+      "FromBaseToUnitFunc": "{x} * 9 / 5",
       "Localization": [
         {
           "Culture": "en-US",
@@ -78,8 +83,8 @@
     {
       "SingularName": "DegreeReaumur",
       "PluralName": "DegreesReaumur",
-      "FromUnitToBaseFunc": "x*5/4",
-      "FromBaseToUnitFunc": "x*4/5",
+      "FromUnitToBaseFunc": "{x} * 5 / 4",
+      "FromBaseToUnitFunc": "{x} * 4 / 5",
       "Localization": [
         {
           "Culture": "en-US",
@@ -90,8 +95,8 @@
     {
       "SingularName": "DegreeRoemer",
       "PluralName": "DegreesRoemer",
-      "FromUnitToBaseFunc": "x*40/21",
-      "FromBaseToUnitFunc": "x*21/40",
+      "FromUnitToBaseFunc": "{x} * 40 / 21",
+      "FromBaseToUnitFunc": "{x} * 21 / 40",
       "Localization": [
         {
           "Culture": "en-US",

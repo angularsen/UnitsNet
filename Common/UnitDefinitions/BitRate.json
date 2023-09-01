@@ -1,15 +1,16 @@
-﻿{
+{
   "Name": "BitRate",
   "BaseUnit": "BitPerSecond",
-  "BaseType": "decimal",
-  "XmlDoc": "In telecommunications and computing, bit rate is the number of bits that are conveyed or processed per unit of time.",
+  "ValueType": "decimal",
+  "XmlDocSummary": "In telecommunications and computing, bit rate is the number of bits that are conveyed or processed per unit of time.",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Bit_rate",
+  "BaseDimensions": { "T": -1 },
   "Units": [
     {
       "SingularName": "BitPerSecond",
       "PluralName": "BitsPerSecond",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Kilo", "Mega", "Giga", "Tera", "Peta", "Exa", "Kibi", "Mebi", "Gibi", "Tebi", "Pebi", "Exbi" ],
       "Localization": [
         {
@@ -21,8 +22,8 @@
     {
       "SingularName": "BytePerSecond",
       "PluralName": "BytesPerSecond",
-      "FromUnitToBaseFunc": "x*8m",
-      "FromBaseToUnitFunc": "x/8m",
+      "FromUnitToBaseFunc": "{x} * 8m",
+      "FromBaseToUnitFunc": "{x} / 8m",
       "Prefixes": [ "Kilo", "Mega", "Giga", "Tera", "Peta", "Exa", "Kibi", "Mebi", "Gibi", "Tebi", "Pebi", "Exbi" ],
       "Localization": [
         {

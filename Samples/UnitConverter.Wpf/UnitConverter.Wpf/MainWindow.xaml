@@ -23,16 +23,16 @@
         </Grid.RowDefinitions>
 
         <GroupBox Header="Quantity" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Grid.RowSpan="2">
-            <ListBox 
-                 ItemsSource="{Binding Path=Quantities}" 
+            <ListBox
+                 ItemsSource="{Binding Path=Quantities}"
                  SelectedItem="{Binding SelectedQuantity, Mode=TwoWay}"
                  SelectionChanged="Selector_OnSelectionChanged" />
         </GroupBox>
 
         <GroupBox Header="From" Grid.Row="0" Grid.Column="1">
             <Grid>
-                <ListBox 
-                 ItemsSource="{Binding Path=Units}" 
+                <ListBox
+                 ItemsSource="{Binding Path=Units}"
                  DisplayMemberPath="Text"
                  SelectedItem="{Binding SelectedFromUnit, Mode=TwoWay}" />
             </Grid>
@@ -40,14 +40,14 @@
 
         <GroupBox Header="To" Grid.Row="0" Grid.Column="3">
             <Grid>
-                <ListBox 
-                 ItemsSource="{Binding Path=Units}" 
+                <ListBox
+                 ItemsSource="{Binding Path=Units}"
                  DisplayMemberPath="Text"
                  SelectedItem="{Binding SelectedToUnit, Mode=TwoWay}" />
             </Grid>
         </GroupBox>
 
-        
+
         <WrapPanel Grid.Row="1" Grid.Column="0" Margin="10">
             <!--Placeholder-->
         </WrapPanel>

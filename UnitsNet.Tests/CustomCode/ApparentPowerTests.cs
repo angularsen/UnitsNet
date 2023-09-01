@@ -27,6 +27,8 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ApparentPowerTests : ApparentPowerTestsBase
     {
+        protected override bool SupportsSIUnitSystem => false;
+
         protected override double VoltamperesInOneVoltampere => 1;
 
         protected override double KilovoltamperesInOneVoltampere => 1E-3;
@@ -34,5 +36,9 @@ namespace UnitsNet.Tests.CustomCode
         protected override double MegavoltamperesInOneVoltampere => 1E-6;
 
         protected override double GigavoltamperesInOneVoltampere => 1E-9;
+
+        protected override double MicrovoltamperesInOneVoltampere => 1E6;
+
+        protected override double MillivoltamperesInOneVoltampere => 1E3;
     }
 }

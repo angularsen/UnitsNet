@@ -2,7 +2,6 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
-using JetBrains.Annotations;
 using UnitsNet.Units;
 
 namespace UnitsNet
@@ -22,29 +21,53 @@ namespace UnitsNet
         /// Creates an instance of the UnitInfo class.
         /// </summary>
         /// <param name="value">The enum value for this class, for example <see cref="LengthUnit.Meter"/>.</param>
+        /// <param name="pluralName">The plural name of the unit, such as "Centimeters".</param>
         /// <param name="baseUnits">The <see cref="BaseUnits"/> for this unit.</param>
-        public UnitInfo([NotNull] Enum value, [NotNull] BaseUnits baseUnits)
+        public UnitInfo(Enum value, string pluralName, BaseUnits baseUnits)
         {
             Value = value ?? throw new ArgumentNullException(nameof(value));
             Name = value.ToString();
+            PluralName = pluralName;
             BaseUnits = baseUnits ?? throw new ArgumentNullException(nameof(baseUnits));
         }
 
         /// <summary>
-        /// The enum value of the unit, such as [<see cref="LengthUnit.Centimeter" />,
-        /// <see cref="LengthUnit.Decimeter" />, <see cref="LengthUnit.Meter" />, ...].
+        /// Creates an instance of the UnitInfo class.
+        /// </summary>
+        /// <param name="value">The enum value for this class, for example <see cref="LengthUnit.Meter"/>.</param>
+        /// <param name="pluralName">The plural name of the unit, such as "Centimeters".</param>
+        /// <param name="baseUnits">The <see cref="BaseUnits"/> for this unit.</param>
+        /// <param name="quantityName">The quantity name that this unit is for.</param>
+        internal UnitInfo(Enum value, string pluralName, BaseUnits baseUnits, string quantityName) :
+            this(value, pluralName, baseUnits)
+        {
+            QuantityName = quantityName;
+        }
+
+        /// <summary>
+        /// The enum value of the unit, such as <see cref="LengthUnit.Centimeter" />.
         /// </summary>
         public Enum Value { get; }
 
         /// <summary>
-        /// The name of the unit, such as ["Centimeter", "Decimeter", "Meter", ...].
+        /// The singular name of the unit, such as "Centimeter".
         /// </summary>
         public string Name { get; }
+
+        /// <summary>
+        /// The plural name of the unit, such as "Centimeters".
+        /// </summary>
+        public string PluralName { get; }
 
         /// <summary>
         /// Gets the <see cref="BaseUnits"/> for this unit.
         /// </summary>
         public BaseUnits BaseUnits { get; }
+
+        /// <summary>
+        /// Name of the quantity this unit belongs to. May be null for custom units.
+        /// </summary>
+        public string? QuantityName { get; }
     }
 
     /// <inheritdoc cref="UnitInfo" />
@@ -58,7 +81,15 @@ namespace UnitsNet
         where TUnit : Enum
     {
         /// <inheritdoc />
-        public UnitInfo(TUnit value, BaseUnits baseUnits) : base(value, baseUnits)
+        public UnitInfo(TUnit value, string pluralName, BaseUnits baseUnits) :
+            base(value, pluralName, baseUnits)
+        {
+            Value = value;
+        }
+
+        /// <inheritdoc />
+        internal UnitInfo(TUnit value, string pluralName, BaseUnits baseUnits, string quantityName) :
+            base(value, pluralName, baseUnits, quantityName)
         {
             Value = value;
         }

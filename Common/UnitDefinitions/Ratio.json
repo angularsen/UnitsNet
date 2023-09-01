@@ -1,13 +1,13 @@
-﻿{
+{
   "Name": "Ratio",
   "BaseUnit": "DecimalFraction",
-  "XmlDoc": "In mathematics, a ratio is a relationship between two numbers of the same kind (e.g., objects, persons, students, spoonfuls, units of whatever identical dimension), usually expressed as \"a to b\" or a:b, sometimes expressed arithmetically as a dimensionless quotient of the two that explicitly indicates how many times the first number contains the second (not necessarily an integer).",
+  "XmlDocSummary": "In mathematics, a ratio is a relationship between two numbers of the same kind (e.g., objects, persons, students, spoonfuls, units of whatever identical dimension), usually expressed as \"a to b\" or a:b, sometimes expressed arithmetically as a dimensionless quotient of the two that explicitly indicates how many times the first number contains the second (not necessarily an integer).",
   "Units": [
     {
       "SingularName": "DecimalFraction",
       "PluralName": "DecimalFractions",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Localization": [
         {
           "Culture": "en-US",
@@ -18,8 +18,8 @@
     {
       "SingularName": "Percent",
       "PluralName": "Percent",
-      "FromUnitToBaseFunc": "x/1e2",
-      "FromBaseToUnitFunc": "x*1e2",
+      "FromUnitToBaseFunc": "{x} / 1e2",
+      "FromBaseToUnitFunc": "{x} * 1e2",
       "Localization": [
         {
           "Culture": "en-US",
@@ -30,8 +30,8 @@
     {
       "SingularName": "PartPerThousand",
       "PluralName": "PartsPerThousand",
-      "FromUnitToBaseFunc": "x/1e3",
-      "FromBaseToUnitFunc": "x*1e3",
+      "FromUnitToBaseFunc": "{x} / 1e3",
+      "FromBaseToUnitFunc": "{x} * 1e3",
       "Localization": [
         {
           "Culture": "en-US",
@@ -42,8 +42,8 @@
     {
       "SingularName": "PartPerMillion",
       "PluralName": "PartsPerMillion",
-      "FromUnitToBaseFunc": "x/1e6",
-      "FromBaseToUnitFunc": "x*1e6",
+      "FromUnitToBaseFunc": "{x} / 1e6",
+      "FromBaseToUnitFunc": "{x} * 1e6",
       "Localization": [
         {
           "Culture": "en-US",
@@ -54,8 +54,8 @@
     {
       "SingularName": "PartPerBillion",
       "PluralName": "PartsPerBillion",
-      "FromUnitToBaseFunc": "x/1e9",
-      "FromBaseToUnitFunc": "x*1e9",
+      "FromUnitToBaseFunc": "{x} / 1e9",
+      "FromBaseToUnitFunc": "{x} * 1e9",
       "Localization": [
         {
           "Culture": "en-US",
@@ -66,8 +66,8 @@
     {
       "SingularName": "PartPerTrillion",
       "PluralName": "PartsPerTrillion",
-      "FromUnitToBaseFunc": "x/1e12",
-      "FromBaseToUnitFunc": "x*1e12",
+      "FromUnitToBaseFunc": "{x} / 1e12",
+      "FromBaseToUnitFunc": "{x} * 1e12",
       "Localization": [
         {
           "Culture": "en-US",

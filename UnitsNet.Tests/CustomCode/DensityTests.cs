@@ -3,10 +3,12 @@
 
 using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     public class DensityTests : DensityTestsBase
     {
+        protected override bool SupportsSIUnitSystem => false;
+
         protected override double MilligramsPerCubicMeterInOneKilogramPerCubicMeter => 1e6;
 
         protected override double GramsPerCubicCentimeterInOneKilogramPerCubicMeter => 1e-3;
@@ -87,6 +89,28 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double KilogramsPerLiterInOneKilogramPerCubicMeter => 1e-3;
 
+        protected override double TonnesPerCubicFootInOneKilogramPerCubicMeter => 2.8316846591999996e-05;
+
+        protected override double TonnesPerCubicInchInOneKilogramPerCubicMeter => 1.6387063999999997e-08;
+
+        protected override double GramsPerCubicFootInOneKilogramPerCubicMeter => 28.316846591999994;
+
+        protected override double GramsPerCubicInchInOneKilogramPerCubicMeter => 0.016387063999999996;
+
+        protected override double PoundsPerCubicMeterInOneKilogramPerCubicMeter => 2.204622621848775;
+
+        protected override double PoundsPerCubicCentimeterInOneKilogramPerCubicMeter => 2.204622621848775e-6;
+
+        protected override double PoundsPerCubicMillimeterInOneKilogramPerCubicMeter => 2.204622621848775e-9;
+
+        protected override double SlugsPerCubicMeterInOneKilogramPerCubicMeter => 0.068521765561961;
+
+        protected override double SlugsPerCubicCentimeterInOneKilogramPerCubicMeter => 6.8521765561961e-8;
+
+        protected override double SlugsPerCubicMillimeterInOneKilogramPerCubicMeter => 6.8521765561961e-11;
+
+        protected override double SlugsPerCubicInchInOneKilogramPerCubicMeter => 1.1228705576569e-6;
+
         [Fact]
         public static void DensityTimesVolumeEqualsMass()
         {
@@ -109,24 +133,6 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Fact]
-        public void ExpectMolarityConvertedToDensityCorrectly()
-        {
-            var molarity = Molarity.FromMolesPerLiter(1.02698355);
-            var mw = Mass.FromGrams(58.443);
-            var density = Density.FromMolarity(molarity, mw).KilogramsPerCubicMeter;
-            AssertEx.EqualTolerance(60.02, density, KilogramsPerCubicMeterTolerance);
-        }
-
-        [Fact]
-        public void ExpectDensityConvertedToMolarityCorrectly()
-        {
-            var density = Density.FromKilogramsPerCubicMeter(60.02);
-            var mw = Mass.FromGrams(58.443);
-            var molarity = density.ToMolarity(mw).MolesPerCubicMeter;
-            AssertEx.EqualTolerance(1026.98355, molarity, KilogramsPerCubicMeterTolerance);
-        }
-
-        [Fact]
         public void DensityTimesSpeedEqualsMassFlux()
         {
             MassFlux massFlux = Density.FromKilogramsPerCubicMeter(20) * Speed.FromMetersPerSecond(2);
@@ -138,6 +144,13 @@ namespace UnitsNet.Tests.CustomCode
         {
             SpecificWeight specificWeight = Density.FromKilogramsPerCubicMeter(10) * Acceleration.FromMetersPerSecondSquared(2);
             Assert.Equal(SpecificWeight.FromNewtonsPerCubicMeter(20), specificWeight);
+        }
+
+        [Fact]
+        public void DensityTimesAreaEqualsLinearDensity()
+        {
+            LinearDensity linearDensity = Density.FromGramsPerCubicCentimeter(10) * Area.FromSquareCentimeters(2);
+            Assert.Equal(20, linearDensity.GramsPerCentimeter);
         }
     }
 }

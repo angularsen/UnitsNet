@@ -27,6 +27,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class LuminousIntensityTests : LuminousIntensityTestsBase
     {
+        protected override bool SupportsSIUnitSystem => true;
         protected override double CandelaInOneCandela => 1;
     }
 }

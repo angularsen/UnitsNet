@@ -1,7 +1,7 @@
-﻿{
+{
   "Name": "MagneticFlux",
   "BaseUnit": "Weber",
-  "XmlDoc": "In physics, specifically electromagnetism, the magnetic flux through a surface is the surface integral of the normal component of the magnetic field B passing through that surface.",
+  "XmlDocSummary": "In physics, specifically electromagnetism, the magnetic flux through a surface is the surface integral of the normal component of the magnetic field B passing through that surface.",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Magnetic_flux",
   "BaseDimensions": {
     "L": 2,
@@ -13,8 +13,8 @@
     {
       "SingularName": "Weber",
       "PluralName": "Webers",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Localization": [
         {
           "Culture": "en-US",

@@ -3,10 +3,12 @@
 
 using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     public class AccelerationTests : AccelerationTestsBase
     {
+        protected override bool SupportsSIUnitSystem => true;
+
         protected override double KilometersPerSecondSquaredInOneMeterPerSecondSquared => 1E-3;
 
         protected override double MetersPerSecondSquaredInOneMeterPerSecondSquared => 1;
@@ -33,11 +35,20 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double KnotsPerSecondInOneMeterPerSecondSquared => 1.94384449244060;
 
+        protected override double MillistandardGravityInOneMeterPerSecondSquared => 101.9716212977928;
+
         [Fact]
         public void AccelerationTimesDensityEqualsSpecificWeight()
         {
             SpecificWeight specificWeight = Acceleration.FromMetersPerSecondSquared(10) * Density.FromKilogramsPerCubicMeter(2);
             Assert.Equal(SpecificWeight.FromNewtonsPerCubicMeter(20), specificWeight);
+        }
+
+        [Fact]
+        public void AccelerationTimesDuration()
+        {
+            Speed speed = Acceleration.FromMetersPerSecondSquared(10) * Duration.FromSeconds(10);
+            Assert.Equal(Speed.FromMetersPerSecond(100), speed);
         }
     }
 }

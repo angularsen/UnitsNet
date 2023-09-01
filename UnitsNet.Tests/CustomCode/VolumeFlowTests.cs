@@ -27,51 +27,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class VolumeFlowTests : VolumeFlowTestsBase
     {
-        protected override double CubicMetersPerHourInOneCubicMeterPerSecond => 3.6e3;
-
-        protected override double CubicDecimetersPerMinuteInOneCubicMeterPerSecond => 6e4;
-
-        protected override double CubicFeetPerHourInOneCubicMeterPerSecond => 1.271328001973604e+5;
-
-        protected override double CubicFeetPerSecondInOneCubicMeterPerSecond => 35.314666721489;
-
-        protected override double MillionUsGallonsPerDayInOneCubicMeterPerSecond => 22.824465227;
-
-        protected override double CubicMetersPerSecondInOneCubicMeterPerSecond => 1;
-
-        protected override double UsGallonsPerMinuteInOneCubicMeterPerSecond => 1.5850323141489e4;
-        protected override double LitersPerHourInOneCubicMeterPerSecond => 3.6e6;
-
-        protected override double LitersPerMinuteInOneCubicMeterPerSecond => 6e4;
-
-        protected override double NanolitersPerMinuteInOneCubicMeterPerSecond => 6e13;
-        protected override double LitersPerSecondInOneCubicMeterPerSecond => 1000;
-
-        protected override double MicrolitersPerMinuteInOneCubicMeterPerSecond => 6e10;
-
-        protected override double MillilitersPerMinuteInOneCubicMeterPerSecond => 6e7;
-
-        protected override double CentilitersPerMinuteInOneCubicMeterPerSecond => 6e6;
-
-        protected override double DecilitersPerMinuteInOneCubicMeterPerSecond => 6e5;
-
-        protected override double KilolitersPerMinuteInOneCubicMeterPerSecond => 60;
-
-        protected override double OilBarrelsPerDayInOneCubicMeterPerSecond => 5.4343965056533388306722269588172e5;
-
-        protected override double CubicFeetPerMinuteInOneCubicMeterPerSecond => 2.11888E3;
-
-        protected override double CubicMetersPerMinuteInOneCubicMeterPerSecond => 6.0E1;
-
-        protected override double CubicYardsPerHourInOneCubicMeterPerSecond => 4.708622232E3;
-
-        protected override double CubicYardsPerMinuteInOneCubicMeterPerSecond => 7.84770372E1;
-
-        protected override double CubicYardsPerSecondInOneCubicMeterPerSecond => 1.30795062;
-
-        protected override double UsGallonsPerHourInOneCubicMeterPerSecond => 9.510193884893328E5;
-
-        protected override double UsGallonsPerSecondInOneCubicMeterPerSecond => 2.64172052358148E2;
+        protected override bool SupportsSIUnitSystem => false;
 
         protected override double AcreFeetPerDayInOneCubicMeterPerSecond => 70.0457;
 
@@ -83,27 +39,119 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double CentilitersPerDayInOneCubicMeterPerSecond => 8.64e9;
 
+        protected override double CentilitersPerHourInOneCubicMeterPerSecond => 3.6e8;
+
+        protected override double CentilitersPerMinuteInOneCubicMeterPerSecond => 6e6;
+
+        protected override double CentilitersPerSecondInOneCubicMeterPerSecond => 1e5;
+
+        protected override double CubicCentimetersPerMinuteInOneCubicMeterPerSecond => 6e7;
+
+        protected override double CubicDecimetersPerMinuteInOneCubicMeterPerSecond => 6e4;
+
+        protected override double CubicFeetPerHourInOneCubicMeterPerSecond => 1.271328001973604e+5;
+
+        protected override double CubicFeetPerMinuteInOneCubicMeterPerSecond => 2.11888E3;
+
+        protected override double CubicFeetPerSecondInOneCubicMeterPerSecond => 35.314666721489;
+
         protected override double CubicMetersPerDayInOneCubicMeterPerSecond => 8.64e4;
+
+        protected override double CubicMetersPerHourInOneCubicMeterPerSecond => 3.6e3;
+
+        protected override double CubicMetersPerMinuteInOneCubicMeterPerSecond => 6.0E1;
+
+        protected override double CubicMetersPerSecondInOneCubicMeterPerSecond => 1;
+
+        protected override double CubicMillimetersPerSecondInOneCubicMeterPerSecond => 1e9;
 
         protected override double CubicYardsPerDayInOneCubicMeterPerSecond => 1.13007e5;
 
+        protected override double CubicYardsPerHourInOneCubicMeterPerSecond => 4.708622232E3;
+
+        protected override double CubicYardsPerMinuteInOneCubicMeterPerSecond => 7.84770372E1;
+
+        protected override double CubicYardsPerSecondInOneCubicMeterPerSecond => 1.30795062;
+
         protected override double DecilitersPerDayInOneCubicMeterPerSecond => 8.64e8;
+
+        protected override double DecilitersPerHourInOneCubicMeterPerSecond => 3.6e7;
+
+        protected override double DecilitersPerMinuteInOneCubicMeterPerSecond => 6e5;
+
+        protected override double DecilitersPerSecondInOneCubicMeterPerSecond => 1e4;
 
         protected override double KilolitersPerDayInOneCubicMeterPerSecond => 8.64e4;
 
+        protected override double KilolitersPerHourInOneCubicMeterPerSecond => 3.6e3;
+
+        protected override double KilolitersPerMinuteInOneCubicMeterPerSecond => 60;
+
+        protected override double KilolitersPerSecondInOneCubicMeterPerSecond => 1;
+
+        protected override double KilousGallonsPerMinuteInOneCubicMeterPerSecond => 1.5850323141489e1;
+
         protected override double LitersPerDayInOneCubicMeterPerSecond => 8.64e7;
+
+        protected override double LitersPerHourInOneCubicMeterPerSecond => 3.6e6;
+
+        protected override double LitersPerMinuteInOneCubicMeterPerSecond => 6e4;
+
+        protected override double LitersPerSecondInOneCubicMeterPerSecond => 1000;
 
         protected override double MegalitersPerDayInOneCubicMeterPerSecond => 86.4;
 
+        protected override double MegalitersPerHourInOneCubicMeterPerSecond => 3.6e0;
+
+        protected override double MegalitersPerMinuteInOneCubicMeterPerSecond => 6e-2;
+
+        protected override double MegalitersPerSecondInOneCubicMeterPerSecond => 1e-3;
+
+        protected override double MegaukGallonsPerSecondInOneCubicMeterPerSecond => 2.19969e-4;
+
+        // https://www.wolframalpha.com/input?i=1.0000000000000000+Cubic+Meter+Per+Second+to+Megaukgallons+Per+Day
+        protected override double MegaukGallonsPerDayInOneCubicMeterPerSecond => 19.00534305304118;
+
+        // https://www.wolframalpha.com/input?i=1.0000000000000000+Cubic+Meter+Per+Second+to+MegaGallons+Per+Day
+        protected override double MegausGallonsPerDayInOneCubicMeterPerSecond => 22.82446532374402;
+
         protected override double MicrolitersPerDayInOneCubicMeterPerSecond => 8.64e+13;
+
+        protected override double MicrolitersPerHourInOneCubicMeterPerSecond => 3.6e12;
+
+        protected override double MicrolitersPerMinuteInOneCubicMeterPerSecond => 6e10;
+
+        protected override double MicrolitersPerSecondInOneCubicMeterPerSecond => 1e9;
 
         protected override double MillilitersPerDayInOneCubicMeterPerSecond => 8.64e+10;
 
+        protected override double MillilitersPerHourInOneCubicMeterPerSecond => 3.6e9;
+
+        protected override double MillilitersPerMinuteInOneCubicMeterPerSecond => 6e7;
+
+        protected override double MillilitersPerSecondInOneCubicMeterPerSecond => 1e6;
+
+        protected override double MillionUsGallonsPerDayInOneCubicMeterPerSecond => 22.824465227;
+
         protected override double NanolitersPerDayInOneCubicMeterPerSecond => 8.64e+16;
+
+        protected override double NanolitersPerHourInOneCubicMeterPerSecond => 3.6e15;
+
+        protected override double NanolitersPerMinuteInOneCubicMeterPerSecond => 6e13;
+
+        protected override double NanolitersPerSecondInOneCubicMeterPerSecond => 1e12;
+
+        protected override double OilBarrelsPerDayInOneCubicMeterPerSecond => 5.4343965056533388306722269588172e5;
+
+        protected override double OilBarrelsPerHourInOneCubicMeterPerSecond => 2.26431877E4;
+
+        protected override double OilBarrelsPerMinuteInOneCubicMeterPerSecond => 3.77388865E2;
 
         protected override double OilBarrelsPerSecondInOneCubicMeterPerSecond => 6.28981;
 
         protected override double UkGallonsPerDayInOneCubicMeterPerSecond => 1.9005304e7;
+
+        protected override double UkGallonsPerHourInOneCubicMeterPerSecond => 791888.967;
 
         protected override double UkGallonsPerMinuteInOneCubicMeterPerSecond => 1.31982e4;
 
@@ -111,15 +159,11 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double UsGallonsPerDayInOneCubicMeterPerSecond => 2.2824465227e7;
 
-        protected override double MegaukGallonsPerSecondInOneCubicMeterPerSecond => 2.19969e-4;
+        protected override double UsGallonsPerHourInOneCubicMeterPerSecond => 9.510193884893328E5;
 
-        protected override double OilBarrelsPerHourInOneCubicMeterPerSecond => 2.26431877E4;
+        protected override double UsGallonsPerMinuteInOneCubicMeterPerSecond => 1.5850323141489e4;
 
-        protected override double OilBarrelsPerMinuteInOneCubicMeterPerSecond => 3.77388865E2;
-
-        protected override double KilousGallonsPerMinuteInOneCubicMeterPerSecond => 1.5850323141489e1;
-
-        protected override double CubicMillimetersPerSecondInOneCubicMeterPerSecond => 1e9;
+        protected override double UsGallonsPerSecondInOneCubicMeterPerSecond => 2.64172052358148E2;
 
         [Theory]
         [InlineData(20, 2, 40)]

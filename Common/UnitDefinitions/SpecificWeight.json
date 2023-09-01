@@ -1,7 +1,7 @@
 {
   "Name": "SpecificWeight",
   "BaseUnit": "NewtonPerCubicMeter",
-  "XmlDoc": "The SpecificWeight, or more precisely, the volumetric weight density, of a substance is its weight per unit volume.",
+  "XmlDocSummary": "The SpecificWeight, or more precisely, the volumetric weight density, of a substance is its weight per unit volume.",
   "XmlDocRemarks": "http://en.wikipedia.org/wiki/Specificweight",
   "BaseDimensions": {
     "L": -2,
@@ -12,8 +12,8 @@
     {
       "SingularName": "NewtonPerCubicMillimeter",
       "PluralName": "NewtonsPerCubicMillimeter",
-      "FromUnitToBaseFunc": "x*1000000000",
-      "FromBaseToUnitFunc": "x*0.000000001",
+      "FromUnitToBaseFunc": "{x} * 1000000000",
+      "FromBaseToUnitFunc": "{x} * 0.000000001",
       "Prefixes": [ "Kilo" ],
       "Localization": [
         {
@@ -25,8 +25,8 @@
     {
       "SingularName": "NewtonPerCubicCentimeter",
       "PluralName": "NewtonsPerCubicCentimeter",
-      "FromUnitToBaseFunc": "x*1000000",
-      "FromBaseToUnitFunc": "x*0.000001",
+      "FromUnitToBaseFunc": "{x} * 1000000",
+      "FromBaseToUnitFunc": "{x} * 0.000001",
       "Prefixes": [ "Kilo" ],
       "Localization": [
         {
@@ -38,8 +38,8 @@
     {
       "SingularName": "NewtonPerCubicMeter",
       "PluralName": "NewtonsPerCubicMeter",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
@@ -51,8 +51,8 @@
     {
       "SingularName": "KilogramForcePerCubicMillimeter",
       "PluralName": "KilogramsForcePerCubicMillimeter",
-      "FromUnitToBaseFunc": "x*9.80665e9",
-      "FromBaseToUnitFunc": "x/9.80665e9",
+      "FromUnitToBaseFunc": "{x} * 9.80665e9",
+      "FromBaseToUnitFunc": "{x} / 9.80665e9",
       "Localization": [
         {
           "Culture": "en-US",
@@ -63,8 +63,8 @@
     {
       "SingularName": "KilogramForcePerCubicCentimeter",
       "PluralName": "KilogramsForcePerCubicCentimeter",
-      "FromUnitToBaseFunc": "x*9.80665e6",
-      "FromBaseToUnitFunc": "x/9.80665e6",
+      "FromUnitToBaseFunc": "{x} * 9.80665e6",
+      "FromBaseToUnitFunc": "{x} / 9.80665e6",
       "Localization": [
         {
           "Culture": "en-US",
@@ -75,8 +75,8 @@
     {
       "SingularName": "KilogramForcePerCubicMeter",
       "PluralName": "KilogramsForcePerCubicMeter",
-      "FromUnitToBaseFunc": "x*9.80665",
-      "FromBaseToUnitFunc": "x/9.80665",
+      "FromUnitToBaseFunc": "{x} * 9.80665",
+      "FromBaseToUnitFunc": "{x} / 9.80665",
       "Localization": [
         {
           "Culture": "en-US",
@@ -87,36 +87,36 @@
     {
       "SingularName": "PoundForcePerCubicInch",
       "PluralName": "PoundsForcePerCubicInch",
-      "FromUnitToBaseFunc": "x*2.714471375263134e5",
-      "FromBaseToUnitFunc": "x/2.714471375263134e5",
+      "FromUnitToBaseFunc": "{x} * 2.714471375263134e5",
+      "FromBaseToUnitFunc": "{x} / 2.714471375263134e5",
       "Prefixes": [ "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
           "Abbreviations": [ "lbf/in³" ],
-          "AbbreviationsWithPrefixes": [ "kipf/in³" ]
+          "AbbreviationsForPrefixes": { "Kilo": "kipf/in³" }
         }
       ]
     },
     {
       "SingularName": "PoundForcePerCubicFoot",
       "PluralName": "PoundsForcePerCubicFoot",
-      "FromUnitToBaseFunc": "x*1.570874638462462e2",
-      "FromBaseToUnitFunc": "x/1.570874638462462e2",
+      "FromUnitToBaseFunc": "{x} * 1.570874638462462e2",
+      "FromBaseToUnitFunc": "{x} / 1.570874638462462e2",
       "Prefixes": [ "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
           "Abbreviations": [ "lbf/ft³" ],
-          "AbbreviationsWithPrefixes": [ "kipf/ft³" ]
+          "AbbreviationsForPrefixes": { "Kilo": "kipf/ft³" }
         }
       ]
     },
     {
       "SingularName": "TonneForcePerCubicMillimeter",
       "PluralName": "TonnesForcePerCubicMillimeter",
-      "FromUnitToBaseFunc": "x*9.80665e12",
-      "FromBaseToUnitFunc": "x/9.80665e12",
+      "FromUnitToBaseFunc": "{x} * 9.80665e12",
+      "FromBaseToUnitFunc": "{x} / 9.80665e12",
       "Localization": [
         {
           "Culture": "en-US",
@@ -127,8 +127,8 @@
     {
       "SingularName": "TonneForcePerCubicCentimeter",
       "PluralName": "TonnesForcePerCubicCentimeter",
-      "FromUnitToBaseFunc": "x*9.80665e9",
-      "FromBaseToUnitFunc": "x/9.80665e9",
+      "FromUnitToBaseFunc": "{x} * 9.80665e9",
+      "FromBaseToUnitFunc": "{x} / 9.80665e9",
       "Localization": [
         {
           "Culture": "en-US",
@@ -139,8 +139,8 @@
     {
       "SingularName": "TonneForcePerCubicMeter",
       "PluralName": "TonnesForcePerCubicMeter",
-      "FromUnitToBaseFunc": "x*9.80665e3",
-      "FromBaseToUnitFunc": "x/9.80665e3",
+      "FromUnitToBaseFunc": "{x} * 9.80665e3",
+      "FromBaseToUnitFunc": "{x} / 9.80665e3",
       "Localization": [
         {
           "Culture": "en-US",

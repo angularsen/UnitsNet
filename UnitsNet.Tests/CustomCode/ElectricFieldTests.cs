@@ -27,6 +27,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ElectricFieldTests : ElectricFieldTestsBase
     {
+        protected override bool SupportsSIUnitSystem => true;
         protected override double VoltsPerMeterInOneVoltPerMeter => 1;
     }
 }

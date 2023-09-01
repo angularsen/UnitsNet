@@ -1,13 +1,16 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using Xunit;
 using System;
+using System.Globalization;
+using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     public class DurationTests : DurationTestsBase
     {
+        protected override bool SupportsSIUnitSystem => true;
+
         protected override double DaysInOneSecond => 1.15741e-5;
 
         protected override double HoursInOneSecond => 0.0002777784;
@@ -27,6 +30,8 @@ namespace UnitsNet.Tests.CustomCode
         protected override double WeeksInOneSecond => 1.653439153439153e-6;
 
         protected override double Years365InOneSecond => 3.170979198376458e-8;
+
+        protected override double JulianYearsInOneSecond => 3.16880878140289e-08;
 
         [Fact]
         public static void ToTimeSpanShouldThrowExceptionOnValuesLargerThanTimeSpanMax()
@@ -56,6 +61,17 @@ namespace UnitsNet.Tests.CustomCode
             Duration duration = Duration.FromSeconds(TimeSpan.MaxValue.TotalSeconds - 1);
             TimeSpan timeSpan = duration.ToTimeSpan();
             AssertEx.EqualTolerance(duration.Seconds, timeSpan.TotalSeconds, 1e-3);
+        }
+
+        [Theory]
+        [InlineData(100, Units.DurationUnit.Nanosecond)]
+        [InlineData(1, Units.DurationUnit.Microsecond)]
+        [InlineData(1.234, Units.DurationUnit.Millisecond)]
+        public static void ToTimeSpanShouldNotRoundToMillisecond(double value, Units.DurationUnit unit)
+        {
+            Duration duration = Duration.From(value, unit);
+            TimeSpan timeSpan = duration.ToTimeSpan();
+            AssertEx.EqualTolerance(duration.Milliseconds, timeSpan.TotalMilliseconds, 1e-10);
         }
 
         [Fact]
@@ -163,6 +179,43 @@ namespace UnitsNet.Tests.CustomCode
         {
             Volume volume = Duration.FromSeconds(20) * VolumeFlow.FromCubicMetersPerSecond(2);
             Assert.Equal(Volume.FromCubicMeters(40), volume);
+        }
+
+        [Theory]
+        [InlineData("1s", 1)]
+        [InlineData("2 seconds", 2)]
+        [InlineData("1 ms", 1e-3)]
+        [InlineData("1000 msec", 1)]
+        [InlineData("1 с", 1, "ru-RU")]
+        [InlineData("1 сек", 1, "ru-RU")]
+        [InlineData("1000 мс", 1, "ru-RU")]
+        [InlineData("1000 мсек", 1, "ru-RU")]
+        public void DurationFromStringUsingMultipleAbbreviationsParsedCorrectly(string textValue, double expectedSeconds, string? culture = null)
+        {
+            var cultureInfo = culture == null ? CultureInfo.InvariantCulture : CultureInfo.GetCultureInfo(culture);
+
+            AssertEx.EqualTolerance(expectedSeconds, Duration.Parse(textValue, cultureInfo).Seconds, SecondsTolerance);
+        }
+
+        [Fact]
+        public void DurationMultipliedByElectricCurrentEqualsElectricCharge()
+        {
+            ElectricCharge ah = Duration.FromHours(5) * ElectricCurrent.FromAmperes(4);
+            Assert.Equal(20, ah.AmpereHours);
+        }
+
+        [Fact]
+        public void DurationTimesAcceleration()
+        {
+            Speed speed = Duration.FromSeconds(10) * Acceleration.FromMetersPerSecondSquared(10);
+            Assert.Equal(Speed.FromMetersPerSecond(100), speed);
+        }
+
+        [Fact]
+        public void DurationTimesForceChangeRate()
+        {
+            Force force = Duration.FromSeconds(10) * ForceChangeRate.FromNewtonsPerSecond(100);
+            Assert.Equal(Force.FromNewtons(1000), force);
         }
     }
 }

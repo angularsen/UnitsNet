@@ -1,7 +1,7 @@
-﻿{
+{
   "Name": "ForceChangeRate",
   "BaseUnit": "NewtonPerSecond",
-  "XmlDoc": "Force change rate is the ratio of the force change to the time during which the change occurred (value of force changes per unit time).",
+  "XmlDocSummary": "Force change rate is the ratio of the force change to the time during which the change occurred (value of force changes per unit time).",
   "BaseDimensions": {
     "L": 1,
     "M": 1,
@@ -11,8 +11,8 @@
     {
       "SingularName": "NewtonPerMinute",
       "PluralName": "NewtonsPerMinute",
-      "FromUnitToBaseFunc": "x/60",
-      "FromBaseToUnitFunc": "x*60",
+      "FromUnitToBaseFunc": "{x} / 60",
+      "FromBaseToUnitFunc": "{x} * 60",
       "Prefixes": [ "Deca", "Kilo" ],
       "Localization": [
         {
@@ -24,13 +24,41 @@
     {
       "SingularName": "NewtonPerSecond",
       "PluralName": "NewtonsPerSecond",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
           "Abbreviations": [ "N/s" ]
+        }
+      ]
+    },
+	{
+      "SingularName": "PoundForcePerMinute",
+      "PluralName": "PoundsForcePerMinute",
+      "FromUnitToBaseFunc": "{x} * 4.4482216152605095551842641431421 / 60",
+      "FromBaseToUnitFunc": "{x} / 4.4482216152605095551842641431421 * 60",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lbf/min" ],
+          "AbbreviationsForPrefixes": { "Kilo": [ "kipf/min", "kip/min", "k/min" ] }
+        }
+      ]
+    },
+	{
+      "SingularName": "PoundForcePerSecond",
+      "PluralName": "PoundsForcePerSecond",
+      "FromUnitToBaseFunc": "{x} * 4.4482216152605095551842641431421",
+      "FromBaseToUnitFunc": "{x} / 4.4482216152605095551842641431421",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lbf/s" ],
+          "AbbreviationsForPrefixes": { "Kilo": [ "kipf/s", "kip/s", "k/s" ] }
         }
       ]
     }

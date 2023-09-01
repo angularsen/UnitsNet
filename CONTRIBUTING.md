@@ -27,11 +27,11 @@ For a fairly complete summary of the unit definition JSON schema, see [Meter of 
 ### Conversion functions
 Converting from unit A to B is achieved by first converting from unit A to the base unit, then from the base unit to unit B. To achieve this, each unit defines two conversion functions.
 
-* Prefer multiplication for `FromUnitToBaseFunc` (`x*2.54e-2` for `Inch` to `Meter`)
-* Prefer division for `FromBaseToUnitFunc` (`x/2.54e-2` for `Meter` to `Inch`)
+* Prefer multiplication for `FromUnitToBaseFunc` (`{x} * 2.54e-2` for `Inch` to `Meter`)
+* Prefer division for `FromBaseToUnitFunc` (`{x} / 2.54e-2` for `Meter` to `Inch`)
 * Prefer scientific notation `1e3` and `1e-5` instead of `1000` and `0.00001`
-* Prefer a constant if the conversion factor is finite (`x*2.54e-2` for `Inch`)
-* Prefer a calculation if the conversion factor is infinite (`(x/72.27)*2.54e-2` for `PrinterPoint`)
+* Prefer a constant if the conversion factor is finite (`{x} * 2.54e-2` for `Inch`)
+* Prefer a calculation if the conversion factor is infinite (`({x} / 72.27)*2.54e-2` for `PrinterPoint`)
 
 ### Units
 Generally we try to name the units as what is the most widely used.

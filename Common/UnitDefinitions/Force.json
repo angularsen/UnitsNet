@@ -1,7 +1,7 @@
 {
   "Name": "Force",
   "BaseUnit": "Newton",
-  "XmlDoc": "In physics, a force is any influence that causes an object to undergo a certain change, either concerning its movement, direction, or geometrical construction. In other words, a force can cause an object with mass to change its velocity (which includes to begin moving from a state of rest), i.e., to accelerate, or a flexible object to deform, or both. Force can also be described by intuitive concepts such as a push or a pull. A force has both magnitude and direction, making it a vector quantity. It is measured in the SI unit of newtons and represented by the symbol F.",
+  "XmlDocSummary": "In physics, a force is any influence that causes an object to undergo a certain change, either concerning its movement, direction, or geometrical construction. In other words, a force can cause an object with mass to change its velocity (which includes to begin moving from a state of rest), i.e., to accelerate, or a flexible object to deform, or both. Force can also be described by intuitive concepts such as a push or a pull. A force has both magnitude and direction, making it a vector quantity. It is measured in the SI unit of newtons and represented by the symbol F.",
   "BaseDimensions": {
     "L": 1,
     "M": 1,
@@ -16,8 +16,8 @@
         "M": "Gram",
         "T": "Second"
       },
-      "FromUnitToBaseFunc": "x/1e5",
-      "FromBaseToUnitFunc": "x*1e5",
+      "FromUnitToBaseFunc": "{x} / 1e5",
+      "FromBaseToUnitFunc": "{x} * 1e5",
       "Localization": [
         {
           "Culture": "en-US",
@@ -32,8 +32,8 @@
     {
       "SingularName": "KilogramForce",
       "PluralName": "KilogramsForce",
-      "FromUnitToBaseFunc": "x*9.80665002864",
-      "FromBaseToUnitFunc": "x/9.80665002864",
+      "FromUnitToBaseFunc": "{x} * 9.80665002864",
+      "FromBaseToUnitFunc": "{x} / 9.80665002864",
       "Localization": [
         {
           "Culture": "en-US",
@@ -48,12 +48,12 @@
     {
       "SingularName": "TonneForce",
       "PluralName": "TonnesForce",
-      "FromUnitToBaseFunc": "x*9.80665002864e3",
-      "FromBaseToUnitFunc": "x/9.80665002864e3",
+      "FromUnitToBaseFunc": "{x} * 9.80665002864e3",
+      "FromBaseToUnitFunc": "{x} / 9.80665002864e3",
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "Ton" ]
+          "Abbreviations": [ "tf", "Ton" ]
         },
         {
           "Culture": "ru-RU",
@@ -69,8 +69,8 @@
         "M": "Kilogram",
         "T": "Second"
       },
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Micro", "Milli", "Deca", "Kilo", "Mega" ],
       "Localization": [
         {
@@ -79,16 +79,15 @@
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "Н" ],
-          "AbbreviationsWithPrefixes": [ "мкН", "мН", "даН", "кН", "МН" ]
+          "Abbreviations": [ "Н" ]
         }
       ]
     },
     {
       "SingularName": "KiloPond",
       "PluralName": "KiloPonds",
-      "FromUnitToBaseFunc": "x*9.80665002864",
-      "FromBaseToUnitFunc": "x/9.80665002864",
+      "FromUnitToBaseFunc": "{x} * 9.80665002864",
+      "FromBaseToUnitFunc": "{x} / 9.80665002864",
       "Localization": [
         {
           "Culture": "en-US",
@@ -108,8 +107,8 @@
         "M": "Pound",
         "T": "Second"
       },
-      "FromUnitToBaseFunc": "x*0.13825502798973041652092282466083",
-      "FromBaseToUnitFunc": "x/0.13825502798973041652092282466083",
+      "FromUnitToBaseFunc": "{x} * 0.13825502798973041652092282466083",
+      "FromBaseToUnitFunc": "{x} / 0.13825502798973041652092282466083",
       "Localization": [
         {
           "Culture": "en-US",
@@ -124,28 +123,45 @@
     {
       "SingularName": "PoundForce",
       "PluralName": "PoundsForce",
-      "FromUnitToBaseFunc": "x*4.4482216152605095551842641431421",
-      "FromBaseToUnitFunc": "x/4.4482216152605095551842641431421",
+      "FromUnitToBaseFunc": "{x} * 4.4482216152605095551842641431421",
+      "FromBaseToUnitFunc": "{x} / 4.4482216152605095551842641431421",
+      "Prefixes": [ "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lbf" ]
+          "Abbreviations": [ "lbf" ],
+          "AbbreviationsForPrefixes": { "Kilo": [ "kipf", "kip", "k" ] }
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "фунт-сила" ]
+          "Abbreviations": [ "фунт-сила" ],
+          "AbbreviationsForPrefixes": { "Kilo": [ "кипф", "койка", "К" ] }
         }
       ]
     },
     {
       "SingularName": "OunceForce",
       "PluralName": "OunceForce",
-      "FromUnitToBaseFunc": "x*2.780138509537812e-1",
-      "FromBaseToUnitFunc": "x/2.780138509537812e-1",
+      "FromUnitToBaseFunc": "{x} * 2.780138509537812e-1",
+      "FromBaseToUnitFunc": "{x} / 2.780138509537812e-1",
       "Localization": [
         {
           "Culture": "en-US",
           "Abbreviations": [ "ozf" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "ShortTonForce",
+      "PluralName": "ShortTonsForce",
+      "FromUnitToBaseFunc": "{x} * 8.896443230521e3",
+      "FromBaseToUnitFunc": "{x} / 8.896443230521e3",
+      "XmlDocSummary": "The short ton-force is a unit of force equal to 2,000 pounds-force (907.18474 kgf), that is most commonly used in the United States – known there simply as the ton or US ton.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Ton-force#Short_ton-force",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "tf (short)", "t (US)f", "short tons-force" ]
         }
       ]
     }

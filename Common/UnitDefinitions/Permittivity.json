@@ -1,7 +1,7 @@
-﻿{
+{
   "Name": "Permittivity",
   "BaseUnit": "FaradPerMeter",
-  "XmlDoc": "In electromagnetism, permittivity is the measure of resistance that is encountered when forming an electric field in a particular medium.",
+  "XmlDocSummary": "In electromagnetism, permittivity is the measure of resistance that is encountered when forming an electric field in a particular medium.",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Permittivity",
   "BaseDimensions": {
     "L": -3,
@@ -13,8 +13,8 @@
     {
       "SingularName": "FaradPerMeter",
       "PluralName": "FaradsPerMeter",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Localization": [
         {
           "Culture": "en-US",

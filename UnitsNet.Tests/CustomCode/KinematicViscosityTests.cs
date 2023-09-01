@@ -4,10 +4,12 @@
 using System;
 using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     public class KinematicViscosityTests : KinematicViscosityTestsBase
     {
+        protected override bool SupportsSIUnitSystem => false;
+
         protected override double CentistokesInOneSquareMeterPerSecond => 1e6;
 
         protected override double DecistokesInOneSquareMeterPerSecond => 1e5;
@@ -23,6 +25,8 @@ namespace UnitsNet.Tests.CustomCode
         protected override double SquareMetersPerSecondInOneSquareMeterPerSecond => 1;
 
         protected override double StokesInOneSquareMeterPerSecond => 1e4;
+
+        protected override double SquareFeetPerSecondInOneSquareMeterPerSecond => 10.7639;
 
         [Fact]
         public static void DurationTimesKinematicViscosityEqualsArea()

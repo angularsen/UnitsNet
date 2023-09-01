@@ -1,0 +1,101 @@
+{
+  "Name": "Compressibility",
+  "BaseUnit": "InversePascal",
+  "XmlDoc": "Compressibility is the measure of the relative volume change of a fluid or solid in response to pressure changes.",
+  "BaseDimensions": {
+    "L": 1,
+    "M": -1,
+    "T": 2
+  },
+  "Units": [
+    {
+      "SingularName": "InversePascal",
+      "PluralName": "InversePascals",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Pa⁻¹", "1/Pa" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "InverseKilopascal",
+      "PluralName": "InverseKilopascals",
+      "FromUnitToBaseFunc": "{x} * 1e3",
+      "FromBaseToUnitFunc": "{x} / 1e3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kPa⁻¹", "1/kPa" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "InverseMegapascal",
+      "PluralName": "InverseMegapascals",
+      "FromUnitToBaseFunc": "{x} * 1e6",
+      "FromBaseToUnitFunc": "{x} / 1e6",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "MPa⁻¹", "1/MPa" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "InverseAtmosphere",
+      "PluralName": "InverseAtmospheres",
+      "FromUnitToBaseFunc": "{x} * 101325",
+      "FromBaseToUnitFunc": "{x} / 101325",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "atm⁻¹", "1/atm" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "InverseMillibar",
+      "PluralName": "InverseMillibars",
+      "FromUnitToBaseFunc": "{x} * 100",
+      "FromBaseToUnitFunc": "{x} / 100",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mbar⁻¹", "1/mbar" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "InverseBar",
+      "PluralName": "InverseBars",
+      "FromUnitToBaseFunc": "{x} * 1e5",
+      "FromBaseToUnitFunc": "{x} / 1e5",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "bar⁻¹", "1/bar" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "InversePoundForcePerSquareInch",
+      "PluralName": "InversePoundsForcePerSquareInch",
+      "FromUnitToBaseFunc": "{x} * 6.894757293168361e3",
+      "FromBaseToUnitFunc": "{x} / 6.894757293168361e3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "psi⁻¹", "1/psi" ]
+        }
+      ]
+    }
+  ]
+}

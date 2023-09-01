@@ -1,0 +1,75 @@
+{
+  "Name": "TemperatureGradient",
+  "BaseUnit": "KelvinPerMeter",
+  "XmlDoc": "The rate of change of temperature with displacement in a given direction (as with increase of height)",
+  "BaseDimensions": {
+    "L": -1,
+    "Θ": 1
+  },
+  "Units": [
+    {
+      "SingularName": "KelvinPerMeter",
+      "PluralName": "KelvinsPerMeter",
+      "BaseUnits": {
+        "L": "Meter",
+        "Θ": "Kelvin"
+      },
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "∆°K/m" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DegreeCelsiusPerMeter",
+      "PluralName": "DegreesCelciusPerMeter",
+      "BaseUnits": {
+        "L": "Meter",
+        "Θ": "DegreeCelsius"
+      },
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "∆°C/m" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DegreeFahrenheitPerFoot",
+      "PluralName": "DegreesFahrenheitPerFoot",
+      "BaseUnits": {
+        "L": "Foot",
+        "Θ": "DegreeFahrenheit"
+      },
+      "FromUnitToBaseFunc": "({x} / 0.3048) * 5 / 9",
+      "FromBaseToUnitFunc": "({x} * 0.3048) * 9 / 5",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "∆°F/ft" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "DegreeCelsiusPerKilometer",
+      "PluralName": "DegreesCelciusPerKilometer",
+      "BaseUnits": {
+        "L": "Kilometer",
+        "Θ": "DegreeCelsius"
+      },
+      "FromUnitToBaseFunc": "{x} / 1e3",
+      "FromBaseToUnitFunc": "{x} * 1e3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "∆°C/km" ]
+        }
+      ]
+    }
+  ]
+}

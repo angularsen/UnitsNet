@@ -1,6 +1,0 @@
-<Project>
-  <!-- Workaround for `dotnet test UnitsNet.sln`: https://dasmulli.blog/2018/01/20/make-dotnet-test-work-on-solution-files/ -->
-  <Target Name="VSTest">
-    <MSBuild Projects="@(ProjectReference)" Targets="VSTestIfTestProject" />
-  </Target>
-</Project>

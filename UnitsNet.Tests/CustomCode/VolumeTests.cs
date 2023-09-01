@@ -4,17 +4,18 @@
 using System;
 using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     public class VolumeTests : VolumeTestsBase
     {
+        protected override bool SupportsSIUnitSystem => true;
         protected override double CentilitersInOneCubicMeter => 1E5;
 
         protected override double CubicCentimetersInOneCubicMeter => 1E6;
 
         protected override double CubicDecimetersInOneCubicMeter => 1E3;
 
-        protected override double CubicFeetInOneCubicMeter => 35.31472;
+        protected override double CubicFeetInOneCubicMeter => 35.314666721488590250438010354003;
 
         protected override double CubicInchesInOneCubicMeter => 61023.98242;
 
@@ -32,11 +33,16 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double CubicYardsInOneCubicMeter => 1.30795062;
 
+        protected override double DecausGallonsInOneCubicMeter => 2.6417217e+1;
+
         protected override double DecilitersInOneCubicMeter => 1E4;
+        protected override double DeciusGallonsInOneCubicMeter => 2.6417217e+3;
         protected override double HectocubicFeetInOneCubicMeter => 3.531472e-1;
         protected override double HectocubicMetersInOneCubicMeter => 0.01;
 
         protected override double HectolitersInOneCubicMeter => 1E1;
+
+        protected override double HectousGallonsInOneCubicMeter => 2.6417217;
 
         protected override double ImperialGallonsInOneCubicMeter => 219.96924;
 
@@ -57,6 +63,8 @@ namespace UnitsNet.Tests.CustomCode
         protected override double MicrolitersInOneCubicMeter => 1E9;
 
         protected override double MillilitersInOneCubicMeter => 1E6;
+
+        protected override double NanolitersInOneCubicMeter => 1E12;
 
         protected override double AuTablespoonsInOneCubicMeter => 50000;
 
@@ -94,7 +102,16 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double ImperialPintsInOneCubicMeter => 1.7597539863927023e3;
 
-        [ Fact]
+        protected override double BoardFeetInOneCubicMeter => 423.7760007;
+
+        protected override double DecalitersInOneCubicMeter => 1e2;
+
+        /// <summary>
+        /// https://www.legislation.gov.uk/uksi/1995/1804/made
+        /// </summary>
+        protected override double ImperialQuartsInOneCubicMeter => 879.876993196;
+
+        [Fact]
         public void VolumeDividedByAreaEqualsLength()
         {
             Length length = Volume.FromCubicMeters(15)/Area.FromSquareMeters(5);

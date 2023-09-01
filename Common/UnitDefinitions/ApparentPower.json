@@ -1,7 +1,7 @@
-﻿{
+{
   "Name": "ApparentPower",
   "BaseUnit": "Voltampere",
-  "XmlDoc": "Power engineers measure apparent power as the magnitude of the vector sum of active and reactive power. Apparent power is the product of the root-mean-square of voltage and current.",
+  "XmlDocSummary": "Power engineers measure apparent power as the magnitude of the vector sum of active and reactive power. Apparent power is the product of the root-mean-square of voltage and current.",
   "BaseDimensions": {
     "L": 2,
     "M": 1,
@@ -11,9 +11,9 @@
     {
       "SingularName": "Voltampere",
       "PluralName": "Voltamperes",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Kilo", "Mega", "Giga" ],
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Prefixes": [ "Micro", "Milli", "Kilo", "Mega", "Giga" ],
       "Localization": [
         {
           "Culture": "en-US",

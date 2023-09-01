@@ -11,7 +11,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConstructorTest()
         {
-            var unitInfo = new UnitInfo(LengthUnit.Meter, new BaseUnits(LengthUnit.Meter));
+            var unitInfo = new UnitInfo(LengthUnit.Meter, "Meters", new BaseUnits(LengthUnit.Meter), nameof(Length));
             Assert.Equal(LengthUnit.Meter, unitInfo.Value);
             Assert.Equal(LengthUnit.Meter.ToString(), unitInfo.Name);
         }
@@ -19,7 +19,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void GenericConstructorTest()
         {
-            var unitInfo = new UnitInfo<LengthUnit>(LengthUnit.Meter, new BaseUnits(LengthUnit.Meter));
+            var unitInfo = new UnitInfo<LengthUnit>(LengthUnit.Meter, "Meters", new BaseUnits(LengthUnit.Meter), nameof(Length));
             Assert.Equal(LengthUnit.Meter, unitInfo.Value);
             Assert.Equal(LengthUnit.Meter.ToString(), unitInfo.Name);
         }
