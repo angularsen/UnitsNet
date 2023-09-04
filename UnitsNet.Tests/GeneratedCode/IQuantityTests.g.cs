@@ -63,9 +63,7 @@ namespace UnitsNet.Tests
             Assertion(3, ElectricFieldUnit.VoltPerMeter, Quantity.From(3, ElectricFieldUnit.VoltPerMeter));
             Assertion(3, ElectricInductanceUnit.Picohenry, Quantity.From(3, ElectricInductanceUnit.Picohenry));
             Assertion(3, ElectricPotentialUnit.Volt, Quantity.From(3, ElectricPotentialUnit.Volt));
-            Assertion(3, ElectricPotentialAcUnit.VoltAc, Quantity.From(3, ElectricPotentialAcUnit.VoltAc));
             Assertion(3, ElectricPotentialChangeRateUnit.VoltPerSecond, Quantity.From(3, ElectricPotentialChangeRateUnit.VoltPerSecond));
-            Assertion(3, ElectricPotentialDcUnit.VoltDc, Quantity.From(3, ElectricPotentialDcUnit.VoltDc));
             Assertion(3, ElectricResistanceUnit.Teraohm, Quantity.From(3, ElectricResistanceUnit.Teraohm));
             Assertion(3, ElectricResistivityUnit.PicoohmMeter, Quantity.From(3, ElectricResistivityUnit.PicoohmMeter));
             Assertion(3, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, Quantity.From(3, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter));
@@ -190,9 +188,7 @@ namespace UnitsNet.Tests
             Assertion(ElectricField.Info, ElectricField.Zero);
             Assertion(ElectricInductance.Info, ElectricInductance.Zero);
             Assertion(ElectricPotential.Info, ElectricPotential.Zero);
-            Assertion(ElectricPotentialAc.Info, ElectricPotentialAc.Zero);
             Assertion(ElectricPotentialChangeRate.Info, ElectricPotentialChangeRate.Zero);
-            Assertion(ElectricPotentialDc.Info, ElectricPotentialDc.Zero);
             Assertion(ElectricResistance.Info, ElectricResistance.Zero);
             Assertion(ElectricResistivity.Info, ElectricResistivity.Zero);
             Assertion(ElectricSurfaceChargeDensity.Info, ElectricSurfaceChargeDensity.Zero);
@@ -317,9 +313,7 @@ namespace UnitsNet.Tests
             Assertion(ElectricField.BaseDimensions, ElectricField.Zero);
             Assertion(ElectricInductance.BaseDimensions, ElectricInductance.Zero);
             Assertion(ElectricPotential.BaseDimensions, ElectricPotential.Zero);
-            Assertion(ElectricPotentialAc.BaseDimensions, ElectricPotentialAc.Zero);
             Assertion(ElectricPotentialChangeRate.BaseDimensions, ElectricPotentialChangeRate.Zero);
-            Assertion(ElectricPotentialDc.BaseDimensions, ElectricPotentialDc.Zero);
             Assertion(ElectricResistance.BaseDimensions, ElectricResistance.Zero);
             Assertion(ElectricResistivity.BaseDimensions, ElectricResistivity.Zero);
             Assertion(ElectricSurfaceChargeDensity.BaseDimensions, ElectricSurfaceChargeDensity.Zero);

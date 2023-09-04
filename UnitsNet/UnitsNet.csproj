@@ -69,4 +69,9 @@
     <EmbeddedResource Include="GeneratedCode\Resources\*.restext" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="..\Common\UnitDefinitions\ElectricPotentialAc.json" />
+    <None Remove="..\Common\UnitDefinitions\ElectricPotentialDc.json" />
+  </ItemGroup>
+
 </Project>

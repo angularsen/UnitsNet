@@ -67,9 +67,7 @@ namespace UnitsNet
             { "ElectricField", ElectricField.Info },
             { "ElectricInductance", ElectricInductance.Info },
             { "ElectricPotential", ElectricPotential.Info },
-            { "ElectricPotentialAc", ElectricPotentialAc.Info },
             { "ElectricPotentialChangeRate", ElectricPotentialChangeRate.Info },
-            { "ElectricPotentialDc", ElectricPotentialDc.Info },
             { "ElectricResistance", ElectricResistance.Info },
             { "ElectricResistivity", ElectricResistivity.Info },
             { "ElectricSurfaceChargeDensity", ElectricSurfaceChargeDensity.Info },
@@ -199,9 +197,7 @@ namespace UnitsNet
                 "ElectricField" => ElectricField.From(value, ElectricField.BaseUnit),
                 "ElectricInductance" => ElectricInductance.From(value, ElectricInductance.BaseUnit),
                 "ElectricPotential" => ElectricPotential.From(value, ElectricPotential.BaseUnit),
-                "ElectricPotentialAc" => ElectricPotentialAc.From(value, ElectricPotentialAc.BaseUnit),
                 "ElectricPotentialChangeRate" => ElectricPotentialChangeRate.From(value, ElectricPotentialChangeRate.BaseUnit),
-                "ElectricPotentialDc" => ElectricPotentialDc.From(value, ElectricPotentialDc.BaseUnit),
                 "ElectricResistance" => ElectricResistance.From(value, ElectricResistance.BaseUnit),
                 "ElectricResistivity" => ElectricResistivity.From(value, ElectricResistivity.BaseUnit),
                 "ElectricSurfaceChargeDensity" => ElectricSurfaceChargeDensity.From(value, ElectricSurfaceChargeDensity.BaseUnit),
@@ -334,9 +330,7 @@ namespace UnitsNet
                 ElectricFieldUnit electricFieldUnit => ElectricField.From(value, electricFieldUnit),
                 ElectricInductanceUnit electricInductanceUnit => ElectricInductance.From(value, electricInductanceUnit),
                 ElectricPotentialUnit electricPotentialUnit => ElectricPotential.From(value, electricPotentialUnit),
-                ElectricPotentialAcUnit electricPotentialAcUnit => ElectricPotentialAc.From(value, electricPotentialAcUnit),
                 ElectricPotentialChangeRateUnit electricPotentialChangeRateUnit => ElectricPotentialChangeRate.From(value, electricPotentialChangeRateUnit),
-                ElectricPotentialDcUnit electricPotentialDcUnit => ElectricPotentialDc.From(value, electricPotentialDcUnit),
                 ElectricResistanceUnit electricResistanceUnit => ElectricResistance.From(value, electricResistanceUnit),
                 ElectricResistivityUnit electricResistivityUnit => ElectricResistivity.From(value, electricResistivityUnit),
                 ElectricSurfaceChargeDensityUnit electricSurfaceChargeDensityUnit => ElectricSurfaceChargeDensity.From(value, electricSurfaceChargeDensityUnit),
@@ -479,9 +473,7 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(ElectricField) => parser.TryParse<ElectricField, ElectricFieldUnit>(quantityString, formatProvider, ElectricField.From, out quantity),
                 Type _ when quantityType == typeof(ElectricInductance) => parser.TryParse<ElectricInductance, ElectricInductanceUnit>(quantityString, formatProvider, ElectricInductance.From, out quantity),
                 Type _ when quantityType == typeof(ElectricPotential) => parser.TryParse<ElectricPotential, ElectricPotentialUnit>(quantityString, formatProvider, ElectricPotential.From, out quantity),
-                Type _ when quantityType == typeof(ElectricPotentialAc) => parser.TryParse<ElectricPotentialAc, ElectricPotentialAcUnit>(quantityString, formatProvider, ElectricPotentialAc.From, out quantity),
                 Type _ when quantityType == typeof(ElectricPotentialChangeRate) => parser.TryParse<ElectricPotentialChangeRate, ElectricPotentialChangeRateUnit>(quantityString, formatProvider, ElectricPotentialChangeRate.From, out quantity),
-                Type _ when quantityType == typeof(ElectricPotentialDc) => parser.TryParse<ElectricPotentialDc, ElectricPotentialDcUnit>(quantityString, formatProvider, ElectricPotentialDc.From, out quantity),
                 Type _ when quantityType == typeof(ElectricResistance) => parser.TryParse<ElectricResistance, ElectricResistanceUnit>(quantityString, formatProvider, ElectricResistance.From, out quantity),
                 Type _ when quantityType == typeof(ElectricResistivity) => parser.TryParse<ElectricResistivity, ElectricResistivityUnit>(quantityString, formatProvider, ElectricResistivity.From, out quantity),
                 Type _ when quantityType == typeof(ElectricSurfaceChargeDensity) => parser.TryParse<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensityUnit>(quantityString, formatProvider, ElectricSurfaceChargeDensity.From, out quantity),
@@ -605,9 +597,7 @@ namespace UnitsNet
             yield return typeof(ElectricField);
             yield return typeof(ElectricInductance);
             yield return typeof(ElectricPotential);
-            yield return typeof(ElectricPotentialAc);
             yield return typeof(ElectricPotentialChangeRate);
-            yield return typeof(ElectricPotentialDc);
             yield return typeof(ElectricResistance);
             yield return typeof(ElectricResistivity);
             yield return typeof(ElectricSurfaceChargeDensity);
