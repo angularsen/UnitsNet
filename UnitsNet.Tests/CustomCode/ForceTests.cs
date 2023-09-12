@@ -7,36 +7,33 @@ namespace UnitsNet.Tests
 {
     public class ForceTests : ForceTestsBase
     {
-        private const double StandardGravity = 9.80665;
-        private const double PoundsConversionRate = 4.4482216152605;
-
         protected override bool SupportsSIUnitSystem => true;
         protected override double DecanewtonsInOneNewton => 1E-1;
         protected override double DyneInOneNewton => 1E5;
 
-        protected override double KilogramsForceInOneNewton => 1.0 / StandardGravity;
+        protected override double KilogramsForceInOneNewton => 0.101972;
 
-        protected override double KilopoundsForceInOneNewton => 1.0 / (PoundsConversionRate * 1_000.0);
+        protected override double KilopoundsForceInOneNewton => 0.22481e-3;
         protected override double MeganewtonsInOneNewton => 1E-6;
         protected override double KilonewtonsInOneNewton => 1E-3;
 
-        protected override double KiloPondsInOneNewton => 1.0 / StandardGravity;
+        protected override double KiloPondsInOneNewton => 0.101972;
 
         protected override double NewtonsInOneNewton => 1;
 
         protected override double PoundalsInOneNewton => 7.23301;
 
-        protected override double PoundsForceInOneNewton => 1.0 / PoundsConversionRate;
+        protected override double PoundsForceInOneNewton => 0.22481;
 
-        protected override double TonnesForceInOneNewton => 1.0 / (StandardGravity * 1_000.0);
+        protected override double TonnesForceInOneNewton => 1.019716212977928e-4;
 
         protected override double MillinewtonsInOneNewton => 1.0e3;
 
         protected override double MicronewtonsInOneNewton => 1.0e6;
 
-        protected override double OunceForceInOneNewton => 1.0 / (PoundsConversionRate / 16.0);
+        protected override double OunceForceInOneNewton => 3.596943089595368;
 
-        protected override double ShortTonsForceInOneNewton => 1.0 / (PoundsConversionRate * 2_000.0);
+        protected override double ShortTonsForceInOneNewton => 1.12404471549816e-4;
 
         [Fact]
         public void ForceDividedByAreaEqualsPressure()
@@ -111,8 +108,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void KilogramForceDividedByNewtonEqualsStandardGravity()
         {
+            const double standardGravity = 9.80665;
             double duration = Force.FromKilogramsForce(1) / Force.FromNewtons(1);
-            Assert.Equal(StandardGravity, duration);
+            Assert.Equal(standardGravity, duration);
         }
     }
 }
