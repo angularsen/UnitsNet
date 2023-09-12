@@ -359,8 +359,8 @@ double convertedValue = UnitConverter.Convert(
 
 ### Example: WPF app using IValueConverter to parse input
 
-Src: [Samples/WpfMVVMSample](https://github.com/angularsen/UnitsNet/tree/master/Samples/WpfMVVMSample)
-
+Src: [Samples/MvvmSample.Wpf](https://github.com/angularsen/UnitsNet/tree/master/Samples/MvvmSample.Wpf)
+                             
 ![wpfmvvmsample_219w](https://user-images.githubusercontent.com/787816/34913417-094332e2-f8fd-11e7-9d8a-92db105fbbc9.png)
 
 The purpose of this app is to show how to create an `IValueConverter` in order to bind XAML to quantities.
