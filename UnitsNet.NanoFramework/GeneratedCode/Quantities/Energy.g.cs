@@ -215,6 +215,11 @@ namespace UnitsNet
         public double MegawattHours => As(EnergyUnit.MegawattHour);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Microjoule"/>
+        /// </summary>
+        public double Microjoules => As(EnergyUnit.Microjoule);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Millijoule"/>
         /// </summary>
         public double Millijoules => As(EnergyUnit.Millijoule);
@@ -436,6 +441,12 @@ namespace UnitsNet
         public static Energy FromMegawattHours(double megawatthours) => new Energy(megawatthours, EnergyUnit.MegawattHour);
 
         /// <summary>
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Microjoule"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Energy FromMicrojoules(double microjoules) => new Energy(microjoules, EnergyUnit.Microjoule);
+
+        /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Millijoule"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -568,6 +579,7 @@ namespace UnitsNet
                         EnergyUnit.Megajoule => (_value) * 1e6d,
                         EnergyUnit.MegawattDay => (_value * 24 * 3600d) * 1e6d,
                         EnergyUnit.MegawattHour => (_value * 3600d) * 1e6d,
+                        EnergyUnit.Microjoule => (_value) * 1e-6d,
                         EnergyUnit.Millijoule => (_value) * 1e-3d,
                         EnergyUnit.Petajoule => (_value) * 1e15d,
                         EnergyUnit.TeraelectronVolt => (_value * 1.602176565e-19) * 1e12d,
@@ -619,6 +631,7 @@ namespace UnitsNet
                         EnergyUnit.Megajoule => (baseUnitValue) / 1e6d,
                         EnergyUnit.MegawattDay => (baseUnitValue / (24 * 3600d)) / 1e6d,
                         EnergyUnit.MegawattHour => (baseUnitValue / 3600d) / 1e6d,
+                        EnergyUnit.Microjoule => (baseUnitValue) / 1e-6d,
                         EnergyUnit.Millijoule => (baseUnitValue) / 1e-3d,
                         EnergyUnit.Petajoule => (baseUnitValue) / 1e15d,
                         EnergyUnit.TeraelectronVolt => (baseUnitValue / 1.602176565e-19) / 1e12d,

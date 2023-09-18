@@ -52,6 +52,7 @@ namespace UnitsNet.Units
         Megajoule = 25,
         MegawattDay = 26,
         MegawattHour = 27,
+        Microjoule = 41,
         Millijoule = 28,
         Petajoule = 43,
         TeraelectronVolt = 29,

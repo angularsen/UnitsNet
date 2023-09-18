@@ -433,7 +433,8 @@
     "WattDay": 35,
     "WattHour": 36,
     "Petajoule": 43,
-    "Terajoule": 37
+    "Terajoule": 37,
+    "Microjoule": 41
   },
   "Entropy": {
     "CaloriePerKelvin": 1,
