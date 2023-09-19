@@ -140,6 +140,11 @@ namespace UnitsNet
         public double Feet => As(LengthUnit.Foot);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Gigameter"/>
+        /// </summary>
+        public double Gigameters => As(LengthUnit.Gigameter);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Hand"/>
         /// </summary>
         public double Hands => As(LengthUnit.Hand);
@@ -354,6 +359,12 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromFeet(double feet) => new Length(feet, LengthUnit.Foot);
+
+        /// <summary>
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Gigameter"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromGigameters(double gigameters) => new Length(gigameters, LengthUnit.Gigameter);
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Hand"/>.
@@ -575,6 +586,7 @@ namespace UnitsNet
                         LengthUnit.Fathom => _value * 1.8288,
                         LengthUnit.Femtometer => (_value) * 1e-15d,
                         LengthUnit.Foot => _value * 0.3048,
+                        LengthUnit.Gigameter => (_value) * 1e9d,
                         LengthUnit.Hand => _value * 1.016e-1,
                         LengthUnit.Hectometer => (_value) * 1e2d,
                         LengthUnit.Inch => _value * 2.54e-2,
@@ -628,6 +640,7 @@ namespace UnitsNet
                         LengthUnit.Fathom => baseUnitValue / 1.8288,
                         LengthUnit.Femtometer => (baseUnitValue) / 1e-15d,
                         LengthUnit.Foot => baseUnitValue / 0.3048,
+                        LengthUnit.Gigameter => (baseUnitValue) / 1e9d,
                         LengthUnit.Hand => baseUnitValue / 1.016e-1,
                         LengthUnit.Hectometer => (baseUnitValue) / 1e2d,
                         LengthUnit.Inch => baseUnitValue / 2.54e-2,

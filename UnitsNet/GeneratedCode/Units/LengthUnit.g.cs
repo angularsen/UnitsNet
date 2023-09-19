@@ -52,6 +52,7 @@ namespace UnitsNet.Units
         Fathom = 10,
         Femtometer = 48,
         Foot = 11,
+        Gigameter = 44,
         Hand = 12,
         Hectometer = 13,
         Inch = 14,

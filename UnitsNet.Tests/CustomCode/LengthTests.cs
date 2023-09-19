@@ -86,6 +86,7 @@ namespace UnitsNet.Tests
         protected override double DataMilesInOneMeter => 0.000546807;
 
         protected override double MegametersInOneMeter => 1e-6;
+        protected override double GigametersInOneMeter => 1e-9;
 
         protected override double KilofeetInOneMeter => 3.28083989501e-3;
 

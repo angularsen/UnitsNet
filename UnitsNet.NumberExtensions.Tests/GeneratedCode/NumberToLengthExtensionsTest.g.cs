@@ -73,6 +73,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Length.FromFeet(2), 2.Feet());
 
         [Fact]
+        public void NumberToGigametersTest() =>
+            Assert.Equal(Length.FromGigameters(2), 2.Gigameters());
+
+        [Fact]
         public void NumberToHandsTest() =>
             Assert.Equal(Length.FromHands(2), 2.Hands());
 

@@ -693,7 +693,8 @@
     "Megameter": 41,
     "Kilofoot": 45,
     "Femtometer": 48,
-    "Picometer": 43
+    "Picometer": 43,
+    "Gigameter": 44
   },
   "Level": {
     "Decibel": 1,

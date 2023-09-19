@@ -128,6 +128,14 @@ namespace UnitsNet.NumberExtensions.NumberToLength
 #endif
             => Length.FromFeet(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Length.FromGigameters(UnitsNet.QuantityValue)" />
+        public static Length Gigameters<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Length.FromGigameters(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Length.FromHands(UnitsNet.QuantityValue)" />
         public static Length Hands<T>(this T value)
             where T : notnull
