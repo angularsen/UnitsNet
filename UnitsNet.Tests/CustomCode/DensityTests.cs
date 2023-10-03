@@ -81,9 +81,15 @@ namespace UnitsNet.Tests
 
         protected override double PicogramsPerDeciLiterInOneKilogramPerCubicMeter => 1e11;
 
+        protected override double FemtogramsPerDeciLiterInOneKilogramPerCubicMeter => 1e14;
+
         protected override double PicogramsPerLiterInOneKilogramPerCubicMeter => 1e12;
 
+        protected override double FemtogramsPerLiterInOneKilogramPerCubicMeter => 1e15;
+
         protected override double PicogramsPerMilliliterInOneKilogramPerCubicMeter => 1e9;
+
+        protected override double FemtogramsPerMilliliterInOneKilogramPerCubicMeter => 1e12;
 
         protected override double MicrogramsPerCubicMeterInOneKilogramPerCubicMeter => 1e9;
 
