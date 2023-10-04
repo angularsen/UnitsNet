@@ -113,6 +113,21 @@ namespace UnitsNet
         public double DecigramsPerMilliliter => As(DensityUnit.DecigramPerMilliliter);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.FemtogramPerDeciliter"/>
+        /// </summary>
+        public double FemtogramsPerDeciLiter => As(DensityUnit.FemtogramPerDeciliter);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.FemtogramPerLiter"/>
+        /// </summary>
+        public double FemtogramsPerLiter => As(DensityUnit.FemtogramPerLiter);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.FemtogramPerMilliliter"/>
+        /// </summary>
+        public double FemtogramsPerMilliliter => As(DensityUnit.FemtogramPerMilliliter);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.GramPerCubicCentimeter"/>
         /// </summary>
         public double GramsPerCubicCentimeter => As(DensityUnit.GramPerCubicCentimeter);
@@ -376,6 +391,24 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromDecigramsPerMilliliter(double decigramspermilliliter) => new Density(decigramspermilliliter, DensityUnit.DecigramPerMilliliter);
+
+        /// <summary>
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.FemtogramPerDeciliter"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromFemtogramsPerDeciLiter(double femtogramsperdeciliter) => new Density(femtogramsperdeciliter, DensityUnit.FemtogramPerDeciliter);
+
+        /// <summary>
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.FemtogramPerLiter"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromFemtogramsPerLiter(double femtogramsperliter) => new Density(femtogramsperliter, DensityUnit.FemtogramPerLiter);
+
+        /// <summary>
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.FemtogramPerMilliliter"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromFemtogramsPerMilliliter(double femtogramspermilliliter) => new Density(femtogramspermilliliter, DensityUnit.FemtogramPerMilliliter);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.GramPerCubicCentimeter"/>.
@@ -693,6 +726,9 @@ namespace UnitsNet
                         DensityUnit.DecigramPerDeciliter => (_value / 1e-1) * 1e-1d,
                         DensityUnit.DecigramPerLiter => (_value / 1) * 1e-1d,
                         DensityUnit.DecigramPerMilliliter => (_value / 1e-3) * 1e-1d,
+                        DensityUnit.FemtogramPerDeciliter => (_value / 1e-1) * 1e-15d,
+                        DensityUnit.FemtogramPerLiter => (_value / 1) * 1e-15d,
+                        DensityUnit.FemtogramPerMilliliter => (_value / 1e-3) * 1e-15d,
                         DensityUnit.GramPerCubicCentimeter => _value / 1e-3,
                         DensityUnit.GramPerCubicFoot => _value * 0.0353146667214886,
                         DensityUnit.GramPerCubicInch => _value * 61.0237440947323,
@@ -757,6 +793,9 @@ namespace UnitsNet
                         DensityUnit.DecigramPerDeciliter => (baseUnitValue * 1e-1) / 1e-1d,
                         DensityUnit.DecigramPerLiter => (baseUnitValue * 1) / 1e-1d,
                         DensityUnit.DecigramPerMilliliter => (baseUnitValue * 1e-3) / 1e-1d,
+                        DensityUnit.FemtogramPerDeciliter => (baseUnitValue * 1e-1) / 1e-15d,
+                        DensityUnit.FemtogramPerLiter => (baseUnitValue * 1) / 1e-15d,
+                        DensityUnit.FemtogramPerMilliliter => (baseUnitValue * 1e-3) / 1e-15d,
                         DensityUnit.GramPerCubicCentimeter => baseUnitValue * 1e-3,
                         DensityUnit.GramPerCubicFoot => baseUnitValue / 0.0353146667214886,
                         DensityUnit.GramPerCubicInch => baseUnitValue / 61.0237440947323,

@@ -49,6 +49,18 @@ namespace UnitsNet.Tests
             Assert.Equal(Density.FromDecigramsPerMilliliter(2), 2.DecigramsPerMilliliter());
 
         [Fact]
+        public void NumberToFemtogramsPerDeciLiterTest() =>
+            Assert.Equal(Density.FromFemtogramsPerDeciLiter(2), 2.FemtogramsPerDeciLiter());
+
+        [Fact]
+        public void NumberToFemtogramsPerLiterTest() =>
+            Assert.Equal(Density.FromFemtogramsPerLiter(2), 2.FemtogramsPerLiter());
+
+        [Fact]
+        public void NumberToFemtogramsPerMilliliterTest() =>
+            Assert.Equal(Density.FromFemtogramsPerMilliliter(2), 2.FemtogramsPerMilliliter());
+
+        [Fact]
         public void NumberToGramsPerCubicCentimeterTest() =>
             Assert.Equal(Density.FromGramsPerCubicCentimeter(2), 2.GramsPerCubicCentimeter());
 

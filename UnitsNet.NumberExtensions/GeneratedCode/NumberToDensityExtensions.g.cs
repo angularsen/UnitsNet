@@ -80,6 +80,30 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromDecigramsPerMilliliter(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Density.FromFemtogramsPerDeciLiter(UnitsNet.QuantityValue)" />
+        public static Density FemtogramsPerDeciLiter<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Density.FromFemtogramsPerDeciLiter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromFemtogramsPerLiter(UnitsNet.QuantityValue)" />
+        public static Density FemtogramsPerLiter<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Density.FromFemtogramsPerLiter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromFemtogramsPerMilliliter(UnitsNet.QuantityValue)" />
+        public static Density FemtogramsPerMilliliter<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Density.FromFemtogramsPerMilliliter(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Density.FromGramsPerCubicCentimeter(UnitsNet.QuantityValue)" />
         public static Density GramsPerCubicCentimeter<T>(this T value)
             where T : notnull
