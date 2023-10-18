@@ -1028,7 +1028,7 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
-        public int CompareTo(object obj)
+        public int CompareTo(object? obj)
         {
             if (obj is null) throw new ArgumentNullException(nameof(obj));
             if (!(obj is Energy objEnergy)) throw new ArgumentException("Expected type Energy.", nameof(obj));
@@ -1043,7 +1043,7 @@ namespace UnitsNet
         }
 
         [Windows.Foundation.Metadata.DefaultOverload]
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is Energy objEnergy))
                 return false;

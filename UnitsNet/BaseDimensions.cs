@@ -54,7 +54,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is BaseDimensions))
                 return false;
@@ -122,7 +122,7 @@ namespace UnitsNet
         /// <param name="left">Left.</param>
         /// <param name="right">Right.</param>
         /// <returns>True if equal.</returns>
-        public static bool operator ==(BaseDimensions left, BaseDimensions right)
+        public static bool operator ==(BaseDimensions? left, BaseDimensions? right)
         {
             return left is null ? right is null : left.Equals(right);
         }
@@ -133,7 +133,7 @@ namespace UnitsNet
         /// <param name="left">Left.</param>
         /// <param name="right">Right.</param>
         /// <returns>True if not equal.</returns>
-        public static bool operator !=(BaseDimensions left, BaseDimensions right)
+        public static bool operator !=(BaseDimensions? left, BaseDimensions? right)
         {
             return !(left == right);
         }
@@ -144,7 +144,7 @@ namespace UnitsNet
         /// <param name="left">Left.</param>
         /// <param name="right">Right.</param>
         /// <returns>Resulting dimensions.</returns>
-        public static BaseDimensions operator *(BaseDimensions left, BaseDimensions right)
+        public static BaseDimensions operator *(BaseDimensions? left, BaseDimensions? right)
         {
             if (left is null)
                 throw new ArgumentNullException(nameof(left));
@@ -160,7 +160,7 @@ namespace UnitsNet
         /// <param name="left">Left.</param>
         /// <param name="right">Right.</param>
         /// <returns>Resulting dimensions.</returns>
-        public static BaseDimensions operator /(BaseDimensions left, BaseDimensions right)
+        public static BaseDimensions operator /(BaseDimensions? left, BaseDimensions? right)
         {
             if (left is null)
                 throw new ArgumentNullException(nameof(left));
