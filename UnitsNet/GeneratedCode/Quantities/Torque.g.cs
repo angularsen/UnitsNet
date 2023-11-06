@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,12 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct Torque :
         IArithmeticQuantity<Torque, TorqueUnit, double>,
+#if NET7_0_OR_GREATER
+        IDivisionOperators<Torque, RotationalStiffness, Angle>,
+        IDivisionOperators<Torque, Length, Force>,
+        IDivisionOperators<Torque, Force, Length>,
+        IDivisionOperators<Torque, Angle, RotationalStiffness>,
+#endif
         IComparable,
         IComparable<Torque>,
         IConvertible,
@@ -858,6 +867,34 @@ namespace UnitsNet
         public static double operator /(Torque left, Torque right)
         {
             return left.NewtonMeters / right.NewtonMeters;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Angle"/> from <see cref="Torque"/> / <see cref="RotationalStiffness"/>.</summary>
+        public static Angle operator /(Torque torque, RotationalStiffness rotationalStiffness)
+        {
+            return Angle.FromRadians(torque.NewtonMeters / rotationalStiffness.NewtonMetersPerRadian);
+        }
+
+        /// <summary>Get <see cref="Force"/> from <see cref="Torque"/> / <see cref="Length"/>.</summary>
+        public static Force operator /(Torque torque, Length length)
+        {
+            return Force.FromNewtons(torque.NewtonMeters / length.Meters);
+        }
+
+        /// <summary>Get <see cref="Length"/> from <see cref="Torque"/> / <see cref="Force"/>.</summary>
+        public static Length operator /(Torque torque, Force force)
+        {
+            return Length.FromMeters(torque.NewtonMeters / force.Newtons);
+        }
+
+        /// <summary>Get <see cref="RotationalStiffness"/> from <see cref="Torque"/> / <see cref="Angle"/>.</summary>
+        public static RotationalStiffness operator /(Torque torque, Angle angle)
+        {
+            return RotationalStiffness.FromNewtonMetersPerRadian(torque.NewtonMeters / angle.Radians);
         }
 
         #endregion

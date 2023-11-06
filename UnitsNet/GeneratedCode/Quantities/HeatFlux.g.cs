@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,9 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct HeatFlux :
         IArithmeticQuantity<HeatFlux, HeatFluxUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<HeatFlux, Area, Power>,
+#endif
         IComparable,
         IComparable<HeatFlux>,
         IConvertible,
@@ -732,6 +738,16 @@ namespace UnitsNet
         public static double operator /(HeatFlux left, HeatFlux right)
         {
             return left.WattsPerSquareMeter / right.WattsPerSquareMeter;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Power"/> from <see cref="HeatFlux"/> * <see cref="Area"/>.</summary>
+        public static Power operator *(HeatFlux heatFlux, Area area)
+        {
+            return Power.FromWatts(heatFlux.WattsPerSquareMeter * area.SquareMeters);
         }
 
         #endregion

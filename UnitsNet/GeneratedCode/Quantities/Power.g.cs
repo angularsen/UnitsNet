@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,20 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct Power :
         IArithmeticQuantity<Power, PowerUnit, decimal>,
+#if NET7_0_OR_GREATER
+        IDivisionOperators<Power, HeatFlux, Area>,
+        IDivisionOperators<Power, ElectricPotential, ElectricCurrent>,
+        IDivisionOperators<Power, ElectricCurrent, ElectricPotential>,
+        IMultiplyOperators<Power, Duration, Energy>,
+        IDivisionOperators<Power, Speed, Force>,
+        IDivisionOperators<Power, Area, HeatFlux>,
+        IMultiplyOperators<Power, BrakeSpecificFuelConsumption, MassFlow>,
+        IDivisionOperators<Power, SpecificEnergy, MassFlow>,
+        IDivisionOperators<Power, Torque, RotationalSpeed>,
+        IDivisionOperators<Power, MassFlow, SpecificEnergy>,
+        IDivisionOperators<Power, RotationalSpeed, Torque>,
+        IMultiplyOperators<Power, TimeSpan, Energy>,
+#endif
         IDecimalQuantity,
         IComparable,
         IComparable<Power>,
@@ -877,6 +894,88 @@ namespace UnitsNet
         public static decimal operator /(Power left, Power right)
         {
             return left.Watts / right.Watts;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Area"/> from <see cref="Power"/> / <see cref="HeatFlux"/>.</summary>
+        public static Area operator /(Power power, HeatFlux heatFlux)
+        {
+            return Area.FromSquareMeters((double)power.Watts / heatFlux.WattsPerSquareMeter);
+        }
+
+        /// <summary>Get <see cref="ElectricCurrent"/> from <see cref="Power"/> / <see cref="ElectricPotential"/>.</summary>
+        public static ElectricCurrent operator /(Power power, ElectricPotential electricPotential)
+        {
+            return ElectricCurrent.FromAmperes((double)power.Watts / electricPotential.Volts);
+        }
+
+        /// <summary>Get <see cref="ElectricPotential"/> from <see cref="Power"/> / <see cref="ElectricCurrent"/>.</summary>
+        public static ElectricPotential operator /(Power power, ElectricCurrent electricCurrent)
+        {
+            return ElectricPotential.FromVolts((double)power.Watts / electricCurrent.Amperes);
+        }
+
+        /// <summary>Get <see cref="Energy"/> from <see cref="Power"/> * <see cref="Duration"/>.</summary>
+        public static Energy operator *(Power power, Duration duration)
+        {
+            return Energy.FromJoules((double)power.Watts * duration.Seconds);
+        }
+
+        /// <summary>Get <see cref="Force"/> from <see cref="Power"/> / <see cref="Speed"/>.</summary>
+        public static Force operator /(Power power, Speed speed)
+        {
+            return Force.FromNewtons((double)power.Watts / speed.MetersPerSecond);
+        }
+
+        /// <summary>Get <see cref="HeatFlux"/> from <see cref="Power"/> / <see cref="Area"/>.</summary>
+        public static HeatFlux operator /(Power power, Area area)
+        {
+            return HeatFlux.FromWattsPerSquareMeter((double)power.Watts / area.SquareMeters);
+        }
+
+        /// <summary>Get <see cref="MassFlow"/> from <see cref="Power"/> * <see cref="BrakeSpecificFuelConsumption"/>.</summary>
+        public static MassFlow operator *(Power power, BrakeSpecificFuelConsumption brakeSpecificFuelConsumption)
+        {
+            return MassFlow.FromKilogramsPerSecond((double)power.Watts * brakeSpecificFuelConsumption.KilogramsPerJoule);
+        }
+
+        /// <summary>Get <see cref="MassFlow"/> from <see cref="Power"/> / <see cref="SpecificEnergy"/>.</summary>
+        public static MassFlow operator /(Power power, SpecificEnergy specificEnergy)
+        {
+            return MassFlow.FromKilogramsPerSecond((double)power.Watts / specificEnergy.JoulesPerKilogram);
+        }
+
+        /// <summary>Get <see cref="RotationalSpeed"/> from <see cref="Power"/> / <see cref="Torque"/>.</summary>
+        public static RotationalSpeed operator /(Power power, Torque torque)
+        {
+            return RotationalSpeed.FromRadiansPerSecond((double)power.Watts / torque.NewtonMeters);
+        }
+
+        /// <summary>Get <see cref="SpecificEnergy"/> from <see cref="Power"/> / <see cref="MassFlow"/>.</summary>
+        public static SpecificEnergy operator /(Power power, MassFlow massFlow)
+        {
+            return SpecificEnergy.FromJoulesPerKilogram((double)power.Watts / massFlow.KilogramsPerSecond);
+        }
+
+        /// <summary>Get <see cref="Torque"/> from <see cref="Power"/> / <see cref="RotationalSpeed"/>.</summary>
+        public static Torque operator /(Power power, RotationalSpeed rotationalSpeed)
+        {
+            return Torque.FromNewtonMeters((double)power.Watts / rotationalSpeed.RadiansPerSecond);
+        }
+
+        /// <summary>Get <see cref="Energy"/> from <see cref="Power"/> * <see cref="TimeSpan"/>.</summary>
+        public static Energy operator *(Power power, TimeSpan timeSpan)
+        {
+            return Energy.FromJoules((double)power.Watts * timeSpan.TotalSeconds);
+        }
+
+        /// <summary>Get <see cref="Energy"/> from <see cref="TimeSpan"/> * <see cref="Power"/>.</summary>
+        public static Energy operator *(TimeSpan timeSpan, Power power)
+        {
+            return Energy.FromJoules(timeSpan.TotalSeconds * (double)power.Watts);
         }
 
         #endregion

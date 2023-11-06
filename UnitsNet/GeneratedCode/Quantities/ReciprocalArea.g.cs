@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -41,6 +44,11 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct ReciprocalArea :
         IArithmeticQuantity<ReciprocalArea, ReciprocalAreaUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<ReciprocalArea, Force, Pressure>,
+        IMultiplyOperators<ReciprocalArea, Area, Ratio>,
+        IDivisionOperators<ReciprocalArea, ReciprocalLength, ReciprocalLength>,
+#endif
         IComparable,
         IComparable<ReciprocalArea>,
         IConvertible,
@@ -609,6 +617,35 @@ namespace UnitsNet
         public static double operator /(ReciprocalArea left, ReciprocalArea right)
         {
             return left.InverseSquareMeters / right.InverseSquareMeters;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Pressure"/> from <see cref="ReciprocalArea"/> * <see cref="Force"/>.</summary>
+        public static Pressure operator *(ReciprocalArea reciprocalArea, Force force)
+        {
+            return Pressure.FromNewtonsPerSquareMeter(reciprocalArea.InverseSquareMeters * force.Newtons);
+        }
+
+        /// <summary>Get <see cref="Ratio"/> from <see cref="ReciprocalArea"/> * <see cref="Area"/>.</summary>
+        public static Ratio operator *(ReciprocalArea reciprocalArea, Area area)
+        {
+            return Ratio.FromDecimalFractions(reciprocalArea.InverseSquareMeters * area.SquareMeters);
+        }
+
+        /// <summary>Calculates the inverse of this quantity.</summary>
+        /// <returns>The corresponding inverse quantity, <see cref="Area"/>.</returns>
+        public Area Inverse()
+        {
+            return InverseSquareMeters == 0.0 ? Area.Zero : Area.FromSquareMeters(1 / InverseSquareMeters);
+        }
+
+        /// <summary>Get <see cref="ReciprocalLength"/> from <see cref="ReciprocalArea"/> / <see cref="ReciprocalLength"/>.</summary>
+        public static ReciprocalLength operator /(ReciprocalArea reciprocalArea, ReciprocalLength reciprocalLength)
+        {
+            return ReciprocalLength.FromInverseMeters(reciprocalArea.InverseSquareMeters / reciprocalLength.InverseMeters);
         }
 
         #endregion

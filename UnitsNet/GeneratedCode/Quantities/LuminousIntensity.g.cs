@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -41,6 +44,10 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct LuminousIntensity :
         IArithmeticQuantity<LuminousIntensity, LuminousIntensityUnit, double>,
+#if NET7_0_OR_GREATER
+        IDivisionOperators<LuminousIntensity, Luminance, Area>,
+        IDivisionOperators<LuminousIntensity, Area, Luminance>,
+#endif
         IComparable,
         IComparable<LuminousIntensity>,
         IConvertible,
@@ -429,6 +436,22 @@ namespace UnitsNet
         public static double operator /(LuminousIntensity left, LuminousIntensity right)
         {
             return left.Candela / right.Candela;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Area"/> from <see cref="LuminousIntensity"/> / <see cref="Luminance"/>.</summary>
+        public static Area operator /(LuminousIntensity luminousIntensity, Luminance luminance)
+        {
+            return Area.FromSquareMeters(luminousIntensity.Candela / luminance.CandelasPerSquareMeter);
+        }
+
+        /// <summary>Get <see cref="Luminance"/> from <see cref="LuminousIntensity"/> / <see cref="Area"/>.</summary>
+        public static Luminance operator /(LuminousIntensity luminousIntensity, Area area)
+        {
+            return Luminance.FromCandelasPerSquareMeter(luminousIntensity.Candela / area.SquareMeters);
         }
 
         #endregion

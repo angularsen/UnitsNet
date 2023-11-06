@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -41,6 +44,10 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct Molarity :
         IArithmeticQuantity<Molarity, MolarityUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<Molarity, MolarMass, MassConcentration>,
+        IMultiplyOperators<Molarity, VolumeConcentration, Molarity>,
+#endif
         IComparable,
         IComparable<Molarity>,
         IConvertible,
@@ -609,6 +616,22 @@ namespace UnitsNet
         public static double operator /(Molarity left, Molarity right)
         {
             return left.MolesPerCubicMeter / right.MolesPerCubicMeter;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="MassConcentration"/> from <see cref="Molarity"/> * <see cref="MolarMass"/>.</summary>
+        public static MassConcentration operator *(Molarity molarity, MolarMass molarMass)
+        {
+            return MassConcentration.FromGramsPerCubicMeter(molarity.MolesPerCubicMeter * molarMass.GramsPerMole);
+        }
+
+        /// <summary>Get <see cref="Molarity"/> from <see cref="Molarity"/> * <see cref="VolumeConcentration"/>.</summary>
+        public static Molarity operator *(Molarity molarity, VolumeConcentration volumeConcentration)
+        {
+            return Molarity.FromMolesPerCubicMeter(molarity.MolesPerCubicMeter * volumeConcentration.DecimalFractions);
         }
 
         #endregion

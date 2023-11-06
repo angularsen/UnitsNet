@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,9 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct RotationalStiffnessPerLength :
         IArithmeticQuantity<RotationalStiffnessPerLength, RotationalStiffnessPerLengthUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<RotationalStiffnessPerLength, Length, RotationalStiffness>,
+#endif
         IComparable,
         IComparable<RotationalStiffnessPerLength>,
         IConvertible,
@@ -498,6 +504,16 @@ namespace UnitsNet
         public static double operator /(RotationalStiffnessPerLength left, RotationalStiffnessPerLength right)
         {
             return left.NewtonMetersPerRadianPerMeter / right.NewtonMetersPerRadianPerMeter;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessPerLength"/> * <see cref="Length"/>.</summary>
+        public static RotationalStiffness operator *(RotationalStiffnessPerLength rotationalStiffnessPerLength, Length length)
+        {
+            return RotationalStiffness.FromNewtonMetersPerRadian(rotationalStiffnessPerLength.NewtonMetersPerRadianPerMeter * length.Meters);
         }
 
         #endregion

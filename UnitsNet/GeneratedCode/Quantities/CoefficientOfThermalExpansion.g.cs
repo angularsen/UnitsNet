@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,9 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct CoefficientOfThermalExpansion :
         IArithmeticQuantity<CoefficientOfThermalExpansion, CoefficientOfThermalExpansionUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<CoefficientOfThermalExpansion, TemperatureDelta, double>,
+#endif
         IComparable,
         IComparable<CoefficientOfThermalExpansion>,
         IConvertible,
@@ -576,6 +582,16 @@ namespace UnitsNet
         public static double operator /(CoefficientOfThermalExpansion left, CoefficientOfThermalExpansion right)
         {
             return left.PerKelvin / right.PerKelvin;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="double"/> from <see cref="CoefficientOfThermalExpansion"/> * <see cref="TemperatureDelta"/>.</summary>
+        public static double operator *(CoefficientOfThermalExpansion coefficientOfThermalExpansion, TemperatureDelta temperatureDelta)
+        {
+            return coefficientOfThermalExpansion.PerKelvin * temperatureDelta.Kelvins;
         }
 
         #endregion

@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,12 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct ElectricPotential :
         IArithmeticQuantity<ElectricPotential, ElectricPotentialUnit, double>,
+#if NET7_0_OR_GREATER
+        IDivisionOperators<ElectricPotential, ElectricResistance, ElectricCurrent>,
+        IDivisionOperators<ElectricPotential, ElectricCurrent, ElectricResistance>,
+        IMultiplyOperators<ElectricPotential, ElectricCharge, Energy>,
+        IMultiplyOperators<ElectricPotential, ElectricCurrent, Power>,
+#endif
         IComparable,
         IComparable<ElectricPotential>,
         IConvertible,
@@ -516,6 +525,34 @@ namespace UnitsNet
         public static double operator /(ElectricPotential left, ElectricPotential right)
         {
             return left.Volts / right.Volts;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="ElectricCurrent"/> from <see cref="ElectricPotential"/> / <see cref="ElectricResistance"/>.</summary>
+        public static ElectricCurrent operator /(ElectricPotential electricPotential, ElectricResistance electricResistance)
+        {
+            return ElectricCurrent.FromAmperes(electricPotential.Volts / electricResistance.Ohms);
+        }
+
+        /// <summary>Get <see cref="ElectricResistance"/> from <see cref="ElectricPotential"/> / <see cref="ElectricCurrent"/>.</summary>
+        public static ElectricResistance operator /(ElectricPotential electricPotential, ElectricCurrent electricCurrent)
+        {
+            return ElectricResistance.FromOhms(electricPotential.Volts / electricCurrent.Amperes);
+        }
+
+        /// <summary>Get <see cref="Energy"/> from <see cref="ElectricPotential"/> * <see cref="ElectricCharge"/>.</summary>
+        public static Energy operator *(ElectricPotential electricPotential, ElectricCharge electricCharge)
+        {
+            return Energy.FromJoules(electricPotential.Volts * electricCharge.Coulombs);
+        }
+
+        /// <summary>Get <see cref="Power"/> from <see cref="ElectricPotential"/> * <see cref="ElectricCurrent"/>.</summary>
+        public static Power operator *(ElectricPotential electricPotential, ElectricCurrent electricCurrent)
+        {
+            return Power.FromWatts(electricPotential.Volts * electricCurrent.Amperes);
         }
 
         #endregion

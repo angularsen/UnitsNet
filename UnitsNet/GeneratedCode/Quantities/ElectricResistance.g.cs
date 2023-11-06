@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,9 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct ElectricResistance :
         IArithmeticQuantity<ElectricResistance, ElectricResistanceUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<ElectricResistance, ElectricCurrent, ElectricPotential>,
+#endif
         IComparable,
         IComparable<ElectricResistance>,
         IConvertible,
@@ -534,6 +540,16 @@ namespace UnitsNet
         public static double operator /(ElectricResistance left, ElectricResistance right)
         {
             return left.Ohms / right.Ohms;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="ElectricPotential"/> from <see cref="ElectricResistance"/> * <see cref="ElectricCurrent"/>.</summary>
+        public static ElectricPotential operator *(ElectricResistance electricResistance, ElectricCurrent electricCurrent)
+        {
+            return ElectricPotential.FromVolts(electricResistance.Ohms * electricCurrent.Amperes);
         }
 
         #endregion

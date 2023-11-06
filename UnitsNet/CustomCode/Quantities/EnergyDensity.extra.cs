@@ -4,20 +4,6 @@ namespace UnitsNet
 {
     public partial struct EnergyDensity
     {
-        #region Operators
-
-        /// <summary>
-        ///     Returns the <see cref = "Energy" /> from the given <see cref = "EnergyDensity" /> and <see cref = "Volume" />.
-        /// </summary>
-        public static Energy operator * ( EnergyDensity energyDensity, Volume volume )
-        {
-            return Energy.FromJoules ( energyDensity.JoulesPerCubicMeter * volume.As ( VolumeUnit.CubicMeter ) );
-        }
-
-        #endregion
-
-        #region Methods
-
         /// <summary>
         ///     Computes the combustion energy of a natural gas heating system.
         ///     <para>
@@ -46,7 +32,5 @@ namespace UnitsNet
         {
             return Energy.FromJoules ( (energyDensity * volume).As ( EnergyUnit.Joule ) * conversionFactor.DecimalFractions );
         }
-
-        #endregion
     }
 }

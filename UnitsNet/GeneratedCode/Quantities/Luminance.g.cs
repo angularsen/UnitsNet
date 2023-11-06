@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -41,6 +44,9 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct Luminance :
         IArithmeticQuantity<Luminance, LuminanceUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<Luminance, Area, LuminousIntensity>,
+#endif
         IComparable,
         IComparable<Luminance>,
         IConvertible,
@@ -591,6 +597,16 @@ namespace UnitsNet
         public static double operator /(Luminance left, Luminance right)
         {
             return left.CandelasPerSquareMeter / right.CandelasPerSquareMeter;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="LuminousIntensity"/> from <see cref="Luminance"/> * <see cref="Area"/>.</summary>
+        public static LuminousIntensity operator *(Luminance luminance, Area area)
+        {
+            return LuminousIntensity.FromCandela(luminance.CandelasPerSquareMeter * area.SquareMeters);
         }
 
         #endregion

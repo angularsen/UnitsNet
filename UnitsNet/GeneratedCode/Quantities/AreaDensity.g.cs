@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,9 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct AreaDensity :
         IArithmeticQuantity<AreaDensity, AreaDensityUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<AreaDensity, Area, Mass>,
+#endif
         IComparable,
         IComparable<AreaDensity>,
         IConvertible,
@@ -462,6 +468,16 @@ namespace UnitsNet
         public static double operator /(AreaDensity left, AreaDensity right)
         {
             return left.KilogramsPerSquareMeter / right.KilogramsPerSquareMeter;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Mass"/> from <see cref="AreaDensity"/> * <see cref="Area"/>.</summary>
+        public static Mass operator *(AreaDensity areaDensity, Area area)
+        {
+            return Mass.FromKilograms(areaDensity.KilogramsPerSquareMeter * area.SquareMeters);
         }
 
         #endregion

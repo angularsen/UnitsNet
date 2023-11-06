@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,10 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct TemperatureChangeRate :
         IArithmeticQuantity<TemperatureChangeRate, TemperatureChangeRateUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<TemperatureChangeRate, Duration, TemperatureDelta>,
+        IMultiplyOperators<TemperatureChangeRate, TimeSpan, TemperatureDelta>,
+#endif
         IComparable,
         IComparable<TemperatureChangeRate>,
         IConvertible,
@@ -588,6 +595,28 @@ namespace UnitsNet
         public static double operator /(TemperatureChangeRate left, TemperatureChangeRate right)
         {
             return left.DegreesCelsiusPerSecond / right.DegreesCelsiusPerSecond;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="TemperatureDelta"/> from <see cref="TemperatureChangeRate"/> * <see cref="Duration"/>.</summary>
+        public static TemperatureDelta operator *(TemperatureChangeRate temperatureChangeRate, Duration duration)
+        {
+            return TemperatureDelta.FromDegreesCelsius(temperatureChangeRate.DegreesCelsiusPerSecond * duration.Seconds);
+        }
+
+        /// <summary>Get <see cref="TemperatureDelta"/> from <see cref="TemperatureChangeRate"/> * <see cref="TimeSpan"/>.</summary>
+        public static TemperatureDelta operator *(TemperatureChangeRate temperatureChangeRate, TimeSpan timeSpan)
+        {
+            return TemperatureDelta.FromDegreesCelsius(temperatureChangeRate.DegreesCelsiusPerSecond * timeSpan.TotalSeconds);
+        }
+
+        /// <summary>Get <see cref="TemperatureDelta"/> from <see cref="TimeSpan"/> * <see cref="TemperatureChangeRate"/>.</summary>
+        public static TemperatureDelta operator *(TimeSpan timeSpan, TemperatureChangeRate temperatureChangeRate)
+        {
+            return TemperatureDelta.FromDegreesCelsius(timeSpan.TotalSeconds * temperatureChangeRate.DegreesCelsiusPerSecond);
         }
 
         #endregion

@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,13 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct VolumeFlow :
         IArithmeticQuantity<VolumeFlow, VolumeFlowUnit, double>,
+#if NET7_0_OR_GREATER
+        IDivisionOperators<VolumeFlow, Speed, Area>,
+        IMultiplyOperators<VolumeFlow, Density, MassFlow>,
+        IDivisionOperators<VolumeFlow, Area, Speed>,
+        IMultiplyOperators<VolumeFlow, Duration, Volume>,
+        IMultiplyOperators<VolumeFlow, TimeSpan, Volume>,
+#endif
         IComparable,
         IComparable<VolumeFlow>,
         IConvertible,
@@ -1614,6 +1624,46 @@ namespace UnitsNet
         public static double operator /(VolumeFlow left, VolumeFlow right)
         {
             return left.CubicMetersPerSecond / right.CubicMetersPerSecond;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Area"/> from <see cref="VolumeFlow"/> / <see cref="Speed"/>.</summary>
+        public static Area operator /(VolumeFlow volumeFlow, Speed speed)
+        {
+            return Area.FromSquareMeters(volumeFlow.CubicMetersPerSecond / speed.MetersPerSecond);
+        }
+
+        /// <summary>Get <see cref="MassFlow"/> from <see cref="VolumeFlow"/> * <see cref="Density"/>.</summary>
+        public static MassFlow operator *(VolumeFlow volumeFlow, Density density)
+        {
+            return MassFlow.FromKilogramsPerSecond(volumeFlow.CubicMetersPerSecond * density.KilogramsPerCubicMeter);
+        }
+
+        /// <summary>Get <see cref="Speed"/> from <see cref="VolumeFlow"/> / <see cref="Area"/>.</summary>
+        public static Speed operator /(VolumeFlow volumeFlow, Area area)
+        {
+            return Speed.FromMetersPerSecond(volumeFlow.CubicMetersPerSecond / area.SquareMeters);
+        }
+
+        /// <summary>Get <see cref="Volume"/> from <see cref="VolumeFlow"/> * <see cref="Duration"/>.</summary>
+        public static Volume operator *(VolumeFlow volumeFlow, Duration duration)
+        {
+            return Volume.FromCubicMeters(volumeFlow.CubicMetersPerSecond * duration.Seconds);
+        }
+
+        /// <summary>Get <see cref="Volume"/> from <see cref="VolumeFlow"/> * <see cref="TimeSpan"/>.</summary>
+        public static Volume operator *(VolumeFlow volumeFlow, TimeSpan timeSpan)
+        {
+            return Volume.FromCubicMeters(volumeFlow.CubicMetersPerSecond * timeSpan.TotalSeconds);
+        }
+
+        /// <summary>Get <see cref="Volume"/> from <see cref="TimeSpan"/> * <see cref="VolumeFlow"/>.</summary>
+        public static Volume operator *(TimeSpan timeSpan, VolumeFlow volumeFlow)
+        {
+            return Volume.FromCubicMeters(timeSpan.TotalSeconds * volumeFlow.CubicMetersPerSecond);
         }
 
         #endregion

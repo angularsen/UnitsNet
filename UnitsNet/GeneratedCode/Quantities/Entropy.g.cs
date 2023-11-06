@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,10 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct Entropy :
         IArithmeticQuantity<Entropy, EntropyUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<Entropy, TemperatureDelta, Energy>,
+        IDivisionOperators<Entropy, Mass, SpecificEntropy>,
+#endif
         IComparable,
         IComparable<Entropy>,
         IConvertible,
@@ -534,6 +541,22 @@ namespace UnitsNet
         public static double operator /(Entropy left, Entropy right)
         {
             return left.JoulesPerKelvin / right.JoulesPerKelvin;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Energy"/> from <see cref="Entropy"/> * <see cref="TemperatureDelta"/>.</summary>
+        public static Energy operator *(Entropy entropy, TemperatureDelta temperatureDelta)
+        {
+            return Energy.FromJoules(entropy.JoulesPerKelvin * temperatureDelta.Kelvins);
+        }
+
+        /// <summary>Get <see cref="SpecificEntropy"/> from <see cref="Entropy"/> / <see cref="Mass"/>.</summary>
+        public static SpecificEntropy operator /(Entropy entropy, Mass mass)
+        {
+            return SpecificEntropy.FromJoulesPerKilogramKelvin(entropy.JoulesPerKelvin / mass.Kilograms);
         }
 
         #endregion

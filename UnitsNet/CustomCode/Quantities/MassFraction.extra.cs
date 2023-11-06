@@ -35,23 +35,5 @@ namespace UnitsNet
         }
 
         #endregion
-
-        /// <summary>Get <see cref="Mass"/> from <see cref="Mass"/> multiplied by a <see cref="MassFraction"/>.</summary>
-        public static Mass operator *(MassFraction massFraction, Mass mass)
-        {
-            return Mass.FromKilograms(massFraction.DecimalFractions * mass.Kilograms);
-        }
-
-        /// <summary>Get <see cref="Mass"/> from <see cref="Mass"/> multiplied by a <see cref="MassFraction"/>.</summary>
-        public static Mass operator *(Mass mass, MassFraction massFraction)
-        {
-            return Mass.FromKilograms(massFraction.DecimalFractions * mass.Kilograms);
-        }
-        /// <summary>Get the total <see cref="Mass"/> by dividing the component  <see cref="Mass"/> by a <see cref="MassFraction"/>.</summary>
-        public static Mass operator /(Mass mass, MassFraction massFraction)
-        {
-            return Mass.FromKilograms(mass.Kilograms / massFraction.DecimalFractions);
-        }
-
     }
 }

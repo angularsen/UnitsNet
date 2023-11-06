@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -41,6 +44,12 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct SpecificEnergy :
         IArithmeticQuantity<SpecificEnergy, SpecificEnergyUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<SpecificEnergy, BrakeSpecificFuelConsumption, double>,
+        IMultiplyOperators<SpecificEnergy, Mass, Energy>,
+        IMultiplyOperators<SpecificEnergy, MassFlow, Power>,
+        IDivisionOperators<SpecificEnergy, TemperatureDelta, SpecificEntropy>,
+#endif
         IComparable,
         IComparable<SpecificEnergy>,
         IConvertible,
@@ -951,6 +960,40 @@ namespace UnitsNet
         public static double operator /(SpecificEnergy left, SpecificEnergy right)
         {
             return left.JoulesPerKilogram / right.JoulesPerKilogram;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="BrakeSpecificFuelConsumption"/> from <see cref="double"/> / <see cref="SpecificEnergy"/>.</summary>
+        public static BrakeSpecificFuelConsumption operator /(double value, SpecificEnergy specificEnergy)
+        {
+            return BrakeSpecificFuelConsumption.FromKilogramsPerJoule(value / specificEnergy.JoulesPerKilogram);
+        }
+
+        /// <summary>Get <see cref="double"/> from <see cref="SpecificEnergy"/> * <see cref="BrakeSpecificFuelConsumption"/>.</summary>
+        public static double operator *(SpecificEnergy specificEnergy, BrakeSpecificFuelConsumption brakeSpecificFuelConsumption)
+        {
+            return specificEnergy.JoulesPerKilogram * brakeSpecificFuelConsumption.KilogramsPerJoule;
+        }
+
+        /// <summary>Get <see cref="Energy"/> from <see cref="SpecificEnergy"/> * <see cref="Mass"/>.</summary>
+        public static Energy operator *(SpecificEnergy specificEnergy, Mass mass)
+        {
+            return Energy.FromJoules(specificEnergy.JoulesPerKilogram * mass.Kilograms);
+        }
+
+        /// <summary>Get <see cref="Power"/> from <see cref="SpecificEnergy"/> * <see cref="MassFlow"/>.</summary>
+        public static Power operator *(SpecificEnergy specificEnergy, MassFlow massFlow)
+        {
+            return Power.FromWatts(specificEnergy.JoulesPerKilogram * massFlow.KilogramsPerSecond);
+        }
+
+        /// <summary>Get <see cref="SpecificEntropy"/> from <see cref="SpecificEnergy"/> / <see cref="TemperatureDelta"/>.</summary>
+        public static SpecificEntropy operator /(SpecificEnergy specificEnergy, TemperatureDelta temperatureDelta)
+        {
+            return SpecificEntropy.FromJoulesPerKilogramKelvin(specificEnergy.JoulesPerKilogram / temperatureDelta.Kelvins);
         }
 
         #endregion
