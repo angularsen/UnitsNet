@@ -1,7 +1,5 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+# CI pipeline
+# - For pull requests see azure-pipelines-pr.yml
 
 pr: none
 trigger:
@@ -37,11 +35,11 @@ stages:
     - task: InstallNanoMSBuildComponents@1
       displayName: Install .NET nanoFramework MSBuild components
 
-- task: UseDotNet@2
-  displayName: Install net5.0
-  inputs:
-    packageType: 'sdk'
-    version: '5.0.x'
+    - task: UseDotNet@2
+      displayName: Install net5.0
+      inputs:
+        packageType: 'sdk'
+        version: '5.0.x'
 
     - task: PowerShell@2
       displayName: 'Build, test, pack'
@@ -52,6 +50,14 @@ stages:
         showWarnings: true
         pwsh: true
         workingDirectory: '$(Build.SourcesDirectory)'
+
+    - task: PublishTestResults@2
+      condition: always()
+      inputs:
+        testResultsFormat: "VSTest"
+        testResultsFiles: "*.trx"
+        searchFolder: $(Build.SourcesDirectory)\Artifacts\TestResults
+        mergeTestResults: true
 
     - task: PowerShell@2
       displayName: Upload to codecov.io
