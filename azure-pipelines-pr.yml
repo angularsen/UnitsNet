@@ -8,13 +8,13 @@ trigger: none
 pr:
   branches:
     include:
-    - master
-    - release/*
+      - master
+      - release/*
   paths:
     exclude:
-    - '*.md'
-    - '*.png'
-    - '*.gitignore'
+      - '**/*.png'
+      - '**/*.md'
+      - '*.gitignore'
 
 pool:
   vmImage: windows-latest
@@ -35,6 +35,9 @@ stages:
       lfs: true
       submodules: false
       fetchTags: false
+
+    - task: InstallNanoMSBuildComponents@1
+      displayName: Install .NET nanoFramework MSBuild components
 
     - task: PowerShell@2
       displayName: 'Build, test, pack'
