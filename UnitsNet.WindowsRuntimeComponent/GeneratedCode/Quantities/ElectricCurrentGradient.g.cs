@@ -429,7 +429,7 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
-        public int CompareTo(object obj)
+        public int CompareTo(object? obj)
         {
             if (obj is null) throw new ArgumentNullException(nameof(obj));
             if (!(obj is ElectricCurrentGradient objElectricCurrentGradient)) throw new ArgumentException("Expected type ElectricCurrentGradient.", nameof(obj));
@@ -444,7 +444,7 @@ namespace UnitsNet
         }
 
         [Windows.Foundation.Metadata.DefaultOverload]
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is ElectricCurrentGradient objElectricCurrentGradient))
                 return false;

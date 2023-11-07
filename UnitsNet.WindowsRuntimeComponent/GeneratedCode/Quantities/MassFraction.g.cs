@@ -772,7 +772,7 @@ namespace UnitsNet
 
         #region Equality / IComparable
 
-        public int CompareTo(object obj)
+        public int CompareTo(object? obj)
         {
             if (obj is null) throw new ArgumentNullException(nameof(obj));
             if (!(obj is MassFraction objMassFraction)) throw new ArgumentException("Expected type MassFraction.", nameof(obj));
@@ -787,7 +787,7 @@ namespace UnitsNet
         }
 
         [Windows.Foundation.Metadata.DefaultOverload]
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is MassFraction objMassFraction))
                 return false;

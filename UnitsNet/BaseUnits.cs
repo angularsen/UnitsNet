@@ -57,7 +57,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is BaseUnits))
                 return false;
@@ -70,7 +70,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="other">The other instance to check if equal to.</param>
         /// <returns>True if equal, otherwise false.</returns>
-        public bool Equals(BaseUnits other)
+        public bool Equals(BaseUnits? other)
         {
             if (other is null)
                 return false;
@@ -91,7 +91,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="other">The other <see cref="BaseUnits"/> to compare to.</param>
         /// <returns>True if the base units are a subset of other, otherwise false.</returns>
-        public bool IsSubsetOf(BaseUnits other)
+        public bool IsSubsetOf(BaseUnits? other)
         {
             if (other is null)
                 return false;
@@ -122,7 +122,7 @@ namespace UnitsNet
         /// <param name="right">The right instance.</param>
         /// <returns>True if equal, otherwise false.</returns>
         /// <seealso cref="Equals(BaseUnits)"/>
-        public static bool operator ==(BaseUnits left, BaseUnits right)
+        public static bool operator ==(BaseUnits? left, BaseUnits? right)
         {
             return left is null ? right is null : left.Equals(right);
         }
@@ -134,7 +134,7 @@ namespace UnitsNet
         /// <param name="right">The right instance.</param>
         /// <returns>True if not equal, otherwise false.</returns>
         /// <seealso cref="Equals(BaseUnits)"/>
-        public static bool operator !=(BaseUnits left, BaseUnits right)
+        public static bool operator !=(BaseUnits? left, BaseUnits? right)
         {
             return !(left == right);
         }
