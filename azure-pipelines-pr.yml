@@ -1,8 +1,11 @@
-# CI pipeline
-# - For pull requests see azure-pipelines-pr.yml
+name: PR_$(Date:yyyy.MM.dd)$(Rev:.rrr)
 
-pr: none
-trigger:
+# PR pipeline
+# - Build all targets (netstandard2.0, .NET nanoFramework)
+# - Run tests and upload test coverage to codecov.io
+
+trigger: none
+pr:
   branches:
     include:
       - master
@@ -11,6 +14,7 @@ trigger:
     exclude:
       - '**/*.png'
       - '**/*.md'
+      - '*.gitignore'
 
 pool:
   vmImage: windows-latest
@@ -88,55 +92,3 @@ stages:
     - publish: $(Build.SourcesDirectory)/Artifacts
       displayName: 'Publish Artifacts'
       artifact: 'Artifacts'
-
-    - task: CopyFiles@2
-      displayName: Copy nugets to staging
-      inputs:
-        SourceFolder: '$(Build.SourcesDirectory)/Artifacts'
-        Contents: |
-          **/*.nupkg
-          **/*.snupkg
-        TargetFolder: '$(Build.ArtifactStagingDirectory)'
-        flattenFolders: true
-        preserveTimestamp: true
-        retryCount: '3'
-        ignoreMakeDirErrors: true
-
-    - task: PublishPipelineArtifact@1
-      displayName: Upload nugets to pipeline
-      inputs:
-        targetPath: '$(Build.ArtifactStagingDirectory)'
-        artifact: 'nugets'
-        publishLocation: 'pipeline'
-
-- stage: Publish
-  dependsOn: Build
-  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
-  jobs:
-  - job: Publish
-    displayName: Publish nugets
-    steps:
-    - task: DownloadPipelineArtifact@2
-      displayName: Download nugets from pipeline
-      inputs:
-        buildType: 'current'
-        artifactName: 'nugets'
-        targetPath: '$(Build.ArtifactStagingDirectory)'
-
-    - task: Bash@3
-      displayName: 'Push to nuget.org'
-      env:
-        NUGET_ORG_APIKEY: '$(NUGET_ORG_APIKEY)'
-      inputs:
-        targetType: 'inline'
-        script: 'dotnet nuget push "*.nupkg" --skip-duplicate --api-key $NUGET_ORG_APIKEY --source https://api.nuget.org/v3/index.json'
-        workingDirectory: '$(Build.ArtifactStagingDirectory)'
-
-    - task: NuGetCommand@2
-      displayName: Push to internal NuGet feed
-      inputs:
-        command: 'push'
-        packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
-        nuGetFeedType: 'internal'
-        publishVstsFeed: 'fee4c64f-3e49-4618-9ea4-5a3167257c37/989275f4-a952-4abd-ae82-2e7a0cb97b9b'
-        allowPackageConflicts: true
