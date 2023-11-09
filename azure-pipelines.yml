@@ -111,7 +111,6 @@ stages:
 
 - stage: Publish
   dependsOn: Build
-  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   jobs:
   - job: Publish
     displayName: Publish nugets
