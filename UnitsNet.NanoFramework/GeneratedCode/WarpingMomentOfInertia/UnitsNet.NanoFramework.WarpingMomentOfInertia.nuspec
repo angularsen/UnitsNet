@@ -4,7 +4,7 @@
     <id>UnitsNet.nanoFramework.WarpingMomentOfInertia</id>
     <version>5.35.0</version>
     <title>Units.NET WarpingMomentOfInertia - nanoFramework</title>
-    <authors>Andreas Gullberg Larsen,nanoFramework project contributors</authors>
+    <authors>Andreas Gullberg Larsen,nanoframework</authors>
     <owners>UnitsNet</owners>
     <license type="expression">MIT</license>
     <projectUrl>https://github.com/angularsen/UnitsNet</projectUrl>
@@ -17,8 +17,8 @@
     <language>en-US</language>
     <tags>nanoframework warpingmomentofinertia unit units quantity quantities measurement si metric imperial abbreviation abbreviations convert conversion parse immutable</tags>
     <dependencies>
-      <dependency id="nanoFramework.CoreLibrary" version="1.14.2" />
-      <dependency id="nanoFramework.System.Math" version="1.5.29" />
+      <dependency id="nanoFramework.CoreLibrary" version="1.15.5" />
+      <dependency id="nanoFramework.System.Math" version="1.5.43" />
     </dependencies>
   </metadata>
   <files>

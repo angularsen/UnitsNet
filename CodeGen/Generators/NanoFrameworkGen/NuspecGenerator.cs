@@ -27,7 +27,7 @@ namespace CodeGen.Generators.NanoFrameworkGen
     <id>UnitsNet.nanoFramework.{_quantity.Name}</id>
     <version>5.35.0</version>
     <title>Units.NET {_quantity.Name} - nanoFramework</title>
-    <authors>Andreas Gullberg Larsen,nanoFramework project contributors</authors>
+    <authors>Andreas Gullberg Larsen,nanoframework</authors>
     <owners>UnitsNet</owners>
     <license type=""expression"">MIT</license>
     <projectUrl>https://github.com/angularsen/UnitsNet</projectUrl>
