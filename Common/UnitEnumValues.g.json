@@ -1787,5 +1787,15 @@
     "Picogray": 11,
     "Rad": 17,
     "Teragray": 14
+  },
+  "MechanicalInertance": {
+    "DecanewtonPerMeterPerSecondSquared": 3,
+    "KilogramForcePerMeterPerSecondSquared": 4,
+    "KilonewtonPerMeterPerSecondSquared": 1,
+    "MeganewtonPerMeterPerSecondSquared": 8,
+    "MicronewtonPerMeterPerSecondSquared": 7,
+    "MillinewtonPerMeterPerSecondSquared": 6,
+    "NewtonPerMeterPerSecondSquared": 9,
+    "PoundForcePerG": 5
   }
 }

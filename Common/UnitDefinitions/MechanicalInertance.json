@@ -1,7 +1,7 @@
 {
-  "Name": "Inertance",
+  "Name": "MechanicalInertance",
   "BaseUnit": "NewtonPerMeterPerSecondSquared",
-  "XmlDocSummary": "Inertance is the ratio of mass force to acceleration representing the the resistance of a mechanical system to acceleration. This is simply a different way of representing mass, often used with mass-damper-inerter systems.",
+  "XmlDocSummary": "Mechanical Inertance is the ratio of mass force to acceleration representing the the resistance of a mechanical system to acceleration. This is simply a different way of representing mass, often used with mass-damper-inerter systems.",
   "BaseDimensions": {
     "M": 1
   },
@@ -11,7 +11,7 @@
       "PluralName": "NewtonsPerMeterPerSecondSquared",
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
-      "Prefixes": [ "Micro", "Milli", "Deca", "Kilo", "Mega" ],
+      "XmlDocSummary": "A unit equivalent to one kilogram.",
       "Localization": [
         {
           "Culture": "en-US",
@@ -22,8 +22,10 @@
     {
       "SingularName": "KilogramForcePerMeterPerSecondSquared",
       "PluralName": "KilogramsForcePerMeterPerSecondSquared",
-      "FromUnitToBaseFunc": "{x} * 9.80665002864",
-      "FromBaseToUnitFunc": "{x} / 9.80665002864",
+      "FromUnitToBaseFunc": "{x} * 9.80665",
+      "FromBaseToUnitFunc": "{x} / 9.80665",
+      "XmlDocSummary": "A unit equivalent to one kilogram divided by the acceleration due to gravity.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Kilogram-force",
       "Localization": [
         {
           "Culture": "en-US",
@@ -34,8 +36,10 @@
     {
       "SingularName": "PoundForcePerG",
       "PluralName": "PoundsForcePerG",
-      "FromUnitToBaseFunc": "{x} * 0.45359236867",
-      "FromBaseToUnitFunc": "{x} / 0.45359236867",
+      "FromUnitToBaseFunc": "{x} * 0.45359237",
+      "FromBaseToUnitFunc": "{x} / 0.45359237",
+      "XmlDocSummary": "A unit equivalent to one avoirdupois pound.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Pound_(force)",
       "Localization": [
         {
           "Culture": "en-US",

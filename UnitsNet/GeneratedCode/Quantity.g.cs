@@ -108,6 +108,7 @@ namespace UnitsNet
             { "MassFlux", MassFlux.Info },
             { "MassFraction", MassFraction.Info },
             { "MassMomentOfInertia", MassMomentOfInertia.Info },
+            { "MechanicalInertance", MechanicalInertance.Info },
             { "MolarEnergy", MolarEnergy.Info },
             { "MolarEntropy", MolarEntropy.Info },
             { "MolarFlow", MolarFlow.Info },
@@ -240,6 +241,7 @@ namespace UnitsNet
                 "MassFlux" => MassFlux.From(value, MassFlux.BaseUnit),
                 "MassFraction" => MassFraction.From(value, MassFraction.BaseUnit),
                 "MassMomentOfInertia" => MassMomentOfInertia.From(value, MassMomentOfInertia.BaseUnit),
+                "MechanicalInertance" => MechanicalInertance.From(value, MechanicalInertance.BaseUnit),
                 "MolarEnergy" => MolarEnergy.From(value, MolarEnergy.BaseUnit),
                 "MolarEntropy" => MolarEntropy.From(value, MolarEntropy.BaseUnit),
                 "MolarFlow" => MolarFlow.From(value, MolarFlow.BaseUnit),
@@ -375,6 +377,7 @@ namespace UnitsNet
                 MassFluxUnit massFluxUnit => MassFlux.From(value, massFluxUnit),
                 MassFractionUnit massFractionUnit => MassFraction.From(value, massFractionUnit),
                 MassMomentOfInertiaUnit massMomentOfInertiaUnit => MassMomentOfInertia.From(value, massMomentOfInertiaUnit),
+                MechanicalInertanceUnit mechanicalInertanceUnit => MechanicalInertance.From(value, mechanicalInertanceUnit),
                 MolarEnergyUnit molarEnergyUnit => MolarEnergy.From(value, molarEnergyUnit),
                 MolarEntropyUnit molarEntropyUnit => MolarEntropy.From(value, molarEntropyUnit),
                 MolarFlowUnit molarFlowUnit => MolarFlow.From(value, molarFlowUnit),
@@ -520,6 +523,7 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(MassFlux) => parser.TryParse<MassFlux, MassFluxUnit>(quantityString, formatProvider, MassFlux.From, out quantity),
                 Type _ when quantityType == typeof(MassFraction) => parser.TryParse<MassFraction, MassFractionUnit>(quantityString, formatProvider, MassFraction.From, out quantity),
                 Type _ when quantityType == typeof(MassMomentOfInertia) => parser.TryParse<MassMomentOfInertia, MassMomentOfInertiaUnit>(quantityString, formatProvider, MassMomentOfInertia.From, out quantity),
+                Type _ when quantityType == typeof(MechanicalInertance) => parser.TryParse<MechanicalInertance, MechanicalInertanceUnit>(quantityString, formatProvider, MechanicalInertance.From, out quantity),
                 Type _ when quantityType == typeof(MolarEnergy) => parser.TryParse<MolarEnergy, MolarEnergyUnit>(quantityString, formatProvider, MolarEnergy.From, out quantity),
                 Type _ when quantityType == typeof(MolarEntropy) => parser.TryParse<MolarEntropy, MolarEntropyUnit>(quantityString, formatProvider, MolarEntropy.From, out quantity),
                 Type _ when quantityType == typeof(MolarFlow) => parser.TryParse<MolarFlow, MolarFlowUnit>(quantityString, formatProvider, MolarFlow.From, out quantity),
@@ -646,6 +650,7 @@ namespace UnitsNet
             yield return typeof(MassFlux);
             yield return typeof(MassFraction);
             yield return typeof(MassMomentOfInertia);
+            yield return typeof(MechanicalInertance);
             yield return typeof(MolarEnergy);
             yield return typeof(MolarEntropy);
             yield return typeof(MolarFlow);

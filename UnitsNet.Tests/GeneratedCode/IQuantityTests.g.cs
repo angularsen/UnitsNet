@@ -104,6 +104,7 @@ namespace UnitsNet.Tests
             Assertion(3, MassFluxUnit.KilogramPerSecondPerSquareMillimeter, Quantity.From(3, MassFluxUnit.KilogramPerSecondPerSquareMillimeter));
             Assertion(3, MassFractionUnit.Percent, Quantity.From(3, MassFractionUnit.Percent));
             Assertion(3, MassMomentOfInertiaUnit.TonneSquareMilimeter, Quantity.From(3, MassMomentOfInertiaUnit.TonneSquareMilimeter));
+            Assertion(3, MechanicalInertanceUnit.PoundForcePerG, Quantity.From(3, MechanicalInertanceUnit.PoundForcePerG));
             Assertion(3, MolarEnergyUnit.MegajoulePerMole, Quantity.From(3, MolarEnergyUnit.MegajoulePerMole));
             Assertion(3, MolarEntropyUnit.MegajoulePerMoleKelvin, Quantity.From(3, MolarEntropyUnit.MegajoulePerMoleKelvin));
             Assertion(3, MolarFlowUnit.PoundMolePerSecond, Quantity.From(3, MolarFlowUnit.PoundMolePerSecond));
@@ -231,6 +232,7 @@ namespace UnitsNet.Tests
             Assertion(MassFlux.Info, MassFlux.Zero);
             Assertion(MassFraction.Info, MassFraction.Zero);
             Assertion(MassMomentOfInertia.Info, MassMomentOfInertia.Zero);
+            Assertion(MechanicalInertance.Info, MechanicalInertance.Zero);
             Assertion(MolarEnergy.Info, MolarEnergy.Zero);
             Assertion(MolarEntropy.Info, MolarEntropy.Zero);
             Assertion(MolarFlow.Info, MolarFlow.Zero);
@@ -358,6 +360,7 @@ namespace UnitsNet.Tests
             Assertion(MassFlux.BaseDimensions, MassFlux.Zero);
             Assertion(MassFraction.BaseDimensions, MassFraction.Zero);
             Assertion(MassMomentOfInertia.BaseDimensions, MassMomentOfInertia.Zero);
+            Assertion(MechanicalInertance.BaseDimensions, MechanicalInertance.Zero);
             Assertion(MolarEnergy.BaseDimensions, MolarEnergy.Zero);
             Assertion(MolarEntropy.BaseDimensions, MolarEntropy.Zero);
             Assertion(MolarFlow.BaseDimensions, MolarFlow.Zero);
