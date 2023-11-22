@@ -1,0 +1,47 @@
+{
+  "Name": "Inertance",
+  "BaseUnit": "NewtonPerMeterPerSecondSquared",
+  "XmlDocSummary": "Inertance is the ratio of force to acceleration representing the the resistance of a mechanical system to acceleration. This is simply a different way of representing mass, often used with mass-damper-inerter systems.",
+  "BaseDimensions": {
+    "M": 1
+  },
+  "Units": [
+    {
+      "SingularName": "NewtonPerMeterPerSecondSquared",
+      "PluralName": "NewtonsPerMeterPerSecondSquared",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Prefixes": [ "Micro", "Milli", "Deca", "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "N/(m/s²)" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilogramForcePerMeterPerSecondSquared",
+      "PluralName": "KilogramsForcePerMeterPerSecondSquared",
+      "FromUnitToBaseFunc": "{x} * 9.80665002864",
+      "FromBaseToUnitFunc": "{x} / 9.80665002864",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kgf/(m/s²)" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundForcePerG",
+      "PluralName": "PoundsForcePerG",
+      "FromUnitToBaseFunc": "{x} * 0.45359236867",
+      "FromBaseToUnitFunc": "{x} / 0.45359236867",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lbf/G" ]
+        }
+      ]
+    }
+  ]
+}
