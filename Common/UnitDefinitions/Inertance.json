@@ -1,7 +1,7 @@
 {
   "Name": "Inertance",
   "BaseUnit": "NewtonPerMeterPerSecondSquared",
-  "XmlDocSummary": "Inertance is the ratio of force to acceleration representing the the resistance of a mechanical system to acceleration. This is simply a different way of representing mass, often used with mass-damper-inerter systems.",
+  "XmlDocSummary": "Inertance is the ratio of mass force to acceleration representing the the resistance of a mechanical system to acceleration. This is simply a different way of representing mass, often used with mass-damper-inerter systems.",
   "BaseDimensions": {
     "M": 1
   },
