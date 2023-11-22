@@ -248,6 +248,14 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromMegawattHours(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Energy.FromMicrojoules(UnitsNet.QuantityValue)" />
+        public static Energy Microjoules<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Energy.FromMicrojoules(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Energy.FromMillijoules(UnitsNet.QuantityValue)" />
         public static Energy Millijoules<T>(this T value)
             where T : notnull
@@ -255,6 +263,14 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
             , INumber<T>
 #endif
             => Energy.FromMillijoules(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Energy.FromNanojoules(UnitsNet.QuantityValue)" />
+        public static Energy Nanojoules<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Energy.FromNanojoules(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromPetajoules(UnitsNet.QuantityValue)" />
         public static Energy Petajoules<T>(this T value)

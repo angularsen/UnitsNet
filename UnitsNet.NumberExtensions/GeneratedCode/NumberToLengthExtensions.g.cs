@@ -112,6 +112,14 @@ namespace UnitsNet.NumberExtensions.NumberToLength
 #endif
             => Length.FromFathoms(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Length.FromFemtometers(UnitsNet.QuantityValue)" />
+        public static Length Femtometers<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Length.FromFemtometers(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Length.FromFeet(UnitsNet.QuantityValue)" />
         public static Length Feet<T>(this T value)
             where T : notnull
@@ -119,6 +127,14 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
 #endif
             => Length.FromFeet(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Length.FromGigameters(UnitsNet.QuantityValue)" />
+        public static Length Gigameters<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Length.FromGigameters(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Length.FromHands(UnitsNet.QuantityValue)" />
         public static Length Hands<T>(this T value)
@@ -279,6 +295,14 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , INumber<T>
 #endif
             => Length.FromParsecs(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Length.FromPicometers(UnitsNet.QuantityValue)" />
+        public static Length Picometers<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Length.FromPicometers(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Length.FromPrinterPicas(UnitsNet.QuantityValue)" />
         public static Length PrinterPicas<T>(this T value)

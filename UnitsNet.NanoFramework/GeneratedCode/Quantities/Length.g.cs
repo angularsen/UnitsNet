@@ -130,9 +130,19 @@ namespace UnitsNet
         public double Fathoms => As(LengthUnit.Fathom);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Femtometer"/>
+        /// </summary>
+        public double Femtometers => As(LengthUnit.Femtometer);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Foot"/>
         /// </summary>
         public double Feet => As(LengthUnit.Foot);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Gigameter"/>
+        /// </summary>
+        public double Gigameters => As(LengthUnit.Gigameter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Hand"/>
@@ -235,6 +245,11 @@ namespace UnitsNet
         public double Parsecs => As(LengthUnit.Parsec);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Picometer"/>
+        /// </summary>
+        public double Picometers => As(LengthUnit.Picometer);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.PrinterPica"/>
         /// </summary>
         public double PrinterPicas => As(LengthUnit.PrinterPica);
@@ -334,10 +349,22 @@ namespace UnitsNet
         public static Length FromFathoms(double fathoms) => new Length(fathoms, LengthUnit.Fathom);
 
         /// <summary>
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Femtometer"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromFemtometers(double femtometers) => new Length(femtometers, LengthUnit.Femtometer);
+
+        /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Foot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromFeet(double feet) => new Length(feet, LengthUnit.Foot);
+
+        /// <summary>
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Gigameter"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromGigameters(double gigameters) => new Length(gigameters, LengthUnit.Gigameter);
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Hand"/>.
@@ -460,6 +487,12 @@ namespace UnitsNet
         public static Length FromParsecs(double parsecs) => new Length(parsecs, LengthUnit.Parsec);
 
         /// <summary>
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Picometer"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromPicometers(double picometers) => new Length(picometers, LengthUnit.Picometer);
+
+        /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.PrinterPica"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -551,7 +584,9 @@ namespace UnitsNet
                         LengthUnit.DtpPica => _value / 236.220472441,
                         LengthUnit.DtpPoint => (_value / 72) * 2.54e-2,
                         LengthUnit.Fathom => _value * 1.8288,
+                        LengthUnit.Femtometer => (_value) * 1e-15d,
                         LengthUnit.Foot => _value * 0.3048,
+                        LengthUnit.Gigameter => (_value) * 1e9d,
                         LengthUnit.Hand => _value * 1.016e-1,
                         LengthUnit.Hectometer => (_value) * 1e2d,
                         LengthUnit.Inch => _value * 2.54e-2,
@@ -572,6 +607,7 @@ namespace UnitsNet
                         LengthUnit.Nanometer => (_value) * 1e-9d,
                         LengthUnit.NauticalMile => _value * 1852,
                         LengthUnit.Parsec => _value * 3.08567758128e16,
+                        LengthUnit.Picometer => (_value) * 1e-12d,
                         LengthUnit.PrinterPica => _value / 237.106301584,
                         LengthUnit.PrinterPoint => (_value / 72.27) * 2.54e-2,
                         LengthUnit.Shackle => _value * 27.432,
@@ -602,7 +638,9 @@ namespace UnitsNet
                         LengthUnit.DtpPica => baseUnitValue * 236.220472441,
                         LengthUnit.DtpPoint => (baseUnitValue / 2.54e-2) * 72,
                         LengthUnit.Fathom => baseUnitValue / 1.8288,
+                        LengthUnit.Femtometer => (baseUnitValue) / 1e-15d,
                         LengthUnit.Foot => baseUnitValue / 0.3048,
+                        LengthUnit.Gigameter => (baseUnitValue) / 1e9d,
                         LengthUnit.Hand => baseUnitValue / 1.016e-1,
                         LengthUnit.Hectometer => (baseUnitValue) / 1e2d,
                         LengthUnit.Inch => baseUnitValue / 2.54e-2,
@@ -623,6 +661,7 @@ namespace UnitsNet
                         LengthUnit.Nanometer => (baseUnitValue) / 1e-9d,
                         LengthUnit.NauticalMile => baseUnitValue / 1852,
                         LengthUnit.Parsec => baseUnitValue / 3.08567758128e16,
+                        LengthUnit.Picometer => (baseUnitValue) / 1e-12d,
                         LengthUnit.PrinterPica => baseUnitValue * 237.106301584,
                         LengthUnit.PrinterPoint => (baseUnitValue / 2.54e-2) * 72.27,
                         LengthUnit.Shackle => baseUnitValue / 27.432,

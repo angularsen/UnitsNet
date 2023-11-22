@@ -222,7 +222,10 @@
     "TonnePerCubicFoot": 48,
     "TonnePerCubicInch": 49,
     "TonnePerCubicMeter": 50,
-    "TonnePerCubicMillimeter": 51
+    "TonnePerCubicMillimeter": 51,
+    "FemtogramPerDeciliter": 59,
+    "FemtogramPerLiter": 56,
+    "FemtogramPerMilliliter": 61
   },
   "Duration": {
     "Day": 1,
@@ -433,7 +436,9 @@
     "WattDay": 35,
     "WattHour": 36,
     "Petajoule": 43,
-    "Terajoule": 37
+    "Terajoule": 37,
+    "Microjoule": 47,
+    "Nanojoule": 45
   },
   "Entropy": {
     "CaloriePerKelvin": 1,
@@ -691,7 +696,10 @@
     "UsSurveyFoot": 35,
     "Yard": 36,
     "Megameter": 41,
-    "Kilofoot": 45
+    "Kilofoot": 45,
+    "Femtometer": 48,
+    "Picometer": 43,
+    "Gigameter": 44
   },
   "Level": {
     "Decibel": 1,
