@@ -85,6 +85,11 @@ namespace UnitsNet
         public double Centigrams => As(MassUnit.Centigram);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Centner"/>
+        /// </summary>
+        public double Centners => As(MassUnit.Centner);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Decagram"/>
         /// </summary>
         public double Decagrams => As(MassUnit.Decagram);
@@ -223,6 +228,12 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Mass FromCentigrams(double centigrams) => new Mass(centigrams, MassUnit.Centigram);
+
+        /// <summary>
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Centner"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Mass FromCentners(double centners) => new Mass(centners, MassUnit.Centner);
 
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Decagram"/>.
@@ -421,6 +432,7 @@ namespace UnitsNet
                     return Unit switch
                     {
                         MassUnit.Centigram => (_value / 1e3) * 1e-2d,
+                        MassUnit.Centner => _value / 1E-2,
                         MassUnit.Decagram => (_value / 1e3) * 1e1d,
                         MassUnit.Decigram => (_value / 1e3) * 1e-1d,
                         MassUnit.EarthMass => _value * 5.9722E+24,
@@ -461,6 +473,7 @@ namespace UnitsNet
                     return unit switch
                     {
                         MassUnit.Centigram => (baseUnitValue * 1e3) / 1e-2d,
+                        MassUnit.Centner => baseUnitValue * 1E-2,
                         MassUnit.Decagram => (baseUnitValue * 1e3) / 1e1d,
                         MassUnit.Decigram => (baseUnitValue * 1e3) / 1e-1d,
                         MassUnit.EarthMass => baseUnitValue / 5.9722E+24,

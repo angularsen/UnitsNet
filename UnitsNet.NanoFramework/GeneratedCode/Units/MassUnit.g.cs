@@ -26,6 +26,12 @@ namespace UnitsNet.Units
     public enum MassUnit
     {
         Centigram = 1,
+
+        /// <summary>
+        ///     The centner metric unit of mass equal to 100 kilograms.
+        /// </summary>
+        /// <remarks>https://unece.org/fileadmin/DAM/cefact/recommendations/rec20/rec20_rev3_Annex2e.pdf</remarks>
+        Centner = 33,
         Decagram = 2,
         Decigram = 3,
 

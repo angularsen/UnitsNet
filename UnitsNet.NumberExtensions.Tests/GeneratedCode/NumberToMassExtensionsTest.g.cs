@@ -29,6 +29,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Mass.FromCentigrams(2), 2.Centigrams());
 
         [Fact]
+        public void NumberToCentnersTest() =>
+            Assert.Equal(Mass.FromCentners(2), 2.Centners());
+
+        [Fact]
         public void NumberToDecagramsTest() =>
             Assert.Equal(Mass.FromDecagrams(2), 2.Decagrams());
 

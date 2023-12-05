@@ -811,7 +811,8 @@
     "Stone": 24,
     "Tonne": 25,
     "Femtogram": 35,
-    "Picogram": 29
+    "Picogram": 29,
+    "Centner": 33
   },
   "MassConcentration": {
     "CentigramPerDeciliter": 1,
