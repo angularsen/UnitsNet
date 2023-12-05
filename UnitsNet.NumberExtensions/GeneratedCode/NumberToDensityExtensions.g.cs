@@ -216,6 +216,14 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromKilopoundsPerCubicInch(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Density.FromKilopoundsPerCubicYard(UnitsNet.QuantityValue)" />
+        public static Density KilopoundsPerCubicYard<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Density.FromKilopoundsPerCubicYard(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Density.FromMicrogramsPerCubicMeter(UnitsNet.QuantityValue)" />
         public static Density MicrogramsPerCubicMeter<T>(this T value)
             where T : notnull
@@ -367,6 +375,14 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
             , INumber<T>
 #endif
             => Density.FromPoundsPerCubicMillimeter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromPoundsPerCubicYard(UnitsNet.QuantityValue)" />
+        public static Density PoundsPerCubicYard<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Density.FromPoundsPerCubicYard(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(UnitsNet.QuantityValue)" />
         public static Density PoundsPerImperialGallon<T>(this T value)
