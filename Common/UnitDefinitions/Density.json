@@ -102,12 +102,13 @@
     {
       "SingularName": "PoundPerCubicYard",
       "PluralName": "PoundsPerCubicYard",
+      "XmlDocSummary": "Calculated from the definition of <a href=\"https://en.wikipedia.org/wiki/Pound_(mass)\">pound</a> and <a href=\"https://en.wikipedia.org/wiki/Yard\">yard</a> compared to metric kilogram and meter.",
       "BaseUnits": {
         "L": "Yard",
         "M": "Pound"
       },
-      "FromUnitToBaseFunc": "{x} / 1.685554936",
-      "FromBaseToUnitFunc": "{x} * 1.685554936",
+      "FromUnitToBaseFunc": "{x} / (0.45359237 / 0.9144 / 0.9144 / 0.9144)",
+      "FromBaseToUnitFunc": "{x} * (0.45359237 / 0.9144 / 0.9144 / 0.9144)",
       "Prefixes": [ "Kilo" ],
       "Localization": [
         {
