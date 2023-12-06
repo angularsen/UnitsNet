@@ -225,7 +225,9 @@
     "TonnePerCubicMillimeter": 51,
     "FemtogramPerDeciliter": 59,
     "FemtogramPerLiter": 56,
-    "FemtogramPerMilliliter": 61
+    "FemtogramPerMilliliter": 61,
+    "KilopoundPerCubicYard": 64,
+    "PoundPerCubicYard": 58
   },
   "Duration": {
     "Day": 1,

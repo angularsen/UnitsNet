@@ -48,6 +48,7 @@ namespace UnitsNet.Units
         KilogramPerLiter = 18,
         KilopoundPerCubicFoot = 19,
         KilopoundPerCubicInch = 20,
+        KilopoundPerCubicYard = 64,
         MicrogramPerCubicMeter = 21,
         MicrogramPerDeciliter = 22,
         MicrogramPerLiter = 23,
@@ -67,6 +68,11 @@ namespace UnitsNet.Units
         PoundPerCubicInch = 37,
         PoundPerCubicMeter = 38,
         PoundPerCubicMillimeter = 39,
+
+        /// <summary>
+        ///     Calculated from the definition of <a href="https://en.wikipedia.org/wiki/Pound_(mass)">pound</a> and <a href="https://en.wikipedia.org/wiki/Yard">yard</a> compared to metric kilogram and meter.
+        /// </summary>
+        PoundPerCubicYard = 58,
         PoundPerImperialGallon = 40,
         PoundPerUSGallon = 41,
         SlugPerCubicCentimeter = 42,

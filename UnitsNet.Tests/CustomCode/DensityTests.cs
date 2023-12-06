@@ -23,9 +23,13 @@ namespace UnitsNet.Tests
 
         protected override double KilogramsPerCubicMillimeterInOneKilogramPerCubicMeter => 1e-9;
 
+        protected override double KilopoundsPerCubicYardInOneKilogramPerCubicMeter => 1.6855549356e-3;
+
         protected override double KilopoundsPerCubicFootInOneKilogramPerCubicMeter => 6.242796e-5;
 
         protected override double KilopoundsPerCubicInchInOneKilogramPerCubicMeter => 3.6127292e-8;
+
+        protected override double PoundsPerCubicYardInOneKilogramPerCubicMeter => 1.6855549356;
 
         protected override double PoundsPerCubicFootInOneKilogramPerCubicMeter => 6.242796e-2;
 
