@@ -40,14 +40,6 @@ namespace UnitsNet.NumberExtensions.NumberToMass
 #endif
             => Mass.FromCentigrams(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Mass.FromCentners(UnitsNet.QuantityValue)" />
-        public static Mass Centners<T>(this T value)
-            where T : notnull
-#if NET7_0_OR_GREATER
-            , INumber<T>
-#endif
-            => Mass.FromCentners(Convert.ToDouble(value));
-
         /// <inheritdoc cref="Mass.FromDecagrams(UnitsNet.QuantityValue)" />
         public static Mass Decagrams<T>(this T value)
             where T : notnull
@@ -223,6 +215,14 @@ namespace UnitsNet.NumberExtensions.NumberToMass
             , INumber<T>
 #endif
             => Mass.FromShortTons(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Mass.FromSiDecitonnes(UnitsNet.QuantityValue)" />
+        public static Mass SiDecitonnes<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Mass.FromSiDecitonnes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Mass.FromSlugs(UnitsNet.QuantityValue)" />
         public static Mass Slugs<T>(this T value)

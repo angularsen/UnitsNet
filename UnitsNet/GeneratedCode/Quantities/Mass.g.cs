@@ -66,7 +66,6 @@ namespace UnitsNet
                 new UnitInfo<MassUnit>[]
                 {
                     new UnitInfo<MassUnit>(MassUnit.Centigram, "Centigrams", BaseUnits.Undefined, "Mass"),
-                    new UnitInfo<MassUnit>(MassUnit.Centner, "Centners", new BaseUnits(mass: MassUnit.Centner), "Mass"),
                     new UnitInfo<MassUnit>(MassUnit.Decagram, "Decagrams", BaseUnits.Undefined, "Mass"),
                     new UnitInfo<MassUnit>(MassUnit.Decigram, "Decigrams", BaseUnits.Undefined, "Mass"),
                     new UnitInfo<MassUnit>(MassUnit.EarthMass, "EarthMasses", new BaseUnits(mass: MassUnit.EarthMass), "Mass"),
@@ -89,6 +88,7 @@ namespace UnitsNet
                     new UnitInfo<MassUnit>(MassUnit.Pound, "Pounds", new BaseUnits(mass: MassUnit.Pound), "Mass"),
                     new UnitInfo<MassUnit>(MassUnit.ShortHundredweight, "ShortHundredweight", new BaseUnits(mass: MassUnit.ShortHundredweight), "Mass"),
                     new UnitInfo<MassUnit>(MassUnit.ShortTon, "ShortTons", new BaseUnits(mass: MassUnit.ShortTon), "Mass"),
+                    new UnitInfo<MassUnit>(MassUnit.SiDecitonne, "SiDecitonnes", new BaseUnits(mass: MassUnit.SiDecitonne), "Mass"),
                     new UnitInfo<MassUnit>(MassUnit.Slug, "Slugs", new BaseUnits(mass: MassUnit.Slug), "Mass"),
                     new UnitInfo<MassUnit>(MassUnit.SolarMass, "SolarMasses", new BaseUnits(mass: MassUnit.SolarMass), "Mass"),
                     new UnitInfo<MassUnit>(MassUnit.Stone, "Stone", new BaseUnits(mass: MassUnit.Stone), "Mass"),
@@ -202,11 +202,6 @@ namespace UnitsNet
         public double Centigrams => As(MassUnit.Centigram);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Centner"/>
-        /// </summary>
-        public double Centners => As(MassUnit.Centner);
-
-        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Decagram"/>
         /// </summary>
         public double Decagrams => As(MassUnit.Decagram);
@@ -317,6 +312,11 @@ namespace UnitsNet
         public double ShortTons => As(MassUnit.ShortTon);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.SiDecitonne"/>
+        /// </summary>
+        public double SiDecitonnes => As(MassUnit.SiDecitonne);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Slug"/>
         /// </summary>
         public double Slugs => As(MassUnit.Slug);
@@ -348,7 +348,6 @@ namespace UnitsNet
         {
             // Register in unit converter: MassUnit -> BaseUnit
             unitConverter.SetConversionFunction<Mass>(MassUnit.Centigram, MassUnit.Kilogram, quantity => quantity.ToUnit(MassUnit.Kilogram));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Centner, MassUnit.Kilogram, quantity => quantity.ToUnit(MassUnit.Kilogram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Decagram, MassUnit.Kilogram, quantity => quantity.ToUnit(MassUnit.Kilogram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Decigram, MassUnit.Kilogram, quantity => quantity.ToUnit(MassUnit.Kilogram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.EarthMass, MassUnit.Kilogram, quantity => quantity.ToUnit(MassUnit.Kilogram));
@@ -370,6 +369,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Mass>(MassUnit.Pound, MassUnit.Kilogram, quantity => quantity.ToUnit(MassUnit.Kilogram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.ShortHundredweight, MassUnit.Kilogram, quantity => quantity.ToUnit(MassUnit.Kilogram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.ShortTon, MassUnit.Kilogram, quantity => quantity.ToUnit(MassUnit.Kilogram));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.SiDecitonne, MassUnit.Kilogram, quantity => quantity.ToUnit(MassUnit.Kilogram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Slug, MassUnit.Kilogram, quantity => quantity.ToUnit(MassUnit.Kilogram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.SolarMass, MassUnit.Kilogram, quantity => quantity.ToUnit(MassUnit.Kilogram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Stone, MassUnit.Kilogram, quantity => quantity.ToUnit(MassUnit.Kilogram));
@@ -380,7 +380,6 @@ namespace UnitsNet
 
             // Register in unit converter: BaseUnit -> MassUnit
             unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Centigram, quantity => quantity.ToUnit(MassUnit.Centigram));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Centner, quantity => quantity.ToUnit(MassUnit.Centner));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Decagram, quantity => quantity.ToUnit(MassUnit.Decagram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Decigram, quantity => quantity.ToUnit(MassUnit.Decigram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.EarthMass, quantity => quantity.ToUnit(MassUnit.EarthMass));
@@ -402,6 +401,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Pound, quantity => quantity.ToUnit(MassUnit.Pound));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.ShortHundredweight, quantity => quantity.ToUnit(MassUnit.ShortHundredweight));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.ShortTon, quantity => quantity.ToUnit(MassUnit.ShortTon));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.SiDecitonne, quantity => quantity.ToUnit(MassUnit.SiDecitonne));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Slug, quantity => quantity.ToUnit(MassUnit.Slug));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.SolarMass, quantity => quantity.ToUnit(MassUnit.SolarMass));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Stone, quantity => quantity.ToUnit(MassUnit.Stone));
@@ -441,16 +441,6 @@ namespace UnitsNet
         {
             double value = (double) centigrams;
             return new Mass(value, MassUnit.Centigram);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Centner"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass FromCentners(QuantityValue centners)
-        {
-            double value = (double) centners;
-            return new Mass(value, MassUnit.Centner);
         }
 
         /// <summary>
@@ -671,6 +661,16 @@ namespace UnitsNet
         {
             double value = (double) shorttons;
             return new Mass(value, MassUnit.ShortTon);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.SiDecitonne"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Mass FromSiDecitonnes(QuantityValue sidecitonnes)
+        {
+            double value = (double) sidecitonnes;
+            return new Mass(value, MassUnit.SiDecitonne);
         }
 
         /// <summary>
@@ -1207,7 +1207,6 @@ namespace UnitsNet
             {
                 // MassUnit -> BaseUnit
                 (MassUnit.Centigram, MassUnit.Kilogram) => new Mass((_value / 1e3) * 1e-2d, MassUnit.Kilogram),
-                (MassUnit.Centner, MassUnit.Kilogram) => new Mass(_value / 1E-2, MassUnit.Kilogram),
                 (MassUnit.Decagram, MassUnit.Kilogram) => new Mass((_value / 1e3) * 1e1d, MassUnit.Kilogram),
                 (MassUnit.Decigram, MassUnit.Kilogram) => new Mass((_value / 1e3) * 1e-1d, MassUnit.Kilogram),
                 (MassUnit.EarthMass, MassUnit.Kilogram) => new Mass(_value * 5.9722E+24, MassUnit.Kilogram),
@@ -1229,6 +1228,7 @@ namespace UnitsNet
                 (MassUnit.Pound, MassUnit.Kilogram) => new Mass(_value * 0.45359237, MassUnit.Kilogram),
                 (MassUnit.ShortHundredweight, MassUnit.Kilogram) => new Mass(_value / 0.022046226218487758, MassUnit.Kilogram),
                 (MassUnit.ShortTon, MassUnit.Kilogram) => new Mass(_value * 9.0718474e2, MassUnit.Kilogram),
+                (MassUnit.SiDecitonne, MassUnit.Kilogram) => new Mass(_value / 1E-2, MassUnit.Kilogram),
                 (MassUnit.Slug, MassUnit.Kilogram) => new Mass(_value / 6.852176556196105e-2, MassUnit.Kilogram),
                 (MassUnit.SolarMass, MassUnit.Kilogram) => new Mass(_value * 1.98947e30, MassUnit.Kilogram),
                 (MassUnit.Stone, MassUnit.Kilogram) => new Mass(_value / 0.1574731728702698, MassUnit.Kilogram),
@@ -1236,7 +1236,6 @@ namespace UnitsNet
 
                 // BaseUnit -> MassUnit
                 (MassUnit.Kilogram, MassUnit.Centigram) => new Mass((_value * 1e3) / 1e-2d, MassUnit.Centigram),
-                (MassUnit.Kilogram, MassUnit.Centner) => new Mass(_value * 1E-2, MassUnit.Centner),
                 (MassUnit.Kilogram, MassUnit.Decagram) => new Mass((_value * 1e3) / 1e1d, MassUnit.Decagram),
                 (MassUnit.Kilogram, MassUnit.Decigram) => new Mass((_value * 1e3) / 1e-1d, MassUnit.Decigram),
                 (MassUnit.Kilogram, MassUnit.EarthMass) => new Mass(_value / 5.9722E+24, MassUnit.EarthMass),
@@ -1258,6 +1257,7 @@ namespace UnitsNet
                 (MassUnit.Kilogram, MassUnit.Pound) => new Mass(_value / 0.45359237, MassUnit.Pound),
                 (MassUnit.Kilogram, MassUnit.ShortHundredweight) => new Mass(_value * 0.022046226218487758, MassUnit.ShortHundredweight),
                 (MassUnit.Kilogram, MassUnit.ShortTon) => new Mass(_value / 9.0718474e2, MassUnit.ShortTon),
+                (MassUnit.Kilogram, MassUnit.SiDecitonne) => new Mass(_value * 1E-2, MassUnit.SiDecitonne),
                 (MassUnit.Kilogram, MassUnit.Slug) => new Mass(_value * 6.852176556196105e-2, MassUnit.Slug),
                 (MassUnit.Kilogram, MassUnit.SolarMass) => new Mass(_value / 1.98947e30, MassUnit.SolarMass),
                 (MassUnit.Kilogram, MassUnit.Stone) => new Mass(_value * 0.1574731728702698, MassUnit.Stone),

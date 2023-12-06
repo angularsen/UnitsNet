@@ -29,10 +29,6 @@ namespace UnitsNet.Tests
             Assert.Equal(Mass.FromCentigrams(2), 2.Centigrams());
 
         [Fact]
-        public void NumberToCentnersTest() =>
-            Assert.Equal(Mass.FromCentners(2), 2.Centners());
-
-        [Fact]
         public void NumberToDecagramsTest() =>
             Assert.Equal(Mass.FromDecagrams(2), 2.Decagrams());
 
@@ -119,6 +115,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToShortTonsTest() =>
             Assert.Equal(Mass.FromShortTons(2), 2.ShortTons());
+
+        [Fact]
+        public void NumberToSiDecitonnesTest() =>
+            Assert.Equal(Mass.FromSiDecitonnes(2), 2.SiDecitonnes());
 
         [Fact]
         public void NumberToSlugsTest() =>

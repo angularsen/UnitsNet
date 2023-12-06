@@ -271,19 +271,19 @@
       ]
     },
     {
-      "SingularName": "Centner",
-      "PluralName": "Centners",
+      "SingularName": "SiDecitonne",
+      "PluralName": "SiDecitonnes",
       "BaseUnits": {
-        "M": "Centner"
+        "M": "SiDecitonne"
       },
       "FromUnitToBaseFunc": "{x} / 1E-2",
       "FromBaseToUnitFunc": "{x} * 1E-2",
-      "XmlDocSummary": "The centner metric unit of mass equal to 100 kilograms.",
+      "XmlDocSummary": "The SI decitonne unit of mass equal to 100 kilograms.",
       "XmlDocRemarks": "https://unece.org/fileadmin/DAM/cefact/recommendations/rec20/rec20_rev3_Annex2e.pdf",
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "dt", "dtn" ]
+          "Abbreviations": [ "dt (SI)", "dtn (SI)" ]
         }
       ]
     }

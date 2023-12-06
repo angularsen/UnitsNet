@@ -67,7 +67,7 @@ namespace UnitsNet.Tests
 
         protected override double PicogramsInOneKilogram => 1E15;
 
-        protected override double CentnersInOneKilogram => 1E-2;
+        protected override double SiDecitonnesInOneKilogram => 1E-2;
 
         //protected override double SolarMassesTolerance => 0.1;
 

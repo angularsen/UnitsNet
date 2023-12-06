@@ -1,5 +1,4 @@
 Centigrams=cg
-Centners=dt,dtn
 Decagrams=dag
 Decigrams=dg
 EarthMasses=em
@@ -22,6 +21,7 @@ Picograms=pg
 Pounds=lb,lbs,lbm
 ShortHundredweight=cwt
 ShortTons=t (short),short tn,ST
+SiDecitonnes=dt (SI),dtn (SI)
 Slugs=slug
 SolarMasses=M☉,M⊙
 Stone=st

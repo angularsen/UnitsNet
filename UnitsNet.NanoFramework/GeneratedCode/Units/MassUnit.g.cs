@@ -26,12 +26,6 @@ namespace UnitsNet.Units
     public enum MassUnit
     {
         Centigram = 1,
-
-        /// <summary>
-        ///     The centner metric unit of mass equal to 100 kilograms.
-        /// </summary>
-        /// <remarks>https://unece.org/fileadmin/DAM/cefact/recommendations/rec20/rec20_rev3_Annex2e.pdf</remarks>
-        Centner = 33,
         Decagram = 2,
         Decigram = 3,
 
@@ -94,6 +88,12 @@ namespace UnitsNet.Units
         /// </summary>
         /// <remarks>http://en.wikipedia.org/wiki/Short_ton</remarks>
         ShortTon = 21,
+
+        /// <summary>
+        ///     The SI decitonne unit of mass equal to 100 kilograms.
+        /// </summary>
+        /// <remarks>https://unece.org/fileadmin/DAM/cefact/recommendations/rec20/rec20_rev3_Annex2e.pdf</remarks>
+        SiDecitonne = 38,
 
         /// <summary>
         ///     The slug (abbreviation slug) is a unit of mass that is accelerated by 1 ft/s² when a force of one pound (lbf) is exerted on it.

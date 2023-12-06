@@ -85,11 +85,6 @@ namespace UnitsNet
         public double Centigrams => As(MassUnit.Centigram);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Centner"/>
-        /// </summary>
-        public double Centners => As(MassUnit.Centner);
-
-        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Decagram"/>
         /// </summary>
         public double Decagrams => As(MassUnit.Decagram);
@@ -200,6 +195,11 @@ namespace UnitsNet
         public double ShortTons => As(MassUnit.ShortTon);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.SiDecitonne"/>
+        /// </summary>
+        public double SiDecitonnes => As(MassUnit.SiDecitonne);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Slug"/>
         /// </summary>
         public double Slugs => As(MassUnit.Slug);
@@ -228,12 +228,6 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Mass FromCentigrams(double centigrams) => new Mass(centigrams, MassUnit.Centigram);
-
-        /// <summary>
-        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Centner"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass FromCentners(double centners) => new Mass(centners, MassUnit.Centner);
 
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Decagram"/>.
@@ -368,6 +362,12 @@ namespace UnitsNet
         public static Mass FromShortTons(double shorttons) => new Mass(shorttons, MassUnit.ShortTon);
 
         /// <summary>
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.SiDecitonne"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Mass FromSiDecitonnes(double sidecitonnes) => new Mass(sidecitonnes, MassUnit.SiDecitonne);
+
+        /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Slug"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -432,7 +432,6 @@ namespace UnitsNet
                     return Unit switch
                     {
                         MassUnit.Centigram => (_value / 1e3) * 1e-2d,
-                        MassUnit.Centner => _value / 1E-2,
                         MassUnit.Decagram => (_value / 1e3) * 1e1d,
                         MassUnit.Decigram => (_value / 1e3) * 1e-1d,
                         MassUnit.EarthMass => _value * 5.9722E+24,
@@ -455,6 +454,7 @@ namespace UnitsNet
                         MassUnit.Pound => _value * 0.45359237,
                         MassUnit.ShortHundredweight => _value / 0.022046226218487758,
                         MassUnit.ShortTon => _value * 9.0718474e2,
+                        MassUnit.SiDecitonne => _value / 1E-2,
                         MassUnit.Slug => _value / 6.852176556196105e-2,
                         MassUnit.SolarMass => _value * 1.98947e30,
                         MassUnit.Stone => _value / 0.1574731728702698,
@@ -473,7 +473,6 @@ namespace UnitsNet
                     return unit switch
                     {
                         MassUnit.Centigram => (baseUnitValue * 1e3) / 1e-2d,
-                        MassUnit.Centner => baseUnitValue * 1E-2,
                         MassUnit.Decagram => (baseUnitValue * 1e3) / 1e1d,
                         MassUnit.Decigram => (baseUnitValue * 1e3) / 1e-1d,
                         MassUnit.EarthMass => baseUnitValue / 5.9722E+24,
@@ -496,6 +495,7 @@ namespace UnitsNet
                         MassUnit.Pound => baseUnitValue / 0.45359237,
                         MassUnit.ShortHundredweight => baseUnitValue * 0.022046226218487758,
                         MassUnit.ShortTon => baseUnitValue / 9.0718474e2,
+                        MassUnit.SiDecitonne => baseUnitValue * 1E-2,
                         MassUnit.Slug => baseUnitValue * 6.852176556196105e-2,
                         MassUnit.SolarMass => baseUnitValue / 1.98947e30,
                         MassUnit.Stone => baseUnitValue * 0.1574731728702698,
