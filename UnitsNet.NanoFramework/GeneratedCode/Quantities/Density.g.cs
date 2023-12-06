@@ -198,6 +198,11 @@ namespace UnitsNet
         public double KilopoundsPerCubicInch => As(DensityUnit.KilopoundPerCubicInch);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.KilopoundPerCubicYard"/>
+        /// </summary>
+        public double KilopoundsPerCubicYard => As(DensityUnit.KilopoundPerCubicYard);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.MicrogramPerCubicMeter"/>
         /// </summary>
         public double MicrogramsPerCubicMeter => As(DensityUnit.MicrogramPerCubicMeter);
@@ -291,6 +296,11 @@ namespace UnitsNet
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.PoundPerCubicMillimeter"/>
         /// </summary>
         public double PoundsPerCubicMillimeter => As(DensityUnit.PoundPerCubicMillimeter);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.PoundPerCubicYard"/>
+        /// </summary>
+        public double PoundsPerCubicYard => As(DensityUnit.PoundPerCubicYard);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.PoundPerImperialGallon"/>
@@ -495,6 +505,12 @@ namespace UnitsNet
         public static Density FromKilopoundsPerCubicInch(double kilopoundspercubicinch) => new Density(kilopoundspercubicinch, DensityUnit.KilopoundPerCubicInch);
 
         /// <summary>
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.KilopoundPerCubicYard"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromKilopoundsPerCubicYard(double kilopoundspercubicyard) => new Density(kilopoundspercubicyard, DensityUnit.KilopoundPerCubicYard);
+
+        /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.MicrogramPerCubicMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -607,6 +623,12 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromPoundsPerCubicMillimeter(double poundspercubicmillimeter) => new Density(poundspercubicmillimeter, DensityUnit.PoundPerCubicMillimeter);
+
+        /// <summary>
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PoundPerCubicYard"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromPoundsPerCubicYard(double poundspercubicyard) => new Density(poundspercubicyard, DensityUnit.PoundPerCubicYard);
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PoundPerImperialGallon"/>.
@@ -743,6 +765,7 @@ namespace UnitsNet
                         DensityUnit.KilogramPerLiter => _value * 1e3,
                         DensityUnit.KilopoundPerCubicFoot => (_value / 0.062427961) * 1e3d,
                         DensityUnit.KilopoundPerCubicInch => (_value / 3.6127298147753e-5) * 1e3d,
+                        DensityUnit.KilopoundPerCubicYard => (_value / 1.685554936) * 1e3d,
                         DensityUnit.MicrogramPerCubicMeter => (_value / 1e3) * 1e-6d,
                         DensityUnit.MicrogramPerDeciliter => (_value / 1e-1) * 1e-6d,
                         DensityUnit.MicrogramPerLiter => (_value / 1) * 1e-6d,
@@ -762,6 +785,7 @@ namespace UnitsNet
                         DensityUnit.PoundPerCubicInch => _value / 3.6127298147753e-5,
                         DensityUnit.PoundPerCubicMeter => _value / 2.204622621848775,
                         DensityUnit.PoundPerCubicMillimeter => _value / 2.204622621848775e-9,
+                        DensityUnit.PoundPerCubicYard => _value / 1.685554936,
                         DensityUnit.PoundPerImperialGallon => _value * 9.9776398e1,
                         DensityUnit.PoundPerUSGallon => _value * 1.19826427e2,
                         DensityUnit.SlugPerCubicCentimeter => _value * 14593903,
@@ -810,6 +834,7 @@ namespace UnitsNet
                         DensityUnit.KilogramPerLiter => baseUnitValue / 1e3,
                         DensityUnit.KilopoundPerCubicFoot => (baseUnitValue * 0.062427961) / 1e3d,
                         DensityUnit.KilopoundPerCubicInch => (baseUnitValue * 3.6127298147753e-5) / 1e3d,
+                        DensityUnit.KilopoundPerCubicYard => (baseUnitValue * 1.685554936) / 1e3d,
                         DensityUnit.MicrogramPerCubicMeter => (baseUnitValue * 1e3) / 1e-6d,
                         DensityUnit.MicrogramPerDeciliter => (baseUnitValue * 1e-1) / 1e-6d,
                         DensityUnit.MicrogramPerLiter => (baseUnitValue * 1) / 1e-6d,
@@ -829,6 +854,7 @@ namespace UnitsNet
                         DensityUnit.PoundPerCubicInch => baseUnitValue * 3.6127298147753e-5,
                         DensityUnit.PoundPerCubicMeter => baseUnitValue * 2.204622621848775,
                         DensityUnit.PoundPerCubicMillimeter => baseUnitValue * 2.204622621848775e-9,
+                        DensityUnit.PoundPerCubicYard => baseUnitValue * 1.685554936,
                         DensityUnit.PoundPerImperialGallon => baseUnitValue / 9.9776398e1,
                         DensityUnit.PoundPerUSGallon => baseUnitValue / 1.19826427e2,
                         DensityUnit.SlugPerCubicCentimeter => baseUnitValue / 14593903,
