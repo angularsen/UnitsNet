@@ -107,8 +107,8 @@
         "L": "Yard",
         "M": "Pound"
       },
-      "FromUnitToBaseFunc": "{x} / (0.45359237 / 0.9144 / 0.9144 / 0.9144)",
-      "FromBaseToUnitFunc": "{x} * (0.45359237 / 0.9144 / 0.9144 / 0.9144)",
+      "FromUnitToBaseFunc": "{x} * (0.45359237 / 0.9144 / 0.9144 / 0.9144)",
+      "FromBaseToUnitFunc": "{x} / (0.45359237 / 0.9144 / 0.9144 / 0.9144)",
       "Prefixes": [ "Kilo" ],
       "Localization": [
         {
