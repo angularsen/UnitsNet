@@ -1,0 +1,63 @@
+{
+  "Name": "Grade",
+  "BaseUnit": "Percent",
+  "XmlDocSummary": "The grade, or slope, of a surface is the tangent of its angle compared to the horizontal, indicating its steepness. It's often expressed as a ratio or fraction of vertical rise to horizontal run, where a larger value means a steeper angle.",
+  "XmlDocRemarks": "https://en.wikipedia.org/wiki/Grade_%28slope%29",
+  "BaseDimensions": {
+    "L": 1
+  },
+  "Units": [
+    {
+      "SingularName": "Percent",
+      "PluralName": "Percent",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "%" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Permille",
+      "PluralName": "Permille",
+      "FromUnitToBaseFunc": "{x} / 1e1",
+      "FromBaseToUnitFunc": "{x} * 1e1",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "‰" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Degree",
+      "PluralName": "Degrees",
+      "FromUnitToBaseFunc": "Math.Tan({x} * Math.PI / 180) * 1e2",
+      "FromBaseToUnitFunc": "Math.Atan({x} / 1e2) * 180 / Math.PI",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "°", "deg" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "°" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Fraction",
+      "PluralName": "Fractions",
+      "FromUnitToBaseFunc": "{x} * 1e2",
+      "FromBaseToUnitFunc": "{x} / 1e2",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "" ]
+        }
+      ]
+    }
+  ]
+}

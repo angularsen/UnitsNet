@@ -88,6 +88,8 @@ Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Frequency", "Frequency\Freq
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "FuelEfficiency", "FuelEfficiency\FuelEfficiency.nfproj", "{6e68ff9b-3947-d706-3ad7-f9237a67c874}"
 EndProject
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Grade", "Grade\Grade.nfproj", "{fb209e83-9935-74fc-4d2b-45386afdcc00}"
+EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "HeatFlux", "HeatFlux\HeatFlux.nfproj", "{2b132458-96e5-72bf-673f-dda4a7fd514b}"
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "HeatTransferCoefficient", "HeatTransferCoefficient\HeatTransferCoefficient.nfproj", "{3ede821e-ee76-967e-94d7-5b1d1239c8dd}"
@@ -506,6 +508,12 @@ Global
 {6e68ff9b-3947-d706-3ad7-f9237a67c874}.Release|Any CPU.ActiveCfg = Release|Any CPU
 {6e68ff9b-3947-d706-3ad7-f9237a67c874}.Release|Any CPU.Build.0 = Release|Any CPU
 {6e68ff9b-3947-d706-3ad7-f9237a67c874}.Release|Any CPU.Deploy.0 = Release|Any CPU
+{fb209e83-9935-74fc-4d2b-45386afdcc00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+{fb209e83-9935-74fc-4d2b-45386afdcc00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+{fb209e83-9935-74fc-4d2b-45386afdcc00}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+{fb209e83-9935-74fc-4d2b-45386afdcc00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+{fb209e83-9935-74fc-4d2b-45386afdcc00}.Release|Any CPU.Build.0 = Release|Any CPU
+{fb209e83-9935-74fc-4d2b-45386afdcc00}.Release|Any CPU.Deploy.0 = Release|Any CPU
 {2b132458-96e5-72bf-673f-dda4a7fd514b}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 {2b132458-96e5-72bf-673f-dda4a7fd514b}.Debug|Any CPU.Build.0 = Debug|Any CPU
 {2b132458-96e5-72bf-673f-dda4a7fd514b}.Debug|Any CPU.Deploy.0 = Debug|Any CPU

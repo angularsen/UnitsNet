@@ -81,6 +81,7 @@ namespace UnitsNet
             { "ForcePerLength", ForcePerLength.Info },
             { "Frequency", Frequency.Info },
             { "FuelEfficiency", FuelEfficiency.Info },
+            { "Grade", Grade.Info },
             { "HeatFlux", HeatFlux.Info },
             { "HeatTransferCoefficient", HeatTransferCoefficient.Info },
             { "Illuminance", Illuminance.Info },
@@ -213,6 +214,7 @@ namespace UnitsNet
                 "ForcePerLength" => ForcePerLength.From(value, ForcePerLength.BaseUnit),
                 "Frequency" => Frequency.From(value, Frequency.BaseUnit),
                 "FuelEfficiency" => FuelEfficiency.From(value, FuelEfficiency.BaseUnit),
+                "Grade" => Grade.From(value, Grade.BaseUnit),
                 "HeatFlux" => HeatFlux.From(value, HeatFlux.BaseUnit),
                 "HeatTransferCoefficient" => HeatTransferCoefficient.From(value, HeatTransferCoefficient.BaseUnit),
                 "Illuminance" => Illuminance.From(value, Illuminance.BaseUnit),
@@ -348,6 +350,7 @@ namespace UnitsNet
                 ForcePerLengthUnit forcePerLengthUnit => ForcePerLength.From(value, forcePerLengthUnit),
                 FrequencyUnit frequencyUnit => Frequency.From(value, frequencyUnit),
                 FuelEfficiencyUnit fuelEfficiencyUnit => FuelEfficiency.From(value, fuelEfficiencyUnit),
+                GradeUnit gradeUnit => Grade.From(value, gradeUnit),
                 HeatFluxUnit heatFluxUnit => HeatFlux.From(value, heatFluxUnit),
                 HeatTransferCoefficientUnit heatTransferCoefficientUnit => HeatTransferCoefficient.From(value, heatTransferCoefficientUnit),
                 IlluminanceUnit illuminanceUnit => Illuminance.From(value, illuminanceUnit),
@@ -493,6 +496,7 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(ForcePerLength) => parser.TryParse<ForcePerLength, ForcePerLengthUnit>(quantityString, formatProvider, ForcePerLength.From, out quantity),
                 Type _ when quantityType == typeof(Frequency) => parser.TryParse<Frequency, FrequencyUnit>(quantityString, formatProvider, Frequency.From, out quantity),
                 Type _ when quantityType == typeof(FuelEfficiency) => parser.TryParse<FuelEfficiency, FuelEfficiencyUnit>(quantityString, formatProvider, FuelEfficiency.From, out quantity),
+                Type _ when quantityType == typeof(Grade) => parser.TryParse<Grade, GradeUnit>(quantityString, formatProvider, Grade.From, out quantity),
                 Type _ when quantityType == typeof(HeatFlux) => parser.TryParse<HeatFlux, HeatFluxUnit>(quantityString, formatProvider, HeatFlux.From, out quantity),
                 Type _ when quantityType == typeof(HeatTransferCoefficient) => parser.TryParse<HeatTransferCoefficient, HeatTransferCoefficientUnit>(quantityString, formatProvider, HeatTransferCoefficient.From, out quantity),
                 Type _ when quantityType == typeof(Illuminance) => parser.TryParse<Illuminance, IlluminanceUnit>(quantityString, formatProvider, Illuminance.From, out quantity),
@@ -619,6 +623,7 @@ namespace UnitsNet
             yield return typeof(ForcePerLength);
             yield return typeof(Frequency);
             yield return typeof(FuelEfficiency);
+            yield return typeof(Grade);
             yield return typeof(HeatFlux);
             yield return typeof(HeatTransferCoefficient);
             yield return typeof(Illuminance);

@@ -1789,5 +1789,12 @@
     "Picogray": 11,
     "Rad": 17,
     "Teragray": 14
+  },
+  "Grade": {
+    "Degree": 4,
+    "Fraction": 8,
+    "Per mille": 7,
+    "Percent": 2,
+    "Permille": 10
   }
 }
