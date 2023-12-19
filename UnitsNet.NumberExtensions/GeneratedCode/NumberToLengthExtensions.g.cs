@@ -192,6 +192,14 @@ namespace UnitsNet.NumberExtensions.NumberToLength
 #endif
             => Length.FromKiloparsecs(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Length.FromKiloyards(UnitsNet.QuantityValue)" />
+        public static Length Kiloyards<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Length.FromKiloyards(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Length.FromLightYears(UnitsNet.QuantityValue)" />
         public static Length LightYears<T>(this T value)
             where T : notnull

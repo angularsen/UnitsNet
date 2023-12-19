@@ -60,6 +60,7 @@ namespace UnitsNet.Units
         KilolightYear = 15,
         Kilometer = 16,
         Kiloparsec = 17,
+        Kiloyard = 38,
 
         /// <summary>
         ///     A Light Year (ly) is the distance that light travel during an Earth year, ie 365 days.

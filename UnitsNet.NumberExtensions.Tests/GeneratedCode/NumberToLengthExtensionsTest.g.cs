@@ -105,6 +105,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Length.FromKiloparsecs(2), 2.Kiloparsecs());
 
         [Fact]
+        public void NumberToKiloyardsTest() =>
+            Assert.Equal(Length.FromKiloyards(2), 2.Kiloyards());
+
+        [Fact]
         public void NumberToLightYearsTest() =>
             Assert.Equal(Length.FromLightYears(2), 2.LightYears());
 

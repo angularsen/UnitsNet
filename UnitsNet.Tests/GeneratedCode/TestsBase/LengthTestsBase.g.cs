@@ -58,6 +58,7 @@ namespace UnitsNet.Tests
         protected abstract double KilolightYearsInOneMeter { get; }
         protected abstract double KilometersInOneMeter { get; }
         protected abstract double KiloparsecsInOneMeter { get; }
+        protected abstract double KiloyardsInOneMeter { get; }
         protected abstract double LightYearsInOneMeter { get; }
         protected abstract double MegalightYearsInOneMeter { get; }
         protected abstract double MegametersInOneMeter { get; }
@@ -101,6 +102,7 @@ namespace UnitsNet.Tests
         protected virtual double KilolightYearsTolerance { get { return 1e-5; } }
         protected virtual double KilometersTolerance { get { return 1e-5; } }
         protected virtual double KiloparsecsTolerance { get { return 1e-5; } }
+        protected virtual double KiloyardsTolerance { get { return 1e-5; } }
         protected virtual double LightYearsTolerance { get { return 1e-5; } }
         protected virtual double MegalightYearsTolerance { get { return 1e-5; } }
         protected virtual double MegametersTolerance { get { return 1e-5; } }
@@ -148,6 +150,7 @@ namespace UnitsNet.Tests
                 LengthUnit.KilolightYear => (KilolightYearsInOneMeter, KilolightYearsTolerance),
                 LengthUnit.Kilometer => (KilometersInOneMeter, KilometersTolerance),
                 LengthUnit.Kiloparsec => (KiloparsecsInOneMeter, KiloparsecsTolerance),
+                LengthUnit.Kiloyard => (KiloyardsInOneMeter, KiloyardsTolerance),
                 LengthUnit.LightYear => (LightYearsInOneMeter, LightYearsTolerance),
                 LengthUnit.MegalightYear => (MegalightYearsInOneMeter, MegalightYearsTolerance),
                 LengthUnit.Megameter => (MegametersInOneMeter, MegametersTolerance),
@@ -195,6 +198,7 @@ namespace UnitsNet.Tests
             new object[] { LengthUnit.KilolightYear },
             new object[] { LengthUnit.Kilometer },
             new object[] { LengthUnit.Kiloparsec },
+            new object[] { LengthUnit.Kiloyard },
             new object[] { LengthUnit.LightYear },
             new object[] { LengthUnit.MegalightYear },
             new object[] { LengthUnit.Megameter },
@@ -298,6 +302,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(KilolightYearsInOneMeter, meter.KilolightYears, KilolightYearsTolerance);
             AssertEx.EqualTolerance(KilometersInOneMeter, meter.Kilometers, KilometersTolerance);
             AssertEx.EqualTolerance(KiloparsecsInOneMeter, meter.Kiloparsecs, KiloparsecsTolerance);
+            AssertEx.EqualTolerance(KiloyardsInOneMeter, meter.Kiloyards, KiloyardsTolerance);
             AssertEx.EqualTolerance(LightYearsInOneMeter, meter.LightYears, LightYearsTolerance);
             AssertEx.EqualTolerance(MegalightYearsInOneMeter, meter.MegalightYears, MegalightYearsTolerance);
             AssertEx.EqualTolerance(MegametersInOneMeter, meter.Megameters, MegametersTolerance);
@@ -404,89 +409,93 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity19.Kiloparsecs, KiloparsecsTolerance);
             Assert.Equal(LengthUnit.Kiloparsec, quantity19.Unit);
 
-            var quantity20 = Length.From(1, LengthUnit.LightYear);
-            AssertEx.EqualTolerance(1, quantity20.LightYears, LightYearsTolerance);
-            Assert.Equal(LengthUnit.LightYear, quantity20.Unit);
+            var quantity20 = Length.From(1, LengthUnit.Kiloyard);
+            AssertEx.EqualTolerance(1, quantity20.Kiloyards, KiloyardsTolerance);
+            Assert.Equal(LengthUnit.Kiloyard, quantity20.Unit);
 
-            var quantity21 = Length.From(1, LengthUnit.MegalightYear);
-            AssertEx.EqualTolerance(1, quantity21.MegalightYears, MegalightYearsTolerance);
-            Assert.Equal(LengthUnit.MegalightYear, quantity21.Unit);
+            var quantity21 = Length.From(1, LengthUnit.LightYear);
+            AssertEx.EqualTolerance(1, quantity21.LightYears, LightYearsTolerance);
+            Assert.Equal(LengthUnit.LightYear, quantity21.Unit);
 
-            var quantity22 = Length.From(1, LengthUnit.Megameter);
-            AssertEx.EqualTolerance(1, quantity22.Megameters, MegametersTolerance);
-            Assert.Equal(LengthUnit.Megameter, quantity22.Unit);
+            var quantity22 = Length.From(1, LengthUnit.MegalightYear);
+            AssertEx.EqualTolerance(1, quantity22.MegalightYears, MegalightYearsTolerance);
+            Assert.Equal(LengthUnit.MegalightYear, quantity22.Unit);
 
-            var quantity23 = Length.From(1, LengthUnit.Megaparsec);
-            AssertEx.EqualTolerance(1, quantity23.Megaparsecs, MegaparsecsTolerance);
-            Assert.Equal(LengthUnit.Megaparsec, quantity23.Unit);
+            var quantity23 = Length.From(1, LengthUnit.Megameter);
+            AssertEx.EqualTolerance(1, quantity23.Megameters, MegametersTolerance);
+            Assert.Equal(LengthUnit.Megameter, quantity23.Unit);
 
-            var quantity24 = Length.From(1, LengthUnit.Meter);
-            AssertEx.EqualTolerance(1, quantity24.Meters, MetersTolerance);
-            Assert.Equal(LengthUnit.Meter, quantity24.Unit);
+            var quantity24 = Length.From(1, LengthUnit.Megaparsec);
+            AssertEx.EqualTolerance(1, quantity24.Megaparsecs, MegaparsecsTolerance);
+            Assert.Equal(LengthUnit.Megaparsec, quantity24.Unit);
 
-            var quantity25 = Length.From(1, LengthUnit.Microinch);
-            AssertEx.EqualTolerance(1, quantity25.Microinches, MicroinchesTolerance);
-            Assert.Equal(LengthUnit.Microinch, quantity25.Unit);
+            var quantity25 = Length.From(1, LengthUnit.Meter);
+            AssertEx.EqualTolerance(1, quantity25.Meters, MetersTolerance);
+            Assert.Equal(LengthUnit.Meter, quantity25.Unit);
 
-            var quantity26 = Length.From(1, LengthUnit.Micrometer);
-            AssertEx.EqualTolerance(1, quantity26.Micrometers, MicrometersTolerance);
-            Assert.Equal(LengthUnit.Micrometer, quantity26.Unit);
+            var quantity26 = Length.From(1, LengthUnit.Microinch);
+            AssertEx.EqualTolerance(1, quantity26.Microinches, MicroinchesTolerance);
+            Assert.Equal(LengthUnit.Microinch, quantity26.Unit);
 
-            var quantity27 = Length.From(1, LengthUnit.Mil);
-            AssertEx.EqualTolerance(1, quantity27.Mils, MilsTolerance);
-            Assert.Equal(LengthUnit.Mil, quantity27.Unit);
+            var quantity27 = Length.From(1, LengthUnit.Micrometer);
+            AssertEx.EqualTolerance(1, quantity27.Micrometers, MicrometersTolerance);
+            Assert.Equal(LengthUnit.Micrometer, quantity27.Unit);
 
-            var quantity28 = Length.From(1, LengthUnit.Mile);
-            AssertEx.EqualTolerance(1, quantity28.Miles, MilesTolerance);
-            Assert.Equal(LengthUnit.Mile, quantity28.Unit);
+            var quantity28 = Length.From(1, LengthUnit.Mil);
+            AssertEx.EqualTolerance(1, quantity28.Mils, MilsTolerance);
+            Assert.Equal(LengthUnit.Mil, quantity28.Unit);
 
-            var quantity29 = Length.From(1, LengthUnit.Millimeter);
-            AssertEx.EqualTolerance(1, quantity29.Millimeters, MillimetersTolerance);
-            Assert.Equal(LengthUnit.Millimeter, quantity29.Unit);
+            var quantity29 = Length.From(1, LengthUnit.Mile);
+            AssertEx.EqualTolerance(1, quantity29.Miles, MilesTolerance);
+            Assert.Equal(LengthUnit.Mile, quantity29.Unit);
 
-            var quantity30 = Length.From(1, LengthUnit.Nanometer);
-            AssertEx.EqualTolerance(1, quantity30.Nanometers, NanometersTolerance);
-            Assert.Equal(LengthUnit.Nanometer, quantity30.Unit);
+            var quantity30 = Length.From(1, LengthUnit.Millimeter);
+            AssertEx.EqualTolerance(1, quantity30.Millimeters, MillimetersTolerance);
+            Assert.Equal(LengthUnit.Millimeter, quantity30.Unit);
 
-            var quantity31 = Length.From(1, LengthUnit.NauticalMile);
-            AssertEx.EqualTolerance(1, quantity31.NauticalMiles, NauticalMilesTolerance);
-            Assert.Equal(LengthUnit.NauticalMile, quantity31.Unit);
+            var quantity31 = Length.From(1, LengthUnit.Nanometer);
+            AssertEx.EqualTolerance(1, quantity31.Nanometers, NanometersTolerance);
+            Assert.Equal(LengthUnit.Nanometer, quantity31.Unit);
 
-            var quantity32 = Length.From(1, LengthUnit.Parsec);
-            AssertEx.EqualTolerance(1, quantity32.Parsecs, ParsecsTolerance);
-            Assert.Equal(LengthUnit.Parsec, quantity32.Unit);
+            var quantity32 = Length.From(1, LengthUnit.NauticalMile);
+            AssertEx.EqualTolerance(1, quantity32.NauticalMiles, NauticalMilesTolerance);
+            Assert.Equal(LengthUnit.NauticalMile, quantity32.Unit);
 
-            var quantity33 = Length.From(1, LengthUnit.Picometer);
-            AssertEx.EqualTolerance(1, quantity33.Picometers, PicometersTolerance);
-            Assert.Equal(LengthUnit.Picometer, quantity33.Unit);
+            var quantity33 = Length.From(1, LengthUnit.Parsec);
+            AssertEx.EqualTolerance(1, quantity33.Parsecs, ParsecsTolerance);
+            Assert.Equal(LengthUnit.Parsec, quantity33.Unit);
 
-            var quantity34 = Length.From(1, LengthUnit.PrinterPica);
-            AssertEx.EqualTolerance(1, quantity34.PrinterPicas, PrinterPicasTolerance);
-            Assert.Equal(LengthUnit.PrinterPica, quantity34.Unit);
+            var quantity34 = Length.From(1, LengthUnit.Picometer);
+            AssertEx.EqualTolerance(1, quantity34.Picometers, PicometersTolerance);
+            Assert.Equal(LengthUnit.Picometer, quantity34.Unit);
 
-            var quantity35 = Length.From(1, LengthUnit.PrinterPoint);
-            AssertEx.EqualTolerance(1, quantity35.PrinterPoints, PrinterPointsTolerance);
-            Assert.Equal(LengthUnit.PrinterPoint, quantity35.Unit);
+            var quantity35 = Length.From(1, LengthUnit.PrinterPica);
+            AssertEx.EqualTolerance(1, quantity35.PrinterPicas, PrinterPicasTolerance);
+            Assert.Equal(LengthUnit.PrinterPica, quantity35.Unit);
 
-            var quantity36 = Length.From(1, LengthUnit.Shackle);
-            AssertEx.EqualTolerance(1, quantity36.Shackles, ShacklesTolerance);
-            Assert.Equal(LengthUnit.Shackle, quantity36.Unit);
+            var quantity36 = Length.From(1, LengthUnit.PrinterPoint);
+            AssertEx.EqualTolerance(1, quantity36.PrinterPoints, PrinterPointsTolerance);
+            Assert.Equal(LengthUnit.PrinterPoint, quantity36.Unit);
 
-            var quantity37 = Length.From(1, LengthUnit.SolarRadius);
-            AssertEx.EqualTolerance(1, quantity37.SolarRadiuses, SolarRadiusesTolerance);
-            Assert.Equal(LengthUnit.SolarRadius, quantity37.Unit);
+            var quantity37 = Length.From(1, LengthUnit.Shackle);
+            AssertEx.EqualTolerance(1, quantity37.Shackles, ShacklesTolerance);
+            Assert.Equal(LengthUnit.Shackle, quantity37.Unit);
 
-            var quantity38 = Length.From(1, LengthUnit.Twip);
-            AssertEx.EqualTolerance(1, quantity38.Twips, TwipsTolerance);
-            Assert.Equal(LengthUnit.Twip, quantity38.Unit);
+            var quantity38 = Length.From(1, LengthUnit.SolarRadius);
+            AssertEx.EqualTolerance(1, quantity38.SolarRadiuses, SolarRadiusesTolerance);
+            Assert.Equal(LengthUnit.SolarRadius, quantity38.Unit);
 
-            var quantity39 = Length.From(1, LengthUnit.UsSurveyFoot);
-            AssertEx.EqualTolerance(1, quantity39.UsSurveyFeet, UsSurveyFeetTolerance);
-            Assert.Equal(LengthUnit.UsSurveyFoot, quantity39.Unit);
+            var quantity39 = Length.From(1, LengthUnit.Twip);
+            AssertEx.EqualTolerance(1, quantity39.Twips, TwipsTolerance);
+            Assert.Equal(LengthUnit.Twip, quantity39.Unit);
 
-            var quantity40 = Length.From(1, LengthUnit.Yard);
-            AssertEx.EqualTolerance(1, quantity40.Yards, YardsTolerance);
-            Assert.Equal(LengthUnit.Yard, quantity40.Unit);
+            var quantity40 = Length.From(1, LengthUnit.UsSurveyFoot);
+            AssertEx.EqualTolerance(1, quantity40.UsSurveyFeet, UsSurveyFeetTolerance);
+            Assert.Equal(LengthUnit.UsSurveyFoot, quantity40.Unit);
+
+            var quantity41 = Length.From(1, LengthUnit.Yard);
+            AssertEx.EqualTolerance(1, quantity41.Yards, YardsTolerance);
+            Assert.Equal(LengthUnit.Yard, quantity41.Unit);
 
         }
 
@@ -527,6 +536,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(KilolightYearsInOneMeter, meter.As(LengthUnit.KilolightYear), KilolightYearsTolerance);
             AssertEx.EqualTolerance(KilometersInOneMeter, meter.As(LengthUnit.Kilometer), KilometersTolerance);
             AssertEx.EqualTolerance(KiloparsecsInOneMeter, meter.As(LengthUnit.Kiloparsec), KiloparsecsTolerance);
+            AssertEx.EqualTolerance(KiloyardsInOneMeter, meter.As(LengthUnit.Kiloyard), KiloyardsTolerance);
             AssertEx.EqualTolerance(LightYearsInOneMeter, meter.As(LengthUnit.LightYear), LightYearsTolerance);
             AssertEx.EqualTolerance(MegalightYearsInOneMeter, meter.As(LengthUnit.MegalightYear), MegalightYearsTolerance);
             AssertEx.EqualTolerance(MegametersInOneMeter, meter.As(LengthUnit.Megameter), MegametersTolerance);
@@ -911,6 +921,27 @@ namespace UnitsNet.Tests
                 var parsed = Length.Parse("1 kpc", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Kiloparsecs, KiloparsecsTolerance);
                 Assert.Equal(LengthUnit.Kiloparsec, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 kyd", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Kiloyards, KiloyardsTolerance);
+                Assert.Equal(LengthUnit.Kiloyard, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 кярд", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Kiloyards, KiloyardsTolerance);
+                Assert.Equal(LengthUnit.Kiloyard, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 千码", CultureInfo.GetCultureInfo("zh-CN"));
+                AssertEx.EqualTolerance(1, parsed.Kiloyards, KiloyardsTolerance);
+                Assert.Equal(LengthUnit.Kiloyard, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
@@ -1478,6 +1509,24 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(Length.TryParse("1 kyd", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kiloyards, KiloyardsTolerance);
+                Assert.Equal(LengthUnit.Kiloyard, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 кярд", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kiloyards, KiloyardsTolerance);
+                Assert.Equal(LengthUnit.Kiloyard, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 千码", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kiloyards, KiloyardsTolerance);
+                Assert.Equal(LengthUnit.Kiloyard, parsed.Unit);
+            }
+
+            {
                 Assert.True(Length.TryParse("1 ly", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.LightYears, LightYearsTolerance);
                 Assert.Equal(LengthUnit.LightYear, parsed.Unit);
@@ -1964,6 +2013,24 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsedUnit = Length.ParseUnit("kyd", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.Kiloyard, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("кярд", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(LengthUnit.Kiloyard, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("千码", CultureInfo.GetCultureInfo("zh-CN"));
+                Assert.Equal(LengthUnit.Kiloyard, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsedUnit = Length.ParseUnit("ly", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(LengthUnit.LightYear, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -2441,6 +2508,21 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(Length.TryParseUnit("kyd", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Kiloyard, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("кярд", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Kiloyard, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("千码", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Kiloyard, parsedUnit);
+            }
+
+            {
                 Assert.True(Length.TryParseUnit("ly", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(LengthUnit.LightYear, parsedUnit);
             }
@@ -2663,6 +2745,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Length.FromKilolightYears(meter.KilolightYears).Meters, KilolightYearsTolerance);
             AssertEx.EqualTolerance(1, Length.FromKilometers(meter.Kilometers).Meters, KilometersTolerance);
             AssertEx.EqualTolerance(1, Length.FromKiloparsecs(meter.Kiloparsecs).Meters, KiloparsecsTolerance);
+            AssertEx.EqualTolerance(1, Length.FromKiloyards(meter.Kiloyards).Meters, KiloyardsTolerance);
             AssertEx.EqualTolerance(1, Length.FromLightYears(meter.LightYears).Meters, LightYearsTolerance);
             AssertEx.EqualTolerance(1, Length.FromMegalightYears(meter.MegalightYears).Meters, MegalightYearsTolerance);
             AssertEx.EqualTolerance(1, Length.FromMegameters(meter.Megameters).Meters, MegametersTolerance);
@@ -2851,6 +2934,7 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 kly", new Length(1, LengthUnit.KilolightYear).ToString());
                 Assert.Equal("1 km", new Length(1, LengthUnit.Kilometer).ToString());
                 Assert.Equal("1 kpc", new Length(1, LengthUnit.Kiloparsec).ToString());
+                Assert.Equal("1 kyd", new Length(1, LengthUnit.Kiloyard).ToString());
                 Assert.Equal("1 ly", new Length(1, LengthUnit.LightYear).ToString());
                 Assert.Equal("1 Mly", new Length(1, LengthUnit.MegalightYear).ToString());
                 Assert.Equal("1 Mm", new Length(1, LengthUnit.Megameter).ToString());
@@ -2905,6 +2989,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 kly", new Length(1, LengthUnit.KilolightYear).ToString(swedishCulture));
             Assert.Equal("1 km", new Length(1, LengthUnit.Kilometer).ToString(swedishCulture));
             Assert.Equal("1 kpc", new Length(1, LengthUnit.Kiloparsec).ToString(swedishCulture));
+            Assert.Equal("1 kyd", new Length(1, LengthUnit.Kiloyard).ToString(swedishCulture));
             Assert.Equal("1 ly", new Length(1, LengthUnit.LightYear).ToString(swedishCulture));
             Assert.Equal("1 Mly", new Length(1, LengthUnit.MegalightYear).ToString(swedishCulture));
             Assert.Equal("1 Mm", new Length(1, LengthUnit.Megameter).ToString(swedishCulture));

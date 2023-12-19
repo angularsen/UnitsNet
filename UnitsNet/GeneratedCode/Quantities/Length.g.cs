@@ -85,6 +85,7 @@ namespace UnitsNet
                     new UnitInfo<LengthUnit>(LengthUnit.KilolightYear, "KilolightYears", BaseUnits.Undefined, "Length"),
                     new UnitInfo<LengthUnit>(LengthUnit.Kilometer, "Kilometers", BaseUnits.Undefined, "Length"),
                     new UnitInfo<LengthUnit>(LengthUnit.Kiloparsec, "Kiloparsecs", BaseUnits.Undefined, "Length"),
+                    new UnitInfo<LengthUnit>(LengthUnit.Kiloyard, "Kiloyards", BaseUnits.Undefined, "Length"),
                     new UnitInfo<LengthUnit>(LengthUnit.LightYear, "LightYears", BaseUnits.Undefined, "Length"),
                     new UnitInfo<LengthUnit>(LengthUnit.MegalightYear, "MegalightYears", BaseUnits.Undefined, "Length"),
                     new UnitInfo<LengthUnit>(LengthUnit.Megameter, "Megameters", BaseUnits.Undefined, "Length"),
@@ -310,6 +311,11 @@ namespace UnitsNet
         public double Kiloparsecs => As(LengthUnit.Kiloparsec);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Kiloyard"/>
+        /// </summary>
+        public double Kiloyards => As(LengthUnit.Kiloyard);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.LightYear"/>
         /// </summary>
         public double LightYears => As(LengthUnit.LightYear);
@@ -445,6 +451,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Length>(LengthUnit.KilolightYear, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Kilometer, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Kiloparsec, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Kiloyard, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.LightYear, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.MegalightYear, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Megameter, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
@@ -490,6 +497,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.KilolightYear, quantity => quantity.ToUnit(LengthUnit.KilolightYear));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Kilometer, quantity => quantity.ToUnit(LengthUnit.Kilometer));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Kiloparsec, quantity => quantity.ToUnit(LengthUnit.Kiloparsec));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Kiloyard, quantity => quantity.ToUnit(LengthUnit.Kiloyard));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.LightYear, quantity => quantity.ToUnit(LengthUnit.LightYear));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.MegalightYear, quantity => quantity.ToUnit(LengthUnit.MegalightYear));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Megameter, quantity => quantity.ToUnit(LengthUnit.Megameter));
@@ -735,6 +743,16 @@ namespace UnitsNet
         {
             double value = (double) kiloparsecs;
             return new Length(value, LengthUnit.Kiloparsec);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Kiloyard"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromKiloyards(QuantityValue kiloyards)
+        {
+            double value = (double) kiloyards;
+            return new Length(value, LengthUnit.Kiloyard);
         }
 
         /// <summary>
@@ -1460,6 +1478,7 @@ namespace UnitsNet
                 (LengthUnit.KilolightYear, LengthUnit.Meter) => new Length((_value * 9.46073047258e15) * 1e3d, LengthUnit.Meter),
                 (LengthUnit.Kilometer, LengthUnit.Meter) => new Length((_value) * 1e3d, LengthUnit.Meter),
                 (LengthUnit.Kiloparsec, LengthUnit.Meter) => new Length((_value * 3.08567758128e16) * 1e3d, LengthUnit.Meter),
+                (LengthUnit.Kiloyard, LengthUnit.Meter) => new Length((_value * 0.9144) * 1e3d, LengthUnit.Meter),
                 (LengthUnit.LightYear, LengthUnit.Meter) => new Length(_value * 9.46073047258e15, LengthUnit.Meter),
                 (LengthUnit.MegalightYear, LengthUnit.Meter) => new Length((_value * 9.46073047258e15) * 1e6d, LengthUnit.Meter),
                 (LengthUnit.Megameter, LengthUnit.Meter) => new Length((_value) * 1e6d, LengthUnit.Meter),
@@ -1502,6 +1521,7 @@ namespace UnitsNet
                 (LengthUnit.Meter, LengthUnit.KilolightYear) => new Length((_value / 9.46073047258e15) / 1e3d, LengthUnit.KilolightYear),
                 (LengthUnit.Meter, LengthUnit.Kilometer) => new Length((_value) / 1e3d, LengthUnit.Kilometer),
                 (LengthUnit.Meter, LengthUnit.Kiloparsec) => new Length((_value / 3.08567758128e16) / 1e3d, LengthUnit.Kiloparsec),
+                (LengthUnit.Meter, LengthUnit.Kiloyard) => new Length((_value / 0.9144) / 1e3d, LengthUnit.Kiloyard),
                 (LengthUnit.Meter, LengthUnit.LightYear) => new Length(_value / 9.46073047258e15, LengthUnit.LightYear),
                 (LengthUnit.Meter, LengthUnit.MegalightYear) => new Length((_value / 9.46073047258e15) / 1e6d, LengthUnit.MegalightYear),
                 (LengthUnit.Meter, LengthUnit.Megameter) => new Length((_value) / 1e6d, LengthUnit.Megameter),
