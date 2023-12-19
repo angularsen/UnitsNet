@@ -701,7 +701,8 @@
     "Kilofoot": 45,
     "Femtometer": 48,
     "Picometer": 43,
-    "Gigameter": 44
+    "Gigameter": 44,
+    "Kiloyard": 38
   },
   "Level": {
     "Decibel": 1,

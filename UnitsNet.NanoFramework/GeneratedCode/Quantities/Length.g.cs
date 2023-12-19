@@ -180,6 +180,11 @@ namespace UnitsNet
         public double Kiloparsecs => As(LengthUnit.Kiloparsec);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Kiloyard"/>
+        /// </summary>
+        public double Kiloyards => As(LengthUnit.Kiloyard);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.LightYear"/>
         /// </summary>
         public double LightYears => As(LengthUnit.LightYear);
@@ -409,6 +414,12 @@ namespace UnitsNet
         public static Length FromKiloparsecs(double kiloparsecs) => new Length(kiloparsecs, LengthUnit.Kiloparsec);
 
         /// <summary>
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Kiloyard"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromKiloyards(double kiloyards) => new Length(kiloyards, LengthUnit.Kiloyard);
+
+        /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.LightYear"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -594,6 +605,7 @@ namespace UnitsNet
                         LengthUnit.KilolightYear => (_value * 9.46073047258e15) * 1e3d,
                         LengthUnit.Kilometer => (_value) * 1e3d,
                         LengthUnit.Kiloparsec => (_value * 3.08567758128e16) * 1e3d,
+                        LengthUnit.Kiloyard => (_value * 0.9144) * 1e3d,
                         LengthUnit.LightYear => _value * 9.46073047258e15,
                         LengthUnit.MegalightYear => (_value * 9.46073047258e15) * 1e6d,
                         LengthUnit.Megameter => (_value) * 1e6d,
@@ -648,6 +660,7 @@ namespace UnitsNet
                         LengthUnit.KilolightYear => (baseUnitValue / 9.46073047258e15) / 1e3d,
                         LengthUnit.Kilometer => (baseUnitValue) / 1e3d,
                         LengthUnit.Kiloparsec => (baseUnitValue / 3.08567758128e16) / 1e3d,
+                        LengthUnit.Kiloyard => (baseUnitValue / 0.9144) / 1e3d,
                         LengthUnit.LightYear => baseUnitValue / 9.46073047258e15,
                         LengthUnit.MegalightYear => (baseUnitValue / 9.46073047258e15) / 1e6d,
                         LengthUnit.Megameter => (baseUnitValue) / 1e6d,

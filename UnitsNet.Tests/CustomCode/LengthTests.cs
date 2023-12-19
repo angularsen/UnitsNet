@@ -67,6 +67,8 @@ namespace UnitsNet.Tests
 
         protected override double KiloparsecsInOneMeter => 3.2407790389471100000000000E-20;
 
+        protected override double KiloyardsInOneMeter => 1.0936132983E-3;
+
         protected override double LightYearsInOneMeter => 1.0570008340247000000000000E-16;
 
         protected override double MegalightYearsInOneMeter => 1.0570008340247000000000000E-22;
