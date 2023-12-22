@@ -36,7 +36,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "mol/M", "M" ]
+          "Abbreviations": [ "mol/g" ]
         }
       ]
     }
