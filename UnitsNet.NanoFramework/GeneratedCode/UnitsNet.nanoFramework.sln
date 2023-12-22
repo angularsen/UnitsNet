@@ -142,6 +142,8 @@ Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "MassFraction", "MassFractio
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "MassMomentOfInertia", "MassMomentOfInertia\MassMomentOfInertia.nfproj", "{6218c061-3905-79b2-d3bc-bb7b8fc77a69}"
 EndProject
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Molality", "Molality\Molality.nfproj", "{589b202c-e638-5c93-fefe-e1e3bab4a493}"
+EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "MolarEnergy", "MolarEnergy\MolarEnergy.nfproj", "{9b77d4e0-863d-4a74-c30a-56f7b2bb7cb7}"
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "MolarEntropy", "MolarEntropy\MolarEntropy.nfproj", "{2053731b-90f5-5141-d15e-8d7be8c2662f}"
@@ -668,6 +670,12 @@ Global
 {6218c061-3905-79b2-d3bc-bb7b8fc77a69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 {6218c061-3905-79b2-d3bc-bb7b8fc77a69}.Release|Any CPU.Build.0 = Release|Any CPU
 {6218c061-3905-79b2-d3bc-bb7b8fc77a69}.Release|Any CPU.Deploy.0 = Release|Any CPU
+{589b202c-e638-5c93-fefe-e1e3bab4a493}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+{589b202c-e638-5c93-fefe-e1e3bab4a493}.Debug|Any CPU.Build.0 = Debug|Any CPU
+{589b202c-e638-5c93-fefe-e1e3bab4a493}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+{589b202c-e638-5c93-fefe-e1e3bab4a493}.Release|Any CPU.ActiveCfg = Release|Any CPU
+{589b202c-e638-5c93-fefe-e1e3bab4a493}.Release|Any CPU.Build.0 = Release|Any CPU
+{589b202c-e638-5c93-fefe-e1e3bab4a493}.Release|Any CPU.Deploy.0 = Release|Any CPU
 {9b77d4e0-863d-4a74-c30a-56f7b2bb7cb7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 {9b77d4e0-863d-4a74-c30a-56f7b2bb7cb7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 {9b77d4e0-863d-4a74-c30a-56f7b2bb7cb7}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
