@@ -1,8 +1,10 @@
-namespace CodeGen.JsonTypes
+﻿namespace CodeGen.JsonTypes
 {
     internal enum Prefix
     {
         // SI prefixes
+        Quecto,
+        Ronto,
         Yocto,
         Zepto,
         Atto,
@@ -23,6 +25,8 @@ namespace CodeGen.JsonTypes
         Exa,
         Zetta,
         Yotta,
+        Ronna,
+        Quetta,
 
         // Binary prefixes
         Kibi,
