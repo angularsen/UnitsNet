@@ -170,6 +170,8 @@ Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Pressure", "Pressure\Pressu
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "PressureChangeRate", "PressureChangeRate\PressureChangeRate.nfproj", "{c9e4cfa9-c5d3-5e9d-243c-106ba4b6a447}"
 EndProject
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Radioactivity", "Radioactivity\Radioactivity.nfproj", "{abf4b42f-e999-2a78-403f-fb09524f186a}"
+EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Ratio", "Ratio\Ratio.nfproj", "{b0be4813-d93e-7b06-d422-23ca28adf22a}"
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "RatioChangeRate", "RatioChangeRate\RatioChangeRate.nfproj", "{c028861d-f9e8-8231-2b6a-bc3b3fba349c}"
@@ -754,6 +756,12 @@ Global
 {c9e4cfa9-c5d3-5e9d-243c-106ba4b6a447}.Release|Any CPU.ActiveCfg = Release|Any CPU
 {c9e4cfa9-c5d3-5e9d-243c-106ba4b6a447}.Release|Any CPU.Build.0 = Release|Any CPU
 {c9e4cfa9-c5d3-5e9d-243c-106ba4b6a447}.Release|Any CPU.Deploy.0 = Release|Any CPU
+{abf4b42f-e999-2a78-403f-fb09524f186a}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+{abf4b42f-e999-2a78-403f-fb09524f186a}.Debug|Any CPU.Build.0 = Debug|Any CPU
+{abf4b42f-e999-2a78-403f-fb09524f186a}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+{abf4b42f-e999-2a78-403f-fb09524f186a}.Release|Any CPU.ActiveCfg = Release|Any CPU
+{abf4b42f-e999-2a78-403f-fb09524f186a}.Release|Any CPU.Build.0 = Release|Any CPU
+{abf4b42f-e999-2a78-403f-fb09524f186a}.Release|Any CPU.Deploy.0 = Release|Any CPU
 {b0be4813-d93e-7b06-d422-23ca28adf22a}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 {b0be4813-d93e-7b06-d422-23ca28adf22a}.Debug|Any CPU.Build.0 = Debug|Any CPU
 {b0be4813-d93e-7b06-d422-23ca28adf22a}.Debug|Any CPU.Deploy.0 = Debug|Any CPU

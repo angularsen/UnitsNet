@@ -122,6 +122,7 @@ namespace UnitsNet
             { "PowerRatio", PowerRatio.Info },
             { "Pressure", Pressure.Info },
             { "PressureChangeRate", PressureChangeRate.Info },
+            { "Radioactivity", Radioactivity.Info },
             { "Ratio", Ratio.Info },
             { "RatioChangeRate", RatioChangeRate.Info },
             { "ReactiveEnergy", ReactiveEnergy.Info },
@@ -255,6 +256,7 @@ namespace UnitsNet
                 "PowerRatio" => PowerRatio.From(value, PowerRatio.BaseUnit),
                 "Pressure" => Pressure.From(value, Pressure.BaseUnit),
                 "PressureChangeRate" => PressureChangeRate.From(value, PressureChangeRate.BaseUnit),
+                "Radioactivity" => Radioactivity.From(value, Radioactivity.BaseUnit),
                 "Ratio" => Ratio.From(value, Ratio.BaseUnit),
                 "RatioChangeRate" => RatioChangeRate.From(value, RatioChangeRate.BaseUnit),
                 "ReactiveEnergy" => ReactiveEnergy.From(value, ReactiveEnergy.BaseUnit),
@@ -391,6 +393,7 @@ namespace UnitsNet
                 PowerRatioUnit powerRatioUnit => PowerRatio.From(value, powerRatioUnit),
                 PressureUnit pressureUnit => Pressure.From(value, pressureUnit),
                 PressureChangeRateUnit pressureChangeRateUnit => PressureChangeRate.From(value, pressureChangeRateUnit),
+                RadioactivityUnit radioactivityUnit => Radioactivity.From(value, radioactivityUnit),
                 RatioUnit ratioUnit => Ratio.From(value, ratioUnit),
                 RatioChangeRateUnit ratioChangeRateUnit => RatioChangeRate.From(value, ratioChangeRateUnit),
                 ReactiveEnergyUnit reactiveEnergyUnit => ReactiveEnergy.From(value, reactiveEnergyUnit),
@@ -537,6 +540,7 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(PowerRatio) => parser.TryParse<PowerRatio, PowerRatioUnit>(quantityString, formatProvider, PowerRatio.From, out quantity),
                 Type _ when quantityType == typeof(Pressure) => parser.TryParse<Pressure, PressureUnit>(quantityString, formatProvider, Pressure.From, out quantity),
                 Type _ when quantityType == typeof(PressureChangeRate) => parser.TryParse<PressureChangeRate, PressureChangeRateUnit>(quantityString, formatProvider, PressureChangeRate.From, out quantity),
+                Type _ when quantityType == typeof(Radioactivity) => parser.TryParse<Radioactivity, RadioactivityUnit>(quantityString, formatProvider, Radioactivity.From, out quantity),
                 Type _ when quantityType == typeof(Ratio) => parser.TryParse<Ratio, RatioUnit>(quantityString, formatProvider, Ratio.From, out quantity),
                 Type _ when quantityType == typeof(RatioChangeRate) => parser.TryParse<RatioChangeRate, RatioChangeRateUnit>(quantityString, formatProvider, RatioChangeRate.From, out quantity),
                 Type _ when quantityType == typeof(ReactiveEnergy) => parser.TryParse<ReactiveEnergy, ReactiveEnergyUnit>(quantityString, formatProvider, ReactiveEnergy.From, out quantity),
@@ -664,6 +668,7 @@ namespace UnitsNet
             yield return typeof(PowerRatio);
             yield return typeof(Pressure);
             yield return typeof(PressureChangeRate);
+            yield return typeof(Radioactivity);
             yield return typeof(Ratio);
             yield return typeof(RatioChangeRate);
             yield return typeof(ReactiveEnergy);

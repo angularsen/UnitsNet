@@ -1794,5 +1794,36 @@
   "Molality": {
     "MolePerGram": 4,
     "MolePerKilogram": 1
+  },
+  "Radioactivity": {
+    "Becquerel": 7,
+    "Curie": 9,
+    "Exabecquerel": 10,
+    "Gigabecquerel": 4,
+    "Gigacurie": 5,
+    "Gigarutherford": 1,
+    "Kilobecquerel": 6,
+    "Kilocurie": 8,
+    "Kilorutherford": 2,
+    "Megabecquerel": 3,
+    "Megacurie": 20,
+    "Megarutherford": 13,
+    "Microbecquerel": 19,
+    "Microcurie": 15,
+    "Microrutherford": 14,
+    "Millibecquerel": 17,
+    "Millicurie": 18,
+    "Millirutherford": 12,
+    "Nanobecquerel": 16,
+    "Nanocurie": 11,
+    "Nanorutherford": 27,
+    "Petabecquerel": 21,
+    "Rutherford": 28,
+    "Terabecquerel": 23,
+    "Teracurie": 29,
+    "Terarutherford": 22,
+    "Picobecquerel": 36,
+    "Picocurie": 35,
+    "Picorutherford": 25
   }
 }
