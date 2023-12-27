@@ -1,0 +1,75 @@
+﻿{
+  "Name": "Radioactivity",
+  "BaseUnit": "Becquerel",
+  "XmlDocSummary": "Amount of ionizing radiation released when an element spontaneously emits energy as a result of the radioactive decay of an unstable atom per unit time.",
+  "XmlDocsRemarks": "https://en.wikipedia.org/wiki/Radioactive_decay",
+  "BaseDimensions": {
+    "T": -1
+  },
+  "Units": [
+    {
+      "SingularName": "Becquerel",
+      "PluralName": "Becquerels",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "BaseUnits": {
+        "T": "Second"
+      },
+      "XmlDocSummary": "Activity of a quantity of radioactive material in which one nucleus decays per second.",
+      "XmlDocsRemarks": "https://en.wikipedia.org/wiki/Becquerel",
+      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Kilo", "Mega", "Giga", "Tera", "Peta", "Exa" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Bq" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "Бк" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Curie",
+      "PluralName": "Curies",
+      "FromUnitToBaseFunc": "{x} * 3.7e10",
+      "FromBaseToUnitFunc": "{x} / 3.7e10",
+      "BaseUnits": {
+        "T": "Second"
+      },
+      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Kilo", "Mega", "Giga", "Tera" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Ci" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "Ки" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Rutherford",
+      "PluralName": "Rutherfords",
+      "FromUnitToBaseFunc": "{x} * 1e6",
+      "FromBaseToUnitFunc": "{x} / 1e6",
+      "BaseUnits": {
+        "T": "Second"
+      },
+      "XmlDocSummary": "Activity of a quantity of radioactive material in which one million nuclei decay per second.",
+      "XmlDocsRemarks": "https://en.wikipedia.org/wiki/Rutherford_(unit)",
+      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Kilo", "Mega", "Giga", "Tera" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Rd" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "Рд" ]
+        }
+      ]
+    }
+  ]
+}
