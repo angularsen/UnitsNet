@@ -71,16 +71,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new PowerRatio(double.PositiveInfinity, PowerRatioUnit.DecibelWatt));
-            Assert.Throws<ArgumentException>(() => new PowerRatio(double.NegativeInfinity, PowerRatioUnit.DecibelWatt));
+            var exception1 = Record.Exception(() => new PowerRatio(double.PositiveInfinity, PowerRatioUnit.DecibelWatt));
+            var exception2 = Record.Exception(() => new PowerRatio(double.NegativeInfinity, PowerRatioUnit.DecibelWatt));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new PowerRatio(double.NaN, PowerRatioUnit.DecibelWatt));
+            var exception = Record.Exception(() => new PowerRatio(double.NaN, PowerRatioUnit.DecibelWatt));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -140,16 +145,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromDecibelWatts_WithInfinityValue_ThrowsArgumentException()
+        public void FromDecibelWatts_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => PowerRatio.FromDecibelWatts(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => PowerRatio.FromDecibelWatts(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => PowerRatio.FromDecibelWatts(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => PowerRatio.FromDecibelWatts(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromDecibelWatts_WithNanValue_ThrowsArgumentException()
+        public void FromDecibelWatts_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => PowerRatio.FromDecibelWatts(double.NaN));
+            var exception = Record.Exception(() => PowerRatio.FromDecibelWatts(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

@@ -87,16 +87,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new MagneticField(double.PositiveInfinity, MagneticFieldUnit.Tesla));
-            Assert.Throws<ArgumentException>(() => new MagneticField(double.NegativeInfinity, MagneticFieldUnit.Tesla));
+            var exception1 = Record.Exception(() => new MagneticField(double.PositiveInfinity, MagneticFieldUnit.Tesla));
+            var exception2 = Record.Exception(() => new MagneticField(double.NegativeInfinity, MagneticFieldUnit.Tesla));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new MagneticField(double.NaN, MagneticFieldUnit.Tesla));
+            var exception = Record.Exception(() => new MagneticField(double.NaN, MagneticFieldUnit.Tesla));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -176,16 +181,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromTeslas_WithInfinityValue_ThrowsArgumentException()
+        public void FromTeslas_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => MagneticField.FromTeslas(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => MagneticField.FromTeslas(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => MagneticField.FromTeslas(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => MagneticField.FromTeslas(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromTeslas_WithNanValue_ThrowsArgumentException()
+        public void FromTeslas_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => MagneticField.FromTeslas(double.NaN));
+            var exception = Record.Exception(() => MagneticField.FromTeslas(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

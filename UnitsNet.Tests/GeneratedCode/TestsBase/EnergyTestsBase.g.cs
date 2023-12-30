@@ -215,16 +215,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Energy(double.PositiveInfinity, EnergyUnit.Joule));
-            Assert.Throws<ArgumentException>(() => new Energy(double.NegativeInfinity, EnergyUnit.Joule));
+            var exception1 = Record.Exception(() => new Energy(double.PositiveInfinity, EnergyUnit.Joule));
+            var exception2 = Record.Exception(() => new Energy(double.NegativeInfinity, EnergyUnit.Joule));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Energy(double.NaN, EnergyUnit.Joule));
+            var exception = Record.Exception(() => new Energy(double.NaN, EnergyUnit.Joule));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -464,16 +469,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromJoules_WithInfinityValue_ThrowsArgumentException()
+        public void FromJoules_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Energy.FromJoules(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Energy.FromJoules(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => Energy.FromJoules(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => Energy.FromJoules(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromJoules_WithNanValue_ThrowsArgumentException()
+        public void FromJoules_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Energy.FromJoules(double.NaN));
+            var exception = Record.Exception(() => Energy.FromJoules(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

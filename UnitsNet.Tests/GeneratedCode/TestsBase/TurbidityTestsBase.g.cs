@@ -67,16 +67,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Turbidity(double.PositiveInfinity, TurbidityUnit.NTU));
-            Assert.Throws<ArgumentException>(() => new Turbidity(double.NegativeInfinity, TurbidityUnit.NTU));
+            var exception1 = Record.Exception(() => new Turbidity(double.PositiveInfinity, TurbidityUnit.NTU));
+            var exception2 = Record.Exception(() => new Turbidity(double.NegativeInfinity, TurbidityUnit.NTU));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Turbidity(double.NaN, TurbidityUnit.NTU));
+            var exception = Record.Exception(() => new Turbidity(double.NaN, TurbidityUnit.NTU));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -131,16 +136,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromNTU_WithInfinityValue_ThrowsArgumentException()
+        public void FromNTU_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Turbidity.FromNTU(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Turbidity.FromNTU(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => Turbidity.FromNTU(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => Turbidity.FromNTU(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromNTU_WithNanValue_ThrowsArgumentException()
+        public void FromNTU_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Turbidity.FromNTU(double.NaN));
+            var exception = Record.Exception(() => Turbidity.FromNTU(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

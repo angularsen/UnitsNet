@@ -218,6 +218,19 @@ namespace UnitsNet.Tests
             Assert.Null(q);
         }
 
+        [Fact]
+        public void AllowSpecialValue()
+        {
+            try
+            {
+                var r = Ratio.FromDecimalFractions(double.NaN);
+            }
+            catch (ArgumentException)
+            {
+                Assert.True(false, "Special double values (NaN, -Inf, +Inf) must be allowed.");
+            }
+        }
+
         private static Length ParseLength(string str)
         {
             return Length.Parse(str, CultureInfo.InvariantCulture);

@@ -195,16 +195,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Speed(double.PositiveInfinity, SpeedUnit.MeterPerSecond));
-            Assert.Throws<ArgumentException>(() => new Speed(double.NegativeInfinity, SpeedUnit.MeterPerSecond));
+            var exception1 = Record.Exception(() => new Speed(double.PositiveInfinity, SpeedUnit.MeterPerSecond));
+            var exception2 = Record.Exception(() => new Speed(double.NegativeInfinity, SpeedUnit.MeterPerSecond));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Speed(double.NaN, SpeedUnit.MeterPerSecond));
+            var exception = Record.Exception(() => new Speed(double.NaN, SpeedUnit.MeterPerSecond));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -419,16 +424,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromMetersPerSecond_WithInfinityValue_ThrowsArgumentException()
+        public void FromMetersPerSecond_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Speed.FromMetersPerSecond(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Speed.FromMetersPerSecond(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => Speed.FromMetersPerSecond(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => Speed.FromMetersPerSecond(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromMetersPerSecond_WithNanValue_ThrowsArgumentException()
+        public void FromMetersPerSecond_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Speed.FromMetersPerSecond(double.NaN));
+            var exception = Record.Exception(() => Speed.FromMetersPerSecond(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

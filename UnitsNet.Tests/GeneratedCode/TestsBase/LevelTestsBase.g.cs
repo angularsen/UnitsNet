@@ -71,16 +71,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Level(double.PositiveInfinity, LevelUnit.Decibel));
-            Assert.Throws<ArgumentException>(() => new Level(double.NegativeInfinity, LevelUnit.Decibel));
+            var exception1 = Record.Exception(() => new Level(double.PositiveInfinity, LevelUnit.Decibel));
+            var exception2 = Record.Exception(() => new Level(double.NegativeInfinity, LevelUnit.Decibel));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Level(double.NaN, LevelUnit.Decibel));
+            var exception = Record.Exception(() => new Level(double.NaN, LevelUnit.Decibel));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -140,16 +145,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromDecibels_WithInfinityValue_ThrowsArgumentException()
+        public void FromDecibels_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Level.FromDecibels(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Level.FromDecibels(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => Level.FromDecibels(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => Level.FromDecibels(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromDecibels_WithNanValue_ThrowsArgumentException()
+        public void FromDecibels_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Level.FromDecibels(double.NaN));
+            var exception = Record.Exception(() => Level.FromDecibels(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

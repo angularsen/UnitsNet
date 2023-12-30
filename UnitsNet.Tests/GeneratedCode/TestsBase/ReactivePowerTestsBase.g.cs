@@ -79,16 +79,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ReactivePower(double.PositiveInfinity, ReactivePowerUnit.VoltampereReactive));
-            Assert.Throws<ArgumentException>(() => new ReactivePower(double.NegativeInfinity, ReactivePowerUnit.VoltampereReactive));
+            var exception1 = Record.Exception(() => new ReactivePower(double.PositiveInfinity, ReactivePowerUnit.VoltampereReactive));
+            var exception2 = Record.Exception(() => new ReactivePower(double.NegativeInfinity, ReactivePowerUnit.VoltampereReactive));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ReactivePower(double.NaN, ReactivePowerUnit.VoltampereReactive));
+            var exception = Record.Exception(() => new ReactivePower(double.NaN, ReactivePowerUnit.VoltampereReactive));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -158,16 +163,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromVoltamperesReactive_WithInfinityValue_ThrowsArgumentException()
+        public void FromVoltamperesReactive_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ReactivePower.FromVoltamperesReactive(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ReactivePower.FromVoltamperesReactive(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => ReactivePower.FromVoltamperesReactive(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => ReactivePower.FromVoltamperesReactive(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromVoltamperesReactive_WithNanValue_ThrowsArgumentException()
+        public void FromVoltamperesReactive_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ReactivePower.FromVoltamperesReactive(double.NaN));
+            var exception = Record.Exception(() => ReactivePower.FromVoltamperesReactive(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

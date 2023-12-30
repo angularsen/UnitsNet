@@ -79,16 +79,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Illuminance(double.PositiveInfinity, IlluminanceUnit.Lux));
-            Assert.Throws<ArgumentException>(() => new Illuminance(double.NegativeInfinity, IlluminanceUnit.Lux));
+            var exception1 = Record.Exception(() => new Illuminance(double.PositiveInfinity, IlluminanceUnit.Lux));
+            var exception2 = Record.Exception(() => new Illuminance(double.NegativeInfinity, IlluminanceUnit.Lux));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Illuminance(double.NaN, IlluminanceUnit.Lux));
+            var exception = Record.Exception(() => new Illuminance(double.NaN, IlluminanceUnit.Lux));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -158,16 +163,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromLux_WithInfinityValue_ThrowsArgumentException()
+        public void FromLux_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Illuminance.FromLux(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Illuminance.FromLux(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => Illuminance.FromLux(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => Illuminance.FromLux(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromLux_WithNanValue_ThrowsArgumentException()
+        public void FromLux_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Illuminance.FromLux(double.NaN));
+            var exception = Record.Exception(() => Illuminance.FromLux(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

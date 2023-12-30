@@ -128,9 +128,7 @@ namespace UnitsNet
 
             // Implicit cast to QuantityValue would prevent TryFrom from being called,
             // so we need to explicitly check this here for double arguments.
-            return !double.IsNaN(value) &&
-                   !double.IsInfinity(value) &&
-                   TryFrom((QuantityValue)value, unit, out quantity);
+            return TryFrom((QuantityValue)value, unit, out quantity);
         }
 
         /// <summary>

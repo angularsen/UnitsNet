@@ -177,10 +177,7 @@ namespace UnitsNet
         /// <exception cref=""ArgumentException"">If value is NaN or Infinity.</exception>
         public {_quantity.Name}({_quantity.ValueType} value, {_unitEnumName} unit)
         {{");
-            Writer.WL(_quantity.ValueType == "double"
-                ? @"
-            _value = Guard.EnsureValidNumber(value, nameof(value));"
-                : @"
+            Writer.WL(@"
             _value = value;");
             Writer.WL($@"
             _unit = unit;
@@ -202,10 +199,7 @@ namespace UnitsNet
             var firstUnitInfo = unitInfos.FirstOrDefault();
 ");
 
-            Writer.WL(_quantity.ValueType == "double"
-                ? @"
-            _value = Guard.EnsureValidNumber(value, nameof(value));"
-                : @"
+            Writer.WL(@"
             _value = value;");
             Writer.WL($@"
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException(""No units were found for the given UnitSystem."", nameof(unitSystem));

@@ -67,16 +67,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new MagneticFlux(double.PositiveInfinity, MagneticFluxUnit.Weber));
-            Assert.Throws<ArgumentException>(() => new MagneticFlux(double.NegativeInfinity, MagneticFluxUnit.Weber));
+            var exception1 = Record.Exception(() => new MagneticFlux(double.PositiveInfinity, MagneticFluxUnit.Weber));
+            var exception2 = Record.Exception(() => new MagneticFlux(double.NegativeInfinity, MagneticFluxUnit.Weber));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new MagneticFlux(double.NaN, MagneticFluxUnit.Weber));
+            var exception = Record.Exception(() => new MagneticFlux(double.NaN, MagneticFluxUnit.Weber));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -131,16 +136,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromWebers_WithInfinityValue_ThrowsArgumentException()
+        public void FromWebers_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => MagneticFlux.FromWebers(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => MagneticFlux.FromWebers(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => MagneticFlux.FromWebers(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => MagneticFlux.FromWebers(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromWebers_WithNanValue_ThrowsArgumentException()
+        public void FromWebers_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => MagneticFlux.FromWebers(double.NaN));
+            var exception = Record.Exception(() => MagneticFlux.FromWebers(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

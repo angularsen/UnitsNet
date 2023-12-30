@@ -60,7 +60,7 @@ namespace UnitsNet
 
         private QuantityValue(double val) : this()
         {
-            _doubleValue = Guard.EnsureValidNumber(val, nameof(val));
+            _doubleValue = val;
             Type = UnderlyingDataType.Double;
         }
 

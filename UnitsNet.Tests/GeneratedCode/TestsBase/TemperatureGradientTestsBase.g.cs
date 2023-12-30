@@ -79,16 +79,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new TemperatureGradient(double.PositiveInfinity, TemperatureGradientUnit.KelvinPerMeter));
-            Assert.Throws<ArgumentException>(() => new TemperatureGradient(double.NegativeInfinity, TemperatureGradientUnit.KelvinPerMeter));
+            var exception1 = Record.Exception(() => new TemperatureGradient(double.PositiveInfinity, TemperatureGradientUnit.KelvinPerMeter));
+            var exception2 = Record.Exception(() => new TemperatureGradient(double.NegativeInfinity, TemperatureGradientUnit.KelvinPerMeter));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new TemperatureGradient(double.NaN, TemperatureGradientUnit.KelvinPerMeter));
+            var exception = Record.Exception(() => new TemperatureGradient(double.NaN, TemperatureGradientUnit.KelvinPerMeter));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -158,16 +163,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromKelvinsPerMeter_WithInfinityValue_ThrowsArgumentException()
+        public void FromKelvinsPerMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => TemperatureGradient.FromKelvinsPerMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => TemperatureGradient.FromKelvinsPerMeter(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => TemperatureGradient.FromKelvinsPerMeter(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => TemperatureGradient.FromKelvinsPerMeter(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromKelvinsPerMeter_WithNanValue_ThrowsArgumentException()
+        public void FromKelvinsPerMeter_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => TemperatureGradient.FromKelvinsPerMeter(double.NaN));
+            var exception = Record.Exception(() => TemperatureGradient.FromKelvinsPerMeter(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
