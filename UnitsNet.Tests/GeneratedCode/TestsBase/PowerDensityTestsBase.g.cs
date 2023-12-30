@@ -239,16 +239,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new PowerDensity(double.PositiveInfinity, PowerDensityUnit.WattPerCubicMeter));
-            Assert.Throws<ArgumentException>(() => new PowerDensity(double.NegativeInfinity, PowerDensityUnit.WattPerCubicMeter));
+            var exception1 = Record.Exception(() => new PowerDensity(double.PositiveInfinity, PowerDensityUnit.WattPerCubicMeter));
+            var exception2 = Record.Exception(() => new PowerDensity(double.NegativeInfinity, PowerDensityUnit.WattPerCubicMeter));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new PowerDensity(double.NaN, PowerDensityUnit.WattPerCubicMeter));
+            var exception = Record.Exception(() => new PowerDensity(double.NaN, PowerDensityUnit.WattPerCubicMeter));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -518,16 +523,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromWattsPerCubicMeter_WithInfinityValue_ThrowsArgumentException()
+        public void FromWattsPerCubicMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => PowerDensity.FromWattsPerCubicMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => PowerDensity.FromWattsPerCubicMeter(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => PowerDensity.FromWattsPerCubicMeter(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => PowerDensity.FromWattsPerCubicMeter(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromWattsPerCubicMeter_WithNanValue_ThrowsArgumentException()
+        public void FromWattsPerCubicMeter_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => PowerDensity.FromWattsPerCubicMeter(double.NaN));
+            var exception = Record.Exception(() => PowerDensity.FromWattsPerCubicMeter(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

@@ -79,16 +79,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new FuelEfficiency(double.PositiveInfinity, FuelEfficiencyUnit.LiterPer100Kilometers));
-            Assert.Throws<ArgumentException>(() => new FuelEfficiency(double.NegativeInfinity, FuelEfficiencyUnit.LiterPer100Kilometers));
+            var exception1 = Record.Exception(() => new FuelEfficiency(double.PositiveInfinity, FuelEfficiencyUnit.LiterPer100Kilometers));
+            var exception2 = Record.Exception(() => new FuelEfficiency(double.NegativeInfinity, FuelEfficiencyUnit.LiterPer100Kilometers));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new FuelEfficiency(double.NaN, FuelEfficiencyUnit.LiterPer100Kilometers));
+            var exception = Record.Exception(() => new FuelEfficiency(double.NaN, FuelEfficiencyUnit.LiterPer100Kilometers));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -158,16 +163,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromLitersPer100Kilometers_WithInfinityValue_ThrowsArgumentException()
+        public void FromLitersPer100Kilometers_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => FuelEfficiency.FromLitersPer100Kilometers(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => FuelEfficiency.FromLitersPer100Kilometers(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => FuelEfficiency.FromLitersPer100Kilometers(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => FuelEfficiency.FromLitersPer100Kilometers(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromLitersPer100Kilometers_WithNanValue_ThrowsArgumentException()
+        public void FromLitersPer100Kilometers_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => FuelEfficiency.FromLitersPer100Kilometers(double.NaN));
+            var exception = Record.Exception(() => FuelEfficiency.FromLitersPer100Kilometers(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

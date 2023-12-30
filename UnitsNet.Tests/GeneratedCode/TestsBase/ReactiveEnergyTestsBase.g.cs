@@ -75,16 +75,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ReactiveEnergy(double.PositiveInfinity, ReactiveEnergyUnit.VoltampereReactiveHour));
-            Assert.Throws<ArgumentException>(() => new ReactiveEnergy(double.NegativeInfinity, ReactiveEnergyUnit.VoltampereReactiveHour));
+            var exception1 = Record.Exception(() => new ReactiveEnergy(double.PositiveInfinity, ReactiveEnergyUnit.VoltampereReactiveHour));
+            var exception2 = Record.Exception(() => new ReactiveEnergy(double.NegativeInfinity, ReactiveEnergyUnit.VoltampereReactiveHour));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ReactiveEnergy(double.NaN, ReactiveEnergyUnit.VoltampereReactiveHour));
+            var exception = Record.Exception(() => new ReactiveEnergy(double.NaN, ReactiveEnergyUnit.VoltampereReactiveHour));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -149,16 +154,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromVoltampereReactiveHours_WithInfinityValue_ThrowsArgumentException()
+        public void FromVoltampereReactiveHours_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ReactiveEnergy.FromVoltampereReactiveHours(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ReactiveEnergy.FromVoltampereReactiveHours(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => ReactiveEnergy.FromVoltampereReactiveHours(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => ReactiveEnergy.FromVoltampereReactiveHours(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromVoltampereReactiveHours_WithNanValue_ThrowsArgumentException()
+        public void FromVoltampereReactiveHours_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ReactiveEnergy.FromVoltampereReactiveHours(double.NaN));
+            var exception = Record.Exception(() => ReactiveEnergy.FromVoltampereReactiveHours(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

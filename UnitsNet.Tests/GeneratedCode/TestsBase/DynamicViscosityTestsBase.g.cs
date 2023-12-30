@@ -103,16 +103,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new DynamicViscosity(double.PositiveInfinity, DynamicViscosityUnit.NewtonSecondPerMeterSquared));
-            Assert.Throws<ArgumentException>(() => new DynamicViscosity(double.NegativeInfinity, DynamicViscosityUnit.NewtonSecondPerMeterSquared));
+            var exception1 = Record.Exception(() => new DynamicViscosity(double.PositiveInfinity, DynamicViscosityUnit.NewtonSecondPerMeterSquared));
+            var exception2 = Record.Exception(() => new DynamicViscosity(double.NegativeInfinity, DynamicViscosityUnit.NewtonSecondPerMeterSquared));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new DynamicViscosity(double.NaN, DynamicViscosityUnit.NewtonSecondPerMeterSquared));
+            var exception = Record.Exception(() => new DynamicViscosity(double.NaN, DynamicViscosityUnit.NewtonSecondPerMeterSquared));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -212,16 +217,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromNewtonSecondsPerMeterSquared_WithInfinityValue_ThrowsArgumentException()
+        public void FromNewtonSecondsPerMeterSquared_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => DynamicViscosity.FromNewtonSecondsPerMeterSquared(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => DynamicViscosity.FromNewtonSecondsPerMeterSquared(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => DynamicViscosity.FromNewtonSecondsPerMeterSquared(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => DynamicViscosity.FromNewtonSecondsPerMeterSquared(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromNewtonSecondsPerMeterSquared_WithNanValue_ThrowsArgumentException()
+        public void FromNewtonSecondsPerMeterSquared_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => DynamicViscosity.FromNewtonSecondsPerMeterSquared(double.NaN));
+            var exception = Record.Exception(() => DynamicViscosity.FromNewtonSecondsPerMeterSquared(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

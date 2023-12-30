@@ -127,16 +127,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new AbsorbedDoseOfIonizingRadiation(double.PositiveInfinity, AbsorbedDoseOfIonizingRadiationUnit.Gray));
-            Assert.Throws<ArgumentException>(() => new AbsorbedDoseOfIonizingRadiation(double.NegativeInfinity, AbsorbedDoseOfIonizingRadiationUnit.Gray));
+            var exception1 = Record.Exception(() => new AbsorbedDoseOfIonizingRadiation(double.PositiveInfinity, AbsorbedDoseOfIonizingRadiationUnit.Gray));
+            var exception2 = Record.Exception(() => new AbsorbedDoseOfIonizingRadiation(double.NegativeInfinity, AbsorbedDoseOfIonizingRadiationUnit.Gray));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new AbsorbedDoseOfIonizingRadiation(double.NaN, AbsorbedDoseOfIonizingRadiationUnit.Gray));
+            var exception = Record.Exception(() => new AbsorbedDoseOfIonizingRadiation(double.NaN, AbsorbedDoseOfIonizingRadiationUnit.Gray));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -266,16 +271,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromGrays_WithInfinityValue_ThrowsArgumentException()
+        public void FromGrays_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => AbsorbedDoseOfIonizingRadiation.FromGrays(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => AbsorbedDoseOfIonizingRadiation.FromGrays(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => AbsorbedDoseOfIonizingRadiation.FromGrays(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => AbsorbedDoseOfIonizingRadiation.FromGrays(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromGrays_WithNanValue_ThrowsArgumentException()
+        public void FromGrays_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => AbsorbedDoseOfIonizingRadiation.FromGrays(double.NaN));
+            var exception = Record.Exception(() => AbsorbedDoseOfIonizingRadiation.FromGrays(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

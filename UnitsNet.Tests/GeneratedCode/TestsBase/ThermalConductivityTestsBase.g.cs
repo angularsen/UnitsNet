@@ -71,16 +71,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ThermalConductivity(double.PositiveInfinity, ThermalConductivityUnit.WattPerMeterKelvin));
-            Assert.Throws<ArgumentException>(() => new ThermalConductivity(double.NegativeInfinity, ThermalConductivityUnit.WattPerMeterKelvin));
+            var exception1 = Record.Exception(() => new ThermalConductivity(double.PositiveInfinity, ThermalConductivityUnit.WattPerMeterKelvin));
+            var exception2 = Record.Exception(() => new ThermalConductivity(double.NegativeInfinity, ThermalConductivityUnit.WattPerMeterKelvin));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ThermalConductivity(double.NaN, ThermalConductivityUnit.WattPerMeterKelvin));
+            var exception = Record.Exception(() => new ThermalConductivity(double.NaN, ThermalConductivityUnit.WattPerMeterKelvin));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -140,16 +145,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromWattsPerMeterKelvin_WithInfinityValue_ThrowsArgumentException()
+        public void FromWattsPerMeterKelvin_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ThermalConductivity.FromWattsPerMeterKelvin(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ThermalConductivity.FromWattsPerMeterKelvin(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => ThermalConductivity.FromWattsPerMeterKelvin(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => ThermalConductivity.FromWattsPerMeterKelvin(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromWattsPerMeterKelvin_WithNanValue_ThrowsArgumentException()
+        public void FromWattsPerMeterKelvin_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ThermalConductivity.FromWattsPerMeterKelvin(double.NaN));
+            var exception = Record.Exception(() => ThermalConductivity.FromWattsPerMeterKelvin(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

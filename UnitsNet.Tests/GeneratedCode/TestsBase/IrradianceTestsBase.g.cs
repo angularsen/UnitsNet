@@ -119,16 +119,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Irradiance(double.PositiveInfinity, IrradianceUnit.WattPerSquareMeter));
-            Assert.Throws<ArgumentException>(() => new Irradiance(double.NegativeInfinity, IrradianceUnit.WattPerSquareMeter));
+            var exception1 = Record.Exception(() => new Irradiance(double.PositiveInfinity, IrradianceUnit.WattPerSquareMeter));
+            var exception2 = Record.Exception(() => new Irradiance(double.NegativeInfinity, IrradianceUnit.WattPerSquareMeter));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Irradiance(double.NaN, IrradianceUnit.WattPerSquareMeter));
+            var exception = Record.Exception(() => new Irradiance(double.NaN, IrradianceUnit.WattPerSquareMeter));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -248,16 +253,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromWattsPerSquareMeter_WithInfinityValue_ThrowsArgumentException()
+        public void FromWattsPerSquareMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Irradiance.FromWattsPerSquareMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Irradiance.FromWattsPerSquareMeter(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => Irradiance.FromWattsPerSquareMeter(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => Irradiance.FromWattsPerSquareMeter(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromWattsPerSquareMeter_WithNanValue_ThrowsArgumentException()
+        public void FromWattsPerSquareMeter_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Irradiance.FromWattsPerSquareMeter(double.NaN));
+            var exception = Record.Exception(() => Irradiance.FromWattsPerSquareMeter(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

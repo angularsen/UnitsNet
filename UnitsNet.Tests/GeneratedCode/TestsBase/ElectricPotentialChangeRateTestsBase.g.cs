@@ -143,16 +143,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricPotentialChangeRate(double.PositiveInfinity, ElectricPotentialChangeRateUnit.VoltPerSecond));
-            Assert.Throws<ArgumentException>(() => new ElectricPotentialChangeRate(double.NegativeInfinity, ElectricPotentialChangeRateUnit.VoltPerSecond));
+            var exception1 = Record.Exception(() => new ElectricPotentialChangeRate(double.PositiveInfinity, ElectricPotentialChangeRateUnit.VoltPerSecond));
+            var exception2 = Record.Exception(() => new ElectricPotentialChangeRate(double.NegativeInfinity, ElectricPotentialChangeRateUnit.VoltPerSecond));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricPotentialChangeRate(double.NaN, ElectricPotentialChangeRateUnit.VoltPerSecond));
+            var exception = Record.Exception(() => new ElectricPotentialChangeRate(double.NaN, ElectricPotentialChangeRateUnit.VoltPerSecond));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -302,16 +307,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromVoltsPerSeconds_WithInfinityValue_ThrowsArgumentException()
+        public void FromVoltsPerSeconds_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricPotentialChangeRate.FromVoltsPerSeconds(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ElectricPotentialChangeRate.FromVoltsPerSeconds(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => ElectricPotentialChangeRate.FromVoltsPerSeconds(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => ElectricPotentialChangeRate.FromVoltsPerSeconds(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromVoltsPerSeconds_WithNanValue_ThrowsArgumentException()
+        public void FromVoltsPerSeconds_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricPotentialChangeRate.FromVoltsPerSeconds(double.NaN));
+            var exception = Record.Exception(() => ElectricPotentialChangeRate.FromVoltsPerSeconds(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

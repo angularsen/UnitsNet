@@ -127,16 +127,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Angle(double.PositiveInfinity, AngleUnit.Degree));
-            Assert.Throws<ArgumentException>(() => new Angle(double.NegativeInfinity, AngleUnit.Degree));
+            var exception1 = Record.Exception(() => new Angle(double.PositiveInfinity, AngleUnit.Degree));
+            var exception2 = Record.Exception(() => new Angle(double.NegativeInfinity, AngleUnit.Degree));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Angle(double.NaN, AngleUnit.Degree));
+            var exception = Record.Exception(() => new Angle(double.NaN, AngleUnit.Degree));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -266,16 +271,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromDegrees_WithInfinityValue_ThrowsArgumentException()
+        public void FromDegrees_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Angle.FromDegrees(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Angle.FromDegrees(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => Angle.FromDegrees(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => Angle.FromDegrees(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromDegrees_WithNanValue_ThrowsArgumentException()
+        public void FromDegrees_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Angle.FromDegrees(double.NaN));
+            var exception = Record.Exception(() => Angle.FromDegrees(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

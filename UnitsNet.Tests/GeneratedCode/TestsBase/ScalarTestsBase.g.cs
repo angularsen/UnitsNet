@@ -67,16 +67,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Scalar(double.PositiveInfinity, ScalarUnit.Amount));
-            Assert.Throws<ArgumentException>(() => new Scalar(double.NegativeInfinity, ScalarUnit.Amount));
+            var exception1 = Record.Exception(() => new Scalar(double.PositiveInfinity, ScalarUnit.Amount));
+            var exception2 = Record.Exception(() => new Scalar(double.NegativeInfinity, ScalarUnit.Amount));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Scalar(double.NaN, ScalarUnit.Amount));
+            var exception = Record.Exception(() => new Scalar(double.NaN, ScalarUnit.Amount));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -131,16 +136,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromAmount_WithInfinityValue_ThrowsArgumentException()
+        public void FromAmount_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Scalar.FromAmount(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Scalar.FromAmount(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => Scalar.FromAmount(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => Scalar.FromAmount(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromAmount_WithNanValue_ThrowsArgumentException()
+        public void FromAmount_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Scalar.FromAmount(double.NaN));
+            var exception = Record.Exception(() => Scalar.FromAmount(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

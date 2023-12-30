@@ -79,16 +79,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new AmplitudeRatio(double.PositiveInfinity, AmplitudeRatioUnit.DecibelVolt));
-            Assert.Throws<ArgumentException>(() => new AmplitudeRatio(double.NegativeInfinity, AmplitudeRatioUnit.DecibelVolt));
+            var exception1 = Record.Exception(() => new AmplitudeRatio(double.PositiveInfinity, AmplitudeRatioUnit.DecibelVolt));
+            var exception2 = Record.Exception(() => new AmplitudeRatio(double.NegativeInfinity, AmplitudeRatioUnit.DecibelVolt));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new AmplitudeRatio(double.NaN, AmplitudeRatioUnit.DecibelVolt));
+            var exception = Record.Exception(() => new AmplitudeRatio(double.NaN, AmplitudeRatioUnit.DecibelVolt));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -158,16 +163,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromDecibelVolts_WithInfinityValue_ThrowsArgumentException()
+        public void FromDecibelVolts_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => AmplitudeRatio.FromDecibelVolts(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => AmplitudeRatio.FromDecibelVolts(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => AmplitudeRatio.FromDecibelVolts(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => AmplitudeRatio.FromDecibelVolts(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromDecibelVolts_WithNanValue_ThrowsArgumentException()
+        public void FromDecibelVolts_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => AmplitudeRatio.FromDecibelVolts(double.NaN));
+            var exception = Record.Exception(() => AmplitudeRatio.FromDecibelVolts(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

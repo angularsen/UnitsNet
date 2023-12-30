@@ -123,16 +123,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Force(double.PositiveInfinity, ForceUnit.Newton));
-            Assert.Throws<ArgumentException>(() => new Force(double.NegativeInfinity, ForceUnit.Newton));
+            var exception1 = Record.Exception(() => new Force(double.PositiveInfinity, ForceUnit.Newton));
+            var exception2 = Record.Exception(() => new Force(double.NegativeInfinity, ForceUnit.Newton));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Force(double.NaN, ForceUnit.Newton));
+            var exception = Record.Exception(() => new Force(double.NaN, ForceUnit.Newton));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -257,16 +262,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromNewtons_WithInfinityValue_ThrowsArgumentException()
+        public void FromNewtons_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Force.FromNewtons(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Force.FromNewtons(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => Force.FromNewtons(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => Force.FromNewtons(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromNewtons_WithNanValue_ThrowsArgumentException()
+        public void FromNewtons_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Force.FromNewtons(double.NaN));
+            var exception = Record.Exception(() => Force.FromNewtons(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

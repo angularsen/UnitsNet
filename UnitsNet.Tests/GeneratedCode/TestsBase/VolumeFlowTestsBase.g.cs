@@ -331,16 +331,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new VolumeFlow(double.PositiveInfinity, VolumeFlowUnit.CubicMeterPerSecond));
-            Assert.Throws<ArgumentException>(() => new VolumeFlow(double.NegativeInfinity, VolumeFlowUnit.CubicMeterPerSecond));
+            var exception1 = Record.Exception(() => new VolumeFlow(double.PositiveInfinity, VolumeFlowUnit.CubicMeterPerSecond));
+            var exception2 = Record.Exception(() => new VolumeFlow(double.NegativeInfinity, VolumeFlowUnit.CubicMeterPerSecond));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new VolumeFlow(double.NaN, VolumeFlowUnit.CubicMeterPerSecond));
+            var exception = Record.Exception(() => new VolumeFlow(double.NaN, VolumeFlowUnit.CubicMeterPerSecond));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -725,16 +730,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromCubicMetersPerSecond_WithInfinityValue_ThrowsArgumentException()
+        public void FromCubicMetersPerSecond_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => VolumeFlow.FromCubicMetersPerSecond(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => VolumeFlow.FromCubicMetersPerSecond(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => VolumeFlow.FromCubicMetersPerSecond(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => VolumeFlow.FromCubicMetersPerSecond(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromCubicMetersPerSecond_WithNanValue_ThrowsArgumentException()
+        public void FromCubicMetersPerSecond_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => VolumeFlow.FromCubicMetersPerSecond(double.NaN));
+            var exception = Record.Exception(() => VolumeFlow.FromCubicMetersPerSecond(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

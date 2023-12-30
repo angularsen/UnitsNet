@@ -123,16 +123,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new AmountOfSubstance(double.PositiveInfinity, AmountOfSubstanceUnit.Mole));
-            Assert.Throws<ArgumentException>(() => new AmountOfSubstance(double.NegativeInfinity, AmountOfSubstanceUnit.Mole));
+            var exception1 = Record.Exception(() => new AmountOfSubstance(double.PositiveInfinity, AmountOfSubstanceUnit.Mole));
+            var exception2 = Record.Exception(() => new AmountOfSubstance(double.NegativeInfinity, AmountOfSubstanceUnit.Mole));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new AmountOfSubstance(double.NaN, AmountOfSubstanceUnit.Mole));
+            var exception = Record.Exception(() => new AmountOfSubstance(double.NaN, AmountOfSubstanceUnit.Mole));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -257,16 +262,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromMoles_WithInfinityValue_ThrowsArgumentException()
+        public void FromMoles_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => AmountOfSubstance.FromMoles(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => AmountOfSubstance.FromMoles(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => AmountOfSubstance.FromMoles(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => AmountOfSubstance.FromMoles(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromMoles_WithNanValue_ThrowsArgumentException()
+        public void FromMoles_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => AmountOfSubstance.FromMoles(double.NaN));
+            var exception = Record.Exception(() => AmountOfSubstance.FromMoles(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

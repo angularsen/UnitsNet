@@ -83,16 +83,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricInductance(double.PositiveInfinity, ElectricInductanceUnit.Henry));
-            Assert.Throws<ArgumentException>(() => new ElectricInductance(double.NegativeInfinity, ElectricInductanceUnit.Henry));
+            var exception1 = Record.Exception(() => new ElectricInductance(double.PositiveInfinity, ElectricInductanceUnit.Henry));
+            var exception2 = Record.Exception(() => new ElectricInductance(double.NegativeInfinity, ElectricInductanceUnit.Henry));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricInductance(double.NaN, ElectricInductanceUnit.Henry));
+            var exception = Record.Exception(() => new ElectricInductance(double.NaN, ElectricInductanceUnit.Henry));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -167,16 +172,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromHenries_WithInfinityValue_ThrowsArgumentException()
+        public void FromHenries_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricInductance.FromHenries(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ElectricInductance.FromHenries(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => ElectricInductance.FromHenries(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => ElectricInductance.FromHenries(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromHenries_WithNanValue_ThrowsArgumentException()
+        public void FromHenries_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricInductance.FromHenries(double.NaN));
+            var exception = Record.Exception(() => ElectricInductance.FromHenries(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
