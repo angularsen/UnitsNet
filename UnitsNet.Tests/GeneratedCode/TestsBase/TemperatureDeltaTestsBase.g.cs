@@ -99,6 +99,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new TemperatureDelta(double.PositiveInfinity, TemperatureDeltaUnit.Kelvin));
+            Assert.Throws<ArgumentException>(() => new TemperatureDelta(double.NegativeInfinity, TemperatureDeltaUnit.Kelvin));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new TemperatureDelta(double.NaN, TemperatureDeltaUnit.Kelvin));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new TemperatureDelta(value: 1, unitSystem: null));
+        }
+
+        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new TemperatureDelta(value: 1, unitSystem: UnitSystem.SI);
@@ -181,6 +200,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity08.MillidegreesCelsius, MillidegreesCelsiusTolerance);
             Assert.Equal(TemperatureDeltaUnit.MillidegreeCelsius, quantity08.Unit);
 
+        }
+
+        [Fact]
+        public void FromKelvins_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => TemperatureDelta.FromKelvins(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => TemperatureDelta.FromKelvins(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromKelvins_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => TemperatureDelta.FromKelvins(double.NaN));
         }
 
         [Fact]

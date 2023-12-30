@@ -107,6 +107,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Molarity(double.PositiveInfinity, MolarityUnit.MolePerCubicMeter));
+            Assert.Throws<ArgumentException>(() => new Molarity(double.NegativeInfinity, MolarityUnit.MolePerCubicMeter));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Molarity(double.NaN, MolarityUnit.MolePerCubicMeter));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Molarity(value: 1, unitSystem: null));
+        }
+
+        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new Molarity(value: 1, unitSystem: UnitSystem.SI);
@@ -199,6 +218,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity10.PoundMolesPerCubicFoot, PoundMolesPerCubicFootTolerance);
             Assert.Equal(MolarityUnit.PoundMolePerCubicFoot, quantity10.Unit);
 
+        }
+
+        [Fact]
+        public void FromMolesPerCubicMeter_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Molarity.FromMolesPerCubicMeter(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Molarity.FromMolesPerCubicMeter(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromMolesPerCubicMeter_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Molarity.FromMolesPerCubicMeter(double.NaN));
         }
 
         [Fact]

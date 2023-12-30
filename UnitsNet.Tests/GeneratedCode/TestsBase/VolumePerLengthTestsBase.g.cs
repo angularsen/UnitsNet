@@ -99,6 +99,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new VolumePerLength(double.PositiveInfinity, VolumePerLengthUnit.CubicMeterPerMeter));
+            Assert.Throws<ArgumentException>(() => new VolumePerLength(double.NegativeInfinity, VolumePerLengthUnit.CubicMeterPerMeter));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new VolumePerLength(double.NaN, VolumePerLengthUnit.CubicMeterPerMeter));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new VolumePerLength(value: 1, unitSystem: null));
+        }
+
+        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new VolumePerLength(value: 1, unitSystem: UnitSystem.SI);
@@ -181,6 +200,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity08.UsGallonsPerMile, UsGallonsPerMileTolerance);
             Assert.Equal(VolumePerLengthUnit.UsGallonPerMile, quantity08.Unit);
 
+        }
+
+        [Fact]
+        public void FromCubicMetersPerMeter_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => VolumePerLength.FromCubicMetersPerMeter(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => VolumePerLength.FromCubicMetersPerMeter(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromCubicMetersPerMeter_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => VolumePerLength.FromCubicMetersPerMeter(double.NaN));
         }
 
         [Fact]

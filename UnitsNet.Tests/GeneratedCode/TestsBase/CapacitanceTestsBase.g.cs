@@ -91,6 +91,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Capacitance(double.PositiveInfinity, CapacitanceUnit.Farad));
+            Assert.Throws<ArgumentException>(() => new Capacitance(double.NegativeInfinity, CapacitanceUnit.Farad));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Capacitance(double.NaN, CapacitanceUnit.Farad));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Capacitance(value: 1, unitSystem: null));
+        }
+
+        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new Capacitance(value: 1, unitSystem: UnitSystem.SI);
@@ -163,6 +182,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity06.Picofarads, PicofaradsTolerance);
             Assert.Equal(CapacitanceUnit.Picofarad, quantity06.Unit);
 
+        }
+
+        [Fact]
+        public void FromFarads_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Capacitance.FromFarads(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Capacitance.FromFarads(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromFarads_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Capacitance.FromFarads(double.NaN));
         }
 
         [Fact]

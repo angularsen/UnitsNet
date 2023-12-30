@@ -99,6 +99,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new VolumetricHeatCapacity(double.PositiveInfinity, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin));
+            Assert.Throws<ArgumentException>(() => new VolumetricHeatCapacity(double.NegativeInfinity, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new VolumetricHeatCapacity(double.NaN, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new VolumetricHeatCapacity(value: 1, unitSystem: null));
+        }
+
+        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new VolumetricHeatCapacity(value: 1, unitSystem: UnitSystem.SI);
@@ -181,6 +200,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity08.MegajoulesPerCubicMeterKelvin, MegajoulesPerCubicMeterKelvinTolerance);
             Assert.Equal(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, quantity08.Unit);
 
+        }
+
+        [Fact]
+        public void FromJoulesPerCubicMeterKelvin_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromJoulesPerCubicMeterKelvin_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(double.NaN));
         }
 
         [Fact]

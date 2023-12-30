@@ -215,6 +215,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Length(double.PositiveInfinity, LengthUnit.Meter));
+            Assert.Throws<ArgumentException>(() => new Length(double.NegativeInfinity, LengthUnit.Meter));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Length(double.NaN, LengthUnit.Meter));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Length(value: 1, unitSystem: null));
+        }
+
+        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new Length(value: 1, unitSystem: UnitSystem.SI);
@@ -442,6 +461,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity37.Yards, YardsTolerance);
             Assert.Equal(LengthUnit.Yard, quantity37.Unit);
 
+        }
+
+        [Fact]
+        public void FromMeters_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Length.FromMeters(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Length.FromMeters(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromMeters_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Length.FromMeters(double.NaN));
         }
 
         [Fact]

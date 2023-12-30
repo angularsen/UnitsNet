@@ -20,6 +20,15 @@ namespace UnitsNet.Tests
         [InlineData(double.NaN)]
         [InlineData(double.PositiveInfinity)]
         [InlineData(double.NegativeInfinity)]
+        public void From_GivenNaNOrInfinity_ThrowsArgumentException(double value)
+        {
+            Assert.Throws<ArgumentException>(() => Quantity.From(value, LengthUnit.Centimeter));
+        }
+
+        [Theory]
+        [InlineData(double.NaN)]
+        [InlineData(double.PositiveInfinity)]
+        [InlineData(double.NegativeInfinity)]
         public void TryFrom_GivenNaNOrInfinity_ReturnsFalseAndNullQuantity(double value)
         {
             Assert.False(Quantity.TryFrom(value, LengthUnit.Centimeter, out IQuantity? parsedLength));

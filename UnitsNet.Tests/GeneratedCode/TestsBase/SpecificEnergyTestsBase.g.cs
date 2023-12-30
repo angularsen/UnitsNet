@@ -183,6 +183,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new SpecificEnergy(double.PositiveInfinity, SpecificEnergyUnit.JoulePerKilogram));
+            Assert.Throws<ArgumentException>(() => new SpecificEnergy(double.NegativeInfinity, SpecificEnergyUnit.JoulePerKilogram));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new SpecificEnergy(double.NaN, SpecificEnergyUnit.JoulePerKilogram));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new SpecificEnergy(value: 1, unitSystem: null));
+        }
+
+        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new SpecificEnergy(value: 1, unitSystem: UnitSystem.SI);
@@ -370,6 +389,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity29.WattHoursPerPound, WattHoursPerPoundTolerance);
             Assert.Equal(SpecificEnergyUnit.WattHourPerPound, quantity29.Unit);
 
+        }
+
+        [Fact]
+        public void FromJoulesPerKilogram_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => SpecificEnergy.FromJoulesPerKilogram(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => SpecificEnergy.FromJoulesPerKilogram(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromJoulesPerKilogram_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => SpecificEnergy.FromJoulesPerKilogram(double.NaN));
         }
 
         [Fact]

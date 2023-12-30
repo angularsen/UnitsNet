@@ -163,6 +163,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Torque(double.PositiveInfinity, TorqueUnit.NewtonMeter));
+            Assert.Throws<ArgumentException>(() => new Torque(double.NegativeInfinity, TorqueUnit.NewtonMeter));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Torque(double.NaN, TorqueUnit.NewtonMeter));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Torque(value: 1, unitSystem: null));
+        }
+
+        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new Torque(value: 1, unitSystem: UnitSystem.SI);
@@ -325,6 +344,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity24.TonneForceMillimeters, TonneForceMillimetersTolerance);
             Assert.Equal(TorqueUnit.TonneForceMillimeter, quantity24.Unit);
 
+        }
+
+        [Fact]
+        public void FromNewtonMeters_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Torque.FromNewtonMeters(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Torque.FromNewtonMeters(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromNewtonMeters_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Torque.FromNewtonMeters(double.NaN));
         }
 
         [Fact]

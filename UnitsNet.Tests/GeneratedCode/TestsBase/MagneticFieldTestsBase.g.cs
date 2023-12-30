@@ -87,6 +87,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new MagneticField(double.PositiveInfinity, MagneticFieldUnit.Tesla));
+            Assert.Throws<ArgumentException>(() => new MagneticField(double.NegativeInfinity, MagneticFieldUnit.Tesla));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new MagneticField(double.NaN, MagneticFieldUnit.Tesla));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new MagneticField(value: 1, unitSystem: null));
+        }
+
+        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new MagneticField(value: 1, unitSystem: UnitSystem.SI);
@@ -154,6 +173,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity05.Teslas, TeslasTolerance);
             Assert.Equal(MagneticFieldUnit.Tesla, quantity05.Unit);
 
+        }
+
+        [Fact]
+        public void FromTeslas_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => MagneticField.FromTeslas(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => MagneticField.FromTeslas(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromTeslas_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => MagneticField.FromTeslas(double.NaN));
         }
 
         [Fact]

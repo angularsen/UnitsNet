@@ -107,6 +107,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Jerk(double.PositiveInfinity, JerkUnit.MeterPerSecondCubed));
+            Assert.Throws<ArgumentException>(() => new Jerk(double.NegativeInfinity, JerkUnit.MeterPerSecondCubed));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Jerk(double.NaN, JerkUnit.MeterPerSecondCubed));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Jerk(value: 1, unitSystem: null));
+        }
+
+        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new Jerk(value: 1, unitSystem: UnitSystem.SI);
@@ -199,6 +218,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity10.StandardGravitiesPerSecond, StandardGravitiesPerSecondTolerance);
             Assert.Equal(JerkUnit.StandardGravitiesPerSecond, quantity10.Unit);
 
+        }
+
+        [Fact]
+        public void FromMetersPerSecondCubed_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Jerk.FromMetersPerSecondCubed(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Jerk.FromMetersPerSecondCubed(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromMetersPerSecondCubed_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Jerk.FromMetersPerSecondCubed(double.NaN));
         }
 
         [Fact]

@@ -83,6 +83,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ElectricInductance(double.PositiveInfinity, ElectricInductanceUnit.Henry));
+            Assert.Throws<ArgumentException>(() => new ElectricInductance(double.NegativeInfinity, ElectricInductanceUnit.Henry));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ElectricInductance(double.NaN, ElectricInductanceUnit.Henry));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new ElectricInductance(value: 1, unitSystem: null));
+        }
+
+        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new ElectricInductance(value: 1, unitSystem: UnitSystem.SI);
@@ -145,6 +164,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity04.Picohenries, PicohenriesTolerance);
             Assert.Equal(ElectricInductanceUnit.Picohenry, quantity04.Unit);
 
+        }
+
+        [Fact]
+        public void FromHenries_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => ElectricInductance.FromHenries(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => ElectricInductance.FromHenries(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromHenries_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => ElectricInductance.FromHenries(double.NaN));
         }
 
         [Fact]

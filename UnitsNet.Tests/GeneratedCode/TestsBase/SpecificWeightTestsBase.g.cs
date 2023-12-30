@@ -131,6 +131,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new SpecificWeight(double.PositiveInfinity, SpecificWeightUnit.NewtonPerCubicMeter));
+            Assert.Throws<ArgumentException>(() => new SpecificWeight(double.NegativeInfinity, SpecificWeightUnit.NewtonPerCubicMeter));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new SpecificWeight(double.NaN, SpecificWeightUnit.NewtonPerCubicMeter));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new SpecificWeight(value: 1, unitSystem: null));
+        }
+
+        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new SpecificWeight(value: 1, unitSystem: UnitSystem.SI);
@@ -253,6 +272,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity16.TonnesForcePerCubicMillimeter, TonnesForcePerCubicMillimeterTolerance);
             Assert.Equal(SpecificWeightUnit.TonneForcePerCubicMillimeter, quantity16.Unit);
 
+        }
+
+        [Fact]
+        public void FromNewtonsPerCubicMeter_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => SpecificWeight.FromNewtonsPerCubicMeter(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => SpecificWeight.FromNewtonsPerCubicMeter(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromNewtonsPerCubicMeter_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => SpecificWeight.FromNewtonsPerCubicMeter(double.NaN));
         }
 
         [Fact]

@@ -75,6 +75,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ElectricCurrentDensity(double.PositiveInfinity, ElectricCurrentDensityUnit.AmperePerSquareMeter));
+            Assert.Throws<ArgumentException>(() => new ElectricCurrentDensity(double.NegativeInfinity, ElectricCurrentDensityUnit.AmperePerSquareMeter));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ElectricCurrentDensity(double.NaN, ElectricCurrentDensityUnit.AmperePerSquareMeter));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new ElectricCurrentDensity(value: 1, unitSystem: null));
+        }
+
+        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new ElectricCurrentDensity(value: 1, unitSystem: UnitSystem.SI);
@@ -127,6 +146,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity02.AmperesPerSquareMeter, AmperesPerSquareMeterTolerance);
             Assert.Equal(ElectricCurrentDensityUnit.AmperePerSquareMeter, quantity02.Unit);
 
+        }
+
+        [Fact]
+        public void FromAmperesPerSquareMeter_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => ElectricCurrentDensity.FromAmperesPerSquareMeter(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => ElectricCurrentDensity.FromAmperesPerSquareMeter(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromAmperesPerSquareMeter_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => ElectricCurrentDensity.FromAmperesPerSquareMeter(double.NaN));
         }
 
         [Fact]

@@ -171,6 +171,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Mass(double.PositiveInfinity, MassUnit.Kilogram));
+            Assert.Throws<ArgumentException>(() => new Mass(double.NegativeInfinity, MassUnit.Kilogram));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Mass(double.NaN, MassUnit.Kilogram));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Mass(value: 1, unitSystem: null));
+        }
+
+        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new Mass(value: 1, unitSystem: UnitSystem.SI);
@@ -343,6 +362,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity26.Tonnes, TonnesTolerance);
             Assert.Equal(MassUnit.Tonne, quantity26.Unit);
 
+        }
+
+        [Fact]
+        public void FromKilograms_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Mass.FromKilograms(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Mass.FromKilograms(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromKilograms_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Mass.FromKilograms(double.NaN));
         }
 
         [Fact]

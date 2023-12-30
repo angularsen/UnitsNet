@@ -259,6 +259,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Pressure(double.PositiveInfinity, PressureUnit.Pascal));
+            Assert.Throws<ArgumentException>(() => new Pressure(double.NegativeInfinity, PressureUnit.Pascal));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Pressure(double.NaN, PressureUnit.Pascal));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Pressure(value: 1, unitSystem: null));
+        }
+
+        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new Pressure(value: 1, unitSystem: UnitSystem.SI);
@@ -541,6 +560,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity48.Torrs, TorrsTolerance);
             Assert.Equal(PressureUnit.Torr, quantity48.Unit);
 
+        }
+
+        [Fact]
+        public void FromPascals_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Pressure.FromPascals(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Pressure.FromPascals(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromPascals_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Pressure.FromPascals(double.NaN));
         }
 
         [Fact]

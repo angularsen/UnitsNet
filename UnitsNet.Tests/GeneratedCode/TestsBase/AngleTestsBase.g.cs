@@ -127,6 +127,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Angle(double.PositiveInfinity, AngleUnit.Degree));
+            Assert.Throws<ArgumentException>(() => new Angle(double.NegativeInfinity, AngleUnit.Degree));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Angle(double.NaN, AngleUnit.Degree));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Angle(value: 1, unitSystem: null));
+        }
+
+        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new Angle(value: 1, unitSystem: UnitSystem.SI);
@@ -244,6 +263,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity15.Tilt, TiltTolerance);
             Assert.Equal(AngleUnit.Tilt, quantity15.Unit);
 
+        }
+
+        [Fact]
+        public void FromDegrees_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Angle.FromDegrees(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Angle.FromDegrees(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromDegrees_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Angle.FromDegrees(double.NaN));
         }
 
         [Fact]

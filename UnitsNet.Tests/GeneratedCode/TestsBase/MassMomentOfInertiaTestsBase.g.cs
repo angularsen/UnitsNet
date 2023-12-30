@@ -175,6 +175,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new MassMomentOfInertia(double.PositiveInfinity, MassMomentOfInertiaUnit.KilogramSquareMeter));
+            Assert.Throws<ArgumentException>(() => new MassMomentOfInertia(double.NegativeInfinity, MassMomentOfInertiaUnit.KilogramSquareMeter));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new MassMomentOfInertia(double.NaN, MassMomentOfInertiaUnit.KilogramSquareMeter));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new MassMomentOfInertia(value: 1, unitSystem: null));
+        }
+
+        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new MassMomentOfInertia(value: 1, unitSystem: UnitSystem.SI);
@@ -352,6 +371,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity27.TonneSquareMilimeters, TonneSquareMilimetersTolerance);
             Assert.Equal(MassMomentOfInertiaUnit.TonneSquareMilimeter, quantity27.Unit);
 
+        }
+
+        [Fact]
+        public void FromKilogramSquareMeters_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => MassMomentOfInertia.FromKilogramSquareMeters(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => MassMomentOfInertia.FromKilogramSquareMeters(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromKilogramSquareMeters_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => MassMomentOfInertia.FromKilogramSquareMeters(double.NaN));
         }
 
         [Fact]

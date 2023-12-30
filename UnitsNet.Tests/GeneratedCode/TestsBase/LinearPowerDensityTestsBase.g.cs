@@ -163,6 +163,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new LinearPowerDensity(double.PositiveInfinity, LinearPowerDensityUnit.WattPerMeter));
+            Assert.Throws<ArgumentException>(() => new LinearPowerDensity(double.NegativeInfinity, LinearPowerDensityUnit.WattPerMeter));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new LinearPowerDensity(double.NaN, LinearPowerDensityUnit.WattPerMeter));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new LinearPowerDensity(value: 1, unitSystem: null));
+        }
+
+        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new LinearPowerDensity(value: 1, unitSystem: UnitSystem.SI);
@@ -325,6 +344,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity24.WattsPerMillimeter, WattsPerMillimeterTolerance);
             Assert.Equal(LinearPowerDensityUnit.WattPerMillimeter, quantity24.Unit);
 
+        }
+
+        [Fact]
+        public void FromWattsPerMeter_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => LinearPowerDensity.FromWattsPerMeter(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => LinearPowerDensity.FromWattsPerMeter(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromWattsPerMeter_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => LinearPowerDensity.FromWattsPerMeter(double.NaN));
         }
 
         [Fact]

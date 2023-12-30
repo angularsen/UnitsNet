@@ -71,6 +71,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Level(double.PositiveInfinity, LevelUnit.Decibel));
+            Assert.Throws<ArgumentException>(() => new Level(double.NegativeInfinity, LevelUnit.Decibel));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Level(double.NaN, LevelUnit.Decibel));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Level(value: 1, unitSystem: null));
+        }
+
+        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new Level(value: 1, unitSystem: UnitSystem.SI);
@@ -118,6 +137,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity01.Nepers, NepersTolerance);
             Assert.Equal(LevelUnit.Neper, quantity01.Unit);
 
+        }
+
+        [Fact]
+        public void FromDecibels_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Level.FromDecibels(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Level.FromDecibels(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromDecibels_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Level.FromDecibels(double.NaN));
         }
 
         [Fact]

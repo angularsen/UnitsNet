@@ -87,6 +87,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new HeatTransferCoefficient(double.PositiveInfinity, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin));
+            Assert.Throws<ArgumentException>(() => new HeatTransferCoefficient(double.NegativeInfinity, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new HeatTransferCoefficient(double.NaN, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new HeatTransferCoefficient(value: 1, unitSystem: null));
+        }
+
+        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new HeatTransferCoefficient(value: 1, unitSystem: UnitSystem.SI);
@@ -154,6 +173,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity05.WattsPerSquareMeterKelvin, WattsPerSquareMeterKelvinTolerance);
             Assert.Equal(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, quantity05.Unit);
 
+        }
+
+        [Fact]
+        public void FromWattsPerSquareMeterKelvin_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromWattsPerSquareMeterKelvin_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(double.NaN));
         }
 
         [Fact]

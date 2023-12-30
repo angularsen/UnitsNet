@@ -83,6 +83,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ElectricConductance(double.PositiveInfinity, ElectricConductanceUnit.Siemens));
+            Assert.Throws<ArgumentException>(() => new ElectricConductance(double.NegativeInfinity, ElectricConductanceUnit.Siemens));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ElectricConductance(double.NaN, ElectricConductanceUnit.Siemens));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new ElectricConductance(value: 1, unitSystem: null));
+        }
+
+        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new ElectricConductance(value: 1, unitSystem: UnitSystem.SI);
@@ -145,6 +164,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity04.Siemens, SiemensTolerance);
             Assert.Equal(ElectricConductanceUnit.Siemens, quantity04.Unit);
 
+        }
+
+        [Fact]
+        public void FromSiemens_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => ElectricConductance.FromSiemens(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => ElectricConductance.FromSiemens(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromSiemens_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => ElectricConductance.FromSiemens(double.NaN));
         }
 
         [Fact]

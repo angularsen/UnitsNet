@@ -135,6 +135,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new HeatFlux(double.PositiveInfinity, HeatFluxUnit.WattPerSquareMeter));
+            Assert.Throws<ArgumentException>(() => new HeatFlux(double.NegativeInfinity, HeatFluxUnit.WattPerSquareMeter));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new HeatFlux(double.NaN, HeatFluxUnit.WattPerSquareMeter));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new HeatFlux(value: 1, unitSystem: null));
+        }
+
+        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new HeatFlux(value: 1, unitSystem: UnitSystem.SI);
@@ -262,6 +281,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity17.WattsPerSquareMeter, WattsPerSquareMeterTolerance);
             Assert.Equal(HeatFluxUnit.WattPerSquareMeter, quantity17.Unit);
 
+        }
+
+        [Fact]
+        public void FromWattsPerSquareMeter_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => HeatFlux.FromWattsPerSquareMeter(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => HeatFlux.FromWattsPerSquareMeter(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromWattsPerSquareMeter_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => HeatFlux.FromWattsPerSquareMeter(double.NaN));
         }
 
         [Fact]

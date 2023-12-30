@@ -75,6 +75,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ApparentEnergy(double.PositiveInfinity, ApparentEnergyUnit.VoltampereHour));
+            Assert.Throws<ArgumentException>(() => new ApparentEnergy(double.NegativeInfinity, ApparentEnergyUnit.VoltampereHour));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ApparentEnergy(double.NaN, ApparentEnergyUnit.VoltampereHour));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new ApparentEnergy(value: 1, unitSystem: null));
+        }
+
+        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new ApparentEnergy(value: 1, unitSystem: UnitSystem.SI);
@@ -127,6 +146,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity02.VoltampereHours, VoltampereHoursTolerance);
             Assert.Equal(ApparentEnergyUnit.VoltampereHour, quantity02.Unit);
 
+        }
+
+        [Fact]
+        public void FromVoltampereHours_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => ApparentEnergy.FromVoltampereHours(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => ApparentEnergy.FromVoltampereHours(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromVoltampereHours_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => ApparentEnergy.FromVoltampereHours(double.NaN));
         }
 
         [Fact]

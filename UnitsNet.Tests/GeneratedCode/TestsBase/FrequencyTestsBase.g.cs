@@ -115,6 +115,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Frequency(double.PositiveInfinity, FrequencyUnit.Hertz));
+            Assert.Throws<ArgumentException>(() => new Frequency(double.NegativeInfinity, FrequencyUnit.Hertz));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Frequency(double.NaN, FrequencyUnit.Hertz));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Frequency(value: 1, unitSystem: null));
+        }
+
+        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new Frequency(value: 1, unitSystem: UnitSystem.SI);
@@ -217,6 +236,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity12.Terahertz, TerahertzTolerance);
             Assert.Equal(FrequencyUnit.Terahertz, quantity12.Unit);
 
+        }
+
+        [Fact]
+        public void FromHertz_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Frequency.FromHertz(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Frequency.FromHertz(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromHertz_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Frequency.FromHertz(double.NaN));
         }
 
         [Fact]

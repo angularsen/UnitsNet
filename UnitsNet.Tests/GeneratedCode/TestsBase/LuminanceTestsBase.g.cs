@@ -103,6 +103,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Luminance(double.PositiveInfinity, LuminanceUnit.CandelaPerSquareMeter));
+            Assert.Throws<ArgumentException>(() => new Luminance(double.NegativeInfinity, LuminanceUnit.CandelaPerSquareMeter));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Luminance(double.NaN, LuminanceUnit.CandelaPerSquareMeter));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Luminance(value: 1, unitSystem: null));
+        }
+
+        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new Luminance(value: 1, unitSystem: UnitSystem.SI);
@@ -190,6 +209,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity09.Nits, NitsTolerance);
             Assert.Equal(LuminanceUnit.Nit, quantity09.Unit);
 
+        }
+
+        [Fact]
+        public void FromCandelasPerSquareMeter_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Luminance.FromCandelasPerSquareMeter(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Luminance.FromCandelasPerSquareMeter(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromCandelasPerSquareMeter_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Luminance.FromCandelasPerSquareMeter(double.NaN));
         }
 
         [Fact]

@@ -119,6 +119,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Irradiance(double.PositiveInfinity, IrradianceUnit.WattPerSquareMeter));
+            Assert.Throws<ArgumentException>(() => new Irradiance(double.NegativeInfinity, IrradianceUnit.WattPerSquareMeter));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Irradiance(double.NaN, IrradianceUnit.WattPerSquareMeter));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Irradiance(value: 1, unitSystem: null));
+        }
+
+        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new Irradiance(value: 1, unitSystem: UnitSystem.SI);
@@ -226,6 +245,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity13.WattsPerSquareMeter, WattsPerSquareMeterTolerance);
             Assert.Equal(IrradianceUnit.WattPerSquareMeter, quantity13.Unit);
 
+        }
+
+        [Fact]
+        public void FromWattsPerSquareMeter_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Irradiance.FromWattsPerSquareMeter(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Irradiance.FromWattsPerSquareMeter(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromWattsPerSquareMeter_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Irradiance.FromWattsPerSquareMeter(double.NaN));
         }
 
         [Fact]

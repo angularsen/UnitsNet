@@ -75,6 +75,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new MolarEnergy(double.PositiveInfinity, MolarEnergyUnit.JoulePerMole));
+            Assert.Throws<ArgumentException>(() => new MolarEnergy(double.NegativeInfinity, MolarEnergyUnit.JoulePerMole));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new MolarEnergy(double.NaN, MolarEnergyUnit.JoulePerMole));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new MolarEnergy(value: 1, unitSystem: null));
+        }
+
+        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new MolarEnergy(value: 1, unitSystem: UnitSystem.SI);
@@ -127,6 +146,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity02.MegajoulesPerMole, MegajoulesPerMoleTolerance);
             Assert.Equal(MolarEnergyUnit.MegajoulePerMole, quantity02.Unit);
 
+        }
+
+        [Fact]
+        public void FromJoulesPerMole_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => MolarEnergy.FromJoulesPerMole(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => MolarEnergy.FromJoulesPerMole(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromJoulesPerMole_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => MolarEnergy.FromJoulesPerMole(double.NaN));
         }
 
         [Fact]

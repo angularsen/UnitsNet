@@ -79,6 +79,25 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new SpecificFuelConsumption(double.PositiveInfinity, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond));
+            Assert.Throws<ArgumentException>(() => new SpecificFuelConsumption(double.NegativeInfinity, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new SpecificFuelConsumption(double.NaN, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond));
+        }
+
+        [Fact]
+        public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new SpecificFuelConsumption(value: 1, unitSystem: null));
+        }
+
+        [Fact]
         public void Ctor_SIUnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             Func<object> TestCode = () => new SpecificFuelConsumption(value: 1, unitSystem: UnitSystem.SI);
@@ -136,6 +155,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity03.PoundsMassPerPoundForceHour, PoundsMassPerPoundForceHourTolerance);
             Assert.Equal(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, quantity03.Unit);
 
+        }
+
+        [Fact]
+        public void FromGramsPerKiloNewtonSecond_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromGramsPerKiloNewtonSecond_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(double.NaN));
         }
 
         [Fact]
