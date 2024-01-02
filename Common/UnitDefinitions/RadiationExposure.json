@@ -32,6 +32,7 @@
       "PluralName": "Roentgens",
       "FromUnitToBaseFunc": "{x} * 2.58e-4",
       "FromBaseToUnitFunc": "{x} / 2.58e-4",
+      "Prefixes": [ "Micro", "Milli" ],
       "BaseUnits": {
         "M": "Kilogram",
         "T": "Second",
