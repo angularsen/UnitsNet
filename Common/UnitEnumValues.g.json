@@ -1825,5 +1825,15 @@
     "Picobecquerel": 36,
     "Picocurie": 35,
     "Picorutherford": 25
+  },
+  "RadiationExposure": {
+    "CoulombPerKilogram": 10,
+    "MicrocoulombPerKilogram": 3,
+    "MillicoulombPerKilogram": 2,
+    "NanocoulombPerKilogram": 6,
+    "PicocoulombPerKilogram": 5,
+    "Roentgen": 4,
+    "Microroentgen": 12,
+    "Milliroentgen": 13
   }
 }
