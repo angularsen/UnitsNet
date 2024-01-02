@@ -1832,6 +1832,8 @@
     "MillicoulombPerKilogram": 2,
     "NanocoulombPerKilogram": 6,
     "PicocoulombPerKilogram": 5,
-    "Roentgen": 4
+    "Roentgen": 4,
+    "Microroentgen": 12,
+    "Milliroentgen": 13
   }
 }

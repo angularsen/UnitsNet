@@ -14,5 +14,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double NanocoulombsPerKilogramInOneCoulombPerKilogram => 1e+9;
         protected override double PicocoulombsPerKilogramInOneCoulombPerKilogram => 1e+12;
         protected override double RoentgensInOneCoulombPerKilogram => 3875.9689922;
+        protected override double MilliroentgensInOneCoulombPerKilogram => 3875.9689922e+3;
+        protected override double MicroroentgensInOneCoulombPerKilogram => 3875.9689922e+6;
     }
 }

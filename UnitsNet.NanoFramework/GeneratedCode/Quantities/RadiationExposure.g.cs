@@ -90,9 +90,19 @@ namespace UnitsNet
         public double MicrocoulombsPerKilogram => As(RadiationExposureUnit.MicrocoulombPerKilogram);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationExposureUnit.Microroentgen"/>
+        /// </summary>
+        public double Microroentgens => As(RadiationExposureUnit.Microroentgen);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationExposureUnit.MillicoulombPerKilogram"/>
         /// </summary>
         public double MillicoulombsPerKilogram => As(RadiationExposureUnit.MillicoulombPerKilogram);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationExposureUnit.Milliroentgen"/>
+        /// </summary>
+        public double Milliroentgens => As(RadiationExposureUnit.Milliroentgen);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationExposureUnit.NanocoulombPerKilogram"/>
@@ -126,10 +136,22 @@ namespace UnitsNet
         public static RadiationExposure FromMicrocoulombsPerKilogram(double microcoulombsperkilogram) => new RadiationExposure(microcoulombsperkilogram, RadiationExposureUnit.MicrocoulombPerKilogram);
 
         /// <summary>
+        ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.Microroentgen"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static RadiationExposure FromMicroroentgens(double microroentgens) => new RadiationExposure(microroentgens, RadiationExposureUnit.Microroentgen);
+
+        /// <summary>
         ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.MillicoulombPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RadiationExposure FromMillicoulombsPerKilogram(double millicoulombsperkilogram) => new RadiationExposure(millicoulombsperkilogram, RadiationExposureUnit.MillicoulombPerKilogram);
+
+        /// <summary>
+        ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.Milliroentgen"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static RadiationExposure FromMilliroentgens(double milliroentgens) => new RadiationExposure(milliroentgens, RadiationExposureUnit.Milliroentgen);
 
         /// <summary>
         ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.NanocoulombPerKilogram"/>.
@@ -191,7 +213,9 @@ namespace UnitsNet
                     {
                         RadiationExposureUnit.CoulombPerKilogram => _value,
                         RadiationExposureUnit.MicrocoulombPerKilogram => (_value) * 1e-6d,
+                        RadiationExposureUnit.Microroentgen => (_value * 2.58e-4) * 1e-6d,
                         RadiationExposureUnit.MillicoulombPerKilogram => (_value) * 1e-3d,
+                        RadiationExposureUnit.Milliroentgen => (_value * 2.58e-4) * 1e-3d,
                         RadiationExposureUnit.NanocoulombPerKilogram => (_value) * 1e-9d,
                         RadiationExposureUnit.PicocoulombPerKilogram => (_value) * 1e-12d,
                         RadiationExposureUnit.Roentgen => _value * 2.58e-4,
@@ -210,7 +234,9 @@ namespace UnitsNet
                     {
                         RadiationExposureUnit.CoulombPerKilogram => baseUnitValue,
                         RadiationExposureUnit.MicrocoulombPerKilogram => (baseUnitValue) / 1e-6d,
+                        RadiationExposureUnit.Microroentgen => (baseUnitValue / 2.58e-4) / 1e-6d,
                         RadiationExposureUnit.MillicoulombPerKilogram => (baseUnitValue) / 1e-3d,
+                        RadiationExposureUnit.Milliroentgen => (baseUnitValue / 2.58e-4) / 1e-3d,
                         RadiationExposureUnit.NanocoulombPerKilogram => (baseUnitValue) / 1e-9d,
                         RadiationExposureUnit.PicocoulombPerKilogram => (baseUnitValue) / 1e-12d,
                         RadiationExposureUnit.Roentgen => baseUnitValue / 2.58e-4,

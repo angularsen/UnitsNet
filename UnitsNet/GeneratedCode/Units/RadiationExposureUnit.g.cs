@@ -27,7 +27,9 @@ namespace UnitsNet.Units
     {
         CoulombPerKilogram = 10,
         MicrocoulombPerKilogram = 3,
+        Microroentgen = 12,
         MillicoulombPerKilogram = 2,
+        Milliroentgen = 13,
         NanocoulombPerKilogram = 6,
         PicocoulombPerKilogram = 5,
         Roentgen = 4,

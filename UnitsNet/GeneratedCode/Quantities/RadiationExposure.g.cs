@@ -67,7 +67,9 @@ namespace UnitsNet
                 {
                     new UnitInfo<RadiationExposureUnit>(RadiationExposureUnit.CoulombPerKilogram, "CoulombsPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "RadiationExposure"),
                     new UnitInfo<RadiationExposureUnit>(RadiationExposureUnit.MicrocoulombPerKilogram, "MicrocoulombsPerKilogram", BaseUnits.Undefined, "RadiationExposure"),
+                    new UnitInfo<RadiationExposureUnit>(RadiationExposureUnit.Microroentgen, "Microroentgens", BaseUnits.Undefined, "RadiationExposure"),
                     new UnitInfo<RadiationExposureUnit>(RadiationExposureUnit.MillicoulombPerKilogram, "MillicoulombsPerKilogram", BaseUnits.Undefined, "RadiationExposure"),
+                    new UnitInfo<RadiationExposureUnit>(RadiationExposureUnit.Milliroentgen, "Milliroentgens", BaseUnits.Undefined, "RadiationExposure"),
                     new UnitInfo<RadiationExposureUnit>(RadiationExposureUnit.NanocoulombPerKilogram, "NanocoulombsPerKilogram", BaseUnits.Undefined, "RadiationExposure"),
                     new UnitInfo<RadiationExposureUnit>(RadiationExposureUnit.PicocoulombPerKilogram, "PicocoulombsPerKilogram", BaseUnits.Undefined, "RadiationExposure"),
                     new UnitInfo<RadiationExposureUnit>(RadiationExposureUnit.Roentgen, "Roentgens", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "RadiationExposure"),
@@ -185,9 +187,19 @@ namespace UnitsNet
         public double MicrocoulombsPerKilogram => As(RadiationExposureUnit.MicrocoulombPerKilogram);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationExposureUnit.Microroentgen"/>
+        /// </summary>
+        public double Microroentgens => As(RadiationExposureUnit.Microroentgen);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationExposureUnit.MillicoulombPerKilogram"/>
         /// </summary>
         public double MillicoulombsPerKilogram => As(RadiationExposureUnit.MillicoulombPerKilogram);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationExposureUnit.Milliroentgen"/>
+        /// </summary>
+        public double Milliroentgens => As(RadiationExposureUnit.Milliroentgen);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationExposureUnit.NanocoulombPerKilogram"/>
@@ -216,7 +228,9 @@ namespace UnitsNet
         {
             // Register in unit converter: RadiationExposureUnit -> BaseUnit
             unitConverter.SetConversionFunction<RadiationExposure>(RadiationExposureUnit.MicrocoulombPerKilogram, RadiationExposureUnit.CoulombPerKilogram, quantity => quantity.ToUnit(RadiationExposureUnit.CoulombPerKilogram));
+            unitConverter.SetConversionFunction<RadiationExposure>(RadiationExposureUnit.Microroentgen, RadiationExposureUnit.CoulombPerKilogram, quantity => quantity.ToUnit(RadiationExposureUnit.CoulombPerKilogram));
             unitConverter.SetConversionFunction<RadiationExposure>(RadiationExposureUnit.MillicoulombPerKilogram, RadiationExposureUnit.CoulombPerKilogram, quantity => quantity.ToUnit(RadiationExposureUnit.CoulombPerKilogram));
+            unitConverter.SetConversionFunction<RadiationExposure>(RadiationExposureUnit.Milliroentgen, RadiationExposureUnit.CoulombPerKilogram, quantity => quantity.ToUnit(RadiationExposureUnit.CoulombPerKilogram));
             unitConverter.SetConversionFunction<RadiationExposure>(RadiationExposureUnit.NanocoulombPerKilogram, RadiationExposureUnit.CoulombPerKilogram, quantity => quantity.ToUnit(RadiationExposureUnit.CoulombPerKilogram));
             unitConverter.SetConversionFunction<RadiationExposure>(RadiationExposureUnit.PicocoulombPerKilogram, RadiationExposureUnit.CoulombPerKilogram, quantity => quantity.ToUnit(RadiationExposureUnit.CoulombPerKilogram));
             unitConverter.SetConversionFunction<RadiationExposure>(RadiationExposureUnit.Roentgen, RadiationExposureUnit.CoulombPerKilogram, quantity => quantity.ToUnit(RadiationExposureUnit.CoulombPerKilogram));
@@ -226,7 +240,9 @@ namespace UnitsNet
 
             // Register in unit converter: BaseUnit -> RadiationExposureUnit
             unitConverter.SetConversionFunction<RadiationExposure>(RadiationExposureUnit.CoulombPerKilogram, RadiationExposureUnit.MicrocoulombPerKilogram, quantity => quantity.ToUnit(RadiationExposureUnit.MicrocoulombPerKilogram));
+            unitConverter.SetConversionFunction<RadiationExposure>(RadiationExposureUnit.CoulombPerKilogram, RadiationExposureUnit.Microroentgen, quantity => quantity.ToUnit(RadiationExposureUnit.Microroentgen));
             unitConverter.SetConversionFunction<RadiationExposure>(RadiationExposureUnit.CoulombPerKilogram, RadiationExposureUnit.MillicoulombPerKilogram, quantity => quantity.ToUnit(RadiationExposureUnit.MillicoulombPerKilogram));
+            unitConverter.SetConversionFunction<RadiationExposure>(RadiationExposureUnit.CoulombPerKilogram, RadiationExposureUnit.Milliroentgen, quantity => quantity.ToUnit(RadiationExposureUnit.Milliroentgen));
             unitConverter.SetConversionFunction<RadiationExposure>(RadiationExposureUnit.CoulombPerKilogram, RadiationExposureUnit.NanocoulombPerKilogram, quantity => quantity.ToUnit(RadiationExposureUnit.NanocoulombPerKilogram));
             unitConverter.SetConversionFunction<RadiationExposure>(RadiationExposureUnit.CoulombPerKilogram, RadiationExposureUnit.PicocoulombPerKilogram, quantity => quantity.ToUnit(RadiationExposureUnit.PicocoulombPerKilogram));
             unitConverter.SetConversionFunction<RadiationExposure>(RadiationExposureUnit.CoulombPerKilogram, RadiationExposureUnit.Roentgen, quantity => quantity.ToUnit(RadiationExposureUnit.Roentgen));
@@ -278,6 +294,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.Microroentgen"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static RadiationExposure FromMicroroentgens(QuantityValue microroentgens)
+        {
+            double value = (double) microroentgens;
+            return new RadiationExposure(value, RadiationExposureUnit.Microroentgen);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.MillicoulombPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -285,6 +311,16 @@ namespace UnitsNet
         {
             double value = (double) millicoulombsperkilogram;
             return new RadiationExposure(value, RadiationExposureUnit.MillicoulombPerKilogram);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.Milliroentgen"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static RadiationExposure FromMilliroentgens(QuantityValue milliroentgens)
+        {
+            double value = (double) milliroentgens;
+            return new RadiationExposure(value, RadiationExposureUnit.Milliroentgen);
         }
 
         /// <summary>
@@ -811,14 +847,18 @@ namespace UnitsNet
             {
                 // RadiationExposureUnit -> BaseUnit
                 (RadiationExposureUnit.MicrocoulombPerKilogram, RadiationExposureUnit.CoulombPerKilogram) => new RadiationExposure((_value) * 1e-6d, RadiationExposureUnit.CoulombPerKilogram),
+                (RadiationExposureUnit.Microroentgen, RadiationExposureUnit.CoulombPerKilogram) => new RadiationExposure((_value * 2.58e-4) * 1e-6d, RadiationExposureUnit.CoulombPerKilogram),
                 (RadiationExposureUnit.MillicoulombPerKilogram, RadiationExposureUnit.CoulombPerKilogram) => new RadiationExposure((_value) * 1e-3d, RadiationExposureUnit.CoulombPerKilogram),
+                (RadiationExposureUnit.Milliroentgen, RadiationExposureUnit.CoulombPerKilogram) => new RadiationExposure((_value * 2.58e-4) * 1e-3d, RadiationExposureUnit.CoulombPerKilogram),
                 (RadiationExposureUnit.NanocoulombPerKilogram, RadiationExposureUnit.CoulombPerKilogram) => new RadiationExposure((_value) * 1e-9d, RadiationExposureUnit.CoulombPerKilogram),
                 (RadiationExposureUnit.PicocoulombPerKilogram, RadiationExposureUnit.CoulombPerKilogram) => new RadiationExposure((_value) * 1e-12d, RadiationExposureUnit.CoulombPerKilogram),
                 (RadiationExposureUnit.Roentgen, RadiationExposureUnit.CoulombPerKilogram) => new RadiationExposure(_value * 2.58e-4, RadiationExposureUnit.CoulombPerKilogram),
 
                 // BaseUnit -> RadiationExposureUnit
                 (RadiationExposureUnit.CoulombPerKilogram, RadiationExposureUnit.MicrocoulombPerKilogram) => new RadiationExposure((_value) / 1e-6d, RadiationExposureUnit.MicrocoulombPerKilogram),
+                (RadiationExposureUnit.CoulombPerKilogram, RadiationExposureUnit.Microroentgen) => new RadiationExposure((_value / 2.58e-4) / 1e-6d, RadiationExposureUnit.Microroentgen),
                 (RadiationExposureUnit.CoulombPerKilogram, RadiationExposureUnit.MillicoulombPerKilogram) => new RadiationExposure((_value) / 1e-3d, RadiationExposureUnit.MillicoulombPerKilogram),
+                (RadiationExposureUnit.CoulombPerKilogram, RadiationExposureUnit.Milliroentgen) => new RadiationExposure((_value / 2.58e-4) / 1e-3d, RadiationExposureUnit.Milliroentgen),
                 (RadiationExposureUnit.CoulombPerKilogram, RadiationExposureUnit.NanocoulombPerKilogram) => new RadiationExposure((_value) / 1e-9d, RadiationExposureUnit.NanocoulombPerKilogram),
                 (RadiationExposureUnit.CoulombPerKilogram, RadiationExposureUnit.PicocoulombPerKilogram) => new RadiationExposure((_value) / 1e-12d, RadiationExposureUnit.PicocoulombPerKilogram),
                 (RadiationExposureUnit.CoulombPerKilogram, RadiationExposureUnit.Roentgen) => new RadiationExposure(_value / 2.58e-4, RadiationExposureUnit.Roentgen),

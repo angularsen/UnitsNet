@@ -33,8 +33,16 @@ namespace UnitsNet.Tests
             Assert.Equal(RadiationExposure.FromMicrocoulombsPerKilogram(2), 2.MicrocoulombsPerKilogram());
 
         [Fact]
+        public void NumberToMicroroentgensTest() =>
+            Assert.Equal(RadiationExposure.FromMicroroentgens(2), 2.Microroentgens());
+
+        [Fact]
         public void NumberToMillicoulombsPerKilogramTest() =>
             Assert.Equal(RadiationExposure.FromMillicoulombsPerKilogram(2), 2.MillicoulombsPerKilogram());
+
+        [Fact]
+        public void NumberToMilliroentgensTest() =>
+            Assert.Equal(RadiationExposure.FromMilliroentgens(2), 2.Milliroentgens());
 
         [Fact]
         public void NumberToNanocoulombsPerKilogramTest() =>
