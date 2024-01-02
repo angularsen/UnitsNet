@@ -32,21 +32,21 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureGradient
     /// </summary>
     public static class NumberToTemperatureGradientExtensions
     {
-        /// <inheritdoc cref="TemperatureGradient.FromDegreesCelciusPerKilometer(UnitsNet.QuantityValue)" />
-        public static TemperatureGradient DegreesCelciusPerKilometer<T>(this T value)
+        /// <inheritdoc cref="TemperatureGradient.FromDegreesCelsiusPerKilometer(UnitsNet.QuantityValue)" />
+        public static TemperatureGradient DegreesCelsiusPerKilometer<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
 #endif
-            => TemperatureGradient.FromDegreesCelciusPerKilometer(Convert.ToDouble(value));
+            => TemperatureGradient.FromDegreesCelsiusPerKilometer(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureGradient.FromDegreesCelciusPerMeter(UnitsNet.QuantityValue)" />
-        public static TemperatureGradient DegreesCelciusPerMeter<T>(this T value)
+        /// <inheritdoc cref="TemperatureGradient.FromDegreesCelsiusPerMeter(UnitsNet.QuantityValue)" />
+        public static TemperatureGradient DegreesCelsiusPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
 #endif
-            => TemperatureGradient.FromDegreesCelciusPerMeter(Convert.ToDouble(value));
+            => TemperatureGradient.FromDegreesCelsiusPerMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="TemperatureGradient.FromDegreesFahrenheitPerFoot(UnitsNet.QuantityValue)" />
         public static TemperatureGradient DegreesFahrenheitPerFoot<T>(this T value)

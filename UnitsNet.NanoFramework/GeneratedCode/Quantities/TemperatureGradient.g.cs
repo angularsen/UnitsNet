@@ -82,12 +82,12 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureGradientUnit.DegreeCelsiusPerKilometer"/>
         /// </summary>
-        public double DegreesCelciusPerKilometer => As(TemperatureGradientUnit.DegreeCelsiusPerKilometer);
+        public double DegreesCelsiusPerKilometer => As(TemperatureGradientUnit.DegreeCelsiusPerKilometer);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureGradientUnit.DegreeCelsiusPerMeter"/>
         /// </summary>
-        public double DegreesCelciusPerMeter => As(TemperatureGradientUnit.DegreeCelsiusPerMeter);
+        public double DegreesCelsiusPerMeter => As(TemperatureGradientUnit.DegreeCelsiusPerMeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureGradientUnit.DegreeFahrenheitPerFoot"/>
@@ -107,13 +107,13 @@ namespace UnitsNet
         ///     Creates a <see cref="TemperatureGradient"/> from <see cref="TemperatureGradientUnit.DegreeCelsiusPerKilometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static TemperatureGradient FromDegreesCelciusPerKilometer(double degreescelciusperkilometer) => new TemperatureGradient(degreescelciusperkilometer, TemperatureGradientUnit.DegreeCelsiusPerKilometer);
+        public static TemperatureGradient FromDegreesCelsiusPerKilometer(double degreescelsiusperkilometer) => new TemperatureGradient(degreescelsiusperkilometer, TemperatureGradientUnit.DegreeCelsiusPerKilometer);
 
         /// <summary>
         ///     Creates a <see cref="TemperatureGradient"/> from <see cref="TemperatureGradientUnit.DegreeCelsiusPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static TemperatureGradient FromDegreesCelciusPerMeter(double degreescelciuspermeter) => new TemperatureGradient(degreescelciuspermeter, TemperatureGradientUnit.DegreeCelsiusPerMeter);
+        public static TemperatureGradient FromDegreesCelsiusPerMeter(double degreescelsiuspermeter) => new TemperatureGradient(degreescelsiuspermeter, TemperatureGradientUnit.DegreeCelsiusPerMeter);
 
         /// <summary>
         ///     Creates a <see cref="TemperatureGradient"/> from <see cref="TemperatureGradientUnit.DegreeFahrenheitPerFoot"/>.
