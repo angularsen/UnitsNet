@@ -118,6 +118,7 @@ namespace UnitsNet.Tests
             Assertion(3, PowerRatioUnit.DecibelWatt, Quantity.From(3, PowerRatioUnit.DecibelWatt));
             Assertion(3, PressureUnit.Torr, Quantity.From(3, PressureUnit.Torr));
             Assertion(3, PressureChangeRateUnit.PoundForcePerSquareInchPerSecond, Quantity.From(3, PressureChangeRateUnit.PoundForcePerSquareInchPerSecond));
+            Assertion(3, RadiationExposureUnit.Roentgen, Quantity.From(3, RadiationExposureUnit.Roentgen));
             Assertion(3, RadioactivityUnit.Terarutherford, Quantity.From(3, RadioactivityUnit.Terarutherford));
             Assertion(3, RatioUnit.Percent, Quantity.From(3, RatioUnit.Percent));
             Assertion(3, RatioChangeRateUnit.PercentPerSecond, Quantity.From(3, RatioChangeRateUnit.PercentPerSecond));
@@ -247,6 +248,7 @@ namespace UnitsNet.Tests
             Assertion(PowerRatio.Info, PowerRatio.Zero);
             Assertion(Pressure.Info, Pressure.Zero);
             Assertion(PressureChangeRate.Info, PressureChangeRate.Zero);
+            Assertion(RadiationExposure.Info, RadiationExposure.Zero);
             Assertion(Radioactivity.Info, Radioactivity.Zero);
             Assertion(Ratio.Info, Ratio.Zero);
             Assertion(RatioChangeRate.Info, RatioChangeRate.Zero);
@@ -376,6 +378,7 @@ namespace UnitsNet.Tests
             Assertion(PowerRatio.BaseDimensions, PowerRatio.Zero);
             Assertion(Pressure.BaseDimensions, Pressure.Zero);
             Assertion(PressureChangeRate.BaseDimensions, PressureChangeRate.Zero);
+            Assertion(RadiationExposure.BaseDimensions, RadiationExposure.Zero);
             Assertion(Radioactivity.BaseDimensions, Radioactivity.Zero);
             Assertion(Ratio.BaseDimensions, Ratio.Zero);
             Assertion(RatioChangeRate.BaseDimensions, RatioChangeRate.Zero);
