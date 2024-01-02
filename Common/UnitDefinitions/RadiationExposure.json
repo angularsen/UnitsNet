@@ -19,7 +19,7 @@
         "T": "Second",
         "I": "Ampere"
       },
-      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Kilo", "Mega" ],
+      "Prefixes": [ "Pico", "Nano", "Micro", "Milli" ],
       "Localization": [
         {
           "Culture": "en-US",
