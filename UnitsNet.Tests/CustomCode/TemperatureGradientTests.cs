@@ -26,9 +26,9 @@ namespace UnitsNet.Tests.CustomCode
     {
         protected override bool SupportsSIUnitSystem => true;
 
-        protected override double DegreesCelciusPerKilometerInOneKelvinPerMeter => 1000;
+        protected override double DegreesCelsiusPerKilometerInOneKelvinPerMeter => 1000;
 
-        protected override double DegreesCelciusPerMeterInOneKelvinPerMeter => 1;
+        protected override double DegreesCelsiusPerMeterInOneKelvinPerMeter => 1;
 
         protected override double DegreesFahrenheitPerFootInOneKelvinPerMeter => 0.54864;
 
@@ -37,7 +37,7 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void TemperatureDeltaDividedByTemperatureGradientEqualsLength()
         {
-            Length length = TemperatureDelta.FromDegreesCelsius(50) / TemperatureGradient.FromDegreesCelciusPerKilometer(5);
+            Length length = TemperatureDelta.FromDegreesCelsius(50) / TemperatureGradient.FromDegreesCelsiusPerKilometer(5);
             Assert.Equal(length, Length.FromKilometers(10));
         }
 
@@ -45,20 +45,20 @@ namespace UnitsNet.Tests.CustomCode
         public void TemperatureDeltaDividedByLengthEqualsTemperatureGradient()
         {
             TemperatureGradient temperatureGradient = TemperatureDelta.FromDegreesCelsius(50) / Length.FromKilometers(10);
-            Assert.Equal(5, temperatureGradient.DegreesCelciusPerKilometer);
+            Assert.Equal(5, temperatureGradient.DegreesCelsiusPerKilometer);
         }
 
         [Fact]
         public void LengthMultipliedByTemperatureGradientEqualsTemperatureDelta()
         {
-            TemperatureDelta temperatureDelta = Length.FromKilometers(10) * TemperatureGradient.FromDegreesCelciusPerKilometer(5);
+            TemperatureDelta temperatureDelta = Length.FromKilometers(10) * TemperatureGradient.FromDegreesCelsiusPerKilometer(5);
             Assert.Equal(temperatureDelta, TemperatureDelta.FromDegreesCelsius(50));
         }
 
         [Fact]
         public void TemperatureGradientMultipliedByLengthEqualsTemperatureDelta()
         {
-            TemperatureDelta temperatureDelta = TemperatureGradient.FromDegreesCelciusPerKilometer(5) * Length.FromKilometers(10);
+            TemperatureDelta temperatureDelta = TemperatureGradient.FromDegreesCelsiusPerKilometer(5) * Length.FromKilometers(10);
             Assert.Equal(temperatureDelta, TemperatureDelta.FromDegreesCelsius(50));
         }
     }

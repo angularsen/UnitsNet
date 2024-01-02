@@ -8,7 +8,7 @@ namespace UnitsNet
         /// <summary>Get <see cref="Length"/> from <see cref="TemperatureDelta"/> divided by <see cref="TemperatureGradient"/>.</summary>
         public static Length operator /(TemperatureDelta left, TemperatureGradient right)
         {
-            return Length.FromKilometers(left.Kelvins / right.DegreesCelciusPerKilometer);
+            return Length.FromKilometers(left.Kelvins / right.DegreesCelsiusPerKilometer);
         }
 
         /// <summary>Get <see cref="TemperatureDelta"/> from <see cref="Length"/> times <see cref="TemperatureGradient"/>.</summary>
@@ -17,7 +17,7 @@ namespace UnitsNet
         /// <summary>Get <see cref="TemperatureDelta"/> from <see cref="TemperatureGradient"/> times <see cref="Length"/>.</summary>
         public static TemperatureDelta operator *(TemperatureGradient left, Length right)
         {
-            return TemperatureDelta.FromDegreesCelsius(left.DegreesCelciusPerKilometer * right.Kilometers);
+            return TemperatureDelta.FromDegreesCelsius(left.DegreesCelsiusPerKilometer * right.Kilometers);
         }
     }
 }

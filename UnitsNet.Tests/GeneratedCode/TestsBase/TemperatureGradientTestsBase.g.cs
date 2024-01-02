@@ -38,14 +38,14 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class TemperatureGradientTestsBase : QuantityTestsBase
     {
-        protected abstract double DegreesCelciusPerKilometerInOneKelvinPerMeter { get; }
-        protected abstract double DegreesCelciusPerMeterInOneKelvinPerMeter { get; }
+        protected abstract double DegreesCelsiusPerKilometerInOneKelvinPerMeter { get; }
+        protected abstract double DegreesCelsiusPerMeterInOneKelvinPerMeter { get; }
         protected abstract double DegreesFahrenheitPerFootInOneKelvinPerMeter { get; }
         protected abstract double KelvinsPerMeterInOneKelvinPerMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double DegreesCelciusPerKilometerTolerance { get { return 1e-5; } }
-        protected virtual double DegreesCelciusPerMeterTolerance { get { return 1e-5; } }
+        protected virtual double DegreesCelsiusPerKilometerTolerance { get { return 1e-5; } }
+        protected virtual double DegreesCelsiusPerMeterTolerance { get { return 1e-5; } }
         protected virtual double DegreesFahrenheitPerFootTolerance { get { return 1e-5; } }
         protected virtual double KelvinsPerMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
@@ -54,8 +54,8 @@ namespace UnitsNet.Tests
         {
             return unit switch
             {
-                TemperatureGradientUnit.DegreeCelsiusPerKilometer => (DegreesCelciusPerKilometerInOneKelvinPerMeter, DegreesCelciusPerKilometerTolerance),
-                TemperatureGradientUnit.DegreeCelsiusPerMeter => (DegreesCelciusPerMeterInOneKelvinPerMeter, DegreesCelciusPerMeterTolerance),
+                TemperatureGradientUnit.DegreeCelsiusPerKilometer => (DegreesCelsiusPerKilometerInOneKelvinPerMeter, DegreesCelsiusPerKilometerTolerance),
+                TemperatureGradientUnit.DegreeCelsiusPerMeter => (DegreesCelsiusPerMeterInOneKelvinPerMeter, DegreesCelsiusPerMeterTolerance),
                 TemperatureGradientUnit.DegreeFahrenheitPerFoot => (DegreesFahrenheitPerFootInOneKelvinPerMeter, DegreesFahrenheitPerFootTolerance),
                 TemperatureGradientUnit.KelvinPerMeter => (KelvinsPerMeterInOneKelvinPerMeter, KelvinsPerMeterTolerance),
                 _ => throw new NotSupportedException()
@@ -135,8 +135,8 @@ namespace UnitsNet.Tests
         public void KelvinPerMeterToTemperatureGradientUnits()
         {
             TemperatureGradient kelvinpermeter = TemperatureGradient.FromKelvinsPerMeter(1);
-            AssertEx.EqualTolerance(DegreesCelciusPerKilometerInOneKelvinPerMeter, kelvinpermeter.DegreesCelciusPerKilometer, DegreesCelciusPerKilometerTolerance);
-            AssertEx.EqualTolerance(DegreesCelciusPerMeterInOneKelvinPerMeter, kelvinpermeter.DegreesCelciusPerMeter, DegreesCelciusPerMeterTolerance);
+            AssertEx.EqualTolerance(DegreesCelsiusPerKilometerInOneKelvinPerMeter, kelvinpermeter.DegreesCelsiusPerKilometer, DegreesCelsiusPerKilometerTolerance);
+            AssertEx.EqualTolerance(DegreesCelsiusPerMeterInOneKelvinPerMeter, kelvinpermeter.DegreesCelsiusPerMeter, DegreesCelsiusPerMeterTolerance);
             AssertEx.EqualTolerance(DegreesFahrenheitPerFootInOneKelvinPerMeter, kelvinpermeter.DegreesFahrenheitPerFoot, DegreesFahrenheitPerFootTolerance);
             AssertEx.EqualTolerance(KelvinsPerMeterInOneKelvinPerMeter, kelvinpermeter.KelvinsPerMeter, KelvinsPerMeterTolerance);
         }
@@ -145,11 +145,11 @@ namespace UnitsNet.Tests
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
             var quantity00 = TemperatureGradient.From(1, TemperatureGradientUnit.DegreeCelsiusPerKilometer);
-            AssertEx.EqualTolerance(1, quantity00.DegreesCelciusPerKilometer, DegreesCelciusPerKilometerTolerance);
+            AssertEx.EqualTolerance(1, quantity00.DegreesCelsiusPerKilometer, DegreesCelsiusPerKilometerTolerance);
             Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerKilometer, quantity00.Unit);
 
             var quantity01 = TemperatureGradient.From(1, TemperatureGradientUnit.DegreeCelsiusPerMeter);
-            AssertEx.EqualTolerance(1, quantity01.DegreesCelciusPerMeter, DegreesCelciusPerMeterTolerance);
+            AssertEx.EqualTolerance(1, quantity01.DegreesCelsiusPerMeter, DegreesCelsiusPerMeterTolerance);
             Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerMeter, quantity01.Unit);
 
             var quantity02 = TemperatureGradient.From(1, TemperatureGradientUnit.DegreeFahrenheitPerFoot);
@@ -184,8 +184,8 @@ namespace UnitsNet.Tests
         public void As()
         {
             var kelvinpermeter = TemperatureGradient.FromKelvinsPerMeter(1);
-            AssertEx.EqualTolerance(DegreesCelciusPerKilometerInOneKelvinPerMeter, kelvinpermeter.As(TemperatureGradientUnit.DegreeCelsiusPerKilometer), DegreesCelciusPerKilometerTolerance);
-            AssertEx.EqualTolerance(DegreesCelciusPerMeterInOneKelvinPerMeter, kelvinpermeter.As(TemperatureGradientUnit.DegreeCelsiusPerMeter), DegreesCelciusPerMeterTolerance);
+            AssertEx.EqualTolerance(DegreesCelsiusPerKilometerInOneKelvinPerMeter, kelvinpermeter.As(TemperatureGradientUnit.DegreeCelsiusPerKilometer), DegreesCelsiusPerKilometerTolerance);
+            AssertEx.EqualTolerance(DegreesCelsiusPerMeterInOneKelvinPerMeter, kelvinpermeter.As(TemperatureGradientUnit.DegreeCelsiusPerMeter), DegreesCelsiusPerMeterTolerance);
             AssertEx.EqualTolerance(DegreesFahrenheitPerFootInOneKelvinPerMeter, kelvinpermeter.As(TemperatureGradientUnit.DegreeFahrenheitPerFoot), DegreesFahrenheitPerFootTolerance);
             AssertEx.EqualTolerance(KelvinsPerMeterInOneKelvinPerMeter, kelvinpermeter.As(TemperatureGradientUnit.KelvinPerMeter), KelvinsPerMeterTolerance);
         }
@@ -213,14 +213,14 @@ namespace UnitsNet.Tests
             try
             {
                 var parsed = TemperatureGradient.Parse("1 ∆°C/km", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DegreesCelciusPerKilometer, DegreesCelciusPerKilometerTolerance);
+                AssertEx.EqualTolerance(1, parsed.DegreesCelsiusPerKilometer, DegreesCelsiusPerKilometerTolerance);
                 Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerKilometer, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = TemperatureGradient.Parse("1 ∆°C/m", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DegreesCelciusPerMeter, DegreesCelciusPerMeterTolerance);
+                AssertEx.EqualTolerance(1, parsed.DegreesCelsiusPerMeter, DegreesCelsiusPerMeterTolerance);
                 Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerMeter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
@@ -245,13 +245,13 @@ namespace UnitsNet.Tests
         {
             {
                 Assert.True(TemperatureGradient.TryParse("1 ∆°C/km", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DegreesCelciusPerKilometer, DegreesCelciusPerKilometerTolerance);
+                AssertEx.EqualTolerance(1, parsed.DegreesCelsiusPerKilometer, DegreesCelsiusPerKilometerTolerance);
                 Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerKilometer, parsed.Unit);
             }
 
             {
                 Assert.True(TemperatureGradient.TryParse("1 ∆°C/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DegreesCelciusPerMeter, DegreesCelciusPerMeterTolerance);
+                AssertEx.EqualTolerance(1, parsed.DegreesCelsiusPerMeter, DegreesCelsiusPerMeterTolerance);
                 Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerMeter, parsed.Unit);
             }
 
@@ -369,8 +369,8 @@ namespace UnitsNet.Tests
         public void ConversionRoundTrip()
         {
             TemperatureGradient kelvinpermeter = TemperatureGradient.FromKelvinsPerMeter(1);
-            AssertEx.EqualTolerance(1, TemperatureGradient.FromDegreesCelciusPerKilometer(kelvinpermeter.DegreesCelciusPerKilometer).KelvinsPerMeter, DegreesCelciusPerKilometerTolerance);
-            AssertEx.EqualTolerance(1, TemperatureGradient.FromDegreesCelciusPerMeter(kelvinpermeter.DegreesCelciusPerMeter).KelvinsPerMeter, DegreesCelciusPerMeterTolerance);
+            AssertEx.EqualTolerance(1, TemperatureGradient.FromDegreesCelsiusPerKilometer(kelvinpermeter.DegreesCelsiusPerKilometer).KelvinsPerMeter, DegreesCelsiusPerKilometerTolerance);
+            AssertEx.EqualTolerance(1, TemperatureGradient.FromDegreesCelsiusPerMeter(kelvinpermeter.DegreesCelsiusPerMeter).KelvinsPerMeter, DegreesCelsiusPerMeterTolerance);
             AssertEx.EqualTolerance(1, TemperatureGradient.FromDegreesFahrenheitPerFoot(kelvinpermeter.DegreesFahrenheitPerFoot).KelvinsPerMeter, DegreesFahrenheitPerFootTolerance);
             AssertEx.EqualTolerance(1, TemperatureGradient.FromKelvinsPerMeter(kelvinpermeter.KelvinsPerMeter).KelvinsPerMeter, KelvinsPerMeterTolerance);
         }
