@@ -38,10 +38,10 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class DensityTestsBase : QuantityTestsBase
     {
-        protected abstract double CentigramsPerDeciLiterInOneKilogramPerCubicMeter { get; }
+        protected abstract double CentigramsPerDeciliterInOneKilogramPerCubicMeter { get; }
         protected abstract double CentigramsPerLiterInOneKilogramPerCubicMeter { get; }
         protected abstract double CentigramsPerMilliliterInOneKilogramPerCubicMeter { get; }
-        protected abstract double DecigramsPerDeciLiterInOneKilogramPerCubicMeter { get; }
+        protected abstract double DecigramsPerDeciliterInOneKilogramPerCubicMeter { get; }
         protected abstract double DecigramsPerLiterInOneKilogramPerCubicMeter { get; }
         protected abstract double DecigramsPerMilliliterInOneKilogramPerCubicMeter { get; }
         protected abstract double GramsPerCubicCentimeterInOneKilogramPerCubicMeter { get; }
@@ -49,7 +49,7 @@ namespace UnitsNet.Tests
         protected abstract double GramsPerCubicInchInOneKilogramPerCubicMeter { get; }
         protected abstract double GramsPerCubicMeterInOneKilogramPerCubicMeter { get; }
         protected abstract double GramsPerCubicMillimeterInOneKilogramPerCubicMeter { get; }
-        protected abstract double GramsPerDeciLiterInOneKilogramPerCubicMeter { get; }
+        protected abstract double GramsPerDeciliterInOneKilogramPerCubicMeter { get; }
         protected abstract double GramsPerLiterInOneKilogramPerCubicMeter { get; }
         protected abstract double GramsPerMilliliterInOneKilogramPerCubicMeter { get; }
         protected abstract double KilogramsPerCubicCentimeterInOneKilogramPerCubicMeter { get; }
@@ -59,17 +59,17 @@ namespace UnitsNet.Tests
         protected abstract double KilopoundsPerCubicFootInOneKilogramPerCubicMeter { get; }
         protected abstract double KilopoundsPerCubicInchInOneKilogramPerCubicMeter { get; }
         protected abstract double MicrogramsPerCubicMeterInOneKilogramPerCubicMeter { get; }
-        protected abstract double MicrogramsPerDeciLiterInOneKilogramPerCubicMeter { get; }
+        protected abstract double MicrogramsPerDeciliterInOneKilogramPerCubicMeter { get; }
         protected abstract double MicrogramsPerLiterInOneKilogramPerCubicMeter { get; }
         protected abstract double MicrogramsPerMilliliterInOneKilogramPerCubicMeter { get; }
         protected abstract double MilligramsPerCubicMeterInOneKilogramPerCubicMeter { get; }
-        protected abstract double MilligramsPerDeciLiterInOneKilogramPerCubicMeter { get; }
+        protected abstract double MilligramsPerDeciliterInOneKilogramPerCubicMeter { get; }
         protected abstract double MilligramsPerLiterInOneKilogramPerCubicMeter { get; }
         protected abstract double MilligramsPerMilliliterInOneKilogramPerCubicMeter { get; }
-        protected abstract double NanogramsPerDeciLiterInOneKilogramPerCubicMeter { get; }
+        protected abstract double NanogramsPerDeciliterInOneKilogramPerCubicMeter { get; }
         protected abstract double NanogramsPerLiterInOneKilogramPerCubicMeter { get; }
         protected abstract double NanogramsPerMilliliterInOneKilogramPerCubicMeter { get; }
-        protected abstract double PicogramsPerDeciLiterInOneKilogramPerCubicMeter { get; }
+        protected abstract double PicogramsPerDeciliterInOneKilogramPerCubicMeter { get; }
         protected abstract double PicogramsPerLiterInOneKilogramPerCubicMeter { get; }
         protected abstract double PicogramsPerMilliliterInOneKilogramPerCubicMeter { get; }
         protected abstract double PoundsPerCubicCentimeterInOneKilogramPerCubicMeter { get; }
@@ -91,10 +91,10 @@ namespace UnitsNet.Tests
         protected abstract double TonnesPerCubicMillimeterInOneKilogramPerCubicMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double CentigramsPerDeciLiterTolerance { get { return 1e-5; } }
+        protected virtual double CentigramsPerDeciliterTolerance { get { return 1e-5; } }
         protected virtual double CentigramsPerLiterTolerance { get { return 1e-5; } }
         protected virtual double CentigramsPerMilliliterTolerance { get { return 1e-5; } }
-        protected virtual double DecigramsPerDeciLiterTolerance { get { return 1e-5; } }
+        protected virtual double DecigramsPerDeciliterTolerance { get { return 1e-5; } }
         protected virtual double DecigramsPerLiterTolerance { get { return 1e-5; } }
         protected virtual double DecigramsPerMilliliterTolerance { get { return 1e-5; } }
         protected virtual double GramsPerCubicCentimeterTolerance { get { return 1e-5; } }
@@ -102,7 +102,7 @@ namespace UnitsNet.Tests
         protected virtual double GramsPerCubicInchTolerance { get { return 1e-5; } }
         protected virtual double GramsPerCubicMeterTolerance { get { return 1e-5; } }
         protected virtual double GramsPerCubicMillimeterTolerance { get { return 1e-5; } }
-        protected virtual double GramsPerDeciLiterTolerance { get { return 1e-5; } }
+        protected virtual double GramsPerDeciliterTolerance { get { return 1e-5; } }
         protected virtual double GramsPerLiterTolerance { get { return 1e-5; } }
         protected virtual double GramsPerMilliliterTolerance { get { return 1e-5; } }
         protected virtual double KilogramsPerCubicCentimeterTolerance { get { return 1e-5; } }
@@ -112,17 +112,17 @@ namespace UnitsNet.Tests
         protected virtual double KilopoundsPerCubicFootTolerance { get { return 1e-5; } }
         protected virtual double KilopoundsPerCubicInchTolerance { get { return 1e-5; } }
         protected virtual double MicrogramsPerCubicMeterTolerance { get { return 1e-5; } }
-        protected virtual double MicrogramsPerDeciLiterTolerance { get { return 1e-5; } }
+        protected virtual double MicrogramsPerDeciliterTolerance { get { return 1e-5; } }
         protected virtual double MicrogramsPerLiterTolerance { get { return 1e-5; } }
         protected virtual double MicrogramsPerMilliliterTolerance { get { return 1e-5; } }
         protected virtual double MilligramsPerCubicMeterTolerance { get { return 1e-5; } }
-        protected virtual double MilligramsPerDeciLiterTolerance { get { return 1e-5; } }
+        protected virtual double MilligramsPerDeciliterTolerance { get { return 1e-5; } }
         protected virtual double MilligramsPerLiterTolerance { get { return 1e-5; } }
         protected virtual double MilligramsPerMilliliterTolerance { get { return 1e-5; } }
-        protected virtual double NanogramsPerDeciLiterTolerance { get { return 1e-5; } }
+        protected virtual double NanogramsPerDeciliterTolerance { get { return 1e-5; } }
         protected virtual double NanogramsPerLiterTolerance { get { return 1e-5; } }
         protected virtual double NanogramsPerMilliliterTolerance { get { return 1e-5; } }
-        protected virtual double PicogramsPerDeciLiterTolerance { get { return 1e-5; } }
+        protected virtual double PicogramsPerDeciliterTolerance { get { return 1e-5; } }
         protected virtual double PicogramsPerLiterTolerance { get { return 1e-5; } }
         protected virtual double PicogramsPerMilliliterTolerance { get { return 1e-5; } }
         protected virtual double PoundsPerCubicCentimeterTolerance { get { return 1e-5; } }
@@ -148,10 +148,10 @@ namespace UnitsNet.Tests
         {
             return unit switch
             {
-                DensityUnit.CentigramPerDeciliter => (CentigramsPerDeciLiterInOneKilogramPerCubicMeter, CentigramsPerDeciLiterTolerance),
+                DensityUnit.CentigramPerDeciliter => (CentigramsPerDeciliterInOneKilogramPerCubicMeter, CentigramsPerDeciliterTolerance),
                 DensityUnit.CentigramPerLiter => (CentigramsPerLiterInOneKilogramPerCubicMeter, CentigramsPerLiterTolerance),
                 DensityUnit.CentigramPerMilliliter => (CentigramsPerMilliliterInOneKilogramPerCubicMeter, CentigramsPerMilliliterTolerance),
-                DensityUnit.DecigramPerDeciliter => (DecigramsPerDeciLiterInOneKilogramPerCubicMeter, DecigramsPerDeciLiterTolerance),
+                DensityUnit.DecigramPerDeciliter => (DecigramsPerDeciliterInOneKilogramPerCubicMeter, DecigramsPerDeciliterTolerance),
                 DensityUnit.DecigramPerLiter => (DecigramsPerLiterInOneKilogramPerCubicMeter, DecigramsPerLiterTolerance),
                 DensityUnit.DecigramPerMilliliter => (DecigramsPerMilliliterInOneKilogramPerCubicMeter, DecigramsPerMilliliterTolerance),
                 DensityUnit.GramPerCubicCentimeter => (GramsPerCubicCentimeterInOneKilogramPerCubicMeter, GramsPerCubicCentimeterTolerance),
@@ -159,7 +159,7 @@ namespace UnitsNet.Tests
                 DensityUnit.GramPerCubicInch => (GramsPerCubicInchInOneKilogramPerCubicMeter, GramsPerCubicInchTolerance),
                 DensityUnit.GramPerCubicMeter => (GramsPerCubicMeterInOneKilogramPerCubicMeter, GramsPerCubicMeterTolerance),
                 DensityUnit.GramPerCubicMillimeter => (GramsPerCubicMillimeterInOneKilogramPerCubicMeter, GramsPerCubicMillimeterTolerance),
-                DensityUnit.GramPerDeciliter => (GramsPerDeciLiterInOneKilogramPerCubicMeter, GramsPerDeciLiterTolerance),
+                DensityUnit.GramPerDeciliter => (GramsPerDeciliterInOneKilogramPerCubicMeter, GramsPerDeciliterTolerance),
                 DensityUnit.GramPerLiter => (GramsPerLiterInOneKilogramPerCubicMeter, GramsPerLiterTolerance),
                 DensityUnit.GramPerMilliliter => (GramsPerMilliliterInOneKilogramPerCubicMeter, GramsPerMilliliterTolerance),
                 DensityUnit.KilogramPerCubicCentimeter => (KilogramsPerCubicCentimeterInOneKilogramPerCubicMeter, KilogramsPerCubicCentimeterTolerance),
@@ -169,17 +169,17 @@ namespace UnitsNet.Tests
                 DensityUnit.KilopoundPerCubicFoot => (KilopoundsPerCubicFootInOneKilogramPerCubicMeter, KilopoundsPerCubicFootTolerance),
                 DensityUnit.KilopoundPerCubicInch => (KilopoundsPerCubicInchInOneKilogramPerCubicMeter, KilopoundsPerCubicInchTolerance),
                 DensityUnit.MicrogramPerCubicMeter => (MicrogramsPerCubicMeterInOneKilogramPerCubicMeter, MicrogramsPerCubicMeterTolerance),
-                DensityUnit.MicrogramPerDeciliter => (MicrogramsPerDeciLiterInOneKilogramPerCubicMeter, MicrogramsPerDeciLiterTolerance),
+                DensityUnit.MicrogramPerDeciliter => (MicrogramsPerDeciliterInOneKilogramPerCubicMeter, MicrogramsPerDeciliterTolerance),
                 DensityUnit.MicrogramPerLiter => (MicrogramsPerLiterInOneKilogramPerCubicMeter, MicrogramsPerLiterTolerance),
                 DensityUnit.MicrogramPerMilliliter => (MicrogramsPerMilliliterInOneKilogramPerCubicMeter, MicrogramsPerMilliliterTolerance),
                 DensityUnit.MilligramPerCubicMeter => (MilligramsPerCubicMeterInOneKilogramPerCubicMeter, MilligramsPerCubicMeterTolerance),
-                DensityUnit.MilligramPerDeciliter => (MilligramsPerDeciLiterInOneKilogramPerCubicMeter, MilligramsPerDeciLiterTolerance),
+                DensityUnit.MilligramPerDeciliter => (MilligramsPerDeciliterInOneKilogramPerCubicMeter, MilligramsPerDeciliterTolerance),
                 DensityUnit.MilligramPerLiter => (MilligramsPerLiterInOneKilogramPerCubicMeter, MilligramsPerLiterTolerance),
                 DensityUnit.MilligramPerMilliliter => (MilligramsPerMilliliterInOneKilogramPerCubicMeter, MilligramsPerMilliliterTolerance),
-                DensityUnit.NanogramPerDeciliter => (NanogramsPerDeciLiterInOneKilogramPerCubicMeter, NanogramsPerDeciLiterTolerance),
+                DensityUnit.NanogramPerDeciliter => (NanogramsPerDeciliterInOneKilogramPerCubicMeter, NanogramsPerDeciliterTolerance),
                 DensityUnit.NanogramPerLiter => (NanogramsPerLiterInOneKilogramPerCubicMeter, NanogramsPerLiterTolerance),
                 DensityUnit.NanogramPerMilliliter => (NanogramsPerMilliliterInOneKilogramPerCubicMeter, NanogramsPerMilliliterTolerance),
-                DensityUnit.PicogramPerDeciliter => (PicogramsPerDeciLiterInOneKilogramPerCubicMeter, PicogramsPerDeciLiterTolerance),
+                DensityUnit.PicogramPerDeciliter => (PicogramsPerDeciliterInOneKilogramPerCubicMeter, PicogramsPerDeciliterTolerance),
                 DensityUnit.PicogramPerLiter => (PicogramsPerLiterInOneKilogramPerCubicMeter, PicogramsPerLiterTolerance),
                 DensityUnit.PicogramPerMilliliter => (PicogramsPerMilliliterInOneKilogramPerCubicMeter, PicogramsPerMilliliterTolerance),
                 DensityUnit.PoundPerCubicCentimeter => (PoundsPerCubicCentimeterInOneKilogramPerCubicMeter, PoundsPerCubicCentimeterTolerance),
@@ -323,10 +323,10 @@ namespace UnitsNet.Tests
         public void KilogramPerCubicMeterToDensityUnits()
         {
             Density kilogrampercubicmeter = Density.FromKilogramsPerCubicMeter(1);
-            AssertEx.EqualTolerance(CentigramsPerDeciLiterInOneKilogramPerCubicMeter, kilogrampercubicmeter.CentigramsPerDeciLiter, CentigramsPerDeciLiterTolerance);
+            AssertEx.EqualTolerance(CentigramsPerDeciliterInOneKilogramPerCubicMeter, kilogrampercubicmeter.CentigramsPerDeciliter, CentigramsPerDeciliterTolerance);
             AssertEx.EqualTolerance(CentigramsPerLiterInOneKilogramPerCubicMeter, kilogrampercubicmeter.CentigramsPerLiter, CentigramsPerLiterTolerance);
             AssertEx.EqualTolerance(CentigramsPerMilliliterInOneKilogramPerCubicMeter, kilogrampercubicmeter.CentigramsPerMilliliter, CentigramsPerMilliliterTolerance);
-            AssertEx.EqualTolerance(DecigramsPerDeciLiterInOneKilogramPerCubicMeter, kilogrampercubicmeter.DecigramsPerDeciLiter, DecigramsPerDeciLiterTolerance);
+            AssertEx.EqualTolerance(DecigramsPerDeciliterInOneKilogramPerCubicMeter, kilogrampercubicmeter.DecigramsPerDeciliter, DecigramsPerDeciliterTolerance);
             AssertEx.EqualTolerance(DecigramsPerLiterInOneKilogramPerCubicMeter, kilogrampercubicmeter.DecigramsPerLiter, DecigramsPerLiterTolerance);
             AssertEx.EqualTolerance(DecigramsPerMilliliterInOneKilogramPerCubicMeter, kilogrampercubicmeter.DecigramsPerMilliliter, DecigramsPerMilliliterTolerance);
             AssertEx.EqualTolerance(GramsPerCubicCentimeterInOneKilogramPerCubicMeter, kilogrampercubicmeter.GramsPerCubicCentimeter, GramsPerCubicCentimeterTolerance);
@@ -334,7 +334,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(GramsPerCubicInchInOneKilogramPerCubicMeter, kilogrampercubicmeter.GramsPerCubicInch, GramsPerCubicInchTolerance);
             AssertEx.EqualTolerance(GramsPerCubicMeterInOneKilogramPerCubicMeter, kilogrampercubicmeter.GramsPerCubicMeter, GramsPerCubicMeterTolerance);
             AssertEx.EqualTolerance(GramsPerCubicMillimeterInOneKilogramPerCubicMeter, kilogrampercubicmeter.GramsPerCubicMillimeter, GramsPerCubicMillimeterTolerance);
-            AssertEx.EqualTolerance(GramsPerDeciLiterInOneKilogramPerCubicMeter, kilogrampercubicmeter.GramsPerDeciLiter, GramsPerDeciLiterTolerance);
+            AssertEx.EqualTolerance(GramsPerDeciliterInOneKilogramPerCubicMeter, kilogrampercubicmeter.GramsPerDeciliter, GramsPerDeciliterTolerance);
             AssertEx.EqualTolerance(GramsPerLiterInOneKilogramPerCubicMeter, kilogrampercubicmeter.GramsPerLiter, GramsPerLiterTolerance);
             AssertEx.EqualTolerance(GramsPerMilliliterInOneKilogramPerCubicMeter, kilogrampercubicmeter.GramsPerMilliliter, GramsPerMilliliterTolerance);
             AssertEx.EqualTolerance(KilogramsPerCubicCentimeterInOneKilogramPerCubicMeter, kilogrampercubicmeter.KilogramsPerCubicCentimeter, KilogramsPerCubicCentimeterTolerance);
@@ -344,17 +344,17 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(KilopoundsPerCubicFootInOneKilogramPerCubicMeter, kilogrampercubicmeter.KilopoundsPerCubicFoot, KilopoundsPerCubicFootTolerance);
             AssertEx.EqualTolerance(KilopoundsPerCubicInchInOneKilogramPerCubicMeter, kilogrampercubicmeter.KilopoundsPerCubicInch, KilopoundsPerCubicInchTolerance);
             AssertEx.EqualTolerance(MicrogramsPerCubicMeterInOneKilogramPerCubicMeter, kilogrampercubicmeter.MicrogramsPerCubicMeter, MicrogramsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(MicrogramsPerDeciLiterInOneKilogramPerCubicMeter, kilogrampercubicmeter.MicrogramsPerDeciLiter, MicrogramsPerDeciLiterTolerance);
+            AssertEx.EqualTolerance(MicrogramsPerDeciliterInOneKilogramPerCubicMeter, kilogrampercubicmeter.MicrogramsPerDeciliter, MicrogramsPerDeciliterTolerance);
             AssertEx.EqualTolerance(MicrogramsPerLiterInOneKilogramPerCubicMeter, kilogrampercubicmeter.MicrogramsPerLiter, MicrogramsPerLiterTolerance);
             AssertEx.EqualTolerance(MicrogramsPerMilliliterInOneKilogramPerCubicMeter, kilogrampercubicmeter.MicrogramsPerMilliliter, MicrogramsPerMilliliterTolerance);
             AssertEx.EqualTolerance(MilligramsPerCubicMeterInOneKilogramPerCubicMeter, kilogrampercubicmeter.MilligramsPerCubicMeter, MilligramsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(MilligramsPerDeciLiterInOneKilogramPerCubicMeter, kilogrampercubicmeter.MilligramsPerDeciLiter, MilligramsPerDeciLiterTolerance);
+            AssertEx.EqualTolerance(MilligramsPerDeciliterInOneKilogramPerCubicMeter, kilogrampercubicmeter.MilligramsPerDeciliter, MilligramsPerDeciliterTolerance);
             AssertEx.EqualTolerance(MilligramsPerLiterInOneKilogramPerCubicMeter, kilogrampercubicmeter.MilligramsPerLiter, MilligramsPerLiterTolerance);
             AssertEx.EqualTolerance(MilligramsPerMilliliterInOneKilogramPerCubicMeter, kilogrampercubicmeter.MilligramsPerMilliliter, MilligramsPerMilliliterTolerance);
-            AssertEx.EqualTolerance(NanogramsPerDeciLiterInOneKilogramPerCubicMeter, kilogrampercubicmeter.NanogramsPerDeciLiter, NanogramsPerDeciLiterTolerance);
+            AssertEx.EqualTolerance(NanogramsPerDeciliterInOneKilogramPerCubicMeter, kilogrampercubicmeter.NanogramsPerDeciliter, NanogramsPerDeciliterTolerance);
             AssertEx.EqualTolerance(NanogramsPerLiterInOneKilogramPerCubicMeter, kilogrampercubicmeter.NanogramsPerLiter, NanogramsPerLiterTolerance);
             AssertEx.EqualTolerance(NanogramsPerMilliliterInOneKilogramPerCubicMeter, kilogrampercubicmeter.NanogramsPerMilliliter, NanogramsPerMilliliterTolerance);
-            AssertEx.EqualTolerance(PicogramsPerDeciLiterInOneKilogramPerCubicMeter, kilogrampercubicmeter.PicogramsPerDeciLiter, PicogramsPerDeciLiterTolerance);
+            AssertEx.EqualTolerance(PicogramsPerDeciliterInOneKilogramPerCubicMeter, kilogrampercubicmeter.PicogramsPerDeciliter, PicogramsPerDeciliterTolerance);
             AssertEx.EqualTolerance(PicogramsPerLiterInOneKilogramPerCubicMeter, kilogrampercubicmeter.PicogramsPerLiter, PicogramsPerLiterTolerance);
             AssertEx.EqualTolerance(PicogramsPerMilliliterInOneKilogramPerCubicMeter, kilogrampercubicmeter.PicogramsPerMilliliter, PicogramsPerMilliliterTolerance);
             AssertEx.EqualTolerance(PoundsPerCubicCentimeterInOneKilogramPerCubicMeter, kilogrampercubicmeter.PoundsPerCubicCentimeter, PoundsPerCubicCentimeterTolerance);
@@ -380,7 +380,7 @@ namespace UnitsNet.Tests
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
             var quantity00 = Density.From(1, DensityUnit.CentigramPerDeciliter);
-            AssertEx.EqualTolerance(1, quantity00.CentigramsPerDeciLiter, CentigramsPerDeciLiterTolerance);
+            AssertEx.EqualTolerance(1, quantity00.CentigramsPerDeciliter, CentigramsPerDeciliterTolerance);
             Assert.Equal(DensityUnit.CentigramPerDeciliter, quantity00.Unit);
 
             var quantity01 = Density.From(1, DensityUnit.CentigramPerLiter);
@@ -392,7 +392,7 @@ namespace UnitsNet.Tests
             Assert.Equal(DensityUnit.CentigramPerMilliliter, quantity02.Unit);
 
             var quantity03 = Density.From(1, DensityUnit.DecigramPerDeciliter);
-            AssertEx.EqualTolerance(1, quantity03.DecigramsPerDeciLiter, DecigramsPerDeciLiterTolerance);
+            AssertEx.EqualTolerance(1, quantity03.DecigramsPerDeciliter, DecigramsPerDeciliterTolerance);
             Assert.Equal(DensityUnit.DecigramPerDeciliter, quantity03.Unit);
 
             var quantity04 = Density.From(1, DensityUnit.DecigramPerLiter);
@@ -424,7 +424,7 @@ namespace UnitsNet.Tests
             Assert.Equal(DensityUnit.GramPerCubicMillimeter, quantity10.Unit);
 
             var quantity11 = Density.From(1, DensityUnit.GramPerDeciliter);
-            AssertEx.EqualTolerance(1, quantity11.GramsPerDeciLiter, GramsPerDeciLiterTolerance);
+            AssertEx.EqualTolerance(1, quantity11.GramsPerDeciliter, GramsPerDeciliterTolerance);
             Assert.Equal(DensityUnit.GramPerDeciliter, quantity11.Unit);
 
             var quantity12 = Density.From(1, DensityUnit.GramPerLiter);
@@ -464,7 +464,7 @@ namespace UnitsNet.Tests
             Assert.Equal(DensityUnit.MicrogramPerCubicMeter, quantity20.Unit);
 
             var quantity21 = Density.From(1, DensityUnit.MicrogramPerDeciliter);
-            AssertEx.EqualTolerance(1, quantity21.MicrogramsPerDeciLiter, MicrogramsPerDeciLiterTolerance);
+            AssertEx.EqualTolerance(1, quantity21.MicrogramsPerDeciliter, MicrogramsPerDeciliterTolerance);
             Assert.Equal(DensityUnit.MicrogramPerDeciliter, quantity21.Unit);
 
             var quantity22 = Density.From(1, DensityUnit.MicrogramPerLiter);
@@ -480,7 +480,7 @@ namespace UnitsNet.Tests
             Assert.Equal(DensityUnit.MilligramPerCubicMeter, quantity24.Unit);
 
             var quantity25 = Density.From(1, DensityUnit.MilligramPerDeciliter);
-            AssertEx.EqualTolerance(1, quantity25.MilligramsPerDeciLiter, MilligramsPerDeciLiterTolerance);
+            AssertEx.EqualTolerance(1, quantity25.MilligramsPerDeciliter, MilligramsPerDeciliterTolerance);
             Assert.Equal(DensityUnit.MilligramPerDeciliter, quantity25.Unit);
 
             var quantity26 = Density.From(1, DensityUnit.MilligramPerLiter);
@@ -492,7 +492,7 @@ namespace UnitsNet.Tests
             Assert.Equal(DensityUnit.MilligramPerMilliliter, quantity27.Unit);
 
             var quantity28 = Density.From(1, DensityUnit.NanogramPerDeciliter);
-            AssertEx.EqualTolerance(1, quantity28.NanogramsPerDeciLiter, NanogramsPerDeciLiterTolerance);
+            AssertEx.EqualTolerance(1, quantity28.NanogramsPerDeciliter, NanogramsPerDeciliterTolerance);
             Assert.Equal(DensityUnit.NanogramPerDeciliter, quantity28.Unit);
 
             var quantity29 = Density.From(1, DensityUnit.NanogramPerLiter);
@@ -504,7 +504,7 @@ namespace UnitsNet.Tests
             Assert.Equal(DensityUnit.NanogramPerMilliliter, quantity30.Unit);
 
             var quantity31 = Density.From(1, DensityUnit.PicogramPerDeciliter);
-            AssertEx.EqualTolerance(1, quantity31.PicogramsPerDeciLiter, PicogramsPerDeciLiterTolerance);
+            AssertEx.EqualTolerance(1, quantity31.PicogramsPerDeciliter, PicogramsPerDeciliterTolerance);
             Assert.Equal(DensityUnit.PicogramPerDeciliter, quantity31.Unit);
 
             var quantity32 = Density.From(1, DensityUnit.PicogramPerLiter);
@@ -607,10 +607,10 @@ namespace UnitsNet.Tests
         public void As()
         {
             var kilogrampercubicmeter = Density.FromKilogramsPerCubicMeter(1);
-            AssertEx.EqualTolerance(CentigramsPerDeciLiterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.CentigramPerDeciliter), CentigramsPerDeciLiterTolerance);
+            AssertEx.EqualTolerance(CentigramsPerDeciliterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.CentigramPerDeciliter), CentigramsPerDeciliterTolerance);
             AssertEx.EqualTolerance(CentigramsPerLiterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.CentigramPerLiter), CentigramsPerLiterTolerance);
             AssertEx.EqualTolerance(CentigramsPerMilliliterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.CentigramPerMilliliter), CentigramsPerMilliliterTolerance);
-            AssertEx.EqualTolerance(DecigramsPerDeciLiterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.DecigramPerDeciliter), DecigramsPerDeciLiterTolerance);
+            AssertEx.EqualTolerance(DecigramsPerDeciliterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.DecigramPerDeciliter), DecigramsPerDeciliterTolerance);
             AssertEx.EqualTolerance(DecigramsPerLiterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.DecigramPerLiter), DecigramsPerLiterTolerance);
             AssertEx.EqualTolerance(DecigramsPerMilliliterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.DecigramPerMilliliter), DecigramsPerMilliliterTolerance);
             AssertEx.EqualTolerance(GramsPerCubicCentimeterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.GramPerCubicCentimeter), GramsPerCubicCentimeterTolerance);
@@ -618,7 +618,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(GramsPerCubicInchInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.GramPerCubicInch), GramsPerCubicInchTolerance);
             AssertEx.EqualTolerance(GramsPerCubicMeterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.GramPerCubicMeter), GramsPerCubicMeterTolerance);
             AssertEx.EqualTolerance(GramsPerCubicMillimeterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.GramPerCubicMillimeter), GramsPerCubicMillimeterTolerance);
-            AssertEx.EqualTolerance(GramsPerDeciLiterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.GramPerDeciliter), GramsPerDeciLiterTolerance);
+            AssertEx.EqualTolerance(GramsPerDeciliterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.GramPerDeciliter), GramsPerDeciliterTolerance);
             AssertEx.EqualTolerance(GramsPerLiterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.GramPerLiter), GramsPerLiterTolerance);
             AssertEx.EqualTolerance(GramsPerMilliliterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.GramPerMilliliter), GramsPerMilliliterTolerance);
             AssertEx.EqualTolerance(KilogramsPerCubicCentimeterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.KilogramPerCubicCentimeter), KilogramsPerCubicCentimeterTolerance);
@@ -628,17 +628,17 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(KilopoundsPerCubicFootInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.KilopoundPerCubicFoot), KilopoundsPerCubicFootTolerance);
             AssertEx.EqualTolerance(KilopoundsPerCubicInchInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.KilopoundPerCubicInch), KilopoundsPerCubicInchTolerance);
             AssertEx.EqualTolerance(MicrogramsPerCubicMeterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.MicrogramPerCubicMeter), MicrogramsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(MicrogramsPerDeciLiterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.MicrogramPerDeciliter), MicrogramsPerDeciLiterTolerance);
+            AssertEx.EqualTolerance(MicrogramsPerDeciliterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.MicrogramPerDeciliter), MicrogramsPerDeciliterTolerance);
             AssertEx.EqualTolerance(MicrogramsPerLiterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.MicrogramPerLiter), MicrogramsPerLiterTolerance);
             AssertEx.EqualTolerance(MicrogramsPerMilliliterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.MicrogramPerMilliliter), MicrogramsPerMilliliterTolerance);
             AssertEx.EqualTolerance(MilligramsPerCubicMeterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.MilligramPerCubicMeter), MilligramsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(MilligramsPerDeciLiterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.MilligramPerDeciliter), MilligramsPerDeciLiterTolerance);
+            AssertEx.EqualTolerance(MilligramsPerDeciliterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.MilligramPerDeciliter), MilligramsPerDeciliterTolerance);
             AssertEx.EqualTolerance(MilligramsPerLiterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.MilligramPerLiter), MilligramsPerLiterTolerance);
             AssertEx.EqualTolerance(MilligramsPerMilliliterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.MilligramPerMilliliter), MilligramsPerMilliliterTolerance);
-            AssertEx.EqualTolerance(NanogramsPerDeciLiterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.NanogramPerDeciliter), NanogramsPerDeciLiterTolerance);
+            AssertEx.EqualTolerance(NanogramsPerDeciliterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.NanogramPerDeciliter), NanogramsPerDeciliterTolerance);
             AssertEx.EqualTolerance(NanogramsPerLiterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.NanogramPerLiter), NanogramsPerLiterTolerance);
             AssertEx.EqualTolerance(NanogramsPerMilliliterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.NanogramPerMilliliter), NanogramsPerMilliliterTolerance);
-            AssertEx.EqualTolerance(PicogramsPerDeciLiterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.PicogramPerDeciliter), PicogramsPerDeciLiterTolerance);
+            AssertEx.EqualTolerance(PicogramsPerDeciliterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.PicogramPerDeciliter), PicogramsPerDeciliterTolerance);
             AssertEx.EqualTolerance(PicogramsPerLiterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.PicogramPerLiter), PicogramsPerLiterTolerance);
             AssertEx.EqualTolerance(PicogramsPerMilliliterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.PicogramPerMilliliter), PicogramsPerMilliliterTolerance);
             AssertEx.EqualTolerance(PoundsPerCubicCentimeterInOneKilogramPerCubicMeter, kilogrampercubicmeter.As(DensityUnit.PoundPerCubicCentimeter), PoundsPerCubicCentimeterTolerance);
@@ -683,7 +683,7 @@ namespace UnitsNet.Tests
             try
             {
                 var parsed = Density.Parse("1 cg/dl", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.CentigramsPerDeciLiter, CentigramsPerDeciLiterTolerance);
+                AssertEx.EqualTolerance(1, parsed.CentigramsPerDeciliter, CentigramsPerDeciliterTolerance);
                 Assert.Equal(DensityUnit.CentigramPerDeciliter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
@@ -704,7 +704,7 @@ namespace UnitsNet.Tests
             try
             {
                 var parsed = Density.Parse("1 dg/dl", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DecigramsPerDeciLiter, DecigramsPerDeciLiterTolerance);
+                AssertEx.EqualTolerance(1, parsed.DecigramsPerDeciliter, DecigramsPerDeciliterTolerance);
                 Assert.Equal(DensityUnit.DecigramPerDeciliter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
@@ -767,7 +767,7 @@ namespace UnitsNet.Tests
             try
             {
                 var parsed = Density.Parse("1 g/dl", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.GramsPerDeciLiter, GramsPerDeciLiterTolerance);
+                AssertEx.EqualTolerance(1, parsed.GramsPerDeciliter, GramsPerDeciliterTolerance);
                 Assert.Equal(DensityUnit.GramPerDeciliter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
@@ -851,7 +851,7 @@ namespace UnitsNet.Tests
             try
             {
                 var parsed = Density.Parse("1 µg/dl", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MicrogramsPerDeciLiter, MicrogramsPerDeciLiterTolerance);
+                AssertEx.EqualTolerance(1, parsed.MicrogramsPerDeciliter, MicrogramsPerDeciliterTolerance);
                 Assert.Equal(DensityUnit.MicrogramPerDeciliter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
@@ -886,7 +886,7 @@ namespace UnitsNet.Tests
             try
             {
                 var parsed = Density.Parse("1 mg/dl", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MilligramsPerDeciLiter, MilligramsPerDeciLiterTolerance);
+                AssertEx.EqualTolerance(1, parsed.MilligramsPerDeciliter, MilligramsPerDeciliterTolerance);
                 Assert.Equal(DensityUnit.MilligramPerDeciliter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
@@ -907,7 +907,7 @@ namespace UnitsNet.Tests
             try
             {
                 var parsed = Density.Parse("1 ng/dl", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.NanogramsPerDeciLiter, NanogramsPerDeciLiterTolerance);
+                AssertEx.EqualTolerance(1, parsed.NanogramsPerDeciliter, NanogramsPerDeciliterTolerance);
                 Assert.Equal(DensityUnit.NanogramPerDeciliter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
@@ -928,7 +928,7 @@ namespace UnitsNet.Tests
             try
             {
                 var parsed = Density.Parse("1 pg/dl", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PicogramsPerDeciLiter, PicogramsPerDeciLiterTolerance);
+                AssertEx.EqualTolerance(1, parsed.PicogramsPerDeciliter, PicogramsPerDeciliterTolerance);
                 Assert.Equal(DensityUnit.PicogramPerDeciliter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
@@ -1072,7 +1072,7 @@ namespace UnitsNet.Tests
         {
             {
                 Assert.True(Density.TryParse("1 cg/dl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CentigramsPerDeciLiter, CentigramsPerDeciLiterTolerance);
+                AssertEx.EqualTolerance(1, parsed.CentigramsPerDeciliter, CentigramsPerDeciliterTolerance);
                 Assert.Equal(DensityUnit.CentigramPerDeciliter, parsed.Unit);
             }
 
@@ -1090,7 +1090,7 @@ namespace UnitsNet.Tests
 
             {
                 Assert.True(Density.TryParse("1 dg/dl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecigramsPerDeciLiter, DecigramsPerDeciLiterTolerance);
+                AssertEx.EqualTolerance(1, parsed.DecigramsPerDeciliter, DecigramsPerDeciliterTolerance);
                 Assert.Equal(DensityUnit.DecigramPerDeciliter, parsed.Unit);
             }
 
@@ -1144,7 +1144,7 @@ namespace UnitsNet.Tests
 
             {
                 Assert.True(Density.TryParse("1 g/dl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.GramsPerDeciLiter, GramsPerDeciLiterTolerance);
+                AssertEx.EqualTolerance(1, parsed.GramsPerDeciliter, GramsPerDeciliterTolerance);
                 Assert.Equal(DensityUnit.GramPerDeciliter, parsed.Unit);
             }
 
@@ -1216,7 +1216,7 @@ namespace UnitsNet.Tests
 
             {
                 Assert.True(Density.TryParse("1 µg/dl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicrogramsPerDeciLiter, MicrogramsPerDeciLiterTolerance);
+                AssertEx.EqualTolerance(1, parsed.MicrogramsPerDeciliter, MicrogramsPerDeciliterTolerance);
                 Assert.Equal(DensityUnit.MicrogramPerDeciliter, parsed.Unit);
             }
 
@@ -1246,7 +1246,7 @@ namespace UnitsNet.Tests
 
             {
                 Assert.True(Density.TryParse("1 mg/dl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MilligramsPerDeciLiter, MilligramsPerDeciLiterTolerance);
+                AssertEx.EqualTolerance(1, parsed.MilligramsPerDeciliter, MilligramsPerDeciliterTolerance);
                 Assert.Equal(DensityUnit.MilligramPerDeciliter, parsed.Unit);
             }
 
@@ -1264,7 +1264,7 @@ namespace UnitsNet.Tests
 
             {
                 Assert.True(Density.TryParse("1 ng/dl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.NanogramsPerDeciLiter, NanogramsPerDeciLiterTolerance);
+                AssertEx.EqualTolerance(1, parsed.NanogramsPerDeciliter, NanogramsPerDeciliterTolerance);
                 Assert.Equal(DensityUnit.NanogramPerDeciliter, parsed.Unit);
             }
 
@@ -1282,7 +1282,7 @@ namespace UnitsNet.Tests
 
             {
                 Assert.True(Density.TryParse("1 pg/dl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PicogramsPerDeciLiter, PicogramsPerDeciLiterTolerance);
+                AssertEx.EqualTolerance(1, parsed.PicogramsPerDeciliter, PicogramsPerDeciliterTolerance);
                 Assert.Equal(DensityUnit.PicogramPerDeciliter, parsed.Unit);
             }
 
@@ -2063,10 +2063,10 @@ namespace UnitsNet.Tests
         public void ConversionRoundTrip()
         {
             Density kilogrampercubicmeter = Density.FromKilogramsPerCubicMeter(1);
-            AssertEx.EqualTolerance(1, Density.FromCentigramsPerDeciLiter(kilogrampercubicmeter.CentigramsPerDeciLiter).KilogramsPerCubicMeter, CentigramsPerDeciLiterTolerance);
+            AssertEx.EqualTolerance(1, Density.FromCentigramsPerDeciliter(kilogrampercubicmeter.CentigramsPerDeciliter).KilogramsPerCubicMeter, CentigramsPerDeciliterTolerance);
             AssertEx.EqualTolerance(1, Density.FromCentigramsPerLiter(kilogrampercubicmeter.CentigramsPerLiter).KilogramsPerCubicMeter, CentigramsPerLiterTolerance);
             AssertEx.EqualTolerance(1, Density.FromCentigramsPerMilliliter(kilogrampercubicmeter.CentigramsPerMilliliter).KilogramsPerCubicMeter, CentigramsPerMilliliterTolerance);
-            AssertEx.EqualTolerance(1, Density.FromDecigramsPerDeciLiter(kilogrampercubicmeter.DecigramsPerDeciLiter).KilogramsPerCubicMeter, DecigramsPerDeciLiterTolerance);
+            AssertEx.EqualTolerance(1, Density.FromDecigramsPerDeciliter(kilogrampercubicmeter.DecigramsPerDeciliter).KilogramsPerCubicMeter, DecigramsPerDeciliterTolerance);
             AssertEx.EqualTolerance(1, Density.FromDecigramsPerLiter(kilogrampercubicmeter.DecigramsPerLiter).KilogramsPerCubicMeter, DecigramsPerLiterTolerance);
             AssertEx.EqualTolerance(1, Density.FromDecigramsPerMilliliter(kilogrampercubicmeter.DecigramsPerMilliliter).KilogramsPerCubicMeter, DecigramsPerMilliliterTolerance);
             AssertEx.EqualTolerance(1, Density.FromGramsPerCubicCentimeter(kilogrampercubicmeter.GramsPerCubicCentimeter).KilogramsPerCubicMeter, GramsPerCubicCentimeterTolerance);
@@ -2074,7 +2074,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Density.FromGramsPerCubicInch(kilogrampercubicmeter.GramsPerCubicInch).KilogramsPerCubicMeter, GramsPerCubicInchTolerance);
             AssertEx.EqualTolerance(1, Density.FromGramsPerCubicMeter(kilogrampercubicmeter.GramsPerCubicMeter).KilogramsPerCubicMeter, GramsPerCubicMeterTolerance);
             AssertEx.EqualTolerance(1, Density.FromGramsPerCubicMillimeter(kilogrampercubicmeter.GramsPerCubicMillimeter).KilogramsPerCubicMeter, GramsPerCubicMillimeterTolerance);
-            AssertEx.EqualTolerance(1, Density.FromGramsPerDeciLiter(kilogrampercubicmeter.GramsPerDeciLiter).KilogramsPerCubicMeter, GramsPerDeciLiterTolerance);
+            AssertEx.EqualTolerance(1, Density.FromGramsPerDeciliter(kilogrampercubicmeter.GramsPerDeciliter).KilogramsPerCubicMeter, GramsPerDeciliterTolerance);
             AssertEx.EqualTolerance(1, Density.FromGramsPerLiter(kilogrampercubicmeter.GramsPerLiter).KilogramsPerCubicMeter, GramsPerLiterTolerance);
             AssertEx.EqualTolerance(1, Density.FromGramsPerMilliliter(kilogrampercubicmeter.GramsPerMilliliter).KilogramsPerCubicMeter, GramsPerMilliliterTolerance);
             AssertEx.EqualTolerance(1, Density.FromKilogramsPerCubicCentimeter(kilogrampercubicmeter.KilogramsPerCubicCentimeter).KilogramsPerCubicMeter, KilogramsPerCubicCentimeterTolerance);
@@ -2084,17 +2084,17 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Density.FromKilopoundsPerCubicFoot(kilogrampercubicmeter.KilopoundsPerCubicFoot).KilogramsPerCubicMeter, KilopoundsPerCubicFootTolerance);
             AssertEx.EqualTolerance(1, Density.FromKilopoundsPerCubicInch(kilogrampercubicmeter.KilopoundsPerCubicInch).KilogramsPerCubicMeter, KilopoundsPerCubicInchTolerance);
             AssertEx.EqualTolerance(1, Density.FromMicrogramsPerCubicMeter(kilogrampercubicmeter.MicrogramsPerCubicMeter).KilogramsPerCubicMeter, MicrogramsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, Density.FromMicrogramsPerDeciLiter(kilogrampercubicmeter.MicrogramsPerDeciLiter).KilogramsPerCubicMeter, MicrogramsPerDeciLiterTolerance);
+            AssertEx.EqualTolerance(1, Density.FromMicrogramsPerDeciliter(kilogrampercubicmeter.MicrogramsPerDeciliter).KilogramsPerCubicMeter, MicrogramsPerDeciliterTolerance);
             AssertEx.EqualTolerance(1, Density.FromMicrogramsPerLiter(kilogrampercubicmeter.MicrogramsPerLiter).KilogramsPerCubicMeter, MicrogramsPerLiterTolerance);
             AssertEx.EqualTolerance(1, Density.FromMicrogramsPerMilliliter(kilogrampercubicmeter.MicrogramsPerMilliliter).KilogramsPerCubicMeter, MicrogramsPerMilliliterTolerance);
             AssertEx.EqualTolerance(1, Density.FromMilligramsPerCubicMeter(kilogrampercubicmeter.MilligramsPerCubicMeter).KilogramsPerCubicMeter, MilligramsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, Density.FromMilligramsPerDeciLiter(kilogrampercubicmeter.MilligramsPerDeciLiter).KilogramsPerCubicMeter, MilligramsPerDeciLiterTolerance);
+            AssertEx.EqualTolerance(1, Density.FromMilligramsPerDeciliter(kilogrampercubicmeter.MilligramsPerDeciliter).KilogramsPerCubicMeter, MilligramsPerDeciliterTolerance);
             AssertEx.EqualTolerance(1, Density.FromMilligramsPerLiter(kilogrampercubicmeter.MilligramsPerLiter).KilogramsPerCubicMeter, MilligramsPerLiterTolerance);
             AssertEx.EqualTolerance(1, Density.FromMilligramsPerMilliliter(kilogrampercubicmeter.MilligramsPerMilliliter).KilogramsPerCubicMeter, MilligramsPerMilliliterTolerance);
-            AssertEx.EqualTolerance(1, Density.FromNanogramsPerDeciLiter(kilogrampercubicmeter.NanogramsPerDeciLiter).KilogramsPerCubicMeter, NanogramsPerDeciLiterTolerance);
+            AssertEx.EqualTolerance(1, Density.FromNanogramsPerDeciliter(kilogrampercubicmeter.NanogramsPerDeciliter).KilogramsPerCubicMeter, NanogramsPerDeciliterTolerance);
             AssertEx.EqualTolerance(1, Density.FromNanogramsPerLiter(kilogrampercubicmeter.NanogramsPerLiter).KilogramsPerCubicMeter, NanogramsPerLiterTolerance);
             AssertEx.EqualTolerance(1, Density.FromNanogramsPerMilliliter(kilogrampercubicmeter.NanogramsPerMilliliter).KilogramsPerCubicMeter, NanogramsPerMilliliterTolerance);
-            AssertEx.EqualTolerance(1, Density.FromPicogramsPerDeciLiter(kilogrampercubicmeter.PicogramsPerDeciLiter).KilogramsPerCubicMeter, PicogramsPerDeciLiterTolerance);
+            AssertEx.EqualTolerance(1, Density.FromPicogramsPerDeciliter(kilogrampercubicmeter.PicogramsPerDeciliter).KilogramsPerCubicMeter, PicogramsPerDeciliterTolerance);
             AssertEx.EqualTolerance(1, Density.FromPicogramsPerLiter(kilogrampercubicmeter.PicogramsPerLiter).KilogramsPerCubicMeter, PicogramsPerLiterTolerance);
             AssertEx.EqualTolerance(1, Density.FromPicogramsPerMilliliter(kilogrampercubicmeter.PicogramsPerMilliliter).KilogramsPerCubicMeter, PicogramsPerMilliliterTolerance);
             AssertEx.EqualTolerance(1, Density.FromPoundsPerCubicCentimeter(kilogrampercubicmeter.PoundsPerCubicCentimeter).KilogramsPerCubicMeter, PoundsPerCubicCentimeterTolerance);

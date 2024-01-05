@@ -40,13 +40,13 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
 #endif
             => Speed.FromCentimetersPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromCentimetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed CentimetersPerMinutes<T>(this T value)
+        /// <inheritdoc cref="Speed.FromCentimetersPerMinute(UnitsNet.QuantityValue)" />
+        public static Speed CentimetersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
 #endif
-            => Speed.FromCentimetersPerMinutes(Convert.ToDouble(value));
+            => Speed.FromCentimetersPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromCentimetersPerSecond(UnitsNet.QuantityValue)" />
         public static Speed CentimetersPerSecond<T>(this T value)
@@ -56,13 +56,13 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
 #endif
             => Speed.FromCentimetersPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromDecimetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed DecimetersPerMinutes<T>(this T value)
+        /// <inheritdoc cref="Speed.FromDecimetersPerMinute(UnitsNet.QuantityValue)" />
+        public static Speed DecimetersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
 #endif
-            => Speed.FromDecimetersPerMinutes(Convert.ToDouble(value));
+            => Speed.FromDecimetersPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromDecimetersPerSecond(UnitsNet.QuantityValue)" />
         public static Speed DecimetersPerSecond<T>(this T value)
@@ -128,13 +128,13 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
 #endif
             => Speed.FromKilometersPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromKilometersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed KilometersPerMinutes<T>(this T value)
+        /// <inheritdoc cref="Speed.FromKilometersPerMinute(UnitsNet.QuantityValue)" />
+        public static Speed KilometersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
 #endif
-            => Speed.FromKilometersPerMinutes(Convert.ToDouble(value));
+            => Speed.FromKilometersPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromKilometersPerSecond(UnitsNet.QuantityValue)" />
         public static Speed KilometersPerSecond<T>(this T value)
@@ -168,13 +168,13 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
 #endif
             => Speed.FromMetersPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromMetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed MetersPerMinutes<T>(this T value)
+        /// <inheritdoc cref="Speed.FromMetersPerMinute(UnitsNet.QuantityValue)" />
+        public static Speed MetersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
 #endif
-            => Speed.FromMetersPerMinutes(Convert.ToDouble(value));
+            => Speed.FromMetersPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromMetersPerSecond(UnitsNet.QuantityValue)" />
         public static Speed MetersPerSecond<T>(this T value)
@@ -184,13 +184,13 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
 #endif
             => Speed.FromMetersPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromMicrometersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed MicrometersPerMinutes<T>(this T value)
+        /// <inheritdoc cref="Speed.FromMicrometersPerMinute(UnitsNet.QuantityValue)" />
+        public static Speed MicrometersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
 #endif
-            => Speed.FromMicrometersPerMinutes(Convert.ToDouble(value));
+            => Speed.FromMicrometersPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromMicrometersPerSecond(UnitsNet.QuantityValue)" />
         public static Speed MicrometersPerSecond<T>(this T value)
@@ -216,13 +216,13 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
 #endif
             => Speed.FromMillimetersPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromMillimetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed MillimetersPerMinutes<T>(this T value)
+        /// <inheritdoc cref="Speed.FromMillimetersPerMinute(UnitsNet.QuantityValue)" />
+        public static Speed MillimetersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
 #endif
-            => Speed.FromMillimetersPerMinutes(Convert.ToDouble(value));
+            => Speed.FromMillimetersPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromMillimetersPerSecond(UnitsNet.QuantityValue)" />
         public static Speed MillimetersPerSecond<T>(this T value)
@@ -232,13 +232,13 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
 #endif
             => Speed.FromMillimetersPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Speed.FromNanometersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed NanometersPerMinutes<T>(this T value)
+        /// <inheritdoc cref="Speed.FromNanometersPerMinute(UnitsNet.QuantityValue)" />
+        public static Speed NanometersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
 #endif
-            => Speed.FromNanometersPerMinutes(Convert.ToDouble(value));
+            => Speed.FromNanometersPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromNanometersPerSecond(UnitsNet.QuantityValue)" />
         public static Speed NanometersPerSecond<T>(this T value)

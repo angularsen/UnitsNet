@@ -38,13 +38,13 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class FuelEfficiencyTestsBase : QuantityTestsBase
     {
-        protected abstract double KilometersPerLitersInOneLiterPer100Kilometers { get; }
+        protected abstract double KilometersPerLiterInOneLiterPer100Kilometers { get; }
         protected abstract double LitersPer100KilometersInOneLiterPer100Kilometers { get; }
         protected abstract double MilesPerUkGallonInOneLiterPer100Kilometers { get; }
         protected abstract double MilesPerUsGallonInOneLiterPer100Kilometers { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double KilometersPerLitersTolerance { get { return 1e-5; } }
+        protected virtual double KilometersPerLiterTolerance { get { return 1e-5; } }
         protected virtual double LitersPer100KilometersTolerance { get { return 1e-5; } }
         protected virtual double MilesPerUkGallonTolerance { get { return 1e-5; } }
         protected virtual double MilesPerUsGallonTolerance { get { return 1e-5; } }
@@ -54,7 +54,7 @@ namespace UnitsNet.Tests
         {
             return unit switch
             {
-                FuelEfficiencyUnit.KilometerPerLiter => (KilometersPerLitersInOneLiterPer100Kilometers, KilometersPerLitersTolerance),
+                FuelEfficiencyUnit.KilometerPerLiter => (KilometersPerLiterInOneLiterPer100Kilometers, KilometersPerLiterTolerance),
                 FuelEfficiencyUnit.LiterPer100Kilometers => (LitersPer100KilometersInOneLiterPer100Kilometers, LitersPer100KilometersTolerance),
                 FuelEfficiencyUnit.MilePerUkGallon => (MilesPerUkGallonInOneLiterPer100Kilometers, MilesPerUkGallonTolerance),
                 FuelEfficiencyUnit.MilePerUsGallon => (MilesPerUsGallonInOneLiterPer100Kilometers, MilesPerUsGallonTolerance),
@@ -135,7 +135,7 @@ namespace UnitsNet.Tests
         public void LiterPer100KilometersToFuelEfficiencyUnits()
         {
             FuelEfficiency literper100kilometers = FuelEfficiency.FromLitersPer100Kilometers(1);
-            AssertEx.EqualTolerance(KilometersPerLitersInOneLiterPer100Kilometers, literper100kilometers.KilometersPerLiters, KilometersPerLitersTolerance);
+            AssertEx.EqualTolerance(KilometersPerLiterInOneLiterPer100Kilometers, literper100kilometers.KilometersPerLiter, KilometersPerLiterTolerance);
             AssertEx.EqualTolerance(LitersPer100KilometersInOneLiterPer100Kilometers, literper100kilometers.LitersPer100Kilometers, LitersPer100KilometersTolerance);
             AssertEx.EqualTolerance(MilesPerUkGallonInOneLiterPer100Kilometers, literper100kilometers.MilesPerUkGallon, MilesPerUkGallonTolerance);
             AssertEx.EqualTolerance(MilesPerUsGallonInOneLiterPer100Kilometers, literper100kilometers.MilesPerUsGallon, MilesPerUsGallonTolerance);
@@ -145,7 +145,7 @@ namespace UnitsNet.Tests
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
             var quantity00 = FuelEfficiency.From(1, FuelEfficiencyUnit.KilometerPerLiter);
-            AssertEx.EqualTolerance(1, quantity00.KilometersPerLiters, KilometersPerLitersTolerance);
+            AssertEx.EqualTolerance(1, quantity00.KilometersPerLiter, KilometersPerLiterTolerance);
             Assert.Equal(FuelEfficiencyUnit.KilometerPerLiter, quantity00.Unit);
 
             var quantity01 = FuelEfficiency.From(1, FuelEfficiencyUnit.LiterPer100Kilometers);
@@ -184,7 +184,7 @@ namespace UnitsNet.Tests
         public void As()
         {
             var literper100kilometers = FuelEfficiency.FromLitersPer100Kilometers(1);
-            AssertEx.EqualTolerance(KilometersPerLitersInOneLiterPer100Kilometers, literper100kilometers.As(FuelEfficiencyUnit.KilometerPerLiter), KilometersPerLitersTolerance);
+            AssertEx.EqualTolerance(KilometersPerLiterInOneLiterPer100Kilometers, literper100kilometers.As(FuelEfficiencyUnit.KilometerPerLiter), KilometersPerLiterTolerance);
             AssertEx.EqualTolerance(LitersPer100KilometersInOneLiterPer100Kilometers, literper100kilometers.As(FuelEfficiencyUnit.LiterPer100Kilometers), LitersPer100KilometersTolerance);
             AssertEx.EqualTolerance(MilesPerUkGallonInOneLiterPer100Kilometers, literper100kilometers.As(FuelEfficiencyUnit.MilePerUkGallon), MilesPerUkGallonTolerance);
             AssertEx.EqualTolerance(MilesPerUsGallonInOneLiterPer100Kilometers, literper100kilometers.As(FuelEfficiencyUnit.MilePerUsGallon), MilesPerUsGallonTolerance);
@@ -213,7 +213,7 @@ namespace UnitsNet.Tests
             try
             {
                 var parsed = FuelEfficiency.Parse("1 km/L", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilometersPerLiters, KilometersPerLitersTolerance);
+                AssertEx.EqualTolerance(1, parsed.KilometersPerLiter, KilometersPerLiterTolerance);
                 Assert.Equal(FuelEfficiencyUnit.KilometerPerLiter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
@@ -245,7 +245,7 @@ namespace UnitsNet.Tests
         {
             {
                 Assert.True(FuelEfficiency.TryParse("1 km/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilometersPerLiters, KilometersPerLitersTolerance);
+                AssertEx.EqualTolerance(1, parsed.KilometersPerLiter, KilometersPerLiterTolerance);
                 Assert.Equal(FuelEfficiencyUnit.KilometerPerLiter, parsed.Unit);
             }
 
@@ -369,7 +369,7 @@ namespace UnitsNet.Tests
         public void ConversionRoundTrip()
         {
             FuelEfficiency literper100kilometers = FuelEfficiency.FromLitersPer100Kilometers(1);
-            AssertEx.EqualTolerance(1, FuelEfficiency.FromKilometersPerLiters(literper100kilometers.KilometersPerLiters).LitersPer100Kilometers, KilometersPerLitersTolerance);
+            AssertEx.EqualTolerance(1, FuelEfficiency.FromKilometersPerLiter(literper100kilometers.KilometersPerLiter).LitersPer100Kilometers, KilometersPerLiterTolerance);
             AssertEx.EqualTolerance(1, FuelEfficiency.FromLitersPer100Kilometers(literper100kilometers.LitersPer100Kilometers).LitersPer100Kilometers, LitersPer100KilometersTolerance);
             AssertEx.EqualTolerance(1, FuelEfficiency.FromMilesPerUkGallon(literper100kilometers.MilesPerUkGallon).LitersPer100Kilometers, MilesPerUkGallonTolerance);
             AssertEx.EqualTolerance(1, FuelEfficiency.FromMilesPerUsGallon(literper100kilometers.MilesPerUsGallon).LitersPer100Kilometers, MilesPerUsGallonTolerance);

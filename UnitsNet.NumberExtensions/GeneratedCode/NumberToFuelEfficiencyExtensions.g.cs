@@ -32,13 +32,13 @@ namespace UnitsNet.NumberExtensions.NumberToFuelEfficiency
     /// </summary>
     public static class NumberToFuelEfficiencyExtensions
     {
-        /// <inheritdoc cref="FuelEfficiency.FromKilometersPerLiters(UnitsNet.QuantityValue)" />
-        public static FuelEfficiency KilometersPerLiters<T>(this T value)
+        /// <inheritdoc cref="FuelEfficiency.FromKilometersPerLiter(UnitsNet.QuantityValue)" />
+        public static FuelEfficiency KilometersPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
 #endif
-            => FuelEfficiency.FromKilometersPerLiters(Convert.ToDouble(value));
+            => FuelEfficiency.FromKilometersPerLiter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="FuelEfficiency.FromLitersPer100Kilometers(UnitsNet.QuantityValue)" />
         public static FuelEfficiency LitersPer100Kilometers<T>(this T value)
