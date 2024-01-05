@@ -41,7 +41,7 @@
       },
       {
         "SingularName": "KilometerPerLiter",
-        "PluralName": "KilometersPerLiters",
+        "PluralName": "KilometersPerLiter",
         "FromUnitToBaseFunc": "100 / {x}",
         "FromBaseToUnitFunc": "100 / {x}",
         "Localization": [{
