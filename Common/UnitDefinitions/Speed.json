@@ -30,7 +30,7 @@
     },
     {
       "SingularName": "MeterPerMinute",
-      "PluralName": "MetersPerMinutes",
+      "PluralName": "MetersPerMinute",
       "BaseUnits": {
         "L": "Meter",
         "T": "Minute"

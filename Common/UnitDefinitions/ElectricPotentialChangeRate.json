@@ -11,7 +11,7 @@
   "Units": [
     {
       "SingularName": "VoltPerSecond",
-      "PluralName": "VoltsPerSeconds",
+      "PluralName": "VoltsPerSecond",
       "BaseUnits": {
         "L": "Meter",
         "M": "Kilogram",
@@ -30,7 +30,7 @@
     },
 	{
       "SingularName": "VoltPerMicrosecond",
-      "PluralName": "VoltsPerMicroseconds",
+      "PluralName": "VoltsPerMicrosecond",
       "BaseUnits": {
         "L": "Meter",
         "M": "Kilogram",
@@ -49,7 +49,7 @@
     },
     {
       "SingularName": "VoltPerMinute",
-      "PluralName": "VoltsPerMinutes",
+      "PluralName": "VoltsPerMinute",
       "BaseUnits": {
         "L": "Meter",
         "M": "Kilogram",
@@ -68,7 +68,7 @@
     },
     {
       "SingularName": "VoltPerHour",
-      "PluralName": "VoltsPerHours",
+      "PluralName": "VoltsPerHour",
       "BaseUnits": {
         "L": "Meter",
         "M": "Kilogram",
