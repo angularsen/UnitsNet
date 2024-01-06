@@ -21,6 +21,7 @@ namespace UnitsNet.Tests
         protected override double DtpPicasInOneMeter => 236.22047244;
         protected override double DtpPointsInOneMeter => 2834.6456693;
 
+        protected override double FemtometersInOneMeter => 1E+15;
         protected override double FeetInOneMeter => 3.28083989501;
 
         protected override double HectometersInOneMeter => 1E-2;
@@ -50,6 +51,7 @@ namespace UnitsNet.Tests
 
         protected override double FathomsInOneMeter => 0.546806649;
 
+        protected override double PicometersInOneMeter => 1E+12;
         protected override double PrinterPicasInOneMeter => 237.10630158;
         protected override double PrinterPointsInOneMeter => 2845.2755906;
 
@@ -64,6 +66,8 @@ namespace UnitsNet.Tests
         protected override double KilolightYearsInOneMeter => 1.0570008340247000000000000E-19;
 
         protected override double KiloparsecsInOneMeter => 3.2407790389471100000000000E-20;
+
+        protected override double KiloyardsInOneMeter => 1.0936132983E-3;
 
         protected override double LightYearsInOneMeter => 1.0570008340247000000000000E-16;
 
@@ -84,6 +88,7 @@ namespace UnitsNet.Tests
         protected override double DataMilesInOneMeter => 0.000546807;
 
         protected override double MegametersInOneMeter => 1e-6;
+        protected override double GigametersInOneMeter => 1e-9;
 
         protected override double KilofeetInOneMeter => 3.28083989501e-3;
 

@@ -1,0 +1,49 @@
+﻿{
+  "Name": "RadiationExposure",
+  "BaseUnit": "CoulombPerKilogram",
+  "XmlDocSummary": "Radiation exposure is a measure of the ionization of air due to ionizing radiation from photons.",
+  "XmlDocsRemarks": "https://en.wikipedia.org/wiki/Radiation_exposure",
+  "BaseDimensions": {
+    "M": -1,
+    "T": 1,
+    "I": 1
+  },
+  "Units": [
+    {
+      "SingularName": "CoulombPerKilogram",
+      "PluralName": "CoulombsPerKilogram",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "BaseUnits": {
+        "M": "Kilogram",
+        "T": "Second",
+        "I": "Ampere"
+      },
+      "Prefixes": [ "Pico", "Nano", "Micro", "Milli" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "C/kg" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Roentgen",
+      "PluralName": "Roentgens",
+      "FromUnitToBaseFunc": "{x} * 2.58e-4",
+      "FromBaseToUnitFunc": "{x} / 2.58e-4",
+      "Prefixes": [ "Micro", "Milli" ],
+      "BaseUnits": {
+        "M": "Kilogram",
+        "T": "Second",
+        "I": "Ampere"
+      },
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "R" ]
+        }
+      ]
+    }
+  ]
+}

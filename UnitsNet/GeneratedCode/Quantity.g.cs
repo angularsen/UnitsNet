@@ -108,6 +108,7 @@ namespace UnitsNet
             { "MassFlux", MassFlux.Info },
             { "MassFraction", MassFraction.Info },
             { "MassMomentOfInertia", MassMomentOfInertia.Info },
+            { "Molality", Molality.Info },
             { "MolarEnergy", MolarEnergy.Info },
             { "MolarEntropy", MolarEntropy.Info },
             { "MolarFlow", MolarFlow.Info },
@@ -121,6 +122,8 @@ namespace UnitsNet
             { "PowerRatio", PowerRatio.Info },
             { "Pressure", Pressure.Info },
             { "PressureChangeRate", PressureChangeRate.Info },
+            { "RadiationExposure", RadiationExposure.Info },
+            { "Radioactivity", Radioactivity.Info },
             { "Ratio", Ratio.Info },
             { "RatioChangeRate", RatioChangeRate.Info },
             { "ReactiveEnergy", ReactiveEnergy.Info },
@@ -240,6 +243,7 @@ namespace UnitsNet
                 "MassFlux" => MassFlux.From(value, MassFlux.BaseUnit),
                 "MassFraction" => MassFraction.From(value, MassFraction.BaseUnit),
                 "MassMomentOfInertia" => MassMomentOfInertia.From(value, MassMomentOfInertia.BaseUnit),
+                "Molality" => Molality.From(value, Molality.BaseUnit),
                 "MolarEnergy" => MolarEnergy.From(value, MolarEnergy.BaseUnit),
                 "MolarEntropy" => MolarEntropy.From(value, MolarEntropy.BaseUnit),
                 "MolarFlow" => MolarFlow.From(value, MolarFlow.BaseUnit),
@@ -253,6 +257,8 @@ namespace UnitsNet
                 "PowerRatio" => PowerRatio.From(value, PowerRatio.BaseUnit),
                 "Pressure" => Pressure.From(value, Pressure.BaseUnit),
                 "PressureChangeRate" => PressureChangeRate.From(value, PressureChangeRate.BaseUnit),
+                "RadiationExposure" => RadiationExposure.From(value, RadiationExposure.BaseUnit),
+                "Radioactivity" => Radioactivity.From(value, Radioactivity.BaseUnit),
                 "Ratio" => Ratio.From(value, Ratio.BaseUnit),
                 "RatioChangeRate" => RatioChangeRate.From(value, RatioChangeRate.BaseUnit),
                 "ReactiveEnergy" => ReactiveEnergy.From(value, ReactiveEnergy.BaseUnit),
@@ -375,6 +381,7 @@ namespace UnitsNet
                 MassFluxUnit massFluxUnit => MassFlux.From(value, massFluxUnit),
                 MassFractionUnit massFractionUnit => MassFraction.From(value, massFractionUnit),
                 MassMomentOfInertiaUnit massMomentOfInertiaUnit => MassMomentOfInertia.From(value, massMomentOfInertiaUnit),
+                MolalityUnit molalityUnit => Molality.From(value, molalityUnit),
                 MolarEnergyUnit molarEnergyUnit => MolarEnergy.From(value, molarEnergyUnit),
                 MolarEntropyUnit molarEntropyUnit => MolarEntropy.From(value, molarEntropyUnit),
                 MolarFlowUnit molarFlowUnit => MolarFlow.From(value, molarFlowUnit),
@@ -388,6 +395,8 @@ namespace UnitsNet
                 PowerRatioUnit powerRatioUnit => PowerRatio.From(value, powerRatioUnit),
                 PressureUnit pressureUnit => Pressure.From(value, pressureUnit),
                 PressureChangeRateUnit pressureChangeRateUnit => PressureChangeRate.From(value, pressureChangeRateUnit),
+                RadiationExposureUnit radiationExposureUnit => RadiationExposure.From(value, radiationExposureUnit),
+                RadioactivityUnit radioactivityUnit => Radioactivity.From(value, radioactivityUnit),
                 RatioUnit ratioUnit => Ratio.From(value, ratioUnit),
                 RatioChangeRateUnit ratioChangeRateUnit => RatioChangeRate.From(value, ratioChangeRateUnit),
                 ReactiveEnergyUnit reactiveEnergyUnit => ReactiveEnergy.From(value, reactiveEnergyUnit),
@@ -520,6 +529,7 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(MassFlux) => parser.TryParse<MassFlux, MassFluxUnit>(quantityString, formatProvider, MassFlux.From, out quantity),
                 Type _ when quantityType == typeof(MassFraction) => parser.TryParse<MassFraction, MassFractionUnit>(quantityString, formatProvider, MassFraction.From, out quantity),
                 Type _ when quantityType == typeof(MassMomentOfInertia) => parser.TryParse<MassMomentOfInertia, MassMomentOfInertiaUnit>(quantityString, formatProvider, MassMomentOfInertia.From, out quantity),
+                Type _ when quantityType == typeof(Molality) => parser.TryParse<Molality, MolalityUnit>(quantityString, formatProvider, Molality.From, out quantity),
                 Type _ when quantityType == typeof(MolarEnergy) => parser.TryParse<MolarEnergy, MolarEnergyUnit>(quantityString, formatProvider, MolarEnergy.From, out quantity),
                 Type _ when quantityType == typeof(MolarEntropy) => parser.TryParse<MolarEntropy, MolarEntropyUnit>(quantityString, formatProvider, MolarEntropy.From, out quantity),
                 Type _ when quantityType == typeof(MolarFlow) => parser.TryParse<MolarFlow, MolarFlowUnit>(quantityString, formatProvider, MolarFlow.From, out quantity),
@@ -533,6 +543,8 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(PowerRatio) => parser.TryParse<PowerRatio, PowerRatioUnit>(quantityString, formatProvider, PowerRatio.From, out quantity),
                 Type _ when quantityType == typeof(Pressure) => parser.TryParse<Pressure, PressureUnit>(quantityString, formatProvider, Pressure.From, out quantity),
                 Type _ when quantityType == typeof(PressureChangeRate) => parser.TryParse<PressureChangeRate, PressureChangeRateUnit>(quantityString, formatProvider, PressureChangeRate.From, out quantity),
+                Type _ when quantityType == typeof(RadiationExposure) => parser.TryParse<RadiationExposure, RadiationExposureUnit>(quantityString, formatProvider, RadiationExposure.From, out quantity),
+                Type _ when quantityType == typeof(Radioactivity) => parser.TryParse<Radioactivity, RadioactivityUnit>(quantityString, formatProvider, Radioactivity.From, out quantity),
                 Type _ when quantityType == typeof(Ratio) => parser.TryParse<Ratio, RatioUnit>(quantityString, formatProvider, Ratio.From, out quantity),
                 Type _ when quantityType == typeof(RatioChangeRate) => parser.TryParse<RatioChangeRate, RatioChangeRateUnit>(quantityString, formatProvider, RatioChangeRate.From, out quantity),
                 Type _ when quantityType == typeof(ReactiveEnergy) => parser.TryParse<ReactiveEnergy, ReactiveEnergyUnit>(quantityString, formatProvider, ReactiveEnergy.From, out quantity),
@@ -646,6 +658,7 @@ namespace UnitsNet
             yield return typeof(MassFlux);
             yield return typeof(MassFraction);
             yield return typeof(MassMomentOfInertia);
+            yield return typeof(Molality);
             yield return typeof(MolarEnergy);
             yield return typeof(MolarEntropy);
             yield return typeof(MolarFlow);
@@ -659,6 +672,8 @@ namespace UnitsNet
             yield return typeof(PowerRatio);
             yield return typeof(Pressure);
             yield return typeof(PressureChangeRate);
+            yield return typeof(RadiationExposure);
+            yield return typeof(Radioactivity);
             yield return typeof(Ratio);
             yield return typeof(RatioChangeRate);
             yield return typeof(ReactiveEnergy);

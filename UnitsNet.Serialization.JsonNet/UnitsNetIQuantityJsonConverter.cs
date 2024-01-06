@@ -31,7 +31,7 @@ namespace UnitsNet.Serialization.JsonNet
                 return;
             }
 
-            var valueUnit = ConvertIQuantity(value);
+            ValueUnit valueUnit = ConvertIQuantity(value);
 
             serializer.Serialize(writer, valueUnit);
         }
@@ -51,24 +51,28 @@ namespace UnitsNet.Serialization.JsonNet
         public override IQuantity? ReadJson(JsonReader reader, Type objectType, IQuantity? existingValue, bool hasExistingValue,
             JsonSerializer serializer)
         {
-            reader = reader ?? throw new ArgumentNullException(nameof(reader));
-            serializer = serializer ?? throw new ArgumentNullException(nameof(serializer));
+            if (reader == null) throw new ArgumentNullException(nameof(reader));
+            if (serializer == null) throw new ArgumentNullException(nameof(serializer));
 
-            if (reader.TokenType == JsonToken.Null)
+            var token = JToken.Load(reader);
+
+            if (token.Type is JTokenType.Null)
             {
                 return existingValue;
             }
 
-            var token = JToken.Load(reader);
+            // Try to read value and unit from JSON, otherwise throw.
+            ValueUnit? valueUnit = ReadValueUnit(token);
 
-            var valueUnit = ReadValueUnit(token);
-
-            if (valueUnit == null)
-            {
-                return token.ToObject<IQuantity>(serializer);
-            }
-
-            return ConvertValueUnit(valueUnit);
+            return valueUnit != null
+                ? ConvertValueUnit(valueUnit)
+                : throw new JsonSerializationException(
+                    $"Failed to deserialize IQuantity for target type {objectType} from JSON '{token.ToString().Truncate(100)}', expected properties Unit and Value.")
+                {
+                    HelpLink =
+                        "https://github.com/angularsen/UnitsNet/wiki/Serializing-to-JSON,-XML-and-more#unitsnetserializationjsonnet-with-jsonnet-newtonsoft",
+                    Data = { { "JsonToken", token.ToString() }, }
+                };
         }
     }
 }

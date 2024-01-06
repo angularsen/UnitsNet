@@ -39,7 +39,9 @@
     "Mole": 12,
     "Nanomole": 13,
     "NanopoundMole": 14,
-    "PoundMole": 15
+    "PoundMole": 15,
+    "Femtomole": 19,
+    "Picomole": 18
   },
   "AmplitudeRatio": {
     "DecibelMicrovolt": 1,
@@ -152,7 +154,13 @@
   "CoefficientOfThermalExpansion": {
     "InverseDegreeCelsius": 1,
     "InverseDegreeFahrenheit": 2,
-    "InverseKelvin": 3
+    "InverseKelvin": 3,
+    "PerDegreeCelsius": 9,
+    "PerDegreeFahrenheit": 11,
+    "PerKelvin": 13,
+    "PpmPerDegreeCelsius": 6,
+    "PpmPerDegreeFahrenheit": 4,
+    "PpmPerKelvin": 7
   },
   "Compressibility": {
     "InverseAtmosphere": 1,
@@ -214,7 +222,12 @@
     "TonnePerCubicFoot": 48,
     "TonnePerCubicInch": 49,
     "TonnePerCubicMeter": 50,
-    "TonnePerCubicMillimeter": 51
+    "TonnePerCubicMillimeter": 51,
+    "FemtogramPerDeciliter": 59,
+    "FemtogramPerLiter": 56,
+    "FemtogramPerMilliliter": 61,
+    "KilopoundPerCubicYard": 64,
+    "PoundPerCubicYard": 58
   },
   "Duration": {
     "Day": 1,
@@ -425,7 +438,9 @@
     "WattDay": 35,
     "WattHour": 36,
     "Petajoule": 43,
-    "Terajoule": 37
+    "Terajoule": 37,
+    "Microjoule": 47,
+    "Nanojoule": 45
   },
   "Entropy": {
     "CaloriePerKelvin": 1,
@@ -683,7 +698,11 @@
     "UsSurveyFoot": 35,
     "Yard": 36,
     "Megameter": 41,
-    "Kilofoot": 45
+    "Kilofoot": 45,
+    "Femtometer": 48,
+    "Picometer": 43,
+    "Gigameter": 44,
+    "Kiloyard": 38
   },
   "Level": {
     "Decibel": 1,
@@ -1771,5 +1790,50 @@
     "Picogray": 11,
     "Rad": 17,
     "Teragray": 14
+  },
+  "Molality": {
+    "MolePerGram": 4,
+    "MolePerKilogram": 1
+  },
+  "Radioactivity": {
+    "Becquerel": 7,
+    "Curie": 9,
+    "Exabecquerel": 10,
+    "Gigabecquerel": 4,
+    "Gigacurie": 5,
+    "Gigarutherford": 1,
+    "Kilobecquerel": 6,
+    "Kilocurie": 8,
+    "Kilorutherford": 2,
+    "Megabecquerel": 3,
+    "Megacurie": 20,
+    "Megarutherford": 13,
+    "Microbecquerel": 19,
+    "Microcurie": 15,
+    "Microrutherford": 14,
+    "Millibecquerel": 17,
+    "Millicurie": 18,
+    "Millirutherford": 12,
+    "Nanobecquerel": 16,
+    "Nanocurie": 11,
+    "Nanorutherford": 27,
+    "Petabecquerel": 21,
+    "Rutherford": 28,
+    "Terabecquerel": 23,
+    "Teracurie": 29,
+    "Terarutherford": 22,
+    "Picobecquerel": 36,
+    "Picocurie": 35,
+    "Picorutherford": 25
+  },
+  "RadiationExposure": {
+    "CoulombPerKilogram": 10,
+    "MicrocoulombPerKilogram": 3,
+    "MillicoulombPerKilogram": 2,
+    "NanocoulombPerKilogram": 6,
+    "PicocoulombPerKilogram": 5,
+    "Roentgen": 4,
+    "Microroentgen": 12,
+    "Milliroentgen": 13
   }
 }

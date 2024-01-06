@@ -25,9 +25,18 @@ namespace UnitsNet.Units
 
     public enum CoefficientOfThermalExpansionUnit
     {
+        [System.Obsolete("Use PerDegreeCelsius instead.")]
         InverseDegreeCelsius = 1,
+        [System.Obsolete("Use PerDegreeFahrenheit instead.")]
         InverseDegreeFahrenheit = 2,
+        [System.Obsolete("Use PerKelvin instead.")]
         InverseKelvin = 3,
+        PerDegreeCelsius = 9,
+        PerDegreeFahrenheit = 11,
+        PerKelvin = 13,
+        PpmPerDegreeCelsius = 6,
+        PpmPerDegreeFahrenheit = 4,
+        PpmPerKelvin = 7,
     }
 
     #pragma warning restore 1591

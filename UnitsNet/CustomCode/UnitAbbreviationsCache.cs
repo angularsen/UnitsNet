@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
@@ -35,14 +36,12 @@ namespace UnitsNet
         [Obsolete("Use UnitsNetSetup.Default.UnitAbbreviations instead.")]
         public static UnitAbbreviationsCache Default => UnitsNetSetup.Default.UnitAbbreviations;
 
-        private readonly object _syncRoot = new();
-
         private QuantityInfoLookup QuantityInfoLookup { get; }
 
         /// <summary>
         /// Culture name to abbreviations. To add a custom default abbreviation, add to the beginning of the list.
         /// </summary>
-        private IDictionary<AbbreviationMapKey, IReadOnlyList<string>> AbbreviationsMap { get; } = new Dictionary<AbbreviationMapKey, IReadOnlyList<string>>();
+        private ConcurrentDictionary<AbbreviationMapKey, IReadOnlyList<string>> AbbreviationsMap { get; } = new();
 
         /// <summary>
         ///     Create an instance of the cache and load all the abbreviations defined in the library.
@@ -187,6 +186,10 @@ namespace UnitsNet
         public string GetDefaultAbbreviation<TUnitType>(TUnitType unit, IFormatProvider? formatProvider = null) where TUnitType : Enum
         {
             Type unitType = typeof(TUnitType);
+
+            // Edge-case: If the value was cast to Enum, it still satisfies the generic constraint so we must get the type from the value instead.
+            if (unitType == typeof(Enum)) unitType = unit.GetType();
+
             return GetDefaultAbbreviation(unitType, Convert.ToInt32(unit), formatProvider);
         }
 
@@ -291,14 +294,15 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///
+        ///    Get all abbreviations for the given unit and culture.
         /// </summary>
-        /// <param name="unitInfo"></param>
-        /// <param name="formatProvider"></param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentNullException"></exception>
+        /// <param name="unitInfo">The unit.</param>
+        /// <param name="formatProvider">The culture to get localized abbreviations for. Defaults to <see cref="CultureInfo.CurrentCulture"/>.</param>
+        /// <returns>The list of abbreviations mapped for this unit. The first in the list is the primary abbreviation used by ToString().</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="unitInfo"/> was null.</exception>
         public IReadOnlyList<string> GetAbbreviations(UnitInfo unitInfo, IFormatProvider? formatProvider = null)
         {
+            if (unitInfo == null) throw new ArgumentNullException(nameof(unitInfo));
             if (formatProvider is not CultureInfo)
                 formatProvider = CultureInfo.CurrentCulture;
 
@@ -306,8 +310,9 @@ namespace UnitsNet
             var cultureName = GetCultureNameOrEnglish(culture);
 
             AbbreviationMapKey key = GetAbbreviationMapKey(unitInfo, cultureName);
-            if (!AbbreviationsMap.TryGetValue(key, out IReadOnlyList<string>? abbreviations))
-                AbbreviationsMap[key] = abbreviations = ReadAbbreviationsFromResourceFile(unitInfo.QuantityName, unitInfo.PluralName, culture);
+
+            IReadOnlyList<string> abbreviations = AbbreviationsMap.GetOrAdd(key,
+                valueFactory: _ => ReadAbbreviationsFromResourceFile(unitInfo.QuantityName, unitInfo.PluralName, culture));
 
             return abbreviations.Count == 0 && !culture.Equals(FallbackCulture)
                 ? GetAbbreviations(unitInfo, FallbackCulture)
@@ -320,9 +325,9 @@ namespace UnitsNet
         /// <param name="unitInfo">The unit to add for.</param>
         /// <param name="formatProvider">The culture this abbreviation is for, defaults to <see cref="CultureInfo.CurrentCulture"/>.</param>
         /// <param name="setAsDefault">Whether to set as the primary/default unit abbreviation used by ToString().</param>
-        /// <param name="abbreviations">One or more abbreviations to add.</param>
+        /// <param name="newAbbreviations">One or more abbreviations to add.</param>
         private void AddAbbreviation(UnitInfo unitInfo, IFormatProvider? formatProvider, bool setAsDefault,
-            params string[] abbreviations)
+            params string[] newAbbreviations)
         {
             if (formatProvider is not CultureInfo)
                 formatProvider = CultureInfo.CurrentCulture;
@@ -330,26 +335,35 @@ namespace UnitsNet
             var culture = (CultureInfo)formatProvider;
             var cultureName = GetCultureNameOrEnglish(culture);
 
-            // Restrict concurrency on writes.
-            // By using ConcurrencyDictionary and immutable IReadOnlyList instances, we don't need to lock on reads.
-            lock(_syncRoot)
-            {
-                var currentAbbreviationsList = new List<string>(GetAbbreviations(unitInfo, culture));
+            AbbreviationMapKey key = GetAbbreviationMapKey(unitInfo, cultureName);
 
-                foreach (var abbreviation in abbreviations)
+            AbbreviationsMap.AddOrUpdate(key,
+                addValueFactory: _ =>
                 {
-                    if (!currentAbbreviationsList.Contains(abbreviation))
-                    {
-                        if (setAsDefault)
-                            currentAbbreviationsList.Insert(0, abbreviation);
-                        else
-                            currentAbbreviationsList.Add(abbreviation);
-                    }
-                }
+                    List<string> bundledAbbreviations = ReadAbbreviationsFromResourceFile(unitInfo.QuantityName, unitInfo.PluralName, culture).ToList();
+                    return AddAbbreviationsToList(setAsDefault, bundledAbbreviations, newAbbreviations);
+                },
+                updateValueFactory: (_, existingReadOnlyList) => AddAbbreviationsToList(setAsDefault, existingReadOnlyList.ToList(), newAbbreviations));
+        }
 
-                AbbreviationMapKey key = GetAbbreviationMapKey(unitInfo, cultureName);
-                AbbreviationsMap[key] = currentAbbreviationsList.AsReadOnly();
+        private static IReadOnlyList<string> AddAbbreviationsToList(bool setAsDefault, List<string> list, IEnumerable<string> abbreviations)
+        {
+            foreach (var newAbbrev in abbreviations)
+            {
+                if (setAsDefault)
+                {
+                    // Remove if it already exists, then insert at beginning.
+                    // Normally only called with a single abbreviation.
+                    list.Remove(newAbbrev);
+                    list.Insert(0, newAbbrev);
+                }
+                else if (!list.Contains(newAbbrev))
+                {
+                    list.Add(newAbbrev);
+                }
             }
+
+            return list.AsReadOnly();
         }
 
         private static AbbreviationMapKey GetAbbreviationMapKey(UnitInfo unitInfo, string cultureName)

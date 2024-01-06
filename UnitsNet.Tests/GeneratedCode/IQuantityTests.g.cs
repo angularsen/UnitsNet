@@ -47,7 +47,7 @@ namespace UnitsNet.Tests
             Assertion(3, BitRateUnit.TerabytePerSecond, Quantity.From(3, BitRateUnit.TerabytePerSecond));
             Assertion(3, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, Quantity.From(3, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour));
             Assertion(3, CapacitanceUnit.Picofarad, Quantity.From(3, CapacitanceUnit.Picofarad));
-            Assertion(3, CoefficientOfThermalExpansionUnit.InverseKelvin, Quantity.From(3, CoefficientOfThermalExpansionUnit.InverseKelvin));
+            Assertion(3, CoefficientOfThermalExpansionUnit.PpmPerKelvin, Quantity.From(3, CoefficientOfThermalExpansionUnit.PpmPerKelvin));
             Assertion(3, CompressibilityUnit.InversePoundForcePerSquareInch, Quantity.From(3, CompressibilityUnit.InversePoundForcePerSquareInch));
             Assertion(3, DensityUnit.TonnePerCubicMillimeter, Quantity.From(3, DensityUnit.TonnePerCubicMillimeter));
             Assertion(3, DurationUnit.Year365, Quantity.From(3, DurationUnit.Year365));
@@ -104,6 +104,7 @@ namespace UnitsNet.Tests
             Assertion(3, MassFluxUnit.KilogramPerSecondPerSquareMillimeter, Quantity.From(3, MassFluxUnit.KilogramPerSecondPerSquareMillimeter));
             Assertion(3, MassFractionUnit.Percent, Quantity.From(3, MassFractionUnit.Percent));
             Assertion(3, MassMomentOfInertiaUnit.TonneSquareMilimeter, Quantity.From(3, MassMomentOfInertiaUnit.TonneSquareMilimeter));
+            Assertion(3, MolalityUnit.MolePerKilogram, Quantity.From(3, MolalityUnit.MolePerKilogram));
             Assertion(3, MolarEnergyUnit.MegajoulePerMole, Quantity.From(3, MolarEnergyUnit.MegajoulePerMole));
             Assertion(3, MolarEntropyUnit.MegajoulePerMoleKelvin, Quantity.From(3, MolarEntropyUnit.MegajoulePerMoleKelvin));
             Assertion(3, MolarFlowUnit.PoundMolePerSecond, Quantity.From(3, MolarFlowUnit.PoundMolePerSecond));
@@ -117,6 +118,8 @@ namespace UnitsNet.Tests
             Assertion(3, PowerRatioUnit.DecibelWatt, Quantity.From(3, PowerRatioUnit.DecibelWatt));
             Assertion(3, PressureUnit.Torr, Quantity.From(3, PressureUnit.Torr));
             Assertion(3, PressureChangeRateUnit.PoundForcePerSquareInchPerSecond, Quantity.From(3, PressureChangeRateUnit.PoundForcePerSquareInchPerSecond));
+            Assertion(3, RadiationExposureUnit.Roentgen, Quantity.From(3, RadiationExposureUnit.Roentgen));
+            Assertion(3, RadioactivityUnit.Terarutherford, Quantity.From(3, RadioactivityUnit.Terarutherford));
             Assertion(3, RatioUnit.Percent, Quantity.From(3, RatioUnit.Percent));
             Assertion(3, RatioChangeRateUnit.PercentPerSecond, Quantity.From(3, RatioChangeRateUnit.PercentPerSecond));
             Assertion(3, ReactiveEnergyUnit.VoltampereReactiveHour, Quantity.From(3, ReactiveEnergyUnit.VoltampereReactiveHour));
@@ -231,6 +234,7 @@ namespace UnitsNet.Tests
             Assertion(MassFlux.Info, MassFlux.Zero);
             Assertion(MassFraction.Info, MassFraction.Zero);
             Assertion(MassMomentOfInertia.Info, MassMomentOfInertia.Zero);
+            Assertion(Molality.Info, Molality.Zero);
             Assertion(MolarEnergy.Info, MolarEnergy.Zero);
             Assertion(MolarEntropy.Info, MolarEntropy.Zero);
             Assertion(MolarFlow.Info, MolarFlow.Zero);
@@ -244,6 +248,8 @@ namespace UnitsNet.Tests
             Assertion(PowerRatio.Info, PowerRatio.Zero);
             Assertion(Pressure.Info, Pressure.Zero);
             Assertion(PressureChangeRate.Info, PressureChangeRate.Zero);
+            Assertion(RadiationExposure.Info, RadiationExposure.Zero);
+            Assertion(Radioactivity.Info, Radioactivity.Zero);
             Assertion(Ratio.Info, Ratio.Zero);
             Assertion(RatioChangeRate.Info, RatioChangeRate.Zero);
             Assertion(ReactiveEnergy.Info, ReactiveEnergy.Zero);
@@ -358,6 +364,7 @@ namespace UnitsNet.Tests
             Assertion(MassFlux.BaseDimensions, MassFlux.Zero);
             Assertion(MassFraction.BaseDimensions, MassFraction.Zero);
             Assertion(MassMomentOfInertia.BaseDimensions, MassMomentOfInertia.Zero);
+            Assertion(Molality.BaseDimensions, Molality.Zero);
             Assertion(MolarEnergy.BaseDimensions, MolarEnergy.Zero);
             Assertion(MolarEntropy.BaseDimensions, MolarEntropy.Zero);
             Assertion(MolarFlow.BaseDimensions, MolarFlow.Zero);
@@ -371,6 +378,8 @@ namespace UnitsNet.Tests
             Assertion(PowerRatio.BaseDimensions, PowerRatio.Zero);
             Assertion(Pressure.BaseDimensions, Pressure.Zero);
             Assertion(PressureChangeRate.BaseDimensions, PressureChangeRate.Zero);
+            Assertion(RadiationExposure.BaseDimensions, RadiationExposure.Zero);
+            Assertion(Radioactivity.BaseDimensions, Radioactivity.Zero);
             Assertion(Ratio.BaseDimensions, Ratio.Zero);
             Assertion(RatioChangeRate.BaseDimensions, RatioChangeRate.Zero);
             Assertion(ReactiveEnergy.BaseDimensions, ReactiveEnergy.Zero);

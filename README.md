@@ -130,32 +130,57 @@ There are a handful of classes to help with this:
 - [UnitConverter](UnitsNet/UnitConverter.cs) for converting values to a different unit, with only strings or enum values
 - [UnitParser](UnitsNet/CustomCode/UnitParser.cs) for parsing unit abbreviation strings, such as `"cm"` to `LengthUnit.Centimeter`
 
-#### Enumerate quantities and units
-`Quantity` is the go-to class for looking up information about quantities at runtime.
-```c#
-string[] Quantity.Names;       // ["Length", "Mass", ...]
-QuantityType[] Quantity.Types; // [QuantityType.Length, QuantityType.Mass, ...]
-QuantityInfo[] Quantity.Infos; // Information about all quantities and their units, types, values etc., see more below
+#### Quantity - Enumerate quantities and units at runtime
+Use `Quantity` class for looking up `QuantityInfo` and `UnitInfo` at runtime.
 
-QuantityInfo Quantity.GetInfo(QuantityType.Length); // Get information about Length
+```c#
+string[] names = Quantity.Names;     // ["Length", "Mass", ...]
+QuantityInfo[] qis = Quantity.Infos; // All quantities and their units, types, values.
+
+// Look up quantity by name.
+QuantityInfo lengthInfo = Quantity.ByName["Length"];
+UnitInfo[] lengthUnits = lengthInfo.UnitInfos;
+
+// Look up unit by enum value (note: for extensibility, will instead look up by name in the future)
+UnitInfo cmInfo = Quantity.GetUnitInfo(LengthUnit.Centimeter);
 ```
 
-#### Information about quantity type
-`QuantityInfo` makes it easy to enumerate names, units, types and values for the quantity type.
+#### QuantityInfo - Information about a quantity
+`QuantityInfo` makes it easy to get names, units, types and values for a quantity.
 This is useful for populating lists of quantities and units for the user to choose.
 
 ```c#
-QuantityInfo lengthInfo = Quantity.GetInfo(QuantityType.Length); // You can get it statically here
-lengthInfo = Length.Info;                                        // or statically per quantity
-lengthInfo = Length.Zero.QuantityInfo;                           // or dynamically from quantity instances
+// Different ways to look up the quantity info.
+QuantityInfo lengthInfo = Quantity.ByName["Length"];
+lengthInfo = Length.Info;
+lengthInfo = Length.FromMeters(1).QuantityInfo;
 
-lengthInfo.Name;         // "Length"
-lengthInfo.QuantityType; // QuantityType.Length
-lengthInfo.UnitNames;    // ["Centimeter", "Meter", ...]
-lengthInfo.Units;        // [LengthUnit.Centimeter, LengthUnit.Meter, ...]
-lengthInfo.UnitType;     // typeof(LengthUnit)
-lengthInfo.ValueType;    // typeof(Length)
-lengthInfo.Zero;         // Length.Zero
+// The quantity information.
+lengthInfo.Name;            // "Length"
+lengthInfo.UnitInfos;       // UnitInfo[] for its units Centimeter, Meter, etc.
+lengthInfo.BaseUnitInfo;    // UnitInfo for LengthUnit.Meter
+lengthInfo.BaseDimensions;  // {"Length": 1, "Mass": 0, ...}
+lengthInfo.UnitType;        // typeof(LengthUnit)
+lengthInfo.ValueType;       // typeof(Length)
+lengthInfo.Zero;            // Length.Zero
+```
+
+#### UnitInfo - Information about a unit
+`UnitInfo` describes a unit, such as its enum value, names and its representation in SI base units.
+
+```c#
+// Different ways to look up the unit info.
+var cm = Quantity.GetUnitInfo(LengthUnit.Centimeter);
+
+if (Quantity.TryGetUnitInfo(LengthUnit.Centimeter, out UnitInfo tryGetCm)) {
+    cm = tryGetCm;
+}
+
+// The unit information.
+cm.Value;       // Enum value: LengthUnit.Centimeter
+cm.Name;        // "Centimeter"
+cm.PluralName;  // "Centimeters"
+cm.BaseUnits;   // {"Length": Centimeter, "Mass": null, "Time": null, ...}
 ```
 
 #### Construct quantity
@@ -297,25 +322,28 @@ HowMuch q = quantityParser.Parse<HowMuch, HowMuchUnit>(
 ![image](https://user-images.githubusercontent.com/787816/34920961-9b697004-f97b-11e7-9e9a-51ff7142969b.png)
 
 This example shows how you can create a dynamic unit converter, where the user selects the quantity to convert, such as `Temperature`, then selects to convert from `DegreeCelsius` to `DegreeFahrenheit` and types in a numeric value for how many degrees Celsius to convert.
-The quantity list box contains `QuantityType` values such as `QuantityType.Length` and the two unit list boxes contain `Enum` values, such as `LengthUnit.Meter`.
+The quantity list box contains quantity names, such as `"Length"`. The two unit list boxes contain `Enum` values, such as `LengthUnit.Meter`.
 
 #### Populate quantity selector
-Use `Quantity` to enumerate all quantity type enum values, such as `QuantityType.Length` and `QuantityType.Mass`.
+Use `Quantity` to enumerate all quantity names, such as `"Length"` and `"Mass"`.
 
 ```c#
-this.Quantities = Quantity.Types; // QuantityType[]
+this.Quantities = Quantity.Names; // string[]
+
+// or
+this.Quantities = Quantity.Infos.Select(i => i.Name).ToList();
 ```
 
 #### Update unit lists when selecting new quantity
 So user can only choose from/to units compatible with the quantity type.
 
 ```c#
-QuantityInfo quantityInfo = Quantity.GetInfo(quantityType);
+QuantityInfo quantityInfo = Quantity.ByName[quantityName];
 
 _units.Clear();
-foreach (Enum unitValue in quantityInfo.Units)
+foreach (Enum unitValue in quantityInfo.UnitInfos.Select(ui => ui.Value))
 {
-    _units.Add(unitValue);
+    _units.Add(new UnitListItem(unitValue));
 }
 ```
 
@@ -331,8 +359,8 @@ double convertedValue = UnitConverter.Convert(
 
 ### Example: WPF app using IValueConverter to parse input
 
-Src: [Samples/WpfMVVMSample](https://github.com/angularsen/UnitsNet/tree/master/Samples/WpfMVVMSample)
-
+Src: [Samples/MvvmSample.Wpf](https://github.com/angularsen/UnitsNet/tree/master/Samples/MvvmSample.Wpf)
+                             
 ![wpfmvvmsample_219w](https://user-images.githubusercontent.com/787816/34913417-094332e2-f8fd-11e7-9d8a-92db105fbbc9.png)
 
 The purpose of this app is to show how to create an `IValueConverter` in order to bind XAML to quantities.

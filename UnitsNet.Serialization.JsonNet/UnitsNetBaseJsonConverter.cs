@@ -47,6 +47,7 @@ namespace UnitsNet.Serialization.JsonNet
         /// <returns>A <see cref="ValueUnit"/></returns>
         protected ValueUnit? ReadValueUnit(JToken jsonToken)
         {
+            // Empty JSON "{}"
             if (!jsonToken.HasValues)
             {
                 return null;

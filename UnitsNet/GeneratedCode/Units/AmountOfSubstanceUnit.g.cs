@@ -29,6 +29,7 @@ namespace UnitsNet.Units
         CentipoundMole = 2,
         Decimole = 3,
         DecipoundMole = 4,
+        Femtomole = 19,
         Kilomole = 5,
         KilopoundMole = 6,
         Megamole = 7,
@@ -39,6 +40,7 @@ namespace UnitsNet.Units
         Mole = 12,
         Nanomole = 13,
         NanopoundMole = 14,
+        Picomole = 18,
         PoundMole = 15,
     }
 

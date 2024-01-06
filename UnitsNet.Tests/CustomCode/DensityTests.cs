@@ -23,9 +23,13 @@ namespace UnitsNet.Tests
 
         protected override double KilogramsPerCubicMillimeterInOneKilogramPerCubicMeter => 1e-9;
 
+        protected override double KilopoundsPerCubicYardInOneKilogramPerCubicMeter => 1.6855549356e-3;
+
         protected override double KilopoundsPerCubicFootInOneKilogramPerCubicMeter => 6.242796e-5;
 
         protected override double KilopoundsPerCubicInchInOneKilogramPerCubicMeter => 3.6127292e-8;
+
+        protected override double PoundsPerCubicYardInOneKilogramPerCubicMeter => 1.6855549356;
 
         protected override double PoundsPerCubicFootInOneKilogramPerCubicMeter => 6.242796e-2;
 
@@ -81,9 +85,15 @@ namespace UnitsNet.Tests
 
         protected override double PicogramsPerDeciliterInOneKilogramPerCubicMeter => 1e11;
 
+        protected override double FemtogramsPerDeciliterInOneKilogramPerCubicMeter => 1e14;
+
         protected override double PicogramsPerLiterInOneKilogramPerCubicMeter => 1e12;
 
+        protected override double FemtogramsPerLiterInOneKilogramPerCubicMeter => 1e15;
+
         protected override double PicogramsPerMilliliterInOneKilogramPerCubicMeter => 1e9;
+
+        protected override double FemtogramsPerMilliliterInOneKilogramPerCubicMeter => 1e12;
 
         protected override double MicrogramsPerCubicMeterInOneKilogramPerCubicMeter => 1e9;
 

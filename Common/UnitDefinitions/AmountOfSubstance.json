@@ -14,7 +14,7 @@
       "BaseUnits": {
         "N": "Mole"
       },
-      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo", "Mega"],
+      "Prefixes": [ "Femto", "Pico", "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo", "Mega"],
       "Localization": [
         {
           "Culture": "en-US",

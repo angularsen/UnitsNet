@@ -2,9 +2,9 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>UnitsNet.nanoFramework.MolarEnergy</id>
-    <version>5.25.0</version>
+    <version>5.42.0</version>
     <title>Units.NET MolarEnergy - nanoFramework</title>
-    <authors>Andreas Gullberg Larsen,nanoFramework project contributors</authors>
+    <authors>Andreas Gullberg Larsen,nanoframework</authors>
     <owners>UnitsNet</owners>
     <license type="expression">MIT</license>
     <projectUrl>https://github.com/angularsen/UnitsNet</projectUrl>
@@ -17,7 +17,7 @@
     <language>en-US</language>
     <tags>nanoframework molarenergy unit units quantity quantities measurement si metric imperial abbreviation abbreviations convert conversion parse immutable</tags>
     <dependencies>
-      <dependency id="nanoFramework.CoreLibrary" version="1.14.2" />
+      <dependency id="nanoFramework.CoreLibrary" version="1.15.5" />
     </dependencies>
   </metadata>
   <files>
