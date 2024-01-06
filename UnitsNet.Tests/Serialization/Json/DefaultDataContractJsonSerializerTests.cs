@@ -54,18 +54,6 @@ namespace UnitsNet.Tests.Serialization.Json
             Assert.Equal(expectedJson, json);
         }
 
-        [Fact]
-        public void DecimalQuantity_SerializedWithDecimalValueValueAndunitInt()
-        {
-            var quantity = new Information(1.20m, InformationUnit.Exabyte);
-            var unitInt = (int)InformationUnit.Exabyte;
-            var expectedJson = $"{{\"Value\":1.20,\"Unit\":{unitInt}}}";
-
-            var json = SerializeObject(quantity);
-
-            Assert.Equal(expectedJson, json);
-        }
-
         #endregion
 
         #region Deserialization tests
@@ -145,39 +133,11 @@ namespace UnitsNet.Tests.Serialization.Json
         }
 
         [Fact]
-        public void DecimalQuantity_DeserializedFromDecimalValueAndUnitInt()
-        {
-            var expectedUnit = InformationUnit.Exabyte;
-            var unitInt = (int)expectedUnit;
-            var json = $"{{\"Value\":1.200,\"Unit\":{unitInt}}}";
-
-            var quantity = DeserializeObject<Information>(json);
-
-            Assert.Equal(1.200m, quantity.Value);
-            Assert.Equal("1.200", quantity.Value.ToString(CultureInfo.InvariantCulture));
-            Assert.Equal(expectedUnit, quantity.Unit);
-        }
-
-        [Fact]
         public void InterfaceObject_WithMissingKnownTypeInformation_ThrowsSerializationException()
         {
             var testObject = new TestInterfaceObject { Quantity = new Volume(1.2, VolumeUnit.Microliter) };
 
             Assert.Throws<SerializationException>(() => SerializeObject(testObject));
-        }
-
-        [Fact]
-        public void DecimalQuantity_DeserializedFromQuotedDecimalValueAndUnitInt()
-        {
-            var expectedUnit = InformationUnit.Exabyte;
-            var unitInt = (int)expectedUnit;
-            var json = $"{{\"Value\":\"1.200\",\"Unit\":{unitInt}}}";
-
-            var quantity = DeserializeObject<Information>(json);
-
-            Assert.Equal(1.200m, quantity.Value);
-            Assert.Equal("1.200", quantity.Value.ToString(CultureInfo.InvariantCulture));
-            Assert.Equal(expectedUnit, quantity.Unit);
         }
 
         [Fact]
@@ -191,18 +151,6 @@ namespace UnitsNet.Tests.Serialization.Json
 
             Assert.Equal(0, quantity.Value);
             Assert.Equal(expectedUnit, quantity.Unit);
-        }
-
-        [Fact]
-        public void DecimalBaseUnitQuantity_DeserializedFromDecimalValueAndNoUnit()
-        {
-            var json = "{\"Value\":1.200}";
-
-            var quantity = DeserializeObject<Information>(json);
-
-            Assert.Equal(1.200m, quantity.Value);
-            Assert.Equal("1.200", quantity.Value.ToString(CultureInfo.InvariantCulture));
-            Assert.Equal(Information.BaseUnit, quantity.Unit);
         }
 
         [Fact]

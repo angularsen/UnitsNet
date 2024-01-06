@@ -48,20 +48,6 @@ namespace UnitsNet.Tests.Serialization
         }
 
         [Fact]
-        public void DecimalValueQuantity_SerializationRoundTrips()
-        {
-            var quantity = Information.FromExabytes(1.200m);
-
-            var payload = SerializeObject(quantity);
-            var result = DeserializeObject<Information>(payload);
-
-            Assert.Equal(quantity.Unit, result.Unit);
-            Assert.Equal(quantity.Value, result.Value);
-            Assert.Equal(quantity, result);
-            Assert.Equal("1.200", result.Value.ToString(CultureInfo.InvariantCulture));
-        }
-
-        [Fact]
         public void LargeDecimalValueQuantity_SerializationRoundTrips()
         {
             var quantity = Information.FromExabytes(1E+24);
@@ -80,28 +66,6 @@ namespace UnitsNet.Tests.Serialization
 
             var payload = SerializeObject(quantities);
             var results = DeserializeObject<Mass[]>(payload);
-
-            Assert.Collection(results, result =>
-            {
-                Assert.Equal(quantities[0].Unit, result.Unit);
-                Assert.Equal(quantities[0].Value, result.Value);
-                Assert.Equal(quantities[0], result);
-            }, result =>
-            {
-                Assert.Equal(quantities[1].Unit, result.Unit);
-                Assert.Equal(quantities[1].Value, result.Value);
-                Assert.Equal(quantities[1], result);
-            });
-        }
-
-        [Fact]
-        [SuppressMessage("ReSharper", "ParameterOnlyUsedForPreconditionCheck.Local")]
-        public void ArrayOfDecimalValueQuantities_SerializationRoundTrips()
-        {
-            var quantities = new[] { new Information(1.2m, InformationUnit.Exabit), new Information(2, InformationUnit.Exabyte) };
-
-            var payload = SerializeObject(quantities);
-            var results = DeserializeObject<Information[]>(payload);
 
             Assert.Collection(results, result =>
             {
@@ -136,30 +100,6 @@ namespace UnitsNet.Tests.Serialization
 
             var payload = SerializeObject(quantities);
             var results = DeserializeObject<IEnumerable<Mass>>(payload);
-
-            Assert.Collection(results, result =>
-            {
-                Assert.Equal(firstQuantity.Unit, result.Unit);
-                Assert.Equal(firstQuantity.Value, result.Value);
-                Assert.Equal(firstQuantity, result);
-            }, result =>
-            {
-                Assert.Equal(secondQuantity.Unit, result.Unit);
-                Assert.Equal(secondQuantity.Value, result.Value);
-                Assert.Equal(secondQuantity, result);
-            });
-        }
-
-        [Fact]
-        [SuppressMessage("ReSharper", "ParameterOnlyUsedForPreconditionCheck.Local")]
-        public virtual void EnumerableOfDecimalValueQuantities_SerializationRoundTrips()
-        {
-            var firstQuantity = new Information(1.2m, InformationUnit.Exabit);
-            var secondQuantity = new Information(2, InformationUnit.Exabyte);
-            var quantities = new List<Information> { firstQuantity, secondQuantity };
-
-            var payload = SerializeObject(quantities);
-            var results = DeserializeObject<IEnumerable<Information>>(payload);
 
             Assert.Collection(results, result =>
             {
@@ -253,32 +193,6 @@ namespace UnitsNet.Tests.Serialization
         }
 
         [Fact]
-        [SuppressMessage("ReSharper", "PossibleInvalidOperationException")]
-        public void ClassOfMixedValueQuantities_SerializationRoundTrips()
-        {
-            var doubleQuantity = new Mass(1.2, MassUnit.Milligram);
-            var decimalQuantity = new Information(2, InformationUnit.Exabyte);
-            var quantities = new TestObject<Mass, Information>
-            {
-                Quantity = doubleQuantity, NullableQuantity = doubleQuantity, DecimalQuantity = decimalQuantity
-            };
-
-            var payload = SerializeObject(quantities);
-            var results = DeserializeObject<TestObject<Mass, Information>>(payload);
-
-            Assert.Equal(doubleQuantity.Unit, results.Quantity.Unit);
-            Assert.Equal(doubleQuantity.Value, results.Quantity.Value);
-            Assert.Equal(doubleQuantity, results.Quantity);
-            Assert.Equal(doubleQuantity.Unit, results.NullableQuantity!.Value.Unit);
-            Assert.Equal(doubleQuantity.Value, results.NullableQuantity.Value.Value);
-            Assert.Equal(doubleQuantity, results.NullableQuantity);
-            Assert.Equal(decimalQuantity.Unit, results.DecimalQuantity.Unit);
-            Assert.Equal(decimalQuantity.Value, results.DecimalQuantity.Value);
-            Assert.Equal(decimalQuantity, results.DecimalQuantity);
-            Assert.Null(results.NullableDecimalQuantity);
-        }
-
-        [Fact]
         public void ClassOfInterfaceQuantity_SerializationRoundTrips()
         {
             var quantity = new Mass(1.2, MassUnit.Milligram);
@@ -290,21 +204,6 @@ namespace UnitsNet.Tests.Serialization
             Assert.Equal(quantity.Unit, result.Quantity.Unit);
             Assert.Equal(quantity.Value, result.Quantity.Value);
             Assert.Equal(quantity, result.Quantity);
-        }
-
-        [Fact]
-        public void ClassOfInterfaceDecimalValueQuantity_SerializationRoundTrips()
-        {
-            var quantity = new Information(2, InformationUnit.Exabyte);
-            var quantityObject = new TestInterfaceObject { Quantity = quantity };
-
-            var payload = SerializeObject(quantityObject);
-            var result = DeserializeObject<TestInterfaceObject>(payload);
-
-            Assert.Equal(quantity.Unit, result.Quantity.Unit);
-            Assert.Equal(quantity.Value, ((IValueQuantity<decimal>)result.Quantity).Value);
-            Assert.Equal(quantity, result.Quantity);
-            Assert.Equal("2", ((IValueQuantity<decimal>)result.Quantity).Value.ToString(CultureInfo.InvariantCulture));
         }
 
         [DataContract]

@@ -26,17 +26,6 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
-        public void DecimalQuantity_SerializedWithDecimalValueAndAbbreviatedUnit()
-        {
-            var quantity = new Information(1.20m, InformationUnit.Exabyte);
-            var expectedJson = "{\"Value\":1.20,\"Unit\":\"EB\",\"Type\":\"Information\"}";
-
-            var json = SerializeObject(quantity);
-
-            Assert.Equal(expectedJson, json);
-        }
-
-        [Fact]
         public void InterfaceObject_IncludesTypeInformation()
         {
             var testObject = new TestInterfaceObject { Quantity = new Information(1.20m, InformationUnit.Exabyte) };
@@ -234,54 +223,6 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
-        public void DecimalIQuantity_DeserializedFromDecimalValueAndAbbreviatedUnit()
-        {
-            var json = "{\"Value\":1.200,\"Unit\":\"EB\",\"Type\":\"Information\"}";
-
-            var quantity = (Information) DeserializeObject<IQuantity>(json);
-
-            Assert.Equal(1.200m, quantity.Value);
-            Assert.Equal("1.200", quantity.Value.ToString(CultureInfo.InvariantCulture));
-            Assert.Equal(InformationUnit.Exabyte, quantity.Unit);
-        }
-
-        [Fact]
-        public void DecimalQuantity_DeserializedFromDecimalValueAndAbbreviatedUnit()
-        {
-            var json = "{\"Value\":1.200,\"Unit\":\"EB\"}";
-
-            var quantity = DeserializeObject<Information>(json);
-
-            Assert.Equal(1.200m, quantity.Value);
-            Assert.Equal("1.200", quantity.Value.ToString(CultureInfo.InvariantCulture));
-            Assert.Equal(InformationUnit.Exabyte, quantity.Unit);
-        }
-
-        [Fact]
-        public void DecimalIQuantity_DeserializedFromQuotedDecimalValueAndAbbreviatedUnit()
-        {
-            var json = "{\"Value\":\"1.200\",\"Unit\":\"EB\",\"Type\":\"Information\"}";
-
-            var quantity = (Information) DeserializeObject<IQuantity>(json);
-
-            Assert.Equal(1.200m, quantity.Value);
-            Assert.Equal("1.200", quantity.Value.ToString(CultureInfo.InvariantCulture));
-            Assert.Equal(InformationUnit.Exabyte, quantity.Unit);
-        }
-
-        [Fact]
-        public void DecimalQuantity_DeserializedFromQuotedDecimalValueAndAbbreviatedUnit()
-        {
-            var json = "{\"Value\":\"1.200\",\"Unit\":\"EB\"}";
-
-            var quantity = DeserializeObject<Information>(json);
-
-            Assert.Equal(1.200m, quantity.Value);
-            Assert.Equal("1.200", quantity.Value.ToString(CultureInfo.InvariantCulture));
-            Assert.Equal(InformationUnit.Exabyte, quantity.Unit);
-        }
-
-        [Fact]
         public void DecimalZeroIQuantity_DeserializedFromAbbreviatedUnitAndNoValue()
         {
             var json = "{\"Unit\":\"EB\",\"Type\":\"Information\"}";
@@ -301,30 +242,6 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
             Assert.Equal(0, quantity.Value);
             Assert.Equal(InformationUnit.Exabyte, quantity.Unit);
-        }
-
-        [Fact]
-        public void DecimalBaseUnitIQuantity_DeserializedFromDecimalValueAndNoUnit()
-        {
-            var json = "{\"Value\":1.200,\"Type\":\"Information\"}";
-
-            var quantity = (Information)DeserializeObject<IQuantity>(json);
-
-            Assert.Equal(1.200m, quantity.Value);
-            Assert.Equal("1.200", quantity.Value.ToString(CultureInfo.InvariantCulture));
-            Assert.Equal(Information.BaseUnit, quantity.Unit);
-        }
-
-        [Fact]
-        public void DecimalBaseUnitQuantity_DeserializedFromDecimalValueAndNoUnit()
-        {
-            var json = "{\"Value\":1.200}";
-
-            var quantity = DeserializeObject<Information>(json);
-
-            Assert.Equal(1.200m, quantity.Value);
-            Assert.Equal("1.200", quantity.Value.ToString(CultureInfo.InvariantCulture));
-            Assert.Equal(Information.BaseUnit, quantity.Unit);
         }
 
         [Fact]
@@ -365,18 +282,6 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         {
             public decimal Value { get; set; }
             public string Unit { get; set; }
-        }
-
-        [Fact]
-        public void LargeDecimalQuantity_DeserializedTo_PlainOldDecimalQuantity()
-        {
-            var quantity = new Information(2m * long.MaxValue, InformationUnit.Exabyte);
-
-            var json = SerializeObject(quantity);
-            var plainOldQuantity = JsonConvert.DeserializeObject<PlainOldDecimalQuantity>(json);
-
-            Assert.Equal(2m * long.MaxValue, plainOldQuantity.Value);
-            Assert.Equal("EB", plainOldQuantity.Unit);
         }
 
         [Fact]

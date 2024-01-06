@@ -48,17 +48,6 @@ namespace UnitsNet.Tests.Serialization.Xml
         }
 
         [Fact]
-        public void DecimalQuantity_SerializedWithValueAndMemberName()
-        {
-            var quantity = new Information(1.20m, InformationUnit.Exabyte);
-            var expectedXml = $"<Information {Namespace} {XmlSchema}><Value>1.20</Value><Unit>Exabyte</Unit></Information>";
-
-            var xml = SerializeObject(quantity);
-
-            Assert.Equal(expectedXml, xml);
-        }
-
-        [Fact]
         public void InterfaceObject_IncludesTypeInformation()
         {
             var testObject = new TestInterfaceObject { Quantity = new Information(1.20m, InformationUnit.Exabyte) };

@@ -12,27 +12,6 @@ namespace UnitsNet.Serialization.JsonNet.Tests
     public sealed class UnitsNetJsonDeserializationTests : UnitsNetJsonBaseTest
     {
         [Fact]
-        public void Information_CanDeserializeLargeValue()
-        {
-            var original = new Information(decimal.MaxValue, InformationUnit.Exbibyte);
-            var json = SerializeObject(original);
-            var deserialized = DeserializeObject<Information>(json);
-
-            Assert.Equal(original, deserialized);
-        }
-
-        [Fact]
-        public void Information_CanDeserializeSmallValue()
-        {
-            decimal decimalEpsilon = (decimal)(1 / Math.Pow(10, 28));
-            var original = new Information(decimalEpsilon, InformationUnit.Bit);
-            var json = SerializeObject(original);
-            var deserialized = DeserializeObject<Information>(json);
-
-            Assert.Equal(original, deserialized);
-        }
-
-        [Fact]
         public void Length_CanDeserializeLargeValue()
         {
             var original = new Length(double.MaxValue, LengthUnit.MegalightYear);
