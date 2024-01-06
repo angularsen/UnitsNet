@@ -102,8 +102,8 @@ namespace UnitsNet.Tests.Serialization.Json
         {
             var unit = InformationUnit.Exabyte;
             var unitInt = (int)unit;
-            var testObject = new TestInterfaceObject { Quantity = new Information(1.20m, unit) };
-            var expectedJson = $"{{\"Quantity\":{{\"__type\":\"Information:#UnitsNet\",\"Value\":1.20,\"Unit\":{unitInt}}}}}";
+            var testObject = new TestInterfaceObject { Quantity = new Information(1.2, unit) };
+            var expectedJson = $"{{\"Quantity\":{{\"__type\":\"Information:#UnitsNet\",\"Value\":1.2,\"Unit\":{unitInt}}}}}";
 
             var json = SerializeObject(testObject);
 

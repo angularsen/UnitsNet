@@ -28,8 +28,8 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         [Fact]
         public void InterfaceObject_IncludesTypeInformation()
         {
-            var testObject = new TestInterfaceObject { Quantity = new Information(1.20m, InformationUnit.Exabyte) };
-            var expectedJson = "{\"Quantity\":{\"Value\":1.20,\"Unit\":\"EB\",\"Type\":\"Information\"}}";
+            var testObject = new TestInterfaceObject { Quantity = new Information(1.2, InformationUnit.Exabyte) };
+            var expectedJson = "{\"Quantity\":{\"Value\":1.2,\"Unit\":\"EB\",\"Type\":\"Information\"}}";
 
             var json = SerializeObject(testObject);
 

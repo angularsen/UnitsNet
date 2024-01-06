@@ -12,7 +12,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         public void Information_CanSerializeVeryLargeValues()
         {
             Information i = Information.FromExabytes(1E+9);
-            var expectedJson = "{\n  \"Unit\": \"InformationUnit.Exabyte\",\n  \"Value\": 1000000000.0,\n  \"ValueString\": \"1000000000\",\n  \"ValueType\": \"decimal\"\n}";
+            var expectedJson = "{\n  \"Unit\": \"InformationUnit.Exabyte\",\n  \"Value\": 1000000000.0\n}";
 
             string json = SerializeObject(i);
 
@@ -34,7 +34,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         public void Information_ExpectConstructedValueAndUnit()
         {
             Information quantity = Information.FromKilobytes(54);
-            var expectedJson = "{\n  \"Unit\": \"InformationUnit.Kilobyte\",\n  \"Value\": 54.0,\n  \"ValueString\": \"54\",\n  \"ValueType\": \"decimal\"\n}";
+            var expectedJson = "{\n  \"Unit\": \"InformationUnit.Kilobyte\",\n  \"Value\": 54.0\n}";
 
             string json = SerializeObject(quantity);
 
