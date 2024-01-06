@@ -65,8 +65,6 @@ namespace UnitsNet
             Info = new QuantityInfo<RadiationEquivalentDoseUnit>("RadiationEquivalentDose",
                 new UnitInfo<RadiationEquivalentDoseUnit>[]
                 {
-                    new UnitInfo<RadiationEquivalentDoseUnit>(RadiationEquivalentDoseUnit.Kilosievert, "Kilosieverts", BaseUnits.Undefined, "RadiationEquivalentDose"),
-                    new UnitInfo<RadiationEquivalentDoseUnit>(RadiationEquivalentDoseUnit.Megasievert, "Megasieverts", BaseUnits.Undefined, "RadiationEquivalentDose"),
                     new UnitInfo<RadiationEquivalentDoseUnit>(RadiationEquivalentDoseUnit.Microsievert, "Microsieverts", BaseUnits.Undefined, "RadiationEquivalentDose"),
                     new UnitInfo<RadiationEquivalentDoseUnit>(RadiationEquivalentDoseUnit.MilliroentgenEquivalentMan, "MilliroentgensEquivalentMan", BaseUnits.Undefined, "RadiationEquivalentDose"),
                     new UnitInfo<RadiationEquivalentDoseUnit>(RadiationEquivalentDoseUnit.Millisievert, "Millisieverts", BaseUnits.Undefined, "RadiationEquivalentDose"),
@@ -177,16 +175,6 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationEquivalentDoseUnit.Kilosievert"/>
-        /// </summary>
-        public double Kilosieverts => As(RadiationEquivalentDoseUnit.Kilosievert);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationEquivalentDoseUnit.Megasievert"/>
-        /// </summary>
-        public double Megasieverts => As(RadiationEquivalentDoseUnit.Megasievert);
-
-        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationEquivalentDoseUnit.Microsievert"/>
         /// </summary>
         public double Microsieverts => As(RadiationEquivalentDoseUnit.Microsievert);
@@ -227,8 +215,6 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: RadiationEquivalentDoseUnit -> BaseUnit
-            unitConverter.SetConversionFunction<RadiationEquivalentDose>(RadiationEquivalentDoseUnit.Kilosievert, RadiationEquivalentDoseUnit.Sievert, quantity => quantity.ToUnit(RadiationEquivalentDoseUnit.Sievert));
-            unitConverter.SetConversionFunction<RadiationEquivalentDose>(RadiationEquivalentDoseUnit.Megasievert, RadiationEquivalentDoseUnit.Sievert, quantity => quantity.ToUnit(RadiationEquivalentDoseUnit.Sievert));
             unitConverter.SetConversionFunction<RadiationEquivalentDose>(RadiationEquivalentDoseUnit.Microsievert, RadiationEquivalentDoseUnit.Sievert, quantity => quantity.ToUnit(RadiationEquivalentDoseUnit.Sievert));
             unitConverter.SetConversionFunction<RadiationEquivalentDose>(RadiationEquivalentDoseUnit.MilliroentgenEquivalentMan, RadiationEquivalentDoseUnit.Sievert, quantity => quantity.ToUnit(RadiationEquivalentDoseUnit.Sievert));
             unitConverter.SetConversionFunction<RadiationEquivalentDose>(RadiationEquivalentDoseUnit.Millisievert, RadiationEquivalentDoseUnit.Sievert, quantity => quantity.ToUnit(RadiationEquivalentDoseUnit.Sievert));
@@ -239,8 +225,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<RadiationEquivalentDose>(RadiationEquivalentDoseUnit.Sievert, RadiationEquivalentDoseUnit.Sievert, quantity => quantity);
 
             // Register in unit converter: BaseUnit -> RadiationEquivalentDoseUnit
-            unitConverter.SetConversionFunction<RadiationEquivalentDose>(RadiationEquivalentDoseUnit.Sievert, RadiationEquivalentDoseUnit.Kilosievert, quantity => quantity.ToUnit(RadiationEquivalentDoseUnit.Kilosievert));
-            unitConverter.SetConversionFunction<RadiationEquivalentDose>(RadiationEquivalentDoseUnit.Sievert, RadiationEquivalentDoseUnit.Megasievert, quantity => quantity.ToUnit(RadiationEquivalentDoseUnit.Megasievert));
             unitConverter.SetConversionFunction<RadiationEquivalentDose>(RadiationEquivalentDoseUnit.Sievert, RadiationEquivalentDoseUnit.Microsievert, quantity => quantity.ToUnit(RadiationEquivalentDoseUnit.Microsievert));
             unitConverter.SetConversionFunction<RadiationEquivalentDose>(RadiationEquivalentDoseUnit.Sievert, RadiationEquivalentDoseUnit.MilliroentgenEquivalentMan, quantity => quantity.ToUnit(RadiationEquivalentDoseUnit.MilliroentgenEquivalentMan));
             unitConverter.SetConversionFunction<RadiationEquivalentDose>(RadiationEquivalentDoseUnit.Sievert, RadiationEquivalentDoseUnit.Millisievert, quantity => quantity.ToUnit(RadiationEquivalentDoseUnit.Millisievert));
@@ -272,26 +256,6 @@ namespace UnitsNet
         #endregion
 
         #region Static Factory Methods
-
-        /// <summary>
-        ///     Creates a <see cref="RadiationEquivalentDose"/> from <see cref="RadiationEquivalentDoseUnit.Kilosievert"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RadiationEquivalentDose FromKilosieverts(QuantityValue kilosieverts)
-        {
-            double value = (double) kilosieverts;
-            return new RadiationEquivalentDose(value, RadiationEquivalentDoseUnit.Kilosievert);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="RadiationEquivalentDose"/> from <see cref="RadiationEquivalentDoseUnit.Megasievert"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RadiationEquivalentDose FromMegasieverts(QuantityValue megasieverts)
-        {
-            double value = (double) megasieverts;
-            return new RadiationEquivalentDose(value, RadiationEquivalentDoseUnit.Megasievert);
-        }
 
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDose"/> from <see cref="RadiationEquivalentDoseUnit.Microsievert"/>.
@@ -846,8 +810,6 @@ namespace UnitsNet
             RadiationEquivalentDose? convertedOrNull = (Unit, unit) switch
             {
                 // RadiationEquivalentDoseUnit -> BaseUnit
-                (RadiationEquivalentDoseUnit.Kilosievert, RadiationEquivalentDoseUnit.Sievert) => new RadiationEquivalentDose((_value) * 1e3d, RadiationEquivalentDoseUnit.Sievert),
-                (RadiationEquivalentDoseUnit.Megasievert, RadiationEquivalentDoseUnit.Sievert) => new RadiationEquivalentDose((_value) * 1e6d, RadiationEquivalentDoseUnit.Sievert),
                 (RadiationEquivalentDoseUnit.Microsievert, RadiationEquivalentDoseUnit.Sievert) => new RadiationEquivalentDose((_value) * 1e-6d, RadiationEquivalentDoseUnit.Sievert),
                 (RadiationEquivalentDoseUnit.MilliroentgenEquivalentMan, RadiationEquivalentDoseUnit.Sievert) => new RadiationEquivalentDose((_value / 100) * 1e-3d, RadiationEquivalentDoseUnit.Sievert),
                 (RadiationEquivalentDoseUnit.Millisievert, RadiationEquivalentDoseUnit.Sievert) => new RadiationEquivalentDose((_value) * 1e-3d, RadiationEquivalentDoseUnit.Sievert),
@@ -855,8 +817,6 @@ namespace UnitsNet
                 (RadiationEquivalentDoseUnit.RoentgenEquivalentMan, RadiationEquivalentDoseUnit.Sievert) => new RadiationEquivalentDose(_value / 100, RadiationEquivalentDoseUnit.Sievert),
 
                 // BaseUnit -> RadiationEquivalentDoseUnit
-                (RadiationEquivalentDoseUnit.Sievert, RadiationEquivalentDoseUnit.Kilosievert) => new RadiationEquivalentDose((_value) / 1e3d, RadiationEquivalentDoseUnit.Kilosievert),
-                (RadiationEquivalentDoseUnit.Sievert, RadiationEquivalentDoseUnit.Megasievert) => new RadiationEquivalentDose((_value) / 1e6d, RadiationEquivalentDoseUnit.Megasievert),
                 (RadiationEquivalentDoseUnit.Sievert, RadiationEquivalentDoseUnit.Microsievert) => new RadiationEquivalentDose((_value) / 1e-6d, RadiationEquivalentDoseUnit.Microsievert),
                 (RadiationEquivalentDoseUnit.Sievert, RadiationEquivalentDoseUnit.MilliroentgenEquivalentMan) => new RadiationEquivalentDose((_value * 100) / 1e-3d, RadiationEquivalentDoseUnit.MilliroentgenEquivalentMan),
                 (RadiationEquivalentDoseUnit.Sievert, RadiationEquivalentDoseUnit.Millisievert) => new RadiationEquivalentDose((_value) / 1e-3d, RadiationEquivalentDoseUnit.Millisievert),

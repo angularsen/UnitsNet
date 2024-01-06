@@ -25,14 +25,6 @@ namespace UnitsNet.Tests
     public class NumberToRadiationEquivalentDoseExtensionsTests
     {
         [Fact]
-        public void NumberToKilosievertsTest() =>
-            Assert.Equal(RadiationEquivalentDose.FromKilosieverts(2), 2.Kilosieverts());
-
-        [Fact]
-        public void NumberToMegasievertsTest() =>
-            Assert.Equal(RadiationEquivalentDose.FromMegasieverts(2), 2.Megasieverts());
-
-        [Fact]
         public void NumberToMicrosievertsTest() =>
             Assert.Equal(RadiationEquivalentDose.FromMicrosieverts(2), 2.Microsieverts());
 

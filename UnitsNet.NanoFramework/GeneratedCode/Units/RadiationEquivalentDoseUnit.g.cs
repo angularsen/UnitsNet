@@ -25,8 +25,6 @@ namespace UnitsNet.Units
 
     public enum RadiationEquivalentDoseUnit
     {
-        Kilosievert = 3,
-        Megasievert = 6,
         Microsievert = 1,
         MilliroentgenEquivalentMan = 2,
         Millisievert = 7,

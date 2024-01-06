@@ -14,9 +14,6 @@ namespace UnitsNet.Tests.CustomCode
         protected override double MicrosievertsInOneSievert => 1e+6;
         protected override double NanosievertsInOneSievert => 1e+9;
         protected override double MilliroentgensEquivalentManInOneSievert => 1e+5;
-        protected override double KilosievertsInOneSievert => 1e-3;
-        protected override double MegasievertsInOneSievert => 1e-6;
         protected override double RoentgensEquivalentManInOneSievert => 100;
-
     }
 }

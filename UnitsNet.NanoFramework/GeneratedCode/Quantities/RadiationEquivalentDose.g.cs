@@ -80,16 +80,6 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationEquivalentDoseUnit.Kilosievert"/>
-        /// </summary>
-        public double Kilosieverts => As(RadiationEquivalentDoseUnit.Kilosievert);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationEquivalentDoseUnit.Megasievert"/>
-        /// </summary>
-        public double Megasieverts => As(RadiationEquivalentDoseUnit.Megasievert);
-
-        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationEquivalentDoseUnit.Microsievert"/>
         /// </summary>
         public double Microsieverts => As(RadiationEquivalentDoseUnit.Microsievert);
@@ -122,18 +112,6 @@ namespace UnitsNet
         #endregion
 
         #region Static Factory Methods
-
-        /// <summary>
-        ///     Creates a <see cref="RadiationEquivalentDose"/> from <see cref="RadiationEquivalentDoseUnit.Kilosievert"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RadiationEquivalentDose FromKilosieverts(double kilosieverts) => new RadiationEquivalentDose(kilosieverts, RadiationEquivalentDoseUnit.Kilosievert);
-
-        /// <summary>
-        ///     Creates a <see cref="RadiationEquivalentDose"/> from <see cref="RadiationEquivalentDoseUnit.Megasievert"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RadiationEquivalentDose FromMegasieverts(double megasieverts) => new RadiationEquivalentDose(megasieverts, RadiationEquivalentDoseUnit.Megasievert);
 
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDose"/> from <see cref="RadiationEquivalentDoseUnit.Microsievert"/>.
@@ -211,8 +189,6 @@ namespace UnitsNet
                 {
                     return Unit switch
                     {
-                        RadiationEquivalentDoseUnit.Kilosievert => (_value) * 1e3d,
-                        RadiationEquivalentDoseUnit.Megasievert => (_value) * 1e6d,
                         RadiationEquivalentDoseUnit.Microsievert => (_value) * 1e-6d,
                         RadiationEquivalentDoseUnit.MilliroentgenEquivalentMan => (_value / 100) * 1e-3d,
                         RadiationEquivalentDoseUnit.Millisievert => (_value) * 1e-3d,
@@ -232,8 +208,6 @@ namespace UnitsNet
 
                     return unit switch
                     {
-                        RadiationEquivalentDoseUnit.Kilosievert => (baseUnitValue) / 1e3d,
-                        RadiationEquivalentDoseUnit.Megasievert => (baseUnitValue) / 1e6d,
                         RadiationEquivalentDoseUnit.Microsievert => (baseUnitValue) / 1e-6d,
                         RadiationEquivalentDoseUnit.MilliroentgenEquivalentMan => (baseUnitValue * 100) / 1e-3d,
                         RadiationEquivalentDoseUnit.Millisievert => (baseUnitValue) / 1e-3d,

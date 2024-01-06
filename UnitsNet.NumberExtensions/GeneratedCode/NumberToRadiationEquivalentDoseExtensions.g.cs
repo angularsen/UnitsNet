@@ -32,22 +32,6 @@ namespace UnitsNet.NumberExtensions.NumberToRadiationEquivalentDose
     /// </summary>
     public static class NumberToRadiationEquivalentDoseExtensions
     {
-        /// <inheritdoc cref="RadiationEquivalentDose.FromKilosieverts(UnitsNet.QuantityValue)" />
-        public static RadiationEquivalentDose Kilosieverts<T>(this T value)
-            where T : notnull
-#if NET7_0_OR_GREATER
-            , INumber<T>
-#endif
-            => RadiationEquivalentDose.FromKilosieverts(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="RadiationEquivalentDose.FromMegasieverts(UnitsNet.QuantityValue)" />
-        public static RadiationEquivalentDose Megasieverts<T>(this T value)
-            where T : notnull
-#if NET7_0_OR_GREATER
-            , INumber<T>
-#endif
-            => RadiationEquivalentDose.FromMegasieverts(Convert.ToDouble(value));
-
         /// <inheritdoc cref="RadiationEquivalentDose.FromMicrosieverts(UnitsNet.QuantityValue)" />
         public static RadiationEquivalentDose Microsieverts<T>(this T value)
             where T : notnull
