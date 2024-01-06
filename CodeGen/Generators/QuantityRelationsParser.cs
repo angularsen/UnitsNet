@@ -58,10 +58,28 @@ namespace CodeGen.Generators
                     RightUnit = r.LeftUnit,
                 })
                 .ToList());
+            
+            // We can infer division relations from multiplication relations.
+            relations.AddRange(relations
+                .Where(r => r.Operator is "*")
+                .Select(r => r with
+                {
+                    Operator = "/",
+                    LeftQuantity = r.ResultQuantity,
+                    LeftUnit = r.ResultUnit,
+                    ResultQuantity = r.LeftQuantity,
+                    ResultUnit = r.LeftUnit,
+                })
+                // Skip division between equal quantities because the ratio is already generated as part of the Arithmetic Operators.
+                .Where(r => r.LeftQuantity != r.RightQuantity)
+                .ToList());
+            
+            // Remove inferred relation "MassConcentration = Mass / Volume" because it duplicates "Density = Mass / Volume"
+            relations.RemoveAll(r => r is { Operator: "/", ResultQuantity.Name: "MassConcentration", LeftQuantity.Name: "Mass", RightQuantity.Name: "Volume" });
 
             // Sort all relations to keep generated operators in a consistent order.
             relations.Sort();
-            
+
             var duplicates = relations
                 .GroupBy(r => r.SortString)
                 .Where(g => g.Count() > 1)
@@ -122,7 +140,7 @@ namespace CodeGen.Generators
         {
             var segments = relationString.Split(' ');
 
-            if (segments is not [_, "=", _, "*" or "/", _])
+            if (segments is not [_, "=", _, "*", _])
             {
                 throw new Exception($"Invalid relation string: {relationString}");
             }
@@ -140,11 +158,9 @@ namespace CodeGen.Generators
             var rightUnit = GetUnit(rightQuantity, right.ElementAtOrDefault(1));
             var resultUnit = GetUnit(resultQuantity, result.ElementAtOrDefault(1));
 
-            if (leftQuantity.Name == "1")
+            if (resultQuantity.Name == "1")
             {
                 @operator = "inverse";
-                leftQuantity = resultQuantity;
-                leftUnit = resultUnit;
             }
 
             return new QuantityRelation
