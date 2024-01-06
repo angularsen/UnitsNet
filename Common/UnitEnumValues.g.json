@@ -1835,5 +1835,15 @@
     "Roentgen": 4,
     "Microroentgen": 12,
     "Milliroentgen": 13
+  },
+  "RadiationEquivalentDose": {
+    "Microsievert": 1,
+    "MilliroentgenEquivalentMan": 2,
+    "Millisievert": 7,
+    "Nanosievert": 5,
+    "RoentgenEquivalentMan": 4,
+    "Sievert": 9,
+    "Kilosievert": 3,
+    "Megasievert": 6
   }
 }
