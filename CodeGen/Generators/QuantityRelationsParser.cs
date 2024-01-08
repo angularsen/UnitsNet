@@ -31,33 +31,34 @@ namespace CodeGen.Generators
             var quantityDictionary = quantities.ToDictionary(q => q.Name, q => q);
 
             // Add double and 1 as pseudo-quantities to validate relations that use them.
-            var pseudoQuantity = new Quantity { Name = null!, Units = new[] { new Unit { SingularName = null! } } };
+            var pseudoQuantity = new Quantity { Name = null!, Units = [new Unit { SingularName = null! }] };
             quantityDictionary["double"] = pseudoQuantity with { Name = "double" };
             quantityDictionary["1"] = pseudoQuantity with { Name = "1" };
 
             var relations = ParseRelations(rootDir, quantityDictionary);
-            var timespanRelations = new List<QuantityRelation>();
 
-            foreach (var relation in relations)
-            {
-                if (relation.LeftQuantity.Name == "Duration")
+            // Because multiplication is commutative, we can infer the other operand order.
+            relations.AddRange(relations
+                .Where(r => r.Operator is "*" or "inverse" && r.LeftQuantity != r.RightQuantity)
+                .Select(r => r with
                 {
-                    timespanRelations.Add(relation with
-                    {
-                        LeftQuantity = new Quantity { Name = "TimeSpan" },
-                    });
-                }
+                    LeftQuantity = r.RightQuantity,
+                    LeftUnit = r.RightUnit,
+                    RightQuantity = r.LeftQuantity,
+                    RightUnit = r.LeftUnit,
+                })
+                .ToList());
 
-                if (relation.RightQuantity.Name == "Duration")
-                {
-                    timespanRelations.Add(relation with
-                    {
-                        RightQuantity = new Quantity { Name = "TimeSpan" },
-                    });
-                }
-            }
-
-            relations.AddRange(timespanRelations);
+            // We can infer TimeSpan relations from Duration relations.
+            var timeSpanQuantity = pseudoQuantity with { Name = "TimeSpan" };
+            relations.AddRange(relations
+                .Where(r => r.LeftQuantity.Name is "Duration")
+                .Select(r => r with { LeftQuantity = timeSpanQuantity })
+                .ToList());
+            relations.AddRange(relations
+                .Where(r => r.RightQuantity.Name is "Duration")
+                .Select(r => r with { RightQuantity = timeSpanQuantity })
+                .ToList());
 
             foreach (var quantity in quantities)
             {
@@ -67,24 +68,13 @@ namespace CodeGen.Generators
                 {
                     if (relation.LeftQuantity == quantity)
                     {
+                        // The left operand of a relation is responsible for generating the operator.
                         quantityRelations.Add(relation);
-                        if (relation is { Operator: "*", RightQuantity.Name: "TimeSpan" or "double" })
-                        {
-                            quantityRelations.Add(relation.Swapped());
-                        }
                     }
-
-                    if (relation.RightQuantity == quantity)
+                    else if (relation.RightQuantity == quantity && relation.LeftQuantity.Name is "double" or "TimeSpan")
                     {
-                        if (relation.Operator == "inverse" || relation.Operator == "*" && relation.LeftQuantity != relation.RightQuantity)
-                        {
-                            quantityRelations.Add(relation.Swapped());
-                        }
-
-                        if (relation is { Operator: "/", LeftQuantity.Name: "double" })
-                        {
-                            quantityRelations.Add(relation);
-                        }
+                        // Because we cannot add generated operators to double or TimeSpan, we make the right operand responsible in this case.
+                        quantityRelations.Add(relation);
                     }
                 }
 
@@ -99,7 +89,7 @@ namespace CodeGen.Generators
             try
             {
                 var text = File.ReadAllText(relationsFileName);
-                var relationStrings = JsonConvert.DeserializeObject<List<string>>(text) ?? new List<string>();
+                var relationStrings = JsonConvert.DeserializeObject<List<string>>(text) ?? [];
                 relationStrings.Sort();
 
                 var parsedRelations = relationStrings.Select(relationString => ParseRelation(relationString, quantities)).ToList();
@@ -119,7 +109,7 @@ namespace CodeGen.Generators
         {
             var segments = relationString.Split(' ');
 
-            if (segments.Length != 5 || segments[1] != "=")
+            if (segments is not [_, "=", _, "*" or "/", _])
             {
                 throw new Exception($"Invalid relation string: {relationString}");
             }

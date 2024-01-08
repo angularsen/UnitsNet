@@ -15,13 +15,5 @@ namespace CodeGen.JsonTypes
 
         public Quantity ResultQuantity = null!;
         public Unit ResultUnit = null!;
-
-        public QuantityRelation Swapped() => this with
-        {
-            LeftQuantity = RightQuantity,
-            LeftUnit = RightUnit,
-            RightQuantity = LeftQuantity,
-            RightUnit = LeftUnit,
-        };
     }
 }
