@@ -50,10 +50,10 @@ namespace UnitsNet
         IMultiplyOperators<Length, SpecificWeight, Pressure>,
         IMultiplyOperators<Length, RotationalStiffnessPerLength, RotationalStiffness>,
         IDivisionOperators<Length, Duration, Speed>,
+        IDivisionOperators<Length, TimeSpan, Speed>,
         IMultiplyOperators<Length, TemperatureGradient, TemperatureDelta>,
         IMultiplyOperators<Length, Force, Torque>,
         IMultiplyOperators<Length, Area, Volume>,
-        IDivisionOperators<Length, TimeSpan, Speed>,
 #endif
         IComparable,
         IComparable<Length>,
@@ -1242,6 +1242,12 @@ namespace UnitsNet
             return Speed.FromMetersPerSecond(length.Meters / duration.Seconds);
         }
 
+        /// <summary>Get <see cref="Speed"/> from <see cref="Length"/> / <see cref="TimeSpan"/>.</summary>
+        public static Speed operator /(Length length, TimeSpan timeSpan)
+        {
+            return Speed.FromMetersPerSecond(length.Meters / timeSpan.TotalSeconds);
+        }
+
         /// <summary>Get <see cref="TemperatureDelta"/> from <see cref="Length"/> * <see cref="TemperatureGradient"/>.</summary>
         public static TemperatureDelta operator *(Length length, TemperatureGradient temperatureGradient)
         {
@@ -1258,12 +1264,6 @@ namespace UnitsNet
         public static Volume operator *(Length length, Area area)
         {
             return Volume.FromCubicMeters(length.Meters * area.SquareMeters);
-        }
-
-        /// <summary>Get <see cref="Speed"/> from <see cref="Length"/> / <see cref="TimeSpan"/>.</summary>
-        public static Speed operator /(Length length, TimeSpan timeSpan)
-        {
-            return Speed.FromMetersPerSecond(length.Meters / timeSpan.TotalSeconds);
         }
 
         #endregion

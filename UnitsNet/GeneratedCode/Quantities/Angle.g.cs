@@ -43,8 +43,8 @@ namespace UnitsNet
         IArithmeticQuantity<Angle, AngleUnit, double>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Angle, Duration, RotationalSpeed>,
-        IMultiplyOperators<Angle, RotationalStiffness, Torque>,
         IDivisionOperators<Angle, TimeSpan, RotationalSpeed>,
+        IMultiplyOperators<Angle, RotationalStiffness, Torque>,
 #endif
         IComparable,
         IComparable<Angle>,
@@ -716,16 +716,16 @@ namespace UnitsNet
             return RotationalSpeed.FromRadiansPerSecond(angle.Radians / duration.Seconds);
         }
 
-        /// <summary>Get <see cref="Torque"/> from <see cref="Angle"/> * <see cref="RotationalStiffness"/>.</summary>
-        public static Torque operator *(Angle angle, RotationalStiffness rotationalStiffness)
-        {
-            return Torque.FromNewtonMeters(angle.Radians * rotationalStiffness.NewtonMetersPerRadian);
-        }
-
         /// <summary>Get <see cref="RotationalSpeed"/> from <see cref="Angle"/> / <see cref="TimeSpan"/>.</summary>
         public static RotationalSpeed operator /(Angle angle, TimeSpan timeSpan)
         {
             return RotationalSpeed.FromRadiansPerSecond(angle.Radians / timeSpan.TotalSeconds);
+        }
+
+        /// <summary>Get <see cref="Torque"/> from <see cref="Angle"/> * <see cref="RotationalStiffness"/>.</summary>
+        public static Torque operator *(Angle angle, RotationalStiffness rotationalStiffness)
+        {
+            return Torque.FromNewtonMeters(angle.Radians * rotationalStiffness.NewtonMetersPerRadian);
         }
 
         #endregion

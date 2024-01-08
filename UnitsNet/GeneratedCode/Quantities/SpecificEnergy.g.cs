@@ -45,10 +45,10 @@ namespace UnitsNet
     public readonly partial struct SpecificEnergy :
         IArithmeticQuantity<SpecificEnergy, SpecificEnergyUnit, double>,
 #if NET7_0_OR_GREATER
-        IMultiplyOperators<SpecificEnergy, BrakeSpecificFuelConsumption, double>,
         IMultiplyOperators<SpecificEnergy, Mass, Energy>,
         IMultiplyOperators<SpecificEnergy, MassFlow, Power>,
         IDivisionOperators<SpecificEnergy, TemperatureDelta, SpecificEntropy>,
+        IMultiplyOperators<SpecificEnergy, BrakeSpecificFuelConsumption, double>,
 #endif
         IComparable,
         IComparable<SpecificEnergy>,
@@ -972,12 +972,6 @@ namespace UnitsNet
             return BrakeSpecificFuelConsumption.FromKilogramsPerJoule(value / specificEnergy.JoulesPerKilogram);
         }
 
-        /// <summary>Get <see cref="double"/> from <see cref="SpecificEnergy"/> * <see cref="BrakeSpecificFuelConsumption"/>.</summary>
-        public static double operator *(SpecificEnergy specificEnergy, BrakeSpecificFuelConsumption brakeSpecificFuelConsumption)
-        {
-            return specificEnergy.JoulesPerKilogram * brakeSpecificFuelConsumption.KilogramsPerJoule;
-        }
-
         /// <summary>Get <see cref="Energy"/> from <see cref="SpecificEnergy"/> * <see cref="Mass"/>.</summary>
         public static Energy operator *(SpecificEnergy specificEnergy, Mass mass)
         {
@@ -994,6 +988,12 @@ namespace UnitsNet
         public static SpecificEntropy operator /(SpecificEnergy specificEnergy, TemperatureDelta temperatureDelta)
         {
             return SpecificEntropy.FromJoulesPerKilogramKelvin(specificEnergy.JoulesPerKilogram / temperatureDelta.Kelvins);
+        }
+
+        /// <summary>Get <see cref="double"/> from <see cref="SpecificEnergy"/> * <see cref="BrakeSpecificFuelConsumption"/>.</summary>
+        public static double operator *(SpecificEnergy specificEnergy, BrakeSpecificFuelConsumption brakeSpecificFuelConsumption)
+        {
+            return specificEnergy.JoulesPerKilogram * brakeSpecificFuelConsumption.KilogramsPerJoule;
         }
 
         #endregion

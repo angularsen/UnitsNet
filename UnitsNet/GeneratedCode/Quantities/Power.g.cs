@@ -46,6 +46,7 @@ namespace UnitsNet
         IDivisionOperators<Power, ElectricPotential, ElectricCurrent>,
         IDivisionOperators<Power, ElectricCurrent, ElectricPotential>,
         IMultiplyOperators<Power, Duration, Energy>,
+        IMultiplyOperators<Power, TimeSpan, Energy>,
         IDivisionOperators<Power, Speed, Force>,
         IDivisionOperators<Power, Area, HeatFlux>,
         IMultiplyOperators<Power, BrakeSpecificFuelConsumption, MassFlow>,
@@ -53,7 +54,6 @@ namespace UnitsNet
         IDivisionOperators<Power, Torque, RotationalSpeed>,
         IDivisionOperators<Power, MassFlow, SpecificEnergy>,
         IDivisionOperators<Power, RotationalSpeed, Torque>,
-        IMultiplyOperators<Power, TimeSpan, Energy>,
 #endif
         IDecimalQuantity,
         IComparable,
@@ -924,6 +924,18 @@ namespace UnitsNet
             return Energy.FromJoules((double)power.Watts * duration.Seconds);
         }
 
+        /// <summary>Get <see cref="Energy"/> from <see cref="Power"/> * <see cref="TimeSpan"/>.</summary>
+        public static Energy operator *(Power power, TimeSpan timeSpan)
+        {
+            return Energy.FromJoules((double)power.Watts * timeSpan.TotalSeconds);
+        }
+
+        /// <summary>Get <see cref="Energy"/> from <see cref="TimeSpan"/> * <see cref="Power"/>.</summary>
+        public static Energy operator *(TimeSpan timeSpan, Power power)
+        {
+            return Energy.FromJoules(timeSpan.TotalSeconds * (double)power.Watts);
+        }
+
         /// <summary>Get <see cref="Force"/> from <see cref="Power"/> / <see cref="Speed"/>.</summary>
         public static Force operator /(Power power, Speed speed)
         {
@@ -964,18 +976,6 @@ namespace UnitsNet
         public static Torque operator /(Power power, RotationalSpeed rotationalSpeed)
         {
             return Torque.FromNewtonMeters((double)power.Watts / rotationalSpeed.RadiansPerSecond);
-        }
-
-        /// <summary>Get <see cref="Energy"/> from <see cref="Power"/> * <see cref="TimeSpan"/>.</summary>
-        public static Energy operator *(Power power, TimeSpan timeSpan)
-        {
-            return Energy.FromJoules((double)power.Watts * timeSpan.TotalSeconds);
-        }
-
-        /// <summary>Get <see cref="Energy"/> from <see cref="TimeSpan"/> * <see cref="Power"/>.</summary>
-        public static Energy operator *(TimeSpan timeSpan, Power power)
-        {
-            return Energy.FromJoules(timeSpan.TotalSeconds * (double)power.Watts);
         }
 
         #endregion

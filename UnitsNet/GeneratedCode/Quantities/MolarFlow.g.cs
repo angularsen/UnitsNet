@@ -43,9 +43,9 @@ namespace UnitsNet
         IArithmeticQuantity<MolarFlow, MolarFlowUnit, double>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<MolarFlow, Duration, AmountOfSubstance>,
+        IMultiplyOperators<MolarFlow, TimeSpan, AmountOfSubstance>,
         IMultiplyOperators<MolarFlow, MolarMass, MassFlow>,
         IDivisionOperators<MolarFlow, Molarity, VolumeFlow>,
-        IMultiplyOperators<MolarFlow, TimeSpan, AmountOfSubstance>,
 #endif
         IComparable,
         IComparable<MolarFlow>,
@@ -591,18 +591,6 @@ namespace UnitsNet
             return AmountOfSubstance.FromKilomoles(molarFlow.KilomolesPerSecond * duration.Seconds);
         }
 
-        /// <summary>Get <see cref="MassFlow"/> from <see cref="MolarFlow"/> * <see cref="MolarMass"/>.</summary>
-        public static MassFlow operator *(MolarFlow molarFlow, MolarMass molarMass)
-        {
-            return MassFlow.FromKilogramsPerSecond(molarFlow.KilomolesPerSecond * molarMass.KilogramsPerKilomole);
-        }
-
-        /// <summary>Get <see cref="VolumeFlow"/> from <see cref="MolarFlow"/> / <see cref="Molarity"/>.</summary>
-        public static VolumeFlow operator /(MolarFlow molarFlow, Molarity molarity)
-        {
-            return VolumeFlow.FromCubicMetersPerSecond(molarFlow.MolesPerSecond / molarity.MolesPerCubicMeter);
-        }
-
         /// <summary>Get <see cref="AmountOfSubstance"/> from <see cref="MolarFlow"/> * <see cref="TimeSpan"/>.</summary>
         public static AmountOfSubstance operator *(MolarFlow molarFlow, TimeSpan timeSpan)
         {
@@ -613,6 +601,18 @@ namespace UnitsNet
         public static AmountOfSubstance operator *(TimeSpan timeSpan, MolarFlow molarFlow)
         {
             return AmountOfSubstance.FromKilomoles(timeSpan.TotalSeconds * molarFlow.KilomolesPerSecond);
+        }
+
+        /// <summary>Get <see cref="MassFlow"/> from <see cref="MolarFlow"/> * <see cref="MolarMass"/>.</summary>
+        public static MassFlow operator *(MolarFlow molarFlow, MolarMass molarMass)
+        {
+            return MassFlow.FromKilogramsPerSecond(molarFlow.KilomolesPerSecond * molarMass.KilogramsPerKilomole);
+        }
+
+        /// <summary>Get <see cref="VolumeFlow"/> from <see cref="MolarFlow"/> / <see cref="Molarity"/>.</summary>
+        public static VolumeFlow operator /(MolarFlow molarFlow, Molarity molarity)
+        {
+            return VolumeFlow.FromCubicMetersPerSecond(molarFlow.MolesPerSecond / molarity.MolesPerCubicMeter);
         }
 
         #endregion

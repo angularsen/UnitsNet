@@ -1648,6 +1648,12 @@ namespace UnitsNet
             return Speed.FromMetersPerSecond(volumeFlow.CubicMetersPerSecond / area.SquareMeters);
         }
 
+        /// <summary>Get <see cref="Volume"/> from <see cref="TimeSpan"/> * <see cref="VolumeFlow"/>.</summary>
+        public static Volume operator *(TimeSpan timeSpan, VolumeFlow volumeFlow)
+        {
+            return Volume.FromCubicMeters(timeSpan.TotalSeconds * volumeFlow.CubicMetersPerSecond);
+        }
+
         /// <summary>Get <see cref="Volume"/> from <see cref="VolumeFlow"/> * <see cref="Duration"/>.</summary>
         public static Volume operator *(VolumeFlow volumeFlow, Duration duration)
         {
@@ -1658,12 +1664,6 @@ namespace UnitsNet
         public static Volume operator *(VolumeFlow volumeFlow, TimeSpan timeSpan)
         {
             return Volume.FromCubicMeters(volumeFlow.CubicMetersPerSecond * timeSpan.TotalSeconds);
-        }
-
-        /// <summary>Get <see cref="Volume"/> from <see cref="TimeSpan"/> * <see cref="VolumeFlow"/>.</summary>
-        public static Volume operator *(TimeSpan timeSpan, VolumeFlow volumeFlow)
-        {
-            return Volume.FromCubicMeters(timeSpan.TotalSeconds * volumeFlow.CubicMetersPerSecond);
         }
 
         #endregion

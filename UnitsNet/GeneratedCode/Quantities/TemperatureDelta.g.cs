@@ -42,11 +42,11 @@ namespace UnitsNet
     public readonly partial struct TemperatureDelta :
         IArithmeticQuantity<TemperatureDelta, TemperatureDeltaUnit, double>,
 #if NET7_0_OR_GREATER
-        IMultiplyOperators<TemperatureDelta, CoefficientOfThermalExpansion, double>,
         IMultiplyOperators<TemperatureDelta, Entropy, Energy>,
         IDivisionOperators<TemperatureDelta, TemperatureGradient, Length>,
         IMultiplyOperators<TemperatureDelta, SpecificEntropy, SpecificEnergy>,
         IDivisionOperators<TemperatureDelta, Length, TemperatureGradient>,
+        IMultiplyOperators<TemperatureDelta, CoefficientOfThermalExpansion, double>,
 #endif
         IComparable,
         IComparable<TemperatureDelta>,
@@ -586,12 +586,6 @@ namespace UnitsNet
 
         #region Relational Operators
 
-        /// <summary>Get <see cref="double"/> from <see cref="TemperatureDelta"/> * <see cref="CoefficientOfThermalExpansion"/>.</summary>
-        public static double operator *(TemperatureDelta temperatureDelta, CoefficientOfThermalExpansion coefficientOfThermalExpansion)
-        {
-            return temperatureDelta.Kelvins * coefficientOfThermalExpansion.PerKelvin;
-        }
-
         /// <summary>Get <see cref="Energy"/> from <see cref="TemperatureDelta"/> * <see cref="Entropy"/>.</summary>
         public static Energy operator *(TemperatureDelta temperatureDelta, Entropy entropy)
         {
@@ -614,6 +608,12 @@ namespace UnitsNet
         public static TemperatureGradient operator /(TemperatureDelta temperatureDelta, Length length)
         {
             return TemperatureGradient.FromKelvinsPerMeter(temperatureDelta.Kelvins / length.Meters);
+        }
+
+        /// <summary>Get <see cref="double"/> from <see cref="TemperatureDelta"/> * <see cref="CoefficientOfThermalExpansion"/>.</summary>
+        public static double operator *(TemperatureDelta temperatureDelta, CoefficientOfThermalExpansion coefficientOfThermalExpansion)
+        {
+            return temperatureDelta.Kelvins * coefficientOfThermalExpansion.PerKelvin;
         }
 
         #endregion

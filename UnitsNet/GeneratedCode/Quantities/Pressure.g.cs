@@ -47,8 +47,8 @@ namespace UnitsNet
         IDivisionOperators<Pressure, ReciprocalLength, ForcePerLength>,
         IDivisionOperators<Pressure, SpecificWeight, Length>,
         IDivisionOperators<Pressure, Duration, PressureChangeRate>,
-        IDivisionOperators<Pressure, Length, SpecificWeight>,
         IDivisionOperators<Pressure, TimeSpan, PressureChangeRate>,
+        IDivisionOperators<Pressure, Length, SpecificWeight>,
 #endif
         IComparable,
         IComparable<Pressure>,
@@ -1338,16 +1338,16 @@ namespace UnitsNet
             return PressureChangeRate.FromPascalsPerSecond(pressure.Pascals / duration.Seconds);
         }
 
-        /// <summary>Get <see cref="SpecificWeight"/> from <see cref="Pressure"/> / <see cref="Length"/>.</summary>
-        public static SpecificWeight operator /(Pressure pressure, Length length)
-        {
-            return SpecificWeight.FromNewtonsPerCubicMeter(pressure.Pascals / length.Meters);
-        }
-
         /// <summary>Get <see cref="PressureChangeRate"/> from <see cref="Pressure"/> / <see cref="TimeSpan"/>.</summary>
         public static PressureChangeRate operator /(Pressure pressure, TimeSpan timeSpan)
         {
             return PressureChangeRate.FromPascalsPerSecond(pressure.Pascals / timeSpan.TotalSeconds);
+        }
+
+        /// <summary>Get <see cref="SpecificWeight"/> from <see cref="Pressure"/> / <see cref="Length"/>.</summary>
+        public static SpecificWeight operator /(Pressure pressure, Length length)
+        {
+            return SpecificWeight.FromNewtonsPerCubicMeter(pressure.Pascals / length.Meters);
         }
 
         #endregion

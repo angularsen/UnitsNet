@@ -47,8 +47,8 @@ namespace UnitsNet
 #if NET7_0_OR_GREATER
         IDivisionOperators<ElectricCharge, ElectricCurrent, Duration>,
         IDivisionOperators<ElectricCharge, Duration, ElectricCurrent>,
-        IMultiplyOperators<ElectricCharge, ElectricPotential, Energy>,
         IDivisionOperators<ElectricCharge, TimeSpan, ElectricCurrent>,
+        IMultiplyOperators<ElectricCharge, ElectricPotential, Energy>,
 #endif
         IComparable,
         IComparable<ElectricCharge>,
@@ -636,16 +636,16 @@ namespace UnitsNet
             return ElectricCurrent.FromAmperes(electricCharge.AmpereHours / duration.Hours);
         }
 
-        /// <summary>Get <see cref="Energy"/> from <see cref="ElectricCharge"/> * <see cref="ElectricPotential"/>.</summary>
-        public static Energy operator *(ElectricCharge electricCharge, ElectricPotential electricPotential)
-        {
-            return Energy.FromJoules(electricCharge.Coulombs * electricPotential.Volts);
-        }
-
         /// <summary>Get <see cref="ElectricCurrent"/> from <see cref="ElectricCharge"/> / <see cref="TimeSpan"/>.</summary>
         public static ElectricCurrent operator /(ElectricCharge electricCharge, TimeSpan timeSpan)
         {
             return ElectricCurrent.FromAmperes(electricCharge.AmpereHours / timeSpan.TotalHours);
+        }
+
+        /// <summary>Get <see cref="Energy"/> from <see cref="ElectricCharge"/> * <see cref="ElectricPotential"/>.</summary>
+        public static Energy operator *(ElectricCharge electricCharge, ElectricPotential electricPotential)
+        {
+            return Energy.FromJoules(electricCharge.Coulombs * electricPotential.Volts);
         }
 
         #endregion
