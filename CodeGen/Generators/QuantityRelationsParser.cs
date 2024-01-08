@@ -60,6 +60,9 @@ namespace CodeGen.Generators
                 .Select(r => r with { RightQuantity = timeSpanQuantity })
                 .ToList());
 
+            // Sort all relations to keep generated operators in a consistent order.
+            relations.Sort();
+
             foreach (var quantity in quantities)
             {
                 var quantityRelations = new List<QuantityRelation>();
