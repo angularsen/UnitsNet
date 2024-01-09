@@ -17,8 +17,6 @@ namespace CodeGen.Generators.UnitsNetGen
         private readonly string _valueType;
         private readonly Unit _baseUnit;
 
-        private readonly string[] _decimalTypes = { "BitRate", "Information", "Power" };
-
         public QuantityGenerator(Quantity quantity)
         {
             _quantity = quantity ?? throw new ArgumentNullException(nameof(quantity));
@@ -794,8 +792,8 @@ namespace UnitsNet
                         rightPart = "value";
                     }
                     
-                    var leftCast = _decimalTypes.Contains(relation.LeftQuantity.Name) ? "(double)" : "";
-                    var rightCast = _decimalTypes.Contains(relation.RightQuantity.Name) ? "(double)" : "";
+                    var leftCast = relation.LeftQuantity.ValueType is "decimal" ? "(double)" : string.Empty;
+                    var rightCast = relation.RightQuantity.ValueType is "decimal" ? "(double)" : string.Empty;
                     
                     var expression = $"{leftCast}{leftPart} {relation.Operator} {rightCast}{rightPart}";
 
