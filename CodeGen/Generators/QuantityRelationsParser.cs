@@ -101,8 +101,7 @@ namespace CodeGen.Generators
             try
             {
                 var text = File.ReadAllText(relationsFileName);
-                var relationStrings = JsonConvert.DeserializeObject<List<string>>(text) ?? [];
-                relationStrings.Sort();
+                var relationStrings = JsonConvert.DeserializeObject<SortedSet<string>>(text) ?? [];
 
                 var parsedRelations = relationStrings.Select(relationString => ParseRelation(relationString, quantities)).ToList();
 
