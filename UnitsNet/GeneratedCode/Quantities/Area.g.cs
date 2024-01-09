@@ -47,8 +47,8 @@ namespace UnitsNet
         IDivisionOperators<Area, Length, Length>,
         IMultiplyOperators<Area, Density, LinearDensity>,
         IMultiplyOperators<Area, Luminance, LuminousIntensity>,
-        IMultiplyOperators<Area, MassFlux, MassFlow>,
         IMultiplyOperators<Area, AreaDensity, Mass>,
+        IMultiplyOperators<Area, MassFlux, MassFlow>,
         IMultiplyOperators<Area, HeatFlux, Power>,
         IMultiplyOperators<Area, ReciprocalArea, Ratio>,
         IMultiplyOperators<Area, ForcePerLength, Torque>,
@@ -713,16 +713,16 @@ namespace UnitsNet
             return LuminousIntensity.FromCandela(area.SquareMeters * luminance.CandelasPerSquareMeter);
         }
 
-        /// <summary>Get <see cref="MassFlow"/> from <see cref="Area"/> * <see cref="MassFlux"/>.</summary>
-        public static MassFlow operator *(Area area, MassFlux massFlux)
-        {
-            return MassFlow.FromGramsPerSecond(area.SquareMeters * massFlux.GramsPerSecondPerSquareMeter);
-        }
-
         /// <summary>Get <see cref="Mass"/> from <see cref="Area"/> * <see cref="AreaDensity"/>.</summary>
         public static Mass operator *(Area area, AreaDensity areaDensity)
         {
             return Mass.FromKilograms(area.SquareMeters * areaDensity.KilogramsPerSquareMeter);
+        }
+
+        /// <summary>Get <see cref="MassFlow"/> from <see cref="Area"/> * <see cref="MassFlux"/>.</summary>
+        public static MassFlow operator *(Area area, MassFlux massFlux)
+        {
+            return MassFlow.FromGramsPerSecond(area.SquareMeters * massFlux.GramsPerSecondPerSquareMeter);
         }
 
         /// <summary>Get <see cref="Power"/> from <see cref="Area"/> * <see cref="HeatFlux"/>.</summary>

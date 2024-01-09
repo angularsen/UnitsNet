@@ -47,10 +47,10 @@ namespace UnitsNet
 #if NET7_0_OR_GREATER
         IMultiplyOperators<Density, KinematicViscosity, DynamicViscosity>,
         IMultiplyOperators<Density, Area, LinearDensity>,
+        IMultiplyOperators<Density, Volume, Mass>,
         IMultiplyOperators<Density, VolumeConcentration, MassConcentration>,
         IMultiplyOperators<Density, VolumeFlow, MassFlow>,
         IMultiplyOperators<Density, Speed, MassFlux>,
-        IMultiplyOperators<Density, Volume, Mass>,
         IMultiplyOperators<Density, Acceleration, SpecificWeight>,
 #endif
         IComparable,
@@ -1449,6 +1449,12 @@ namespace UnitsNet
             return LinearDensity.FromKilogramsPerMeter(density.KilogramsPerCubicMeter * area.SquareMeters);
         }
 
+        /// <summary>Get <see cref="Mass"/> from <see cref="Density"/> * <see cref="Volume"/>.</summary>
+        public static Mass operator *(Density density, Volume volume)
+        {
+            return Mass.FromKilograms(density.KilogramsPerCubicMeter * volume.CubicMeters);
+        }
+
         /// <summary>Get <see cref="MassConcentration"/> from <see cref="Density"/> * <see cref="VolumeConcentration"/>.</summary>
         public static MassConcentration operator *(Density density, VolumeConcentration volumeConcentration)
         {
@@ -1465,12 +1471,6 @@ namespace UnitsNet
         public static MassFlux operator *(Density density, Speed speed)
         {
             return MassFlux.FromKilogramsPerSecondPerSquareMeter(density.KilogramsPerCubicMeter * speed.MetersPerSecond);
-        }
-
-        /// <summary>Get <see cref="Mass"/> from <see cref="Density"/> * <see cref="Volume"/>.</summary>
-        public static Mass operator *(Density density, Volume volume)
-        {
-            return Mass.FromKilograms(density.KilogramsPerCubicMeter * volume.CubicMeters);
         }
 
         /// <summary>Get <see cref="SpecificWeight"/> from <see cref="Density"/> * <see cref="Acceleration"/>.</summary>

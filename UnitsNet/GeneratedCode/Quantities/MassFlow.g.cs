@@ -45,9 +45,9 @@ namespace UnitsNet
         IDivisionOperators<MassFlow, MassFlux, Area>,
         IDivisionOperators<MassFlow, Power, BrakeSpecificFuelConsumption>,
         IDivisionOperators<MassFlow, VolumeFlow, Density>,
-        IDivisionOperators<MassFlow, Area, MassFlux>,
         IMultiplyOperators<MassFlow, Duration, Mass>,
         IMultiplyOperators<MassFlow, TimeSpan, Mass>,
+        IDivisionOperators<MassFlow, Area, MassFlux>,
         IMultiplyOperators<MassFlow, SpecificEnergy, Power>,
         IDivisionOperators<MassFlow, BrakeSpecificFuelConsumption, Power>,
         IDivisionOperators<MassFlow, Density, VolumeFlow>,
@@ -1040,12 +1040,6 @@ namespace UnitsNet
             return Density.FromKilogramsPerCubicMeter(massFlow.KilogramsPerSecond / volumeFlow.CubicMetersPerSecond);
         }
 
-        /// <summary>Get <see cref="MassFlux"/> from <see cref="MassFlow"/> / <see cref="Area"/>.</summary>
-        public static MassFlux operator /(MassFlow massFlow, Area area)
-        {
-            return MassFlux.FromKilogramsPerSecondPerSquareMeter(massFlow.KilogramsPerSecond / area.SquareMeters);
-        }
-
         /// <summary>Get <see cref="Mass"/> from <see cref="MassFlow"/> * <see cref="Duration"/>.</summary>
         public static Mass operator *(MassFlow massFlow, Duration duration)
         {
@@ -1062,6 +1056,12 @@ namespace UnitsNet
         public static Mass operator *(TimeSpan timeSpan, MassFlow massFlow)
         {
             return Mass.FromKilograms(timeSpan.TotalSeconds * massFlow.KilogramsPerSecond);
+        }
+
+        /// <summary>Get <see cref="MassFlux"/> from <see cref="MassFlow"/> / <see cref="Area"/>.</summary>
+        public static MassFlux operator /(MassFlow massFlow, Area area)
+        {
+            return MassFlux.FromKilogramsPerSecondPerSquareMeter(massFlow.KilogramsPerSecond / area.SquareMeters);
         }
 
         /// <summary>Get <see cref="Power"/> from <see cref="MassFlow"/> * <see cref="SpecificEnergy"/>.</summary>

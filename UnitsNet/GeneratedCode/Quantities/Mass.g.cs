@@ -43,18 +43,18 @@ namespace UnitsNet
         IArithmeticQuantity<Mass, MassUnit, double>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Mass, MolarMass, AmountOfSubstance>,
-        IDivisionOperators<Mass, Area, AreaDensity>,
         IDivisionOperators<Mass, AreaDensity, Area>,
+        IDivisionOperators<Mass, Area, AreaDensity>,
         IDivisionOperators<Mass, Volume, Density>,
         IMultiplyOperators<Mass, SpecificEnergy, Energy>,
         IMultiplyOperators<Mass, SpecificEntropy, Entropy>,
         IMultiplyOperators<Mass, Acceleration, Force>,
         IDivisionOperators<Mass, LinearDensity, Length>,
         IDivisionOperators<Mass, Length, LinearDensity>,
-        IDivisionOperators<Mass, Duration, MassFlow>,
-        IDivisionOperators<Mass, TimeSpan, MassFlow>,
         IMultiplyOperators<Mass, MassFraction, Mass>,
         IDivisionOperators<Mass, MassFraction, Mass>,
+        IDivisionOperators<Mass, Duration, MassFlow>,
+        IDivisionOperators<Mass, TimeSpan, MassFlow>,
         IMultiplyOperators<Mass, SpecificVolume, Volume>,
         IDivisionOperators<Mass, Density, Volume>,
 #endif
@@ -926,16 +926,16 @@ namespace UnitsNet
             return AmountOfSubstance.FromMoles(mass.Kilograms / molarMass.KilogramsPerMole);
         }
 
-        /// <summary>Get <see cref="AreaDensity"/> from <see cref="Mass"/> / <see cref="Area"/>.</summary>
-        public static AreaDensity operator /(Mass mass, Area area)
-        {
-            return AreaDensity.FromKilogramsPerSquareMeter(mass.Kilograms / area.SquareMeters);
-        }
-
         /// <summary>Get <see cref="Area"/> from <see cref="Mass"/> / <see cref="AreaDensity"/>.</summary>
         public static Area operator /(Mass mass, AreaDensity areaDensity)
         {
             return Area.FromSquareMeters(mass.Kilograms / areaDensity.KilogramsPerSquareMeter);
+        }
+
+        /// <summary>Get <see cref="AreaDensity"/> from <see cref="Mass"/> / <see cref="Area"/>.</summary>
+        public static AreaDensity operator /(Mass mass, Area area)
+        {
+            return AreaDensity.FromKilogramsPerSquareMeter(mass.Kilograms / area.SquareMeters);
         }
 
         /// <summary>Get <see cref="Density"/> from <see cref="Mass"/> / <see cref="Volume"/>.</summary>
@@ -974,18 +974,6 @@ namespace UnitsNet
             return LinearDensity.FromKilogramsPerMeter(mass.Kilograms / length.Meters);
         }
 
-        /// <summary>Get <see cref="MassFlow"/> from <see cref="Mass"/> / <see cref="Duration"/>.</summary>
-        public static MassFlow operator /(Mass mass, Duration duration)
-        {
-            return MassFlow.FromKilogramsPerSecond(mass.Kilograms / duration.Seconds);
-        }
-
-        /// <summary>Get <see cref="MassFlow"/> from <see cref="Mass"/> / <see cref="TimeSpan"/>.</summary>
-        public static MassFlow operator /(Mass mass, TimeSpan timeSpan)
-        {
-            return MassFlow.FromKilogramsPerSecond(mass.Kilograms / timeSpan.TotalSeconds);
-        }
-
         /// <summary>Get <see cref="Mass"/> from <see cref="Mass"/> * <see cref="MassFraction"/>.</summary>
         public static Mass operator *(Mass mass, MassFraction massFraction)
         {
@@ -996,6 +984,18 @@ namespace UnitsNet
         public static Mass operator /(Mass mass, MassFraction massFraction)
         {
             return Mass.FromKilograms(mass.Kilograms / massFraction.DecimalFractions);
+        }
+
+        /// <summary>Get <see cref="MassFlow"/> from <see cref="Mass"/> / <see cref="Duration"/>.</summary>
+        public static MassFlow operator /(Mass mass, Duration duration)
+        {
+            return MassFlow.FromKilogramsPerSecond(mass.Kilograms / duration.Seconds);
+        }
+
+        /// <summary>Get <see cref="MassFlow"/> from <see cref="Mass"/> / <see cref="TimeSpan"/>.</summary>
+        public static MassFlow operator /(Mass mass, TimeSpan timeSpan)
+        {
+            return MassFlow.FromKilogramsPerSecond(mass.Kilograms / timeSpan.TotalSeconds);
         }
 
         /// <summary>Get <see cref="Volume"/> from <see cref="Mass"/> * <see cref="SpecificVolume"/>.</summary>
