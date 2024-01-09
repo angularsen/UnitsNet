@@ -761,12 +761,12 @@ namespace UnitsNet
                     var rightParameter = relation.RightQuantity.Name.ToCamelCase();
                     var rightConversionProperty = relation.RightUnit.PluralName;
 
-                    if (relation.LeftQuantity.Name == "TimeSpan")
+                    if (relation.LeftQuantity.Name is nameof(TimeSpan))
                     {
                         leftConversionProperty = "Total" + leftConversionProperty;
                     }
                     
-                    if (relation.RightQuantity.Name == "TimeSpan")
+                    if (relation.RightQuantity.Name is nameof(TimeSpan))
                     {
                         rightConversionProperty = "Total" + rightConversionProperty;
                     }
@@ -780,16 +780,14 @@ namespace UnitsNet
                     var leftPart = $"{leftParameter}.{leftConversionProperty}";
                     var rightPart = $"{rightParameter}.{rightConversionProperty}";
                     
-                    if (leftParameter == "double")
+                    if (leftParameter is "double")
                     {
-                        leftParameter = "value";
-                        leftPart = "value";
+                        leftParameter = leftPart = "value";
                     }       
                     
-                    if (rightParameter == "double")
+                    if (rightParameter is "double")
                     {
-                        rightParameter = "value";
-                        rightPart = "value";
+                        rightParameter = rightPart = "value";
                     }
                     
                     var leftCast = relation.LeftQuantity.ValueType is "decimal" ? "(double)" : string.Empty;
