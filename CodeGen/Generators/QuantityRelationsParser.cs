@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using CodeGen.Exceptions;
 using CodeGen.JsonTypes;
 using Newtonsoft.Json;
 
@@ -71,6 +72,18 @@ namespace CodeGen.Generators
 
             // Sort all relations to keep generated operators in a consistent order.
             relations.Sort();
+            
+            var duplicates = relations
+                .GroupBy(r => r.SortString)
+                .Where(g => g.Count() > 1)
+                .Select(g => g.Key)
+                .ToList();
+
+            if (duplicates.Any())
+            {
+                var list = string.Join("\n  ", duplicates);
+                throw new UnitsNetCodeGenException($"Duplicate inferred relations:\n  {list}");
+            }
 
             foreach (var quantity in quantities)
             {
@@ -112,7 +125,7 @@ namespace CodeGen.Generators
             }
             catch (Exception e)
             {
-                throw new Exception($"Error parsing relations file: {relationsFileName}", e);
+                throw new UnitsNetCodeGenException($"Error parsing relations file: {relationsFileName}", e);
             }
         }
 
