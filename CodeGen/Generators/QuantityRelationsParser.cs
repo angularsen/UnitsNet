@@ -18,12 +18,21 @@ namespace CodeGen.Generators
     {
         /// <summary>
         ///     Parse and apply relations to quantities.
+        ///
+        ///     The relations are defined in UnitRelations.json
         ///     Each defined relation can be applied multiple times to one or two quantities depending on the operator and the operands.
         ///
-        ///     The format of a relation definition is "Quantity.Unit operator Quantity.Unit = Quantity.Unit".
+        ///     The format of a relation definition is "Quantity.Unit operator Quantity.Unit = Quantity.Unit" (See examples below).
         ///     "double" can be used as a unitless operand.
         ///     "1" can be used as the left operand to define inverse relations.
         /// </summary>
+        /// <example>
+        /// [
+        ///     "Power.Watt = ElectricPotential.Volt * ElectricCurrent.Ampere",
+        ///     "Speed.MeterPerSecond = Length.Meter / Duration.Second",
+        ///     "ReciprocalLength.InverseMeter = 1 / Length.Meter"
+        /// ]
+        /// </example>
         /// <param name="rootDir">Repository root directory.</param>
         /// <param name="quantities">List of previously parsed Quantity objects.</param>
         public static void ParseAndApplyRelations(string rootDir, Quantity[] quantities)
