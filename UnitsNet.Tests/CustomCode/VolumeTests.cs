@@ -17,7 +17,7 @@ namespace UnitsNet.Tests
 
         protected override double CubicFeetInOneCubicMeter => 35.314666721488590250438010354003;
 
-        protected override double CubicInchesInOneCubicMeter => 61023.98242;
+        protected override double CubicInchesInOneCubicMeter => 61_023.744094732283952756881891717;
 
         protected override double CubicKilometersInOneCubicMeter => 1E-9;
 
