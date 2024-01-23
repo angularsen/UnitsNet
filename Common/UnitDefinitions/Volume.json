@@ -194,8 +194,8 @@
     {
       "SingularName": "CubicInch",
       "PluralName": "CubicInches",
-      "FromUnitToBaseFunc": "{x} * 1.6387064-5",
-      "FromBaseToUnitFunc": "{x} / 1.6387064-5",
+      "FromUnitToBaseFunc": "{x} * 1.6387064e-5",
+      "FromBaseToUnitFunc": "{x} / 1.6387064e-5",
       "Localization": [
         {
           "Culture": "en-US",
