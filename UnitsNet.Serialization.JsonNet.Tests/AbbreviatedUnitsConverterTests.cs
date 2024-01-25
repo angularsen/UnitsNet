@@ -342,16 +342,6 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             public string Unit { get; set; }
         }
 
-        [Fact]
-        public void LargeDecimalQuantity_DeserializedTo_PlainOldDoubleQuantity()
-        {
-            const string json = """{"Value":18446744073709551614,"Unit":"EB","Type":"Information"}""";
-            var plainOldQuantity = JsonConvert.DeserializeObject<PlainOldDoubleQuantity>(json);
-
-            Assert.Equal(18446744073709551614d, plainOldQuantity.Value);
-            Assert.Equal("EB", plainOldQuantity.Unit);
-        }
-
         #endregion
 
     }

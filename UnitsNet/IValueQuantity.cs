@@ -10,7 +10,7 @@ namespace UnitsNet
     /// <remarks>
     ///     Currently, only 3 quantities are backed by <see cref="decimal"/>: <see cref="Power"/>, <see cref="BitRate"/> and <see cref="Information"/>.
     ///     <br/><br/>
-    ///     The future of decimal support is uncertain. We may either change everything to double to simplify, or use generics or <see cref="QuantityValue"/>
+    ///     The future of decimal support is uncertain. We may either change everything to double to simplify, or use generics or QuantityValue
     ///     more broadly to better support any value type.
     ///     <br/><br/>
     ///     The <see cref="Power"/> quantity originally introduced decimal due to precision issues with large units and due to the implementation at that

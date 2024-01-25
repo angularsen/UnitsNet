@@ -17,7 +17,7 @@ namespace UnitsNet
     /// </summary>
     /// <typeparam name="TQuantity">The type of quantity to create, such as <see cref="Length"/>.</typeparam>
     /// <typeparam name="TUnitType">The type of unit enum that belongs to this quantity, such as <see cref="LengthUnit"/> for <see cref="Length"/>.</typeparam>
-    public delegate TQuantity QuantityFromDelegate<out TQuantity, in TUnitType>(QuantityValue value, TUnitType fromUnit)
+    public delegate TQuantity QuantityFromDelegate<out TQuantity, in TUnitType>(double value, TUnitType fromUnit)
         where TQuantity : IQuantity
         where TUnitType : Enum;
 

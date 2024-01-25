@@ -299,7 +299,7 @@ namespace UnitsNet
         public {_valueType} Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -429,7 +429,7 @@ namespace UnitsNet
         /// <exception cref=""ArgumentException"">If value is NaN or Infinity.</exception>");
                 Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit));
                 Writer.WL($@"
-        public static {_quantity.Name} From{unit.PluralName}(QuantityValue {valueParamName})
+        public static {_quantity.Name} From{unit.PluralName}(double {valueParamName})
         {{
             {_valueType} value = ({_valueType}) {valueParamName};
             return new {_quantity.Name}(value, {_unitEnumName}.{unit.SingularName});
@@ -444,7 +444,7 @@ namespace UnitsNet
         /// <param name=""value"">Value to convert from.</param>
         /// <param name=""fromUnit"">Unit to convert from.</param>
         /// <returns>{_quantity.Name} unit value.</returns>
-        public static {_quantity.Name} From(QuantityValue value, {_unitEnumName} fromUnit)
+        public static {_quantity.Name} From(double value, {_unitEnumName} fromUnit)
         {{
             return new {_quantity.Name}(({_valueType})value, fromUnit);
         }}

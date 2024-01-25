@@ -172,14 +172,10 @@ namespace UnitsNet.Serialization.JsonNet
                 unit = GetUnitOrDefault(unitAbbreviation, quantityInfo);
             }
 
-            QuantityValue value;
+            double value;
             if (valueToken is null)
             {
                 value = default;
-            }
-            else if (quantityInfo.Zero is IValueQuantity<decimal>)
-            {
-                value = decimal.Parse(valueToken, CultureInfo.InvariantCulture);
             }
             else
             {

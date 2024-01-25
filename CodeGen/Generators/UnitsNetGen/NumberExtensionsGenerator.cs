@@ -45,7 +45,7 @@ namespace UnitsNet.NumberExtensions.NumberTo{_quantityName}
                     continue;
 
                 Writer.WL(2, $@"
-/// <inheritdoc cref=""{_quantityName}.From{unit.PluralName}(UnitsNet.QuantityValue)"" />");
+/// <inheritdoc cref=""{_quantityName}.From{unit.PluralName}(double)"" />");
 
                 Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit.ObsoleteText));
 
