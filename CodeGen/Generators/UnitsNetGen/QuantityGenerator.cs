@@ -69,7 +69,7 @@ namespace UnitsNet
             Writer.WL(@$"
     [DataContract]
     public readonly partial struct {_quantity.Name} :
-        {(_quantity.GenerateArithmetic ? "IArithmeticQuantity" : "IQuantity")}<{_quantity.Name}, {_unitEnumName}, {_quantity.ValueType}>,");
+        {(_quantity.GenerateArithmetic ? "IArithmeticQuantity" : "IQuantity")}<{_quantity.Name}, {_unitEnumName}>,");
 
             if (_quantity.Relations.Any(r => r.Operator is "*" or "/"))
             {
