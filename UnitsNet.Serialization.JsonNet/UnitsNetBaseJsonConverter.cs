@@ -178,18 +178,6 @@ namespace UnitsNet.Serialization.JsonNet
         {
             quantity = quantity ?? throw new ArgumentNullException(nameof(quantity));
 
-            if (quantity is IValueQuantity<decimal> d)
-            {
-                return new ExtendedValueUnit
-                {
-                    Unit = $"{quantity.QuantityInfo.UnitType.Name}.{quantity.Unit}",
-                    // The type of "Value" is still double
-                    Value = (double)quantity.Value,
-                    ValueString = d.Value.ToString(CultureInfo.InvariantCulture),
-                    ValueType = "decimal"
-                };
-            }
-
             return new ValueUnit {Value = (double)quantity.Value, Unit = $"{quantity.QuantityInfo.UnitType.Name}.{quantity.Unit}"};
         }
 

@@ -148,7 +148,7 @@ namespace UnitsNet
     /// </summary>
     /// <typeparam name="TUnitType">The unit type of the quantity.</typeparam>
     /// <typeparam name="TValueType">The value type of the quantity.</typeparam>
-    public interface IQuantity<TUnitType, out TValueType> : IQuantity<TUnitType>, IValueQuantity<TValueType>
+    public interface IQuantity<TUnitType, out TValueType> : IQuantity<TUnitType>
         where TUnitType : Enum
 #if NET7_0_OR_GREATER
         where TValueType : INumber<TValueType>

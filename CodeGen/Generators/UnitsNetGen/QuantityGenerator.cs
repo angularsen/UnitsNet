@@ -1068,15 +1068,6 @@ namespace UnitsNet
             return (double)As(typedUnit);
         }}
 
-        /// <inheritdoc />
-        {_quantity.ValueType} IValueQuantity<{_quantity.ValueType}>.As(Enum unit)
-        {{
-            if (!(unit is {_unitEnumName} typedUnit))
-                throw new ArgumentException($""The given unit is of type {{unit.GetType()}}. Only {{typeof({_unitEnumName})}} is supported."", nameof(unit));
-
-            return As(typedUnit);
-        }}
-
         /// <summary>
         ///     Converts this {_quantity.Name} to another {_quantity.Name} with the unit representation <paramref name=""unit"" />.
         /// </summary>
@@ -1205,18 +1196,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<{_unitEnumName}> IQuantity<{_unitEnumName}>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<{_quantity.ValueType}> IValueQuantity<{_quantity.ValueType}>.ToUnit(Enum unit)
-        {{
-            if (unit is not {_unitEnumName} typedUnit)
-                throw new ArgumentException($""The given unit is of type {{unit.GetType()}}. Only {{typeof({_unitEnumName})}} is supported."", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }}
-
-        /// <inheritdoc />
-        IValueQuantity<{_quantity.ValueType}> IValueQuantity<{_quantity.ValueType}>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 ");

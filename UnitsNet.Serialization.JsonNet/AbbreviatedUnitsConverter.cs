@@ -79,15 +79,7 @@ namespace UnitsNet.Serialization.JsonNet
 
             // write the 'Value' using the actual type
             writer.WritePropertyName(ValueProperty);
-            if (quantity is IValueQuantity<decimal> decimalQuantity)
-            {
-                // cannot use `writer.WriteValue(decimalQuantity.Value)`: there is a hidden EnsureDecimalPlace(..) method call inside it that converts '123' to '123.0'
-                writer.WriteRawValue(decimalQuantity.Value.ToString(CultureInfo.InvariantCulture));
-            }
-            else
-            {
-                writer.WriteValue((double)quantity.Value);
-            }
+            writer.WriteValue((double)quantity.Value);
 
             //  write the 'Unit' abbreviation
             writer.WritePropertyName(UnitProperty);
