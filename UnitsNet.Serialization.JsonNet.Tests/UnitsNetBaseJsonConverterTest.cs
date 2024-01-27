@@ -3,7 +3,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
@@ -39,16 +38,6 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
-        public void UnitsNetBaseJsonConverter_ConvertValueUnit_works_as_expected()
-        {
-            var result = _sut.Test_ConvertDecimalValueUnit("PowerUnit.Watt", 10.2365m);
-
-            Assert.NotNull(result);
-            Assert.IsType<Power>(result);
-            Assert.True(Power.FromWatts(10.2365).Equals((Power)result, 1e-5, ComparisonType.Absolute));
-        }
-
-        [Fact]
         public void UnitsNetBaseJsonConverter_ConvertValueUnit_throws_UnitsNetException_when_unit_does_not_exist()
         {
             var result = Assert.Throws<UnitsNetException>(() => _sut.Test_ConvertDoubleValueUnit("SomeImaginaryUnit.Watt", 10.2365D));
@@ -56,16 +45,6 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             Assert.Equal("Unable to find enum type.", result.Message);
             Assert.True(result.Data.Contains("type"));
             Assert.Equal("UnitsNet.Units.SomeImaginaryUnit,UnitsNet", result.Data["type"]);
-        }
-
-        [Fact]
-        public void UnitsNetBaseJsonConverter_ConvertValueUnit_throws_UnitsNetException_when_unit_is_in_unexpected_format()
-        {
-            var result = Assert.Throws<UnitsNetException>(() => _sut.Test_ConvertDecimalValueUnit("PowerUnit Watt", 10.2365m));
-
-            Assert.Equal("\"PowerUnit Watt\" is not a valid unit.", result.Message);
-            Assert.True(result.Data.Contains("type"));
-            Assert.Equal("PowerUnit Watt", result.Data["type"]);
         }
 
         [Fact]
@@ -108,38 +87,6 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
-        public void UnitsNetBaseJsonConverter_ReadValueUnit_works_with_decimal_quantity()
-        {
-            var token = new JObject {{"Unit", "PowerUnit.Watt"}, {"Value", 10.2365m}, {"ValueString", "10.2365"}, {"ValueType", "decimal"}};
-
-            var result = _sut.Test_ReadDecimalValueUnit(token);
-
-            Assert.NotNull(result);
-            Assert.Equal("PowerUnit.Watt", result?.Unit);
-            Assert.Equal(10.2365m, result?.Value);
-        }
-
-        [Fact]
-        public void UnitsNetBaseJsonConverter_ReadValueUnit_returns_null_when_value_is_a_string()
-        {
-            var token = new JObject {{"Unit", "PowerUnit.Watt"}, {"Value", "10.2365"}};
-
-            var result = _sut.Test_ReadDecimalValueUnit(token);
-
-            Assert.Null(result);
-        }
-
-        [Fact]
-        public void UnitsNetBaseJsonConverter_ReadValueUnit_returns_null_when_value_type_is_not_a_string()
-        {
-            var token = new JObject {{"Unit", "PowerUnit.Watt"}, {"Value", 10.2365}, {"ValueType", 123}};
-
-            var result = _sut.Test_ReadDecimalValueUnit(token);
-
-            Assert.Null(result);
-        }
-
-        [Fact]
         public void UnitsNetBaseJsonConverter_ReadDoubleValueUnit_works_with_empty_token()
         {
             var token = new JObject();
@@ -147,55 +94,6 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             var result = _sut.Test_ReadDoubleValueUnit(token);
 
             Assert.Null(result);
-        }
-
-        [Theory]
-        [InlineData(false, true)]
-        [InlineData(true, false)]
-        public void UnitsNetBaseJsonConverter_ReadValueUnit_returns_null_when_unit_or_value_is_missing(bool withUnit, bool withValue)
-        {
-            var token = new JObject();
-
-            if (withUnit)
-            {
-                token.Add("Unit", "PowerUnit.Watt");
-            }
-
-            if (withValue)
-            {
-                token.Add("Value", 10.2365m);
-            }
-
-            var result = _sut.Test_ReadDecimalValueUnit(token);
-
-            Assert.Null(result);
-        }
-
-        [Theory]
-        [InlineData("Unit", "Value", "ValueString", "ValueType")]
-        [InlineData("unit", "Value", "ValueString", "ValueType")]
-        [InlineData("Unit", "value", "valueString", "valueType")]
-        [InlineData("unit", "value", "valueString", "valueType")]
-        [InlineData("unIT", "vAlUe", "vAlUeString", "vAlUeType")]
-        public void UnitsNetBaseJsonConverter_ReadValueUnit_works_case_insensitive(
-            string unitPropertyName,
-            string valuePropertyName,
-            string valueStringPropertyName,
-            string valueTypePropertyName)
-        {
-            var token = new JObject
-            {
-                {unitPropertyName, "PowerUnit.Watt"},
-                {valuePropertyName, 10.2365m},
-                {valueStringPropertyName, 10.2365m.ToString(CultureInfo.InvariantCulture)},
-                {valueTypePropertyName, "decimal"}
-            };
-
-            var result = _sut.Test_ReadDecimalValueUnit(token);
-
-            Assert.NotNull(result);
-            Assert.Equal("PowerUnit.Watt", result?.Unit);
-            Assert.Equal(10.2365m, result?.Value);
         }
 
         /// <summary>
@@ -214,23 +112,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 return (result.Unit, result.Value);
             }
 
-            public (string Unit, decimal Value) Test_ConvertDecimalIQuantity(IQuantity value)
-            {
-                var result = ConvertIQuantity(value);
-                if (result is ExtendedValueUnit {ValueType: "decimal"} decimalResult)
-                {
-                    return (result.Unit, decimal.Parse(decimalResult.ValueString, CultureInfo.InvariantCulture));
-                }
-
-                throw new ArgumentException("The quantity does not have a decimal value", nameof(value));
-            }
-
             public IQuantity Test_ConvertDoubleValueUnit(string unit, double value) => Test_ConvertValueUnit(new ValueUnit {Unit = unit, Value = value});
-
-            public IQuantity Test_ConvertDecimalValueUnit(string unit, decimal value) => Test_ConvertValueUnit(new ExtendedValueUnit
-            {
-                Unit = unit, Value = (double) value, ValueString = value.ToString(CultureInfo.InvariantCulture), ValueType = "decimal"
-            });
 
             private IQuantity Test_ConvertValueUnit(ValueUnit valueUnit) => ConvertValueUnit(valueUnit);
 
@@ -246,19 +128,6 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
                 return (result.Unit, result.Value);
             }
-
-            public (string Unit, decimal Value)? Test_ReadDecimalValueUnit(JToken jsonToken)
-            {
-                var result = ReadValueUnit(jsonToken);
-
-                if (result is ExtendedValueUnit {ValueType: "decimal"} decimalResult)
-                {
-                    return (result.Unit, decimal.Parse(decimalResult.ValueString, CultureInfo.InvariantCulture));
-                }
-
-                return null;
-            }
-
         }
     }
 }
