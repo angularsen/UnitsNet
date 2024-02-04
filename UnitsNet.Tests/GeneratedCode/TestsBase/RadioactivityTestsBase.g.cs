@@ -179,16 +179,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Radioactivity(double.PositiveInfinity, RadioactivityUnit.Becquerel));
-            Assert.Throws<ArgumentException>(() => new Radioactivity(double.NegativeInfinity, RadioactivityUnit.Becquerel));
+            var exception1 = Record.Exception(() => new Radioactivity(double.PositiveInfinity, RadioactivityUnit.Becquerel));
+            var exception2 = Record.Exception(() => new Radioactivity(double.NegativeInfinity, RadioactivityUnit.Becquerel));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Radioactivity(double.NaN, RadioactivityUnit.Becquerel));
+            var exception = Record.Exception(() => new Radioactivity(double.NaN, RadioactivityUnit.Becquerel));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -383,16 +388,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromBecquerels_WithInfinityValue_ThrowsArgumentException()
+        public void FromBecquerels_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Radioactivity.FromBecquerels(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Radioactivity.FromBecquerels(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => Radioactivity.FromBecquerels(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => Radioactivity.FromBecquerels(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromBecquerels_WithNanValue_ThrowsArgumentException()
+        public void FromBecquerels_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Radioactivity.FromBecquerels(double.NaN));
+            var exception = Record.Exception(() => Radioactivity.FromBecquerels(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

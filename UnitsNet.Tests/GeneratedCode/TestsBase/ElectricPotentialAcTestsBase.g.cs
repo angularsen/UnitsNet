@@ -83,16 +83,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricPotentialAc(double.PositiveInfinity, ElectricPotentialAcUnit.VoltAc));
-            Assert.Throws<ArgumentException>(() => new ElectricPotentialAc(double.NegativeInfinity, ElectricPotentialAcUnit.VoltAc));
+            var exception1 = Record.Exception(() => new ElectricPotentialAc(double.PositiveInfinity, ElectricPotentialAcUnit.VoltAc));
+            var exception2 = Record.Exception(() => new ElectricPotentialAc(double.NegativeInfinity, ElectricPotentialAcUnit.VoltAc));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricPotentialAc(double.NaN, ElectricPotentialAcUnit.VoltAc));
+            var exception = Record.Exception(() => new ElectricPotentialAc(double.NaN, ElectricPotentialAcUnit.VoltAc));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -167,16 +172,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromVoltsAc_WithInfinityValue_ThrowsArgumentException()
+        public void FromVoltsAc_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricPotentialAc.FromVoltsAc(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ElectricPotentialAc.FromVoltsAc(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => ElectricPotentialAc.FromVoltsAc(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => ElectricPotentialAc.FromVoltsAc(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromVoltsAc_WithNanValue_ThrowsArgumentException()
+        public void FromVoltsAc_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricPotentialAc.FromVoltsAc(double.NaN));
+            var exception = Record.Exception(() => ElectricPotentialAc.FromVoltsAc(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

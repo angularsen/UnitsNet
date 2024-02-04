@@ -119,16 +119,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricResistivity(double.PositiveInfinity, ElectricResistivityUnit.OhmMeter));
-            Assert.Throws<ArgumentException>(() => new ElectricResistivity(double.NegativeInfinity, ElectricResistivityUnit.OhmMeter));
+            var exception1 = Record.Exception(() => new ElectricResistivity(double.PositiveInfinity, ElectricResistivityUnit.OhmMeter));
+            var exception2 = Record.Exception(() => new ElectricResistivity(double.NegativeInfinity, ElectricResistivityUnit.OhmMeter));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricResistivity(double.NaN, ElectricResistivityUnit.OhmMeter));
+            var exception = Record.Exception(() => new ElectricResistivity(double.NaN, ElectricResistivityUnit.OhmMeter));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -248,16 +253,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromOhmMeters_WithInfinityValue_ThrowsArgumentException()
+        public void FromOhmMeters_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricResistivity.FromOhmMeters(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ElectricResistivity.FromOhmMeters(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => ElectricResistivity.FromOhmMeters(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => ElectricResistivity.FromOhmMeters(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromOhmMeters_WithNanValue_ThrowsArgumentException()
+        public void FromOhmMeters_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricResistivity.FromOhmMeters(double.NaN));
+            var exception = Record.Exception(() => ElectricResistivity.FromOhmMeters(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

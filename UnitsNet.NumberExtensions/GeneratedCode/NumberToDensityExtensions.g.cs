@@ -32,13 +32,13 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
     /// </summary>
     public static class NumberToDensityExtensions
     {
-        /// <inheritdoc cref="Density.FromCentigramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density CentigramsPerDeciLiter<T>(this T value)
+        /// <inheritdoc cref="Density.FromCentigramsPerDeciliter(UnitsNet.QuantityValue)" />
+        public static Density CentigramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
 #endif
-            => Density.FromCentigramsPerDeciLiter(Convert.ToDouble(value));
+            => Density.FromCentigramsPerDeciliter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromCentigramsPerLiter(UnitsNet.QuantityValue)" />
         public static Density CentigramsPerLiter<T>(this T value)
@@ -56,13 +56,13 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromCentigramsPerMilliliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromDecigramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density DecigramsPerDeciLiter<T>(this T value)
+        /// <inheritdoc cref="Density.FromDecigramsPerDeciliter(UnitsNet.QuantityValue)" />
+        public static Density DecigramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
 #endif
-            => Density.FromDecigramsPerDeciLiter(Convert.ToDouble(value));
+            => Density.FromDecigramsPerDeciliter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromDecigramsPerLiter(UnitsNet.QuantityValue)" />
         public static Density DecigramsPerLiter<T>(this T value)
@@ -80,13 +80,13 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromDecigramsPerMilliliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromFemtogramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density FemtogramsPerDeciLiter<T>(this T value)
+        /// <inheritdoc cref="Density.FromFemtogramsPerDeciliter(UnitsNet.QuantityValue)" />
+        public static Density FemtogramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
 #endif
-            => Density.FromFemtogramsPerDeciLiter(Convert.ToDouble(value));
+            => Density.FromFemtogramsPerDeciliter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromFemtogramsPerLiter(UnitsNet.QuantityValue)" />
         public static Density FemtogramsPerLiter<T>(this T value)
@@ -144,13 +144,13 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromGramsPerCubicMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromGramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density GramsPerDeciLiter<T>(this T value)
+        /// <inheritdoc cref="Density.FromGramsPerDeciliter(UnitsNet.QuantityValue)" />
+        public static Density GramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
 #endif
-            => Density.FromGramsPerDeciLiter(Convert.ToDouble(value));
+            => Density.FromGramsPerDeciliter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromGramsPerLiter(UnitsNet.QuantityValue)" />
         public static Density GramsPerLiter<T>(this T value)
@@ -232,13 +232,13 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromMicrogramsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromMicrogramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density MicrogramsPerDeciLiter<T>(this T value)
+        /// <inheritdoc cref="Density.FromMicrogramsPerDeciliter(UnitsNet.QuantityValue)" />
+        public static Density MicrogramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
 #endif
-            => Density.FromMicrogramsPerDeciLiter(Convert.ToDouble(value));
+            => Density.FromMicrogramsPerDeciliter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromMicrogramsPerLiter(UnitsNet.QuantityValue)" />
         public static Density MicrogramsPerLiter<T>(this T value)
@@ -264,13 +264,13 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromMilligramsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromMilligramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density MilligramsPerDeciLiter<T>(this T value)
+        /// <inheritdoc cref="Density.FromMilligramsPerDeciliter(UnitsNet.QuantityValue)" />
+        public static Density MilligramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
 #endif
-            => Density.FromMilligramsPerDeciLiter(Convert.ToDouble(value));
+            => Density.FromMilligramsPerDeciliter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromMilligramsPerLiter(UnitsNet.QuantityValue)" />
         public static Density MilligramsPerLiter<T>(this T value)
@@ -288,13 +288,13 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromMilligramsPerMilliliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromNanogramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density NanogramsPerDeciLiter<T>(this T value)
+        /// <inheritdoc cref="Density.FromNanogramsPerDeciliter(UnitsNet.QuantityValue)" />
+        public static Density NanogramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
 #endif
-            => Density.FromNanogramsPerDeciLiter(Convert.ToDouble(value));
+            => Density.FromNanogramsPerDeciliter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromNanogramsPerLiter(UnitsNet.QuantityValue)" />
         public static Density NanogramsPerLiter<T>(this T value)
@@ -312,13 +312,13 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromNanogramsPerMilliliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromPicogramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density PicogramsPerDeciLiter<T>(this T value)
+        /// <inheritdoc cref="Density.FromPicogramsPerDeciliter(UnitsNet.QuantityValue)" />
+        public static Density PicogramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
 #endif
-            => Density.FromPicogramsPerDeciLiter(Convert.ToDouble(value));
+            => Density.FromPicogramsPerDeciliter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromPicogramsPerLiter(UnitsNet.QuantityValue)" />
         public static Density PicogramsPerLiter<T>(this T value)

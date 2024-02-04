@@ -95,16 +95,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new RadiationExposure(double.PositiveInfinity, RadiationExposureUnit.CoulombPerKilogram));
-            Assert.Throws<ArgumentException>(() => new RadiationExposure(double.NegativeInfinity, RadiationExposureUnit.CoulombPerKilogram));
+            var exception1 = Record.Exception(() => new RadiationExposure(double.PositiveInfinity, RadiationExposureUnit.CoulombPerKilogram));
+            var exception2 = Record.Exception(() => new RadiationExposure(double.NegativeInfinity, RadiationExposureUnit.CoulombPerKilogram));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new RadiationExposure(double.NaN, RadiationExposureUnit.CoulombPerKilogram));
+            var exception = Record.Exception(() => new RadiationExposure(double.NaN, RadiationExposureUnit.CoulombPerKilogram));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -194,16 +199,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromCoulombsPerKilogram_WithInfinityValue_ThrowsArgumentException()
+        public void FromCoulombsPerKilogram_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => RadiationExposure.FromCoulombsPerKilogram(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => RadiationExposure.FromCoulombsPerKilogram(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => RadiationExposure.FromCoulombsPerKilogram(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => RadiationExposure.FromCoulombsPerKilogram(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromCoulombsPerKilogram_WithNanValue_ThrowsArgumentException()
+        public void FromCoulombsPerKilogram_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => RadiationExposure.FromCoulombsPerKilogram(double.NaN));
+            var exception = Record.Exception(() => RadiationExposure.FromCoulombsPerKilogram(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

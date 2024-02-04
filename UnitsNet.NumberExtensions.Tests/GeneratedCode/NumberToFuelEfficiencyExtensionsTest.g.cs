@@ -25,8 +25,8 @@ namespace UnitsNet.Tests
     public class NumberToFuelEfficiencyExtensionsTests
     {
         [Fact]
-        public void NumberToKilometersPerLitersTest() =>
-            Assert.Equal(FuelEfficiency.FromKilometersPerLiters(2), 2.KilometersPerLiters());
+        public void NumberToKilometersPerLiterTest() =>
+            Assert.Equal(FuelEfficiency.FromKilometersPerLiter(2), 2.KilometersPerLiter());
 
         [Fact]
         public void NumberToLitersPer100KilometersTest() =>

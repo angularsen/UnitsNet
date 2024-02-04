@@ -107,16 +107,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Molarity(double.PositiveInfinity, MolarityUnit.MolePerCubicMeter));
-            Assert.Throws<ArgumentException>(() => new Molarity(double.NegativeInfinity, MolarityUnit.MolePerCubicMeter));
+            var exception1 = Record.Exception(() => new Molarity(double.PositiveInfinity, MolarityUnit.MolePerCubicMeter));
+            var exception2 = Record.Exception(() => new Molarity(double.NegativeInfinity, MolarityUnit.MolePerCubicMeter));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Molarity(double.NaN, MolarityUnit.MolePerCubicMeter));
+            var exception = Record.Exception(() => new Molarity(double.NaN, MolarityUnit.MolePerCubicMeter));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -221,16 +226,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromMolesPerCubicMeter_WithInfinityValue_ThrowsArgumentException()
+        public void FromMolesPerCubicMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Molarity.FromMolesPerCubicMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Molarity.FromMolesPerCubicMeter(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => Molarity.FromMolesPerCubicMeter(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => Molarity.FromMolesPerCubicMeter(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromMolesPerCubicMeter_WithNanValue_ThrowsArgumentException()
+        public void FromMolesPerCubicMeter_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Molarity.FromMolesPerCubicMeter(double.NaN));
+            var exception = Record.Exception(() => Molarity.FromMolesPerCubicMeter(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

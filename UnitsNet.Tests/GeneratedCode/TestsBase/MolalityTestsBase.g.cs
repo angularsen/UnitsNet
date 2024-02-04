@@ -71,16 +71,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Molality(double.PositiveInfinity, MolalityUnit.MolePerKilogram));
-            Assert.Throws<ArgumentException>(() => new Molality(double.NegativeInfinity, MolalityUnit.MolePerKilogram));
+            var exception1 = Record.Exception(() => new Molality(double.PositiveInfinity, MolalityUnit.MolePerKilogram));
+            var exception2 = Record.Exception(() => new Molality(double.NegativeInfinity, MolalityUnit.MolePerKilogram));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Molality(double.NaN, MolalityUnit.MolePerKilogram));
+            var exception = Record.Exception(() => new Molality(double.NaN, MolalityUnit.MolePerKilogram));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -140,16 +145,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromMolesPerKilogram_WithInfinityValue_ThrowsArgumentException()
+        public void FromMolesPerKilogram_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Molality.FromMolesPerKilogram(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Molality.FromMolesPerKilogram(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => Molality.FromMolesPerKilogram(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => Molality.FromMolesPerKilogram(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromMolesPerKilogram_WithNanValue_ThrowsArgumentException()
+        public void FromMolesPerKilogram_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Molality.FromMolesPerKilogram(double.NaN));
+            var exception = Record.Exception(() => Molality.FromMolesPerKilogram(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

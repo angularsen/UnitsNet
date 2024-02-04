@@ -91,16 +91,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Irradiation(double.PositiveInfinity, IrradiationUnit.JoulePerSquareMeter));
-            Assert.Throws<ArgumentException>(() => new Irradiation(double.NegativeInfinity, IrradiationUnit.JoulePerSquareMeter));
+            var exception1 = Record.Exception(() => new Irradiation(double.PositiveInfinity, IrradiationUnit.JoulePerSquareMeter));
+            var exception2 = Record.Exception(() => new Irradiation(double.NegativeInfinity, IrradiationUnit.JoulePerSquareMeter));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Irradiation(double.NaN, IrradiationUnit.JoulePerSquareMeter));
+            var exception = Record.Exception(() => new Irradiation(double.NaN, IrradiationUnit.JoulePerSquareMeter));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -185,16 +190,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromJoulesPerSquareMeter_WithInfinityValue_ThrowsArgumentException()
+        public void FromJoulesPerSquareMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Irradiation.FromJoulesPerSquareMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Irradiation.FromJoulesPerSquareMeter(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => Irradiation.FromJoulesPerSquareMeter(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => Irradiation.FromJoulesPerSquareMeter(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromJoulesPerSquareMeter_WithNanValue_ThrowsArgumentException()
+        public void FromJoulesPerSquareMeter_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Irradiation.FromJoulesPerSquareMeter(double.NaN));
+            var exception = Record.Exception(() => Irradiation.FromJoulesPerSquareMeter(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

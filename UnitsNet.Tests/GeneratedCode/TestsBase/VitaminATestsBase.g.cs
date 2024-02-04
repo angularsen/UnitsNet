@@ -67,16 +67,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new VitaminA(double.PositiveInfinity, VitaminAUnit.InternationalUnit));
-            Assert.Throws<ArgumentException>(() => new VitaminA(double.NegativeInfinity, VitaminAUnit.InternationalUnit));
+            var exception1 = Record.Exception(() => new VitaminA(double.PositiveInfinity, VitaminAUnit.InternationalUnit));
+            var exception2 = Record.Exception(() => new VitaminA(double.NegativeInfinity, VitaminAUnit.InternationalUnit));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new VitaminA(double.NaN, VitaminAUnit.InternationalUnit));
+            var exception = Record.Exception(() => new VitaminA(double.NaN, VitaminAUnit.InternationalUnit));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -131,16 +136,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromInternationalUnits_WithInfinityValue_ThrowsArgumentException()
+        public void FromInternationalUnits_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => VitaminA.FromInternationalUnits(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => VitaminA.FromInternationalUnits(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => VitaminA.FromInternationalUnits(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => VitaminA.FromInternationalUnits(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromInternationalUnits_WithNanValue_ThrowsArgumentException()
+        public void FromInternationalUnits_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => VitaminA.FromInternationalUnits(double.NaN));
+            var exception = Record.Exception(() => VitaminA.FromInternationalUnits(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

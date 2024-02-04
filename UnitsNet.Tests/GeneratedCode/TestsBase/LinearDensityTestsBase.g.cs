@@ -119,16 +119,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new LinearDensity(double.PositiveInfinity, LinearDensityUnit.KilogramPerMeter));
-            Assert.Throws<ArgumentException>(() => new LinearDensity(double.NegativeInfinity, LinearDensityUnit.KilogramPerMeter));
+            var exception1 = Record.Exception(() => new LinearDensity(double.PositiveInfinity, LinearDensityUnit.KilogramPerMeter));
+            var exception2 = Record.Exception(() => new LinearDensity(double.NegativeInfinity, LinearDensityUnit.KilogramPerMeter));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new LinearDensity(double.NaN, LinearDensityUnit.KilogramPerMeter));
+            var exception = Record.Exception(() => new LinearDensity(double.NaN, LinearDensityUnit.KilogramPerMeter));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -248,16 +253,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromKilogramsPerMeter_WithInfinityValue_ThrowsArgumentException()
+        public void FromKilogramsPerMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => LinearDensity.FromKilogramsPerMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => LinearDensity.FromKilogramsPerMeter(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => LinearDensity.FromKilogramsPerMeter(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => LinearDensity.FromKilogramsPerMeter(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromKilogramsPerMeter_WithNanValue_ThrowsArgumentException()
+        public void FromKilogramsPerMeter_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => LinearDensity.FromKilogramsPerMeter(double.NaN));
+            var exception = Record.Exception(() => LinearDensity.FromKilogramsPerMeter(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

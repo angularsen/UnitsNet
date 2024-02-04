@@ -91,16 +91,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Capacitance(double.PositiveInfinity, CapacitanceUnit.Farad));
-            Assert.Throws<ArgumentException>(() => new Capacitance(double.NegativeInfinity, CapacitanceUnit.Farad));
+            var exception1 = Record.Exception(() => new Capacitance(double.PositiveInfinity, CapacitanceUnit.Farad));
+            var exception2 = Record.Exception(() => new Capacitance(double.NegativeInfinity, CapacitanceUnit.Farad));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Capacitance(double.NaN, CapacitanceUnit.Farad));
+            var exception = Record.Exception(() => new Capacitance(double.NaN, CapacitanceUnit.Farad));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -185,16 +190,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromFarads_WithInfinityValue_ThrowsArgumentException()
+        public void FromFarads_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Capacitance.FromFarads(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Capacitance.FromFarads(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => Capacitance.FromFarads(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => Capacitance.FromFarads(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromFarads_WithNanValue_ThrowsArgumentException()
+        public void FromFarads_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Capacitance.FromFarads(double.NaN));
+            var exception = Record.Exception(() => Capacitance.FromFarads(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

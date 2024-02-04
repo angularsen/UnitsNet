@@ -119,16 +119,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Area(double.PositiveInfinity, AreaUnit.SquareMeter));
-            Assert.Throws<ArgumentException>(() => new Area(double.NegativeInfinity, AreaUnit.SquareMeter));
+            var exception1 = Record.Exception(() => new Area(double.PositiveInfinity, AreaUnit.SquareMeter));
+            var exception2 = Record.Exception(() => new Area(double.NegativeInfinity, AreaUnit.SquareMeter));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Area(double.NaN, AreaUnit.SquareMeter));
+            var exception = Record.Exception(() => new Area(double.NaN, AreaUnit.SquareMeter));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -248,16 +253,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromSquareMeters_WithInfinityValue_ThrowsArgumentException()
+        public void FromSquareMeters_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Area.FromSquareMeters(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Area.FromSquareMeters(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => Area.FromSquareMeters(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => Area.FromSquareMeters(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromSquareMeters_WithNanValue_ThrowsArgumentException()
+        public void FromSquareMeters_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Area.FromSquareMeters(double.NaN));
+            var exception = Record.Exception(() => Area.FromSquareMeters(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

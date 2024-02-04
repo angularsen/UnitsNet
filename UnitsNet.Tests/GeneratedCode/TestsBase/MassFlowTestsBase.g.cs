@@ -195,16 +195,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new MassFlow(double.PositiveInfinity, MassFlowUnit.GramPerSecond));
-            Assert.Throws<ArgumentException>(() => new MassFlow(double.NegativeInfinity, MassFlowUnit.GramPerSecond));
+            var exception1 = Record.Exception(() => new MassFlow(double.PositiveInfinity, MassFlowUnit.GramPerSecond));
+            var exception2 = Record.Exception(() => new MassFlow(double.NegativeInfinity, MassFlowUnit.GramPerSecond));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new MassFlow(double.NaN, MassFlowUnit.GramPerSecond));
+            var exception = Record.Exception(() => new MassFlow(double.NaN, MassFlowUnit.GramPerSecond));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -419,16 +424,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromGramsPerSecond_WithInfinityValue_ThrowsArgumentException()
+        public void FromGramsPerSecond_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => MassFlow.FromGramsPerSecond(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => MassFlow.FromGramsPerSecond(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => MassFlow.FromGramsPerSecond(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => MassFlow.FromGramsPerSecond(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromGramsPerSecond_WithNanValue_ThrowsArgumentException()
+        public void FromGramsPerSecond_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => MassFlow.FromGramsPerSecond(double.NaN));
+            var exception = Record.Exception(() => MassFlow.FromGramsPerSecond(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

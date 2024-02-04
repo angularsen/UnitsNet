@@ -87,16 +87,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ApparentPower(double.PositiveInfinity, ApparentPowerUnit.Voltampere));
-            Assert.Throws<ArgumentException>(() => new ApparentPower(double.NegativeInfinity, ApparentPowerUnit.Voltampere));
+            var exception1 = Record.Exception(() => new ApparentPower(double.PositiveInfinity, ApparentPowerUnit.Voltampere));
+            var exception2 = Record.Exception(() => new ApparentPower(double.NegativeInfinity, ApparentPowerUnit.Voltampere));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ApparentPower(double.NaN, ApparentPowerUnit.Voltampere));
+            var exception = Record.Exception(() => new ApparentPower(double.NaN, ApparentPowerUnit.Voltampere));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -176,16 +181,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromVoltamperes_WithInfinityValue_ThrowsArgumentException()
+        public void FromVoltamperes_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ApparentPower.FromVoltamperes(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ApparentPower.FromVoltamperes(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => ApparentPower.FromVoltamperes(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => ApparentPower.FromVoltamperes(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromVoltamperes_WithNanValue_ThrowsArgumentException()
+        public void FromVoltamperes_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ApparentPower.FromVoltamperes(double.NaN));
+            var exception = Record.Exception(() => ApparentPower.FromVoltamperes(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

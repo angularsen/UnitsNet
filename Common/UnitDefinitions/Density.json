@@ -197,7 +197,7 @@
     },
     {
       "SingularName": "GramPerDeciliter",
-      "PluralName": "GramsPerDeciLiter",
+      "PluralName": "GramsPerDeciliter",
       "FromUnitToBaseFunc": "{x} / 1e-1",
       "FromBaseToUnitFunc": "{x} * 1e-1",
       "Prefixes": [ "Femto", "Pico", "Nano", "Micro", "Milli", "Centi", "Deci" ],

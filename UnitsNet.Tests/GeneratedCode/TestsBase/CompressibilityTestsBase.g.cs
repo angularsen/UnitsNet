@@ -91,16 +91,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Compressibility(double.PositiveInfinity, CompressibilityUnit.InversePascal));
-            Assert.Throws<ArgumentException>(() => new Compressibility(double.NegativeInfinity, CompressibilityUnit.InversePascal));
+            var exception1 = Record.Exception(() => new Compressibility(double.PositiveInfinity, CompressibilityUnit.InversePascal));
+            var exception2 = Record.Exception(() => new Compressibility(double.NegativeInfinity, CompressibilityUnit.InversePascal));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Compressibility(double.NaN, CompressibilityUnit.InversePascal));
+            var exception = Record.Exception(() => new Compressibility(double.NaN, CompressibilityUnit.InversePascal));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -185,16 +190,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromInversePascals_WithInfinityValue_ThrowsArgumentException()
+        public void FromInversePascals_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Compressibility.FromInversePascals(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Compressibility.FromInversePascals(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => Compressibility.FromInversePascals(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => Compressibility.FromInversePascals(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromInversePascals_WithNanValue_ThrowsArgumentException()
+        public void FromInversePascals_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Compressibility.FromInversePascals(double.NaN));
+            var exception = Record.Exception(() => Compressibility.FromInversePascals(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

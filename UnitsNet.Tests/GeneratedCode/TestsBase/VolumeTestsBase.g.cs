@@ -279,16 +279,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Volume(double.PositiveInfinity, VolumeUnit.CubicMeter));
-            Assert.Throws<ArgumentException>(() => new Volume(double.NegativeInfinity, VolumeUnit.CubicMeter));
+            var exception1 = Record.Exception(() => new Volume(double.PositiveInfinity, VolumeUnit.CubicMeter));
+            var exception2 = Record.Exception(() => new Volume(double.NegativeInfinity, VolumeUnit.CubicMeter));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Volume(double.NaN, VolumeUnit.CubicMeter));
+            var exception = Record.Exception(() => new Volume(double.NaN, VolumeUnit.CubicMeter));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -608,16 +613,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromCubicMeters_WithInfinityValue_ThrowsArgumentException()
+        public void FromCubicMeters_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Volume.FromCubicMeters(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Volume.FromCubicMeters(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => Volume.FromCubicMeters(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => Volume.FromCubicMeters(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromCubicMeters_WithNanValue_ThrowsArgumentException()
+        public void FromCubicMeters_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Volume.FromCubicMeters(double.NaN));
+            var exception = Record.Exception(() => Volume.FromCubicMeters(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

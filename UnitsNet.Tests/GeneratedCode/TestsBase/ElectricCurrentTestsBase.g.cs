@@ -99,16 +99,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricCurrent(double.PositiveInfinity, ElectricCurrentUnit.Ampere));
-            Assert.Throws<ArgumentException>(() => new ElectricCurrent(double.NegativeInfinity, ElectricCurrentUnit.Ampere));
+            var exception1 = Record.Exception(() => new ElectricCurrent(double.PositiveInfinity, ElectricCurrentUnit.Ampere));
+            var exception2 = Record.Exception(() => new ElectricCurrent(double.NegativeInfinity, ElectricCurrentUnit.Ampere));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricCurrent(double.NaN, ElectricCurrentUnit.Ampere));
+            var exception = Record.Exception(() => new ElectricCurrent(double.NaN, ElectricCurrentUnit.Ampere));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -203,16 +208,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromAmperes_WithInfinityValue_ThrowsArgumentException()
+        public void FromAmperes_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricCurrent.FromAmperes(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ElectricCurrent.FromAmperes(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => ElectricCurrent.FromAmperes(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => ElectricCurrent.FromAmperes(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromAmperes_WithNanValue_ThrowsArgumentException()
+        public void FromAmperes_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricCurrent.FromAmperes(double.NaN));
+            var exception = Record.Exception(() => ElectricCurrent.FromAmperes(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

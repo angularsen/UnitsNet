@@ -231,16 +231,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Length(double.PositiveInfinity, LengthUnit.Meter));
-            Assert.Throws<ArgumentException>(() => new Length(double.NegativeInfinity, LengthUnit.Meter));
+            var exception1 = Record.Exception(() => new Length(double.PositiveInfinity, LengthUnit.Meter));
+            var exception2 = Record.Exception(() => new Length(double.NegativeInfinity, LengthUnit.Meter));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Length(double.NaN, LengthUnit.Meter));
+            var exception = Record.Exception(() => new Length(double.NaN, LengthUnit.Meter));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -500,16 +505,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromMeters_WithInfinityValue_ThrowsArgumentException()
+        public void FromMeters_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Length.FromMeters(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Length.FromMeters(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => Length.FromMeters(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => Length.FromMeters(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromMeters_WithNanValue_ThrowsArgumentException()
+        public void FromMeters_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Length.FromMeters(double.NaN));
+            var exception = Record.Exception(() => Length.FromMeters(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]

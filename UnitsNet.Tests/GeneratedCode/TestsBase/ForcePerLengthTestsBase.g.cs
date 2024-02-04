@@ -215,16 +215,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ForcePerLength(double.PositiveInfinity, ForcePerLengthUnit.NewtonPerMeter));
-            Assert.Throws<ArgumentException>(() => new ForcePerLength(double.NegativeInfinity, ForcePerLengthUnit.NewtonPerMeter));
+            var exception1 = Record.Exception(() => new ForcePerLength(double.PositiveInfinity, ForcePerLengthUnit.NewtonPerMeter));
+            var exception2 = Record.Exception(() => new ForcePerLength(double.NegativeInfinity, ForcePerLengthUnit.NewtonPerMeter));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ForcePerLength(double.NaN, ForcePerLengthUnit.NewtonPerMeter));
+            var exception = Record.Exception(() => new ForcePerLength(double.NaN, ForcePerLengthUnit.NewtonPerMeter));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -464,16 +469,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromNewtonsPerMeter_WithInfinityValue_ThrowsArgumentException()
+        public void FromNewtonsPerMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ForcePerLength.FromNewtonsPerMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ForcePerLength.FromNewtonsPerMeter(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => ForcePerLength.FromNewtonsPerMeter(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => ForcePerLength.FromNewtonsPerMeter(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromNewtonsPerMeter_WithNanValue_ThrowsArgumentException()
+        public void FromNewtonsPerMeter_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ForcePerLength.FromNewtonsPerMeter(double.NaN));
+            var exception = Record.Exception(() => ForcePerLength.FromNewtonsPerMeter(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
