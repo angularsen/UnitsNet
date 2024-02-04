@@ -99,7 +99,7 @@ namespace UnitsNet
                 Writer.WL(@$"
 #endif");
             }
-            
+
             if (_quantity.ValueType == "decimal") Writer.WL(@$"
         IDecimalQuantity,");
 
@@ -115,13 +115,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = ""Value"", Order = 0)]
+        [DataMember(Name = ""Value"", Order = 1)]
         private readonly {_quantity.ValueType} _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = ""Unit"", Order = 1)]
+        [DataMember(Name = ""Unit"", Order = 2)]
         private readonly {_unitEnumName}? _unit;
 ");
             GenerateStaticConstructor();
@@ -759,41 +759,41 @@ namespace UnitsNet
                     {
                         leftConversionProperty = "Total" + leftConversionProperty;
                     }
-                    
+
                     if (relation.RightQuantity.Name is nameof(TimeSpan))
                     {
                         rightConversionProperty = "Total" + rightConversionProperty;
                     }
-                    
+
                     if (leftParameter == rightParameter)
                     {
                         leftParameter = "left";
                         rightParameter = "right";
                     }
-                    
+
                     var leftPart = $"{leftParameter}.{leftConversionProperty}";
                     var rightPart = $"{rightParameter}.{rightConversionProperty}";
-                    
+
                     if (leftParameter is "double")
                     {
                         leftParameter = leftPart = "value";
-                    }       
-                    
+                    }
+
                     if (rightParameter is "double")
                     {
                         rightParameter = rightPart = "value";
                     }
-                    
+
                     var leftCast = relation.LeftQuantity.ValueType is "decimal" ? "(double)" : string.Empty;
                     var rightCast = relation.RightQuantity.ValueType is "decimal" ? "(double)" : string.Empty;
-                    
+
                     var expression = $"{leftCast}{leftPart} {relation.Operator} {rightCast}{rightPart}";
 
                     if (relation.ResultQuantity.Name is not ("double" or "decimal"))
                     {
                         expression = $"{relation.ResultQuantity.Name}.From{relation.ResultUnit.PluralName}({expression})";
                     }
-                    
+
                     Writer.WL($@"
         /// <summary>Get <see cref=""{relation.ResultQuantity.Name}""/> from <see cref=""{relation.LeftQuantity.Name}""/> {relation.Operator} <see cref=""{relation.RightQuantity.Name}""/>.</summary>
         public static {relation.ResultQuantity.Name} operator {relation.Operator}({relation.LeftQuantity.Name} {leftParameter}, {relation.RightQuantity.Name} {rightParameter})
