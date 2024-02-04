@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,9 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct SpecificVolume :
         IArithmeticQuantity<SpecificVolume, SpecificVolumeUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<SpecificVolume, Mass, Volume>,
+#endif
         IComparable,
         IComparable<SpecificVolume>,
         IConvertible,
@@ -462,6 +468,22 @@ namespace UnitsNet
         public static double operator /(SpecificVolume left, SpecificVolume right)
         {
             return left.CubicMetersPerKilogram / right.CubicMetersPerKilogram;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Density"/> from <see cref="double"/> / <see cref="SpecificVolume"/>.</summary>
+        public static Density operator /(double value, SpecificVolume specificVolume)
+        {
+            return Density.FromKilogramsPerCubicMeter(value / specificVolume.CubicMetersPerKilogram);
+        }
+
+        /// <summary>Get <see cref="Volume"/> from <see cref="SpecificVolume"/> * <see cref="Mass"/>.</summary>
+        public static Volume operator *(SpecificVolume specificVolume, Mass mass)
+        {
+            return Volume.FromCubicMeters(specificVolume.CubicMetersPerKilogram * mass.Kilograms);
         }
 
         #endregion

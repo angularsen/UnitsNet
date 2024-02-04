@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,21 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct Duration :
         IArithmeticQuantity<Duration, DurationUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<Duration, MolarFlow, AmountOfSubstance>,
+        IMultiplyOperators<Duration, RotationalSpeed, Angle>,
+        IMultiplyOperators<Duration, KinematicViscosity, Area>,
+        IMultiplyOperators<Duration, ElectricCurrent, ElectricCharge>,
+        IMultiplyOperators<Duration, ElectricCurrentGradient, ElectricCurrent>,
+        IMultiplyOperators<Duration, Power, Energy>,
+        IMultiplyOperators<Duration, ForceChangeRate, Force>,
+        IMultiplyOperators<Duration, Speed, Length>,
+        IMultiplyOperators<Duration, MassFlow, Mass>,
+        IMultiplyOperators<Duration, PressureChangeRate, Pressure>,
+        IMultiplyOperators<Duration, Acceleration, Speed>,
+        IMultiplyOperators<Duration, TemperatureChangeRate, TemperatureDelta>,
+        IMultiplyOperators<Duration, VolumeFlow, Volume>,
+#endif
         IComparable,
         IComparable<Duration>,
         IConvertible,
@@ -606,6 +624,88 @@ namespace UnitsNet
         public static double operator /(Duration left, Duration right)
         {
             return left.Seconds / right.Seconds;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="AmountOfSubstance"/> from <see cref="Duration"/> * <see cref="MolarFlow"/>.</summary>
+        public static AmountOfSubstance operator *(Duration duration, MolarFlow molarFlow)
+        {
+            return AmountOfSubstance.FromKilomoles(duration.Seconds * molarFlow.KilomolesPerSecond);
+        }
+
+        /// <summary>Get <see cref="Angle"/> from <see cref="Duration"/> * <see cref="RotationalSpeed"/>.</summary>
+        public static Angle operator *(Duration duration, RotationalSpeed rotationalSpeed)
+        {
+            return Angle.FromRadians(duration.Seconds * rotationalSpeed.RadiansPerSecond);
+        }
+
+        /// <summary>Get <see cref="Area"/> from <see cref="Duration"/> * <see cref="KinematicViscosity"/>.</summary>
+        public static Area operator *(Duration duration, KinematicViscosity kinematicViscosity)
+        {
+            return Area.FromSquareMeters(duration.Seconds * kinematicViscosity.SquareMetersPerSecond);
+        }
+
+        /// <summary>Get <see cref="ElectricCharge"/> from <see cref="Duration"/> * <see cref="ElectricCurrent"/>.</summary>
+        public static ElectricCharge operator *(Duration duration, ElectricCurrent electricCurrent)
+        {
+            return ElectricCharge.FromAmpereHours(duration.Hours * electricCurrent.Amperes);
+        }
+
+        /// <summary>Get <see cref="ElectricCurrent"/> from <see cref="Duration"/> * <see cref="ElectricCurrentGradient"/>.</summary>
+        public static ElectricCurrent operator *(Duration duration, ElectricCurrentGradient electricCurrentGradient)
+        {
+            return ElectricCurrent.FromAmperes(duration.Seconds * electricCurrentGradient.AmperesPerSecond);
+        }
+
+        /// <summary>Get <see cref="Energy"/> from <see cref="Duration"/> * <see cref="Power"/>.</summary>
+        public static Energy operator *(Duration duration, Power power)
+        {
+            return Energy.FromJoules(duration.Seconds * (double)power.Watts);
+        }
+
+        /// <summary>Get <see cref="Force"/> from <see cref="Duration"/> * <see cref="ForceChangeRate"/>.</summary>
+        public static Force operator *(Duration duration, ForceChangeRate forceChangeRate)
+        {
+            return Force.FromNewtons(duration.Seconds * forceChangeRate.NewtonsPerSecond);
+        }
+
+        /// <summary>Get <see cref="Length"/> from <see cref="Duration"/> * <see cref="Speed"/>.</summary>
+        public static Length operator *(Duration duration, Speed speed)
+        {
+            return Length.FromMeters(duration.Seconds * speed.MetersPerSecond);
+        }
+
+        /// <summary>Get <see cref="Mass"/> from <see cref="Duration"/> * <see cref="MassFlow"/>.</summary>
+        public static Mass operator *(Duration duration, MassFlow massFlow)
+        {
+            return Mass.FromKilograms(duration.Seconds * massFlow.KilogramsPerSecond);
+        }
+
+        /// <summary>Get <see cref="Pressure"/> from <see cref="Duration"/> * <see cref="PressureChangeRate"/>.</summary>
+        public static Pressure operator *(Duration duration, PressureChangeRate pressureChangeRate)
+        {
+            return Pressure.FromPascals(duration.Seconds * pressureChangeRate.PascalsPerSecond);
+        }
+
+        /// <summary>Get <see cref="Speed"/> from <see cref="Duration"/> * <see cref="Acceleration"/>.</summary>
+        public static Speed operator *(Duration duration, Acceleration acceleration)
+        {
+            return Speed.FromMetersPerSecond(duration.Seconds * acceleration.MetersPerSecondSquared);
+        }
+
+        /// <summary>Get <see cref="TemperatureDelta"/> from <see cref="Duration"/> * <see cref="TemperatureChangeRate"/>.</summary>
+        public static TemperatureDelta operator *(Duration duration, TemperatureChangeRate temperatureChangeRate)
+        {
+            return TemperatureDelta.FromDegreesCelsius(duration.Seconds * temperatureChangeRate.DegreesCelsiusPerSecond);
+        }
+
+        /// <summary>Get <see cref="Volume"/> from <see cref="Duration"/> * <see cref="VolumeFlow"/>.</summary>
+        public static Volume operator *(Duration duration, VolumeFlow volumeFlow)
+        {
+            return Volume.FromCubicMeters(duration.Seconds * volumeFlow.CubicMetersPerSecond);
         }
 
         #endregion

@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,20 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct Area :
         IArithmeticQuantity<Area, AreaUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<Area, Pressure, Force>,
+        IMultiplyOperators<Area, SpecificWeight, ForcePerLength>,
+        IDivisionOperators<Area, Length, Length>,
+        IMultiplyOperators<Area, Density, LinearDensity>,
+        IMultiplyOperators<Area, Luminance, LuminousIntensity>,
+        IMultiplyOperators<Area, AreaDensity, Mass>,
+        IMultiplyOperators<Area, MassFlux, MassFlow>,
+        IMultiplyOperators<Area, HeatFlux, Power>,
+        IMultiplyOperators<Area, ReciprocalArea, Ratio>,
+        IMultiplyOperators<Area, ForcePerLength, Torque>,
+        IMultiplyOperators<Area, Length, Volume>,
+        IMultiplyOperators<Area, Speed, VolumeFlow>,
+#endif
         IComparable,
         IComparable<Area>,
         IConvertible,
@@ -660,6 +677,89 @@ namespace UnitsNet
         public static double operator /(Area left, Area right)
         {
             return left.SquareMeters / right.SquareMeters;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Force"/> from <see cref="Area"/> * <see cref="Pressure"/>.</summary>
+        public static Force operator *(Area area, Pressure pressure)
+        {
+            return Force.FromNewtons(area.SquareMeters * pressure.Pascals);
+        }
+
+        /// <summary>Get <see cref="ForcePerLength"/> from <see cref="Area"/> * <see cref="SpecificWeight"/>.</summary>
+        public static ForcePerLength operator *(Area area, SpecificWeight specificWeight)
+        {
+            return ForcePerLength.FromNewtonsPerMeter(area.SquareMeters * specificWeight.NewtonsPerCubicMeter);
+        }
+
+        /// <summary>Get <see cref="Length"/> from <see cref="Area"/> / <see cref="Length"/>.</summary>
+        public static Length operator /(Area area, Length length)
+        {
+            return Length.FromMeters(area.SquareMeters / length.Meters);
+        }
+
+        /// <summary>Get <see cref="LinearDensity"/> from <see cref="Area"/> * <see cref="Density"/>.</summary>
+        public static LinearDensity operator *(Area area, Density density)
+        {
+            return LinearDensity.FromKilogramsPerMeter(area.SquareMeters * density.KilogramsPerCubicMeter);
+        }
+
+        /// <summary>Get <see cref="LuminousIntensity"/> from <see cref="Area"/> * <see cref="Luminance"/>.</summary>
+        public static LuminousIntensity operator *(Area area, Luminance luminance)
+        {
+            return LuminousIntensity.FromCandela(area.SquareMeters * luminance.CandelasPerSquareMeter);
+        }
+
+        /// <summary>Get <see cref="Mass"/> from <see cref="Area"/> * <see cref="AreaDensity"/>.</summary>
+        public static Mass operator *(Area area, AreaDensity areaDensity)
+        {
+            return Mass.FromKilograms(area.SquareMeters * areaDensity.KilogramsPerSquareMeter);
+        }
+
+        /// <summary>Get <see cref="MassFlow"/> from <see cref="Area"/> * <see cref="MassFlux"/>.</summary>
+        public static MassFlow operator *(Area area, MassFlux massFlux)
+        {
+            return MassFlow.FromGramsPerSecond(area.SquareMeters * massFlux.GramsPerSecondPerSquareMeter);
+        }
+
+        /// <summary>Get <see cref="Power"/> from <see cref="Area"/> * <see cref="HeatFlux"/>.</summary>
+        public static Power operator *(Area area, HeatFlux heatFlux)
+        {
+            return Power.FromWatts(area.SquareMeters * heatFlux.WattsPerSquareMeter);
+        }
+
+        /// <summary>Get <see cref="Ratio"/> from <see cref="Area"/> * <see cref="ReciprocalArea"/>.</summary>
+        public static Ratio operator *(Area area, ReciprocalArea reciprocalArea)
+        {
+            return Ratio.FromDecimalFractions(area.SquareMeters * reciprocalArea.InverseSquareMeters);
+        }
+
+        /// <summary>Calculates the inverse of this quantity.</summary>
+        /// <returns>The corresponding inverse quantity, <see cref="ReciprocalArea"/>.</returns>
+        public ReciprocalArea Inverse()
+        {
+            return SquareMeters == 0.0 ? ReciprocalArea.Zero : ReciprocalArea.FromInverseSquareMeters(1 / SquareMeters);
+        }
+
+        /// <summary>Get <see cref="Torque"/> from <see cref="Area"/> * <see cref="ForcePerLength"/>.</summary>
+        public static Torque operator *(Area area, ForcePerLength forcePerLength)
+        {
+            return Torque.FromNewtonMeters(area.SquareMeters * forcePerLength.NewtonsPerMeter);
+        }
+
+        /// <summary>Get <see cref="Volume"/> from <see cref="Area"/> * <see cref="Length"/>.</summary>
+        public static Volume operator *(Area area, Length length)
+        {
+            return Volume.FromCubicMeters(area.SquareMeters * length.Meters);
+        }
+
+        /// <summary>Get <see cref="VolumeFlow"/> from <see cref="Area"/> * <see cref="Speed"/>.</summary>
+        public static VolumeFlow operator *(Area area, Speed speed)
+        {
+            return VolumeFlow.FromCubicMetersPerSecond(area.SquareMeters * speed.MetersPerSecond);
         }
 
         #endregion

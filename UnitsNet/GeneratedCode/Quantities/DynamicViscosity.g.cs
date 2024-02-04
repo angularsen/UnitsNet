@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -41,6 +44,9 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct DynamicViscosity :
         IArithmeticQuantity<DynamicViscosity, DynamicViscosityUnit, double>,
+#if NET7_0_OR_GREATER
+        IDivisionOperators<DynamicViscosity, Density, KinematicViscosity>,
+#endif
         IComparable,
         IComparable<DynamicViscosity>,
         IConvertible,
@@ -591,6 +597,16 @@ namespace UnitsNet
         public static double operator /(DynamicViscosity left, DynamicViscosity right)
         {
             return left.NewtonSecondsPerMeterSquared / right.NewtonSecondsPerMeterSquared;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="KinematicViscosity"/> from <see cref="DynamicViscosity"/> / <see cref="Density"/>.</summary>
+        public static KinematicViscosity operator /(DynamicViscosity dynamicViscosity, Density density)
+        {
+            return KinematicViscosity.FromSquareMetersPerSecond(dynamicViscosity.NewtonSecondsPerMeterSquared / density.KilogramsPerCubicMeter);
         }
 
         #endregion

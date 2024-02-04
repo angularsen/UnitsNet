@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,18 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct Speed :
         IArithmeticQuantity<Speed, SpeedUnit, double>,
+#if NET7_0_OR_GREATER
+        IDivisionOperators<Speed, Duration, Acceleration>,
+        IDivisionOperators<Speed, TimeSpan, Acceleration>,
+        IDivisionOperators<Speed, Acceleration, Duration>,
+        IMultiplyOperators<Speed, Length, KinematicViscosity>,
+        IMultiplyOperators<Speed, Duration, Length>,
+        IMultiplyOperators<Speed, TimeSpan, Length>,
+        IMultiplyOperators<Speed, Density, MassFlux>,
+        IMultiplyOperators<Speed, Force, Power>,
+        IMultiplyOperators<Speed, Speed, SpecificEnergy>,
+        IMultiplyOperators<Speed, Area, VolumeFlow>,
+#endif
         IComparable,
         IComparable<Speed>,
         IConvertible,
@@ -1002,6 +1017,76 @@ namespace UnitsNet
         public static double operator /(Speed left, Speed right)
         {
             return left.MetersPerSecond / right.MetersPerSecond;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Acceleration"/> from <see cref="Speed"/> / <see cref="Duration"/>.</summary>
+        public static Acceleration operator /(Speed speed, Duration duration)
+        {
+            return Acceleration.FromMetersPerSecondSquared(speed.MetersPerSecond / duration.Seconds);
+        }
+
+        /// <summary>Get <see cref="Acceleration"/> from <see cref="Speed"/> / <see cref="TimeSpan"/>.</summary>
+        public static Acceleration operator /(Speed speed, TimeSpan timeSpan)
+        {
+            return Acceleration.FromMetersPerSecondSquared(speed.MetersPerSecond / timeSpan.TotalSeconds);
+        }
+
+        /// <summary>Get <see cref="Duration"/> from <see cref="Speed"/> / <see cref="Acceleration"/>.</summary>
+        public static Duration operator /(Speed speed, Acceleration acceleration)
+        {
+            return Duration.FromSeconds(speed.MetersPerSecond / acceleration.MetersPerSecondSquared);
+        }
+
+        /// <summary>Get <see cref="KinematicViscosity"/> from <see cref="Speed"/> * <see cref="Length"/>.</summary>
+        public static KinematicViscosity operator *(Speed speed, Length length)
+        {
+            return KinematicViscosity.FromSquareMetersPerSecond(speed.MetersPerSecond * length.Meters);
+        }
+
+        /// <summary>Get <see cref="Length"/> from <see cref="Speed"/> * <see cref="Duration"/>.</summary>
+        public static Length operator *(Speed speed, Duration duration)
+        {
+            return Length.FromMeters(speed.MetersPerSecond * duration.Seconds);
+        }
+
+        /// <summary>Get <see cref="Length"/> from <see cref="Speed"/> * <see cref="TimeSpan"/>.</summary>
+        public static Length operator *(Speed speed, TimeSpan timeSpan)
+        {
+            return Length.FromMeters(speed.MetersPerSecond * timeSpan.TotalSeconds);
+        }
+
+        /// <summary>Get <see cref="Length"/> from <see cref="TimeSpan"/> * <see cref="Speed"/>.</summary>
+        public static Length operator *(TimeSpan timeSpan, Speed speed)
+        {
+            return Length.FromMeters(timeSpan.TotalSeconds * speed.MetersPerSecond);
+        }
+
+        /// <summary>Get <see cref="MassFlux"/> from <see cref="Speed"/> * <see cref="Density"/>.</summary>
+        public static MassFlux operator *(Speed speed, Density density)
+        {
+            return MassFlux.FromKilogramsPerSecondPerSquareMeter(speed.MetersPerSecond * density.KilogramsPerCubicMeter);
+        }
+
+        /// <summary>Get <see cref="Power"/> from <see cref="Speed"/> * <see cref="Force"/>.</summary>
+        public static Power operator *(Speed speed, Force force)
+        {
+            return Power.FromWatts(speed.MetersPerSecond * force.Newtons);
+        }
+
+        /// <summary>Get <see cref="SpecificEnergy"/> from <see cref="Speed"/> * <see cref="Speed"/>.</summary>
+        public static SpecificEnergy operator *(Speed left, Speed right)
+        {
+            return SpecificEnergy.FromJoulesPerKilogram(left.MetersPerSecond * right.MetersPerSecond);
+        }
+
+        /// <summary>Get <see cref="VolumeFlow"/> from <see cref="Speed"/> * <see cref="Area"/>.</summary>
+        public static VolumeFlow operator *(Speed speed, Area area)
+        {
+            return VolumeFlow.FromCubicMetersPerSecond(speed.MetersPerSecond * area.SquareMeters);
         }
 
         #endregion

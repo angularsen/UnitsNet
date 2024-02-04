@@ -667,6 +667,17 @@ namespace UnitsNet
 
         #endregion
 
+        #region Relational Operators
+
+        /// <summary>Calculates the inverse of this quantity.</summary>
+        /// <returns>The corresponding inverse quantity, <see cref="ElectricConductivity"/>.</returns>
+        public ElectricConductivity Inverse()
+        {
+            return OhmMeters == 0.0 ? ElectricConductivity.Zero : ElectricConductivity.FromSiemensPerMeter(1 / OhmMeters);
+        }
+
+        #endregion
+
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>

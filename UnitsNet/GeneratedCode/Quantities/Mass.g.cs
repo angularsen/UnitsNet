@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,23 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct Mass :
         IArithmeticQuantity<Mass, MassUnit, double>,
+#if NET7_0_OR_GREATER
+        IDivisionOperators<Mass, MolarMass, AmountOfSubstance>,
+        IDivisionOperators<Mass, AreaDensity, Area>,
+        IDivisionOperators<Mass, Area, AreaDensity>,
+        IDivisionOperators<Mass, Volume, Density>,
+        IMultiplyOperators<Mass, SpecificEnergy, Energy>,
+        IMultiplyOperators<Mass, SpecificEntropy, Entropy>,
+        IMultiplyOperators<Mass, Acceleration, Force>,
+        IDivisionOperators<Mass, LinearDensity, Length>,
+        IDivisionOperators<Mass, Length, LinearDensity>,
+        IMultiplyOperators<Mass, MassFraction, Mass>,
+        IDivisionOperators<Mass, MassFraction, Mass>,
+        IDivisionOperators<Mass, Duration, MassFlow>,
+        IDivisionOperators<Mass, TimeSpan, MassFlow>,
+        IMultiplyOperators<Mass, SpecificVolume, Volume>,
+        IDivisionOperators<Mass, Density, Volume>,
+#endif
         IComparable,
         IComparable<Mass>,
         IConvertible,
@@ -894,6 +914,100 @@ namespace UnitsNet
         public static double operator /(Mass left, Mass right)
         {
             return left.Kilograms / right.Kilograms;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="AmountOfSubstance"/> from <see cref="Mass"/> / <see cref="MolarMass"/>.</summary>
+        public static AmountOfSubstance operator /(Mass mass, MolarMass molarMass)
+        {
+            return AmountOfSubstance.FromMoles(mass.Kilograms / molarMass.KilogramsPerMole);
+        }
+
+        /// <summary>Get <see cref="Area"/> from <see cref="Mass"/> / <see cref="AreaDensity"/>.</summary>
+        public static Area operator /(Mass mass, AreaDensity areaDensity)
+        {
+            return Area.FromSquareMeters(mass.Kilograms / areaDensity.KilogramsPerSquareMeter);
+        }
+
+        /// <summary>Get <see cref="AreaDensity"/> from <see cref="Mass"/> / <see cref="Area"/>.</summary>
+        public static AreaDensity operator /(Mass mass, Area area)
+        {
+            return AreaDensity.FromKilogramsPerSquareMeter(mass.Kilograms / area.SquareMeters);
+        }
+
+        /// <summary>Get <see cref="Density"/> from <see cref="Mass"/> / <see cref="Volume"/>.</summary>
+        public static Density operator /(Mass mass, Volume volume)
+        {
+            return Density.FromKilogramsPerCubicMeter(mass.Kilograms / volume.CubicMeters);
+        }
+
+        /// <summary>Get <see cref="Energy"/> from <see cref="Mass"/> * <see cref="SpecificEnergy"/>.</summary>
+        public static Energy operator *(Mass mass, SpecificEnergy specificEnergy)
+        {
+            return Energy.FromJoules(mass.Kilograms * specificEnergy.JoulesPerKilogram);
+        }
+
+        /// <summary>Get <see cref="Entropy"/> from <see cref="Mass"/> * <see cref="SpecificEntropy"/>.</summary>
+        public static Entropy operator *(Mass mass, SpecificEntropy specificEntropy)
+        {
+            return Entropy.FromJoulesPerKelvin(mass.Kilograms * specificEntropy.JoulesPerKilogramKelvin);
+        }
+
+        /// <summary>Get <see cref="Force"/> from <see cref="Mass"/> * <see cref="Acceleration"/>.</summary>
+        public static Force operator *(Mass mass, Acceleration acceleration)
+        {
+            return Force.FromNewtons(mass.Kilograms * acceleration.MetersPerSecondSquared);
+        }
+
+        /// <summary>Get <see cref="Length"/> from <see cref="Mass"/> / <see cref="LinearDensity"/>.</summary>
+        public static Length operator /(Mass mass, LinearDensity linearDensity)
+        {
+            return Length.FromMeters(mass.Kilograms / linearDensity.KilogramsPerMeter);
+        }
+
+        /// <summary>Get <see cref="LinearDensity"/> from <see cref="Mass"/> / <see cref="Length"/>.</summary>
+        public static LinearDensity operator /(Mass mass, Length length)
+        {
+            return LinearDensity.FromKilogramsPerMeter(mass.Kilograms / length.Meters);
+        }
+
+        /// <summary>Get <see cref="Mass"/> from <see cref="Mass"/> * <see cref="MassFraction"/>.</summary>
+        public static Mass operator *(Mass mass, MassFraction massFraction)
+        {
+            return Mass.FromKilograms(mass.Kilograms * massFraction.DecimalFractions);
+        }
+
+        /// <summary>Get <see cref="Mass"/> from <see cref="Mass"/> / <see cref="MassFraction"/>.</summary>
+        public static Mass operator /(Mass mass, MassFraction massFraction)
+        {
+            return Mass.FromKilograms(mass.Kilograms / massFraction.DecimalFractions);
+        }
+
+        /// <summary>Get <see cref="MassFlow"/> from <see cref="Mass"/> / <see cref="Duration"/>.</summary>
+        public static MassFlow operator /(Mass mass, Duration duration)
+        {
+            return MassFlow.FromKilogramsPerSecond(mass.Kilograms / duration.Seconds);
+        }
+
+        /// <summary>Get <see cref="MassFlow"/> from <see cref="Mass"/> / <see cref="TimeSpan"/>.</summary>
+        public static MassFlow operator /(Mass mass, TimeSpan timeSpan)
+        {
+            return MassFlow.FromKilogramsPerSecond(mass.Kilograms / timeSpan.TotalSeconds);
+        }
+
+        /// <summary>Get <see cref="Volume"/> from <see cref="Mass"/> * <see cref="SpecificVolume"/>.</summary>
+        public static Volume operator *(Mass mass, SpecificVolume specificVolume)
+        {
+            return Volume.FromCubicMeters(mass.Kilograms * specificVolume.CubicMetersPerKilogram);
+        }
+
+        /// <summary>Get <see cref="Volume"/> from <see cref="Mass"/> / <see cref="Density"/>.</summary>
+        public static Volume operator /(Mass mass, Density density)
+        {
+            return Volume.FromCubicMeters(mass.Kilograms / density.KilogramsPerCubicMeter);
         }
 
         #endregion

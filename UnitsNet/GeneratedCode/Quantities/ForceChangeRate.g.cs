@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,10 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct ForceChangeRate :
         IArithmeticQuantity<ForceChangeRate, ForceChangeRateUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<ForceChangeRate, Duration, Force>,
+        IMultiplyOperators<ForceChangeRate, TimeSpan, Force>,
+#endif
         IComparable,
         IComparable<ForceChangeRate>,
         IConvertible,
@@ -678,6 +685,28 @@ namespace UnitsNet
         public static double operator /(ForceChangeRate left, ForceChangeRate right)
         {
             return left.NewtonsPerSecond / right.NewtonsPerSecond;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Force"/> from <see cref="ForceChangeRate"/> * <see cref="Duration"/>.</summary>
+        public static Force operator *(ForceChangeRate forceChangeRate, Duration duration)
+        {
+            return Force.FromNewtons(forceChangeRate.NewtonsPerSecond * duration.Seconds);
+        }
+
+        /// <summary>Get <see cref="Force"/> from <see cref="ForceChangeRate"/> * <see cref="TimeSpan"/>.</summary>
+        public static Force operator *(ForceChangeRate forceChangeRate, TimeSpan timeSpan)
+        {
+            return Force.FromNewtons(forceChangeRate.NewtonsPerSecond * timeSpan.TotalSeconds);
+        }
+
+        /// <summary>Get <see cref="Force"/> from <see cref="TimeSpan"/> * <see cref="ForceChangeRate"/>.</summary>
+        public static Force operator *(TimeSpan timeSpan, ForceChangeRate forceChangeRate)
+        {
+            return Force.FromNewtons(timeSpan.TotalSeconds * forceChangeRate.NewtonsPerSecond);
         }
 
         #endregion

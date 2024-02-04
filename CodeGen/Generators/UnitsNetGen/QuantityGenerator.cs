@@ -39,8 +39,12 @@ namespace CodeGen.Generators.UnitsNetGen
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
-using System.Runtime.Serialization;
+using System.Linq;");
+            if (_quantity.Relations.Any(r => r.Operator is "*" or "/"))
+                Writer.WL(@"#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif");
+            Writer.WL(@"using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -67,6 +71,35 @@ namespace UnitsNet
     public readonly partial struct {_quantity.Name} :
         {(_quantity.GenerateArithmetic ? "IArithmeticQuantity" : "IQuantity")}<{_quantity.Name}, {_unitEnumName}, {_quantity.ValueType}>,");
 
+            if (_quantity.Relations.Any(r => r.Operator is "*" or "/"))
+            {
+                Writer.WL(@$"
+#if NET7_0_OR_GREATER");
+                foreach (var relation in _quantity.Relations)
+                {
+                    if (relation.LeftQuantity == _quantity)
+                    {
+                        switch (relation.Operator)
+                        {
+                            case "*":
+                                Writer.W(@"
+        IMultiplyOperators");
+                                break;
+                            case "/":
+                                Writer.W(@"
+        IDivisionOperators");
+                                break;
+                            default:
+                                continue;
+                        }
+                        Writer.WL($"<{relation.LeftQuantity.Name}, {relation.RightQuantity.Name}, {relation.ResultQuantity.Name}>,");
+                    }
+                }
+
+                Writer.WL(@$"
+#endif");
+            }
+            
             if (_quantity.ValueType == "decimal") Writer.WL(@$"
         IDecimalQuantity,");
 
@@ -100,6 +133,7 @@ namespace UnitsNet
             GenerateStaticFactoryMethods();
             GenerateStaticParseMethods();
             GenerateArithmeticOperators();
+            GenerateRelationalOperators();
             GenerateEqualityAndComparison();
             GenerateConversionMethods();
             GenerateToString();
@@ -688,6 +722,92 @@ namespace UnitsNet
 
         #endregion
 " );
+        }
+
+        /// <summary>
+        ///     Generates operators that express relations between quantities as applied by <see cref="QuantityRelationsParser" />.
+        /// </summary>
+        private void GenerateRelationalOperators()
+        {
+            if (!_quantity.Relations.Any()) return;
+
+            Writer.WL($@"
+        #region Relational Operators
+");
+
+            foreach (QuantityRelation relation in _quantity.Relations)
+            {
+                if (relation.Operator == "inverse")
+                {
+                    Writer.WL($@"
+        /// <summary>Calculates the inverse of this quantity.</summary>
+        /// <returns>The corresponding inverse quantity, <see cref=""{relation.RightQuantity.Name}""/>.</returns>
+        public {relation.RightQuantity.Name} Inverse()
+        {{
+            return {relation.LeftUnit.PluralName} == 0.0 ? {relation.RightQuantity.Name}.Zero : {relation.RightQuantity.Name}.From{relation.RightUnit.PluralName}(1 / {relation.LeftUnit.PluralName});
+        }}
+");
+                }
+                else
+                {
+                    var leftParameter = relation.LeftQuantity.Name.ToCamelCase();
+                    var leftConversionProperty = relation.LeftUnit.PluralName;
+                    var rightParameter = relation.RightQuantity.Name.ToCamelCase();
+                    var rightConversionProperty = relation.RightUnit.PluralName;
+
+                    if (relation.LeftQuantity.Name is nameof(TimeSpan))
+                    {
+                        leftConversionProperty = "Total" + leftConversionProperty;
+                    }
+                    
+                    if (relation.RightQuantity.Name is nameof(TimeSpan))
+                    {
+                        rightConversionProperty = "Total" + rightConversionProperty;
+                    }
+                    
+                    if (leftParameter == rightParameter)
+                    {
+                        leftParameter = "left";
+                        rightParameter = "right";
+                    }
+                    
+                    var leftPart = $"{leftParameter}.{leftConversionProperty}";
+                    var rightPart = $"{rightParameter}.{rightConversionProperty}";
+                    
+                    if (leftParameter is "double")
+                    {
+                        leftParameter = leftPart = "value";
+                    }       
+                    
+                    if (rightParameter is "double")
+                    {
+                        rightParameter = rightPart = "value";
+                    }
+                    
+                    var leftCast = relation.LeftQuantity.ValueType is "decimal" ? "(double)" : string.Empty;
+                    var rightCast = relation.RightQuantity.ValueType is "decimal" ? "(double)" : string.Empty;
+                    
+                    var expression = $"{leftCast}{leftPart} {relation.Operator} {rightCast}{rightPart}";
+
+                    if (relation.ResultQuantity.Name is not ("double" or "decimal"))
+                    {
+                        expression = $"{relation.ResultQuantity.Name}.From{relation.ResultUnit.PluralName}({expression})";
+                    }
+                    
+                    Writer.WL($@"
+        /// <summary>Get <see cref=""{relation.ResultQuantity.Name}""/> from <see cref=""{relation.LeftQuantity.Name}""/> {relation.Operator} <see cref=""{relation.RightQuantity.Name}""/>.</summary>
+        public static {relation.ResultQuantity.Name} operator {relation.Operator}({relation.LeftQuantity.Name} {leftParameter}, {relation.RightQuantity.Name} {rightParameter})
+        {{
+            return {expression};
+        }}
+");
+                }
+            }
+
+            Writer.WL($@"
+
+        #endregion
+");
         }
 
         private void GenerateEqualityAndComparison()

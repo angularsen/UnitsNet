@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,10 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct PressureChangeRate :
         IArithmeticQuantity<PressureChangeRate, PressureChangeRateUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<PressureChangeRate, Duration, Pressure>,
+        IMultiplyOperators<PressureChangeRate, TimeSpan, Pressure>,
+#endif
         IComparable,
         IComparable<PressureChangeRate>,
         IConvertible,
@@ -732,6 +739,28 @@ namespace UnitsNet
         public static double operator /(PressureChangeRate left, PressureChangeRate right)
         {
             return left.PascalsPerSecond / right.PascalsPerSecond;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Pressure"/> from <see cref="PressureChangeRate"/> * <see cref="Duration"/>.</summary>
+        public static Pressure operator *(PressureChangeRate pressureChangeRate, Duration duration)
+        {
+            return Pressure.FromPascals(pressureChangeRate.PascalsPerSecond * duration.Seconds);
+        }
+
+        /// <summary>Get <see cref="Pressure"/> from <see cref="PressureChangeRate"/> * <see cref="TimeSpan"/>.</summary>
+        public static Pressure operator *(PressureChangeRate pressureChangeRate, TimeSpan timeSpan)
+        {
+            return Pressure.FromPascals(pressureChangeRate.PascalsPerSecond * timeSpan.TotalSeconds);
+        }
+
+        /// <summary>Get <see cref="Pressure"/> from <see cref="TimeSpan"/> * <see cref="PressureChangeRate"/>.</summary>
+        public static Pressure operator *(TimeSpan timeSpan, PressureChangeRate pressureChangeRate)
+        {
+            return Pressure.FromPascals(timeSpan.TotalSeconds * pressureChangeRate.PascalsPerSecond);
         }
 
         #endregion

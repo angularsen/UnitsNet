@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,20 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct Length :
         IArithmeticQuantity<Length, LengthUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<Length, Length, Area>,
+        IDivisionOperators<Length, Speed, Duration>,
+        IMultiplyOperators<Length, ForcePerLength, Force>,
+        IMultiplyOperators<Length, Speed, KinematicViscosity>,
+        IMultiplyOperators<Length, LinearDensity, Mass>,
+        IMultiplyOperators<Length, SpecificWeight, Pressure>,
+        IMultiplyOperators<Length, RotationalStiffnessPerLength, RotationalStiffness>,
+        IDivisionOperators<Length, Duration, Speed>,
+        IDivisionOperators<Length, TimeSpan, Speed>,
+        IMultiplyOperators<Length, TemperatureGradient, TemperatureDelta>,
+        IMultiplyOperators<Length, Force, Torque>,
+        IMultiplyOperators<Length, Area, Volume>,
+#endif
         IComparable,
         IComparable<Length>,
         IConvertible,
@@ -1164,6 +1181,89 @@ namespace UnitsNet
         public static double operator /(Length left, Length right)
         {
             return left.Meters / right.Meters;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Area"/> from <see cref="Length"/> * <see cref="Length"/>.</summary>
+        public static Area operator *(Length left, Length right)
+        {
+            return Area.FromSquareMeters(left.Meters * right.Meters);
+        }
+
+        /// <summary>Get <see cref="Duration"/> from <see cref="Length"/> / <see cref="Speed"/>.</summary>
+        public static Duration operator /(Length length, Speed speed)
+        {
+            return Duration.FromSeconds(length.Meters / speed.MetersPerSecond);
+        }
+
+        /// <summary>Get <see cref="Force"/> from <see cref="Length"/> * <see cref="ForcePerLength"/>.</summary>
+        public static Force operator *(Length length, ForcePerLength forcePerLength)
+        {
+            return Force.FromNewtons(length.Meters * forcePerLength.NewtonsPerMeter);
+        }
+
+        /// <summary>Get <see cref="KinematicViscosity"/> from <see cref="Length"/> * <see cref="Speed"/>.</summary>
+        public static KinematicViscosity operator *(Length length, Speed speed)
+        {
+            return KinematicViscosity.FromSquareMetersPerSecond(length.Meters * speed.MetersPerSecond);
+        }
+
+        /// <summary>Get <see cref="Mass"/> from <see cref="Length"/> * <see cref="LinearDensity"/>.</summary>
+        public static Mass operator *(Length length, LinearDensity linearDensity)
+        {
+            return Mass.FromKilograms(length.Meters * linearDensity.KilogramsPerMeter);
+        }
+
+        /// <summary>Get <see cref="Pressure"/> from <see cref="Length"/> * <see cref="SpecificWeight"/>.</summary>
+        public static Pressure operator *(Length length, SpecificWeight specificWeight)
+        {
+            return Pressure.FromPascals(length.Meters * specificWeight.NewtonsPerCubicMeter);
+        }
+
+        /// <summary>Calculates the inverse of this quantity.</summary>
+        /// <returns>The corresponding inverse quantity, <see cref="ReciprocalLength"/>.</returns>
+        public ReciprocalLength Inverse()
+        {
+            return Meters == 0.0 ? ReciprocalLength.Zero : ReciprocalLength.FromInverseMeters(1 / Meters);
+        }
+
+        /// <summary>Get <see cref="RotationalStiffness"/> from <see cref="Length"/> * <see cref="RotationalStiffnessPerLength"/>.</summary>
+        public static RotationalStiffness operator *(Length length, RotationalStiffnessPerLength rotationalStiffnessPerLength)
+        {
+            return RotationalStiffness.FromNewtonMetersPerRadian(length.Meters * rotationalStiffnessPerLength.NewtonMetersPerRadianPerMeter);
+        }
+
+        /// <summary>Get <see cref="Speed"/> from <see cref="Length"/> / <see cref="Duration"/>.</summary>
+        public static Speed operator /(Length length, Duration duration)
+        {
+            return Speed.FromMetersPerSecond(length.Meters / duration.Seconds);
+        }
+
+        /// <summary>Get <see cref="Speed"/> from <see cref="Length"/> / <see cref="TimeSpan"/>.</summary>
+        public static Speed operator /(Length length, TimeSpan timeSpan)
+        {
+            return Speed.FromMetersPerSecond(length.Meters / timeSpan.TotalSeconds);
+        }
+
+        /// <summary>Get <see cref="TemperatureDelta"/> from <see cref="Length"/> * <see cref="TemperatureGradient"/>.</summary>
+        public static TemperatureDelta operator *(Length length, TemperatureGradient temperatureGradient)
+        {
+            return TemperatureDelta.FromDegreesCelsius(length.Kilometers * temperatureGradient.DegreesCelsiusPerKilometer);
+        }
+
+        /// <summary>Get <see cref="Torque"/> from <see cref="Length"/> * <see cref="Force"/>.</summary>
+        public static Torque operator *(Length length, Force force)
+        {
+            return Torque.FromNewtonMeters(length.Meters * force.Newtons);
+        }
+
+        /// <summary>Get <see cref="Volume"/> from <see cref="Length"/> * <see cref="Area"/>.</summary>
+        public static Volume operator *(Length length, Area area)
+        {
+            return Volume.FromCubicMeters(length.Meters * area.SquareMeters);
         }
 
         #endregion

@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,9 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct Frequency :
         IArithmeticQuantity<Frequency, FrequencyUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<Frequency, Energy, Power>,
+#endif
         IComparable,
         IComparable<Frequency>,
         IConvertible,
@@ -642,6 +648,16 @@ namespace UnitsNet
         public static double operator /(Frequency left, Frequency right)
         {
             return left.Hertz / right.Hertz;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Power"/> from <see cref="Frequency"/> * <see cref="Energy"/>.</summary>
+        public static Power operator *(Frequency frequency, Energy energy)
+        {
+            return Power.FromWatts(frequency.PerSecond * energy.Joules);
         }
 
         #endregion

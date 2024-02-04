@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,9 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct EnergyDensity :
         IArithmeticQuantity<EnergyDensity, EnergyDensityUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<EnergyDensity, Volume, Energy>,
+#endif
         IComparable,
         IComparable<EnergyDensity>,
         IConvertible,
@@ -624,6 +630,16 @@ namespace UnitsNet
         public static double operator /(EnergyDensity left, EnergyDensity right)
         {
             return left.JoulesPerCubicMeter / right.JoulesPerCubicMeter;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Energy"/> from <see cref="EnergyDensity"/> * <see cref="Volume"/>.</summary>
+        public static Energy operator *(EnergyDensity energyDensity, Volume volume)
+        {
+            return Energy.FromJoules(energyDensity.JoulesPerCubicMeter * volume.CubicMeters);
         }
 
         #endregion

@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,14 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct Acceleration :
         IArithmeticQuantity<Acceleration, AccelerationUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<Acceleration, Mass, Force>,
+        IDivisionOperators<Acceleration, Duration, Jerk>,
+        IDivisionOperators<Acceleration, TimeSpan, Jerk>,
+        IMultiplyOperators<Acceleration, Density, SpecificWeight>,
+        IMultiplyOperators<Acceleration, Duration, Speed>,
+        IMultiplyOperators<Acceleration, TimeSpan, Speed>,
+#endif
         IComparable,
         IComparable<Acceleration>,
         IConvertible,
@@ -660,6 +671,52 @@ namespace UnitsNet
         public static double operator /(Acceleration left, Acceleration right)
         {
             return left.MetersPerSecondSquared / right.MetersPerSecondSquared;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Force"/> from <see cref="Acceleration"/> * <see cref="Mass"/>.</summary>
+        public static Force operator *(Acceleration acceleration, Mass mass)
+        {
+            return Force.FromNewtons(acceleration.MetersPerSecondSquared * mass.Kilograms);
+        }
+
+        /// <summary>Get <see cref="Jerk"/> from <see cref="Acceleration"/> / <see cref="Duration"/>.</summary>
+        public static Jerk operator /(Acceleration acceleration, Duration duration)
+        {
+            return Jerk.FromMetersPerSecondCubed(acceleration.MetersPerSecondSquared / duration.Seconds);
+        }
+
+        /// <summary>Get <see cref="Jerk"/> from <see cref="Acceleration"/> / <see cref="TimeSpan"/>.</summary>
+        public static Jerk operator /(Acceleration acceleration, TimeSpan timeSpan)
+        {
+            return Jerk.FromMetersPerSecondCubed(acceleration.MetersPerSecondSquared / timeSpan.TotalSeconds);
+        }
+
+        /// <summary>Get <see cref="SpecificWeight"/> from <see cref="Acceleration"/> * <see cref="Density"/>.</summary>
+        public static SpecificWeight operator *(Acceleration acceleration, Density density)
+        {
+            return SpecificWeight.FromNewtonsPerCubicMeter(acceleration.MetersPerSecondSquared * density.KilogramsPerCubicMeter);
+        }
+
+        /// <summary>Get <see cref="Speed"/> from <see cref="Acceleration"/> * <see cref="Duration"/>.</summary>
+        public static Speed operator *(Acceleration acceleration, Duration duration)
+        {
+            return Speed.FromMetersPerSecond(acceleration.MetersPerSecondSquared * duration.Seconds);
+        }
+
+        /// <summary>Get <see cref="Speed"/> from <see cref="Acceleration"/> * <see cref="TimeSpan"/>.</summary>
+        public static Speed operator *(Acceleration acceleration, TimeSpan timeSpan)
+        {
+            return Speed.FromMetersPerSecond(acceleration.MetersPerSecondSquared * timeSpan.TotalSeconds);
+        }
+
+        /// <summary>Get <see cref="Speed"/> from <see cref="TimeSpan"/> * <see cref="Acceleration"/>.</summary>
+        public static Speed operator *(TimeSpan timeSpan, Acceleration acceleration)
+        {
+            return Speed.FromMetersPerSecond(timeSpan.TotalSeconds * acceleration.MetersPerSecondSquared);
         }
 
         #endregion

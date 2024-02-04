@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -41,6 +44,12 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct KinematicViscosity :
         IArithmeticQuantity<KinematicViscosity, KinematicViscosityUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<KinematicViscosity, Duration, Area>,
+        IMultiplyOperators<KinematicViscosity, TimeSpan, Area>,
+        IMultiplyOperators<KinematicViscosity, Density, DynamicViscosity>,
+        IDivisionOperators<KinematicViscosity, Length, Speed>,
+#endif
         IComparable,
         IComparable<KinematicViscosity>,
         IConvertible,
@@ -573,6 +582,40 @@ namespace UnitsNet
         public static double operator /(KinematicViscosity left, KinematicViscosity right)
         {
             return left.SquareMetersPerSecond / right.SquareMetersPerSecond;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Area"/> from <see cref="KinematicViscosity"/> * <see cref="Duration"/>.</summary>
+        public static Area operator *(KinematicViscosity kinematicViscosity, Duration duration)
+        {
+            return Area.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond * duration.Seconds);
+        }
+
+        /// <summary>Get <see cref="Area"/> from <see cref="KinematicViscosity"/> * <see cref="TimeSpan"/>.</summary>
+        public static Area operator *(KinematicViscosity kinematicViscosity, TimeSpan timeSpan)
+        {
+            return Area.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond * timeSpan.TotalSeconds);
+        }
+
+        /// <summary>Get <see cref="Area"/> from <see cref="TimeSpan"/> * <see cref="KinematicViscosity"/>.</summary>
+        public static Area operator *(TimeSpan timeSpan, KinematicViscosity kinematicViscosity)
+        {
+            return Area.FromSquareMeters(timeSpan.TotalSeconds * kinematicViscosity.SquareMetersPerSecond);
+        }
+
+        /// <summary>Get <see cref="DynamicViscosity"/> from <see cref="KinematicViscosity"/> * <see cref="Density"/>.</summary>
+        public static DynamicViscosity operator *(KinematicViscosity kinematicViscosity, Density density)
+        {
+            return DynamicViscosity.FromNewtonSecondsPerMeterSquared(kinematicViscosity.SquareMetersPerSecond * density.KilogramsPerCubicMeter);
+        }
+
+        /// <summary>Get <see cref="Speed"/> from <see cref="KinematicViscosity"/> / <see cref="Length"/>.</summary>
+        public static Speed operator /(KinematicViscosity kinematicViscosity, Length length)
+        {
+            return Speed.FromMetersPerSecond(kinematicViscosity.SquareMetersPerSecond / length.Meters);
         }
 
         #endregion

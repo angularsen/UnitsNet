@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,10 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct BrakeSpecificFuelConsumption :
         IArithmeticQuantity<BrakeSpecificFuelConsumption, BrakeSpecificFuelConsumptionUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<BrakeSpecificFuelConsumption, Power, MassFlow>,
+        IMultiplyOperators<BrakeSpecificFuelConsumption, SpecificEnergy, double>,
+#endif
         IComparable,
         IComparable<BrakeSpecificFuelConsumption>,
         IConvertible,
@@ -462,6 +469,28 @@ namespace UnitsNet
         public static double operator /(BrakeSpecificFuelConsumption left, BrakeSpecificFuelConsumption right)
         {
             return left.KilogramsPerJoule / right.KilogramsPerJoule;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="MassFlow"/> from <see cref="BrakeSpecificFuelConsumption"/> * <see cref="Power"/>.</summary>
+        public static MassFlow operator *(BrakeSpecificFuelConsumption brakeSpecificFuelConsumption, Power power)
+        {
+            return MassFlow.FromKilogramsPerSecond(brakeSpecificFuelConsumption.KilogramsPerJoule * (double)power.Watts);
+        }
+
+        /// <summary>Get <see cref="SpecificEnergy"/> from <see cref="double"/> / <see cref="BrakeSpecificFuelConsumption"/>.</summary>
+        public static SpecificEnergy operator /(double value, BrakeSpecificFuelConsumption brakeSpecificFuelConsumption)
+        {
+            return SpecificEnergy.FromJoulesPerKilogram(value / brakeSpecificFuelConsumption.KilogramsPerJoule);
+        }
+
+        /// <summary>Get <see cref="double"/> from <see cref="BrakeSpecificFuelConsumption"/> * <see cref="SpecificEnergy"/>.</summary>
+        public static double operator *(BrakeSpecificFuelConsumption brakeSpecificFuelConsumption, SpecificEnergy specificEnergy)
+        {
+            return brakeSpecificFuelConsumption.KilogramsPerJoule * specificEnergy.JoulesPerKilogram;
         }
 
         #endregion

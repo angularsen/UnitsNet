@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -41,6 +44,9 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct MassFraction :
         IArithmeticQuantity<MassFraction, MassFractionUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<MassFraction, Mass, Mass>,
+#endif
         IComparable,
         IComparable<MassFraction>,
         IConvertible,
@@ -843,6 +849,16 @@ namespace UnitsNet
         public static double operator /(MassFraction left, MassFraction right)
         {
             return left.DecimalFractions / right.DecimalFractions;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Mass"/> from <see cref="MassFraction"/> * <see cref="Mass"/>.</summary>
+        public static Mass operator *(MassFraction massFraction, Mass mass)
+        {
+            return Mass.FromKilograms(massFraction.DecimalFractions * mass.Kilograms);
         }
 
         #endregion

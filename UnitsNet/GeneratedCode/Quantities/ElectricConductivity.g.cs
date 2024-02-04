@@ -523,6 +523,17 @@ namespace UnitsNet
 
         #endregion
 
+        #region Relational Operators
+
+        /// <summary>Calculates the inverse of this quantity.</summary>
+        /// <returns>The corresponding inverse quantity, <see cref="ElectricResistivity"/>.</returns>
+        public ElectricResistivity Inverse()
+        {
+            return SiemensPerMeter == 0.0 ? ElectricResistivity.Zero : ElectricResistivity.FromOhmMeters(1 / SiemensPerMeter);
+        }
+
+        #endregion
+
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
