@@ -113,6 +113,22 @@ namespace UnitsNet.Tests
             Assert.Equal(VolumeFlow.FromCubicYardsPerSecond(2), 2.CubicYardsPerSecond());
 
         [Fact]
+        public void NumberToDecalitersPerDayTest() =>
+            Assert.Equal(VolumeFlow.FromDecalitersPerDay(2), 2.DecalitersPerDay());
+
+        [Fact]
+        public void NumberToDecalitersPerHourTest() =>
+            Assert.Equal(VolumeFlow.FromDecalitersPerHour(2), 2.DecalitersPerHour());
+
+        [Fact]
+        public void NumberToDecalitersPerMinuteTest() =>
+            Assert.Equal(VolumeFlow.FromDecalitersPerMinute(2), 2.DecalitersPerMinute());
+
+        [Fact]
+        public void NumberToDecalitersPerSecondTest() =>
+            Assert.Equal(VolumeFlow.FromDecalitersPerSecond(2), 2.DecalitersPerSecond());
+
+        [Fact]
         public void NumberToDecilitersPerDayTest() =>
             Assert.Equal(VolumeFlow.FromDecilitersPerDay(2), 2.DecilitersPerDay());
 
@@ -127,6 +143,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToDecilitersPerSecondTest() =>
             Assert.Equal(VolumeFlow.FromDecilitersPerSecond(2), 2.DecilitersPerSecond());
+
+        [Fact]
+        public void NumberToHectolitersPerDayTest() =>
+            Assert.Equal(VolumeFlow.FromHectolitersPerDay(2), 2.HectolitersPerDay());
+
+        [Fact]
+        public void NumberToHectolitersPerHourTest() =>
+            Assert.Equal(VolumeFlow.FromHectolitersPerHour(2), 2.HectolitersPerHour());
+
+        [Fact]
+        public void NumberToHectolitersPerMinuteTest() =>
+            Assert.Equal(VolumeFlow.FromHectolitersPerMinute(2), 2.HectolitersPerMinute());
+
+        [Fact]
+        public void NumberToHectolitersPerSecondTest() =>
+            Assert.Equal(VolumeFlow.FromHectolitersPerSecond(2), 2.HectolitersPerSecond());
 
         [Fact]
         public void NumberToKilolitersPerDayTest() =>
