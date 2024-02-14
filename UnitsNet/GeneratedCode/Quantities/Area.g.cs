@@ -64,13 +64,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 0)]
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 1)]
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly AreaUnit? _unit;
 
         static Area()
