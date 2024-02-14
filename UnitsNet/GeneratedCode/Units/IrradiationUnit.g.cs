@@ -25,9 +25,11 @@ namespace UnitsNet.Units
 
     public enum IrradiationUnit
     {
+        BtuPerSquareFoot = 15,
         JoulePerSquareCentimeter = 1,
         JoulePerSquareMeter = 2,
         JoulePerSquareMillimeter = 3,
+        KilobtuPerSquareFoot = 9,
         KilojoulePerSquareMeter = 4,
         KilowattHourPerSquareMeter = 5,
         MillijoulePerSquareCentimeter = 6,

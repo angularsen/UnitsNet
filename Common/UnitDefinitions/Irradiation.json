@@ -58,6 +58,19 @@
           "Abbreviations": [ "Wh/m²" ]
         }
       ]
+    },
+    {
+      "SingularName": "BtuPerSquareFoot",
+      "PluralName": "BtuPerSquareFoot",
+      "FromUnitToBaseFunc": "{x} * 3.15459075",
+      "FromBaseToUnitFunc": "{x} / 3.15459075",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Btu/ft²" ]
+        }
+      ]
     }
   ]
 }

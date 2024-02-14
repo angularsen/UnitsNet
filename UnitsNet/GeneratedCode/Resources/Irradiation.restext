@@ -1,6 +1,8 @@
+BtuPerSquareFoot=Btu/ft²
 JoulesPerSquareCentimeter=J/cm²
 JoulesPerSquareMeter=J/m²
 JoulesPerSquareMillimeter=J/mm²
+KilobtuPerSquareFoot=kBtu/ft²
 KilojoulesPerSquareMeter=kJ/m²
 KilowattHoursPerSquareMeter=kWh/m²
 MillijoulesPerSquareCentimeter=mJ/cm²
