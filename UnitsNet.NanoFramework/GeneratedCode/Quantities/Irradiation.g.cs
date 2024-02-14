@@ -225,11 +225,11 @@ namespace UnitsNet
                 {
                     return Unit switch
                     {
-                        IrradiationUnit.BtuPerSquareFoot => _value * 3.15459075,
+                        IrradiationUnit.BtuPerSquareFoot => _value * 11356.5267,
                         IrradiationUnit.JoulePerSquareCentimeter => _value * 1e4,
                         IrradiationUnit.JoulePerSquareMeter => _value,
                         IrradiationUnit.JoulePerSquareMillimeter => _value * 1e6,
-                        IrradiationUnit.KilobtuPerSquareFoot => (_value * 3.15459075) * 1e3d,
+                        IrradiationUnit.KilobtuPerSquareFoot => (_value * 11356.5267) * 1e3d,
                         IrradiationUnit.KilojoulePerSquareMeter => (_value) * 1e3d,
                         IrradiationUnit.KilowattHourPerSquareMeter => (_value * 3600d) * 1e3d,
                         IrradiationUnit.MillijoulePerSquareCentimeter => (_value * 1e4) * 1e-3d,
@@ -247,11 +247,11 @@ namespace UnitsNet
 
                     return unit switch
                     {
-                        IrradiationUnit.BtuPerSquareFoot => baseUnitValue / 3.15459075,
+                        IrradiationUnit.BtuPerSquareFoot => baseUnitValue / 11356.5267,
                         IrradiationUnit.JoulePerSquareCentimeter => baseUnitValue / 1e4,
                         IrradiationUnit.JoulePerSquareMeter => baseUnitValue,
                         IrradiationUnit.JoulePerSquareMillimeter => baseUnitValue / 1e6,
-                        IrradiationUnit.KilobtuPerSquareFoot => (baseUnitValue / 3.15459075) / 1e3d,
+                        IrradiationUnit.KilobtuPerSquareFoot => (baseUnitValue / 11356.5267) / 1e3d,
                         IrradiationUnit.KilojoulePerSquareMeter => (baseUnitValue) / 1e3d,
                         IrradiationUnit.KilowattHourPerSquareMeter => (baseUnitValue / 3600d) / 1e3d,
                         IrradiationUnit.MillijoulePerSquareCentimeter => (baseUnitValue / 1e4) / 1e-3d,
