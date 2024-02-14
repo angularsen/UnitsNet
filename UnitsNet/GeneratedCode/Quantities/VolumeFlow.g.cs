@@ -87,10 +87,18 @@ namespace UnitsNet
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicYardPerHour, "CubicYardsPerHour", BaseUnits.Undefined, "VolumeFlow"),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicYardPerMinute, "CubicYardsPerMinute", BaseUnits.Undefined, "VolumeFlow"),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicYardPerSecond, "CubicYardsPerSecond", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.DecaliterPerDay, "DecalitersPerDay", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.DecaliterPerHour, "DecalitersPerHour", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.DecaliterPerMinute, "DecalitersPerMinute", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.DecaliterPerSecond, "DecalitersPerSecond", BaseUnits.Undefined, "VolumeFlow"),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.DeciliterPerDay, "DecilitersPerDay", BaseUnits.Undefined, "VolumeFlow"),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.DeciliterPerHour, "DecilitersPerHour", BaseUnits.Undefined, "VolumeFlow"),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.DeciliterPerMinute, "DecilitersPerMinute", BaseUnits.Undefined, "VolumeFlow"),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.DeciliterPerSecond, "DecilitersPerSecond", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.HectoliterPerDay, "HectolitersPerDay", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.HectoliterPerHour, "HectolitersPerHour", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.HectoliterPerMinute, "HectolitersPerMinute", BaseUnits.Undefined, "VolumeFlow"),
+                    new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.HectoliterPerSecond, "HectolitersPerSecond", BaseUnits.Undefined, "VolumeFlow"),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.KiloliterPerDay, "KilolitersPerDay", BaseUnits.Undefined, "VolumeFlow"),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.KiloliterPerHour, "KilolitersPerHour", BaseUnits.Undefined, "VolumeFlow"),
                     new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.KiloliterPerMinute, "KilolitersPerMinute", BaseUnits.Undefined, "VolumeFlow"),
@@ -346,6 +354,26 @@ namespace UnitsNet
         public double CubicYardsPerSecond => As(VolumeFlowUnit.CubicYardPerSecond);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.DecaliterPerDay"/>
+        /// </summary>
+        public double DecalitersPerDay => As(VolumeFlowUnit.DecaliterPerDay);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.DecaliterPerHour"/>
+        /// </summary>
+        public double DecalitersPerHour => As(VolumeFlowUnit.DecaliterPerHour);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.DecaliterPerMinute"/>
+        /// </summary>
+        public double DecalitersPerMinute => As(VolumeFlowUnit.DecaliterPerMinute);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.DecaliterPerSecond"/>
+        /// </summary>
+        public double DecalitersPerSecond => As(VolumeFlowUnit.DecaliterPerSecond);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.DeciliterPerDay"/>
         /// </summary>
         public double DecilitersPerDay => As(VolumeFlowUnit.DeciliterPerDay);
@@ -364,6 +392,26 @@ namespace UnitsNet
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.DeciliterPerSecond"/>
         /// </summary>
         public double DecilitersPerSecond => As(VolumeFlowUnit.DeciliterPerSecond);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.HectoliterPerDay"/>
+        /// </summary>
+        public double HectolitersPerDay => As(VolumeFlowUnit.HectoliterPerDay);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.HectoliterPerHour"/>
+        /// </summary>
+        public double HectolitersPerHour => As(VolumeFlowUnit.HectoliterPerHour);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.HectoliterPerMinute"/>
+        /// </summary>
+        public double HectolitersPerMinute => As(VolumeFlowUnit.HectoliterPerMinute);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.HectoliterPerSecond"/>
+        /// </summary>
+        public double HectolitersPerSecond => As(VolumeFlowUnit.HectoliterPerSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.KiloliterPerDay"/>
@@ -602,10 +650,18 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CubicYardPerHour, VolumeFlowUnit.CubicMeterPerSecond, quantity => quantity.ToUnit(VolumeFlowUnit.CubicMeterPerSecond));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CubicYardPerMinute, VolumeFlowUnit.CubicMeterPerSecond, quantity => quantity.ToUnit(VolumeFlowUnit.CubicMeterPerSecond));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CubicYardPerSecond, VolumeFlowUnit.CubicMeterPerSecond, quantity => quantity.ToUnit(VolumeFlowUnit.CubicMeterPerSecond));
+            unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.DecaliterPerDay, VolumeFlowUnit.CubicMeterPerSecond, quantity => quantity.ToUnit(VolumeFlowUnit.CubicMeterPerSecond));
+            unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.DecaliterPerHour, VolumeFlowUnit.CubicMeterPerSecond, quantity => quantity.ToUnit(VolumeFlowUnit.CubicMeterPerSecond));
+            unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.DecaliterPerMinute, VolumeFlowUnit.CubicMeterPerSecond, quantity => quantity.ToUnit(VolumeFlowUnit.CubicMeterPerSecond));
+            unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.DecaliterPerSecond, VolumeFlowUnit.CubicMeterPerSecond, quantity => quantity.ToUnit(VolumeFlowUnit.CubicMeterPerSecond));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.DeciliterPerDay, VolumeFlowUnit.CubicMeterPerSecond, quantity => quantity.ToUnit(VolumeFlowUnit.CubicMeterPerSecond));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.DeciliterPerHour, VolumeFlowUnit.CubicMeterPerSecond, quantity => quantity.ToUnit(VolumeFlowUnit.CubicMeterPerSecond));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.DeciliterPerMinute, VolumeFlowUnit.CubicMeterPerSecond, quantity => quantity.ToUnit(VolumeFlowUnit.CubicMeterPerSecond));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.DeciliterPerSecond, VolumeFlowUnit.CubicMeterPerSecond, quantity => quantity.ToUnit(VolumeFlowUnit.CubicMeterPerSecond));
+            unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.HectoliterPerDay, VolumeFlowUnit.CubicMeterPerSecond, quantity => quantity.ToUnit(VolumeFlowUnit.CubicMeterPerSecond));
+            unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.HectoliterPerHour, VolumeFlowUnit.CubicMeterPerSecond, quantity => quantity.ToUnit(VolumeFlowUnit.CubicMeterPerSecond));
+            unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.HectoliterPerMinute, VolumeFlowUnit.CubicMeterPerSecond, quantity => quantity.ToUnit(VolumeFlowUnit.CubicMeterPerSecond));
+            unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.HectoliterPerSecond, VolumeFlowUnit.CubicMeterPerSecond, quantity => quantity.ToUnit(VolumeFlowUnit.CubicMeterPerSecond));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.KiloliterPerDay, VolumeFlowUnit.CubicMeterPerSecond, quantity => quantity.ToUnit(VolumeFlowUnit.CubicMeterPerSecond));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.KiloliterPerHour, VolumeFlowUnit.CubicMeterPerSecond, quantity => quantity.ToUnit(VolumeFlowUnit.CubicMeterPerSecond));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.KiloliterPerMinute, VolumeFlowUnit.CubicMeterPerSecond, quantity => quantity.ToUnit(VolumeFlowUnit.CubicMeterPerSecond));
@@ -673,10 +729,18 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.CubicYardPerHour, quantity => quantity.ToUnit(VolumeFlowUnit.CubicYardPerHour));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.CubicYardPerMinute, quantity => quantity.ToUnit(VolumeFlowUnit.CubicYardPerMinute));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.CubicYardPerSecond, quantity => quantity.ToUnit(VolumeFlowUnit.CubicYardPerSecond));
+            unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.DecaliterPerDay, quantity => quantity.ToUnit(VolumeFlowUnit.DecaliterPerDay));
+            unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.DecaliterPerHour, quantity => quantity.ToUnit(VolumeFlowUnit.DecaliterPerHour));
+            unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.DecaliterPerMinute, quantity => quantity.ToUnit(VolumeFlowUnit.DecaliterPerMinute));
+            unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.DecaliterPerSecond, quantity => quantity.ToUnit(VolumeFlowUnit.DecaliterPerSecond));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.DeciliterPerDay, quantity => quantity.ToUnit(VolumeFlowUnit.DeciliterPerDay));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.DeciliterPerHour, quantity => quantity.ToUnit(VolumeFlowUnit.DeciliterPerHour));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.DeciliterPerMinute, quantity => quantity.ToUnit(VolumeFlowUnit.DeciliterPerMinute));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.DeciliterPerSecond, quantity => quantity.ToUnit(VolumeFlowUnit.DeciliterPerSecond));
+            unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.HectoliterPerDay, quantity => quantity.ToUnit(VolumeFlowUnit.HectoliterPerDay));
+            unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.HectoliterPerHour, quantity => quantity.ToUnit(VolumeFlowUnit.HectoliterPerHour));
+            unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.HectoliterPerMinute, quantity => quantity.ToUnit(VolumeFlowUnit.HectoliterPerMinute));
+            unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.HectoliterPerSecond, quantity => quantity.ToUnit(VolumeFlowUnit.HectoliterPerSecond));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.KiloliterPerDay, quantity => quantity.ToUnit(VolumeFlowUnit.KiloliterPerDay));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.KiloliterPerHour, quantity => quantity.ToUnit(VolumeFlowUnit.KiloliterPerHour));
             unitConverter.SetConversionFunction<VolumeFlow>(VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.KiloliterPerMinute, quantity => quantity.ToUnit(VolumeFlowUnit.KiloliterPerMinute));
@@ -966,6 +1030,46 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.DecaliterPerDay"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumeFlow FromDecalitersPerDay(QuantityValue decalitersperday)
+        {
+            double value = (double) decalitersperday;
+            return new VolumeFlow(value, VolumeFlowUnit.DecaliterPerDay);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.DecaliterPerHour"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumeFlow FromDecalitersPerHour(QuantityValue decalitersperhour)
+        {
+            double value = (double) decalitersperhour;
+            return new VolumeFlow(value, VolumeFlowUnit.DecaliterPerHour);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.DecaliterPerMinute"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumeFlow FromDecalitersPerMinute(QuantityValue decalitersperminute)
+        {
+            double value = (double) decalitersperminute;
+            return new VolumeFlow(value, VolumeFlowUnit.DecaliterPerMinute);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.DecaliterPerSecond"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumeFlow FromDecalitersPerSecond(QuantityValue decaliterspersecond)
+        {
+            double value = (double) decaliterspersecond;
+            return new VolumeFlow(value, VolumeFlowUnit.DecaliterPerSecond);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.DeciliterPerDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -1003,6 +1107,46 @@ namespace UnitsNet
         {
             double value = (double) deciliterspersecond;
             return new VolumeFlow(value, VolumeFlowUnit.DeciliterPerSecond);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.HectoliterPerDay"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumeFlow FromHectolitersPerDay(QuantityValue hectolitersperday)
+        {
+            double value = (double) hectolitersperday;
+            return new VolumeFlow(value, VolumeFlowUnit.HectoliterPerDay);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.HectoliterPerHour"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumeFlow FromHectolitersPerHour(QuantityValue hectolitersperhour)
+        {
+            double value = (double) hectolitersperhour;
+            return new VolumeFlow(value, VolumeFlowUnit.HectoliterPerHour);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.HectoliterPerMinute"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumeFlow FromHectolitersPerMinute(QuantityValue hectolitersperminute)
+        {
+            double value = (double) hectolitersperminute;
+            return new VolumeFlow(value, VolumeFlowUnit.HectoliterPerMinute);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.HectoliterPerSecond"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumeFlow FromHectolitersPerSecond(QuantityValue hectoliterspersecond)
+        {
+            double value = (double) hectoliterspersecond;
+            return new VolumeFlow(value, VolumeFlowUnit.HectoliterPerSecond);
         }
 
         /// <summary>
@@ -1929,10 +2073,18 @@ namespace UnitsNet
                 (VolumeFlowUnit.CubicYardPerHour, VolumeFlowUnit.CubicMeterPerSecond) => new VolumeFlow(_value * 2.1237634944E-4, VolumeFlowUnit.CubicMeterPerSecond),
                 (VolumeFlowUnit.CubicYardPerMinute, VolumeFlowUnit.CubicMeterPerSecond) => new VolumeFlow(_value * 0.0127425809664, VolumeFlowUnit.CubicMeterPerSecond),
                 (VolumeFlowUnit.CubicYardPerSecond, VolumeFlowUnit.CubicMeterPerSecond) => new VolumeFlow(_value * 0.764554857984, VolumeFlowUnit.CubicMeterPerSecond),
+                (VolumeFlowUnit.DecaliterPerDay, VolumeFlowUnit.CubicMeterPerSecond) => new VolumeFlow((_value / 86400000) * 1e1d, VolumeFlowUnit.CubicMeterPerSecond),
+                (VolumeFlowUnit.DecaliterPerHour, VolumeFlowUnit.CubicMeterPerSecond) => new VolumeFlow((_value / 3600000.000) * 1e1d, VolumeFlowUnit.CubicMeterPerSecond),
+                (VolumeFlowUnit.DecaliterPerMinute, VolumeFlowUnit.CubicMeterPerSecond) => new VolumeFlow((_value / 60000.00000) * 1e1d, VolumeFlowUnit.CubicMeterPerSecond),
+                (VolumeFlowUnit.DecaliterPerSecond, VolumeFlowUnit.CubicMeterPerSecond) => new VolumeFlow((_value / 1000) * 1e1d, VolumeFlowUnit.CubicMeterPerSecond),
                 (VolumeFlowUnit.DeciliterPerDay, VolumeFlowUnit.CubicMeterPerSecond) => new VolumeFlow((_value / 86400000) * 1e-1d, VolumeFlowUnit.CubicMeterPerSecond),
                 (VolumeFlowUnit.DeciliterPerHour, VolumeFlowUnit.CubicMeterPerSecond) => new VolumeFlow((_value / 3600000.000) * 1e-1d, VolumeFlowUnit.CubicMeterPerSecond),
                 (VolumeFlowUnit.DeciliterPerMinute, VolumeFlowUnit.CubicMeterPerSecond) => new VolumeFlow((_value / 60000.00000) * 1e-1d, VolumeFlowUnit.CubicMeterPerSecond),
                 (VolumeFlowUnit.DeciliterPerSecond, VolumeFlowUnit.CubicMeterPerSecond) => new VolumeFlow((_value / 1000) * 1e-1d, VolumeFlowUnit.CubicMeterPerSecond),
+                (VolumeFlowUnit.HectoliterPerDay, VolumeFlowUnit.CubicMeterPerSecond) => new VolumeFlow((_value / 86400000) * 1e2d, VolumeFlowUnit.CubicMeterPerSecond),
+                (VolumeFlowUnit.HectoliterPerHour, VolumeFlowUnit.CubicMeterPerSecond) => new VolumeFlow((_value / 3600000.000) * 1e2d, VolumeFlowUnit.CubicMeterPerSecond),
+                (VolumeFlowUnit.HectoliterPerMinute, VolumeFlowUnit.CubicMeterPerSecond) => new VolumeFlow((_value / 60000.00000) * 1e2d, VolumeFlowUnit.CubicMeterPerSecond),
+                (VolumeFlowUnit.HectoliterPerSecond, VolumeFlowUnit.CubicMeterPerSecond) => new VolumeFlow((_value / 1000) * 1e2d, VolumeFlowUnit.CubicMeterPerSecond),
                 (VolumeFlowUnit.KiloliterPerDay, VolumeFlowUnit.CubicMeterPerSecond) => new VolumeFlow((_value / 86400000) * 1e3d, VolumeFlowUnit.CubicMeterPerSecond),
                 (VolumeFlowUnit.KiloliterPerHour, VolumeFlowUnit.CubicMeterPerSecond) => new VolumeFlow((_value / 3600000.000) * 1e3d, VolumeFlowUnit.CubicMeterPerSecond),
                 (VolumeFlowUnit.KiloliterPerMinute, VolumeFlowUnit.CubicMeterPerSecond) => new VolumeFlow((_value / 60000.00000) * 1e3d, VolumeFlowUnit.CubicMeterPerSecond),
@@ -1997,10 +2149,18 @@ namespace UnitsNet
                 (VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.CubicYardPerHour) => new VolumeFlow(_value / 2.1237634944E-4, VolumeFlowUnit.CubicYardPerHour),
                 (VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.CubicYardPerMinute) => new VolumeFlow(_value / 0.0127425809664, VolumeFlowUnit.CubicYardPerMinute),
                 (VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.CubicYardPerSecond) => new VolumeFlow(_value / 0.764554857984, VolumeFlowUnit.CubicYardPerSecond),
+                (VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.DecaliterPerDay) => new VolumeFlow((_value * 86400000) / 1e1d, VolumeFlowUnit.DecaliterPerDay),
+                (VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.DecaliterPerHour) => new VolumeFlow((_value * 3600000.000) / 1e1d, VolumeFlowUnit.DecaliterPerHour),
+                (VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.DecaliterPerMinute) => new VolumeFlow((_value * 60000.00000) / 1e1d, VolumeFlowUnit.DecaliterPerMinute),
+                (VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.DecaliterPerSecond) => new VolumeFlow((_value * 1000) / 1e1d, VolumeFlowUnit.DecaliterPerSecond),
                 (VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.DeciliterPerDay) => new VolumeFlow((_value * 86400000) / 1e-1d, VolumeFlowUnit.DeciliterPerDay),
                 (VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.DeciliterPerHour) => new VolumeFlow((_value * 3600000.000) / 1e-1d, VolumeFlowUnit.DeciliterPerHour),
                 (VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.DeciliterPerMinute) => new VolumeFlow((_value * 60000.00000) / 1e-1d, VolumeFlowUnit.DeciliterPerMinute),
                 (VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.DeciliterPerSecond) => new VolumeFlow((_value * 1000) / 1e-1d, VolumeFlowUnit.DeciliterPerSecond),
+                (VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.HectoliterPerDay) => new VolumeFlow((_value * 86400000) / 1e2d, VolumeFlowUnit.HectoliterPerDay),
+                (VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.HectoliterPerHour) => new VolumeFlow((_value * 3600000.000) / 1e2d, VolumeFlowUnit.HectoliterPerHour),
+                (VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.HectoliterPerMinute) => new VolumeFlow((_value * 60000.00000) / 1e2d, VolumeFlowUnit.HectoliterPerMinute),
+                (VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.HectoliterPerSecond) => new VolumeFlow((_value * 1000) / 1e2d, VolumeFlowUnit.HectoliterPerSecond),
                 (VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.KiloliterPerDay) => new VolumeFlow((_value * 86400000) / 1e3d, VolumeFlowUnit.KiloliterPerDay),
                 (VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.KiloliterPerHour) => new VolumeFlow((_value * 3600000.000) / 1e3d, VolumeFlowUnit.KiloliterPerHour),
                 (VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.KiloliterPerMinute) => new VolumeFlow((_value * 60000.00000) / 1e3d, VolumeFlowUnit.KiloliterPerMinute),
