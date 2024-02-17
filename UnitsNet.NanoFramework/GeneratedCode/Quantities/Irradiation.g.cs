@@ -83,6 +83,11 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.BtuPerSquareFoot"/>
+        /// </summary>
+        public double BtuPerSquareFoot => As(IrradiationUnit.BtuPerSquareFoot);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.JoulePerSquareCentimeter"/>
         /// </summary>
         public double JoulesPerSquareCentimeter => As(IrradiationUnit.JoulePerSquareCentimeter);
@@ -96,6 +101,11 @@ namespace UnitsNet
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.JoulePerSquareMillimeter"/>
         /// </summary>
         public double JoulesPerSquareMillimeter => As(IrradiationUnit.JoulePerSquareMillimeter);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.KilobtuPerSquareFoot"/>
+        /// </summary>
+        public double KilobtuPerSquareFoot => As(IrradiationUnit.KilobtuPerSquareFoot);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.KilojoulePerSquareMeter"/>
@@ -122,6 +132,12 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
+        ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.BtuPerSquareFoot"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Irradiation FromBtuPerSquareFoot(double btupersquarefoot) => new Irradiation(btupersquarefoot, IrradiationUnit.BtuPerSquareFoot);
+
+        /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.JoulePerSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -138,6 +154,12 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Irradiation FromJoulesPerSquareMillimeter(double joulespersquaremillimeter) => new Irradiation(joulespersquaremillimeter, IrradiationUnit.JoulePerSquareMillimeter);
+
+        /// <summary>
+        ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.KilobtuPerSquareFoot"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Irradiation FromKilobtuPerSquareFoot(double kilobtupersquarefoot) => new Irradiation(kilobtupersquarefoot, IrradiationUnit.KilobtuPerSquareFoot);
 
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.KilojoulePerSquareMeter"/>.
@@ -203,9 +225,11 @@ namespace UnitsNet
                 {
                     return Unit switch
                     {
+                        IrradiationUnit.BtuPerSquareFoot => _value * 11356.5267,
                         IrradiationUnit.JoulePerSquareCentimeter => _value * 1e4,
                         IrradiationUnit.JoulePerSquareMeter => _value,
                         IrradiationUnit.JoulePerSquareMillimeter => _value * 1e6,
+                        IrradiationUnit.KilobtuPerSquareFoot => (_value * 11356.5267) * 1e3d,
                         IrradiationUnit.KilojoulePerSquareMeter => (_value) * 1e3d,
                         IrradiationUnit.KilowattHourPerSquareMeter => (_value * 3600d) * 1e3d,
                         IrradiationUnit.MillijoulePerSquareCentimeter => (_value * 1e4) * 1e-3d,
@@ -223,9 +247,11 @@ namespace UnitsNet
 
                     return unit switch
                     {
+                        IrradiationUnit.BtuPerSquareFoot => baseUnitValue / 11356.5267,
                         IrradiationUnit.JoulePerSquareCentimeter => baseUnitValue / 1e4,
                         IrradiationUnit.JoulePerSquareMeter => baseUnitValue,
                         IrradiationUnit.JoulePerSquareMillimeter => baseUnitValue / 1e6,
+                        IrradiationUnit.KilobtuPerSquareFoot => (baseUnitValue / 11356.5267) / 1e3d,
                         IrradiationUnit.KilojoulePerSquareMeter => (baseUnitValue) / 1e3d,
                         IrradiationUnit.KilowattHourPerSquareMeter => (baseUnitValue / 3600d) / 1e3d,
                         IrradiationUnit.MillijoulePerSquareCentimeter => (baseUnitValue / 1e4) / 1e-3d,

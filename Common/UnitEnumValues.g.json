@@ -631,7 +631,9 @@
     "KilojoulePerSquareMeter": 4,
     "KilowattHourPerSquareMeter": 5,
     "MillijoulePerSquareCentimeter": 6,
-    "WattHourPerSquareMeter": 7
+    "WattHourPerSquareMeter": 7,
+    "BtuPerSquareFoot": 15,
+    "KilobtuPerSquareFoot": 9
   },
   "Jerk": {
     "CentimeterPerSecondCubed": 1,
