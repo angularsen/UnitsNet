@@ -25,8 +25,8 @@ namespace UnitsNet.Tests
     public class NumberToIrradiationExtensionsTests
     {
         [Fact]
-        public void NumberToBtuPerSquareFootTest() =>
-            Assert.Equal(Irradiation.FromBtuPerSquareFoot(2), 2.BtuPerSquareFoot());
+        public void NumberToBtusPerSquareFootTest() =>
+            Assert.Equal(Irradiation.FromBtusPerSquareFoot(2), 2.BtusPerSquareFoot());
 
         [Fact]
         public void NumberToJoulesPerSquareCentimeterTest() =>
@@ -41,8 +41,8 @@ namespace UnitsNet.Tests
             Assert.Equal(Irradiation.FromJoulesPerSquareMillimeter(2), 2.JoulesPerSquareMillimeter());
 
         [Fact]
-        public void NumberToKilobtuPerSquareFootTest() =>
-            Assert.Equal(Irradiation.FromKilobtuPerSquareFoot(2), 2.KilobtuPerSquareFoot());
+        public void NumberToKilobtusPerSquareFootTest() =>
+            Assert.Equal(Irradiation.FromKilobtusPerSquareFoot(2), 2.KilobtusPerSquareFoot());
 
         [Fact]
         public void NumberToKilojoulesPerSquareMeterTest() =>

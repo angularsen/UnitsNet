@@ -32,13 +32,13 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiation
     /// </summary>
     public static class NumberToIrradiationExtensions
     {
-        /// <inheritdoc cref="Irradiation.FromBtuPerSquareFoot(UnitsNet.QuantityValue)" />
-        public static Irradiation BtuPerSquareFoot<T>(this T value)
+        /// <inheritdoc cref="Irradiation.FromBtusPerSquareFoot(UnitsNet.QuantityValue)" />
+        public static Irradiation BtusPerSquareFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
 #endif
-            => Irradiation.FromBtuPerSquareFoot(Convert.ToDouble(value));
+            => Irradiation.FromBtusPerSquareFoot(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Irradiation.FromJoulesPerSquareCentimeter(UnitsNet.QuantityValue)" />
         public static Irradiation JoulesPerSquareCentimeter<T>(this T value)
@@ -64,13 +64,13 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiation
 #endif
             => Irradiation.FromJoulesPerSquareMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiation.FromKilobtuPerSquareFoot(UnitsNet.QuantityValue)" />
-        public static Irradiation KilobtuPerSquareFoot<T>(this T value)
+        /// <inheritdoc cref="Irradiation.FromKilobtusPerSquareFoot(UnitsNet.QuantityValue)" />
+        public static Irradiation KilobtusPerSquareFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
 #endif
-            => Irradiation.FromKilobtuPerSquareFoot(Convert.ToDouble(value));
+            => Irradiation.FromKilobtusPerSquareFoot(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Irradiation.FromKilojoulesPerSquareMeter(UnitsNet.QuantityValue)" />
         public static Irradiation KilojoulesPerSquareMeter<T>(this T value)
