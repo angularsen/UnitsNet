@@ -61,9 +61,9 @@
     },
     {
       "SingularName": "BtuPerSquareFoot",
-      "PluralName": "BtuPerSquareFoot",
-      "FromUnitToBaseFunc": "{x} * 11356.5267",
-      "FromBaseToUnitFunc": "{x} / 11356.5267",
+      "PluralName": "BtusPerSquareFoot",
+      "FromUnitToBaseFunc": "{x} * (52752792631d / 4645152d)",
+      "FromBaseToUnitFunc": "{x} / (52752792631d / 4645152d)",
       "Prefixes": [ "Kilo" ],
       "Localization": [
         {
