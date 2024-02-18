@@ -59,7 +59,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of MolarMass, which is Second. All conversions go via this value.
         /// </summary>
         public static MolarMassUnit BaseUnit { get; } = MolarMassUnit.KilogramPerMole;
 
@@ -248,9 +248,9 @@ namespace UnitsNet
                 public double As(MolarMassUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this MolarMass to another MolarMass with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A MolarMass with the specified unit.</returns>
                 public MolarMass ToUnit(MolarMassUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

@@ -59,7 +59,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of ReactiveEnergy, which is Second. All conversions go via this value.
         /// </summary>
         public static ReactiveEnergyUnit BaseUnit { get; } = ReactiveEnergyUnit.VoltampereReactiveHour;
 
@@ -138,9 +138,9 @@ namespace UnitsNet
                 public double As(ReactiveEnergyUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this ReactiveEnergy to another ReactiveEnergy with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A ReactiveEnergy with the specified unit.</returns>
                 public ReactiveEnergy ToUnit(ReactiveEnergyUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

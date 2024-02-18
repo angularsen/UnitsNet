@@ -59,7 +59,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of MolarEntropy, which is Second. All conversions go via this value.
         /// </summary>
         public static MolarEntropyUnit BaseUnit { get; } = MolarEntropyUnit.JoulePerMoleKelvin;
 
@@ -138,9 +138,9 @@ namespace UnitsNet
                 public double As(MolarEntropyUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this MolarEntropy to another MolarEntropy with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A MolarEntropy with the specified unit.</returns>
                 public MolarEntropy ToUnit(MolarEntropyUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

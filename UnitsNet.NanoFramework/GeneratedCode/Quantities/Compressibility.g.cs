@@ -59,7 +59,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of Compressibility, which is Second. All conversions go via this value.
         /// </summary>
         public static CompressibilityUnit BaseUnit { get; } = CompressibilityUnit.InversePascal;
 
@@ -182,9 +182,9 @@ namespace UnitsNet
                 public double As(CompressibilityUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this Compressibility to another Compressibility with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A Compressibility with the specified unit.</returns>
                 public Compressibility ToUnit(CompressibilityUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

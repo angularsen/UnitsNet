@@ -62,7 +62,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of FuelEfficiency, which is Second. All conversions go via this value.
         /// </summary>
         public static FuelEfficiencyUnit BaseUnit { get; } = FuelEfficiencyUnit.LiterPer100Kilometers;
 
@@ -152,9 +152,9 @@ namespace UnitsNet
                 public double As(FuelEfficiencyUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this FuelEfficiency to another FuelEfficiency with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A FuelEfficiency with the specified unit.</returns>
                 public FuelEfficiency ToUnit(FuelEfficiencyUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

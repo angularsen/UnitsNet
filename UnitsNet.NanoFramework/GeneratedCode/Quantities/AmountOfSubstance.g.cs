@@ -59,7 +59,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of AmountOfSubstance, which is Second. All conversions go via this value.
         /// </summary>
         public static AmountOfSubstanceUnit BaseUnit { get; } = AmountOfSubstanceUnit.Mole;
 
@@ -292,9 +292,9 @@ namespace UnitsNet
                 public double As(AmountOfSubstanceUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this AmountOfSubstance to another AmountOfSubstance with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A AmountOfSubstance with the specified unit.</returns>
                 public AmountOfSubstance ToUnit(AmountOfSubstanceUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

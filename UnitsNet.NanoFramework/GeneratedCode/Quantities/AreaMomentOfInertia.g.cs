@@ -59,7 +59,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of AreaMomentOfInertia, which is Second. All conversions go via this value.
         /// </summary>
         public static AreaMomentOfInertiaUnit BaseUnit { get; } = AreaMomentOfInertiaUnit.MeterToTheFourth;
 
@@ -171,9 +171,9 @@ namespace UnitsNet
                 public double As(AreaMomentOfInertiaUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this AreaMomentOfInertia to another AreaMomentOfInertia with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A AreaMomentOfInertia with the specified unit.</returns>
                 public AreaMomentOfInertia ToUnit(AreaMomentOfInertiaUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

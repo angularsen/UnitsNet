@@ -59,7 +59,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of PowerDensity, which is Second. All conversions go via this value.
         /// </summary>
         public static PowerDensityUnit BaseUnit { get; } = PowerDensityUnit.WattPerCubicMeter;
 
@@ -589,9 +589,9 @@ namespace UnitsNet
                 public double As(PowerDensityUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this PowerDensity to another PowerDensity with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A PowerDensity with the specified unit.</returns>
                 public PowerDensity ToUnit(PowerDensityUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

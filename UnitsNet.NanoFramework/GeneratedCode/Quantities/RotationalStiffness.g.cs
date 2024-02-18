@@ -59,7 +59,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of RotationalStiffness, which is Second. All conversions go via this value.
         /// </summary>
         public static RotationalStiffnessUnit BaseUnit { get; } = RotationalStiffnessUnit.NewtonMeterPerRadian;
 
@@ -468,9 +468,9 @@ namespace UnitsNet
                 public double As(RotationalStiffnessUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this RotationalStiffness to another RotationalStiffness with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A RotationalStiffness with the specified unit.</returns>
                 public RotationalStiffness ToUnit(RotationalStiffnessUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

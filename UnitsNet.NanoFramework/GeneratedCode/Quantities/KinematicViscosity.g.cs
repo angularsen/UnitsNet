@@ -62,7 +62,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of KinematicViscosity, which is Second. All conversions go via this value.
         /// </summary>
         public static KinematicViscosityUnit BaseUnit { get; } = KinematicViscosityUnit.SquareMeterPerSecond;
 
@@ -207,9 +207,9 @@ namespace UnitsNet
                 public double As(KinematicViscosityUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this KinematicViscosity to another KinematicViscosity with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A KinematicViscosity with the specified unit.</returns>
                 public KinematicViscosity ToUnit(KinematicViscosityUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

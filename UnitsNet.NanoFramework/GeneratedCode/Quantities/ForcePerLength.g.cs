@@ -59,7 +59,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of ForcePerLength, which is Second. All conversions go via this value.
         /// </summary>
         public static ForcePerLengthUnit BaseUnit { get; } = ForcePerLengthUnit.NewtonPerMeter;
 
@@ -523,9 +523,9 @@ namespace UnitsNet
                 public double As(ForcePerLengthUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this ForcePerLength to another ForcePerLength with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A ForcePerLength with the specified unit.</returns>
                 public ForcePerLength ToUnit(ForcePerLengthUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

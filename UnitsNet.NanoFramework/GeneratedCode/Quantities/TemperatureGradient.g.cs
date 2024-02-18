@@ -59,7 +59,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of TemperatureGradient, which is Second. All conversions go via this value.
         /// </summary>
         public static TemperatureGradientUnit BaseUnit { get; } = TemperatureGradientUnit.KelvinPerMeter;
 
@@ -149,9 +149,9 @@ namespace UnitsNet
                 public double As(TemperatureGradientUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this TemperatureGradient to another TemperatureGradient with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A TemperatureGradient with the specified unit.</returns>
                 public TemperatureGradient ToUnit(TemperatureGradientUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

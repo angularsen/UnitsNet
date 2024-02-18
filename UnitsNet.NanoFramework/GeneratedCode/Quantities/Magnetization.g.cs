@@ -62,7 +62,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of Magnetization, which is Second. All conversions go via this value.
         /// </summary>
         public static MagnetizationUnit BaseUnit { get; } = MagnetizationUnit.AmperePerMeter;
 
@@ -119,9 +119,9 @@ namespace UnitsNet
                 public double As(MagnetizationUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this Magnetization to another Magnetization with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A Magnetization with the specified unit.</returns>
                 public Magnetization ToUnit(MagnetizationUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

@@ -59,7 +59,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of MolarEnergy, which is Second. All conversions go via this value.
         /// </summary>
         public static MolarEnergyUnit BaseUnit { get; } = MolarEnergyUnit.JoulePerMole;
 
@@ -138,9 +138,9 @@ namespace UnitsNet
                 public double As(MolarEnergyUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this MolarEnergy to another MolarEnergy with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A MolarEnergy with the specified unit.</returns>
                 public MolarEnergy ToUnit(MolarEnergyUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

@@ -59,7 +59,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of VolumeFlow, which is Second. All conversions go via this value.
         /// </summary>
         public static VolumeFlowUnit BaseUnit { get; } = VolumeFlowUnit.CubicMeterPerSecond;
 
@@ -842,9 +842,9 @@ namespace UnitsNet
                 public double As(VolumeFlowUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this VolumeFlow to another VolumeFlow with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A VolumeFlow with the specified unit.</returns>
                 public VolumeFlow ToUnit(VolumeFlowUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

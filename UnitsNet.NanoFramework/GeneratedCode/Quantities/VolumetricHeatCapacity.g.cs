@@ -62,7 +62,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of VolumetricHeatCapacity, which is Second. All conversions go via this value.
         /// </summary>
         public static VolumetricHeatCapacityUnit BaseUnit { get; } = VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin;
 
@@ -207,9 +207,9 @@ namespace UnitsNet
                 public double As(VolumetricHeatCapacityUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this VolumetricHeatCapacity to another VolumetricHeatCapacity with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A VolumetricHeatCapacity with the specified unit.</returns>
                 public VolumetricHeatCapacity ToUnit(VolumetricHeatCapacityUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

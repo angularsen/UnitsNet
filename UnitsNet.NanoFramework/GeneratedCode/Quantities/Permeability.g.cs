@@ -62,7 +62,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of Permeability, which is Second. All conversions go via this value.
         /// </summary>
         public static PermeabilityUnit BaseUnit { get; } = PermeabilityUnit.HenryPerMeter;
 
@@ -119,9 +119,9 @@ namespace UnitsNet
                 public double As(PermeabilityUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this Permeability to another Permeability with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A Permeability with the specified unit.</returns>
                 public Permeability ToUnit(PermeabilityUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

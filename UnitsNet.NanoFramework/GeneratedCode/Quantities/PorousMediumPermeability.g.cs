@@ -62,7 +62,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of PorousMediumPermeability, which is Second. All conversions go via this value.
         /// </summary>
         public static PorousMediumPermeabilityUnit BaseUnit { get; } = PorousMediumPermeabilityUnit.SquareMeter;
 
@@ -163,9 +163,9 @@ namespace UnitsNet
                 public double As(PorousMediumPermeabilityUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this PorousMediumPermeability to another PorousMediumPermeability with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A PorousMediumPermeability with the specified unit.</returns>
                 public PorousMediumPermeability ToUnit(PorousMediumPermeabilityUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

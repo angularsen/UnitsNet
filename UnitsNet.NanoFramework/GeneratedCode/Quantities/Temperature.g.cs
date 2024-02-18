@@ -59,7 +59,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of Temperature, which is Second. All conversions go via this value.
         /// </summary>
         public static TemperatureUnit BaseUnit { get; } = TemperatureUnit.Kelvin;
 
@@ -215,9 +215,9 @@ namespace UnitsNet
                 public double As(TemperatureUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this Temperature to another Temperature with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A Temperature with the specified unit.</returns>
                 public Temperature ToUnit(TemperatureUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

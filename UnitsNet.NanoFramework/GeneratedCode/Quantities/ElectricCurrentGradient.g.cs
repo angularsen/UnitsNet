@@ -59,7 +59,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of ElectricCurrentGradient, which is Second. All conversions go via this value.
         /// </summary>
         public static ElectricCurrentGradientUnit BaseUnit { get; } = ElectricCurrentGradientUnit.AmperePerSecond;
 
@@ -182,9 +182,9 @@ namespace UnitsNet
                 public double As(ElectricCurrentGradientUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this ElectricCurrentGradient to another ElectricCurrentGradient with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A ElectricCurrentGradient with the specified unit.</returns>
                 public ElectricCurrentGradient ToUnit(ElectricCurrentGradientUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

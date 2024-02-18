@@ -59,7 +59,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of Acceleration, which is Second. All conversions go via this value.
         /// </summary>
         public static AccelerationUnit BaseUnit { get; } = AccelerationUnit.MeterPerSecondSquared;
 
@@ -259,9 +259,9 @@ namespace UnitsNet
                 public double As(AccelerationUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this Acceleration to another Acceleration with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A Acceleration with the specified unit.</returns>
                 public Acceleration ToUnit(AccelerationUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);
