@@ -67,12 +67,12 @@ namespace UnitsNet
         public static MagnetizationUnit BaseUnit { get; } = MagnetizationUnit.AmperePerMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Magnetization.
         /// </summary>
         public static Magnetization MaxValue { get; } = new Magnetization(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Magnetization.
         /// </summary>
         public static Magnetization MinValue { get; } = new Magnetization(double.MinValue, BaseUnit);
 

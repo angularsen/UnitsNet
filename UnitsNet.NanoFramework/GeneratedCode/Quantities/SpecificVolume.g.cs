@@ -64,12 +64,12 @@ namespace UnitsNet
         public static SpecificVolumeUnit BaseUnit { get; } = SpecificVolumeUnit.CubicMeterPerKilogram;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of SpecificVolume.
         /// </summary>
         public static SpecificVolume MaxValue { get; } = new SpecificVolume(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of SpecificVolume.
         /// </summary>
         public static SpecificVolume MinValue { get; } = new SpecificVolume(double.MinValue, BaseUnit);
 

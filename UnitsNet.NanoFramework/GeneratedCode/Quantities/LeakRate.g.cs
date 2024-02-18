@@ -67,12 +67,12 @@ namespace UnitsNet
         public static LeakRateUnit BaseUnit { get; } = LeakRateUnit.PascalCubicMeterPerSecond;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of LeakRate.
         /// </summary>
         public static LeakRate MaxValue { get; } = new LeakRate(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of LeakRate.
         /// </summary>
         public static LeakRate MinValue { get; } = new LeakRate(double.MinValue, BaseUnit);
 

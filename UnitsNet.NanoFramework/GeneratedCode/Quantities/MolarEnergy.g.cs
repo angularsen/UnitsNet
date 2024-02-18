@@ -64,12 +64,12 @@ namespace UnitsNet
         public static MolarEnergyUnit BaseUnit { get; } = MolarEnergyUnit.JoulePerMole;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of MolarEnergy.
         /// </summary>
         public static MolarEnergy MaxValue { get; } = new MolarEnergy(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of MolarEnergy.
         /// </summary>
         public static MolarEnergy MinValue { get; } = new MolarEnergy(double.MinValue, BaseUnit);
 

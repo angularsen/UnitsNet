@@ -67,12 +67,12 @@ namespace UnitsNet
         public static IlluminanceUnit BaseUnit { get; } = IlluminanceUnit.Lux;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Illuminance.
         /// </summary>
         public static Illuminance MaxValue { get; } = new Illuminance(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Illuminance.
         /// </summary>
         public static Illuminance MinValue { get; } = new Illuminance(double.MinValue, BaseUnit);
 

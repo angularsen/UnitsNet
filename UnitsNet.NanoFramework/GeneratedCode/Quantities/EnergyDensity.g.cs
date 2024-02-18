@@ -64,12 +64,12 @@ namespace UnitsNet
         public static EnergyDensityUnit BaseUnit { get; } = EnergyDensityUnit.JoulePerCubicMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of EnergyDensity.
         /// </summary>
         public static EnergyDensity MaxValue { get; } = new EnergyDensity(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of EnergyDensity.
         /// </summary>
         public static EnergyDensity MinValue { get; } = new EnergyDensity(double.MinValue, BaseUnit);
 

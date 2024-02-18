@@ -67,12 +67,12 @@ namespace UnitsNet
         public static ElectricFieldUnit BaseUnit { get; } = ElectricFieldUnit.VoltPerMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of ElectricField.
         /// </summary>
         public static ElectricField MaxValue { get; } = new ElectricField(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of ElectricField.
         /// </summary>
         public static ElectricField MinValue { get; } = new ElectricField(double.MinValue, BaseUnit);
 

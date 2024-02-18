@@ -64,12 +64,12 @@ namespace UnitsNet
         public static LengthUnit BaseUnit { get; } = LengthUnit.Meter;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Length.
         /// </summary>
         public static Length MaxValue { get; } = new Length(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Length.
         /// </summary>
         public static Length MinValue { get; } = new Length(double.MinValue, BaseUnit);
 

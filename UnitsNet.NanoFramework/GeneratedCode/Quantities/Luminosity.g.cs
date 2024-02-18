@@ -67,12 +67,12 @@ namespace UnitsNet
         public static LuminosityUnit BaseUnit { get; } = LuminosityUnit.Watt;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Luminosity.
         /// </summary>
         public static Luminosity MaxValue { get; } = new Luminosity(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Luminosity.
         /// </summary>
         public static Luminosity MinValue { get; } = new Luminosity(double.MinValue, BaseUnit);
 

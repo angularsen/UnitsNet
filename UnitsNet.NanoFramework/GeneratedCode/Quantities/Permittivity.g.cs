@@ -67,12 +67,12 @@ namespace UnitsNet
         public static PermittivityUnit BaseUnit { get; } = PermittivityUnit.FaradPerMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Permittivity.
         /// </summary>
         public static Permittivity MaxValue { get; } = new Permittivity(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Permittivity.
         /// </summary>
         public static Permittivity MinValue { get; } = new Permittivity(double.MinValue, BaseUnit);
 

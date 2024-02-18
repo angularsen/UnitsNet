@@ -67,12 +67,12 @@ namespace UnitsNet
         public static ElectricInductanceUnit BaseUnit { get; } = ElectricInductanceUnit.Henry;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of ElectricInductance.
         /// </summary>
         public static ElectricInductance MaxValue { get; } = new ElectricInductance(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of ElectricInductance.
         /// </summary>
         public static ElectricInductance MinValue { get; } = new ElectricInductance(double.MinValue, BaseUnit);
 

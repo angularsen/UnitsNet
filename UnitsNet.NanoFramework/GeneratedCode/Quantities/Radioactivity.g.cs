@@ -64,12 +64,12 @@ namespace UnitsNet
         public static RadioactivityUnit BaseUnit { get; } = RadioactivityUnit.Becquerel;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Radioactivity.
         /// </summary>
         public static Radioactivity MaxValue { get; } = new Radioactivity(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Radioactivity.
         /// </summary>
         public static Radioactivity MinValue { get; } = new Radioactivity(double.MinValue, BaseUnit);
 

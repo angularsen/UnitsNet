@@ -67,12 +67,12 @@ namespace UnitsNet
         public static VolumeConcentrationUnit BaseUnit { get; } = VolumeConcentrationUnit.DecimalFraction;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of VolumeConcentration.
         /// </summary>
         public static VolumeConcentration MaxValue { get; } = new VolumeConcentration(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of VolumeConcentration.
         /// </summary>
         public static VolumeConcentration MinValue { get; } = new VolumeConcentration(double.MinValue, BaseUnit);
 

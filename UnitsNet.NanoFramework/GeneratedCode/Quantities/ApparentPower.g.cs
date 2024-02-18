@@ -64,12 +64,12 @@ namespace UnitsNet
         public static ApparentPowerUnit BaseUnit { get; } = ApparentPowerUnit.Voltampere;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of ApparentPower.
         /// </summary>
         public static ApparentPower MaxValue { get; } = new ApparentPower(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of ApparentPower.
         /// </summary>
         public static ApparentPower MinValue { get; } = new ApparentPower(double.MinValue, BaseUnit);
 

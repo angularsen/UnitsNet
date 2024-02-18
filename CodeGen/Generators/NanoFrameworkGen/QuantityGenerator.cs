@@ -73,12 +73,12 @@ namespace UnitsNet
         }}
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of {_quantity.Name}, which is Second. All conversions go via this value.
         /// </summary>
         public static {_unitEnumName} BaseUnit {{ get; }} = {_unitEnumName}.{_quantity.BaseUnit};
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of {_quantity.Name}.
         /// </summary>");
 
             // Non decimal
@@ -86,7 +86,7 @@ namespace UnitsNet
         public static {_quantity.Name} MaxValue {{ get; }} = new {_quantity.Name}({_quantity.ValueType}.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of {_quantity.Name}.
         /// </summary>
         public static {_quantity.Name} MinValue {{ get; }} = new {_quantity.Name}({_quantity.ValueType}.MinValue, BaseUnit);
 ");
@@ -96,7 +96,7 @@ namespace UnitsNet
         public static {_quantity.Name} MaxValue {{ get; }} = new {_quantity.Name}(79228162514264337593543950335M, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of {_quantity.Name}.
         /// </summary>
         public static {_quantity.Name} MinValue {{ get; }} = new {_quantity.Name}(-79228162514264337593543950335M, BaseUnit);
 ");
@@ -193,9 +193,9 @@ namespace UnitsNet
                 public {_quantity.ValueType} As({_unitEnumName} unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name=""unit"" />.
+                ///     Converts this {_quantity.Name} to another {_quantity.Name} with the unit representation <paramref name=""unit"" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A {_quantity.Name} with the specified unit.</returns>
                 public {_quantity.Name} ToUnit({_unitEnumName} unit)
                 {{
                     var convertedValue = GetValueAs(unit);

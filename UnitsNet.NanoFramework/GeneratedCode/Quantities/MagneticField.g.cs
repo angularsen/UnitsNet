@@ -67,12 +67,12 @@ namespace UnitsNet
         public static MagneticFieldUnit BaseUnit { get; } = MagneticFieldUnit.Tesla;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of MagneticField.
         /// </summary>
         public static MagneticField MaxValue { get; } = new MagneticField(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of MagneticField.
         /// </summary>
         public static MagneticField MinValue { get; } = new MagneticField(double.MinValue, BaseUnit);
 

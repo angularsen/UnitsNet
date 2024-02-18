@@ -67,12 +67,12 @@ namespace UnitsNet
         public static MassConcentrationUnit BaseUnit { get; } = MassConcentrationUnit.KilogramPerCubicMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of MassConcentration.
         /// </summary>
         public static MassConcentration MaxValue { get; } = new MassConcentration(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of MassConcentration.
         /// </summary>
         public static MassConcentration MinValue { get; } = new MassConcentration(double.MinValue, BaseUnit);
 

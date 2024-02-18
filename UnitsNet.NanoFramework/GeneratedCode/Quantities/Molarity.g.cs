@@ -67,12 +67,12 @@ namespace UnitsNet
         public static MolarityUnit BaseUnit { get; } = MolarityUnit.MolePerCubicMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Molarity.
         /// </summary>
         public static Molarity MaxValue { get; } = new Molarity(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Molarity.
         /// </summary>
         public static Molarity MinValue { get; } = new Molarity(double.MinValue, BaseUnit);
 

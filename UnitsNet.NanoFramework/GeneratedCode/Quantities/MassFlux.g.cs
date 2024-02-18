@@ -64,12 +64,12 @@ namespace UnitsNet
         public static MassFluxUnit BaseUnit { get; } = MassFluxUnit.KilogramPerSecondPerSquareMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of MassFlux.
         /// </summary>
         public static MassFlux MaxValue { get; } = new MassFlux(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of MassFlux.
         /// </summary>
         public static MassFlux MinValue { get; } = new MassFlux(double.MinValue, BaseUnit);
 

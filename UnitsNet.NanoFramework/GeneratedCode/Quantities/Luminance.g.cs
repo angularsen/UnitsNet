@@ -67,12 +67,12 @@ namespace UnitsNet
         public static LuminanceUnit BaseUnit { get; } = LuminanceUnit.CandelaPerSquareMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Luminance.
         /// </summary>
         public static Luminance MaxValue { get; } = new Luminance(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Luminance.
         /// </summary>
         public static Luminance MinValue { get; } = new Luminance(double.MinValue, BaseUnit);
 

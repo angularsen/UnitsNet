@@ -67,12 +67,12 @@ namespace UnitsNet
         public static TurbidityUnit BaseUnit { get; } = TurbidityUnit.NTU;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Turbidity.
         /// </summary>
         public static Turbidity MaxValue { get; } = new Turbidity(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Turbidity.
         /// </summary>
         public static Turbidity MinValue { get; } = new Turbidity(double.MinValue, BaseUnit);
 

@@ -64,12 +64,12 @@ namespace UnitsNet
         public static RotationalStiffnessUnit BaseUnit { get; } = RotationalStiffnessUnit.NewtonMeterPerRadian;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of RotationalStiffness.
         /// </summary>
         public static RotationalStiffness MaxValue { get; } = new RotationalStiffness(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of RotationalStiffness.
         /// </summary>
         public static RotationalStiffness MinValue { get; } = new RotationalStiffness(double.MinValue, BaseUnit);
 

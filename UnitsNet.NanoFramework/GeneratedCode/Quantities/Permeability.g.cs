@@ -67,12 +67,12 @@ namespace UnitsNet
         public static PermeabilityUnit BaseUnit { get; } = PermeabilityUnit.HenryPerMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Permeability.
         /// </summary>
         public static Permeability MaxValue { get; } = new Permeability(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Permeability.
         /// </summary>
         public static Permeability MinValue { get; } = new Permeability(double.MinValue, BaseUnit);
 

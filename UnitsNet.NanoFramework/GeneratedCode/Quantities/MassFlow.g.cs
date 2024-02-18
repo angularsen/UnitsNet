@@ -64,12 +64,12 @@ namespace UnitsNet
         public static MassFlowUnit BaseUnit { get; } = MassFlowUnit.GramPerSecond;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of MassFlow.
         /// </summary>
         public static MassFlow MaxValue { get; } = new MassFlow(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of MassFlow.
         /// </summary>
         public static MassFlow MinValue { get; } = new MassFlow(double.MinValue, BaseUnit);
 

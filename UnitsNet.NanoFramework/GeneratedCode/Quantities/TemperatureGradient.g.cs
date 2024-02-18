@@ -64,12 +64,12 @@ namespace UnitsNet
         public static TemperatureGradientUnit BaseUnit { get; } = TemperatureGradientUnit.KelvinPerMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of TemperatureGradient.
         /// </summary>
         public static TemperatureGradient MaxValue { get; } = new TemperatureGradient(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of TemperatureGradient.
         /// </summary>
         public static TemperatureGradient MinValue { get; } = new TemperatureGradient(double.MinValue, BaseUnit);
 

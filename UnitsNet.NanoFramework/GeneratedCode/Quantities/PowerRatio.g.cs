@@ -64,12 +64,12 @@ namespace UnitsNet
         public static PowerRatioUnit BaseUnit { get; } = PowerRatioUnit.DecibelWatt;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of PowerRatio.
         /// </summary>
         public static PowerRatio MaxValue { get; } = new PowerRatio(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of PowerRatio.
         /// </summary>
         public static PowerRatio MinValue { get; } = new PowerRatio(double.MinValue, BaseUnit);
 

@@ -64,12 +64,12 @@ namespace UnitsNet
         public static PowerUnit BaseUnit { get; } = PowerUnit.Watt;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Power.
         /// </summary>
         public static Power MaxValue { get; } = new Power(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Power.
         /// </summary>
         public static Power MinValue { get; } = new Power(double.MinValue, BaseUnit);
 

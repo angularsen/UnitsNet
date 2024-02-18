@@ -64,12 +64,12 @@ namespace UnitsNet
         public static EnergyUnit BaseUnit { get; } = EnergyUnit.Joule;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Energy.
         /// </summary>
         public static Energy MaxValue { get; } = new Energy(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Energy.
         /// </summary>
         public static Energy MinValue { get; } = new Energy(double.MinValue, BaseUnit);
 

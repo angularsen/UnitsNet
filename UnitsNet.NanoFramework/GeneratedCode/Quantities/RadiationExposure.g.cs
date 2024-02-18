@@ -64,12 +64,12 @@ namespace UnitsNet
         public static RadiationExposureUnit BaseUnit { get; } = RadiationExposureUnit.CoulombPerKilogram;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of RadiationExposure.
         /// </summary>
         public static RadiationExposure MaxValue { get; } = new RadiationExposure(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of RadiationExposure.
         /// </summary>
         public static RadiationExposure MinValue { get; } = new RadiationExposure(double.MinValue, BaseUnit);
 

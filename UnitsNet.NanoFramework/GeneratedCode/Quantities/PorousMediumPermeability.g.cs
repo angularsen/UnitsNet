@@ -67,12 +67,12 @@ namespace UnitsNet
         public static PorousMediumPermeabilityUnit BaseUnit { get; } = PorousMediumPermeabilityUnit.SquareMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of PorousMediumPermeability.
         /// </summary>
         public static PorousMediumPermeability MaxValue { get; } = new PorousMediumPermeability(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of PorousMediumPermeability.
         /// </summary>
         public static PorousMediumPermeability MinValue { get; } = new PorousMediumPermeability(double.MinValue, BaseUnit);
 

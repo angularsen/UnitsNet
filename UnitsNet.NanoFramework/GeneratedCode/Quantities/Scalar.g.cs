@@ -64,12 +64,12 @@ namespace UnitsNet
         public static ScalarUnit BaseUnit { get; } = ScalarUnit.Amount;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Scalar.
         /// </summary>
         public static Scalar MaxValue { get; } = new Scalar(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Scalar.
         /// </summary>
         public static Scalar MinValue { get; } = new Scalar(double.MinValue, BaseUnit);
 

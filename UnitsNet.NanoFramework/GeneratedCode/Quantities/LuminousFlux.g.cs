@@ -67,12 +67,12 @@ namespace UnitsNet
         public static LuminousFluxUnit BaseUnit { get; } = LuminousFluxUnit.Lumen;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of LuminousFlux.
         /// </summary>
         public static LuminousFlux MaxValue { get; } = new LuminousFlux(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of LuminousFlux.
         /// </summary>
         public static LuminousFlux MinValue { get; } = new LuminousFlux(double.MinValue, BaseUnit);
 

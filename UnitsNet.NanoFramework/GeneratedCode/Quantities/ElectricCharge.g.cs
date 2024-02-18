@@ -67,12 +67,12 @@ namespace UnitsNet
         public static ElectricChargeUnit BaseUnit { get; } = ElectricChargeUnit.Coulomb;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of ElectricCharge.
         /// </summary>
         public static ElectricCharge MaxValue { get; } = new ElectricCharge(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of ElectricCharge.
         /// </summary>
         public static ElectricCharge MinValue { get; } = new ElectricCharge(double.MinValue, BaseUnit);
 

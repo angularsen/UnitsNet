@@ -67,12 +67,12 @@ namespace UnitsNet
         public static LinearDensityUnit BaseUnit { get; } = LinearDensityUnit.KilogramPerMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of LinearDensity.
         /// </summary>
         public static LinearDensity MaxValue { get; } = new LinearDensity(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of LinearDensity.
         /// </summary>
         public static LinearDensity MinValue { get; } = new LinearDensity(double.MinValue, BaseUnit);
 

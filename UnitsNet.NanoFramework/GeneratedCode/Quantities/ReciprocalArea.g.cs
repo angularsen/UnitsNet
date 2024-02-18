@@ -67,12 +67,12 @@ namespace UnitsNet
         public static ReciprocalAreaUnit BaseUnit { get; } = ReciprocalAreaUnit.InverseSquareMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of ReciprocalArea.
         /// </summary>
         public static ReciprocalArea MaxValue { get; } = new ReciprocalArea(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of ReciprocalArea.
         /// </summary>
         public static ReciprocalArea MinValue { get; } = new ReciprocalArea(double.MinValue, BaseUnit);
 

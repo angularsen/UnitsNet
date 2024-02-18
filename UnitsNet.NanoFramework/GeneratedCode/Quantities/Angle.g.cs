@@ -64,12 +64,12 @@ namespace UnitsNet
         public static AngleUnit BaseUnit { get; } = AngleUnit.Degree;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Angle.
         /// </summary>
         public static Angle MaxValue { get; } = new Angle(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Angle.
         /// </summary>
         public static Angle MinValue { get; } = new Angle(double.MinValue, BaseUnit);
 

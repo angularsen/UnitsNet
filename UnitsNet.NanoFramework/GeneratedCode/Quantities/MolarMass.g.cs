@@ -64,12 +64,12 @@ namespace UnitsNet
         public static MolarMassUnit BaseUnit { get; } = MolarMassUnit.KilogramPerMole;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of MolarMass.
         /// </summary>
         public static MolarMass MaxValue { get; } = new MolarMass(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of MolarMass.
         /// </summary>
         public static MolarMass MinValue { get; } = new MolarMass(double.MinValue, BaseUnit);
 

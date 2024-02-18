@@ -64,12 +64,12 @@ namespace UnitsNet
         public static MolarFlowUnit BaseUnit { get; } = MolarFlowUnit.MolePerSecond;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of MolarFlow.
         /// </summary>
         public static MolarFlow MaxValue { get; } = new MolarFlow(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of MolarFlow.
         /// </summary>
         public static MolarFlow MinValue { get; } = new MolarFlow(double.MinValue, BaseUnit);
 

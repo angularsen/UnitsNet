@@ -64,12 +64,12 @@ namespace UnitsNet
         public static AreaUnit BaseUnit { get; } = AreaUnit.SquareMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Area.
         /// </summary>
         public static Area MaxValue { get; } = new Area(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Area.
         /// </summary>
         public static Area MinValue { get; } = new Area(double.MinValue, BaseUnit);
 

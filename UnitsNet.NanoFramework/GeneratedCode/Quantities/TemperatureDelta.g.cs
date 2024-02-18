@@ -64,12 +64,12 @@ namespace UnitsNet
         public static TemperatureDeltaUnit BaseUnit { get; } = TemperatureDeltaUnit.Kelvin;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of TemperatureDelta.
         /// </summary>
         public static TemperatureDelta MaxValue { get; } = new TemperatureDelta(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of TemperatureDelta.
         /// </summary>
         public static TemperatureDelta MinValue { get; } = new TemperatureDelta(double.MinValue, BaseUnit);
 

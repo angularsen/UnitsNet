@@ -64,12 +64,12 @@ namespace UnitsNet
         public static MassUnit BaseUnit { get; } = MassUnit.Kilogram;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Mass.
         /// </summary>
         public static Mass MaxValue { get; } = new Mass(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Mass.
         /// </summary>
         public static Mass MinValue { get; } = new Mass(double.MinValue, BaseUnit);
 
