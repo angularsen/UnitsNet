@@ -59,7 +59,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of ForceChangeRate, which is Second. All conversions go via this value.
         /// </summary>
         public static ForceChangeRateUnit BaseUnit { get; } = ForceChangeRateUnit.NewtonPerSecond;
 
@@ -270,9 +270,9 @@ namespace UnitsNet
                 public double As(ForceChangeRateUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this ForceChangeRate to another ForceChangeRate with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A ForceChangeRate with the specified unit.</returns>
                 public ForceChangeRate ToUnit(ForceChangeRateUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

@@ -62,7 +62,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of ElectricSurfaceChargeDensity, which is Second. All conversions go via this value.
         /// </summary>
         public static ElectricSurfaceChargeDensityUnit BaseUnit { get; } = ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter;
 
@@ -141,9 +141,9 @@ namespace UnitsNet
                 public double As(ElectricSurfaceChargeDensityUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this ElectricSurfaceChargeDensity to another ElectricSurfaceChargeDensity with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A ElectricSurfaceChargeDensity with the specified unit.</returns>
                 public ElectricSurfaceChargeDensity ToUnit(ElectricSurfaceChargeDensityUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

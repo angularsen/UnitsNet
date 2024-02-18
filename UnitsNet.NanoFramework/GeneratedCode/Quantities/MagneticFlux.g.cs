@@ -62,7 +62,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of MagneticFlux, which is Second. All conversions go via this value.
         /// </summary>
         public static MagneticFluxUnit BaseUnit { get; } = MagneticFluxUnit.Weber;
 
@@ -119,9 +119,9 @@ namespace UnitsNet
                 public double As(MagneticFluxUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this MagneticFlux to another MagneticFlux with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A MagneticFlux with the specified unit.</returns>
                 public MagneticFlux ToUnit(MagneticFluxUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

@@ -59,7 +59,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of HeatFlux, which is Second. All conversions go via this value.
         /// </summary>
         public static HeatFluxUnit BaseUnit { get; } = HeatFluxUnit.WattPerSquareMeter;
 
@@ -303,9 +303,9 @@ namespace UnitsNet
                 public double As(HeatFluxUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this HeatFlux to another HeatFlux with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A HeatFlux with the specified unit.</returns>
                 public HeatFlux ToUnit(HeatFluxUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

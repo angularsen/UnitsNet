@@ -59,7 +59,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of ApparentPower, which is Second. All conversions go via this value.
         /// </summary>
         public static ApparentPowerUnit BaseUnit { get; } = ApparentPowerUnit.Voltampere;
 
@@ -171,9 +171,9 @@ namespace UnitsNet
                 public double As(ApparentPowerUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this ApparentPower to another ApparentPower with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A ApparentPower with the specified unit.</returns>
                 public ApparentPower ToUnit(ApparentPowerUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

@@ -59,7 +59,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of PowerRatio, which is Second. All conversions go via this value.
         /// </summary>
         public static PowerRatioUnit BaseUnit { get; } = PowerRatioUnit.DecibelWatt;
 
@@ -127,9 +127,9 @@ namespace UnitsNet
                 public double As(PowerRatioUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this PowerRatio to another PowerRatio with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A PowerRatio with the specified unit.</returns>
                 public PowerRatio ToUnit(PowerRatioUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

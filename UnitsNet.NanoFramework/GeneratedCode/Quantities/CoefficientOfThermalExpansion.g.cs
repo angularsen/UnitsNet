@@ -59,7 +59,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of CoefficientOfThermalExpansion, which is Second. All conversions go via this value.
         /// </summary>
         public static CoefficientOfThermalExpansionUnit BaseUnit { get; } = CoefficientOfThermalExpansionUnit.PerKelvin;
 
@@ -210,9 +210,9 @@ namespace UnitsNet
                 public double As(CoefficientOfThermalExpansionUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this CoefficientOfThermalExpansion to another CoefficientOfThermalExpansion with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A CoefficientOfThermalExpansion with the specified unit.</returns>
                 public CoefficientOfThermalExpansion ToUnit(CoefficientOfThermalExpansionUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

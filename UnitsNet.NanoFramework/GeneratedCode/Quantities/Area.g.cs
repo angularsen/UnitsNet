@@ -59,7 +59,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of Area, which is Second. All conversions go via this value.
         /// </summary>
         public static AreaUnit BaseUnit { get; } = AreaUnit.SquareMeter;
 
@@ -259,9 +259,9 @@ namespace UnitsNet
                 public double As(AreaUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this Area to another Area with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A Area with the specified unit.</returns>
                 public Area ToUnit(AreaUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

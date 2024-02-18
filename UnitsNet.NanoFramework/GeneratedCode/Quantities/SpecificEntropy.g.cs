@@ -59,7 +59,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of SpecificEntropy, which is Second. All conversions go via this value.
         /// </summary>
         public static SpecificEntropyUnit BaseUnit { get; } = SpecificEntropyUnit.JoulePerKilogramKelvin;
 
@@ -204,9 +204,9 @@ namespace UnitsNet
                 public double As(SpecificEntropyUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this SpecificEntropy to another SpecificEntropy with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A SpecificEntropy with the specified unit.</returns>
                 public SpecificEntropy ToUnit(SpecificEntropyUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

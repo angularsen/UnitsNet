@@ -59,7 +59,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of Torque, which is Second. All conversions go via this value.
         /// </summary>
         public static TorqueUnit BaseUnit { get; } = TorqueUnit.NewtonMeter;
 
@@ -380,9 +380,9 @@ namespace UnitsNet
                 public double As(TorqueUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this Torque to another Torque with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A Torque with the specified unit.</returns>
                 public Torque ToUnit(TorqueUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

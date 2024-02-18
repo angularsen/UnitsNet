@@ -59,7 +59,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of Speed, which is Second. All conversions go via this value.
         /// </summary>
         public static SpeedUnit BaseUnit { get; } = SpeedUnit.MeterPerSecond;
 
@@ -468,9 +468,9 @@ namespace UnitsNet
                 public double As(SpeedUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this Speed to another Speed with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A Speed with the specified unit.</returns>
                 public Speed ToUnit(SpeedUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

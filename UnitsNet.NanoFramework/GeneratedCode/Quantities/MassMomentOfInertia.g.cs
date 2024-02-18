@@ -59,7 +59,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of MassMomentOfInertia, which is Second. All conversions go via this value.
         /// </summary>
         public static MassMomentOfInertiaUnit BaseUnit { get; } = MassMomentOfInertiaUnit.KilogramSquareMeter;
 
@@ -413,9 +413,9 @@ namespace UnitsNet
                 public double As(MassMomentOfInertiaUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this MassMomentOfInertia to another MassMomentOfInertia with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A MassMomentOfInertia with the specified unit.</returns>
                 public MassMomentOfInertia ToUnit(MassMomentOfInertiaUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

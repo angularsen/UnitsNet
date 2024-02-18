@@ -59,7 +59,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of Jerk, which is Second. All conversions go via this value.
         /// </summary>
         public static JerkUnit BaseUnit { get; } = JerkUnit.MeterPerSecondCubed;
 
@@ -226,9 +226,9 @@ namespace UnitsNet
                 public double As(JerkUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this Jerk to another Jerk with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A Jerk with the specified unit.</returns>
                 public Jerk ToUnit(JerkUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

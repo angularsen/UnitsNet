@@ -59,7 +59,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of Length, which is Second. All conversions go via this value.
         /// </summary>
         public static LengthUnit BaseUnit { get; } = LengthUnit.Meter;
 
@@ -567,9 +567,9 @@ namespace UnitsNet
                 public double As(LengthUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this Length to another Length with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A Length with the specified unit.</returns>
                 public Length ToUnit(LengthUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

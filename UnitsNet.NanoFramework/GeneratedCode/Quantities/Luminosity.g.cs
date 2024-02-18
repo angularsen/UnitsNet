@@ -62,7 +62,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of Luminosity, which is Second. All conversions go via this value.
         /// </summary>
         public static LuminosityUnit BaseUnit { get; } = LuminosityUnit.Watt;
 
@@ -262,9 +262,9 @@ namespace UnitsNet
                 public double As(LuminosityUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this Luminosity to another Luminosity with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A Luminosity with the specified unit.</returns>
                 public Luminosity ToUnit(LuminosityUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

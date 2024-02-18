@@ -62,7 +62,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of LinearDensity, which is Second. All conversions go via this value.
         /// </summary>
         public static LinearDensityUnit BaseUnit { get; } = LinearDensityUnit.KilogramPerMeter;
 
@@ -262,9 +262,9 @@ namespace UnitsNet
                 public double As(LinearDensityUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this LinearDensity to another LinearDensity with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A LinearDensity with the specified unit.</returns>
                 public LinearDensity ToUnit(LinearDensityUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

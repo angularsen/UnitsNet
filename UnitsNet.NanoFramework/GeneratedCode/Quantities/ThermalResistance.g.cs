@@ -59,7 +59,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of ThermalResistance, which is Second. All conversions go via this value.
         /// </summary>
         public static ThermalResistanceUnit BaseUnit { get; } = ThermalResistanceUnit.SquareMeterKelvinPerKilowatt;
 
@@ -171,9 +171,9 @@ namespace UnitsNet
                 public double As(ThermalResistanceUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this ThermalResistance to another ThermalResistance with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A ThermalResistance with the specified unit.</returns>
                 public ThermalResistance ToUnit(ThermalResistanceUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

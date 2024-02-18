@@ -62,7 +62,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of Irradiation, which is Second. All conversions go via this value.
         /// </summary>
         public static IrradiationUnit BaseUnit { get; } = IrradiationUnit.JoulePerSquareMeter;
 
@@ -185,9 +185,9 @@ namespace UnitsNet
                 public double As(IrradiationUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this Irradiation to another Irradiation with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A Irradiation with the specified unit.</returns>
                 public Irradiation ToUnit(IrradiationUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

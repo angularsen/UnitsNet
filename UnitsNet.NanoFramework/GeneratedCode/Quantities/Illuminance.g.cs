@@ -62,7 +62,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of Illuminance, which is Second. All conversions go via this value.
         /// </summary>
         public static IlluminanceUnit BaseUnit { get; } = IlluminanceUnit.Lux;
 
@@ -152,9 +152,9 @@ namespace UnitsNet
                 public double As(IlluminanceUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this Illuminance to another Illuminance with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A Illuminance with the specified unit.</returns>
                 public Illuminance ToUnit(IlluminanceUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

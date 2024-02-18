@@ -62,7 +62,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of ElectricChargeDensity, which is Second. All conversions go via this value.
         /// </summary>
         public static ElectricChargeDensityUnit BaseUnit { get; } = ElectricChargeDensityUnit.CoulombPerCubicMeter;
 
@@ -119,9 +119,9 @@ namespace UnitsNet
                 public double As(ElectricChargeDensityUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this ElectricChargeDensity to another ElectricChargeDensity with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A ElectricChargeDensity with the specified unit.</returns>
                 public ElectricChargeDensity ToUnit(ElectricChargeDensityUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

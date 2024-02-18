@@ -62,7 +62,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of LuminousIntensity, which is Second. All conversions go via this value.
         /// </summary>
         public static LuminousIntensityUnit BaseUnit { get; } = LuminousIntensityUnit.Candela;
 
@@ -119,9 +119,9 @@ namespace UnitsNet
                 public double As(LuminousIntensityUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this LuminousIntensity to another LuminousIntensity with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A LuminousIntensity with the specified unit.</returns>
                 public LuminousIntensity ToUnit(LuminousIntensityUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

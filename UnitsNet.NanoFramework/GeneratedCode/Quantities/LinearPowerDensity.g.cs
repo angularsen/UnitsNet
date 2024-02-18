@@ -62,7 +62,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of LinearPowerDensity, which is Second. All conversions go via this value.
         /// </summary>
         public static LinearPowerDensityUnit BaseUnit { get; } = LinearPowerDensityUnit.WattPerMeter;
 
@@ -383,9 +383,9 @@ namespace UnitsNet
                 public double As(LinearPowerDensityUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this LinearPowerDensity to another LinearPowerDensity with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A LinearPowerDensity with the specified unit.</returns>
                 public LinearPowerDensity ToUnit(LinearPowerDensityUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

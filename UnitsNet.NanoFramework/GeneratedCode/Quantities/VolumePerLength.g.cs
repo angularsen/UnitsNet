@@ -59,7 +59,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of VolumePerLength, which is Second. All conversions go via this value.
         /// </summary>
         public static VolumePerLengthUnit BaseUnit { get; } = VolumePerLengthUnit.CubicMeterPerMeter;
 
@@ -204,9 +204,9 @@ namespace UnitsNet
                 public double As(VolumePerLengthUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this VolumePerLength to another VolumePerLength with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A VolumePerLength with the specified unit.</returns>
                 public VolumePerLength ToUnit(VolumePerLengthUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

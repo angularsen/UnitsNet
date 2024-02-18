@@ -59,7 +59,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of TemperatureChangeRate, which is Second. All conversions go via this value.
         /// </summary>
         public static TemperatureChangeRateUnit BaseUnit { get; } = TemperatureChangeRateUnit.DegreeCelsiusPerSecond;
 
@@ -215,9 +215,9 @@ namespace UnitsNet
                 public double As(TemperatureChangeRateUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this TemperatureChangeRate to another TemperatureChangeRate with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A TemperatureChangeRate with the specified unit.</returns>
                 public TemperatureChangeRate ToUnit(TemperatureChangeRateUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);
