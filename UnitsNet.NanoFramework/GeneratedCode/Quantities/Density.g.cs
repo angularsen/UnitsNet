@@ -67,12 +67,12 @@ namespace UnitsNet
         public static DensityUnit BaseUnit { get; } = DensityUnit.KilogramPerCubicMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Density.
         /// </summary>
         public static Density MaxValue { get; } = new Density(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Density.
         /// </summary>
         public static Density MinValue { get; } = new Density(double.MinValue, BaseUnit);
 

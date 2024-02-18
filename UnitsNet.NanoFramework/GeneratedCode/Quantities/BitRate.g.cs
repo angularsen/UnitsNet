@@ -67,12 +67,12 @@ namespace UnitsNet
         public static BitRateUnit BaseUnit { get; } = BitRateUnit.BitPerSecond;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of BitRate.
         /// </summary>
         public static BitRate MaxValue { get; } = new BitRate(79228162514264337593543950335d, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of BitRate.
         /// </summary>
         public static BitRate MinValue { get; } = new BitRate(-79228162514264337593543950335d, BaseUnit);
 

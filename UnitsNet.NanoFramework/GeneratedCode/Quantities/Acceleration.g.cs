@@ -64,12 +64,12 @@ namespace UnitsNet
         public static AccelerationUnit BaseUnit { get; } = AccelerationUnit.MeterPerSecondSquared;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Acceleration.
         /// </summary>
         public static Acceleration MaxValue { get; } = new Acceleration(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Acceleration.
         /// </summary>
         public static Acceleration MinValue { get; } = new Acceleration(double.MinValue, BaseUnit);
 

@@ -64,12 +64,12 @@ namespace UnitsNet
         public static ImpulseUnit BaseUnit { get; } = ImpulseUnit.NewtonSecond;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Impulse.
         /// </summary>
         public static Impulse MaxValue { get; } = new Impulse(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Impulse.
         /// </summary>
         public static Impulse MinValue { get; } = new Impulse(double.MinValue, BaseUnit);
 

@@ -67,12 +67,12 @@ namespace UnitsNet
         public static SpecificWeightUnit BaseUnit { get; } = SpecificWeightUnit.NewtonPerCubicMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of SpecificWeight.
         /// </summary>
         public static SpecificWeight MaxValue { get; } = new SpecificWeight(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of SpecificWeight.
         /// </summary>
         public static SpecificWeight MinValue { get; } = new SpecificWeight(double.MinValue, BaseUnit);
 

@@ -64,12 +64,12 @@ namespace UnitsNet
         public static VolumeFlowPerAreaUnit BaseUnit { get; } = VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of VolumeFlowPerArea.
         /// </summary>
         public static VolumeFlowPerArea MaxValue { get; } = new VolumeFlowPerArea(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of VolumeFlowPerArea.
         /// </summary>
         public static VolumeFlowPerArea MinValue { get; } = new VolumeFlowPerArea(double.MinValue, BaseUnit);
 

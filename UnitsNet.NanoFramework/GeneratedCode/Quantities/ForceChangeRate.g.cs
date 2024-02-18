@@ -64,12 +64,12 @@ namespace UnitsNet
         public static ForceChangeRateUnit BaseUnit { get; } = ForceChangeRateUnit.NewtonPerSecond;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of ForceChangeRate.
         /// </summary>
         public static ForceChangeRate MaxValue { get; } = new ForceChangeRate(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of ForceChangeRate.
         /// </summary>
         public static ForceChangeRate MinValue { get; } = new ForceChangeRate(double.MinValue, BaseUnit);
 

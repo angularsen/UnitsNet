@@ -64,12 +64,12 @@ namespace UnitsNet
         public static ReactivePowerUnit BaseUnit { get; } = ReactivePowerUnit.VoltampereReactive;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of ReactivePower.
         /// </summary>
         public static ReactivePower MaxValue { get; } = new ReactivePower(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of ReactivePower.
         /// </summary>
         public static ReactivePower MinValue { get; } = new ReactivePower(double.MinValue, BaseUnit);
 

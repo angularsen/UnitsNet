@@ -67,12 +67,12 @@ namespace UnitsNet
         public static ReciprocalLengthUnit BaseUnit { get; } = ReciprocalLengthUnit.InverseMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of ReciprocalLength.
         /// </summary>
         public static ReciprocalLength MaxValue { get; } = new ReciprocalLength(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of ReciprocalLength.
         /// </summary>
         public static ReciprocalLength MinValue { get; } = new ReciprocalLength(double.MinValue, BaseUnit);
 

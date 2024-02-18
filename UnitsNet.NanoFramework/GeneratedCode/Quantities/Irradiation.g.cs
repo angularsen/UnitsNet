@@ -67,12 +67,12 @@ namespace UnitsNet
         public static IrradiationUnit BaseUnit { get; } = IrradiationUnit.JoulePerSquareMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Irradiation.
         /// </summary>
         public static Irradiation MaxValue { get; } = new Irradiation(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Irradiation.
         /// </summary>
         public static Irradiation MinValue { get; } = new Irradiation(double.MinValue, BaseUnit);
 

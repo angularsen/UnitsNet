@@ -64,12 +64,12 @@ namespace UnitsNet
         public static AreaDensityUnit BaseUnit { get; } = AreaDensityUnit.KilogramPerSquareMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of AreaDensity.
         /// </summary>
         public static AreaDensity MaxValue { get; } = new AreaDensity(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of AreaDensity.
         /// </summary>
         public static AreaDensity MinValue { get; } = new AreaDensity(double.MinValue, BaseUnit);
 

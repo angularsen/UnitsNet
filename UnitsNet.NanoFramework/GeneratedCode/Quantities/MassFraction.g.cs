@@ -67,12 +67,12 @@ namespace UnitsNet
         public static MassFractionUnit BaseUnit { get; } = MassFractionUnit.DecimalFraction;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of MassFraction.
         /// </summary>
         public static MassFraction MaxValue { get; } = new MassFraction(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of MassFraction.
         /// </summary>
         public static MassFraction MinValue { get; } = new MassFraction(double.MinValue, BaseUnit);
 

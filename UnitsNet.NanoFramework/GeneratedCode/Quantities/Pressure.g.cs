@@ -64,12 +64,12 @@ namespace UnitsNet
         public static PressureUnit BaseUnit { get; } = PressureUnit.Pascal;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Pressure.
         /// </summary>
         public static Pressure MaxValue { get; } = new Pressure(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Pressure.
         /// </summary>
         public static Pressure MinValue { get; } = new Pressure(double.MinValue, BaseUnit);
 

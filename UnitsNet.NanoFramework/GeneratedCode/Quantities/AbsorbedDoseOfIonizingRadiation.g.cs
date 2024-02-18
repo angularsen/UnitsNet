@@ -67,12 +67,12 @@ namespace UnitsNet
         public static AbsorbedDoseOfIonizingRadiationUnit BaseUnit { get; } = AbsorbedDoseOfIonizingRadiationUnit.Gray;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of AbsorbedDoseOfIonizingRadiation.
         /// </summary>
         public static AbsorbedDoseOfIonizingRadiation MaxValue { get; } = new AbsorbedDoseOfIonizingRadiation(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of AbsorbedDoseOfIonizingRadiation.
         /// </summary>
         public static AbsorbedDoseOfIonizingRadiation MinValue { get; } = new AbsorbedDoseOfIonizingRadiation(double.MinValue, BaseUnit);
 

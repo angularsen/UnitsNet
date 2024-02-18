@@ -64,12 +64,12 @@ namespace UnitsNet
         public static HeatFluxUnit BaseUnit { get; } = HeatFluxUnit.WattPerSquareMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of HeatFlux.
         /// </summary>
         public static HeatFlux MaxValue { get; } = new HeatFlux(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of HeatFlux.
         /// </summary>
         public static HeatFlux MinValue { get; } = new HeatFlux(double.MinValue, BaseUnit);
 

@@ -64,12 +64,12 @@ namespace UnitsNet
         public static InformationUnit BaseUnit { get; } = InformationUnit.Bit;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Information.
         /// </summary>
         public static Information MaxValue { get; } = new Information(79228162514264337593543950335d, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Information.
         /// </summary>
         public static Information MinValue { get; } = new Information(-79228162514264337593543950335d, BaseUnit);
 

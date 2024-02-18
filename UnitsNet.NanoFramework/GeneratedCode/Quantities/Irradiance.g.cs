@@ -64,12 +64,12 @@ namespace UnitsNet
         public static IrradianceUnit BaseUnit { get; } = IrradianceUnit.WattPerSquareMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Irradiance.
         /// </summary>
         public static Irradiance MaxValue { get; } = new Irradiance(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Irradiance.
         /// </summary>
         public static Irradiance MinValue { get; } = new Irradiance(double.MinValue, BaseUnit);
 

@@ -67,12 +67,12 @@ namespace UnitsNet
         public static DynamicViscosityUnit BaseUnit { get; } = DynamicViscosityUnit.NewtonSecondPerMeterSquared;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of DynamicViscosity.
         /// </summary>
         public static DynamicViscosity MaxValue { get; } = new DynamicViscosity(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of DynamicViscosity.
         /// </summary>
         public static DynamicViscosity MinValue { get; } = new DynamicViscosity(double.MinValue, BaseUnit);
 

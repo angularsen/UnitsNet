@@ -64,12 +64,12 @@ namespace UnitsNet
         public static RelativeHumidityUnit BaseUnit { get; } = RelativeHumidityUnit.Percent;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of RelativeHumidity.
         /// </summary>
         public static RelativeHumidity MaxValue { get; } = new RelativeHumidity(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of RelativeHumidity.
         /// </summary>
         public static RelativeHumidity MinValue { get; } = new RelativeHumidity(double.MinValue, BaseUnit);
 

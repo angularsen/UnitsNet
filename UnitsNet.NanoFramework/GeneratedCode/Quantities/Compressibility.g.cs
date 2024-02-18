@@ -64,12 +64,12 @@ namespace UnitsNet
         public static CompressibilityUnit BaseUnit { get; } = CompressibilityUnit.InversePascal;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Compressibility.
         /// </summary>
         public static Compressibility MaxValue { get; } = new Compressibility(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Compressibility.
         /// </summary>
         public static Compressibility MinValue { get; } = new Compressibility(double.MinValue, BaseUnit);
 

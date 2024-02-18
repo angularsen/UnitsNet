@@ -64,12 +64,12 @@ namespace UnitsNet
         public static LevelUnit BaseUnit { get; } = LevelUnit.Decibel;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Level.
         /// </summary>
         public static Level MaxValue { get; } = new Level(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Level.
         /// </summary>
         public static Level MinValue { get; } = new Level(double.MinValue, BaseUnit);
 

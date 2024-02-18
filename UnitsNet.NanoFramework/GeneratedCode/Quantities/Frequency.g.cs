@@ -64,12 +64,12 @@ namespace UnitsNet
         public static FrequencyUnit BaseUnit { get; } = FrequencyUnit.Hertz;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Frequency.
         /// </summary>
         public static Frequency MaxValue { get; } = new Frequency(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Frequency.
         /// </summary>
         public static Frequency MinValue { get; } = new Frequency(double.MinValue, BaseUnit);
 

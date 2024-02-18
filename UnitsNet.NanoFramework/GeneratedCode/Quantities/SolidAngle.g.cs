@@ -67,12 +67,12 @@ namespace UnitsNet
         public static SolidAngleUnit BaseUnit { get; } = SolidAngleUnit.Steradian;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of SolidAngle.
         /// </summary>
         public static SolidAngle MaxValue { get; } = new SolidAngle(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of SolidAngle.
         /// </summary>
         public static SolidAngle MinValue { get; } = new SolidAngle(double.MinValue, BaseUnit);
 

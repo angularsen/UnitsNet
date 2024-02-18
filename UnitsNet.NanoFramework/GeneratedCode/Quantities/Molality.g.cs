@@ -67,12 +67,12 @@ namespace UnitsNet
         public static MolalityUnit BaseUnit { get; } = MolalityUnit.MolePerKilogram;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Molality.
         /// </summary>
         public static Molality MaxValue { get; } = new Molality(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Molality.
         /// </summary>
         public static Molality MinValue { get; } = new Molality(double.MinValue, BaseUnit);
 

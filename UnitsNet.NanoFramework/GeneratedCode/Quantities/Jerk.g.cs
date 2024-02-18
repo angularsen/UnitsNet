@@ -64,12 +64,12 @@ namespace UnitsNet
         public static JerkUnit BaseUnit { get; } = JerkUnit.MeterPerSecondCubed;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Jerk.
         /// </summary>
         public static Jerk MaxValue { get; } = new Jerk(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Jerk.
         /// </summary>
         public static Jerk MinValue { get; } = new Jerk(double.MinValue, BaseUnit);
 

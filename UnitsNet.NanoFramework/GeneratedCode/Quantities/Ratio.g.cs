@@ -64,12 +64,12 @@ namespace UnitsNet
         public static RatioUnit BaseUnit { get; } = RatioUnit.DecimalFraction;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Ratio.
         /// </summary>
         public static Ratio MaxValue { get; } = new Ratio(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Ratio.
         /// </summary>
         public static Ratio MinValue { get; } = new Ratio(double.MinValue, BaseUnit);
 

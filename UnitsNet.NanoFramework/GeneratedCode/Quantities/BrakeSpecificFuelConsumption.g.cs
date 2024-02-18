@@ -64,12 +64,12 @@ namespace UnitsNet
         public static BrakeSpecificFuelConsumptionUnit BaseUnit { get; } = BrakeSpecificFuelConsumptionUnit.KilogramPerJoule;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of BrakeSpecificFuelConsumption.
         /// </summary>
         public static BrakeSpecificFuelConsumption MaxValue { get; } = new BrakeSpecificFuelConsumption(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of BrakeSpecificFuelConsumption.
         /// </summary>
         public static BrakeSpecificFuelConsumption MinValue { get; } = new BrakeSpecificFuelConsumption(double.MinValue, BaseUnit);
 

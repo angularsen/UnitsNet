@@ -64,12 +64,12 @@ namespace UnitsNet
         public static SpeedUnit BaseUnit { get; } = SpeedUnit.MeterPerSecond;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Speed.
         /// </summary>
         public static Speed MaxValue { get; } = new Speed(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Speed.
         /// </summary>
         public static Speed MinValue { get; } = new Speed(double.MinValue, BaseUnit);
 

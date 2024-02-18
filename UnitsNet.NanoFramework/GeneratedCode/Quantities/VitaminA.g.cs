@@ -64,12 +64,12 @@ namespace UnitsNet
         public static VitaminAUnit BaseUnit { get; } = VitaminAUnit.InternationalUnit;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of VitaminA.
         /// </summary>
         public static VitaminA MaxValue { get; } = new VitaminA(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of VitaminA.
         /// </summary>
         public static VitaminA MinValue { get; } = new VitaminA(double.MinValue, BaseUnit);
 

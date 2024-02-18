@@ -64,12 +64,12 @@ namespace UnitsNet
         public static PowerDensityUnit BaseUnit { get; } = PowerDensityUnit.WattPerCubicMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of PowerDensity.
         /// </summary>
         public static PowerDensity MaxValue { get; } = new PowerDensity(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of PowerDensity.
         /// </summary>
         public static PowerDensity MinValue { get; } = new PowerDensity(double.MinValue, BaseUnit);
 

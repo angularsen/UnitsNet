@@ -64,12 +64,12 @@ namespace UnitsNet
         public static VolumePerLengthUnit BaseUnit { get; } = VolumePerLengthUnit.CubicMeterPerMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of VolumePerLength.
         /// </summary>
         public static VolumePerLength MaxValue { get; } = new VolumePerLength(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of VolumePerLength.
         /// </summary>
         public static VolumePerLength MinValue { get; } = new VolumePerLength(double.MinValue, BaseUnit);
 

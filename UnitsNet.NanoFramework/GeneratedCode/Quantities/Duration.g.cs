@@ -64,12 +64,12 @@ namespace UnitsNet
         public static DurationUnit BaseUnit { get; } = DurationUnit.Second;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Duration.
         /// </summary>
         public static Duration MaxValue { get; } = new Duration(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Duration.
         /// </summary>
         public static Duration MinValue { get; } = new Duration(double.MinValue, BaseUnit);
 

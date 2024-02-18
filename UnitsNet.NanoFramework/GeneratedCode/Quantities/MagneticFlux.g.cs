@@ -67,12 +67,12 @@ namespace UnitsNet
         public static MagneticFluxUnit BaseUnit { get; } = MagneticFluxUnit.Weber;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of MagneticFlux.
         /// </summary>
         public static MagneticFlux MaxValue { get; } = new MagneticFlux(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of MagneticFlux.
         /// </summary>
         public static MagneticFlux MinValue { get; } = new MagneticFlux(double.MinValue, BaseUnit);
 

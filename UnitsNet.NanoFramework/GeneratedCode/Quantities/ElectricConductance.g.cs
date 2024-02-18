@@ -67,12 +67,12 @@ namespace UnitsNet
         public static ElectricConductanceUnit BaseUnit { get; } = ElectricConductanceUnit.Siemens;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of ElectricConductance.
         /// </summary>
         public static ElectricConductance MaxValue { get; } = new ElectricConductance(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of ElectricConductance.
         /// </summary>
         public static ElectricConductance MinValue { get; } = new ElectricConductance(double.MinValue, BaseUnit);
 

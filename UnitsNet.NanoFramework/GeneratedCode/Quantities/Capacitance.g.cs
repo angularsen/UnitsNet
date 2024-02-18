@@ -67,12 +67,12 @@ namespace UnitsNet
         public static CapacitanceUnit BaseUnit { get; } = CapacitanceUnit.Farad;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Capacitance.
         /// </summary>
         public static Capacitance MaxValue { get; } = new Capacitance(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Capacitance.
         /// </summary>
         public static Capacitance MinValue { get; } = new Capacitance(double.MinValue, BaseUnit);
 

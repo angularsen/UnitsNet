@@ -64,12 +64,12 @@ namespace UnitsNet
         public static ForceUnit BaseUnit { get; } = ForceUnit.Newton;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Force.
         /// </summary>
         public static Force MaxValue { get; } = new Force(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Force.
         /// </summary>
         public static Force MinValue { get; } = new Force(double.MinValue, BaseUnit);
 

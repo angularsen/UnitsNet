@@ -64,12 +64,12 @@ namespace UnitsNet
         public static ElectricPotentialUnit BaseUnit { get; } = ElectricPotentialUnit.Volt;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of ElectricPotential.
         /// </summary>
         public static ElectricPotential MaxValue { get; } = new ElectricPotential(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of ElectricPotential.
         /// </summary>
         public static ElectricPotential MinValue { get; } = new ElectricPotential(double.MinValue, BaseUnit);
 

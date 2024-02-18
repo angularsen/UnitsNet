@@ -67,12 +67,12 @@ namespace UnitsNet
         public static FuelEfficiencyUnit BaseUnit { get; } = FuelEfficiencyUnit.LiterPer100Kilometers;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of FuelEfficiency.
         /// </summary>
         public static FuelEfficiency MaxValue { get; } = new FuelEfficiency(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of FuelEfficiency.
         /// </summary>
         public static FuelEfficiency MinValue { get; } = new FuelEfficiency(double.MinValue, BaseUnit);
 

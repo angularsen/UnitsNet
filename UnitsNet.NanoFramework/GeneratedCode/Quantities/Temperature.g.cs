@@ -64,12 +64,12 @@ namespace UnitsNet
         public static TemperatureUnit BaseUnit { get; } = TemperatureUnit.Kelvin;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Temperature.
         /// </summary>
         public static Temperature MaxValue { get; } = new Temperature(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Temperature.
         /// </summary>
         public static Temperature MinValue { get; } = new Temperature(double.MinValue, BaseUnit);
 

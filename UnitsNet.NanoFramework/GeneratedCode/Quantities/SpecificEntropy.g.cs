@@ -64,12 +64,12 @@ namespace UnitsNet
         public static SpecificEntropyUnit BaseUnit { get; } = SpecificEntropyUnit.JoulePerKilogramKelvin;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of SpecificEntropy.
         /// </summary>
         public static SpecificEntropy MaxValue { get; } = new SpecificEntropy(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of SpecificEntropy.
         /// </summary>
         public static SpecificEntropy MinValue { get; } = new SpecificEntropy(double.MinValue, BaseUnit);
 

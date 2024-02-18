@@ -64,12 +64,12 @@ namespace UnitsNet
         public static TorquePerLengthUnit BaseUnit { get; } = TorquePerLengthUnit.NewtonMeterPerMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of TorquePerLength.
         /// </summary>
         public static TorquePerLength MaxValue { get; } = new TorquePerLength(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of TorquePerLength.
         /// </summary>
         public static TorquePerLength MinValue { get; } = new TorquePerLength(double.MinValue, BaseUnit);
 

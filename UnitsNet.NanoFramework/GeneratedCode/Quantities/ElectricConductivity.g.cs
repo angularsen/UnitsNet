@@ -67,12 +67,12 @@ namespace UnitsNet
         public static ElectricConductivityUnit BaseUnit { get; } = ElectricConductivityUnit.SiemensPerMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of ElectricConductivity.
         /// </summary>
         public static ElectricConductivity MaxValue { get; } = new ElectricConductivity(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of ElectricConductivity.
         /// </summary>
         public static ElectricConductivity MinValue { get; } = new ElectricConductivity(double.MinValue, BaseUnit);
 
