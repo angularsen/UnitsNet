@@ -31,20 +31,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void IValueQuantityTDecimal_Value_ReturnsDecimal()
-        {
-            IValueQuantity<decimal> decimalQuantity = Information.FromKilobytes(1234.5);
-            Assert.IsType<decimal>(decimalQuantity.Value);
-        }
-
-        [Fact]
-        public void IValueQuantityTDecimal_AsEnum_ReturnsDecimal()
-        {
-            IValueQuantity<decimal> decimalQuantity = Information.FromKilobytes(1234.5);
-            Assert.IsType<decimal>(decimalQuantity.As(InformationUnit.Byte));
-        }
-
-        [Fact]
         public void IValueQuantityTDouble_ToUnitEnum_ReturnsIValueQuantityTDouble()
         {
             IValueQuantity<double> doubleQuantity = Temperature.FromDegreesCelsius(1234.5);
@@ -56,13 +42,6 @@ namespace UnitsNet.Tests
         {
             IValueQuantity<double> doubleQuantity = Temperature.FromDegreesCelsius(1234.5);
             Assert.IsAssignableFrom<IValueQuantity<double>>(doubleQuantity.ToUnit(UnitSystem.SI));
-        }
-
-        [Fact]
-        public void IValueQuantityTDecimal_ToUnitEnum_ReturnsIValueQuantityTDecimal()
-        {
-            IValueQuantity<decimal> decimalQuantity = Information.FromKilobytes(1234.5);
-            Assert.IsAssignableFrom<IValueQuantity<decimal>>(decimalQuantity.ToUnit(InformationUnit.Bit));
         }
     }
 }

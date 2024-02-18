@@ -1,14 +1,13 @@
 {
   "Name": "Information",
   "BaseUnit": "Bit",
-  "ValueType": "decimal",
   "XmlDocSummary": "In computing and telecommunications, a unit of information is the capacity of some standard data storage system or communication channel, used to measure the capacities of other systems and channels. In information theory, units of information are also used to measure the information contents or entropy of random variables.",
   "Units": [
     {
       "SingularName": "Byte",
       "PluralName": "Bytes",
-      "FromUnitToBaseFunc": "{x} * 8m",
-      "FromBaseToUnitFunc": "{x} / 8m",
+      "FromUnitToBaseFunc": "{x} * 8",
+      "FromBaseToUnitFunc": "{x} / 8",
       "Prefixes": [ "Kilo", "Mega", "Giga", "Tera", "Peta", "Exa", "Kibi", "Mebi", "Gibi", "Tebi", "Pebi", "Exbi" ],
       "Localization": [
         {

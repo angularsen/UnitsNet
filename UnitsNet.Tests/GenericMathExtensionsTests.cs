@@ -24,14 +24,6 @@ public class GenericMathExtensionsTests
 
         Assert.Equal(Length.FromCentimeters(150), values.Average());
     }
-
-    [Fact]
-    public void CanCalcAverage_ForQuantitiesWithDecimalValueType()
-    {
-        Information[] values = { Information.FromBytes(100), Information.FromBytes(200) };
-
-        Assert.Equal(Information.FromBytes(150), values.Average());
-    }
 }
 
 #endif

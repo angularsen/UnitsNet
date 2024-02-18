@@ -31,15 +31,6 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
-        public void UnitsNetBaseJsonConverter_ConvertIQuantity_works_with_decimal_type()
-        {
-            var result = _sut.Test_ConvertDecimalIQuantity(Information.FromBits(64m));
-
-            Assert.Equal("InformationUnit.Bit", result.Unit);
-            Assert.Equal(64m, result.Value);
-        }
-
-        [Fact]
         public void UnitsNetBaseJsonConverter_ConvertIQuantity_throws_ArgumentNullException_when_quantity_is_NULL()
         {
             var result = Assert.Throws<ArgumentNullException>(() => _sut.Test_ConvertDoubleIQuantity(null));

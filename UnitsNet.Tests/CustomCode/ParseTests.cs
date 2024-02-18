@@ -202,7 +202,7 @@ namespace UnitsNet.Tests
         [InlineData("1 MB", "ru-RU", 1, InformationUnit.Megabyte)]
         [InlineData("1 MiB", "en-US", 1, InformationUnit.Mebibyte)]
         [InlineData("1 MiB", "ru-RU", 1, InformationUnit.Mebibyte)]
-        public void ParseInformationWithPrefixUnits_GivenCulture_ReturnsQuantityWithSameUnitAndValue(string str, string cultureName, decimal expectedValue, Enum expectedUnit)
+        public void ParseInformationWithPrefixUnits_GivenCulture_ReturnsQuantityWithSameUnitAndValue(string str, string cultureName, double expectedValue, Enum expectedUnit)
         {
             var actual = Information.Parse(str, CultureInfo.GetCultureInfo(cultureName));
 

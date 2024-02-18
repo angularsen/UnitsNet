@@ -1,7 +1,6 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
 using Newtonsoft.Json;
 using UnitsNet.Serialization.JsonNet.Tests.Infrastructure;
 using UnitsNet.Units;
@@ -11,27 +10,6 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 {
     public sealed class UnitsNetJsonDeserializationTests : UnitsNetJsonBaseTest
     {
-        [Fact]
-        public void Information_CanDeserializeLargeValue()
-        {
-            var original = new Information(decimal.MaxValue, InformationUnit.Exbibyte);
-            var json = SerializeObject(original);
-            var deserialized = DeserializeObject<Information>(json);
-
-            Assert.Equal(original, deserialized);
-        }
-
-        [Fact]
-        public void Information_CanDeserializeSmallValue()
-        {
-            decimal decimalEpsilon = (decimal)(1 / Math.Pow(10, 28));
-            var original = new Information(decimalEpsilon, InformationUnit.Bit);
-            var json = SerializeObject(original);
-            var deserialized = DeserializeObject<Information>(json);
-
-            Assert.Equal(original, deserialized);
-        }
-
         [Fact]
         public void Length_CanDeserializeLargeValue()
         {
@@ -302,5 +280,53 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
             Assert.Empty(result);
         }
+
+        /// <summary>
+        ///     Testing deserialization of JSON, based on <see cref="UnitsNetBaseJsonConverter{T}.ValueUnit"/>.
+        /// </summary>
+        [Fact]
+        public void CanDeserializeDoubleQuantityJson()
+        {
+            const string json =
+                """
+                {
+                    "Unit": "LengthUnit.Centimeter",
+                    "Value": 10.5,
+                }
+                """;
+
+            Length deserialized = DeserializeObject<Length>(json);
+            Assert.Equal(10.5, deserialized.Value);
+            Assert.Equal(LengthUnit.Centimeter, deserialized.Unit);
+        }
+
+        /// <summary>
+        ///     Testing backwards compatibility with deserializing <see cref="decimal"/> based quantity JSON into <see cref="double"/> based quantities.
+        ///     <br/><br/>
+        ///     In v5 and below, there were 3 <see cref="decimal"/> based quantities <see cref="Power"/>, <see cref="Information"/> and <see cref="BitRate"/>.
+        ///     Since JSON does not support decimal values, the JSON schema emitted the value as a string instead of a number and included a 'ValueType'
+        ///     discriminator to describe whether the value was double or decimal.
+        ///     <br/><br/>
+        ///     <see cref="double"/> based quantities were serialized with <see cref="UnitsNetBaseJsonConverter{T}.ValueUnit"/> DTO, with <c>double Value</c> + <c>string Unit</c> properties.<br />
+        ///     <see cref="decimal"/> based quantities were serialized with <see cref="UnitsNetBaseJsonConverter{T}.ExtendedValueUnit"/> DTO, extending with ValueString and ValueType properties.
+        /// </summary>
+        [Fact]
+        public void CanDeserializeLegacyDecimalQuantityJson()
+        {
+            const string json =
+                """
+                {
+                    "Unit": "InformationUnit.Kilobyte",
+                    "Value": 10.5,
+                    "ValueString": "10.5",
+                    "ValueType": "decimal"
+                }
+                """;
+
+            Information deserialized = DeserializeObject<Information>(json);
+            Assert.Equal(10.5, deserialized.Value);
+            Assert.Equal(InformationUnit.Kilobyte, deserialized.Unit);
+        }
+
     }
 }
