@@ -42,8 +42,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double KilowattHoursPerSquareMeterInOneJoulePerSquareMeter => 2.777777777777778e-7;
 
-        protected override double BtuPerSquareFootInOneJoulePerSquareMeter => 8.805509170334624e-5;
+        protected override double BtusPerSquareFootInOneJoulePerSquareMeter => 8.805509170334624e-5;
 
-        protected override double KilobtuPerSquareFootInOneJoulePerSquareMeter => 8.805509170334624e-8;
+        protected override double KilobtusPerSquareFootInOneJoulePerSquareMeter => 8.805509170334624e-8;
     }
 }
