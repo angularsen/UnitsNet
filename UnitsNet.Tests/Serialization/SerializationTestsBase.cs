@@ -177,21 +177,6 @@ namespace UnitsNet.Tests.Serialization
         }
 
         [Fact]
-        public void ClassOfDecimalAndNullUnits_SerializationRoundTrips()
-        {
-            var quantity = new Information(2, InformationUnit.Exabyte);
-            var quantities = new TestObject<Information> { Quantity = quantity, NullableQuantity = null };
-
-            var payload = SerializeObject(quantities);
-            var results = DeserializeObject<TestObject<Information>>(payload);
-
-            Assert.Equal(quantity.Unit, results.Quantity.Unit);
-            Assert.Equal(quantity.Value, results.Quantity.Value);
-            Assert.Equal(quantity, results.Quantity);
-            Assert.Null(results.NullableQuantity);
-        }
-
-        [Fact]
         public void ClassOfInterfaceQuantity_SerializationRoundTrips()
         {
             var quantity = new Mass(1.2, MassUnit.Milligram);

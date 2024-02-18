@@ -50,7 +50,7 @@ namespace UnitsNet.Tests.Serialization.Xml
         [Fact]
         public void InterfaceObject_IncludesTypeInformation()
         {
-            var testObject = new TestInterfaceObject { Quantity = new Information(1.2, InformationUnit.Exabyte) };
+            var testObject = new TestInterfaceObject { Quantity = new Information(1.20, InformationUnit.Exabyte) };
 
             var quantityNamespace = "xmlns:a=\"http://schemas.datacontract.org/2004/07/UnitsNet\""; // there is an extra 'a' compared to Namespace
             var expectedQuantityXml = $"<Quantity i:type=\"a:Information\" {quantityNamespace}><a:Value>1.2</a:Value><a:Unit>Exabyte</a:Unit></Quantity>";
