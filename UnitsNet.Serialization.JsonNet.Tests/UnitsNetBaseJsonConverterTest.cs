@@ -33,10 +33,10 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         [Fact]
         public void UnitsNetBaseJsonConverter_ConvertIQuantity_works_with_decimal_type()
         {
-            var result = _sut.Test_ConvertDecimalIQuantity(Power.FromWatts(10.2365m));
+            var result = _sut.Test_ConvertDecimalIQuantity(Information.FromBits(64m));
 
-            Assert.Equal("PowerUnit.Watt", result.Unit);
-            Assert.Equal(10.2365m, result.Value);
+            Assert.Equal("InformationUnit.Bit", result.Unit);
+            Assert.Equal(64m, result.Value);
         }
 
         [Fact]
@@ -54,8 +54,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
             Assert.NotNull(result);
             Assert.IsType<Power>(result);
-            Assert.True(Power.FromWatts(10.2365m).Equals((Power)result, 1E-5m, ComparisonType.Absolute));
-
+            Assert.True(Power.FromWatts(10.2365).Equals((Power)result, 1e-5, ComparisonType.Absolute));
         }
 
         [Fact]

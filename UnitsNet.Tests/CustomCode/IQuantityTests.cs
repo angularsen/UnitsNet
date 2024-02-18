@@ -93,12 +93,5 @@ namespace UnitsNet.Tests
             IQuantity<InformationUnit, decimal> decimalQuantity = Information.FromKilobytes(1234.5);
             Assert.IsType<decimal>(decimalQuantity.As(InformationUnit.Byte));
         }
-
-        [Fact]
-        public void IQuantityTUnitDecimal_AsUnitSystem_ReturnsDecimal()
-        {
-            IQuantity<PowerUnit, decimal> decimalQuantity = Power.FromMegawatts(1234.5);
-            Assert.IsType<decimal>(decimalQuantity.As(UnitSystem.SI));
-        }
     }
 }

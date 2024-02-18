@@ -1152,7 +1152,7 @@ namespace UnitsNet
         /// <summary>Get <see cref="Duration"/> from <see cref="Energy"/> / <see cref="Power"/>.</summary>
         public static Duration operator /(Energy energy, Power power)
         {
-            return Duration.FromSeconds(energy.Joules / (double)power.Watts);
+            return Duration.FromSeconds(energy.Joules / power.Watts);
         }
 
         /// <summary>Get <see cref="ElectricCharge"/> from <see cref="Energy"/> / <see cref="ElectricPotential"/>.</summary>

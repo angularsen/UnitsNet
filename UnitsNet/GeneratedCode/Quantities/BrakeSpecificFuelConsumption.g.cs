@@ -478,7 +478,7 @@ namespace UnitsNet
         /// <summary>Get <see cref="MassFlow"/> from <see cref="BrakeSpecificFuelConsumption"/> * <see cref="Power"/>.</summary>
         public static MassFlow operator *(BrakeSpecificFuelConsumption brakeSpecificFuelConsumption, Power power)
         {
-            return MassFlow.FromKilogramsPerSecond(brakeSpecificFuelConsumption.KilogramsPerJoule * (double)power.Watts);
+            return MassFlow.FromKilogramsPerSecond(brakeSpecificFuelConsumption.KilogramsPerJoule * power.Watts);
         }
 
         /// <summary>Get <see cref="SpecificEnergy"/> from <see cref="double"/> / <see cref="BrakeSpecificFuelConsumption"/>.</summary>

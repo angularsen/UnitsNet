@@ -663,7 +663,7 @@ namespace UnitsNet
         /// <summary>Get <see cref="Energy"/> from <see cref="Duration"/> * <see cref="Power"/>.</summary>
         public static Energy operator *(Duration duration, Power power)
         {
-            return Energy.FromJoules(duration.Seconds * (double)power.Watts);
+            return Energy.FromJoules(duration.Seconds * power.Watts);
         }
 
         /// <summary>Get <see cref="Force"/> from <see cref="Duration"/> * <see cref="ForceChangeRate"/>.</summary>
