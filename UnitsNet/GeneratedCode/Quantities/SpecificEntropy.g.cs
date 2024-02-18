@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,10 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct SpecificEntropy :
         IArithmeticQuantity<SpecificEntropy, SpecificEntropyUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<SpecificEntropy, Mass, Entropy>,
+        IMultiplyOperators<SpecificEntropy, TemperatureDelta, SpecificEnergy>,
+#endif
         IComparable,
         IComparable<SpecificEntropy>,
         IConvertible,
@@ -47,13 +54,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 0)]
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 1)]
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly SpecificEntropyUnit? _unit;
 
         static SpecificEntropy()
@@ -570,6 +577,22 @@ namespace UnitsNet
         public static double operator /(SpecificEntropy left, SpecificEntropy right)
         {
             return left.JoulesPerKilogramKelvin / right.JoulesPerKilogramKelvin;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Entropy"/> from <see cref="SpecificEntropy"/> * <see cref="Mass"/>.</summary>
+        public static Entropy operator *(SpecificEntropy specificEntropy, Mass mass)
+        {
+            return Entropy.FromJoulesPerKelvin(specificEntropy.JoulesPerKilogramKelvin * mass.Kilograms);
+        }
+
+        /// <summary>Get <see cref="SpecificEnergy"/> from <see cref="SpecificEntropy"/> * <see cref="TemperatureDelta"/>.</summary>
+        public static SpecificEnergy operator *(SpecificEntropy specificEntropy, TemperatureDelta temperatureDelta)
+        {
+            return SpecificEnergy.FromJoulesPerKilogram(specificEntropy.JoulesPerKilogramKelvin * temperatureDelta.Kelvins);
         }
 
         #endregion

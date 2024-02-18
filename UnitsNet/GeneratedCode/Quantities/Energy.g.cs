@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,18 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct Energy :
         IArithmeticQuantity<Energy, EnergyUnit, double>,
+#if NET7_0_OR_GREATER
+        IDivisionOperators<Energy, Power, Duration>,
+        IDivisionOperators<Energy, ElectricPotential, ElectricCharge>,
+        IDivisionOperators<Energy, ElectricCharge, ElectricPotential>,
+        IDivisionOperators<Energy, TemperatureDelta, Entropy>,
+        IDivisionOperators<Energy, SpecificEnergy, Mass>,
+        IMultiplyOperators<Energy, Frequency, Power>,
+        IDivisionOperators<Energy, Duration, Power>,
+        IDivisionOperators<Energy, TimeSpan, Power>,
+        IDivisionOperators<Energy, Mass, SpecificEnergy>,
+        IDivisionOperators<Energy, Entropy, TemperatureDelta>,
+#endif
         IComparable,
         IComparable<Energy>,
         IConvertible,
@@ -47,13 +62,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 0)]
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 1)]
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly EnergyUnit? _unit;
 
         static Energy()
@@ -1128,6 +1143,70 @@ namespace UnitsNet
         public static double operator /(Energy left, Energy right)
         {
             return left.Joules / right.Joules;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Duration"/> from <see cref="Energy"/> / <see cref="Power"/>.</summary>
+        public static Duration operator /(Energy energy, Power power)
+        {
+            return Duration.FromSeconds(energy.Joules / power.Watts);
+        }
+
+        /// <summary>Get <see cref="ElectricCharge"/> from <see cref="Energy"/> / <see cref="ElectricPotential"/>.</summary>
+        public static ElectricCharge operator /(Energy energy, ElectricPotential electricPotential)
+        {
+            return ElectricCharge.FromCoulombs(energy.Joules / electricPotential.Volts);
+        }
+
+        /// <summary>Get <see cref="ElectricPotential"/> from <see cref="Energy"/> / <see cref="ElectricCharge"/>.</summary>
+        public static ElectricPotential operator /(Energy energy, ElectricCharge electricCharge)
+        {
+            return ElectricPotential.FromVolts(energy.Joules / electricCharge.Coulombs);
+        }
+
+        /// <summary>Get <see cref="Entropy"/> from <see cref="Energy"/> / <see cref="TemperatureDelta"/>.</summary>
+        public static Entropy operator /(Energy energy, TemperatureDelta temperatureDelta)
+        {
+            return Entropy.FromJoulesPerKelvin(energy.Joules / temperatureDelta.Kelvins);
+        }
+
+        /// <summary>Get <see cref="Mass"/> from <see cref="Energy"/> / <see cref="SpecificEnergy"/>.</summary>
+        public static Mass operator /(Energy energy, SpecificEnergy specificEnergy)
+        {
+            return Mass.FromKilograms(energy.Joules / specificEnergy.JoulesPerKilogram);
+        }
+
+        /// <summary>Get <see cref="Power"/> from <see cref="Energy"/> * <see cref="Frequency"/>.</summary>
+        public static Power operator *(Energy energy, Frequency frequency)
+        {
+            return Power.FromWatts(energy.Joules * frequency.PerSecond);
+        }
+
+        /// <summary>Get <see cref="Power"/> from <see cref="Energy"/> / <see cref="Duration"/>.</summary>
+        public static Power operator /(Energy energy, Duration duration)
+        {
+            return Power.FromWatts(energy.Joules / duration.Seconds);
+        }
+
+        /// <summary>Get <see cref="Power"/> from <see cref="Energy"/> / <see cref="TimeSpan"/>.</summary>
+        public static Power operator /(Energy energy, TimeSpan timeSpan)
+        {
+            return Power.FromWatts(energy.Joules / timeSpan.TotalSeconds);
+        }
+
+        /// <summary>Get <see cref="SpecificEnergy"/> from <see cref="Energy"/> / <see cref="Mass"/>.</summary>
+        public static SpecificEnergy operator /(Energy energy, Mass mass)
+        {
+            return SpecificEnergy.FromJoulesPerKilogram(energy.Joules / mass.Kilograms);
+        }
+
+        /// <summary>Get <see cref="TemperatureDelta"/> from <see cref="Energy"/> / <see cref="Entropy"/>.</summary>
+        public static TemperatureDelta operator /(Energy energy, Entropy entropy)
+        {
+            return TemperatureDelta.FromKelvins(energy.Joules / entropy.JoulesPerKelvin);
         }
 
         #endregion

@@ -38,63 +38,63 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class PowerTestsBase : QuantityTestsBase
     {
-        protected abstract decimal BoilerHorsepowerInOneWatt { get; }
-        protected abstract decimal BritishThermalUnitsPerHourInOneWatt { get; }
-        protected abstract decimal DecawattsInOneWatt { get; }
-        protected abstract decimal DeciwattsInOneWatt { get; }
-        protected abstract decimal ElectricalHorsepowerInOneWatt { get; }
-        protected abstract decimal FemtowattsInOneWatt { get; }
-        protected abstract decimal GigajoulesPerHourInOneWatt { get; }
-        protected abstract decimal GigawattsInOneWatt { get; }
-        protected abstract decimal HydraulicHorsepowerInOneWatt { get; }
-        protected abstract decimal JoulesPerHourInOneWatt { get; }
-        protected abstract decimal KilobritishThermalUnitsPerHourInOneWatt { get; }
-        protected abstract decimal KilojoulesPerHourInOneWatt { get; }
-        protected abstract decimal KilowattsInOneWatt { get; }
-        protected abstract decimal MechanicalHorsepowerInOneWatt { get; }
-        protected abstract decimal MegabritishThermalUnitsPerHourInOneWatt { get; }
-        protected abstract decimal MegajoulesPerHourInOneWatt { get; }
-        protected abstract decimal MegawattsInOneWatt { get; }
-        protected abstract decimal MetricHorsepowerInOneWatt { get; }
-        protected abstract decimal MicrowattsInOneWatt { get; }
-        protected abstract decimal MillijoulesPerHourInOneWatt { get; }
-        protected abstract decimal MilliwattsInOneWatt { get; }
-        protected abstract decimal NanowattsInOneWatt { get; }
-        protected abstract decimal PetawattsInOneWatt { get; }
-        protected abstract decimal PicowattsInOneWatt { get; }
-        protected abstract decimal TerawattsInOneWatt { get; }
-        protected abstract decimal WattsInOneWatt { get; }
+        protected abstract double BoilerHorsepowerInOneWatt { get; }
+        protected abstract double BritishThermalUnitsPerHourInOneWatt { get; }
+        protected abstract double DecawattsInOneWatt { get; }
+        protected abstract double DeciwattsInOneWatt { get; }
+        protected abstract double ElectricalHorsepowerInOneWatt { get; }
+        protected abstract double FemtowattsInOneWatt { get; }
+        protected abstract double GigajoulesPerHourInOneWatt { get; }
+        protected abstract double GigawattsInOneWatt { get; }
+        protected abstract double HydraulicHorsepowerInOneWatt { get; }
+        protected abstract double JoulesPerHourInOneWatt { get; }
+        protected abstract double KilobritishThermalUnitsPerHourInOneWatt { get; }
+        protected abstract double KilojoulesPerHourInOneWatt { get; }
+        protected abstract double KilowattsInOneWatt { get; }
+        protected abstract double MechanicalHorsepowerInOneWatt { get; }
+        protected abstract double MegabritishThermalUnitsPerHourInOneWatt { get; }
+        protected abstract double MegajoulesPerHourInOneWatt { get; }
+        protected abstract double MegawattsInOneWatt { get; }
+        protected abstract double MetricHorsepowerInOneWatt { get; }
+        protected abstract double MicrowattsInOneWatt { get; }
+        protected abstract double MillijoulesPerHourInOneWatt { get; }
+        protected abstract double MilliwattsInOneWatt { get; }
+        protected abstract double NanowattsInOneWatt { get; }
+        protected abstract double PetawattsInOneWatt { get; }
+        protected abstract double PicowattsInOneWatt { get; }
+        protected abstract double TerawattsInOneWatt { get; }
+        protected abstract double WattsInOneWatt { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual decimal BoilerHorsepowerTolerance { get { return 1e-9m; } }
-        protected virtual decimal BritishThermalUnitsPerHourTolerance { get { return 1e-9m; } }
-        protected virtual decimal DecawattsTolerance { get { return 1e-9m; } }
-        protected virtual decimal DeciwattsTolerance { get { return 1e-9m; } }
-        protected virtual decimal ElectricalHorsepowerTolerance { get { return 1e-9m; } }
-        protected virtual decimal FemtowattsTolerance { get { return 1e-9m; } }
-        protected virtual decimal GigajoulesPerHourTolerance { get { return 1e-9m; } }
-        protected virtual decimal GigawattsTolerance { get { return 1e-9m; } }
-        protected virtual decimal HydraulicHorsepowerTolerance { get { return 1e-9m; } }
-        protected virtual decimal JoulesPerHourTolerance { get { return 1e-9m; } }
-        protected virtual decimal KilobritishThermalUnitsPerHourTolerance { get { return 1e-9m; } }
-        protected virtual decimal KilojoulesPerHourTolerance { get { return 1e-9m; } }
-        protected virtual decimal KilowattsTolerance { get { return 1e-9m; } }
-        protected virtual decimal MechanicalHorsepowerTolerance { get { return 1e-9m; } }
-        protected virtual decimal MegabritishThermalUnitsPerHourTolerance { get { return 1e-9m; } }
-        protected virtual decimal MegajoulesPerHourTolerance { get { return 1e-9m; } }
-        protected virtual decimal MegawattsTolerance { get { return 1e-9m; } }
-        protected virtual decimal MetricHorsepowerTolerance { get { return 1e-9m; } }
-        protected virtual decimal MicrowattsTolerance { get { return 1e-9m; } }
-        protected virtual decimal MillijoulesPerHourTolerance { get { return 1e-9m; } }
-        protected virtual decimal MilliwattsTolerance { get { return 1e-9m; } }
-        protected virtual decimal NanowattsTolerance { get { return 1e-9m; } }
-        protected virtual decimal PetawattsTolerance { get { return 1e-9m; } }
-        protected virtual decimal PicowattsTolerance { get { return 1e-9m; } }
-        protected virtual decimal TerawattsTolerance { get { return 1e-9m; } }
-        protected virtual decimal WattsTolerance { get { return 1e-9m; } }
+        protected virtual double BoilerHorsepowerTolerance { get { return 1e-5; } }
+        protected virtual double BritishThermalUnitsPerHourTolerance { get { return 1e-5; } }
+        protected virtual double DecawattsTolerance { get { return 1e-5; } }
+        protected virtual double DeciwattsTolerance { get { return 1e-5; } }
+        protected virtual double ElectricalHorsepowerTolerance { get { return 1e-5; } }
+        protected virtual double FemtowattsTolerance { get { return 1e-5; } }
+        protected virtual double GigajoulesPerHourTolerance { get { return 1e-5; } }
+        protected virtual double GigawattsTolerance { get { return 1e-5; } }
+        protected virtual double HydraulicHorsepowerTolerance { get { return 1e-5; } }
+        protected virtual double JoulesPerHourTolerance { get { return 1e-5; } }
+        protected virtual double KilobritishThermalUnitsPerHourTolerance { get { return 1e-5; } }
+        protected virtual double KilojoulesPerHourTolerance { get { return 1e-5; } }
+        protected virtual double KilowattsTolerance { get { return 1e-5; } }
+        protected virtual double MechanicalHorsepowerTolerance { get { return 1e-5; } }
+        protected virtual double MegabritishThermalUnitsPerHourTolerance { get { return 1e-5; } }
+        protected virtual double MegajoulesPerHourTolerance { get { return 1e-5; } }
+        protected virtual double MegawattsTolerance { get { return 1e-5; } }
+        protected virtual double MetricHorsepowerTolerance { get { return 1e-5; } }
+        protected virtual double MicrowattsTolerance { get { return 1e-5; } }
+        protected virtual double MillijoulesPerHourTolerance { get { return 1e-5; } }
+        protected virtual double MilliwattsTolerance { get { return 1e-5; } }
+        protected virtual double NanowattsTolerance { get { return 1e-5; } }
+        protected virtual double PetawattsTolerance { get { return 1e-5; } }
+        protected virtual double PicowattsTolerance { get { return 1e-5; } }
+        protected virtual double TerawattsTolerance { get { return 1e-5; } }
+        protected virtual double WattsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
-        protected (decimal UnitsInBaseUnit, decimal Tolerence) GetConversionFactor(PowerUnit unit)
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(PowerUnit unit)
         {
             return unit switch
             {
@@ -163,8 +163,25 @@ namespace UnitsNet.Tests
         {
             var quantity = new Power();
             Assert.Equal(0, quantity.Value);
-            Assert.Equal(0m, ((IValueQuantity<decimal>)quantity).Value);
             Assert.Equal(PowerUnit.Watt, quantity.Unit);
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
+        {
+            var exception1 = Record.Exception(() => new Power(double.PositiveInfinity, PowerUnit.Watt));
+            var exception2 = Record.Exception(() => new Power(double.NegativeInfinity, PowerUnit.Watt));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
+        {
+            var exception = Record.Exception(() => new Power(double.NaN, PowerUnit.Watt));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -341,6 +358,24 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity25.Watts, WattsTolerance);
             Assert.Equal(PowerUnit.Watt, quantity25.Unit);
 
+        }
+
+        [Fact]
+        public void FromWatts_WithInfinityValue_DoNotThrowsArgumentException()
+        {
+            var exception1 = Record.Exception(() => Power.FromWatts(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => Power.FromWatts(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
+        }
+
+        [Fact]
+        public void FromWatts_WithNanValue_DoNotThrowsArgumentException()
+        {
+            var exception = Record.Exception(() => Power.FromWatts(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -1174,7 +1209,7 @@ namespace UnitsNet.Tests
         [InlineData(1, PowerUnit.Watt, 2, PowerUnit.Watt, false)] // Different value.
         [InlineData(2, PowerUnit.Watt, 1, PowerUnit.BoilerHorsepower, false)] // Different value and unit.
         [InlineData(1, PowerUnit.Watt, 1, PowerUnit.BoilerHorsepower, false)] // Different unit.
-        public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(decimal valueA, PowerUnit unitA, decimal valueB, PowerUnit unitB, bool expectEqual)
+        public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, PowerUnit unitA, double valueB, PowerUnit unitB, bool expectEqual)
         {
             var a = new Power(valueA, unitA);
             var b = new Power(valueB, unitB);
@@ -1335,10 +1370,10 @@ namespace UnitsNet.Tests
             try
             {
                 CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 W", new Power(0.123456m, PowerUnit.Watt).ToString("s1"));
-                Assert.Equal("0.12 W", new Power(0.123456m, PowerUnit.Watt).ToString("s2"));
-                Assert.Equal("0.123 W", new Power(0.123456m, PowerUnit.Watt).ToString("s3"));
-                Assert.Equal("0.1235 W", new Power(0.123456m, PowerUnit.Watt).ToString("s4"));
+                Assert.Equal("0.1 W", new Power(0.123456, PowerUnit.Watt).ToString("s1"));
+                Assert.Equal("0.12 W", new Power(0.123456, PowerUnit.Watt).ToString("s2"));
+                Assert.Equal("0.123 W", new Power(0.123456, PowerUnit.Watt).ToString("s3"));
+                Assert.Equal("0.1235 W", new Power(0.123456, PowerUnit.Watt).ToString("s4"));
             }
             finally
             {
@@ -1350,10 +1385,10 @@ namespace UnitsNet.Tests
         public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
         {
             var culture = CultureInfo.InvariantCulture;
-            Assert.Equal("0.1 W", new Power(0.123456m, PowerUnit.Watt).ToString("s1", culture));
-            Assert.Equal("0.12 W", new Power(0.123456m, PowerUnit.Watt).ToString("s2", culture));
-            Assert.Equal("0.123 W", new Power(0.123456m, PowerUnit.Watt).ToString("s3", culture));
-            Assert.Equal("0.1235 W", new Power(0.123456m, PowerUnit.Watt).ToString("s4", culture));
+            Assert.Equal("0.1 W", new Power(0.123456, PowerUnit.Watt).ToString("s1", culture));
+            Assert.Equal("0.12 W", new Power(0.123456, PowerUnit.Watt).ToString("s2", culture));
+            Assert.Equal("0.123 W", new Power(0.123456, PowerUnit.Watt).ToString("s3", culture));
+            Assert.Equal("0.1235 W", new Power(0.123456, PowerUnit.Watt).ToString("s4", culture));
         }
 
         [Theory]

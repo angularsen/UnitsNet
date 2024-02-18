@@ -50,13 +50,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 0)]
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 1)]
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly ElectricResistivityUnit? _unit;
 
         static ElectricResistivity()
@@ -663,6 +663,17 @@ namespace UnitsNet
         public static double operator /(ElectricResistivity left, ElectricResistivity right)
         {
             return left.OhmMeters / right.OhmMeters;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Calculates the inverse of this quantity.</summary>
+        /// <returns>The corresponding inverse quantity, <see cref="ElectricConductivity"/>.</returns>
+        public ElectricConductivity Inverse()
+        {
+            return OhmMeters == 0.0 ? ElectricConductivity.Zero : ElectricConductivity.FromSiemensPerMeter(1 / OhmMeters);
         }
 
         #endregion

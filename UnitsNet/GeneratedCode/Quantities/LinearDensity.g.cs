@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -41,6 +44,11 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct LinearDensity :
         IArithmeticQuantity<LinearDensity, LinearDensityUnit, double>,
+#if NET7_0_OR_GREATER
+        IDivisionOperators<LinearDensity, Density, Area>,
+        IDivisionOperators<LinearDensity, Area, Density>,
+        IMultiplyOperators<LinearDensity, Length, Mass>,
+#endif
         IComparable,
         IComparable<LinearDensity>,
         IConvertible,
@@ -50,13 +58,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 0)]
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 1)]
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly LinearDensityUnit? _unit;
 
         static LinearDensity()
@@ -663,6 +671,28 @@ namespace UnitsNet
         public static double operator /(LinearDensity left, LinearDensity right)
         {
             return left.KilogramsPerMeter / right.KilogramsPerMeter;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Area"/> from <see cref="LinearDensity"/> / <see cref="Density"/>.</summary>
+        public static Area operator /(LinearDensity linearDensity, Density density)
+        {
+            return Area.FromSquareMeters(linearDensity.KilogramsPerMeter / density.KilogramsPerCubicMeter);
+        }
+
+        /// <summary>Get <see cref="Density"/> from <see cref="LinearDensity"/> / <see cref="Area"/>.</summary>
+        public static Density operator /(LinearDensity linearDensity, Area area)
+        {
+            return Density.FromKilogramsPerCubicMeter(linearDensity.KilogramsPerMeter / area.SquareMeters);
+        }
+
+        /// <summary>Get <see cref="Mass"/> from <see cref="LinearDensity"/> * <see cref="Length"/>.</summary>
+        public static Mass operator *(LinearDensity linearDensity, Length length)
+        {
+            return Mass.FromKilograms(linearDensity.KilogramsPerMeter * length.Meters);
         }
 
         #endregion

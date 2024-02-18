@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,13 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct TemperatureDelta :
         IArithmeticQuantity<TemperatureDelta, TemperatureDeltaUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<TemperatureDelta, Entropy, Energy>,
+        IDivisionOperators<TemperatureDelta, TemperatureGradient, Length>,
+        IMultiplyOperators<TemperatureDelta, SpecificEntropy, SpecificEnergy>,
+        IDivisionOperators<TemperatureDelta, Length, TemperatureGradient>,
+        IMultiplyOperators<TemperatureDelta, CoefficientOfThermalExpansion, double>,
+#endif
         IComparable,
         IComparable<TemperatureDelta>,
         IConvertible,
@@ -47,13 +57,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 0)]
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 1)]
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly TemperatureDeltaUnit? _unit;
 
         static TemperatureDelta()
@@ -570,6 +580,40 @@ namespace UnitsNet
         public static double operator /(TemperatureDelta left, TemperatureDelta right)
         {
             return left.Kelvins / right.Kelvins;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Energy"/> from <see cref="TemperatureDelta"/> * <see cref="Entropy"/>.</summary>
+        public static Energy operator *(TemperatureDelta temperatureDelta, Entropy entropy)
+        {
+            return Energy.FromJoules(temperatureDelta.Kelvins * entropy.JoulesPerKelvin);
+        }
+
+        /// <summary>Get <see cref="Length"/> from <see cref="TemperatureDelta"/> / <see cref="TemperatureGradient"/>.</summary>
+        public static Length operator /(TemperatureDelta temperatureDelta, TemperatureGradient temperatureGradient)
+        {
+            return Length.FromKilometers(temperatureDelta.Kelvins / temperatureGradient.DegreesCelsiusPerKilometer);
+        }
+
+        /// <summary>Get <see cref="SpecificEnergy"/> from <see cref="TemperatureDelta"/> * <see cref="SpecificEntropy"/>.</summary>
+        public static SpecificEnergy operator *(TemperatureDelta temperatureDelta, SpecificEntropy specificEntropy)
+        {
+            return SpecificEnergy.FromJoulesPerKilogram(temperatureDelta.Kelvins * specificEntropy.JoulesPerKilogramKelvin);
+        }
+
+        /// <summary>Get <see cref="TemperatureGradient"/> from <see cref="TemperatureDelta"/> / <see cref="Length"/>.</summary>
+        public static TemperatureGradient operator /(TemperatureDelta temperatureDelta, Length length)
+        {
+            return TemperatureGradient.FromKelvinsPerMeter(temperatureDelta.Kelvins / length.Meters);
+        }
+
+        /// <summary>Get <see cref="double"/> from <see cref="TemperatureDelta"/> * <see cref="CoefficientOfThermalExpansion"/>.</summary>
+        public static double operator *(TemperatureDelta temperatureDelta, CoefficientOfThermalExpansion coefficientOfThermalExpansion)
+        {
+            return temperatureDelta.Kelvins * coefficientOfThermalExpansion.PerKelvin;
         }
 
         #endregion

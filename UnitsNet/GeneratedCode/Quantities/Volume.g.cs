@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,15 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct Volume :
         IArithmeticQuantity<Volume, VolumeUnit, double>,
+#if NET7_0_OR_GREATER
+        IDivisionOperators<Volume, Length, Area>,
+        IMultiplyOperators<Volume, EnergyDensity, Energy>,
+        IDivisionOperators<Volume, Area, Length>,
+        IMultiplyOperators<Volume, Density, Mass>,
+        IMultiplyOperators<Volume, MassConcentration, Mass>,
+        IDivisionOperators<Volume, Duration, VolumeFlow>,
+        IDivisionOperators<Volume, TimeSpan, VolumeFlow>,
+#endif
         IComparable,
         IComparable<Volume>,
         IConvertible,
@@ -47,13 +59,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 0)]
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 1)]
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly VolumeUnit? _unit;
 
         static Volume()
@@ -1380,6 +1392,52 @@ namespace UnitsNet
         public static double operator /(Volume left, Volume right)
         {
             return left.CubicMeters / right.CubicMeters;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Area"/> from <see cref="Volume"/> / <see cref="Length"/>.</summary>
+        public static Area operator /(Volume volume, Length length)
+        {
+            return Area.FromSquareMeters(volume.CubicMeters / length.Meters);
+        }
+
+        /// <summary>Get <see cref="Energy"/> from <see cref="Volume"/> * <see cref="EnergyDensity"/>.</summary>
+        public static Energy operator *(Volume volume, EnergyDensity energyDensity)
+        {
+            return Energy.FromJoules(volume.CubicMeters * energyDensity.JoulesPerCubicMeter);
+        }
+
+        /// <summary>Get <see cref="Length"/> from <see cref="Volume"/> / <see cref="Area"/>.</summary>
+        public static Length operator /(Volume volume, Area area)
+        {
+            return Length.FromMeters(volume.CubicMeters / area.SquareMeters);
+        }
+
+        /// <summary>Get <see cref="Mass"/> from <see cref="Volume"/> * <see cref="Density"/>.</summary>
+        public static Mass operator *(Volume volume, Density density)
+        {
+            return Mass.FromKilograms(volume.CubicMeters * density.KilogramsPerCubicMeter);
+        }
+
+        /// <summary>Get <see cref="Mass"/> from <see cref="Volume"/> * <see cref="MassConcentration"/>.</summary>
+        public static Mass operator *(Volume volume, MassConcentration massConcentration)
+        {
+            return Mass.FromKilograms(volume.CubicMeters * massConcentration.KilogramsPerCubicMeter);
+        }
+
+        /// <summary>Get <see cref="VolumeFlow"/> from <see cref="Volume"/> / <see cref="Duration"/>.</summary>
+        public static VolumeFlow operator /(Volume volume, Duration duration)
+        {
+            return VolumeFlow.FromCubicMetersPerSecond(volume.CubicMeters / duration.Seconds);
+        }
+
+        /// <summary>Get <see cref="VolumeFlow"/> from <see cref="Volume"/> / <see cref="TimeSpan"/>.</summary>
+        public static VolumeFlow operator /(Volume volume, TimeSpan timeSpan)
+        {
+            return VolumeFlow.FromCubicMetersPerSecond(volume.CubicMeters / timeSpan.TotalSeconds);
         }
 
         #endregion

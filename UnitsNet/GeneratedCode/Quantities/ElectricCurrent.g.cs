@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,14 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct ElectricCurrent :
         IArithmeticQuantity<ElectricCurrent, ElectricCurrentUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<ElectricCurrent, Duration, ElectricCharge>,
+        IMultiplyOperators<ElectricCurrent, TimeSpan, ElectricCharge>,
+        IDivisionOperators<ElectricCurrent, Duration, ElectricCurrentGradient>,
+        IDivisionOperators<ElectricCurrent, TimeSpan, ElectricCurrentGradient>,
+        IMultiplyOperators<ElectricCurrent, ElectricResistance, ElectricPotential>,
+        IMultiplyOperators<ElectricCurrent, ElectricPotential, Power>,
+#endif
         IComparable,
         IComparable<ElectricCurrent>,
         IConvertible,
@@ -47,13 +58,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 0)]
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 1)]
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly ElectricCurrentUnit? _unit;
 
         static ElectricCurrent()
@@ -570,6 +581,52 @@ namespace UnitsNet
         public static double operator /(ElectricCurrent left, ElectricCurrent right)
         {
             return left.Amperes / right.Amperes;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="ElectricCharge"/> from <see cref="ElectricCurrent"/> * <see cref="Duration"/>.</summary>
+        public static ElectricCharge operator *(ElectricCurrent electricCurrent, Duration duration)
+        {
+            return ElectricCharge.FromAmpereHours(electricCurrent.Amperes * duration.Hours);
+        }
+
+        /// <summary>Get <see cref="ElectricCharge"/> from <see cref="ElectricCurrent"/> * <see cref="TimeSpan"/>.</summary>
+        public static ElectricCharge operator *(ElectricCurrent electricCurrent, TimeSpan timeSpan)
+        {
+            return ElectricCharge.FromAmpereHours(electricCurrent.Amperes * timeSpan.TotalHours);
+        }
+
+        /// <summary>Get <see cref="ElectricCharge"/> from <see cref="TimeSpan"/> * <see cref="ElectricCurrent"/>.</summary>
+        public static ElectricCharge operator *(TimeSpan timeSpan, ElectricCurrent electricCurrent)
+        {
+            return ElectricCharge.FromAmpereHours(timeSpan.TotalHours * electricCurrent.Amperes);
+        }
+
+        /// <summary>Get <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrent"/> / <see cref="Duration"/>.</summary>
+        public static ElectricCurrentGradient operator /(ElectricCurrent electricCurrent, Duration duration)
+        {
+            return ElectricCurrentGradient.FromAmperesPerSecond(electricCurrent.Amperes / duration.Seconds);
+        }
+
+        /// <summary>Get <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrent"/> / <see cref="TimeSpan"/>.</summary>
+        public static ElectricCurrentGradient operator /(ElectricCurrent electricCurrent, TimeSpan timeSpan)
+        {
+            return ElectricCurrentGradient.FromAmperesPerSecond(electricCurrent.Amperes / timeSpan.TotalSeconds);
+        }
+
+        /// <summary>Get <see cref="ElectricPotential"/> from <see cref="ElectricCurrent"/> * <see cref="ElectricResistance"/>.</summary>
+        public static ElectricPotential operator *(ElectricCurrent electricCurrent, ElectricResistance electricResistance)
+        {
+            return ElectricPotential.FromVolts(electricCurrent.Amperes * electricResistance.Ohms);
+        }
+
+        /// <summary>Get <see cref="Power"/> from <see cref="ElectricCurrent"/> * <see cref="ElectricPotential"/>.</summary>
+        public static Power operator *(ElectricCurrent electricCurrent, ElectricPotential electricPotential)
+        {
+            return Power.FromWatts(electricCurrent.Amperes * electricPotential.Volts);
         }
 
         #endregion

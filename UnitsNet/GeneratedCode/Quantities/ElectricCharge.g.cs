@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -41,6 +44,12 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct ElectricCharge :
         IArithmeticQuantity<ElectricCharge, ElectricChargeUnit, double>,
+#if NET7_0_OR_GREATER
+        IDivisionOperators<ElectricCharge, ElectricCurrent, Duration>,
+        IDivisionOperators<ElectricCharge, Duration, ElectricCurrent>,
+        IDivisionOperators<ElectricCharge, TimeSpan, ElectricCurrent>,
+        IMultiplyOperators<ElectricCharge, ElectricPotential, Energy>,
+#endif
         IComparable,
         IComparable<ElectricCharge>,
         IConvertible,
@@ -50,13 +59,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 0)]
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 1)]
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly ElectricChargeUnit? _unit;
 
         static ElectricCharge()
@@ -609,6 +618,34 @@ namespace UnitsNet
         public static double operator /(ElectricCharge left, ElectricCharge right)
         {
             return left.Coulombs / right.Coulombs;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Duration"/> from <see cref="ElectricCharge"/> / <see cref="ElectricCurrent"/>.</summary>
+        public static Duration operator /(ElectricCharge electricCharge, ElectricCurrent electricCurrent)
+        {
+            return Duration.FromHours(electricCharge.AmpereHours / electricCurrent.Amperes);
+        }
+
+        /// <summary>Get <see cref="ElectricCurrent"/> from <see cref="ElectricCharge"/> / <see cref="Duration"/>.</summary>
+        public static ElectricCurrent operator /(ElectricCharge electricCharge, Duration duration)
+        {
+            return ElectricCurrent.FromAmperes(electricCharge.AmpereHours / duration.Hours);
+        }
+
+        /// <summary>Get <see cref="ElectricCurrent"/> from <see cref="ElectricCharge"/> / <see cref="TimeSpan"/>.</summary>
+        public static ElectricCurrent operator /(ElectricCharge electricCharge, TimeSpan timeSpan)
+        {
+            return ElectricCurrent.FromAmperes(electricCharge.AmpereHours / timeSpan.TotalHours);
+        }
+
+        /// <summary>Get <see cref="Energy"/> from <see cref="ElectricCharge"/> * <see cref="ElectricPotential"/>.</summary>
+        public static Energy operator *(ElectricCharge electricCharge, ElectricPotential electricPotential)
+        {
+            return Energy.FromJoules(electricCharge.Coulombs * electricPotential.Volts);
         }
 
         #endregion

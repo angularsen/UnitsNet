@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,11 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct RotationalStiffness :
         IArithmeticQuantity<RotationalStiffness, RotationalStiffnessUnit, double>,
+#if NET7_0_OR_GREATER
+        IDivisionOperators<RotationalStiffness, RotationalStiffnessPerLength, Length>,
+        IDivisionOperators<RotationalStiffness, Length, RotationalStiffnessPerLength>,
+        IMultiplyOperators<RotationalStiffness, Angle, Torque>,
+#endif
         IComparable,
         IComparable<RotationalStiffness>,
         IConvertible,
@@ -47,13 +55,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 0)]
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 1)]
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly RotationalStiffnessUnit? _unit;
 
         static RotationalStiffness()
@@ -1002,6 +1010,28 @@ namespace UnitsNet
         public static double operator /(RotationalStiffness left, RotationalStiffness right)
         {
             return left.NewtonMetersPerRadian / right.NewtonMetersPerRadian;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Length"/> from <see cref="RotationalStiffness"/> / <see cref="RotationalStiffnessPerLength"/>.</summary>
+        public static Length operator /(RotationalStiffness rotationalStiffness, RotationalStiffnessPerLength rotationalStiffnessPerLength)
+        {
+            return Length.FromMeters(rotationalStiffness.NewtonMetersPerRadian / rotationalStiffnessPerLength.NewtonMetersPerRadianPerMeter);
+        }
+
+        /// <summary>Get <see cref="RotationalStiffnessPerLength"/> from <see cref="RotationalStiffness"/> / <see cref="Length"/>.</summary>
+        public static RotationalStiffnessPerLength operator /(RotationalStiffness rotationalStiffness, Length length)
+        {
+            return RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(rotationalStiffness.NewtonMetersPerRadian / length.Meters);
+        }
+
+        /// <summary>Get <see cref="Torque"/> from <see cref="RotationalStiffness"/> * <see cref="Angle"/>.</summary>
+        public static Torque operator *(RotationalStiffness rotationalStiffness, Angle angle)
+        {
+            return Torque.FromNewtonMeters(rotationalStiffness.NewtonMetersPerRadian * angle.Radians);
         }
 
         #endregion

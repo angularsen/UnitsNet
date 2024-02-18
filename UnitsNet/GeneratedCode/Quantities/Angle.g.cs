@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,11 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct Angle :
         IArithmeticQuantity<Angle, AngleUnit, double>,
+#if NET7_0_OR_GREATER
+        IDivisionOperators<Angle, Duration, RotationalSpeed>,
+        IDivisionOperators<Angle, TimeSpan, RotationalSpeed>,
+        IMultiplyOperators<Angle, RotationalStiffness, Torque>,
+#endif
         IComparable,
         IComparable<Angle>,
         IConvertible,
@@ -47,13 +55,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 0)]
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 1)]
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly AngleUnit? _unit;
 
         static Angle()
@@ -696,6 +704,28 @@ namespace UnitsNet
         public static double operator /(Angle left, Angle right)
         {
             return left.Degrees / right.Degrees;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="RotationalSpeed"/> from <see cref="Angle"/> / <see cref="Duration"/>.</summary>
+        public static RotationalSpeed operator /(Angle angle, Duration duration)
+        {
+            return RotationalSpeed.FromRadiansPerSecond(angle.Radians / duration.Seconds);
+        }
+
+        /// <summary>Get <see cref="RotationalSpeed"/> from <see cref="Angle"/> / <see cref="TimeSpan"/>.</summary>
+        public static RotationalSpeed operator /(Angle angle, TimeSpan timeSpan)
+        {
+            return RotationalSpeed.FromRadiansPerSecond(angle.Radians / timeSpan.TotalSeconds);
+        }
+
+        /// <summary>Get <see cref="Torque"/> from <see cref="Angle"/> * <see cref="RotationalStiffness"/>.</summary>
+        public static Torque operator *(Angle angle, RotationalStiffness rotationalStiffness)
+        {
+            return Torque.FromNewtonMeters(angle.Radians * rotationalStiffness.NewtonMetersPerRadian);
         }
 
         #endregion

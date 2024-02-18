@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,11 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct MolarMass :
         IArithmeticQuantity<MolarMass, MolarMassUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<MolarMass, AmountOfSubstance, Mass>,
+        IMultiplyOperators<MolarMass, Molarity, MassConcentration>,
+        IMultiplyOperators<MolarMass, MolarFlow, MassFlow>,
+#endif
         IComparable,
         IComparable<MolarMass>,
         IConvertible,
@@ -47,13 +55,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 0)]
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 1)]
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly MolarMassUnit? _unit;
 
         static MolarMass()
@@ -642,6 +650,28 @@ namespace UnitsNet
         public static double operator /(MolarMass left, MolarMass right)
         {
             return left.KilogramsPerMole / right.KilogramsPerMole;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Mass"/> from <see cref="MolarMass"/> * <see cref="AmountOfSubstance"/>.</summary>
+        public static Mass operator *(MolarMass molarMass, AmountOfSubstance amountOfSubstance)
+        {
+            return Mass.FromGrams(molarMass.GramsPerMole * amountOfSubstance.Moles);
+        }
+
+        /// <summary>Get <see cref="MassConcentration"/> from <see cref="MolarMass"/> * <see cref="Molarity"/>.</summary>
+        public static MassConcentration operator *(MolarMass molarMass, Molarity molarity)
+        {
+            return MassConcentration.FromGramsPerCubicMeter(molarMass.GramsPerMole * molarity.MolesPerCubicMeter);
+        }
+
+        /// <summary>Get <see cref="MassFlow"/> from <see cref="MolarMass"/> * <see cref="MolarFlow"/>.</summary>
+        public static MassFlow operator *(MolarMass molarMass, MolarFlow molarFlow)
+        {
+            return MassFlow.FromKilogramsPerSecond(molarMass.KilogramsPerKilomole * molarFlow.KilomolesPerSecond);
         }
 
         #endregion

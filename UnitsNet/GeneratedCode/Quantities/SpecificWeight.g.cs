@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -41,6 +44,12 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct SpecificWeight :
         IArithmeticQuantity<SpecificWeight, SpecificWeightUnit, double>,
+#if NET7_0_OR_GREATER
+        IDivisionOperators<SpecificWeight, Density, Acceleration>,
+        IDivisionOperators<SpecificWeight, Acceleration, Density>,
+        IMultiplyOperators<SpecificWeight, Area, ForcePerLength>,
+        IMultiplyOperators<SpecificWeight, Length, Pressure>,
+#endif
         IComparable,
         IComparable<SpecificWeight>,
         IConvertible,
@@ -50,13 +59,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 0)]
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 1)]
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly SpecificWeightUnit? _unit;
 
         static SpecificWeight()
@@ -717,6 +726,34 @@ namespace UnitsNet
         public static double operator /(SpecificWeight left, SpecificWeight right)
         {
             return left.NewtonsPerCubicMeter / right.NewtonsPerCubicMeter;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Acceleration"/> from <see cref="SpecificWeight"/> / <see cref="Density"/>.</summary>
+        public static Acceleration operator /(SpecificWeight specificWeight, Density density)
+        {
+            return Acceleration.FromMetersPerSecondSquared(specificWeight.NewtonsPerCubicMeter / density.KilogramsPerCubicMeter);
+        }
+
+        /// <summary>Get <see cref="Density"/> from <see cref="SpecificWeight"/> / <see cref="Acceleration"/>.</summary>
+        public static Density operator /(SpecificWeight specificWeight, Acceleration acceleration)
+        {
+            return Density.FromKilogramsPerCubicMeter(specificWeight.NewtonsPerCubicMeter / acceleration.MetersPerSecondSquared);
+        }
+
+        /// <summary>Get <see cref="ForcePerLength"/> from <see cref="SpecificWeight"/> * <see cref="Area"/>.</summary>
+        public static ForcePerLength operator *(SpecificWeight specificWeight, Area area)
+        {
+            return ForcePerLength.FromNewtonsPerMeter(specificWeight.NewtonsPerCubicMeter * area.SquareMeters);
+        }
+
+        /// <summary>Get <see cref="Pressure"/> from <see cref="SpecificWeight"/> * <see cref="Length"/>.</summary>
+        public static Pressure operator *(SpecificWeight specificWeight, Length length)
+        {
+            return Pressure.FromPascals(specificWeight.NewtonsPerCubicMeter * length.Meters);
         }
 
         #endregion

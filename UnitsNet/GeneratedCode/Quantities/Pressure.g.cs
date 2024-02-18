@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,15 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct Pressure :
         IArithmeticQuantity<Pressure, PressureUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<Pressure, Area, Force>,
+        IDivisionOperators<Pressure, ReciprocalArea, Force>,
+        IDivisionOperators<Pressure, ReciprocalLength, ForcePerLength>,
+        IDivisionOperators<Pressure, SpecificWeight, Length>,
+        IDivisionOperators<Pressure, Duration, PressureChangeRate>,
+        IDivisionOperators<Pressure, TimeSpan, PressureChangeRate>,
+        IDivisionOperators<Pressure, Length, SpecificWeight>,
+#endif
         IComparable,
         IComparable<Pressure>,
         IConvertible,
@@ -47,13 +59,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 0)]
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 1)]
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly PressureUnit? _unit;
 
         static Pressure()
@@ -1290,6 +1302,52 @@ namespace UnitsNet
         public static double operator /(Pressure left, Pressure right)
         {
             return left.Pascals / right.Pascals;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Force"/> from <see cref="Pressure"/> * <see cref="Area"/>.</summary>
+        public static Force operator *(Pressure pressure, Area area)
+        {
+            return Force.FromNewtons(pressure.Pascals * area.SquareMeters);
+        }
+
+        /// <summary>Get <see cref="Force"/> from <see cref="Pressure"/> / <see cref="ReciprocalArea"/>.</summary>
+        public static Force operator /(Pressure pressure, ReciprocalArea reciprocalArea)
+        {
+            return Force.FromNewtons(pressure.Pascals / reciprocalArea.InverseSquareMeters);
+        }
+
+        /// <summary>Get <see cref="ForcePerLength"/> from <see cref="Pressure"/> / <see cref="ReciprocalLength"/>.</summary>
+        public static ForcePerLength operator /(Pressure pressure, ReciprocalLength reciprocalLength)
+        {
+            return ForcePerLength.FromNewtonsPerMeter(pressure.Pascals / reciprocalLength.InverseMeters);
+        }
+
+        /// <summary>Get <see cref="Length"/> from <see cref="Pressure"/> / <see cref="SpecificWeight"/>.</summary>
+        public static Length operator /(Pressure pressure, SpecificWeight specificWeight)
+        {
+            return Length.FromMeters(pressure.Pascals / specificWeight.NewtonsPerCubicMeter);
+        }
+
+        /// <summary>Get <see cref="PressureChangeRate"/> from <see cref="Pressure"/> / <see cref="Duration"/>.</summary>
+        public static PressureChangeRate operator /(Pressure pressure, Duration duration)
+        {
+            return PressureChangeRate.FromPascalsPerSecond(pressure.Pascals / duration.Seconds);
+        }
+
+        /// <summary>Get <see cref="PressureChangeRate"/> from <see cref="Pressure"/> / <see cref="TimeSpan"/>.</summary>
+        public static PressureChangeRate operator /(Pressure pressure, TimeSpan timeSpan)
+        {
+            return PressureChangeRate.FromPascalsPerSecond(pressure.Pascals / timeSpan.TotalSeconds);
+        }
+
+        /// <summary>Get <see cref="SpecificWeight"/> from <see cref="Pressure"/> / <see cref="Length"/>.</summary>
+        public static SpecificWeight operator /(Pressure pressure, Length length)
+        {
+            return SpecificWeight.FromNewtonsPerCubicMeter(pressure.Pascals / length.Meters);
         }
 
         #endregion

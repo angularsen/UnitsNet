@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,13 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct ForcePerLength :
         IArithmeticQuantity<ForcePerLength, ForcePerLengthUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<ForcePerLength, Length, Force>,
+        IDivisionOperators<ForcePerLength, ReciprocalLength, Force>,
+        IMultiplyOperators<ForcePerLength, ReciprocalLength, Pressure>,
+        IDivisionOperators<ForcePerLength, Length, Pressure>,
+        IMultiplyOperators<ForcePerLength, Area, Torque>,
+#endif
         IComparable,
         IComparable<ForcePerLength>,
         IConvertible,
@@ -47,13 +57,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 0)]
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 1)]
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly ForcePerLengthUnit? _unit;
 
         static ForcePerLength()
@@ -1092,6 +1102,40 @@ namespace UnitsNet
         public static double operator /(ForcePerLength left, ForcePerLength right)
         {
             return left.NewtonsPerMeter / right.NewtonsPerMeter;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Force"/> from <see cref="ForcePerLength"/> * <see cref="Length"/>.</summary>
+        public static Force operator *(ForcePerLength forcePerLength, Length length)
+        {
+            return Force.FromNewtons(forcePerLength.NewtonsPerMeter * length.Meters);
+        }
+
+        /// <summary>Get <see cref="Force"/> from <see cref="ForcePerLength"/> / <see cref="ReciprocalLength"/>.</summary>
+        public static Force operator /(ForcePerLength forcePerLength, ReciprocalLength reciprocalLength)
+        {
+            return Force.FromNewtons(forcePerLength.NewtonsPerMeter / reciprocalLength.InverseMeters);
+        }
+
+        /// <summary>Get <see cref="Pressure"/> from <see cref="ForcePerLength"/> * <see cref="ReciprocalLength"/>.</summary>
+        public static Pressure operator *(ForcePerLength forcePerLength, ReciprocalLength reciprocalLength)
+        {
+            return Pressure.FromNewtonsPerSquareMeter(forcePerLength.NewtonsPerMeter * reciprocalLength.InverseMeters);
+        }
+
+        /// <summary>Get <see cref="Pressure"/> from <see cref="ForcePerLength"/> / <see cref="Length"/>.</summary>
+        public static Pressure operator /(ForcePerLength forcePerLength, Length length)
+        {
+            return Pressure.FromNewtonsPerSquareMeter(forcePerLength.NewtonsPerMeter / length.Meters);
+        }
+
+        /// <summary>Get <see cref="Torque"/> from <see cref="ForcePerLength"/> * <see cref="Area"/>.</summary>
+        public static Torque operator *(ForcePerLength forcePerLength, Area area)
+        {
+            return Torque.FromNewtonMeters(forcePerLength.NewtonsPerMeter * area.SquareMeters);
         }
 
         #endregion

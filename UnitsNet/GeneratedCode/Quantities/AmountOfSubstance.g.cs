@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,11 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct AmountOfSubstance :
         IArithmeticQuantity<AmountOfSubstance, AmountOfSubstanceUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<AmountOfSubstance, MolarMass, Mass>,
+        IDivisionOperators<AmountOfSubstance, Volume, Molarity>,
+        IDivisionOperators<AmountOfSubstance, Molarity, Volume>,
+#endif
         IComparable,
         IComparable<AmountOfSubstance>,
         IConvertible,
@@ -47,13 +55,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 0)]
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 1)]
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly AmountOfSubstanceUnit? _unit;
 
         static AmountOfSubstance()
@@ -714,6 +722,28 @@ namespace UnitsNet
         public static double operator /(AmountOfSubstance left, AmountOfSubstance right)
         {
             return left.Moles / right.Moles;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Mass"/> from <see cref="AmountOfSubstance"/> * <see cref="MolarMass"/>.</summary>
+        public static Mass operator *(AmountOfSubstance amountOfSubstance, MolarMass molarMass)
+        {
+            return Mass.FromGrams(amountOfSubstance.Moles * molarMass.GramsPerMole);
+        }
+
+        /// <summary>Get <see cref="Molarity"/> from <see cref="AmountOfSubstance"/> / <see cref="Volume"/>.</summary>
+        public static Molarity operator /(AmountOfSubstance amountOfSubstance, Volume volume)
+        {
+            return Molarity.FromMolesPerCubicMeter(amountOfSubstance.Moles / volume.CubicMeters);
+        }
+
+        /// <summary>Get <see cref="Volume"/> from <see cref="AmountOfSubstance"/> / <see cref="Molarity"/>.</summary>
+        public static Volume operator /(AmountOfSubstance amountOfSubstance, Molarity molarity)
+        {
+            return Volume.FromCubicMeters(amountOfSubstance.Moles / molarity.MolesPerCubicMeter);
         }
 
         #endregion

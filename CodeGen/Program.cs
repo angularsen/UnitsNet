@@ -65,9 +65,11 @@ namespace CodeGen
                 if (verbose) Log.Debug("Verbose output enabled");
 
                 var sw = Stopwatch.StartNew();
-                var quantities = QuantityJsonFilesParser.ParseQuantities(repositoryRoot.FullName);
+                var quantities = QuantityJsonFilesParser.ParseQuantities(rootDir);
 
                 QuantityNameToUnitEnumValues quantityNameToUnitEnumValues = UnitEnumValueAllocator.AllocateNewUnitEnumValues($"{rootDir}/Common/UnitEnumValues.g.json", quantities);
+
+                QuantityRelationsParser.ParseAndApplyRelations(rootDir, quantities);
 
                 UnitsNetGenerator.Generate(rootDir, quantities, quantityNameToUnitEnumValues);
 

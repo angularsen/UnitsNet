@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,9 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct TemperatureGradient :
         IArithmeticQuantity<TemperatureGradient, TemperatureGradientUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<TemperatureGradient, Length, TemperatureDelta>,
+#endif
         IComparable,
         IComparable<TemperatureGradient>,
         IConvertible,
@@ -47,13 +53,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 0)]
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 1)]
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly TemperatureGradientUnit? _unit;
 
         static TemperatureGradient()
@@ -480,6 +486,16 @@ namespace UnitsNet
         public static double operator /(TemperatureGradient left, TemperatureGradient right)
         {
             return left.KelvinsPerMeter / right.KelvinsPerMeter;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="TemperatureDelta"/> from <see cref="TemperatureGradient"/> * <see cref="Length"/>.</summary>
+        public static TemperatureDelta operator *(TemperatureGradient temperatureGradient, Length length)
+        {
+            return TemperatureDelta.FromDegreesCelsius(temperatureGradient.DegreesCelsiusPerKilometer * length.Kilometers);
         }
 
         #endregion

@@ -79,12 +79,5 @@ namespace UnitsNet.Tests
             IQuantity<TemperatureUnit, double> doubleQuantity = Temperature.FromDegreesCelsius(1234.5);
             Assert.IsType<double>(doubleQuantity.As(UnitSystem.SI));
         }
-
-        [Fact]
-        public void IQuantityTUnitDecimal_AsUnitSystem_ReturnsDecimal()
-        {
-            IQuantity<PowerUnit, decimal> decimalQuantity = Power.FromMegawatts(1234.5);
-            Assert.IsType<decimal>(decimalQuantity.As(UnitSystem.SI));
-        }
     }
 }

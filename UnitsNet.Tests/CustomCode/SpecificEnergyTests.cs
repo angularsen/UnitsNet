@@ -71,7 +71,7 @@ namespace UnitsNet.Tests
         public void SpecificEnergyTimesMassFlowEqualsPower()
         {
             Power power = SpecificEnergy.FromJoulesPerKilogram(10.0) * MassFlow.FromKilogramsPerSecond(20.0);
-            Assert.Equal(200m, power.Watts);
+            Assert.Equal(200, power.Watts);
         }
 
         [Fact]

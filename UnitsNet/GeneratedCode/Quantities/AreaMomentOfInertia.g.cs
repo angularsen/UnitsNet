@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,9 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct AreaMomentOfInertia :
         IArithmeticQuantity<AreaMomentOfInertia, AreaMomentOfInertiaUnit, double>,
+#if NET7_0_OR_GREATER
+        IDivisionOperators<AreaMomentOfInertia, Length, Volume>,
+#endif
         IComparable,
         IComparable<AreaMomentOfInertia>,
         IConvertible,
@@ -47,13 +53,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 0)]
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 1)]
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly AreaMomentOfInertiaUnit? _unit;
 
         static AreaMomentOfInertia()
@@ -516,6 +522,16 @@ namespace UnitsNet
         public static double operator /(AreaMomentOfInertia left, AreaMomentOfInertia right)
         {
             return left.MetersToTheFourth / right.MetersToTheFourth;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Volume"/> from <see cref="AreaMomentOfInertia"/> / <see cref="Length"/>.</summary>
+        public static Volume operator /(AreaMomentOfInertia areaMomentOfInertia, Length length)
+        {
+            return Volume.FromCubicMeters(areaMomentOfInertia.MetersToTheFourth / length.Meters);
         }
 
         #endregion

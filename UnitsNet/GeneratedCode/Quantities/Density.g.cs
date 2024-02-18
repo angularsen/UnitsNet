@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -41,6 +44,15 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct Density :
         IArithmeticQuantity<Density, DensityUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<Density, KinematicViscosity, DynamicViscosity>,
+        IMultiplyOperators<Density, Area, LinearDensity>,
+        IMultiplyOperators<Density, Volume, Mass>,
+        IMultiplyOperators<Density, VolumeConcentration, MassConcentration>,
+        IMultiplyOperators<Density, VolumeFlow, MassFlow>,
+        IMultiplyOperators<Density, Speed, MassFlux>,
+        IMultiplyOperators<Density, Acceleration, SpecificWeight>,
+#endif
         IComparable,
         IComparable<Density>,
         IConvertible,
@@ -50,13 +62,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 0)]
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 1)]
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly DensityUnit? _unit;
 
         static Density()
@@ -1419,6 +1431,52 @@ namespace UnitsNet
         public static double operator /(Density left, Density right)
         {
             return left.KilogramsPerCubicMeter / right.KilogramsPerCubicMeter;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="DynamicViscosity"/> from <see cref="Density"/> * <see cref="KinematicViscosity"/>.</summary>
+        public static DynamicViscosity operator *(Density density, KinematicViscosity kinematicViscosity)
+        {
+            return DynamicViscosity.FromNewtonSecondsPerMeterSquared(density.KilogramsPerCubicMeter * kinematicViscosity.SquareMetersPerSecond);
+        }
+
+        /// <summary>Get <see cref="LinearDensity"/> from <see cref="Density"/> * <see cref="Area"/>.</summary>
+        public static LinearDensity operator *(Density density, Area area)
+        {
+            return LinearDensity.FromKilogramsPerMeter(density.KilogramsPerCubicMeter * area.SquareMeters);
+        }
+
+        /// <summary>Get <see cref="Mass"/> from <see cref="Density"/> * <see cref="Volume"/>.</summary>
+        public static Mass operator *(Density density, Volume volume)
+        {
+            return Mass.FromKilograms(density.KilogramsPerCubicMeter * volume.CubicMeters);
+        }
+
+        /// <summary>Get <see cref="MassConcentration"/> from <see cref="Density"/> * <see cref="VolumeConcentration"/>.</summary>
+        public static MassConcentration operator *(Density density, VolumeConcentration volumeConcentration)
+        {
+            return MassConcentration.FromKilogramsPerCubicMeter(density.KilogramsPerCubicMeter * volumeConcentration.DecimalFractions);
+        }
+
+        /// <summary>Get <see cref="MassFlow"/> from <see cref="Density"/> * <see cref="VolumeFlow"/>.</summary>
+        public static MassFlow operator *(Density density, VolumeFlow volumeFlow)
+        {
+            return MassFlow.FromKilogramsPerSecond(density.KilogramsPerCubicMeter * volumeFlow.CubicMetersPerSecond);
+        }
+
+        /// <summary>Get <see cref="MassFlux"/> from <see cref="Density"/> * <see cref="Speed"/>.</summary>
+        public static MassFlux operator *(Density density, Speed speed)
+        {
+            return MassFlux.FromKilogramsPerSecondPerSquareMeter(density.KilogramsPerCubicMeter * speed.MetersPerSecond);
+        }
+
+        /// <summary>Get <see cref="SpecificWeight"/> from <see cref="Density"/> * <see cref="Acceleration"/>.</summary>
+        public static SpecificWeight operator *(Density density, Acceleration acceleration)
+        {
+            return SpecificWeight.FromNewtonsPerCubicMeter(density.KilogramsPerCubicMeter * acceleration.MetersPerSecondSquared);
         }
 
         #endregion

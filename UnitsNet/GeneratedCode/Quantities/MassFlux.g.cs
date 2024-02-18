@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,11 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct MassFlux :
         IArithmeticQuantity<MassFlux, MassFluxUnit, double>,
+#if NET7_0_OR_GREATER
+        IDivisionOperators<MassFlux, Speed, Density>,
+        IMultiplyOperators<MassFlux, Area, MassFlow>,
+        IDivisionOperators<MassFlux, Density, Speed>,
+#endif
         IComparable,
         IComparable<MassFlux>,
         IConvertible,
@@ -47,13 +55,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 0)]
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 1)]
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly MassFluxUnit? _unit;
 
         static MassFlux()
@@ -624,6 +632,28 @@ namespace UnitsNet
         public static double operator /(MassFlux left, MassFlux right)
         {
             return left.KilogramsPerSecondPerSquareMeter / right.KilogramsPerSecondPerSquareMeter;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Density"/> from <see cref="MassFlux"/> / <see cref="Speed"/>.</summary>
+        public static Density operator /(MassFlux massFlux, Speed speed)
+        {
+            return Density.FromKilogramsPerCubicMeter(massFlux.KilogramsPerSecondPerSquareMeter / speed.MetersPerSecond);
+        }
+
+        /// <summary>Get <see cref="MassFlow"/> from <see cref="MassFlux"/> * <see cref="Area"/>.</summary>
+        public static MassFlow operator *(MassFlux massFlux, Area area)
+        {
+            return MassFlow.FromGramsPerSecond(massFlux.GramsPerSecondPerSquareMeter * area.SquareMeters);
+        }
+
+        /// <summary>Get <see cref="Speed"/> from <see cref="MassFlux"/> / <see cref="Density"/>.</summary>
+        public static Speed operator /(MassFlux massFlux, Density density)
+        {
+            return Speed.FromMetersPerSecond(massFlux.KilogramsPerSecondPerSquareMeter / density.KilogramsPerCubicMeter);
         }
 
         #endregion
