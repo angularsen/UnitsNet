@@ -62,17 +62,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of MassFraction, which is Second. All conversions go via this value.
         /// </summary>
         public static MassFractionUnit BaseUnit { get; } = MassFractionUnit.DecimalFraction;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of MassFraction.
         /// </summary>
         public static MassFraction MaxValue { get; } = new MassFraction(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of MassFraction.
         /// </summary>
         public static MassFraction MinValue { get; } = new MassFraction(double.MinValue, BaseUnit);
 
@@ -372,9 +372,9 @@ namespace UnitsNet
                 public double As(MassFractionUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this MassFraction to another MassFraction with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A MassFraction with the specified unit.</returns>
                 public MassFraction ToUnit(MassFractionUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

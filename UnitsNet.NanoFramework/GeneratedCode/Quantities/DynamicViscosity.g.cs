@@ -62,17 +62,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of DynamicViscosity, which is Second. All conversions go via this value.
         /// </summary>
         public static DynamicViscosityUnit BaseUnit { get; } = DynamicViscosityUnit.NewtonSecondPerMeterSquared;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of DynamicViscosity.
         /// </summary>
         public static DynamicViscosity MaxValue { get; } = new DynamicViscosity(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of DynamicViscosity.
         /// </summary>
         public static DynamicViscosity MinValue { get; } = new DynamicViscosity(double.MinValue, BaseUnit);
 
@@ -218,9 +218,9 @@ namespace UnitsNet
                 public double As(DynamicViscosityUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this DynamicViscosity to another DynamicViscosity with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A DynamicViscosity with the specified unit.</returns>
                 public DynamicViscosity ToUnit(DynamicViscosityUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

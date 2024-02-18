@@ -62,17 +62,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of MagneticField, which is Second. All conversions go via this value.
         /// </summary>
         public static MagneticFieldUnit BaseUnit { get; } = MagneticFieldUnit.Tesla;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of MagneticField.
         /// </summary>
         public static MagneticField MaxValue { get; } = new MagneticField(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of MagneticField.
         /// </summary>
         public static MagneticField MinValue { get; } = new MagneticField(double.MinValue, BaseUnit);
 
@@ -174,9 +174,9 @@ namespace UnitsNet
                 public double As(MagneticFieldUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this MagneticField to another MagneticField with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A MagneticField with the specified unit.</returns>
                 public MagneticField ToUnit(MagneticFieldUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

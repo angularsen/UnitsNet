@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of Frequency, which is Second. All conversions go via this value.
         /// </summary>
         public static FrequencyUnit BaseUnit { get; } = FrequencyUnit.Hertz;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Frequency.
         /// </summary>
         public static Frequency MaxValue { get; } = new Frequency(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Frequency.
         /// </summary>
         public static Frequency MinValue { get; } = new Frequency(double.MinValue, BaseUnit);
 
@@ -248,9 +248,9 @@ namespace UnitsNet
                 public double As(FrequencyUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this Frequency to another Frequency with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A Frequency with the specified unit.</returns>
                 public Frequency ToUnit(FrequencyUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

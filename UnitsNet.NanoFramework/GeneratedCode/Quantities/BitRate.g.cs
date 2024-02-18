@@ -62,17 +62,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of BitRate, which is Second. All conversions go via this value.
         /// </summary>
         public static BitRateUnit BaseUnit { get; } = BitRateUnit.BitPerSecond;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of BitRate.
         /// </summary>
         public static BitRate MaxValue { get; } = new BitRate(79228162514264337593543950335d, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of BitRate.
         /// </summary>
         public static BitRate MinValue { get; } = new BitRate(-79228162514264337593543950335d, BaseUnit);
 
@@ -394,9 +394,9 @@ namespace UnitsNet
                 public double As(BitRateUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this BitRate to another BitRate with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A BitRate with the specified unit.</returns>
                 public BitRate ToUnit(BitRateUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

@@ -62,17 +62,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of Density, which is Second. All conversions go via this value.
         /// </summary>
         public static DensityUnit BaseUnit { get; } = DensityUnit.KilogramPerCubicMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Density.
         /// </summary>
         public static Density MaxValue { get; } = new Density(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Density.
         /// </summary>
         public static Density MinValue { get; } = new Density(double.MinValue, BaseUnit);
 
@@ -724,9 +724,9 @@ namespace UnitsNet
                 public double As(DensityUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this Density to another Density with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A Density with the specified unit.</returns>
                 public Density ToUnit(DensityUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of RotationalSpeed, which is Second. All conversions go via this value.
         /// </summary>
         public static RotationalSpeedUnit BaseUnit { get; } = RotationalSpeedUnit.RadianPerSecond;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of RotationalSpeed.
         /// </summary>
         public static RotationalSpeed MaxValue { get; } = new RotationalSpeed(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of RotationalSpeed.
         /// </summary>
         public static RotationalSpeed MinValue { get; } = new RotationalSpeed(double.MinValue, BaseUnit);
 
@@ -248,9 +248,9 @@ namespace UnitsNet
                 public double As(RotationalSpeedUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this RotationalSpeed to another RotationalSpeed with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A RotationalSpeed with the specified unit.</returns>
                 public RotationalSpeed ToUnit(RotationalSpeedUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

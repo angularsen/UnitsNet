@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of PressureChangeRate, which is Second. All conversions go via this value.
         /// </summary>
         public static PressureChangeRateUnit BaseUnit { get; } = PressureChangeRateUnit.PascalPerSecond;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of PressureChangeRate.
         /// </summary>
         public static PressureChangeRate MaxValue { get; } = new PressureChangeRate(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of PressureChangeRate.
         /// </summary>
         public static PressureChangeRate MinValue { get; } = new PressureChangeRate(double.MinValue, BaseUnit);
 
@@ -303,9 +303,9 @@ namespace UnitsNet
                 public double As(PressureChangeRateUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this PressureChangeRate to another PressureChangeRate with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A PressureChangeRate with the specified unit.</returns>
                 public PressureChangeRate ToUnit(PressureChangeRateUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

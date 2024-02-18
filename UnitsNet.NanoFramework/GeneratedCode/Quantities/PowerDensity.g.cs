@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of PowerDensity, which is Second. All conversions go via this value.
         /// </summary>
         public static PowerDensityUnit BaseUnit { get; } = PowerDensityUnit.WattPerCubicMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of PowerDensity.
         /// </summary>
         public static PowerDensity MaxValue { get; } = new PowerDensity(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of PowerDensity.
         /// </summary>
         public static PowerDensity MinValue { get; } = new PowerDensity(double.MinValue, BaseUnit);
 
@@ -589,9 +589,9 @@ namespace UnitsNet
                 public double As(PowerDensityUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this PowerDensity to another PowerDensity with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A PowerDensity with the specified unit.</returns>
                 public PowerDensity ToUnit(PowerDensityUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

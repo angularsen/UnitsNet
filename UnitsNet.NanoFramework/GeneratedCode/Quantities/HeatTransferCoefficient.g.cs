@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of HeatTransferCoefficient, which is Second. All conversions go via this value.
         /// </summary>
         public static HeatTransferCoefficientUnit BaseUnit { get; } = HeatTransferCoefficientUnit.WattPerSquareMeterKelvin;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of HeatTransferCoefficient.
         /// </summary>
         public static HeatTransferCoefficient MaxValue { get; } = new HeatTransferCoefficient(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of HeatTransferCoefficient.
         /// </summary>
         public static HeatTransferCoefficient MinValue { get; } = new HeatTransferCoefficient(double.MinValue, BaseUnit);
 
@@ -173,9 +173,9 @@ namespace UnitsNet
                 public double As(HeatTransferCoefficientUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this HeatTransferCoefficient to another HeatTransferCoefficient with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A HeatTransferCoefficient with the specified unit.</returns>
                 public HeatTransferCoefficient ToUnit(HeatTransferCoefficientUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

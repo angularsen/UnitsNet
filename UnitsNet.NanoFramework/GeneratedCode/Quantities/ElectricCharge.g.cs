@@ -62,17 +62,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of ElectricCharge, which is Second. All conversions go via this value.
         /// </summary>
         public static ElectricChargeUnit BaseUnit { get; } = ElectricChargeUnit.Coulomb;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of ElectricCharge.
         /// </summary>
         public static ElectricCharge MaxValue { get; } = new ElectricCharge(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of ElectricCharge.
         /// </summary>
         public static ElectricCharge MinValue { get; } = new ElectricCharge(double.MinValue, BaseUnit);
 
@@ -229,9 +229,9 @@ namespace UnitsNet
                 public double As(ElectricChargeUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this ElectricCharge to another ElectricCharge with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A ElectricCharge with the specified unit.</returns>
                 public ElectricCharge ToUnit(ElectricChargeUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

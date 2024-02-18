@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of ElectricResistance, which is Second. All conversions go via this value.
         /// </summary>
         public static ElectricResistanceUnit BaseUnit { get; } = ElectricResistanceUnit.Ohm;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of ElectricResistance.
         /// </summary>
         public static ElectricResistance MaxValue { get; } = new ElectricResistance(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of ElectricResistance.
         /// </summary>
         public static ElectricResistance MinValue { get; } = new ElectricResistance(double.MinValue, BaseUnit);
 
@@ -182,9 +182,9 @@ namespace UnitsNet
                 public double As(ElectricResistanceUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this ElectricResistance to another ElectricResistance with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A ElectricResistance with the specified unit.</returns>
                 public ElectricResistance ToUnit(ElectricResistanceUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

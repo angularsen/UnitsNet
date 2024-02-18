@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of Angle, which is Second. All conversions go via this value.
         /// </summary>
         public static AngleUnit BaseUnit { get; } = AngleUnit.Degree;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Angle.
         /// </summary>
         public static Angle MaxValue { get; } = new Angle(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Angle.
         /// </summary>
         public static Angle MinValue { get; } = new Angle(double.MinValue, BaseUnit);
 
@@ -281,9 +281,9 @@ namespace UnitsNet
                 public double As(AngleUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this Angle to another Angle with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A Angle with the specified unit.</returns>
                 public Angle ToUnit(AngleUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

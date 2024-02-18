@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of ElectricAdmittance, which is Second. All conversions go via this value.
         /// </summary>
         public static ElectricAdmittanceUnit BaseUnit { get; } = ElectricAdmittanceUnit.Siemens;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of ElectricAdmittance.
         /// </summary>
         public static ElectricAdmittance MaxValue { get; } = new ElectricAdmittance(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of ElectricAdmittance.
         /// </summary>
         public static ElectricAdmittance MinValue { get; } = new ElectricAdmittance(double.MinValue, BaseUnit);
 
@@ -149,9 +149,9 @@ namespace UnitsNet
                 public double As(ElectricAdmittanceUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this ElectricAdmittance to another ElectricAdmittance with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A ElectricAdmittance with the specified unit.</returns>
                 public ElectricAdmittance ToUnit(ElectricAdmittanceUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

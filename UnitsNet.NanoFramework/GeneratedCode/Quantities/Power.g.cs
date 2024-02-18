@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of Power, which is Second. All conversions go via this value.
         /// </summary>
         public static PowerUnit BaseUnit { get; } = PowerUnit.Watt;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Power.
         /// </summary>
         public static Power MaxValue { get; } = new Power(79228162514264337593543950335d, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Power.
         /// </summary>
         public static Power MinValue { get; } = new Power(-79228162514264337593543950335d, BaseUnit);
 
@@ -391,9 +391,9 @@ namespace UnitsNet
                 public double As(PowerUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this Power to another Power with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A Power with the specified unit.</returns>
                 public Power ToUnit(PowerUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of Impulse, which is Second. All conversions go via this value.
         /// </summary>
         public static ImpulseUnit BaseUnit { get; } = ImpulseUnit.NewtonSecond;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Impulse.
         /// </summary>
         public static Impulse MaxValue { get; } = new Impulse(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Impulse.
         /// </summary>
         public static Impulse MinValue { get; } = new Impulse(double.MinValue, BaseUnit);
 
@@ -248,9 +248,9 @@ namespace UnitsNet
                 public double As(ImpulseUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this Impulse to another Impulse with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A Impulse with the specified unit.</returns>
                 public Impulse ToUnit(ImpulseUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

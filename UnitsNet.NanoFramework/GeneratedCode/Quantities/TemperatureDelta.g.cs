@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of TemperatureDelta, which is Second. All conversions go via this value.
         /// </summary>
         public static TemperatureDeltaUnit BaseUnit { get; } = TemperatureDeltaUnit.Kelvin;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of TemperatureDelta.
         /// </summary>
         public static TemperatureDelta MaxValue { get; } = new TemperatureDelta(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of TemperatureDelta.
         /// </summary>
         public static TemperatureDelta MinValue { get; } = new TemperatureDelta(double.MinValue, BaseUnit);
 
@@ -204,9 +204,9 @@ namespace UnitsNet
                 public double As(TemperatureDeltaUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this TemperatureDelta to another TemperatureDelta with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A TemperatureDelta with the specified unit.</returns>
                 public TemperatureDelta ToUnit(TemperatureDeltaUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

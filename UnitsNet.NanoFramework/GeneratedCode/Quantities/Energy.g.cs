@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of Energy, which is Second. All conversions go via this value.
         /// </summary>
         public static EnergyUnit BaseUnit { get; } = EnergyUnit.Joule;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Energy.
         /// </summary>
         public static Energy MaxValue { get; } = new Energy(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Energy.
         /// </summary>
         public static Energy MinValue { get; } = new Energy(double.MinValue, BaseUnit);
 
@@ -545,9 +545,9 @@ namespace UnitsNet
                 public double As(EnergyUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this Energy to another Energy with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A Energy with the specified unit.</returns>
                 public Energy ToUnit(EnergyUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

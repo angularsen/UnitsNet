@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of Information, which is Second. All conversions go via this value.
         /// </summary>
         public static InformationUnit BaseUnit { get; } = InformationUnit.Bit;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Information.
         /// </summary>
         public static Information MaxValue { get; } = new Information(79228162514264337593543950335d, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Information.
         /// </summary>
         public static Information MinValue { get; } = new Information(-79228162514264337593543950335d, BaseUnit);
 
@@ -391,9 +391,9 @@ namespace UnitsNet
                 public double As(InformationUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this Information to another Information with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A Information with the specified unit.</returns>
                 public Information ToUnit(InformationUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

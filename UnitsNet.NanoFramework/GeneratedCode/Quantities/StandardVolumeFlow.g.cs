@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of StandardVolumeFlow, which is Second. All conversions go via this value.
         /// </summary>
         public static StandardVolumeFlowUnit BaseUnit { get; } = StandardVolumeFlowUnit.StandardCubicMeterPerSecond;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of StandardVolumeFlow.
         /// </summary>
         public static StandardVolumeFlow MaxValue { get; } = new StandardVolumeFlow(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of StandardVolumeFlow.
         /// </summary>
         public static StandardVolumeFlow MinValue { get; } = new StandardVolumeFlow(double.MinValue, BaseUnit);
 
@@ -204,9 +204,9 @@ namespace UnitsNet
                 public double As(StandardVolumeFlowUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this StandardVolumeFlow to another StandardVolumeFlow with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A StandardVolumeFlow with the specified unit.</returns>
                 public StandardVolumeFlow ToUnit(StandardVolumeFlowUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

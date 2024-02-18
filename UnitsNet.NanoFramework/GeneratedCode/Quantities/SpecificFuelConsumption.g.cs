@@ -62,17 +62,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of SpecificFuelConsumption, which is Second. All conversions go via this value.
         /// </summary>
         public static SpecificFuelConsumptionUnit BaseUnit { get; } = SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of SpecificFuelConsumption.
         /// </summary>
         public static SpecificFuelConsumption MaxValue { get; } = new SpecificFuelConsumption(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of SpecificFuelConsumption.
         /// </summary>
         public static SpecificFuelConsumption MinValue { get; } = new SpecificFuelConsumption(double.MinValue, BaseUnit);
 
@@ -152,9 +152,9 @@ namespace UnitsNet
                 public double As(SpecificFuelConsumptionUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this SpecificFuelConsumption to another SpecificFuelConsumption with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A SpecificFuelConsumption with the specified unit.</returns>
                 public SpecificFuelConsumption ToUnit(SpecificFuelConsumptionUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

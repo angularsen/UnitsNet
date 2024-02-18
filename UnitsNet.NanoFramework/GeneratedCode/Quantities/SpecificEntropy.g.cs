@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of SpecificEntropy, which is Second. All conversions go via this value.
         /// </summary>
         public static SpecificEntropyUnit BaseUnit { get; } = SpecificEntropyUnit.JoulePerKilogramKelvin;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of SpecificEntropy.
         /// </summary>
         public static SpecificEntropy MaxValue { get; } = new SpecificEntropy(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of SpecificEntropy.
         /// </summary>
         public static SpecificEntropy MinValue { get; } = new SpecificEntropy(double.MinValue, BaseUnit);
 
@@ -204,9 +204,9 @@ namespace UnitsNet
                 public double As(SpecificEntropyUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this SpecificEntropy to another SpecificEntropy with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A SpecificEntropy with the specified unit.</returns>
                 public SpecificEntropy ToUnit(SpecificEntropyUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of RadiationEquivalentDose, which is Second. All conversions go via this value.
         /// </summary>
         public static RadiationEquivalentDoseUnit BaseUnit { get; } = RadiationEquivalentDoseUnit.Sievert;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of RadiationEquivalentDose.
         /// </summary>
         public static RadiationEquivalentDose MaxValue { get; } = new RadiationEquivalentDose(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of RadiationEquivalentDose.
         /// </summary>
         public static RadiationEquivalentDose MinValue { get; } = new RadiationEquivalentDose(double.MinValue, BaseUnit);
 
@@ -171,9 +171,9 @@ namespace UnitsNet
                 public double As(RadiationEquivalentDoseUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this RadiationEquivalentDose to another RadiationEquivalentDose with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A RadiationEquivalentDose with the specified unit.</returns>
                 public RadiationEquivalentDose ToUnit(RadiationEquivalentDoseUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

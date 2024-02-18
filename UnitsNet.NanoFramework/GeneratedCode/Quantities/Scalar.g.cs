@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of Scalar, which is Second. All conversions go via this value.
         /// </summary>
         public static ScalarUnit BaseUnit { get; } = ScalarUnit.Amount;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Scalar.
         /// </summary>
         public static Scalar MaxValue { get; } = new Scalar(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Scalar.
         /// </summary>
         public static Scalar MinValue { get; } = new Scalar(double.MinValue, BaseUnit);
 
@@ -116,9 +116,9 @@ namespace UnitsNet
                 public double As(ScalarUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this Scalar to another Scalar with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A Scalar with the specified unit.</returns>
                 public Scalar ToUnit(ScalarUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

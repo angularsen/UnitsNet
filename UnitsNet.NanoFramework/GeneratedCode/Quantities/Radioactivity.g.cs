@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of Radioactivity, which is Second. All conversions go via this value.
         /// </summary>
         public static RadioactivityUnit BaseUnit { get; } = RadioactivityUnit.Becquerel;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Radioactivity.
         /// </summary>
         public static Radioactivity MaxValue { get; } = new Radioactivity(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Radioactivity.
         /// </summary>
         public static Radioactivity MinValue { get; } = new Radioactivity(double.MinValue, BaseUnit);
 
@@ -424,9 +424,9 @@ namespace UnitsNet
                 public double As(RadioactivityUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this Radioactivity to another Radioactivity with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A Radioactivity with the specified unit.</returns>
                 public Radioactivity ToUnit(RadioactivityUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

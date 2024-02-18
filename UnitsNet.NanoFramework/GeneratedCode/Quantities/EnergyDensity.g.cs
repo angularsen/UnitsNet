@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of EnergyDensity, which is Second. All conversions go via this value.
         /// </summary>
         public static EnergyDensityUnit BaseUnit { get; } = EnergyDensityUnit.JoulePerCubicMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of EnergyDensity.
         /// </summary>
         public static EnergyDensity MaxValue { get; } = new EnergyDensity(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of EnergyDensity.
         /// </summary>
         public static EnergyDensity MinValue { get; } = new EnergyDensity(double.MinValue, BaseUnit);
 
@@ -237,9 +237,9 @@ namespace UnitsNet
                 public double As(EnergyDensityUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this EnergyDensity to another EnergyDensity with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A EnergyDensity with the specified unit.</returns>
                 public EnergyDensity ToUnit(EnergyDensityUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

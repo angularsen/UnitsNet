@@ -62,17 +62,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of Molality, which is Second. All conversions go via this value.
         /// </summary>
         public static MolalityUnit BaseUnit { get; } = MolalityUnit.MolePerKilogram;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Molality.
         /// </summary>
         public static Molality MaxValue { get; } = new Molality(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Molality.
         /// </summary>
         public static Molality MinValue { get; } = new Molality(double.MinValue, BaseUnit);
 
@@ -130,9 +130,9 @@ namespace UnitsNet
                 public double As(MolalityUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this Molality to another Molality with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A Molality with the specified unit.</returns>
                 public Molality ToUnit(MolalityUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of Ratio, which is Second. All conversions go via this value.
         /// </summary>
         public static RatioUnit BaseUnit { get; } = RatioUnit.DecimalFraction;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Ratio.
         /// </summary>
         public static Ratio MaxValue { get; } = new Ratio(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Ratio.
         /// </summary>
         public static Ratio MinValue { get; } = new Ratio(double.MinValue, BaseUnit);
 
@@ -171,9 +171,9 @@ namespace UnitsNet
                 public double As(RatioUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this Ratio to another Ratio with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A Ratio with the specified unit.</returns>
                 public Ratio ToUnit(RatioUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

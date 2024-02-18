@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of ElectricPotential, which is Second. All conversions go via this value.
         /// </summary>
         public static ElectricPotentialUnit BaseUnit { get; } = ElectricPotentialUnit.Volt;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of ElectricPotential.
         /// </summary>
         public static ElectricPotential MaxValue { get; } = new ElectricPotential(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of ElectricPotential.
         /// </summary>
         public static ElectricPotential MinValue { get; } = new ElectricPotential(double.MinValue, BaseUnit);
 
@@ -171,9 +171,9 @@ namespace UnitsNet
                 public double As(ElectricPotentialUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this ElectricPotential to another ElectricPotential with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A ElectricPotential with the specified unit.</returns>
                 public ElectricPotential ToUnit(ElectricPotentialUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of RatioChangeRate, which is Second. All conversions go via this value.
         /// </summary>
         public static RatioChangeRateUnit BaseUnit { get; } = RatioChangeRateUnit.DecimalFractionPerSecond;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of RatioChangeRate.
         /// </summary>
         public static RatioChangeRate MaxValue { get; } = new RatioChangeRate(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of RatioChangeRate.
         /// </summary>
         public static RatioChangeRate MinValue { get; } = new RatioChangeRate(double.MinValue, BaseUnit);
 
@@ -127,9 +127,9 @@ namespace UnitsNet
                 public double As(RatioChangeRateUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this RatioChangeRate to another RatioChangeRate with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A RatioChangeRate with the specified unit.</returns>
                 public RatioChangeRate ToUnit(RatioChangeRateUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

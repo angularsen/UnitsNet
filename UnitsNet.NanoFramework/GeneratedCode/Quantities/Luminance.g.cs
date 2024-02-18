@@ -62,17 +62,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of Luminance, which is Second. All conversions go via this value.
         /// </summary>
         public static LuminanceUnit BaseUnit { get; } = LuminanceUnit.CandelaPerSquareMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Luminance.
         /// </summary>
         public static Luminance MaxValue { get; } = new Luminance(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Luminance.
         /// </summary>
         public static Luminance MinValue { get; } = new Luminance(double.MinValue, BaseUnit);
 
@@ -218,9 +218,9 @@ namespace UnitsNet
                 public double As(LuminanceUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this Luminance to another Luminance with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A Luminance with the specified unit.</returns>
                 public Luminance ToUnit(LuminanceUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

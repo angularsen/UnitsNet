@@ -62,17 +62,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of SolidAngle, which is Second. All conversions go via this value.
         /// </summary>
         public static SolidAngleUnit BaseUnit { get; } = SolidAngleUnit.Steradian;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of SolidAngle.
         /// </summary>
         public static SolidAngle MaxValue { get; } = new SolidAngle(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of SolidAngle.
         /// </summary>
         public static SolidAngle MinValue { get; } = new SolidAngle(double.MinValue, BaseUnit);
 
@@ -119,9 +119,9 @@ namespace UnitsNet
                 public double As(SolidAngleUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this SolidAngle to another SolidAngle with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A SolidAngle with the specified unit.</returns>
                 public SolidAngle ToUnit(SolidAngleUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

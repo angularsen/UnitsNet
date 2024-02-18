@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of Irradiance, which is Second. All conversions go via this value.
         /// </summary>
         public static IrradianceUnit BaseUnit { get; } = IrradianceUnit.WattPerSquareMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Irradiance.
         /// </summary>
         public static Irradiance MaxValue { get; } = new Irradiance(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Irradiance.
         /// </summary>
         public static Irradiance MinValue { get; } = new Irradiance(double.MinValue, BaseUnit);
 
@@ -259,9 +259,9 @@ namespace UnitsNet
                 public double As(IrradianceUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this Irradiance to another Irradiance with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A Irradiance with the specified unit.</returns>
                 public Irradiance ToUnit(IrradianceUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of Compressibility, which is Second. All conversions go via this value.
         /// </summary>
         public static CompressibilityUnit BaseUnit { get; } = CompressibilityUnit.InversePascal;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Compressibility.
         /// </summary>
         public static Compressibility MaxValue { get; } = new Compressibility(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Compressibility.
         /// </summary>
         public static Compressibility MinValue { get; } = new Compressibility(double.MinValue, BaseUnit);
 
@@ -182,9 +182,9 @@ namespace UnitsNet
                 public double As(CompressibilityUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this Compressibility to another Compressibility with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A Compressibility with the specified unit.</returns>
                 public Compressibility ToUnit(CompressibilityUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

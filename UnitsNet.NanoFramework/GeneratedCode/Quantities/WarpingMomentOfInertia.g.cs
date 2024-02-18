@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of WarpingMomentOfInertia, which is Second. All conversions go via this value.
         /// </summary>
         public static WarpingMomentOfInertiaUnit BaseUnit { get; } = WarpingMomentOfInertiaUnit.MeterToTheSixth;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of WarpingMomentOfInertia.
         /// </summary>
         public static WarpingMomentOfInertia MaxValue { get; } = new WarpingMomentOfInertia(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of WarpingMomentOfInertia.
         /// </summary>
         public static WarpingMomentOfInertia MinValue { get; } = new WarpingMomentOfInertia(double.MinValue, BaseUnit);
 
@@ -171,9 +171,9 @@ namespace UnitsNet
                 public double As(WarpingMomentOfInertiaUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this WarpingMomentOfInertia to another WarpingMomentOfInertia with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A WarpingMomentOfInertia with the specified unit.</returns>
                 public WarpingMomentOfInertia ToUnit(WarpingMomentOfInertiaUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

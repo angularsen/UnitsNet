@@ -62,17 +62,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of ElectricInductance, which is Second. All conversions go via this value.
         /// </summary>
         public static ElectricInductanceUnit BaseUnit { get; } = ElectricInductanceUnit.Henry;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of ElectricInductance.
         /// </summary>
         public static ElectricInductance MaxValue { get; } = new ElectricInductance(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of ElectricInductance.
         /// </summary>
         public static ElectricInductance MinValue { get; } = new ElectricInductance(double.MinValue, BaseUnit);
 
@@ -163,9 +163,9 @@ namespace UnitsNet
                 public double As(ElectricInductanceUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this ElectricInductance to another ElectricInductance with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A ElectricInductance with the specified unit.</returns>
                 public ElectricInductance ToUnit(ElectricInductanceUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

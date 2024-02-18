@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of Pressure, which is Second. All conversions go via this value.
         /// </summary>
         public static PressureUnit BaseUnit { get; } = PressureUnit.Pascal;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Pressure.
         /// </summary>
         public static Pressure MaxValue { get; } = new Pressure(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Pressure.
         /// </summary>
         public static Pressure MinValue { get; } = new Pressure(double.MinValue, BaseUnit);
 
@@ -644,9 +644,9 @@ namespace UnitsNet
                 public double As(PressureUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this Pressure to another Pressure with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A Pressure with the specified unit.</returns>
                 public Pressure ToUnit(PressureUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

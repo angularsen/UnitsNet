@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of Level, which is Second. All conversions go via this value.
         /// </summary>
         public static LevelUnit BaseUnit { get; } = LevelUnit.Decibel;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Level.
         /// </summary>
         public static Level MaxValue { get; } = new Level(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Level.
         /// </summary>
         public static Level MinValue { get; } = new Level(double.MinValue, BaseUnit);
 
@@ -127,9 +127,9 @@ namespace UnitsNet
                 public double As(LevelUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this Level to another Level with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A Level with the specified unit.</returns>
                 public Level ToUnit(LevelUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);

@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of AreaDensity, which is Second. All conversions go via this value.
         /// </summary>
         public static AreaDensityUnit BaseUnit { get; } = AreaDensityUnit.KilogramPerSquareMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of AreaDensity.
         /// </summary>
         public static AreaDensity MaxValue { get; } = new AreaDensity(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of AreaDensity.
         /// </summary>
         public static AreaDensity MinValue { get; } = new AreaDensity(double.MinValue, BaseUnit);
 
@@ -138,9 +138,9 @@ namespace UnitsNet
                 public double As(AreaDensityUnit unit) => GetValueAs(unit);
 
                 /// <summary>
-                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                ///     Converts this AreaDensity to another AreaDensity with the unit representation <paramref name="unit" />.
                 /// </summary>
-                /// <returns>A Duration with the specified unit.</returns>
+                /// <returns>A AreaDensity with the specified unit.</returns>
                 public AreaDensity ToUnit(AreaDensityUnit unit)
                 {
                     var convertedValue = GetValueAs(unit);
