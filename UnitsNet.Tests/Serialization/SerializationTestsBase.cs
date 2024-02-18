@@ -4,7 +4,6 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using System.Runtime.Serialization;
 using UnitsNet.Units;
 using Xunit;
@@ -215,18 +214,6 @@ namespace UnitsNet.Tests.Serialization
 
             [DataMember]
             public TQuantity? NullableQuantity { get; set; }
-        }
-
-        [DataContract]
-        protected class TestObject<TDoubleQuantity, TDecimalQuantity> : TestObject<TDoubleQuantity>
-            where TDoubleQuantity : struct, IQuantity
-            where TDecimalQuantity : struct, IQuantity, IDecimalQuantity
-        {
-            [DataMember]
-            public TDecimalQuantity DecimalQuantity { get; set; }
-
-            [DataMember]
-            public TDecimalQuantity? NullableDecimalQuantity { get; set; }
         }
     }
 }
