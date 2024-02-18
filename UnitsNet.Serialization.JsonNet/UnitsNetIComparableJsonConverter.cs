@@ -50,28 +50,30 @@ namespace UnitsNet.Serialization.JsonNet
         public override IComparable? ReadJson(JsonReader reader, Type objectType, IComparable? existingValue, bool hasExistingValue,
             JsonSerializer serializer)
         {
-            reader = reader ?? throw new ArgumentNullException(nameof(reader));
-            serializer = serializer ?? throw new ArgumentNullException(nameof(serializer));
+            if (reader == null) throw new ArgumentNullException(nameof(reader));
+            if (serializer == null) throw new ArgumentNullException(nameof(serializer));
 
-            if (reader.TokenType == JsonToken.Null)
+            var token = JToken.Load(reader);
+
+            if (token.Type is JTokenType.Null)
             {
                 return existingValue;
             }
 
-            var localSerializer = CreateLocalSerializer(serializer, this);
-
-            var token = JToken.Load(reader);
-
             // If objectType is not IComparable but a type that implements IComparable, deserialize directly as this type instead.
             if (objectType != typeof(IComparable))
             {
+                // Remove the current converter from the list of converters to avoid infinite recursion.
+                JsonSerializer localSerializer = CreateLocalSerializer(serializer, this);
                 return (IComparable)token.ToObject(objectType, localSerializer)!;
             }
 
-            var valueUnit = ReadValueUnit(token);
+            ValueUnit? valueUnit = ReadValueUnit(token);
 
             if (valueUnit == null)
             {
+                // Remove the current converter from the list of converters to avoid infinite recursion.
+                JsonSerializer localSerializer = CreateLocalSerializer(serializer, this);
                 return token.ToObject<IComparable>(localSerializer);
             }
 

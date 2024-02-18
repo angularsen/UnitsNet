@@ -25,7 +25,7 @@
     },
     {
       "SingularName": "DegreeCelsiusPerMeter",
-      "PluralName": "DegreesCelciusPerMeter",
+      "PluralName": "DegreesCelsiusPerMeter",
       "BaseUnits": {
         "L": "Meter",
         "Θ": "DegreeCelsius"
@@ -57,7 +57,7 @@
     },
     {
       "SingularName": "DegreeCelsiusPerKilometer",
-      "PluralName": "DegreesCelciusPerKilometer",
+      "PluralName": "DegreesCelsiusPerKilometer",
       "BaseUnits": {
         "L": "Kilometer",
         "Θ": "DegreeCelsius"

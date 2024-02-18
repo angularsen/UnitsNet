@@ -19,6 +19,10 @@
 
 using System;
 
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
+
 #nullable enable
 
 namespace UnitsNet.NumberExtensions.NumberToVitaminA
@@ -29,8 +33,12 @@ namespace UnitsNet.NumberExtensions.NumberToVitaminA
     public static class NumberToVitaminAExtensions
     {
         /// <inheritdoc cref="VitaminA.FromInternationalUnits(UnitsNet.QuantityValue)" />
-        public static VitaminA InternationalUnits<T>(this T value) =>
-            VitaminA.FromInternationalUnits(Convert.ToDouble(value));
+        public static VitaminA InternationalUnits<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => VitaminA.FromInternationalUnits(Convert.ToDouble(value));
 
     }
 }

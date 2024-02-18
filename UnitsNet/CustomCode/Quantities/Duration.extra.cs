@@ -92,29 +92,5 @@ namespace UnitsNet
         {
             return timeSpan.TotalSeconds >= duration.Seconds;
         }
-
-        /// <summary>Get <see cref="Volume"/> from <see cref="Duration"/> multiplied by <see cref="VolumeFlow"/>.</summary>
-        public static Volume operator *(Duration duration, VolumeFlow volumeFlow)
-        {
-            return Volume.FromCubicMeters(volumeFlow.CubicMetersPerSecond * duration.Seconds);
-        }
-
-        /// <summary>Get <see cref="ElectricCharge"/> from <see cref="Duration"/> multiplied by <see cref="ElectricCurrent"/>.</summary>
-        public static ElectricCharge operator *(Duration time, ElectricCurrent current)
-        {
-            return ElectricCharge.FromAmpereHours(current.Amperes * time.Hours);
-        }
-
-        /// <summary>Get <see cref="Speed"/> from <see cref="Duration"/> multiplied by <see cref="Acceleration"/>.</summary>
-        public static Speed operator *(Duration duration, Acceleration acceleration)
-        {
-            return new Speed(acceleration.MetersPerSecondSquared * duration.Seconds, SpeedUnit.MeterPerSecond);
-        }
-
-        /// <summary>Get <see cref="Force"/> from <see cref="Duration"/> multiplied by <see cref="ForceChangeRate"/>.</summary>
-        public static Force operator *(Duration duration, ForceChangeRate forceChangeRate)
-        {
-            return new Force(forceChangeRate.NewtonsPerSecond * duration.Seconds, ForceUnit.Newton);
-        }
     }
 }

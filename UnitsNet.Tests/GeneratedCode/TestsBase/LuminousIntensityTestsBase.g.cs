@@ -67,16 +67,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new LuminousIntensity(double.PositiveInfinity, LuminousIntensityUnit.Candela));
-            Assert.Throws<ArgumentException>(() => new LuminousIntensity(double.NegativeInfinity, LuminousIntensityUnit.Candela));
+            var exception1 = Record.Exception(() => new LuminousIntensity(double.PositiveInfinity, LuminousIntensityUnit.Candela));
+            var exception2 = Record.Exception(() => new LuminousIntensity(double.NegativeInfinity, LuminousIntensityUnit.Candela));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new LuminousIntensity(double.NaN, LuminousIntensityUnit.Candela));
+            var exception = Record.Exception(() => new LuminousIntensity(double.NaN, LuminousIntensityUnit.Candela));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -131,16 +136,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromCandela_WithInfinityValue_ThrowsArgumentException()
+        public void FromCandela_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => LuminousIntensity.FromCandela(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => LuminousIntensity.FromCandela(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => LuminousIntensity.FromCandela(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => LuminousIntensity.FromCandela(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromCandela_WithNanValue_ThrowsArgumentException()
+        public void FromCandela_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => LuminousIntensity.FromCandela(double.NaN));
+            var exception = Record.Exception(() => LuminousIntensity.FromCandela(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -158,7 +168,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else

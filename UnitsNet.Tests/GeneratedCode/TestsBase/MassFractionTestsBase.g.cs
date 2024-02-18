@@ -159,16 +159,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new MassFraction(double.PositiveInfinity, MassFractionUnit.DecimalFraction));
-            Assert.Throws<ArgumentException>(() => new MassFraction(double.NegativeInfinity, MassFractionUnit.DecimalFraction));
+            var exception1 = Record.Exception(() => new MassFraction(double.PositiveInfinity, MassFractionUnit.DecimalFraction));
+            var exception2 = Record.Exception(() => new MassFraction(double.NegativeInfinity, MassFractionUnit.DecimalFraction));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new MassFraction(double.NaN, MassFractionUnit.DecimalFraction));
+            var exception = Record.Exception(() => new MassFraction(double.NaN, MassFractionUnit.DecimalFraction));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -338,16 +343,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromDecimalFractions_WithInfinityValue_ThrowsArgumentException()
+        public void FromDecimalFractions_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => MassFraction.FromDecimalFractions(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => MassFraction.FromDecimalFractions(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => MassFraction.FromDecimalFractions(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => MassFraction.FromDecimalFractions(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromDecimalFractions_WithNanValue_ThrowsArgumentException()
+        public void FromDecimalFractions_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => MassFraction.FromDecimalFractions(double.NaN));
+            var exception = Record.Exception(() => MassFraction.FromDecimalFractions(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -388,7 +398,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else

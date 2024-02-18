@@ -99,16 +99,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new VolumetricHeatCapacity(double.PositiveInfinity, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin));
-            Assert.Throws<ArgumentException>(() => new VolumetricHeatCapacity(double.NegativeInfinity, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin));
+            var exception1 = Record.Exception(() => new VolumetricHeatCapacity(double.PositiveInfinity, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin));
+            var exception2 = Record.Exception(() => new VolumetricHeatCapacity(double.NegativeInfinity, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new VolumetricHeatCapacity(double.NaN, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin));
+            var exception = Record.Exception(() => new VolumetricHeatCapacity(double.NaN, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -203,16 +208,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromJoulesPerCubicMeterKelvin_WithInfinityValue_ThrowsArgumentException()
+        public void FromJoulesPerCubicMeterKelvin_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromJoulesPerCubicMeterKelvin_WithNanValue_ThrowsArgumentException()
+        public void FromJoulesPerCubicMeterKelvin_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(double.NaN));
+            var exception = Record.Exception(() => VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -238,7 +248,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else

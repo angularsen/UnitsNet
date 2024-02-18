@@ -87,16 +87,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new WarpingMomentOfInertia(double.PositiveInfinity, WarpingMomentOfInertiaUnit.MeterToTheSixth));
-            Assert.Throws<ArgumentException>(() => new WarpingMomentOfInertia(double.NegativeInfinity, WarpingMomentOfInertiaUnit.MeterToTheSixth));
+            var exception1 = Record.Exception(() => new WarpingMomentOfInertia(double.PositiveInfinity, WarpingMomentOfInertiaUnit.MeterToTheSixth));
+            var exception2 = Record.Exception(() => new WarpingMomentOfInertia(double.NegativeInfinity, WarpingMomentOfInertiaUnit.MeterToTheSixth));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new WarpingMomentOfInertia(double.NaN, WarpingMomentOfInertiaUnit.MeterToTheSixth));
+            var exception = Record.Exception(() => new WarpingMomentOfInertia(double.NaN, WarpingMomentOfInertiaUnit.MeterToTheSixth));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -176,16 +181,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromMetersToTheSixth_WithInfinityValue_ThrowsArgumentException()
+        public void FromMetersToTheSixth_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => WarpingMomentOfInertia.FromMetersToTheSixth(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => WarpingMomentOfInertia.FromMetersToTheSixth(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => WarpingMomentOfInertia.FromMetersToTheSixth(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => WarpingMomentOfInertia.FromMetersToTheSixth(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromMetersToTheSixth_WithNanValue_ThrowsArgumentException()
+        public void FromMetersToTheSixth_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => WarpingMomentOfInertia.FromMetersToTheSixth(double.NaN));
+            var exception = Record.Exception(() => WarpingMomentOfInertia.FromMetersToTheSixth(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -208,7 +218,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else

@@ -103,16 +103,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Temperature(double.PositiveInfinity, TemperatureUnit.Kelvin));
-            Assert.Throws<ArgumentException>(() => new Temperature(double.NegativeInfinity, TemperatureUnit.Kelvin));
+            var exception1 = Record.Exception(() => new Temperature(double.PositiveInfinity, TemperatureUnit.Kelvin));
+            var exception2 = Record.Exception(() => new Temperature(double.NegativeInfinity, TemperatureUnit.Kelvin));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Temperature(double.NaN, TemperatureUnit.Kelvin));
+            var exception = Record.Exception(() => new Temperature(double.NaN, TemperatureUnit.Kelvin));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -212,16 +217,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromKelvins_WithInfinityValue_ThrowsArgumentException()
+        public void FromKelvins_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Temperature.FromKelvins(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Temperature.FromKelvins(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => Temperature.FromKelvins(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => Temperature.FromKelvins(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromKelvins_WithNanValue_ThrowsArgumentException()
+        public void FromKelvins_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Temperature.FromKelvins(double.NaN));
+            var exception = Record.Exception(() => Temperature.FromKelvins(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -248,7 +258,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else

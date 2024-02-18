@@ -23,9 +23,13 @@ namespace UnitsNet.Tests
 
         protected override double KilogramsPerCubicMillimeterInOneKilogramPerCubicMeter => 1e-9;
 
+        protected override double KilopoundsPerCubicYardInOneKilogramPerCubicMeter => 1.6855549356e-3;
+
         protected override double KilopoundsPerCubicFootInOneKilogramPerCubicMeter => 6.242796e-5;
 
         protected override double KilopoundsPerCubicInchInOneKilogramPerCubicMeter => 3.6127292e-8;
+
+        protected override double PoundsPerCubicYardInOneKilogramPerCubicMeter => 1.6855549356;
 
         protected override double PoundsPerCubicFootInOneKilogramPerCubicMeter => 6.242796e-2;
 
@@ -43,47 +47,53 @@ namespace UnitsNet.Tests
 
         protected override double SlugsPerCubicFootInOneKilogramPerCubicMeter => 0.00194032;
 
-        protected override double CentigramsPerDeciLiterInOneKilogramPerCubicMeter => 1e1;
+        protected override double CentigramsPerDeciliterInOneKilogramPerCubicMeter => 1e1;
 
         protected override double CentigramsPerLiterInOneKilogramPerCubicMeter => 1e2;
 
         protected override double CentigramsPerMilliliterInOneKilogramPerCubicMeter => 1e-1;
 
-        protected override double DecigramsPerDeciLiterInOneKilogramPerCubicMeter => 1;
+        protected override double DecigramsPerDeciliterInOneKilogramPerCubicMeter => 1;
 
         protected override double DecigramsPerLiterInOneKilogramPerCubicMeter => 1e1;
 
         protected override double DecigramsPerMilliliterInOneKilogramPerCubicMeter => 1e-2;
 
-        protected override double GramsPerDeciLiterInOneKilogramPerCubicMeter => 1e-1;
+        protected override double GramsPerDeciliterInOneKilogramPerCubicMeter => 1e-1;
 
         protected override double GramsPerLiterInOneKilogramPerCubicMeter => 1;
 
         protected override double GramsPerMilliliterInOneKilogramPerCubicMeter => 1e-3;
 
-        protected override double MicrogramsPerDeciLiterInOneKilogramPerCubicMeter => 1e5;
+        protected override double MicrogramsPerDeciliterInOneKilogramPerCubicMeter => 1e5;
 
         protected override double MicrogramsPerLiterInOneKilogramPerCubicMeter => 1e6;
 
         protected override double MicrogramsPerMilliliterInOneKilogramPerCubicMeter => 1e3;
 
-        protected override double MilligramsPerDeciLiterInOneKilogramPerCubicMeter => 1e2;
+        protected override double MilligramsPerDeciliterInOneKilogramPerCubicMeter => 1e2;
 
         protected override double MilligramsPerLiterInOneKilogramPerCubicMeter => 1e3;
 
         protected override double MilligramsPerMilliliterInOneKilogramPerCubicMeter => 1;
 
-        protected override double NanogramsPerDeciLiterInOneKilogramPerCubicMeter => 1e8;
+        protected override double NanogramsPerDeciliterInOneKilogramPerCubicMeter => 1e8;
 
         protected override double NanogramsPerLiterInOneKilogramPerCubicMeter => 1e9;
 
         protected override double NanogramsPerMilliliterInOneKilogramPerCubicMeter => 1e6;
 
-        protected override double PicogramsPerDeciLiterInOneKilogramPerCubicMeter => 1e11;
+        protected override double PicogramsPerDeciliterInOneKilogramPerCubicMeter => 1e11;
+
+        protected override double FemtogramsPerDeciliterInOneKilogramPerCubicMeter => 1e14;
 
         protected override double PicogramsPerLiterInOneKilogramPerCubicMeter => 1e12;
 
+        protected override double FemtogramsPerLiterInOneKilogramPerCubicMeter => 1e15;
+
         protected override double PicogramsPerMilliliterInOneKilogramPerCubicMeter => 1e9;
+
+        protected override double FemtogramsPerMilliliterInOneKilogramPerCubicMeter => 1e12;
 
         protected override double MicrogramsPerCubicMeterInOneKilogramPerCubicMeter => 1e9;
 

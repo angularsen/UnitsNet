@@ -115,16 +115,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Impulse(double.PositiveInfinity, ImpulseUnit.NewtonSecond));
-            Assert.Throws<ArgumentException>(() => new Impulse(double.NegativeInfinity, ImpulseUnit.NewtonSecond));
+            var exception1 = Record.Exception(() => new Impulse(double.PositiveInfinity, ImpulseUnit.NewtonSecond));
+            var exception2 = Record.Exception(() => new Impulse(double.NegativeInfinity, ImpulseUnit.NewtonSecond));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Impulse(double.NaN, ImpulseUnit.NewtonSecond));
+            var exception = Record.Exception(() => new Impulse(double.NaN, ImpulseUnit.NewtonSecond));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -239,16 +244,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromNewtonSeconds_WithInfinityValue_ThrowsArgumentException()
+        public void FromNewtonSeconds_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Impulse.FromNewtonSeconds(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Impulse.FromNewtonSeconds(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => Impulse.FromNewtonSeconds(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => Impulse.FromNewtonSeconds(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromNewtonSeconds_WithNanValue_ThrowsArgumentException()
+        public void FromNewtonSeconds_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Impulse.FromNewtonSeconds(double.NaN));
+            var exception = Record.Exception(() => Impulse.FromNewtonSeconds(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -278,7 +288,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else

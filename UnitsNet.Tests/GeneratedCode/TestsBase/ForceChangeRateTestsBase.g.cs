@@ -123,16 +123,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ForceChangeRate(double.PositiveInfinity, ForceChangeRateUnit.NewtonPerSecond));
-            Assert.Throws<ArgumentException>(() => new ForceChangeRate(double.NegativeInfinity, ForceChangeRateUnit.NewtonPerSecond));
+            var exception1 = Record.Exception(() => new ForceChangeRate(double.PositiveInfinity, ForceChangeRateUnit.NewtonPerSecond));
+            var exception2 = Record.Exception(() => new ForceChangeRate(double.NegativeInfinity, ForceChangeRateUnit.NewtonPerSecond));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ForceChangeRate(double.NaN, ForceChangeRateUnit.NewtonPerSecond));
+            var exception = Record.Exception(() => new ForceChangeRate(double.NaN, ForceChangeRateUnit.NewtonPerSecond));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -257,16 +262,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromNewtonsPerSecond_WithInfinityValue_ThrowsArgumentException()
+        public void FromNewtonsPerSecond_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ForceChangeRate.FromNewtonsPerSecond(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ForceChangeRate.FromNewtonsPerSecond(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => ForceChangeRate.FromNewtonsPerSecond(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => ForceChangeRate.FromNewtonsPerSecond(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromNewtonsPerSecond_WithNanValue_ThrowsArgumentException()
+        public void FromNewtonsPerSecond_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ForceChangeRate.FromNewtonsPerSecond(double.NaN));
+            var exception = Record.Exception(() => ForceChangeRate.FromNewtonsPerSecond(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -298,7 +308,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else

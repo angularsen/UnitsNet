@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -39,18 +42,27 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Viscosity#Dynamic_.28shear.29_viscosity
     /// </remarks>
     [DataContract]
-    public readonly partial struct DynamicViscosity : IArithmeticQuantity<DynamicViscosity, DynamicViscosityUnit, double>, IEquatable<DynamicViscosity>, IComparable, IComparable<DynamicViscosity>, IConvertible, IFormattable
+    public readonly partial struct DynamicViscosity :
+        IArithmeticQuantity<DynamicViscosity, DynamicViscosityUnit, double>,
+#if NET7_0_OR_GREATER
+        IDivisionOperators<DynamicViscosity, Density, KinematicViscosity>,
+#endif
+        IComparable,
+        IComparable<DynamicViscosity>,
+        IConvertible,
+        IEquatable<DynamicViscosity>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 0)]
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 1)]
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly DynamicViscosityUnit? _unit;
 
         static DynamicViscosity()
@@ -62,16 +74,16 @@ namespace UnitsNet
             Info = new QuantityInfo<DynamicViscosityUnit>("DynamicViscosity",
                 new UnitInfo<DynamicViscosityUnit>[]
                 {
-                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.Centipoise, "Centipoise", BaseUnits.Undefined),
-                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.MicropascalSecond, "MicropascalSeconds", BaseUnits.Undefined),
-                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.MillipascalSecond, "MillipascalSeconds", BaseUnits.Undefined),
-                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.NewtonSecondPerMeterSquared, "NewtonSecondsPerMeterSquared", BaseUnits.Undefined),
-                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.PascalSecond, "PascalSeconds", BaseUnits.Undefined),
-                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.Poise, "Poise", BaseUnits.Undefined),
-                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.PoundForceSecondPerSquareFoot, "PoundsForceSecondPerSquareFoot", BaseUnits.Undefined),
-                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.PoundForceSecondPerSquareInch, "PoundsForceSecondPerSquareInch", BaseUnits.Undefined),
-                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.PoundPerFootSecond, "PoundsPerFootSecond", BaseUnits.Undefined),
-                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.Reyn, "Reyns", BaseUnits.Undefined),
+                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.Centipoise, "Centipoise", BaseUnits.Undefined, "DynamicViscosity"),
+                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.MicropascalSecond, "MicropascalSeconds", BaseUnits.Undefined, "DynamicViscosity"),
+                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.MillipascalSecond, "MillipascalSeconds", BaseUnits.Undefined, "DynamicViscosity"),
+                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.NewtonSecondPerMeterSquared, "NewtonSecondsPerMeterSquared", BaseUnits.Undefined, "DynamicViscosity"),
+                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.PascalSecond, "PascalSeconds", BaseUnits.Undefined, "DynamicViscosity"),
+                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.Poise, "Poise", BaseUnits.Undefined, "DynamicViscosity"),
+                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.PoundForceSecondPerSquareFoot, "PoundsForceSecondPerSquareFoot", BaseUnits.Undefined, "DynamicViscosity"),
+                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.PoundForceSecondPerSquareInch, "PoundsForceSecondPerSquareInch", BaseUnits.Undefined, "DynamicViscosity"),
+                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.PoundPerFootSecond, "PoundsPerFootSecond", BaseUnits.Undefined, "DynamicViscosity"),
+                    new UnitInfo<DynamicViscosityUnit>(DynamicViscosityUnit.Reyn, "Reyns", BaseUnits.Undefined, "DynamicViscosity"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -87,7 +99,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public DynamicViscosity(double value, DynamicViscosityUnit unit)
         {
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = unit;
         }
 
@@ -106,7 +118,7 @@ namespace UnitsNet
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -144,7 +156,7 @@ namespace UnitsNet
         public static DynamicViscosity AdditiveIdentity => Zero;
 
         #endregion
- 
+
         #region Properties
 
         /// <summary>
@@ -259,20 +271,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.NewtonSecondPerMeterSquared, DynamicViscosityUnit.PoundForceSecondPerSquareInch, quantity => quantity.ToUnit(DynamicViscosityUnit.PoundForceSecondPerSquareInch));
             unitConverter.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.NewtonSecondPerMeterSquared, DynamicViscosityUnit.PoundPerFootSecond, quantity => quantity.ToUnit(DynamicViscosityUnit.PoundPerFootSecond));
             unitConverter.SetConversionFunction<DynamicViscosity>(DynamicViscosityUnit.NewtonSecondPerMeterSquared, DynamicViscosityUnit.Reyn, quantity => quantity.ToUnit(DynamicViscosityUnit.Reyn));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(DynamicViscosityUnit.Centipoise, new CultureInfo("en-US"), false, true, new string[]{"cP"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DynamicViscosityUnit.MicropascalSecond, new CultureInfo("en-US"), false, true, new string[]{"µPa·s", "µPaS"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DynamicViscosityUnit.MillipascalSecond, new CultureInfo("en-US"), false, true, new string[]{"mPa·s", "mPaS"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DynamicViscosityUnit.NewtonSecondPerMeterSquared, new CultureInfo("en-US"), false, true, new string[]{"Ns/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DynamicViscosityUnit.PascalSecond, new CultureInfo("en-US"), false, true, new string[]{"Pa·s", "PaS"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DynamicViscosityUnit.Poise, new CultureInfo("en-US"), false, true, new string[]{"P"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DynamicViscosityUnit.PoundForceSecondPerSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"lbf·s/ft²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DynamicViscosityUnit.PoundForceSecondPerSquareInch, new CultureInfo("en-US"), false, true, new string[]{"lbf·s/in²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DynamicViscosityUnit.PoundPerFootSecond, new CultureInfo("en-US"), false, true, new string[]{"lb/ft·s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DynamicViscosityUnit.Reyn, new CultureInfo("en-US"), false, true, new string[]{"reyn"});
         }
 
         /// <summary>
@@ -420,7 +418,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="ArgumentException">
@@ -447,7 +445,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="ArgumentException">
@@ -479,7 +477,7 @@ namespace UnitsNet
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         public static bool TryParse(string? str, out DynamicViscosity result)
         {
@@ -493,7 +491,7 @@ namespace UnitsNet
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out DynamicViscosity result)
@@ -510,7 +508,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
@@ -525,7 +523,7 @@ namespace UnitsNet
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
@@ -547,7 +545,7 @@ namespace UnitsNet
         /// <param name="unit">The parsed unit if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
-        ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out DynamicViscosityUnit unit)
@@ -603,6 +601,16 @@ namespace UnitsNet
 
         #endregion
 
+        #region Relational Operators
+
+        /// <summary>Get <see cref="KinematicViscosity"/> from <see cref="DynamicViscosity"/> / <see cref="Density"/>.</summary>
+        public static KinematicViscosity operator /(DynamicViscosity dynamicViscosity, Density density)
+        {
+            return KinematicViscosity.FromSquareMetersPerSecond(dynamicViscosity.NewtonSecondsPerMeterSquared / density.KilogramsPerCubicMeter);
+        }
+
+        #endregion
+
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
@@ -634,16 +642,14 @@ namespace UnitsNet
         #pragma warning disable CS0809
 
         /// <summary>Indicates strict equality of two <see cref="DynamicViscosity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(DynamicViscosity, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(DynamicViscosity other, DynamicViscosity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public static bool operator ==(DynamicViscosity left, DynamicViscosity right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Indicates strict inequality of two <see cref="DynamicViscosity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(DynamicViscosity, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is not null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(DynamicViscosity other, DynamicViscosity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public static bool operator !=(DynamicViscosity left, DynamicViscosity right)
         {
             return !(left == right);
@@ -651,8 +657,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="DynamicViscosity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(DynamicViscosity, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Use Equals(DynamicViscosity other, DynamicViscosity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is DynamicViscosity otherQuantity))
@@ -663,8 +668,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="DynamicViscosity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(DynamicViscosity, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Use Equals(DynamicViscosity other, DynamicViscosity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public bool Equals(DynamicViscosity other)
         {
             return new { Value, Unit }.Equals(new { other.Value, other.Unit });
@@ -748,15 +752,37 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
+        [Obsolete("Use Equals(DynamicViscosity other, DynamicViscosity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public bool Equals(DynamicViscosity other, double tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(
+                referenceValue: this.Value,
+                otherValue: other.As(this.Unit),
+                tolerance: tolerance,
+                comparisonType: ComparisonType.Absolute);
+        }
 
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+        /// <inheritdoc />
+        public bool Equals(IQuantity? other, IQuantity tolerance)
+        {
+            return other is DynamicViscosity otherTyped
+                   && (tolerance is DynamicViscosity toleranceTyped
+                       ? true
+                       : throw new ArgumentException($"Tolerance quantity ({tolerance.QuantityInfo.Name}) did not match the other quantities of type 'DynamicViscosity'.", nameof(tolerance)))
+                   && Equals(otherTyped, toleranceTyped);
+        }
+
+        /// <inheritdoc />
+        public bool Equals(DynamicViscosity other, DynamicViscosity tolerance)
+        {
+            return UnitsNet.Comparison.Equals(
+                referenceValue: this.Value,
+                otherValue: other.As(this.Unit),
+                tolerance: tolerance.As(this.Unit),
+                comparisonType: ComparisonType.Absolute);
         }
 
         /// <summary>
@@ -806,6 +832,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DynamicViscosityUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is DynamicViscosityUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DynamicViscosityUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>
@@ -932,6 +967,18 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<DynamicViscosityUnit> IQuantity<DynamicViscosityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
+        {
+            if (unit is not DynamicViscosityUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DynamicViscosityUnit)} is supported.", nameof(unit));
+
+            return ToUnit(typedUnit);
+        }
+
+        /// <inheritdoc />
+        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

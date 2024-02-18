@@ -103,16 +103,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ReciprocalLength(double.PositiveInfinity, ReciprocalLengthUnit.InverseMeter));
-            Assert.Throws<ArgumentException>(() => new ReciprocalLength(double.NegativeInfinity, ReciprocalLengthUnit.InverseMeter));
+            var exception1 = Record.Exception(() => new ReciprocalLength(double.PositiveInfinity, ReciprocalLengthUnit.InverseMeter));
+            var exception2 = Record.Exception(() => new ReciprocalLength(double.NegativeInfinity, ReciprocalLengthUnit.InverseMeter));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ReciprocalLength(double.NaN, ReciprocalLengthUnit.InverseMeter));
+            var exception = Record.Exception(() => new ReciprocalLength(double.NaN, ReciprocalLengthUnit.InverseMeter));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -212,16 +217,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromInverseMeters_WithInfinityValue_ThrowsArgumentException()
+        public void FromInverseMeters_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ReciprocalLength.FromInverseMeters(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ReciprocalLength.FromInverseMeters(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => ReciprocalLength.FromInverseMeters(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => ReciprocalLength.FromInverseMeters(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromInverseMeters_WithNanValue_ThrowsArgumentException()
+        public void FromInverseMeters_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ReciprocalLength.FromInverseMeters(double.NaN));
+            var exception = Record.Exception(() => ReciprocalLength.FromInverseMeters(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -248,7 +258,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else

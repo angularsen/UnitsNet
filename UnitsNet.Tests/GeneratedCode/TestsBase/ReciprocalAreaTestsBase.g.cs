@@ -107,16 +107,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ReciprocalArea(double.PositiveInfinity, ReciprocalAreaUnit.InverseSquareMeter));
-            Assert.Throws<ArgumentException>(() => new ReciprocalArea(double.NegativeInfinity, ReciprocalAreaUnit.InverseSquareMeter));
+            var exception1 = Record.Exception(() => new ReciprocalArea(double.PositiveInfinity, ReciprocalAreaUnit.InverseSquareMeter));
+            var exception2 = Record.Exception(() => new ReciprocalArea(double.NegativeInfinity, ReciprocalAreaUnit.InverseSquareMeter));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ReciprocalArea(double.NaN, ReciprocalAreaUnit.InverseSquareMeter));
+            var exception = Record.Exception(() => new ReciprocalArea(double.NaN, ReciprocalAreaUnit.InverseSquareMeter));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -221,16 +226,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromInverseSquareMeters_WithInfinityValue_ThrowsArgumentException()
+        public void FromInverseSquareMeters_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ReciprocalArea.FromInverseSquareMeters(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ReciprocalArea.FromInverseSquareMeters(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => ReciprocalArea.FromInverseSquareMeters(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => ReciprocalArea.FromInverseSquareMeters(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromInverseSquareMeters_WithNanValue_ThrowsArgumentException()
+        public void FromInverseSquareMeters_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ReciprocalArea.FromInverseSquareMeters(double.NaN));
+            var exception = Record.Exception(() => ReciprocalArea.FromInverseSquareMeters(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -258,7 +268,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else

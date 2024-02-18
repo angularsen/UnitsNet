@@ -67,16 +67,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricChargeDensity(double.PositiveInfinity, ElectricChargeDensityUnit.CoulombPerCubicMeter));
-            Assert.Throws<ArgumentException>(() => new ElectricChargeDensity(double.NegativeInfinity, ElectricChargeDensityUnit.CoulombPerCubicMeter));
+            var exception1 = Record.Exception(() => new ElectricChargeDensity(double.PositiveInfinity, ElectricChargeDensityUnit.CoulombPerCubicMeter));
+            var exception2 = Record.Exception(() => new ElectricChargeDensity(double.NegativeInfinity, ElectricChargeDensityUnit.CoulombPerCubicMeter));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricChargeDensity(double.NaN, ElectricChargeDensityUnit.CoulombPerCubicMeter));
+            var exception = Record.Exception(() => new ElectricChargeDensity(double.NaN, ElectricChargeDensityUnit.CoulombPerCubicMeter));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -131,16 +136,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromCoulombsPerCubicMeter_WithInfinityValue_ThrowsArgumentException()
+        public void FromCoulombsPerCubicMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricChargeDensity.FromCoulombsPerCubicMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ElectricChargeDensity.FromCoulombsPerCubicMeter(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => ElectricChargeDensity.FromCoulombsPerCubicMeter(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => ElectricChargeDensity.FromCoulombsPerCubicMeter(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromCoulombsPerCubicMeter_WithNanValue_ThrowsArgumentException()
+        public void FromCoulombsPerCubicMeter_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricChargeDensity.FromCoulombsPerCubicMeter(double.NaN));
+            var exception = Record.Exception(() => ElectricChargeDensity.FromCoulombsPerCubicMeter(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -158,7 +168,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else

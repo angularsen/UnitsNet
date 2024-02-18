@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -36,18 +39,36 @@ namespace UnitsNet
     ///     In everyday use and in kinematics, the speed of an object is the magnitude of its velocity (the rate of change of its position); it is thus a scalar quantity.[1] The average speed of an object in an interval of time is the distance travelled by the object divided by the duration of the interval;[2] the instantaneous speed is the limit of the average speed as the duration of the time interval approaches zero.
     /// </summary>
     [DataContract]
-    public readonly partial struct Speed : IArithmeticQuantity<Speed, SpeedUnit, double>, IEquatable<Speed>, IComparable, IComparable<Speed>, IConvertible, IFormattable
+    public readonly partial struct Speed :
+        IArithmeticQuantity<Speed, SpeedUnit, double>,
+#if NET7_0_OR_GREATER
+        IDivisionOperators<Speed, Duration, Acceleration>,
+        IDivisionOperators<Speed, TimeSpan, Acceleration>,
+        IDivisionOperators<Speed, Acceleration, Duration>,
+        IMultiplyOperators<Speed, Length, KinematicViscosity>,
+        IMultiplyOperators<Speed, Duration, Length>,
+        IMultiplyOperators<Speed, TimeSpan, Length>,
+        IMultiplyOperators<Speed, Density, MassFlux>,
+        IMultiplyOperators<Speed, Force, Power>,
+        IMultiplyOperators<Speed, Speed, SpecificEnergy>,
+        IMultiplyOperators<Speed, Area, VolumeFlow>,
+#endif
+        IComparable,
+        IComparable<Speed>,
+        IConvertible,
+        IEquatable<Speed>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 0)]
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 1)]
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly SpeedUnit? _unit;
 
         static Speed()
@@ -59,39 +80,39 @@ namespace UnitsNet
             Info = new QuantityInfo<SpeedUnit>("Speed",
                 new UnitInfo<SpeedUnit>[]
                 {
-                    new UnitInfo<SpeedUnit>(SpeedUnit.CentimeterPerHour, "CentimetersPerHour", BaseUnits.Undefined),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.CentimeterPerMinute, "CentimetersPerMinutes", BaseUnits.Undefined),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.CentimeterPerSecond, "CentimetersPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.DecimeterPerMinute, "DecimetersPerMinutes", BaseUnits.Undefined),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.DecimeterPerSecond, "DecimetersPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.FootPerHour, "FeetPerHour", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Hour)),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.FootPerMinute, "FeetPerMinute", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Minute)),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.FootPerSecond, "FeetPerSecond", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Second)),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.InchPerHour, "InchesPerHour", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Hour)),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.InchPerMinute, "InchesPerMinute", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Minute)),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.InchPerSecond, "InchesPerSecond", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Second)),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.KilometerPerHour, "KilometersPerHour", BaseUnits.Undefined),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.KilometerPerMinute, "KilometersPerMinutes", BaseUnits.Undefined),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.KilometerPerSecond, "KilometersPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.Knot, "Knots", new BaseUnits(length: LengthUnit.NauticalMile, time: DurationUnit.Hour)),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.Mach, "Mach", BaseUnits.Undefined),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.MeterPerHour, "MetersPerHour", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Hour)),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.MeterPerMinute, "MetersPerMinutes", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Minute)),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.MeterPerSecond, "MetersPerSecond", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second)),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.MicrometerPerMinute, "MicrometersPerMinutes", BaseUnits.Undefined),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.MicrometerPerSecond, "MicrometersPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.MilePerHour, "MilesPerHour", new BaseUnits(length: LengthUnit.Mile, time: DurationUnit.Hour)),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.MillimeterPerHour, "MillimetersPerHour", BaseUnits.Undefined),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.MillimeterPerMinute, "MillimetersPerMinutes", BaseUnits.Undefined),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.MillimeterPerSecond, "MillimetersPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.NanometerPerMinute, "NanometersPerMinutes", BaseUnits.Undefined),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.NanometerPerSecond, "NanometersPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.UsSurveyFootPerHour, "UsSurveyFeetPerHour", new BaseUnits(length: LengthUnit.UsSurveyFoot, time: DurationUnit.Hour)),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.UsSurveyFootPerMinute, "UsSurveyFeetPerMinute", new BaseUnits(length: LengthUnit.UsSurveyFoot, time: DurationUnit.Minute)),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.UsSurveyFootPerSecond, "UsSurveyFeetPerSecond", new BaseUnits(length: LengthUnit.UsSurveyFoot, time: DurationUnit.Second)),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.YardPerHour, "YardsPerHour", new BaseUnits(length: LengthUnit.Yard, time: DurationUnit.Hour)),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.YardPerMinute, "YardsPerMinute", new BaseUnits(length: LengthUnit.Yard, time: DurationUnit.Minute)),
-                    new UnitInfo<SpeedUnit>(SpeedUnit.YardPerSecond, "YardsPerSecond", new BaseUnits(length: LengthUnit.Yard, time: DurationUnit.Second)),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.CentimeterPerHour, "CentimetersPerHour", BaseUnits.Undefined, "Speed"),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.CentimeterPerMinute, "CentimetersPerMinute", BaseUnits.Undefined, "Speed"),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.CentimeterPerSecond, "CentimetersPerSecond", BaseUnits.Undefined, "Speed"),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.DecimeterPerMinute, "DecimetersPerMinute", BaseUnits.Undefined, "Speed"),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.DecimeterPerSecond, "DecimetersPerSecond", BaseUnits.Undefined, "Speed"),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.FootPerHour, "FeetPerHour", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Hour), "Speed"),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.FootPerMinute, "FeetPerMinute", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Minute), "Speed"),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.FootPerSecond, "FeetPerSecond", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Second), "Speed"),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.InchPerHour, "InchesPerHour", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Hour), "Speed"),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.InchPerMinute, "InchesPerMinute", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Minute), "Speed"),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.InchPerSecond, "InchesPerSecond", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Second), "Speed"),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.KilometerPerHour, "KilometersPerHour", BaseUnits.Undefined, "Speed"),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.KilometerPerMinute, "KilometersPerMinute", BaseUnits.Undefined, "Speed"),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.KilometerPerSecond, "KilometersPerSecond", BaseUnits.Undefined, "Speed"),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.Knot, "Knots", new BaseUnits(length: LengthUnit.NauticalMile, time: DurationUnit.Hour), "Speed"),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.Mach, "Mach", BaseUnits.Undefined, "Speed"),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.MeterPerHour, "MetersPerHour", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Hour), "Speed"),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.MeterPerMinute, "MetersPerMinute", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Minute), "Speed"),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.MeterPerSecond, "MetersPerSecond", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second), "Speed"),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.MicrometerPerMinute, "MicrometersPerMinute", BaseUnits.Undefined, "Speed"),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.MicrometerPerSecond, "MicrometersPerSecond", BaseUnits.Undefined, "Speed"),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.MilePerHour, "MilesPerHour", new BaseUnits(length: LengthUnit.Mile, time: DurationUnit.Hour), "Speed"),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.MillimeterPerHour, "MillimetersPerHour", BaseUnits.Undefined, "Speed"),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.MillimeterPerMinute, "MillimetersPerMinute", BaseUnits.Undefined, "Speed"),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.MillimeterPerSecond, "MillimetersPerSecond", BaseUnits.Undefined, "Speed"),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.NanometerPerMinute, "NanometersPerMinute", BaseUnits.Undefined, "Speed"),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.NanometerPerSecond, "NanometersPerSecond", BaseUnits.Undefined, "Speed"),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.UsSurveyFootPerHour, "UsSurveyFeetPerHour", new BaseUnits(length: LengthUnit.UsSurveyFoot, time: DurationUnit.Hour), "Speed"),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.UsSurveyFootPerMinute, "UsSurveyFeetPerMinute", new BaseUnits(length: LengthUnit.UsSurveyFoot, time: DurationUnit.Minute), "Speed"),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.UsSurveyFootPerSecond, "UsSurveyFeetPerSecond", new BaseUnits(length: LengthUnit.UsSurveyFoot, time: DurationUnit.Second), "Speed"),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.YardPerHour, "YardsPerHour", new BaseUnits(length: LengthUnit.Yard, time: DurationUnit.Hour), "Speed"),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.YardPerMinute, "YardsPerMinute", new BaseUnits(length: LengthUnit.Yard, time: DurationUnit.Minute), "Speed"),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.YardPerSecond, "YardsPerSecond", new BaseUnits(length: LengthUnit.Yard, time: DurationUnit.Second), "Speed"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -107,7 +128,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Speed(double value, SpeedUnit unit)
         {
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = unit;
         }
 
@@ -126,7 +147,7 @@ namespace UnitsNet
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -164,7 +185,7 @@ namespace UnitsNet
         public static Speed AdditiveIdentity => Zero;
 
         #endregion
- 
+
         #region Properties
 
         /// <summary>
@@ -203,7 +224,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.CentimeterPerMinute"/>
         /// </summary>
-        public double CentimetersPerMinutes => As(SpeedUnit.CentimeterPerMinute);
+        public double CentimetersPerMinute => As(SpeedUnit.CentimeterPerMinute);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.CentimeterPerSecond"/>
@@ -213,7 +234,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.DecimeterPerMinute"/>
         /// </summary>
-        public double DecimetersPerMinutes => As(SpeedUnit.DecimeterPerMinute);
+        public double DecimetersPerMinute => As(SpeedUnit.DecimeterPerMinute);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.DecimeterPerSecond"/>
@@ -258,7 +279,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.KilometerPerMinute"/>
         /// </summary>
-        public double KilometersPerMinutes => As(SpeedUnit.KilometerPerMinute);
+        public double KilometersPerMinute => As(SpeedUnit.KilometerPerMinute);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.KilometerPerSecond"/>
@@ -283,7 +304,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.MeterPerMinute"/>
         /// </summary>
-        public double MetersPerMinutes => As(SpeedUnit.MeterPerMinute);
+        public double MetersPerMinute => As(SpeedUnit.MeterPerMinute);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.MeterPerSecond"/>
@@ -293,7 +314,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.MicrometerPerMinute"/>
         /// </summary>
-        public double MicrometersPerMinutes => As(SpeedUnit.MicrometerPerMinute);
+        public double MicrometersPerMinute => As(SpeedUnit.MicrometerPerMinute);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.MicrometerPerSecond"/>
@@ -313,7 +334,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.MillimeterPerMinute"/>
         /// </summary>
-        public double MillimetersPerMinutes => As(SpeedUnit.MillimeterPerMinute);
+        public double MillimetersPerMinute => As(SpeedUnit.MillimeterPerMinute);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.MillimeterPerSecond"/>
@@ -323,7 +344,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.NanometerPerMinute"/>
         /// </summary>
-        public double NanometersPerMinutes => As(SpeedUnit.NanometerPerMinute);
+        public double NanometersPerMinute => As(SpeedUnit.NanometerPerMinute);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.NanometerPerSecond"/>
@@ -442,67 +463,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.YardPerSecond, quantity => quantity.ToUnit(SpeedUnit.YardPerSecond));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.CentimeterPerHour, new CultureInfo("en-US"), false, true, new string[]{"cm/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.CentimeterPerHour, new CultureInfo("ru-RU"), false, true, new string[]{"см/ч"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.CentimeterPerMinute, new CultureInfo("en-US"), false, true, new string[]{"cm/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.CentimeterPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"см/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.CentimeterPerSecond, new CultureInfo("en-US"), false, true, new string[]{"cm/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.CentimeterPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"см/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.DecimeterPerMinute, new CultureInfo("en-US"), false, true, new string[]{"dm/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.DecimeterPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"дм/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.DecimeterPerSecond, new CultureInfo("en-US"), false, true, new string[]{"dm/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.DecimeterPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"дм/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.FootPerHour, new CultureInfo("en-US"), false, true, new string[]{"ft/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.FootPerHour, new CultureInfo("ru-RU"), false, true, new string[]{"фут/ч"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.FootPerMinute, new CultureInfo("en-US"), false, true, new string[]{"ft/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.FootPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"фут/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.FootPerSecond, new CultureInfo("en-US"), false, true, new string[]{"ft/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.FootPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"фут/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.InchPerHour, new CultureInfo("en-US"), false, true, new string[]{"in/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.InchPerMinute, new CultureInfo("en-US"), false, true, new string[]{"in/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.InchPerSecond, new CultureInfo("en-US"), false, true, new string[]{"in/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.KilometerPerHour, new CultureInfo("en-US"), false, true, new string[]{"km/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.KilometerPerHour, new CultureInfo("ru-RU"), false, true, new string[]{"км/ч"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.KilometerPerMinute, new CultureInfo("en-US"), false, true, new string[]{"km/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.KilometerPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"км/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.KilometerPerSecond, new CultureInfo("en-US"), false, true, new string[]{"km/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.KilometerPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"км/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.Knot, new CultureInfo("en-US"), false, true, new string[]{"kn", "kt", "knot", "knots"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.Knot, new CultureInfo("ru-RU"), false, true, new string[]{"уз."});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.Mach, new CultureInfo("en-US"), false, true, new string[]{"M", "Ma", "MN", "MACH"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.Mach, new CultureInfo("ru-RU"), false, true, new string[]{"мах"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MeterPerHour, new CultureInfo("en-US"), false, true, new string[]{"m/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MeterPerHour, new CultureInfo("ru-RU"), false, true, new string[]{"м/ч"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MeterPerMinute, new CultureInfo("en-US"), false, true, new string[]{"m/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MeterPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"м/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MeterPerSecond, new CultureInfo("en-US"), false, true, new string[]{"m/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MeterPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"м/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MicrometerPerMinute, new CultureInfo("en-US"), false, true, new string[]{"µm/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MicrometerPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"мкм/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MicrometerPerSecond, new CultureInfo("en-US"), false, true, new string[]{"µm/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MicrometerPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"мкм/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MilePerHour, new CultureInfo("en-US"), false, true, new string[]{"mph"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MilePerHour, new CultureInfo("ru-RU"), false, true, new string[]{"миль/ч"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MillimeterPerHour, new CultureInfo("en-US"), false, true, new string[]{"mm/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MillimeterPerHour, new CultureInfo("ru-RU"), false, true, new string[]{"мм/ч"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MillimeterPerMinute, new CultureInfo("en-US"), false, true, new string[]{"mm/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MillimeterPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"мм/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MillimeterPerSecond, new CultureInfo("en-US"), false, true, new string[]{"mm/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MillimeterPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"мм/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.NanometerPerMinute, new CultureInfo("en-US"), false, true, new string[]{"nm/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.NanometerPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"нм/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.NanometerPerSecond, new CultureInfo("en-US"), false, true, new string[]{"nm/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.NanometerPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"нм/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.UsSurveyFootPerHour, new CultureInfo("en-US"), false, true, new string[]{"ftUS/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.UsSurveyFootPerMinute, new CultureInfo("en-US"), false, true, new string[]{"ftUS/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.UsSurveyFootPerSecond, new CultureInfo("en-US"), false, true, new string[]{"ftUS/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.YardPerHour, new CultureInfo("en-US"), false, true, new string[]{"yd/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.YardPerMinute, new CultureInfo("en-US"), false, true, new string[]{"yd/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.YardPerSecond, new CultureInfo("en-US"), false, true, new string[]{"yd/s"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -542,9 +502,9 @@ namespace UnitsNet
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.CentimeterPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Speed FromCentimetersPerMinutes(QuantityValue centimetersperminutes)
+        public static Speed FromCentimetersPerMinute(QuantityValue centimetersperminute)
         {
-            double value = (double) centimetersperminutes;
+            double value = (double) centimetersperminute;
             return new Speed(value, SpeedUnit.CentimeterPerMinute);
         }
 
@@ -562,9 +522,9 @@ namespace UnitsNet
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.DecimeterPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Speed FromDecimetersPerMinutes(QuantityValue decimetersperminutes)
+        public static Speed FromDecimetersPerMinute(QuantityValue decimetersperminute)
         {
-            double value = (double) decimetersperminutes;
+            double value = (double) decimetersperminute;
             return new Speed(value, SpeedUnit.DecimeterPerMinute);
         }
 
@@ -652,9 +612,9 @@ namespace UnitsNet
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.KilometerPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Speed FromKilometersPerMinutes(QuantityValue kilometersperminutes)
+        public static Speed FromKilometersPerMinute(QuantityValue kilometersperminute)
         {
-            double value = (double) kilometersperminutes;
+            double value = (double) kilometersperminute;
             return new Speed(value, SpeedUnit.KilometerPerMinute);
         }
 
@@ -702,9 +662,9 @@ namespace UnitsNet
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MeterPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Speed FromMetersPerMinutes(QuantityValue metersperminutes)
+        public static Speed FromMetersPerMinute(QuantityValue metersperminute)
         {
-            double value = (double) metersperminutes;
+            double value = (double) metersperminute;
             return new Speed(value, SpeedUnit.MeterPerMinute);
         }
 
@@ -722,9 +682,9 @@ namespace UnitsNet
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MicrometerPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Speed FromMicrometersPerMinutes(QuantityValue micrometersperminutes)
+        public static Speed FromMicrometersPerMinute(QuantityValue micrometersperminute)
         {
-            double value = (double) micrometersperminutes;
+            double value = (double) micrometersperminute;
             return new Speed(value, SpeedUnit.MicrometerPerMinute);
         }
 
@@ -762,9 +722,9 @@ namespace UnitsNet
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MillimeterPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Speed FromMillimetersPerMinutes(QuantityValue millimetersperminutes)
+        public static Speed FromMillimetersPerMinute(QuantityValue millimetersperminute)
         {
-            double value = (double) millimetersperminutes;
+            double value = (double) millimetersperminute;
             return new Speed(value, SpeedUnit.MillimeterPerMinute);
         }
 
@@ -782,9 +742,9 @@ namespace UnitsNet
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.NanometerPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Speed FromNanometersPerMinutes(QuantityValue nanometersperminutes)
+        public static Speed FromNanometersPerMinute(QuantityValue nanometersperminute)
         {
-            double value = (double) nanometersperminutes;
+            double value = (double) nanometersperminute;
             return new Speed(value, SpeedUnit.NanometerPerMinute);
         }
 
@@ -878,7 +838,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="ArgumentException">
@@ -905,7 +865,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="ArgumentException">
@@ -937,7 +897,7 @@ namespace UnitsNet
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         public static bool TryParse(string? str, out Speed result)
         {
@@ -951,7 +911,7 @@ namespace UnitsNet
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out Speed result)
@@ -968,7 +928,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
@@ -983,7 +943,7 @@ namespace UnitsNet
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
@@ -1005,7 +965,7 @@ namespace UnitsNet
         /// <param name="unit">The parsed unit if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
-        ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out SpeedUnit unit)
@@ -1061,6 +1021,76 @@ namespace UnitsNet
 
         #endregion
 
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Acceleration"/> from <see cref="Speed"/> / <see cref="Duration"/>.</summary>
+        public static Acceleration operator /(Speed speed, Duration duration)
+        {
+            return Acceleration.FromMetersPerSecondSquared(speed.MetersPerSecond / duration.Seconds);
+        }
+
+        /// <summary>Get <see cref="Acceleration"/> from <see cref="Speed"/> / <see cref="TimeSpan"/>.</summary>
+        public static Acceleration operator /(Speed speed, TimeSpan timeSpan)
+        {
+            return Acceleration.FromMetersPerSecondSquared(speed.MetersPerSecond / timeSpan.TotalSeconds);
+        }
+
+        /// <summary>Get <see cref="Duration"/> from <see cref="Speed"/> / <see cref="Acceleration"/>.</summary>
+        public static Duration operator /(Speed speed, Acceleration acceleration)
+        {
+            return Duration.FromSeconds(speed.MetersPerSecond / acceleration.MetersPerSecondSquared);
+        }
+
+        /// <summary>Get <see cref="KinematicViscosity"/> from <see cref="Speed"/> * <see cref="Length"/>.</summary>
+        public static KinematicViscosity operator *(Speed speed, Length length)
+        {
+            return KinematicViscosity.FromSquareMetersPerSecond(speed.MetersPerSecond * length.Meters);
+        }
+
+        /// <summary>Get <see cref="Length"/> from <see cref="Speed"/> * <see cref="Duration"/>.</summary>
+        public static Length operator *(Speed speed, Duration duration)
+        {
+            return Length.FromMeters(speed.MetersPerSecond * duration.Seconds);
+        }
+
+        /// <summary>Get <see cref="Length"/> from <see cref="Speed"/> * <see cref="TimeSpan"/>.</summary>
+        public static Length operator *(Speed speed, TimeSpan timeSpan)
+        {
+            return Length.FromMeters(speed.MetersPerSecond * timeSpan.TotalSeconds);
+        }
+
+        /// <summary>Get <see cref="Length"/> from <see cref="TimeSpan"/> * <see cref="Speed"/>.</summary>
+        public static Length operator *(TimeSpan timeSpan, Speed speed)
+        {
+            return Length.FromMeters(timeSpan.TotalSeconds * speed.MetersPerSecond);
+        }
+
+        /// <summary>Get <see cref="MassFlux"/> from <see cref="Speed"/> * <see cref="Density"/>.</summary>
+        public static MassFlux operator *(Speed speed, Density density)
+        {
+            return MassFlux.FromKilogramsPerSecondPerSquareMeter(speed.MetersPerSecond * density.KilogramsPerCubicMeter);
+        }
+
+        /// <summary>Get <see cref="Power"/> from <see cref="Speed"/> * <see cref="Force"/>.</summary>
+        public static Power operator *(Speed speed, Force force)
+        {
+            return Power.FromWatts(speed.MetersPerSecond * force.Newtons);
+        }
+
+        /// <summary>Get <see cref="SpecificEnergy"/> from <see cref="Speed"/> * <see cref="Speed"/>.</summary>
+        public static SpecificEnergy operator *(Speed left, Speed right)
+        {
+            return SpecificEnergy.FromJoulesPerKilogram(left.MetersPerSecond * right.MetersPerSecond);
+        }
+
+        /// <summary>Get <see cref="VolumeFlow"/> from <see cref="Speed"/> * <see cref="Area"/>.</summary>
+        public static VolumeFlow operator *(Speed speed, Area area)
+        {
+            return VolumeFlow.FromCubicMetersPerSecond(speed.MetersPerSecond * area.SquareMeters);
+        }
+
+        #endregion
+
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
@@ -1092,16 +1122,14 @@ namespace UnitsNet
         #pragma warning disable CS0809
 
         /// <summary>Indicates strict equality of two <see cref="Speed"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Speed, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Speed other, Speed tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public static bool operator ==(Speed left, Speed right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Indicates strict inequality of two <see cref="Speed"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Speed, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is not null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Speed other, Speed tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public static bool operator !=(Speed left, Speed right)
         {
             return !(left == right);
@@ -1109,8 +1137,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="Speed"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Speed, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Use Equals(Speed other, Speed tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is Speed otherQuantity))
@@ -1121,8 +1148,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="Speed"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Speed, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Use Equals(Speed other, Speed tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public bool Equals(Speed other)
         {
             return new { Value, Unit }.Equals(new { other.Value, other.Unit });
@@ -1206,15 +1232,37 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
+        [Obsolete("Use Equals(Speed other, Speed tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public bool Equals(Speed other, double tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(
+                referenceValue: this.Value,
+                otherValue: other.As(this.Unit),
+                tolerance: tolerance,
+                comparisonType: ComparisonType.Absolute);
+        }
 
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+        /// <inheritdoc />
+        public bool Equals(IQuantity? other, IQuantity tolerance)
+        {
+            return other is Speed otherTyped
+                   && (tolerance is Speed toleranceTyped
+                       ? true
+                       : throw new ArgumentException($"Tolerance quantity ({tolerance.QuantityInfo.Name}) did not match the other quantities of type 'Speed'.", nameof(tolerance)))
+                   && Equals(otherTyped, toleranceTyped);
+        }
+
+        /// <inheritdoc />
+        public bool Equals(Speed other, Speed tolerance)
+        {
+            return UnitsNet.Comparison.Equals(
+                referenceValue: this.Value,
+                otherValue: other.As(this.Unit),
+                tolerance: tolerance.As(this.Unit),
+                comparisonType: ComparisonType.Absolute);
         }
 
         /// <summary>
@@ -1264,6 +1312,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpeedUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is SpeedUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpeedUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>
@@ -1436,6 +1493,18 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<SpeedUnit> IQuantity<SpeedUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
+        {
+            if (unit is not SpeedUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpeedUnit)} is supported.", nameof(unit));
+
+            return ToUnit(typedUnit);
+        }
+
+        /// <inheritdoc />
+        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

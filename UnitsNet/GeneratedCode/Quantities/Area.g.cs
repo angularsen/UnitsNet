@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -36,18 +39,38 @@ namespace UnitsNet
     ///     Area is a quantity that expresses the extent of a two-dimensional surface or shape, or planar lamina, in the plane. Area can be understood as the amount of material with a given thickness that would be necessary to fashion a model of the shape, or the amount of paint necessary to cover the surface with a single coat.[1] It is the two-dimensional analog of the length of a curve (a one-dimensional concept) or the volume of a solid (a three-dimensional concept).
     /// </summary>
     [DataContract]
-    public readonly partial struct Area : IArithmeticQuantity<Area, AreaUnit, double>, IEquatable<Area>, IComparable, IComparable<Area>, IConvertible, IFormattable
+    public readonly partial struct Area :
+        IArithmeticQuantity<Area, AreaUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<Area, Pressure, Force>,
+        IMultiplyOperators<Area, SpecificWeight, ForcePerLength>,
+        IDivisionOperators<Area, Length, Length>,
+        IMultiplyOperators<Area, Density, LinearDensity>,
+        IMultiplyOperators<Area, Luminance, LuminousIntensity>,
+        IMultiplyOperators<Area, AreaDensity, Mass>,
+        IMultiplyOperators<Area, MassFlux, MassFlow>,
+        IMultiplyOperators<Area, HeatFlux, Power>,
+        IMultiplyOperators<Area, ReciprocalArea, Ratio>,
+        IMultiplyOperators<Area, ForcePerLength, Torque>,
+        IMultiplyOperators<Area, Length, Volume>,
+        IMultiplyOperators<Area, Speed, VolumeFlow>,
+#endif
+        IComparable,
+        IComparable<Area>,
+        IConvertible,
+        IEquatable<Area>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 0)]
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 1)]
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly AreaUnit? _unit;
 
         static Area()
@@ -59,20 +82,20 @@ namespace UnitsNet
             Info = new QuantityInfo<AreaUnit>("Area",
                 new UnitInfo<AreaUnit>[]
                 {
-                    new UnitInfo<AreaUnit>(AreaUnit.Acre, "Acres", BaseUnits.Undefined),
-                    new UnitInfo<AreaUnit>(AreaUnit.Hectare, "Hectares", BaseUnits.Undefined),
-                    new UnitInfo<AreaUnit>(AreaUnit.SquareCentimeter, "SquareCentimeters", new BaseUnits(length: LengthUnit.Centimeter)),
-                    new UnitInfo<AreaUnit>(AreaUnit.SquareDecimeter, "SquareDecimeters", new BaseUnits(length: LengthUnit.Decimeter)),
-                    new UnitInfo<AreaUnit>(AreaUnit.SquareFoot, "SquareFeet", new BaseUnits(length: LengthUnit.Foot)),
-                    new UnitInfo<AreaUnit>(AreaUnit.SquareInch, "SquareInches", new BaseUnits(length: LengthUnit.Inch)),
-                    new UnitInfo<AreaUnit>(AreaUnit.SquareKilometer, "SquareKilometers", new BaseUnits(length: LengthUnit.Kilometer)),
-                    new UnitInfo<AreaUnit>(AreaUnit.SquareMeter, "SquareMeters", new BaseUnits(length: LengthUnit.Meter)),
-                    new UnitInfo<AreaUnit>(AreaUnit.SquareMicrometer, "SquareMicrometers", new BaseUnits(length: LengthUnit.Micrometer)),
-                    new UnitInfo<AreaUnit>(AreaUnit.SquareMile, "SquareMiles", new BaseUnits(length: LengthUnit.Mile)),
-                    new UnitInfo<AreaUnit>(AreaUnit.SquareMillimeter, "SquareMillimeters", new BaseUnits(length: LengthUnit.Millimeter)),
-                    new UnitInfo<AreaUnit>(AreaUnit.SquareNauticalMile, "SquareNauticalMiles", BaseUnits.Undefined),
-                    new UnitInfo<AreaUnit>(AreaUnit.SquareYard, "SquareYards", new BaseUnits(length: LengthUnit.Yard)),
-                    new UnitInfo<AreaUnit>(AreaUnit.UsSurveySquareFoot, "UsSurveySquareFeet", new BaseUnits(length: LengthUnit.UsSurveyFoot)),
+                    new UnitInfo<AreaUnit>(AreaUnit.Acre, "Acres", BaseUnits.Undefined, "Area"),
+                    new UnitInfo<AreaUnit>(AreaUnit.Hectare, "Hectares", BaseUnits.Undefined, "Area"),
+                    new UnitInfo<AreaUnit>(AreaUnit.SquareCentimeter, "SquareCentimeters", new BaseUnits(length: LengthUnit.Centimeter), "Area"),
+                    new UnitInfo<AreaUnit>(AreaUnit.SquareDecimeter, "SquareDecimeters", new BaseUnits(length: LengthUnit.Decimeter), "Area"),
+                    new UnitInfo<AreaUnit>(AreaUnit.SquareFoot, "SquareFeet", new BaseUnits(length: LengthUnit.Foot), "Area"),
+                    new UnitInfo<AreaUnit>(AreaUnit.SquareInch, "SquareInches", new BaseUnits(length: LengthUnit.Inch), "Area"),
+                    new UnitInfo<AreaUnit>(AreaUnit.SquareKilometer, "SquareKilometers", new BaseUnits(length: LengthUnit.Kilometer), "Area"),
+                    new UnitInfo<AreaUnit>(AreaUnit.SquareMeter, "SquareMeters", new BaseUnits(length: LengthUnit.Meter), "Area"),
+                    new UnitInfo<AreaUnit>(AreaUnit.SquareMicrometer, "SquareMicrometers", new BaseUnits(length: LengthUnit.Micrometer), "Area"),
+                    new UnitInfo<AreaUnit>(AreaUnit.SquareMile, "SquareMiles", new BaseUnits(length: LengthUnit.Mile), "Area"),
+                    new UnitInfo<AreaUnit>(AreaUnit.SquareMillimeter, "SquareMillimeters", new BaseUnits(length: LengthUnit.Millimeter), "Area"),
+                    new UnitInfo<AreaUnit>(AreaUnit.SquareNauticalMile, "SquareNauticalMiles", BaseUnits.Undefined, "Area"),
+                    new UnitInfo<AreaUnit>(AreaUnit.SquareYard, "SquareYards", new BaseUnits(length: LengthUnit.Yard), "Area"),
+                    new UnitInfo<AreaUnit>(AreaUnit.UsSurveySquareFoot, "UsSurveySquareFeet", new BaseUnits(length: LengthUnit.UsSurveyFoot), "Area"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -88,7 +111,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Area(double value, AreaUnit unit)
         {
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = unit;
         }
 
@@ -107,7 +130,7 @@ namespace UnitsNet
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -145,7 +168,7 @@ namespace UnitsNet
         public static Area AdditiveIdentity => Zero;
 
         #endregion
- 
+
         #region Properties
 
         /// <summary>
@@ -288,51 +311,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.SquareNauticalMile, quantity => quantity.ToUnit(AreaUnit.SquareNauticalMile));
             unitConverter.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.SquareYard, quantity => quantity.ToUnit(AreaUnit.SquareYard));
             unitConverter.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.UsSurveySquareFoot, quantity => quantity.ToUnit(AreaUnit.UsSurveySquareFoot));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.Acre, new CultureInfo("en-US"), false, true, new string[]{"ac"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.Acre, new CultureInfo("ru-RU"), false, true, new string[]{"акр"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.Acre, new CultureInfo("zh-CN"), false, true, new string[]{"英亩"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.Hectare, new CultureInfo("en-US"), false, true, new string[]{"ha"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.Hectare, new CultureInfo("ru-RU"), false, true, new string[]{"га"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.Hectare, new CultureInfo("zh-CN"), false, true, new string[]{"英亩"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareCentimeter, new CultureInfo("ru-RU"), false, true, new string[]{"см²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareCentimeter, new CultureInfo("zh-CN"), false, true, new string[]{"平方厘米"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareDecimeter, new CultureInfo("en-US"), false, true, new string[]{"dm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareDecimeter, new CultureInfo("ru-RU"), false, true, new string[]{"дм²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareDecimeter, new CultureInfo("zh-CN"), false, true, new string[]{"平方分米"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareFoot, new CultureInfo("en-US"), false, true, new string[]{"ft²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareFoot, new CultureInfo("ru-RU"), false, true, new string[]{"фут²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareFoot, new CultureInfo("zh-CN"), false, true, new string[]{"平方英尺"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareInch, new CultureInfo("en-US"), false, true, new string[]{"in²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareInch, new CultureInfo("ru-RU"), false, true, new string[]{"дюйм²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareInch, new CultureInfo("zh-CN"), false, true, new string[]{"平方英寸"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareKilometer, new CultureInfo("en-US"), false, true, new string[]{"km²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareKilometer, new CultureInfo("ru-RU"), false, true, new string[]{"км²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareKilometer, new CultureInfo("zh-CN"), false, true, new string[]{"平方公里"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareMeter, new CultureInfo("en-US"), false, true, new string[]{"m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareMeter, new CultureInfo("ru-RU"), false, true, new string[]{"м²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareMeter, new CultureInfo("zh-CN"), false, true, new string[]{"平方米"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareMicrometer, new CultureInfo("en-US"), false, true, new string[]{"µm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareMicrometer, new CultureInfo("ru-RU"), false, true, new string[]{"мкм²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareMicrometer, new CultureInfo("zh-CN"), false, true, new string[]{"平方微米"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareMile, new CultureInfo("en-US"), false, true, new string[]{"mi²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareMile, new CultureInfo("ru-RU"), false, true, new string[]{"миля²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareMile, new CultureInfo("zh-CN"), false, true, new string[]{"平方英里"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareMillimeter, new CultureInfo("en-US"), false, true, new string[]{"mm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareMillimeter, new CultureInfo("ru-RU"), false, true, new string[]{"мм²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareMillimeter, new CultureInfo("zh-CN"), false, true, new string[]{"平方毫米"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareNauticalMile, new CultureInfo("en-US"), false, true, new string[]{"nmi²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareNauticalMile, new CultureInfo("ru-RU"), false, true, new string[]{"морск.миля²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareNauticalMile, new CultureInfo("zh-CN"), false, true, new string[]{"平方海里"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareYard, new CultureInfo("en-US"), false, true, new string[]{"yd²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareYard, new CultureInfo("ru-RU"), false, true, new string[]{"ярд²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareYard, new CultureInfo("zh-CN"), false, true, new string[]{"平方码"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.UsSurveySquareFoot, new CultureInfo("en-US"), false, true, new string[]{"ft² (US)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.UsSurveySquareFoot, new CultureInfo("ru-RU"), false, true, new string[]{"фут² (US)"});
         }
 
         /// <summary>
@@ -520,7 +498,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="ArgumentException">
@@ -547,7 +525,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="ArgumentException">
@@ -579,7 +557,7 @@ namespace UnitsNet
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         public static bool TryParse(string? str, out Area result)
         {
@@ -593,7 +571,7 @@ namespace UnitsNet
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out Area result)
@@ -610,7 +588,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
@@ -625,7 +603,7 @@ namespace UnitsNet
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
@@ -647,7 +625,7 @@ namespace UnitsNet
         /// <param name="unit">The parsed unit if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
-        ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out AreaUnit unit)
@@ -703,6 +681,89 @@ namespace UnitsNet
 
         #endregion
 
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Force"/> from <see cref="Area"/> * <see cref="Pressure"/>.</summary>
+        public static Force operator *(Area area, Pressure pressure)
+        {
+            return Force.FromNewtons(area.SquareMeters * pressure.Pascals);
+        }
+
+        /// <summary>Get <see cref="ForcePerLength"/> from <see cref="Area"/> * <see cref="SpecificWeight"/>.</summary>
+        public static ForcePerLength operator *(Area area, SpecificWeight specificWeight)
+        {
+            return ForcePerLength.FromNewtonsPerMeter(area.SquareMeters * specificWeight.NewtonsPerCubicMeter);
+        }
+
+        /// <summary>Get <see cref="Length"/> from <see cref="Area"/> / <see cref="Length"/>.</summary>
+        public static Length operator /(Area area, Length length)
+        {
+            return Length.FromMeters(area.SquareMeters / length.Meters);
+        }
+
+        /// <summary>Get <see cref="LinearDensity"/> from <see cref="Area"/> * <see cref="Density"/>.</summary>
+        public static LinearDensity operator *(Area area, Density density)
+        {
+            return LinearDensity.FromKilogramsPerMeter(area.SquareMeters * density.KilogramsPerCubicMeter);
+        }
+
+        /// <summary>Get <see cref="LuminousIntensity"/> from <see cref="Area"/> * <see cref="Luminance"/>.</summary>
+        public static LuminousIntensity operator *(Area area, Luminance luminance)
+        {
+            return LuminousIntensity.FromCandela(area.SquareMeters * luminance.CandelasPerSquareMeter);
+        }
+
+        /// <summary>Get <see cref="Mass"/> from <see cref="Area"/> * <see cref="AreaDensity"/>.</summary>
+        public static Mass operator *(Area area, AreaDensity areaDensity)
+        {
+            return Mass.FromKilograms(area.SquareMeters * areaDensity.KilogramsPerSquareMeter);
+        }
+
+        /// <summary>Get <see cref="MassFlow"/> from <see cref="Area"/> * <see cref="MassFlux"/>.</summary>
+        public static MassFlow operator *(Area area, MassFlux massFlux)
+        {
+            return MassFlow.FromGramsPerSecond(area.SquareMeters * massFlux.GramsPerSecondPerSquareMeter);
+        }
+
+        /// <summary>Get <see cref="Power"/> from <see cref="Area"/> * <see cref="HeatFlux"/>.</summary>
+        public static Power operator *(Area area, HeatFlux heatFlux)
+        {
+            return Power.FromWatts(area.SquareMeters * heatFlux.WattsPerSquareMeter);
+        }
+
+        /// <summary>Get <see cref="Ratio"/> from <see cref="Area"/> * <see cref="ReciprocalArea"/>.</summary>
+        public static Ratio operator *(Area area, ReciprocalArea reciprocalArea)
+        {
+            return Ratio.FromDecimalFractions(area.SquareMeters * reciprocalArea.InverseSquareMeters);
+        }
+
+        /// <summary>Calculates the inverse of this quantity.</summary>
+        /// <returns>The corresponding inverse quantity, <see cref="ReciprocalArea"/>.</returns>
+        public ReciprocalArea Inverse()
+        {
+            return SquareMeters == 0.0 ? ReciprocalArea.Zero : ReciprocalArea.FromInverseSquareMeters(1 / SquareMeters);
+        }
+
+        /// <summary>Get <see cref="Torque"/> from <see cref="Area"/> * <see cref="ForcePerLength"/>.</summary>
+        public static Torque operator *(Area area, ForcePerLength forcePerLength)
+        {
+            return Torque.FromNewtonMeters(area.SquareMeters * forcePerLength.NewtonsPerMeter);
+        }
+
+        /// <summary>Get <see cref="Volume"/> from <see cref="Area"/> * <see cref="Length"/>.</summary>
+        public static Volume operator *(Area area, Length length)
+        {
+            return Volume.FromCubicMeters(area.SquareMeters * length.Meters);
+        }
+
+        /// <summary>Get <see cref="VolumeFlow"/> from <see cref="Area"/> * <see cref="Speed"/>.</summary>
+        public static VolumeFlow operator *(Area area, Speed speed)
+        {
+            return VolumeFlow.FromCubicMetersPerSecond(area.SquareMeters * speed.MetersPerSecond);
+        }
+
+        #endregion
+
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
@@ -734,16 +795,14 @@ namespace UnitsNet
         #pragma warning disable CS0809
 
         /// <summary>Indicates strict equality of two <see cref="Area"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Area, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Area other, Area tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public static bool operator ==(Area left, Area right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Indicates strict inequality of two <see cref="Area"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Area, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is not null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Area other, Area tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public static bool operator !=(Area left, Area right)
         {
             return !(left == right);
@@ -751,8 +810,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="Area"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Area, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Use Equals(Area other, Area tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is Area otherQuantity))
@@ -763,8 +821,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="Area"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Area, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Use Equals(Area other, Area tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public bool Equals(Area other)
         {
             return new { Value, Unit }.Equals(new { other.Value, other.Unit });
@@ -848,15 +905,37 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
+        [Obsolete("Use Equals(Area other, Area tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public bool Equals(Area other, double tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(
+                referenceValue: this.Value,
+                otherValue: other.As(this.Unit),
+                tolerance: tolerance,
+                comparisonType: ComparisonType.Absolute);
+        }
 
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+        /// <inheritdoc />
+        public bool Equals(IQuantity? other, IQuantity tolerance)
+        {
+            return other is Area otherTyped
+                   && (tolerance is Area toleranceTyped
+                       ? true
+                       : throw new ArgumentException($"Tolerance quantity ({tolerance.QuantityInfo.Name}) did not match the other quantities of type 'Area'.", nameof(tolerance)))
+                   && Equals(otherTyped, toleranceTyped);
+        }
+
+        /// <inheritdoc />
+        public bool Equals(Area other, Area tolerance)
+        {
+            return UnitsNet.Comparison.Equals(
+                referenceValue: this.Value,
+                otherValue: other.As(this.Unit),
+                tolerance: tolerance.As(this.Unit),
+                comparisonType: ComparisonType.Absolute);
         }
 
         /// <summary>
@@ -906,6 +985,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AreaUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is AreaUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AreaUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>
@@ -1040,6 +1128,18 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<AreaUnit> IQuantity<AreaUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
+        {
+            if (unit is not AreaUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AreaUnit)} is supported.", nameof(unit));
+
+            return ToUnit(typedUnit);
+        }
+
+        /// <inheritdoc />
+        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

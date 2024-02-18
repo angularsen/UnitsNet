@@ -50,5 +50,17 @@ namespace UnitsNet.Tests
             Power p = ElectricPotential.FromVolts(10) * ElectricCurrent.FromAmperes(2);
             Assert.Equal(20, p.Watts);
         }
+        
+        [Theory]
+        [InlineData(1, 1, 1)]
+        [InlineData(0, int.MaxValue, 0)]
+        [InlineData(10, 2, 20)]
+        [InlineData(-10, 2, -20)]
+        [InlineData(-10, -2, 20)]
+        public void ElectricPotentialMultipliedByElectricChargeEqualsEnergy(float potential, float current, float expected)
+        {
+            Energy j = ElectricPotential.FromVolts(potential) * ElectricCharge.FromCoulombs(current);
+            Assert.Equal(expected, j.Joules);
+        }
     }
 }

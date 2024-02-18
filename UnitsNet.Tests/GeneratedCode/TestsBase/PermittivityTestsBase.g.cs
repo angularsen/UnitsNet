@@ -67,16 +67,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Permittivity(double.PositiveInfinity, PermittivityUnit.FaradPerMeter));
-            Assert.Throws<ArgumentException>(() => new Permittivity(double.NegativeInfinity, PermittivityUnit.FaradPerMeter));
+            var exception1 = Record.Exception(() => new Permittivity(double.PositiveInfinity, PermittivityUnit.FaradPerMeter));
+            var exception2 = Record.Exception(() => new Permittivity(double.NegativeInfinity, PermittivityUnit.FaradPerMeter));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Permittivity(double.NaN, PermittivityUnit.FaradPerMeter));
+            var exception = Record.Exception(() => new Permittivity(double.NaN, PermittivityUnit.FaradPerMeter));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -131,16 +136,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromFaradsPerMeter_WithInfinityValue_ThrowsArgumentException()
+        public void FromFaradsPerMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Permittivity.FromFaradsPerMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Permittivity.FromFaradsPerMeter(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => Permittivity.FromFaradsPerMeter(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => Permittivity.FromFaradsPerMeter(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromFaradsPerMeter_WithNanValue_ThrowsArgumentException()
+        public void FromFaradsPerMeter_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Permittivity.FromFaradsPerMeter(double.NaN));
+            var exception = Record.Exception(() => Permittivity.FromFaradsPerMeter(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -158,7 +168,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else

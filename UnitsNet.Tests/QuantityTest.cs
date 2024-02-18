@@ -7,6 +7,7 @@ using System.Globalization;
 using System.Linq;
 using UnitsNet.Units;
 using Xunit;
+using static System.Globalization.CultureInfo;
 
 namespace UnitsNet.Tests
 {
@@ -19,19 +20,21 @@ namespace UnitsNet.Tests
         [InlineData(double.NaN)]
         [InlineData(double.PositiveInfinity)]
         [InlineData(double.NegativeInfinity)]
-        public void From_GivenNaNOrInfinity_ThrowsArgumentException(double value)
+        public void From_GivenNaNOrInfinity_DoNotThrowsArgumentException(double value)
         {
-            Assert.Throws<ArgumentException>(() => Quantity.From(value, LengthUnit.Centimeter));
+            var exception = Record.Exception(() => Quantity.From(value, LengthUnit.Centimeter));
+
+            Assert.Null(exception);
         }
 
         [Theory]
         [InlineData(double.NaN)]
         [InlineData(double.PositiveInfinity)]
         [InlineData(double.NegativeInfinity)]
-        public void TryFrom_GivenNaNOrInfinity_ReturnsFalseAndNullQuantity(double value)
+        public void TryFrom_GivenNaNOrInfinity_ReturnsTrueAndQuantity(double value)
         {
-            Assert.False(Quantity.TryFrom(value, LengthUnit.Centimeter, out IQuantity? parsedLength));
-            Assert.Null(parsedLength);
+            Assert.True(Quantity.TryFrom(value, LengthUnit.Centimeter, out IQuantity? parsedLength));
+            Assert.NotNull(parsedLength);
         }
 
         [Fact]
@@ -103,9 +106,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void Parse_GivenValueAndUnit_ReturnsQuantity()
         {
-            Assert.Equal(Length.FromCentimeters(3), Quantity.Parse(CultureInfo.InvariantCulture, typeof(Length), "3 cm"));
-            Assert.Equal(Mass.FromTonnes(3), Quantity.Parse(CultureInfo.InvariantCulture, typeof(Mass), "03t"));
-            Assert.Equal(Pressure.FromMegabars(3), Quantity.Parse(CultureInfo.InvariantCulture, typeof(Pressure), "3.0 Mbar"));
+            Assert.Equal(Length.FromCentimeters(3), Quantity.Parse(InvariantCulture, typeof(Length), "3 cm"));
+            Assert.Equal(Mass.FromTonnes(3), Quantity.Parse(InvariantCulture, typeof(Mass), "03t"));
+            Assert.Equal(Pressure.FromMegabars(3), Quantity.Parse(InvariantCulture, typeof(Pressure), "3.0 Mbar"));
         }
 
         [Fact]
@@ -135,30 +138,30 @@ namespace UnitsNet.Tests
         [Fact]
         public void TryParse_GivenInvalidQuantityType_ReturnsFalseAndNullQuantity()
         {
-            Assert.False(Quantity.TryParse(typeof(DummyIQuantity), "3.0 cm", out IQuantity? parsedLength));
+            Assert.False(Quantity.TryParse(InvariantCulture, typeof(DummyIQuantity), "3.0 cm", out IQuantity? parsedLength));
             Assert.Null(parsedLength);
         }
 
         [Fact]
         public void TryParse_GivenInvalidString_ReturnsFalseAndNullQuantity()
         {
-            Assert.False(Quantity.TryParse(typeof(Length), "x cm", out IQuantity? parsedLength));
+            Assert.False(Quantity.TryParse(InvariantCulture, typeof(Length), "x cm", out IQuantity? parsedLength));
             Assert.Null(parsedLength);
 
-            Assert.False(Quantity.TryParse(typeof(Mass), "xt", out IQuantity? parsedMass));
+            Assert.False(Quantity.TryParse(InvariantCulture, typeof(Mass), "xt", out IQuantity? parsedMass));
             Assert.Null(parsedMass);
 
-            Assert.False(Quantity.TryParse(typeof(Pressure), "foo", out IQuantity? parsedPressure));
+            Assert.False(Quantity.TryParse(InvariantCulture, typeof(Pressure), "foo", out IQuantity? parsedPressure));
             Assert.Null(parsedPressure);
         }
 
         [Fact]
         public void TryParse_GivenValueAndUnit_ReturnsQuantity()
         {
-            Assert.True(Quantity.TryParse(typeof(Length), "3 cm", out IQuantity? parsedLength));
+            Assert.True(Quantity.TryParse(InvariantCulture, typeof(Length), "3 cm", out IQuantity? parsedLength));
             Assert.Equal(Length.FromCentimeters(3), parsedLength);
 
-            Assert.True(Quantity.TryParse(typeof(Mass), "03t", out IQuantity? parsedMass));
+            Assert.True(Quantity.TryParse(InvariantCulture, typeof(Mass), "03t", out IQuantity? parsedMass));
             Assert.Equal(Mass.FromTonnes(3), parsedMass);
 
             Assert.True(Quantity.TryParse(NumberFormatInfo.InvariantInfo, typeof(Pressure), "3.0 Mbar", out IQuantity? parsedPressure));

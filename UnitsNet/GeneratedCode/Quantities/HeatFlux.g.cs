@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -36,18 +39,27 @@ namespace UnitsNet
     ///     Heat flux is the flow of energy per unit of area per unit of time
     /// </summary>
     [DataContract]
-    public readonly partial struct HeatFlux : IArithmeticQuantity<HeatFlux, HeatFluxUnit, double>, IEquatable<HeatFlux>, IComparable, IComparable<HeatFlux>, IConvertible, IFormattable
+    public readonly partial struct HeatFlux :
+        IArithmeticQuantity<HeatFlux, HeatFluxUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<HeatFlux, Area, Power>,
+#endif
+        IComparable,
+        IComparable<HeatFlux>,
+        IConvertible,
+        IEquatable<HeatFlux>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 0)]
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 1)]
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly HeatFluxUnit? _unit;
 
         static HeatFlux()
@@ -59,24 +71,24 @@ namespace UnitsNet
             Info = new QuantityInfo<HeatFluxUnit>("HeatFlux",
                 new UnitInfo<HeatFluxUnit>[]
                 {
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.BtuPerHourSquareFoot, "BtusPerHourSquareFoot", BaseUnits.Undefined),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.BtuPerMinuteSquareFoot, "BtusPerMinuteSquareFoot", BaseUnits.Undefined),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.BtuPerSecondSquareFoot, "BtusPerSecondSquareFoot", BaseUnits.Undefined),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.BtuPerSecondSquareInch, "BtusPerSecondSquareInch", BaseUnits.Undefined),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.CaloriePerSecondSquareCentimeter, "CaloriesPerSecondSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.CentiwattPerSquareMeter, "CentiwattsPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.DeciwattPerSquareMeter, "DeciwattsPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.KilocaloriePerHourSquareMeter, "KilocaloriesPerHourSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.KilocaloriePerSecondSquareCentimeter, "KilocaloriesPerSecondSquareCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.KilowattPerSquareMeter, "KilowattsPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.MicrowattPerSquareMeter, "MicrowattsPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.MilliwattPerSquareMeter, "MilliwattsPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.NanowattPerSquareMeter, "NanowattsPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.PoundForcePerFootSecond, "PoundsForcePerFootSecond", BaseUnits.Undefined),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.PoundPerSecondCubed, "PoundsPerSecondCubed", BaseUnits.Undefined),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.WattPerSquareFoot, "WattsPerSquareFoot", BaseUnits.Undefined),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.WattPerSquareInch, "WattsPerSquareInch", BaseUnits.Undefined),
-                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.WattPerSquareMeter, "WattsPerSquareMeter", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second)),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.BtuPerHourSquareFoot, "BtusPerHourSquareFoot", BaseUnits.Undefined, "HeatFlux"),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.BtuPerMinuteSquareFoot, "BtusPerMinuteSquareFoot", BaseUnits.Undefined, "HeatFlux"),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.BtuPerSecondSquareFoot, "BtusPerSecondSquareFoot", BaseUnits.Undefined, "HeatFlux"),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.BtuPerSecondSquareInch, "BtusPerSecondSquareInch", BaseUnits.Undefined, "HeatFlux"),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.CaloriePerSecondSquareCentimeter, "CaloriesPerSecondSquareCentimeter", BaseUnits.Undefined, "HeatFlux"),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.CentiwattPerSquareMeter, "CentiwattsPerSquareMeter", BaseUnits.Undefined, "HeatFlux"),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.DeciwattPerSquareMeter, "DeciwattsPerSquareMeter", BaseUnits.Undefined, "HeatFlux"),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.KilocaloriePerHourSquareMeter, "KilocaloriesPerHourSquareMeter", BaseUnits.Undefined, "HeatFlux"),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.KilocaloriePerSecondSquareCentimeter, "KilocaloriesPerSecondSquareCentimeter", BaseUnits.Undefined, "HeatFlux"),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.KilowattPerSquareMeter, "KilowattsPerSquareMeter", BaseUnits.Undefined, "HeatFlux"),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.MicrowattPerSquareMeter, "MicrowattsPerSquareMeter", BaseUnits.Undefined, "HeatFlux"),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.MilliwattPerSquareMeter, "MilliwattsPerSquareMeter", BaseUnits.Undefined, "HeatFlux"),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.NanowattPerSquareMeter, "NanowattsPerSquareMeter", BaseUnits.Undefined, "HeatFlux"),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.PoundForcePerFootSecond, "PoundsForcePerFootSecond", BaseUnits.Undefined, "HeatFlux"),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.PoundPerSecondCubed, "PoundsPerSecondCubed", BaseUnits.Undefined, "HeatFlux"),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.WattPerSquareFoot, "WattsPerSquareFoot", BaseUnits.Undefined, "HeatFlux"),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.WattPerSquareInch, "WattsPerSquareInch", BaseUnits.Undefined, "HeatFlux"),
+                    new UnitInfo<HeatFluxUnit>(HeatFluxUnit.WattPerSquareMeter, "WattsPerSquareMeter", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second), "HeatFlux"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -92,7 +104,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public HeatFlux(double value, HeatFluxUnit unit)
         {
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = unit;
         }
 
@@ -111,7 +123,7 @@ namespace UnitsNet
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -149,7 +161,7 @@ namespace UnitsNet
         public static HeatFlux AdditiveIdentity => Zero;
 
         #endregion
- 
+
         #region Properties
 
         /// <summary>
@@ -320,28 +332,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.PoundPerSecondCubed, quantity => quantity.ToUnit(HeatFluxUnit.PoundPerSecondCubed));
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.WattPerSquareFoot, quantity => quantity.ToUnit(HeatFluxUnit.WattPerSquareFoot));
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.WattPerSquareInch, quantity => quantity.ToUnit(HeatFluxUnit.WattPerSquareInch));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.BtuPerHourSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"BTU/h·ft²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.BtuPerMinuteSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"BTU/min·ft²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.BtuPerSecondSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"BTU/s·ft²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.BtuPerSecondSquareInch, new CultureInfo("en-US"), false, true, new string[]{"BTU/s·in²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.CaloriePerSecondSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"cal/s·cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.CentiwattPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"cW/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.DeciwattPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"dW/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.KilocaloriePerHourSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"kcal/h·m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.KilocaloriePerSecondSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"kcal/s·cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.KilowattPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"kW/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.MicrowattPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"µW/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.MilliwattPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"mW/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.NanowattPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"nW/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.PoundForcePerFootSecond, new CultureInfo("en-US"), false, true, new string[]{"lbf/(ft·s)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.PoundPerSecondCubed, new CultureInfo("en-US"), false, true, new string[]{"lb/s³", "lbm/s³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.WattPerSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"W/ft²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.WattPerSquareInch, new CultureInfo("en-US"), false, true, new string[]{"W/in²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.WattPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"W/m²"});
         }
 
         /// <summary>
@@ -569,7 +559,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="ArgumentException">
@@ -596,7 +586,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="ArgumentException">
@@ -628,7 +618,7 @@ namespace UnitsNet
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         public static bool TryParse(string? str, out HeatFlux result)
         {
@@ -642,7 +632,7 @@ namespace UnitsNet
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out HeatFlux result)
@@ -659,7 +649,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
@@ -674,7 +664,7 @@ namespace UnitsNet
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
@@ -696,7 +686,7 @@ namespace UnitsNet
         /// <param name="unit">The parsed unit if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
-        ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out HeatFluxUnit unit)
@@ -752,6 +742,16 @@ namespace UnitsNet
 
         #endregion
 
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Power"/> from <see cref="HeatFlux"/> * <see cref="Area"/>.</summary>
+        public static Power operator *(HeatFlux heatFlux, Area area)
+        {
+            return Power.FromWatts(heatFlux.WattsPerSquareMeter * area.SquareMeters);
+        }
+
+        #endregion
+
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
@@ -783,16 +783,14 @@ namespace UnitsNet
         #pragma warning disable CS0809
 
         /// <summary>Indicates strict equality of two <see cref="HeatFlux"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(HeatFlux, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(HeatFlux other, HeatFlux tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public static bool operator ==(HeatFlux left, HeatFlux right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Indicates strict inequality of two <see cref="HeatFlux"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(HeatFlux, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is not null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(HeatFlux other, HeatFlux tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public static bool operator !=(HeatFlux left, HeatFlux right)
         {
             return !(left == right);
@@ -800,8 +798,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="HeatFlux"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(HeatFlux, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Use Equals(HeatFlux other, HeatFlux tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is HeatFlux otherQuantity))
@@ -812,8 +809,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="HeatFlux"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(HeatFlux, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Use Equals(HeatFlux other, HeatFlux tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public bool Equals(HeatFlux other)
         {
             return new { Value, Unit }.Equals(new { other.Value, other.Unit });
@@ -897,15 +893,37 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
+        [Obsolete("Use Equals(HeatFlux other, HeatFlux tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public bool Equals(HeatFlux other, double tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(
+                referenceValue: this.Value,
+                otherValue: other.As(this.Unit),
+                tolerance: tolerance,
+                comparisonType: ComparisonType.Absolute);
+        }
 
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+        /// <inheritdoc />
+        public bool Equals(IQuantity? other, IQuantity tolerance)
+        {
+            return other is HeatFlux otherTyped
+                   && (tolerance is HeatFlux toleranceTyped
+                       ? true
+                       : throw new ArgumentException($"Tolerance quantity ({tolerance.QuantityInfo.Name}) did not match the other quantities of type 'HeatFlux'.", nameof(tolerance)))
+                   && Equals(otherTyped, toleranceTyped);
+        }
+
+        /// <inheritdoc />
+        public bool Equals(HeatFlux other, HeatFlux tolerance)
+        {
+            return UnitsNet.Comparison.Equals(
+                referenceValue: this.Value,
+                otherValue: other.As(this.Unit),
+                tolerance: tolerance.As(this.Unit),
+                comparisonType: ComparisonType.Absolute);
         }
 
         /// <summary>
@@ -955,6 +973,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(HeatFluxUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is HeatFluxUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(HeatFluxUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>
@@ -1097,6 +1124,18 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<HeatFluxUnit> IQuantity<HeatFluxUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
+        {
+            if (unit is not HeatFluxUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(HeatFluxUnit)} is supported.", nameof(unit));
+
+            return ToUnit(typedUnit);
+        }
+
+        /// <inheritdoc />
+        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

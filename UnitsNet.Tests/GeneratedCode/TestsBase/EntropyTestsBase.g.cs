@@ -91,16 +91,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Entropy(double.PositiveInfinity, EntropyUnit.JoulePerKelvin));
-            Assert.Throws<ArgumentException>(() => new Entropy(double.NegativeInfinity, EntropyUnit.JoulePerKelvin));
+            var exception1 = Record.Exception(() => new Entropy(double.PositiveInfinity, EntropyUnit.JoulePerKelvin));
+            var exception2 = Record.Exception(() => new Entropy(double.NegativeInfinity, EntropyUnit.JoulePerKelvin));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Entropy(double.NaN, EntropyUnit.JoulePerKelvin));
+            var exception = Record.Exception(() => new Entropy(double.NaN, EntropyUnit.JoulePerKelvin));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -185,16 +190,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromJoulesPerKelvin_WithInfinityValue_ThrowsArgumentException()
+        public void FromJoulesPerKelvin_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Entropy.FromJoulesPerKelvin(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Entropy.FromJoulesPerKelvin(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => Entropy.FromJoulesPerKelvin(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => Entropy.FromJoulesPerKelvin(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromJoulesPerKelvin_WithNanValue_ThrowsArgumentException()
+        public void FromJoulesPerKelvin_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Entropy.FromJoulesPerKelvin(double.NaN));
+            var exception = Record.Exception(() => Entropy.FromJoulesPerKelvin(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -218,7 +228,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else

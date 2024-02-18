@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -36,18 +39,39 @@ namespace UnitsNet
     ///     Time is a dimension in which events can be ordered from the past through the present into the future, and also the measure of durations of events and the intervals between them.
     /// </summary>
     [DataContract]
-    public readonly partial struct Duration : IArithmeticQuantity<Duration, DurationUnit, double>, IEquatable<Duration>, IComparable, IComparable<Duration>, IConvertible, IFormattable
+    public readonly partial struct Duration :
+        IArithmeticQuantity<Duration, DurationUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<Duration, MolarFlow, AmountOfSubstance>,
+        IMultiplyOperators<Duration, RotationalSpeed, Angle>,
+        IMultiplyOperators<Duration, KinematicViscosity, Area>,
+        IMultiplyOperators<Duration, ElectricCurrent, ElectricCharge>,
+        IMultiplyOperators<Duration, ElectricCurrentGradient, ElectricCurrent>,
+        IMultiplyOperators<Duration, Power, Energy>,
+        IMultiplyOperators<Duration, ForceChangeRate, Force>,
+        IMultiplyOperators<Duration, Speed, Length>,
+        IMultiplyOperators<Duration, MassFlow, Mass>,
+        IMultiplyOperators<Duration, PressureChangeRate, Pressure>,
+        IMultiplyOperators<Duration, Acceleration, Speed>,
+        IMultiplyOperators<Duration, TemperatureChangeRate, TemperatureDelta>,
+        IMultiplyOperators<Duration, VolumeFlow, Volume>,
+#endif
+        IComparable,
+        IComparable<Duration>,
+        IConvertible,
+        IEquatable<Duration>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 0)]
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 1)]
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly DurationUnit? _unit;
 
         static Duration()
@@ -59,17 +83,17 @@ namespace UnitsNet
             Info = new QuantityInfo<DurationUnit>("Duration",
                 new UnitInfo<DurationUnit>[]
                 {
-                    new UnitInfo<DurationUnit>(DurationUnit.Day, "Days", new BaseUnits(time: DurationUnit.Day)),
-                    new UnitInfo<DurationUnit>(DurationUnit.Hour, "Hours", new BaseUnits(time: DurationUnit.Hour)),
-                    new UnitInfo<DurationUnit>(DurationUnit.JulianYear, "JulianYears", new BaseUnits(time: DurationUnit.JulianYear)),
-                    new UnitInfo<DurationUnit>(DurationUnit.Microsecond, "Microseconds", BaseUnits.Undefined),
-                    new UnitInfo<DurationUnit>(DurationUnit.Millisecond, "Milliseconds", BaseUnits.Undefined),
-                    new UnitInfo<DurationUnit>(DurationUnit.Minute, "Minutes", new BaseUnits(time: DurationUnit.Minute)),
-                    new UnitInfo<DurationUnit>(DurationUnit.Month30, "Months30", new BaseUnits(time: DurationUnit.Month30)),
-                    new UnitInfo<DurationUnit>(DurationUnit.Nanosecond, "Nanoseconds", BaseUnits.Undefined),
-                    new UnitInfo<DurationUnit>(DurationUnit.Second, "Seconds", new BaseUnits(time: DurationUnit.Second)),
-                    new UnitInfo<DurationUnit>(DurationUnit.Week, "Weeks", new BaseUnits(time: DurationUnit.Week)),
-                    new UnitInfo<DurationUnit>(DurationUnit.Year365, "Years365", new BaseUnits(time: DurationUnit.Year365)),
+                    new UnitInfo<DurationUnit>(DurationUnit.Day, "Days", new BaseUnits(time: DurationUnit.Day), "Duration"),
+                    new UnitInfo<DurationUnit>(DurationUnit.Hour, "Hours", new BaseUnits(time: DurationUnit.Hour), "Duration"),
+                    new UnitInfo<DurationUnit>(DurationUnit.JulianYear, "JulianYears", new BaseUnits(time: DurationUnit.JulianYear), "Duration"),
+                    new UnitInfo<DurationUnit>(DurationUnit.Microsecond, "Microseconds", BaseUnits.Undefined, "Duration"),
+                    new UnitInfo<DurationUnit>(DurationUnit.Millisecond, "Milliseconds", BaseUnits.Undefined, "Duration"),
+                    new UnitInfo<DurationUnit>(DurationUnit.Minute, "Minutes", new BaseUnits(time: DurationUnit.Minute), "Duration"),
+                    new UnitInfo<DurationUnit>(DurationUnit.Month30, "Months30", new BaseUnits(time: DurationUnit.Month30), "Duration"),
+                    new UnitInfo<DurationUnit>(DurationUnit.Nanosecond, "Nanoseconds", BaseUnits.Undefined, "Duration"),
+                    new UnitInfo<DurationUnit>(DurationUnit.Second, "Seconds", new BaseUnits(time: DurationUnit.Second), "Duration"),
+                    new UnitInfo<DurationUnit>(DurationUnit.Week, "Weeks", new BaseUnits(time: DurationUnit.Week), "Duration"),
+                    new UnitInfo<DurationUnit>(DurationUnit.Year365, "Years365", new BaseUnits(time: DurationUnit.Year365), "Duration"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -85,7 +109,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Duration(double value, DurationUnit unit)
         {
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = unit;
         }
 
@@ -104,7 +128,7 @@ namespace UnitsNet
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -142,7 +166,7 @@ namespace UnitsNet
         public static Duration AdditiveIdentity => Zero;
 
         #endregion
- 
+
         #region Properties
 
         /// <summary>
@@ -264,31 +288,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Nanosecond, quantity => quantity.ToUnit(DurationUnit.Nanosecond));
             unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Week, quantity => quantity.ToUnit(DurationUnit.Week));
             unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Year365, quantity => quantity.ToUnit(DurationUnit.Year365));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Day, new CultureInfo("en-US"), false, true, new string[]{"d", "day", "days"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Day, new CultureInfo("ru-RU"), false, true, new string[]{"сут", "д"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Hour, new CultureInfo("en-US"), false, true, new string[]{"h", "hr", "hrs", "hour", "hours"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Hour, new CultureInfo("ru-RU"), false, true, new string[]{"ч", "час"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.JulianYear, new CultureInfo("en-US"), false, true, new string[]{"jyr", "jyear", "jyears"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Microsecond, new CultureInfo("en-US"), false, true, new string[]{"µs", "µsec", "µsecs", "µsecond", "µseconds"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Microsecond, new CultureInfo("ru-RU"), false, true, new string[]{"мксек", "мкс"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Millisecond, new CultureInfo("en-US"), false, true, new string[]{"ms", "msec", "msecs", "msecond", "mseconds"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Millisecond, new CultureInfo("ru-RU"), false, true, new string[]{"мсек", "мс"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Minute, new CultureInfo("en-US"), false, true, new string[]{"m", "min", "minute", "minutes"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Minute, new CultureInfo("ru-RU"), false, true, new string[]{"мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Month30, new CultureInfo("en-US"), false, true, new string[]{"mo", "month", "months"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Month30, new CultureInfo("ru-RU"), false, true, new string[]{"месяц"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Nanosecond, new CultureInfo("en-US"), false, true, new string[]{"ns", "nsec", "nsecs", "nsecond", "nseconds"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Nanosecond, new CultureInfo("ru-RU"), false, true, new string[]{"нсек", "нс"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Second, new CultureInfo("en-US"), false, true, new string[]{"s", "sec", "secs", "second", "seconds"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Second, new CultureInfo("ru-RU"), false, true, new string[]{"сек", "с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Week, new CultureInfo("en-US"), false, true, new string[]{"wk", "week", "weeks"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Week, new CultureInfo("ru-RU"), false, true, new string[]{"нед"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Year365, new CultureInfo("en-US"), false, true, new string[]{"yr", "year", "years"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Year365, new CultureInfo("ru-RU"), false, true, new string[]{"год"});
         }
 
         /// <summary>
@@ -446,7 +445,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="ArgumentException">
@@ -473,7 +472,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="ArgumentException">
@@ -505,7 +504,7 @@ namespace UnitsNet
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         public static bool TryParse(string? str, out Duration result)
         {
@@ -519,7 +518,7 @@ namespace UnitsNet
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out Duration result)
@@ -536,7 +535,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
@@ -551,7 +550,7 @@ namespace UnitsNet
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
@@ -573,7 +572,7 @@ namespace UnitsNet
         /// <param name="unit">The parsed unit if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
-        ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out DurationUnit unit)
@@ -629,6 +628,88 @@ namespace UnitsNet
 
         #endregion
 
+        #region Relational Operators
+
+        /// <summary>Get <see cref="AmountOfSubstance"/> from <see cref="Duration"/> * <see cref="MolarFlow"/>.</summary>
+        public static AmountOfSubstance operator *(Duration duration, MolarFlow molarFlow)
+        {
+            return AmountOfSubstance.FromKilomoles(duration.Seconds * molarFlow.KilomolesPerSecond);
+        }
+
+        /// <summary>Get <see cref="Angle"/> from <see cref="Duration"/> * <see cref="RotationalSpeed"/>.</summary>
+        public static Angle operator *(Duration duration, RotationalSpeed rotationalSpeed)
+        {
+            return Angle.FromRadians(duration.Seconds * rotationalSpeed.RadiansPerSecond);
+        }
+
+        /// <summary>Get <see cref="Area"/> from <see cref="Duration"/> * <see cref="KinematicViscosity"/>.</summary>
+        public static Area operator *(Duration duration, KinematicViscosity kinematicViscosity)
+        {
+            return Area.FromSquareMeters(duration.Seconds * kinematicViscosity.SquareMetersPerSecond);
+        }
+
+        /// <summary>Get <see cref="ElectricCharge"/> from <see cref="Duration"/> * <see cref="ElectricCurrent"/>.</summary>
+        public static ElectricCharge operator *(Duration duration, ElectricCurrent electricCurrent)
+        {
+            return ElectricCharge.FromAmpereHours(duration.Hours * electricCurrent.Amperes);
+        }
+
+        /// <summary>Get <see cref="ElectricCurrent"/> from <see cref="Duration"/> * <see cref="ElectricCurrentGradient"/>.</summary>
+        public static ElectricCurrent operator *(Duration duration, ElectricCurrentGradient electricCurrentGradient)
+        {
+            return ElectricCurrent.FromAmperes(duration.Seconds * electricCurrentGradient.AmperesPerSecond);
+        }
+
+        /// <summary>Get <see cref="Energy"/> from <see cref="Duration"/> * <see cref="Power"/>.</summary>
+        public static Energy operator *(Duration duration, Power power)
+        {
+            return Energy.FromJoules(duration.Seconds * power.Watts);
+        }
+
+        /// <summary>Get <see cref="Force"/> from <see cref="Duration"/> * <see cref="ForceChangeRate"/>.</summary>
+        public static Force operator *(Duration duration, ForceChangeRate forceChangeRate)
+        {
+            return Force.FromNewtons(duration.Seconds * forceChangeRate.NewtonsPerSecond);
+        }
+
+        /// <summary>Get <see cref="Length"/> from <see cref="Duration"/> * <see cref="Speed"/>.</summary>
+        public static Length operator *(Duration duration, Speed speed)
+        {
+            return Length.FromMeters(duration.Seconds * speed.MetersPerSecond);
+        }
+
+        /// <summary>Get <see cref="Mass"/> from <see cref="Duration"/> * <see cref="MassFlow"/>.</summary>
+        public static Mass operator *(Duration duration, MassFlow massFlow)
+        {
+            return Mass.FromKilograms(duration.Seconds * massFlow.KilogramsPerSecond);
+        }
+
+        /// <summary>Get <see cref="Pressure"/> from <see cref="Duration"/> * <see cref="PressureChangeRate"/>.</summary>
+        public static Pressure operator *(Duration duration, PressureChangeRate pressureChangeRate)
+        {
+            return Pressure.FromPascals(duration.Seconds * pressureChangeRate.PascalsPerSecond);
+        }
+
+        /// <summary>Get <see cref="Speed"/> from <see cref="Duration"/> * <see cref="Acceleration"/>.</summary>
+        public static Speed operator *(Duration duration, Acceleration acceleration)
+        {
+            return Speed.FromMetersPerSecond(duration.Seconds * acceleration.MetersPerSecondSquared);
+        }
+
+        /// <summary>Get <see cref="TemperatureDelta"/> from <see cref="Duration"/> * <see cref="TemperatureChangeRate"/>.</summary>
+        public static TemperatureDelta operator *(Duration duration, TemperatureChangeRate temperatureChangeRate)
+        {
+            return TemperatureDelta.FromDegreesCelsius(duration.Seconds * temperatureChangeRate.DegreesCelsiusPerSecond);
+        }
+
+        /// <summary>Get <see cref="Volume"/> from <see cref="Duration"/> * <see cref="VolumeFlow"/>.</summary>
+        public static Volume operator *(Duration duration, VolumeFlow volumeFlow)
+        {
+            return Volume.FromCubicMeters(duration.Seconds * volumeFlow.CubicMetersPerSecond);
+        }
+
+        #endregion
+
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
@@ -660,16 +741,14 @@ namespace UnitsNet
         #pragma warning disable CS0809
 
         /// <summary>Indicates strict equality of two <see cref="Duration"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Duration, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Duration other, Duration tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public static bool operator ==(Duration left, Duration right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Indicates strict inequality of two <see cref="Duration"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Duration, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is not null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Duration other, Duration tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public static bool operator !=(Duration left, Duration right)
         {
             return !(left == right);
@@ -677,8 +756,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="Duration"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Duration, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Use Equals(Duration other, Duration tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is Duration otherQuantity))
@@ -689,8 +767,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="Duration"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Duration, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Use Equals(Duration other, Duration tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public bool Equals(Duration other)
         {
             return new { Value, Unit }.Equals(new { other.Value, other.Unit });
@@ -774,15 +851,37 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
+        [Obsolete("Use Equals(Duration other, Duration tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public bool Equals(Duration other, double tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(
+                referenceValue: this.Value,
+                otherValue: other.As(this.Unit),
+                tolerance: tolerance,
+                comparisonType: ComparisonType.Absolute);
+        }
 
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+        /// <inheritdoc />
+        public bool Equals(IQuantity? other, IQuantity tolerance)
+        {
+            return other is Duration otherTyped
+                   && (tolerance is Duration toleranceTyped
+                       ? true
+                       : throw new ArgumentException($"Tolerance quantity ({tolerance.QuantityInfo.Name}) did not match the other quantities of type 'Duration'.", nameof(tolerance)))
+                   && Equals(otherTyped, toleranceTyped);
+        }
+
+        /// <inheritdoc />
+        public bool Equals(Duration other, Duration tolerance)
+        {
+            return UnitsNet.Comparison.Equals(
+                referenceValue: this.Value,
+                otherValue: other.As(this.Unit),
+                tolerance: tolerance.As(this.Unit),
+                comparisonType: ComparisonType.Absolute);
         }
 
         /// <summary>
@@ -832,6 +931,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DurationUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is DurationUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DurationUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>
@@ -960,6 +1068,18 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<DurationUnit> IQuantity<DurationUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
+        {
+            if (unit is not DurationUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DurationUnit)} is supported.", nameof(unit));
+
+            return ToUnit(typedUnit);
+        }
+
+        /// <inheritdoc />
+        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

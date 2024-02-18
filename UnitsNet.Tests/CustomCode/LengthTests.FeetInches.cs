@@ -9,6 +9,8 @@ namespace UnitsNet.Tests
 {
     public class FeetInchesTests
     {
+        private static readonly CultureInfo EnglishUs = new("en-US", useUserOverride: false);
+        private static readonly CultureInfo GermanSwitzerland = new("de-CH", useUserOverride: false);
         private const double FeetInOneMeter = 3.28084;
         private const double InchesInOneMeter = 39.37007874;
         private const double FeetTolerance = 1e-5;
@@ -33,42 +35,42 @@ namespace UnitsNet.Tests
 
         public static IEnumerable<object[]> ValidData => new List<object[]>
         {
-            new object[]{"1'", 1, new CultureInfo("en-US", false)},                    // Feet only
-            new object[]{"1′", 1, new CultureInfo("en-US", false)},                    // Feet only
-            new object[]{"1,000′", 1000, new CultureInfo("en-US", false)},             // Feet only, with seperator
-            new object[]{"1e3'", 1000, new CultureInfo("en-US", false)},               // Feet only, exponential notation
-            new object[]{"1\"", 0.08333333, new CultureInfo("en-US", false)},          // Inches only
-            new object[]{"1″", 0.08333333, new CultureInfo("en-US", false)},           // Inches only
-            new object[]{"0' 1\"", 0.08333333, new CultureInfo("en-US", false)},       // Inches only
-            new object[]{"0' 1″", 0.08333333, new CultureInfo("en-US", false)},        // Inches only
-            new object[]{"0′ 1\"", 0.08333333, new CultureInfo("en-US", false)},       // Inches only
-            new object[]{"0′ 1″", 0.08333333, new CultureInfo("en-US", false)},        // Inches only
-            new object[]{"1' 1\"", 1.08333333, new CultureInfo("en-US", false)},       // Normal form
-            new object[]{"1′ 1″", 1.08333333, new CultureInfo("en-US", false)},        // Normal form
-            new object[]{" 1′ 1″ ", 1.08333333, new CultureInfo("en-US", false)},      // Normal form, requires trimming
-            new object[]{"1'1\"", 1.08333333, new CultureInfo("en-US", false)},        // Without space
-            new object[]{"1′1″", 1.08333333, new CultureInfo("en-US", false)},         // Without space
-            new object[]{"1 ft 1 in", 1.08333333, new CultureInfo("en-US", false)},
-            new object[]{"1ft 1in", 1.08333333, new CultureInfo("en-US", false)},
-            new object[]{"-1'", -1, new CultureInfo("en-US", false)},                  // Feet only
-            new object[]{"-1′", -1, new CultureInfo("en-US", false)},                  // Feet only
-            new object[]{"-1,000′", -1000, new CultureInfo("en-US", false)},           // Feet only, with seperator
-            new object[]{"-1e3'", -1000, new CultureInfo("en-US", false)},             // Feet only, exponential notation
-            new object[]{"-1\"", -0.08333333, new CultureInfo("en-US", false)},        // Inches only
-            new object[]{"-1″", -0.08333333, new CultureInfo("en-US", false)},         // Inches only
-            new object[]{"-0' 1\"", -0.08333333, new CultureInfo("en-US", false)},     // Inches only
-            new object[]{"-0' 1″", -0.08333333, new CultureInfo("en-US", false)},      // Inches only
-            new object[]{"-0′ 1\"", -0.08333333, new CultureInfo("en-US", false)},     // Inches only
-            new object[]{"-0′ 1″", -0.08333333, new CultureInfo("en-US", false)},      // Inches only
-            new object[]{"-1' 1\"", -1.08333333, new CultureInfo("en-US", false)},     // Normal form
-            new object[]{"-1′ 1″", -1.08333333, new CultureInfo("en-US", false)},      // Normal form
-            new object[]{" -1′ 1″ ", -1.08333333, new CultureInfo("en-US", false)},    // Normal form, requires trimming
-            new object[]{"-1'1\"", -1.08333333, new CultureInfo("en-US", false)},      // Without space
-            new object[]{"-1′1″", -1.08333333, new CultureInfo("en-US", false)},       // Without space
-            new object[]{"-1 ft 1 in", -1.08333333, new CultureInfo("en-US", false)},
-            new object[]{"-1ft 1in", -1.08333333, new CultureInfo("en-US", false)},
-            new object[]{"1’000′", 1000, new CultureInfo("de-CH", false)},             // Feet only, with seperator
-            new object[]{"1’000′ 6\"", 1000.5, new CultureInfo("de-CH", false)},       // Normal form, using separators for culture
+            new object[]{"1'", 1, EnglishUs},                    // Feet only
+            new object[]{"1′", 1, EnglishUs},                    // Feet only
+            new object[]{"1,000′", 1000, EnglishUs},             // Feet only, with seperator
+            new object[]{"1e3'", 1000, EnglishUs},               // Feet only, exponential notation
+            new object[]{"1\"", 0.08333333, EnglishUs},          // Inches only
+            new object[]{"1″", 0.08333333, EnglishUs},           // Inches only
+            new object[]{"0' 1\"", 0.08333333, EnglishUs},       // Inches only
+            new object[]{"0' 1″", 0.08333333, EnglishUs},        // Inches only
+            new object[]{"0′ 1\"", 0.08333333, EnglishUs},       // Inches only
+            new object[]{"0′ 1″", 0.08333333, EnglishUs},        // Inches only
+            new object[]{"1' 1\"", 1.08333333, EnglishUs},       // Normal form
+            new object[]{"1′ 1″", 1.08333333, EnglishUs},        // Normal form
+            new object[]{" 1′ 1″ ", 1.08333333, EnglishUs},      // Normal form, requires trimming
+            new object[]{"1'1\"", 1.08333333, EnglishUs},        // Without space
+            new object[]{"1′1″", 1.08333333, EnglishUs},         // Without space
+            new object[]{"1 ft 1 in", 1.08333333, EnglishUs},
+            new object[]{"1ft 1in", 1.08333333, EnglishUs},
+            new object[]{"-1'", -1, EnglishUs},                  // Feet only
+            new object[]{"-1′", -1, EnglishUs},                  // Feet only
+            new object[]{"-1,000′", -1000, EnglishUs},           // Feet only, with seperator
+            new object[]{"-1e3'", -1000, EnglishUs},             // Feet only, exponential notation
+            new object[]{"-1\"", -0.08333333, EnglishUs},        // Inches only
+            new object[]{"-1″", -0.08333333, EnglishUs},         // Inches only
+            new object[]{"-0' 1\"", -0.08333333, EnglishUs},     // Inches only
+            new object[]{"-0' 1″", -0.08333333, EnglishUs},      // Inches only
+            new object[]{"-0′ 1\"", -0.08333333, EnglishUs},     // Inches only
+            new object[]{"-0′ 1″", -0.08333333, EnglishUs},      // Inches only
+            new object[]{"-1' 1\"", -1.08333333, EnglishUs},     // Normal form
+            new object[]{"-1′ 1″", -1.08333333, EnglishUs},      // Normal form
+            new object[]{" -1′ 1″ ", -1.08333333, EnglishUs},    // Normal form, requires trimming
+            new object[]{"-1'1\"", -1.08333333, EnglishUs},      // Without space
+            new object[]{"-1′1″", -1.08333333, EnglishUs},       // Without space
+            new object[]{"-1 ft 1 in", -1.08333333, EnglishUs},
+            new object[]{"-1ft 1in", -1.08333333, EnglishUs},
+            new object[]{"1’000′", 1000, GermanSwitzerland},             // Feet only, with seperator
+            new object[]{"1’000′ 6\"", 1000.5, GermanSwitzerland},       // Normal form, using separators for culture
         };
 
         [Theory]
@@ -81,22 +83,22 @@ namespace UnitsNet.Tests
 
         public static IEnumerable<object[]> InvalidData => new List<object[]>
         {
-            new object[]{"a", new CultureInfo("en-US", false)},        // Missing or invalid apostrophe or double prime chars
-            new object[]{"1", new CultureInfo("en-US", false)},
-            new object[]{"1`", new CultureInfo("en-US", false)},
-            new object[]{"1^", new CultureInfo("en-US", false)},
-            new object[]{"1' 1'", new CultureInfo("en-US", false)},    // Feet apostrophe twice
-            new object[]{"1′ 1′", new CultureInfo("en-US", false)},
-            new object[]{"1' 1", new CultureInfo("en-US", false)},     // No inches double prime
-            new object[]{"1′ 1", new CultureInfo("en-US", false)},
-            new object[]{"1′ 1`", new CultureInfo("en-US", false)},    // Invalid inches double prime
-            new object[]{"1' 1`", new CultureInfo("en-US", false)},
-            new object[]{"1'1'", new CultureInfo("en-US", false)},     // Same without space
-            new object[]{"1′1′", new CultureInfo("en-US", false)},
-            new object[]{"1'1", new CultureInfo("en-US", false)},
-            new object[]{"1′1", new CultureInfo("en-US", false)},
-            new object[]{"1′1`", new CultureInfo("en-US", false)},
-            new object[]{"1'1`", new CultureInfo("en-US", false)}
+            new object[]{"a", EnglishUs},        // Missing or invalid apostrophe or double prime chars
+            new object[]{"1", EnglishUs},
+            new object[]{"1`", EnglishUs},
+            new object[]{"1^", EnglishUs},
+            new object[]{"1' 1'", EnglishUs},    // Feet apostrophe twice
+            new object[]{"1′ 1′", EnglishUs},
+            new object[]{"1' 1", EnglishUs},     // No inches double prime
+            new object[]{"1′ 1", EnglishUs},
+            new object[]{"1′ 1`", EnglishUs},    // Invalid inches double prime
+            new object[]{"1' 1`", EnglishUs},
+            new object[]{"1'1'", EnglishUs},     // Same without space
+            new object[]{"1′1′", EnglishUs},
+            new object[]{"1'1", EnglishUs},
+            new object[]{"1′1", EnglishUs},
+            new object[]{"1′1`", EnglishUs},
+            new object[]{"1'1`", EnglishUs}
         };
 
         [Theory]

@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -36,18 +39,27 @@ namespace UnitsNet
     ///     The electrical resistance of an electrical conductor is the opposition to the passage of an electric current through that conductor.
     /// </summary>
     [DataContract]
-    public readonly partial struct ElectricResistance : IArithmeticQuantity<ElectricResistance, ElectricResistanceUnit, double>, IEquatable<ElectricResistance>, IComparable, IComparable<ElectricResistance>, IConvertible, IFormattable
+    public readonly partial struct ElectricResistance :
+        IArithmeticQuantity<ElectricResistance, ElectricResistanceUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<ElectricResistance, ElectricCurrent, ElectricPotential>,
+#endif
+        IComparable,
+        IComparable<ElectricResistance>,
+        IConvertible,
+        IEquatable<ElectricResistance>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 0)]
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 1)]
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly ElectricResistanceUnit? _unit;
 
         static ElectricResistance()
@@ -59,13 +71,13 @@ namespace UnitsNet
             Info = new QuantityInfo<ElectricResistanceUnit>("ElectricResistance",
                 new UnitInfo<ElectricResistanceUnit>[]
                 {
-                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Gigaohm, "Gigaohms", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Kiloohm, "Kiloohms", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Megaohm, "Megaohms", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Microohm, "Microohms", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Milliohm, "Milliohms", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Ohm, "Ohms", BaseUnits.Undefined),
-                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Teraohm, "Teraohms", BaseUnits.Undefined),
+                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Gigaohm, "Gigaohms", BaseUnits.Undefined, "ElectricResistance"),
+                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Kiloohm, "Kiloohms", BaseUnits.Undefined, "ElectricResistance"),
+                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Megaohm, "Megaohms", BaseUnits.Undefined, "ElectricResistance"),
+                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Microohm, "Microohms", BaseUnits.Undefined, "ElectricResistance"),
+                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Milliohm, "Milliohms", BaseUnits.Undefined, "ElectricResistance"),
+                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Ohm, "Ohms", BaseUnits.Undefined, "ElectricResistance"),
+                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Teraohm, "Teraohms", BaseUnits.Undefined, "ElectricResistance"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -81,7 +93,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ElectricResistance(double value, ElectricResistanceUnit unit)
         {
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = unit;
         }
 
@@ -100,7 +112,7 @@ namespace UnitsNet
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -138,7 +150,7 @@ namespace UnitsNet
         public static ElectricResistance AdditiveIdentity => Zero;
 
         #endregion
- 
+
         #region Properties
 
         /// <summary>
@@ -232,17 +244,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistanceUnit.Ohm, ElectricResistanceUnit.Microohm, quantity => quantity.ToUnit(ElectricResistanceUnit.Microohm));
             unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistanceUnit.Ohm, ElectricResistanceUnit.Milliohm, quantity => quantity.ToUnit(ElectricResistanceUnit.Milliohm));
             unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistanceUnit.Ohm, ElectricResistanceUnit.Teraohm, quantity => quantity.ToUnit(ElectricResistanceUnit.Teraohm));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistanceUnit.Gigaohm, new CultureInfo("en-US"), false, true, new string[]{"GΩ"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistanceUnit.Kiloohm, new CultureInfo("en-US"), false, true, new string[]{"kΩ"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistanceUnit.Megaohm, new CultureInfo("en-US"), false, true, new string[]{"MΩ"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistanceUnit.Microohm, new CultureInfo("en-US"), false, true, new string[]{"µΩ"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistanceUnit.Milliohm, new CultureInfo("en-US"), false, true, new string[]{"mΩ"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistanceUnit.Ohm, new CultureInfo("en-US"), false, true, new string[]{"Ω"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistanceUnit.Teraohm, new CultureInfo("en-US"), false, true, new string[]{"TΩ"});
         }
 
         /// <summary>
@@ -360,7 +361,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="ArgumentException">
@@ -387,7 +388,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="ArgumentException">
@@ -419,7 +420,7 @@ namespace UnitsNet
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         public static bool TryParse(string? str, out ElectricResistance result)
         {
@@ -433,7 +434,7 @@ namespace UnitsNet
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out ElectricResistance result)
@@ -450,7 +451,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
@@ -465,7 +466,7 @@ namespace UnitsNet
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
@@ -487,7 +488,7 @@ namespace UnitsNet
         /// <param name="unit">The parsed unit if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
-        ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out ElectricResistanceUnit unit)
@@ -543,6 +544,16 @@ namespace UnitsNet
 
         #endregion
 
+        #region Relational Operators
+
+        /// <summary>Get <see cref="ElectricPotential"/> from <see cref="ElectricResistance"/> * <see cref="ElectricCurrent"/>.</summary>
+        public static ElectricPotential operator *(ElectricResistance electricResistance, ElectricCurrent electricCurrent)
+        {
+            return ElectricPotential.FromVolts(electricResistance.Ohms * electricCurrent.Amperes);
+        }
+
+        #endregion
+
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
@@ -574,16 +585,14 @@ namespace UnitsNet
         #pragma warning disable CS0809
 
         /// <summary>Indicates strict equality of two <see cref="ElectricResistance"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ElectricResistance, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(ElectricResistance other, ElectricResistance tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public static bool operator ==(ElectricResistance left, ElectricResistance right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Indicates strict inequality of two <see cref="ElectricResistance"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ElectricResistance, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is not null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(ElectricResistance other, ElectricResistance tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public static bool operator !=(ElectricResistance left, ElectricResistance right)
         {
             return !(left == right);
@@ -591,8 +600,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="ElectricResistance"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ElectricResistance, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Use Equals(ElectricResistance other, ElectricResistance tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is ElectricResistance otherQuantity))
@@ -603,8 +611,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="ElectricResistance"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ElectricResistance, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Use Equals(ElectricResistance other, ElectricResistance tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public bool Equals(ElectricResistance other)
         {
             return new { Value, Unit }.Equals(new { other.Value, other.Unit });
@@ -688,15 +695,37 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
+        [Obsolete("Use Equals(ElectricResistance other, ElectricResistance tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public bool Equals(ElectricResistance other, double tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(
+                referenceValue: this.Value,
+                otherValue: other.As(this.Unit),
+                tolerance: tolerance,
+                comparisonType: ComparisonType.Absolute);
+        }
 
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+        /// <inheritdoc />
+        public bool Equals(IQuantity? other, IQuantity tolerance)
+        {
+            return other is ElectricResistance otherTyped
+                   && (tolerance is ElectricResistance toleranceTyped
+                       ? true
+                       : throw new ArgumentException($"Tolerance quantity ({tolerance.QuantityInfo.Name}) did not match the other quantities of type 'ElectricResistance'.", nameof(tolerance)))
+                   && Equals(otherTyped, toleranceTyped);
+        }
+
+        /// <inheritdoc />
+        public bool Equals(ElectricResistance other, ElectricResistance tolerance)
+        {
+            return UnitsNet.Comparison.Equals(
+                referenceValue: this.Value,
+                otherValue: other.As(this.Unit),
+                tolerance: tolerance.As(this.Unit),
+                comparisonType: ComparisonType.Absolute);
         }
 
         /// <summary>
@@ -746,6 +775,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricResistanceUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is ElectricResistanceUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricResistanceUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>
@@ -866,6 +904,18 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ElectricResistanceUnit> IQuantity<ElectricResistanceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
+        {
+            if (unit is not ElectricResistanceUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricResistanceUnit)} is supported.", nameof(unit));
+
+            return ToUnit(typedUnit);
+        }
+
+        /// <inheritdoc />
+        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

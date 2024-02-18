@@ -67,16 +67,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Magnetization(double.PositiveInfinity, MagnetizationUnit.AmperePerMeter));
-            Assert.Throws<ArgumentException>(() => new Magnetization(double.NegativeInfinity, MagnetizationUnit.AmperePerMeter));
+            var exception1 = Record.Exception(() => new Magnetization(double.PositiveInfinity, MagnetizationUnit.AmperePerMeter));
+            var exception2 = Record.Exception(() => new Magnetization(double.NegativeInfinity, MagnetizationUnit.AmperePerMeter));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Magnetization(double.NaN, MagnetizationUnit.AmperePerMeter));
+            var exception = Record.Exception(() => new Magnetization(double.NaN, MagnetizationUnit.AmperePerMeter));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -131,16 +136,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromAmperesPerMeter_WithInfinityValue_ThrowsArgumentException()
+        public void FromAmperesPerMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Magnetization.FromAmperesPerMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Magnetization.FromAmperesPerMeter(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => Magnetization.FromAmperesPerMeter(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => Magnetization.FromAmperesPerMeter(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromAmperesPerMeter_WithNanValue_ThrowsArgumentException()
+        public void FromAmperesPerMeter_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Magnetization.FromAmperesPerMeter(double.NaN));
+            var exception = Record.Exception(() => Magnetization.FromAmperesPerMeter(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -158,7 +168,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else

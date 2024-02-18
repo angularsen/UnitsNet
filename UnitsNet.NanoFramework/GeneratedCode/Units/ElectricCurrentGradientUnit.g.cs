@@ -27,8 +27,11 @@ namespace UnitsNet.Units
     {
         AmperePerMicrosecond = 1,
         AmperePerMillisecond = 2,
+        AmperePerMinute = 11,
         AmperePerNanosecond = 3,
         AmperePerSecond = 4,
+        MilliamperePerMinute = 6,
+        MilliamperePerSecond = 14,
     }
 
     #pragma warning restore 1591

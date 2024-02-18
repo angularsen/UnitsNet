@@ -111,16 +111,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new MassFlux(double.PositiveInfinity, MassFluxUnit.KilogramPerSecondPerSquareMeter));
-            Assert.Throws<ArgumentException>(() => new MassFlux(double.NegativeInfinity, MassFluxUnit.KilogramPerSecondPerSquareMeter));
+            var exception1 = Record.Exception(() => new MassFlux(double.PositiveInfinity, MassFluxUnit.KilogramPerSecondPerSquareMeter));
+            var exception2 = Record.Exception(() => new MassFlux(double.NegativeInfinity, MassFluxUnit.KilogramPerSecondPerSquareMeter));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new MassFlux(double.NaN, MassFluxUnit.KilogramPerSecondPerSquareMeter));
+            var exception = Record.Exception(() => new MassFlux(double.NaN, MassFluxUnit.KilogramPerSecondPerSquareMeter));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -230,16 +235,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromKilogramsPerSecondPerSquareMeter_WithInfinityValue_ThrowsArgumentException()
+        public void FromKilogramsPerSecondPerSquareMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => MassFlux.FromKilogramsPerSecondPerSquareMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => MassFlux.FromKilogramsPerSecondPerSquareMeter(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => MassFlux.FromKilogramsPerSecondPerSquareMeter(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => MassFlux.FromKilogramsPerSecondPerSquareMeter(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromKilogramsPerSecondPerSquareMeter_WithNanValue_ThrowsArgumentException()
+        public void FromKilogramsPerSecondPerSquareMeter_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => MassFlux.FromKilogramsPerSecondPerSquareMeter(double.NaN));
+            var exception = Record.Exception(() => MassFlux.FromKilogramsPerSecondPerSquareMeter(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -268,7 +278,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else

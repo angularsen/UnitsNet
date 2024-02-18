@@ -71,16 +71,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new VolumeFlowPerArea(double.PositiveInfinity, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter));
-            Assert.Throws<ArgumentException>(() => new VolumeFlowPerArea(double.NegativeInfinity, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter));
+            var exception1 = Record.Exception(() => new VolumeFlowPerArea(double.PositiveInfinity, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter));
+            var exception2 = Record.Exception(() => new VolumeFlowPerArea(double.NegativeInfinity, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new VolumeFlowPerArea(double.NaN, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter));
+            var exception = Record.Exception(() => new VolumeFlowPerArea(double.NaN, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -140,16 +145,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromCubicMetersPerSecondPerSquareMeter_WithInfinityValue_ThrowsArgumentException()
+        public void FromCubicMetersPerSecondPerSquareMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => VolumeFlowPerArea.FromCubicMetersPerSecondPerSquareMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => VolumeFlowPerArea.FromCubicMetersPerSecondPerSquareMeter(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => VolumeFlowPerArea.FromCubicMetersPerSecondPerSquareMeter(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => VolumeFlowPerArea.FromCubicMetersPerSecondPerSquareMeter(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromCubicMetersPerSecondPerSquareMeter_WithNanValue_ThrowsArgumentException()
+        public void FromCubicMetersPerSecondPerSquareMeter_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => VolumeFlowPerArea.FromCubicMetersPerSecondPerSquareMeter(double.NaN));
+            var exception = Record.Exception(() => VolumeFlowPerArea.FromCubicMetersPerSecondPerSquareMeter(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -168,7 +178,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else

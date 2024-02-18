@@ -215,9 +215,19 @@ namespace UnitsNet
         public double MegawattHours => As(EnergyUnit.MegawattHour);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Microjoule"/>
+        /// </summary>
+        public double Microjoules => As(EnergyUnit.Microjoule);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Millijoule"/>
         /// </summary>
         public double Millijoules => As(EnergyUnit.Millijoule);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Nanojoule"/>
+        /// </summary>
+        public double Nanojoules => As(EnergyUnit.Nanojoule);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Petajoule"/>
@@ -436,10 +446,22 @@ namespace UnitsNet
         public static Energy FromMegawattHours(double megawatthours) => new Energy(megawatthours, EnergyUnit.MegawattHour);
 
         /// <summary>
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Microjoule"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Energy FromMicrojoules(double microjoules) => new Energy(microjoules, EnergyUnit.Microjoule);
+
+        /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Millijoule"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Energy FromMillijoules(double millijoules) => new Energy(millijoules, EnergyUnit.Millijoule);
+
+        /// <summary>
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Nanojoule"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Energy FromNanojoules(double nanojoules) => new Energy(nanojoules, EnergyUnit.Nanojoule);
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Petajoule"/>.
@@ -568,7 +590,9 @@ namespace UnitsNet
                         EnergyUnit.Megajoule => (_value) * 1e6d,
                         EnergyUnit.MegawattDay => (_value * 24 * 3600d) * 1e6d,
                         EnergyUnit.MegawattHour => (_value * 3600d) * 1e6d,
+                        EnergyUnit.Microjoule => (_value) * 1e-6d,
                         EnergyUnit.Millijoule => (_value) * 1e-3d,
+                        EnergyUnit.Nanojoule => (_value) * 1e-9d,
                         EnergyUnit.Petajoule => (_value) * 1e15d,
                         EnergyUnit.TeraelectronVolt => (_value * 1.602176565e-19) * 1e12d,
                         EnergyUnit.Terajoule => (_value) * 1e12d,
@@ -619,7 +643,9 @@ namespace UnitsNet
                         EnergyUnit.Megajoule => (baseUnitValue) / 1e6d,
                         EnergyUnit.MegawattDay => (baseUnitValue / (24 * 3600d)) / 1e6d,
                         EnergyUnit.MegawattHour => (baseUnitValue / 3600d) / 1e6d,
+                        EnergyUnit.Microjoule => (baseUnitValue) / 1e-6d,
                         EnergyUnit.Millijoule => (baseUnitValue) / 1e-3d,
+                        EnergyUnit.Nanojoule => (baseUnitValue) / 1e-9d,
                         EnergyUnit.Petajoule => (baseUnitValue) / 1e15d,
                         EnergyUnit.TeraelectronVolt => (baseUnitValue / 1.602176565e-19) / 1e12d,
                         EnergyUnit.Terajoule => (baseUnitValue) / 1e12d,

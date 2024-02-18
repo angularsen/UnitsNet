@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
@@ -41,6 +41,10 @@ namespace UnitsNet.Tests
         protected override double ErgsInOneJoule => 10000000;
 
         protected override double MillijoulesInOneJoule => 1000;
+
+        protected override double MicrojoulesInOneJoule => 1E6;
+
+        protected override double NanojoulesInOneJoule => 1E9;
 
         protected override double TerawattHoursInOneJoule => 2.77777778e-16;
 
@@ -130,6 +134,20 @@ namespace UnitsNet.Tests
         {
             Duration d = Energy.FromKilowattHours(100) / Power.FromKilowatts(20);
             Assert.Equal(5, d.Hours);
+        }
+
+        [Fact]
+        public void EnergyDividedByElectricPotentialEqualsElectricCharge()
+        {
+            ElectricCharge c = Energy.FromJoules(20) / ElectricPotential.FromVolts(5);
+            Assert.Equal(4, c.Coulombs);
+        }
+
+        [Fact]
+        public void EnergyDividedByElectricChargeEqualsElectricPotential()
+        {
+            ElectricPotential v = Energy.FromJoules(20) / ElectricCharge.FromCoulombs(5);
+            Assert.Equal(4, v.Volts);
         }
 
         [Fact]

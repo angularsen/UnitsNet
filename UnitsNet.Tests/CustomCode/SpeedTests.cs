@@ -33,19 +33,19 @@ namespace UnitsNet.Tests
 
         protected override double MetersPerHourInOneMeterPerSecond => 3.6E3;
 
-        protected override double NanometersPerMinutesInOneMeterPerSecond => 6E10;
+        protected override double NanometersPerMinuteInOneMeterPerSecond => 6E10;
 
-        protected override double MicrometersPerMinutesInOneMeterPerSecond => 6E7;
+        protected override double MicrometersPerMinuteInOneMeterPerSecond => 6E7;
 
-        protected override double MillimetersPerMinutesInOneMeterPerSecond => 6E4;
+        protected override double MillimetersPerMinuteInOneMeterPerSecond => 6E4;
 
-        protected override double CentimetersPerMinutesInOneMeterPerSecond => 6E3;
+        protected override double CentimetersPerMinuteInOneMeterPerSecond => 6E3;
 
-        protected override double DecimetersPerMinutesInOneMeterPerSecond => 6E2;
+        protected override double DecimetersPerMinuteInOneMeterPerSecond => 6E2;
 
-        protected override double MetersPerMinutesInOneMeterPerSecond => 6E1;
+        protected override double MetersPerMinuteInOneMeterPerSecond => 6E1;
 
-        protected override double KilometersPerMinutesInOneMeterPerSecond => 6E-2;
+        protected override double KilometersPerMinuteInOneMeterPerSecond => 6E-2;
 
         protected override double CentimetersPerHourInOneMeterPerSecond => 3.6E5;
 
@@ -101,6 +101,13 @@ namespace UnitsNet.Tests
         {
             Acceleration acceleration = Speed.FromMetersPerSecond(20)/Duration.FromSeconds(2);
             Assert.Equal(acceleration, Acceleration.FromMetersPerSecondSquared(10));
+        }
+
+        [Fact]
+        public void SpeedDividedByAccelerationEqualsDuration()
+        {
+            Duration duration = Speed.FromMetersPerSecond(20)/Acceleration.FromMetersPerSecondSquared(2);
+            Assert.Equal(Duration.FromSeconds(10), duration);
         }
 
         [Fact]

@@ -21,7 +21,7 @@ namespace UnitsNet.Serialization.JsonNet
 
         /// <summary>
         /// Register custom types so that the converter can instantiate these quantities.
-        /// Instead of calling <see cref="Quantity.From"/>, the <see cref="Activator"/> will be used to instantiate the object.
+        /// Instead of calling <see cref="Quantity.From(UnitsNet.QuantityValue,System.Enum)"/>, the <see cref="Activator"/> will be used to instantiate the object.
         /// It is therefore assumed that the constructor of <paramref name="quantity"/> is specified with <c>new T(double value, typeof(<paramref name="unit"/>) unit)</c>.
         /// Registering the same <paramref name="unit"/> multiple times, it will overwrite the one registered.
         /// </summary>
@@ -47,6 +47,7 @@ namespace UnitsNet.Serialization.JsonNet
         /// <returns>A <see cref="ValueUnit"/></returns>
         protected ValueUnit? ReadValueUnit(JToken jsonToken)
         {
+            // Empty JSON "{}"
             if (!jsonToken.HasValues)
             {
                 return null;
@@ -181,7 +182,7 @@ namespace UnitsNet.Serialization.JsonNet
         {
             quantity = quantity ?? throw new ArgumentNullException(nameof(quantity));
 
-            if (quantity is IDecimalQuantity d)
+            if (quantity is IValueQuantity<decimal> d)
             {
                 return new ExtendedValueUnit
                 {

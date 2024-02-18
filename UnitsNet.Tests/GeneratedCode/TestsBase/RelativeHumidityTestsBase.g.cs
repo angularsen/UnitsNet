@@ -67,16 +67,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new RelativeHumidity(double.PositiveInfinity, RelativeHumidityUnit.Percent));
-            Assert.Throws<ArgumentException>(() => new RelativeHumidity(double.NegativeInfinity, RelativeHumidityUnit.Percent));
+            var exception1 = Record.Exception(() => new RelativeHumidity(double.PositiveInfinity, RelativeHumidityUnit.Percent));
+            var exception2 = Record.Exception(() => new RelativeHumidity(double.NegativeInfinity, RelativeHumidityUnit.Percent));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new RelativeHumidity(double.NaN, RelativeHumidityUnit.Percent));
+            var exception = Record.Exception(() => new RelativeHumidity(double.NaN, RelativeHumidityUnit.Percent));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -131,16 +136,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromPercent_WithInfinityValue_ThrowsArgumentException()
+        public void FromPercent_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => RelativeHumidity.FromPercent(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => RelativeHumidity.FromPercent(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => RelativeHumidity.FromPercent(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => RelativeHumidity.FromPercent(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromPercent_WithNanValue_ThrowsArgumentException()
+        public void FromPercent_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => RelativeHumidity.FromPercent(double.NaN));
+            var exception = Record.Exception(() => RelativeHumidity.FromPercent(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -158,7 +168,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else

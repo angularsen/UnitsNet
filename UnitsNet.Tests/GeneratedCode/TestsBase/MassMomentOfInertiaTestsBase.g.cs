@@ -175,16 +175,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new MassMomentOfInertia(double.PositiveInfinity, MassMomentOfInertiaUnit.KilogramSquareMeter));
-            Assert.Throws<ArgumentException>(() => new MassMomentOfInertia(double.NegativeInfinity, MassMomentOfInertiaUnit.KilogramSquareMeter));
+            var exception1 = Record.Exception(() => new MassMomentOfInertia(double.PositiveInfinity, MassMomentOfInertiaUnit.KilogramSquareMeter));
+            var exception2 = Record.Exception(() => new MassMomentOfInertia(double.NegativeInfinity, MassMomentOfInertiaUnit.KilogramSquareMeter));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new MassMomentOfInertia(double.NaN, MassMomentOfInertiaUnit.KilogramSquareMeter));
+            var exception = Record.Exception(() => new MassMomentOfInertia(double.NaN, MassMomentOfInertiaUnit.KilogramSquareMeter));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -374,16 +379,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromKilogramSquareMeters_WithInfinityValue_ThrowsArgumentException()
+        public void FromKilogramSquareMeters_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => MassMomentOfInertia.FromKilogramSquareMeters(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => MassMomentOfInertia.FromKilogramSquareMeters(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => MassMomentOfInertia.FromKilogramSquareMeters(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => MassMomentOfInertia.FromKilogramSquareMeters(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromKilogramSquareMeters_WithNanValue_ThrowsArgumentException()
+        public void FromKilogramSquareMeters_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => MassMomentOfInertia.FromKilogramSquareMeters(double.NaN));
+            var exception = Record.Exception(() => MassMomentOfInertia.FromKilogramSquareMeters(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -428,7 +438,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else

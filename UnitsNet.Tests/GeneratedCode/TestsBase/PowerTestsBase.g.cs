@@ -167,16 +167,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Power(double.PositiveInfinity, PowerUnit.Watt));
-            Assert.Throws<ArgumentException>(() => new Power(double.NegativeInfinity, PowerUnit.Watt));
+            var exception1 = Record.Exception(() => new Power(double.PositiveInfinity, PowerUnit.Watt));
+            var exception2 = Record.Exception(() => new Power(double.NegativeInfinity, PowerUnit.Watt));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Power(double.NaN, PowerUnit.Watt));
+            var exception = Record.Exception(() => new Power(double.NaN, PowerUnit.Watt));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -356,16 +361,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromWatts_WithInfinityValue_ThrowsArgumentException()
+        public void FromWatts_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Power.FromWatts(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Power.FromWatts(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => Power.FromWatts(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => Power.FromWatts(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromWatts_WithNanValue_ThrowsArgumentException()
+        public void FromWatts_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Power.FromWatts(double.NaN));
+            var exception = Record.Exception(() => Power.FromWatts(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -408,7 +418,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else

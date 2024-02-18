@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -39,18 +42,29 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Mass_concentration_(chemistry)
     /// </remarks>
     [DataContract]
-    public readonly partial struct MassConcentration : IArithmeticQuantity<MassConcentration, MassConcentrationUnit, double>, IEquatable<MassConcentration>, IComparable, IComparable<MassConcentration>, IConvertible, IFormattable
+    public readonly partial struct MassConcentration :
+        IArithmeticQuantity<MassConcentration, MassConcentrationUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<MassConcentration, Volume, Mass>,
+        IDivisionOperators<MassConcentration, MolarMass, Molarity>,
+        IDivisionOperators<MassConcentration, Density, VolumeConcentration>,
+#endif
+        IComparable,
+        IComparable<MassConcentration>,
+        IConvertible,
+        IEquatable<MassConcentration>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 0)]
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 1)]
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly MassConcentrationUnit? _unit;
 
         static MassConcentration()
@@ -62,55 +76,55 @@ namespace UnitsNet
             Info = new QuantityInfo<MassConcentrationUnit>("MassConcentration",
                 new UnitInfo<MassConcentrationUnit>[]
                 {
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.CentigramPerDeciliter, "CentigramsPerDeciliter", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.CentigramPerLiter, "CentigramsPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.CentigramPerMicroliter, "CentigramsPerMicroliter", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.CentigramPerMilliliter, "CentigramsPerMilliliter", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.DecigramPerDeciliter, "DecigramsPerDeciliter", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.DecigramPerLiter, "DecigramsPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.DecigramPerMicroliter, "DecigramsPerMicroliter", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.DecigramPerMilliliter, "DecigramsPerMilliliter", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.GramPerCubicCentimeter, "GramsPerCubicCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram)),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.GramPerCubicMeter, "GramsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram)),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.GramPerCubicMillimeter, "GramsPerCubicMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Gram)),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.GramPerDeciliter, "GramsPerDeciliter", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.GramPerLiter, "GramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Gram)),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.GramPerMicroliter, "GramsPerMicroliter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram)),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.GramPerMilliliter, "GramsPerMilliliter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram)),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.KilogramPerCubicCentimeter, "KilogramsPerCubicCentimeter", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.KilogramPerCubicMeter, "KilogramsPerCubicMeter", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.KilogramPerCubicMillimeter, "KilogramsPerCubicMillimeter", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.KilogramPerLiter, "KilogramsPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.KilopoundPerCubicFoot, "KilopoundsPerCubicFoot", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.KilopoundPerCubicInch, "KilopoundsPerCubicInch", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MicrogramPerCubicMeter, "MicrogramsPerCubicMeter", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MicrogramPerDeciliter, "MicrogramsPerDeciliter", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MicrogramPerLiter, "MicrogramsPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MicrogramPerMicroliter, "MicrogramsPerMicroliter", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MicrogramPerMilliliter, "MicrogramsPerMilliliter", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MilligramPerCubicMeter, "MilligramsPerCubicMeter", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MilligramPerDeciliter, "MilligramsPerDeciliter", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MilligramPerLiter, "MilligramsPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MilligramPerMicroliter, "MilligramsPerMicroliter", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MilligramPerMilliliter, "MilligramsPerMilliliter", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.NanogramPerDeciliter, "NanogramsPerDeciliter", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.NanogramPerLiter, "NanogramsPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.NanogramPerMicroliter, "NanogramsPerMicroliter", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.NanogramPerMilliliter, "NanogramsPerMilliliter", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.OuncePerImperialGallon, "OuncesPerImperialGallon", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.OuncePerUSGallon, "OuncesPerUSGallon", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.PicogramPerDeciliter, "PicogramsPerDeciliter", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.PicogramPerLiter, "PicogramsPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.PicogramPerMicroliter, "PicogramsPerMicroliter", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.PicogramPerMilliliter, "PicogramsPerMilliliter", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.PoundPerCubicFoot, "PoundsPerCubicFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound)),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.PoundPerCubicInch, "PoundsPerCubicInch", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Pound)),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.PoundPerImperialGallon, "PoundsPerImperialGallon", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.PoundPerUSGallon, "PoundsPerUSGallon", BaseUnits.Undefined),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.SlugPerCubicFoot, "SlugsPerCubicFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Slug)),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.TonnePerCubicCentimeter, "TonnesPerCubicCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Tonne)),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.TonnePerCubicMeter, "TonnesPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Tonne)),
-                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.TonnePerCubicMillimeter, "TonnesPerCubicMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Tonne)),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.CentigramPerDeciliter, "CentigramsPerDeciliter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.CentigramPerLiter, "CentigramsPerLiter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.CentigramPerMicroliter, "CentigramsPerMicroliter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.CentigramPerMilliliter, "CentigramsPerMilliliter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.DecigramPerDeciliter, "DecigramsPerDeciliter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.DecigramPerLiter, "DecigramsPerLiter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.DecigramPerMicroliter, "DecigramsPerMicroliter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.DecigramPerMilliliter, "DecigramsPerMilliliter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.GramPerCubicCentimeter, "GramsPerCubicCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram), "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.GramPerCubicMeter, "GramsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram), "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.GramPerCubicMillimeter, "GramsPerCubicMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Gram), "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.GramPerDeciliter, "GramsPerDeciliter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.GramPerLiter, "GramsPerLiter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Gram), "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.GramPerMicroliter, "GramsPerMicroliter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram), "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.GramPerMilliliter, "GramsPerMilliliter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram), "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.KilogramPerCubicCentimeter, "KilogramsPerCubicCentimeter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.KilogramPerCubicMeter, "KilogramsPerCubicMeter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.KilogramPerCubicMillimeter, "KilogramsPerCubicMillimeter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.KilogramPerLiter, "KilogramsPerLiter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.KilopoundPerCubicFoot, "KilopoundsPerCubicFoot", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.KilopoundPerCubicInch, "KilopoundsPerCubicInch", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MicrogramPerCubicMeter, "MicrogramsPerCubicMeter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MicrogramPerDeciliter, "MicrogramsPerDeciliter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MicrogramPerLiter, "MicrogramsPerLiter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MicrogramPerMicroliter, "MicrogramsPerMicroliter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MicrogramPerMilliliter, "MicrogramsPerMilliliter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MilligramPerCubicMeter, "MilligramsPerCubicMeter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MilligramPerDeciliter, "MilligramsPerDeciliter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MilligramPerLiter, "MilligramsPerLiter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MilligramPerMicroliter, "MilligramsPerMicroliter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.MilligramPerMilliliter, "MilligramsPerMilliliter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.NanogramPerDeciliter, "NanogramsPerDeciliter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.NanogramPerLiter, "NanogramsPerLiter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.NanogramPerMicroliter, "NanogramsPerMicroliter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.NanogramPerMilliliter, "NanogramsPerMilliliter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.OuncePerImperialGallon, "OuncesPerImperialGallon", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.OuncePerUSGallon, "OuncesPerUSGallon", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.PicogramPerDeciliter, "PicogramsPerDeciliter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.PicogramPerLiter, "PicogramsPerLiter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.PicogramPerMicroliter, "PicogramsPerMicroliter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.PicogramPerMilliliter, "PicogramsPerMilliliter", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.PoundPerCubicFoot, "PoundsPerCubicFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound), "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.PoundPerCubicInch, "PoundsPerCubicInch", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Pound), "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.PoundPerImperialGallon, "PoundsPerImperialGallon", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.PoundPerUSGallon, "PoundsPerUSGallon", BaseUnits.Undefined, "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.SlugPerCubicFoot, "SlugsPerCubicFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Slug), "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.TonnePerCubicCentimeter, "TonnesPerCubicCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Tonne), "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.TonnePerCubicMeter, "TonnesPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Tonne), "MassConcentration"),
+                    new UnitInfo<MassConcentrationUnit>(MassConcentrationUnit.TonnePerCubicMillimeter, "TonnesPerCubicMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Tonne), "MassConcentration"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -126,7 +140,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public MassConcentration(double value, MassConcentrationUnit unit)
         {
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = unit;
         }
 
@@ -145,7 +159,7 @@ namespace UnitsNet
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -183,7 +197,7 @@ namespace UnitsNet
         public static MassConcentration AdditiveIdentity => Zero;
 
         #endregion
- 
+
         #region Properties
 
         /// <summary>
@@ -571,63 +585,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.TonnePerCubicCentimeter, quantity => quantity.ToUnit(MassConcentrationUnit.TonnePerCubicCentimeter));
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.TonnePerCubicMeter, quantity => quantity.ToUnit(MassConcentrationUnit.TonnePerCubicMeter));
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.TonnePerCubicMillimeter, quantity => quantity.ToUnit(MassConcentrationUnit.TonnePerCubicMillimeter));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.CentigramPerDeciliter, new CultureInfo("en-US"), false, true, new string[]{"cg/dL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.CentigramPerLiter, new CultureInfo("en-US"), false, true, new string[]{"cg/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.CentigramPerMicroliter, new CultureInfo("en-US"), false, true, new string[]{"cg/μL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.CentigramPerMilliliter, new CultureInfo("en-US"), false, true, new string[]{"cg/mL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.DecigramPerDeciliter, new CultureInfo("en-US"), false, true, new string[]{"dg/dL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.DecigramPerLiter, new CultureInfo("en-US"), false, true, new string[]{"dg/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.DecigramPerMicroliter, new CultureInfo("en-US"), false, true, new string[]{"dg/μL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.DecigramPerMilliliter, new CultureInfo("en-US"), false, true, new string[]{"dg/mL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.GramPerCubicCentimeter, new CultureInfo("en-US"), false, true, new string[]{"g/cm³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.GramPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"g/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.GramPerCubicMeter, new CultureInfo("ru-RU"), false, true, new string[]{"г/м³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.GramPerCubicMillimeter, new CultureInfo("en-US"), false, true, new string[]{"g/mm³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.GramPerDeciliter, new CultureInfo("en-US"), false, true, new string[]{"g/dL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.GramPerLiter, new CultureInfo("en-US"), false, true, new string[]{"g/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.GramPerMicroliter, new CultureInfo("en-US"), false, true, new string[]{"g/μL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.GramPerMilliliter, new CultureInfo("en-US"), false, true, new string[]{"g/mL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.KilogramPerCubicCentimeter, new CultureInfo("en-US"), false, true, new string[]{"kg/cm³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.KilogramPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"kg/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.KilogramPerCubicMeter, new CultureInfo("ru-RU"), false, true, new string[]{"кг/м³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.KilogramPerCubicMillimeter, new CultureInfo("en-US"), false, true, new string[]{"kg/mm³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.KilogramPerLiter, new CultureInfo("en-US"), false, true, new string[]{"kg/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.KilopoundPerCubicFoot, new CultureInfo("en-US"), false, true, new string[]{"kip/ft³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.KilopoundPerCubicInch, new CultureInfo("en-US"), false, true, new string[]{"kip/in³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.MicrogramPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"µg/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.MicrogramPerCubicMeter, new CultureInfo("ru-RU"), false, true, new string[]{"мкг/м³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.MicrogramPerDeciliter, new CultureInfo("en-US"), false, true, new string[]{"µg/dL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.MicrogramPerLiter, new CultureInfo("en-US"), false, true, new string[]{"µg/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.MicrogramPerMicroliter, new CultureInfo("en-US"), false, true, new string[]{"µg/μL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.MicrogramPerMilliliter, new CultureInfo("en-US"), false, true, new string[]{"µg/mL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.MilligramPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"mg/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.MilligramPerCubicMeter, new CultureInfo("ru-RU"), false, true, new string[]{"мг/м³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.MilligramPerDeciliter, new CultureInfo("en-US"), false, true, new string[]{"mg/dL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.MilligramPerLiter, new CultureInfo("en-US"), false, true, new string[]{"mg/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.MilligramPerMicroliter, new CultureInfo("en-US"), false, true, new string[]{"mg/μL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.MilligramPerMilliliter, new CultureInfo("en-US"), false, true, new string[]{"mg/mL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.NanogramPerDeciliter, new CultureInfo("en-US"), false, true, new string[]{"ng/dL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.NanogramPerLiter, new CultureInfo("en-US"), false, true, new string[]{"ng/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.NanogramPerMicroliter, new CultureInfo("en-US"), false, true, new string[]{"ng/μL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.NanogramPerMilliliter, new CultureInfo("en-US"), false, true, new string[]{"ng/mL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.OuncePerImperialGallon, new CultureInfo("en-US"), false, true, new string[]{"oz/gal (imp.)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.OuncePerUSGallon, new CultureInfo("en-US"), false, true, new string[]{"oz/gal (U.S.)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.PicogramPerDeciliter, new CultureInfo("en-US"), false, true, new string[]{"pg/dL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.PicogramPerLiter, new CultureInfo("en-US"), false, true, new string[]{"pg/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.PicogramPerMicroliter, new CultureInfo("en-US"), false, true, new string[]{"pg/μL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.PicogramPerMilliliter, new CultureInfo("en-US"), false, true, new string[]{"pg/mL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.PoundPerCubicFoot, new CultureInfo("en-US"), false, true, new string[]{"lb/ft³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.PoundPerCubicInch, new CultureInfo("en-US"), false, true, new string[]{"lb/in³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.PoundPerImperialGallon, new CultureInfo("en-US"), false, true, new string[]{"ppg (imp.)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.PoundPerUSGallon, new CultureInfo("en-US"), false, true, new string[]{"ppg (U.S.)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.SlugPerCubicFoot, new CultureInfo("en-US"), false, true, new string[]{"slug/ft³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.TonnePerCubicCentimeter, new CultureInfo("en-US"), false, true, new string[]{"t/cm³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.TonnePerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"t/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.TonnePerCubicMillimeter, new CultureInfo("en-US"), false, true, new string[]{"t/mm³"});
         }
 
         /// <summary>
@@ -1165,7 +1122,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="ArgumentException">
@@ -1192,7 +1149,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="ArgumentException">
@@ -1224,7 +1181,7 @@ namespace UnitsNet
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         public static bool TryParse(string? str, out MassConcentration result)
         {
@@ -1238,7 +1195,7 @@ namespace UnitsNet
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out MassConcentration result)
@@ -1255,7 +1212,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
@@ -1270,7 +1227,7 @@ namespace UnitsNet
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
@@ -1292,7 +1249,7 @@ namespace UnitsNet
         /// <param name="unit">The parsed unit if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
-        ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out MassConcentrationUnit unit)
@@ -1348,6 +1305,28 @@ namespace UnitsNet
 
         #endregion
 
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Mass"/> from <see cref="MassConcentration"/> * <see cref="Volume"/>.</summary>
+        public static Mass operator *(MassConcentration massConcentration, Volume volume)
+        {
+            return Mass.FromKilograms(massConcentration.KilogramsPerCubicMeter * volume.CubicMeters);
+        }
+
+        /// <summary>Get <see cref="Molarity"/> from <see cref="MassConcentration"/> / <see cref="MolarMass"/>.</summary>
+        public static Molarity operator /(MassConcentration massConcentration, MolarMass molarMass)
+        {
+            return Molarity.FromMolesPerCubicMeter(massConcentration.GramsPerCubicMeter / molarMass.GramsPerMole);
+        }
+
+        /// <summary>Get <see cref="VolumeConcentration"/> from <see cref="MassConcentration"/> / <see cref="Density"/>.</summary>
+        public static VolumeConcentration operator /(MassConcentration massConcentration, Density density)
+        {
+            return VolumeConcentration.FromDecimalFractions(massConcentration.KilogramsPerCubicMeter / density.KilogramsPerCubicMeter);
+        }
+
+        #endregion
+
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
@@ -1379,16 +1358,14 @@ namespace UnitsNet
         #pragma warning disable CS0809
 
         /// <summary>Indicates strict equality of two <see cref="MassConcentration"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(MassConcentration, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(MassConcentration other, MassConcentration tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public static bool operator ==(MassConcentration left, MassConcentration right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Indicates strict inequality of two <see cref="MassConcentration"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(MassConcentration, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is not null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(MassConcentration other, MassConcentration tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public static bool operator !=(MassConcentration left, MassConcentration right)
         {
             return !(left == right);
@@ -1396,8 +1373,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="MassConcentration"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(MassConcentration, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Use Equals(MassConcentration other, MassConcentration tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is MassConcentration otherQuantity))
@@ -1408,8 +1384,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="MassConcentration"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(MassConcentration, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Use Equals(MassConcentration other, MassConcentration tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public bool Equals(MassConcentration other)
         {
             return new { Value, Unit }.Equals(new { other.Value, other.Unit });
@@ -1493,15 +1468,37 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
+        [Obsolete("Use Equals(MassConcentration other, MassConcentration tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public bool Equals(MassConcentration other, double tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(
+                referenceValue: this.Value,
+                otherValue: other.As(this.Unit),
+                tolerance: tolerance,
+                comparisonType: ComparisonType.Absolute);
+        }
 
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+        /// <inheritdoc />
+        public bool Equals(IQuantity? other, IQuantity tolerance)
+        {
+            return other is MassConcentration otherTyped
+                   && (tolerance is MassConcentration toleranceTyped
+                       ? true
+                       : throw new ArgumentException($"Tolerance quantity ({tolerance.QuantityInfo.Name}) did not match the other quantities of type 'MassConcentration'.", nameof(tolerance)))
+                   && Equals(otherTyped, toleranceTyped);
+        }
+
+        /// <inheritdoc />
+        public bool Equals(MassConcentration other, MassConcentration tolerance)
+        {
+            return UnitsNet.Comparison.Equals(
+                referenceValue: this.Value,
+                otherValue: other.As(this.Unit),
+                tolerance: tolerance.As(this.Unit),
+                comparisonType: ComparisonType.Absolute);
         }
 
         /// <summary>
@@ -1551,6 +1548,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassConcentrationUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is MassConcentrationUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassConcentrationUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>
@@ -1755,6 +1761,18 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<MassConcentrationUnit> IQuantity<MassConcentrationUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
+        {
+            if (unit is not MassConcentrationUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassConcentrationUnit)} is supported.", nameof(unit));
+
+            return ToUnit(typedUnit);
+        }
+
+        /// <inheritdoc />
+        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

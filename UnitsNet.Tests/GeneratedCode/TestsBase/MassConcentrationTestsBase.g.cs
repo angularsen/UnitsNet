@@ -259,16 +259,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new MassConcentration(double.PositiveInfinity, MassConcentrationUnit.KilogramPerCubicMeter));
-            Assert.Throws<ArgumentException>(() => new MassConcentration(double.NegativeInfinity, MassConcentrationUnit.KilogramPerCubicMeter));
+            var exception1 = Record.Exception(() => new MassConcentration(double.PositiveInfinity, MassConcentrationUnit.KilogramPerCubicMeter));
+            var exception2 = Record.Exception(() => new MassConcentration(double.NegativeInfinity, MassConcentrationUnit.KilogramPerCubicMeter));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new MassConcentration(double.NaN, MassConcentrationUnit.KilogramPerCubicMeter));
+            var exception = Record.Exception(() => new MassConcentration(double.NaN, MassConcentrationUnit.KilogramPerCubicMeter));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -563,16 +568,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromKilogramsPerCubicMeter_WithInfinityValue_ThrowsArgumentException()
+        public void FromKilogramsPerCubicMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => MassConcentration.FromKilogramsPerCubicMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => MassConcentration.FromKilogramsPerCubicMeter(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => MassConcentration.FromKilogramsPerCubicMeter(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => MassConcentration.FromKilogramsPerCubicMeter(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromKilogramsPerCubicMeter_WithNanValue_ThrowsArgumentException()
+        public void FromKilogramsPerCubicMeter_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => MassConcentration.FromKilogramsPerCubicMeter(double.NaN));
+            var exception = Record.Exception(() => MassConcentration.FromKilogramsPerCubicMeter(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -638,7 +648,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else

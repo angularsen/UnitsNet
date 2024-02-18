@@ -1,17 +1,27 @@
 # Don't allow using undeclared variables
 Set-Strictmode -version latest
 
-$root = "$PSScriptRoot\.."
+$root = (Resolve-Path "$PSScriptRoot\..").Path
+$nugetPath = "$root/.tools/NuGet.exe"
+
 Write-Host -Foreground Blue "Initializing..."
 
 # Ensure temp dir exists
-$tempDir = "$root/Tools/Temp"
+$tempDir = "$root/.tools/temp_init"
 [system.io.Directory]::CreateDirectory($tempDir) | out-null
 
-if (-not (Test-Path "$root/Tools/reportgenerator.exe")) {
-  Write-Host -Foreground Blue "Download dotnet-reportgenerator-globaltool..."
-  dotnet tool install dotnet-reportgenerator-globaltool --tool-path Tools
-  Write-Host -Foreground Green "Download dotnet-reportgenerator-globaltool...OK."
+# Report generator for unit test coverage reports.
+if (-not (Test-Path "$root/.tools/reportgenerator.exe")) {
+  Write-Host -Foreground Blue "Install dotnet-reportgenerator-globaltool..."
+  dotnet tool install dotnet-reportgenerator-globaltool --tool-path .tools
+  Write-Host -Foreground Green "✅ Installed dotnet-reportgenerator-globaltool"
+}
+
+# NuGet.exe for non-SDK style projects, like UnitsNet.nanoFramework.
+if (-not (Test-Path "$nugetPath")) {
+  Write-Host -Foreground Blue "Downloading NuGet.exe..."
+  Invoke-WebRequest -Uri https://dist.nuget.org/win-x86-commandline/latest/nuget.exe -OutFile $nugetPath
+  Write-Host -Foreground Green "✅ Downloaded NuGet.exe: $nugetPath"
 }
 
 ###################################################

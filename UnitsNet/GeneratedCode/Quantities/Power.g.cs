@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -36,18 +39,38 @@ namespace UnitsNet
     ///     In physics, power is the rate of doing work. It is equivalent to an amount of energy consumed per unit time.
     /// </summary>
     [DataContract]
-    public readonly partial struct Power : IArithmeticQuantity<Power, PowerUnit, double>, IEquatable<Power>, IComparable, IComparable<Power>, IConvertible, IFormattable
+    public readonly partial struct Power :
+        IArithmeticQuantity<Power, PowerUnit, double>,
+#if NET7_0_OR_GREATER
+        IDivisionOperators<Power, HeatFlux, Area>,
+        IDivisionOperators<Power, ElectricPotential, ElectricCurrent>,
+        IDivisionOperators<Power, ElectricCurrent, ElectricPotential>,
+        IMultiplyOperators<Power, Duration, Energy>,
+        IMultiplyOperators<Power, TimeSpan, Energy>,
+        IDivisionOperators<Power, Speed, Force>,
+        IDivisionOperators<Power, Area, HeatFlux>,
+        IMultiplyOperators<Power, BrakeSpecificFuelConsumption, MassFlow>,
+        IDivisionOperators<Power, SpecificEnergy, MassFlow>,
+        IDivisionOperators<Power, Torque, RotationalSpeed>,
+        IDivisionOperators<Power, MassFlow, SpecificEnergy>,
+        IDivisionOperators<Power, RotationalSpeed, Torque>,
+#endif
+        IComparable,
+        IComparable<Power>,
+        IConvertible,
+        IEquatable<Power>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 0)]
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 1)]
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly PowerUnit? _unit;
 
         static Power()
@@ -59,32 +82,32 @@ namespace UnitsNet
             Info = new QuantityInfo<PowerUnit>("Power",
                 new UnitInfo<PowerUnit>[]
                 {
-                    new UnitInfo<PowerUnit>(PowerUnit.BoilerHorsepower, "BoilerHorsepower", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.BritishThermalUnitPerHour, "BritishThermalUnitsPerHour", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.Decawatt, "Decawatts", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.Deciwatt, "Deciwatts", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.ElectricalHorsepower, "ElectricalHorsepower", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.Femtowatt, "Femtowatts", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.GigajoulePerHour, "GigajoulesPerHour", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.Gigawatt, "Gigawatts", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.HydraulicHorsepower, "HydraulicHorsepower", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.JoulePerHour, "JoulesPerHour", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.KilobritishThermalUnitPerHour, "KilobritishThermalUnitsPerHour", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.KilojoulePerHour, "KilojoulesPerHour", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.Kilowatt, "Kilowatts", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.MechanicalHorsepower, "MechanicalHorsepower", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.MegabritishThermalUnitPerHour, "MegabritishThermalUnitsPerHour", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.MegajoulePerHour, "MegajoulesPerHour", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.Megawatt, "Megawatts", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.MetricHorsepower, "MetricHorsepower", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.Microwatt, "Microwatts", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.MillijoulePerHour, "MillijoulesPerHour", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.Milliwatt, "Milliwatts", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.Nanowatt, "Nanowatts", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.Petawatt, "Petawatts", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.Picowatt, "Picowatts", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.Terawatt, "Terawatts", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.Watt, "Watts", BaseUnits.Undefined),
+                    new UnitInfo<PowerUnit>(PowerUnit.BoilerHorsepower, "BoilerHorsepower", BaseUnits.Undefined, "Power"),
+                    new UnitInfo<PowerUnit>(PowerUnit.BritishThermalUnitPerHour, "BritishThermalUnitsPerHour", BaseUnits.Undefined, "Power"),
+                    new UnitInfo<PowerUnit>(PowerUnit.Decawatt, "Decawatts", BaseUnits.Undefined, "Power"),
+                    new UnitInfo<PowerUnit>(PowerUnit.Deciwatt, "Deciwatts", BaseUnits.Undefined, "Power"),
+                    new UnitInfo<PowerUnit>(PowerUnit.ElectricalHorsepower, "ElectricalHorsepower", BaseUnits.Undefined, "Power"),
+                    new UnitInfo<PowerUnit>(PowerUnit.Femtowatt, "Femtowatts", BaseUnits.Undefined, "Power"),
+                    new UnitInfo<PowerUnit>(PowerUnit.GigajoulePerHour, "GigajoulesPerHour", BaseUnits.Undefined, "Power"),
+                    new UnitInfo<PowerUnit>(PowerUnit.Gigawatt, "Gigawatts", BaseUnits.Undefined, "Power"),
+                    new UnitInfo<PowerUnit>(PowerUnit.HydraulicHorsepower, "HydraulicHorsepower", BaseUnits.Undefined, "Power"),
+                    new UnitInfo<PowerUnit>(PowerUnit.JoulePerHour, "JoulesPerHour", BaseUnits.Undefined, "Power"),
+                    new UnitInfo<PowerUnit>(PowerUnit.KilobritishThermalUnitPerHour, "KilobritishThermalUnitsPerHour", BaseUnits.Undefined, "Power"),
+                    new UnitInfo<PowerUnit>(PowerUnit.KilojoulePerHour, "KilojoulesPerHour", BaseUnits.Undefined, "Power"),
+                    new UnitInfo<PowerUnit>(PowerUnit.Kilowatt, "Kilowatts", BaseUnits.Undefined, "Power"),
+                    new UnitInfo<PowerUnit>(PowerUnit.MechanicalHorsepower, "MechanicalHorsepower", BaseUnits.Undefined, "Power"),
+                    new UnitInfo<PowerUnit>(PowerUnit.MegabritishThermalUnitPerHour, "MegabritishThermalUnitsPerHour", BaseUnits.Undefined, "Power"),
+                    new UnitInfo<PowerUnit>(PowerUnit.MegajoulePerHour, "MegajoulesPerHour", BaseUnits.Undefined, "Power"),
+                    new UnitInfo<PowerUnit>(PowerUnit.Megawatt, "Megawatts", BaseUnits.Undefined, "Power"),
+                    new UnitInfo<PowerUnit>(PowerUnit.MetricHorsepower, "MetricHorsepower", BaseUnits.Undefined, "Power"),
+                    new UnitInfo<PowerUnit>(PowerUnit.Microwatt, "Microwatts", BaseUnits.Undefined, "Power"),
+                    new UnitInfo<PowerUnit>(PowerUnit.MillijoulePerHour, "MillijoulesPerHour", BaseUnits.Undefined, "Power"),
+                    new UnitInfo<PowerUnit>(PowerUnit.Milliwatt, "Milliwatts", BaseUnits.Undefined, "Power"),
+                    new UnitInfo<PowerUnit>(PowerUnit.Nanowatt, "Nanowatts", BaseUnits.Undefined, "Power"),
+                    new UnitInfo<PowerUnit>(PowerUnit.Petawatt, "Petawatts", BaseUnits.Undefined, "Power"),
+                    new UnitInfo<PowerUnit>(PowerUnit.Picowatt, "Picowatts", BaseUnits.Undefined, "Power"),
+                    new UnitInfo<PowerUnit>(PowerUnit.Terawatt, "Terawatts", BaseUnits.Undefined, "Power"),
+                    new UnitInfo<PowerUnit>(PowerUnit.Watt, "Watts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Power"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -100,7 +123,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Power(double value, PowerUnit unit)
         {
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = unit;
         }
 
@@ -119,7 +142,7 @@ namespace UnitsNet
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -157,7 +180,7 @@ namespace UnitsNet
         public static Power AdditiveIdentity => Zero;
 
         #endregion
- 
+
         #region Properties
 
         /// <summary>
@@ -384,36 +407,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Petawatt, quantity => quantity.ToUnit(PowerUnit.Petawatt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Picowatt, quantity => quantity.ToUnit(PowerUnit.Picowatt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Terawatt, quantity => quantity.ToUnit(PowerUnit.Terawatt));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.BoilerHorsepower, new CultureInfo("en-US"), false, true, new string[]{"hp(S)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.BritishThermalUnitPerHour, new CultureInfo("en-US"), false, true, new string[]{"Btu/h", "Btu/hr"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Decawatt, new CultureInfo("en-US"), false, true, new string[]{"daW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Deciwatt, new CultureInfo("en-US"), false, true, new string[]{"dW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.ElectricalHorsepower, new CultureInfo("en-US"), false, true, new string[]{"hp(E)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Femtowatt, new CultureInfo("en-US"), false, true, new string[]{"fW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.GigajoulePerHour, new CultureInfo("en-US"), false, true, new string[]{"GJ/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Gigawatt, new CultureInfo("en-US"), false, true, new string[]{"GW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.HydraulicHorsepower, new CultureInfo("en-US"), false, true, new string[]{"hp(H)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.JoulePerHour, new CultureInfo("en-US"), false, true, new string[]{"J/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.KilobritishThermalUnitPerHour, new CultureInfo("en-US"), false, true, new string[]{"kBtu/h", "kBtu/hr"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.KilojoulePerHour, new CultureInfo("en-US"), false, true, new string[]{"kJ/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Kilowatt, new CultureInfo("en-US"), false, true, new string[]{"kW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.MechanicalHorsepower, new CultureInfo("en-US"), false, true, new string[]{"hp(I)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.MegabritishThermalUnitPerHour, new CultureInfo("en-US"), false, true, new string[]{"MBtu/h", "MBtu/hr"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.MegajoulePerHour, new CultureInfo("en-US"), false, true, new string[]{"MJ/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Megawatt, new CultureInfo("en-US"), false, true, new string[]{"MW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.MetricHorsepower, new CultureInfo("en-US"), false, true, new string[]{"hp(M)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Microwatt, new CultureInfo("en-US"), false, true, new string[]{"µW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.MillijoulePerHour, new CultureInfo("en-US"), false, true, new string[]{"mJ/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Milliwatt, new CultureInfo("en-US"), false, true, new string[]{"mW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Nanowatt, new CultureInfo("en-US"), false, true, new string[]{"nW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Petawatt, new CultureInfo("en-US"), false, true, new string[]{"PW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Picowatt, new CultureInfo("en-US"), false, true, new string[]{"pW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Terawatt, new CultureInfo("en-US"), false, true, new string[]{"TW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Watt, new CultureInfo("en-US"), false, true, new string[]{"W"});
         }
 
         /// <summary>
@@ -721,7 +714,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="ArgumentException">
@@ -748,7 +741,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="ArgumentException">
@@ -780,7 +773,7 @@ namespace UnitsNet
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         public static bool TryParse(string? str, out Power result)
         {
@@ -794,7 +787,7 @@ namespace UnitsNet
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out Power result)
@@ -811,7 +804,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
@@ -826,7 +819,7 @@ namespace UnitsNet
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
@@ -848,7 +841,7 @@ namespace UnitsNet
         /// <param name="unit">The parsed unit if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
-        ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out PowerUnit unit)
@@ -904,6 +897,88 @@ namespace UnitsNet
 
         #endregion
 
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Area"/> from <see cref="Power"/> / <see cref="HeatFlux"/>.</summary>
+        public static Area operator /(Power power, HeatFlux heatFlux)
+        {
+            return Area.FromSquareMeters(power.Watts / heatFlux.WattsPerSquareMeter);
+        }
+
+        /// <summary>Get <see cref="ElectricCurrent"/> from <see cref="Power"/> / <see cref="ElectricPotential"/>.</summary>
+        public static ElectricCurrent operator /(Power power, ElectricPotential electricPotential)
+        {
+            return ElectricCurrent.FromAmperes(power.Watts / electricPotential.Volts);
+        }
+
+        /// <summary>Get <see cref="ElectricPotential"/> from <see cref="Power"/> / <see cref="ElectricCurrent"/>.</summary>
+        public static ElectricPotential operator /(Power power, ElectricCurrent electricCurrent)
+        {
+            return ElectricPotential.FromVolts(power.Watts / electricCurrent.Amperes);
+        }
+
+        /// <summary>Get <see cref="Energy"/> from <see cref="Power"/> * <see cref="Duration"/>.</summary>
+        public static Energy operator *(Power power, Duration duration)
+        {
+            return Energy.FromJoules(power.Watts * duration.Seconds);
+        }
+
+        /// <summary>Get <see cref="Energy"/> from <see cref="Power"/> * <see cref="TimeSpan"/>.</summary>
+        public static Energy operator *(Power power, TimeSpan timeSpan)
+        {
+            return Energy.FromJoules(power.Watts * timeSpan.TotalSeconds);
+        }
+
+        /// <summary>Get <see cref="Energy"/> from <see cref="TimeSpan"/> * <see cref="Power"/>.</summary>
+        public static Energy operator *(TimeSpan timeSpan, Power power)
+        {
+            return Energy.FromJoules(timeSpan.TotalSeconds * power.Watts);
+        }
+
+        /// <summary>Get <see cref="Force"/> from <see cref="Power"/> / <see cref="Speed"/>.</summary>
+        public static Force operator /(Power power, Speed speed)
+        {
+            return Force.FromNewtons(power.Watts / speed.MetersPerSecond);
+        }
+
+        /// <summary>Get <see cref="HeatFlux"/> from <see cref="Power"/> / <see cref="Area"/>.</summary>
+        public static HeatFlux operator /(Power power, Area area)
+        {
+            return HeatFlux.FromWattsPerSquareMeter(power.Watts / area.SquareMeters);
+        }
+
+        /// <summary>Get <see cref="MassFlow"/> from <see cref="Power"/> * <see cref="BrakeSpecificFuelConsumption"/>.</summary>
+        public static MassFlow operator *(Power power, BrakeSpecificFuelConsumption brakeSpecificFuelConsumption)
+        {
+            return MassFlow.FromKilogramsPerSecond(power.Watts * brakeSpecificFuelConsumption.KilogramsPerJoule);
+        }
+
+        /// <summary>Get <see cref="MassFlow"/> from <see cref="Power"/> / <see cref="SpecificEnergy"/>.</summary>
+        public static MassFlow operator /(Power power, SpecificEnergy specificEnergy)
+        {
+            return MassFlow.FromKilogramsPerSecond(power.Watts / specificEnergy.JoulesPerKilogram);
+        }
+
+        /// <summary>Get <see cref="RotationalSpeed"/> from <see cref="Power"/> / <see cref="Torque"/>.</summary>
+        public static RotationalSpeed operator /(Power power, Torque torque)
+        {
+            return RotationalSpeed.FromRadiansPerSecond(power.Watts / torque.NewtonMeters);
+        }
+
+        /// <summary>Get <see cref="SpecificEnergy"/> from <see cref="Power"/> / <see cref="MassFlow"/>.</summary>
+        public static SpecificEnergy operator /(Power power, MassFlow massFlow)
+        {
+            return SpecificEnergy.FromJoulesPerKilogram(power.Watts / massFlow.KilogramsPerSecond);
+        }
+
+        /// <summary>Get <see cref="Torque"/> from <see cref="Power"/> / <see cref="RotationalSpeed"/>.</summary>
+        public static Torque operator /(Power power, RotationalSpeed rotationalSpeed)
+        {
+            return Torque.FromNewtonMeters(power.Watts / rotationalSpeed.RadiansPerSecond);
+        }
+
+        #endregion
+
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
@@ -935,16 +1010,14 @@ namespace UnitsNet
         #pragma warning disable CS0809
 
         /// <summary>Indicates strict equality of two <see cref="Power"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Power, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Power other, Power tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public static bool operator ==(Power left, Power right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Indicates strict inequality of two <see cref="Power"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Power, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is not null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Power other, Power tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public static bool operator !=(Power left, Power right)
         {
             return !(left == right);
@@ -952,8 +1025,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="Power"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Power, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Use Equals(Power other, Power tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is Power otherQuantity))
@@ -964,8 +1036,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="Power"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Power, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Use Equals(Power other, Power tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public bool Equals(Power other)
         {
             return new { Value, Unit }.Equals(new { other.Value, other.Unit });
@@ -1049,15 +1120,37 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
+        [Obsolete("Use Equals(Power other, Power tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public bool Equals(Power other, double tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(
+                referenceValue: this.Value,
+                otherValue: other.As(this.Unit),
+                tolerance: tolerance,
+                comparisonType: ComparisonType.Absolute);
+        }
 
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+        /// <inheritdoc />
+        public bool Equals(IQuantity? other, IQuantity tolerance)
+        {
+            return other is Power otherTyped
+                   && (tolerance is Power toleranceTyped
+                       ? true
+                       : throw new ArgumentException($"Tolerance quantity ({tolerance.QuantityInfo.Name}) did not match the other quantities of type 'Power'.", nameof(tolerance)))
+                   && Equals(otherTyped, toleranceTyped);
+        }
+
+        /// <inheritdoc />
+        public bool Equals(Power other, Power tolerance)
+        {
+            return UnitsNet.Comparison.Equals(
+                referenceValue: this.Value,
+                otherValue: other.As(this.Unit),
+                tolerance: tolerance.As(this.Unit),
+                comparisonType: ComparisonType.Absolute);
         }
 
         /// <summary>
@@ -1107,6 +1200,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PowerUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is PowerUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PowerUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>
@@ -1265,6 +1367,18 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<PowerUnit> IQuantity<PowerUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
+        {
+            if (unit is not PowerUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PowerUnit)} is supported.", nameof(unit));
+
+            return ToUnit(typedUnit);
+        }
+
+        /// <inheritdoc />
+        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

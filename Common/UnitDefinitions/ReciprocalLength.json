@@ -46,8 +46,8 @@
     {
       "SingularName": "InverseMile",
       "PluralName": "InverseMiles",
-      "FromUnitToBaseFunc": "{x} / 1609.34",
-      "FromBaseToUnitFunc": "{x} * 1609.34",
+      "FromUnitToBaseFunc": "{x} / 1609.344",
+      "FromBaseToUnitFunc": "{x} * 1609.344",
       "Localization": [
         {
           "Culture": "en-US",

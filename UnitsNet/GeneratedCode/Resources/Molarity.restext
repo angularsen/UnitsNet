@@ -1,0 +1,11 @@
+CentimolesPerLiter=cmol/L,cM
+DecimolesPerLiter=dmol/L,dM
+FemtomolesPerLiter=fmol/L,fM
+KilomolesPerCubicMeter=kmol/m³
+MicromolesPerLiter=µmol/L,µM
+MillimolesPerLiter=mmol/L,mM
+MolesPerCubicMeter=mol/m³
+MolesPerLiter=mol/L,M
+NanomolesPerLiter=nmol/L,nM
+PicomolesPerLiter=pmol/L,pM
+PoundMolesPerCubicFoot=lbmol/ft³

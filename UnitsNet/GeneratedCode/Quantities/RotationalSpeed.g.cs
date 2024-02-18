@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -36,18 +39,28 @@ namespace UnitsNet
     ///     Rotational speed (sometimes called speed of revolution) is the number of complete rotations, revolutions, cycles, or turns per time unit. Rotational speed is a cyclic frequency, measured in radians per second or in hertz in the SI System by scientists, or in revolutions per minute (rpm or min-1) or revolutions per second in everyday life. The symbol for rotational speed is ω (the Greek lowercase letter "omega").
     /// </summary>
     [DataContract]
-    public readonly partial struct RotationalSpeed : IArithmeticQuantity<RotationalSpeed, RotationalSpeedUnit, double>, IEquatable<RotationalSpeed>, IComparable, IComparable<RotationalSpeed>, IConvertible, IFormattable
+    public readonly partial struct RotationalSpeed :
+        IArithmeticQuantity<RotationalSpeed, RotationalSpeedUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<RotationalSpeed, Duration, Angle>,
+        IMultiplyOperators<RotationalSpeed, TimeSpan, Angle>,
+#endif
+        IComparable,
+        IComparable<RotationalSpeed>,
+        IConvertible,
+        IEquatable<RotationalSpeed>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 0)]
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 1)]
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly RotationalSpeedUnit? _unit;
 
         static RotationalSpeed()
@@ -59,19 +72,19 @@ namespace UnitsNet
             Info = new QuantityInfo<RotationalSpeedUnit>("RotationalSpeed",
                 new UnitInfo<RotationalSpeedUnit>[]
                 {
-                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.CentiradianPerSecond, "CentiradiansPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.DeciradianPerSecond, "DeciradiansPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.DegreePerMinute, "DegreesPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.DegreePerSecond, "DegreesPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.MicrodegreePerSecond, "MicrodegreesPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.MicroradianPerSecond, "MicroradiansPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.MillidegreePerSecond, "MillidegreesPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.MilliradianPerSecond, "MilliradiansPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.NanodegreePerSecond, "NanodegreesPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.NanoradianPerSecond, "NanoradiansPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.RadianPerSecond, "RadiansPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.RevolutionPerMinute, "RevolutionsPerMinute", BaseUnits.Undefined),
-                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.RevolutionPerSecond, "RevolutionsPerSecond", BaseUnits.Undefined),
+                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.CentiradianPerSecond, "CentiradiansPerSecond", BaseUnits.Undefined, "RotationalSpeed"),
+                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.DeciradianPerSecond, "DeciradiansPerSecond", BaseUnits.Undefined, "RotationalSpeed"),
+                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.DegreePerMinute, "DegreesPerMinute", BaseUnits.Undefined, "RotationalSpeed"),
+                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.DegreePerSecond, "DegreesPerSecond", BaseUnits.Undefined, "RotationalSpeed"),
+                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.MicrodegreePerSecond, "MicrodegreesPerSecond", BaseUnits.Undefined, "RotationalSpeed"),
+                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.MicroradianPerSecond, "MicroradiansPerSecond", BaseUnits.Undefined, "RotationalSpeed"),
+                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.MillidegreePerSecond, "MillidegreesPerSecond", BaseUnits.Undefined, "RotationalSpeed"),
+                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.MilliradianPerSecond, "MilliradiansPerSecond", BaseUnits.Undefined, "RotationalSpeed"),
+                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.NanodegreePerSecond, "NanodegreesPerSecond", BaseUnits.Undefined, "RotationalSpeed"),
+                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.NanoradianPerSecond, "NanoradiansPerSecond", BaseUnits.Undefined, "RotationalSpeed"),
+                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.RadianPerSecond, "RadiansPerSecond", BaseUnits.Undefined, "RotationalSpeed"),
+                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.RevolutionPerMinute, "RevolutionsPerMinute", BaseUnits.Undefined, "RotationalSpeed"),
+                    new UnitInfo<RotationalSpeedUnit>(RotationalSpeedUnit.RevolutionPerSecond, "RevolutionsPerSecond", BaseUnits.Undefined, "RotationalSpeed"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -87,7 +100,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public RotationalSpeed(double value, RotationalSpeedUnit unit)
         {
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = unit;
         }
 
@@ -106,7 +119,7 @@ namespace UnitsNet
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -144,7 +157,7 @@ namespace UnitsNet
         public static RotationalSpeed AdditiveIdentity => Zero;
 
         #endregion
- 
+
         #region Properties
 
         /// <summary>
@@ -280,35 +293,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.NanoradianPerSecond, quantity => quantity.ToUnit(RotationalSpeedUnit.NanoradianPerSecond));
             unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.RevolutionPerMinute, quantity => quantity.ToUnit(RotationalSpeedUnit.RevolutionPerMinute));
             unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.RevolutionPerSecond, quantity => quantity.ToUnit(RotationalSpeedUnit.RevolutionPerSecond));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.CentiradianPerSecond, new CultureInfo("en-US"), false, true, new string[]{"crad/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.CentiradianPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"срад/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.DeciradianPerSecond, new CultureInfo("en-US"), false, true, new string[]{"drad/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.DeciradianPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"драд/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.DegreePerMinute, new CultureInfo("en-US"), false, true, new string[]{"°/min", "deg/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.DegreePerSecond, new CultureInfo("en-US"), false, true, new string[]{"°/s", "deg/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.DegreePerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"°/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.MicrodegreePerSecond, new CultureInfo("en-US"), false, true, new string[]{"µ°/s", "µdeg/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.MicrodegreePerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"мк°/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.MicroradianPerSecond, new CultureInfo("en-US"), false, true, new string[]{"µrad/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.MicroradianPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"мкрад/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.MillidegreePerSecond, new CultureInfo("en-US"), false, true, new string[]{"m°/s", "mdeg/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.MillidegreePerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"м°/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.MilliradianPerSecond, new CultureInfo("en-US"), false, true, new string[]{"mrad/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.MilliradianPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"мрад/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.NanodegreePerSecond, new CultureInfo("en-US"), false, true, new string[]{"n°/s", "ndeg/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.NanodegreePerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"н°/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.NanoradianPerSecond, new CultureInfo("en-US"), false, true, new string[]{"nrad/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.NanoradianPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"нрад/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.RadianPerSecond, new CultureInfo("en-US"), false, true, new string[]{"rad/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.RadianPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"рад/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.RevolutionPerMinute, new CultureInfo("en-US"), false, true, new string[]{"rpm", "r/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.RevolutionPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"об/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.RevolutionPerSecond, new CultureInfo("en-US"), false, true, new string[]{"r/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalSpeedUnit.RevolutionPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"об/с"});
         }
 
         /// <summary>
@@ -486,7 +470,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="ArgumentException">
@@ -513,7 +497,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="ArgumentException">
@@ -545,7 +529,7 @@ namespace UnitsNet
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         public static bool TryParse(string? str, out RotationalSpeed result)
         {
@@ -559,7 +543,7 @@ namespace UnitsNet
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out RotationalSpeed result)
@@ -576,7 +560,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
@@ -591,7 +575,7 @@ namespace UnitsNet
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
@@ -613,7 +597,7 @@ namespace UnitsNet
         /// <param name="unit">The parsed unit if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
-        ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out RotationalSpeedUnit unit)
@@ -669,6 +653,28 @@ namespace UnitsNet
 
         #endregion
 
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Angle"/> from <see cref="RotationalSpeed"/> * <see cref="Duration"/>.</summary>
+        public static Angle operator *(RotationalSpeed rotationalSpeed, Duration duration)
+        {
+            return Angle.FromRadians(rotationalSpeed.RadiansPerSecond * duration.Seconds);
+        }
+
+        /// <summary>Get <see cref="Angle"/> from <see cref="RotationalSpeed"/> * <see cref="TimeSpan"/>.</summary>
+        public static Angle operator *(RotationalSpeed rotationalSpeed, TimeSpan timeSpan)
+        {
+            return Angle.FromRadians(rotationalSpeed.RadiansPerSecond * timeSpan.TotalSeconds);
+        }
+
+        /// <summary>Get <see cref="Angle"/> from <see cref="TimeSpan"/> * <see cref="RotationalSpeed"/>.</summary>
+        public static Angle operator *(TimeSpan timeSpan, RotationalSpeed rotationalSpeed)
+        {
+            return Angle.FromRadians(timeSpan.TotalSeconds * rotationalSpeed.RadiansPerSecond);
+        }
+
+        #endregion
+
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
@@ -700,16 +706,14 @@ namespace UnitsNet
         #pragma warning disable CS0809
 
         /// <summary>Indicates strict equality of two <see cref="RotationalSpeed"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(RotationalSpeed, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(RotationalSpeed other, RotationalSpeed tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public static bool operator ==(RotationalSpeed left, RotationalSpeed right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Indicates strict inequality of two <see cref="RotationalSpeed"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(RotationalSpeed, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is not null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(RotationalSpeed other, RotationalSpeed tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public static bool operator !=(RotationalSpeed left, RotationalSpeed right)
         {
             return !(left == right);
@@ -717,8 +721,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="RotationalSpeed"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(RotationalSpeed, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Use Equals(RotationalSpeed other, RotationalSpeed tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is RotationalSpeed otherQuantity))
@@ -729,8 +732,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="RotationalSpeed"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(RotationalSpeed, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Use Equals(RotationalSpeed other, RotationalSpeed tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public bool Equals(RotationalSpeed other)
         {
             return new { Value, Unit }.Equals(new { other.Value, other.Unit });
@@ -814,15 +816,37 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
+        [Obsolete("Use Equals(RotationalSpeed other, RotationalSpeed tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public bool Equals(RotationalSpeed other, double tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(
+                referenceValue: this.Value,
+                otherValue: other.As(this.Unit),
+                tolerance: tolerance,
+                comparisonType: ComparisonType.Absolute);
+        }
 
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+        /// <inheritdoc />
+        public bool Equals(IQuantity? other, IQuantity tolerance)
+        {
+            return other is RotationalSpeed otherTyped
+                   && (tolerance is RotationalSpeed toleranceTyped
+                       ? true
+                       : throw new ArgumentException($"Tolerance quantity ({tolerance.QuantityInfo.Name}) did not match the other quantities of type 'RotationalSpeed'.", nameof(tolerance)))
+                   && Equals(otherTyped, toleranceTyped);
+        }
+
+        /// <inheritdoc />
+        public bool Equals(RotationalSpeed other, RotationalSpeed tolerance)
+        {
+            return UnitsNet.Comparison.Equals(
+                referenceValue: this.Value,
+                otherValue: other.As(this.Unit),
+                tolerance: tolerance.As(this.Unit),
+                comparisonType: ComparisonType.Absolute);
         }
 
         /// <summary>
@@ -872,6 +896,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalSpeedUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is RotationalSpeedUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalSpeedUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>
@@ -1004,6 +1037,18 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<RotationalSpeedUnit> IQuantity<RotationalSpeedUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
+        {
+            if (unit is not RotationalSpeedUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalSpeedUnit)} is supported.", nameof(unit));
+
+            return ToUnit(typedUnit);
+        }
+
+        /// <inheritdoc />
+        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

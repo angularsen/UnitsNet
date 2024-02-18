@@ -137,7 +137,7 @@ namespace CodeGen.Generators
             {
                 StartInfo = new ProcessStartInfo
                 {
-                    FileName = Path.Combine(rootDir, "Tools/nuget.exe"),
+                    FileName = Path.Combine(rootDir, ".tools/nuget.exe"),
                     Arguments = $"restore {path}\\UnitsNet.nanoFramework.sln",
                     UseShellExecute = false,
                     CreateNoWindow = true,
@@ -188,7 +188,7 @@ namespace CodeGen.Generators
             {
                 StartInfo = new ProcessStartInfo
                 {
-                    FileName = Path.Combine(rootDir, "Tools/nuget.exe"),
+                    FileName = Path.Combine(rootDir, ".tools/NuGet.exe"),
                     Arguments = $"update {path}\\UnitsNet.nanoFramework.sln -PreRelease",
                     UseShellExecute = false,
                     CreateNoWindow = true,

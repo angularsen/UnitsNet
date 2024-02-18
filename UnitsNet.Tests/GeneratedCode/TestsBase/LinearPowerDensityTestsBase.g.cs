@@ -163,16 +163,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new LinearPowerDensity(double.PositiveInfinity, LinearPowerDensityUnit.WattPerMeter));
-            Assert.Throws<ArgumentException>(() => new LinearPowerDensity(double.NegativeInfinity, LinearPowerDensityUnit.WattPerMeter));
+            var exception1 = Record.Exception(() => new LinearPowerDensity(double.PositiveInfinity, LinearPowerDensityUnit.WattPerMeter));
+            var exception2 = Record.Exception(() => new LinearPowerDensity(double.NegativeInfinity, LinearPowerDensityUnit.WattPerMeter));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new LinearPowerDensity(double.NaN, LinearPowerDensityUnit.WattPerMeter));
+            var exception = Record.Exception(() => new LinearPowerDensity(double.NaN, LinearPowerDensityUnit.WattPerMeter));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -347,16 +352,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromWattsPerMeter_WithInfinityValue_ThrowsArgumentException()
+        public void FromWattsPerMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => LinearPowerDensity.FromWattsPerMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => LinearPowerDensity.FromWattsPerMeter(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => LinearPowerDensity.FromWattsPerMeter(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => LinearPowerDensity.FromWattsPerMeter(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromWattsPerMeter_WithNanValue_ThrowsArgumentException()
+        public void FromWattsPerMeter_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => LinearPowerDensity.FromWattsPerMeter(double.NaN));
+            var exception = Record.Exception(() => LinearPowerDensity.FromWattsPerMeter(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -398,7 +408,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else

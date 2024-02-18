@@ -75,16 +75,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new AreaDensity(double.PositiveInfinity, AreaDensityUnit.KilogramPerSquareMeter));
-            Assert.Throws<ArgumentException>(() => new AreaDensity(double.NegativeInfinity, AreaDensityUnit.KilogramPerSquareMeter));
+            var exception1 = Record.Exception(() => new AreaDensity(double.PositiveInfinity, AreaDensityUnit.KilogramPerSquareMeter));
+            var exception2 = Record.Exception(() => new AreaDensity(double.NegativeInfinity, AreaDensityUnit.KilogramPerSquareMeter));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new AreaDensity(double.NaN, AreaDensityUnit.KilogramPerSquareMeter));
+            var exception = Record.Exception(() => new AreaDensity(double.NaN, AreaDensityUnit.KilogramPerSquareMeter));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -149,16 +154,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromKilogramsPerSquareMeter_WithInfinityValue_ThrowsArgumentException()
+        public void FromKilogramsPerSquareMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => AreaDensity.FromKilogramsPerSquareMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => AreaDensity.FromKilogramsPerSquareMeter(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => AreaDensity.FromKilogramsPerSquareMeter(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => AreaDensity.FromKilogramsPerSquareMeter(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromKilogramsPerSquareMeter_WithNanValue_ThrowsArgumentException()
+        public void FromKilogramsPerSquareMeter_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => AreaDensity.FromKilogramsPerSquareMeter(double.NaN));
+            var exception = Record.Exception(() => AreaDensity.FromKilogramsPerSquareMeter(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -178,7 +188,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else

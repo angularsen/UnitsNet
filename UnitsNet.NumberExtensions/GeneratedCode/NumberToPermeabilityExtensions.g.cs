@@ -19,6 +19,10 @@
 
 using System;
 
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
+
 #nullable enable
 
 namespace UnitsNet.NumberExtensions.NumberToPermeability
@@ -29,8 +33,12 @@ namespace UnitsNet.NumberExtensions.NumberToPermeability
     public static class NumberToPermeabilityExtensions
     {
         /// <inheritdoc cref="Permeability.FromHenriesPerMeter(UnitsNet.QuantityValue)" />
-        public static Permeability HenriesPerMeter<T>(this T value) =>
-            Permeability.FromHenriesPerMeter(Convert.ToDouble(value));
+        public static Permeability HenriesPerMeter<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Permeability.FromHenriesPerMeter(Convert.ToDouble(value));
 
     }
 }

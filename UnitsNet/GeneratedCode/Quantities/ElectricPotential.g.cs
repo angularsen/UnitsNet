@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -36,18 +39,30 @@ namespace UnitsNet
     ///     In classical electromagnetism, the electric potential (a scalar quantity denoted by Φ, ΦE or V and also called the electric field potential or the electrostatic potential) at a point is the amount of electric potential energy that a unitary point charge would have when located at that point.
     /// </summary>
     [DataContract]
-    public readonly partial struct ElectricPotential : IArithmeticQuantity<ElectricPotential, ElectricPotentialUnit, double>, IEquatable<ElectricPotential>, IComparable, IComparable<ElectricPotential>, IConvertible, IFormattable
+    public readonly partial struct ElectricPotential :
+        IArithmeticQuantity<ElectricPotential, ElectricPotentialUnit, double>,
+#if NET7_0_OR_GREATER
+        IDivisionOperators<ElectricPotential, ElectricResistance, ElectricCurrent>,
+        IDivisionOperators<ElectricPotential, ElectricCurrent, ElectricResistance>,
+        IMultiplyOperators<ElectricPotential, ElectricCharge, Energy>,
+        IMultiplyOperators<ElectricPotential, ElectricCurrent, Power>,
+#endif
+        IComparable,
+        IComparable<ElectricPotential>,
+        IConvertible,
+        IEquatable<ElectricPotential>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 0)]
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 1)]
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly ElectricPotentialUnit? _unit;
 
         static ElectricPotential()
@@ -59,12 +74,12 @@ namespace UnitsNet
             Info = new QuantityInfo<ElectricPotentialUnit>("ElectricPotential",
                 new UnitInfo<ElectricPotentialUnit>[]
                 {
-                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Kilovolt, "Kilovolts", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Megavolt, "Megavolts", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Microvolt, "Microvolts", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Millivolt, "Millivolts", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Nanovolt, "Nanovolts", BaseUnits.Undefined),
-                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Volt, "Volts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
+                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Kilovolt, "Kilovolts", BaseUnits.Undefined, "ElectricPotential"),
+                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Megavolt, "Megavolts", BaseUnits.Undefined, "ElectricPotential"),
+                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Microvolt, "Microvolts", BaseUnits.Undefined, "ElectricPotential"),
+                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Millivolt, "Millivolts", BaseUnits.Undefined, "ElectricPotential"),
+                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Nanovolt, "Nanovolts", BaseUnits.Undefined, "ElectricPotential"),
+                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Volt, "Volts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere), "ElectricPotential"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -80,7 +95,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ElectricPotential(double value, ElectricPotentialUnit unit)
         {
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = unit;
         }
 
@@ -99,7 +114,7 @@ namespace UnitsNet
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -137,7 +152,7 @@ namespace UnitsNet
         public static ElectricPotential AdditiveIdentity => Zero;
 
         #endregion
- 
+
         #region Properties
 
         /// <summary>
@@ -224,22 +239,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricPotential>(ElectricPotentialUnit.Volt, ElectricPotentialUnit.Microvolt, quantity => quantity.ToUnit(ElectricPotentialUnit.Microvolt));
             unitConverter.SetConversionFunction<ElectricPotential>(ElectricPotentialUnit.Volt, ElectricPotentialUnit.Millivolt, quantity => quantity.ToUnit(ElectricPotentialUnit.Millivolt));
             unitConverter.SetConversionFunction<ElectricPotential>(ElectricPotentialUnit.Volt, ElectricPotentialUnit.Nanovolt, quantity => quantity.ToUnit(ElectricPotentialUnit.Nanovolt));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Kilovolt, new CultureInfo("en-US"), false, true, new string[]{"kV"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Kilovolt, new CultureInfo("ru-RU"), false, true, new string[]{"кВ"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Megavolt, new CultureInfo("en-US"), false, true, new string[]{"MV"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Megavolt, new CultureInfo("ru-RU"), false, true, new string[]{"МВ"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Microvolt, new CultureInfo("en-US"), false, true, new string[]{"µV"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Microvolt, new CultureInfo("ru-RU"), false, true, new string[]{"мкВ"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Millivolt, new CultureInfo("en-US"), false, true, new string[]{"mV"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Millivolt, new CultureInfo("ru-RU"), false, true, new string[]{"мВ"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Nanovolt, new CultureInfo("en-US"), false, true, new string[]{"nV"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Nanovolt, new CultureInfo("ru-RU"), false, true, new string[]{"нВ"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Volt, new CultureInfo("en-US"), false, true, new string[]{"V"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Volt, new CultureInfo("ru-RU"), false, true, new string[]{"В"});
         }
 
         /// <summary>
@@ -347,7 +346,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="ArgumentException">
@@ -374,7 +373,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="ArgumentException">
@@ -406,7 +405,7 @@ namespace UnitsNet
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         public static bool TryParse(string? str, out ElectricPotential result)
         {
@@ -420,7 +419,7 @@ namespace UnitsNet
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out ElectricPotential result)
@@ -437,7 +436,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
@@ -452,7 +451,7 @@ namespace UnitsNet
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
@@ -474,7 +473,7 @@ namespace UnitsNet
         /// <param name="unit">The parsed unit if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
-        ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out ElectricPotentialUnit unit)
@@ -530,6 +529,34 @@ namespace UnitsNet
 
         #endregion
 
+        #region Relational Operators
+
+        /// <summary>Get <see cref="ElectricCurrent"/> from <see cref="ElectricPotential"/> / <see cref="ElectricResistance"/>.</summary>
+        public static ElectricCurrent operator /(ElectricPotential electricPotential, ElectricResistance electricResistance)
+        {
+            return ElectricCurrent.FromAmperes(electricPotential.Volts / electricResistance.Ohms);
+        }
+
+        /// <summary>Get <see cref="ElectricResistance"/> from <see cref="ElectricPotential"/> / <see cref="ElectricCurrent"/>.</summary>
+        public static ElectricResistance operator /(ElectricPotential electricPotential, ElectricCurrent electricCurrent)
+        {
+            return ElectricResistance.FromOhms(electricPotential.Volts / electricCurrent.Amperes);
+        }
+
+        /// <summary>Get <see cref="Energy"/> from <see cref="ElectricPotential"/> * <see cref="ElectricCharge"/>.</summary>
+        public static Energy operator *(ElectricPotential electricPotential, ElectricCharge electricCharge)
+        {
+            return Energy.FromJoules(electricPotential.Volts * electricCharge.Coulombs);
+        }
+
+        /// <summary>Get <see cref="Power"/> from <see cref="ElectricPotential"/> * <see cref="ElectricCurrent"/>.</summary>
+        public static Power operator *(ElectricPotential electricPotential, ElectricCurrent electricCurrent)
+        {
+            return Power.FromWatts(electricPotential.Volts * electricCurrent.Amperes);
+        }
+
+        #endregion
+
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
@@ -561,16 +588,14 @@ namespace UnitsNet
         #pragma warning disable CS0809
 
         /// <summary>Indicates strict equality of two <see cref="ElectricPotential"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ElectricPotential, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(ElectricPotential other, ElectricPotential tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public static bool operator ==(ElectricPotential left, ElectricPotential right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Indicates strict inequality of two <see cref="ElectricPotential"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ElectricPotential, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is not null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(ElectricPotential other, ElectricPotential tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public static bool operator !=(ElectricPotential left, ElectricPotential right)
         {
             return !(left == right);
@@ -578,8 +603,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="ElectricPotential"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ElectricPotential, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Use Equals(ElectricPotential other, ElectricPotential tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is ElectricPotential otherQuantity))
@@ -590,8 +614,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="ElectricPotential"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ElectricPotential, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Use Equals(ElectricPotential other, ElectricPotential tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public bool Equals(ElectricPotential other)
         {
             return new { Value, Unit }.Equals(new { other.Value, other.Unit });
@@ -675,15 +698,37 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
+        [Obsolete("Use Equals(ElectricPotential other, ElectricPotential tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public bool Equals(ElectricPotential other, double tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(
+                referenceValue: this.Value,
+                otherValue: other.As(this.Unit),
+                tolerance: tolerance,
+                comparisonType: ComparisonType.Absolute);
+        }
 
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+        /// <inheritdoc />
+        public bool Equals(IQuantity? other, IQuantity tolerance)
+        {
+            return other is ElectricPotential otherTyped
+                   && (tolerance is ElectricPotential toleranceTyped
+                       ? true
+                       : throw new ArgumentException($"Tolerance quantity ({tolerance.QuantityInfo.Name}) did not match the other quantities of type 'ElectricPotential'.", nameof(tolerance)))
+                   && Equals(otherTyped, toleranceTyped);
+        }
+
+        /// <inheritdoc />
+        public bool Equals(ElectricPotential other, ElectricPotential tolerance)
+        {
+            return UnitsNet.Comparison.Equals(
+                referenceValue: this.Value,
+                otherValue: other.As(this.Unit),
+                tolerance: tolerance.As(this.Unit),
+                comparisonType: ComparisonType.Absolute);
         }
 
         /// <summary>
@@ -733,6 +778,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricPotentialUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is ElectricPotentialUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricPotentialUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>
@@ -851,6 +905,18 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ElectricPotentialUnit> IQuantity<ElectricPotentialUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
+        {
+            if (unit is not ElectricPotentialUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricPotentialUnit)} is supported.", nameof(unit));
+
+            return ToUnit(typedUnit);
+        }
+
+        /// <inheritdoc />
+        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

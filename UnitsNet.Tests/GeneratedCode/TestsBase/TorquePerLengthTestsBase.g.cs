@@ -147,16 +147,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new TorquePerLength(double.PositiveInfinity, TorquePerLengthUnit.NewtonMeterPerMeter));
-            Assert.Throws<ArgumentException>(() => new TorquePerLength(double.NegativeInfinity, TorquePerLengthUnit.NewtonMeterPerMeter));
+            var exception1 = Record.Exception(() => new TorquePerLength(double.PositiveInfinity, TorquePerLengthUnit.NewtonMeterPerMeter));
+            var exception2 = Record.Exception(() => new TorquePerLength(double.NegativeInfinity, TorquePerLengthUnit.NewtonMeterPerMeter));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new TorquePerLength(double.NaN, TorquePerLengthUnit.NewtonMeterPerMeter));
+            var exception = Record.Exception(() => new TorquePerLength(double.NaN, TorquePerLengthUnit.NewtonMeterPerMeter));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -311,16 +316,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromNewtonMetersPerMeter_WithInfinityValue_ThrowsArgumentException()
+        public void FromNewtonMetersPerMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => TorquePerLength.FromNewtonMetersPerMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => TorquePerLength.FromNewtonMetersPerMeter(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => TorquePerLength.FromNewtonMetersPerMeter(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => TorquePerLength.FromNewtonMetersPerMeter(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromNewtonMetersPerMeter_WithNanValue_ThrowsArgumentException()
+        public void FromNewtonMetersPerMeter_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => TorquePerLength.FromNewtonMetersPerMeter(double.NaN));
+            var exception = Record.Exception(() => TorquePerLength.FromNewtonMetersPerMeter(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -358,7 +368,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else

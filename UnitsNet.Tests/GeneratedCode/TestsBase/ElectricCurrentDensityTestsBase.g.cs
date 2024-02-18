@@ -75,16 +75,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricCurrentDensity(double.PositiveInfinity, ElectricCurrentDensityUnit.AmperePerSquareMeter));
-            Assert.Throws<ArgumentException>(() => new ElectricCurrentDensity(double.NegativeInfinity, ElectricCurrentDensityUnit.AmperePerSquareMeter));
+            var exception1 = Record.Exception(() => new ElectricCurrentDensity(double.PositiveInfinity, ElectricCurrentDensityUnit.AmperePerSquareMeter));
+            var exception2 = Record.Exception(() => new ElectricCurrentDensity(double.NegativeInfinity, ElectricCurrentDensityUnit.AmperePerSquareMeter));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricCurrentDensity(double.NaN, ElectricCurrentDensityUnit.AmperePerSquareMeter));
+            var exception = Record.Exception(() => new ElectricCurrentDensity(double.NaN, ElectricCurrentDensityUnit.AmperePerSquareMeter));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -149,16 +154,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromAmperesPerSquareMeter_WithInfinityValue_ThrowsArgumentException()
+        public void FromAmperesPerSquareMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricCurrentDensity.FromAmperesPerSquareMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ElectricCurrentDensity.FromAmperesPerSquareMeter(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => ElectricCurrentDensity.FromAmperesPerSquareMeter(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => ElectricCurrentDensity.FromAmperesPerSquareMeter(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromAmperesPerSquareMeter_WithNanValue_ThrowsArgumentException()
+        public void FromAmperesPerSquareMeter_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricCurrentDensity.FromAmperesPerSquareMeter(double.NaN));
+            var exception = Record.Exception(() => ElectricCurrentDensity.FromAmperesPerSquareMeter(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -178,7 +188,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else

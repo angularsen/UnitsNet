@@ -83,16 +83,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricPotentialDc(double.PositiveInfinity, ElectricPotentialDcUnit.VoltDc));
-            Assert.Throws<ArgumentException>(() => new ElectricPotentialDc(double.NegativeInfinity, ElectricPotentialDcUnit.VoltDc));
+            var exception1 = Record.Exception(() => new ElectricPotentialDc(double.PositiveInfinity, ElectricPotentialDcUnit.VoltDc));
+            var exception2 = Record.Exception(() => new ElectricPotentialDc(double.NegativeInfinity, ElectricPotentialDcUnit.VoltDc));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricPotentialDc(double.NaN, ElectricPotentialDcUnit.VoltDc));
+            var exception = Record.Exception(() => new ElectricPotentialDc(double.NaN, ElectricPotentialDcUnit.VoltDc));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -167,16 +172,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromVoltsDc_WithInfinityValue_ThrowsArgumentException()
+        public void FromVoltsDc_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricPotentialDc.FromVoltsDc(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ElectricPotentialDc.FromVoltsDc(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => ElectricPotentialDc.FromVoltsDc(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => ElectricPotentialDc.FromVoltsDc(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromVoltsDc_WithNanValue_ThrowsArgumentException()
+        public void FromVoltsDc_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricPotentialDc.FromVoltsDc(double.NaN));
+            var exception = Record.Exception(() => ElectricPotentialDc.FromVoltsDc(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -198,7 +208,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else

@@ -50,13 +50,17 @@ namespace UnitsNet.Units
         DtpPica = 8,
         DtpPoint = 9,
         Fathom = 10,
+        Femtometer = 48,
         Foot = 11,
+        Gigameter = 44,
         Hand = 12,
         Hectometer = 13,
         Inch = 14,
+        Kilofoot = 45,
         KilolightYear = 15,
         Kilometer = 16,
         Kiloparsec = 17,
+        Kiloyard = 38,
 
         /// <summary>
         ///     A Light Year (ly) is the distance that light travel during an Earth year, ie 365 days.
@@ -85,6 +89,7 @@ namespace UnitsNet.Units
         /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Parsec</remarks>
         Parsec = 29,
+        Picometer = 43,
         PrinterPica = 30,
         PrinterPoint = 31,
         Shackle = 32,

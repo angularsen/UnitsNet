@@ -79,16 +79,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new SpecificFuelConsumption(double.PositiveInfinity, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond));
-            Assert.Throws<ArgumentException>(() => new SpecificFuelConsumption(double.NegativeInfinity, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond));
+            var exception1 = Record.Exception(() => new SpecificFuelConsumption(double.PositiveInfinity, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond));
+            var exception2 = Record.Exception(() => new SpecificFuelConsumption(double.NegativeInfinity, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new SpecificFuelConsumption(double.NaN, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond));
+            var exception = Record.Exception(() => new SpecificFuelConsumption(double.NaN, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -158,16 +163,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromGramsPerKiloNewtonSecond_WithInfinityValue_ThrowsArgumentException()
+        public void FromGramsPerKiloNewtonSecond_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromGramsPerKiloNewtonSecond_WithNanValue_ThrowsArgumentException()
+        public void FromGramsPerKiloNewtonSecond_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(double.NaN));
+            var exception = Record.Exception(() => SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -188,7 +198,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else

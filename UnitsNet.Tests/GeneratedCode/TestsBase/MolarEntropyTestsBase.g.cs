@@ -75,16 +75,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new MolarEntropy(double.PositiveInfinity, MolarEntropyUnit.JoulePerMoleKelvin));
-            Assert.Throws<ArgumentException>(() => new MolarEntropy(double.NegativeInfinity, MolarEntropyUnit.JoulePerMoleKelvin));
+            var exception1 = Record.Exception(() => new MolarEntropy(double.PositiveInfinity, MolarEntropyUnit.JoulePerMoleKelvin));
+            var exception2 = Record.Exception(() => new MolarEntropy(double.NegativeInfinity, MolarEntropyUnit.JoulePerMoleKelvin));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new MolarEntropy(double.NaN, MolarEntropyUnit.JoulePerMoleKelvin));
+            var exception = Record.Exception(() => new MolarEntropy(double.NaN, MolarEntropyUnit.JoulePerMoleKelvin));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -149,16 +154,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromJoulesPerMoleKelvin_WithInfinityValue_ThrowsArgumentException()
+        public void FromJoulesPerMoleKelvin_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => MolarEntropy.FromJoulesPerMoleKelvin(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => MolarEntropy.FromJoulesPerMoleKelvin(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => MolarEntropy.FromJoulesPerMoleKelvin(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => MolarEntropy.FromJoulesPerMoleKelvin(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromJoulesPerMoleKelvin_WithNanValue_ThrowsArgumentException()
+        public void FromJoulesPerMoleKelvin_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => MolarEntropy.FromJoulesPerMoleKelvin(double.NaN));
+            var exception = Record.Exception(() => MolarEntropy.FromJoulesPerMoleKelvin(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -178,7 +188,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else

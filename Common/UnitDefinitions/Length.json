@@ -14,7 +14,7 @@
       },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
-      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo", "Mega" ],
+      "Prefixes": [ "Femto", "Pico", "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo", "Mega", "Giga" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -63,6 +63,7 @@
       },
       "FromUnitToBaseFunc": "{x} * 0.9144",
       "FromBaseToUnitFunc": "{x} / 0.9144",
+      "Prefixes":  [ "Kilo" ],
       "XmlDocSummary": "The yard (symbol: yd) is an English unit of length in both the British imperial and US customary systems of measurement equalling 3 feet (or 36 inches). Since 1959 the yard has been by international agreement standardized as exactly 0.9144 meter. A distance of 1,760 yards is equal to 1 mile.",
       "XmlDocRemarks": "https://en.wikipedia.org/wiki/Yard",
       "Localization": [
@@ -88,6 +89,7 @@
       },
       "FromUnitToBaseFunc": "{x} * 0.3048",
       "FromBaseToUnitFunc": "{x} / 0.3048",
+      "Prefixes": [ "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",

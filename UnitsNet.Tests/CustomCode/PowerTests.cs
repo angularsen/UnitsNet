@@ -8,7 +8,7 @@ namespace UnitsNet.Tests
 {
     public class PowerTests : PowerTestsBase
     {
-        protected override bool SupportsSIUnitSystem => false;
+        protected override bool SupportsSIUnitSystem => true;
 
         protected override double FemtowattsInOneWatt => 1e15;
 

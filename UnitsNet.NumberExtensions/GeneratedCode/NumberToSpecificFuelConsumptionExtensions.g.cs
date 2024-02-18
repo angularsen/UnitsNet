@@ -19,6 +19,10 @@
 
 using System;
 
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
+
 #nullable enable
 
 namespace UnitsNet.NumberExtensions.NumberToSpecificFuelConsumption
@@ -29,20 +33,36 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificFuelConsumption
     public static class NumberToSpecificFuelConsumptionExtensions
     {
         /// <inheritdoc cref="SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(UnitsNet.QuantityValue)" />
-        public static SpecificFuelConsumption GramsPerKiloNewtonSecond<T>(this T value) =>
-            SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(Convert.ToDouble(value));
+        public static SpecificFuelConsumption GramsPerKiloNewtonSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificFuelConsumption.FromKilogramsPerKilogramForceHour(UnitsNet.QuantityValue)" />
-        public static SpecificFuelConsumption KilogramsPerKilogramForceHour<T>(this T value) =>
-            SpecificFuelConsumption.FromKilogramsPerKilogramForceHour(Convert.ToDouble(value));
+        public static SpecificFuelConsumption KilogramsPerKilogramForceHour<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => SpecificFuelConsumption.FromKilogramsPerKilogramForceHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificFuelConsumption.FromKilogramsPerKiloNewtonSecond(UnitsNet.QuantityValue)" />
-        public static SpecificFuelConsumption KilogramsPerKiloNewtonSecond<T>(this T value) =>
-            SpecificFuelConsumption.FromKilogramsPerKiloNewtonSecond(Convert.ToDouble(value));
+        public static SpecificFuelConsumption KilogramsPerKiloNewtonSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => SpecificFuelConsumption.FromKilogramsPerKiloNewtonSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(UnitsNet.QuantityValue)" />
-        public static SpecificFuelConsumption PoundsMassPerPoundForceHour<T>(this T value) =>
-            SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(Convert.ToDouble(value));
+        public static SpecificFuelConsumption PoundsMassPerPoundForceHour<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(Convert.ToDouble(value));
 
     }
 }

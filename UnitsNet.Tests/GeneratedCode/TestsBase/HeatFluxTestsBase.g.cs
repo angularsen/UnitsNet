@@ -135,16 +135,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new HeatFlux(double.PositiveInfinity, HeatFluxUnit.WattPerSquareMeter));
-            Assert.Throws<ArgumentException>(() => new HeatFlux(double.NegativeInfinity, HeatFluxUnit.WattPerSquareMeter));
+            var exception1 = Record.Exception(() => new HeatFlux(double.PositiveInfinity, HeatFluxUnit.WattPerSquareMeter));
+            var exception2 = Record.Exception(() => new HeatFlux(double.NegativeInfinity, HeatFluxUnit.WattPerSquareMeter));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new HeatFlux(double.NaN, HeatFluxUnit.WattPerSquareMeter));
+            var exception = Record.Exception(() => new HeatFlux(double.NaN, HeatFluxUnit.WattPerSquareMeter));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -284,16 +289,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromWattsPerSquareMeter_WithInfinityValue_ThrowsArgumentException()
+        public void FromWattsPerSquareMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => HeatFlux.FromWattsPerSquareMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => HeatFlux.FromWattsPerSquareMeter(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => HeatFlux.FromWattsPerSquareMeter(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => HeatFlux.FromWattsPerSquareMeter(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromWattsPerSquareMeter_WithNanValue_ThrowsArgumentException()
+        public void FromWattsPerSquareMeter_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => HeatFlux.FromWattsPerSquareMeter(double.NaN));
+            var exception = Record.Exception(() => HeatFlux.FromWattsPerSquareMeter(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -328,7 +338,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else

@@ -107,16 +107,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Duration(double.PositiveInfinity, DurationUnit.Second));
-            Assert.Throws<ArgumentException>(() => new Duration(double.NegativeInfinity, DurationUnit.Second));
+            var exception1 = Record.Exception(() => new Duration(double.PositiveInfinity, DurationUnit.Second));
+            var exception2 = Record.Exception(() => new Duration(double.NegativeInfinity, DurationUnit.Second));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Duration(double.NaN, DurationUnit.Second));
+            var exception = Record.Exception(() => new Duration(double.NaN, DurationUnit.Second));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -221,16 +226,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromSeconds_WithInfinityValue_ThrowsArgumentException()
+        public void FromSeconds_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Duration.FromSeconds(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Duration.FromSeconds(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => Duration.FromSeconds(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => Duration.FromSeconds(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromSeconds_WithNanValue_ThrowsArgumentException()
+        public void FromSeconds_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Duration.FromSeconds(double.NaN));
+            var exception = Record.Exception(() => Duration.FromSeconds(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -258,7 +268,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else

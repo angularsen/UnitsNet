@@ -45,60 +45,6 @@ namespace UnitsNet
         {
             return FromPounds(StonesInOnePound*stone + pounds);
         }
-
-        /// <summary>Get <see cref="MassFlow"/> from <see cref="Mass"/> divided by <see cref="TimeSpan"/>.</summary>
-        public static MassFlow operator /(Mass mass, TimeSpan timeSpan)
-        {
-            return MassFlow.FromKilogramsPerSecond(mass.Kilograms/timeSpan.TotalSeconds);
-        }
-
-        /// <summary>Get <see cref="MassFlow"/> from <see cref="Mass"/> divided by <see cref="Duration"/>.</summary>
-        public static MassFlow operator /(Mass mass, Duration duration)
-        {
-            return MassFlow.FromKilogramsPerSecond(mass.Kilograms/duration.Seconds);
-        }
-
-        /// <summary>Get <see cref="Density"/> from <see cref="MassFlow"/> divided by <see cref="Volume"/>.</summary>
-        public static Density operator /(Mass mass, Volume volume)
-        {
-            return Density.FromKilogramsPerCubicMeter(mass.Kilograms/volume.CubicMeters);
-        }
-
-        /// <summary>Get <see cref="Volume"/> from <see cref="Mass"/> divided by <see cref="Density"/>.</summary>
-        public static Volume operator /(Mass mass, Density density)
-        {
-            return Volume.FromCubicMeters(mass.Kilograms / density.KilogramsPerCubicMeter);
-        }
-
-        /// <summary>Get <see cref="AmountOfSubstance" /> from <see cref="MolarMass" /> divided by <see cref="Mass" />.</summary>
-        public static AmountOfSubstance operator /(Mass mass, MolarMass molarMass)
-        {
-            return AmountOfSubstance.FromMoles(mass.Kilograms / molarMass.KilogramsPerMole);
-        }
-
-        /// <summary>Get <see cref="AreaDensity" /> from <see cref="Mass" /> divided by <see cref="Area" />.</summary>
-        public static AreaDensity operator /(Mass mass, Area area)
-        {
-            return AreaDensity.FromKilogramsPerSquareMeter(mass.Kilograms / area.SquareMeters);
-        }
-
-        /// <summary>Get <see cref="Area" /> from <see cref="Mass" /> divided by <see cref="AreaDensity" />.</summary>
-        public static Area operator /(Mass mass, AreaDensity areaDensity)
-        {
-            return Area.FromSquareMeters(mass.Kilograms / areaDensity.KilogramsPerSquareMeter);
-        }
-
-        /// <summary>Get <see cref="Force"/> from <see cref="Mass"/> times <see cref="Acceleration"/>.</summary>
-        public static Force operator *(Mass mass, Acceleration acceleration)
-        {
-            return Force.FromNewtons(mass.Kilograms*acceleration.MetersPerSecondSquared);
-        }
-
-        /// <summary>Get <see cref="Force"/> from <see cref="Acceleration"/> times <see cref="Mass"/>.</summary>
-        public static Force operator *(Acceleration acceleration, Mass mass)
-        {
-            return Force.FromNewtons(mass.Kilograms*acceleration.MetersPerSecondSquared);
-        }
     }
 
     /// <summary>
@@ -144,8 +90,8 @@ namespace UnitsNet
         {
             cultureInfo = cultureInfo ?? CultureInfo.CurrentCulture;
 
-            var stoneUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(MassUnit.Stone, cultureInfo);
-            var poundUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(MassUnit.Pound, cultureInfo);
+            var stoneUnit = Mass.GetAbbreviation(MassUnit.Stone, cultureInfo);
+            var poundUnit = Mass.GetAbbreviation(MassUnit.Pound, cultureInfo);
 
             // Note that it isn't customary to use fractions - one wouldn't say "I am 11 stone and 4.5 pounds".
             // So pounds are rounded here.

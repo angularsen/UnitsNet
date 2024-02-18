@@ -11,19 +11,19 @@ namespace UnitsNet.Tests
         protected override double DecanewtonsInOneNewton => 1E-1;
         protected override double DyneInOneNewton => 1E5;
 
-        protected override double KilogramsForceInOneNewton => 0.101972;
+        protected override double KilogramsForceInOneNewton => 0.1019716;
 
-        protected override double KilopoundsForceInOneNewton => 0.22481e-3;
+        protected override double KilopoundsForceInOneNewton => 0.2248089e-3;
         protected override double MeganewtonsInOneNewton => 1E-6;
         protected override double KilonewtonsInOneNewton => 1E-3;
 
-        protected override double KiloPondsInOneNewton => 0.101972;
+        protected override double KiloPondsInOneNewton => 0.1019716;
 
         protected override double NewtonsInOneNewton => 1;
 
-        protected override double PoundalsInOneNewton => 7.23301;
+        protected override double PoundalsInOneNewton => 7.2330138;
 
-        protected override double PoundsForceInOneNewton => 0.22481;
+        protected override double PoundsForceInOneNewton => 0.2248089;
 
         protected override double TonnesForceInOneNewton => 1.019716212977928e-4;
 
@@ -33,7 +33,7 @@ namespace UnitsNet.Tests
 
         protected override double OunceForceInOneNewton => 3.596943089595368;
 
-        protected override double ShortTonsForceInOneNewton => 1.12404471549816e-4;
+        protected override double ShortTonsForceInOneNewton => 1.12404471549855e-4;
 
         [Fact]
         public void ForceDividedByAreaEqualsPressure()
@@ -103,6 +103,14 @@ namespace UnitsNet.Tests
         {
             Duration duration = Force.FromNewtons(200) / ForceChangeRate.FromNewtonsPerSecond(50);
             Assert.Equal(duration, Duration.FromSeconds(4));
+        }
+
+        [Fact]
+        public void KilogramForceDividedByNewtonEqualsStandardGravity()
+        {
+            const double standardGravity = 9.80665;
+            double duration = Force.FromKilogramsForce(1) / Force.FromNewtons(1);
+            Assert.Equal(standardGravity, duration);
         }
     }
 }

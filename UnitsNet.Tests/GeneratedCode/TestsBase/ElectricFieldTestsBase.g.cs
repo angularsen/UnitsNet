@@ -67,16 +67,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricField(double.PositiveInfinity, ElectricFieldUnit.VoltPerMeter));
-            Assert.Throws<ArgumentException>(() => new ElectricField(double.NegativeInfinity, ElectricFieldUnit.VoltPerMeter));
+            var exception1 = Record.Exception(() => new ElectricField(double.PositiveInfinity, ElectricFieldUnit.VoltPerMeter));
+            var exception2 = Record.Exception(() => new ElectricField(double.NegativeInfinity, ElectricFieldUnit.VoltPerMeter));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new ElectricField(double.NaN, ElectricFieldUnit.VoltPerMeter));
+            var exception = Record.Exception(() => new ElectricField(double.NaN, ElectricFieldUnit.VoltPerMeter));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -131,16 +136,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromVoltsPerMeter_WithInfinityValue_ThrowsArgumentException()
+        public void FromVoltsPerMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricField.FromVoltsPerMeter(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => ElectricField.FromVoltsPerMeter(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => ElectricField.FromVoltsPerMeter(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => ElectricField.FromVoltsPerMeter(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromVoltsPerMeter_WithNanValue_ThrowsArgumentException()
+        public void FromVoltsPerMeter_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => ElectricField.FromVoltsPerMeter(double.NaN));
+            var exception = Record.Exception(() => ElectricField.FromVoltsPerMeter(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -158,7 +168,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else

@@ -45,7 +45,7 @@ namespace UnitsNet.Serialization.JsonNet
         /// </summary>
         /// <param name="comparer">The comparer used to compare the property/quantity names (e.g. StringComparer.OrdinalIgnoreCase) </param>
         public AbbreviatedUnitsConverter(IEqualityComparer<string?> comparer)
-            : this(new Dictionary<string, QuantityInfo>(Quantity.ByName, comparer), UnitAbbreviationsCache.Default, comparer)
+            : this(new Dictionary<string, QuantityInfo>(Quantity.ByName, comparer), UnitsNetSetup.Default.UnitAbbreviations, comparer)
         {
         }
 
@@ -79,7 +79,7 @@ namespace UnitsNet.Serialization.JsonNet
 
             // write the 'Value' using the actual type
             writer.WritePropertyName(ValueProperty);
-            if (quantity is IDecimalQuantity decimalQuantity)
+            if (quantity is IValueQuantity<decimal> decimalQuantity)
             {
                 // cannot use `writer.WriteValue(decimalQuantity.Value)`: there is a hidden EnsureDecimalPlace(..) method call inside it that converts '123' to '123.0'
                 writer.WriteRawValue(decimalQuantity.Value.ToString(CultureInfo.InvariantCulture));
@@ -177,7 +177,7 @@ namespace UnitsNet.Serialization.JsonNet
             {
                 value = default;
             }
-            else if (quantityInfo.Zero is IDecimalQuantity)
+            else if (quantityInfo.Zero is IValueQuantity<decimal>)
             {
                 value = decimal.Parse(valueToken, CultureInfo.InvariantCulture);
             }

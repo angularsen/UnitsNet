@@ -19,6 +19,10 @@
 
 using System;
 
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
+
 #nullable enable
 
 namespace UnitsNet.NumberExtensions.NumberToApparentPower
@@ -29,28 +33,52 @@ namespace UnitsNet.NumberExtensions.NumberToApparentPower
     public static class NumberToApparentPowerExtensions
     {
         /// <inheritdoc cref="ApparentPower.FromGigavoltamperes(UnitsNet.QuantityValue)" />
-        public static ApparentPower Gigavoltamperes<T>(this T value) =>
-            ApparentPower.FromGigavoltamperes(Convert.ToDouble(value));
+        public static ApparentPower Gigavoltamperes<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ApparentPower.FromGigavoltamperes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ApparentPower.FromKilovoltamperes(UnitsNet.QuantityValue)" />
-        public static ApparentPower Kilovoltamperes<T>(this T value) =>
-            ApparentPower.FromKilovoltamperes(Convert.ToDouble(value));
+        public static ApparentPower Kilovoltamperes<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ApparentPower.FromKilovoltamperes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ApparentPower.FromMegavoltamperes(UnitsNet.QuantityValue)" />
-        public static ApparentPower Megavoltamperes<T>(this T value) =>
-            ApparentPower.FromMegavoltamperes(Convert.ToDouble(value));
+        public static ApparentPower Megavoltamperes<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ApparentPower.FromMegavoltamperes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ApparentPower.FromMicrovoltamperes(UnitsNet.QuantityValue)" />
-        public static ApparentPower Microvoltamperes<T>(this T value) =>
-            ApparentPower.FromMicrovoltamperes(Convert.ToDouble(value));
+        public static ApparentPower Microvoltamperes<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ApparentPower.FromMicrovoltamperes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ApparentPower.FromMillivoltamperes(UnitsNet.QuantityValue)" />
-        public static ApparentPower Millivoltamperes<T>(this T value) =>
-            ApparentPower.FromMillivoltamperes(Convert.ToDouble(value));
+        public static ApparentPower Millivoltamperes<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ApparentPower.FromMillivoltamperes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ApparentPower.FromVoltamperes(UnitsNet.QuantityValue)" />
-        public static ApparentPower Voltamperes<T>(this T value) =>
-            ApparentPower.FromVoltamperes(Convert.ToDouble(value));
+        public static ApparentPower Voltamperes<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ApparentPower.FromVoltamperes(Convert.ToDouble(value));
 
     }
 }

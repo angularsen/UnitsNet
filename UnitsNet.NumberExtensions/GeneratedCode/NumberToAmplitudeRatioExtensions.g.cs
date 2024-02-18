@@ -19,6 +19,10 @@
 
 using System;
 
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
+
 #nullable enable
 
 namespace UnitsNet.NumberExtensions.NumberToAmplitudeRatio
@@ -29,20 +33,36 @@ namespace UnitsNet.NumberExtensions.NumberToAmplitudeRatio
     public static class NumberToAmplitudeRatioExtensions
     {
         /// <inheritdoc cref="AmplitudeRatio.FromDecibelMicrovolts(UnitsNet.QuantityValue)" />
-        public static AmplitudeRatio DecibelMicrovolts<T>(this T value) =>
-            AmplitudeRatio.FromDecibelMicrovolts(Convert.ToDouble(value));
+        public static AmplitudeRatio DecibelMicrovolts<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => AmplitudeRatio.FromDecibelMicrovolts(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AmplitudeRatio.FromDecibelMillivolts(UnitsNet.QuantityValue)" />
-        public static AmplitudeRatio DecibelMillivolts<T>(this T value) =>
-            AmplitudeRatio.FromDecibelMillivolts(Convert.ToDouble(value));
+        public static AmplitudeRatio DecibelMillivolts<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => AmplitudeRatio.FromDecibelMillivolts(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AmplitudeRatio.FromDecibelsUnloaded(UnitsNet.QuantityValue)" />
-        public static AmplitudeRatio DecibelsUnloaded<T>(this T value) =>
-            AmplitudeRatio.FromDecibelsUnloaded(Convert.ToDouble(value));
+        public static AmplitudeRatio DecibelsUnloaded<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => AmplitudeRatio.FromDecibelsUnloaded(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AmplitudeRatio.FromDecibelVolts(UnitsNet.QuantityValue)" />
-        public static AmplitudeRatio DecibelVolts<T>(this T value) =>
-            AmplitudeRatio.FromDecibelVolts(Convert.ToDouble(value));
+        public static AmplitudeRatio DecibelVolts<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => AmplitudeRatio.FromDecibelVolts(Convert.ToDouble(value));
 
     }
 }

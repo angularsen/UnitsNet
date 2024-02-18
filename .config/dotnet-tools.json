@@ -7,6 +7,12 @@
       "commands": [
         "dotnet-dotcover"
       ]
+    },
+    "timeitsharp": {
+      "version": "0.0.8",
+      "commands": [
+        "dotnet-timeit"
+      ]
     }
   }
 }

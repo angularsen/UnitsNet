@@ -2,7 +2,7 @@
   <!-- NuGet properties -->
   <PropertyGroup>
     <PackageId>UnitsNet</PackageId>
-    <Version>5.4.0</Version>
+    <Version>5.42.0</Version>
     <Authors>Andreas Gullberg Larsen</Authors>
     <Title>Units.NET</Title>
     <Description>Get all the common units of measurement and the conversions between them. It is light-weight and thoroughly tested.</Description>
@@ -45,6 +45,7 @@
     <DelaySign>false</DelaySign>
     <SignAssembly>true</SignAssembly>
     <AssemblyName>UnitsNet</AssemblyName>
+    <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
 
   <!-- NuGet references that work for all TargetFrameworks, both signed and unsigned. -->
@@ -63,6 +64,10 @@
   <ItemGroup>
     <None Include="../Docs/Images/logo-32.png" Pack="true" PackagePath="/" />
     <None Include="../README.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="GeneratedCode\Resources\*.restext" />
   </ItemGroup>
 
 </Project>

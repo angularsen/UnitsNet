@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -36,18 +39,28 @@ namespace UnitsNet
     ///     Entropy is an important concept in the branch of science known as thermodynamics. The idea of "irreversibility" is central to the understanding of entropy.  It is often said that entropy is an expression of the disorder, or randomness of a system, or of our lack of information about it. Entropy is an extensive property. It has the dimension of energy divided by temperature, which has a unit of joules per kelvin (J/K) in the International System of Units
     /// </summary>
     [DataContract]
-    public readonly partial struct Entropy : IArithmeticQuantity<Entropy, EntropyUnit, double>, IEquatable<Entropy>, IComparable, IComparable<Entropy>, IConvertible, IFormattable
+    public readonly partial struct Entropy :
+        IArithmeticQuantity<Entropy, EntropyUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<Entropy, TemperatureDelta, Energy>,
+        IDivisionOperators<Entropy, Mass, SpecificEntropy>,
+#endif
+        IComparable,
+        IComparable<Entropy>,
+        IConvertible,
+        IEquatable<Entropy>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 0)]
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 1)]
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly EntropyUnit? _unit;
 
         static Entropy()
@@ -59,13 +72,13 @@ namespace UnitsNet
             Info = new QuantityInfo<EntropyUnit>("Entropy",
                 new UnitInfo<EntropyUnit>[]
                 {
-                    new UnitInfo<EntropyUnit>(EntropyUnit.CaloriePerKelvin, "CaloriesPerKelvin", BaseUnits.Undefined),
-                    new UnitInfo<EntropyUnit>(EntropyUnit.JoulePerDegreeCelsius, "JoulesPerDegreeCelsius", BaseUnits.Undefined),
-                    new UnitInfo<EntropyUnit>(EntropyUnit.JoulePerKelvin, "JoulesPerKelvin", BaseUnits.Undefined),
-                    new UnitInfo<EntropyUnit>(EntropyUnit.KilocaloriePerKelvin, "KilocaloriesPerKelvin", BaseUnits.Undefined),
-                    new UnitInfo<EntropyUnit>(EntropyUnit.KilojoulePerDegreeCelsius, "KilojoulesPerDegreeCelsius", BaseUnits.Undefined),
-                    new UnitInfo<EntropyUnit>(EntropyUnit.KilojoulePerKelvin, "KilojoulesPerKelvin", BaseUnits.Undefined),
-                    new UnitInfo<EntropyUnit>(EntropyUnit.MegajoulePerKelvin, "MegajoulesPerKelvin", BaseUnits.Undefined),
+                    new UnitInfo<EntropyUnit>(EntropyUnit.CaloriePerKelvin, "CaloriesPerKelvin", BaseUnits.Undefined, "Entropy"),
+                    new UnitInfo<EntropyUnit>(EntropyUnit.JoulePerDegreeCelsius, "JoulesPerDegreeCelsius", BaseUnits.Undefined, "Entropy"),
+                    new UnitInfo<EntropyUnit>(EntropyUnit.JoulePerKelvin, "JoulesPerKelvin", BaseUnits.Undefined, "Entropy"),
+                    new UnitInfo<EntropyUnit>(EntropyUnit.KilocaloriePerKelvin, "KilocaloriesPerKelvin", BaseUnits.Undefined, "Entropy"),
+                    new UnitInfo<EntropyUnit>(EntropyUnit.KilojoulePerDegreeCelsius, "KilojoulesPerDegreeCelsius", BaseUnits.Undefined, "Entropy"),
+                    new UnitInfo<EntropyUnit>(EntropyUnit.KilojoulePerKelvin, "KilojoulesPerKelvin", BaseUnits.Undefined, "Entropy"),
+                    new UnitInfo<EntropyUnit>(EntropyUnit.MegajoulePerKelvin, "MegajoulesPerKelvin", BaseUnits.Undefined, "Entropy"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -81,7 +94,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Entropy(double value, EntropyUnit unit)
         {
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = unit;
         }
 
@@ -100,7 +113,7 @@ namespace UnitsNet
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -138,7 +151,7 @@ namespace UnitsNet
         public static Entropy AdditiveIdentity => Zero;
 
         #endregion
- 
+
         #region Properties
 
         /// <summary>
@@ -232,17 +245,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Entropy>(EntropyUnit.JoulePerKelvin, EntropyUnit.KilojoulePerDegreeCelsius, quantity => quantity.ToUnit(EntropyUnit.KilojoulePerDegreeCelsius));
             unitConverter.SetConversionFunction<Entropy>(EntropyUnit.JoulePerKelvin, EntropyUnit.KilojoulePerKelvin, quantity => quantity.ToUnit(EntropyUnit.KilojoulePerKelvin));
             unitConverter.SetConversionFunction<Entropy>(EntropyUnit.JoulePerKelvin, EntropyUnit.MegajoulePerKelvin, quantity => quantity.ToUnit(EntropyUnit.MegajoulePerKelvin));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(EntropyUnit.CaloriePerKelvin, new CultureInfo("en-US"), false, true, new string[]{"cal/K"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EntropyUnit.JoulePerDegreeCelsius, new CultureInfo("en-US"), false, true, new string[]{"J/C"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EntropyUnit.JoulePerKelvin, new CultureInfo("en-US"), false, true, new string[]{"J/K"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EntropyUnit.KilocaloriePerKelvin, new CultureInfo("en-US"), false, true, new string[]{"kcal/K"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EntropyUnit.KilojoulePerDegreeCelsius, new CultureInfo("en-US"), false, true, new string[]{"kJ/C"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EntropyUnit.KilojoulePerKelvin, new CultureInfo("en-US"), false, true, new string[]{"kJ/K"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EntropyUnit.MegajoulePerKelvin, new CultureInfo("en-US"), false, true, new string[]{"MJ/K"});
         }
 
         /// <summary>
@@ -360,7 +362,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="ArgumentException">
@@ -387,7 +389,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="ArgumentException">
@@ -419,7 +421,7 @@ namespace UnitsNet
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         public static bool TryParse(string? str, out Entropy result)
         {
@@ -433,7 +435,7 @@ namespace UnitsNet
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out Entropy result)
@@ -450,7 +452,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
@@ -465,7 +467,7 @@ namespace UnitsNet
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
@@ -487,7 +489,7 @@ namespace UnitsNet
         /// <param name="unit">The parsed unit if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
-        ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out EntropyUnit unit)
@@ -543,6 +545,22 @@ namespace UnitsNet
 
         #endregion
 
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Energy"/> from <see cref="Entropy"/> * <see cref="TemperatureDelta"/>.</summary>
+        public static Energy operator *(Entropy entropy, TemperatureDelta temperatureDelta)
+        {
+            return Energy.FromJoules(entropy.JoulesPerKelvin * temperatureDelta.Kelvins);
+        }
+
+        /// <summary>Get <see cref="SpecificEntropy"/> from <see cref="Entropy"/> / <see cref="Mass"/>.</summary>
+        public static SpecificEntropy operator /(Entropy entropy, Mass mass)
+        {
+            return SpecificEntropy.FromJoulesPerKilogramKelvin(entropy.JoulesPerKelvin / mass.Kilograms);
+        }
+
+        #endregion
+
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
@@ -574,16 +592,14 @@ namespace UnitsNet
         #pragma warning disable CS0809
 
         /// <summary>Indicates strict equality of two <see cref="Entropy"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Entropy, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Entropy other, Entropy tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public static bool operator ==(Entropy left, Entropy right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Indicates strict inequality of two <see cref="Entropy"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Entropy, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is not null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Entropy other, Entropy tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public static bool operator !=(Entropy left, Entropy right)
         {
             return !(left == right);
@@ -591,8 +607,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="Entropy"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Entropy, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Use Equals(Entropy other, Entropy tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is Entropy otherQuantity))
@@ -603,8 +618,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="Entropy"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Entropy, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Use Equals(Entropy other, Entropy tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public bool Equals(Entropy other)
         {
             return new { Value, Unit }.Equals(new { other.Value, other.Unit });
@@ -688,15 +702,37 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
+        [Obsolete("Use Equals(Entropy other, Entropy tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public bool Equals(Entropy other, double tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(
+                referenceValue: this.Value,
+                otherValue: other.As(this.Unit),
+                tolerance: tolerance,
+                comparisonType: ComparisonType.Absolute);
+        }
 
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+        /// <inheritdoc />
+        public bool Equals(IQuantity? other, IQuantity tolerance)
+        {
+            return other is Entropy otherTyped
+                   && (tolerance is Entropy toleranceTyped
+                       ? true
+                       : throw new ArgumentException($"Tolerance quantity ({tolerance.QuantityInfo.Name}) did not match the other quantities of type 'Entropy'.", nameof(tolerance)))
+                   && Equals(otherTyped, toleranceTyped);
+        }
+
+        /// <inheritdoc />
+        public bool Equals(Entropy other, Entropy tolerance)
+        {
+            return UnitsNet.Comparison.Equals(
+                referenceValue: this.Value,
+                otherValue: other.As(this.Unit),
+                tolerance: tolerance.As(this.Unit),
+                comparisonType: ComparisonType.Absolute);
         }
 
         /// <summary>
@@ -746,6 +782,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(EntropyUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is EntropyUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(EntropyUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>
@@ -866,6 +911,18 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<EntropyUnit> IQuantity<EntropyUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
+        {
+            if (unit is not EntropyUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(EntropyUnit)} is supported.", nameof(unit));
+
+            return ToUnit(typedUnit);
+        }
+
+        /// <inheritdoc />
+        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

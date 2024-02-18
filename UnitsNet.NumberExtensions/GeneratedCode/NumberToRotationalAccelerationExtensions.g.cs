@@ -19,6 +19,10 @@
 
 using System;
 
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
+
 #nullable enable
 
 namespace UnitsNet.NumberExtensions.NumberToRotationalAcceleration
@@ -29,20 +33,36 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalAcceleration
     public static class NumberToRotationalAccelerationExtensions
     {
         /// <inheritdoc cref="RotationalAcceleration.FromDegreesPerSecondSquared(UnitsNet.QuantityValue)" />
-        public static RotationalAcceleration DegreesPerSecondSquared<T>(this T value) =>
-            RotationalAcceleration.FromDegreesPerSecondSquared(Convert.ToDouble(value));
+        public static RotationalAcceleration DegreesPerSecondSquared<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => RotationalAcceleration.FromDegreesPerSecondSquared(Convert.ToDouble(value));
 
         /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(UnitsNet.QuantityValue)" />
-        public static RotationalAcceleration RadiansPerSecondSquared<T>(this T value) =>
-            RotationalAcceleration.FromRadiansPerSecondSquared(Convert.ToDouble(value));
+        public static RotationalAcceleration RadiansPerSecondSquared<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => RotationalAcceleration.FromRadiansPerSecondSquared(Convert.ToDouble(value));
 
         /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(UnitsNet.QuantityValue)" />
-        public static RotationalAcceleration RevolutionsPerMinutePerSecond<T>(this T value) =>
-            RotationalAcceleration.FromRevolutionsPerMinutePerSecond(Convert.ToDouble(value));
+        public static RotationalAcceleration RevolutionsPerMinutePerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerSecondSquared(UnitsNet.QuantityValue)" />
-        public static RotationalAcceleration RevolutionsPerSecondSquared<T>(this T value) =>
-            RotationalAcceleration.FromRevolutionsPerSecondSquared(Convert.ToDouble(value));
+        public static RotationalAcceleration RevolutionsPerSecondSquared<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => RotationalAcceleration.FromRevolutionsPerSecondSquared(Convert.ToDouble(value));
 
     }
 }

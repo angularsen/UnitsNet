@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -33,24 +36,34 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///     Molar concentration, also called molarity, amount concentration or substance concentration, is a measure of the concentration of a solute in a solution, or of any chemical species, in terms of amount of substance in a given volume. 
+    ///     Molar concentration, also called molarity, amount concentration or substance concentration, is a measure of the concentration of a solute in a solution, or of any chemical species, in terms of amount of substance in a given volume.
     /// </summary>
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Molar_concentration
     /// </remarks>
     [DataContract]
-    public readonly partial struct Molarity : IArithmeticQuantity<Molarity, MolarityUnit, double>, IEquatable<Molarity>, IComparable, IComparable<Molarity>, IConvertible, IFormattable
+    public readonly partial struct Molarity :
+        IArithmeticQuantity<Molarity, MolarityUnit, double>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<Molarity, MolarMass, MassConcentration>,
+        IMultiplyOperators<Molarity, VolumeConcentration, Molarity>,
+#endif
+        IComparable,
+        IComparable<Molarity>,
+        IConvertible,
+        IEquatable<Molarity>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 0)]
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 1)]
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly MolarityUnit? _unit;
 
         static Molarity()
@@ -62,17 +75,17 @@ namespace UnitsNet
             Info = new QuantityInfo<MolarityUnit>("Molarity",
                 new UnitInfo<MolarityUnit>[]
                 {
-                    new UnitInfo<MolarityUnit>(MolarityUnit.CentimolePerLiter, "CentimolesPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.DecimolePerLiter, "DecimolesPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.FemtomolePerLiter, "FemtomolesPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.KilomolePerCubicMeter, "KilomolesPerCubicMeter", BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.MicromolePerLiter, "MicromolesPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.MillimolePerLiter, "MillimolesPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.MolePerCubicMeter, "MolesPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, amount: AmountOfSubstanceUnit.Mole)),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.MolePerLiter, "MolesPerLiter", new BaseUnits(length: LengthUnit.Decimeter, amount: AmountOfSubstanceUnit.Mole)),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.NanomolePerLiter, "NanomolesPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.PicomolePerLiter, "PicomolesPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.PoundMolePerCubicFoot, "PoundMolesPerCubicFoot", new BaseUnits(length: LengthUnit.Foot, amount: AmountOfSubstanceUnit.PoundMole)),
+                    new UnitInfo<MolarityUnit>(MolarityUnit.CentimolePerLiter, "CentimolesPerLiter", BaseUnits.Undefined, "Molarity"),
+                    new UnitInfo<MolarityUnit>(MolarityUnit.DecimolePerLiter, "DecimolesPerLiter", BaseUnits.Undefined, "Molarity"),
+                    new UnitInfo<MolarityUnit>(MolarityUnit.FemtomolePerLiter, "FemtomolesPerLiter", BaseUnits.Undefined, "Molarity"),
+                    new UnitInfo<MolarityUnit>(MolarityUnit.KilomolePerCubicMeter, "KilomolesPerCubicMeter", BaseUnits.Undefined, "Molarity"),
+                    new UnitInfo<MolarityUnit>(MolarityUnit.MicromolePerLiter, "MicromolesPerLiter", BaseUnits.Undefined, "Molarity"),
+                    new UnitInfo<MolarityUnit>(MolarityUnit.MillimolePerLiter, "MillimolesPerLiter", BaseUnits.Undefined, "Molarity"),
+                    new UnitInfo<MolarityUnit>(MolarityUnit.MolePerCubicMeter, "MolesPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, amount: AmountOfSubstanceUnit.Mole), "Molarity"),
+                    new UnitInfo<MolarityUnit>(MolarityUnit.MolePerLiter, "MolesPerLiter", new BaseUnits(length: LengthUnit.Decimeter, amount: AmountOfSubstanceUnit.Mole), "Molarity"),
+                    new UnitInfo<MolarityUnit>(MolarityUnit.NanomolePerLiter, "NanomolesPerLiter", BaseUnits.Undefined, "Molarity"),
+                    new UnitInfo<MolarityUnit>(MolarityUnit.PicomolePerLiter, "PicomolesPerLiter", BaseUnits.Undefined, "Molarity"),
+                    new UnitInfo<MolarityUnit>(MolarityUnit.PoundMolePerCubicFoot, "PoundMolesPerCubicFoot", new BaseUnits(length: LengthUnit.Foot, amount: AmountOfSubstanceUnit.PoundMole), "Molarity"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -88,7 +101,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Molarity(double value, MolarityUnit unit)
         {
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = unit;
         }
 
@@ -107,7 +120,7 @@ namespace UnitsNet
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -145,7 +158,7 @@ namespace UnitsNet
         public static Molarity AdditiveIdentity => Zero;
 
         #endregion
- 
+
         #region Properties
 
         /// <summary>
@@ -267,21 +280,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolePerCubicMeter, MolarityUnit.NanomolePerLiter, quantity => quantity.ToUnit(MolarityUnit.NanomolePerLiter));
             unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolePerCubicMeter, MolarityUnit.PicomolePerLiter, quantity => quantity.ToUnit(MolarityUnit.PicomolePerLiter));
             unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolePerCubicMeter, MolarityUnit.PoundMolePerCubicFoot, quantity => quantity.ToUnit(MolarityUnit.PoundMolePerCubicFoot));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.CentimolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"cmol/L", "cM"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.DecimolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"dmol/L", "dM"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.FemtomolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"fmol/L", "fM"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.KilomolePerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"kmol/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MicromolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"µmol/L", "µM"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MillimolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"mmol/L", "mM"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MolePerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"mol/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"mol/L", "M"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.NanomolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"nmol/L", "nM"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.PicomolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"pmol/L", "pM"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.PoundMolePerCubicFoot, new CultureInfo("en-US"), false, true, new string[]{"lbmol/ft³"});
         }
 
         /// <summary>
@@ -439,7 +437,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="ArgumentException">
@@ -466,7 +464,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="ArgumentException">
@@ -498,7 +496,7 @@ namespace UnitsNet
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         public static bool TryParse(string? str, out Molarity result)
         {
@@ -512,7 +510,7 @@ namespace UnitsNet
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out Molarity result)
@@ -529,7 +527,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
@@ -544,7 +542,7 @@ namespace UnitsNet
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
@@ -566,7 +564,7 @@ namespace UnitsNet
         /// <param name="unit">The parsed unit if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
-        ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out MolarityUnit unit)
@@ -622,6 +620,22 @@ namespace UnitsNet
 
         #endregion
 
+        #region Relational Operators
+
+        /// <summary>Get <see cref="MassConcentration"/> from <see cref="Molarity"/> * <see cref="MolarMass"/>.</summary>
+        public static MassConcentration operator *(Molarity molarity, MolarMass molarMass)
+        {
+            return MassConcentration.FromGramsPerCubicMeter(molarity.MolesPerCubicMeter * molarMass.GramsPerMole);
+        }
+
+        /// <summary>Get <see cref="Molarity"/> from <see cref="Molarity"/> * <see cref="VolumeConcentration"/>.</summary>
+        public static Molarity operator *(Molarity molarity, VolumeConcentration volumeConcentration)
+        {
+            return Molarity.FromMolesPerCubicMeter(molarity.MolesPerCubicMeter * volumeConcentration.DecimalFractions);
+        }
+
+        #endregion
+
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
@@ -653,16 +667,14 @@ namespace UnitsNet
         #pragma warning disable CS0809
 
         /// <summary>Indicates strict equality of two <see cref="Molarity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Molarity, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Molarity other, Molarity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public static bool operator ==(Molarity left, Molarity right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Indicates strict inequality of two <see cref="Molarity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Molarity, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is not null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Molarity other, Molarity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public static bool operator !=(Molarity left, Molarity right)
         {
             return !(left == right);
@@ -670,8 +682,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="Molarity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Molarity, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Use Equals(Molarity other, Molarity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is Molarity otherQuantity))
@@ -682,8 +693,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="Molarity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Molarity, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Use Equals(Molarity other, Molarity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public bool Equals(Molarity other)
         {
             return new { Value, Unit }.Equals(new { other.Value, other.Unit });
@@ -767,15 +777,37 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
+        [Obsolete("Use Equals(Molarity other, Molarity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public bool Equals(Molarity other, double tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(
+                referenceValue: this.Value,
+                otherValue: other.As(this.Unit),
+                tolerance: tolerance,
+                comparisonType: ComparisonType.Absolute);
+        }
 
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+        /// <inheritdoc />
+        public bool Equals(IQuantity? other, IQuantity tolerance)
+        {
+            return other is Molarity otherTyped
+                   && (tolerance is Molarity toleranceTyped
+                       ? true
+                       : throw new ArgumentException($"Tolerance quantity ({tolerance.QuantityInfo.Name}) did not match the other quantities of type 'Molarity'.", nameof(tolerance)))
+                   && Equals(otherTyped, toleranceTyped);
+        }
+
+        /// <inheritdoc />
+        public bool Equals(Molarity other, Molarity tolerance)
+        {
+            return UnitsNet.Comparison.Equals(
+                referenceValue: this.Value,
+                otherValue: other.As(this.Unit),
+                tolerance: tolerance.As(this.Unit),
+                comparisonType: ComparisonType.Absolute);
         }
 
         /// <summary>
@@ -825,6 +857,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarityUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is MolarityUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarityUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>
@@ -953,6 +994,18 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<MolarityUnit> IQuantity<MolarityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
+        {
+            if (unit is not MolarityUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarityUnit)} is supported.", nameof(unit));
+
+            return ToUnit(typedUnit);
+        }
+
+        /// <inheritdoc />
+        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

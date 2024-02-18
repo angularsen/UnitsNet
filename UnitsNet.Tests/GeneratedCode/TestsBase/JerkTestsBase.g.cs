@@ -107,16 +107,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Jerk(double.PositiveInfinity, JerkUnit.MeterPerSecondCubed));
-            Assert.Throws<ArgumentException>(() => new Jerk(double.NegativeInfinity, JerkUnit.MeterPerSecondCubed));
+            var exception1 = Record.Exception(() => new Jerk(double.PositiveInfinity, JerkUnit.MeterPerSecondCubed));
+            var exception2 = Record.Exception(() => new Jerk(double.NegativeInfinity, JerkUnit.MeterPerSecondCubed));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new Jerk(double.NaN, JerkUnit.MeterPerSecondCubed));
+            var exception = Record.Exception(() => new Jerk(double.NaN, JerkUnit.MeterPerSecondCubed));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -221,16 +226,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromMetersPerSecondCubed_WithInfinityValue_ThrowsArgumentException()
+        public void FromMetersPerSecondCubed_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Jerk.FromMetersPerSecondCubed(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => Jerk.FromMetersPerSecondCubed(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => Jerk.FromMetersPerSecondCubed(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => Jerk.FromMetersPerSecondCubed(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromMetersPerSecondCubed_WithNanValue_ThrowsArgumentException()
+        public void FromMetersPerSecondCubed_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => Jerk.FromMetersPerSecondCubed(double.NaN));
+            var exception = Record.Exception(() => Jerk.FromMetersPerSecondCubed(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -258,7 +268,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else

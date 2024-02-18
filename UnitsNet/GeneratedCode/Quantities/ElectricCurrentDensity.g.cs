@@ -39,18 +39,24 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Current_density
     /// </remarks>
     [DataContract]
-    public readonly partial struct ElectricCurrentDensity : IArithmeticQuantity<ElectricCurrentDensity, ElectricCurrentDensityUnit, double>, IEquatable<ElectricCurrentDensity>, IComparable, IComparable<ElectricCurrentDensity>, IConvertible, IFormattable
+    public readonly partial struct ElectricCurrentDensity :
+        IArithmeticQuantity<ElectricCurrentDensity, ElectricCurrentDensityUnit, double>,
+        IComparable,
+        IComparable<ElectricCurrentDensity>,
+        IConvertible,
+        IEquatable<ElectricCurrentDensity>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 0)]
+        [DataMember(Name = "Value", Order = 1)]
         private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 1)]
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly ElectricCurrentDensityUnit? _unit;
 
         static ElectricCurrentDensity()
@@ -62,9 +68,9 @@ namespace UnitsNet
             Info = new QuantityInfo<ElectricCurrentDensityUnit>("ElectricCurrentDensity",
                 new UnitInfo<ElectricCurrentDensityUnit>[]
                 {
-                    new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareFoot, "AmperesPerSquareFoot", new BaseUnits(length: LengthUnit.Foot, current: ElectricCurrentUnit.Ampere)),
-                    new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareInch, "AmperesPerSquareInch", new BaseUnits(length: LengthUnit.Inch, current: ElectricCurrentUnit.Ampere)),
-                    new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareMeter, "AmperesPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, current: ElectricCurrentUnit.Ampere)),
+                    new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareFoot, "AmperesPerSquareFoot", new BaseUnits(length: LengthUnit.Foot, current: ElectricCurrentUnit.Ampere), "ElectricCurrentDensity"),
+                    new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareInch, "AmperesPerSquareInch", new BaseUnits(length: LengthUnit.Inch, current: ElectricCurrentUnit.Ampere), "ElectricCurrentDensity"),
+                    new UnitInfo<ElectricCurrentDensityUnit>(ElectricCurrentDensityUnit.AmperePerSquareMeter, "AmperesPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, current: ElectricCurrentUnit.Ampere), "ElectricCurrentDensity"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -80,7 +86,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ElectricCurrentDensity(double value, ElectricCurrentDensityUnit unit)
         {
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = unit;
         }
 
@@ -99,7 +105,7 @@ namespace UnitsNet
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -137,7 +143,7 @@ namespace UnitsNet
         public static ElectricCurrentDensity AdditiveIdentity => Zero;
 
         #endregion
- 
+
         #region Properties
 
         /// <summary>
@@ -203,13 +209,6 @@ namespace UnitsNet
             // Register in unit converter: BaseUnit -> ElectricCurrentDensityUnit
             unitConverter.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensityUnit.AmperePerSquareMeter, ElectricCurrentDensityUnit.AmperePerSquareFoot, quantity => quantity.ToUnit(ElectricCurrentDensityUnit.AmperePerSquareFoot));
             unitConverter.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensityUnit.AmperePerSquareMeter, ElectricCurrentDensityUnit.AmperePerSquareInch, quantity => quantity.ToUnit(ElectricCurrentDensityUnit.AmperePerSquareInch));
-        }
-
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentDensityUnit.AmperePerSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"A/ft²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentDensityUnit.AmperePerSquareInch, new CultureInfo("en-US"), false, true, new string[]{"A/in²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentDensityUnit.AmperePerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"A/m²"});
         }
 
         /// <summary>
@@ -287,7 +286,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="ArgumentException">
@@ -314,7 +313,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="ArgumentException">
@@ -346,7 +345,7 @@ namespace UnitsNet
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         public static bool TryParse(string? str, out ElectricCurrentDensity result)
         {
@@ -360,7 +359,7 @@ namespace UnitsNet
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out ElectricCurrentDensity result)
@@ -377,7 +376,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
@@ -392,7 +391,7 @@ namespace UnitsNet
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
@@ -414,7 +413,7 @@ namespace UnitsNet
         /// <param name="unit">The parsed unit if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
-        ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out ElectricCurrentDensityUnit unit)
@@ -501,16 +500,14 @@ namespace UnitsNet
         #pragma warning disable CS0809
 
         /// <summary>Indicates strict equality of two <see cref="ElectricCurrentDensity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ElectricCurrentDensity, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(ElectricCurrentDensity other, ElectricCurrentDensity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public static bool operator ==(ElectricCurrentDensity left, ElectricCurrentDensity right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Indicates strict inequality of two <see cref="ElectricCurrentDensity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ElectricCurrentDensity, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is not null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(ElectricCurrentDensity other, ElectricCurrentDensity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public static bool operator !=(ElectricCurrentDensity left, ElectricCurrentDensity right)
         {
             return !(left == right);
@@ -518,8 +515,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="ElectricCurrentDensity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ElectricCurrentDensity, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Use Equals(ElectricCurrentDensity other, ElectricCurrentDensity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is ElectricCurrentDensity otherQuantity))
@@ -530,8 +526,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="ElectricCurrentDensity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ElectricCurrentDensity, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Use Equals(ElectricCurrentDensity other, ElectricCurrentDensity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public bool Equals(ElectricCurrentDensity other)
         {
             return new { Value, Unit }.Equals(new { other.Value, other.Unit });
@@ -615,15 +610,37 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
+        [Obsolete("Use Equals(ElectricCurrentDensity other, ElectricCurrentDensity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public bool Equals(ElectricCurrentDensity other, double tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
+            return UnitsNet.Comparison.Equals(
+                referenceValue: this.Value,
+                otherValue: other.As(this.Unit),
+                tolerance: tolerance,
+                comparisonType: ComparisonType.Absolute);
+        }
 
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+        /// <inheritdoc />
+        public bool Equals(IQuantity? other, IQuantity tolerance)
+        {
+            return other is ElectricCurrentDensity otherTyped
+                   && (tolerance is ElectricCurrentDensity toleranceTyped
+                       ? true
+                       : throw new ArgumentException($"Tolerance quantity ({tolerance.QuantityInfo.Name}) did not match the other quantities of type 'ElectricCurrentDensity'.", nameof(tolerance)))
+                   && Equals(otherTyped, toleranceTyped);
+        }
+
+        /// <inheritdoc />
+        public bool Equals(ElectricCurrentDensity other, ElectricCurrentDensity tolerance)
+        {
+            return UnitsNet.Comparison.Equals(
+                referenceValue: this.Value,
+                otherValue: other.As(this.Unit),
+                tolerance: tolerance.As(this.Unit),
+                comparisonType: ComparisonType.Absolute);
         }
 
         /// <summary>
@@ -673,6 +690,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricCurrentDensityUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is ElectricCurrentDensityUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricCurrentDensityUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>
@@ -785,6 +811,18 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ElectricCurrentDensityUnit> IQuantity<ElectricCurrentDensityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        /// <inheritdoc />
+        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
+        {
+            if (unit is not ElectricCurrentDensityUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricCurrentDensityUnit)} is supported.", nameof(unit));
+
+            return ToUnit(typedUnit);
+        }
+
+        /// <inheritdoc />
+        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

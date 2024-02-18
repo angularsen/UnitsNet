@@ -10,12 +10,34 @@
     {
       "SingularName": "AmperePerSecond",
       "PluralName": "AmperesPerSecond",
+      "BaseUnits": {
+        "T": "Second",
+        "I": "Ampere"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
+      "Prefixes": [ "Milli" ],
       "Localization": [
         {
           "Culture": "en-US",
           "Abbreviations": [ "A/s" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "AmperePerMinute",
+      "PluralName": "AmperesPerMinute",
+      "BaseUnits": {
+        "T": "Minute",
+        "I": "Ampere"
+      },
+      "FromUnitToBaseFunc": "{x} / 60",
+      "FromBaseToUnitFunc": "{x} * 60",
+      "Prefixes": [ "Milli" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "A/min" ]
         }
       ]
     },

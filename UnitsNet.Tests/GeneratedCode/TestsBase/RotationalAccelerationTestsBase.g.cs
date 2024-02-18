@@ -79,16 +79,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new RotationalAcceleration(double.PositiveInfinity, RotationalAccelerationUnit.RadianPerSecondSquared));
-            Assert.Throws<ArgumentException>(() => new RotationalAcceleration(double.NegativeInfinity, RotationalAccelerationUnit.RadianPerSecondSquared));
+            var exception1 = Record.Exception(() => new RotationalAcceleration(double.PositiveInfinity, RotationalAccelerationUnit.RadianPerSecondSquared));
+            var exception2 = Record.Exception(() => new RotationalAcceleration(double.NegativeInfinity, RotationalAccelerationUnit.RadianPerSecondSquared));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new RotationalAcceleration(double.NaN, RotationalAccelerationUnit.RadianPerSecondSquared));
+            var exception = Record.Exception(() => new RotationalAcceleration(double.NaN, RotationalAccelerationUnit.RadianPerSecondSquared));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -158,16 +163,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void FromRadiansPerSecondSquared_WithInfinityValue_ThrowsArgumentException()
+        public void FromRadiansPerSecondSquared_WithInfinityValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => RotationalAcceleration.FromRadiansPerSecondSquared(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => RotationalAcceleration.FromRadiansPerSecondSquared(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => RotationalAcceleration.FromRadiansPerSecondSquared(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => RotationalAcceleration.FromRadiansPerSecondSquared(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }
 
         [Fact]
-        public void FromRadiansPerSecondSquared_WithNanValue_ThrowsArgumentException()
+        public void FromRadiansPerSecondSquared_WithNanValue_DoNotThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => RotationalAcceleration.FromRadiansPerSecondSquared(double.NaN));
+            var exception = Record.Exception(() => RotationalAcceleration.FromRadiansPerSecondSquared(double.NaN));
+
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -188,7 +198,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else

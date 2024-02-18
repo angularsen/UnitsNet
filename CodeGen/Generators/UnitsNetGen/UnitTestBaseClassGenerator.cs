@@ -164,23 +164,28 @@ namespace UnitsNet.Tests
             var quantity = new {_quantity.Name}();
             Assert.Equal(0, quantity.Value);");
             if (_quantity.ValueType == "decimal") Writer.WL(@"
-            Assert.Equal(0m, ((IDecimalQuantity)quantity).Value);");
+            Assert.Equal(0m, ((IValueQuantity<decimal>)quantity).Value);");
             Writer.WL($@"
             Assert.Equal({_baseUnitFullName}, quantity.Unit);
         }}
 ");
             if (_quantity.ValueType == "double") Writer.WL($@"
         [Fact]
-        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {{
-            Assert.Throws<ArgumentException>(() => new {_quantity.Name}(double.PositiveInfinity, {_baseUnitFullName}));
-            Assert.Throws<ArgumentException>(() => new {_quantity.Name}(double.NegativeInfinity, {_baseUnitFullName}));
+            var exception1 = Record.Exception(() => new {_quantity.Name}(double.PositiveInfinity, {_baseUnitFullName}));
+            var exception2 = Record.Exception(() => new {_quantity.Name}(double.NegativeInfinity, {_baseUnitFullName}));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }}
 
         [Fact]
-        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {{
-            Assert.Throws<ArgumentException>(() => new {_quantity.Name}(double.NaN, {_baseUnitFullName}));
+            var exception = Record.Exception(() => new {_quantity.Name}(double.NaN, {_baseUnitFullName}));
+
+            Assert.Null(exception);
         }}
 "); Writer.WL($@"
 
@@ -248,16 +253,21 @@ namespace UnitsNet.Tests
 ");
             if (_quantity.ValueType == "double") Writer.WL($@"
         [Fact]
-        public void From{_baseUnit.PluralName}_WithInfinityValue_ThrowsArgumentException()
+        public void From{_baseUnit.PluralName}_WithInfinityValue_DoNotThrowsArgumentException()
         {{
-            Assert.Throws<ArgumentException>(() => {_quantity.Name}.From{_baseUnit.PluralName}(double.PositiveInfinity));
-            Assert.Throws<ArgumentException>(() => {_quantity.Name}.From{_baseUnit.PluralName}(double.NegativeInfinity));
+            var exception1 = Record.Exception(() => {_quantity.Name}.From{_baseUnit.PluralName}(double.PositiveInfinity));
+            var exception2 = Record.Exception(() => {_quantity.Name}.From{_baseUnit.PluralName}(double.NegativeInfinity));
+
+            Assert.Null(exception1);
+            Assert.Null(exception2);
         }}
 
         [Fact]
-        public void From{_baseUnit.PluralName}_WithNanValue_ThrowsArgumentException()
+        public void From{_baseUnit.PluralName}_WithNanValue_DoNotThrowsArgumentException()
         {{
-            Assert.Throws<ArgumentException>(() => {_quantity.Name}.From{_baseUnit.PluralName}(double.NaN));
+            var exception = Record.Exception(() => {_quantity.Name}.From{_baseUnit.PluralName}(double.NaN));
+
+            Assert.Null(exception);
         }}
 "); Writer.WL($@"
 
@@ -278,7 +288,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {{
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }}
             else
