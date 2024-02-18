@@ -215,18 +215,21 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         [Fact]
         public void ArrayOfUnits_ExpectCorrectlyDeserialized()
         {
-            Frequency[] expected = { Frequency.FromHertz(10), Frequency.FromHertz(10) };
+            Frequency[] expected = [Frequency.FromHertz(10), Frequency.FromHertz(10)];
 
-            var json = "[\n" +
-                       "  {\n" +
-                       "    \"Unit\": \"FrequencyUnit.Hertz\",\n" +
-                       "    \"Value\": 10.0\n" +
-                       "  },\n" +
-                       "  {\n" +
-                       "    \"Unit\": \"FrequencyUnit.Hertz\",\n" +
-                       "    \"Value\": 10.0\n" +
-                       "  }\n" +
-                       "]";
+            const string json =
+                """
+                [
+                  {
+                    "Unit": "FrequencyUnit.Hertz",
+                    "Value": 10.0
+                  },
+                  {
+                    "Unit": "FrequencyUnit.Hertz",
+                    "Value": 10.0
+                  }
+                ]
+                """;
 
             var result = DeserializeObject<Frequency[]>(json);
 
@@ -238,28 +241,31 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         {
             Frequency[,] expected = { { Frequency.FromHertz(10), Frequency.FromHertz(10) }, { Frequency.FromHertz(10), Frequency.FromHertz(10) } };
 
-            var json = "[\n" +
-                       "  [\n" +
-                       "    {\n" +
-                       "      \"Unit\": \"FrequencyUnit.Hertz\",\n" +
-                       "      \"Value\": 10.0\n" +
-                       "    },\n" +
-                       "    {\n" +
-                       "      \"Unit\": \"FrequencyUnit.Hertz\",\n" +
-                       "      \"Value\": 10.0\n" +
-                       "    }\n" +
-                       "  ],\n" +
-                       "  [\n" +
-                       "    {\n" +
-                       "      \"Unit\": \"FrequencyUnit.Hertz\",\n" +
-                       "      \"Value\": 10.0\n" +
-                       "    },\n" +
-                       "    {\n" +
-                       "      \"Unit\": \"FrequencyUnit.Hertz\",\n" +
-                       "      \"Value\": 10.0\n" +
-                       "    }\n" +
-                       "  ]\n" +
-                       "]";
+            const string json =
+                """
+                [
+                  [
+                    {
+                      "Unit": "FrequencyUnit.Hertz",
+                      "Value": 10.0
+                    },
+                    {
+                      "Unit": "FrequencyUnit.Hertz",
+                      "Value": 10.0
+                    }
+                  ],
+                  [
+                    {
+                      "Unit": "FrequencyUnit.Hertz",
+                      "Value": 10.0
+                    },
+                    {
+                      "Unit": "FrequencyUnit.Hertz",
+                      "Value": 10.0
+                    }
+                  ]
+                ]
+                """;
 
             var result = DeserializeObject<Frequency[,]>(json);
 
