@@ -43,7 +43,6 @@ namespace UnitsNet
         IArithmeticQuantity<TemperatureChangeRate, TemperatureChangeRateUnit, double>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<TemperatureChangeRate, Duration, TemperatureDelta>,
-        IMultiplyOperators<TemperatureChangeRate, TimeSpan, TemperatureDelta>,
 #endif
         IComparable,
         IComparable<TemperatureChangeRate>,
@@ -605,12 +604,6 @@ namespace UnitsNet
         public static TemperatureDelta operator *(TemperatureChangeRate temperatureChangeRate, Duration duration)
         {
             return TemperatureDelta.FromDegreesCelsius(temperatureChangeRate.DegreesCelsiusPerSecond * duration.Seconds);
-        }
-
-        /// <summary>Get <see cref="TemperatureDelta"/> from <see cref="TemperatureChangeRate"/> * <see cref="TimeSpan"/>.</summary>
-        public static TemperatureDelta operator *(TemperatureChangeRate temperatureChangeRate, TimeSpan timeSpan)
-        {
-            return TemperatureDelta.FromDegreesCelsius(temperatureChangeRate.DegreesCelsiusPerSecond * timeSpan.TotalSeconds);
         }
 
         /// <summary>Get <see cref="TemperatureDelta"/> from <see cref="TimeSpan"/> * <see cref="TemperatureChangeRate"/>.</summary>

@@ -49,7 +49,6 @@ namespace UnitsNet
         IDivisionOperators<Energy, SpecificEnergy, Mass>,
         IMultiplyOperators<Energy, Frequency, Power>,
         IDivisionOperators<Energy, Duration, Power>,
-        IDivisionOperators<Energy, TimeSpan, Power>,
         IDivisionOperators<Energy, Mass, SpecificEnergy>,
         IDivisionOperators<Energy, Entropy, TemperatureDelta>,
 #endif
@@ -1189,12 +1188,6 @@ namespace UnitsNet
         public static Power operator /(Energy energy, Duration duration)
         {
             return Power.FromWatts(energy.Joules / duration.Seconds);
-        }
-
-        /// <summary>Get <see cref="Power"/> from <see cref="Energy"/> / <see cref="TimeSpan"/>.</summary>
-        public static Power operator /(Energy energy, TimeSpan timeSpan)
-        {
-            return Power.FromWatts(energy.Joules / timeSpan.TotalSeconds);
         }
 
         /// <summary>Get <see cref="SpecificEnergy"/> from <see cref="Energy"/> / <see cref="Mass"/>.</summary>

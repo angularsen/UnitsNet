@@ -46,7 +46,6 @@ namespace UnitsNet
         IArithmeticQuantity<KinematicViscosity, KinematicViscosityUnit, double>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<KinematicViscosity, Duration, Area>,
-        IMultiplyOperators<KinematicViscosity, TimeSpan, Area>,
         IMultiplyOperators<KinematicViscosity, Density, DynamicViscosity>,
         IDivisionOperators<KinematicViscosity, Length, Speed>,
 #endif
@@ -592,12 +591,6 @@ namespace UnitsNet
         public static Area operator *(KinematicViscosity kinematicViscosity, Duration duration)
         {
             return Area.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond * duration.Seconds);
-        }
-
-        /// <summary>Get <see cref="Area"/> from <see cref="KinematicViscosity"/> * <see cref="TimeSpan"/>.</summary>
-        public static Area operator *(KinematicViscosity kinematicViscosity, TimeSpan timeSpan)
-        {
-            return Area.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond * timeSpan.TotalSeconds);
         }
 
         /// <summary>Get <see cref="Area"/> from <see cref="TimeSpan"/> * <see cref="KinematicViscosity"/>.</summary>

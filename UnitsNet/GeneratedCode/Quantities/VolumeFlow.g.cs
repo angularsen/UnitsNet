@@ -46,7 +46,6 @@ namespace UnitsNet
         IMultiplyOperators<VolumeFlow, Density, MassFlow>,
         IDivisionOperators<VolumeFlow, Area, Speed>,
         IMultiplyOperators<VolumeFlow, Duration, Volume>,
-        IMultiplyOperators<VolumeFlow, TimeSpan, Volume>,
 #endif
         IComparable,
         IComparable<VolumeFlow>,
@@ -1658,12 +1657,6 @@ namespace UnitsNet
         public static Volume operator *(VolumeFlow volumeFlow, Duration duration)
         {
             return Volume.FromCubicMeters(volumeFlow.CubicMetersPerSecond * duration.Seconds);
-        }
-
-        /// <summary>Get <see cref="Volume"/> from <see cref="VolumeFlow"/> * <see cref="TimeSpan"/>.</summary>
-        public static Volume operator *(VolumeFlow volumeFlow, TimeSpan timeSpan)
-        {
-            return Volume.FromCubicMeters(volumeFlow.CubicMetersPerSecond * timeSpan.TotalSeconds);
         }
 
         #endregion

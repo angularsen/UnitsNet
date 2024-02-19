@@ -50,7 +50,6 @@ namespace UnitsNet
         IMultiplyOperators<Length, SpecificWeight, Pressure>,
         IMultiplyOperators<Length, RotationalStiffnessPerLength, RotationalStiffness>,
         IDivisionOperators<Length, Duration, Speed>,
-        IDivisionOperators<Length, TimeSpan, Speed>,
         IMultiplyOperators<Length, TemperatureGradient, TemperatureDelta>,
         IMultiplyOperators<Length, Force, Torque>,
         IMultiplyOperators<Length, Area, Volume>,
@@ -1240,12 +1239,6 @@ namespace UnitsNet
         public static Speed operator /(Length length, Duration duration)
         {
             return Speed.FromMetersPerSecond(length.Meters / duration.Seconds);
-        }
-
-        /// <summary>Get <see cref="Speed"/> from <see cref="Length"/> / <see cref="TimeSpan"/>.</summary>
-        public static Speed operator /(Length length, TimeSpan timeSpan)
-        {
-            return Speed.FromMetersPerSecond(length.Meters / timeSpan.TotalSeconds);
         }
 
         /// <summary>Get <see cref="TemperatureDelta"/> from <see cref="Length"/> * <see cref="TemperatureGradient"/>.</summary>

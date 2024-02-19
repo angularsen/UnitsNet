@@ -43,7 +43,6 @@ namespace UnitsNet
         IArithmeticQuantity<ForceChangeRate, ForceChangeRateUnit, double>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<ForceChangeRate, Duration, Force>,
-        IMultiplyOperators<ForceChangeRate, TimeSpan, Force>,
 #endif
         IComparable,
         IComparable<ForceChangeRate>,
@@ -695,12 +694,6 @@ namespace UnitsNet
         public static Force operator *(ForceChangeRate forceChangeRate, Duration duration)
         {
             return Force.FromNewtons(forceChangeRate.NewtonsPerSecond * duration.Seconds);
-        }
-
-        /// <summary>Get <see cref="Force"/> from <see cref="ForceChangeRate"/> * <see cref="TimeSpan"/>.</summary>
-        public static Force operator *(ForceChangeRate forceChangeRate, TimeSpan timeSpan)
-        {
-            return Force.FromNewtons(forceChangeRate.NewtonsPerSecond * timeSpan.TotalSeconds);
         }
 
         /// <summary>Get <see cref="Force"/> from <see cref="TimeSpan"/> * <see cref="ForceChangeRate"/>.</summary>

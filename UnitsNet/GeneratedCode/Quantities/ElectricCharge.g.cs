@@ -47,7 +47,6 @@ namespace UnitsNet
 #if NET7_0_OR_GREATER
         IDivisionOperators<ElectricCharge, ElectricCurrent, Duration>,
         IDivisionOperators<ElectricCharge, Duration, ElectricCurrent>,
-        IDivisionOperators<ElectricCharge, TimeSpan, ElectricCurrent>,
         IMultiplyOperators<ElectricCharge, ElectricPotential, Energy>,
 #endif
         IComparable,
@@ -634,12 +633,6 @@ namespace UnitsNet
         public static ElectricCurrent operator /(ElectricCharge electricCharge, Duration duration)
         {
             return ElectricCurrent.FromAmperes(electricCharge.AmpereHours / duration.Hours);
-        }
-
-        /// <summary>Get <see cref="ElectricCurrent"/> from <see cref="ElectricCharge"/> / <see cref="TimeSpan"/>.</summary>
-        public static ElectricCurrent operator /(ElectricCharge electricCharge, TimeSpan timeSpan)
-        {
-            return ElectricCurrent.FromAmperes(electricCharge.AmpereHours / timeSpan.TotalHours);
         }
 
         /// <summary>Get <see cref="Energy"/> from <see cref="ElectricCharge"/> * <see cref="ElectricPotential"/>.</summary>

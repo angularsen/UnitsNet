@@ -43,11 +43,9 @@ namespace UnitsNet
         IArithmeticQuantity<Speed, SpeedUnit, double>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Speed, Duration, Acceleration>,
-        IDivisionOperators<Speed, TimeSpan, Acceleration>,
         IDivisionOperators<Speed, Acceleration, Duration>,
         IMultiplyOperators<Speed, Length, KinematicViscosity>,
         IMultiplyOperators<Speed, Duration, Length>,
-        IMultiplyOperators<Speed, TimeSpan, Length>,
         IMultiplyOperators<Speed, Density, MassFlux>,
         IMultiplyOperators<Speed, Force, Power>,
         IMultiplyOperators<Speed, Speed, SpecificEnergy>,
@@ -1029,12 +1027,6 @@ namespace UnitsNet
             return Acceleration.FromMetersPerSecondSquared(speed.MetersPerSecond / duration.Seconds);
         }
 
-        /// <summary>Get <see cref="Acceleration"/> from <see cref="Speed"/> / <see cref="TimeSpan"/>.</summary>
-        public static Acceleration operator /(Speed speed, TimeSpan timeSpan)
-        {
-            return Acceleration.FromMetersPerSecondSquared(speed.MetersPerSecond / timeSpan.TotalSeconds);
-        }
-
         /// <summary>Get <see cref="Duration"/> from <see cref="Speed"/> / <see cref="Acceleration"/>.</summary>
         public static Duration operator /(Speed speed, Acceleration acceleration)
         {
@@ -1051,12 +1043,6 @@ namespace UnitsNet
         public static Length operator *(Speed speed, Duration duration)
         {
             return Length.FromMeters(speed.MetersPerSecond * duration.Seconds);
-        }
-
-        /// <summary>Get <see cref="Length"/> from <see cref="Speed"/> * <see cref="TimeSpan"/>.</summary>
-        public static Length operator *(Speed speed, TimeSpan timeSpan)
-        {
-            return Length.FromMeters(speed.MetersPerSecond * timeSpan.TotalSeconds);
         }
 
         /// <summary>Get <see cref="Length"/> from <see cref="TimeSpan"/> * <see cref="Speed"/>.</summary>
