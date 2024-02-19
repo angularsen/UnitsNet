@@ -51,7 +51,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ReactivePower(double value, ReactivePowerUnit unit)
         {
             _value = value;
@@ -106,25 +105,21 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReactivePower"/> from <see cref="ReactivePowerUnit.GigavoltampereReactive"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReactivePower FromGigavoltamperesReactive(double gigavoltamperesreactive) => new ReactivePower(gigavoltamperesreactive, ReactivePowerUnit.GigavoltampereReactive);
 
         /// <summary>
         ///     Creates a <see cref="ReactivePower"/> from <see cref="ReactivePowerUnit.KilovoltampereReactive"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReactivePower FromKilovoltamperesReactive(double kilovoltamperesreactive) => new ReactivePower(kilovoltamperesreactive, ReactivePowerUnit.KilovoltampereReactive);
 
         /// <summary>
         ///     Creates a <see cref="ReactivePower"/> from <see cref="ReactivePowerUnit.MegavoltampereReactive"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReactivePower FromMegavoltamperesReactive(double megavoltamperesreactive) => new ReactivePower(megavoltamperesreactive, ReactivePowerUnit.MegavoltampereReactive);
 
         /// <summary>
         ///     Creates a <see cref="ReactivePower"/> from <see cref="ReactivePowerUnit.VoltampereReactive"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReactivePower FromVoltamperesReactive(double voltamperesreactive) => new ReactivePower(voltamperesreactive, ReactivePowerUnit.VoltampereReactive);
 
         /// <summary>

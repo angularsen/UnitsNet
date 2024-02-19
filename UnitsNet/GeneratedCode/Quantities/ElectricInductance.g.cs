@@ -85,7 +85,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ElectricInductance(double value, ElectricInductanceUnit unit)
         {
             _value = value;
@@ -255,7 +254,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Henry"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricInductance FromHenries(QuantityValue henries)
         {
             double value = (double) henries;
@@ -265,7 +263,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Microhenry"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricInductance FromMicrohenries(QuantityValue microhenries)
         {
             double value = (double) microhenries;
@@ -275,7 +272,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Millihenry"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricInductance FromMillihenries(QuantityValue millihenries)
         {
             double value = (double) millihenries;
@@ -285,7 +281,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Nanohenry"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricInductance FromNanohenries(QuantityValue nanohenries)
         {
             double value = (double) nanohenries;
@@ -295,7 +290,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Picohenry"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricInductance FromPicohenries(QuantityValue picohenries)
         {
             double value = (double) picohenries;

@@ -51,7 +51,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public VolumePerLength(double value, VolumePerLengthUnit unit)
         {
             _value = value;
@@ -131,55 +130,46 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.CubicMeterPerMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumePerLength FromCubicMetersPerMeter(double cubicmeterspermeter) => new VolumePerLength(cubicmeterspermeter, VolumePerLengthUnit.CubicMeterPerMeter);
 
         /// <summary>
         ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.CubicYardPerFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumePerLength FromCubicYardsPerFoot(double cubicyardsperfoot) => new VolumePerLength(cubicyardsperfoot, VolumePerLengthUnit.CubicYardPerFoot);
 
         /// <summary>
         ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.CubicYardPerUsSurveyFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumePerLength FromCubicYardsPerUsSurveyFoot(double cubicyardsperussurveyfoot) => new VolumePerLength(cubicyardsperussurveyfoot, VolumePerLengthUnit.CubicYardPerUsSurveyFoot);
 
         /// <summary>
         ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.ImperialGallonPerMile"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumePerLength FromImperialGallonsPerMile(double imperialgallonspermile) => new VolumePerLength(imperialgallonspermile, VolumePerLengthUnit.ImperialGallonPerMile);
 
         /// <summary>
         ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.LiterPerKilometer"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumePerLength FromLitersPerKilometer(double litersperkilometer) => new VolumePerLength(litersperkilometer, VolumePerLengthUnit.LiterPerKilometer);
 
         /// <summary>
         ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.LiterPerMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumePerLength FromLitersPerMeter(double literspermeter) => new VolumePerLength(literspermeter, VolumePerLengthUnit.LiterPerMeter);
 
         /// <summary>
         ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.LiterPerMillimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumePerLength FromLitersPerMillimeter(double literspermillimeter) => new VolumePerLength(literspermillimeter, VolumePerLengthUnit.LiterPerMillimeter);
 
         /// <summary>
         ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.OilBarrelPerFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumePerLength FromOilBarrelsPerFoot(double oilbarrelsperfoot) => new VolumePerLength(oilbarrelsperfoot, VolumePerLengthUnit.OilBarrelPerFoot);
 
         /// <summary>
         ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.UsGallonPerMile"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumePerLength FromUsGallonsPerMile(double usgallonspermile) => new VolumePerLength(usgallonspermile, VolumePerLengthUnit.UsGallonPerMile);
 
         /// <summary>

@@ -89,7 +89,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public AreaMomentOfInertia(double value, AreaMomentOfInertiaUnit unit)
         {
             _value = value;
@@ -266,7 +265,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.CentimeterToTheFourth"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AreaMomentOfInertia FromCentimetersToTheFourth(QuantityValue centimeterstothefourth)
         {
             double value = (double) centimeterstothefourth;
@@ -276,7 +274,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.DecimeterToTheFourth"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AreaMomentOfInertia FromDecimetersToTheFourth(QuantityValue decimeterstothefourth)
         {
             double value = (double) decimeterstothefourth;
@@ -286,7 +283,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.FootToTheFourth"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AreaMomentOfInertia FromFeetToTheFourth(QuantityValue feettothefourth)
         {
             double value = (double) feettothefourth;
@@ -296,7 +292,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.InchToTheFourth"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AreaMomentOfInertia FromInchesToTheFourth(QuantityValue inchestothefourth)
         {
             double value = (double) inchestothefourth;
@@ -306,7 +301,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.MeterToTheFourth"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AreaMomentOfInertia FromMetersToTheFourth(QuantityValue meterstothefourth)
         {
             double value = (double) meterstothefourth;
@@ -316,7 +310,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.MillimeterToTheFourth"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AreaMomentOfInertia FromMillimetersToTheFourth(QuantityValue millimeterstothefourth)
         {
             double value = (double) millimeterstothefourth;

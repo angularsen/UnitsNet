@@ -51,7 +51,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ApparentPower(double value, ApparentPowerUnit unit)
         {
             _value = value;
@@ -116,37 +115,31 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Gigavoltampere"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ApparentPower FromGigavoltamperes(double gigavoltamperes) => new ApparentPower(gigavoltamperes, ApparentPowerUnit.Gigavoltampere);
 
         /// <summary>
         ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Kilovoltampere"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ApparentPower FromKilovoltamperes(double kilovoltamperes) => new ApparentPower(kilovoltamperes, ApparentPowerUnit.Kilovoltampere);
 
         /// <summary>
         ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Megavoltampere"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ApparentPower FromMegavoltamperes(double megavoltamperes) => new ApparentPower(megavoltamperes, ApparentPowerUnit.Megavoltampere);
 
         /// <summary>
         ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Microvoltampere"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ApparentPower FromMicrovoltamperes(double microvoltamperes) => new ApparentPower(microvoltamperes, ApparentPowerUnit.Microvoltampere);
 
         /// <summary>
         ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Millivoltampere"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ApparentPower FromMillivoltamperes(double millivoltamperes) => new ApparentPower(millivoltamperes, ApparentPowerUnit.Millivoltampere);
 
         /// <summary>
         ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Voltampere"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ApparentPower FromVoltamperes(double voltamperes) => new ApparentPower(voltamperes, ApparentPowerUnit.Voltampere);
 
         /// <summary>

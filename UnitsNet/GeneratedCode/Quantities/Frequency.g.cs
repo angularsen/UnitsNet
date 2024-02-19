@@ -96,7 +96,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Frequency(double value, FrequencyUnit unit)
         {
             _value = value;
@@ -322,7 +321,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.BeatPerMinute"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Frequency FromBeatsPerMinute(QuantityValue beatsperminute)
         {
             double value = (double) beatsperminute;
@@ -332,7 +330,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.BUnit"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Frequency FromBUnits(QuantityValue bunits)
         {
             double value = (double) bunits;
@@ -342,7 +339,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.CyclePerHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Frequency FromCyclesPerHour(QuantityValue cyclesperhour)
         {
             double value = (double) cyclesperhour;
@@ -352,7 +348,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.CyclePerMinute"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Frequency FromCyclesPerMinute(QuantityValue cyclesperminute)
         {
             double value = (double) cyclesperminute;
@@ -362,7 +357,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.Gigahertz"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Frequency FromGigahertz(QuantityValue gigahertz)
         {
             double value = (double) gigahertz;
@@ -372,7 +366,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.Hertz"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Frequency FromHertz(QuantityValue hertz)
         {
             double value = (double) hertz;
@@ -382,7 +375,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.Kilohertz"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Frequency FromKilohertz(QuantityValue kilohertz)
         {
             double value = (double) kilohertz;
@@ -392,7 +384,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.Megahertz"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Frequency FromMegahertz(QuantityValue megahertz)
         {
             double value = (double) megahertz;
@@ -402,7 +393,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.Microhertz"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Frequency FromMicrohertz(QuantityValue microhertz)
         {
             double value = (double) microhertz;
@@ -412,7 +402,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.Millihertz"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Frequency FromMillihertz(QuantityValue millihertz)
         {
             double value = (double) millihertz;
@@ -422,7 +411,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.PerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Frequency FromPerSecond(QuantityValue persecond)
         {
             double value = (double) persecond;
@@ -432,7 +420,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.RadianPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Frequency FromRadiansPerSecond(QuantityValue radianspersecond)
         {
             double value = (double) radianspersecond;
@@ -442,7 +429,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.Terahertz"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Frequency FromTerahertz(QuantityValue terahertz)
         {
             double value = (double) terahertz;

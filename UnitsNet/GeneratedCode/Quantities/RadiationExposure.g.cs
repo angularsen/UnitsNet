@@ -85,7 +85,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public RadiationExposure(double value, RadiationExposureUnit unit)
         {
             _value = value;
@@ -276,7 +275,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.CoulombPerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RadiationExposure FromCoulombsPerKilogram(QuantityValue coulombsperkilogram)
         {
             double value = (double) coulombsperkilogram;
@@ -286,7 +284,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.MicrocoulombPerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RadiationExposure FromMicrocoulombsPerKilogram(QuantityValue microcoulombsperkilogram)
         {
             double value = (double) microcoulombsperkilogram;
@@ -296,7 +293,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.Microroentgen"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RadiationExposure FromMicroroentgens(QuantityValue microroentgens)
         {
             double value = (double) microroentgens;
@@ -306,7 +302,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.MillicoulombPerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RadiationExposure FromMillicoulombsPerKilogram(QuantityValue millicoulombsperkilogram)
         {
             double value = (double) millicoulombsperkilogram;
@@ -316,7 +311,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.Milliroentgen"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RadiationExposure FromMilliroentgens(QuantityValue milliroentgens)
         {
             double value = (double) milliroentgens;
@@ -326,7 +320,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.NanocoulombPerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RadiationExposure FromNanocoulombsPerKilogram(QuantityValue nanocoulombsperkilogram)
         {
             double value = (double) nanocoulombsperkilogram;
@@ -336,7 +329,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.PicocoulombPerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RadiationExposure FromPicocoulombsPerKilogram(QuantityValue picocoulombsperkilogram)
         {
             double value = (double) picocoulombsperkilogram;
@@ -346,7 +338,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.Roentgen"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RadiationExposure FromRoentgens(QuantityValue roentgens)
         {
             double value = (double) roentgens;

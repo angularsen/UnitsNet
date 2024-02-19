@@ -81,7 +81,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ReactivePower(double value, ReactivePowerUnit unit)
         {
             _value = value;
@@ -244,7 +243,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReactivePower"/> from <see cref="ReactivePowerUnit.GigavoltampereReactive"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReactivePower FromGigavoltamperesReactive(QuantityValue gigavoltamperesreactive)
         {
             double value = (double) gigavoltamperesreactive;
@@ -254,7 +252,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReactivePower"/> from <see cref="ReactivePowerUnit.KilovoltampereReactive"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReactivePower FromKilovoltamperesReactive(QuantityValue kilovoltamperesreactive)
         {
             double value = (double) kilovoltamperesreactive;
@@ -264,7 +261,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReactivePower"/> from <see cref="ReactivePowerUnit.MegavoltampereReactive"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReactivePower FromMegavoltamperesReactive(QuantityValue megavoltamperesreactive)
         {
             double value = (double) megavoltamperesreactive;
@@ -274,7 +270,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReactivePower"/> from <see cref="ReactivePowerUnit.VoltampereReactive"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReactivePower FromVoltamperesReactive(QuantityValue voltamperesreactive)
         {
             double value = (double) voltamperesreactive;

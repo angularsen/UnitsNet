@@ -54,7 +54,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Molality(double value, MolalityUnit unit)
         {
             _value = value;
@@ -99,13 +98,11 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Molality"/> from <see cref="MolalityUnit.MolePerGram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Molality FromMolesPerGram(double molespergram) => new Molality(molespergram, MolalityUnit.MolePerGram);
 
         /// <summary>
         ///     Creates a <see cref="Molality"/> from <see cref="MolalityUnit.MolePerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Molality FromMolesPerKilogram(double molesperkilogram) => new Molality(molesperkilogram, MolalityUnit.MolePerKilogram);
 
         /// <summary>

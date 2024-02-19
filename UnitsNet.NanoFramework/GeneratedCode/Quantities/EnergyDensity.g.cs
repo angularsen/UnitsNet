@@ -51,7 +51,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public EnergyDensity(double value, EnergyDensityUnit unit)
         {
             _value = value;
@@ -146,73 +145,61 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="EnergyDensity"/> from <see cref="EnergyDensityUnit.GigajoulePerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static EnergyDensity FromGigajoulesPerCubicMeter(double gigajoulespercubicmeter) => new EnergyDensity(gigajoulespercubicmeter, EnergyDensityUnit.GigajoulePerCubicMeter);
 
         /// <summary>
         ///     Creates a <see cref="EnergyDensity"/> from <see cref="EnergyDensityUnit.GigawattHourPerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static EnergyDensity FromGigawattHoursPerCubicMeter(double gigawatthourspercubicmeter) => new EnergyDensity(gigawatthourspercubicmeter, EnergyDensityUnit.GigawattHourPerCubicMeter);
 
         /// <summary>
         ///     Creates a <see cref="EnergyDensity"/> from <see cref="EnergyDensityUnit.JoulePerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static EnergyDensity FromJoulesPerCubicMeter(double joulespercubicmeter) => new EnergyDensity(joulespercubicmeter, EnergyDensityUnit.JoulePerCubicMeter);
 
         /// <summary>
         ///     Creates a <see cref="EnergyDensity"/> from <see cref="EnergyDensityUnit.KilojoulePerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static EnergyDensity FromKilojoulesPerCubicMeter(double kilojoulespercubicmeter) => new EnergyDensity(kilojoulespercubicmeter, EnergyDensityUnit.KilojoulePerCubicMeter);
 
         /// <summary>
         ///     Creates a <see cref="EnergyDensity"/> from <see cref="EnergyDensityUnit.KilowattHourPerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static EnergyDensity FromKilowattHoursPerCubicMeter(double kilowatthourspercubicmeter) => new EnergyDensity(kilowatthourspercubicmeter, EnergyDensityUnit.KilowattHourPerCubicMeter);
 
         /// <summary>
         ///     Creates a <see cref="EnergyDensity"/> from <see cref="EnergyDensityUnit.MegajoulePerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static EnergyDensity FromMegajoulesPerCubicMeter(double megajoulespercubicmeter) => new EnergyDensity(megajoulespercubicmeter, EnergyDensityUnit.MegajoulePerCubicMeter);
 
         /// <summary>
         ///     Creates a <see cref="EnergyDensity"/> from <see cref="EnergyDensityUnit.MegawattHourPerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static EnergyDensity FromMegawattHoursPerCubicMeter(double megawatthourspercubicmeter) => new EnergyDensity(megawatthourspercubicmeter, EnergyDensityUnit.MegawattHourPerCubicMeter);
 
         /// <summary>
         ///     Creates a <see cref="EnergyDensity"/> from <see cref="EnergyDensityUnit.PetajoulePerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static EnergyDensity FromPetajoulesPerCubicMeter(double petajoulespercubicmeter) => new EnergyDensity(petajoulespercubicmeter, EnergyDensityUnit.PetajoulePerCubicMeter);
 
         /// <summary>
         ///     Creates a <see cref="EnergyDensity"/> from <see cref="EnergyDensityUnit.PetawattHourPerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static EnergyDensity FromPetawattHoursPerCubicMeter(double petawatthourspercubicmeter) => new EnergyDensity(petawatthourspercubicmeter, EnergyDensityUnit.PetawattHourPerCubicMeter);
 
         /// <summary>
         ///     Creates a <see cref="EnergyDensity"/> from <see cref="EnergyDensityUnit.TerajoulePerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static EnergyDensity FromTerajoulesPerCubicMeter(double terajoulespercubicmeter) => new EnergyDensity(terajoulespercubicmeter, EnergyDensityUnit.TerajoulePerCubicMeter);
 
         /// <summary>
         ///     Creates a <see cref="EnergyDensity"/> from <see cref="EnergyDensityUnit.TerawattHourPerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static EnergyDensity FromTerawattHoursPerCubicMeter(double terawatthourspercubicmeter) => new EnergyDensity(terawatthourspercubicmeter, EnergyDensityUnit.TerawattHourPerCubicMeter);
 
         /// <summary>
         ///     Creates a <see cref="EnergyDensity"/> from <see cref="EnergyDensityUnit.WattHourPerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static EnergyDensity FromWattHoursPerCubicMeter(double watthourspercubicmeter) => new EnergyDensity(watthourspercubicmeter, EnergyDensityUnit.WattHourPerCubicMeter);
 
         /// <summary>

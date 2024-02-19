@@ -124,7 +124,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public MassFlow(double value, MassFlowUnit unit)
         {
             _value = value;
@@ -490,7 +489,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.CentigramPerDay"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlow FromCentigramsPerDay(QuantityValue centigramsperday)
         {
             double value = (double) centigramsperday;
@@ -500,7 +498,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.CentigramPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlow FromCentigramsPerSecond(QuantityValue centigramspersecond)
         {
             double value = (double) centigramspersecond;
@@ -510,7 +507,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.DecagramPerDay"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlow FromDecagramsPerDay(QuantityValue decagramsperday)
         {
             double value = (double) decagramsperday;
@@ -520,7 +516,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.DecagramPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlow FromDecagramsPerSecond(QuantityValue decagramspersecond)
         {
             double value = (double) decagramspersecond;
@@ -530,7 +525,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.DecigramPerDay"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlow FromDecigramsPerDay(QuantityValue decigramsperday)
         {
             double value = (double) decigramsperday;
@@ -540,7 +534,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.DecigramPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlow FromDecigramsPerSecond(QuantityValue decigramspersecond)
         {
             double value = (double) decigramspersecond;
@@ -550,7 +543,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.GramPerDay"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlow FromGramsPerDay(QuantityValue gramsperday)
         {
             double value = (double) gramsperday;
@@ -560,7 +552,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.GramPerHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlow FromGramsPerHour(QuantityValue gramsperhour)
         {
             double value = (double) gramsperhour;
@@ -570,7 +561,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.GramPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlow FromGramsPerSecond(QuantityValue gramspersecond)
         {
             double value = (double) gramspersecond;
@@ -580,7 +570,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.HectogramPerDay"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlow FromHectogramsPerDay(QuantityValue hectogramsperday)
         {
             double value = (double) hectogramsperday;
@@ -590,7 +579,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.HectogramPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlow FromHectogramsPerSecond(QuantityValue hectogramspersecond)
         {
             double value = (double) hectogramspersecond;
@@ -600,7 +588,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.KilogramPerDay"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlow FromKilogramsPerDay(QuantityValue kilogramsperday)
         {
             double value = (double) kilogramsperday;
@@ -610,7 +597,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.KilogramPerHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlow FromKilogramsPerHour(QuantityValue kilogramsperhour)
         {
             double value = (double) kilogramsperhour;
@@ -620,7 +606,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.KilogramPerMinute"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlow FromKilogramsPerMinute(QuantityValue kilogramsperminute)
         {
             double value = (double) kilogramsperminute;
@@ -630,7 +615,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.KilogramPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlow FromKilogramsPerSecond(QuantityValue kilogramspersecond)
         {
             double value = (double) kilogramspersecond;
@@ -640,7 +624,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.MegagramPerDay"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlow FromMegagramsPerDay(QuantityValue megagramsperday)
         {
             double value = (double) megagramsperday;
@@ -650,7 +633,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.MegapoundPerDay"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlow FromMegapoundsPerDay(QuantityValue megapoundsperday)
         {
             double value = (double) megapoundsperday;
@@ -660,7 +642,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.MegapoundPerHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlow FromMegapoundsPerHour(QuantityValue megapoundsperhour)
         {
             double value = (double) megapoundsperhour;
@@ -670,7 +651,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.MegapoundPerMinute"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlow FromMegapoundsPerMinute(QuantityValue megapoundsperminute)
         {
             double value = (double) megapoundsperminute;
@@ -680,7 +660,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.MegapoundPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlow FromMegapoundsPerSecond(QuantityValue megapoundspersecond)
         {
             double value = (double) megapoundspersecond;
@@ -690,7 +669,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.MicrogramPerDay"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlow FromMicrogramsPerDay(QuantityValue microgramsperday)
         {
             double value = (double) microgramsperday;
@@ -700,7 +678,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.MicrogramPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlow FromMicrogramsPerSecond(QuantityValue microgramspersecond)
         {
             double value = (double) microgramspersecond;
@@ -710,7 +687,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.MilligramPerDay"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlow FromMilligramsPerDay(QuantityValue milligramsperday)
         {
             double value = (double) milligramsperday;
@@ -720,7 +696,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.MilligramPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlow FromMilligramsPerSecond(QuantityValue milligramspersecond)
         {
             double value = (double) milligramspersecond;
@@ -730,7 +705,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.NanogramPerDay"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlow FromNanogramsPerDay(QuantityValue nanogramsperday)
         {
             double value = (double) nanogramsperday;
@@ -740,7 +714,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.NanogramPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlow FromNanogramsPerSecond(QuantityValue nanogramspersecond)
         {
             double value = (double) nanogramspersecond;
@@ -750,7 +723,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.PoundPerDay"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlow FromPoundsPerDay(QuantityValue poundsperday)
         {
             double value = (double) poundsperday;
@@ -760,7 +732,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.PoundPerHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlow FromPoundsPerHour(QuantityValue poundsperhour)
         {
             double value = (double) poundsperhour;
@@ -770,7 +741,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.PoundPerMinute"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlow FromPoundsPerMinute(QuantityValue poundsperminute)
         {
             double value = (double) poundsperminute;
@@ -780,7 +750,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.PoundPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlow FromPoundsPerSecond(QuantityValue poundspersecond)
         {
             double value = (double) poundspersecond;
@@ -790,7 +759,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.ShortTonPerHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlow FromShortTonsPerHour(QuantityValue shorttonsperhour)
         {
             double value = (double) shorttonsperhour;
@@ -800,7 +768,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.TonnePerDay"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlow FromTonnesPerDay(QuantityValue tonnesperday)
         {
             double value = (double) tonnesperday;
@@ -810,7 +777,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.TonnePerHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlow FromTonnesPerHour(QuantityValue tonnesperhour)
         {
             double value = (double) tonnesperhour;

@@ -111,7 +111,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Torque(double value, TorqueUnit unit)
         {
             _value = value;
@@ -421,7 +420,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.GramForceCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Torque FromGramForceCentimeters(QuantityValue gramforcecentimeters)
         {
             double value = (double) gramforcecentimeters;
@@ -431,7 +429,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.GramForceMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Torque FromGramForceMeters(QuantityValue gramforcemeters)
         {
             double value = (double) gramforcemeters;
@@ -441,7 +438,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.GramForceMillimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Torque FromGramForceMillimeters(QuantityValue gramforcemillimeters)
         {
             double value = (double) gramforcemillimeters;
@@ -451,7 +447,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.KilogramForceCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Torque FromKilogramForceCentimeters(QuantityValue kilogramforcecentimeters)
         {
             double value = (double) kilogramforcecentimeters;
@@ -461,7 +456,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.KilogramForceMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Torque FromKilogramForceMeters(QuantityValue kilogramforcemeters)
         {
             double value = (double) kilogramforcemeters;
@@ -471,7 +465,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.KilogramForceMillimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Torque FromKilogramForceMillimeters(QuantityValue kilogramforcemillimeters)
         {
             double value = (double) kilogramforcemillimeters;
@@ -481,7 +474,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.KilonewtonCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Torque FromKilonewtonCentimeters(QuantityValue kilonewtoncentimeters)
         {
             double value = (double) kilonewtoncentimeters;
@@ -491,7 +483,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.KilonewtonMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Torque FromKilonewtonMeters(QuantityValue kilonewtonmeters)
         {
             double value = (double) kilonewtonmeters;
@@ -501,7 +492,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.KilonewtonMillimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Torque FromKilonewtonMillimeters(QuantityValue kilonewtonmillimeters)
         {
             double value = (double) kilonewtonmillimeters;
@@ -511,7 +501,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.KilopoundForceFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Torque FromKilopoundForceFeet(QuantityValue kilopoundforcefeet)
         {
             double value = (double) kilopoundforcefeet;
@@ -521,7 +510,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.KilopoundForceInch"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Torque FromKilopoundForceInches(QuantityValue kilopoundforceinches)
         {
             double value = (double) kilopoundforceinches;
@@ -531,7 +519,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.MeganewtonCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Torque FromMeganewtonCentimeters(QuantityValue meganewtoncentimeters)
         {
             double value = (double) meganewtoncentimeters;
@@ -541,7 +528,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.MeganewtonMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Torque FromMeganewtonMeters(QuantityValue meganewtonmeters)
         {
             double value = (double) meganewtonmeters;
@@ -551,7 +537,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.MeganewtonMillimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Torque FromMeganewtonMillimeters(QuantityValue meganewtonmillimeters)
         {
             double value = (double) meganewtonmillimeters;
@@ -561,7 +546,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.MegapoundForceFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Torque FromMegapoundForceFeet(QuantityValue megapoundforcefeet)
         {
             double value = (double) megapoundforcefeet;
@@ -571,7 +555,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.MegapoundForceInch"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Torque FromMegapoundForceInches(QuantityValue megapoundforceinches)
         {
             double value = (double) megapoundforceinches;
@@ -581,7 +564,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.NewtonCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Torque FromNewtonCentimeters(QuantityValue newtoncentimeters)
         {
             double value = (double) newtoncentimeters;
@@ -591,7 +573,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.NewtonMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Torque FromNewtonMeters(QuantityValue newtonmeters)
         {
             double value = (double) newtonmeters;
@@ -601,7 +582,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.NewtonMillimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Torque FromNewtonMillimeters(QuantityValue newtonmillimeters)
         {
             double value = (double) newtonmillimeters;
@@ -611,7 +591,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.PoundalFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Torque FromPoundalFeet(QuantityValue poundalfeet)
         {
             double value = (double) poundalfeet;
@@ -621,7 +600,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.PoundForceFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Torque FromPoundForceFeet(QuantityValue poundforcefeet)
         {
             double value = (double) poundforcefeet;
@@ -631,7 +609,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.PoundForceInch"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Torque FromPoundForceInches(QuantityValue poundforceinches)
         {
             double value = (double) poundforceinches;
@@ -641,7 +618,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.TonneForceCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Torque FromTonneForceCentimeters(QuantityValue tonneforcecentimeters)
         {
             double value = (double) tonneforcecentimeters;
@@ -651,7 +627,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.TonneForceMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Torque FromTonneForceMeters(QuantityValue tonneforcemeters)
         {
             double value = (double) tonneforcemeters;
@@ -661,7 +636,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.TonneForceMillimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Torque FromTonneForceMillimeters(QuantityValue tonneforcemillimeters)
         {
             double value = (double) tonneforcemillimeters;

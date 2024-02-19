@@ -83,7 +83,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ApparentPower(double value, ApparentPowerUnit unit)
         {
             _value = value;
@@ -260,7 +259,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Gigavoltampere"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ApparentPower FromGigavoltamperes(QuantityValue gigavoltamperes)
         {
             double value = (double) gigavoltamperes;
@@ -270,7 +268,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Kilovoltampere"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ApparentPower FromKilovoltamperes(QuantityValue kilovoltamperes)
         {
             double value = (double) kilovoltamperes;
@@ -280,7 +277,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Megavoltampere"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ApparentPower FromMegavoltamperes(QuantityValue megavoltamperes)
         {
             double value = (double) megavoltamperes;
@@ -290,7 +286,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Microvoltampere"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ApparentPower FromMicrovoltamperes(QuantityValue microvoltamperes)
         {
             double value = (double) microvoltamperes;
@@ -300,7 +295,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Millivoltampere"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ApparentPower FromMillivoltamperes(QuantityValue millivoltamperes)
         {
             double value = (double) millivoltamperes;
@@ -310,7 +304,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Voltampere"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ApparentPower FromVoltamperes(QuantityValue voltamperes)
         {
             double value = (double) voltamperes;

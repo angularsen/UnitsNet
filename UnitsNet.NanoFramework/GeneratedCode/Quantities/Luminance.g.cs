@@ -54,7 +54,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Luminance(double value, LuminanceUnit unit)
         {
             _value = value;
@@ -139,61 +138,51 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.CandelaPerSquareFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminance FromCandelasPerSquareFoot(double candelaspersquarefoot) => new Luminance(candelaspersquarefoot, LuminanceUnit.CandelaPerSquareFoot);
 
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.CandelaPerSquareInch"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminance FromCandelasPerSquareInch(double candelaspersquareinch) => new Luminance(candelaspersquareinch, LuminanceUnit.CandelaPerSquareInch);
 
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.CandelaPerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminance FromCandelasPerSquareMeter(double candelaspersquaremeter) => new Luminance(candelaspersquaremeter, LuminanceUnit.CandelaPerSquareMeter);
 
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.CenticandelaPerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminance FromCenticandelasPerSquareMeter(double centicandelaspersquaremeter) => new Luminance(centicandelaspersquaremeter, LuminanceUnit.CenticandelaPerSquareMeter);
 
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.DecicandelaPerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminance FromDecicandelasPerSquareMeter(double decicandelaspersquaremeter) => new Luminance(decicandelaspersquaremeter, LuminanceUnit.DecicandelaPerSquareMeter);
 
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.KilocandelaPerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminance FromKilocandelasPerSquareMeter(double kilocandelaspersquaremeter) => new Luminance(kilocandelaspersquaremeter, LuminanceUnit.KilocandelaPerSquareMeter);
 
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.MicrocandelaPerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminance FromMicrocandelasPerSquareMeter(double microcandelaspersquaremeter) => new Luminance(microcandelaspersquaremeter, LuminanceUnit.MicrocandelaPerSquareMeter);
 
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.MillicandelaPerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminance FromMillicandelasPerSquareMeter(double millicandelaspersquaremeter) => new Luminance(millicandelaspersquaremeter, LuminanceUnit.MillicandelaPerSquareMeter);
 
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.NanocandelaPerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminance FromNanocandelasPerSquareMeter(double nanocandelaspersquaremeter) => new Luminance(nanocandelaspersquaremeter, LuminanceUnit.NanocandelaPerSquareMeter);
 
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.Nit"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminance FromNits(double nits) => new Luminance(nits, LuminanceUnit.Nit);
 
         /// <summary>

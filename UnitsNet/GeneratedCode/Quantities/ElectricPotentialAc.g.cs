@@ -82,7 +82,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ElectricPotentialAc(double value, ElectricPotentialAcUnit unit)
         {
             _value = value;
@@ -252,7 +251,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialAc"/> from <see cref="ElectricPotentialAcUnit.KilovoltAc"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialAc FromKilovoltsAc(QuantityValue kilovoltsac)
         {
             double value = (double) kilovoltsac;
@@ -262,7 +260,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialAc"/> from <see cref="ElectricPotentialAcUnit.MegavoltAc"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialAc FromMegavoltsAc(QuantityValue megavoltsac)
         {
             double value = (double) megavoltsac;
@@ -272,7 +269,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialAc"/> from <see cref="ElectricPotentialAcUnit.MicrovoltAc"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialAc FromMicrovoltsAc(QuantityValue microvoltsac)
         {
             double value = (double) microvoltsac;
@@ -282,7 +278,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialAc"/> from <see cref="ElectricPotentialAcUnit.MillivoltAc"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialAc FromMillivoltsAc(QuantityValue millivoltsac)
         {
             double value = (double) millivoltsac;
@@ -292,7 +287,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialAc"/> from <see cref="ElectricPotentialAcUnit.VoltAc"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialAc FromVoltsAc(QuantityValue voltsac)
         {
             double value = (double) voltsac;
