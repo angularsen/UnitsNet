@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct Duration :
-        IArithmeticQuantity<Duration, DurationUnit, double>,
+        IArithmeticQuantity<Duration, DurationUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<Duration, MolarFlow, AmountOfSubstance>,
         IMultiplyOperators<Duration, RotationalSpeed, Angle>,
@@ -175,7 +175,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -319,110 +319,99 @@ namespace UnitsNet
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Day"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Duration FromDays(QuantityValue days)
+        public static Duration FromDays(double days)
         {
-            double value = (double) days;
-            return new Duration(value, DurationUnit.Day);
+            return new Duration(days, DurationUnit.Day);
         }
 
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Hour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Duration FromHours(QuantityValue hours)
+        public static Duration FromHours(double hours)
         {
-            double value = (double) hours;
-            return new Duration(value, DurationUnit.Hour);
+            return new Duration(hours, DurationUnit.Hour);
         }
 
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.JulianYear"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Duration FromJulianYears(QuantityValue julianyears)
+        public static Duration FromJulianYears(double julianyears)
         {
-            double value = (double) julianyears;
-            return new Duration(value, DurationUnit.JulianYear);
+            return new Duration(julianyears, DurationUnit.JulianYear);
         }
 
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Microsecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Duration FromMicroseconds(QuantityValue microseconds)
+        public static Duration FromMicroseconds(double microseconds)
         {
-            double value = (double) microseconds;
-            return new Duration(value, DurationUnit.Microsecond);
+            return new Duration(microseconds, DurationUnit.Microsecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Millisecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Duration FromMilliseconds(QuantityValue milliseconds)
+        public static Duration FromMilliseconds(double milliseconds)
         {
-            double value = (double) milliseconds;
-            return new Duration(value, DurationUnit.Millisecond);
+            return new Duration(milliseconds, DurationUnit.Millisecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Minute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Duration FromMinutes(QuantityValue minutes)
+        public static Duration FromMinutes(double minutes)
         {
-            double value = (double) minutes;
-            return new Duration(value, DurationUnit.Minute);
+            return new Duration(minutes, DurationUnit.Minute);
         }
 
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Month30"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Duration FromMonths30(QuantityValue months30)
+        public static Duration FromMonths30(double months30)
         {
-            double value = (double) months30;
-            return new Duration(value, DurationUnit.Month30);
+            return new Duration(months30, DurationUnit.Month30);
         }
 
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Nanosecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Duration FromNanoseconds(QuantityValue nanoseconds)
+        public static Duration FromNanoseconds(double nanoseconds)
         {
-            double value = (double) nanoseconds;
-            return new Duration(value, DurationUnit.Nanosecond);
+            return new Duration(nanoseconds, DurationUnit.Nanosecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Second"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Duration FromSeconds(QuantityValue seconds)
+        public static Duration FromSeconds(double seconds)
         {
-            double value = (double) seconds;
-            return new Duration(value, DurationUnit.Second);
+            return new Duration(seconds, DurationUnit.Second);
         }
 
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Week"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Duration FromWeeks(QuantityValue weeks)
+        public static Duration FromWeeks(double weeks)
         {
-            double value = (double) weeks;
-            return new Duration(value, DurationUnit.Week);
+            return new Duration(weeks, DurationUnit.Week);
         }
 
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Year365"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Duration FromYears365(QuantityValue years365)
+        public static Duration FromYears365(double years365)
         {
-            double value = (double) years365;
-            return new Duration(value, DurationUnit.Year365);
+            return new Duration(years365, DurationUnit.Year365);
         }
 
         /// <summary>
@@ -431,9 +420,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Duration unit value.</returns>
-        public static Duration From(QuantityValue value, DurationUnit fromUnit)
+        public static Duration From(double value, DurationUnit fromUnit)
         {
-            return new Duration((double)value, fromUnit);
+            return new Duration(value, fromUnit);
         }
 
         #endregion
@@ -930,15 +919,6 @@ namespace UnitsNet
             if (!(unit is DurationUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DurationUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is DurationUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DurationUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -1068,18 +1048,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<DurationUnit> IQuantity<DurationUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not DurationUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DurationUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

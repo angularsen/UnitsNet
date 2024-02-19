@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureDelta
     /// </summary>
     public static class NumberToTemperatureDeltaExtensions
     {
-        /// <inheritdoc cref="TemperatureDelta.FromDegreesCelsius(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesCelsius(double)" />
         public static TemperatureDelta DegreesCelsius<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureDelta
 #endif
             => TemperatureDelta.FromDegreesCelsius(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureDelta.FromDegreesDelisle(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesDelisle(double)" />
         public static TemperatureDelta DegreesDelisle<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureDelta
 #endif
             => TemperatureDelta.FromDegreesDelisle(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureDelta.FromDegreesFahrenheit(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesFahrenheit(double)" />
         public static TemperatureDelta DegreesFahrenheit<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureDelta
 #endif
             => TemperatureDelta.FromDegreesFahrenheit(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureDelta.FromDegreesNewton(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesNewton(double)" />
         public static TemperatureDelta DegreesNewton<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureDelta
 #endif
             => TemperatureDelta.FromDegreesNewton(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureDelta.FromDegreesRankine(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesRankine(double)" />
         public static TemperatureDelta DegreesRankine<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureDelta
 #endif
             => TemperatureDelta.FromDegreesRankine(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureDelta.FromDegreesReaumur(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesReaumur(double)" />
         public static TemperatureDelta DegreesReaumur<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureDelta
 #endif
             => TemperatureDelta.FromDegreesReaumur(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureDelta.FromDegreesRoemer(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesRoemer(double)" />
         public static TemperatureDelta DegreesRoemer<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureDelta
 #endif
             => TemperatureDelta.FromDegreesRoemer(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureDelta.FromKelvins(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="TemperatureDelta.FromKelvins(double)" />
         public static TemperatureDelta Kelvins<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureDelta
 #endif
             => TemperatureDelta.FromKelvins(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureDelta.FromMillidegreesCelsius(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="TemperatureDelta.FromMillidegreesCelsius(double)" />
         public static TemperatureDelta MillidegreesCelsius<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

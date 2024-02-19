@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     public readonly partial struct ElectricSurfaceChargeDensity :
-        IArithmeticQuantity<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensityUnit, double>,
+        IArithmeticQuantity<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensityUnit>,
         IComparable,
         IComparable<ElectricSurfaceChargeDensity>,
         IConvertible,
@@ -152,7 +152,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -240,30 +240,27 @@ namespace UnitsNet
         ///     Creates a <see cref="ElectricSurfaceChargeDensity"/> from <see cref="ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricSurfaceChargeDensity FromCoulombsPerSquareCentimeter(QuantityValue coulombspersquarecentimeter)
+        public static ElectricSurfaceChargeDensity FromCoulombsPerSquareCentimeter(double coulombspersquarecentimeter)
         {
-            double value = (double) coulombspersquarecentimeter;
-            return new ElectricSurfaceChargeDensity(value, ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter);
+            return new ElectricSurfaceChargeDensity(coulombspersquarecentimeter, ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricSurfaceChargeDensity"/> from <see cref="ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricSurfaceChargeDensity FromCoulombsPerSquareInch(QuantityValue coulombspersquareinch)
+        public static ElectricSurfaceChargeDensity FromCoulombsPerSquareInch(double coulombspersquareinch)
         {
-            double value = (double) coulombspersquareinch;
-            return new ElectricSurfaceChargeDensity(value, ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch);
+            return new ElectricSurfaceChargeDensity(coulombspersquareinch, ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricSurfaceChargeDensity"/> from <see cref="ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricSurfaceChargeDensity FromCoulombsPerSquareMeter(QuantityValue coulombspersquaremeter)
+        public static ElectricSurfaceChargeDensity FromCoulombsPerSquareMeter(double coulombspersquaremeter)
         {
-            double value = (double) coulombspersquaremeter;
-            return new ElectricSurfaceChargeDensity(value, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter);
+            return new ElectricSurfaceChargeDensity(coulombspersquaremeter, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter);
         }
 
         /// <summary>
@@ -272,9 +269,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricSurfaceChargeDensity unit value.</returns>
-        public static ElectricSurfaceChargeDensity From(QuantityValue value, ElectricSurfaceChargeDensityUnit fromUnit)
+        public static ElectricSurfaceChargeDensity From(double value, ElectricSurfaceChargeDensityUnit fromUnit)
         {
-            return new ElectricSurfaceChargeDensity((double)value, fromUnit);
+            return new ElectricSurfaceChargeDensity(value, fromUnit);
         }
 
         #endregion
@@ -689,15 +686,6 @@ namespace UnitsNet
             if (!(unit is ElectricSurfaceChargeDensityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricSurfaceChargeDensityUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is ElectricSurfaceChargeDensityUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricSurfaceChargeDensityUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -811,18 +799,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ElectricSurfaceChargeDensityUnit> IQuantity<ElectricSurfaceChargeDensityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not ElectricSurfaceChargeDensityUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricSurfaceChargeDensityUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

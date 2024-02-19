@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToPermittivity
     /// </summary>
     public static class NumberToPermittivityExtensions
     {
-        /// <inheritdoc cref="Permittivity.FromFaradsPerMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Permittivity.FromFaradsPerMeter(double)" />
         public static Permittivity FaradsPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

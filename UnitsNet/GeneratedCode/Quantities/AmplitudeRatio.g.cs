@@ -37,7 +37,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct AmplitudeRatio :
-        IArithmeticQuantity<AmplitudeRatio, AmplitudeRatioUnit, double>,
+        IArithmeticQuantity<AmplitudeRatio, AmplitudeRatioUnit>,
         IComparable,
         IComparable<AmplitudeRatio>,
         IConvertible,
@@ -150,7 +150,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -245,40 +245,36 @@ namespace UnitsNet
         ///     Creates a <see cref="AmplitudeRatio"/> from <see cref="AmplitudeRatioUnit.DecibelMicrovolt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmplitudeRatio FromDecibelMicrovolts(QuantityValue decibelmicrovolts)
+        public static AmplitudeRatio FromDecibelMicrovolts(double decibelmicrovolts)
         {
-            double value = (double) decibelmicrovolts;
-            return new AmplitudeRatio(value, AmplitudeRatioUnit.DecibelMicrovolt);
+            return new AmplitudeRatio(decibelmicrovolts, AmplitudeRatioUnit.DecibelMicrovolt);
         }
 
         /// <summary>
         ///     Creates a <see cref="AmplitudeRatio"/> from <see cref="AmplitudeRatioUnit.DecibelMillivolt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmplitudeRatio FromDecibelMillivolts(QuantityValue decibelmillivolts)
+        public static AmplitudeRatio FromDecibelMillivolts(double decibelmillivolts)
         {
-            double value = (double) decibelmillivolts;
-            return new AmplitudeRatio(value, AmplitudeRatioUnit.DecibelMillivolt);
+            return new AmplitudeRatio(decibelmillivolts, AmplitudeRatioUnit.DecibelMillivolt);
         }
 
         /// <summary>
         ///     Creates a <see cref="AmplitudeRatio"/> from <see cref="AmplitudeRatioUnit.DecibelUnloaded"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmplitudeRatio FromDecibelsUnloaded(QuantityValue decibelsunloaded)
+        public static AmplitudeRatio FromDecibelsUnloaded(double decibelsunloaded)
         {
-            double value = (double) decibelsunloaded;
-            return new AmplitudeRatio(value, AmplitudeRatioUnit.DecibelUnloaded);
+            return new AmplitudeRatio(decibelsunloaded, AmplitudeRatioUnit.DecibelUnloaded);
         }
 
         /// <summary>
         ///     Creates a <see cref="AmplitudeRatio"/> from <see cref="AmplitudeRatioUnit.DecibelVolt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmplitudeRatio FromDecibelVolts(QuantityValue decibelvolts)
+        public static AmplitudeRatio FromDecibelVolts(double decibelvolts)
         {
-            double value = (double) decibelvolts;
-            return new AmplitudeRatio(value, AmplitudeRatioUnit.DecibelVolt);
+            return new AmplitudeRatio(decibelvolts, AmplitudeRatioUnit.DecibelVolt);
         }
 
         /// <summary>
@@ -287,9 +283,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>AmplitudeRatio unit value.</returns>
-        public static AmplitudeRatio From(QuantityValue value, AmplitudeRatioUnit fromUnit)
+        public static AmplitudeRatio From(double value, AmplitudeRatioUnit fromUnit)
         {
-            return new AmplitudeRatio((double)value, fromUnit);
+            return new AmplitudeRatio(value, fromUnit);
         }
 
         #endregion
@@ -473,14 +469,14 @@ namespace UnitsNet
         public static AmplitudeRatio operator *(AmplitudeRatio left, double right)
         {
             // Logarithmic multiplication = addition
-            return new AmplitudeRatio(left.Value + (double)right, left.Unit);
+            return new AmplitudeRatio(left.Value + right, left.Unit);
         }
 
         /// <summary>Get <see cref="AmplitudeRatio"/> from logarithmic division of <see cref="AmplitudeRatio"/> by value.</summary>
         public static AmplitudeRatio operator /(AmplitudeRatio left, double right)
         {
             // Logarithmic division = subtraction
-            return new AmplitudeRatio(left.Value - (double)right, left.Unit);
+            return new AmplitudeRatio(left.Value - right, left.Unit);
         }
 
         /// <summary>Get ratio value from logarithmic division of <see cref="AmplitudeRatio"/> by <see cref="AmplitudeRatio"/>.</summary>
@@ -712,15 +708,6 @@ namespace UnitsNet
             if (!(unit is AmplitudeRatioUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AmplitudeRatioUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is AmplitudeRatioUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AmplitudeRatioUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -836,18 +823,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<AmplitudeRatioUnit> IQuantity<AmplitudeRatioUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not AmplitudeRatioUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AmplitudeRatioUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

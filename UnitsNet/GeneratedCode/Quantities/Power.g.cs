@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct Power :
-        IArithmeticQuantity<Power, PowerUnit, double>,
+        IArithmeticQuantity<Power, PowerUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Power, HeatFlux, Area>,
         IDivisionOperators<Power, ElectricPotential, ElectricCurrent>,
@@ -189,7 +189,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -438,260 +438,234 @@ namespace UnitsNet
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.BoilerHorsepower"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromBoilerHorsepower(QuantityValue boilerhorsepower)
+        public static Power FromBoilerHorsepower(double boilerhorsepower)
         {
-            double value = (double) boilerhorsepower;
-            return new Power(value, PowerUnit.BoilerHorsepower);
+            return new Power(boilerhorsepower, PowerUnit.BoilerHorsepower);
         }
 
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.BritishThermalUnitPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromBritishThermalUnitsPerHour(QuantityValue britishthermalunitsperhour)
+        public static Power FromBritishThermalUnitsPerHour(double britishthermalunitsperhour)
         {
-            double value = (double) britishthermalunitsperhour;
-            return new Power(value, PowerUnit.BritishThermalUnitPerHour);
+            return new Power(britishthermalunitsperhour, PowerUnit.BritishThermalUnitPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Decawatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromDecawatts(QuantityValue decawatts)
+        public static Power FromDecawatts(double decawatts)
         {
-            double value = (double) decawatts;
-            return new Power(value, PowerUnit.Decawatt);
+            return new Power(decawatts, PowerUnit.Decawatt);
         }
 
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Deciwatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromDeciwatts(QuantityValue deciwatts)
+        public static Power FromDeciwatts(double deciwatts)
         {
-            double value = (double) deciwatts;
-            return new Power(value, PowerUnit.Deciwatt);
+            return new Power(deciwatts, PowerUnit.Deciwatt);
         }
 
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.ElectricalHorsepower"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromElectricalHorsepower(QuantityValue electricalhorsepower)
+        public static Power FromElectricalHorsepower(double electricalhorsepower)
         {
-            double value = (double) electricalhorsepower;
-            return new Power(value, PowerUnit.ElectricalHorsepower);
+            return new Power(electricalhorsepower, PowerUnit.ElectricalHorsepower);
         }
 
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Femtowatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromFemtowatts(QuantityValue femtowatts)
+        public static Power FromFemtowatts(double femtowatts)
         {
-            double value = (double) femtowatts;
-            return new Power(value, PowerUnit.Femtowatt);
+            return new Power(femtowatts, PowerUnit.Femtowatt);
         }
 
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.GigajoulePerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromGigajoulesPerHour(QuantityValue gigajoulesperhour)
+        public static Power FromGigajoulesPerHour(double gigajoulesperhour)
         {
-            double value = (double) gigajoulesperhour;
-            return new Power(value, PowerUnit.GigajoulePerHour);
+            return new Power(gigajoulesperhour, PowerUnit.GigajoulePerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Gigawatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromGigawatts(QuantityValue gigawatts)
+        public static Power FromGigawatts(double gigawatts)
         {
-            double value = (double) gigawatts;
-            return new Power(value, PowerUnit.Gigawatt);
+            return new Power(gigawatts, PowerUnit.Gigawatt);
         }
 
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.HydraulicHorsepower"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromHydraulicHorsepower(QuantityValue hydraulichorsepower)
+        public static Power FromHydraulicHorsepower(double hydraulichorsepower)
         {
-            double value = (double) hydraulichorsepower;
-            return new Power(value, PowerUnit.HydraulicHorsepower);
+            return new Power(hydraulichorsepower, PowerUnit.HydraulicHorsepower);
         }
 
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.JoulePerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromJoulesPerHour(QuantityValue joulesperhour)
+        public static Power FromJoulesPerHour(double joulesperhour)
         {
-            double value = (double) joulesperhour;
-            return new Power(value, PowerUnit.JoulePerHour);
+            return new Power(joulesperhour, PowerUnit.JoulePerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.KilobritishThermalUnitPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromKilobritishThermalUnitsPerHour(QuantityValue kilobritishthermalunitsperhour)
+        public static Power FromKilobritishThermalUnitsPerHour(double kilobritishthermalunitsperhour)
         {
-            double value = (double) kilobritishthermalunitsperhour;
-            return new Power(value, PowerUnit.KilobritishThermalUnitPerHour);
+            return new Power(kilobritishthermalunitsperhour, PowerUnit.KilobritishThermalUnitPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.KilojoulePerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromKilojoulesPerHour(QuantityValue kilojoulesperhour)
+        public static Power FromKilojoulesPerHour(double kilojoulesperhour)
         {
-            double value = (double) kilojoulesperhour;
-            return new Power(value, PowerUnit.KilojoulePerHour);
+            return new Power(kilojoulesperhour, PowerUnit.KilojoulePerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Kilowatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromKilowatts(QuantityValue kilowatts)
+        public static Power FromKilowatts(double kilowatts)
         {
-            double value = (double) kilowatts;
-            return new Power(value, PowerUnit.Kilowatt);
+            return new Power(kilowatts, PowerUnit.Kilowatt);
         }
 
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.MechanicalHorsepower"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromMechanicalHorsepower(QuantityValue mechanicalhorsepower)
+        public static Power FromMechanicalHorsepower(double mechanicalhorsepower)
         {
-            double value = (double) mechanicalhorsepower;
-            return new Power(value, PowerUnit.MechanicalHorsepower);
+            return new Power(mechanicalhorsepower, PowerUnit.MechanicalHorsepower);
         }
 
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.MegabritishThermalUnitPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromMegabritishThermalUnitsPerHour(QuantityValue megabritishthermalunitsperhour)
+        public static Power FromMegabritishThermalUnitsPerHour(double megabritishthermalunitsperhour)
         {
-            double value = (double) megabritishthermalunitsperhour;
-            return new Power(value, PowerUnit.MegabritishThermalUnitPerHour);
+            return new Power(megabritishthermalunitsperhour, PowerUnit.MegabritishThermalUnitPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.MegajoulePerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromMegajoulesPerHour(QuantityValue megajoulesperhour)
+        public static Power FromMegajoulesPerHour(double megajoulesperhour)
         {
-            double value = (double) megajoulesperhour;
-            return new Power(value, PowerUnit.MegajoulePerHour);
+            return new Power(megajoulesperhour, PowerUnit.MegajoulePerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Megawatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromMegawatts(QuantityValue megawatts)
+        public static Power FromMegawatts(double megawatts)
         {
-            double value = (double) megawatts;
-            return new Power(value, PowerUnit.Megawatt);
+            return new Power(megawatts, PowerUnit.Megawatt);
         }
 
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.MetricHorsepower"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromMetricHorsepower(QuantityValue metrichorsepower)
+        public static Power FromMetricHorsepower(double metrichorsepower)
         {
-            double value = (double) metrichorsepower;
-            return new Power(value, PowerUnit.MetricHorsepower);
+            return new Power(metrichorsepower, PowerUnit.MetricHorsepower);
         }
 
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Microwatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromMicrowatts(QuantityValue microwatts)
+        public static Power FromMicrowatts(double microwatts)
         {
-            double value = (double) microwatts;
-            return new Power(value, PowerUnit.Microwatt);
+            return new Power(microwatts, PowerUnit.Microwatt);
         }
 
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.MillijoulePerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromMillijoulesPerHour(QuantityValue millijoulesperhour)
+        public static Power FromMillijoulesPerHour(double millijoulesperhour)
         {
-            double value = (double) millijoulesperhour;
-            return new Power(value, PowerUnit.MillijoulePerHour);
+            return new Power(millijoulesperhour, PowerUnit.MillijoulePerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Milliwatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromMilliwatts(QuantityValue milliwatts)
+        public static Power FromMilliwatts(double milliwatts)
         {
-            double value = (double) milliwatts;
-            return new Power(value, PowerUnit.Milliwatt);
+            return new Power(milliwatts, PowerUnit.Milliwatt);
         }
 
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Nanowatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromNanowatts(QuantityValue nanowatts)
+        public static Power FromNanowatts(double nanowatts)
         {
-            double value = (double) nanowatts;
-            return new Power(value, PowerUnit.Nanowatt);
+            return new Power(nanowatts, PowerUnit.Nanowatt);
         }
 
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Petawatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromPetawatts(QuantityValue petawatts)
+        public static Power FromPetawatts(double petawatts)
         {
-            double value = (double) petawatts;
-            return new Power(value, PowerUnit.Petawatt);
+            return new Power(petawatts, PowerUnit.Petawatt);
         }
 
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Picowatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromPicowatts(QuantityValue picowatts)
+        public static Power FromPicowatts(double picowatts)
         {
-            double value = (double) picowatts;
-            return new Power(value, PowerUnit.Picowatt);
+            return new Power(picowatts, PowerUnit.Picowatt);
         }
 
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Terawatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromTerawatts(QuantityValue terawatts)
+        public static Power FromTerawatts(double terawatts)
         {
-            double value = (double) terawatts;
-            return new Power(value, PowerUnit.Terawatt);
+            return new Power(terawatts, PowerUnit.Terawatt);
         }
 
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Watt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Power FromWatts(QuantityValue watts)
+        public static Power FromWatts(double watts)
         {
-            double value = (double) watts;
-            return new Power(value, PowerUnit.Watt);
+            return new Power(watts, PowerUnit.Watt);
         }
 
         /// <summary>
@@ -700,9 +674,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Power unit value.</returns>
-        public static Power From(QuantityValue value, PowerUnit fromUnit)
+        public static Power From(double value, PowerUnit fromUnit)
         {
-            return new Power((double)value, fromUnit);
+            return new Power(value, fromUnit);
         }
 
         #endregion
@@ -1199,15 +1173,6 @@ namespace UnitsNet
             if (!(unit is PowerUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PowerUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is PowerUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PowerUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -1367,18 +1332,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<PowerUnit> IQuantity<PowerUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not PowerUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PowerUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

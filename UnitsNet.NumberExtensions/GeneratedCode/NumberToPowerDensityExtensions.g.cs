@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
     /// </summary>
     public static class NumberToPowerDensityExtensions
     {
-        /// <inheritdoc cref="PowerDensity.FromDecawattsPerCubicFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromDecawattsPerCubicFoot(double)" />
         public static PowerDensity DecawattsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromDecawattsPerCubicFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromDecawattsPerCubicInch(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromDecawattsPerCubicInch(double)" />
         public static PowerDensity DecawattsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromDecawattsPerCubicInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromDecawattsPerCubicMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromDecawattsPerCubicMeter(double)" />
         public static PowerDensity DecawattsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromDecawattsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromDecawattsPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromDecawattsPerLiter(double)" />
         public static PowerDensity DecawattsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromDecawattsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromDeciwattsPerCubicFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromDeciwattsPerCubicFoot(double)" />
         public static PowerDensity DeciwattsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromDeciwattsPerCubicFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromDeciwattsPerCubicInch(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromDeciwattsPerCubicInch(double)" />
         public static PowerDensity DeciwattsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromDeciwattsPerCubicInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromDeciwattsPerCubicMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromDeciwattsPerCubicMeter(double)" />
         public static PowerDensity DeciwattsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromDeciwattsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromDeciwattsPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromDeciwattsPerLiter(double)" />
         public static PowerDensity DeciwattsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromDeciwattsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromGigawattsPerCubicFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromGigawattsPerCubicFoot(double)" />
         public static PowerDensity GigawattsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -104,7 +104,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromGigawattsPerCubicFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromGigawattsPerCubicInch(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromGigawattsPerCubicInch(double)" />
         public static PowerDensity GigawattsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -112,7 +112,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromGigawattsPerCubicInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromGigawattsPerCubicMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromGigawattsPerCubicMeter(double)" />
         public static PowerDensity GigawattsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -120,7 +120,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromGigawattsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromGigawattsPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromGigawattsPerLiter(double)" />
         public static PowerDensity GigawattsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -128,7 +128,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromGigawattsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromKilowattsPerCubicFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromKilowattsPerCubicFoot(double)" />
         public static PowerDensity KilowattsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -136,7 +136,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromKilowattsPerCubicFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromKilowattsPerCubicInch(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromKilowattsPerCubicInch(double)" />
         public static PowerDensity KilowattsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -144,7 +144,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromKilowattsPerCubicInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromKilowattsPerCubicMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromKilowattsPerCubicMeter(double)" />
         public static PowerDensity KilowattsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -152,7 +152,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromKilowattsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromKilowattsPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromKilowattsPerLiter(double)" />
         public static PowerDensity KilowattsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -160,7 +160,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromKilowattsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromMegawattsPerCubicFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromMegawattsPerCubicFoot(double)" />
         public static PowerDensity MegawattsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -168,7 +168,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromMegawattsPerCubicFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromMegawattsPerCubicInch(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromMegawattsPerCubicInch(double)" />
         public static PowerDensity MegawattsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -176,7 +176,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromMegawattsPerCubicInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromMegawattsPerCubicMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromMegawattsPerCubicMeter(double)" />
         public static PowerDensity MegawattsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -184,7 +184,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromMegawattsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromMegawattsPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromMegawattsPerLiter(double)" />
         public static PowerDensity MegawattsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -192,7 +192,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromMegawattsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromMicrowattsPerCubicFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromMicrowattsPerCubicFoot(double)" />
         public static PowerDensity MicrowattsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -200,7 +200,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromMicrowattsPerCubicFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromMicrowattsPerCubicInch(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromMicrowattsPerCubicInch(double)" />
         public static PowerDensity MicrowattsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -208,7 +208,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromMicrowattsPerCubicInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromMicrowattsPerCubicMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromMicrowattsPerCubicMeter(double)" />
         public static PowerDensity MicrowattsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -216,7 +216,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromMicrowattsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromMicrowattsPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromMicrowattsPerLiter(double)" />
         public static PowerDensity MicrowattsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -224,7 +224,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromMicrowattsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromMilliwattsPerCubicFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromMilliwattsPerCubicFoot(double)" />
         public static PowerDensity MilliwattsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -232,7 +232,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromMilliwattsPerCubicFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromMilliwattsPerCubicInch(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromMilliwattsPerCubicInch(double)" />
         public static PowerDensity MilliwattsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -240,7 +240,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromMilliwattsPerCubicInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromMilliwattsPerCubicMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromMilliwattsPerCubicMeter(double)" />
         public static PowerDensity MilliwattsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -248,7 +248,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromMilliwattsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromMilliwattsPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromMilliwattsPerLiter(double)" />
         public static PowerDensity MilliwattsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -256,7 +256,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromMilliwattsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromNanowattsPerCubicFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromNanowattsPerCubicFoot(double)" />
         public static PowerDensity NanowattsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -264,7 +264,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromNanowattsPerCubicFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromNanowattsPerCubicInch(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromNanowattsPerCubicInch(double)" />
         public static PowerDensity NanowattsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -272,7 +272,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromNanowattsPerCubicInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromNanowattsPerCubicMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromNanowattsPerCubicMeter(double)" />
         public static PowerDensity NanowattsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -280,7 +280,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromNanowattsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromNanowattsPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromNanowattsPerLiter(double)" />
         public static PowerDensity NanowattsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -288,7 +288,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromNanowattsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromPicowattsPerCubicFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromPicowattsPerCubicFoot(double)" />
         public static PowerDensity PicowattsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -296,7 +296,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromPicowattsPerCubicFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromPicowattsPerCubicInch(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromPicowattsPerCubicInch(double)" />
         public static PowerDensity PicowattsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -304,7 +304,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromPicowattsPerCubicInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromPicowattsPerCubicMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromPicowattsPerCubicMeter(double)" />
         public static PowerDensity PicowattsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -312,7 +312,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromPicowattsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromPicowattsPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromPicowattsPerLiter(double)" />
         public static PowerDensity PicowattsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -320,7 +320,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromPicowattsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromTerawattsPerCubicFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromTerawattsPerCubicFoot(double)" />
         public static PowerDensity TerawattsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -328,7 +328,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromTerawattsPerCubicFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromTerawattsPerCubicInch(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromTerawattsPerCubicInch(double)" />
         public static PowerDensity TerawattsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -336,7 +336,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromTerawattsPerCubicInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromTerawattsPerCubicMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromTerawattsPerCubicMeter(double)" />
         public static PowerDensity TerawattsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -344,7 +344,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromTerawattsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromTerawattsPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromTerawattsPerLiter(double)" />
         public static PowerDensity TerawattsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -352,7 +352,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromTerawattsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromWattsPerCubicFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromWattsPerCubicFoot(double)" />
         public static PowerDensity WattsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -360,7 +360,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromWattsPerCubicFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromWattsPerCubicInch(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromWattsPerCubicInch(double)" />
         public static PowerDensity WattsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -368,7 +368,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromWattsPerCubicInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromWattsPerCubicMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromWattsPerCubicMeter(double)" />
         public static PowerDensity WattsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -376,7 +376,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
 #endif
             => PowerDensity.FromWattsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromWattsPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromWattsPerLiter(double)" />
         public static PowerDensity WattsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

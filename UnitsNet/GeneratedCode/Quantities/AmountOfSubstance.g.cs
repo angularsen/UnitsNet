@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct AmountOfSubstance :
-        IArithmeticQuantity<AmountOfSubstance, AmountOfSubstanceUnit, double>,
+        IArithmeticQuantity<AmountOfSubstance, AmountOfSubstanceUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<AmountOfSubstance, MolarMass, Mass>,
         IDivisionOperators<AmountOfSubstance, Volume, Molarity>,
@@ -171,7 +171,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -357,170 +357,153 @@ namespace UnitsNet
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Centimole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromCentimoles(QuantityValue centimoles)
+        public static AmountOfSubstance FromCentimoles(double centimoles)
         {
-            double value = (double) centimoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Centimole);
+            return new AmountOfSubstance(centimoles, AmountOfSubstanceUnit.Centimole);
         }
 
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.CentipoundMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromCentipoundMoles(QuantityValue centipoundmoles)
+        public static AmountOfSubstance FromCentipoundMoles(double centipoundmoles)
         {
-            double value = (double) centipoundmoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.CentipoundMole);
+            return new AmountOfSubstance(centipoundmoles, AmountOfSubstanceUnit.CentipoundMole);
         }
 
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Decimole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromDecimoles(QuantityValue decimoles)
+        public static AmountOfSubstance FromDecimoles(double decimoles)
         {
-            double value = (double) decimoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Decimole);
+            return new AmountOfSubstance(decimoles, AmountOfSubstanceUnit.Decimole);
         }
 
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.DecipoundMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromDecipoundMoles(QuantityValue decipoundmoles)
+        public static AmountOfSubstance FromDecipoundMoles(double decipoundmoles)
         {
-            double value = (double) decipoundmoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.DecipoundMole);
+            return new AmountOfSubstance(decipoundmoles, AmountOfSubstanceUnit.DecipoundMole);
         }
 
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Femtomole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromFemtomoles(QuantityValue femtomoles)
+        public static AmountOfSubstance FromFemtomoles(double femtomoles)
         {
-            double value = (double) femtomoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Femtomole);
+            return new AmountOfSubstance(femtomoles, AmountOfSubstanceUnit.Femtomole);
         }
 
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Kilomole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromKilomoles(QuantityValue kilomoles)
+        public static AmountOfSubstance FromKilomoles(double kilomoles)
         {
-            double value = (double) kilomoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Kilomole);
+            return new AmountOfSubstance(kilomoles, AmountOfSubstanceUnit.Kilomole);
         }
 
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.KilopoundMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromKilopoundMoles(QuantityValue kilopoundmoles)
+        public static AmountOfSubstance FromKilopoundMoles(double kilopoundmoles)
         {
-            double value = (double) kilopoundmoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.KilopoundMole);
+            return new AmountOfSubstance(kilopoundmoles, AmountOfSubstanceUnit.KilopoundMole);
         }
 
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Megamole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromMegamoles(QuantityValue megamoles)
+        public static AmountOfSubstance FromMegamoles(double megamoles)
         {
-            double value = (double) megamoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Megamole);
+            return new AmountOfSubstance(megamoles, AmountOfSubstanceUnit.Megamole);
         }
 
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Micromole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromMicromoles(QuantityValue micromoles)
+        public static AmountOfSubstance FromMicromoles(double micromoles)
         {
-            double value = (double) micromoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Micromole);
+            return new AmountOfSubstance(micromoles, AmountOfSubstanceUnit.Micromole);
         }
 
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.MicropoundMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromMicropoundMoles(QuantityValue micropoundmoles)
+        public static AmountOfSubstance FromMicropoundMoles(double micropoundmoles)
         {
-            double value = (double) micropoundmoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.MicropoundMole);
+            return new AmountOfSubstance(micropoundmoles, AmountOfSubstanceUnit.MicropoundMole);
         }
 
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Millimole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromMillimoles(QuantityValue millimoles)
+        public static AmountOfSubstance FromMillimoles(double millimoles)
         {
-            double value = (double) millimoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Millimole);
+            return new AmountOfSubstance(millimoles, AmountOfSubstanceUnit.Millimole);
         }
 
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.MillipoundMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromMillipoundMoles(QuantityValue millipoundmoles)
+        public static AmountOfSubstance FromMillipoundMoles(double millipoundmoles)
         {
-            double value = (double) millipoundmoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.MillipoundMole);
+            return new AmountOfSubstance(millipoundmoles, AmountOfSubstanceUnit.MillipoundMole);
         }
 
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Mole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromMoles(QuantityValue moles)
+        public static AmountOfSubstance FromMoles(double moles)
         {
-            double value = (double) moles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Mole);
+            return new AmountOfSubstance(moles, AmountOfSubstanceUnit.Mole);
         }
 
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Nanomole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromNanomoles(QuantityValue nanomoles)
+        public static AmountOfSubstance FromNanomoles(double nanomoles)
         {
-            double value = (double) nanomoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Nanomole);
+            return new AmountOfSubstance(nanomoles, AmountOfSubstanceUnit.Nanomole);
         }
 
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.NanopoundMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromNanopoundMoles(QuantityValue nanopoundmoles)
+        public static AmountOfSubstance FromNanopoundMoles(double nanopoundmoles)
         {
-            double value = (double) nanopoundmoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.NanopoundMole);
+            return new AmountOfSubstance(nanopoundmoles, AmountOfSubstanceUnit.NanopoundMole);
         }
 
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Picomole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromPicomoles(QuantityValue picomoles)
+        public static AmountOfSubstance FromPicomoles(double picomoles)
         {
-            double value = (double) picomoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Picomole);
+            return new AmountOfSubstance(picomoles, AmountOfSubstanceUnit.Picomole);
         }
 
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.PoundMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromPoundMoles(QuantityValue poundmoles)
+        public static AmountOfSubstance FromPoundMoles(double poundmoles)
         {
-            double value = (double) poundmoles;
-            return new AmountOfSubstance(value, AmountOfSubstanceUnit.PoundMole);
+            return new AmountOfSubstance(poundmoles, AmountOfSubstanceUnit.PoundMole);
         }
 
         /// <summary>
@@ -529,9 +512,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>AmountOfSubstance unit value.</returns>
-        public static AmountOfSubstance From(QuantityValue value, AmountOfSubstanceUnit fromUnit)
+        public static AmountOfSubstance From(double value, AmountOfSubstanceUnit fromUnit)
         {
-            return new AmountOfSubstance((double)value, fromUnit);
+            return new AmountOfSubstance(value, fromUnit);
         }
 
         #endregion
@@ -968,15 +951,6 @@ namespace UnitsNet
             if (!(unit is AmountOfSubstanceUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AmountOfSubstanceUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is AmountOfSubstanceUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AmountOfSubstanceUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -1118,18 +1092,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<AmountOfSubstanceUnit> IQuantity<AmountOfSubstanceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not AmountOfSubstanceUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AmountOfSubstanceUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

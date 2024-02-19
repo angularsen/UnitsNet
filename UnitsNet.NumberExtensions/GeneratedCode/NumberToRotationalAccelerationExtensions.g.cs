@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalAcceleration
     /// </summary>
     public static class NumberToRotationalAccelerationExtensions
     {
-        /// <inheritdoc cref="RotationalAcceleration.FromDegreesPerSecondSquared(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RotationalAcceleration.FromDegreesPerSecondSquared(double)" />
         public static RotationalAcceleration DegreesPerSecondSquared<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalAcceleration
 #endif
             => RotationalAcceleration.FromDegreesPerSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(double)" />
         public static RotationalAcceleration RadiansPerSecondSquared<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalAcceleration
 #endif
             => RotationalAcceleration.FromRadiansPerSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(double)" />
         public static RotationalAcceleration RevolutionsPerMinutePerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalAcceleration
 #endif
             => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerSecondSquared(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerSecondSquared(double)" />
         public static RotationalAcceleration RevolutionsPerSecondSquared<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

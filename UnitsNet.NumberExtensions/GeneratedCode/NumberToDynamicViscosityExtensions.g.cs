@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToDynamicViscosity
     /// </summary>
     public static class NumberToDynamicViscosityExtensions
     {
-        /// <inheritdoc cref="DynamicViscosity.FromCentipoise(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="DynamicViscosity.FromCentipoise(double)" />
         public static DynamicViscosity Centipoise<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToDynamicViscosity
 #endif
             => DynamicViscosity.FromCentipoise(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="DynamicViscosity.FromMicropascalSeconds(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="DynamicViscosity.FromMicropascalSeconds(double)" />
         public static DynamicViscosity MicropascalSeconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToDynamicViscosity
 #endif
             => DynamicViscosity.FromMicropascalSeconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="DynamicViscosity.FromMillipascalSeconds(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="DynamicViscosity.FromMillipascalSeconds(double)" />
         public static DynamicViscosity MillipascalSeconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToDynamicViscosity
 #endif
             => DynamicViscosity.FromMillipascalSeconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="DynamicViscosity.FromNewtonSecondsPerMeterSquared(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="DynamicViscosity.FromNewtonSecondsPerMeterSquared(double)" />
         public static DynamicViscosity NewtonSecondsPerMeterSquared<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToDynamicViscosity
 #endif
             => DynamicViscosity.FromNewtonSecondsPerMeterSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="DynamicViscosity.FromPascalSeconds(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="DynamicViscosity.FromPascalSeconds(double)" />
         public static DynamicViscosity PascalSeconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToDynamicViscosity
 #endif
             => DynamicViscosity.FromPascalSeconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="DynamicViscosity.FromPoise(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="DynamicViscosity.FromPoise(double)" />
         public static DynamicViscosity Poise<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToDynamicViscosity
 #endif
             => DynamicViscosity.FromPoise(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="DynamicViscosity.FromPoundsForceSecondPerSquareFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="DynamicViscosity.FromPoundsForceSecondPerSquareFoot(double)" />
         public static DynamicViscosity PoundsForceSecondPerSquareFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToDynamicViscosity
 #endif
             => DynamicViscosity.FromPoundsForceSecondPerSquareFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="DynamicViscosity.FromPoundsForceSecondPerSquareInch(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="DynamicViscosity.FromPoundsForceSecondPerSquareInch(double)" />
         public static DynamicViscosity PoundsForceSecondPerSquareInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToDynamicViscosity
 #endif
             => DynamicViscosity.FromPoundsForceSecondPerSquareInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="DynamicViscosity.FromPoundsPerFootSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="DynamicViscosity.FromPoundsPerFootSecond(double)" />
         public static DynamicViscosity PoundsPerFootSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -104,7 +104,7 @@ namespace UnitsNet.NumberExtensions.NumberToDynamicViscosity
 #endif
             => DynamicViscosity.FromPoundsPerFootSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="DynamicViscosity.FromReyns(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="DynamicViscosity.FromReyns(double)" />
         public static DynamicViscosity Reyns<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

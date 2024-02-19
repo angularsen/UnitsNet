@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct ElectricResistance :
-        IArithmeticQuantity<ElectricResistance, ElectricResistanceUnit, double>,
+        IArithmeticQuantity<ElectricResistance, ElectricResistanceUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<ElectricResistance, ElectricCurrent, ElectricPotential>,
 #endif
@@ -159,7 +159,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -275,70 +275,63 @@ namespace UnitsNet
         ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Gigaohm"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricResistance FromGigaohms(QuantityValue gigaohms)
+        public static ElectricResistance FromGigaohms(double gigaohms)
         {
-            double value = (double) gigaohms;
-            return new ElectricResistance(value, ElectricResistanceUnit.Gigaohm);
+            return new ElectricResistance(gigaohms, ElectricResistanceUnit.Gigaohm);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Kiloohm"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricResistance FromKiloohms(QuantityValue kiloohms)
+        public static ElectricResistance FromKiloohms(double kiloohms)
         {
-            double value = (double) kiloohms;
-            return new ElectricResistance(value, ElectricResistanceUnit.Kiloohm);
+            return new ElectricResistance(kiloohms, ElectricResistanceUnit.Kiloohm);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Megaohm"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricResistance FromMegaohms(QuantityValue megaohms)
+        public static ElectricResistance FromMegaohms(double megaohms)
         {
-            double value = (double) megaohms;
-            return new ElectricResistance(value, ElectricResistanceUnit.Megaohm);
+            return new ElectricResistance(megaohms, ElectricResistanceUnit.Megaohm);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Microohm"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricResistance FromMicroohms(QuantityValue microohms)
+        public static ElectricResistance FromMicroohms(double microohms)
         {
-            double value = (double) microohms;
-            return new ElectricResistance(value, ElectricResistanceUnit.Microohm);
+            return new ElectricResistance(microohms, ElectricResistanceUnit.Microohm);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Milliohm"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricResistance FromMilliohms(QuantityValue milliohms)
+        public static ElectricResistance FromMilliohms(double milliohms)
         {
-            double value = (double) milliohms;
-            return new ElectricResistance(value, ElectricResistanceUnit.Milliohm);
+            return new ElectricResistance(milliohms, ElectricResistanceUnit.Milliohm);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Ohm"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricResistance FromOhms(QuantityValue ohms)
+        public static ElectricResistance FromOhms(double ohms)
         {
-            double value = (double) ohms;
-            return new ElectricResistance(value, ElectricResistanceUnit.Ohm);
+            return new ElectricResistance(ohms, ElectricResistanceUnit.Ohm);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Teraohm"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricResistance FromTeraohms(QuantityValue teraohms)
+        public static ElectricResistance FromTeraohms(double teraohms)
         {
-            double value = (double) teraohms;
-            return new ElectricResistance(value, ElectricResistanceUnit.Teraohm);
+            return new ElectricResistance(teraohms, ElectricResistanceUnit.Teraohm);
         }
 
         /// <summary>
@@ -347,9 +340,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricResistance unit value.</returns>
-        public static ElectricResistance From(QuantityValue value, ElectricResistanceUnit fromUnit)
+        public static ElectricResistance From(double value, ElectricResistanceUnit fromUnit)
         {
-            return new ElectricResistance((double)value, fromUnit);
+            return new ElectricResistance(value, fromUnit);
         }
 
         #endregion
@@ -774,15 +767,6 @@ namespace UnitsNet
             if (!(unit is ElectricResistanceUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricResistanceUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is ElectricResistanceUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricResistanceUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -904,18 +888,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ElectricResistanceUnit> IQuantity<ElectricResistanceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not ElectricResistanceUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricResistanceUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

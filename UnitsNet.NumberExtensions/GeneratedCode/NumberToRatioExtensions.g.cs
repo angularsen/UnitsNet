@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToRatio
     /// </summary>
     public static class NumberToRatioExtensions
     {
-        /// <inheritdoc cref="Ratio.FromDecimalFractions(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Ratio.FromDecimalFractions(double)" />
         public static Ratio DecimalFractions<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToRatio
 #endif
             => Ratio.FromDecimalFractions(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Ratio.FromPartsPerBillion(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Ratio.FromPartsPerBillion(double)" />
         public static Ratio PartsPerBillion<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToRatio
 #endif
             => Ratio.FromPartsPerBillion(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Ratio.FromPartsPerMillion(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Ratio.FromPartsPerMillion(double)" />
         public static Ratio PartsPerMillion<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToRatio
 #endif
             => Ratio.FromPartsPerMillion(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Ratio.FromPartsPerThousand(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Ratio.FromPartsPerThousand(double)" />
         public static Ratio PartsPerThousand<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToRatio
 #endif
             => Ratio.FromPartsPerThousand(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Ratio.FromPartsPerTrillion(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Ratio.FromPartsPerTrillion(double)" />
         public static Ratio PartsPerTrillion<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToRatio
 #endif
             => Ratio.FromPartsPerTrillion(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Ratio.FromPercent(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Ratio.FromPercent(double)" />
         public static Ratio Percent<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

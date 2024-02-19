@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToApparentPower
     /// </summary>
     public static class NumberToApparentPowerExtensions
     {
-        /// <inheritdoc cref="ApparentPower.FromGigavoltamperes(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ApparentPower.FromGigavoltamperes(double)" />
         public static ApparentPower Gigavoltamperes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToApparentPower
 #endif
             => ApparentPower.FromGigavoltamperes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ApparentPower.FromKilovoltamperes(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ApparentPower.FromKilovoltamperes(double)" />
         public static ApparentPower Kilovoltamperes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToApparentPower
 #endif
             => ApparentPower.FromKilovoltamperes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ApparentPower.FromMegavoltamperes(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ApparentPower.FromMegavoltamperes(double)" />
         public static ApparentPower Megavoltamperes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToApparentPower
 #endif
             => ApparentPower.FromMegavoltamperes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ApparentPower.FromMicrovoltamperes(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ApparentPower.FromMicrovoltamperes(double)" />
         public static ApparentPower Microvoltamperes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToApparentPower
 #endif
             => ApparentPower.FromMicrovoltamperes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ApparentPower.FromMillivoltamperes(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ApparentPower.FromMillivoltamperes(double)" />
         public static ApparentPower Millivoltamperes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToApparentPower
 #endif
             => ApparentPower.FromMillivoltamperes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ApparentPower.FromVoltamperes(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ApparentPower.FromVoltamperes(double)" />
         public static ApparentPower Voltamperes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

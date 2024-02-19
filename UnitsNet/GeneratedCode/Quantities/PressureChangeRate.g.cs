@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct PressureChangeRate :
-        IArithmeticQuantity<PressureChangeRate, PressureChangeRateUnit, double>,
+        IArithmeticQuantity<PressureChangeRate, PressureChangeRateUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<PressureChangeRate, Duration, Pressure>,
         IMultiplyOperators<PressureChangeRate, TimeSpan, Pressure>,
@@ -171,7 +171,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -364,180 +364,162 @@ namespace UnitsNet
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.AtmospherePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate FromAtmospheresPerSecond(QuantityValue atmospherespersecond)
+        public static PressureChangeRate FromAtmospheresPerSecond(double atmospherespersecond)
         {
-            double value = (double) atmospherespersecond;
-            return new PressureChangeRate(value, PressureChangeRateUnit.AtmospherePerSecond);
+            return new PressureChangeRate(atmospherespersecond, PressureChangeRateUnit.AtmospherePerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.BarPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate FromBarsPerMinute(QuantityValue barsperminute)
+        public static PressureChangeRate FromBarsPerMinute(double barsperminute)
         {
-            double value = (double) barsperminute;
-            return new PressureChangeRate(value, PressureChangeRateUnit.BarPerMinute);
+            return new PressureChangeRate(barsperminute, PressureChangeRateUnit.BarPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.BarPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate FromBarsPerSecond(QuantityValue barspersecond)
+        public static PressureChangeRate FromBarsPerSecond(double barspersecond)
         {
-            double value = (double) barspersecond;
-            return new PressureChangeRate(value, PressureChangeRateUnit.BarPerSecond);
+            return new PressureChangeRate(barspersecond, PressureChangeRateUnit.BarPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.KilopascalPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate FromKilopascalsPerMinute(QuantityValue kilopascalsperminute)
+        public static PressureChangeRate FromKilopascalsPerMinute(double kilopascalsperminute)
         {
-            double value = (double) kilopascalsperminute;
-            return new PressureChangeRate(value, PressureChangeRateUnit.KilopascalPerMinute);
+            return new PressureChangeRate(kilopascalsperminute, PressureChangeRateUnit.KilopascalPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.KilopascalPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate FromKilopascalsPerSecond(QuantityValue kilopascalspersecond)
+        public static PressureChangeRate FromKilopascalsPerSecond(double kilopascalspersecond)
         {
-            double value = (double) kilopascalspersecond;
-            return new PressureChangeRate(value, PressureChangeRateUnit.KilopascalPerSecond);
+            return new PressureChangeRate(kilopascalspersecond, PressureChangeRateUnit.KilopascalPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate FromKilopoundsForcePerSquareInchPerMinute(QuantityValue kilopoundsforcepersquareinchperminute)
+        public static PressureChangeRate FromKilopoundsForcePerSquareInchPerMinute(double kilopoundsforcepersquareinchperminute)
         {
-            double value = (double) kilopoundsforcepersquareinchperminute;
-            return new PressureChangeRate(value, PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute);
+            return new PressureChangeRate(kilopoundsforcepersquareinchperminute, PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate FromKilopoundsForcePerSquareInchPerSecond(QuantityValue kilopoundsforcepersquareinchpersecond)
+        public static PressureChangeRate FromKilopoundsForcePerSquareInchPerSecond(double kilopoundsforcepersquareinchpersecond)
         {
-            double value = (double) kilopoundsforcepersquareinchpersecond;
-            return new PressureChangeRate(value, PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond);
+            return new PressureChangeRate(kilopoundsforcepersquareinchpersecond, PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.MegapascalPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate FromMegapascalsPerMinute(QuantityValue megapascalsperminute)
+        public static PressureChangeRate FromMegapascalsPerMinute(double megapascalsperminute)
         {
-            double value = (double) megapascalsperminute;
-            return new PressureChangeRate(value, PressureChangeRateUnit.MegapascalPerMinute);
+            return new PressureChangeRate(megapascalsperminute, PressureChangeRateUnit.MegapascalPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.MegapascalPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate FromMegapascalsPerSecond(QuantityValue megapascalspersecond)
+        public static PressureChangeRate FromMegapascalsPerSecond(double megapascalspersecond)
         {
-            double value = (double) megapascalspersecond;
-            return new PressureChangeRate(value, PressureChangeRateUnit.MegapascalPerSecond);
+            return new PressureChangeRate(megapascalspersecond, PressureChangeRateUnit.MegapascalPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate FromMegapoundsForcePerSquareInchPerMinute(QuantityValue megapoundsforcepersquareinchperminute)
+        public static PressureChangeRate FromMegapoundsForcePerSquareInchPerMinute(double megapoundsforcepersquareinchperminute)
         {
-            double value = (double) megapoundsforcepersquareinchperminute;
-            return new PressureChangeRate(value, PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute);
+            return new PressureChangeRate(megapoundsforcepersquareinchperminute, PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate FromMegapoundsForcePerSquareInchPerSecond(QuantityValue megapoundsforcepersquareinchpersecond)
+        public static PressureChangeRate FromMegapoundsForcePerSquareInchPerSecond(double megapoundsforcepersquareinchpersecond)
         {
-            double value = (double) megapoundsforcepersquareinchpersecond;
-            return new PressureChangeRate(value, PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond);
+            return new PressureChangeRate(megapoundsforcepersquareinchpersecond, PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.MillibarPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate FromMillibarsPerMinute(QuantityValue millibarsperminute)
+        public static PressureChangeRate FromMillibarsPerMinute(double millibarsperminute)
         {
-            double value = (double) millibarsperminute;
-            return new PressureChangeRate(value, PressureChangeRateUnit.MillibarPerMinute);
+            return new PressureChangeRate(millibarsperminute, PressureChangeRateUnit.MillibarPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.MillibarPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate FromMillibarsPerSecond(QuantityValue millibarspersecond)
+        public static PressureChangeRate FromMillibarsPerSecond(double millibarspersecond)
         {
-            double value = (double) millibarspersecond;
-            return new PressureChangeRate(value, PressureChangeRateUnit.MillibarPerSecond);
+            return new PressureChangeRate(millibarspersecond, PressureChangeRateUnit.MillibarPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.MillimeterOfMercuryPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate FromMillimetersOfMercuryPerSecond(QuantityValue millimetersofmercurypersecond)
+        public static PressureChangeRate FromMillimetersOfMercuryPerSecond(double millimetersofmercurypersecond)
         {
-            double value = (double) millimetersofmercurypersecond;
-            return new PressureChangeRate(value, PressureChangeRateUnit.MillimeterOfMercuryPerSecond);
+            return new PressureChangeRate(millimetersofmercurypersecond, PressureChangeRateUnit.MillimeterOfMercuryPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.PascalPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate FromPascalsPerMinute(QuantityValue pascalsperminute)
+        public static PressureChangeRate FromPascalsPerMinute(double pascalsperminute)
         {
-            double value = (double) pascalsperminute;
-            return new PressureChangeRate(value, PressureChangeRateUnit.PascalPerMinute);
+            return new PressureChangeRate(pascalsperminute, PressureChangeRateUnit.PascalPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.PascalPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate FromPascalsPerSecond(QuantityValue pascalspersecond)
+        public static PressureChangeRate FromPascalsPerSecond(double pascalspersecond)
         {
-            double value = (double) pascalspersecond;
-            return new PressureChangeRate(value, PressureChangeRateUnit.PascalPerSecond);
+            return new PressureChangeRate(pascalspersecond, PressureChangeRateUnit.PascalPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.PoundForcePerSquareInchPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate FromPoundsForcePerSquareInchPerMinute(QuantityValue poundsforcepersquareinchperminute)
+        public static PressureChangeRate FromPoundsForcePerSquareInchPerMinute(double poundsforcepersquareinchperminute)
         {
-            double value = (double) poundsforcepersquareinchperminute;
-            return new PressureChangeRate(value, PressureChangeRateUnit.PoundForcePerSquareInchPerMinute);
+            return new PressureChangeRate(poundsforcepersquareinchperminute, PressureChangeRateUnit.PoundForcePerSquareInchPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.PoundForcePerSquareInchPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate FromPoundsForcePerSquareInchPerSecond(QuantityValue poundsforcepersquareinchpersecond)
+        public static PressureChangeRate FromPoundsForcePerSquareInchPerSecond(double poundsforcepersquareinchpersecond)
         {
-            double value = (double) poundsforcepersquareinchpersecond;
-            return new PressureChangeRate(value, PressureChangeRateUnit.PoundForcePerSquareInchPerSecond);
+            return new PressureChangeRate(poundsforcepersquareinchpersecond, PressureChangeRateUnit.PoundForcePerSquareInchPerSecond);
         }
 
         /// <summary>
@@ -546,9 +528,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>PressureChangeRate unit value.</returns>
-        public static PressureChangeRate From(QuantityValue value, PressureChangeRateUnit fromUnit)
+        public static PressureChangeRate From(double value, PressureChangeRateUnit fromUnit)
         {
-            return new PressureChangeRate((double)value, fromUnit);
+            return new PressureChangeRate(value, fromUnit);
         }
 
         #endregion
@@ -985,15 +967,6 @@ namespace UnitsNet
             if (!(unit is PressureChangeRateUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PressureChangeRateUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is PressureChangeRateUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PressureChangeRateUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -1137,18 +1110,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<PressureChangeRateUnit> IQuantity<PressureChangeRateUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not PressureChangeRateUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PressureChangeRateUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

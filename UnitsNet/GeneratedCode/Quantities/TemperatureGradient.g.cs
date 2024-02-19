@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct TemperatureGradient :
-        IArithmeticQuantity<TemperatureGradient, TemperatureGradientUnit, double>,
+        IArithmeticQuantity<TemperatureGradient, TemperatureGradientUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<TemperatureGradient, Length, TemperatureDelta>,
 #endif
@@ -156,7 +156,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -251,40 +251,36 @@ namespace UnitsNet
         ///     Creates a <see cref="TemperatureGradient"/> from <see cref="TemperatureGradientUnit.DegreeCelsiusPerKilometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static TemperatureGradient FromDegreesCelsiusPerKilometer(QuantityValue degreescelsiusperkilometer)
+        public static TemperatureGradient FromDegreesCelsiusPerKilometer(double degreescelsiusperkilometer)
         {
-            double value = (double) degreescelsiusperkilometer;
-            return new TemperatureGradient(value, TemperatureGradientUnit.DegreeCelsiusPerKilometer);
+            return new TemperatureGradient(degreescelsiusperkilometer, TemperatureGradientUnit.DegreeCelsiusPerKilometer);
         }
 
         /// <summary>
         ///     Creates a <see cref="TemperatureGradient"/> from <see cref="TemperatureGradientUnit.DegreeCelsiusPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static TemperatureGradient FromDegreesCelsiusPerMeter(QuantityValue degreescelsiuspermeter)
+        public static TemperatureGradient FromDegreesCelsiusPerMeter(double degreescelsiuspermeter)
         {
-            double value = (double) degreescelsiuspermeter;
-            return new TemperatureGradient(value, TemperatureGradientUnit.DegreeCelsiusPerMeter);
+            return new TemperatureGradient(degreescelsiuspermeter, TemperatureGradientUnit.DegreeCelsiusPerMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="TemperatureGradient"/> from <see cref="TemperatureGradientUnit.DegreeFahrenheitPerFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static TemperatureGradient FromDegreesFahrenheitPerFoot(QuantityValue degreesfahrenheitperfoot)
+        public static TemperatureGradient FromDegreesFahrenheitPerFoot(double degreesfahrenheitperfoot)
         {
-            double value = (double) degreesfahrenheitperfoot;
-            return new TemperatureGradient(value, TemperatureGradientUnit.DegreeFahrenheitPerFoot);
+            return new TemperatureGradient(degreesfahrenheitperfoot, TemperatureGradientUnit.DegreeFahrenheitPerFoot);
         }
 
         /// <summary>
         ///     Creates a <see cref="TemperatureGradient"/> from <see cref="TemperatureGradientUnit.KelvinPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static TemperatureGradient FromKelvinsPerMeter(QuantityValue kelvinspermeter)
+        public static TemperatureGradient FromKelvinsPerMeter(double kelvinspermeter)
         {
-            double value = (double) kelvinspermeter;
-            return new TemperatureGradient(value, TemperatureGradientUnit.KelvinPerMeter);
+            return new TemperatureGradient(kelvinspermeter, TemperatureGradientUnit.KelvinPerMeter);
         }
 
         /// <summary>
@@ -293,9 +289,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>TemperatureGradient unit value.</returns>
-        public static TemperatureGradient From(QuantityValue value, TemperatureGradientUnit fromUnit)
+        public static TemperatureGradient From(double value, TemperatureGradientUnit fromUnit)
         {
-            return new TemperatureGradient((double)value, fromUnit);
+            return new TemperatureGradient(value, fromUnit);
         }
 
         #endregion
@@ -720,15 +716,6 @@ namespace UnitsNet
             if (!(unit is TemperatureGradientUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureGradientUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is TemperatureGradientUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureGradientUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -844,18 +831,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<TemperatureGradientUnit> IQuantity<TemperatureGradientUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not TemperatureGradientUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureGradientUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

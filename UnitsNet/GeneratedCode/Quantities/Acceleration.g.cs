@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct Acceleration :
-        IArithmeticQuantity<Acceleration, AccelerationUnit, double>,
+        IArithmeticQuantity<Acceleration, AccelerationUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<Acceleration, Mass, Force>,
         IDivisionOperators<Acceleration, Duration, Jerk>,
@@ -171,7 +171,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -336,140 +336,126 @@ namespace UnitsNet
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.CentimeterPerSecondSquared"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Acceleration FromCentimetersPerSecondSquared(QuantityValue centimeterspersecondsquared)
+        public static Acceleration FromCentimetersPerSecondSquared(double centimeterspersecondsquared)
         {
-            double value = (double) centimeterspersecondsquared;
-            return new Acceleration(value, AccelerationUnit.CentimeterPerSecondSquared);
+            return new Acceleration(centimeterspersecondsquared, AccelerationUnit.CentimeterPerSecondSquared);
         }
 
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.DecimeterPerSecondSquared"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Acceleration FromDecimetersPerSecondSquared(QuantityValue decimeterspersecondsquared)
+        public static Acceleration FromDecimetersPerSecondSquared(double decimeterspersecondsquared)
         {
-            double value = (double) decimeterspersecondsquared;
-            return new Acceleration(value, AccelerationUnit.DecimeterPerSecondSquared);
+            return new Acceleration(decimeterspersecondsquared, AccelerationUnit.DecimeterPerSecondSquared);
         }
 
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.FootPerSecondSquared"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Acceleration FromFeetPerSecondSquared(QuantityValue feetpersecondsquared)
+        public static Acceleration FromFeetPerSecondSquared(double feetpersecondsquared)
         {
-            double value = (double) feetpersecondsquared;
-            return new Acceleration(value, AccelerationUnit.FootPerSecondSquared);
+            return new Acceleration(feetpersecondsquared, AccelerationUnit.FootPerSecondSquared);
         }
 
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.InchPerSecondSquared"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Acceleration FromInchesPerSecondSquared(QuantityValue inchespersecondsquared)
+        public static Acceleration FromInchesPerSecondSquared(double inchespersecondsquared)
         {
-            double value = (double) inchespersecondsquared;
-            return new Acceleration(value, AccelerationUnit.InchPerSecondSquared);
+            return new Acceleration(inchespersecondsquared, AccelerationUnit.InchPerSecondSquared);
         }
 
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.KilometerPerSecondSquared"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Acceleration FromKilometersPerSecondSquared(QuantityValue kilometerspersecondsquared)
+        public static Acceleration FromKilometersPerSecondSquared(double kilometerspersecondsquared)
         {
-            double value = (double) kilometerspersecondsquared;
-            return new Acceleration(value, AccelerationUnit.KilometerPerSecondSquared);
+            return new Acceleration(kilometerspersecondsquared, AccelerationUnit.KilometerPerSecondSquared);
         }
 
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.KnotPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Acceleration FromKnotsPerHour(QuantityValue knotsperhour)
+        public static Acceleration FromKnotsPerHour(double knotsperhour)
         {
-            double value = (double) knotsperhour;
-            return new Acceleration(value, AccelerationUnit.KnotPerHour);
+            return new Acceleration(knotsperhour, AccelerationUnit.KnotPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.KnotPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Acceleration FromKnotsPerMinute(QuantityValue knotsperminute)
+        public static Acceleration FromKnotsPerMinute(double knotsperminute)
         {
-            double value = (double) knotsperminute;
-            return new Acceleration(value, AccelerationUnit.KnotPerMinute);
+            return new Acceleration(knotsperminute, AccelerationUnit.KnotPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.KnotPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Acceleration FromKnotsPerSecond(QuantityValue knotspersecond)
+        public static Acceleration FromKnotsPerSecond(double knotspersecond)
         {
-            double value = (double) knotspersecond;
-            return new Acceleration(value, AccelerationUnit.KnotPerSecond);
+            return new Acceleration(knotspersecond, AccelerationUnit.KnotPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.MeterPerSecondSquared"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Acceleration FromMetersPerSecondSquared(QuantityValue meterspersecondsquared)
+        public static Acceleration FromMetersPerSecondSquared(double meterspersecondsquared)
         {
-            double value = (double) meterspersecondsquared;
-            return new Acceleration(value, AccelerationUnit.MeterPerSecondSquared);
+            return new Acceleration(meterspersecondsquared, AccelerationUnit.MeterPerSecondSquared);
         }
 
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.MicrometerPerSecondSquared"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Acceleration FromMicrometersPerSecondSquared(QuantityValue micrometerspersecondsquared)
+        public static Acceleration FromMicrometersPerSecondSquared(double micrometerspersecondsquared)
         {
-            double value = (double) micrometerspersecondsquared;
-            return new Acceleration(value, AccelerationUnit.MicrometerPerSecondSquared);
+            return new Acceleration(micrometerspersecondsquared, AccelerationUnit.MicrometerPerSecondSquared);
         }
 
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.MillimeterPerSecondSquared"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Acceleration FromMillimetersPerSecondSquared(QuantityValue millimeterspersecondsquared)
+        public static Acceleration FromMillimetersPerSecondSquared(double millimeterspersecondsquared)
         {
-            double value = (double) millimeterspersecondsquared;
-            return new Acceleration(value, AccelerationUnit.MillimeterPerSecondSquared);
+            return new Acceleration(millimeterspersecondsquared, AccelerationUnit.MillimeterPerSecondSquared);
         }
 
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.MillistandardGravity"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Acceleration FromMillistandardGravity(QuantityValue millistandardgravity)
+        public static Acceleration FromMillistandardGravity(double millistandardgravity)
         {
-            double value = (double) millistandardgravity;
-            return new Acceleration(value, AccelerationUnit.MillistandardGravity);
+            return new Acceleration(millistandardgravity, AccelerationUnit.MillistandardGravity);
         }
 
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.NanometerPerSecondSquared"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Acceleration FromNanometersPerSecondSquared(QuantityValue nanometerspersecondsquared)
+        public static Acceleration FromNanometersPerSecondSquared(double nanometerspersecondsquared)
         {
-            double value = (double) nanometerspersecondsquared;
-            return new Acceleration(value, AccelerationUnit.NanometerPerSecondSquared);
+            return new Acceleration(nanometerspersecondsquared, AccelerationUnit.NanometerPerSecondSquared);
         }
 
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.StandardGravity"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Acceleration FromStandardGravity(QuantityValue standardgravity)
+        public static Acceleration FromStandardGravity(double standardgravity)
         {
-            double value = (double) standardgravity;
-            return new Acceleration(value, AccelerationUnit.StandardGravity);
+            return new Acceleration(standardgravity, AccelerationUnit.StandardGravity);
         }
 
         /// <summary>
@@ -478,9 +464,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Acceleration unit value.</returns>
-        public static Acceleration From(QuantityValue value, AccelerationUnit fromUnit)
+        public static Acceleration From(double value, AccelerationUnit fromUnit)
         {
-            return new Acceleration((double)value, fromUnit);
+            return new Acceleration(value, fromUnit);
         }
 
         #endregion
@@ -941,15 +927,6 @@ namespace UnitsNet
             if (!(unit is AccelerationUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AccelerationUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is AccelerationUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AccelerationUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -1085,18 +1062,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<AccelerationUnit> IQuantity<AccelerationUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not AccelerationUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AccelerationUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductivity
     /// </summary>
     public static class NumberToElectricConductivityExtensions
     {
-        /// <inheritdoc cref="ElectricConductivity.FromMicrosiemensPerCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductivity.FromMicrosiemensPerCentimeter(double)" />
         public static ElectricConductivity MicrosiemensPerCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductivity
 #endif
             => ElectricConductivity.FromMicrosiemensPerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductivity.FromMillisiemensPerCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductivity.FromMillisiemensPerCentimeter(double)" />
         public static ElectricConductivity MillisiemensPerCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductivity
 #endif
             => ElectricConductivity.FromMillisiemensPerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductivity.FromSiemensPerCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductivity.FromSiemensPerCentimeter(double)" />
         public static ElectricConductivity SiemensPerCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductivity
 #endif
             => ElectricConductivity.FromSiemensPerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductivity.FromSiemensPerFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductivity.FromSiemensPerFoot(double)" />
         public static ElectricConductivity SiemensPerFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductivity
 #endif
             => ElectricConductivity.FromSiemensPerFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductivity.FromSiemensPerInch(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductivity.FromSiemensPerInch(double)" />
         public static ElectricConductivity SiemensPerInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductivity
 #endif
             => ElectricConductivity.FromSiemensPerInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductivity.FromSiemensPerMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductivity.FromSiemensPerMeter(double)" />
         public static ElectricConductivity SiemensPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

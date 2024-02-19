@@ -37,7 +37,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct Compressibility :
-        IArithmeticQuantity<Compressibility, CompressibilityUnit, double>,
+        IArithmeticQuantity<Compressibility, CompressibilityUnit>,
         IComparable,
         IComparable<Compressibility>,
         IConvertible,
@@ -153,7 +153,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -269,70 +269,63 @@ namespace UnitsNet
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InverseAtmosphere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Compressibility FromInverseAtmospheres(QuantityValue inverseatmospheres)
+        public static Compressibility FromInverseAtmospheres(double inverseatmospheres)
         {
-            double value = (double) inverseatmospheres;
-            return new Compressibility(value, CompressibilityUnit.InverseAtmosphere);
+            return new Compressibility(inverseatmospheres, CompressibilityUnit.InverseAtmosphere);
         }
 
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InverseBar"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Compressibility FromInverseBars(QuantityValue inversebars)
+        public static Compressibility FromInverseBars(double inversebars)
         {
-            double value = (double) inversebars;
-            return new Compressibility(value, CompressibilityUnit.InverseBar);
+            return new Compressibility(inversebars, CompressibilityUnit.InverseBar);
         }
 
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InverseKilopascal"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Compressibility FromInverseKilopascals(QuantityValue inversekilopascals)
+        public static Compressibility FromInverseKilopascals(double inversekilopascals)
         {
-            double value = (double) inversekilopascals;
-            return new Compressibility(value, CompressibilityUnit.InverseKilopascal);
+            return new Compressibility(inversekilopascals, CompressibilityUnit.InverseKilopascal);
         }
 
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InverseMegapascal"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Compressibility FromInverseMegapascals(QuantityValue inversemegapascals)
+        public static Compressibility FromInverseMegapascals(double inversemegapascals)
         {
-            double value = (double) inversemegapascals;
-            return new Compressibility(value, CompressibilityUnit.InverseMegapascal);
+            return new Compressibility(inversemegapascals, CompressibilityUnit.InverseMegapascal);
         }
 
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InverseMillibar"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Compressibility FromInverseMillibars(QuantityValue inversemillibars)
+        public static Compressibility FromInverseMillibars(double inversemillibars)
         {
-            double value = (double) inversemillibars;
-            return new Compressibility(value, CompressibilityUnit.InverseMillibar);
+            return new Compressibility(inversemillibars, CompressibilityUnit.InverseMillibar);
         }
 
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InversePascal"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Compressibility FromInversePascals(QuantityValue inversepascals)
+        public static Compressibility FromInversePascals(double inversepascals)
         {
-            double value = (double) inversepascals;
-            return new Compressibility(value, CompressibilityUnit.InversePascal);
+            return new Compressibility(inversepascals, CompressibilityUnit.InversePascal);
         }
 
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InversePoundForcePerSquareInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Compressibility FromInversePoundsForcePerSquareInch(QuantityValue inversepoundsforcepersquareinch)
+        public static Compressibility FromInversePoundsForcePerSquareInch(double inversepoundsforcepersquareinch)
         {
-            double value = (double) inversepoundsforcepersquareinch;
-            return new Compressibility(value, CompressibilityUnit.InversePoundForcePerSquareInch);
+            return new Compressibility(inversepoundsforcepersquareinch, CompressibilityUnit.InversePoundForcePerSquareInch);
         }
 
         /// <summary>
@@ -341,9 +334,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Compressibility unit value.</returns>
-        public static Compressibility From(QuantityValue value, CompressibilityUnit fromUnit)
+        public static Compressibility From(double value, CompressibilityUnit fromUnit)
         {
-            return new Compressibility((double)value, fromUnit);
+            return new Compressibility(value, fromUnit);
         }
 
         #endregion
@@ -758,15 +751,6 @@ namespace UnitsNet
             if (!(unit is CompressibilityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(CompressibilityUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is CompressibilityUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(CompressibilityUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -888,18 +872,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<CompressibilityUnit> IQuantity<CompressibilityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not CompressibilityUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(CompressibilityUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     public readonly partial struct Molality :
-        IArithmeticQuantity<Molality, MolalityUnit, double>,
+        IArithmeticQuantity<Molality, MolalityUnit>,
         IComparable,
         IComparable<Molality>,
         IConvertible,
@@ -151,7 +151,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -232,20 +232,18 @@ namespace UnitsNet
         ///     Creates a <see cref="Molality"/> from <see cref="MolalityUnit.MolePerGram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molality FromMolesPerGram(QuantityValue molespergram)
+        public static Molality FromMolesPerGram(double molespergram)
         {
-            double value = (double) molespergram;
-            return new Molality(value, MolalityUnit.MolePerGram);
+            return new Molality(molespergram, MolalityUnit.MolePerGram);
         }
 
         /// <summary>
         ///     Creates a <see cref="Molality"/> from <see cref="MolalityUnit.MolePerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molality FromMolesPerKilogram(QuantityValue molesperkilogram)
+        public static Molality FromMolesPerKilogram(double molesperkilogram)
         {
-            double value = (double) molesperkilogram;
-            return new Molality(value, MolalityUnit.MolePerKilogram);
+            return new Molality(molesperkilogram, MolalityUnit.MolePerKilogram);
         }
 
         /// <summary>
@@ -254,9 +252,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Molality unit value.</returns>
-        public static Molality From(QuantityValue value, MolalityUnit fromUnit)
+        public static Molality From(double value, MolalityUnit fromUnit)
         {
-            return new Molality((double)value, fromUnit);
+            return new Molality(value, fromUnit);
         }
 
         #endregion
@@ -671,15 +669,6 @@ namespace UnitsNet
             if (!(unit is MolalityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolalityUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is MolalityUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolalityUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -791,18 +780,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<MolalityUnit> IQuantity<MolalityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not MolalityUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolalityUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

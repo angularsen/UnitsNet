@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     public readonly partial struct PorousMediumPermeability :
-        IArithmeticQuantity<PorousMediumPermeability, PorousMediumPermeabilityUnit, double>,
+        IArithmeticQuantity<PorousMediumPermeability, PorousMediumPermeabilityUnit>,
         IComparable,
         IComparable<PorousMediumPermeability>,
         IConvertible,
@@ -154,7 +154,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -256,50 +256,45 @@ namespace UnitsNet
         ///     Creates a <see cref="PorousMediumPermeability"/> from <see cref="PorousMediumPermeabilityUnit.Darcy"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PorousMediumPermeability FromDarcys(QuantityValue darcys)
+        public static PorousMediumPermeability FromDarcys(double darcys)
         {
-            double value = (double) darcys;
-            return new PorousMediumPermeability(value, PorousMediumPermeabilityUnit.Darcy);
+            return new PorousMediumPermeability(darcys, PorousMediumPermeabilityUnit.Darcy);
         }
 
         /// <summary>
         ///     Creates a <see cref="PorousMediumPermeability"/> from <see cref="PorousMediumPermeabilityUnit.Microdarcy"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PorousMediumPermeability FromMicrodarcys(QuantityValue microdarcys)
+        public static PorousMediumPermeability FromMicrodarcys(double microdarcys)
         {
-            double value = (double) microdarcys;
-            return new PorousMediumPermeability(value, PorousMediumPermeabilityUnit.Microdarcy);
+            return new PorousMediumPermeability(microdarcys, PorousMediumPermeabilityUnit.Microdarcy);
         }
 
         /// <summary>
         ///     Creates a <see cref="PorousMediumPermeability"/> from <see cref="PorousMediumPermeabilityUnit.Millidarcy"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PorousMediumPermeability FromMillidarcys(QuantityValue millidarcys)
+        public static PorousMediumPermeability FromMillidarcys(double millidarcys)
         {
-            double value = (double) millidarcys;
-            return new PorousMediumPermeability(value, PorousMediumPermeabilityUnit.Millidarcy);
+            return new PorousMediumPermeability(millidarcys, PorousMediumPermeabilityUnit.Millidarcy);
         }
 
         /// <summary>
         ///     Creates a <see cref="PorousMediumPermeability"/> from <see cref="PorousMediumPermeabilityUnit.SquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PorousMediumPermeability FromSquareCentimeters(QuantityValue squarecentimeters)
+        public static PorousMediumPermeability FromSquareCentimeters(double squarecentimeters)
         {
-            double value = (double) squarecentimeters;
-            return new PorousMediumPermeability(value, PorousMediumPermeabilityUnit.SquareCentimeter);
+            return new PorousMediumPermeability(squarecentimeters, PorousMediumPermeabilityUnit.SquareCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="PorousMediumPermeability"/> from <see cref="PorousMediumPermeabilityUnit.SquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PorousMediumPermeability FromSquareMeters(QuantityValue squaremeters)
+        public static PorousMediumPermeability FromSquareMeters(double squaremeters)
         {
-            double value = (double) squaremeters;
-            return new PorousMediumPermeability(value, PorousMediumPermeabilityUnit.SquareMeter);
+            return new PorousMediumPermeability(squaremeters, PorousMediumPermeabilityUnit.SquareMeter);
         }
 
         /// <summary>
@@ -308,9 +303,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>PorousMediumPermeability unit value.</returns>
-        public static PorousMediumPermeability From(QuantityValue value, PorousMediumPermeabilityUnit fromUnit)
+        public static PorousMediumPermeability From(double value, PorousMediumPermeabilityUnit fromUnit)
         {
-            return new PorousMediumPermeability((double)value, fromUnit);
+            return new PorousMediumPermeability(value, fromUnit);
         }
 
         #endregion
@@ -725,15 +720,6 @@ namespace UnitsNet
             if (!(unit is PorousMediumPermeabilityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PorousMediumPermeabilityUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is PorousMediumPermeabilityUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PorousMediumPermeabilityUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -851,18 +837,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<PorousMediumPermeabilityUnit> IQuantity<PorousMediumPermeabilityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not PorousMediumPermeabilityUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PorousMediumPermeabilityUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

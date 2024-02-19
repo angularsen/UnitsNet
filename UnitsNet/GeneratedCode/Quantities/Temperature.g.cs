@@ -37,7 +37,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct Temperature :
-        IQuantity<Temperature, TemperatureUnit, double>,
+        IQuantity<Temperature, TemperatureUnit>,
         IComparable,
         IComparable<Temperature>,
         IConvertible,
@@ -153,7 +153,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -290,100 +290,90 @@ namespace UnitsNet
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeCelsius"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Temperature FromDegreesCelsius(QuantityValue degreescelsius)
+        public static Temperature FromDegreesCelsius(double degreescelsius)
         {
-            double value = (double) degreescelsius;
-            return new Temperature(value, TemperatureUnit.DegreeCelsius);
+            return new Temperature(degreescelsius, TemperatureUnit.DegreeCelsius);
         }
 
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeDelisle"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Temperature FromDegreesDelisle(QuantityValue degreesdelisle)
+        public static Temperature FromDegreesDelisle(double degreesdelisle)
         {
-            double value = (double) degreesdelisle;
-            return new Temperature(value, TemperatureUnit.DegreeDelisle);
+            return new Temperature(degreesdelisle, TemperatureUnit.DegreeDelisle);
         }
 
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeFahrenheit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Temperature FromDegreesFahrenheit(QuantityValue degreesfahrenheit)
+        public static Temperature FromDegreesFahrenheit(double degreesfahrenheit)
         {
-            double value = (double) degreesfahrenheit;
-            return new Temperature(value, TemperatureUnit.DegreeFahrenheit);
+            return new Temperature(degreesfahrenheit, TemperatureUnit.DegreeFahrenheit);
         }
 
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeNewton"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Temperature FromDegreesNewton(QuantityValue degreesnewton)
+        public static Temperature FromDegreesNewton(double degreesnewton)
         {
-            double value = (double) degreesnewton;
-            return new Temperature(value, TemperatureUnit.DegreeNewton);
+            return new Temperature(degreesnewton, TemperatureUnit.DegreeNewton);
         }
 
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeRankine"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Temperature FromDegreesRankine(QuantityValue degreesrankine)
+        public static Temperature FromDegreesRankine(double degreesrankine)
         {
-            double value = (double) degreesrankine;
-            return new Temperature(value, TemperatureUnit.DegreeRankine);
+            return new Temperature(degreesrankine, TemperatureUnit.DegreeRankine);
         }
 
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeReaumur"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Temperature FromDegreesReaumur(QuantityValue degreesreaumur)
+        public static Temperature FromDegreesReaumur(double degreesreaumur)
         {
-            double value = (double) degreesreaumur;
-            return new Temperature(value, TemperatureUnit.DegreeReaumur);
+            return new Temperature(degreesreaumur, TemperatureUnit.DegreeReaumur);
         }
 
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeRoemer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Temperature FromDegreesRoemer(QuantityValue degreesroemer)
+        public static Temperature FromDegreesRoemer(double degreesroemer)
         {
-            double value = (double) degreesroemer;
-            return new Temperature(value, TemperatureUnit.DegreeRoemer);
+            return new Temperature(degreesroemer, TemperatureUnit.DegreeRoemer);
         }
 
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.Kelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Temperature FromKelvins(QuantityValue kelvins)
+        public static Temperature FromKelvins(double kelvins)
         {
-            double value = (double) kelvins;
-            return new Temperature(value, TemperatureUnit.Kelvin);
+            return new Temperature(kelvins, TemperatureUnit.Kelvin);
         }
 
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.MillidegreeCelsius"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Temperature FromMillidegreesCelsius(QuantityValue millidegreescelsius)
+        public static Temperature FromMillidegreesCelsius(double millidegreescelsius)
         {
-            double value = (double) millidegreescelsius;
-            return new Temperature(value, TemperatureUnit.MillidegreeCelsius);
+            return new Temperature(millidegreescelsius, TemperatureUnit.MillidegreeCelsius);
         }
 
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.SolarTemperature"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Temperature FromSolarTemperatures(QuantityValue solartemperatures)
+        public static Temperature FromSolarTemperatures(double solartemperatures)
         {
-            double value = (double) solartemperatures;
-            return new Temperature(value, TemperatureUnit.SolarTemperature);
+            return new Temperature(solartemperatures, TemperatureUnit.SolarTemperature);
         }
 
         /// <summary>
@@ -392,9 +382,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Temperature unit value.</returns>
-        public static Temperature From(QuantityValue value, TemperatureUnit fromUnit)
+        public static Temperature From(double value, TemperatureUnit fromUnit)
         {
-            return new Temperature((double)value, fromUnit);
+            return new Temperature(value, fromUnit);
         }
 
         #endregion
@@ -763,15 +753,6 @@ namespace UnitsNet
             if (!(unit is TemperatureUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is TemperatureUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -899,18 +880,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<TemperatureUnit> IQuantity<TemperatureUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not TemperatureUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

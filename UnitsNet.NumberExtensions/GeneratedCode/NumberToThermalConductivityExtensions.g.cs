@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToThermalConductivity
     /// </summary>
     public static class NumberToThermalConductivityExtensions
     {
-        /// <inheritdoc cref="ThermalConductivity.FromBtusPerHourFootFahrenheit(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ThermalConductivity.FromBtusPerHourFootFahrenheit(double)" />
         public static ThermalConductivity BtusPerHourFootFahrenheit<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToThermalConductivity
 #endif
             => ThermalConductivity.FromBtusPerHourFootFahrenheit(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ThermalConductivity.FromWattsPerMeterKelvin(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ThermalConductivity.FromWattsPerMeterKelvin(double)" />
         public static ThermalConductivity WattsPerMeterKelvin<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

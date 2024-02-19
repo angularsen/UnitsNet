@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     public readonly partial struct Permittivity :
-        IArithmeticQuantity<Permittivity, PermittivityUnit, double>,
+        IArithmeticQuantity<Permittivity, PermittivityUnit>,
         IComparable,
         IComparable<Permittivity>,
         IConvertible,
@@ -150,7 +150,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -224,10 +224,9 @@ namespace UnitsNet
         ///     Creates a <see cref="Permittivity"/> from <see cref="PermittivityUnit.FaradPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Permittivity FromFaradsPerMeter(QuantityValue faradspermeter)
+        public static Permittivity FromFaradsPerMeter(double faradspermeter)
         {
-            double value = (double) faradspermeter;
-            return new Permittivity(value, PermittivityUnit.FaradPerMeter);
+            return new Permittivity(faradspermeter, PermittivityUnit.FaradPerMeter);
         }
 
         /// <summary>
@@ -236,9 +235,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Permittivity unit value.</returns>
-        public static Permittivity From(QuantityValue value, PermittivityUnit fromUnit)
+        public static Permittivity From(double value, PermittivityUnit fromUnit)
         {
-            return new Permittivity((double)value, fromUnit);
+            return new Permittivity(value, fromUnit);
         }
 
         #endregion
@@ -653,15 +652,6 @@ namespace UnitsNet
             if (!(unit is PermittivityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PermittivityUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is PermittivityUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PermittivityUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -771,18 +761,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<PermittivityUnit> IQuantity<PermittivityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not PermittivityUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PermittivityUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

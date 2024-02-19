@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct VolumeFlow :
-        IArithmeticQuantity<VolumeFlow, VolumeFlowUnit, double>,
+        IArithmeticQuantity<VolumeFlow, VolumeFlowUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<VolumeFlow, Speed, Area>,
         IMultiplyOperators<VolumeFlow, Density, MassFlow>,
@@ -223,7 +223,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -759,670 +759,603 @@ namespace UnitsNet
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.AcreFootPerDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromAcreFeetPerDay(QuantityValue acrefeetperday)
+        public static VolumeFlow FromAcreFeetPerDay(double acrefeetperday)
         {
-            double value = (double) acrefeetperday;
-            return new VolumeFlow(value, VolumeFlowUnit.AcreFootPerDay);
+            return new VolumeFlow(acrefeetperday, VolumeFlowUnit.AcreFootPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.AcreFootPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromAcreFeetPerHour(QuantityValue acrefeetperhour)
+        public static VolumeFlow FromAcreFeetPerHour(double acrefeetperhour)
         {
-            double value = (double) acrefeetperhour;
-            return new VolumeFlow(value, VolumeFlowUnit.AcreFootPerHour);
+            return new VolumeFlow(acrefeetperhour, VolumeFlowUnit.AcreFootPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.AcreFootPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromAcreFeetPerMinute(QuantityValue acrefeetperminute)
+        public static VolumeFlow FromAcreFeetPerMinute(double acrefeetperminute)
         {
-            double value = (double) acrefeetperminute;
-            return new VolumeFlow(value, VolumeFlowUnit.AcreFootPerMinute);
+            return new VolumeFlow(acrefeetperminute, VolumeFlowUnit.AcreFootPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.AcreFootPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromAcreFeetPerSecond(QuantityValue acrefeetpersecond)
+        public static VolumeFlow FromAcreFeetPerSecond(double acrefeetpersecond)
         {
-            double value = (double) acrefeetpersecond;
-            return new VolumeFlow(value, VolumeFlowUnit.AcreFootPerSecond);
+            return new VolumeFlow(acrefeetpersecond, VolumeFlowUnit.AcreFootPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CentiliterPerDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromCentilitersPerDay(QuantityValue centilitersperday)
+        public static VolumeFlow FromCentilitersPerDay(double centilitersperday)
         {
-            double value = (double) centilitersperday;
-            return new VolumeFlow(value, VolumeFlowUnit.CentiliterPerDay);
+            return new VolumeFlow(centilitersperday, VolumeFlowUnit.CentiliterPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CentiliterPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromCentilitersPerHour(QuantityValue centilitersperhour)
+        public static VolumeFlow FromCentilitersPerHour(double centilitersperhour)
         {
-            double value = (double) centilitersperhour;
-            return new VolumeFlow(value, VolumeFlowUnit.CentiliterPerHour);
+            return new VolumeFlow(centilitersperhour, VolumeFlowUnit.CentiliterPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CentiliterPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromCentilitersPerMinute(QuantityValue centilitersperminute)
+        public static VolumeFlow FromCentilitersPerMinute(double centilitersperminute)
         {
-            double value = (double) centilitersperminute;
-            return new VolumeFlow(value, VolumeFlowUnit.CentiliterPerMinute);
+            return new VolumeFlow(centilitersperminute, VolumeFlowUnit.CentiliterPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CentiliterPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromCentilitersPerSecond(QuantityValue centiliterspersecond)
+        public static VolumeFlow FromCentilitersPerSecond(double centiliterspersecond)
         {
-            double value = (double) centiliterspersecond;
-            return new VolumeFlow(value, VolumeFlowUnit.CentiliterPerSecond);
+            return new VolumeFlow(centiliterspersecond, VolumeFlowUnit.CentiliterPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CubicCentimeterPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromCubicCentimetersPerMinute(QuantityValue cubiccentimetersperminute)
+        public static VolumeFlow FromCubicCentimetersPerMinute(double cubiccentimetersperminute)
         {
-            double value = (double) cubiccentimetersperminute;
-            return new VolumeFlow(value, VolumeFlowUnit.CubicCentimeterPerMinute);
+            return new VolumeFlow(cubiccentimetersperminute, VolumeFlowUnit.CubicCentimeterPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CubicDecimeterPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromCubicDecimetersPerMinute(QuantityValue cubicdecimetersperminute)
+        public static VolumeFlow FromCubicDecimetersPerMinute(double cubicdecimetersperminute)
         {
-            double value = (double) cubicdecimetersperminute;
-            return new VolumeFlow(value, VolumeFlowUnit.CubicDecimeterPerMinute);
+            return new VolumeFlow(cubicdecimetersperminute, VolumeFlowUnit.CubicDecimeterPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CubicFootPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromCubicFeetPerHour(QuantityValue cubicfeetperhour)
+        public static VolumeFlow FromCubicFeetPerHour(double cubicfeetperhour)
         {
-            double value = (double) cubicfeetperhour;
-            return new VolumeFlow(value, VolumeFlowUnit.CubicFootPerHour);
+            return new VolumeFlow(cubicfeetperhour, VolumeFlowUnit.CubicFootPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CubicFootPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromCubicFeetPerMinute(QuantityValue cubicfeetperminute)
+        public static VolumeFlow FromCubicFeetPerMinute(double cubicfeetperminute)
         {
-            double value = (double) cubicfeetperminute;
-            return new VolumeFlow(value, VolumeFlowUnit.CubicFootPerMinute);
+            return new VolumeFlow(cubicfeetperminute, VolumeFlowUnit.CubicFootPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CubicFootPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromCubicFeetPerSecond(QuantityValue cubicfeetpersecond)
+        public static VolumeFlow FromCubicFeetPerSecond(double cubicfeetpersecond)
         {
-            double value = (double) cubicfeetpersecond;
-            return new VolumeFlow(value, VolumeFlowUnit.CubicFootPerSecond);
+            return new VolumeFlow(cubicfeetpersecond, VolumeFlowUnit.CubicFootPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CubicMeterPerDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromCubicMetersPerDay(QuantityValue cubicmetersperday)
+        public static VolumeFlow FromCubicMetersPerDay(double cubicmetersperday)
         {
-            double value = (double) cubicmetersperday;
-            return new VolumeFlow(value, VolumeFlowUnit.CubicMeterPerDay);
+            return new VolumeFlow(cubicmetersperday, VolumeFlowUnit.CubicMeterPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CubicMeterPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromCubicMetersPerHour(QuantityValue cubicmetersperhour)
+        public static VolumeFlow FromCubicMetersPerHour(double cubicmetersperhour)
         {
-            double value = (double) cubicmetersperhour;
-            return new VolumeFlow(value, VolumeFlowUnit.CubicMeterPerHour);
+            return new VolumeFlow(cubicmetersperhour, VolumeFlowUnit.CubicMeterPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CubicMeterPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromCubicMetersPerMinute(QuantityValue cubicmetersperminute)
+        public static VolumeFlow FromCubicMetersPerMinute(double cubicmetersperminute)
         {
-            double value = (double) cubicmetersperminute;
-            return new VolumeFlow(value, VolumeFlowUnit.CubicMeterPerMinute);
+            return new VolumeFlow(cubicmetersperminute, VolumeFlowUnit.CubicMeterPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CubicMeterPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromCubicMetersPerSecond(QuantityValue cubicmeterspersecond)
+        public static VolumeFlow FromCubicMetersPerSecond(double cubicmeterspersecond)
         {
-            double value = (double) cubicmeterspersecond;
-            return new VolumeFlow(value, VolumeFlowUnit.CubicMeterPerSecond);
+            return new VolumeFlow(cubicmeterspersecond, VolumeFlowUnit.CubicMeterPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CubicMillimeterPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromCubicMillimetersPerSecond(QuantityValue cubicmillimeterspersecond)
+        public static VolumeFlow FromCubicMillimetersPerSecond(double cubicmillimeterspersecond)
         {
-            double value = (double) cubicmillimeterspersecond;
-            return new VolumeFlow(value, VolumeFlowUnit.CubicMillimeterPerSecond);
+            return new VolumeFlow(cubicmillimeterspersecond, VolumeFlowUnit.CubicMillimeterPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CubicYardPerDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromCubicYardsPerDay(QuantityValue cubicyardsperday)
+        public static VolumeFlow FromCubicYardsPerDay(double cubicyardsperday)
         {
-            double value = (double) cubicyardsperday;
-            return new VolumeFlow(value, VolumeFlowUnit.CubicYardPerDay);
+            return new VolumeFlow(cubicyardsperday, VolumeFlowUnit.CubicYardPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CubicYardPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromCubicYardsPerHour(QuantityValue cubicyardsperhour)
+        public static VolumeFlow FromCubicYardsPerHour(double cubicyardsperhour)
         {
-            double value = (double) cubicyardsperhour;
-            return new VolumeFlow(value, VolumeFlowUnit.CubicYardPerHour);
+            return new VolumeFlow(cubicyardsperhour, VolumeFlowUnit.CubicYardPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CubicYardPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromCubicYardsPerMinute(QuantityValue cubicyardsperminute)
+        public static VolumeFlow FromCubicYardsPerMinute(double cubicyardsperminute)
         {
-            double value = (double) cubicyardsperminute;
-            return new VolumeFlow(value, VolumeFlowUnit.CubicYardPerMinute);
+            return new VolumeFlow(cubicyardsperminute, VolumeFlowUnit.CubicYardPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CubicYardPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromCubicYardsPerSecond(QuantityValue cubicyardspersecond)
+        public static VolumeFlow FromCubicYardsPerSecond(double cubicyardspersecond)
         {
-            double value = (double) cubicyardspersecond;
-            return new VolumeFlow(value, VolumeFlowUnit.CubicYardPerSecond);
+            return new VolumeFlow(cubicyardspersecond, VolumeFlowUnit.CubicYardPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.DeciliterPerDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromDecilitersPerDay(QuantityValue decilitersperday)
+        public static VolumeFlow FromDecilitersPerDay(double decilitersperday)
         {
-            double value = (double) decilitersperday;
-            return new VolumeFlow(value, VolumeFlowUnit.DeciliterPerDay);
+            return new VolumeFlow(decilitersperday, VolumeFlowUnit.DeciliterPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.DeciliterPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromDecilitersPerHour(QuantityValue decilitersperhour)
+        public static VolumeFlow FromDecilitersPerHour(double decilitersperhour)
         {
-            double value = (double) decilitersperhour;
-            return new VolumeFlow(value, VolumeFlowUnit.DeciliterPerHour);
+            return new VolumeFlow(decilitersperhour, VolumeFlowUnit.DeciliterPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.DeciliterPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromDecilitersPerMinute(QuantityValue decilitersperminute)
+        public static VolumeFlow FromDecilitersPerMinute(double decilitersperminute)
         {
-            double value = (double) decilitersperminute;
-            return new VolumeFlow(value, VolumeFlowUnit.DeciliterPerMinute);
+            return new VolumeFlow(decilitersperminute, VolumeFlowUnit.DeciliterPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.DeciliterPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromDecilitersPerSecond(QuantityValue deciliterspersecond)
+        public static VolumeFlow FromDecilitersPerSecond(double deciliterspersecond)
         {
-            double value = (double) deciliterspersecond;
-            return new VolumeFlow(value, VolumeFlowUnit.DeciliterPerSecond);
+            return new VolumeFlow(deciliterspersecond, VolumeFlowUnit.DeciliterPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.KiloliterPerDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromKilolitersPerDay(QuantityValue kilolitersperday)
+        public static VolumeFlow FromKilolitersPerDay(double kilolitersperday)
         {
-            double value = (double) kilolitersperday;
-            return new VolumeFlow(value, VolumeFlowUnit.KiloliterPerDay);
+            return new VolumeFlow(kilolitersperday, VolumeFlowUnit.KiloliterPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.KiloliterPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromKilolitersPerHour(QuantityValue kilolitersperhour)
+        public static VolumeFlow FromKilolitersPerHour(double kilolitersperhour)
         {
-            double value = (double) kilolitersperhour;
-            return new VolumeFlow(value, VolumeFlowUnit.KiloliterPerHour);
+            return new VolumeFlow(kilolitersperhour, VolumeFlowUnit.KiloliterPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.KiloliterPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromKilolitersPerMinute(QuantityValue kilolitersperminute)
+        public static VolumeFlow FromKilolitersPerMinute(double kilolitersperminute)
         {
-            double value = (double) kilolitersperminute;
-            return new VolumeFlow(value, VolumeFlowUnit.KiloliterPerMinute);
+            return new VolumeFlow(kilolitersperminute, VolumeFlowUnit.KiloliterPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.KiloliterPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromKilolitersPerSecond(QuantityValue kiloliterspersecond)
+        public static VolumeFlow FromKilolitersPerSecond(double kiloliterspersecond)
         {
-            double value = (double) kiloliterspersecond;
-            return new VolumeFlow(value, VolumeFlowUnit.KiloliterPerSecond);
+            return new VolumeFlow(kiloliterspersecond, VolumeFlowUnit.KiloliterPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.KilousGallonPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromKilousGallonsPerMinute(QuantityValue kilousgallonsperminute)
+        public static VolumeFlow FromKilousGallonsPerMinute(double kilousgallonsperminute)
         {
-            double value = (double) kilousgallonsperminute;
-            return new VolumeFlow(value, VolumeFlowUnit.KilousGallonPerMinute);
+            return new VolumeFlow(kilousgallonsperminute, VolumeFlowUnit.KilousGallonPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.LiterPerDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromLitersPerDay(QuantityValue litersperday)
+        public static VolumeFlow FromLitersPerDay(double litersperday)
         {
-            double value = (double) litersperday;
-            return new VolumeFlow(value, VolumeFlowUnit.LiterPerDay);
+            return new VolumeFlow(litersperday, VolumeFlowUnit.LiterPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.LiterPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromLitersPerHour(QuantityValue litersperhour)
+        public static VolumeFlow FromLitersPerHour(double litersperhour)
         {
-            double value = (double) litersperhour;
-            return new VolumeFlow(value, VolumeFlowUnit.LiterPerHour);
+            return new VolumeFlow(litersperhour, VolumeFlowUnit.LiterPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.LiterPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromLitersPerMinute(QuantityValue litersperminute)
+        public static VolumeFlow FromLitersPerMinute(double litersperminute)
         {
-            double value = (double) litersperminute;
-            return new VolumeFlow(value, VolumeFlowUnit.LiterPerMinute);
+            return new VolumeFlow(litersperminute, VolumeFlowUnit.LiterPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.LiterPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromLitersPerSecond(QuantityValue literspersecond)
+        public static VolumeFlow FromLitersPerSecond(double literspersecond)
         {
-            double value = (double) literspersecond;
-            return new VolumeFlow(value, VolumeFlowUnit.LiterPerSecond);
+            return new VolumeFlow(literspersecond, VolumeFlowUnit.LiterPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MegaliterPerDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromMegalitersPerDay(QuantityValue megalitersperday)
+        public static VolumeFlow FromMegalitersPerDay(double megalitersperday)
         {
-            double value = (double) megalitersperday;
-            return new VolumeFlow(value, VolumeFlowUnit.MegaliterPerDay);
+            return new VolumeFlow(megalitersperday, VolumeFlowUnit.MegaliterPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MegaliterPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromMegalitersPerHour(QuantityValue megalitersperhour)
+        public static VolumeFlow FromMegalitersPerHour(double megalitersperhour)
         {
-            double value = (double) megalitersperhour;
-            return new VolumeFlow(value, VolumeFlowUnit.MegaliterPerHour);
+            return new VolumeFlow(megalitersperhour, VolumeFlowUnit.MegaliterPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MegaliterPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromMegalitersPerMinute(QuantityValue megalitersperminute)
+        public static VolumeFlow FromMegalitersPerMinute(double megalitersperminute)
         {
-            double value = (double) megalitersperminute;
-            return new VolumeFlow(value, VolumeFlowUnit.MegaliterPerMinute);
+            return new VolumeFlow(megalitersperminute, VolumeFlowUnit.MegaliterPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MegaliterPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromMegalitersPerSecond(QuantityValue megaliterspersecond)
+        public static VolumeFlow FromMegalitersPerSecond(double megaliterspersecond)
         {
-            double value = (double) megaliterspersecond;
-            return new VolumeFlow(value, VolumeFlowUnit.MegaliterPerSecond);
+            return new VolumeFlow(megaliterspersecond, VolumeFlowUnit.MegaliterPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MegaukGallonPerDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromMegaukGallonsPerDay(QuantityValue megaukgallonsperday)
+        public static VolumeFlow FromMegaukGallonsPerDay(double megaukgallonsperday)
         {
-            double value = (double) megaukgallonsperday;
-            return new VolumeFlow(value, VolumeFlowUnit.MegaukGallonPerDay);
+            return new VolumeFlow(megaukgallonsperday, VolumeFlowUnit.MegaukGallonPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MegaukGallonPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromMegaukGallonsPerSecond(QuantityValue megaukgallonspersecond)
+        public static VolumeFlow FromMegaukGallonsPerSecond(double megaukgallonspersecond)
         {
-            double value = (double) megaukgallonspersecond;
-            return new VolumeFlow(value, VolumeFlowUnit.MegaukGallonPerSecond);
+            return new VolumeFlow(megaukgallonspersecond, VolumeFlowUnit.MegaukGallonPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MegausGallonPerDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromMegausGallonsPerDay(QuantityValue megausgallonsperday)
+        public static VolumeFlow FromMegausGallonsPerDay(double megausgallonsperday)
         {
-            double value = (double) megausgallonsperday;
-            return new VolumeFlow(value, VolumeFlowUnit.MegausGallonPerDay);
+            return new VolumeFlow(megausgallonsperday, VolumeFlowUnit.MegausGallonPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MicroliterPerDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromMicrolitersPerDay(QuantityValue microlitersperday)
+        public static VolumeFlow FromMicrolitersPerDay(double microlitersperday)
         {
-            double value = (double) microlitersperday;
-            return new VolumeFlow(value, VolumeFlowUnit.MicroliterPerDay);
+            return new VolumeFlow(microlitersperday, VolumeFlowUnit.MicroliterPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MicroliterPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromMicrolitersPerHour(QuantityValue microlitersperhour)
+        public static VolumeFlow FromMicrolitersPerHour(double microlitersperhour)
         {
-            double value = (double) microlitersperhour;
-            return new VolumeFlow(value, VolumeFlowUnit.MicroliterPerHour);
+            return new VolumeFlow(microlitersperhour, VolumeFlowUnit.MicroliterPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MicroliterPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromMicrolitersPerMinute(QuantityValue microlitersperminute)
+        public static VolumeFlow FromMicrolitersPerMinute(double microlitersperminute)
         {
-            double value = (double) microlitersperminute;
-            return new VolumeFlow(value, VolumeFlowUnit.MicroliterPerMinute);
+            return new VolumeFlow(microlitersperminute, VolumeFlowUnit.MicroliterPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MicroliterPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromMicrolitersPerSecond(QuantityValue microliterspersecond)
+        public static VolumeFlow FromMicrolitersPerSecond(double microliterspersecond)
         {
-            double value = (double) microliterspersecond;
-            return new VolumeFlow(value, VolumeFlowUnit.MicroliterPerSecond);
+            return new VolumeFlow(microliterspersecond, VolumeFlowUnit.MicroliterPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MilliliterPerDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromMillilitersPerDay(QuantityValue millilitersperday)
+        public static VolumeFlow FromMillilitersPerDay(double millilitersperday)
         {
-            double value = (double) millilitersperday;
-            return new VolumeFlow(value, VolumeFlowUnit.MilliliterPerDay);
+            return new VolumeFlow(millilitersperday, VolumeFlowUnit.MilliliterPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MilliliterPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromMillilitersPerHour(QuantityValue millilitersperhour)
+        public static VolumeFlow FromMillilitersPerHour(double millilitersperhour)
         {
-            double value = (double) millilitersperhour;
-            return new VolumeFlow(value, VolumeFlowUnit.MilliliterPerHour);
+            return new VolumeFlow(millilitersperhour, VolumeFlowUnit.MilliliterPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MilliliterPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromMillilitersPerMinute(QuantityValue millilitersperminute)
+        public static VolumeFlow FromMillilitersPerMinute(double millilitersperminute)
         {
-            double value = (double) millilitersperminute;
-            return new VolumeFlow(value, VolumeFlowUnit.MilliliterPerMinute);
+            return new VolumeFlow(millilitersperminute, VolumeFlowUnit.MilliliterPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MilliliterPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromMillilitersPerSecond(QuantityValue milliliterspersecond)
+        public static VolumeFlow FromMillilitersPerSecond(double milliliterspersecond)
         {
-            double value = (double) milliliterspersecond;
-            return new VolumeFlow(value, VolumeFlowUnit.MilliliterPerSecond);
+            return new VolumeFlow(milliliterspersecond, VolumeFlowUnit.MilliliterPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MillionUsGallonPerDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromMillionUsGallonsPerDay(QuantityValue millionusgallonsperday)
+        public static VolumeFlow FromMillionUsGallonsPerDay(double millionusgallonsperday)
         {
-            double value = (double) millionusgallonsperday;
-            return new VolumeFlow(value, VolumeFlowUnit.MillionUsGallonPerDay);
+            return new VolumeFlow(millionusgallonsperday, VolumeFlowUnit.MillionUsGallonPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.NanoliterPerDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromNanolitersPerDay(QuantityValue nanolitersperday)
+        public static VolumeFlow FromNanolitersPerDay(double nanolitersperday)
         {
-            double value = (double) nanolitersperday;
-            return new VolumeFlow(value, VolumeFlowUnit.NanoliterPerDay);
+            return new VolumeFlow(nanolitersperday, VolumeFlowUnit.NanoliterPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.NanoliterPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromNanolitersPerHour(QuantityValue nanolitersperhour)
+        public static VolumeFlow FromNanolitersPerHour(double nanolitersperhour)
         {
-            double value = (double) nanolitersperhour;
-            return new VolumeFlow(value, VolumeFlowUnit.NanoliterPerHour);
+            return new VolumeFlow(nanolitersperhour, VolumeFlowUnit.NanoliterPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.NanoliterPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromNanolitersPerMinute(QuantityValue nanolitersperminute)
+        public static VolumeFlow FromNanolitersPerMinute(double nanolitersperminute)
         {
-            double value = (double) nanolitersperminute;
-            return new VolumeFlow(value, VolumeFlowUnit.NanoliterPerMinute);
+            return new VolumeFlow(nanolitersperminute, VolumeFlowUnit.NanoliterPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.NanoliterPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromNanolitersPerSecond(QuantityValue nanoliterspersecond)
+        public static VolumeFlow FromNanolitersPerSecond(double nanoliterspersecond)
         {
-            double value = (double) nanoliterspersecond;
-            return new VolumeFlow(value, VolumeFlowUnit.NanoliterPerSecond);
+            return new VolumeFlow(nanoliterspersecond, VolumeFlowUnit.NanoliterPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.OilBarrelPerDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromOilBarrelsPerDay(QuantityValue oilbarrelsperday)
+        public static VolumeFlow FromOilBarrelsPerDay(double oilbarrelsperday)
         {
-            double value = (double) oilbarrelsperday;
-            return new VolumeFlow(value, VolumeFlowUnit.OilBarrelPerDay);
+            return new VolumeFlow(oilbarrelsperday, VolumeFlowUnit.OilBarrelPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.OilBarrelPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromOilBarrelsPerHour(QuantityValue oilbarrelsperhour)
+        public static VolumeFlow FromOilBarrelsPerHour(double oilbarrelsperhour)
         {
-            double value = (double) oilbarrelsperhour;
-            return new VolumeFlow(value, VolumeFlowUnit.OilBarrelPerHour);
+            return new VolumeFlow(oilbarrelsperhour, VolumeFlowUnit.OilBarrelPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.OilBarrelPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromOilBarrelsPerMinute(QuantityValue oilbarrelsperminute)
+        public static VolumeFlow FromOilBarrelsPerMinute(double oilbarrelsperminute)
         {
-            double value = (double) oilbarrelsperminute;
-            return new VolumeFlow(value, VolumeFlowUnit.OilBarrelPerMinute);
+            return new VolumeFlow(oilbarrelsperminute, VolumeFlowUnit.OilBarrelPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.OilBarrelPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromOilBarrelsPerSecond(QuantityValue oilbarrelspersecond)
+        public static VolumeFlow FromOilBarrelsPerSecond(double oilbarrelspersecond)
         {
-            double value = (double) oilbarrelspersecond;
-            return new VolumeFlow(value, VolumeFlowUnit.OilBarrelPerSecond);
+            return new VolumeFlow(oilbarrelspersecond, VolumeFlowUnit.OilBarrelPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.UkGallonPerDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromUkGallonsPerDay(QuantityValue ukgallonsperday)
+        public static VolumeFlow FromUkGallonsPerDay(double ukgallonsperday)
         {
-            double value = (double) ukgallonsperday;
-            return new VolumeFlow(value, VolumeFlowUnit.UkGallonPerDay);
+            return new VolumeFlow(ukgallonsperday, VolumeFlowUnit.UkGallonPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.UkGallonPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromUkGallonsPerHour(QuantityValue ukgallonsperhour)
+        public static VolumeFlow FromUkGallonsPerHour(double ukgallonsperhour)
         {
-            double value = (double) ukgallonsperhour;
-            return new VolumeFlow(value, VolumeFlowUnit.UkGallonPerHour);
+            return new VolumeFlow(ukgallonsperhour, VolumeFlowUnit.UkGallonPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.UkGallonPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromUkGallonsPerMinute(QuantityValue ukgallonsperminute)
+        public static VolumeFlow FromUkGallonsPerMinute(double ukgallonsperminute)
         {
-            double value = (double) ukgallonsperminute;
-            return new VolumeFlow(value, VolumeFlowUnit.UkGallonPerMinute);
+            return new VolumeFlow(ukgallonsperminute, VolumeFlowUnit.UkGallonPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.UkGallonPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromUkGallonsPerSecond(QuantityValue ukgallonspersecond)
+        public static VolumeFlow FromUkGallonsPerSecond(double ukgallonspersecond)
         {
-            double value = (double) ukgallonspersecond;
-            return new VolumeFlow(value, VolumeFlowUnit.UkGallonPerSecond);
+            return new VolumeFlow(ukgallonspersecond, VolumeFlowUnit.UkGallonPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.UsGallonPerDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromUsGallonsPerDay(QuantityValue usgallonsperday)
+        public static VolumeFlow FromUsGallonsPerDay(double usgallonsperday)
         {
-            double value = (double) usgallonsperday;
-            return new VolumeFlow(value, VolumeFlowUnit.UsGallonPerDay);
+            return new VolumeFlow(usgallonsperday, VolumeFlowUnit.UsGallonPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.UsGallonPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromUsGallonsPerHour(QuantityValue usgallonsperhour)
+        public static VolumeFlow FromUsGallonsPerHour(double usgallonsperhour)
         {
-            double value = (double) usgallonsperhour;
-            return new VolumeFlow(value, VolumeFlowUnit.UsGallonPerHour);
+            return new VolumeFlow(usgallonsperhour, VolumeFlowUnit.UsGallonPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.UsGallonPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromUsGallonsPerMinute(QuantityValue usgallonsperminute)
+        public static VolumeFlow FromUsGallonsPerMinute(double usgallonsperminute)
         {
-            double value = (double) usgallonsperminute;
-            return new VolumeFlow(value, VolumeFlowUnit.UsGallonPerMinute);
+            return new VolumeFlow(usgallonsperminute, VolumeFlowUnit.UsGallonPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.UsGallonPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromUsGallonsPerSecond(QuantityValue usgallonspersecond)
+        public static VolumeFlow FromUsGallonsPerSecond(double usgallonspersecond)
         {
-            double value = (double) usgallonspersecond;
-            return new VolumeFlow(value, VolumeFlowUnit.UsGallonPerSecond);
+            return new VolumeFlow(usgallonspersecond, VolumeFlowUnit.UsGallonPerSecond);
         }
 
         /// <summary>
@@ -1431,9 +1364,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>VolumeFlow unit value.</returns>
-        public static VolumeFlow From(QuantityValue value, VolumeFlowUnit fromUnit)
+        public static VolumeFlow From(double value, VolumeFlowUnit fromUnit)
         {
-            return new VolumeFlow((double)value, fromUnit);
+            return new VolumeFlow(value, fromUnit);
         }
 
         #endregion
@@ -1888,15 +1821,6 @@ namespace UnitsNet
             if (!(unit is VolumeFlowUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeFlowUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is VolumeFlowUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeFlowUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -2138,18 +2062,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<VolumeFlowUnit> IQuantity<VolumeFlowUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not VolumeFlowUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeFlowUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

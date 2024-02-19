@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToLevel
     /// </summary>
     public static class NumberToLevelExtensions
     {
-        /// <inheritdoc cref="Level.FromDecibels(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Level.FromDecibels(double)" />
         public static Level Decibels<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToLevel
 #endif
             => Level.FromDecibels(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Level.FromNepers(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Level.FromNepers(double)" />
         public static Level Nepers<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

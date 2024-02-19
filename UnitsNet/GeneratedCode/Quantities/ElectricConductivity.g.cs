@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     public readonly partial struct ElectricConductivity :
-        IArithmeticQuantity<ElectricConductivity, ElectricConductivityUnit, double>,
+        IArithmeticQuantity<ElectricConductivity, ElectricConductivityUnit>,
         IComparable,
         IComparable<ElectricConductivity>,
         IConvertible,
@@ -155,7 +155,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -264,60 +264,54 @@ namespace UnitsNet
         ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.MicrosiemensPerCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricConductivity FromMicrosiemensPerCentimeter(QuantityValue microsiemenspercentimeter)
+        public static ElectricConductivity FromMicrosiemensPerCentimeter(double microsiemenspercentimeter)
         {
-            double value = (double) microsiemenspercentimeter;
-            return new ElectricConductivity(value, ElectricConductivityUnit.MicrosiemensPerCentimeter);
+            return new ElectricConductivity(microsiemenspercentimeter, ElectricConductivityUnit.MicrosiemensPerCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.MillisiemensPerCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricConductivity FromMillisiemensPerCentimeter(QuantityValue millisiemenspercentimeter)
+        public static ElectricConductivity FromMillisiemensPerCentimeter(double millisiemenspercentimeter)
         {
-            double value = (double) millisiemenspercentimeter;
-            return new ElectricConductivity(value, ElectricConductivityUnit.MillisiemensPerCentimeter);
+            return new ElectricConductivity(millisiemenspercentimeter, ElectricConductivityUnit.MillisiemensPerCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.SiemensPerCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricConductivity FromSiemensPerCentimeter(QuantityValue siemenspercentimeter)
+        public static ElectricConductivity FromSiemensPerCentimeter(double siemenspercentimeter)
         {
-            double value = (double) siemenspercentimeter;
-            return new ElectricConductivity(value, ElectricConductivityUnit.SiemensPerCentimeter);
+            return new ElectricConductivity(siemenspercentimeter, ElectricConductivityUnit.SiemensPerCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.SiemensPerFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricConductivity FromSiemensPerFoot(QuantityValue siemensperfoot)
+        public static ElectricConductivity FromSiemensPerFoot(double siemensperfoot)
         {
-            double value = (double) siemensperfoot;
-            return new ElectricConductivity(value, ElectricConductivityUnit.SiemensPerFoot);
+            return new ElectricConductivity(siemensperfoot, ElectricConductivityUnit.SiemensPerFoot);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.SiemensPerInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricConductivity FromSiemensPerInch(QuantityValue siemensperinch)
+        public static ElectricConductivity FromSiemensPerInch(double siemensperinch)
         {
-            double value = (double) siemensperinch;
-            return new ElectricConductivity(value, ElectricConductivityUnit.SiemensPerInch);
+            return new ElectricConductivity(siemensperinch, ElectricConductivityUnit.SiemensPerInch);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.SiemensPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricConductivity FromSiemensPerMeter(QuantityValue siemenspermeter)
+        public static ElectricConductivity FromSiemensPerMeter(double siemenspermeter)
         {
-            double value = (double) siemenspermeter;
-            return new ElectricConductivity(value, ElectricConductivityUnit.SiemensPerMeter);
+            return new ElectricConductivity(siemenspermeter, ElectricConductivityUnit.SiemensPerMeter);
         }
 
         /// <summary>
@@ -326,9 +320,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricConductivity unit value.</returns>
-        public static ElectricConductivity From(QuantityValue value, ElectricConductivityUnit fromUnit)
+        public static ElectricConductivity From(double value, ElectricConductivityUnit fromUnit)
         {
-            return new ElectricConductivity((double)value, fromUnit);
+            return new ElectricConductivity(value, fromUnit);
         }
 
         #endregion
@@ -754,15 +748,6 @@ namespace UnitsNet
             if (!(unit is ElectricConductivityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricConductivityUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is ElectricConductivityUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricConductivityUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -882,18 +867,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ElectricConductivityUnit> IQuantity<ElectricConductivityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not ElectricConductivityUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricConductivityUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

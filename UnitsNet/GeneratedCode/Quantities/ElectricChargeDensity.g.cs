@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     public readonly partial struct ElectricChargeDensity :
-        IArithmeticQuantity<ElectricChargeDensity, ElectricChargeDensityUnit, double>,
+        IArithmeticQuantity<ElectricChargeDensity, ElectricChargeDensityUnit>,
         IComparable,
         IComparable<ElectricChargeDensity>,
         IConvertible,
@@ -150,7 +150,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -224,10 +224,9 @@ namespace UnitsNet
         ///     Creates a <see cref="ElectricChargeDensity"/> from <see cref="ElectricChargeDensityUnit.CoulombPerCubicMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricChargeDensity FromCoulombsPerCubicMeter(QuantityValue coulombspercubicmeter)
+        public static ElectricChargeDensity FromCoulombsPerCubicMeter(double coulombspercubicmeter)
         {
-            double value = (double) coulombspercubicmeter;
-            return new ElectricChargeDensity(value, ElectricChargeDensityUnit.CoulombPerCubicMeter);
+            return new ElectricChargeDensity(coulombspercubicmeter, ElectricChargeDensityUnit.CoulombPerCubicMeter);
         }
 
         /// <summary>
@@ -236,9 +235,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricChargeDensity unit value.</returns>
-        public static ElectricChargeDensity From(QuantityValue value, ElectricChargeDensityUnit fromUnit)
+        public static ElectricChargeDensity From(double value, ElectricChargeDensityUnit fromUnit)
         {
-            return new ElectricChargeDensity((double)value, fromUnit);
+            return new ElectricChargeDensity(value, fromUnit);
         }
 
         #endregion
@@ -653,15 +652,6 @@ namespace UnitsNet
             if (!(unit is ElectricChargeDensityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricChargeDensityUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is ElectricChargeDensityUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricChargeDensityUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -771,18 +761,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ElectricChargeDensityUnit> IQuantity<ElectricChargeDensityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not ElectricChargeDensityUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricChargeDensityUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

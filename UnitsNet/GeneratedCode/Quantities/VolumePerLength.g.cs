@@ -37,7 +37,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct VolumePerLength :
-        IArithmeticQuantity<VolumePerLength, VolumePerLengthUnit, double>,
+        IArithmeticQuantity<VolumePerLength, VolumePerLengthUnit>,
         IComparable,
         IComparable<VolumePerLength>,
         IConvertible,
@@ -155,7 +155,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -285,90 +285,81 @@ namespace UnitsNet
         ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.CubicMeterPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumePerLength FromCubicMetersPerMeter(QuantityValue cubicmeterspermeter)
+        public static VolumePerLength FromCubicMetersPerMeter(double cubicmeterspermeter)
         {
-            double value = (double) cubicmeterspermeter;
-            return new VolumePerLength(value, VolumePerLengthUnit.CubicMeterPerMeter);
+            return new VolumePerLength(cubicmeterspermeter, VolumePerLengthUnit.CubicMeterPerMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.CubicYardPerFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumePerLength FromCubicYardsPerFoot(QuantityValue cubicyardsperfoot)
+        public static VolumePerLength FromCubicYardsPerFoot(double cubicyardsperfoot)
         {
-            double value = (double) cubicyardsperfoot;
-            return new VolumePerLength(value, VolumePerLengthUnit.CubicYardPerFoot);
+            return new VolumePerLength(cubicyardsperfoot, VolumePerLengthUnit.CubicYardPerFoot);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.CubicYardPerUsSurveyFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumePerLength FromCubicYardsPerUsSurveyFoot(QuantityValue cubicyardsperussurveyfoot)
+        public static VolumePerLength FromCubicYardsPerUsSurveyFoot(double cubicyardsperussurveyfoot)
         {
-            double value = (double) cubicyardsperussurveyfoot;
-            return new VolumePerLength(value, VolumePerLengthUnit.CubicYardPerUsSurveyFoot);
+            return new VolumePerLength(cubicyardsperussurveyfoot, VolumePerLengthUnit.CubicYardPerUsSurveyFoot);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.ImperialGallonPerMile"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumePerLength FromImperialGallonsPerMile(QuantityValue imperialgallonspermile)
+        public static VolumePerLength FromImperialGallonsPerMile(double imperialgallonspermile)
         {
-            double value = (double) imperialgallonspermile;
-            return new VolumePerLength(value, VolumePerLengthUnit.ImperialGallonPerMile);
+            return new VolumePerLength(imperialgallonspermile, VolumePerLengthUnit.ImperialGallonPerMile);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.LiterPerKilometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumePerLength FromLitersPerKilometer(QuantityValue litersperkilometer)
+        public static VolumePerLength FromLitersPerKilometer(double litersperkilometer)
         {
-            double value = (double) litersperkilometer;
-            return new VolumePerLength(value, VolumePerLengthUnit.LiterPerKilometer);
+            return new VolumePerLength(litersperkilometer, VolumePerLengthUnit.LiterPerKilometer);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.LiterPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumePerLength FromLitersPerMeter(QuantityValue literspermeter)
+        public static VolumePerLength FromLitersPerMeter(double literspermeter)
         {
-            double value = (double) literspermeter;
-            return new VolumePerLength(value, VolumePerLengthUnit.LiterPerMeter);
+            return new VolumePerLength(literspermeter, VolumePerLengthUnit.LiterPerMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.LiterPerMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumePerLength FromLitersPerMillimeter(QuantityValue literspermillimeter)
+        public static VolumePerLength FromLitersPerMillimeter(double literspermillimeter)
         {
-            double value = (double) literspermillimeter;
-            return new VolumePerLength(value, VolumePerLengthUnit.LiterPerMillimeter);
+            return new VolumePerLength(literspermillimeter, VolumePerLengthUnit.LiterPerMillimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.OilBarrelPerFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumePerLength FromOilBarrelsPerFoot(QuantityValue oilbarrelsperfoot)
+        public static VolumePerLength FromOilBarrelsPerFoot(double oilbarrelsperfoot)
         {
-            double value = (double) oilbarrelsperfoot;
-            return new VolumePerLength(value, VolumePerLengthUnit.OilBarrelPerFoot);
+            return new VolumePerLength(oilbarrelsperfoot, VolumePerLengthUnit.OilBarrelPerFoot);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.UsGallonPerMile"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumePerLength FromUsGallonsPerMile(QuantityValue usgallonspermile)
+        public static VolumePerLength FromUsGallonsPerMile(double usgallonspermile)
         {
-            double value = (double) usgallonspermile;
-            return new VolumePerLength(value, VolumePerLengthUnit.UsGallonPerMile);
+            return new VolumePerLength(usgallonspermile, VolumePerLengthUnit.UsGallonPerMile);
         }
 
         /// <summary>
@@ -377,9 +368,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>VolumePerLength unit value.</returns>
-        public static VolumePerLength From(QuantityValue value, VolumePerLengthUnit fromUnit)
+        public static VolumePerLength From(double value, VolumePerLengthUnit fromUnit)
         {
-            return new VolumePerLength((double)value, fromUnit);
+            return new VolumePerLength(value, fromUnit);
         }
 
         #endregion
@@ -794,15 +785,6 @@ namespace UnitsNet
             if (!(unit is VolumePerLengthUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumePerLengthUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is VolumePerLengthUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumePerLengthUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -928,18 +910,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<VolumePerLengthUnit> IQuantity<VolumePerLengthUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not VolumePerLengthUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumePerLengthUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToRelativeHumidity
     /// </summary>
     public static class NumberToRelativeHumidityExtensions
     {
-        /// <inheritdoc cref="RelativeHumidity.FromPercent(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RelativeHumidity.FromPercent(double)" />
         public static RelativeHumidity Percent<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

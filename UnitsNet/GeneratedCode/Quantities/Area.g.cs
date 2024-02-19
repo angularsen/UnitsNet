@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct Area :
-        IArithmeticQuantity<Area, AreaUnit, double>,
+        IArithmeticQuantity<Area, AreaUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<Area, Pressure, Force>,
         IMultiplyOperators<Area, SpecificWeight, ForcePerLength>,
@@ -177,7 +177,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -342,140 +342,126 @@ namespace UnitsNet
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.Acre"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Area FromAcres(QuantityValue acres)
+        public static Area FromAcres(double acres)
         {
-            double value = (double) acres;
-            return new Area(value, AreaUnit.Acre);
+            return new Area(acres, AreaUnit.Acre);
         }
 
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.Hectare"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Area FromHectares(QuantityValue hectares)
+        public static Area FromHectares(double hectares)
         {
-            double value = (double) hectares;
-            return new Area(value, AreaUnit.Hectare);
+            return new Area(hectares, AreaUnit.Hectare);
         }
 
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Area FromSquareCentimeters(QuantityValue squarecentimeters)
+        public static Area FromSquareCentimeters(double squarecentimeters)
         {
-            double value = (double) squarecentimeters;
-            return new Area(value, AreaUnit.SquareCentimeter);
+            return new Area(squarecentimeters, AreaUnit.SquareCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareDecimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Area FromSquareDecimeters(QuantityValue squaredecimeters)
+        public static Area FromSquareDecimeters(double squaredecimeters)
         {
-            double value = (double) squaredecimeters;
-            return new Area(value, AreaUnit.SquareDecimeter);
+            return new Area(squaredecimeters, AreaUnit.SquareDecimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Area FromSquareFeet(QuantityValue squarefeet)
+        public static Area FromSquareFeet(double squarefeet)
         {
-            double value = (double) squarefeet;
-            return new Area(value, AreaUnit.SquareFoot);
+            return new Area(squarefeet, AreaUnit.SquareFoot);
         }
 
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Area FromSquareInches(QuantityValue squareinches)
+        public static Area FromSquareInches(double squareinches)
         {
-            double value = (double) squareinches;
-            return new Area(value, AreaUnit.SquareInch);
+            return new Area(squareinches, AreaUnit.SquareInch);
         }
 
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareKilometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Area FromSquareKilometers(QuantityValue squarekilometers)
+        public static Area FromSquareKilometers(double squarekilometers)
         {
-            double value = (double) squarekilometers;
-            return new Area(value, AreaUnit.SquareKilometer);
+            return new Area(squarekilometers, AreaUnit.SquareKilometer);
         }
 
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Area FromSquareMeters(QuantityValue squaremeters)
+        public static Area FromSquareMeters(double squaremeters)
         {
-            double value = (double) squaremeters;
-            return new Area(value, AreaUnit.SquareMeter);
+            return new Area(squaremeters, AreaUnit.SquareMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareMicrometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Area FromSquareMicrometers(QuantityValue squaremicrometers)
+        public static Area FromSquareMicrometers(double squaremicrometers)
         {
-            double value = (double) squaremicrometers;
-            return new Area(value, AreaUnit.SquareMicrometer);
+            return new Area(squaremicrometers, AreaUnit.SquareMicrometer);
         }
 
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareMile"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Area FromSquareMiles(QuantityValue squaremiles)
+        public static Area FromSquareMiles(double squaremiles)
         {
-            double value = (double) squaremiles;
-            return new Area(value, AreaUnit.SquareMile);
+            return new Area(squaremiles, AreaUnit.SquareMile);
         }
 
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Area FromSquareMillimeters(QuantityValue squaremillimeters)
+        public static Area FromSquareMillimeters(double squaremillimeters)
         {
-            double value = (double) squaremillimeters;
-            return new Area(value, AreaUnit.SquareMillimeter);
+            return new Area(squaremillimeters, AreaUnit.SquareMillimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareNauticalMile"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Area FromSquareNauticalMiles(QuantityValue squarenauticalmiles)
+        public static Area FromSquareNauticalMiles(double squarenauticalmiles)
         {
-            double value = (double) squarenauticalmiles;
-            return new Area(value, AreaUnit.SquareNauticalMile);
+            return new Area(squarenauticalmiles, AreaUnit.SquareNauticalMile);
         }
 
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareYard"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Area FromSquareYards(QuantityValue squareyards)
+        public static Area FromSquareYards(double squareyards)
         {
-            double value = (double) squareyards;
-            return new Area(value, AreaUnit.SquareYard);
+            return new Area(squareyards, AreaUnit.SquareYard);
         }
 
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.UsSurveySquareFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Area FromUsSurveySquareFeet(QuantityValue ussurveysquarefeet)
+        public static Area FromUsSurveySquareFeet(double ussurveysquarefeet)
         {
-            double value = (double) ussurveysquarefeet;
-            return new Area(value, AreaUnit.UsSurveySquareFoot);
+            return new Area(ussurveysquarefeet, AreaUnit.UsSurveySquareFoot);
         }
 
         /// <summary>
@@ -484,9 +470,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Area unit value.</returns>
-        public static Area From(QuantityValue value, AreaUnit fromUnit)
+        public static Area From(double value, AreaUnit fromUnit)
         {
-            return new Area((double)value, fromUnit);
+            return new Area(value, fromUnit);
         }
 
         #endregion
@@ -984,15 +970,6 @@ namespace UnitsNet
             if (!(unit is AreaUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AreaUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is AreaUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AreaUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -1128,18 +1105,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<AreaUnit> IQuantity<AreaUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not AreaUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AreaUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct Force :
-        IArithmeticQuantity<Force, ForceUnit, double>,
+        IArithmeticQuantity<Force, ForceUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Force, Mass, Acceleration>,
         IDivisionOperators<Force, ForceChangeRate, Duration>,
@@ -176,7 +176,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -348,150 +348,135 @@ namespace UnitsNet
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Decanewton"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromDecanewtons(QuantityValue decanewtons)
+        public static Force FromDecanewtons(double decanewtons)
         {
-            double value = (double) decanewtons;
-            return new Force(value, ForceUnit.Decanewton);
+            return new Force(decanewtons, ForceUnit.Decanewton);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Dyn"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromDyne(QuantityValue dyne)
+        public static Force FromDyne(double dyne)
         {
-            double value = (double) dyne;
-            return new Force(value, ForceUnit.Dyn);
+            return new Force(dyne, ForceUnit.Dyn);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.KilogramForce"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromKilogramsForce(QuantityValue kilogramsforce)
+        public static Force FromKilogramsForce(double kilogramsforce)
         {
-            double value = (double) kilogramsforce;
-            return new Force(value, ForceUnit.KilogramForce);
+            return new Force(kilogramsforce, ForceUnit.KilogramForce);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Kilonewton"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromKilonewtons(QuantityValue kilonewtons)
+        public static Force FromKilonewtons(double kilonewtons)
         {
-            double value = (double) kilonewtons;
-            return new Force(value, ForceUnit.Kilonewton);
+            return new Force(kilonewtons, ForceUnit.Kilonewton);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.KiloPond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromKiloPonds(QuantityValue kiloponds)
+        public static Force FromKiloPonds(double kiloponds)
         {
-            double value = (double) kiloponds;
-            return new Force(value, ForceUnit.KiloPond);
+            return new Force(kiloponds, ForceUnit.KiloPond);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.KilopoundForce"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromKilopoundsForce(QuantityValue kilopoundsforce)
+        public static Force FromKilopoundsForce(double kilopoundsforce)
         {
-            double value = (double) kilopoundsforce;
-            return new Force(value, ForceUnit.KilopoundForce);
+            return new Force(kilopoundsforce, ForceUnit.KilopoundForce);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Meganewton"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromMeganewtons(QuantityValue meganewtons)
+        public static Force FromMeganewtons(double meganewtons)
         {
-            double value = (double) meganewtons;
-            return new Force(value, ForceUnit.Meganewton);
+            return new Force(meganewtons, ForceUnit.Meganewton);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Micronewton"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromMicronewtons(QuantityValue micronewtons)
+        public static Force FromMicronewtons(double micronewtons)
         {
-            double value = (double) micronewtons;
-            return new Force(value, ForceUnit.Micronewton);
+            return new Force(micronewtons, ForceUnit.Micronewton);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Millinewton"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromMillinewtons(QuantityValue millinewtons)
+        public static Force FromMillinewtons(double millinewtons)
         {
-            double value = (double) millinewtons;
-            return new Force(value, ForceUnit.Millinewton);
+            return new Force(millinewtons, ForceUnit.Millinewton);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Newton"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromNewtons(QuantityValue newtons)
+        public static Force FromNewtons(double newtons)
         {
-            double value = (double) newtons;
-            return new Force(value, ForceUnit.Newton);
+            return new Force(newtons, ForceUnit.Newton);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.OunceForce"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromOunceForce(QuantityValue ounceforce)
+        public static Force FromOunceForce(double ounceforce)
         {
-            double value = (double) ounceforce;
-            return new Force(value, ForceUnit.OunceForce);
+            return new Force(ounceforce, ForceUnit.OunceForce);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Poundal"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromPoundals(QuantityValue poundals)
+        public static Force FromPoundals(double poundals)
         {
-            double value = (double) poundals;
-            return new Force(value, ForceUnit.Poundal);
+            return new Force(poundals, ForceUnit.Poundal);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.PoundForce"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromPoundsForce(QuantityValue poundsforce)
+        public static Force FromPoundsForce(double poundsforce)
         {
-            double value = (double) poundsforce;
-            return new Force(value, ForceUnit.PoundForce);
+            return new Force(poundsforce, ForceUnit.PoundForce);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.ShortTonForce"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromShortTonsForce(QuantityValue shorttonsforce)
+        public static Force FromShortTonsForce(double shorttonsforce)
         {
-            double value = (double) shorttonsforce;
-            return new Force(value, ForceUnit.ShortTonForce);
+            return new Force(shorttonsforce, ForceUnit.ShortTonForce);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.TonneForce"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromTonnesForce(QuantityValue tonnesforce)
+        public static Force FromTonnesForce(double tonnesforce)
         {
-            double value = (double) tonnesforce;
-            return new Force(value, ForceUnit.TonneForce);
+            return new Force(tonnesforce, ForceUnit.TonneForce);
         }
 
         /// <summary>
@@ -500,9 +485,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Force unit value.</returns>
-        public static Force From(QuantityValue value, ForceUnit fromUnit)
+        public static Force From(double value, ForceUnit fromUnit)
         {
-            return new Force((double)value, fromUnit);
+            return new Force(value, fromUnit);
         }
 
         #endregion
@@ -981,15 +966,6 @@ namespace UnitsNet
             if (!(unit is ForceUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForceUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is ForceUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForceUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -1127,18 +1103,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ForceUnit> IQuantity<ForceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not ForceUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForceUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

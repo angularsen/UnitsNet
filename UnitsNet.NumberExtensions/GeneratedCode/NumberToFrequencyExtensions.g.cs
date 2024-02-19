@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToFrequency
     /// </summary>
     public static class NumberToFrequencyExtensions
     {
-        /// <inheritdoc cref="Frequency.FromBeatsPerMinute(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Frequency.FromBeatsPerMinute(double)" />
         public static Frequency BeatsPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToFrequency
 #endif
             => Frequency.FromBeatsPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Frequency.FromBUnits(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Frequency.FromBUnits(double)" />
         public static Frequency BUnits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToFrequency
 #endif
             => Frequency.FromBUnits(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Frequency.FromCyclesPerHour(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Frequency.FromCyclesPerHour(double)" />
         public static Frequency CyclesPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToFrequency
 #endif
             => Frequency.FromCyclesPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Frequency.FromCyclesPerMinute(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Frequency.FromCyclesPerMinute(double)" />
         public static Frequency CyclesPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToFrequency
 #endif
             => Frequency.FromCyclesPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Frequency.FromGigahertz(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Frequency.FromGigahertz(double)" />
         public static Frequency Gigahertz<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToFrequency
 #endif
             => Frequency.FromGigahertz(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Frequency.FromHertz(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Frequency.FromHertz(double)" />
         public static Frequency Hertz<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToFrequency
 #endif
             => Frequency.FromHertz(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Frequency.FromKilohertz(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Frequency.FromKilohertz(double)" />
         public static Frequency Kilohertz<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToFrequency
 #endif
             => Frequency.FromKilohertz(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Frequency.FromMegahertz(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Frequency.FromMegahertz(double)" />
         public static Frequency Megahertz<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToFrequency
 #endif
             => Frequency.FromMegahertz(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Frequency.FromMicrohertz(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Frequency.FromMicrohertz(double)" />
         public static Frequency Microhertz<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -104,7 +104,7 @@ namespace UnitsNet.NumberExtensions.NumberToFrequency
 #endif
             => Frequency.FromMicrohertz(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Frequency.FromMillihertz(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Frequency.FromMillihertz(double)" />
         public static Frequency Millihertz<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -112,7 +112,7 @@ namespace UnitsNet.NumberExtensions.NumberToFrequency
 #endif
             => Frequency.FromMillihertz(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Frequency.FromPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Frequency.FromPerSecond(double)" />
         public static Frequency PerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -120,7 +120,7 @@ namespace UnitsNet.NumberExtensions.NumberToFrequency
 #endif
             => Frequency.FromPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Frequency.FromRadiansPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Frequency.FromRadiansPerSecond(double)" />
         public static Frequency RadiansPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -128,7 +128,7 @@ namespace UnitsNet.NumberExtensions.NumberToFrequency
 #endif
             => Frequency.FromRadiansPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Frequency.FromTerahertz(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Frequency.FromTerahertz(double)" />
         public static Frequency Terahertz<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

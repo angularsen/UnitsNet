@@ -37,7 +37,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct ElectricPotentialAc :
-        IArithmeticQuantity<ElectricPotentialAc, ElectricPotentialAcUnit, double>,
+        IArithmeticQuantity<ElectricPotentialAc, ElectricPotentialAcUnit>,
         IComparable,
         IComparable<ElectricPotentialAc>,
         IConvertible,
@@ -151,7 +151,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -253,50 +253,45 @@ namespace UnitsNet
         ///     Creates a <see cref="ElectricPotentialAc"/> from <see cref="ElectricPotentialAcUnit.KilovoltAc"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricPotentialAc FromKilovoltsAc(QuantityValue kilovoltsac)
+        public static ElectricPotentialAc FromKilovoltsAc(double kilovoltsac)
         {
-            double value = (double) kilovoltsac;
-            return new ElectricPotentialAc(value, ElectricPotentialAcUnit.KilovoltAc);
+            return new ElectricPotentialAc(kilovoltsac, ElectricPotentialAcUnit.KilovoltAc);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialAc"/> from <see cref="ElectricPotentialAcUnit.MegavoltAc"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricPotentialAc FromMegavoltsAc(QuantityValue megavoltsac)
+        public static ElectricPotentialAc FromMegavoltsAc(double megavoltsac)
         {
-            double value = (double) megavoltsac;
-            return new ElectricPotentialAc(value, ElectricPotentialAcUnit.MegavoltAc);
+            return new ElectricPotentialAc(megavoltsac, ElectricPotentialAcUnit.MegavoltAc);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialAc"/> from <see cref="ElectricPotentialAcUnit.MicrovoltAc"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricPotentialAc FromMicrovoltsAc(QuantityValue microvoltsac)
+        public static ElectricPotentialAc FromMicrovoltsAc(double microvoltsac)
         {
-            double value = (double) microvoltsac;
-            return new ElectricPotentialAc(value, ElectricPotentialAcUnit.MicrovoltAc);
+            return new ElectricPotentialAc(microvoltsac, ElectricPotentialAcUnit.MicrovoltAc);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialAc"/> from <see cref="ElectricPotentialAcUnit.MillivoltAc"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricPotentialAc FromMillivoltsAc(QuantityValue millivoltsac)
+        public static ElectricPotentialAc FromMillivoltsAc(double millivoltsac)
         {
-            double value = (double) millivoltsac;
-            return new ElectricPotentialAc(value, ElectricPotentialAcUnit.MillivoltAc);
+            return new ElectricPotentialAc(millivoltsac, ElectricPotentialAcUnit.MillivoltAc);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialAc"/> from <see cref="ElectricPotentialAcUnit.VoltAc"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricPotentialAc FromVoltsAc(QuantityValue voltsac)
+        public static ElectricPotentialAc FromVoltsAc(double voltsac)
         {
-            double value = (double) voltsac;
-            return new ElectricPotentialAc(value, ElectricPotentialAcUnit.VoltAc);
+            return new ElectricPotentialAc(voltsac, ElectricPotentialAcUnit.VoltAc);
         }
 
         /// <summary>
@@ -305,9 +300,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricPotentialAc unit value.</returns>
-        public static ElectricPotentialAc From(QuantityValue value, ElectricPotentialAcUnit fromUnit)
+        public static ElectricPotentialAc From(double value, ElectricPotentialAcUnit fromUnit)
         {
-            return new ElectricPotentialAc((double)value, fromUnit);
+            return new ElectricPotentialAc(value, fromUnit);
         }
 
         #endregion
@@ -722,15 +717,6 @@ namespace UnitsNet
             if (!(unit is ElectricPotentialAcUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricPotentialAcUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is ElectricPotentialAcUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricPotentialAcUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -848,18 +834,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ElectricPotentialAcUnit> IQuantity<ElectricPotentialAcUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not ElectricPotentialAcUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricPotentialAcUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

@@ -37,7 +37,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct Radioactivity :
-        IArithmeticQuantity<Radioactivity, RadioactivityUnit, double>,
+        IArithmeticQuantity<Radioactivity, RadioactivityUnit>,
         IComparable,
         IComparable<Radioactivity>,
         IConvertible,
@@ -175,7 +175,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -445,290 +445,261 @@ namespace UnitsNet
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Becquerel"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Radioactivity FromBecquerels(QuantityValue becquerels)
+        public static Radioactivity FromBecquerels(double becquerels)
         {
-            double value = (double) becquerels;
-            return new Radioactivity(value, RadioactivityUnit.Becquerel);
+            return new Radioactivity(becquerels, RadioactivityUnit.Becquerel);
         }
 
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Curie"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Radioactivity FromCuries(QuantityValue curies)
+        public static Radioactivity FromCuries(double curies)
         {
-            double value = (double) curies;
-            return new Radioactivity(value, RadioactivityUnit.Curie);
+            return new Radioactivity(curies, RadioactivityUnit.Curie);
         }
 
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Exabecquerel"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Radioactivity FromExabecquerels(QuantityValue exabecquerels)
+        public static Radioactivity FromExabecquerels(double exabecquerels)
         {
-            double value = (double) exabecquerels;
-            return new Radioactivity(value, RadioactivityUnit.Exabecquerel);
+            return new Radioactivity(exabecquerels, RadioactivityUnit.Exabecquerel);
         }
 
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Gigabecquerel"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Radioactivity FromGigabecquerels(QuantityValue gigabecquerels)
+        public static Radioactivity FromGigabecquerels(double gigabecquerels)
         {
-            double value = (double) gigabecquerels;
-            return new Radioactivity(value, RadioactivityUnit.Gigabecquerel);
+            return new Radioactivity(gigabecquerels, RadioactivityUnit.Gigabecquerel);
         }
 
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Gigacurie"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Radioactivity FromGigacuries(QuantityValue gigacuries)
+        public static Radioactivity FromGigacuries(double gigacuries)
         {
-            double value = (double) gigacuries;
-            return new Radioactivity(value, RadioactivityUnit.Gigacurie);
+            return new Radioactivity(gigacuries, RadioactivityUnit.Gigacurie);
         }
 
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Gigarutherford"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Radioactivity FromGigarutherfords(QuantityValue gigarutherfords)
+        public static Radioactivity FromGigarutherfords(double gigarutherfords)
         {
-            double value = (double) gigarutherfords;
-            return new Radioactivity(value, RadioactivityUnit.Gigarutherford);
+            return new Radioactivity(gigarutherfords, RadioactivityUnit.Gigarutherford);
         }
 
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Kilobecquerel"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Radioactivity FromKilobecquerels(QuantityValue kilobecquerels)
+        public static Radioactivity FromKilobecquerels(double kilobecquerels)
         {
-            double value = (double) kilobecquerels;
-            return new Radioactivity(value, RadioactivityUnit.Kilobecquerel);
+            return new Radioactivity(kilobecquerels, RadioactivityUnit.Kilobecquerel);
         }
 
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Kilocurie"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Radioactivity FromKilocuries(QuantityValue kilocuries)
+        public static Radioactivity FromKilocuries(double kilocuries)
         {
-            double value = (double) kilocuries;
-            return new Radioactivity(value, RadioactivityUnit.Kilocurie);
+            return new Radioactivity(kilocuries, RadioactivityUnit.Kilocurie);
         }
 
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Kilorutherford"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Radioactivity FromKilorutherfords(QuantityValue kilorutherfords)
+        public static Radioactivity FromKilorutherfords(double kilorutherfords)
         {
-            double value = (double) kilorutherfords;
-            return new Radioactivity(value, RadioactivityUnit.Kilorutherford);
+            return new Radioactivity(kilorutherfords, RadioactivityUnit.Kilorutherford);
         }
 
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Megabecquerel"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Radioactivity FromMegabecquerels(QuantityValue megabecquerels)
+        public static Radioactivity FromMegabecquerels(double megabecquerels)
         {
-            double value = (double) megabecquerels;
-            return new Radioactivity(value, RadioactivityUnit.Megabecquerel);
+            return new Radioactivity(megabecquerels, RadioactivityUnit.Megabecquerel);
         }
 
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Megacurie"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Radioactivity FromMegacuries(QuantityValue megacuries)
+        public static Radioactivity FromMegacuries(double megacuries)
         {
-            double value = (double) megacuries;
-            return new Radioactivity(value, RadioactivityUnit.Megacurie);
+            return new Radioactivity(megacuries, RadioactivityUnit.Megacurie);
         }
 
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Megarutherford"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Radioactivity FromMegarutherfords(QuantityValue megarutherfords)
+        public static Radioactivity FromMegarutherfords(double megarutherfords)
         {
-            double value = (double) megarutherfords;
-            return new Radioactivity(value, RadioactivityUnit.Megarutherford);
+            return new Radioactivity(megarutherfords, RadioactivityUnit.Megarutherford);
         }
 
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Microbecquerel"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Radioactivity FromMicrobecquerels(QuantityValue microbecquerels)
+        public static Radioactivity FromMicrobecquerels(double microbecquerels)
         {
-            double value = (double) microbecquerels;
-            return new Radioactivity(value, RadioactivityUnit.Microbecquerel);
+            return new Radioactivity(microbecquerels, RadioactivityUnit.Microbecquerel);
         }
 
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Microcurie"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Radioactivity FromMicrocuries(QuantityValue microcuries)
+        public static Radioactivity FromMicrocuries(double microcuries)
         {
-            double value = (double) microcuries;
-            return new Radioactivity(value, RadioactivityUnit.Microcurie);
+            return new Radioactivity(microcuries, RadioactivityUnit.Microcurie);
         }
 
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Microrutherford"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Radioactivity FromMicrorutherfords(QuantityValue microrutherfords)
+        public static Radioactivity FromMicrorutherfords(double microrutherfords)
         {
-            double value = (double) microrutherfords;
-            return new Radioactivity(value, RadioactivityUnit.Microrutherford);
+            return new Radioactivity(microrutherfords, RadioactivityUnit.Microrutherford);
         }
 
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Millibecquerel"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Radioactivity FromMillibecquerels(QuantityValue millibecquerels)
+        public static Radioactivity FromMillibecquerels(double millibecquerels)
         {
-            double value = (double) millibecquerels;
-            return new Radioactivity(value, RadioactivityUnit.Millibecquerel);
+            return new Radioactivity(millibecquerels, RadioactivityUnit.Millibecquerel);
         }
 
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Millicurie"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Radioactivity FromMillicuries(QuantityValue millicuries)
+        public static Radioactivity FromMillicuries(double millicuries)
         {
-            double value = (double) millicuries;
-            return new Radioactivity(value, RadioactivityUnit.Millicurie);
+            return new Radioactivity(millicuries, RadioactivityUnit.Millicurie);
         }
 
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Millirutherford"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Radioactivity FromMillirutherfords(QuantityValue millirutherfords)
+        public static Radioactivity FromMillirutherfords(double millirutherfords)
         {
-            double value = (double) millirutherfords;
-            return new Radioactivity(value, RadioactivityUnit.Millirutherford);
+            return new Radioactivity(millirutherfords, RadioactivityUnit.Millirutherford);
         }
 
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Nanobecquerel"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Radioactivity FromNanobecquerels(QuantityValue nanobecquerels)
+        public static Radioactivity FromNanobecquerels(double nanobecquerels)
         {
-            double value = (double) nanobecquerels;
-            return new Radioactivity(value, RadioactivityUnit.Nanobecquerel);
+            return new Radioactivity(nanobecquerels, RadioactivityUnit.Nanobecquerel);
         }
 
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Nanocurie"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Radioactivity FromNanocuries(QuantityValue nanocuries)
+        public static Radioactivity FromNanocuries(double nanocuries)
         {
-            double value = (double) nanocuries;
-            return new Radioactivity(value, RadioactivityUnit.Nanocurie);
+            return new Radioactivity(nanocuries, RadioactivityUnit.Nanocurie);
         }
 
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Nanorutherford"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Radioactivity FromNanorutherfords(QuantityValue nanorutherfords)
+        public static Radioactivity FromNanorutherfords(double nanorutherfords)
         {
-            double value = (double) nanorutherfords;
-            return new Radioactivity(value, RadioactivityUnit.Nanorutherford);
+            return new Radioactivity(nanorutherfords, RadioactivityUnit.Nanorutherford);
         }
 
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Petabecquerel"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Radioactivity FromPetabecquerels(QuantityValue petabecquerels)
+        public static Radioactivity FromPetabecquerels(double petabecquerels)
         {
-            double value = (double) petabecquerels;
-            return new Radioactivity(value, RadioactivityUnit.Petabecquerel);
+            return new Radioactivity(petabecquerels, RadioactivityUnit.Petabecquerel);
         }
 
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Picobecquerel"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Radioactivity FromPicobecquerels(QuantityValue picobecquerels)
+        public static Radioactivity FromPicobecquerels(double picobecquerels)
         {
-            double value = (double) picobecquerels;
-            return new Radioactivity(value, RadioactivityUnit.Picobecquerel);
+            return new Radioactivity(picobecquerels, RadioactivityUnit.Picobecquerel);
         }
 
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Picocurie"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Radioactivity FromPicocuries(QuantityValue picocuries)
+        public static Radioactivity FromPicocuries(double picocuries)
         {
-            double value = (double) picocuries;
-            return new Radioactivity(value, RadioactivityUnit.Picocurie);
+            return new Radioactivity(picocuries, RadioactivityUnit.Picocurie);
         }
 
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Picorutherford"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Radioactivity FromPicorutherfords(QuantityValue picorutherfords)
+        public static Radioactivity FromPicorutherfords(double picorutherfords)
         {
-            double value = (double) picorutherfords;
-            return new Radioactivity(value, RadioactivityUnit.Picorutherford);
+            return new Radioactivity(picorutherfords, RadioactivityUnit.Picorutherford);
         }
 
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Rutherford"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Radioactivity FromRutherfords(QuantityValue rutherfords)
+        public static Radioactivity FromRutherfords(double rutherfords)
         {
-            double value = (double) rutherfords;
-            return new Radioactivity(value, RadioactivityUnit.Rutherford);
+            return new Radioactivity(rutherfords, RadioactivityUnit.Rutherford);
         }
 
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Terabecquerel"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Radioactivity FromTerabecquerels(QuantityValue terabecquerels)
+        public static Radioactivity FromTerabecquerels(double terabecquerels)
         {
-            double value = (double) terabecquerels;
-            return new Radioactivity(value, RadioactivityUnit.Terabecquerel);
+            return new Radioactivity(terabecquerels, RadioactivityUnit.Terabecquerel);
         }
 
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Teracurie"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Radioactivity FromTeracuries(QuantityValue teracuries)
+        public static Radioactivity FromTeracuries(double teracuries)
         {
-            double value = (double) teracuries;
-            return new Radioactivity(value, RadioactivityUnit.Teracurie);
+            return new Radioactivity(teracuries, RadioactivityUnit.Teracurie);
         }
 
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Terarutherford"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Radioactivity FromTerarutherfords(QuantityValue terarutherfords)
+        public static Radioactivity FromTerarutherfords(double terarutherfords)
         {
-            double value = (double) terarutherfords;
-            return new Radioactivity(value, RadioactivityUnit.Terarutherford);
+            return new Radioactivity(terarutherfords, RadioactivityUnit.Terarutherford);
         }
 
         /// <summary>
@@ -737,9 +708,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Radioactivity unit value.</returns>
-        public static Radioactivity From(QuantityValue value, RadioactivityUnit fromUnit)
+        public static Radioactivity From(double value, RadioactivityUnit fromUnit)
         {
-            return new Radioactivity((double)value, fromUnit);
+            return new Radioactivity(value, fromUnit);
         }
 
         #endregion
@@ -1154,15 +1125,6 @@ namespace UnitsNet
             if (!(unit is RadioactivityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RadioactivityUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is RadioactivityUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RadioactivityUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -1328,18 +1290,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<RadioactivityUnit> IQuantity<RadioactivityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not RadioactivityUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RadioactivityUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 
