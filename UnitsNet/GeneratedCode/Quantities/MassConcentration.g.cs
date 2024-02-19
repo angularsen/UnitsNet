@@ -45,7 +45,9 @@ namespace UnitsNet
     public readonly partial struct MassConcentration :
         IArithmeticQuantity<MassConcentration, MassConcentrationUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<MassConcentration, VolumeConcentration, Density>,
         IMultiplyOperators<MassConcentration, Volume, Mass>,
+        IDivisionOperators<MassConcentration, Molarity, MolarMass>,
         IDivisionOperators<MassConcentration, MolarMass, Molarity>,
         IDivisionOperators<MassConcentration, Density, VolumeConcentration>,
 #endif
@@ -1208,16 +1210,28 @@ namespace UnitsNet
 
         #region Relational Operators
 
+        /// <summary>Get <see cref="Density"/> from <see cref="MassConcentration"/> / <see cref="VolumeConcentration"/>.</summary>
+        public static Density operator /(MassConcentration massConcentration, VolumeConcentration volumeConcentration)
+        {
+            return Density.FromKilogramsPerCubicMeter(massConcentration.KilogramsPerCubicMeter / volumeConcentration.DecimalFractions);
+        }
+
         /// <summary>Get <see cref="Mass"/> from <see cref="MassConcentration"/> * <see cref="Volume"/>.</summary>
         public static Mass operator *(MassConcentration massConcentration, Volume volume)
         {
             return Mass.FromKilograms(massConcentration.KilogramsPerCubicMeter * volume.CubicMeters);
         }
 
+        /// <summary>Get <see cref="MolarMass"/> from <see cref="MassConcentration"/> / <see cref="Molarity"/>.</summary>
+        public static MolarMass operator /(MassConcentration massConcentration, Molarity molarity)
+        {
+            return MolarMass.FromKilogramsPerMole(massConcentration.KilogramsPerCubicMeter / molarity.MolesPerCubicMeter);
+        }
+
         /// <summary>Get <see cref="Molarity"/> from <see cref="MassConcentration"/> / <see cref="MolarMass"/>.</summary>
         public static Molarity operator /(MassConcentration massConcentration, MolarMass molarMass)
         {
-            return Molarity.FromMolesPerCubicMeter(massConcentration.GramsPerCubicMeter / molarMass.GramsPerMole);
+            return Molarity.FromMolesPerCubicMeter(massConcentration.KilogramsPerCubicMeter / molarMass.KilogramsPerMole);
         }
 
         /// <summary>Get <see cref="VolumeConcentration"/> from <see cref="MassConcentration"/> / <see cref="Density"/>.</summary>

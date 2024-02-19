@@ -42,6 +42,7 @@ namespace UnitsNet
     public readonly partial struct ElectricCurrent :
         IArithmeticQuantity<ElectricCurrent, ElectricCurrentUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<ElectricCurrent, ElectricCurrentGradient, Duration>,
         IMultiplyOperators<ElectricCurrent, Duration, ElectricCharge>,
         IDivisionOperators<ElectricCurrent, Duration, ElectricCurrentGradient>,
         IMultiplyOperators<ElectricCurrent, ElectricResistance, ElectricPotential>,
@@ -565,6 +566,12 @@ namespace UnitsNet
         #endregion
 
         #region Relational Operators
+
+        /// <summary>Get <see cref="Duration"/> from <see cref="ElectricCurrent"/> / <see cref="ElectricCurrentGradient"/>.</summary>
+        public static Duration operator /(ElectricCurrent electricCurrent, ElectricCurrentGradient electricCurrentGradient)
+        {
+            return Duration.FromSeconds(electricCurrent.Amperes / electricCurrentGradient.AmperesPerSecond);
+        }
 
         /// <summary>Get <see cref="ElectricCharge"/> from <see cref="ElectricCurrent"/> * <see cref="Duration"/>.</summary>
         public static ElectricCharge operator *(ElectricCurrent electricCurrent, Duration duration)

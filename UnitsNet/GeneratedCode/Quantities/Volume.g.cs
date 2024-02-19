@@ -42,11 +42,16 @@ namespace UnitsNet
     public readonly partial struct Volume :
         IArithmeticQuantity<Volume, VolumeUnit>,
 #if NET7_0_OR_GREATER
+        IMultiplyOperators<Volume, Molarity, AmountOfSubstance>,
         IDivisionOperators<Volume, Length, Area>,
+        IMultiplyOperators<Volume, Length, AreaMomentOfInertia>,
+        IDivisionOperators<Volume, VolumeFlow, Duration>,
         IMultiplyOperators<Volume, EnergyDensity, Energy>,
         IDivisionOperators<Volume, Area, Length>,
         IMultiplyOperators<Volume, Density, Mass>,
         IMultiplyOperators<Volume, MassConcentration, Mass>,
+        IDivisionOperators<Volume, SpecificVolume, Mass>,
+        IDivisionOperators<Volume, Mass, SpecificVolume>,
         IDivisionOperators<Volume, Duration, VolumeFlow>,
 #endif
         IComparable,
@@ -1288,10 +1293,28 @@ namespace UnitsNet
 
         #region Relational Operators
 
+        /// <summary>Get <see cref="AmountOfSubstance"/> from <see cref="Volume"/> * <see cref="Molarity"/>.</summary>
+        public static AmountOfSubstance operator *(Volume volume, Molarity molarity)
+        {
+            return AmountOfSubstance.FromMoles(volume.CubicMeters * molarity.MolesPerCubicMeter);
+        }
+
         /// <summary>Get <see cref="Area"/> from <see cref="Volume"/> / <see cref="Length"/>.</summary>
         public static Area operator /(Volume volume, Length length)
         {
             return Area.FromSquareMeters(volume.CubicMeters / length.Meters);
+        }
+
+        /// <summary>Get <see cref="AreaMomentOfInertia"/> from <see cref="Volume"/> * <see cref="Length"/>.</summary>
+        public static AreaMomentOfInertia operator *(Volume volume, Length length)
+        {
+            return AreaMomentOfInertia.FromMetersToTheFourth(volume.CubicMeters * length.Meters);
+        }
+
+        /// <summary>Get <see cref="Duration"/> from <see cref="Volume"/> / <see cref="VolumeFlow"/>.</summary>
+        public static Duration operator /(Volume volume, VolumeFlow volumeFlow)
+        {
+            return Duration.FromSeconds(volume.CubicMeters / volumeFlow.CubicMetersPerSecond);
         }
 
         /// <summary>Get <see cref="Energy"/> from <see cref="Volume"/> * <see cref="EnergyDensity"/>.</summary>
@@ -1316,6 +1339,18 @@ namespace UnitsNet
         public static Mass operator *(Volume volume, MassConcentration massConcentration)
         {
             return Mass.FromKilograms(volume.CubicMeters * massConcentration.KilogramsPerCubicMeter);
+        }
+
+        /// <summary>Get <see cref="Mass"/> from <see cref="Volume"/> / <see cref="SpecificVolume"/>.</summary>
+        public static Mass operator /(Volume volume, SpecificVolume specificVolume)
+        {
+            return Mass.FromKilograms(volume.CubicMeters / specificVolume.CubicMetersPerKilogram);
+        }
+
+        /// <summary>Get <see cref="SpecificVolume"/> from <see cref="Volume"/> / <see cref="Mass"/>.</summary>
+        public static SpecificVolume operator /(Volume volume, Mass mass)
+        {
+            return SpecificVolume.FromCubicMetersPerKilogram(volume.CubicMeters / mass.Kilograms);
         }
 
         /// <summary>Get <see cref="VolumeFlow"/> from <see cref="Volume"/> / <see cref="Duration"/>.</summary>

@@ -638,7 +638,7 @@ namespace UnitsNet
         /// <summary>Get <see cref="MassConcentration"/> from <see cref="MolarMass"/> * <see cref="Molarity"/>.</summary>
         public static MassConcentration operator *(MolarMass molarMass, Molarity molarity)
         {
-            return MassConcentration.FromGramsPerCubicMeter(molarMass.GramsPerMole * molarity.MolesPerCubicMeter);
+            return MassConcentration.FromKilogramsPerCubicMeter(molarMass.KilogramsPerMole * molarity.MolesPerCubicMeter);
         }
 
         /// <summary>Get <see cref="MassFlow"/> from <see cref="MolarMass"/> * <see cref="MolarFlow"/>.</summary>

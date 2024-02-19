@@ -45,12 +45,14 @@ namespace UnitsNet
         IDivisionOperators<Energy, Power, Duration>,
         IDivisionOperators<Energy, ElectricPotential, ElectricCharge>,
         IDivisionOperators<Energy, ElectricCharge, ElectricPotential>,
+        IDivisionOperators<Energy, Volume, EnergyDensity>,
         IDivisionOperators<Energy, TemperatureDelta, Entropy>,
         IDivisionOperators<Energy, SpecificEnergy, Mass>,
         IMultiplyOperators<Energy, Frequency, Power>,
         IDivisionOperators<Energy, Duration, Power>,
         IDivisionOperators<Energy, Mass, SpecificEnergy>,
         IDivisionOperators<Energy, Entropy, TemperatureDelta>,
+        IDivisionOperators<Energy, EnergyDensity, Volume>,
 #endif
         IComparable,
         IComparable<Energy>,
@@ -1085,6 +1087,12 @@ namespace UnitsNet
             return ElectricPotential.FromVolts(energy.Joules / electricCharge.Coulombs);
         }
 
+        /// <summary>Get <see cref="EnergyDensity"/> from <see cref="Energy"/> / <see cref="Volume"/>.</summary>
+        public static EnergyDensity operator /(Energy energy, Volume volume)
+        {
+            return EnergyDensity.FromJoulesPerCubicMeter(energy.Joules / volume.CubicMeters);
+        }
+
         /// <summary>Get <see cref="Entropy"/> from <see cref="Energy"/> / <see cref="TemperatureDelta"/>.</summary>
         public static Entropy operator /(Energy energy, TemperatureDelta temperatureDelta)
         {
@@ -1119,6 +1127,12 @@ namespace UnitsNet
         public static TemperatureDelta operator /(Energy energy, Entropy entropy)
         {
             return TemperatureDelta.FromKelvins(energy.Joules / entropy.JoulesPerKelvin);
+        }
+
+        /// <summary>Get <see cref="Volume"/> from <see cref="Energy"/> / <see cref="EnergyDensity"/>.</summary>
+        public static Volume operator /(Energy energy, EnergyDensity energyDensity)
+        {
+            return Volume.FromCubicMeters(energy.Joules / energyDensity.JoulesPerCubicMeter);
         }
 
         #endregion

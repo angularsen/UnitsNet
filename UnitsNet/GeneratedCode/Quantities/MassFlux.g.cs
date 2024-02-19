@@ -622,7 +622,7 @@ namespace UnitsNet
         /// <summary>Get <see cref="MassFlow"/> from <see cref="MassFlux"/> * <see cref="Area"/>.</summary>
         public static MassFlow operator *(MassFlux massFlux, Area area)
         {
-            return MassFlow.FromGramsPerSecond(massFlux.GramsPerSecondPerSquareMeter * area.SquareMeters);
+            return MassFlow.FromKilogramsPerSecond(massFlux.KilogramsPerSecondPerSquareMeter * area.SquareMeters);
         }
 
         /// <summary>Get <see cref="Speed"/> from <see cref="MassFlux"/> / <see cref="Density"/>.</summary>
