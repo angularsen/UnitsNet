@@ -37,7 +37,7 @@
   "Mass.Kilogram = AreaDensity.KilogramPerSquareMeter * Area.SquareMeter",
   "Mass.Kilogram = Density.KilogramPerCubicMeter * Volume.CubicMeter",
   "Mass.Kilogram = LinearDensity.KilogramPerMeter * Length.Meter",
-  "Mass.Kilogram = MassConcentration.KilogramPerCubicMeter * Volume.CubicMeter",
+  "Mass.Kilogram = MassConcentration.KilogramPerCubicMeter * Volume.CubicMeter -- NoInferredDivision",
   "Mass.Kilogram = MassFlow.KilogramPerSecond * Duration.Second",
   "Mass.Kilogram = MassFraction.DecimalFraction * Mass.Kilogram",
   "MassConcentration.KilogramPerCubicMeter = Molarity.MolePerCubicMeter * MolarMass.KilogramPerMole",
