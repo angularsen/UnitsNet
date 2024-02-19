@@ -60,14 +60,12 @@ namespace CodeGen.Generators
                 .ToList());
 
             // We can infer TimeSpan relations from Duration relations.
+            // Because TimeSpan can be implicitly cast to Duration and vice versa,
+            // we only need to infer the relations where Duration is the left operand.
             var timeSpanQuantity = pseudoQuantity with { Name = "TimeSpan" };
             relations.AddRange(relations
                 .Where(r => r.LeftQuantity.Name is "Duration")
                 .Select(r => r with { LeftQuantity = timeSpanQuantity })
-                .ToList());
-            relations.AddRange(relations
-                .Where(r => r.RightQuantity.Name is "Duration")
-                .Select(r => r with { RightQuantity = timeSpanQuantity })
                 .ToList());
 
             // Sort all relations to keep generated operators in a consistent order.
