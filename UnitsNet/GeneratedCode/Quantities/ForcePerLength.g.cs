@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct ForcePerLength :
-        IArithmeticQuantity<ForcePerLength, ForcePerLengthUnit, double>,
+        IArithmeticQuantity<ForcePerLength, ForcePerLengthUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<ForcePerLength, Length, Force>,
         IDivisionOperators<ForcePerLength, ReciprocalLength, Force>,
@@ -194,7 +194,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -527,9 +527,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.CentinewtonPerCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromCentinewtonsPerCentimeter(QuantityValue centinewtonspercentimeter)
+        public static ForcePerLength FromCentinewtonsPerCentimeter(double value)
         {
-            double value = (double) centinewtonspercentimeter;
             return new ForcePerLength(value, ForcePerLengthUnit.CentinewtonPerCentimeter);
         }
 
@@ -537,9 +536,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.CentinewtonPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromCentinewtonsPerMeter(QuantityValue centinewtonspermeter)
+        public static ForcePerLength FromCentinewtonsPerMeter(double value)
         {
-            double value = (double) centinewtonspermeter;
             return new ForcePerLength(value, ForcePerLengthUnit.CentinewtonPerMeter);
         }
 
@@ -547,9 +545,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.CentinewtonPerMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromCentinewtonsPerMillimeter(QuantityValue centinewtonspermillimeter)
+        public static ForcePerLength FromCentinewtonsPerMillimeter(double value)
         {
-            double value = (double) centinewtonspermillimeter;
             return new ForcePerLength(value, ForcePerLengthUnit.CentinewtonPerMillimeter);
         }
 
@@ -557,9 +554,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.DecanewtonPerCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromDecanewtonsPerCentimeter(QuantityValue decanewtonspercentimeter)
+        public static ForcePerLength FromDecanewtonsPerCentimeter(double value)
         {
-            double value = (double) decanewtonspercentimeter;
             return new ForcePerLength(value, ForcePerLengthUnit.DecanewtonPerCentimeter);
         }
 
@@ -567,9 +563,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.DecanewtonPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromDecanewtonsPerMeter(QuantityValue decanewtonspermeter)
+        public static ForcePerLength FromDecanewtonsPerMeter(double value)
         {
-            double value = (double) decanewtonspermeter;
             return new ForcePerLength(value, ForcePerLengthUnit.DecanewtonPerMeter);
         }
 
@@ -577,9 +572,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.DecanewtonPerMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromDecanewtonsPerMillimeter(QuantityValue decanewtonspermillimeter)
+        public static ForcePerLength FromDecanewtonsPerMillimeter(double value)
         {
-            double value = (double) decanewtonspermillimeter;
             return new ForcePerLength(value, ForcePerLengthUnit.DecanewtonPerMillimeter);
         }
 
@@ -587,9 +581,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.DecinewtonPerCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromDecinewtonsPerCentimeter(QuantityValue decinewtonspercentimeter)
+        public static ForcePerLength FromDecinewtonsPerCentimeter(double value)
         {
-            double value = (double) decinewtonspercentimeter;
             return new ForcePerLength(value, ForcePerLengthUnit.DecinewtonPerCentimeter);
         }
 
@@ -597,9 +590,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.DecinewtonPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromDecinewtonsPerMeter(QuantityValue decinewtonspermeter)
+        public static ForcePerLength FromDecinewtonsPerMeter(double value)
         {
-            double value = (double) decinewtonspermeter;
             return new ForcePerLength(value, ForcePerLengthUnit.DecinewtonPerMeter);
         }
 
@@ -607,9 +599,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.DecinewtonPerMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromDecinewtonsPerMillimeter(QuantityValue decinewtonspermillimeter)
+        public static ForcePerLength FromDecinewtonsPerMillimeter(double value)
         {
-            double value = (double) decinewtonspermillimeter;
             return new ForcePerLength(value, ForcePerLengthUnit.DecinewtonPerMillimeter);
         }
 
@@ -617,9 +608,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.KilogramForcePerCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromKilogramsForcePerCentimeter(QuantityValue kilogramsforcepercentimeter)
+        public static ForcePerLength FromKilogramsForcePerCentimeter(double value)
         {
-            double value = (double) kilogramsforcepercentimeter;
             return new ForcePerLength(value, ForcePerLengthUnit.KilogramForcePerCentimeter);
         }
 
@@ -627,9 +617,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.KilogramForcePerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromKilogramsForcePerMeter(QuantityValue kilogramsforcepermeter)
+        public static ForcePerLength FromKilogramsForcePerMeter(double value)
         {
-            double value = (double) kilogramsforcepermeter;
             return new ForcePerLength(value, ForcePerLengthUnit.KilogramForcePerMeter);
         }
 
@@ -637,9 +626,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.KilogramForcePerMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromKilogramsForcePerMillimeter(QuantityValue kilogramsforcepermillimeter)
+        public static ForcePerLength FromKilogramsForcePerMillimeter(double value)
         {
-            double value = (double) kilogramsforcepermillimeter;
             return new ForcePerLength(value, ForcePerLengthUnit.KilogramForcePerMillimeter);
         }
 
@@ -647,9 +635,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.KilonewtonPerCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromKilonewtonsPerCentimeter(QuantityValue kilonewtonspercentimeter)
+        public static ForcePerLength FromKilonewtonsPerCentimeter(double value)
         {
-            double value = (double) kilonewtonspercentimeter;
             return new ForcePerLength(value, ForcePerLengthUnit.KilonewtonPerCentimeter);
         }
 
@@ -657,9 +644,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.KilonewtonPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromKilonewtonsPerMeter(QuantityValue kilonewtonspermeter)
+        public static ForcePerLength FromKilonewtonsPerMeter(double value)
         {
-            double value = (double) kilonewtonspermeter;
             return new ForcePerLength(value, ForcePerLengthUnit.KilonewtonPerMeter);
         }
 
@@ -667,9 +653,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.KilonewtonPerMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromKilonewtonsPerMillimeter(QuantityValue kilonewtonspermillimeter)
+        public static ForcePerLength FromKilonewtonsPerMillimeter(double value)
         {
-            double value = (double) kilonewtonspermillimeter;
             return new ForcePerLength(value, ForcePerLengthUnit.KilonewtonPerMillimeter);
         }
 
@@ -677,9 +662,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.KilopoundForcePerFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromKilopoundsForcePerFoot(QuantityValue kilopoundsforceperfoot)
+        public static ForcePerLength FromKilopoundsForcePerFoot(double value)
         {
-            double value = (double) kilopoundsforceperfoot;
             return new ForcePerLength(value, ForcePerLengthUnit.KilopoundForcePerFoot);
         }
 
@@ -687,9 +671,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.KilopoundForcePerInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromKilopoundsForcePerInch(QuantityValue kilopoundsforceperinch)
+        public static ForcePerLength FromKilopoundsForcePerInch(double value)
         {
-            double value = (double) kilopoundsforceperinch;
             return new ForcePerLength(value, ForcePerLengthUnit.KilopoundForcePerInch);
         }
 
@@ -697,9 +680,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.MeganewtonPerCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromMeganewtonsPerCentimeter(QuantityValue meganewtonspercentimeter)
+        public static ForcePerLength FromMeganewtonsPerCentimeter(double value)
         {
-            double value = (double) meganewtonspercentimeter;
             return new ForcePerLength(value, ForcePerLengthUnit.MeganewtonPerCentimeter);
         }
 
@@ -707,9 +689,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.MeganewtonPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromMeganewtonsPerMeter(QuantityValue meganewtonspermeter)
+        public static ForcePerLength FromMeganewtonsPerMeter(double value)
         {
-            double value = (double) meganewtonspermeter;
             return new ForcePerLength(value, ForcePerLengthUnit.MeganewtonPerMeter);
         }
 
@@ -717,9 +698,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.MeganewtonPerMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromMeganewtonsPerMillimeter(QuantityValue meganewtonspermillimeter)
+        public static ForcePerLength FromMeganewtonsPerMillimeter(double value)
         {
-            double value = (double) meganewtonspermillimeter;
             return new ForcePerLength(value, ForcePerLengthUnit.MeganewtonPerMillimeter);
         }
 
@@ -727,9 +707,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.MicronewtonPerCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromMicronewtonsPerCentimeter(QuantityValue micronewtonspercentimeter)
+        public static ForcePerLength FromMicronewtonsPerCentimeter(double value)
         {
-            double value = (double) micronewtonspercentimeter;
             return new ForcePerLength(value, ForcePerLengthUnit.MicronewtonPerCentimeter);
         }
 
@@ -737,9 +716,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.MicronewtonPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromMicronewtonsPerMeter(QuantityValue micronewtonspermeter)
+        public static ForcePerLength FromMicronewtonsPerMeter(double value)
         {
-            double value = (double) micronewtonspermeter;
             return new ForcePerLength(value, ForcePerLengthUnit.MicronewtonPerMeter);
         }
 
@@ -747,9 +725,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.MicronewtonPerMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromMicronewtonsPerMillimeter(QuantityValue micronewtonspermillimeter)
+        public static ForcePerLength FromMicronewtonsPerMillimeter(double value)
         {
-            double value = (double) micronewtonspermillimeter;
             return new ForcePerLength(value, ForcePerLengthUnit.MicronewtonPerMillimeter);
         }
 
@@ -757,9 +734,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.MillinewtonPerCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromMillinewtonsPerCentimeter(QuantityValue millinewtonspercentimeter)
+        public static ForcePerLength FromMillinewtonsPerCentimeter(double value)
         {
-            double value = (double) millinewtonspercentimeter;
             return new ForcePerLength(value, ForcePerLengthUnit.MillinewtonPerCentimeter);
         }
 
@@ -767,9 +743,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.MillinewtonPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromMillinewtonsPerMeter(QuantityValue millinewtonspermeter)
+        public static ForcePerLength FromMillinewtonsPerMeter(double value)
         {
-            double value = (double) millinewtonspermeter;
             return new ForcePerLength(value, ForcePerLengthUnit.MillinewtonPerMeter);
         }
 
@@ -777,9 +752,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.MillinewtonPerMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromMillinewtonsPerMillimeter(QuantityValue millinewtonspermillimeter)
+        public static ForcePerLength FromMillinewtonsPerMillimeter(double value)
         {
-            double value = (double) millinewtonspermillimeter;
             return new ForcePerLength(value, ForcePerLengthUnit.MillinewtonPerMillimeter);
         }
 
@@ -787,9 +761,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.NanonewtonPerCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromNanonewtonsPerCentimeter(QuantityValue nanonewtonspercentimeter)
+        public static ForcePerLength FromNanonewtonsPerCentimeter(double value)
         {
-            double value = (double) nanonewtonspercentimeter;
             return new ForcePerLength(value, ForcePerLengthUnit.NanonewtonPerCentimeter);
         }
 
@@ -797,9 +770,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.NanonewtonPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromNanonewtonsPerMeter(QuantityValue nanonewtonspermeter)
+        public static ForcePerLength FromNanonewtonsPerMeter(double value)
         {
-            double value = (double) nanonewtonspermeter;
             return new ForcePerLength(value, ForcePerLengthUnit.NanonewtonPerMeter);
         }
 
@@ -807,9 +779,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.NanonewtonPerMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromNanonewtonsPerMillimeter(QuantityValue nanonewtonspermillimeter)
+        public static ForcePerLength FromNanonewtonsPerMillimeter(double value)
         {
-            double value = (double) nanonewtonspermillimeter;
             return new ForcePerLength(value, ForcePerLengthUnit.NanonewtonPerMillimeter);
         }
 
@@ -817,9 +788,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.NewtonPerCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromNewtonsPerCentimeter(QuantityValue newtonspercentimeter)
+        public static ForcePerLength FromNewtonsPerCentimeter(double value)
         {
-            double value = (double) newtonspercentimeter;
             return new ForcePerLength(value, ForcePerLengthUnit.NewtonPerCentimeter);
         }
 
@@ -827,9 +797,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.NewtonPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromNewtonsPerMeter(QuantityValue newtonspermeter)
+        public static ForcePerLength FromNewtonsPerMeter(double value)
         {
-            double value = (double) newtonspermeter;
             return new ForcePerLength(value, ForcePerLengthUnit.NewtonPerMeter);
         }
 
@@ -837,9 +806,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.NewtonPerMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromNewtonsPerMillimeter(QuantityValue newtonspermillimeter)
+        public static ForcePerLength FromNewtonsPerMillimeter(double value)
         {
-            double value = (double) newtonspermillimeter;
             return new ForcePerLength(value, ForcePerLengthUnit.NewtonPerMillimeter);
         }
 
@@ -847,9 +815,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.PoundForcePerFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromPoundsForcePerFoot(QuantityValue poundsforceperfoot)
+        public static ForcePerLength FromPoundsForcePerFoot(double value)
         {
-            double value = (double) poundsforceperfoot;
             return new ForcePerLength(value, ForcePerLengthUnit.PoundForcePerFoot);
         }
 
@@ -857,9 +824,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.PoundForcePerInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromPoundsForcePerInch(QuantityValue poundsforceperinch)
+        public static ForcePerLength FromPoundsForcePerInch(double value)
         {
-            double value = (double) poundsforceperinch;
             return new ForcePerLength(value, ForcePerLengthUnit.PoundForcePerInch);
         }
 
@@ -867,9 +833,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.PoundForcePerYard"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromPoundsForcePerYard(QuantityValue poundsforceperyard)
+        public static ForcePerLength FromPoundsForcePerYard(double value)
         {
-            double value = (double) poundsforceperyard;
             return new ForcePerLength(value, ForcePerLengthUnit.PoundForcePerYard);
         }
 
@@ -877,9 +842,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.TonneForcePerCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromTonnesForcePerCentimeter(QuantityValue tonnesforcepercentimeter)
+        public static ForcePerLength FromTonnesForcePerCentimeter(double value)
         {
-            double value = (double) tonnesforcepercentimeter;
             return new ForcePerLength(value, ForcePerLengthUnit.TonneForcePerCentimeter);
         }
 
@@ -887,9 +851,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.TonneForcePerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromTonnesForcePerMeter(QuantityValue tonnesforcepermeter)
+        public static ForcePerLength FromTonnesForcePerMeter(double value)
         {
-            double value = (double) tonnesforcepermeter;
             return new ForcePerLength(value, ForcePerLengthUnit.TonneForcePerMeter);
         }
 
@@ -897,9 +860,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ForcePerLength"/> from <see cref="ForcePerLengthUnit.TonneForcePerMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ForcePerLength FromTonnesForcePerMillimeter(QuantityValue tonnesforcepermillimeter)
+        public static ForcePerLength FromTonnesForcePerMillimeter(double value)
         {
-            double value = (double) tonnesforcepermillimeter;
             return new ForcePerLength(value, ForcePerLengthUnit.TonneForcePerMillimeter);
         }
 
@@ -909,9 +871,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ForcePerLength unit value.</returns>
-        public static ForcePerLength From(QuantityValue value, ForcePerLengthUnit fromUnit)
+        public static ForcePerLength From(double value, ForcePerLengthUnit fromUnit)
         {
-            return new ForcePerLength((double)value, fromUnit);
+            return new ForcePerLength(value, fromUnit);
         }
 
         #endregion
@@ -1360,15 +1322,6 @@ namespace UnitsNet
             if (!(unit is ForcePerLengthUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForcePerLengthUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is ForcePerLengthUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForcePerLengthUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -1552,18 +1505,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ForcePerLengthUnit> IQuantity<ForcePerLengthUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not ForcePerLengthUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForcePerLengthUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

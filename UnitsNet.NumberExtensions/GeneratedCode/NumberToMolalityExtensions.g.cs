@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToMolality
     /// </summary>
     public static class NumberToMolalityExtensions
     {
-        /// <inheritdoc cref="Molality.FromMolesPerGram(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Molality.FromMolesPerGram(double)" />
         public static Molality MolesPerGram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToMolality
 #endif
             => Molality.FromMolesPerGram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Molality.FromMolesPerKilogram(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Molality.FromMolesPerKilogram(double)" />
         public static Molality MolesPerKilogram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

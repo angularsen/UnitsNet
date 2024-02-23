@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     public readonly partial struct Irradiation :
-        IArithmeticQuantity<Irradiation, IrradiationUnit, double>,
+        IArithmeticQuantity<Irradiation, IrradiationUnit>,
         IComparable,
         IComparable<Irradiation>,
         IConvertible,
@@ -156,7 +156,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -272,9 +272,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.JoulePerSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Irradiation FromJoulesPerSquareCentimeter(QuantityValue joulespersquarecentimeter)
+        public static Irradiation FromJoulesPerSquareCentimeter(double value)
         {
-            double value = (double) joulespersquarecentimeter;
             return new Irradiation(value, IrradiationUnit.JoulePerSquareCentimeter);
         }
 
@@ -282,9 +281,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.JoulePerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Irradiation FromJoulesPerSquareMeter(QuantityValue joulespersquaremeter)
+        public static Irradiation FromJoulesPerSquareMeter(double value)
         {
-            double value = (double) joulespersquaremeter;
             return new Irradiation(value, IrradiationUnit.JoulePerSquareMeter);
         }
 
@@ -292,9 +290,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.JoulePerSquareMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Irradiation FromJoulesPerSquareMillimeter(QuantityValue joulespersquaremillimeter)
+        public static Irradiation FromJoulesPerSquareMillimeter(double value)
         {
-            double value = (double) joulespersquaremillimeter;
             return new Irradiation(value, IrradiationUnit.JoulePerSquareMillimeter);
         }
 
@@ -302,9 +299,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.KilojoulePerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Irradiation FromKilojoulesPerSquareMeter(QuantityValue kilojoulespersquaremeter)
+        public static Irradiation FromKilojoulesPerSquareMeter(double value)
         {
-            double value = (double) kilojoulespersquaremeter;
             return new Irradiation(value, IrradiationUnit.KilojoulePerSquareMeter);
         }
 
@@ -312,9 +308,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.KilowattHourPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Irradiation FromKilowattHoursPerSquareMeter(QuantityValue kilowatthourspersquaremeter)
+        public static Irradiation FromKilowattHoursPerSquareMeter(double value)
         {
-            double value = (double) kilowatthourspersquaremeter;
             return new Irradiation(value, IrradiationUnit.KilowattHourPerSquareMeter);
         }
 
@@ -322,9 +317,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.MillijoulePerSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Irradiation FromMillijoulesPerSquareCentimeter(QuantityValue millijoulespersquarecentimeter)
+        public static Irradiation FromMillijoulesPerSquareCentimeter(double value)
         {
-            double value = (double) millijoulespersquarecentimeter;
             return new Irradiation(value, IrradiationUnit.MillijoulePerSquareCentimeter);
         }
 
@@ -332,9 +326,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.WattHourPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Irradiation FromWattHoursPerSquareMeter(QuantityValue watthourspersquaremeter)
+        public static Irradiation FromWattHoursPerSquareMeter(double value)
         {
-            double value = (double) watthourspersquaremeter;
             return new Irradiation(value, IrradiationUnit.WattHourPerSquareMeter);
         }
 
@@ -344,9 +337,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Irradiation unit value.</returns>
-        public static Irradiation From(QuantityValue value, IrradiationUnit fromUnit)
+        public static Irradiation From(double value, IrradiationUnit fromUnit)
         {
-            return new Irradiation((double)value, fromUnit);
+            return new Irradiation(value, fromUnit);
         }
 
         #endregion
@@ -761,15 +754,6 @@ namespace UnitsNet
             if (!(unit is IrradiationUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(IrradiationUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is IrradiationUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(IrradiationUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -891,18 +875,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<IrradiationUnit> IQuantity<IrradiationUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not IrradiationUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(IrradiationUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

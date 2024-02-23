@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalLength
     /// </summary>
     public static class NumberToReciprocalLengthExtensions
     {
-        /// <inheritdoc cref="ReciprocalLength.FromInverseCentimeters(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ReciprocalLength.FromInverseCentimeters(double)" />
         public static ReciprocalLength InverseCentimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalLength
 #endif
             => ReciprocalLength.FromInverseCentimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReciprocalLength.FromInverseFeet(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ReciprocalLength.FromInverseFeet(double)" />
         public static ReciprocalLength InverseFeet<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalLength
 #endif
             => ReciprocalLength.FromInverseFeet(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReciprocalLength.FromInverseInches(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ReciprocalLength.FromInverseInches(double)" />
         public static ReciprocalLength InverseInches<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalLength
 #endif
             => ReciprocalLength.FromInverseInches(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReciprocalLength.FromInverseMeters(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ReciprocalLength.FromInverseMeters(double)" />
         public static ReciprocalLength InverseMeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalLength
 #endif
             => ReciprocalLength.FromInverseMeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReciprocalLength.FromInverseMicroinches(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ReciprocalLength.FromInverseMicroinches(double)" />
         public static ReciprocalLength InverseMicroinches<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalLength
 #endif
             => ReciprocalLength.FromInverseMicroinches(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReciprocalLength.FromInverseMils(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ReciprocalLength.FromInverseMils(double)" />
         public static ReciprocalLength InverseMils<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalLength
 #endif
             => ReciprocalLength.FromInverseMils(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReciprocalLength.FromInverseMiles(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ReciprocalLength.FromInverseMiles(double)" />
         public static ReciprocalLength InverseMiles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalLength
 #endif
             => ReciprocalLength.FromInverseMiles(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReciprocalLength.FromInverseMillimeters(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ReciprocalLength.FromInverseMillimeters(double)" />
         public static ReciprocalLength InverseMillimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalLength
 #endif
             => ReciprocalLength.FromInverseMillimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReciprocalLength.FromInverseUsSurveyFeet(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ReciprocalLength.FromInverseUsSurveyFeet(double)" />
         public static ReciprocalLength InverseUsSurveyFeet<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -104,7 +104,7 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalLength
 #endif
             => ReciprocalLength.FromInverseUsSurveyFeet(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReciprocalLength.FromInverseYards(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ReciprocalLength.FromInverseYards(double)" />
         public static ReciprocalLength InverseYards<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

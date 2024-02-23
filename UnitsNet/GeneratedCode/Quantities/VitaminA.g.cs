@@ -37,7 +37,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct VitaminA :
-        IArithmeticQuantity<VitaminA, VitaminAUnit, double>,
+        IArithmeticQuantity<VitaminA, VitaminAUnit>,
         IComparable,
         IComparable<VitaminA>,
         IConvertible,
@@ -147,7 +147,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -221,9 +221,8 @@ namespace UnitsNet
         ///     Creates a <see cref="VitaminA"/> from <see cref="VitaminAUnit.InternationalUnit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VitaminA FromInternationalUnits(QuantityValue internationalunits)
+        public static VitaminA FromInternationalUnits(double value)
         {
-            double value = (double) internationalunits;
             return new VitaminA(value, VitaminAUnit.InternationalUnit);
         }
 
@@ -233,9 +232,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>VitaminA unit value.</returns>
-        public static VitaminA From(QuantityValue value, VitaminAUnit fromUnit)
+        public static VitaminA From(double value, VitaminAUnit fromUnit)
         {
-            return new VitaminA((double)value, fromUnit);
+            return new VitaminA(value, fromUnit);
         }
 
         #endregion
@@ -650,15 +649,6 @@ namespace UnitsNet
             if (!(unit is VitaminAUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VitaminAUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is VitaminAUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VitaminAUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -768,18 +758,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<VitaminAUnit> IQuantity<VitaminAUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not VitaminAUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VitaminAUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

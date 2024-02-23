@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
     /// </summary>
     public static class NumberToMassFractionExtensions
     {
-        /// <inheritdoc cref="MassFraction.FromCentigramsPerGram(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MassFraction.FromCentigramsPerGram(double)" />
         public static MassFraction CentigramsPerGram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
 #endif
             => MassFraction.FromCentigramsPerGram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromCentigramsPerKilogram(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MassFraction.FromCentigramsPerKilogram(double)" />
         public static MassFraction CentigramsPerKilogram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
 #endif
             => MassFraction.FromCentigramsPerKilogram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromDecagramsPerGram(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MassFraction.FromDecagramsPerGram(double)" />
         public static MassFraction DecagramsPerGram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
 #endif
             => MassFraction.FromDecagramsPerGram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromDecagramsPerKilogram(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MassFraction.FromDecagramsPerKilogram(double)" />
         public static MassFraction DecagramsPerKilogram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
 #endif
             => MassFraction.FromDecagramsPerKilogram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromDecigramsPerGram(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MassFraction.FromDecigramsPerGram(double)" />
         public static MassFraction DecigramsPerGram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
 #endif
             => MassFraction.FromDecigramsPerGram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromDecigramsPerKilogram(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MassFraction.FromDecigramsPerKilogram(double)" />
         public static MassFraction DecigramsPerKilogram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
 #endif
             => MassFraction.FromDecigramsPerKilogram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromDecimalFractions(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MassFraction.FromDecimalFractions(double)" />
         public static MassFraction DecimalFractions<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
 #endif
             => MassFraction.FromDecimalFractions(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromGramsPerGram(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MassFraction.FromGramsPerGram(double)" />
         public static MassFraction GramsPerGram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
 #endif
             => MassFraction.FromGramsPerGram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromGramsPerKilogram(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MassFraction.FromGramsPerKilogram(double)" />
         public static MassFraction GramsPerKilogram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -104,7 +104,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
 #endif
             => MassFraction.FromGramsPerKilogram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromHectogramsPerGram(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MassFraction.FromHectogramsPerGram(double)" />
         public static MassFraction HectogramsPerGram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -112,7 +112,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
 #endif
             => MassFraction.FromHectogramsPerGram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromHectogramsPerKilogram(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MassFraction.FromHectogramsPerKilogram(double)" />
         public static MassFraction HectogramsPerKilogram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -120,7 +120,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
 #endif
             => MassFraction.FromHectogramsPerKilogram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromKilogramsPerGram(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MassFraction.FromKilogramsPerGram(double)" />
         public static MassFraction KilogramsPerGram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -128,7 +128,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
 #endif
             => MassFraction.FromKilogramsPerGram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromKilogramsPerKilogram(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MassFraction.FromKilogramsPerKilogram(double)" />
         public static MassFraction KilogramsPerKilogram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -136,7 +136,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
 #endif
             => MassFraction.FromKilogramsPerKilogram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromMicrogramsPerGram(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MassFraction.FromMicrogramsPerGram(double)" />
         public static MassFraction MicrogramsPerGram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -144,7 +144,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
 #endif
             => MassFraction.FromMicrogramsPerGram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromMicrogramsPerKilogram(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MassFraction.FromMicrogramsPerKilogram(double)" />
         public static MassFraction MicrogramsPerKilogram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -152,7 +152,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
 #endif
             => MassFraction.FromMicrogramsPerKilogram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromMilligramsPerGram(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MassFraction.FromMilligramsPerGram(double)" />
         public static MassFraction MilligramsPerGram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -160,7 +160,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
 #endif
             => MassFraction.FromMilligramsPerGram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromMilligramsPerKilogram(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MassFraction.FromMilligramsPerKilogram(double)" />
         public static MassFraction MilligramsPerKilogram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -168,7 +168,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
 #endif
             => MassFraction.FromMilligramsPerKilogram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromNanogramsPerGram(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MassFraction.FromNanogramsPerGram(double)" />
         public static MassFraction NanogramsPerGram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -176,7 +176,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
 #endif
             => MassFraction.FromNanogramsPerGram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromNanogramsPerKilogram(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MassFraction.FromNanogramsPerKilogram(double)" />
         public static MassFraction NanogramsPerKilogram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -184,7 +184,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
 #endif
             => MassFraction.FromNanogramsPerKilogram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromPartsPerBillion(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MassFraction.FromPartsPerBillion(double)" />
         public static MassFraction PartsPerBillion<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -192,7 +192,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
 #endif
             => MassFraction.FromPartsPerBillion(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromPartsPerMillion(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MassFraction.FromPartsPerMillion(double)" />
         public static MassFraction PartsPerMillion<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -200,7 +200,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
 #endif
             => MassFraction.FromPartsPerMillion(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromPartsPerThousand(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MassFraction.FromPartsPerThousand(double)" />
         public static MassFraction PartsPerThousand<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -208,7 +208,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
 #endif
             => MassFraction.FromPartsPerThousand(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromPartsPerTrillion(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MassFraction.FromPartsPerTrillion(double)" />
         public static MassFraction PartsPerTrillion<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -216,7 +216,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
 #endif
             => MassFraction.FromPartsPerTrillion(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFraction.FromPercent(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MassFraction.FromPercent(double)" />
         public static MassFraction Percent<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToWarpingMomentOfInertia
     /// </summary>
     public static class NumberToWarpingMomentOfInertiaExtensions
     {
-        /// <inheritdoc cref="WarpingMomentOfInertia.FromCentimetersToTheSixth(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="WarpingMomentOfInertia.FromCentimetersToTheSixth(double)" />
         public static WarpingMomentOfInertia CentimetersToTheSixth<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToWarpingMomentOfInertia
 #endif
             => WarpingMomentOfInertia.FromCentimetersToTheSixth(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="WarpingMomentOfInertia.FromDecimetersToTheSixth(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="WarpingMomentOfInertia.FromDecimetersToTheSixth(double)" />
         public static WarpingMomentOfInertia DecimetersToTheSixth<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToWarpingMomentOfInertia
 #endif
             => WarpingMomentOfInertia.FromDecimetersToTheSixth(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="WarpingMomentOfInertia.FromFeetToTheSixth(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="WarpingMomentOfInertia.FromFeetToTheSixth(double)" />
         public static WarpingMomentOfInertia FeetToTheSixth<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToWarpingMomentOfInertia
 #endif
             => WarpingMomentOfInertia.FromFeetToTheSixth(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="WarpingMomentOfInertia.FromInchesToTheSixth(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="WarpingMomentOfInertia.FromInchesToTheSixth(double)" />
         public static WarpingMomentOfInertia InchesToTheSixth<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToWarpingMomentOfInertia
 #endif
             => WarpingMomentOfInertia.FromInchesToTheSixth(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="WarpingMomentOfInertia.FromMetersToTheSixth(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="WarpingMomentOfInertia.FromMetersToTheSixth(double)" />
         public static WarpingMomentOfInertia MetersToTheSixth<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToWarpingMomentOfInertia
 #endif
             => WarpingMomentOfInertia.FromMetersToTheSixth(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="WarpingMomentOfInertia.FromMillimetersToTheSixth(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="WarpingMomentOfInertia.FromMillimetersToTheSixth(double)" />
         public static WarpingMomentOfInertia MillimetersToTheSixth<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

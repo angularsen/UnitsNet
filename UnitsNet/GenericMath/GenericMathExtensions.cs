@@ -12,10 +12,6 @@ namespace UnitsNet.GenericMath;
 ///     Provides generic math operations to test out the new generic math interfaces implemented in .NET7 for UnitsNet
 ///     quantities using <see cref="double" /> as the internal value type, which is the majority of quantities.
 /// </summary>
-/// <remarks>
-///     See <see cref="DecimalGenericMathExtensions" /> for quantities using <see cref="decimal" /> as the internal value
-///     type.
-/// </remarks>
 public static class GenericMathExtensions
 {
     /// <summary>

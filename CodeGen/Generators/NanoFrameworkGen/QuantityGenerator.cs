@@ -43,7 +43,7 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        private readonly {_quantity.ValueType} _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -53,7 +53,7 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public {_quantity.ValueType} Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public {_unitEnumName} Unit => _unit;
@@ -66,7 +66,7 @@ namespace UnitsNet
         /// <param name=""value"">The numeric value to construct this quantity with.</param>
         /// <param name=""unit"">The unit representation to construct this quantity with.</param>
         /// <exception cref=""ArgumentException"">If value is NaN or Infinity.</exception>
-        public {_quantity.Name}({_quantity.ValueType} value, {_unitEnumName} unit)
+        public {_quantity.Name}(double value, {_unitEnumName} unit)
         {{
             _value = value;
             _unit = unit;
@@ -79,29 +79,14 @@ namespace UnitsNet
 
         /// <summary>
         /// Represents the largest possible value of {_quantity.Name}.
-        /// </summary>");
-
-            // Non decimal
-            Writer.WLCondition(_quantity.ValueType != "decimal", $@"
-        public static {_quantity.Name} MaxValue {{ get; }} = new {_quantity.Name}({_quantity.ValueType}.MaxValue, BaseUnit);
+        /// </summary>
+        public static {_quantity.Name} MaxValue {{ get; }} = new {_quantity.Name}(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of {_quantity.Name}.
         /// </summary>
-        public static {_quantity.Name} MinValue {{ get; }} = new {_quantity.Name}({_quantity.ValueType}.MinValue, BaseUnit);
-");
+        public static {_quantity.Name} MinValue {{ get; }} = new {_quantity.Name}(double.MinValue, BaseUnit);
 
-            // Decimal MaxValue = 79228162514264337593543950335M
-            Writer.WLCondition(_quantity.ValueType == "decimal", $@"
-        public static {_quantity.Name} MaxValue {{ get; }} = new {_quantity.Name}(79228162514264337593543950335M, BaseUnit);
-
-        /// <summary>
-        /// Represents the smallest possible value of {_quantity.Name}.
-        /// </summary>
-        public static {_quantity.Name} MinValue {{ get; }} = new {_quantity.Name}(-79228162514264337593543950335M, BaseUnit);
-");
-
-            Writer.WL($@"
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -134,7 +119,7 @@ namespace UnitsNet
         /// </summary>");
                 Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit));
                 Writer.WL($@"
-        public {_quantity.ValueType} {unit.PluralName} => As({_unitEnumName}.{unit.SingularName});
+        public double {unit.PluralName} => As({_unitEnumName}.{unit.SingularName});
 ");
             }
 
@@ -161,7 +146,7 @@ namespace UnitsNet
         /// <exception cref=""ArgumentException"">If value is NaN or Infinity.</exception>");
                 Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit));
                 Writer.WL($@"
-        public static {_quantity.Name} From{unit.PluralName}({_quantity.ValueType} {valueParamName}) => new {_quantity.Name}({valueParamName}, {_unitEnumName}.{unit.SingularName});
+        public static {_quantity.Name} From{unit.PluralName}(double {valueParamName}) => new {_quantity.Name}({valueParamName}, {_unitEnumName}.{unit.SingularName});
 ");
             }
 
@@ -172,7 +157,7 @@ namespace UnitsNet
         /// <param name=""value"">Value to convert from.</param>
         /// <param name=""fromUnit"">Unit to convert from.</param>
         /// <returns>{_quantity.Name} unit value.</returns>
-        public static {_quantity.Name} From({_quantity.ValueType} value, {_unitEnumName} fromUnit)
+        public static {_quantity.Name} From(double value, {_unitEnumName} fromUnit)
         {{
             return new {_quantity.Name}(value, fromUnit);
         }}
@@ -190,7 +175,7 @@ namespace UnitsNet
                 ///     Convert to the unit representation <paramref name=""unit"" />.
                 /// </summary>
                 /// <returns>Value converted to the specified unit.</returns>
-                public {_quantity.ValueType} As({_unitEnumName} unit) => GetValueAs(unit);
+                public double As({_unitEnumName} unit) => GetValueAs(unit);
 
                 /// <summary>
                 ///     Converts this {_quantity.Name} to another {_quantity.Name} with the unit representation <paramref name=""unit"" />.
@@ -207,7 +192,7 @@ namespace UnitsNet
                 ///     This is typically the first step in converting from one unit to another.
                 /// </summary>
                 /// <returns>The value in the base unit representation.</returns>
-                private {_quantity.ValueType} GetValueInBaseUnit()
+                private double GetValueInBaseUnit()
                 {{
                     return Unit switch
                     {{");
@@ -223,7 +208,7 @@ namespace UnitsNet
                     }};
                     }}
 
-                private {_quantity.ValueType} GetValueAs({_unitEnumName} unit)
+                private double GetValueAs({_unitEnumName} unit)
                 {{
                     if (Unit == unit)
                         return _value;

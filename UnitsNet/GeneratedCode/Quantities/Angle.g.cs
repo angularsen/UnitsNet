@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct Angle :
-        IArithmeticQuantity<Angle, AngleUnit, double>,
+        IArithmeticQuantity<Angle, AngleUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Angle, Duration, RotationalSpeed>,
         IMultiplyOperators<Angle, RotationalStiffness, Torque>,
@@ -169,7 +169,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -348,9 +348,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Arcminute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Angle FromArcminutes(QuantityValue arcminutes)
+        public static Angle FromArcminutes(double value)
         {
-            double value = (double) arcminutes;
             return new Angle(value, AngleUnit.Arcminute);
         }
 
@@ -358,9 +357,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Arcsecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Angle FromArcseconds(QuantityValue arcseconds)
+        public static Angle FromArcseconds(double value)
         {
-            double value = (double) arcseconds;
             return new Angle(value, AngleUnit.Arcsecond);
         }
 
@@ -368,9 +366,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Centiradian"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Angle FromCentiradians(QuantityValue centiradians)
+        public static Angle FromCentiradians(double value)
         {
-            double value = (double) centiradians;
             return new Angle(value, AngleUnit.Centiradian);
         }
 
@@ -378,9 +375,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Deciradian"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Angle FromDeciradians(QuantityValue deciradians)
+        public static Angle FromDeciradians(double value)
         {
-            double value = (double) deciradians;
             return new Angle(value, AngleUnit.Deciradian);
         }
 
@@ -388,9 +384,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Degree"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Angle FromDegrees(QuantityValue degrees)
+        public static Angle FromDegrees(double value)
         {
-            double value = (double) degrees;
             return new Angle(value, AngleUnit.Degree);
         }
 
@@ -398,9 +393,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Gradian"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Angle FromGradians(QuantityValue gradians)
+        public static Angle FromGradians(double value)
         {
-            double value = (double) gradians;
             return new Angle(value, AngleUnit.Gradian);
         }
 
@@ -408,9 +402,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Microdegree"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Angle FromMicrodegrees(QuantityValue microdegrees)
+        public static Angle FromMicrodegrees(double value)
         {
-            double value = (double) microdegrees;
             return new Angle(value, AngleUnit.Microdegree);
         }
 
@@ -418,9 +411,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Microradian"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Angle FromMicroradians(QuantityValue microradians)
+        public static Angle FromMicroradians(double value)
         {
-            double value = (double) microradians;
             return new Angle(value, AngleUnit.Microradian);
         }
 
@@ -428,9 +420,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Millidegree"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Angle FromMillidegrees(QuantityValue millidegrees)
+        public static Angle FromMillidegrees(double value)
         {
-            double value = (double) millidegrees;
             return new Angle(value, AngleUnit.Millidegree);
         }
 
@@ -438,9 +429,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Milliradian"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Angle FromMilliradians(QuantityValue milliradians)
+        public static Angle FromMilliradians(double value)
         {
-            double value = (double) milliradians;
             return new Angle(value, AngleUnit.Milliradian);
         }
 
@@ -448,9 +438,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Nanodegree"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Angle FromNanodegrees(QuantityValue nanodegrees)
+        public static Angle FromNanodegrees(double value)
         {
-            double value = (double) nanodegrees;
             return new Angle(value, AngleUnit.Nanodegree);
         }
 
@@ -458,9 +447,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Nanoradian"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Angle FromNanoradians(QuantityValue nanoradians)
+        public static Angle FromNanoradians(double value)
         {
-            double value = (double) nanoradians;
             return new Angle(value, AngleUnit.Nanoradian);
         }
 
@@ -468,9 +456,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.NatoMil"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Angle FromNatoMils(QuantityValue natomils)
+        public static Angle FromNatoMils(double value)
         {
-            double value = (double) natomils;
             return new Angle(value, AngleUnit.NatoMil);
         }
 
@@ -478,9 +465,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Radian"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Angle FromRadians(QuantityValue radians)
+        public static Angle FromRadians(double value)
         {
-            double value = (double) radians;
             return new Angle(value, AngleUnit.Radian);
         }
 
@@ -488,9 +474,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Revolution"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Angle FromRevolutions(QuantityValue revolutions)
+        public static Angle FromRevolutions(double value)
         {
-            double value = (double) revolutions;
             return new Angle(value, AngleUnit.Revolution);
         }
 
@@ -498,9 +483,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Tilt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Angle FromTilt(QuantityValue tilt)
+        public static Angle FromTilt(double value)
         {
-            double value = (double) tilt;
             return new Angle(value, AngleUnit.Tilt);
         }
 
@@ -510,9 +494,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Angle unit value.</returns>
-        public static Angle From(QuantityValue value, AngleUnit fromUnit)
+        public static Angle From(double value, AngleUnit fromUnit)
         {
-            return new Angle((double)value, fromUnit);
+            return new Angle(value, fromUnit);
         }
 
         #endregion
@@ -943,15 +927,6 @@ namespace UnitsNet
             if (!(unit is AngleUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AngleUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is AngleUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AngleUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -1091,18 +1066,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<AngleUnit> IQuantity<AngleUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not AngleUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AngleUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

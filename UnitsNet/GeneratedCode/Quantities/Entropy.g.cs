@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct Entropy :
-        IArithmeticQuantity<Entropy, EntropyUnit, double>,
+        IArithmeticQuantity<Entropy, EntropyUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<Entropy, TemperatureDelta, Energy>,
         IDivisionOperators<Entropy, Mass, SpecificEntropy>,
@@ -160,7 +160,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -276,9 +276,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.CaloriePerKelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Entropy FromCaloriesPerKelvin(QuantityValue caloriesperkelvin)
+        public static Entropy FromCaloriesPerKelvin(double value)
         {
-            double value = (double) caloriesperkelvin;
             return new Entropy(value, EntropyUnit.CaloriePerKelvin);
         }
 
@@ -286,9 +285,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.JoulePerDegreeCelsius"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Entropy FromJoulesPerDegreeCelsius(QuantityValue joulesperdegreecelsius)
+        public static Entropy FromJoulesPerDegreeCelsius(double value)
         {
-            double value = (double) joulesperdegreecelsius;
             return new Entropy(value, EntropyUnit.JoulePerDegreeCelsius);
         }
 
@@ -296,9 +294,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.JoulePerKelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Entropy FromJoulesPerKelvin(QuantityValue joulesperkelvin)
+        public static Entropy FromJoulesPerKelvin(double value)
         {
-            double value = (double) joulesperkelvin;
             return new Entropy(value, EntropyUnit.JoulePerKelvin);
         }
 
@@ -306,9 +303,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.KilocaloriePerKelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Entropy FromKilocaloriesPerKelvin(QuantityValue kilocaloriesperkelvin)
+        public static Entropy FromKilocaloriesPerKelvin(double value)
         {
-            double value = (double) kilocaloriesperkelvin;
             return new Entropy(value, EntropyUnit.KilocaloriePerKelvin);
         }
 
@@ -316,9 +312,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.KilojoulePerDegreeCelsius"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Entropy FromKilojoulesPerDegreeCelsius(QuantityValue kilojoulesperdegreecelsius)
+        public static Entropy FromKilojoulesPerDegreeCelsius(double value)
         {
-            double value = (double) kilojoulesperdegreecelsius;
             return new Entropy(value, EntropyUnit.KilojoulePerDegreeCelsius);
         }
 
@@ -326,9 +321,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.KilojoulePerKelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Entropy FromKilojoulesPerKelvin(QuantityValue kilojoulesperkelvin)
+        public static Entropy FromKilojoulesPerKelvin(double value)
         {
-            double value = (double) kilojoulesperkelvin;
             return new Entropy(value, EntropyUnit.KilojoulePerKelvin);
         }
 
@@ -336,9 +330,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.MegajoulePerKelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Entropy FromMegajoulesPerKelvin(QuantityValue megajoulesperkelvin)
+        public static Entropy FromMegajoulesPerKelvin(double value)
         {
-            double value = (double) megajoulesperkelvin;
             return new Entropy(value, EntropyUnit.MegajoulePerKelvin);
         }
 
@@ -348,9 +341,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Entropy unit value.</returns>
-        public static Entropy From(QuantityValue value, EntropyUnit fromUnit)
+        public static Entropy From(double value, EntropyUnit fromUnit)
         {
-            return new Entropy((double)value, fromUnit);
+            return new Entropy(value, fromUnit);
         }
 
         #endregion
@@ -781,15 +774,6 @@ namespace UnitsNet
             if (!(unit is EntropyUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(EntropyUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is EntropyUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(EntropyUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -911,18 +895,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<EntropyUnit> IQuantity<EntropyUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not EntropyUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(EntropyUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

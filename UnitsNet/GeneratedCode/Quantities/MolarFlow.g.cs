@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct MolarFlow :
-        IArithmeticQuantity<MolarFlow, MolarFlowUnit, double>,
+        IArithmeticQuantity<MolarFlow, MolarFlowUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<MolarFlow, Duration, AmountOfSubstance>,
         IMultiplyOperators<MolarFlow, MolarMass, MassFlow>,
@@ -163,7 +163,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -293,9 +293,8 @@ namespace UnitsNet
         ///     Creates a <see cref="MolarFlow"/> from <see cref="MolarFlowUnit.KilomolePerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarFlow FromKilomolesPerHour(QuantityValue kilomolesperhour)
+        public static MolarFlow FromKilomolesPerHour(double value)
         {
-            double value = (double) kilomolesperhour;
             return new MolarFlow(value, MolarFlowUnit.KilomolePerHour);
         }
 
@@ -303,9 +302,8 @@ namespace UnitsNet
         ///     Creates a <see cref="MolarFlow"/> from <see cref="MolarFlowUnit.KilomolePerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarFlow FromKilomolesPerMinute(QuantityValue kilomolesperminute)
+        public static MolarFlow FromKilomolesPerMinute(double value)
         {
-            double value = (double) kilomolesperminute;
             return new MolarFlow(value, MolarFlowUnit.KilomolePerMinute);
         }
 
@@ -313,9 +311,8 @@ namespace UnitsNet
         ///     Creates a <see cref="MolarFlow"/> from <see cref="MolarFlowUnit.KilomolePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarFlow FromKilomolesPerSecond(QuantityValue kilomolespersecond)
+        public static MolarFlow FromKilomolesPerSecond(double value)
         {
-            double value = (double) kilomolespersecond;
             return new MolarFlow(value, MolarFlowUnit.KilomolePerSecond);
         }
 
@@ -323,9 +320,8 @@ namespace UnitsNet
         ///     Creates a <see cref="MolarFlow"/> from <see cref="MolarFlowUnit.MolePerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarFlow FromMolesPerHour(QuantityValue molesperhour)
+        public static MolarFlow FromMolesPerHour(double value)
         {
-            double value = (double) molesperhour;
             return new MolarFlow(value, MolarFlowUnit.MolePerHour);
         }
 
@@ -333,9 +329,8 @@ namespace UnitsNet
         ///     Creates a <see cref="MolarFlow"/> from <see cref="MolarFlowUnit.MolePerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarFlow FromMolesPerMinute(QuantityValue molesperminute)
+        public static MolarFlow FromMolesPerMinute(double value)
         {
-            double value = (double) molesperminute;
             return new MolarFlow(value, MolarFlowUnit.MolePerMinute);
         }
 
@@ -343,9 +338,8 @@ namespace UnitsNet
         ///     Creates a <see cref="MolarFlow"/> from <see cref="MolarFlowUnit.MolePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarFlow FromMolesPerSecond(QuantityValue molespersecond)
+        public static MolarFlow FromMolesPerSecond(double value)
         {
-            double value = (double) molespersecond;
             return new MolarFlow(value, MolarFlowUnit.MolePerSecond);
         }
 
@@ -353,9 +347,8 @@ namespace UnitsNet
         ///     Creates a <see cref="MolarFlow"/> from <see cref="MolarFlowUnit.PoundMolePerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarFlow FromPoundMolesPerHour(QuantityValue poundmolesperhour)
+        public static MolarFlow FromPoundMolesPerHour(double value)
         {
-            double value = (double) poundmolesperhour;
             return new MolarFlow(value, MolarFlowUnit.PoundMolePerHour);
         }
 
@@ -363,9 +356,8 @@ namespace UnitsNet
         ///     Creates a <see cref="MolarFlow"/> from <see cref="MolarFlowUnit.PoundMolePerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarFlow FromPoundMolesPerMinute(QuantityValue poundmolesperminute)
+        public static MolarFlow FromPoundMolesPerMinute(double value)
         {
-            double value = (double) poundmolesperminute;
             return new MolarFlow(value, MolarFlowUnit.PoundMolePerMinute);
         }
 
@@ -373,9 +365,8 @@ namespace UnitsNet
         ///     Creates a <see cref="MolarFlow"/> from <see cref="MolarFlowUnit.PoundMolePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarFlow FromPoundMolesPerSecond(QuantityValue poundmolespersecond)
+        public static MolarFlow FromPoundMolesPerSecond(double value)
         {
-            double value = (double) poundmolespersecond;
             return new MolarFlow(value, MolarFlowUnit.PoundMolePerSecond);
         }
 
@@ -385,9 +376,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>MolarFlow unit value.</returns>
-        public static MolarFlow From(QuantityValue value, MolarFlowUnit fromUnit)
+        public static MolarFlow From(double value, MolarFlowUnit fromUnit)
         {
-            return new MolarFlow((double)value, fromUnit);
+            return new MolarFlow(value, fromUnit);
         }
 
         #endregion
@@ -830,15 +821,6 @@ namespace UnitsNet
             if (!(unit is MolarFlowUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarFlowUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is MolarFlowUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarFlowUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -964,18 +946,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<MolarFlowUnit> IQuantity<MolarFlowUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not MolarFlowUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarFlowUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

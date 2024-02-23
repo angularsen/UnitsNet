@@ -37,7 +37,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct MolarEnergy :
-        IArithmeticQuantity<MolarEnergy, MolarEnergyUnit, double>,
+        IArithmeticQuantity<MolarEnergy, MolarEnergyUnit>,
         IComparable,
         IComparable<MolarEnergy>,
         IConvertible,
@@ -149,7 +149,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -237,9 +237,8 @@ namespace UnitsNet
         ///     Creates a <see cref="MolarEnergy"/> from <see cref="MolarEnergyUnit.JoulePerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarEnergy FromJoulesPerMole(QuantityValue joulespermole)
+        public static MolarEnergy FromJoulesPerMole(double value)
         {
-            double value = (double) joulespermole;
             return new MolarEnergy(value, MolarEnergyUnit.JoulePerMole);
         }
 
@@ -247,9 +246,8 @@ namespace UnitsNet
         ///     Creates a <see cref="MolarEnergy"/> from <see cref="MolarEnergyUnit.KilojoulePerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarEnergy FromKilojoulesPerMole(QuantityValue kilojoulespermole)
+        public static MolarEnergy FromKilojoulesPerMole(double value)
         {
-            double value = (double) kilojoulespermole;
             return new MolarEnergy(value, MolarEnergyUnit.KilojoulePerMole);
         }
 
@@ -257,9 +255,8 @@ namespace UnitsNet
         ///     Creates a <see cref="MolarEnergy"/> from <see cref="MolarEnergyUnit.MegajoulePerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarEnergy FromMegajoulesPerMole(QuantityValue megajoulespermole)
+        public static MolarEnergy FromMegajoulesPerMole(double value)
         {
-            double value = (double) megajoulespermole;
             return new MolarEnergy(value, MolarEnergyUnit.MegajoulePerMole);
         }
 
@@ -269,9 +266,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>MolarEnergy unit value.</returns>
-        public static MolarEnergy From(QuantityValue value, MolarEnergyUnit fromUnit)
+        public static MolarEnergy From(double value, MolarEnergyUnit fromUnit)
         {
-            return new MolarEnergy((double)value, fromUnit);
+            return new MolarEnergy(value, fromUnit);
         }
 
         #endregion
@@ -686,15 +683,6 @@ namespace UnitsNet
             if (!(unit is MolarEnergyUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarEnergyUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is MolarEnergyUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarEnergyUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -808,18 +796,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<MolarEnergyUnit> IQuantity<MolarEnergyUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not MolarEnergyUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarEnergyUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

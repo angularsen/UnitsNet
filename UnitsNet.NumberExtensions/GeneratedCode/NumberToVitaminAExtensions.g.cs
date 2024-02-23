@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToVitaminA
     /// </summary>
     public static class NumberToVitaminAExtensions
     {
-        /// <inheritdoc cref="VitaminA.FromInternationalUnits(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="VitaminA.FromInternationalUnits(double)" />
         public static VitaminA InternationalUnits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

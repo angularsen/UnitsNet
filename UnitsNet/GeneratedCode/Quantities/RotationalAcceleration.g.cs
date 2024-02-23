@@ -37,7 +37,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct RotationalAcceleration :
-        IArithmeticQuantity<RotationalAcceleration, RotationalAccelerationUnit, double>,
+        IArithmeticQuantity<RotationalAcceleration, RotationalAccelerationUnit>,
         IComparable,
         IComparable<RotationalAcceleration>,
         IConvertible,
@@ -150,7 +150,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -245,9 +245,8 @@ namespace UnitsNet
         ///     Creates a <see cref="RotationalAcceleration"/> from <see cref="RotationalAccelerationUnit.DegreePerSecondSquared"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalAcceleration FromDegreesPerSecondSquared(QuantityValue degreespersecondsquared)
+        public static RotationalAcceleration FromDegreesPerSecondSquared(double value)
         {
-            double value = (double) degreespersecondsquared;
             return new RotationalAcceleration(value, RotationalAccelerationUnit.DegreePerSecondSquared);
         }
 
@@ -255,9 +254,8 @@ namespace UnitsNet
         ///     Creates a <see cref="RotationalAcceleration"/> from <see cref="RotationalAccelerationUnit.RadianPerSecondSquared"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalAcceleration FromRadiansPerSecondSquared(QuantityValue radianspersecondsquared)
+        public static RotationalAcceleration FromRadiansPerSecondSquared(double value)
         {
-            double value = (double) radianspersecondsquared;
             return new RotationalAcceleration(value, RotationalAccelerationUnit.RadianPerSecondSquared);
         }
 
@@ -265,9 +263,8 @@ namespace UnitsNet
         ///     Creates a <see cref="RotationalAcceleration"/> from <see cref="RotationalAccelerationUnit.RevolutionPerMinutePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalAcceleration FromRevolutionsPerMinutePerSecond(QuantityValue revolutionsperminutepersecond)
+        public static RotationalAcceleration FromRevolutionsPerMinutePerSecond(double value)
         {
-            double value = (double) revolutionsperminutepersecond;
             return new RotationalAcceleration(value, RotationalAccelerationUnit.RevolutionPerMinutePerSecond);
         }
 
@@ -275,9 +272,8 @@ namespace UnitsNet
         ///     Creates a <see cref="RotationalAcceleration"/> from <see cref="RotationalAccelerationUnit.RevolutionPerSecondSquared"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalAcceleration FromRevolutionsPerSecondSquared(QuantityValue revolutionspersecondsquared)
+        public static RotationalAcceleration FromRevolutionsPerSecondSquared(double value)
         {
-            double value = (double) revolutionspersecondsquared;
             return new RotationalAcceleration(value, RotationalAccelerationUnit.RevolutionPerSecondSquared);
         }
 
@@ -287,9 +283,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>RotationalAcceleration unit value.</returns>
-        public static RotationalAcceleration From(QuantityValue value, RotationalAccelerationUnit fromUnit)
+        public static RotationalAcceleration From(double value, RotationalAccelerationUnit fromUnit)
         {
-            return new RotationalAcceleration((double)value, fromUnit);
+            return new RotationalAcceleration(value, fromUnit);
         }
 
         #endregion
@@ -704,15 +700,6 @@ namespace UnitsNet
             if (!(unit is RotationalAccelerationUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalAccelerationUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is RotationalAccelerationUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalAccelerationUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -828,18 +815,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<RotationalAccelerationUnit> IQuantity<RotationalAccelerationUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not RotationalAccelerationUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalAccelerationUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

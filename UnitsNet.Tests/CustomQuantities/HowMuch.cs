@@ -19,7 +19,7 @@ namespace UnitsNet.Tests.CustomQuantities
         Enum IQuantity.Unit => Unit;
         public HowMuchUnit Unit { get; }
 
-        public QuantityValue Value { get; }
+        public double Value { get; }
 
         #region IQuantity
 

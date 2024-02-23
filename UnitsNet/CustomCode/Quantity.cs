@@ -46,7 +46,7 @@ namespace UnitsNet
         /// <param name="unit">Unit enum value.</param>
         /// <returns>An <see cref="IQuantity"/> object.</returns>
         /// <exception cref="UnitNotFoundException">Unit value is not a known unit enum type.</exception>
-        public static IQuantity From(QuantityValue value, Enum unit)
+        public static IQuantity From(double value, Enum unit)
         {
             return TryFrom(value, unit, out IQuantity? quantity)
                 ? quantity
@@ -61,7 +61,7 @@ namespace UnitsNet
         /// <param name="unitName">The invariant unit enum name, such as "Meter". Does not support localization.</param>
         /// <returns>An <see cref="IQuantity"/> object.</returns>
         /// <exception cref="ArgumentException">Unit value is not a known unit enum type.</exception>
-        public static IQuantity From(QuantityValue value, string quantityName, string unitName)
+        public static IQuantity From(double value, string quantityName, string unitName)
         {
             // Get enum value for this unit, f.ex. LengthUnit.Meter for unit name "Meter".
             return UnitConverter.TryParseUnit(quantityName, unitName, out Enum? unitValue) &&
@@ -78,14 +78,14 @@ namespace UnitsNet
         ///     Unit abbreviation matching is case-insensitive.<br/>
         ///     <br/>
         ///     This will fail if more than one unit across all quantities share the same unit abbreviation.<br/>
-        ///     Prefer <see cref="From(UnitsNet.QuantityValue,System.Enum)"/> or <see cref="From(UnitsNet.QuantityValue,string,string)"/> instead.
+        ///     Prefer <see cref="From(double,System.Enum)"/> or <see cref="From(double,string,string)"/> instead.
         /// </remarks>
         /// <param name="value">Numeric value.</param>
         /// <param name="unitAbbreviation">Unit abbreviation, such as "kg" for <see cref="MassUnit.Kilogram"/>.</param>
         /// <returns>An <see cref="IQuantity"/> object.</returns>
         /// <exception cref="UnitNotFoundException">Unit abbreviation is not known.</exception>
         /// <exception cref="AmbiguousUnitParseException">Multiple units found matching the given unit abbreviation.</exception>
-        public static IQuantity FromUnitAbbreviation(QuantityValue value, string unitAbbreviation) => FromUnitAbbreviation(null, value, unitAbbreviation);
+        public static IQuantity FromUnitAbbreviation(double value, string unitAbbreviation) => FromUnitAbbreviation(null, value, unitAbbreviation);
 
         /// <summary>
         ///     Dynamically construct a quantity from a numeric value and a unit abbreviation.
@@ -95,7 +95,7 @@ namespace UnitsNet
         ///     Unit abbreviation matching is case-insensitive.<br/>
         ///     <br/>
         ///     This will fail if more than one unit across all quantities share the same unit abbreviation.<br/>
-        ///     Prefer <see cref="From(UnitsNet.QuantityValue,System.Enum)"/> or <see cref="From(UnitsNet.QuantityValue,string,string)"/> instead.
+        ///     Prefer <see cref="From(double,System.Enum)"/> or <see cref="From(double,string,string)"/> instead.
         /// </remarks>
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <param name="value">Numeric value.</param>
@@ -103,7 +103,7 @@ namespace UnitsNet
         /// <returns>An <see cref="IQuantity"/> object.</returns>
         /// <exception cref="UnitNotFoundException">Unit abbreviation is not known.</exception>
         /// <exception cref="AmbiguousUnitParseException">Multiple units found matching the given unit abbreviation.</exception>
-        public static IQuantity FromUnitAbbreviation(IFormatProvider? formatProvider, QuantityValue value, string unitAbbreviation)
+        public static IQuantity FromUnitAbbreviation(IFormatProvider? formatProvider, double value, string unitAbbreviation)
         {
             // TODO Optimize this with UnitValueAbbreviationLookup via UnitAbbreviationsCache.TryGetUnitValueAbbreviationLookup.
             List<Enum> units = GetUnitsForAbbreviation(formatProvider, unitAbbreviation);
@@ -119,16 +119,6 @@ namespace UnitsNet
 
             Enum unit = units.Single();
             return From(value, unit);
-        }
-
-        /// <inheritdoc cref="TryFrom(QuantityValue,System.Enum,out UnitsNet.IQuantity)"/>
-        public static bool TryFrom(double value, Enum unit, [NotNullWhen(true)] out IQuantity? quantity)
-        {
-            quantity = default;
-
-            // Implicit cast to QuantityValue would prevent TryFrom from being called,
-            // so we need to explicitly check this here for double arguments.
-            return TryFrom((QuantityValue)value, unit, out quantity);
         }
 
         /// <summary>
@@ -155,14 +145,14 @@ namespace UnitsNet
         ///     Unit abbreviation matching is case-insensitive.<br/>
         ///     <br/>
         ///     This will fail if more than one unit across all quantities share the same unit abbreviation.<br/>
-        ///     Prefer <see cref="From(UnitsNet.QuantityValue,System.Enum)"/> or <see cref="From(UnitsNet.QuantityValue,string,string)"/> instead.
+        ///     Prefer <see cref="From(double,System.Enum)"/> or <see cref="From(double,string,string)"/> instead.
         /// </remarks>
         /// <param name="value">Numeric value.</param>
         /// <param name="unitAbbreviation">Unit abbreviation, such as "kg" for <see cref="MassUnit.Kilogram"/>.</param>
         /// <param name="quantity">The quantity if successful, otherwise null.</param>
         /// <returns>True if successful.</returns>
         /// <exception cref="ArgumentException">Unit value is not a known unit enum type.</exception>
-        public static bool TryFromUnitAbbreviation(QuantityValue value, string unitAbbreviation, [NotNullWhen(true)] out IQuantity? quantity) =>
+        public static bool TryFromUnitAbbreviation(double value, string unitAbbreviation, [NotNullWhen(true)] out IQuantity? quantity) =>
             TryFromUnitAbbreviation(null, value, unitAbbreviation, out quantity);
 
         /// <summary>
@@ -173,7 +163,7 @@ namespace UnitsNet
         ///     Unit abbreviation matching is case-insensitive.<br/>
         ///     <br/>
         ///     This will fail if more than one unit across all quantities share the same unit abbreviation.<br/>
-        ///     Prefer <see cref="From(UnitsNet.QuantityValue,System.Enum)"/> or <see cref="From(UnitsNet.QuantityValue,string,string)"/> instead.
+        ///     Prefer <see cref="From(double,System.Enum)"/> or <see cref="From(double,string,string)"/> instead.
         /// </remarks>
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <param name="value">Numeric value.</param>
@@ -181,7 +171,7 @@ namespace UnitsNet
         /// <param name="quantity">The quantity if successful, otherwise null.</param>
         /// <returns>True if successful.</returns>
         /// <exception cref="ArgumentException">Unit value is not a known unit enum type.</exception>
-        public static bool TryFromUnitAbbreviation(IFormatProvider? formatProvider, QuantityValue value, string unitAbbreviation, [NotNullWhen(true)] out IQuantity? quantity)
+        public static bool TryFromUnitAbbreviation(IFormatProvider? formatProvider, double value, string unitAbbreviation, [NotNullWhen(true)] out IQuantity? quantity)
         {
             // TODO Optimize this with UnitValueAbbreviationLookup via UnitAbbreviationsCache.TryGetUnitValueAbbreviationLookup.
             List<Enum> units = GetUnitsForAbbreviation(formatProvider, unitAbbreviation);

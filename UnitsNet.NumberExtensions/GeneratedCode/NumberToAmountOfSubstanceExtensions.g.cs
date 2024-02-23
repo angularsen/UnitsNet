@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
     /// </summary>
     public static class NumberToAmountOfSubstanceExtensions
     {
-        /// <inheritdoc cref="AmountOfSubstance.FromCentimoles(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AmountOfSubstance.FromCentimoles(double)" />
         public static AmountOfSubstance Centimoles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
 #endif
             => AmountOfSubstance.FromCentimoles(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmountOfSubstance.FromCentipoundMoles(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AmountOfSubstance.FromCentipoundMoles(double)" />
         public static AmountOfSubstance CentipoundMoles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
 #endif
             => AmountOfSubstance.FromCentipoundMoles(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmountOfSubstance.FromDecimoles(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AmountOfSubstance.FromDecimoles(double)" />
         public static AmountOfSubstance Decimoles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
 #endif
             => AmountOfSubstance.FromDecimoles(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmountOfSubstance.FromDecipoundMoles(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AmountOfSubstance.FromDecipoundMoles(double)" />
         public static AmountOfSubstance DecipoundMoles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
 #endif
             => AmountOfSubstance.FromDecipoundMoles(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmountOfSubstance.FromFemtomoles(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AmountOfSubstance.FromFemtomoles(double)" />
         public static AmountOfSubstance Femtomoles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
 #endif
             => AmountOfSubstance.FromFemtomoles(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmountOfSubstance.FromKilomoles(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AmountOfSubstance.FromKilomoles(double)" />
         public static AmountOfSubstance Kilomoles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
 #endif
             => AmountOfSubstance.FromKilomoles(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmountOfSubstance.FromKilopoundMoles(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AmountOfSubstance.FromKilopoundMoles(double)" />
         public static AmountOfSubstance KilopoundMoles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
 #endif
             => AmountOfSubstance.FromKilopoundMoles(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmountOfSubstance.FromMegamoles(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AmountOfSubstance.FromMegamoles(double)" />
         public static AmountOfSubstance Megamoles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
 #endif
             => AmountOfSubstance.FromMegamoles(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmountOfSubstance.FromMicromoles(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AmountOfSubstance.FromMicromoles(double)" />
         public static AmountOfSubstance Micromoles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -104,7 +104,7 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
 #endif
             => AmountOfSubstance.FromMicromoles(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmountOfSubstance.FromMicropoundMoles(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AmountOfSubstance.FromMicropoundMoles(double)" />
         public static AmountOfSubstance MicropoundMoles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -112,7 +112,7 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
 #endif
             => AmountOfSubstance.FromMicropoundMoles(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmountOfSubstance.FromMillimoles(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AmountOfSubstance.FromMillimoles(double)" />
         public static AmountOfSubstance Millimoles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -120,7 +120,7 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
 #endif
             => AmountOfSubstance.FromMillimoles(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmountOfSubstance.FromMillipoundMoles(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AmountOfSubstance.FromMillipoundMoles(double)" />
         public static AmountOfSubstance MillipoundMoles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -128,7 +128,7 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
 #endif
             => AmountOfSubstance.FromMillipoundMoles(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmountOfSubstance.FromMoles(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AmountOfSubstance.FromMoles(double)" />
         public static AmountOfSubstance Moles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -136,7 +136,7 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
 #endif
             => AmountOfSubstance.FromMoles(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmountOfSubstance.FromNanomoles(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AmountOfSubstance.FromNanomoles(double)" />
         public static AmountOfSubstance Nanomoles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -144,7 +144,7 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
 #endif
             => AmountOfSubstance.FromNanomoles(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmountOfSubstance.FromNanopoundMoles(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AmountOfSubstance.FromNanopoundMoles(double)" />
         public static AmountOfSubstance NanopoundMoles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -152,7 +152,7 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
 #endif
             => AmountOfSubstance.FromNanopoundMoles(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmountOfSubstance.FromPicomoles(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AmountOfSubstance.FromPicomoles(double)" />
         public static AmountOfSubstance Picomoles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -160,7 +160,7 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
 #endif
             => AmountOfSubstance.FromPicomoles(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmountOfSubstance.FromPoundMoles(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AmountOfSubstance.FromPoundMoles(double)" />
         public static AmountOfSubstance PoundMoles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

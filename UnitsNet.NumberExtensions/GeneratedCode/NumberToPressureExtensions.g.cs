@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
     /// </summary>
     public static class NumberToPressureExtensions
     {
-        /// <inheritdoc cref="Pressure.FromAtmospheres(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromAtmospheres(double)" />
         public static Pressure Atmospheres<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromAtmospheres(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromBars(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromBars(double)" />
         public static Pressure Bars<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromBars(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromCentibars(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromCentibars(double)" />
         public static Pressure Centibars<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromCentibars(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromCentimetersOfWaterColumn(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromCentimetersOfWaterColumn(double)" />
         public static Pressure CentimetersOfWaterColumn<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromCentimetersOfWaterColumn(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromDecapascals(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromDecapascals(double)" />
         public static Pressure Decapascals<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromDecapascals(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromDecibars(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromDecibars(double)" />
         public static Pressure Decibars<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromDecibars(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromDynesPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromDynesPerSquareCentimeter(double)" />
         public static Pressure DynesPerSquareCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromDynesPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromFeetOfElevation(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromFeetOfElevation(double)" />
         public static Pressure FeetOfElevation<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromFeetOfElevation(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromFeetOfHead(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromFeetOfHead(double)" />
         public static Pressure FeetOfHead<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -104,7 +104,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromFeetOfHead(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromGigapascals(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromGigapascals(double)" />
         public static Pressure Gigapascals<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -112,7 +112,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromGigapascals(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromHectopascals(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromHectopascals(double)" />
         public static Pressure Hectopascals<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -120,7 +120,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromHectopascals(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromInchesOfMercury(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromInchesOfMercury(double)" />
         public static Pressure InchesOfMercury<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -128,7 +128,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromInchesOfMercury(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromInchesOfWaterColumn(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromInchesOfWaterColumn(double)" />
         public static Pressure InchesOfWaterColumn<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -136,7 +136,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromInchesOfWaterColumn(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromKilobars(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromKilobars(double)" />
         public static Pressure Kilobars<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -144,7 +144,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromKilobars(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareCentimeter(double)" />
         public static Pressure KilogramsForcePerSquareCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -152,7 +152,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromKilogramsForcePerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareMeter(double)" />
         public static Pressure KilogramsForcePerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -160,7 +160,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromKilogramsForcePerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareMillimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareMillimeter(double)" />
         public static Pressure KilogramsForcePerSquareMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -168,7 +168,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromKilogramsForcePerSquareMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareCentimeter(double)" />
         public static Pressure KilonewtonsPerSquareCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -176,7 +176,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromKilonewtonsPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareMeter(double)" />
         public static Pressure KilonewtonsPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -184,7 +184,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromKilonewtonsPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareMillimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareMillimeter(double)" />
         public static Pressure KilonewtonsPerSquareMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -192,7 +192,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromKilonewtonsPerSquareMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromKilopascals(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromKilopascals(double)" />
         public static Pressure Kilopascals<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -200,7 +200,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromKilopascals(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareFoot(double)" />
         public static Pressure KilopoundsForcePerSquareFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -208,7 +208,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromKilopoundsForcePerSquareFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareInch(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareInch(double)" />
         public static Pressure KilopoundsForcePerSquareInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -216,7 +216,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromKilopoundsForcePerSquareInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareMil(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareMil(double)" />
         public static Pressure KilopoundsForcePerSquareMil<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -224,7 +224,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromKilopoundsForcePerSquareMil(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromMegabars(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromMegabars(double)" />
         public static Pressure Megabars<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -232,7 +232,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromMegabars(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(double)" />
         public static Pressure MeganewtonsPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -240,7 +240,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromMeganewtonsPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromMegapascals(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromMegapascals(double)" />
         public static Pressure Megapascals<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -248,7 +248,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromMegapascals(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromMetersOfElevation(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromMetersOfElevation(double)" />
         public static Pressure MetersOfElevation<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -256,7 +256,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromMetersOfElevation(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromMetersOfHead(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromMetersOfHead(double)" />
         public static Pressure MetersOfHead<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -264,7 +264,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromMetersOfHead(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromMetersOfWaterColumn(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromMetersOfWaterColumn(double)" />
         public static Pressure MetersOfWaterColumn<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -272,7 +272,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromMetersOfWaterColumn(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromMicrobars(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromMicrobars(double)" />
         public static Pressure Microbars<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -280,7 +280,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromMicrobars(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromMicropascals(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromMicropascals(double)" />
         public static Pressure Micropascals<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -288,7 +288,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromMicropascals(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromMillibars(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromMillibars(double)" />
         public static Pressure Millibars<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -296,7 +296,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromMillibars(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromMillimetersOfMercury(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromMillimetersOfMercury(double)" />
         public static Pressure MillimetersOfMercury<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -304,7 +304,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromMillimetersOfMercury(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromMillimetersOfWaterColumn(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromMillimetersOfWaterColumn(double)" />
         public static Pressure MillimetersOfWaterColumn<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -312,7 +312,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromMillimetersOfWaterColumn(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromMillipascals(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromMillipascals(double)" />
         public static Pressure Millipascals<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -320,7 +320,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromMillipascals(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareCentimeter(double)" />
         public static Pressure NewtonsPerSquareCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -328,7 +328,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromNewtonsPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareMeter(double)" />
         public static Pressure NewtonsPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -336,7 +336,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromNewtonsPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareMillimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareMillimeter(double)" />
         public static Pressure NewtonsPerSquareMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -344,7 +344,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromNewtonsPerSquareMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromPascals(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromPascals(double)" />
         public static Pressure Pascals<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -352,7 +352,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromPascals(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareFoot(double)" />
         public static Pressure PoundsForcePerSquareFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -360,7 +360,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromPoundsForcePerSquareFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareInch(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareInch(double)" />
         public static Pressure PoundsForcePerSquareInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -368,7 +368,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromPoundsForcePerSquareInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareMil(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareMil(double)" />
         public static Pressure PoundsForcePerSquareMil<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -376,7 +376,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromPoundsForcePerSquareMil(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromPoundsPerInchSecondSquared(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromPoundsPerInchSecondSquared(double)" />
         public static Pressure PoundsPerInchSecondSquared<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -384,7 +384,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromPoundsPerInchSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromTechnicalAtmospheres(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromTechnicalAtmospheres(double)" />
         public static Pressure TechnicalAtmospheres<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -392,7 +392,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromTechnicalAtmospheres(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareCentimeter(double)" />
         public static Pressure TonnesForcePerSquareCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -400,7 +400,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromTonnesForcePerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareMeter(double)" />
         public static Pressure TonnesForcePerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -408,7 +408,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromTonnesForcePerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareMillimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareMillimeter(double)" />
         public static Pressure TonnesForcePerSquareMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -416,7 +416,7 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #endif
             => Pressure.FromTonnesForcePerSquareMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromTorrs(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Pressure.FromTorrs(double)" />
         public static Pressure Torrs<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

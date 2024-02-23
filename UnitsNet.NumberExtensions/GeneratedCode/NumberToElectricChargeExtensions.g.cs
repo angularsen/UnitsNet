@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCharge
     /// </summary>
     public static class NumberToElectricChargeExtensions
     {
-        /// <inheritdoc cref="ElectricCharge.FromAmpereHours(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricCharge.FromAmpereHours(double)" />
         public static ElectricCharge AmpereHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCharge
 #endif
             => ElectricCharge.FromAmpereHours(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCharge.FromCoulombs(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricCharge.FromCoulombs(double)" />
         public static ElectricCharge Coulombs<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCharge
 #endif
             => ElectricCharge.FromCoulombs(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCharge.FromKiloampereHours(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricCharge.FromKiloampereHours(double)" />
         public static ElectricCharge KiloampereHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCharge
 #endif
             => ElectricCharge.FromKiloampereHours(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCharge.FromKilocoulombs(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricCharge.FromKilocoulombs(double)" />
         public static ElectricCharge Kilocoulombs<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCharge
 #endif
             => ElectricCharge.FromKilocoulombs(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCharge.FromMegaampereHours(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricCharge.FromMegaampereHours(double)" />
         public static ElectricCharge MegaampereHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCharge
 #endif
             => ElectricCharge.FromMegaampereHours(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCharge.FromMegacoulombs(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricCharge.FromMegacoulombs(double)" />
         public static ElectricCharge Megacoulombs<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCharge
 #endif
             => ElectricCharge.FromMegacoulombs(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCharge.FromMicrocoulombs(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricCharge.FromMicrocoulombs(double)" />
         public static ElectricCharge Microcoulombs<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCharge
 #endif
             => ElectricCharge.FromMicrocoulombs(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCharge.FromMilliampereHours(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricCharge.FromMilliampereHours(double)" />
         public static ElectricCharge MilliampereHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCharge
 #endif
             => ElectricCharge.FromMilliampereHours(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCharge.FromMillicoulombs(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricCharge.FromMillicoulombs(double)" />
         public static ElectricCharge Millicoulombs<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -104,7 +104,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCharge
 #endif
             => ElectricCharge.FromMillicoulombs(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCharge.FromNanocoulombs(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricCharge.FromNanocoulombs(double)" />
         public static ElectricCharge Nanocoulombs<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -112,7 +112,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCharge
 #endif
             => ElectricCharge.FromNanocoulombs(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCharge.FromPicocoulombs(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricCharge.FromPicocoulombs(double)" />
         public static ElectricCharge Picocoulombs<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

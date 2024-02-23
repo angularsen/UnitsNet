@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     public readonly partial struct LinearPowerDensity :
-        IArithmeticQuantity<LinearPowerDensity, LinearPowerDensityUnit, double>,
+        IArithmeticQuantity<LinearPowerDensity, LinearPowerDensityUnit>,
         IComparable,
         IComparable<LinearPowerDensity>,
         IConvertible,
@@ -174,7 +174,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -416,9 +416,8 @@ namespace UnitsNet
         ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.GigawattPerCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LinearPowerDensity FromGigawattsPerCentimeter(QuantityValue gigawattspercentimeter)
+        public static LinearPowerDensity FromGigawattsPerCentimeter(double value)
         {
-            double value = (double) gigawattspercentimeter;
             return new LinearPowerDensity(value, LinearPowerDensityUnit.GigawattPerCentimeter);
         }
 
@@ -426,9 +425,8 @@ namespace UnitsNet
         ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.GigawattPerFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LinearPowerDensity FromGigawattsPerFoot(QuantityValue gigawattsperfoot)
+        public static LinearPowerDensity FromGigawattsPerFoot(double value)
         {
-            double value = (double) gigawattsperfoot;
             return new LinearPowerDensity(value, LinearPowerDensityUnit.GigawattPerFoot);
         }
 
@@ -436,9 +434,8 @@ namespace UnitsNet
         ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.GigawattPerInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LinearPowerDensity FromGigawattsPerInch(QuantityValue gigawattsperinch)
+        public static LinearPowerDensity FromGigawattsPerInch(double value)
         {
-            double value = (double) gigawattsperinch;
             return new LinearPowerDensity(value, LinearPowerDensityUnit.GigawattPerInch);
         }
 
@@ -446,9 +443,8 @@ namespace UnitsNet
         ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.GigawattPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LinearPowerDensity FromGigawattsPerMeter(QuantityValue gigawattspermeter)
+        public static LinearPowerDensity FromGigawattsPerMeter(double value)
         {
-            double value = (double) gigawattspermeter;
             return new LinearPowerDensity(value, LinearPowerDensityUnit.GigawattPerMeter);
         }
 
@@ -456,9 +452,8 @@ namespace UnitsNet
         ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.GigawattPerMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LinearPowerDensity FromGigawattsPerMillimeter(QuantityValue gigawattspermillimeter)
+        public static LinearPowerDensity FromGigawattsPerMillimeter(double value)
         {
-            double value = (double) gigawattspermillimeter;
             return new LinearPowerDensity(value, LinearPowerDensityUnit.GigawattPerMillimeter);
         }
 
@@ -466,9 +461,8 @@ namespace UnitsNet
         ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.KilowattPerCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LinearPowerDensity FromKilowattsPerCentimeter(QuantityValue kilowattspercentimeter)
+        public static LinearPowerDensity FromKilowattsPerCentimeter(double value)
         {
-            double value = (double) kilowattspercentimeter;
             return new LinearPowerDensity(value, LinearPowerDensityUnit.KilowattPerCentimeter);
         }
 
@@ -476,9 +470,8 @@ namespace UnitsNet
         ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.KilowattPerFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LinearPowerDensity FromKilowattsPerFoot(QuantityValue kilowattsperfoot)
+        public static LinearPowerDensity FromKilowattsPerFoot(double value)
         {
-            double value = (double) kilowattsperfoot;
             return new LinearPowerDensity(value, LinearPowerDensityUnit.KilowattPerFoot);
         }
 
@@ -486,9 +479,8 @@ namespace UnitsNet
         ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.KilowattPerInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LinearPowerDensity FromKilowattsPerInch(QuantityValue kilowattsperinch)
+        public static LinearPowerDensity FromKilowattsPerInch(double value)
         {
-            double value = (double) kilowattsperinch;
             return new LinearPowerDensity(value, LinearPowerDensityUnit.KilowattPerInch);
         }
 
@@ -496,9 +488,8 @@ namespace UnitsNet
         ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.KilowattPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LinearPowerDensity FromKilowattsPerMeter(QuantityValue kilowattspermeter)
+        public static LinearPowerDensity FromKilowattsPerMeter(double value)
         {
-            double value = (double) kilowattspermeter;
             return new LinearPowerDensity(value, LinearPowerDensityUnit.KilowattPerMeter);
         }
 
@@ -506,9 +497,8 @@ namespace UnitsNet
         ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.KilowattPerMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LinearPowerDensity FromKilowattsPerMillimeter(QuantityValue kilowattspermillimeter)
+        public static LinearPowerDensity FromKilowattsPerMillimeter(double value)
         {
-            double value = (double) kilowattspermillimeter;
             return new LinearPowerDensity(value, LinearPowerDensityUnit.KilowattPerMillimeter);
         }
 
@@ -516,9 +506,8 @@ namespace UnitsNet
         ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.MegawattPerCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LinearPowerDensity FromMegawattsPerCentimeter(QuantityValue megawattspercentimeter)
+        public static LinearPowerDensity FromMegawattsPerCentimeter(double value)
         {
-            double value = (double) megawattspercentimeter;
             return new LinearPowerDensity(value, LinearPowerDensityUnit.MegawattPerCentimeter);
         }
 
@@ -526,9 +515,8 @@ namespace UnitsNet
         ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.MegawattPerFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LinearPowerDensity FromMegawattsPerFoot(QuantityValue megawattsperfoot)
+        public static LinearPowerDensity FromMegawattsPerFoot(double value)
         {
-            double value = (double) megawattsperfoot;
             return new LinearPowerDensity(value, LinearPowerDensityUnit.MegawattPerFoot);
         }
 
@@ -536,9 +524,8 @@ namespace UnitsNet
         ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.MegawattPerInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LinearPowerDensity FromMegawattsPerInch(QuantityValue megawattsperinch)
+        public static LinearPowerDensity FromMegawattsPerInch(double value)
         {
-            double value = (double) megawattsperinch;
             return new LinearPowerDensity(value, LinearPowerDensityUnit.MegawattPerInch);
         }
 
@@ -546,9 +533,8 @@ namespace UnitsNet
         ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.MegawattPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LinearPowerDensity FromMegawattsPerMeter(QuantityValue megawattspermeter)
+        public static LinearPowerDensity FromMegawattsPerMeter(double value)
         {
-            double value = (double) megawattspermeter;
             return new LinearPowerDensity(value, LinearPowerDensityUnit.MegawattPerMeter);
         }
 
@@ -556,9 +542,8 @@ namespace UnitsNet
         ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.MegawattPerMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LinearPowerDensity FromMegawattsPerMillimeter(QuantityValue megawattspermillimeter)
+        public static LinearPowerDensity FromMegawattsPerMillimeter(double value)
         {
-            double value = (double) megawattspermillimeter;
             return new LinearPowerDensity(value, LinearPowerDensityUnit.MegawattPerMillimeter);
         }
 
@@ -566,9 +551,8 @@ namespace UnitsNet
         ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.MilliwattPerCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LinearPowerDensity FromMilliwattsPerCentimeter(QuantityValue milliwattspercentimeter)
+        public static LinearPowerDensity FromMilliwattsPerCentimeter(double value)
         {
-            double value = (double) milliwattspercentimeter;
             return new LinearPowerDensity(value, LinearPowerDensityUnit.MilliwattPerCentimeter);
         }
 
@@ -576,9 +560,8 @@ namespace UnitsNet
         ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.MilliwattPerFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LinearPowerDensity FromMilliwattsPerFoot(QuantityValue milliwattsperfoot)
+        public static LinearPowerDensity FromMilliwattsPerFoot(double value)
         {
-            double value = (double) milliwattsperfoot;
             return new LinearPowerDensity(value, LinearPowerDensityUnit.MilliwattPerFoot);
         }
 
@@ -586,9 +569,8 @@ namespace UnitsNet
         ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.MilliwattPerInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LinearPowerDensity FromMilliwattsPerInch(QuantityValue milliwattsperinch)
+        public static LinearPowerDensity FromMilliwattsPerInch(double value)
         {
-            double value = (double) milliwattsperinch;
             return new LinearPowerDensity(value, LinearPowerDensityUnit.MilliwattPerInch);
         }
 
@@ -596,9 +578,8 @@ namespace UnitsNet
         ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.MilliwattPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LinearPowerDensity FromMilliwattsPerMeter(QuantityValue milliwattspermeter)
+        public static LinearPowerDensity FromMilliwattsPerMeter(double value)
         {
-            double value = (double) milliwattspermeter;
             return new LinearPowerDensity(value, LinearPowerDensityUnit.MilliwattPerMeter);
         }
 
@@ -606,9 +587,8 @@ namespace UnitsNet
         ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.MilliwattPerMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LinearPowerDensity FromMilliwattsPerMillimeter(QuantityValue milliwattspermillimeter)
+        public static LinearPowerDensity FromMilliwattsPerMillimeter(double value)
         {
-            double value = (double) milliwattspermillimeter;
             return new LinearPowerDensity(value, LinearPowerDensityUnit.MilliwattPerMillimeter);
         }
 
@@ -616,9 +596,8 @@ namespace UnitsNet
         ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.WattPerCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LinearPowerDensity FromWattsPerCentimeter(QuantityValue wattspercentimeter)
+        public static LinearPowerDensity FromWattsPerCentimeter(double value)
         {
-            double value = (double) wattspercentimeter;
             return new LinearPowerDensity(value, LinearPowerDensityUnit.WattPerCentimeter);
         }
 
@@ -626,9 +605,8 @@ namespace UnitsNet
         ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.WattPerFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LinearPowerDensity FromWattsPerFoot(QuantityValue wattsperfoot)
+        public static LinearPowerDensity FromWattsPerFoot(double value)
         {
-            double value = (double) wattsperfoot;
             return new LinearPowerDensity(value, LinearPowerDensityUnit.WattPerFoot);
         }
 
@@ -636,9 +614,8 @@ namespace UnitsNet
         ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.WattPerInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LinearPowerDensity FromWattsPerInch(QuantityValue wattsperinch)
+        public static LinearPowerDensity FromWattsPerInch(double value)
         {
-            double value = (double) wattsperinch;
             return new LinearPowerDensity(value, LinearPowerDensityUnit.WattPerInch);
         }
 
@@ -646,9 +623,8 @@ namespace UnitsNet
         ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.WattPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LinearPowerDensity FromWattsPerMeter(QuantityValue wattspermeter)
+        public static LinearPowerDensity FromWattsPerMeter(double value)
         {
-            double value = (double) wattspermeter;
             return new LinearPowerDensity(value, LinearPowerDensityUnit.WattPerMeter);
         }
 
@@ -656,9 +632,8 @@ namespace UnitsNet
         ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.WattPerMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LinearPowerDensity FromWattsPerMillimeter(QuantityValue wattspermillimeter)
+        public static LinearPowerDensity FromWattsPerMillimeter(double value)
         {
-            double value = (double) wattspermillimeter;
             return new LinearPowerDensity(value, LinearPowerDensityUnit.WattPerMillimeter);
         }
 
@@ -668,9 +643,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>LinearPowerDensity unit value.</returns>
-        public static LinearPowerDensity From(QuantityValue value, LinearPowerDensityUnit fromUnit)
+        public static LinearPowerDensity From(double value, LinearPowerDensityUnit fromUnit)
         {
-            return new LinearPowerDensity((double)value, fromUnit);
+            return new LinearPowerDensity(value, fromUnit);
         }
 
         #endregion
@@ -1085,15 +1060,6 @@ namespace UnitsNet
             if (!(unit is LinearPowerDensityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LinearPowerDensityUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is LinearPowerDensityUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LinearPowerDensityUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -1251,18 +1217,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<LinearPowerDensityUnit> IQuantity<LinearPowerDensityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not LinearPowerDensityUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LinearPowerDensityUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

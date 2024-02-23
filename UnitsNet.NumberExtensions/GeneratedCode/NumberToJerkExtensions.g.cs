@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToJerk
     /// </summary>
     public static class NumberToJerkExtensions
     {
-        /// <inheritdoc cref="Jerk.FromCentimetersPerSecondCubed(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Jerk.FromCentimetersPerSecondCubed(double)" />
         public static Jerk CentimetersPerSecondCubed<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToJerk
 #endif
             => Jerk.FromCentimetersPerSecondCubed(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Jerk.FromDecimetersPerSecondCubed(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Jerk.FromDecimetersPerSecondCubed(double)" />
         public static Jerk DecimetersPerSecondCubed<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToJerk
 #endif
             => Jerk.FromDecimetersPerSecondCubed(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Jerk.FromFeetPerSecondCubed(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Jerk.FromFeetPerSecondCubed(double)" />
         public static Jerk FeetPerSecondCubed<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToJerk
 #endif
             => Jerk.FromFeetPerSecondCubed(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Jerk.FromInchesPerSecondCubed(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Jerk.FromInchesPerSecondCubed(double)" />
         public static Jerk InchesPerSecondCubed<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToJerk
 #endif
             => Jerk.FromInchesPerSecondCubed(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Jerk.FromKilometersPerSecondCubed(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Jerk.FromKilometersPerSecondCubed(double)" />
         public static Jerk KilometersPerSecondCubed<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToJerk
 #endif
             => Jerk.FromKilometersPerSecondCubed(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Jerk.FromMetersPerSecondCubed(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Jerk.FromMetersPerSecondCubed(double)" />
         public static Jerk MetersPerSecondCubed<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToJerk
 #endif
             => Jerk.FromMetersPerSecondCubed(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Jerk.FromMicrometersPerSecondCubed(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Jerk.FromMicrometersPerSecondCubed(double)" />
         public static Jerk MicrometersPerSecondCubed<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToJerk
 #endif
             => Jerk.FromMicrometersPerSecondCubed(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Jerk.FromMillimetersPerSecondCubed(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Jerk.FromMillimetersPerSecondCubed(double)" />
         public static Jerk MillimetersPerSecondCubed<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToJerk
 #endif
             => Jerk.FromMillimetersPerSecondCubed(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Jerk.FromMillistandardGravitiesPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Jerk.FromMillistandardGravitiesPerSecond(double)" />
         public static Jerk MillistandardGravitiesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -104,7 +104,7 @@ namespace UnitsNet.NumberExtensions.NumberToJerk
 #endif
             => Jerk.FromMillistandardGravitiesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Jerk.FromNanometersPerSecondCubed(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Jerk.FromNanometersPerSecondCubed(double)" />
         public static Jerk NanometersPerSecondCubed<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -112,7 +112,7 @@ namespace UnitsNet.NumberExtensions.NumberToJerk
 #endif
             => Jerk.FromNanometersPerSecondCubed(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Jerk.FromStandardGravitiesPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Jerk.FromStandardGravitiesPerSecond(double)" />
         public static Jerk StandardGravitiesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

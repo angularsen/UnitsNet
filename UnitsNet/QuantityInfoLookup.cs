@@ -103,7 +103,7 @@ namespace UnitsNet
         /// <param name="unit">Unit enum value.</param>
         /// <returns>An <see cref="IQuantity"/> object.</returns>
         /// <exception cref="ArgumentException">Unit value is not a know unit enum type.</exception>
-        public IQuantity From(QuantityValue value, Enum unit)
+        public IQuantity From(double value, Enum unit)
         {
             // TODO Support custom units, currently only hardcoded built-in quantities are supported.
             return Quantity.TryFrom(value, unit, out IQuantity? quantity)
@@ -111,7 +111,7 @@ namespace UnitsNet
                 : throw new UnitNotFoundException($"Unit value {unit} of type {unit.GetType()} is not a known unit enum type. Expected types like UnitsNet.Units.LengthUnit. Did you pass in a custom enum type defined outside the UnitsNet library?");
         }
 
-        /// <inheritdoc cref="Quantity.TryFrom(QuantityValue,System.Enum,out UnitsNet.IQuantity)"/>
+        /// <inheritdoc cref="Quantity.TryFrom(double,System.Enum,out UnitsNet.IQuantity)"/>
         public bool TryFrom(double value, Enum unit, [NotNullWhen(true)] out IQuantity? quantity)
         {
             // Implicit cast to QuantityValue would prevent TryFrom from being called,
@@ -123,7 +123,7 @@ namespace UnitsNet
             }
 
             // TODO Support custom units, currently only hardcoded built-in quantities are supported.
-            return Quantity.TryFrom((QuantityValue)value, unit, out quantity);
+            return Quantity.TryFrom(value, unit, out quantity);
         }
 
         /// <inheritdoc cref="Parse(IFormatProvider, System.Type,string)"/>

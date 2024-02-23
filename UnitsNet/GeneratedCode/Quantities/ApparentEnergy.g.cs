@@ -37,7 +37,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct ApparentEnergy :
-        IArithmeticQuantity<ApparentEnergy, ApparentEnergyUnit, double>,
+        IArithmeticQuantity<ApparentEnergy, ApparentEnergyUnit>,
         IComparable,
         IComparable<ApparentEnergy>,
         IConvertible,
@@ -149,7 +149,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -237,9 +237,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ApparentEnergy"/> from <see cref="ApparentEnergyUnit.KilovoltampereHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ApparentEnergy FromKilovoltampereHours(QuantityValue kilovoltamperehours)
+        public static ApparentEnergy FromKilovoltampereHours(double value)
         {
-            double value = (double) kilovoltamperehours;
             return new ApparentEnergy(value, ApparentEnergyUnit.KilovoltampereHour);
         }
 
@@ -247,9 +246,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ApparentEnergy"/> from <see cref="ApparentEnergyUnit.MegavoltampereHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ApparentEnergy FromMegavoltampereHours(QuantityValue megavoltamperehours)
+        public static ApparentEnergy FromMegavoltampereHours(double value)
         {
-            double value = (double) megavoltamperehours;
             return new ApparentEnergy(value, ApparentEnergyUnit.MegavoltampereHour);
         }
 
@@ -257,9 +255,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ApparentEnergy"/> from <see cref="ApparentEnergyUnit.VoltampereHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ApparentEnergy FromVoltampereHours(QuantityValue voltamperehours)
+        public static ApparentEnergy FromVoltampereHours(double value)
         {
-            double value = (double) voltamperehours;
             return new ApparentEnergy(value, ApparentEnergyUnit.VoltampereHour);
         }
 
@@ -269,9 +266,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ApparentEnergy unit value.</returns>
-        public static ApparentEnergy From(QuantityValue value, ApparentEnergyUnit fromUnit)
+        public static ApparentEnergy From(double value, ApparentEnergyUnit fromUnit)
         {
-            return new ApparentEnergy((double)value, fromUnit);
+            return new ApparentEnergy(value, fromUnit);
         }
 
         #endregion
@@ -686,15 +683,6 @@ namespace UnitsNet
             if (!(unit is ApparentEnergyUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ApparentEnergyUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is ApparentEnergyUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ApparentEnergyUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -808,18 +796,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ApparentEnergyUnit> IQuantity<ApparentEnergyUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not ApparentEnergyUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ApparentEnergyUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

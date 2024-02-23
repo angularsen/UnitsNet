@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     public readonly partial struct BitRate :
-        IArithmeticQuantity<BitRate, BitRateUnit, double>,
+        IArithmeticQuantity<BitRate, BitRateUnit>,
         IComparable,
         IComparable<BitRate>,
         IConvertible,
@@ -175,7 +175,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -424,9 +424,8 @@ namespace UnitsNet
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.BitPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static BitRate FromBitsPerSecond(QuantityValue bitspersecond)
+        public static BitRate FromBitsPerSecond(double value)
         {
-            double value = (double) bitspersecond;
             return new BitRate(value, BitRateUnit.BitPerSecond);
         }
 
@@ -434,9 +433,8 @@ namespace UnitsNet
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.BytePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static BitRate FromBytesPerSecond(QuantityValue bytespersecond)
+        public static BitRate FromBytesPerSecond(double value)
         {
-            double value = (double) bytespersecond;
             return new BitRate(value, BitRateUnit.BytePerSecond);
         }
 
@@ -444,9 +442,8 @@ namespace UnitsNet
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.ExabitPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static BitRate FromExabitsPerSecond(QuantityValue exabitspersecond)
+        public static BitRate FromExabitsPerSecond(double value)
         {
-            double value = (double) exabitspersecond;
             return new BitRate(value, BitRateUnit.ExabitPerSecond);
         }
 
@@ -454,9 +451,8 @@ namespace UnitsNet
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.ExabytePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static BitRate FromExabytesPerSecond(QuantityValue exabytespersecond)
+        public static BitRate FromExabytesPerSecond(double value)
         {
-            double value = (double) exabytespersecond;
             return new BitRate(value, BitRateUnit.ExabytePerSecond);
         }
 
@@ -464,9 +460,8 @@ namespace UnitsNet
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.ExbibitPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static BitRate FromExbibitsPerSecond(QuantityValue exbibitspersecond)
+        public static BitRate FromExbibitsPerSecond(double value)
         {
-            double value = (double) exbibitspersecond;
             return new BitRate(value, BitRateUnit.ExbibitPerSecond);
         }
 
@@ -474,9 +469,8 @@ namespace UnitsNet
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.ExbibytePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static BitRate FromExbibytesPerSecond(QuantityValue exbibytespersecond)
+        public static BitRate FromExbibytesPerSecond(double value)
         {
-            double value = (double) exbibytespersecond;
             return new BitRate(value, BitRateUnit.ExbibytePerSecond);
         }
 
@@ -484,9 +478,8 @@ namespace UnitsNet
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.GibibitPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static BitRate FromGibibitsPerSecond(QuantityValue gibibitspersecond)
+        public static BitRate FromGibibitsPerSecond(double value)
         {
-            double value = (double) gibibitspersecond;
             return new BitRate(value, BitRateUnit.GibibitPerSecond);
         }
 
@@ -494,9 +487,8 @@ namespace UnitsNet
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.GibibytePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static BitRate FromGibibytesPerSecond(QuantityValue gibibytespersecond)
+        public static BitRate FromGibibytesPerSecond(double value)
         {
-            double value = (double) gibibytespersecond;
             return new BitRate(value, BitRateUnit.GibibytePerSecond);
         }
 
@@ -504,9 +496,8 @@ namespace UnitsNet
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.GigabitPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static BitRate FromGigabitsPerSecond(QuantityValue gigabitspersecond)
+        public static BitRate FromGigabitsPerSecond(double value)
         {
-            double value = (double) gigabitspersecond;
             return new BitRate(value, BitRateUnit.GigabitPerSecond);
         }
 
@@ -514,9 +505,8 @@ namespace UnitsNet
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.GigabytePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static BitRate FromGigabytesPerSecond(QuantityValue gigabytespersecond)
+        public static BitRate FromGigabytesPerSecond(double value)
         {
-            double value = (double) gigabytespersecond;
             return new BitRate(value, BitRateUnit.GigabytePerSecond);
         }
 
@@ -524,9 +514,8 @@ namespace UnitsNet
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.KibibitPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static BitRate FromKibibitsPerSecond(QuantityValue kibibitspersecond)
+        public static BitRate FromKibibitsPerSecond(double value)
         {
-            double value = (double) kibibitspersecond;
             return new BitRate(value, BitRateUnit.KibibitPerSecond);
         }
 
@@ -534,9 +523,8 @@ namespace UnitsNet
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.KibibytePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static BitRate FromKibibytesPerSecond(QuantityValue kibibytespersecond)
+        public static BitRate FromKibibytesPerSecond(double value)
         {
-            double value = (double) kibibytespersecond;
             return new BitRate(value, BitRateUnit.KibibytePerSecond);
         }
 
@@ -544,9 +532,8 @@ namespace UnitsNet
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.KilobitPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static BitRate FromKilobitsPerSecond(QuantityValue kilobitspersecond)
+        public static BitRate FromKilobitsPerSecond(double value)
         {
-            double value = (double) kilobitspersecond;
             return new BitRate(value, BitRateUnit.KilobitPerSecond);
         }
 
@@ -554,9 +541,8 @@ namespace UnitsNet
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.KilobytePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static BitRate FromKilobytesPerSecond(QuantityValue kilobytespersecond)
+        public static BitRate FromKilobytesPerSecond(double value)
         {
-            double value = (double) kilobytespersecond;
             return new BitRate(value, BitRateUnit.KilobytePerSecond);
         }
 
@@ -564,9 +550,8 @@ namespace UnitsNet
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.MebibitPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static BitRate FromMebibitsPerSecond(QuantityValue mebibitspersecond)
+        public static BitRate FromMebibitsPerSecond(double value)
         {
-            double value = (double) mebibitspersecond;
             return new BitRate(value, BitRateUnit.MebibitPerSecond);
         }
 
@@ -574,9 +559,8 @@ namespace UnitsNet
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.MebibytePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static BitRate FromMebibytesPerSecond(QuantityValue mebibytespersecond)
+        public static BitRate FromMebibytesPerSecond(double value)
         {
-            double value = (double) mebibytespersecond;
             return new BitRate(value, BitRateUnit.MebibytePerSecond);
         }
 
@@ -584,9 +568,8 @@ namespace UnitsNet
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.MegabitPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static BitRate FromMegabitsPerSecond(QuantityValue megabitspersecond)
+        public static BitRate FromMegabitsPerSecond(double value)
         {
-            double value = (double) megabitspersecond;
             return new BitRate(value, BitRateUnit.MegabitPerSecond);
         }
 
@@ -594,9 +577,8 @@ namespace UnitsNet
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.MegabytePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static BitRate FromMegabytesPerSecond(QuantityValue megabytespersecond)
+        public static BitRate FromMegabytesPerSecond(double value)
         {
-            double value = (double) megabytespersecond;
             return new BitRate(value, BitRateUnit.MegabytePerSecond);
         }
 
@@ -604,9 +586,8 @@ namespace UnitsNet
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.PebibitPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static BitRate FromPebibitsPerSecond(QuantityValue pebibitspersecond)
+        public static BitRate FromPebibitsPerSecond(double value)
         {
-            double value = (double) pebibitspersecond;
             return new BitRate(value, BitRateUnit.PebibitPerSecond);
         }
 
@@ -614,9 +595,8 @@ namespace UnitsNet
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.PebibytePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static BitRate FromPebibytesPerSecond(QuantityValue pebibytespersecond)
+        public static BitRate FromPebibytesPerSecond(double value)
         {
-            double value = (double) pebibytespersecond;
             return new BitRate(value, BitRateUnit.PebibytePerSecond);
         }
 
@@ -624,9 +604,8 @@ namespace UnitsNet
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.PetabitPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static BitRate FromPetabitsPerSecond(QuantityValue petabitspersecond)
+        public static BitRate FromPetabitsPerSecond(double value)
         {
-            double value = (double) petabitspersecond;
             return new BitRate(value, BitRateUnit.PetabitPerSecond);
         }
 
@@ -634,9 +613,8 @@ namespace UnitsNet
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.PetabytePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static BitRate FromPetabytesPerSecond(QuantityValue petabytespersecond)
+        public static BitRate FromPetabytesPerSecond(double value)
         {
-            double value = (double) petabytespersecond;
             return new BitRate(value, BitRateUnit.PetabytePerSecond);
         }
 
@@ -644,9 +622,8 @@ namespace UnitsNet
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.TebibitPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static BitRate FromTebibitsPerSecond(QuantityValue tebibitspersecond)
+        public static BitRate FromTebibitsPerSecond(double value)
         {
-            double value = (double) tebibitspersecond;
             return new BitRate(value, BitRateUnit.TebibitPerSecond);
         }
 
@@ -654,9 +631,8 @@ namespace UnitsNet
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.TebibytePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static BitRate FromTebibytesPerSecond(QuantityValue tebibytespersecond)
+        public static BitRate FromTebibytesPerSecond(double value)
         {
-            double value = (double) tebibytespersecond;
             return new BitRate(value, BitRateUnit.TebibytePerSecond);
         }
 
@@ -664,9 +640,8 @@ namespace UnitsNet
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.TerabitPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static BitRate FromTerabitsPerSecond(QuantityValue terabitspersecond)
+        public static BitRate FromTerabitsPerSecond(double value)
         {
-            double value = (double) terabitspersecond;
             return new BitRate(value, BitRateUnit.TerabitPerSecond);
         }
 
@@ -674,9 +649,8 @@ namespace UnitsNet
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.TerabytePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static BitRate FromTerabytesPerSecond(QuantityValue terabytespersecond)
+        public static BitRate FromTerabytesPerSecond(double value)
         {
-            double value = (double) terabytespersecond;
             return new BitRate(value, BitRateUnit.TerabytePerSecond);
         }
 
@@ -686,9 +660,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>BitRate unit value.</returns>
-        public static BitRate From(QuantityValue value, BitRateUnit fromUnit)
+        public static BitRate From(double value, BitRateUnit fromUnit)
         {
-            return new BitRate((double)value, fromUnit);
+            return new BitRate(value, fromUnit);
         }
 
         #endregion
@@ -1103,15 +1077,6 @@ namespace UnitsNet
             if (!(unit is BitRateUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(BitRateUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is BitRateUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(BitRateUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -1271,18 +1236,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<BitRateUnit> IQuantity<BitRateUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not BitRateUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(BitRateUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 
