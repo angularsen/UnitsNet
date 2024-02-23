@@ -221,9 +221,9 @@ namespace UnitsNet
         ///     Creates a <see cref="VitaminA"/> from <see cref="VitaminAUnit.InternationalUnit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VitaminA FromInternationalUnits(double internationalunits)
+        public static VitaminA FromInternationalUnits(double value)
         {
-            return new VitaminA(internationalunits, VitaminAUnit.InternationalUnit);
+            return new VitaminA(value, VitaminAUnit.InternationalUnit);
         }
 
         /// <summary>

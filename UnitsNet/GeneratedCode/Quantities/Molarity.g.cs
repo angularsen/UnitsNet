@@ -311,99 +311,99 @@ namespace UnitsNet
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.CentimolePerLiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromCentimolesPerLiter(double centimolesperliter)
+        public static Molarity FromCentimolesPerLiter(double value)
         {
-            return new Molarity(centimolesperliter, MolarityUnit.CentimolePerLiter);
+            return new Molarity(value, MolarityUnit.CentimolePerLiter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.DecimolePerLiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromDecimolesPerLiter(double decimolesperliter)
+        public static Molarity FromDecimolesPerLiter(double value)
         {
-            return new Molarity(decimolesperliter, MolarityUnit.DecimolePerLiter);
+            return new Molarity(value, MolarityUnit.DecimolePerLiter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.FemtomolePerLiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromFemtomolesPerLiter(double femtomolesperliter)
+        public static Molarity FromFemtomolesPerLiter(double value)
         {
-            return new Molarity(femtomolesperliter, MolarityUnit.FemtomolePerLiter);
+            return new Molarity(value, MolarityUnit.FemtomolePerLiter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.KilomolePerCubicMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromKilomolesPerCubicMeter(double kilomolespercubicmeter)
+        public static Molarity FromKilomolesPerCubicMeter(double value)
         {
-            return new Molarity(kilomolespercubicmeter, MolarityUnit.KilomolePerCubicMeter);
+            return new Molarity(value, MolarityUnit.KilomolePerCubicMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.MicromolePerLiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromMicromolesPerLiter(double micromolesperliter)
+        public static Molarity FromMicromolesPerLiter(double value)
         {
-            return new Molarity(micromolesperliter, MolarityUnit.MicromolePerLiter);
+            return new Molarity(value, MolarityUnit.MicromolePerLiter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.MillimolePerLiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromMillimolesPerLiter(double millimolesperliter)
+        public static Molarity FromMillimolesPerLiter(double value)
         {
-            return new Molarity(millimolesperliter, MolarityUnit.MillimolePerLiter);
+            return new Molarity(value, MolarityUnit.MillimolePerLiter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.MolePerCubicMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromMolesPerCubicMeter(double molespercubicmeter)
+        public static Molarity FromMolesPerCubicMeter(double value)
         {
-            return new Molarity(molespercubicmeter, MolarityUnit.MolePerCubicMeter);
+            return new Molarity(value, MolarityUnit.MolePerCubicMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.MolePerLiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromMolesPerLiter(double molesperliter)
+        public static Molarity FromMolesPerLiter(double value)
         {
-            return new Molarity(molesperliter, MolarityUnit.MolePerLiter);
+            return new Molarity(value, MolarityUnit.MolePerLiter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.NanomolePerLiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromNanomolesPerLiter(double nanomolesperliter)
+        public static Molarity FromNanomolesPerLiter(double value)
         {
-            return new Molarity(nanomolesperliter, MolarityUnit.NanomolePerLiter);
+            return new Molarity(value, MolarityUnit.NanomolePerLiter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.PicomolePerLiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromPicomolesPerLiter(double picomolesperliter)
+        public static Molarity FromPicomolesPerLiter(double value)
         {
-            return new Molarity(picomolesperliter, MolarityUnit.PicomolePerLiter);
+            return new Molarity(value, MolarityUnit.PicomolePerLiter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.PoundMolePerCubicFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molarity FromPoundMolesPerCubicFoot(double poundmolespercubicfoot)
+        public static Molarity FromPoundMolesPerCubicFoot(double value)
         {
-            return new Molarity(poundmolespercubicfoot, MolarityUnit.PoundMolePerCubicFoot);
+            return new Molarity(value, MolarityUnit.PoundMolePerCubicFoot);
         }
 
         /// <summary>

@@ -256,45 +256,45 @@ namespace UnitsNet
         ///     Creates a <see cref="PorousMediumPermeability"/> from <see cref="PorousMediumPermeabilityUnit.Darcy"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PorousMediumPermeability FromDarcys(double darcys)
+        public static PorousMediumPermeability FromDarcys(double value)
         {
-            return new PorousMediumPermeability(darcys, PorousMediumPermeabilityUnit.Darcy);
+            return new PorousMediumPermeability(value, PorousMediumPermeabilityUnit.Darcy);
         }
 
         /// <summary>
         ///     Creates a <see cref="PorousMediumPermeability"/> from <see cref="PorousMediumPermeabilityUnit.Microdarcy"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PorousMediumPermeability FromMicrodarcys(double microdarcys)
+        public static PorousMediumPermeability FromMicrodarcys(double value)
         {
-            return new PorousMediumPermeability(microdarcys, PorousMediumPermeabilityUnit.Microdarcy);
+            return new PorousMediumPermeability(value, PorousMediumPermeabilityUnit.Microdarcy);
         }
 
         /// <summary>
         ///     Creates a <see cref="PorousMediumPermeability"/> from <see cref="PorousMediumPermeabilityUnit.Millidarcy"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PorousMediumPermeability FromMillidarcys(double millidarcys)
+        public static PorousMediumPermeability FromMillidarcys(double value)
         {
-            return new PorousMediumPermeability(millidarcys, PorousMediumPermeabilityUnit.Millidarcy);
+            return new PorousMediumPermeability(value, PorousMediumPermeabilityUnit.Millidarcy);
         }
 
         /// <summary>
         ///     Creates a <see cref="PorousMediumPermeability"/> from <see cref="PorousMediumPermeabilityUnit.SquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PorousMediumPermeability FromSquareCentimeters(double squarecentimeters)
+        public static PorousMediumPermeability FromSquareCentimeters(double value)
         {
-            return new PorousMediumPermeability(squarecentimeters, PorousMediumPermeabilityUnit.SquareCentimeter);
+            return new PorousMediumPermeability(value, PorousMediumPermeabilityUnit.SquareCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="PorousMediumPermeability"/> from <see cref="PorousMediumPermeabilityUnit.SquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PorousMediumPermeability FromSquareMeters(double squaremeters)
+        public static PorousMediumPermeability FromSquareMeters(double value)
         {
-            return new PorousMediumPermeability(squaremeters, PorousMediumPermeabilityUnit.SquareMeter);
+            return new PorousMediumPermeability(value, PorousMediumPermeabilityUnit.SquareMeter);
         }
 
         /// <summary>

@@ -229,18 +229,18 @@ namespace UnitsNet
         ///     Creates a <see cref="VolumeFlowPerArea"/> from <see cref="VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlowPerArea FromCubicFeetPerMinutePerSquareFoot(double cubicfeetperminutepersquarefoot)
+        public static VolumeFlowPerArea FromCubicFeetPerMinutePerSquareFoot(double value)
         {
-            return new VolumeFlowPerArea(cubicfeetperminutepersquarefoot, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot);
+            return new VolumeFlowPerArea(value, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlowPerArea"/> from <see cref="VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlowPerArea FromCubicMetersPerSecondPerSquareMeter(double cubicmeterspersecondpersquaremeter)
+        public static VolumeFlowPerArea FromCubicMetersPerSecondPerSquareMeter(double value)
         {
-            return new VolumeFlowPerArea(cubicmeterspersecondpersquaremeter, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter);
+            return new VolumeFlowPerArea(value, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter);
         }
 
         /// <summary>

@@ -245,36 +245,36 @@ namespace UnitsNet
         ///     Creates a <see cref="RotationalAcceleration"/> from <see cref="RotationalAccelerationUnit.DegreePerSecondSquared"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalAcceleration FromDegreesPerSecondSquared(double degreespersecondsquared)
+        public static RotationalAcceleration FromDegreesPerSecondSquared(double value)
         {
-            return new RotationalAcceleration(degreespersecondsquared, RotationalAccelerationUnit.DegreePerSecondSquared);
+            return new RotationalAcceleration(value, RotationalAccelerationUnit.DegreePerSecondSquared);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalAcceleration"/> from <see cref="RotationalAccelerationUnit.RadianPerSecondSquared"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalAcceleration FromRadiansPerSecondSquared(double radianspersecondsquared)
+        public static RotationalAcceleration FromRadiansPerSecondSquared(double value)
         {
-            return new RotationalAcceleration(radianspersecondsquared, RotationalAccelerationUnit.RadianPerSecondSquared);
+            return new RotationalAcceleration(value, RotationalAccelerationUnit.RadianPerSecondSquared);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalAcceleration"/> from <see cref="RotationalAccelerationUnit.RevolutionPerMinutePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalAcceleration FromRevolutionsPerMinutePerSecond(double revolutionsperminutepersecond)
+        public static RotationalAcceleration FromRevolutionsPerMinutePerSecond(double value)
         {
-            return new RotationalAcceleration(revolutionsperminutepersecond, RotationalAccelerationUnit.RevolutionPerMinutePerSecond);
+            return new RotationalAcceleration(value, RotationalAccelerationUnit.RevolutionPerMinutePerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalAcceleration"/> from <see cref="RotationalAccelerationUnit.RevolutionPerSecondSquared"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalAcceleration FromRevolutionsPerSecondSquared(double revolutionspersecondsquared)
+        public static RotationalAcceleration FromRevolutionsPerSecondSquared(double value)
         {
-            return new RotationalAcceleration(revolutionspersecondsquared, RotationalAccelerationUnit.RevolutionPerSecondSquared);
+            return new RotationalAcceleration(value, RotationalAccelerationUnit.RevolutionPerSecondSquared);
         }
 
         /// <summary>

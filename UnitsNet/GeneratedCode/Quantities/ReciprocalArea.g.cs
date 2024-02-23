@@ -312,99 +312,99 @@ namespace UnitsNet
         ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReciprocalArea FromInverseSquareCentimeters(double inversesquarecentimeters)
+        public static ReciprocalArea FromInverseSquareCentimeters(double value)
         {
-            return new ReciprocalArea(inversesquarecentimeters, ReciprocalAreaUnit.InverseSquareCentimeter);
+            return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareDecimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReciprocalArea FromInverseSquareDecimeters(double inversesquaredecimeters)
+        public static ReciprocalArea FromInverseSquareDecimeters(double value)
         {
-            return new ReciprocalArea(inversesquaredecimeters, ReciprocalAreaUnit.InverseSquareDecimeter);
+            return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareDecimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReciprocalArea FromInverseSquareFeet(double inversesquarefeet)
+        public static ReciprocalArea FromInverseSquareFeet(double value)
         {
-            return new ReciprocalArea(inversesquarefeet, ReciprocalAreaUnit.InverseSquareFoot);
+            return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareFoot);
         }
 
         /// <summary>
         ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReciprocalArea FromInverseSquareInches(double inversesquareinches)
+        public static ReciprocalArea FromInverseSquareInches(double value)
         {
-            return new ReciprocalArea(inversesquareinches, ReciprocalAreaUnit.InverseSquareInch);
+            return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareInch);
         }
 
         /// <summary>
         ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareKilometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReciprocalArea FromInverseSquareKilometers(double inversesquarekilometers)
+        public static ReciprocalArea FromInverseSquareKilometers(double value)
         {
-            return new ReciprocalArea(inversesquarekilometers, ReciprocalAreaUnit.InverseSquareKilometer);
+            return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareKilometer);
         }
 
         /// <summary>
         ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReciprocalArea FromInverseSquareMeters(double inversesquaremeters)
+        public static ReciprocalArea FromInverseSquareMeters(double value)
         {
-            return new ReciprocalArea(inversesquaremeters, ReciprocalAreaUnit.InverseSquareMeter);
+            return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareMicrometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReciprocalArea FromInverseSquareMicrometers(double inversesquaremicrometers)
+        public static ReciprocalArea FromInverseSquareMicrometers(double value)
         {
-            return new ReciprocalArea(inversesquaremicrometers, ReciprocalAreaUnit.InverseSquareMicrometer);
+            return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareMicrometer);
         }
 
         /// <summary>
         ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareMile"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReciprocalArea FromInverseSquareMiles(double inversesquaremiles)
+        public static ReciprocalArea FromInverseSquareMiles(double value)
         {
-            return new ReciprocalArea(inversesquaremiles, ReciprocalAreaUnit.InverseSquareMile);
+            return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareMile);
         }
 
         /// <summary>
         ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReciprocalArea FromInverseSquareMillimeters(double inversesquaremillimeters)
+        public static ReciprocalArea FromInverseSquareMillimeters(double value)
         {
-            return new ReciprocalArea(inversesquaremillimeters, ReciprocalAreaUnit.InverseSquareMillimeter);
+            return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareMillimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareYard"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReciprocalArea FromInverseSquareYards(double inversesquareyards)
+        public static ReciprocalArea FromInverseSquareYards(double value)
         {
-            return new ReciprocalArea(inversesquareyards, ReciprocalAreaUnit.InverseSquareYard);
+            return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareYard);
         }
 
         /// <summary>
         ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseUsSurveySquareFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReciprocalArea FromInverseUsSurveySquareFeet(double inverseussurveysquarefeet)
+        public static ReciprocalArea FromInverseUsSurveySquareFeet(double value)
         {
-            return new ReciprocalArea(inverseussurveysquarefeet, ReciprocalAreaUnit.InverseUsSurveySquareFoot);
+            return new ReciprocalArea(value, ReciprocalAreaUnit.InverseUsSurveySquareFoot);
         }
 
         /// <summary>

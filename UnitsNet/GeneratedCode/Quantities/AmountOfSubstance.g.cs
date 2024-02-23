@@ -357,153 +357,153 @@ namespace UnitsNet
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Centimole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromCentimoles(double centimoles)
+        public static AmountOfSubstance FromCentimoles(double value)
         {
-            return new AmountOfSubstance(centimoles, AmountOfSubstanceUnit.Centimole);
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Centimole);
         }
 
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.CentipoundMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromCentipoundMoles(double centipoundmoles)
+        public static AmountOfSubstance FromCentipoundMoles(double value)
         {
-            return new AmountOfSubstance(centipoundmoles, AmountOfSubstanceUnit.CentipoundMole);
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.CentipoundMole);
         }
 
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Decimole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromDecimoles(double decimoles)
+        public static AmountOfSubstance FromDecimoles(double value)
         {
-            return new AmountOfSubstance(decimoles, AmountOfSubstanceUnit.Decimole);
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Decimole);
         }
 
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.DecipoundMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromDecipoundMoles(double decipoundmoles)
+        public static AmountOfSubstance FromDecipoundMoles(double value)
         {
-            return new AmountOfSubstance(decipoundmoles, AmountOfSubstanceUnit.DecipoundMole);
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.DecipoundMole);
         }
 
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Femtomole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromFemtomoles(double femtomoles)
+        public static AmountOfSubstance FromFemtomoles(double value)
         {
-            return new AmountOfSubstance(femtomoles, AmountOfSubstanceUnit.Femtomole);
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Femtomole);
         }
 
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Kilomole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromKilomoles(double kilomoles)
+        public static AmountOfSubstance FromKilomoles(double value)
         {
-            return new AmountOfSubstance(kilomoles, AmountOfSubstanceUnit.Kilomole);
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Kilomole);
         }
 
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.KilopoundMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromKilopoundMoles(double kilopoundmoles)
+        public static AmountOfSubstance FromKilopoundMoles(double value)
         {
-            return new AmountOfSubstance(kilopoundmoles, AmountOfSubstanceUnit.KilopoundMole);
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.KilopoundMole);
         }
 
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Megamole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromMegamoles(double megamoles)
+        public static AmountOfSubstance FromMegamoles(double value)
         {
-            return new AmountOfSubstance(megamoles, AmountOfSubstanceUnit.Megamole);
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Megamole);
         }
 
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Micromole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromMicromoles(double micromoles)
+        public static AmountOfSubstance FromMicromoles(double value)
         {
-            return new AmountOfSubstance(micromoles, AmountOfSubstanceUnit.Micromole);
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Micromole);
         }
 
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.MicropoundMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromMicropoundMoles(double micropoundmoles)
+        public static AmountOfSubstance FromMicropoundMoles(double value)
         {
-            return new AmountOfSubstance(micropoundmoles, AmountOfSubstanceUnit.MicropoundMole);
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.MicropoundMole);
         }
 
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Millimole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromMillimoles(double millimoles)
+        public static AmountOfSubstance FromMillimoles(double value)
         {
-            return new AmountOfSubstance(millimoles, AmountOfSubstanceUnit.Millimole);
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Millimole);
         }
 
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.MillipoundMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromMillipoundMoles(double millipoundmoles)
+        public static AmountOfSubstance FromMillipoundMoles(double value)
         {
-            return new AmountOfSubstance(millipoundmoles, AmountOfSubstanceUnit.MillipoundMole);
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.MillipoundMole);
         }
 
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Mole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromMoles(double moles)
+        public static AmountOfSubstance FromMoles(double value)
         {
-            return new AmountOfSubstance(moles, AmountOfSubstanceUnit.Mole);
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Mole);
         }
 
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Nanomole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromNanomoles(double nanomoles)
+        public static AmountOfSubstance FromNanomoles(double value)
         {
-            return new AmountOfSubstance(nanomoles, AmountOfSubstanceUnit.Nanomole);
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Nanomole);
         }
 
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.NanopoundMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromNanopoundMoles(double nanopoundmoles)
+        public static AmountOfSubstance FromNanopoundMoles(double value)
         {
-            return new AmountOfSubstance(nanopoundmoles, AmountOfSubstanceUnit.NanopoundMole);
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.NanopoundMole);
         }
 
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Picomole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromPicomoles(double picomoles)
+        public static AmountOfSubstance FromPicomoles(double value)
         {
-            return new AmountOfSubstance(picomoles, AmountOfSubstanceUnit.Picomole);
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Picomole);
         }
 
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.PoundMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AmountOfSubstance FromPoundMoles(double poundmoles)
+        public static AmountOfSubstance FromPoundMoles(double value)
         {
-            return new AmountOfSubstance(poundmoles, AmountOfSubstanceUnit.PoundMole);
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.PoundMole);
         }
 
         /// <summary>

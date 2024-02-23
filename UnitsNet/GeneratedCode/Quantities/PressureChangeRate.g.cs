@@ -364,162 +364,162 @@ namespace UnitsNet
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.AtmospherePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate FromAtmospheresPerSecond(double atmospherespersecond)
+        public static PressureChangeRate FromAtmospheresPerSecond(double value)
         {
-            return new PressureChangeRate(atmospherespersecond, PressureChangeRateUnit.AtmospherePerSecond);
+            return new PressureChangeRate(value, PressureChangeRateUnit.AtmospherePerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.BarPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate FromBarsPerMinute(double barsperminute)
+        public static PressureChangeRate FromBarsPerMinute(double value)
         {
-            return new PressureChangeRate(barsperminute, PressureChangeRateUnit.BarPerMinute);
+            return new PressureChangeRate(value, PressureChangeRateUnit.BarPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.BarPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate FromBarsPerSecond(double barspersecond)
+        public static PressureChangeRate FromBarsPerSecond(double value)
         {
-            return new PressureChangeRate(barspersecond, PressureChangeRateUnit.BarPerSecond);
+            return new PressureChangeRate(value, PressureChangeRateUnit.BarPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.KilopascalPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate FromKilopascalsPerMinute(double kilopascalsperminute)
+        public static PressureChangeRate FromKilopascalsPerMinute(double value)
         {
-            return new PressureChangeRate(kilopascalsperminute, PressureChangeRateUnit.KilopascalPerMinute);
+            return new PressureChangeRate(value, PressureChangeRateUnit.KilopascalPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.KilopascalPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate FromKilopascalsPerSecond(double kilopascalspersecond)
+        public static PressureChangeRate FromKilopascalsPerSecond(double value)
         {
-            return new PressureChangeRate(kilopascalspersecond, PressureChangeRateUnit.KilopascalPerSecond);
+            return new PressureChangeRate(value, PressureChangeRateUnit.KilopascalPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate FromKilopoundsForcePerSquareInchPerMinute(double kilopoundsforcepersquareinchperminute)
+        public static PressureChangeRate FromKilopoundsForcePerSquareInchPerMinute(double value)
         {
-            return new PressureChangeRate(kilopoundsforcepersquareinchperminute, PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute);
+            return new PressureChangeRate(value, PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate FromKilopoundsForcePerSquareInchPerSecond(double kilopoundsforcepersquareinchpersecond)
+        public static PressureChangeRate FromKilopoundsForcePerSquareInchPerSecond(double value)
         {
-            return new PressureChangeRate(kilopoundsforcepersquareinchpersecond, PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond);
+            return new PressureChangeRate(value, PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.MegapascalPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate FromMegapascalsPerMinute(double megapascalsperminute)
+        public static PressureChangeRate FromMegapascalsPerMinute(double value)
         {
-            return new PressureChangeRate(megapascalsperminute, PressureChangeRateUnit.MegapascalPerMinute);
+            return new PressureChangeRate(value, PressureChangeRateUnit.MegapascalPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.MegapascalPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate FromMegapascalsPerSecond(double megapascalspersecond)
+        public static PressureChangeRate FromMegapascalsPerSecond(double value)
         {
-            return new PressureChangeRate(megapascalspersecond, PressureChangeRateUnit.MegapascalPerSecond);
+            return new PressureChangeRate(value, PressureChangeRateUnit.MegapascalPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate FromMegapoundsForcePerSquareInchPerMinute(double megapoundsforcepersquareinchperminute)
+        public static PressureChangeRate FromMegapoundsForcePerSquareInchPerMinute(double value)
         {
-            return new PressureChangeRate(megapoundsforcepersquareinchperminute, PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute);
+            return new PressureChangeRate(value, PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate FromMegapoundsForcePerSquareInchPerSecond(double megapoundsforcepersquareinchpersecond)
+        public static PressureChangeRate FromMegapoundsForcePerSquareInchPerSecond(double value)
         {
-            return new PressureChangeRate(megapoundsforcepersquareinchpersecond, PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond);
+            return new PressureChangeRate(value, PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.MillibarPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate FromMillibarsPerMinute(double millibarsperminute)
+        public static PressureChangeRate FromMillibarsPerMinute(double value)
         {
-            return new PressureChangeRate(millibarsperminute, PressureChangeRateUnit.MillibarPerMinute);
+            return new PressureChangeRate(value, PressureChangeRateUnit.MillibarPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.MillibarPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate FromMillibarsPerSecond(double millibarspersecond)
+        public static PressureChangeRate FromMillibarsPerSecond(double value)
         {
-            return new PressureChangeRate(millibarspersecond, PressureChangeRateUnit.MillibarPerSecond);
+            return new PressureChangeRate(value, PressureChangeRateUnit.MillibarPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.MillimeterOfMercuryPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate FromMillimetersOfMercuryPerSecond(double millimetersofmercurypersecond)
+        public static PressureChangeRate FromMillimetersOfMercuryPerSecond(double value)
         {
-            return new PressureChangeRate(millimetersofmercurypersecond, PressureChangeRateUnit.MillimeterOfMercuryPerSecond);
+            return new PressureChangeRate(value, PressureChangeRateUnit.MillimeterOfMercuryPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.PascalPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate FromPascalsPerMinute(double pascalsperminute)
+        public static PressureChangeRate FromPascalsPerMinute(double value)
         {
-            return new PressureChangeRate(pascalsperminute, PressureChangeRateUnit.PascalPerMinute);
+            return new PressureChangeRate(value, PressureChangeRateUnit.PascalPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.PascalPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate FromPascalsPerSecond(double pascalspersecond)
+        public static PressureChangeRate FromPascalsPerSecond(double value)
         {
-            return new PressureChangeRate(pascalspersecond, PressureChangeRateUnit.PascalPerSecond);
+            return new PressureChangeRate(value, PressureChangeRateUnit.PascalPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.PoundForcePerSquareInchPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate FromPoundsForcePerSquareInchPerMinute(double poundsforcepersquareinchperminute)
+        public static PressureChangeRate FromPoundsForcePerSquareInchPerMinute(double value)
         {
-            return new PressureChangeRate(poundsforcepersquareinchperminute, PressureChangeRateUnit.PoundForcePerSquareInchPerMinute);
+            return new PressureChangeRate(value, PressureChangeRateUnit.PoundForcePerSquareInchPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.PoundForcePerSquareInchPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PressureChangeRate FromPoundsForcePerSquareInchPerSecond(double poundsforcepersquareinchpersecond)
+        public static PressureChangeRate FromPoundsForcePerSquareInchPerSecond(double value)
         {
-            return new PressureChangeRate(poundsforcepersquareinchpersecond, PressureChangeRateUnit.PoundForcePerSquareInchPerSecond);
+            return new PressureChangeRate(value, PressureChangeRateUnit.PoundForcePerSquareInchPerSecond);
         }
 
         /// <summary>

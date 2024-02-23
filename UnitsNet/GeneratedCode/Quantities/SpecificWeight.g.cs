@@ -361,153 +361,153 @@ namespace UnitsNet
         ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.KilogramForcePerCubicCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificWeight FromKilogramsForcePerCubicCentimeter(double kilogramsforcepercubiccentimeter)
+        public static SpecificWeight FromKilogramsForcePerCubicCentimeter(double value)
         {
-            return new SpecificWeight(kilogramsforcepercubiccentimeter, SpecificWeightUnit.KilogramForcePerCubicCentimeter);
+            return new SpecificWeight(value, SpecificWeightUnit.KilogramForcePerCubicCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.KilogramForcePerCubicMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificWeight FromKilogramsForcePerCubicMeter(double kilogramsforcepercubicmeter)
+        public static SpecificWeight FromKilogramsForcePerCubicMeter(double value)
         {
-            return new SpecificWeight(kilogramsforcepercubicmeter, SpecificWeightUnit.KilogramForcePerCubicMeter);
+            return new SpecificWeight(value, SpecificWeightUnit.KilogramForcePerCubicMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.KilogramForcePerCubicMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificWeight FromKilogramsForcePerCubicMillimeter(double kilogramsforcepercubicmillimeter)
+        public static SpecificWeight FromKilogramsForcePerCubicMillimeter(double value)
         {
-            return new SpecificWeight(kilogramsforcepercubicmillimeter, SpecificWeightUnit.KilogramForcePerCubicMillimeter);
+            return new SpecificWeight(value, SpecificWeightUnit.KilogramForcePerCubicMillimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.KilonewtonPerCubicCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificWeight FromKilonewtonsPerCubicCentimeter(double kilonewtonspercubiccentimeter)
+        public static SpecificWeight FromKilonewtonsPerCubicCentimeter(double value)
         {
-            return new SpecificWeight(kilonewtonspercubiccentimeter, SpecificWeightUnit.KilonewtonPerCubicCentimeter);
+            return new SpecificWeight(value, SpecificWeightUnit.KilonewtonPerCubicCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.KilonewtonPerCubicMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificWeight FromKilonewtonsPerCubicMeter(double kilonewtonspercubicmeter)
+        public static SpecificWeight FromKilonewtonsPerCubicMeter(double value)
         {
-            return new SpecificWeight(kilonewtonspercubicmeter, SpecificWeightUnit.KilonewtonPerCubicMeter);
+            return new SpecificWeight(value, SpecificWeightUnit.KilonewtonPerCubicMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.KilonewtonPerCubicMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificWeight FromKilonewtonsPerCubicMillimeter(double kilonewtonspercubicmillimeter)
+        public static SpecificWeight FromKilonewtonsPerCubicMillimeter(double value)
         {
-            return new SpecificWeight(kilonewtonspercubicmillimeter, SpecificWeightUnit.KilonewtonPerCubicMillimeter);
+            return new SpecificWeight(value, SpecificWeightUnit.KilonewtonPerCubicMillimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.KilopoundForcePerCubicFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificWeight FromKilopoundsForcePerCubicFoot(double kilopoundsforcepercubicfoot)
+        public static SpecificWeight FromKilopoundsForcePerCubicFoot(double value)
         {
-            return new SpecificWeight(kilopoundsforcepercubicfoot, SpecificWeightUnit.KilopoundForcePerCubicFoot);
+            return new SpecificWeight(value, SpecificWeightUnit.KilopoundForcePerCubicFoot);
         }
 
         /// <summary>
         ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.KilopoundForcePerCubicInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificWeight FromKilopoundsForcePerCubicInch(double kilopoundsforcepercubicinch)
+        public static SpecificWeight FromKilopoundsForcePerCubicInch(double value)
         {
-            return new SpecificWeight(kilopoundsforcepercubicinch, SpecificWeightUnit.KilopoundForcePerCubicInch);
+            return new SpecificWeight(value, SpecificWeightUnit.KilopoundForcePerCubicInch);
         }
 
         /// <summary>
         ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.MeganewtonPerCubicMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificWeight FromMeganewtonsPerCubicMeter(double meganewtonspercubicmeter)
+        public static SpecificWeight FromMeganewtonsPerCubicMeter(double value)
         {
-            return new SpecificWeight(meganewtonspercubicmeter, SpecificWeightUnit.MeganewtonPerCubicMeter);
+            return new SpecificWeight(value, SpecificWeightUnit.MeganewtonPerCubicMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.NewtonPerCubicCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificWeight FromNewtonsPerCubicCentimeter(double newtonspercubiccentimeter)
+        public static SpecificWeight FromNewtonsPerCubicCentimeter(double value)
         {
-            return new SpecificWeight(newtonspercubiccentimeter, SpecificWeightUnit.NewtonPerCubicCentimeter);
+            return new SpecificWeight(value, SpecificWeightUnit.NewtonPerCubicCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.NewtonPerCubicMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificWeight FromNewtonsPerCubicMeter(double newtonspercubicmeter)
+        public static SpecificWeight FromNewtonsPerCubicMeter(double value)
         {
-            return new SpecificWeight(newtonspercubicmeter, SpecificWeightUnit.NewtonPerCubicMeter);
+            return new SpecificWeight(value, SpecificWeightUnit.NewtonPerCubicMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.NewtonPerCubicMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificWeight FromNewtonsPerCubicMillimeter(double newtonspercubicmillimeter)
+        public static SpecificWeight FromNewtonsPerCubicMillimeter(double value)
         {
-            return new SpecificWeight(newtonspercubicmillimeter, SpecificWeightUnit.NewtonPerCubicMillimeter);
+            return new SpecificWeight(value, SpecificWeightUnit.NewtonPerCubicMillimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.PoundForcePerCubicFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificWeight FromPoundsForcePerCubicFoot(double poundsforcepercubicfoot)
+        public static SpecificWeight FromPoundsForcePerCubicFoot(double value)
         {
-            return new SpecificWeight(poundsforcepercubicfoot, SpecificWeightUnit.PoundForcePerCubicFoot);
+            return new SpecificWeight(value, SpecificWeightUnit.PoundForcePerCubicFoot);
         }
 
         /// <summary>
         ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.PoundForcePerCubicInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificWeight FromPoundsForcePerCubicInch(double poundsforcepercubicinch)
+        public static SpecificWeight FromPoundsForcePerCubicInch(double value)
         {
-            return new SpecificWeight(poundsforcepercubicinch, SpecificWeightUnit.PoundForcePerCubicInch);
+            return new SpecificWeight(value, SpecificWeightUnit.PoundForcePerCubicInch);
         }
 
         /// <summary>
         ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.TonneForcePerCubicCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificWeight FromTonnesForcePerCubicCentimeter(double tonnesforcepercubiccentimeter)
+        public static SpecificWeight FromTonnesForcePerCubicCentimeter(double value)
         {
-            return new SpecificWeight(tonnesforcepercubiccentimeter, SpecificWeightUnit.TonneForcePerCubicCentimeter);
+            return new SpecificWeight(value, SpecificWeightUnit.TonneForcePerCubicCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.TonneForcePerCubicMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificWeight FromTonnesForcePerCubicMeter(double tonnesforcepercubicmeter)
+        public static SpecificWeight FromTonnesForcePerCubicMeter(double value)
         {
-            return new SpecificWeight(tonnesforcepercubicmeter, SpecificWeightUnit.TonneForcePerCubicMeter);
+            return new SpecificWeight(value, SpecificWeightUnit.TonneForcePerCubicMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.TonneForcePerCubicMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificWeight FromTonnesForcePerCubicMillimeter(double tonnesforcepercubicmillimeter)
+        public static SpecificWeight FromTonnesForcePerCubicMillimeter(double value)
         {
-            return new SpecificWeight(tonnesforcepercubicmillimeter, SpecificWeightUnit.TonneForcePerCubicMillimeter);
+            return new SpecificWeight(value, SpecificWeightUnit.TonneForcePerCubicMillimeter);
         }
 
         /// <summary>

@@ -229,18 +229,18 @@ namespace UnitsNet
         ///     Creates a <see cref="PowerRatio"/> from <see cref="PowerRatioUnit.DecibelMilliwatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PowerRatio FromDecibelMilliwatts(double decibelmilliwatts)
+        public static PowerRatio FromDecibelMilliwatts(double value)
         {
-            return new PowerRatio(decibelmilliwatts, PowerRatioUnit.DecibelMilliwatt);
+            return new PowerRatio(value, PowerRatioUnit.DecibelMilliwatt);
         }
 
         /// <summary>
         ///     Creates a <see cref="PowerRatio"/> from <see cref="PowerRatioUnit.DecibelWatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PowerRatio FromDecibelWatts(double decibelwatts)
+        public static PowerRatio FromDecibelWatts(double value)
         {
-            return new PowerRatio(decibelwatts, PowerRatioUnit.DecibelWatt);
+            return new PowerRatio(value, PowerRatioUnit.DecibelWatt);
         }
 
         /// <summary>

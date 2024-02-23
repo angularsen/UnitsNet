@@ -272,63 +272,63 @@ namespace UnitsNet
         ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Farad"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Capacitance FromFarads(double farads)
+        public static Capacitance FromFarads(double value)
         {
-            return new Capacitance(farads, CapacitanceUnit.Farad);
+            return new Capacitance(value, CapacitanceUnit.Farad);
         }
 
         /// <summary>
         ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Kilofarad"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Capacitance FromKilofarads(double kilofarads)
+        public static Capacitance FromKilofarads(double value)
         {
-            return new Capacitance(kilofarads, CapacitanceUnit.Kilofarad);
+            return new Capacitance(value, CapacitanceUnit.Kilofarad);
         }
 
         /// <summary>
         ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Megafarad"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Capacitance FromMegafarads(double megafarads)
+        public static Capacitance FromMegafarads(double value)
         {
-            return new Capacitance(megafarads, CapacitanceUnit.Megafarad);
+            return new Capacitance(value, CapacitanceUnit.Megafarad);
         }
 
         /// <summary>
         ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Microfarad"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Capacitance FromMicrofarads(double microfarads)
+        public static Capacitance FromMicrofarads(double value)
         {
-            return new Capacitance(microfarads, CapacitanceUnit.Microfarad);
+            return new Capacitance(value, CapacitanceUnit.Microfarad);
         }
 
         /// <summary>
         ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Millifarad"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Capacitance FromMillifarads(double millifarads)
+        public static Capacitance FromMillifarads(double value)
         {
-            return new Capacitance(millifarads, CapacitanceUnit.Millifarad);
+            return new Capacitance(value, CapacitanceUnit.Millifarad);
         }
 
         /// <summary>
         ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Nanofarad"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Capacitance FromNanofarads(double nanofarads)
+        public static Capacitance FromNanofarads(double value)
         {
-            return new Capacitance(nanofarads, CapacitanceUnit.Nanofarad);
+            return new Capacitance(value, CapacitanceUnit.Nanofarad);
         }
 
         /// <summary>
         ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Picofarad"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Capacitance FromPicofarads(double picofarads)
+        public static Capacitance FromPicofarads(double value)
         {
-            return new Capacitance(picofarads, CapacitanceUnit.Picofarad);
+            return new Capacitance(value, CapacitanceUnit.Picofarad);
         }
 
         /// <summary>

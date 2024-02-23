@@ -491,297 +491,297 @@ namespace UnitsNet
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.CentigramPerDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFlow FromCentigramsPerDay(double centigramsperday)
+        public static MassFlow FromCentigramsPerDay(double value)
         {
-            return new MassFlow(centigramsperday, MassFlowUnit.CentigramPerDay);
+            return new MassFlow(value, MassFlowUnit.CentigramPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.CentigramPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFlow FromCentigramsPerSecond(double centigramspersecond)
+        public static MassFlow FromCentigramsPerSecond(double value)
         {
-            return new MassFlow(centigramspersecond, MassFlowUnit.CentigramPerSecond);
+            return new MassFlow(value, MassFlowUnit.CentigramPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.DecagramPerDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFlow FromDecagramsPerDay(double decagramsperday)
+        public static MassFlow FromDecagramsPerDay(double value)
         {
-            return new MassFlow(decagramsperday, MassFlowUnit.DecagramPerDay);
+            return new MassFlow(value, MassFlowUnit.DecagramPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.DecagramPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFlow FromDecagramsPerSecond(double decagramspersecond)
+        public static MassFlow FromDecagramsPerSecond(double value)
         {
-            return new MassFlow(decagramspersecond, MassFlowUnit.DecagramPerSecond);
+            return new MassFlow(value, MassFlowUnit.DecagramPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.DecigramPerDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFlow FromDecigramsPerDay(double decigramsperday)
+        public static MassFlow FromDecigramsPerDay(double value)
         {
-            return new MassFlow(decigramsperday, MassFlowUnit.DecigramPerDay);
+            return new MassFlow(value, MassFlowUnit.DecigramPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.DecigramPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFlow FromDecigramsPerSecond(double decigramspersecond)
+        public static MassFlow FromDecigramsPerSecond(double value)
         {
-            return new MassFlow(decigramspersecond, MassFlowUnit.DecigramPerSecond);
+            return new MassFlow(value, MassFlowUnit.DecigramPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.GramPerDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFlow FromGramsPerDay(double gramsperday)
+        public static MassFlow FromGramsPerDay(double value)
         {
-            return new MassFlow(gramsperday, MassFlowUnit.GramPerDay);
+            return new MassFlow(value, MassFlowUnit.GramPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.GramPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFlow FromGramsPerHour(double gramsperhour)
+        public static MassFlow FromGramsPerHour(double value)
         {
-            return new MassFlow(gramsperhour, MassFlowUnit.GramPerHour);
+            return new MassFlow(value, MassFlowUnit.GramPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.GramPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFlow FromGramsPerSecond(double gramspersecond)
+        public static MassFlow FromGramsPerSecond(double value)
         {
-            return new MassFlow(gramspersecond, MassFlowUnit.GramPerSecond);
+            return new MassFlow(value, MassFlowUnit.GramPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.HectogramPerDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFlow FromHectogramsPerDay(double hectogramsperday)
+        public static MassFlow FromHectogramsPerDay(double value)
         {
-            return new MassFlow(hectogramsperday, MassFlowUnit.HectogramPerDay);
+            return new MassFlow(value, MassFlowUnit.HectogramPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.HectogramPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFlow FromHectogramsPerSecond(double hectogramspersecond)
+        public static MassFlow FromHectogramsPerSecond(double value)
         {
-            return new MassFlow(hectogramspersecond, MassFlowUnit.HectogramPerSecond);
+            return new MassFlow(value, MassFlowUnit.HectogramPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.KilogramPerDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFlow FromKilogramsPerDay(double kilogramsperday)
+        public static MassFlow FromKilogramsPerDay(double value)
         {
-            return new MassFlow(kilogramsperday, MassFlowUnit.KilogramPerDay);
+            return new MassFlow(value, MassFlowUnit.KilogramPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.KilogramPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFlow FromKilogramsPerHour(double kilogramsperhour)
+        public static MassFlow FromKilogramsPerHour(double value)
         {
-            return new MassFlow(kilogramsperhour, MassFlowUnit.KilogramPerHour);
+            return new MassFlow(value, MassFlowUnit.KilogramPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.KilogramPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFlow FromKilogramsPerMinute(double kilogramsperminute)
+        public static MassFlow FromKilogramsPerMinute(double value)
         {
-            return new MassFlow(kilogramsperminute, MassFlowUnit.KilogramPerMinute);
+            return new MassFlow(value, MassFlowUnit.KilogramPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.KilogramPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFlow FromKilogramsPerSecond(double kilogramspersecond)
+        public static MassFlow FromKilogramsPerSecond(double value)
         {
-            return new MassFlow(kilogramspersecond, MassFlowUnit.KilogramPerSecond);
+            return new MassFlow(value, MassFlowUnit.KilogramPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.MegagramPerDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFlow FromMegagramsPerDay(double megagramsperday)
+        public static MassFlow FromMegagramsPerDay(double value)
         {
-            return new MassFlow(megagramsperday, MassFlowUnit.MegagramPerDay);
+            return new MassFlow(value, MassFlowUnit.MegagramPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.MegapoundPerDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFlow FromMegapoundsPerDay(double megapoundsperday)
+        public static MassFlow FromMegapoundsPerDay(double value)
         {
-            return new MassFlow(megapoundsperday, MassFlowUnit.MegapoundPerDay);
+            return new MassFlow(value, MassFlowUnit.MegapoundPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.MegapoundPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFlow FromMegapoundsPerHour(double megapoundsperhour)
+        public static MassFlow FromMegapoundsPerHour(double value)
         {
-            return new MassFlow(megapoundsperhour, MassFlowUnit.MegapoundPerHour);
+            return new MassFlow(value, MassFlowUnit.MegapoundPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.MegapoundPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFlow FromMegapoundsPerMinute(double megapoundsperminute)
+        public static MassFlow FromMegapoundsPerMinute(double value)
         {
-            return new MassFlow(megapoundsperminute, MassFlowUnit.MegapoundPerMinute);
+            return new MassFlow(value, MassFlowUnit.MegapoundPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.MegapoundPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFlow FromMegapoundsPerSecond(double megapoundspersecond)
+        public static MassFlow FromMegapoundsPerSecond(double value)
         {
-            return new MassFlow(megapoundspersecond, MassFlowUnit.MegapoundPerSecond);
+            return new MassFlow(value, MassFlowUnit.MegapoundPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.MicrogramPerDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFlow FromMicrogramsPerDay(double microgramsperday)
+        public static MassFlow FromMicrogramsPerDay(double value)
         {
-            return new MassFlow(microgramsperday, MassFlowUnit.MicrogramPerDay);
+            return new MassFlow(value, MassFlowUnit.MicrogramPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.MicrogramPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFlow FromMicrogramsPerSecond(double microgramspersecond)
+        public static MassFlow FromMicrogramsPerSecond(double value)
         {
-            return new MassFlow(microgramspersecond, MassFlowUnit.MicrogramPerSecond);
+            return new MassFlow(value, MassFlowUnit.MicrogramPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.MilligramPerDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFlow FromMilligramsPerDay(double milligramsperday)
+        public static MassFlow FromMilligramsPerDay(double value)
         {
-            return new MassFlow(milligramsperday, MassFlowUnit.MilligramPerDay);
+            return new MassFlow(value, MassFlowUnit.MilligramPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.MilligramPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFlow FromMilligramsPerSecond(double milligramspersecond)
+        public static MassFlow FromMilligramsPerSecond(double value)
         {
-            return new MassFlow(milligramspersecond, MassFlowUnit.MilligramPerSecond);
+            return new MassFlow(value, MassFlowUnit.MilligramPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.NanogramPerDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFlow FromNanogramsPerDay(double nanogramsperday)
+        public static MassFlow FromNanogramsPerDay(double value)
         {
-            return new MassFlow(nanogramsperday, MassFlowUnit.NanogramPerDay);
+            return new MassFlow(value, MassFlowUnit.NanogramPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.NanogramPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFlow FromNanogramsPerSecond(double nanogramspersecond)
+        public static MassFlow FromNanogramsPerSecond(double value)
         {
-            return new MassFlow(nanogramspersecond, MassFlowUnit.NanogramPerSecond);
+            return new MassFlow(value, MassFlowUnit.NanogramPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.PoundPerDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFlow FromPoundsPerDay(double poundsperday)
+        public static MassFlow FromPoundsPerDay(double value)
         {
-            return new MassFlow(poundsperday, MassFlowUnit.PoundPerDay);
+            return new MassFlow(value, MassFlowUnit.PoundPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.PoundPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFlow FromPoundsPerHour(double poundsperhour)
+        public static MassFlow FromPoundsPerHour(double value)
         {
-            return new MassFlow(poundsperhour, MassFlowUnit.PoundPerHour);
+            return new MassFlow(value, MassFlowUnit.PoundPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.PoundPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFlow FromPoundsPerMinute(double poundsperminute)
+        public static MassFlow FromPoundsPerMinute(double value)
         {
-            return new MassFlow(poundsperminute, MassFlowUnit.PoundPerMinute);
+            return new MassFlow(value, MassFlowUnit.PoundPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.PoundPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFlow FromPoundsPerSecond(double poundspersecond)
+        public static MassFlow FromPoundsPerSecond(double value)
         {
-            return new MassFlow(poundspersecond, MassFlowUnit.PoundPerSecond);
+            return new MassFlow(value, MassFlowUnit.PoundPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.ShortTonPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFlow FromShortTonsPerHour(double shorttonsperhour)
+        public static MassFlow FromShortTonsPerHour(double value)
         {
-            return new MassFlow(shorttonsperhour, MassFlowUnit.ShortTonPerHour);
+            return new MassFlow(value, MassFlowUnit.ShortTonPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.TonnePerDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFlow FromTonnesPerDay(double tonnesperday)
+        public static MassFlow FromTonnesPerDay(double value)
         {
-            return new MassFlow(tonnesperday, MassFlowUnit.TonnePerDay);
+            return new MassFlow(value, MassFlowUnit.TonnePerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.TonnePerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MassFlow FromTonnesPerHour(double tonnesperhour)
+        public static MassFlow FromTonnesPerHour(double value)
         {
-            return new MassFlow(tonnesperhour, MassFlowUnit.TonnePerHour);
+            return new MassFlow(value, MassFlowUnit.TonnePerHour);
         }
 
         /// <summary>

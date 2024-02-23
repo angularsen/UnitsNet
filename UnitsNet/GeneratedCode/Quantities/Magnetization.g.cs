@@ -224,9 +224,9 @@ namespace UnitsNet
         ///     Creates a <see cref="Magnetization"/> from <see cref="MagnetizationUnit.AmperePerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Magnetization FromAmperesPerMeter(double amperespermeter)
+        public static Magnetization FromAmperesPerMeter(double value)
         {
-            return new Magnetization(amperespermeter, MagnetizationUnit.AmperePerMeter);
+            return new Magnetization(value, MagnetizationUnit.AmperePerMeter);
         }
 
         /// <summary>

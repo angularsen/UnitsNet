@@ -348,135 +348,135 @@ namespace UnitsNet
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Decanewton"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromDecanewtons(double decanewtons)
+        public static Force FromDecanewtons(double value)
         {
-            return new Force(decanewtons, ForceUnit.Decanewton);
+            return new Force(value, ForceUnit.Decanewton);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Dyn"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromDyne(double dyne)
+        public static Force FromDyne(double value)
         {
-            return new Force(dyne, ForceUnit.Dyn);
+            return new Force(value, ForceUnit.Dyn);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.KilogramForce"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromKilogramsForce(double kilogramsforce)
+        public static Force FromKilogramsForce(double value)
         {
-            return new Force(kilogramsforce, ForceUnit.KilogramForce);
+            return new Force(value, ForceUnit.KilogramForce);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Kilonewton"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromKilonewtons(double kilonewtons)
+        public static Force FromKilonewtons(double value)
         {
-            return new Force(kilonewtons, ForceUnit.Kilonewton);
+            return new Force(value, ForceUnit.Kilonewton);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.KiloPond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromKiloPonds(double kiloponds)
+        public static Force FromKiloPonds(double value)
         {
-            return new Force(kiloponds, ForceUnit.KiloPond);
+            return new Force(value, ForceUnit.KiloPond);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.KilopoundForce"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromKilopoundsForce(double kilopoundsforce)
+        public static Force FromKilopoundsForce(double value)
         {
-            return new Force(kilopoundsforce, ForceUnit.KilopoundForce);
+            return new Force(value, ForceUnit.KilopoundForce);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Meganewton"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromMeganewtons(double meganewtons)
+        public static Force FromMeganewtons(double value)
         {
-            return new Force(meganewtons, ForceUnit.Meganewton);
+            return new Force(value, ForceUnit.Meganewton);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Micronewton"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromMicronewtons(double micronewtons)
+        public static Force FromMicronewtons(double value)
         {
-            return new Force(micronewtons, ForceUnit.Micronewton);
+            return new Force(value, ForceUnit.Micronewton);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Millinewton"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromMillinewtons(double millinewtons)
+        public static Force FromMillinewtons(double value)
         {
-            return new Force(millinewtons, ForceUnit.Millinewton);
+            return new Force(value, ForceUnit.Millinewton);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Newton"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromNewtons(double newtons)
+        public static Force FromNewtons(double value)
         {
-            return new Force(newtons, ForceUnit.Newton);
+            return new Force(value, ForceUnit.Newton);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.OunceForce"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromOunceForce(double ounceforce)
+        public static Force FromOunceForce(double value)
         {
-            return new Force(ounceforce, ForceUnit.OunceForce);
+            return new Force(value, ForceUnit.OunceForce);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Poundal"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromPoundals(double poundals)
+        public static Force FromPoundals(double value)
         {
-            return new Force(poundals, ForceUnit.Poundal);
+            return new Force(value, ForceUnit.Poundal);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.PoundForce"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromPoundsForce(double poundsforce)
+        public static Force FromPoundsForce(double value)
         {
-            return new Force(poundsforce, ForceUnit.PoundForce);
+            return new Force(value, ForceUnit.PoundForce);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.ShortTonForce"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromShortTonsForce(double shorttonsforce)
+        public static Force FromShortTonsForce(double value)
         {
-            return new Force(shorttonsforce, ForceUnit.ShortTonForce);
+            return new Force(value, ForceUnit.ShortTonForce);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.TonneForce"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Force FromTonnesForce(double tonnesforce)
+        public static Force FromTonnesForce(double value)
         {
-            return new Force(tonnesforce, ForceUnit.TonneForce);
+            return new Force(value, ForceUnit.TonneForce);
         }
 
         /// <summary>

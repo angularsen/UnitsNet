@@ -224,9 +224,9 @@ namespace UnitsNet
         ///     Creates a <see cref="ElectricChargeDensity"/> from <see cref="ElectricChargeDensityUnit.CoulombPerCubicMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricChargeDensity FromCoulombsPerCubicMeter(double coulombspercubicmeter)
+        public static ElectricChargeDensity FromCoulombsPerCubicMeter(double value)
         {
-            return new ElectricChargeDensity(coulombspercubicmeter, ElectricChargeDensityUnit.CoulombPerCubicMeter);
+            return new ElectricChargeDensity(value, ElectricChargeDensityUnit.CoulombPerCubicMeter);
         }
 
         /// <summary>

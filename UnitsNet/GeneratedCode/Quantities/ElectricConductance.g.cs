@@ -256,45 +256,45 @@ namespace UnitsNet
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Kilosiemens"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricConductance FromKilosiemens(double kilosiemens)
+        public static ElectricConductance FromKilosiemens(double value)
         {
-            return new ElectricConductance(kilosiemens, ElectricConductanceUnit.Kilosiemens);
+            return new ElectricConductance(value, ElectricConductanceUnit.Kilosiemens);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Microsiemens"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricConductance FromMicrosiemens(double microsiemens)
+        public static ElectricConductance FromMicrosiemens(double value)
         {
-            return new ElectricConductance(microsiemens, ElectricConductanceUnit.Microsiemens);
+            return new ElectricConductance(value, ElectricConductanceUnit.Microsiemens);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Millisiemens"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricConductance FromMillisiemens(double millisiemens)
+        public static ElectricConductance FromMillisiemens(double value)
         {
-            return new ElectricConductance(millisiemens, ElectricConductanceUnit.Millisiemens);
+            return new ElectricConductance(value, ElectricConductanceUnit.Millisiemens);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Nanosiemens"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricConductance FromNanosiemens(double nanosiemens)
+        public static ElectricConductance FromNanosiemens(double value)
         {
-            return new ElectricConductance(nanosiemens, ElectricConductanceUnit.Nanosiemens);
+            return new ElectricConductance(value, ElectricConductanceUnit.Nanosiemens);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Siemens"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricConductance FromSiemens(double siemens)
+        public static ElectricConductance FromSiemens(double value)
         {
-            return new ElectricConductance(siemens, ElectricConductanceUnit.Siemens);
+            return new ElectricConductance(value, ElectricConductanceUnit.Siemens);
         }
 
         /// <summary>

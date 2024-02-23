@@ -224,9 +224,9 @@ namespace UnitsNet
         ///     Creates a <see cref="ElectricField"/> from <see cref="ElectricFieldUnit.VoltPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricField FromVoltsPerMeter(double voltspermeter)
+        public static ElectricField FromVoltsPerMeter(double value)
         {
-            return new ElectricField(voltspermeter, ElectricFieldUnit.VoltPerMeter);
+            return new ElectricField(value, ElectricFieldUnit.VoltPerMeter);
         }
 
         /// <summary>

@@ -248,36 +248,36 @@ namespace UnitsNet
         ///     Creates a <see cref="Illuminance"/> from <see cref="IlluminanceUnit.Kilolux"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Illuminance FromKilolux(double kilolux)
+        public static Illuminance FromKilolux(double value)
         {
-            return new Illuminance(kilolux, IlluminanceUnit.Kilolux);
+            return new Illuminance(value, IlluminanceUnit.Kilolux);
         }
 
         /// <summary>
         ///     Creates a <see cref="Illuminance"/> from <see cref="IlluminanceUnit.Lux"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Illuminance FromLux(double lux)
+        public static Illuminance FromLux(double value)
         {
-            return new Illuminance(lux, IlluminanceUnit.Lux);
+            return new Illuminance(value, IlluminanceUnit.Lux);
         }
 
         /// <summary>
         ///     Creates a <see cref="Illuminance"/> from <see cref="IlluminanceUnit.Megalux"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Illuminance FromMegalux(double megalux)
+        public static Illuminance FromMegalux(double value)
         {
-            return new Illuminance(megalux, IlluminanceUnit.Megalux);
+            return new Illuminance(value, IlluminanceUnit.Megalux);
         }
 
         /// <summary>
         ///     Creates a <see cref="Illuminance"/> from <see cref="IlluminanceUnit.Millilux"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Illuminance FromMillilux(double millilux)
+        public static Illuminance FromMillilux(double value)
         {
-            return new Illuminance(millilux, IlluminanceUnit.Millilux);
+            return new Illuminance(value, IlluminanceUnit.Millilux);
         }
 
         /// <summary>

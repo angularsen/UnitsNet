@@ -256,45 +256,45 @@ namespace UnitsNet
         ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Henry"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricInductance FromHenries(double henries)
+        public static ElectricInductance FromHenries(double value)
         {
-            return new ElectricInductance(henries, ElectricInductanceUnit.Henry);
+            return new ElectricInductance(value, ElectricInductanceUnit.Henry);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Microhenry"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricInductance FromMicrohenries(double microhenries)
+        public static ElectricInductance FromMicrohenries(double value)
         {
-            return new ElectricInductance(microhenries, ElectricInductanceUnit.Microhenry);
+            return new ElectricInductance(value, ElectricInductanceUnit.Microhenry);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Millihenry"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricInductance FromMillihenries(double millihenries)
+        public static ElectricInductance FromMillihenries(double value)
         {
-            return new ElectricInductance(millihenries, ElectricInductanceUnit.Millihenry);
+            return new ElectricInductance(value, ElectricInductanceUnit.Millihenry);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Nanohenry"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricInductance FromNanohenries(double nanohenries)
+        public static ElectricInductance FromNanohenries(double value)
         {
-            return new ElectricInductance(nanohenries, ElectricInductanceUnit.Nanohenry);
+            return new ElectricInductance(value, ElectricInductanceUnit.Nanohenry);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Picohenry"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricInductance FromPicohenries(double picohenries)
+        public static ElectricInductance FromPicohenries(double value)
         {
-            return new ElectricInductance(picohenries, ElectricInductanceUnit.Picohenry);
+            return new ElectricInductance(value, ElectricInductanceUnit.Picohenry);
         }
 
         /// <summary>

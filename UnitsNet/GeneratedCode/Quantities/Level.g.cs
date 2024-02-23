@@ -229,18 +229,18 @@ namespace UnitsNet
         ///     Creates a <see cref="Level"/> from <see cref="LevelUnit.Decibel"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Level FromDecibels(double decibels)
+        public static Level FromDecibels(double value)
         {
-            return new Level(decibels, LevelUnit.Decibel);
+            return new Level(value, LevelUnit.Decibel);
         }
 
         /// <summary>
         ///     Creates a <see cref="Level"/> from <see cref="LevelUnit.Neper"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Level FromNepers(double nepers)
+        public static Level FromNepers(double value)
         {
-            return new Level(nepers, LevelUnit.Neper);
+            return new Level(value, LevelUnit.Neper);
         }
 
         /// <summary>

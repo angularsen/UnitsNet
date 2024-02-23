@@ -285,81 +285,81 @@ namespace UnitsNet
         ///     Creates a <see cref="StandardVolumeFlow"/> from <see cref="StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static StandardVolumeFlow FromStandardCubicCentimetersPerMinute(double standardcubiccentimetersperminute)
+        public static StandardVolumeFlow FromStandardCubicCentimetersPerMinute(double value)
         {
-            return new StandardVolumeFlow(standardcubiccentimetersperminute, StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute);
+            return new StandardVolumeFlow(value, StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="StandardVolumeFlow"/> from <see cref="StandardVolumeFlowUnit.StandardCubicFootPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static StandardVolumeFlow FromStandardCubicFeetPerHour(double standardcubicfeetperhour)
+        public static StandardVolumeFlow FromStandardCubicFeetPerHour(double value)
         {
-            return new StandardVolumeFlow(standardcubicfeetperhour, StandardVolumeFlowUnit.StandardCubicFootPerHour);
+            return new StandardVolumeFlow(value, StandardVolumeFlowUnit.StandardCubicFootPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="StandardVolumeFlow"/> from <see cref="StandardVolumeFlowUnit.StandardCubicFootPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static StandardVolumeFlow FromStandardCubicFeetPerMinute(double standardcubicfeetperminute)
+        public static StandardVolumeFlow FromStandardCubicFeetPerMinute(double value)
         {
-            return new StandardVolumeFlow(standardcubicfeetperminute, StandardVolumeFlowUnit.StandardCubicFootPerMinute);
+            return new StandardVolumeFlow(value, StandardVolumeFlowUnit.StandardCubicFootPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="StandardVolumeFlow"/> from <see cref="StandardVolumeFlowUnit.StandardCubicFootPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static StandardVolumeFlow FromStandardCubicFeetPerSecond(double standardcubicfeetpersecond)
+        public static StandardVolumeFlow FromStandardCubicFeetPerSecond(double value)
         {
-            return new StandardVolumeFlow(standardcubicfeetpersecond, StandardVolumeFlowUnit.StandardCubicFootPerSecond);
+            return new StandardVolumeFlow(value, StandardVolumeFlowUnit.StandardCubicFootPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="StandardVolumeFlow"/> from <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static StandardVolumeFlow FromStandardCubicMetersPerDay(double standardcubicmetersperday)
+        public static StandardVolumeFlow FromStandardCubicMetersPerDay(double value)
         {
-            return new StandardVolumeFlow(standardcubicmetersperday, StandardVolumeFlowUnit.StandardCubicMeterPerDay);
+            return new StandardVolumeFlow(value, StandardVolumeFlowUnit.StandardCubicMeterPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="StandardVolumeFlow"/> from <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static StandardVolumeFlow FromStandardCubicMetersPerHour(double standardcubicmetersperhour)
+        public static StandardVolumeFlow FromStandardCubicMetersPerHour(double value)
         {
-            return new StandardVolumeFlow(standardcubicmetersperhour, StandardVolumeFlowUnit.StandardCubicMeterPerHour);
+            return new StandardVolumeFlow(value, StandardVolumeFlowUnit.StandardCubicMeterPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="StandardVolumeFlow"/> from <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static StandardVolumeFlow FromStandardCubicMetersPerMinute(double standardcubicmetersperminute)
+        public static StandardVolumeFlow FromStandardCubicMetersPerMinute(double value)
         {
-            return new StandardVolumeFlow(standardcubicmetersperminute, StandardVolumeFlowUnit.StandardCubicMeterPerMinute);
+            return new StandardVolumeFlow(value, StandardVolumeFlowUnit.StandardCubicMeterPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="StandardVolumeFlow"/> from <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static StandardVolumeFlow FromStandardCubicMetersPerSecond(double standardcubicmeterspersecond)
+        public static StandardVolumeFlow FromStandardCubicMetersPerSecond(double value)
         {
-            return new StandardVolumeFlow(standardcubicmeterspersecond, StandardVolumeFlowUnit.StandardCubicMeterPerSecond);
+            return new StandardVolumeFlow(value, StandardVolumeFlowUnit.StandardCubicMeterPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="StandardVolumeFlow"/> from <see cref="StandardVolumeFlowUnit.StandardLiterPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static StandardVolumeFlow FromStandardLitersPerMinute(double standardlitersperminute)
+        public static StandardVolumeFlow FromStandardLitersPerMinute(double value)
         {
-            return new StandardVolumeFlow(standardlitersperminute, StandardVolumeFlowUnit.StandardLiterPerMinute);
+            return new StandardVolumeFlow(value, StandardVolumeFlowUnit.StandardLiterPerMinute);
         }
 
         /// <summary>

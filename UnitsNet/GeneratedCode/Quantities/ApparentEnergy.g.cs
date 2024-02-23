@@ -237,27 +237,27 @@ namespace UnitsNet
         ///     Creates a <see cref="ApparentEnergy"/> from <see cref="ApparentEnergyUnit.KilovoltampereHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ApparentEnergy FromKilovoltampereHours(double kilovoltamperehours)
+        public static ApparentEnergy FromKilovoltampereHours(double value)
         {
-            return new ApparentEnergy(kilovoltamperehours, ApparentEnergyUnit.KilovoltampereHour);
+            return new ApparentEnergy(value, ApparentEnergyUnit.KilovoltampereHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="ApparentEnergy"/> from <see cref="ApparentEnergyUnit.MegavoltampereHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ApparentEnergy FromMegavoltampereHours(double megavoltamperehours)
+        public static ApparentEnergy FromMegavoltampereHours(double value)
         {
-            return new ApparentEnergy(megavoltamperehours, ApparentEnergyUnit.MegavoltampereHour);
+            return new ApparentEnergy(value, ApparentEnergyUnit.MegavoltampereHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="ApparentEnergy"/> from <see cref="ApparentEnergyUnit.VoltampereHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ApparentEnergy FromVoltampereHours(double voltamperehours)
+        public static ApparentEnergy FromVoltampereHours(double value)
         {
-            return new ApparentEnergy(voltamperehours, ApparentEnergyUnit.VoltampereHour);
+            return new ApparentEnergy(value, ApparentEnergyUnit.VoltampereHour);
         }
 
         /// <summary>

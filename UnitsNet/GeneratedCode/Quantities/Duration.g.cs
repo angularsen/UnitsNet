@@ -319,99 +319,99 @@ namespace UnitsNet
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Day"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Duration FromDays(double days)
+        public static Duration FromDays(double value)
         {
-            return new Duration(days, DurationUnit.Day);
+            return new Duration(value, DurationUnit.Day);
         }
 
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Hour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Duration FromHours(double hours)
+        public static Duration FromHours(double value)
         {
-            return new Duration(hours, DurationUnit.Hour);
+            return new Duration(value, DurationUnit.Hour);
         }
 
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.JulianYear"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Duration FromJulianYears(double julianyears)
+        public static Duration FromJulianYears(double value)
         {
-            return new Duration(julianyears, DurationUnit.JulianYear);
+            return new Duration(value, DurationUnit.JulianYear);
         }
 
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Microsecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Duration FromMicroseconds(double microseconds)
+        public static Duration FromMicroseconds(double value)
         {
-            return new Duration(microseconds, DurationUnit.Microsecond);
+            return new Duration(value, DurationUnit.Microsecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Millisecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Duration FromMilliseconds(double milliseconds)
+        public static Duration FromMilliseconds(double value)
         {
-            return new Duration(milliseconds, DurationUnit.Millisecond);
+            return new Duration(value, DurationUnit.Millisecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Minute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Duration FromMinutes(double minutes)
+        public static Duration FromMinutes(double value)
         {
-            return new Duration(minutes, DurationUnit.Minute);
+            return new Duration(value, DurationUnit.Minute);
         }
 
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Month30"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Duration FromMonths30(double months30)
+        public static Duration FromMonths30(double value)
         {
-            return new Duration(months30, DurationUnit.Month30);
+            return new Duration(value, DurationUnit.Month30);
         }
 
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Nanosecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Duration FromNanoseconds(double nanoseconds)
+        public static Duration FromNanoseconds(double value)
         {
-            return new Duration(nanoseconds, DurationUnit.Nanosecond);
+            return new Duration(value, DurationUnit.Nanosecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Second"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Duration FromSeconds(double seconds)
+        public static Duration FromSeconds(double value)
         {
-            return new Duration(seconds, DurationUnit.Second);
+            return new Duration(value, DurationUnit.Second);
         }
 
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Week"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Duration FromWeeks(double weeks)
+        public static Duration FromWeeks(double value)
         {
-            return new Duration(weeks, DurationUnit.Week);
+            return new Duration(value, DurationUnit.Week);
         }
 
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Year365"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Duration FromYears365(double years365)
+        public static Duration FromYears365(double value)
         {
-            return new Duration(years365, DurationUnit.Year365);
+            return new Duration(value, DurationUnit.Year365);
         }
 
         /// <summary>

@@ -221,9 +221,9 @@ namespace UnitsNet
         ///     Creates a <see cref="RelativeHumidity"/> from <see cref="RelativeHumidityUnit.Percent"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RelativeHumidity FromPercent(double percent)
+        public static RelativeHumidity FromPercent(double value)
         {
-            return new RelativeHumidity(percent, RelativeHumidityUnit.Percent);
+            return new RelativeHumidity(value, RelativeHumidityUnit.Percent);
         }
 
         /// <summary>

@@ -422,225 +422,225 @@ namespace UnitsNet
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.GramForceCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Torque FromGramForceCentimeters(double gramforcecentimeters)
+        public static Torque FromGramForceCentimeters(double value)
         {
-            return new Torque(gramforcecentimeters, TorqueUnit.GramForceCentimeter);
+            return new Torque(value, TorqueUnit.GramForceCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.GramForceMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Torque FromGramForceMeters(double gramforcemeters)
+        public static Torque FromGramForceMeters(double value)
         {
-            return new Torque(gramforcemeters, TorqueUnit.GramForceMeter);
+            return new Torque(value, TorqueUnit.GramForceMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.GramForceMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Torque FromGramForceMillimeters(double gramforcemillimeters)
+        public static Torque FromGramForceMillimeters(double value)
         {
-            return new Torque(gramforcemillimeters, TorqueUnit.GramForceMillimeter);
+            return new Torque(value, TorqueUnit.GramForceMillimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.KilogramForceCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Torque FromKilogramForceCentimeters(double kilogramforcecentimeters)
+        public static Torque FromKilogramForceCentimeters(double value)
         {
-            return new Torque(kilogramforcecentimeters, TorqueUnit.KilogramForceCentimeter);
+            return new Torque(value, TorqueUnit.KilogramForceCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.KilogramForceMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Torque FromKilogramForceMeters(double kilogramforcemeters)
+        public static Torque FromKilogramForceMeters(double value)
         {
-            return new Torque(kilogramforcemeters, TorqueUnit.KilogramForceMeter);
+            return new Torque(value, TorqueUnit.KilogramForceMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.KilogramForceMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Torque FromKilogramForceMillimeters(double kilogramforcemillimeters)
+        public static Torque FromKilogramForceMillimeters(double value)
         {
-            return new Torque(kilogramforcemillimeters, TorqueUnit.KilogramForceMillimeter);
+            return new Torque(value, TorqueUnit.KilogramForceMillimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.KilonewtonCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Torque FromKilonewtonCentimeters(double kilonewtoncentimeters)
+        public static Torque FromKilonewtonCentimeters(double value)
         {
-            return new Torque(kilonewtoncentimeters, TorqueUnit.KilonewtonCentimeter);
+            return new Torque(value, TorqueUnit.KilonewtonCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.KilonewtonMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Torque FromKilonewtonMeters(double kilonewtonmeters)
+        public static Torque FromKilonewtonMeters(double value)
         {
-            return new Torque(kilonewtonmeters, TorqueUnit.KilonewtonMeter);
+            return new Torque(value, TorqueUnit.KilonewtonMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.KilonewtonMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Torque FromKilonewtonMillimeters(double kilonewtonmillimeters)
+        public static Torque FromKilonewtonMillimeters(double value)
         {
-            return new Torque(kilonewtonmillimeters, TorqueUnit.KilonewtonMillimeter);
+            return new Torque(value, TorqueUnit.KilonewtonMillimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.KilopoundForceFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Torque FromKilopoundForceFeet(double kilopoundforcefeet)
+        public static Torque FromKilopoundForceFeet(double value)
         {
-            return new Torque(kilopoundforcefeet, TorqueUnit.KilopoundForceFoot);
+            return new Torque(value, TorqueUnit.KilopoundForceFoot);
         }
 
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.KilopoundForceInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Torque FromKilopoundForceInches(double kilopoundforceinches)
+        public static Torque FromKilopoundForceInches(double value)
         {
-            return new Torque(kilopoundforceinches, TorqueUnit.KilopoundForceInch);
+            return new Torque(value, TorqueUnit.KilopoundForceInch);
         }
 
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.MeganewtonCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Torque FromMeganewtonCentimeters(double meganewtoncentimeters)
+        public static Torque FromMeganewtonCentimeters(double value)
         {
-            return new Torque(meganewtoncentimeters, TorqueUnit.MeganewtonCentimeter);
+            return new Torque(value, TorqueUnit.MeganewtonCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.MeganewtonMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Torque FromMeganewtonMeters(double meganewtonmeters)
+        public static Torque FromMeganewtonMeters(double value)
         {
-            return new Torque(meganewtonmeters, TorqueUnit.MeganewtonMeter);
+            return new Torque(value, TorqueUnit.MeganewtonMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.MeganewtonMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Torque FromMeganewtonMillimeters(double meganewtonmillimeters)
+        public static Torque FromMeganewtonMillimeters(double value)
         {
-            return new Torque(meganewtonmillimeters, TorqueUnit.MeganewtonMillimeter);
+            return new Torque(value, TorqueUnit.MeganewtonMillimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.MegapoundForceFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Torque FromMegapoundForceFeet(double megapoundforcefeet)
+        public static Torque FromMegapoundForceFeet(double value)
         {
-            return new Torque(megapoundforcefeet, TorqueUnit.MegapoundForceFoot);
+            return new Torque(value, TorqueUnit.MegapoundForceFoot);
         }
 
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.MegapoundForceInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Torque FromMegapoundForceInches(double megapoundforceinches)
+        public static Torque FromMegapoundForceInches(double value)
         {
-            return new Torque(megapoundforceinches, TorqueUnit.MegapoundForceInch);
+            return new Torque(value, TorqueUnit.MegapoundForceInch);
         }
 
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.NewtonCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Torque FromNewtonCentimeters(double newtoncentimeters)
+        public static Torque FromNewtonCentimeters(double value)
         {
-            return new Torque(newtoncentimeters, TorqueUnit.NewtonCentimeter);
+            return new Torque(value, TorqueUnit.NewtonCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.NewtonMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Torque FromNewtonMeters(double newtonmeters)
+        public static Torque FromNewtonMeters(double value)
         {
-            return new Torque(newtonmeters, TorqueUnit.NewtonMeter);
+            return new Torque(value, TorqueUnit.NewtonMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.NewtonMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Torque FromNewtonMillimeters(double newtonmillimeters)
+        public static Torque FromNewtonMillimeters(double value)
         {
-            return new Torque(newtonmillimeters, TorqueUnit.NewtonMillimeter);
+            return new Torque(value, TorqueUnit.NewtonMillimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.PoundalFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Torque FromPoundalFeet(double poundalfeet)
+        public static Torque FromPoundalFeet(double value)
         {
-            return new Torque(poundalfeet, TorqueUnit.PoundalFoot);
+            return new Torque(value, TorqueUnit.PoundalFoot);
         }
 
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.PoundForceFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Torque FromPoundForceFeet(double poundforcefeet)
+        public static Torque FromPoundForceFeet(double value)
         {
-            return new Torque(poundforcefeet, TorqueUnit.PoundForceFoot);
+            return new Torque(value, TorqueUnit.PoundForceFoot);
         }
 
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.PoundForceInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Torque FromPoundForceInches(double poundforceinches)
+        public static Torque FromPoundForceInches(double value)
         {
-            return new Torque(poundforceinches, TorqueUnit.PoundForceInch);
+            return new Torque(value, TorqueUnit.PoundForceInch);
         }
 
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.TonneForceCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Torque FromTonneForceCentimeters(double tonneforcecentimeters)
+        public static Torque FromTonneForceCentimeters(double value)
         {
-            return new Torque(tonneforcecentimeters, TorqueUnit.TonneForceCentimeter);
+            return new Torque(value, TorqueUnit.TonneForceCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.TonneForceMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Torque FromTonneForceMeters(double tonneforcemeters)
+        public static Torque FromTonneForceMeters(double value)
         {
-            return new Torque(tonneforcemeters, TorqueUnit.TonneForceMeter);
+            return new Torque(value, TorqueUnit.TonneForceMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.TonneForceMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Torque FromTonneForceMillimeters(double tonneforcemillimeters)
+        public static Torque FromTonneForceMillimeters(double value)
         {
-            return new Torque(tonneforcemillimeters, TorqueUnit.TonneForceMillimeter);
+            return new Torque(value, TorqueUnit.TonneForceMillimeter);
         }
 
         /// <summary>

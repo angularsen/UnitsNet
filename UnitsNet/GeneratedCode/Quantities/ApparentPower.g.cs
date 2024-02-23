@@ -261,54 +261,54 @@ namespace UnitsNet
         ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Gigavoltampere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ApparentPower FromGigavoltamperes(double gigavoltamperes)
+        public static ApparentPower FromGigavoltamperes(double value)
         {
-            return new ApparentPower(gigavoltamperes, ApparentPowerUnit.Gigavoltampere);
+            return new ApparentPower(value, ApparentPowerUnit.Gigavoltampere);
         }
 
         /// <summary>
         ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Kilovoltampere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ApparentPower FromKilovoltamperes(double kilovoltamperes)
+        public static ApparentPower FromKilovoltamperes(double value)
         {
-            return new ApparentPower(kilovoltamperes, ApparentPowerUnit.Kilovoltampere);
+            return new ApparentPower(value, ApparentPowerUnit.Kilovoltampere);
         }
 
         /// <summary>
         ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Megavoltampere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ApparentPower FromMegavoltamperes(double megavoltamperes)
+        public static ApparentPower FromMegavoltamperes(double value)
         {
-            return new ApparentPower(megavoltamperes, ApparentPowerUnit.Megavoltampere);
+            return new ApparentPower(value, ApparentPowerUnit.Megavoltampere);
         }
 
         /// <summary>
         ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Microvoltampere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ApparentPower FromMicrovoltamperes(double microvoltamperes)
+        public static ApparentPower FromMicrovoltamperes(double value)
         {
-            return new ApparentPower(microvoltamperes, ApparentPowerUnit.Microvoltampere);
+            return new ApparentPower(value, ApparentPowerUnit.Microvoltampere);
         }
 
         /// <summary>
         ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Millivoltampere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ApparentPower FromMillivoltamperes(double millivoltamperes)
+        public static ApparentPower FromMillivoltamperes(double value)
         {
-            return new ApparentPower(millivoltamperes, ApparentPowerUnit.Millivoltampere);
+            return new ApparentPower(value, ApparentPowerUnit.Millivoltampere);
         }
 
         /// <summary>
         ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Voltampere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ApparentPower FromVoltamperes(double voltamperes)
+        public static ApparentPower FromVoltamperes(double value)
         {
-            return new ApparentPower(voltamperes, ApparentPowerUnit.Voltampere);
+            return new ApparentPower(value, ApparentPowerUnit.Voltampere);
         }
 
         /// <summary>

@@ -416,7 +416,6 @@ namespace UnitsNet
             {
                 if (unit.SkipConversionGeneration) continue;
 
-                var valueParamName = unit.PluralName.ToLowerInvariant();
                 Writer.WL($@"
         /// <summary>
         ///     Creates a <see cref=""{_quantity.Name}""/> from <see cref=""{_unitEnumName}.{unit.SingularName}""/>.
@@ -424,9 +423,9 @@ namespace UnitsNet
         /// <exception cref=""ArgumentException"">If value is NaN or Infinity.</exception>");
                 Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit));
                 Writer.WL($@"
-        public static {_quantity.Name} From{unit.PluralName}(double {valueParamName})
+        public static {_quantity.Name} From{unit.PluralName}(double value)
         {{
-            return new {_quantity.Name}({valueParamName}, {_unitEnumName}.{unit.SingularName});
+            return new {_quantity.Name}(value, {_unitEnumName}.{unit.SingularName});
         }}
 ");
             }
@@ -777,7 +776,7 @@ namespace UnitsNet
                     {
                         rightParameter = rightPart = "value";
                     }
-                    
+
                     var expression = $"{leftPart} {relation.Operator} {rightPart}";
 
                     if (relation.ResultQuantity.Name is not "double")

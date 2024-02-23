@@ -224,9 +224,9 @@ namespace UnitsNet
         ///     Creates a <see cref="Permittivity"/> from <see cref="PermittivityUnit.FaradPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Permittivity FromFaradsPerMeter(double faradspermeter)
+        public static Permittivity FromFaradsPerMeter(double value)
         {
-            return new Permittivity(faradspermeter, PermittivityUnit.FaradPerMeter);
+            return new Permittivity(value, PermittivityUnit.FaradPerMeter);
         }
 
         /// <summary>

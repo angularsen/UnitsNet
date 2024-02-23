@@ -243,27 +243,27 @@ namespace UnitsNet
         ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.GramPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AreaDensity FromGramsPerSquareMeter(double gramspersquaremeter)
+        public static AreaDensity FromGramsPerSquareMeter(double value)
         {
-            return new AreaDensity(gramspersquaremeter, AreaDensityUnit.GramPerSquareMeter);
+            return new AreaDensity(value, AreaDensityUnit.GramPerSquareMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.KilogramPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AreaDensity FromKilogramsPerSquareMeter(double kilogramspersquaremeter)
+        public static AreaDensity FromKilogramsPerSquareMeter(double value)
         {
-            return new AreaDensity(kilogramspersquaremeter, AreaDensityUnit.KilogramPerSquareMeter);
+            return new AreaDensity(value, AreaDensityUnit.KilogramPerSquareMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.MilligramPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AreaDensity FromMilligramsPerSquareMeter(double milligramspersquaremeter)
+        public static AreaDensity FromMilligramsPerSquareMeter(double value)
         {
-            return new AreaDensity(milligramspersquaremeter, AreaDensityUnit.MilligramPerSquareMeter);
+            return new AreaDensity(value, AreaDensityUnit.MilligramPerSquareMeter);
         }
 
         /// <summary>

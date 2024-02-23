@@ -237,27 +237,27 @@ namespace UnitsNet
         ///     Creates a <see cref="MolarEnergy"/> from <see cref="MolarEnergyUnit.JoulePerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarEnergy FromJoulesPerMole(double joulespermole)
+        public static MolarEnergy FromJoulesPerMole(double value)
         {
-            return new MolarEnergy(joulespermole, MolarEnergyUnit.JoulePerMole);
+            return new MolarEnergy(value, MolarEnergyUnit.JoulePerMole);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarEnergy"/> from <see cref="MolarEnergyUnit.KilojoulePerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarEnergy FromKilojoulesPerMole(double kilojoulespermole)
+        public static MolarEnergy FromKilojoulesPerMole(double value)
         {
-            return new MolarEnergy(kilojoulespermole, MolarEnergyUnit.KilojoulePerMole);
+            return new MolarEnergy(value, MolarEnergyUnit.KilojoulePerMole);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarEnergy"/> from <see cref="MolarEnergyUnit.MegajoulePerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarEnergy FromMegajoulesPerMole(double megajoulespermole)
+        public static MolarEnergy FromMegajoulesPerMole(double value)
         {
-            return new MolarEnergy(megajoulespermole, MolarEnergyUnit.MegajoulePerMole);
+            return new MolarEnergy(value, MolarEnergyUnit.MegajoulePerMole);
         }
 
         /// <summary>

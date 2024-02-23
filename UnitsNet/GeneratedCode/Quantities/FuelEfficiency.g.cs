@@ -248,36 +248,36 @@ namespace UnitsNet
         ///     Creates a <see cref="FuelEfficiency"/> from <see cref="FuelEfficiencyUnit.KilometerPerLiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static FuelEfficiency FromKilometersPerLiter(double kilometersperliter)
+        public static FuelEfficiency FromKilometersPerLiter(double value)
         {
-            return new FuelEfficiency(kilometersperliter, FuelEfficiencyUnit.KilometerPerLiter);
+            return new FuelEfficiency(value, FuelEfficiencyUnit.KilometerPerLiter);
         }
 
         /// <summary>
         ///     Creates a <see cref="FuelEfficiency"/> from <see cref="FuelEfficiencyUnit.LiterPer100Kilometers"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static FuelEfficiency FromLitersPer100Kilometers(double litersper100kilometers)
+        public static FuelEfficiency FromLitersPer100Kilometers(double value)
         {
-            return new FuelEfficiency(litersper100kilometers, FuelEfficiencyUnit.LiterPer100Kilometers);
+            return new FuelEfficiency(value, FuelEfficiencyUnit.LiterPer100Kilometers);
         }
 
         /// <summary>
         ///     Creates a <see cref="FuelEfficiency"/> from <see cref="FuelEfficiencyUnit.MilePerUkGallon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static FuelEfficiency FromMilesPerUkGallon(double milesperukgallon)
+        public static FuelEfficiency FromMilesPerUkGallon(double value)
         {
-            return new FuelEfficiency(milesperukgallon, FuelEfficiencyUnit.MilePerUkGallon);
+            return new FuelEfficiency(value, FuelEfficiencyUnit.MilePerUkGallon);
         }
 
         /// <summary>
         ///     Creates a <see cref="FuelEfficiency"/> from <see cref="FuelEfficiencyUnit.MilePerUsGallon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static FuelEfficiency FromMilesPerUsGallon(double milesperusgallon)
+        public static FuelEfficiency FromMilesPerUsGallon(double value)
         {
-            return new FuelEfficiency(milesperusgallon, FuelEfficiencyUnit.MilePerUsGallon);
+            return new FuelEfficiency(value, FuelEfficiencyUnit.MilePerUsGallon);
         }
 
         /// <summary>

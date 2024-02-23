@@ -261,54 +261,54 @@ namespace UnitsNet
         ///     Creates a <see cref="WarpingMomentOfInertia"/> from <see cref="WarpingMomentOfInertiaUnit.CentimeterToTheSixth"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static WarpingMomentOfInertia FromCentimetersToTheSixth(double centimeterstothesixth)
+        public static WarpingMomentOfInertia FromCentimetersToTheSixth(double value)
         {
-            return new WarpingMomentOfInertia(centimeterstothesixth, WarpingMomentOfInertiaUnit.CentimeterToTheSixth);
+            return new WarpingMomentOfInertia(value, WarpingMomentOfInertiaUnit.CentimeterToTheSixth);
         }
 
         /// <summary>
         ///     Creates a <see cref="WarpingMomentOfInertia"/> from <see cref="WarpingMomentOfInertiaUnit.DecimeterToTheSixth"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static WarpingMomentOfInertia FromDecimetersToTheSixth(double decimeterstothesixth)
+        public static WarpingMomentOfInertia FromDecimetersToTheSixth(double value)
         {
-            return new WarpingMomentOfInertia(decimeterstothesixth, WarpingMomentOfInertiaUnit.DecimeterToTheSixth);
+            return new WarpingMomentOfInertia(value, WarpingMomentOfInertiaUnit.DecimeterToTheSixth);
         }
 
         /// <summary>
         ///     Creates a <see cref="WarpingMomentOfInertia"/> from <see cref="WarpingMomentOfInertiaUnit.FootToTheSixth"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static WarpingMomentOfInertia FromFeetToTheSixth(double feettothesixth)
+        public static WarpingMomentOfInertia FromFeetToTheSixth(double value)
         {
-            return new WarpingMomentOfInertia(feettothesixth, WarpingMomentOfInertiaUnit.FootToTheSixth);
+            return new WarpingMomentOfInertia(value, WarpingMomentOfInertiaUnit.FootToTheSixth);
         }
 
         /// <summary>
         ///     Creates a <see cref="WarpingMomentOfInertia"/> from <see cref="WarpingMomentOfInertiaUnit.InchToTheSixth"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static WarpingMomentOfInertia FromInchesToTheSixth(double inchestothesixth)
+        public static WarpingMomentOfInertia FromInchesToTheSixth(double value)
         {
-            return new WarpingMomentOfInertia(inchestothesixth, WarpingMomentOfInertiaUnit.InchToTheSixth);
+            return new WarpingMomentOfInertia(value, WarpingMomentOfInertiaUnit.InchToTheSixth);
         }
 
         /// <summary>
         ///     Creates a <see cref="WarpingMomentOfInertia"/> from <see cref="WarpingMomentOfInertiaUnit.MeterToTheSixth"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static WarpingMomentOfInertia FromMetersToTheSixth(double meterstothesixth)
+        public static WarpingMomentOfInertia FromMetersToTheSixth(double value)
         {
-            return new WarpingMomentOfInertia(meterstothesixth, WarpingMomentOfInertiaUnit.MeterToTheSixth);
+            return new WarpingMomentOfInertia(value, WarpingMomentOfInertiaUnit.MeterToTheSixth);
         }
 
         /// <summary>
         ///     Creates a <see cref="WarpingMomentOfInertia"/> from <see cref="WarpingMomentOfInertiaUnit.MillimeterToTheSixth"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static WarpingMomentOfInertia FromMillimetersToTheSixth(double millimeterstothesixth)
+        public static WarpingMomentOfInertia FromMillimetersToTheSixth(double value)
         {
-            return new WarpingMomentOfInertia(millimeterstothesixth, WarpingMomentOfInertiaUnit.MillimeterToTheSixth);
+            return new WarpingMomentOfInertia(value, WarpingMomentOfInertiaUnit.MillimeterToTheSixth);
         }
 
         /// <summary>

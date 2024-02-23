@@ -237,27 +237,27 @@ namespace UnitsNet
         ///     Creates a <see cref="ReactiveEnergy"/> from <see cref="ReactiveEnergyUnit.KilovoltampereReactiveHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReactiveEnergy FromKilovoltampereReactiveHours(double kilovoltamperereactivehours)
+        public static ReactiveEnergy FromKilovoltampereReactiveHours(double value)
         {
-            return new ReactiveEnergy(kilovoltamperereactivehours, ReactiveEnergyUnit.KilovoltampereReactiveHour);
+            return new ReactiveEnergy(value, ReactiveEnergyUnit.KilovoltampereReactiveHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="ReactiveEnergy"/> from <see cref="ReactiveEnergyUnit.MegavoltampereReactiveHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReactiveEnergy FromMegavoltampereReactiveHours(double megavoltamperereactivehours)
+        public static ReactiveEnergy FromMegavoltampereReactiveHours(double value)
         {
-            return new ReactiveEnergy(megavoltamperereactivehours, ReactiveEnergyUnit.MegavoltampereReactiveHour);
+            return new ReactiveEnergy(value, ReactiveEnergyUnit.MegavoltampereReactiveHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="ReactiveEnergy"/> from <see cref="ReactiveEnergyUnit.VoltampereReactiveHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReactiveEnergy FromVoltampereReactiveHours(double voltamperereactivehours)
+        public static ReactiveEnergy FromVoltampereReactiveHours(double value)
         {
-            return new ReactiveEnergy(voltamperereactivehours, ReactiveEnergyUnit.VoltampereReactiveHour);
+            return new ReactiveEnergy(value, ReactiveEnergyUnit.VoltampereReactiveHour);
         }
 
         /// <summary>

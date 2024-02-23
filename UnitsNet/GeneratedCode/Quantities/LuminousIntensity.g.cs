@@ -231,9 +231,9 @@ namespace UnitsNet
         ///     Creates a <see cref="LuminousIntensity"/> from <see cref="LuminousIntensityUnit.Candela"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LuminousIntensity FromCandela(double candela)
+        public static LuminousIntensity FromCandela(double value)
         {
-            return new LuminousIntensity(candela, LuminousIntensityUnit.Candela);
+            return new LuminousIntensity(value, LuminousIntensityUnit.Candela);
         }
 
         /// <summary>

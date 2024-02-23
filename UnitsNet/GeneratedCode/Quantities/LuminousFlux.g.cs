@@ -224,9 +224,9 @@ namespace UnitsNet
         ///     Creates a <see cref="LuminousFlux"/> from <see cref="LuminousFluxUnit.Lumen"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LuminousFlux FromLumens(double lumens)
+        public static LuminousFlux FromLumens(double value)
         {
-            return new LuminousFlux(lumens, LuminousFluxUnit.Lumen);
+            return new LuminousFlux(value, LuminousFluxUnit.Lumen);
         }
 
         /// <summary>

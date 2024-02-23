@@ -229,18 +229,18 @@ namespace UnitsNet
         ///     Creates a <see cref="RatioChangeRate"/> from <see cref="RatioChangeRateUnit.DecimalFractionPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RatioChangeRate FromDecimalFractionsPerSecond(double decimalfractionspersecond)
+        public static RatioChangeRate FromDecimalFractionsPerSecond(double value)
         {
-            return new RatioChangeRate(decimalfractionspersecond, RatioChangeRateUnit.DecimalFractionPerSecond);
+            return new RatioChangeRate(value, RatioChangeRateUnit.DecimalFractionPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="RatioChangeRate"/> from <see cref="RatioChangeRateUnit.PercentPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RatioChangeRate FromPercentsPerSecond(double percentspersecond)
+        public static RatioChangeRate FromPercentsPerSecond(double value)
         {
-            return new RatioChangeRate(percentspersecond, RatioChangeRateUnit.PercentPerSecond);
+            return new RatioChangeRate(value, RatioChangeRateUnit.PercentPerSecond);
         }
 
         /// <summary>

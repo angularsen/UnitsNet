@@ -323,117 +323,117 @@ namespace UnitsNet
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.BeatPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Frequency FromBeatsPerMinute(double beatsperminute)
+        public static Frequency FromBeatsPerMinute(double value)
         {
-            return new Frequency(beatsperminute, FrequencyUnit.BeatPerMinute);
+            return new Frequency(value, FrequencyUnit.BeatPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.BUnit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Frequency FromBUnits(double bunits)
+        public static Frequency FromBUnits(double value)
         {
-            return new Frequency(bunits, FrequencyUnit.BUnit);
+            return new Frequency(value, FrequencyUnit.BUnit);
         }
 
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.CyclePerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Frequency FromCyclesPerHour(double cyclesperhour)
+        public static Frequency FromCyclesPerHour(double value)
         {
-            return new Frequency(cyclesperhour, FrequencyUnit.CyclePerHour);
+            return new Frequency(value, FrequencyUnit.CyclePerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.CyclePerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Frequency FromCyclesPerMinute(double cyclesperminute)
+        public static Frequency FromCyclesPerMinute(double value)
         {
-            return new Frequency(cyclesperminute, FrequencyUnit.CyclePerMinute);
+            return new Frequency(value, FrequencyUnit.CyclePerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.Gigahertz"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Frequency FromGigahertz(double gigahertz)
+        public static Frequency FromGigahertz(double value)
         {
-            return new Frequency(gigahertz, FrequencyUnit.Gigahertz);
+            return new Frequency(value, FrequencyUnit.Gigahertz);
         }
 
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.Hertz"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Frequency FromHertz(double hertz)
+        public static Frequency FromHertz(double value)
         {
-            return new Frequency(hertz, FrequencyUnit.Hertz);
+            return new Frequency(value, FrequencyUnit.Hertz);
         }
 
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.Kilohertz"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Frequency FromKilohertz(double kilohertz)
+        public static Frequency FromKilohertz(double value)
         {
-            return new Frequency(kilohertz, FrequencyUnit.Kilohertz);
+            return new Frequency(value, FrequencyUnit.Kilohertz);
         }
 
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.Megahertz"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Frequency FromMegahertz(double megahertz)
+        public static Frequency FromMegahertz(double value)
         {
-            return new Frequency(megahertz, FrequencyUnit.Megahertz);
+            return new Frequency(value, FrequencyUnit.Megahertz);
         }
 
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.Microhertz"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Frequency FromMicrohertz(double microhertz)
+        public static Frequency FromMicrohertz(double value)
         {
-            return new Frequency(microhertz, FrequencyUnit.Microhertz);
+            return new Frequency(value, FrequencyUnit.Microhertz);
         }
 
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.Millihertz"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Frequency FromMillihertz(double millihertz)
+        public static Frequency FromMillihertz(double value)
         {
-            return new Frequency(millihertz, FrequencyUnit.Millihertz);
+            return new Frequency(value, FrequencyUnit.Millihertz);
         }
 
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.PerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Frequency FromPerSecond(double persecond)
+        public static Frequency FromPerSecond(double value)
         {
-            return new Frequency(persecond, FrequencyUnit.PerSecond);
+            return new Frequency(value, FrequencyUnit.PerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.RadianPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Frequency FromRadiansPerSecond(double radianspersecond)
+        public static Frequency FromRadiansPerSecond(double value)
         {
-            return new Frequency(radianspersecond, FrequencyUnit.RadianPerSecond);
+            return new Frequency(value, FrequencyUnit.RadianPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.Terahertz"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Frequency FromTerahertz(double terahertz)
+        public static Frequency FromTerahertz(double value)
         {
-            return new Frequency(terahertz, FrequencyUnit.Terahertz);
+            return new Frequency(value, FrequencyUnit.Terahertz);
         }
 
         /// <summary>

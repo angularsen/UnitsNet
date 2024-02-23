@@ -224,9 +224,9 @@ namespace UnitsNet
         ///     Creates a <see cref="Permeability"/> from <see cref="PermeabilityUnit.HenryPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Permeability FromHenriesPerMeter(double henriespermeter)
+        public static Permeability FromHenriesPerMeter(double value)
         {
-            return new Permeability(henriespermeter, PermeabilityUnit.HenryPerMeter);
+            return new Permeability(value, PermeabilityUnit.HenryPerMeter);
         }
 
         /// <summary>

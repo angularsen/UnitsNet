@@ -342,126 +342,126 @@ namespace UnitsNet
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.Acre"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Area FromAcres(double acres)
+        public static Area FromAcres(double value)
         {
-            return new Area(acres, AreaUnit.Acre);
+            return new Area(value, AreaUnit.Acre);
         }
 
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.Hectare"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Area FromHectares(double hectares)
+        public static Area FromHectares(double value)
         {
-            return new Area(hectares, AreaUnit.Hectare);
+            return new Area(value, AreaUnit.Hectare);
         }
 
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Area FromSquareCentimeters(double squarecentimeters)
+        public static Area FromSquareCentimeters(double value)
         {
-            return new Area(squarecentimeters, AreaUnit.SquareCentimeter);
+            return new Area(value, AreaUnit.SquareCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareDecimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Area FromSquareDecimeters(double squaredecimeters)
+        public static Area FromSquareDecimeters(double value)
         {
-            return new Area(squaredecimeters, AreaUnit.SquareDecimeter);
+            return new Area(value, AreaUnit.SquareDecimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Area FromSquareFeet(double squarefeet)
+        public static Area FromSquareFeet(double value)
         {
-            return new Area(squarefeet, AreaUnit.SquareFoot);
+            return new Area(value, AreaUnit.SquareFoot);
         }
 
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Area FromSquareInches(double squareinches)
+        public static Area FromSquareInches(double value)
         {
-            return new Area(squareinches, AreaUnit.SquareInch);
+            return new Area(value, AreaUnit.SquareInch);
         }
 
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareKilometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Area FromSquareKilometers(double squarekilometers)
+        public static Area FromSquareKilometers(double value)
         {
-            return new Area(squarekilometers, AreaUnit.SquareKilometer);
+            return new Area(value, AreaUnit.SquareKilometer);
         }
 
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Area FromSquareMeters(double squaremeters)
+        public static Area FromSquareMeters(double value)
         {
-            return new Area(squaremeters, AreaUnit.SquareMeter);
+            return new Area(value, AreaUnit.SquareMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareMicrometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Area FromSquareMicrometers(double squaremicrometers)
+        public static Area FromSquareMicrometers(double value)
         {
-            return new Area(squaremicrometers, AreaUnit.SquareMicrometer);
+            return new Area(value, AreaUnit.SquareMicrometer);
         }
 
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareMile"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Area FromSquareMiles(double squaremiles)
+        public static Area FromSquareMiles(double value)
         {
-            return new Area(squaremiles, AreaUnit.SquareMile);
+            return new Area(value, AreaUnit.SquareMile);
         }
 
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Area FromSquareMillimeters(double squaremillimeters)
+        public static Area FromSquareMillimeters(double value)
         {
-            return new Area(squaremillimeters, AreaUnit.SquareMillimeter);
+            return new Area(value, AreaUnit.SquareMillimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareNauticalMile"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Area FromSquareNauticalMiles(double squarenauticalmiles)
+        public static Area FromSquareNauticalMiles(double value)
         {
-            return new Area(squarenauticalmiles, AreaUnit.SquareNauticalMile);
+            return new Area(value, AreaUnit.SquareNauticalMile);
         }
 
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareYard"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Area FromSquareYards(double squareyards)
+        public static Area FromSquareYards(double value)
         {
-            return new Area(squareyards, AreaUnit.SquareYard);
+            return new Area(value, AreaUnit.SquareYard);
         }
 
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.UsSurveySquareFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Area FromUsSurveySquareFeet(double ussurveysquarefeet)
+        public static Area FromUsSurveySquareFeet(double value)
         {
-            return new Area(ussurveysquarefeet, AreaUnit.UsSurveySquareFoot);
+            return new Area(value, AreaUnit.UsSurveySquareFoot);
         }
 
         /// <summary>

@@ -566,378 +566,378 @@ namespace UnitsNet
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Angstrom"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromAngstroms(double angstroms)
+        public static Length FromAngstroms(double value)
         {
-            return new Length(angstroms, LengthUnit.Angstrom);
+            return new Length(value, LengthUnit.Angstrom);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.AstronomicalUnit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromAstronomicalUnits(double astronomicalunits)
+        public static Length FromAstronomicalUnits(double value)
         {
-            return new Length(astronomicalunits, LengthUnit.AstronomicalUnit);
+            return new Length(value, LengthUnit.AstronomicalUnit);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Centimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromCentimeters(double centimeters)
+        public static Length FromCentimeters(double value)
         {
-            return new Length(centimeters, LengthUnit.Centimeter);
+            return new Length(value, LengthUnit.Centimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Chain"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromChains(double chains)
+        public static Length FromChains(double value)
         {
-            return new Length(chains, LengthUnit.Chain);
+            return new Length(value, LengthUnit.Chain);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.DataMile"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromDataMiles(double datamiles)
+        public static Length FromDataMiles(double value)
         {
-            return new Length(datamiles, LengthUnit.DataMile);
+            return new Length(value, LengthUnit.DataMile);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Decameter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromDecameters(double decameters)
+        public static Length FromDecameters(double value)
         {
-            return new Length(decameters, LengthUnit.Decameter);
+            return new Length(value, LengthUnit.Decameter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Decimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromDecimeters(double decimeters)
+        public static Length FromDecimeters(double value)
         {
-            return new Length(decimeters, LengthUnit.Decimeter);
+            return new Length(value, LengthUnit.Decimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.DtpPica"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromDtpPicas(double dtppicas)
+        public static Length FromDtpPicas(double value)
         {
-            return new Length(dtppicas, LengthUnit.DtpPica);
+            return new Length(value, LengthUnit.DtpPica);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.DtpPoint"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromDtpPoints(double dtppoints)
+        public static Length FromDtpPoints(double value)
         {
-            return new Length(dtppoints, LengthUnit.DtpPoint);
+            return new Length(value, LengthUnit.DtpPoint);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Fathom"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromFathoms(double fathoms)
+        public static Length FromFathoms(double value)
         {
-            return new Length(fathoms, LengthUnit.Fathom);
+            return new Length(value, LengthUnit.Fathom);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Femtometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromFemtometers(double femtometers)
+        public static Length FromFemtometers(double value)
         {
-            return new Length(femtometers, LengthUnit.Femtometer);
+            return new Length(value, LengthUnit.Femtometer);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Foot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromFeet(double feet)
+        public static Length FromFeet(double value)
         {
-            return new Length(feet, LengthUnit.Foot);
+            return new Length(value, LengthUnit.Foot);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Gigameter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromGigameters(double gigameters)
+        public static Length FromGigameters(double value)
         {
-            return new Length(gigameters, LengthUnit.Gigameter);
+            return new Length(value, LengthUnit.Gigameter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Hand"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromHands(double hands)
+        public static Length FromHands(double value)
         {
-            return new Length(hands, LengthUnit.Hand);
+            return new Length(value, LengthUnit.Hand);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Hectometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromHectometers(double hectometers)
+        public static Length FromHectometers(double value)
         {
-            return new Length(hectometers, LengthUnit.Hectometer);
+            return new Length(value, LengthUnit.Hectometer);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Inch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromInches(double inches)
+        public static Length FromInches(double value)
         {
-            return new Length(inches, LengthUnit.Inch);
+            return new Length(value, LengthUnit.Inch);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Kilofoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromKilofeet(double kilofeet)
+        public static Length FromKilofeet(double value)
         {
-            return new Length(kilofeet, LengthUnit.Kilofoot);
+            return new Length(value, LengthUnit.Kilofoot);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.KilolightYear"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromKilolightYears(double kilolightyears)
+        public static Length FromKilolightYears(double value)
         {
-            return new Length(kilolightyears, LengthUnit.KilolightYear);
+            return new Length(value, LengthUnit.KilolightYear);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Kilometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromKilometers(double kilometers)
+        public static Length FromKilometers(double value)
         {
-            return new Length(kilometers, LengthUnit.Kilometer);
+            return new Length(value, LengthUnit.Kilometer);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Kiloparsec"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromKiloparsecs(double kiloparsecs)
+        public static Length FromKiloparsecs(double value)
         {
-            return new Length(kiloparsecs, LengthUnit.Kiloparsec);
+            return new Length(value, LengthUnit.Kiloparsec);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Kiloyard"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromKiloyards(double kiloyards)
+        public static Length FromKiloyards(double value)
         {
-            return new Length(kiloyards, LengthUnit.Kiloyard);
+            return new Length(value, LengthUnit.Kiloyard);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.LightYear"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromLightYears(double lightyears)
+        public static Length FromLightYears(double value)
         {
-            return new Length(lightyears, LengthUnit.LightYear);
+            return new Length(value, LengthUnit.LightYear);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.MegalightYear"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromMegalightYears(double megalightyears)
+        public static Length FromMegalightYears(double value)
         {
-            return new Length(megalightyears, LengthUnit.MegalightYear);
+            return new Length(value, LengthUnit.MegalightYear);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Megameter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromMegameters(double megameters)
+        public static Length FromMegameters(double value)
         {
-            return new Length(megameters, LengthUnit.Megameter);
+            return new Length(value, LengthUnit.Megameter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Megaparsec"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromMegaparsecs(double megaparsecs)
+        public static Length FromMegaparsecs(double value)
         {
-            return new Length(megaparsecs, LengthUnit.Megaparsec);
+            return new Length(value, LengthUnit.Megaparsec);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Meter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromMeters(double meters)
+        public static Length FromMeters(double value)
         {
-            return new Length(meters, LengthUnit.Meter);
+            return new Length(value, LengthUnit.Meter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Microinch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromMicroinches(double microinches)
+        public static Length FromMicroinches(double value)
         {
-            return new Length(microinches, LengthUnit.Microinch);
+            return new Length(value, LengthUnit.Microinch);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Micrometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromMicrometers(double micrometers)
+        public static Length FromMicrometers(double value)
         {
-            return new Length(micrometers, LengthUnit.Micrometer);
+            return new Length(value, LengthUnit.Micrometer);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Mil"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromMils(double mils)
+        public static Length FromMils(double value)
         {
-            return new Length(mils, LengthUnit.Mil);
+            return new Length(value, LengthUnit.Mil);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Mile"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromMiles(double miles)
+        public static Length FromMiles(double value)
         {
-            return new Length(miles, LengthUnit.Mile);
+            return new Length(value, LengthUnit.Mile);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Millimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromMillimeters(double millimeters)
+        public static Length FromMillimeters(double value)
         {
-            return new Length(millimeters, LengthUnit.Millimeter);
+            return new Length(value, LengthUnit.Millimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Nanometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromNanometers(double nanometers)
+        public static Length FromNanometers(double value)
         {
-            return new Length(nanometers, LengthUnit.Nanometer);
+            return new Length(value, LengthUnit.Nanometer);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.NauticalMile"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromNauticalMiles(double nauticalmiles)
+        public static Length FromNauticalMiles(double value)
         {
-            return new Length(nauticalmiles, LengthUnit.NauticalMile);
+            return new Length(value, LengthUnit.NauticalMile);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Parsec"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromParsecs(double parsecs)
+        public static Length FromParsecs(double value)
         {
-            return new Length(parsecs, LengthUnit.Parsec);
+            return new Length(value, LengthUnit.Parsec);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Picometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromPicometers(double picometers)
+        public static Length FromPicometers(double value)
         {
-            return new Length(picometers, LengthUnit.Picometer);
+            return new Length(value, LengthUnit.Picometer);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.PrinterPica"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromPrinterPicas(double printerpicas)
+        public static Length FromPrinterPicas(double value)
         {
-            return new Length(printerpicas, LengthUnit.PrinterPica);
+            return new Length(value, LengthUnit.PrinterPica);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.PrinterPoint"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromPrinterPoints(double printerpoints)
+        public static Length FromPrinterPoints(double value)
         {
-            return new Length(printerpoints, LengthUnit.PrinterPoint);
+            return new Length(value, LengthUnit.PrinterPoint);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Shackle"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromShackles(double shackles)
+        public static Length FromShackles(double value)
         {
-            return new Length(shackles, LengthUnit.Shackle);
+            return new Length(value, LengthUnit.Shackle);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.SolarRadius"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromSolarRadiuses(double solarradiuses)
+        public static Length FromSolarRadiuses(double value)
         {
-            return new Length(solarradiuses, LengthUnit.SolarRadius);
+            return new Length(value, LengthUnit.SolarRadius);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Twip"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromTwips(double twips)
+        public static Length FromTwips(double value)
         {
-            return new Length(twips, LengthUnit.Twip);
+            return new Length(value, LengthUnit.Twip);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.UsSurveyFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromUsSurveyFeet(double ussurveyfeet)
+        public static Length FromUsSurveyFeet(double value)
         {
-            return new Length(ussurveyfeet, LengthUnit.UsSurveyFoot);
+            return new Length(value, LengthUnit.UsSurveyFoot);
         }
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Yard"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Length FromYards(double yards)
+        public static Length FromYards(double value)
         {
-            return new Length(yards, LengthUnit.Yard);
+            return new Length(value, LengthUnit.Yard);
         }
 
         /// <summary>

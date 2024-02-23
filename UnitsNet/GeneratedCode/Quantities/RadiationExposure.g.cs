@@ -277,72 +277,72 @@ namespace UnitsNet
         ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.CoulombPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RadiationExposure FromCoulombsPerKilogram(double coulombsperkilogram)
+        public static RadiationExposure FromCoulombsPerKilogram(double value)
         {
-            return new RadiationExposure(coulombsperkilogram, RadiationExposureUnit.CoulombPerKilogram);
+            return new RadiationExposure(value, RadiationExposureUnit.CoulombPerKilogram);
         }
 
         /// <summary>
         ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.MicrocoulombPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RadiationExposure FromMicrocoulombsPerKilogram(double microcoulombsperkilogram)
+        public static RadiationExposure FromMicrocoulombsPerKilogram(double value)
         {
-            return new RadiationExposure(microcoulombsperkilogram, RadiationExposureUnit.MicrocoulombPerKilogram);
+            return new RadiationExposure(value, RadiationExposureUnit.MicrocoulombPerKilogram);
         }
 
         /// <summary>
         ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.Microroentgen"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RadiationExposure FromMicroroentgens(double microroentgens)
+        public static RadiationExposure FromMicroroentgens(double value)
         {
-            return new RadiationExposure(microroentgens, RadiationExposureUnit.Microroentgen);
+            return new RadiationExposure(value, RadiationExposureUnit.Microroentgen);
         }
 
         /// <summary>
         ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.MillicoulombPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RadiationExposure FromMillicoulombsPerKilogram(double millicoulombsperkilogram)
+        public static RadiationExposure FromMillicoulombsPerKilogram(double value)
         {
-            return new RadiationExposure(millicoulombsperkilogram, RadiationExposureUnit.MillicoulombPerKilogram);
+            return new RadiationExposure(value, RadiationExposureUnit.MillicoulombPerKilogram);
         }
 
         /// <summary>
         ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.Milliroentgen"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RadiationExposure FromMilliroentgens(double milliroentgens)
+        public static RadiationExposure FromMilliroentgens(double value)
         {
-            return new RadiationExposure(milliroentgens, RadiationExposureUnit.Milliroentgen);
+            return new RadiationExposure(value, RadiationExposureUnit.Milliroentgen);
         }
 
         /// <summary>
         ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.NanocoulombPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RadiationExposure FromNanocoulombsPerKilogram(double nanocoulombsperkilogram)
+        public static RadiationExposure FromNanocoulombsPerKilogram(double value)
         {
-            return new RadiationExposure(nanocoulombsperkilogram, RadiationExposureUnit.NanocoulombPerKilogram);
+            return new RadiationExposure(value, RadiationExposureUnit.NanocoulombPerKilogram);
         }
 
         /// <summary>
         ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.PicocoulombPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RadiationExposure FromPicocoulombsPerKilogram(double picocoulombsperkilogram)
+        public static RadiationExposure FromPicocoulombsPerKilogram(double value)
         {
-            return new RadiationExposure(picocoulombsperkilogram, RadiationExposureUnit.PicocoulombPerKilogram);
+            return new RadiationExposure(value, RadiationExposureUnit.PicocoulombPerKilogram);
         }
 
         /// <summary>
         ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.Roentgen"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RadiationExposure FromRoentgens(double roentgens)
+        public static RadiationExposure FromRoentgens(double value)
         {
-            return new RadiationExposure(roentgens, RadiationExposureUnit.Roentgen);
+            return new RadiationExposure(value, RadiationExposureUnit.Roentgen);
         }
 
         /// <summary>

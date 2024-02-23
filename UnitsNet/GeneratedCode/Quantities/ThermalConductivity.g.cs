@@ -232,18 +232,18 @@ namespace UnitsNet
         ///     Creates a <see cref="ThermalConductivity"/> from <see cref="ThermalConductivityUnit.BtuPerHourFootFahrenheit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ThermalConductivity FromBtusPerHourFootFahrenheit(double btusperhourfootfahrenheit)
+        public static ThermalConductivity FromBtusPerHourFootFahrenheit(double value)
         {
-            return new ThermalConductivity(btusperhourfootfahrenheit, ThermalConductivityUnit.BtuPerHourFootFahrenheit);
+            return new ThermalConductivity(value, ThermalConductivityUnit.BtuPerHourFootFahrenheit);
         }
 
         /// <summary>
         ///     Creates a <see cref="ThermalConductivity"/> from <see cref="ThermalConductivityUnit.WattPerMeterKelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ThermalConductivity FromWattsPerMeterKelvin(double wattspermeterkelvin)
+        public static ThermalConductivity FromWattsPerMeterKelvin(double value)
         {
-            return new ThermalConductivity(wattspermeterkelvin, ThermalConductivityUnit.WattPerMeterKelvin);
+            return new ThermalConductivity(value, ThermalConductivityUnit.WattPerMeterKelvin);
         }
 
         /// <summary>

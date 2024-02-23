@@ -485,297 +485,297 @@ namespace UnitsNet
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.CentinewtonMeterPerDegree"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromCentinewtonMetersPerDegree(double centinewtonmetersperdegree)
+        public static RotationalStiffness FromCentinewtonMetersPerDegree(double value)
         {
-            return new RotationalStiffness(centinewtonmetersperdegree, RotationalStiffnessUnit.CentinewtonMeterPerDegree);
+            return new RotationalStiffness(value, RotationalStiffnessUnit.CentinewtonMeterPerDegree);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.CentinewtonMillimeterPerDegree"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromCentinewtonMillimetersPerDegree(double centinewtonmillimetersperdegree)
+        public static RotationalStiffness FromCentinewtonMillimetersPerDegree(double value)
         {
-            return new RotationalStiffness(centinewtonmillimetersperdegree, RotationalStiffnessUnit.CentinewtonMillimeterPerDegree);
+            return new RotationalStiffness(value, RotationalStiffnessUnit.CentinewtonMillimeterPerDegree);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.CentinewtonMillimeterPerRadian"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromCentinewtonMillimetersPerRadian(double centinewtonmillimetersperradian)
+        public static RotationalStiffness FromCentinewtonMillimetersPerRadian(double value)
         {
-            return new RotationalStiffness(centinewtonmillimetersperradian, RotationalStiffnessUnit.CentinewtonMillimeterPerRadian);
+            return new RotationalStiffness(value, RotationalStiffnessUnit.CentinewtonMillimeterPerRadian);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.DecanewtonMeterPerDegree"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromDecanewtonMetersPerDegree(double decanewtonmetersperdegree)
+        public static RotationalStiffness FromDecanewtonMetersPerDegree(double value)
         {
-            return new RotationalStiffness(decanewtonmetersperdegree, RotationalStiffnessUnit.DecanewtonMeterPerDegree);
+            return new RotationalStiffness(value, RotationalStiffnessUnit.DecanewtonMeterPerDegree);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.DecanewtonMillimeterPerDegree"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromDecanewtonMillimetersPerDegree(double decanewtonmillimetersperdegree)
+        public static RotationalStiffness FromDecanewtonMillimetersPerDegree(double value)
         {
-            return new RotationalStiffness(decanewtonmillimetersperdegree, RotationalStiffnessUnit.DecanewtonMillimeterPerDegree);
+            return new RotationalStiffness(value, RotationalStiffnessUnit.DecanewtonMillimeterPerDegree);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.DecanewtonMillimeterPerRadian"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromDecanewtonMillimetersPerRadian(double decanewtonmillimetersperradian)
+        public static RotationalStiffness FromDecanewtonMillimetersPerRadian(double value)
         {
-            return new RotationalStiffness(decanewtonmillimetersperradian, RotationalStiffnessUnit.DecanewtonMillimeterPerRadian);
+            return new RotationalStiffness(value, RotationalStiffnessUnit.DecanewtonMillimeterPerRadian);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.DecinewtonMeterPerDegree"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromDecinewtonMetersPerDegree(double decinewtonmetersperdegree)
+        public static RotationalStiffness FromDecinewtonMetersPerDegree(double value)
         {
-            return new RotationalStiffness(decinewtonmetersperdegree, RotationalStiffnessUnit.DecinewtonMeterPerDegree);
+            return new RotationalStiffness(value, RotationalStiffnessUnit.DecinewtonMeterPerDegree);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.DecinewtonMillimeterPerDegree"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromDecinewtonMillimetersPerDegree(double decinewtonmillimetersperdegree)
+        public static RotationalStiffness FromDecinewtonMillimetersPerDegree(double value)
         {
-            return new RotationalStiffness(decinewtonmillimetersperdegree, RotationalStiffnessUnit.DecinewtonMillimeterPerDegree);
+            return new RotationalStiffness(value, RotationalStiffnessUnit.DecinewtonMillimeterPerDegree);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.DecinewtonMillimeterPerRadian"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromDecinewtonMillimetersPerRadian(double decinewtonmillimetersperradian)
+        public static RotationalStiffness FromDecinewtonMillimetersPerRadian(double value)
         {
-            return new RotationalStiffness(decinewtonmillimetersperradian, RotationalStiffnessUnit.DecinewtonMillimeterPerRadian);
+            return new RotationalStiffness(value, RotationalStiffnessUnit.DecinewtonMillimeterPerRadian);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.KilonewtonMeterPerDegree"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromKilonewtonMetersPerDegree(double kilonewtonmetersperdegree)
+        public static RotationalStiffness FromKilonewtonMetersPerDegree(double value)
         {
-            return new RotationalStiffness(kilonewtonmetersperdegree, RotationalStiffnessUnit.KilonewtonMeterPerDegree);
+            return new RotationalStiffness(value, RotationalStiffnessUnit.KilonewtonMeterPerDegree);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.KilonewtonMeterPerRadian"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromKilonewtonMetersPerRadian(double kilonewtonmetersperradian)
+        public static RotationalStiffness FromKilonewtonMetersPerRadian(double value)
         {
-            return new RotationalStiffness(kilonewtonmetersperradian, RotationalStiffnessUnit.KilonewtonMeterPerRadian);
+            return new RotationalStiffness(value, RotationalStiffnessUnit.KilonewtonMeterPerRadian);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.KilonewtonMillimeterPerDegree"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromKilonewtonMillimetersPerDegree(double kilonewtonmillimetersperdegree)
+        public static RotationalStiffness FromKilonewtonMillimetersPerDegree(double value)
         {
-            return new RotationalStiffness(kilonewtonmillimetersperdegree, RotationalStiffnessUnit.KilonewtonMillimeterPerDegree);
+            return new RotationalStiffness(value, RotationalStiffnessUnit.KilonewtonMillimeterPerDegree);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.KilonewtonMillimeterPerRadian"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromKilonewtonMillimetersPerRadian(double kilonewtonmillimetersperradian)
+        public static RotationalStiffness FromKilonewtonMillimetersPerRadian(double value)
         {
-            return new RotationalStiffness(kilonewtonmillimetersperradian, RotationalStiffnessUnit.KilonewtonMillimeterPerRadian);
+            return new RotationalStiffness(value, RotationalStiffnessUnit.KilonewtonMillimeterPerRadian);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.KilopoundForceFootPerDegrees"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromKilopoundForceFeetPerDegrees(double kilopoundforcefeetperdegrees)
+        public static RotationalStiffness FromKilopoundForceFeetPerDegrees(double value)
         {
-            return new RotationalStiffness(kilopoundforcefeetperdegrees, RotationalStiffnessUnit.KilopoundForceFootPerDegrees);
+            return new RotationalStiffness(value, RotationalStiffnessUnit.KilopoundForceFootPerDegrees);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.MeganewtonMeterPerDegree"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromMeganewtonMetersPerDegree(double meganewtonmetersperdegree)
+        public static RotationalStiffness FromMeganewtonMetersPerDegree(double value)
         {
-            return new RotationalStiffness(meganewtonmetersperdegree, RotationalStiffnessUnit.MeganewtonMeterPerDegree);
+            return new RotationalStiffness(value, RotationalStiffnessUnit.MeganewtonMeterPerDegree);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.MeganewtonMeterPerRadian"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromMeganewtonMetersPerRadian(double meganewtonmetersperradian)
+        public static RotationalStiffness FromMeganewtonMetersPerRadian(double value)
         {
-            return new RotationalStiffness(meganewtonmetersperradian, RotationalStiffnessUnit.MeganewtonMeterPerRadian);
+            return new RotationalStiffness(value, RotationalStiffnessUnit.MeganewtonMeterPerRadian);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.MeganewtonMillimeterPerDegree"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromMeganewtonMillimetersPerDegree(double meganewtonmillimetersperdegree)
+        public static RotationalStiffness FromMeganewtonMillimetersPerDegree(double value)
         {
-            return new RotationalStiffness(meganewtonmillimetersperdegree, RotationalStiffnessUnit.MeganewtonMillimeterPerDegree);
+            return new RotationalStiffness(value, RotationalStiffnessUnit.MeganewtonMillimeterPerDegree);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.MeganewtonMillimeterPerRadian"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromMeganewtonMillimetersPerRadian(double meganewtonmillimetersperradian)
+        public static RotationalStiffness FromMeganewtonMillimetersPerRadian(double value)
         {
-            return new RotationalStiffness(meganewtonmillimetersperradian, RotationalStiffnessUnit.MeganewtonMillimeterPerRadian);
+            return new RotationalStiffness(value, RotationalStiffnessUnit.MeganewtonMillimeterPerRadian);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.MicronewtonMeterPerDegree"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromMicronewtonMetersPerDegree(double micronewtonmetersperdegree)
+        public static RotationalStiffness FromMicronewtonMetersPerDegree(double value)
         {
-            return new RotationalStiffness(micronewtonmetersperdegree, RotationalStiffnessUnit.MicronewtonMeterPerDegree);
+            return new RotationalStiffness(value, RotationalStiffnessUnit.MicronewtonMeterPerDegree);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.MicronewtonMillimeterPerDegree"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromMicronewtonMillimetersPerDegree(double micronewtonmillimetersperdegree)
+        public static RotationalStiffness FromMicronewtonMillimetersPerDegree(double value)
         {
-            return new RotationalStiffness(micronewtonmillimetersperdegree, RotationalStiffnessUnit.MicronewtonMillimeterPerDegree);
+            return new RotationalStiffness(value, RotationalStiffnessUnit.MicronewtonMillimeterPerDegree);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.MicronewtonMillimeterPerRadian"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromMicronewtonMillimetersPerRadian(double micronewtonmillimetersperradian)
+        public static RotationalStiffness FromMicronewtonMillimetersPerRadian(double value)
         {
-            return new RotationalStiffness(micronewtonmillimetersperradian, RotationalStiffnessUnit.MicronewtonMillimeterPerRadian);
+            return new RotationalStiffness(value, RotationalStiffnessUnit.MicronewtonMillimeterPerRadian);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.MillinewtonMeterPerDegree"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromMillinewtonMetersPerDegree(double millinewtonmetersperdegree)
+        public static RotationalStiffness FromMillinewtonMetersPerDegree(double value)
         {
-            return new RotationalStiffness(millinewtonmetersperdegree, RotationalStiffnessUnit.MillinewtonMeterPerDegree);
+            return new RotationalStiffness(value, RotationalStiffnessUnit.MillinewtonMeterPerDegree);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.MillinewtonMillimeterPerDegree"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromMillinewtonMillimetersPerDegree(double millinewtonmillimetersperdegree)
+        public static RotationalStiffness FromMillinewtonMillimetersPerDegree(double value)
         {
-            return new RotationalStiffness(millinewtonmillimetersperdegree, RotationalStiffnessUnit.MillinewtonMillimeterPerDegree);
+            return new RotationalStiffness(value, RotationalStiffnessUnit.MillinewtonMillimeterPerDegree);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.MillinewtonMillimeterPerRadian"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromMillinewtonMillimetersPerRadian(double millinewtonmillimetersperradian)
+        public static RotationalStiffness FromMillinewtonMillimetersPerRadian(double value)
         {
-            return new RotationalStiffness(millinewtonmillimetersperradian, RotationalStiffnessUnit.MillinewtonMillimeterPerRadian);
+            return new RotationalStiffness(value, RotationalStiffnessUnit.MillinewtonMillimeterPerRadian);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.NanonewtonMeterPerDegree"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromNanonewtonMetersPerDegree(double nanonewtonmetersperdegree)
+        public static RotationalStiffness FromNanonewtonMetersPerDegree(double value)
         {
-            return new RotationalStiffness(nanonewtonmetersperdegree, RotationalStiffnessUnit.NanonewtonMeterPerDegree);
+            return new RotationalStiffness(value, RotationalStiffnessUnit.NanonewtonMeterPerDegree);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.NanonewtonMillimeterPerDegree"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromNanonewtonMillimetersPerDegree(double nanonewtonmillimetersperdegree)
+        public static RotationalStiffness FromNanonewtonMillimetersPerDegree(double value)
         {
-            return new RotationalStiffness(nanonewtonmillimetersperdegree, RotationalStiffnessUnit.NanonewtonMillimeterPerDegree);
+            return new RotationalStiffness(value, RotationalStiffnessUnit.NanonewtonMillimeterPerDegree);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.NanonewtonMillimeterPerRadian"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromNanonewtonMillimetersPerRadian(double nanonewtonmillimetersperradian)
+        public static RotationalStiffness FromNanonewtonMillimetersPerRadian(double value)
         {
-            return new RotationalStiffness(nanonewtonmillimetersperradian, RotationalStiffnessUnit.NanonewtonMillimeterPerRadian);
+            return new RotationalStiffness(value, RotationalStiffnessUnit.NanonewtonMillimeterPerRadian);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.NewtonMeterPerDegree"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromNewtonMetersPerDegree(double newtonmetersperdegree)
+        public static RotationalStiffness FromNewtonMetersPerDegree(double value)
         {
-            return new RotationalStiffness(newtonmetersperdegree, RotationalStiffnessUnit.NewtonMeterPerDegree);
+            return new RotationalStiffness(value, RotationalStiffnessUnit.NewtonMeterPerDegree);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.NewtonMeterPerRadian"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromNewtonMetersPerRadian(double newtonmetersperradian)
+        public static RotationalStiffness FromNewtonMetersPerRadian(double value)
         {
-            return new RotationalStiffness(newtonmetersperradian, RotationalStiffnessUnit.NewtonMeterPerRadian);
+            return new RotationalStiffness(value, RotationalStiffnessUnit.NewtonMeterPerRadian);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.NewtonMillimeterPerDegree"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromNewtonMillimetersPerDegree(double newtonmillimetersperdegree)
+        public static RotationalStiffness FromNewtonMillimetersPerDegree(double value)
         {
-            return new RotationalStiffness(newtonmillimetersperdegree, RotationalStiffnessUnit.NewtonMillimeterPerDegree);
+            return new RotationalStiffness(value, RotationalStiffnessUnit.NewtonMillimeterPerDegree);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.NewtonMillimeterPerRadian"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromNewtonMillimetersPerRadian(double newtonmillimetersperradian)
+        public static RotationalStiffness FromNewtonMillimetersPerRadian(double value)
         {
-            return new RotationalStiffness(newtonmillimetersperradian, RotationalStiffnessUnit.NewtonMillimeterPerRadian);
+            return new RotationalStiffness(value, RotationalStiffnessUnit.NewtonMillimeterPerRadian);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.PoundForceFeetPerRadian"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromPoundForceFeetPerRadian(double poundforcefeetperradian)
+        public static RotationalStiffness FromPoundForceFeetPerRadian(double value)
         {
-            return new RotationalStiffness(poundforcefeetperradian, RotationalStiffnessUnit.PoundForceFeetPerRadian);
+            return new RotationalStiffness(value, RotationalStiffnessUnit.PoundForceFeetPerRadian);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.PoundForceFootPerDegrees"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RotationalStiffness FromPoundForceFeetPerDegrees(double poundforcefeetperdegrees)
+        public static RotationalStiffness FromPoundForceFeetPerDegrees(double value)
         {
-            return new RotationalStiffness(poundforcefeetperdegrees, RotationalStiffnessUnit.PoundForceFootPerDegrees);
+            return new RotationalStiffness(value, RotationalStiffnessUnit.PoundForceFootPerDegrees);
         }
 
         /// <summary>

@@ -264,54 +264,54 @@ namespace UnitsNet
         ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.MicrosiemensPerCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricConductivity FromMicrosiemensPerCentimeter(double microsiemenspercentimeter)
+        public static ElectricConductivity FromMicrosiemensPerCentimeter(double value)
         {
-            return new ElectricConductivity(microsiemenspercentimeter, ElectricConductivityUnit.MicrosiemensPerCentimeter);
+            return new ElectricConductivity(value, ElectricConductivityUnit.MicrosiemensPerCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.MillisiemensPerCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricConductivity FromMillisiemensPerCentimeter(double millisiemenspercentimeter)
+        public static ElectricConductivity FromMillisiemensPerCentimeter(double value)
         {
-            return new ElectricConductivity(millisiemenspercentimeter, ElectricConductivityUnit.MillisiemensPerCentimeter);
+            return new ElectricConductivity(value, ElectricConductivityUnit.MillisiemensPerCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.SiemensPerCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricConductivity FromSiemensPerCentimeter(double siemenspercentimeter)
+        public static ElectricConductivity FromSiemensPerCentimeter(double value)
         {
-            return new ElectricConductivity(siemenspercentimeter, ElectricConductivityUnit.SiemensPerCentimeter);
+            return new ElectricConductivity(value, ElectricConductivityUnit.SiemensPerCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.SiemensPerFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricConductivity FromSiemensPerFoot(double siemensperfoot)
+        public static ElectricConductivity FromSiemensPerFoot(double value)
         {
-            return new ElectricConductivity(siemensperfoot, ElectricConductivityUnit.SiemensPerFoot);
+            return new ElectricConductivity(value, ElectricConductivityUnit.SiemensPerFoot);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.SiemensPerInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricConductivity FromSiemensPerInch(double siemensperinch)
+        public static ElectricConductivity FromSiemensPerInch(double value)
         {
-            return new ElectricConductivity(siemensperinch, ElectricConductivityUnit.SiemensPerInch);
+            return new ElectricConductivity(value, ElectricConductivityUnit.SiemensPerInch);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.SiemensPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricConductivity FromSiemensPerMeter(double siemenspermeter)
+        public static ElectricConductivity FromSiemensPerMeter(double value)
         {
-            return new ElectricConductivity(siemenspermeter, ElectricConductivityUnit.SiemensPerMeter);
+            return new ElectricConductivity(value, ElectricConductivityUnit.SiemensPerMeter);
         }
 
         /// <summary>

@@ -617,441 +617,441 @@ namespace UnitsNet
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Atmosphere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromAtmospheres(double atmospheres)
+        public static Pressure FromAtmospheres(double value)
         {
-            return new Pressure(atmospheres, PressureUnit.Atmosphere);
+            return new Pressure(value, PressureUnit.Atmosphere);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Bar"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromBars(double bars)
+        public static Pressure FromBars(double value)
         {
-            return new Pressure(bars, PressureUnit.Bar);
+            return new Pressure(value, PressureUnit.Bar);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Centibar"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromCentibars(double centibars)
+        public static Pressure FromCentibars(double value)
         {
-            return new Pressure(centibars, PressureUnit.Centibar);
+            return new Pressure(value, PressureUnit.Centibar);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.CentimeterOfWaterColumn"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromCentimetersOfWaterColumn(double centimetersofwatercolumn)
+        public static Pressure FromCentimetersOfWaterColumn(double value)
         {
-            return new Pressure(centimetersofwatercolumn, PressureUnit.CentimeterOfWaterColumn);
+            return new Pressure(value, PressureUnit.CentimeterOfWaterColumn);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Decapascal"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromDecapascals(double decapascals)
+        public static Pressure FromDecapascals(double value)
         {
-            return new Pressure(decapascals, PressureUnit.Decapascal);
+            return new Pressure(value, PressureUnit.Decapascal);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Decibar"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromDecibars(double decibars)
+        public static Pressure FromDecibars(double value)
         {
-            return new Pressure(decibars, PressureUnit.Decibar);
+            return new Pressure(value, PressureUnit.Decibar);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.DynePerSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromDynesPerSquareCentimeter(double dynespersquarecentimeter)
+        public static Pressure FromDynesPerSquareCentimeter(double value)
         {
-            return new Pressure(dynespersquarecentimeter, PressureUnit.DynePerSquareCentimeter);
+            return new Pressure(value, PressureUnit.DynePerSquareCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.FootOfElevation"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromFeetOfElevation(double feetofelevation)
+        public static Pressure FromFeetOfElevation(double value)
         {
-            return new Pressure(feetofelevation, PressureUnit.FootOfElevation);
+            return new Pressure(value, PressureUnit.FootOfElevation);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.FootOfHead"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromFeetOfHead(double feetofhead)
+        public static Pressure FromFeetOfHead(double value)
         {
-            return new Pressure(feetofhead, PressureUnit.FootOfHead);
+            return new Pressure(value, PressureUnit.FootOfHead);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Gigapascal"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromGigapascals(double gigapascals)
+        public static Pressure FromGigapascals(double value)
         {
-            return new Pressure(gigapascals, PressureUnit.Gigapascal);
+            return new Pressure(value, PressureUnit.Gigapascal);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Hectopascal"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromHectopascals(double hectopascals)
+        public static Pressure FromHectopascals(double value)
         {
-            return new Pressure(hectopascals, PressureUnit.Hectopascal);
+            return new Pressure(value, PressureUnit.Hectopascal);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.InchOfMercury"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromInchesOfMercury(double inchesofmercury)
+        public static Pressure FromInchesOfMercury(double value)
         {
-            return new Pressure(inchesofmercury, PressureUnit.InchOfMercury);
+            return new Pressure(value, PressureUnit.InchOfMercury);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.InchOfWaterColumn"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromInchesOfWaterColumn(double inchesofwatercolumn)
+        public static Pressure FromInchesOfWaterColumn(double value)
         {
-            return new Pressure(inchesofwatercolumn, PressureUnit.InchOfWaterColumn);
+            return new Pressure(value, PressureUnit.InchOfWaterColumn);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Kilobar"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromKilobars(double kilobars)
+        public static Pressure FromKilobars(double value)
         {
-            return new Pressure(kilobars, PressureUnit.Kilobar);
+            return new Pressure(value, PressureUnit.Kilobar);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.KilogramForcePerSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromKilogramsForcePerSquareCentimeter(double kilogramsforcepersquarecentimeter)
+        public static Pressure FromKilogramsForcePerSquareCentimeter(double value)
         {
-            return new Pressure(kilogramsforcepersquarecentimeter, PressureUnit.KilogramForcePerSquareCentimeter);
+            return new Pressure(value, PressureUnit.KilogramForcePerSquareCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.KilogramForcePerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromKilogramsForcePerSquareMeter(double kilogramsforcepersquaremeter)
+        public static Pressure FromKilogramsForcePerSquareMeter(double value)
         {
-            return new Pressure(kilogramsforcepersquaremeter, PressureUnit.KilogramForcePerSquareMeter);
+            return new Pressure(value, PressureUnit.KilogramForcePerSquareMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.KilogramForcePerSquareMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromKilogramsForcePerSquareMillimeter(double kilogramsforcepersquaremillimeter)
+        public static Pressure FromKilogramsForcePerSquareMillimeter(double value)
         {
-            return new Pressure(kilogramsforcepersquaremillimeter, PressureUnit.KilogramForcePerSquareMillimeter);
+            return new Pressure(value, PressureUnit.KilogramForcePerSquareMillimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.KilonewtonPerSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromKilonewtonsPerSquareCentimeter(double kilonewtonspersquarecentimeter)
+        public static Pressure FromKilonewtonsPerSquareCentimeter(double value)
         {
-            return new Pressure(kilonewtonspersquarecentimeter, PressureUnit.KilonewtonPerSquareCentimeter);
+            return new Pressure(value, PressureUnit.KilonewtonPerSquareCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.KilonewtonPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromKilonewtonsPerSquareMeter(double kilonewtonspersquaremeter)
+        public static Pressure FromKilonewtonsPerSquareMeter(double value)
         {
-            return new Pressure(kilonewtonspersquaremeter, PressureUnit.KilonewtonPerSquareMeter);
+            return new Pressure(value, PressureUnit.KilonewtonPerSquareMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.KilonewtonPerSquareMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromKilonewtonsPerSquareMillimeter(double kilonewtonspersquaremillimeter)
+        public static Pressure FromKilonewtonsPerSquareMillimeter(double value)
         {
-            return new Pressure(kilonewtonspersquaremillimeter, PressureUnit.KilonewtonPerSquareMillimeter);
+            return new Pressure(value, PressureUnit.KilonewtonPerSquareMillimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Kilopascal"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromKilopascals(double kilopascals)
+        public static Pressure FromKilopascals(double value)
         {
-            return new Pressure(kilopascals, PressureUnit.Kilopascal);
+            return new Pressure(value, PressureUnit.Kilopascal);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.KilopoundForcePerSquareFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromKilopoundsForcePerSquareFoot(double kilopoundsforcepersquarefoot)
+        public static Pressure FromKilopoundsForcePerSquareFoot(double value)
         {
-            return new Pressure(kilopoundsforcepersquarefoot, PressureUnit.KilopoundForcePerSquareFoot);
+            return new Pressure(value, PressureUnit.KilopoundForcePerSquareFoot);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.KilopoundForcePerSquareInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromKilopoundsForcePerSquareInch(double kilopoundsforcepersquareinch)
+        public static Pressure FromKilopoundsForcePerSquareInch(double value)
         {
-            return new Pressure(kilopoundsforcepersquareinch, PressureUnit.KilopoundForcePerSquareInch);
+            return new Pressure(value, PressureUnit.KilopoundForcePerSquareInch);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.KilopoundForcePerSquareMil"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromKilopoundsForcePerSquareMil(double kilopoundsforcepersquaremil)
+        public static Pressure FromKilopoundsForcePerSquareMil(double value)
         {
-            return new Pressure(kilopoundsforcepersquaremil, PressureUnit.KilopoundForcePerSquareMil);
+            return new Pressure(value, PressureUnit.KilopoundForcePerSquareMil);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Megabar"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromMegabars(double megabars)
+        public static Pressure FromMegabars(double value)
         {
-            return new Pressure(megabars, PressureUnit.Megabar);
+            return new Pressure(value, PressureUnit.Megabar);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.MeganewtonPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromMeganewtonsPerSquareMeter(double meganewtonspersquaremeter)
+        public static Pressure FromMeganewtonsPerSquareMeter(double value)
         {
-            return new Pressure(meganewtonspersquaremeter, PressureUnit.MeganewtonPerSquareMeter);
+            return new Pressure(value, PressureUnit.MeganewtonPerSquareMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Megapascal"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromMegapascals(double megapascals)
+        public static Pressure FromMegapascals(double value)
         {
-            return new Pressure(megapascals, PressureUnit.Megapascal);
+            return new Pressure(value, PressureUnit.Megapascal);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.MeterOfElevation"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromMetersOfElevation(double metersofelevation)
+        public static Pressure FromMetersOfElevation(double value)
         {
-            return new Pressure(metersofelevation, PressureUnit.MeterOfElevation);
+            return new Pressure(value, PressureUnit.MeterOfElevation);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.MeterOfHead"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromMetersOfHead(double metersofhead)
+        public static Pressure FromMetersOfHead(double value)
         {
-            return new Pressure(metersofhead, PressureUnit.MeterOfHead);
+            return new Pressure(value, PressureUnit.MeterOfHead);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.MeterOfWaterColumn"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromMetersOfWaterColumn(double metersofwatercolumn)
+        public static Pressure FromMetersOfWaterColumn(double value)
         {
-            return new Pressure(metersofwatercolumn, PressureUnit.MeterOfWaterColumn);
+            return new Pressure(value, PressureUnit.MeterOfWaterColumn);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Microbar"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromMicrobars(double microbars)
+        public static Pressure FromMicrobars(double value)
         {
-            return new Pressure(microbars, PressureUnit.Microbar);
+            return new Pressure(value, PressureUnit.Microbar);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Micropascal"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromMicropascals(double micropascals)
+        public static Pressure FromMicropascals(double value)
         {
-            return new Pressure(micropascals, PressureUnit.Micropascal);
+            return new Pressure(value, PressureUnit.Micropascal);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Millibar"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromMillibars(double millibars)
+        public static Pressure FromMillibars(double value)
         {
-            return new Pressure(millibars, PressureUnit.Millibar);
+            return new Pressure(value, PressureUnit.Millibar);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.MillimeterOfMercury"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromMillimetersOfMercury(double millimetersofmercury)
+        public static Pressure FromMillimetersOfMercury(double value)
         {
-            return new Pressure(millimetersofmercury, PressureUnit.MillimeterOfMercury);
+            return new Pressure(value, PressureUnit.MillimeterOfMercury);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.MillimeterOfWaterColumn"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromMillimetersOfWaterColumn(double millimetersofwatercolumn)
+        public static Pressure FromMillimetersOfWaterColumn(double value)
         {
-            return new Pressure(millimetersofwatercolumn, PressureUnit.MillimeterOfWaterColumn);
+            return new Pressure(value, PressureUnit.MillimeterOfWaterColumn);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Millipascal"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromMillipascals(double millipascals)
+        public static Pressure FromMillipascals(double value)
         {
-            return new Pressure(millipascals, PressureUnit.Millipascal);
+            return new Pressure(value, PressureUnit.Millipascal);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.NewtonPerSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromNewtonsPerSquareCentimeter(double newtonspersquarecentimeter)
+        public static Pressure FromNewtonsPerSquareCentimeter(double value)
         {
-            return new Pressure(newtonspersquarecentimeter, PressureUnit.NewtonPerSquareCentimeter);
+            return new Pressure(value, PressureUnit.NewtonPerSquareCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.NewtonPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromNewtonsPerSquareMeter(double newtonspersquaremeter)
+        public static Pressure FromNewtonsPerSquareMeter(double value)
         {
-            return new Pressure(newtonspersquaremeter, PressureUnit.NewtonPerSquareMeter);
+            return new Pressure(value, PressureUnit.NewtonPerSquareMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.NewtonPerSquareMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromNewtonsPerSquareMillimeter(double newtonspersquaremillimeter)
+        public static Pressure FromNewtonsPerSquareMillimeter(double value)
         {
-            return new Pressure(newtonspersquaremillimeter, PressureUnit.NewtonPerSquareMillimeter);
+            return new Pressure(value, PressureUnit.NewtonPerSquareMillimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Pascal"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromPascals(double pascals)
+        public static Pressure FromPascals(double value)
         {
-            return new Pressure(pascals, PressureUnit.Pascal);
+            return new Pressure(value, PressureUnit.Pascal);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.PoundForcePerSquareFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromPoundsForcePerSquareFoot(double poundsforcepersquarefoot)
+        public static Pressure FromPoundsForcePerSquareFoot(double value)
         {
-            return new Pressure(poundsforcepersquarefoot, PressureUnit.PoundForcePerSquareFoot);
+            return new Pressure(value, PressureUnit.PoundForcePerSquareFoot);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.PoundForcePerSquareInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromPoundsForcePerSquareInch(double poundsforcepersquareinch)
+        public static Pressure FromPoundsForcePerSquareInch(double value)
         {
-            return new Pressure(poundsforcepersquareinch, PressureUnit.PoundForcePerSquareInch);
+            return new Pressure(value, PressureUnit.PoundForcePerSquareInch);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.PoundForcePerSquareMil"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromPoundsForcePerSquareMil(double poundsforcepersquaremil)
+        public static Pressure FromPoundsForcePerSquareMil(double value)
         {
-            return new Pressure(poundsforcepersquaremil, PressureUnit.PoundForcePerSquareMil);
+            return new Pressure(value, PressureUnit.PoundForcePerSquareMil);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.PoundPerInchSecondSquared"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromPoundsPerInchSecondSquared(double poundsperinchsecondsquared)
+        public static Pressure FromPoundsPerInchSecondSquared(double value)
         {
-            return new Pressure(poundsperinchsecondsquared, PressureUnit.PoundPerInchSecondSquared);
+            return new Pressure(value, PressureUnit.PoundPerInchSecondSquared);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.TechnicalAtmosphere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromTechnicalAtmospheres(double technicalatmospheres)
+        public static Pressure FromTechnicalAtmospheres(double value)
         {
-            return new Pressure(technicalatmospheres, PressureUnit.TechnicalAtmosphere);
+            return new Pressure(value, PressureUnit.TechnicalAtmosphere);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.TonneForcePerSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromTonnesForcePerSquareCentimeter(double tonnesforcepersquarecentimeter)
+        public static Pressure FromTonnesForcePerSquareCentimeter(double value)
         {
-            return new Pressure(tonnesforcepersquarecentimeter, PressureUnit.TonneForcePerSquareCentimeter);
+            return new Pressure(value, PressureUnit.TonneForcePerSquareCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.TonneForcePerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromTonnesForcePerSquareMeter(double tonnesforcepersquaremeter)
+        public static Pressure FromTonnesForcePerSquareMeter(double value)
         {
-            return new Pressure(tonnesforcepersquaremeter, PressureUnit.TonneForcePerSquareMeter);
+            return new Pressure(value, PressureUnit.TonneForcePerSquareMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.TonneForcePerSquareMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromTonnesForcePerSquareMillimeter(double tonnesforcepersquaremillimeter)
+        public static Pressure FromTonnesForcePerSquareMillimeter(double value)
         {
-            return new Pressure(tonnesforcepersquaremillimeter, PressureUnit.TonneForcePerSquareMillimeter);
+            return new Pressure(value, PressureUnit.TonneForcePerSquareMillimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Torr"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromTorrs(double torrs)
+        public static Pressure FromTorrs(double value)
         {
-            return new Pressure(torrs, PressureUnit.Torr);
+            return new Pressure(value, PressureUnit.Torr);
         }
 
         /// <summary>

@@ -313,99 +313,99 @@ namespace UnitsNet
         ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.AmpereHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCharge FromAmpereHours(double amperehours)
+        public static ElectricCharge FromAmpereHours(double value)
         {
-            return new ElectricCharge(amperehours, ElectricChargeUnit.AmpereHour);
+            return new ElectricCharge(value, ElectricChargeUnit.AmpereHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.Coulomb"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCharge FromCoulombs(double coulombs)
+        public static ElectricCharge FromCoulombs(double value)
         {
-            return new ElectricCharge(coulombs, ElectricChargeUnit.Coulomb);
+            return new ElectricCharge(value, ElectricChargeUnit.Coulomb);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.KiloampereHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCharge FromKiloampereHours(double kiloamperehours)
+        public static ElectricCharge FromKiloampereHours(double value)
         {
-            return new ElectricCharge(kiloamperehours, ElectricChargeUnit.KiloampereHour);
+            return new ElectricCharge(value, ElectricChargeUnit.KiloampereHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.Kilocoulomb"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCharge FromKilocoulombs(double kilocoulombs)
+        public static ElectricCharge FromKilocoulombs(double value)
         {
-            return new ElectricCharge(kilocoulombs, ElectricChargeUnit.Kilocoulomb);
+            return new ElectricCharge(value, ElectricChargeUnit.Kilocoulomb);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.MegaampereHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCharge FromMegaampereHours(double megaamperehours)
+        public static ElectricCharge FromMegaampereHours(double value)
         {
-            return new ElectricCharge(megaamperehours, ElectricChargeUnit.MegaampereHour);
+            return new ElectricCharge(value, ElectricChargeUnit.MegaampereHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.Megacoulomb"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCharge FromMegacoulombs(double megacoulombs)
+        public static ElectricCharge FromMegacoulombs(double value)
         {
-            return new ElectricCharge(megacoulombs, ElectricChargeUnit.Megacoulomb);
+            return new ElectricCharge(value, ElectricChargeUnit.Megacoulomb);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.Microcoulomb"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCharge FromMicrocoulombs(double microcoulombs)
+        public static ElectricCharge FromMicrocoulombs(double value)
         {
-            return new ElectricCharge(microcoulombs, ElectricChargeUnit.Microcoulomb);
+            return new ElectricCharge(value, ElectricChargeUnit.Microcoulomb);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.MilliampereHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCharge FromMilliampereHours(double milliamperehours)
+        public static ElectricCharge FromMilliampereHours(double value)
         {
-            return new ElectricCharge(milliamperehours, ElectricChargeUnit.MilliampereHour);
+            return new ElectricCharge(value, ElectricChargeUnit.MilliampereHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.Millicoulomb"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCharge FromMillicoulombs(double millicoulombs)
+        public static ElectricCharge FromMillicoulombs(double value)
         {
-            return new ElectricCharge(millicoulombs, ElectricChargeUnit.Millicoulomb);
+            return new ElectricCharge(value, ElectricChargeUnit.Millicoulomb);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.Nanocoulomb"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCharge FromNanocoulombs(double nanocoulombs)
+        public static ElectricCharge FromNanocoulombs(double value)
         {
-            return new ElectricCharge(nanocoulombs, ElectricChargeUnit.Nanocoulomb);
+            return new ElectricCharge(value, ElectricChargeUnit.Nanocoulomb);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.Picocoulomb"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCharge FromPicocoulombs(double picocoulombs)
+        public static ElectricCharge FromPicocoulombs(double value)
         {
-            return new ElectricCharge(picocoulombs, ElectricChargeUnit.Picocoulomb);
+            return new ElectricCharge(value, ElectricChargeUnit.Picocoulomb);
         }
 
         /// <summary>

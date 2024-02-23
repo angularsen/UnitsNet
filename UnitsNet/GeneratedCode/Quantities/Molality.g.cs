@@ -232,18 +232,18 @@ namespace UnitsNet
         ///     Creates a <see cref="Molality"/> from <see cref="MolalityUnit.MolePerGram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molality FromMolesPerGram(double molespergram)
+        public static Molality FromMolesPerGram(double value)
         {
-            return new Molality(molespergram, MolalityUnit.MolePerGram);
+            return new Molality(value, MolalityUnit.MolePerGram);
         }
 
         /// <summary>
         ///     Creates a <see cref="Molality"/> from <see cref="MolalityUnit.MolePerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Molality FromMolesPerKilogram(double molesperkilogram)
+        public static Molality FromMolesPerKilogram(double value)
         {
-            return new Molality(molesperkilogram, MolalityUnit.MolePerKilogram);
+            return new Molality(value, MolalityUnit.MolePerKilogram);
         }
 
         /// <summary>

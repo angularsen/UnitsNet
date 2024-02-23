@@ -221,9 +221,9 @@ namespace UnitsNet
         ///     Creates a <see cref="Scalar"/> from <see cref="ScalarUnit.Amount"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Scalar FromAmount(double amount)
+        public static Scalar FromAmount(double value)
         {
-            return new Scalar(amount, ScalarUnit.Amount);
+            return new Scalar(value, ScalarUnit.Amount);
         }
 
         /// <summary>

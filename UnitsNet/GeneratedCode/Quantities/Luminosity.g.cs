@@ -328,126 +328,126 @@ namespace UnitsNet
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Decawatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminosity FromDecawatts(double decawatts)
+        public static Luminosity FromDecawatts(double value)
         {
-            return new Luminosity(decawatts, LuminosityUnit.Decawatt);
+            return new Luminosity(value, LuminosityUnit.Decawatt);
         }
 
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Deciwatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminosity FromDeciwatts(double deciwatts)
+        public static Luminosity FromDeciwatts(double value)
         {
-            return new Luminosity(deciwatts, LuminosityUnit.Deciwatt);
+            return new Luminosity(value, LuminosityUnit.Deciwatt);
         }
 
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Femtowatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminosity FromFemtowatts(double femtowatts)
+        public static Luminosity FromFemtowatts(double value)
         {
-            return new Luminosity(femtowatts, LuminosityUnit.Femtowatt);
+            return new Luminosity(value, LuminosityUnit.Femtowatt);
         }
 
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Gigawatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminosity FromGigawatts(double gigawatts)
+        public static Luminosity FromGigawatts(double value)
         {
-            return new Luminosity(gigawatts, LuminosityUnit.Gigawatt);
+            return new Luminosity(value, LuminosityUnit.Gigawatt);
         }
 
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Kilowatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminosity FromKilowatts(double kilowatts)
+        public static Luminosity FromKilowatts(double value)
         {
-            return new Luminosity(kilowatts, LuminosityUnit.Kilowatt);
+            return new Luminosity(value, LuminosityUnit.Kilowatt);
         }
 
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Megawatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminosity FromMegawatts(double megawatts)
+        public static Luminosity FromMegawatts(double value)
         {
-            return new Luminosity(megawatts, LuminosityUnit.Megawatt);
+            return new Luminosity(value, LuminosityUnit.Megawatt);
         }
 
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Microwatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminosity FromMicrowatts(double microwatts)
+        public static Luminosity FromMicrowatts(double value)
         {
-            return new Luminosity(microwatts, LuminosityUnit.Microwatt);
+            return new Luminosity(value, LuminosityUnit.Microwatt);
         }
 
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Milliwatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminosity FromMilliwatts(double milliwatts)
+        public static Luminosity FromMilliwatts(double value)
         {
-            return new Luminosity(milliwatts, LuminosityUnit.Milliwatt);
+            return new Luminosity(value, LuminosityUnit.Milliwatt);
         }
 
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Nanowatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminosity FromNanowatts(double nanowatts)
+        public static Luminosity FromNanowatts(double value)
         {
-            return new Luminosity(nanowatts, LuminosityUnit.Nanowatt);
+            return new Luminosity(value, LuminosityUnit.Nanowatt);
         }
 
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Petawatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminosity FromPetawatts(double petawatts)
+        public static Luminosity FromPetawatts(double value)
         {
-            return new Luminosity(petawatts, LuminosityUnit.Petawatt);
+            return new Luminosity(value, LuminosityUnit.Petawatt);
         }
 
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Picowatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminosity FromPicowatts(double picowatts)
+        public static Luminosity FromPicowatts(double value)
         {
-            return new Luminosity(picowatts, LuminosityUnit.Picowatt);
+            return new Luminosity(value, LuminosityUnit.Picowatt);
         }
 
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.SolarLuminosity"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminosity FromSolarLuminosities(double solarluminosities)
+        public static Luminosity FromSolarLuminosities(double value)
         {
-            return new Luminosity(solarluminosities, LuminosityUnit.SolarLuminosity);
+            return new Luminosity(value, LuminosityUnit.SolarLuminosity);
         }
 
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Terawatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminosity FromTerawatts(double terawatts)
+        public static Luminosity FromTerawatts(double value)
         {
-            return new Luminosity(terawatts, LuminosityUnit.Terawatt);
+            return new Luminosity(value, LuminosityUnit.Terawatt);
         }
 
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Watt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminosity FromWatts(double watts)
+        public static Luminosity FromWatts(double value)
         {
-            return new Luminosity(watts, LuminosityUnit.Watt);
+            return new Luminosity(value, LuminosityUnit.Watt);
         }
 
         /// <summary>

@@ -245,36 +245,36 @@ namespace UnitsNet
         ///     Creates a <see cref="ReactivePower"/> from <see cref="ReactivePowerUnit.GigavoltampereReactive"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReactivePower FromGigavoltamperesReactive(double gigavoltamperesreactive)
+        public static ReactivePower FromGigavoltamperesReactive(double value)
         {
-            return new ReactivePower(gigavoltamperesreactive, ReactivePowerUnit.GigavoltampereReactive);
+            return new ReactivePower(value, ReactivePowerUnit.GigavoltampereReactive);
         }
 
         /// <summary>
         ///     Creates a <see cref="ReactivePower"/> from <see cref="ReactivePowerUnit.KilovoltampereReactive"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReactivePower FromKilovoltamperesReactive(double kilovoltamperesreactive)
+        public static ReactivePower FromKilovoltamperesReactive(double value)
         {
-            return new ReactivePower(kilovoltamperesreactive, ReactivePowerUnit.KilovoltampereReactive);
+            return new ReactivePower(value, ReactivePowerUnit.KilovoltampereReactive);
         }
 
         /// <summary>
         ///     Creates a <see cref="ReactivePower"/> from <see cref="ReactivePowerUnit.MegavoltampereReactive"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReactivePower FromMegavoltamperesReactive(double megavoltamperesreactive)
+        public static ReactivePower FromMegavoltamperesReactive(double value)
         {
-            return new ReactivePower(megavoltamperesreactive, ReactivePowerUnit.MegavoltampereReactive);
+            return new ReactivePower(value, ReactivePowerUnit.MegavoltampereReactive);
         }
 
         /// <summary>
         ///     Creates a <see cref="ReactivePower"/> from <see cref="ReactivePowerUnit.VoltampereReactive"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReactivePower FromVoltamperesReactive(double voltamperesreactive)
+        public static ReactivePower FromVoltamperesReactive(double value)
         {
-            return new ReactivePower(voltamperesreactive, ReactivePowerUnit.VoltampereReactive);
+            return new ReactivePower(value, ReactivePowerUnit.VoltampereReactive);
         }
 
         /// <summary>

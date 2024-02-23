@@ -294,81 +294,81 @@ namespace UnitsNet
         ///     Creates a <see cref="MolarFlow"/> from <see cref="MolarFlowUnit.KilomolePerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarFlow FromKilomolesPerHour(double kilomolesperhour)
+        public static MolarFlow FromKilomolesPerHour(double value)
         {
-            return new MolarFlow(kilomolesperhour, MolarFlowUnit.KilomolePerHour);
+            return new MolarFlow(value, MolarFlowUnit.KilomolePerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarFlow"/> from <see cref="MolarFlowUnit.KilomolePerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarFlow FromKilomolesPerMinute(double kilomolesperminute)
+        public static MolarFlow FromKilomolesPerMinute(double value)
         {
-            return new MolarFlow(kilomolesperminute, MolarFlowUnit.KilomolePerMinute);
+            return new MolarFlow(value, MolarFlowUnit.KilomolePerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarFlow"/> from <see cref="MolarFlowUnit.KilomolePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarFlow FromKilomolesPerSecond(double kilomolespersecond)
+        public static MolarFlow FromKilomolesPerSecond(double value)
         {
-            return new MolarFlow(kilomolespersecond, MolarFlowUnit.KilomolePerSecond);
+            return new MolarFlow(value, MolarFlowUnit.KilomolePerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarFlow"/> from <see cref="MolarFlowUnit.MolePerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarFlow FromMolesPerHour(double molesperhour)
+        public static MolarFlow FromMolesPerHour(double value)
         {
-            return new MolarFlow(molesperhour, MolarFlowUnit.MolePerHour);
+            return new MolarFlow(value, MolarFlowUnit.MolePerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarFlow"/> from <see cref="MolarFlowUnit.MolePerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarFlow FromMolesPerMinute(double molesperminute)
+        public static MolarFlow FromMolesPerMinute(double value)
         {
-            return new MolarFlow(molesperminute, MolarFlowUnit.MolePerMinute);
+            return new MolarFlow(value, MolarFlowUnit.MolePerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarFlow"/> from <see cref="MolarFlowUnit.MolePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarFlow FromMolesPerSecond(double molespersecond)
+        public static MolarFlow FromMolesPerSecond(double value)
         {
-            return new MolarFlow(molespersecond, MolarFlowUnit.MolePerSecond);
+            return new MolarFlow(value, MolarFlowUnit.MolePerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarFlow"/> from <see cref="MolarFlowUnit.PoundMolePerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarFlow FromPoundMolesPerHour(double poundmolesperhour)
+        public static MolarFlow FromPoundMolesPerHour(double value)
         {
-            return new MolarFlow(poundmolesperhour, MolarFlowUnit.PoundMolePerHour);
+            return new MolarFlow(value, MolarFlowUnit.PoundMolePerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarFlow"/> from <see cref="MolarFlowUnit.PoundMolePerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarFlow FromPoundMolesPerMinute(double poundmolesperminute)
+        public static MolarFlow FromPoundMolesPerMinute(double value)
         {
-            return new MolarFlow(poundmolesperminute, MolarFlowUnit.PoundMolePerMinute);
+            return new MolarFlow(value, MolarFlowUnit.PoundMolePerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarFlow"/> from <see cref="MolarFlowUnit.PoundMolePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarFlow FromPoundMolesPerSecond(double poundmolespersecond)
+        public static MolarFlow FromPoundMolesPerSecond(double value)
         {
-            return new MolarFlow(poundmolespersecond, MolarFlowUnit.PoundMolePerSecond);
+            return new MolarFlow(value, MolarFlowUnit.PoundMolePerSecond);
         }
 
         /// <summary>

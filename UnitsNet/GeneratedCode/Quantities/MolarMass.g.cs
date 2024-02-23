@@ -325,117 +325,117 @@ namespace UnitsNet
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.CentigramPerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarMass FromCentigramsPerMole(double centigramspermole)
+        public static MolarMass FromCentigramsPerMole(double value)
         {
-            return new MolarMass(centigramspermole, MolarMassUnit.CentigramPerMole);
+            return new MolarMass(value, MolarMassUnit.CentigramPerMole);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.DecagramPerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarMass FromDecagramsPerMole(double decagramspermole)
+        public static MolarMass FromDecagramsPerMole(double value)
         {
-            return new MolarMass(decagramspermole, MolarMassUnit.DecagramPerMole);
+            return new MolarMass(value, MolarMassUnit.DecagramPerMole);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.DecigramPerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarMass FromDecigramsPerMole(double decigramspermole)
+        public static MolarMass FromDecigramsPerMole(double value)
         {
-            return new MolarMass(decigramspermole, MolarMassUnit.DecigramPerMole);
+            return new MolarMass(value, MolarMassUnit.DecigramPerMole);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.GramPerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarMass FromGramsPerMole(double gramspermole)
+        public static MolarMass FromGramsPerMole(double value)
         {
-            return new MolarMass(gramspermole, MolarMassUnit.GramPerMole);
+            return new MolarMass(value, MolarMassUnit.GramPerMole);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.HectogramPerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarMass FromHectogramsPerMole(double hectogramspermole)
+        public static MolarMass FromHectogramsPerMole(double value)
         {
-            return new MolarMass(hectogramspermole, MolarMassUnit.HectogramPerMole);
+            return new MolarMass(value, MolarMassUnit.HectogramPerMole);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.KilogramPerKilomole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarMass FromKilogramsPerKilomole(double kilogramsperkilomole)
+        public static MolarMass FromKilogramsPerKilomole(double value)
         {
-            return new MolarMass(kilogramsperkilomole, MolarMassUnit.KilogramPerKilomole);
+            return new MolarMass(value, MolarMassUnit.KilogramPerKilomole);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.KilogramPerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarMass FromKilogramsPerMole(double kilogramspermole)
+        public static MolarMass FromKilogramsPerMole(double value)
         {
-            return new MolarMass(kilogramspermole, MolarMassUnit.KilogramPerMole);
+            return new MolarMass(value, MolarMassUnit.KilogramPerMole);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.KilopoundPerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarMass FromKilopoundsPerMole(double kilopoundspermole)
+        public static MolarMass FromKilopoundsPerMole(double value)
         {
-            return new MolarMass(kilopoundspermole, MolarMassUnit.KilopoundPerMole);
+            return new MolarMass(value, MolarMassUnit.KilopoundPerMole);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.MegapoundPerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarMass FromMegapoundsPerMole(double megapoundspermole)
+        public static MolarMass FromMegapoundsPerMole(double value)
         {
-            return new MolarMass(megapoundspermole, MolarMassUnit.MegapoundPerMole);
+            return new MolarMass(value, MolarMassUnit.MegapoundPerMole);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.MicrogramPerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarMass FromMicrogramsPerMole(double microgramspermole)
+        public static MolarMass FromMicrogramsPerMole(double value)
         {
-            return new MolarMass(microgramspermole, MolarMassUnit.MicrogramPerMole);
+            return new MolarMass(value, MolarMassUnit.MicrogramPerMole);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.MilligramPerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarMass FromMilligramsPerMole(double milligramspermole)
+        public static MolarMass FromMilligramsPerMole(double value)
         {
-            return new MolarMass(milligramspermole, MolarMassUnit.MilligramPerMole);
+            return new MolarMass(value, MolarMassUnit.MilligramPerMole);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.NanogramPerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarMass FromNanogramsPerMole(double nanogramspermole)
+        public static MolarMass FromNanogramsPerMole(double value)
         {
-            return new MolarMass(nanogramspermole, MolarMassUnit.NanogramPerMole);
+            return new MolarMass(value, MolarMassUnit.NanogramPerMole);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.PoundPerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarMass FromPoundsPerMole(double poundspermole)
+        public static MolarMass FromPoundsPerMole(double value)
         {
-            return new MolarMass(poundspermole, MolarMassUnit.PoundPerMole);
+            return new MolarMass(value, MolarMassUnit.PoundPerMole);
         }
 
         /// <summary>

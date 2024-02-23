@@ -548,360 +548,360 @@ namespace UnitsNet
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.BritishThermalUnit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromBritishThermalUnits(double britishthermalunits)
+        public static Energy FromBritishThermalUnits(double value)
         {
-            return new Energy(britishthermalunits, EnergyUnit.BritishThermalUnit);
+            return new Energy(value, EnergyUnit.BritishThermalUnit);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Calorie"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromCalories(double calories)
+        public static Energy FromCalories(double value)
         {
-            return new Energy(calories, EnergyUnit.Calorie);
+            return new Energy(value, EnergyUnit.Calorie);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.DecathermEc"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromDecathermsEc(double decathermsec)
+        public static Energy FromDecathermsEc(double value)
         {
-            return new Energy(decathermsec, EnergyUnit.DecathermEc);
+            return new Energy(value, EnergyUnit.DecathermEc);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.DecathermImperial"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromDecathermsImperial(double decathermsimperial)
+        public static Energy FromDecathermsImperial(double value)
         {
-            return new Energy(decathermsimperial, EnergyUnit.DecathermImperial);
+            return new Energy(value, EnergyUnit.DecathermImperial);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.DecathermUs"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromDecathermsUs(double decathermsus)
+        public static Energy FromDecathermsUs(double value)
         {
-            return new Energy(decathermsus, EnergyUnit.DecathermUs);
+            return new Energy(value, EnergyUnit.DecathermUs);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.ElectronVolt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromElectronVolts(double electronvolts)
+        public static Energy FromElectronVolts(double value)
         {
-            return new Energy(electronvolts, EnergyUnit.ElectronVolt);
+            return new Energy(value, EnergyUnit.ElectronVolt);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Erg"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromErgs(double ergs)
+        public static Energy FromErgs(double value)
         {
-            return new Energy(ergs, EnergyUnit.Erg);
+            return new Energy(value, EnergyUnit.Erg);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.FootPound"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromFootPounds(double footpounds)
+        public static Energy FromFootPounds(double value)
         {
-            return new Energy(footpounds, EnergyUnit.FootPound);
+            return new Energy(value, EnergyUnit.FootPound);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.GigabritishThermalUnit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromGigabritishThermalUnits(double gigabritishthermalunits)
+        public static Energy FromGigabritishThermalUnits(double value)
         {
-            return new Energy(gigabritishthermalunits, EnergyUnit.GigabritishThermalUnit);
+            return new Energy(value, EnergyUnit.GigabritishThermalUnit);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.GigaelectronVolt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromGigaelectronVolts(double gigaelectronvolts)
+        public static Energy FromGigaelectronVolts(double value)
         {
-            return new Energy(gigaelectronvolts, EnergyUnit.GigaelectronVolt);
+            return new Energy(value, EnergyUnit.GigaelectronVolt);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Gigajoule"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromGigajoules(double gigajoules)
+        public static Energy FromGigajoules(double value)
         {
-            return new Energy(gigajoules, EnergyUnit.Gigajoule);
+            return new Energy(value, EnergyUnit.Gigajoule);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.GigawattDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromGigawattDays(double gigawattdays)
+        public static Energy FromGigawattDays(double value)
         {
-            return new Energy(gigawattdays, EnergyUnit.GigawattDay);
+            return new Energy(value, EnergyUnit.GigawattDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.GigawattHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromGigawattHours(double gigawatthours)
+        public static Energy FromGigawattHours(double value)
         {
-            return new Energy(gigawatthours, EnergyUnit.GigawattHour);
+            return new Energy(value, EnergyUnit.GigawattHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.HorsepowerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromHorsepowerHours(double horsepowerhours)
+        public static Energy FromHorsepowerHours(double value)
         {
-            return new Energy(horsepowerhours, EnergyUnit.HorsepowerHour);
+            return new Energy(value, EnergyUnit.HorsepowerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Joule"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromJoules(double joules)
+        public static Energy FromJoules(double value)
         {
-            return new Energy(joules, EnergyUnit.Joule);
+            return new Energy(value, EnergyUnit.Joule);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.KilobritishThermalUnit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromKilobritishThermalUnits(double kilobritishthermalunits)
+        public static Energy FromKilobritishThermalUnits(double value)
         {
-            return new Energy(kilobritishthermalunits, EnergyUnit.KilobritishThermalUnit);
+            return new Energy(value, EnergyUnit.KilobritishThermalUnit);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Kilocalorie"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromKilocalories(double kilocalories)
+        public static Energy FromKilocalories(double value)
         {
-            return new Energy(kilocalories, EnergyUnit.Kilocalorie);
+            return new Energy(value, EnergyUnit.Kilocalorie);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.KiloelectronVolt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromKiloelectronVolts(double kiloelectronvolts)
+        public static Energy FromKiloelectronVolts(double value)
         {
-            return new Energy(kiloelectronvolts, EnergyUnit.KiloelectronVolt);
+            return new Energy(value, EnergyUnit.KiloelectronVolt);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Kilojoule"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromKilojoules(double kilojoules)
+        public static Energy FromKilojoules(double value)
         {
-            return new Energy(kilojoules, EnergyUnit.Kilojoule);
+            return new Energy(value, EnergyUnit.Kilojoule);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.KilowattDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromKilowattDays(double kilowattdays)
+        public static Energy FromKilowattDays(double value)
         {
-            return new Energy(kilowattdays, EnergyUnit.KilowattDay);
+            return new Energy(value, EnergyUnit.KilowattDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.KilowattHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromKilowattHours(double kilowatthours)
+        public static Energy FromKilowattHours(double value)
         {
-            return new Energy(kilowatthours, EnergyUnit.KilowattHour);
+            return new Energy(value, EnergyUnit.KilowattHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.MegabritishThermalUnit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromMegabritishThermalUnits(double megabritishthermalunits)
+        public static Energy FromMegabritishThermalUnits(double value)
         {
-            return new Energy(megabritishthermalunits, EnergyUnit.MegabritishThermalUnit);
+            return new Energy(value, EnergyUnit.MegabritishThermalUnit);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Megacalorie"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromMegacalories(double megacalories)
+        public static Energy FromMegacalories(double value)
         {
-            return new Energy(megacalories, EnergyUnit.Megacalorie);
+            return new Energy(value, EnergyUnit.Megacalorie);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.MegaelectronVolt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromMegaelectronVolts(double megaelectronvolts)
+        public static Energy FromMegaelectronVolts(double value)
         {
-            return new Energy(megaelectronvolts, EnergyUnit.MegaelectronVolt);
+            return new Energy(value, EnergyUnit.MegaelectronVolt);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Megajoule"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromMegajoules(double megajoules)
+        public static Energy FromMegajoules(double value)
         {
-            return new Energy(megajoules, EnergyUnit.Megajoule);
+            return new Energy(value, EnergyUnit.Megajoule);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.MegawattDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromMegawattDays(double megawattdays)
+        public static Energy FromMegawattDays(double value)
         {
-            return new Energy(megawattdays, EnergyUnit.MegawattDay);
+            return new Energy(value, EnergyUnit.MegawattDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.MegawattHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromMegawattHours(double megawatthours)
+        public static Energy FromMegawattHours(double value)
         {
-            return new Energy(megawatthours, EnergyUnit.MegawattHour);
+            return new Energy(value, EnergyUnit.MegawattHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Microjoule"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromMicrojoules(double microjoules)
+        public static Energy FromMicrojoules(double value)
         {
-            return new Energy(microjoules, EnergyUnit.Microjoule);
+            return new Energy(value, EnergyUnit.Microjoule);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Millijoule"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromMillijoules(double millijoules)
+        public static Energy FromMillijoules(double value)
         {
-            return new Energy(millijoules, EnergyUnit.Millijoule);
+            return new Energy(value, EnergyUnit.Millijoule);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Nanojoule"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromNanojoules(double nanojoules)
+        public static Energy FromNanojoules(double value)
         {
-            return new Energy(nanojoules, EnergyUnit.Nanojoule);
+            return new Energy(value, EnergyUnit.Nanojoule);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Petajoule"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromPetajoules(double petajoules)
+        public static Energy FromPetajoules(double value)
         {
-            return new Energy(petajoules, EnergyUnit.Petajoule);
+            return new Energy(value, EnergyUnit.Petajoule);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.TeraelectronVolt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromTeraelectronVolts(double teraelectronvolts)
+        public static Energy FromTeraelectronVolts(double value)
         {
-            return new Energy(teraelectronvolts, EnergyUnit.TeraelectronVolt);
+            return new Energy(value, EnergyUnit.TeraelectronVolt);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Terajoule"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromTerajoules(double terajoules)
+        public static Energy FromTerajoules(double value)
         {
-            return new Energy(terajoules, EnergyUnit.Terajoule);
+            return new Energy(value, EnergyUnit.Terajoule);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.TerawattDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromTerawattDays(double terawattdays)
+        public static Energy FromTerawattDays(double value)
         {
-            return new Energy(terawattdays, EnergyUnit.TerawattDay);
+            return new Energy(value, EnergyUnit.TerawattDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.TerawattHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromTerawattHours(double terawatthours)
+        public static Energy FromTerawattHours(double value)
         {
-            return new Energy(terawatthours, EnergyUnit.TerawattHour);
+            return new Energy(value, EnergyUnit.TerawattHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.ThermEc"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromThermsEc(double thermsec)
+        public static Energy FromThermsEc(double value)
         {
-            return new Energy(thermsec, EnergyUnit.ThermEc);
+            return new Energy(value, EnergyUnit.ThermEc);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.ThermImperial"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromThermsImperial(double thermsimperial)
+        public static Energy FromThermsImperial(double value)
         {
-            return new Energy(thermsimperial, EnergyUnit.ThermImperial);
+            return new Energy(value, EnergyUnit.ThermImperial);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.ThermUs"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromThermsUs(double thermsus)
+        public static Energy FromThermsUs(double value)
         {
-            return new Energy(thermsus, EnergyUnit.ThermUs);
+            return new Energy(value, EnergyUnit.ThermUs);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.WattDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromWattDays(double wattdays)
+        public static Energy FromWattDays(double value)
         {
-            return new Energy(wattdays, EnergyUnit.WattDay);
+            return new Energy(value, EnergyUnit.WattDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.WattHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Energy FromWattHours(double watthours)
+        public static Energy FromWattHours(double value)
         {
-            return new Energy(watthours, EnergyUnit.WattHour);
+            return new Energy(value, EnergyUnit.WattHour);
         }
 
         /// <summary>

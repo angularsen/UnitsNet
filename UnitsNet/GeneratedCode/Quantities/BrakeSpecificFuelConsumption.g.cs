@@ -244,27 +244,27 @@ namespace UnitsNet
         ///     Creates a <see cref="BrakeSpecificFuelConsumption"/> from <see cref="BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static BrakeSpecificFuelConsumption FromGramsPerKiloWattHour(double gramsperkilowatthour)
+        public static BrakeSpecificFuelConsumption FromGramsPerKiloWattHour(double value)
         {
-            return new BrakeSpecificFuelConsumption(gramsperkilowatthour, BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour);
+            return new BrakeSpecificFuelConsumption(value, BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="BrakeSpecificFuelConsumption"/> from <see cref="BrakeSpecificFuelConsumptionUnit.KilogramPerJoule"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static BrakeSpecificFuelConsumption FromKilogramsPerJoule(double kilogramsperjoule)
+        public static BrakeSpecificFuelConsumption FromKilogramsPerJoule(double value)
         {
-            return new BrakeSpecificFuelConsumption(kilogramsperjoule, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule);
+            return new BrakeSpecificFuelConsumption(value, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule);
         }
 
         /// <summary>
         ///     Creates a <see cref="BrakeSpecificFuelConsumption"/> from <see cref="BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static BrakeSpecificFuelConsumption FromPoundsPerMechanicalHorsepowerHour(double poundspermechanicalhorsepowerhour)
+        public static BrakeSpecificFuelConsumption FromPoundsPerMechanicalHorsepowerHour(double value)
         {
-            return new BrakeSpecificFuelConsumption(poundspermechanicalhorsepowerhour, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour);
+            return new BrakeSpecificFuelConsumption(value, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour);
         }
 
         /// <summary>

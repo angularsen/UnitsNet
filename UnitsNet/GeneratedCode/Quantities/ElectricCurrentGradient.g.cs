@@ -276,63 +276,63 @@ namespace UnitsNet
         ///     Creates a <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrentGradientUnit.AmperePerMicrosecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrentGradient FromAmperesPerMicrosecond(double amperespermicrosecond)
+        public static ElectricCurrentGradient FromAmperesPerMicrosecond(double value)
         {
-            return new ElectricCurrentGradient(amperespermicrosecond, ElectricCurrentGradientUnit.AmperePerMicrosecond);
+            return new ElectricCurrentGradient(value, ElectricCurrentGradientUnit.AmperePerMicrosecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrentGradientUnit.AmperePerMillisecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrentGradient FromAmperesPerMillisecond(double amperespermillisecond)
+        public static ElectricCurrentGradient FromAmperesPerMillisecond(double value)
         {
-            return new ElectricCurrentGradient(amperespermillisecond, ElectricCurrentGradientUnit.AmperePerMillisecond);
+            return new ElectricCurrentGradient(value, ElectricCurrentGradientUnit.AmperePerMillisecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrentGradientUnit.AmperePerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrentGradient FromAmperesPerMinute(double amperesperminute)
+        public static ElectricCurrentGradient FromAmperesPerMinute(double value)
         {
-            return new ElectricCurrentGradient(amperesperminute, ElectricCurrentGradientUnit.AmperePerMinute);
+            return new ElectricCurrentGradient(value, ElectricCurrentGradientUnit.AmperePerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrentGradientUnit.AmperePerNanosecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrentGradient FromAmperesPerNanosecond(double amperespernanosecond)
+        public static ElectricCurrentGradient FromAmperesPerNanosecond(double value)
         {
-            return new ElectricCurrentGradient(amperespernanosecond, ElectricCurrentGradientUnit.AmperePerNanosecond);
+            return new ElectricCurrentGradient(value, ElectricCurrentGradientUnit.AmperePerNanosecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrentGradientUnit.AmperePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrentGradient FromAmperesPerSecond(double amperespersecond)
+        public static ElectricCurrentGradient FromAmperesPerSecond(double value)
         {
-            return new ElectricCurrentGradient(amperespersecond, ElectricCurrentGradientUnit.AmperePerSecond);
+            return new ElectricCurrentGradient(value, ElectricCurrentGradientUnit.AmperePerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrentGradientUnit.MilliamperePerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrentGradient FromMilliamperesPerMinute(double milliamperesperminute)
+        public static ElectricCurrentGradient FromMilliamperesPerMinute(double value)
         {
-            return new ElectricCurrentGradient(milliamperesperminute, ElectricCurrentGradientUnit.MilliamperePerMinute);
+            return new ElectricCurrentGradient(value, ElectricCurrentGradientUnit.MilliamperePerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrentGradientUnit.MilliamperePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrentGradient FromMilliamperesPerSecond(double milliamperespersecond)
+        public static ElectricCurrentGradient FromMilliamperesPerSecond(double value)
         {
-            return new ElectricCurrentGradient(milliamperespersecond, ElectricCurrentGradientUnit.MilliamperePerSecond);
+            return new ElectricCurrentGradient(value, ElectricCurrentGradientUnit.MilliamperePerSecond);
         }
 
         /// <summary>

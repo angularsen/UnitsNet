@@ -240,27 +240,27 @@ namespace UnitsNet
         ///     Creates a <see cref="LeakRate"/> from <see cref="LeakRateUnit.MillibarLiterPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LeakRate FromMillibarLitersPerSecond(double millibarliterspersecond)
+        public static LeakRate FromMillibarLitersPerSecond(double value)
         {
-            return new LeakRate(millibarliterspersecond, LeakRateUnit.MillibarLiterPerSecond);
+            return new LeakRate(value, LeakRateUnit.MillibarLiterPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="LeakRate"/> from <see cref="LeakRateUnit.PascalCubicMeterPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LeakRate FromPascalCubicMetersPerSecond(double pascalcubicmeterspersecond)
+        public static LeakRate FromPascalCubicMetersPerSecond(double value)
         {
-            return new LeakRate(pascalcubicmeterspersecond, LeakRateUnit.PascalCubicMeterPerSecond);
+            return new LeakRate(value, LeakRateUnit.PascalCubicMeterPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="LeakRate"/> from <see cref="LeakRateUnit.TorrLiterPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LeakRate FromTorrLitersPerSecond(double torrliterspersecond)
+        public static LeakRate FromTorrLitersPerSecond(double value)
         {
-            return new LeakRate(torrliterspersecond, LeakRateUnit.TorrLiterPerSecond);
+            return new LeakRate(value, LeakRateUnit.TorrLiterPerSecond);
         }
 
         /// <summary>

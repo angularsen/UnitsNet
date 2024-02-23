@@ -243,27 +243,27 @@ namespace UnitsNet
         ///     Creates a <see cref="SpecificVolume"/> from <see cref="SpecificVolumeUnit.CubicFootPerPound"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificVolume FromCubicFeetPerPound(double cubicfeetperpound)
+        public static SpecificVolume FromCubicFeetPerPound(double value)
         {
-            return new SpecificVolume(cubicfeetperpound, SpecificVolumeUnit.CubicFootPerPound);
+            return new SpecificVolume(value, SpecificVolumeUnit.CubicFootPerPound);
         }
 
         /// <summary>
         ///     Creates a <see cref="SpecificVolume"/> from <see cref="SpecificVolumeUnit.CubicMeterPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificVolume FromCubicMetersPerKilogram(double cubicmetersperkilogram)
+        public static SpecificVolume FromCubicMetersPerKilogram(double value)
         {
-            return new SpecificVolume(cubicmetersperkilogram, SpecificVolumeUnit.CubicMeterPerKilogram);
+            return new SpecificVolume(value, SpecificVolumeUnit.CubicMeterPerKilogram);
         }
 
         /// <summary>
         ///     Creates a <see cref="SpecificVolume"/> from <see cref="SpecificVolumeUnit.MillicubicMeterPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static SpecificVolume FromMillicubicMetersPerKilogram(double millicubicmetersperkilogram)
+        public static SpecificVolume FromMillicubicMetersPerKilogram(double value)
         {
-            return new SpecificVolume(millicubicmetersperkilogram, SpecificVolumeUnit.MillicubicMeterPerKilogram);
+            return new SpecificVolume(value, SpecificVolumeUnit.MillicubicMeterPerKilogram);
         }
 
         /// <summary>

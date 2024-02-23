@@ -224,9 +224,9 @@ namespace UnitsNet
         ///     Creates a <see cref="MagneticFlux"/> from <see cref="MagneticFluxUnit.Weber"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MagneticFlux FromWebers(double webers)
+        public static MagneticFlux FromWebers(double value)
         {
-            return new MagneticFlux(webers, MagneticFluxUnit.Weber);
+            return new MagneticFlux(value, MagneticFluxUnit.Weber);
         }
 
         /// <summary>

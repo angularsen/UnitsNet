@@ -275,63 +275,63 @@ namespace UnitsNet
         ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Gigaohm"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricResistance FromGigaohms(double gigaohms)
+        public static ElectricResistance FromGigaohms(double value)
         {
-            return new ElectricResistance(gigaohms, ElectricResistanceUnit.Gigaohm);
+            return new ElectricResistance(value, ElectricResistanceUnit.Gigaohm);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Kiloohm"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricResistance FromKiloohms(double kiloohms)
+        public static ElectricResistance FromKiloohms(double value)
         {
-            return new ElectricResistance(kiloohms, ElectricResistanceUnit.Kiloohm);
+            return new ElectricResistance(value, ElectricResistanceUnit.Kiloohm);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Megaohm"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricResistance FromMegaohms(double megaohms)
+        public static ElectricResistance FromMegaohms(double value)
         {
-            return new ElectricResistance(megaohms, ElectricResistanceUnit.Megaohm);
+            return new ElectricResistance(value, ElectricResistanceUnit.Megaohm);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Microohm"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricResistance FromMicroohms(double microohms)
+        public static ElectricResistance FromMicroohms(double value)
         {
-            return new ElectricResistance(microohms, ElectricResistanceUnit.Microohm);
+            return new ElectricResistance(value, ElectricResistanceUnit.Microohm);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Milliohm"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricResistance FromMilliohms(double milliohms)
+        public static ElectricResistance FromMilliohms(double value)
         {
-            return new ElectricResistance(milliohms, ElectricResistanceUnit.Milliohm);
+            return new ElectricResistance(value, ElectricResistanceUnit.Milliohm);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Ohm"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricResistance FromOhms(double ohms)
+        public static ElectricResistance FromOhms(double value)
         {
-            return new ElectricResistance(ohms, ElectricResistanceUnit.Ohm);
+            return new ElectricResistance(value, ElectricResistanceUnit.Ohm);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Teraohm"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricResistance FromTeraohms(double teraohms)
+        public static ElectricResistance FromTeraohms(double value)
         {
-            return new ElectricResistance(teraohms, ElectricResistanceUnit.Teraohm);
+            return new ElectricResistance(value, ElectricResistanceUnit.Teraohm);
         }
 
         /// <summary>

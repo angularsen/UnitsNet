@@ -224,9 +224,9 @@ namespace UnitsNet
         ///     Creates a <see cref="Turbidity"/> from <see cref="TurbidityUnit.NTU"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Turbidity FromNTU(double ntu)
+        public static Turbidity FromNTU(double value)
         {
-            return new Turbidity(ntu, TurbidityUnit.NTU);
+            return new Turbidity(value, TurbidityUnit.NTU);
         }
 
         /// <summary>

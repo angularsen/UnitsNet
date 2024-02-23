@@ -449,243 +449,243 @@ namespace UnitsNet
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Centigram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass FromCentigrams(double centigrams)
+        public static Mass FromCentigrams(double value)
         {
-            return new Mass(centigrams, MassUnit.Centigram);
+            return new Mass(value, MassUnit.Centigram);
         }
 
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Decagram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass FromDecagrams(double decagrams)
+        public static Mass FromDecagrams(double value)
         {
-            return new Mass(decagrams, MassUnit.Decagram);
+            return new Mass(value, MassUnit.Decagram);
         }
 
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Decigram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass FromDecigrams(double decigrams)
+        public static Mass FromDecigrams(double value)
         {
-            return new Mass(decigrams, MassUnit.Decigram);
+            return new Mass(value, MassUnit.Decigram);
         }
 
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.EarthMass"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass FromEarthMasses(double earthmasses)
+        public static Mass FromEarthMasses(double value)
         {
-            return new Mass(earthmasses, MassUnit.EarthMass);
+            return new Mass(value, MassUnit.EarthMass);
         }
 
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Femtogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass FromFemtograms(double femtograms)
+        public static Mass FromFemtograms(double value)
         {
-            return new Mass(femtograms, MassUnit.Femtogram);
+            return new Mass(value, MassUnit.Femtogram);
         }
 
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Grain"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass FromGrains(double grains)
+        public static Mass FromGrains(double value)
         {
-            return new Mass(grains, MassUnit.Grain);
+            return new Mass(value, MassUnit.Grain);
         }
 
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Gram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass FromGrams(double grams)
+        public static Mass FromGrams(double value)
         {
-            return new Mass(grams, MassUnit.Gram);
+            return new Mass(value, MassUnit.Gram);
         }
 
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Hectogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass FromHectograms(double hectograms)
+        public static Mass FromHectograms(double value)
         {
-            return new Mass(hectograms, MassUnit.Hectogram);
+            return new Mass(value, MassUnit.Hectogram);
         }
 
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Kilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass FromKilograms(double kilograms)
+        public static Mass FromKilograms(double value)
         {
-            return new Mass(kilograms, MassUnit.Kilogram);
+            return new Mass(value, MassUnit.Kilogram);
         }
 
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Kilopound"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass FromKilopounds(double kilopounds)
+        public static Mass FromKilopounds(double value)
         {
-            return new Mass(kilopounds, MassUnit.Kilopound);
+            return new Mass(value, MassUnit.Kilopound);
         }
 
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Kilotonne"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass FromKilotonnes(double kilotonnes)
+        public static Mass FromKilotonnes(double value)
         {
-            return new Mass(kilotonnes, MassUnit.Kilotonne);
+            return new Mass(value, MassUnit.Kilotonne);
         }
 
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.LongHundredweight"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass FromLongHundredweight(double longhundredweight)
+        public static Mass FromLongHundredweight(double value)
         {
-            return new Mass(longhundredweight, MassUnit.LongHundredweight);
+            return new Mass(value, MassUnit.LongHundredweight);
         }
 
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.LongTon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass FromLongTons(double longtons)
+        public static Mass FromLongTons(double value)
         {
-            return new Mass(longtons, MassUnit.LongTon);
+            return new Mass(value, MassUnit.LongTon);
         }
 
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Megapound"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass FromMegapounds(double megapounds)
+        public static Mass FromMegapounds(double value)
         {
-            return new Mass(megapounds, MassUnit.Megapound);
+            return new Mass(value, MassUnit.Megapound);
         }
 
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Megatonne"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass FromMegatonnes(double megatonnes)
+        public static Mass FromMegatonnes(double value)
         {
-            return new Mass(megatonnes, MassUnit.Megatonne);
+            return new Mass(value, MassUnit.Megatonne);
         }
 
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Microgram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass FromMicrograms(double micrograms)
+        public static Mass FromMicrograms(double value)
         {
-            return new Mass(micrograms, MassUnit.Microgram);
+            return new Mass(value, MassUnit.Microgram);
         }
 
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Milligram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass FromMilligrams(double milligrams)
+        public static Mass FromMilligrams(double value)
         {
-            return new Mass(milligrams, MassUnit.Milligram);
+            return new Mass(value, MassUnit.Milligram);
         }
 
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Nanogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass FromNanograms(double nanograms)
+        public static Mass FromNanograms(double value)
         {
-            return new Mass(nanograms, MassUnit.Nanogram);
+            return new Mass(value, MassUnit.Nanogram);
         }
 
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Ounce"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass FromOunces(double ounces)
+        public static Mass FromOunces(double value)
         {
-            return new Mass(ounces, MassUnit.Ounce);
+            return new Mass(value, MassUnit.Ounce);
         }
 
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Picogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass FromPicograms(double picograms)
+        public static Mass FromPicograms(double value)
         {
-            return new Mass(picograms, MassUnit.Picogram);
+            return new Mass(value, MassUnit.Picogram);
         }
 
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Pound"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass FromPounds(double pounds)
+        public static Mass FromPounds(double value)
         {
-            return new Mass(pounds, MassUnit.Pound);
+            return new Mass(value, MassUnit.Pound);
         }
 
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.ShortHundredweight"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass FromShortHundredweight(double shorthundredweight)
+        public static Mass FromShortHundredweight(double value)
         {
-            return new Mass(shorthundredweight, MassUnit.ShortHundredweight);
+            return new Mass(value, MassUnit.ShortHundredweight);
         }
 
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.ShortTon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass FromShortTons(double shorttons)
+        public static Mass FromShortTons(double value)
         {
-            return new Mass(shorttons, MassUnit.ShortTon);
+            return new Mass(value, MassUnit.ShortTon);
         }
 
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Slug"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass FromSlugs(double slugs)
+        public static Mass FromSlugs(double value)
         {
-            return new Mass(slugs, MassUnit.Slug);
+            return new Mass(value, MassUnit.Slug);
         }
 
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.SolarMass"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass FromSolarMasses(double solarmasses)
+        public static Mass FromSolarMasses(double value)
         {
-            return new Mass(solarmasses, MassUnit.SolarMass);
+            return new Mass(value, MassUnit.SolarMass);
         }
 
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Stone"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass FromStone(double stone)
+        public static Mass FromStone(double value)
         {
-            return new Mass(stone, MassUnit.Stone);
+            return new Mass(value, MassUnit.Stone);
         }
 
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Tonne"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Mass FromTonnes(double tonnes)
+        public static Mass FromTonnes(double value)
         {
-            return new Mass(tonnes, MassUnit.Tonne);
+            return new Mass(value, MassUnit.Tonne);
         }
 
         /// <summary>

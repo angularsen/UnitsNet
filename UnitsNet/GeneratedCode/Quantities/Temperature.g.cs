@@ -290,90 +290,90 @@ namespace UnitsNet
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeCelsius"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Temperature FromDegreesCelsius(double degreescelsius)
+        public static Temperature FromDegreesCelsius(double value)
         {
-            return new Temperature(degreescelsius, TemperatureUnit.DegreeCelsius);
+            return new Temperature(value, TemperatureUnit.DegreeCelsius);
         }
 
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeDelisle"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Temperature FromDegreesDelisle(double degreesdelisle)
+        public static Temperature FromDegreesDelisle(double value)
         {
-            return new Temperature(degreesdelisle, TemperatureUnit.DegreeDelisle);
+            return new Temperature(value, TemperatureUnit.DegreeDelisle);
         }
 
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeFahrenheit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Temperature FromDegreesFahrenheit(double degreesfahrenheit)
+        public static Temperature FromDegreesFahrenheit(double value)
         {
-            return new Temperature(degreesfahrenheit, TemperatureUnit.DegreeFahrenheit);
+            return new Temperature(value, TemperatureUnit.DegreeFahrenheit);
         }
 
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeNewton"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Temperature FromDegreesNewton(double degreesnewton)
+        public static Temperature FromDegreesNewton(double value)
         {
-            return new Temperature(degreesnewton, TemperatureUnit.DegreeNewton);
+            return new Temperature(value, TemperatureUnit.DegreeNewton);
         }
 
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeRankine"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Temperature FromDegreesRankine(double degreesrankine)
+        public static Temperature FromDegreesRankine(double value)
         {
-            return new Temperature(degreesrankine, TemperatureUnit.DegreeRankine);
+            return new Temperature(value, TemperatureUnit.DegreeRankine);
         }
 
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeReaumur"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Temperature FromDegreesReaumur(double degreesreaumur)
+        public static Temperature FromDegreesReaumur(double value)
         {
-            return new Temperature(degreesreaumur, TemperatureUnit.DegreeReaumur);
+            return new Temperature(value, TemperatureUnit.DegreeReaumur);
         }
 
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeRoemer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Temperature FromDegreesRoemer(double degreesroemer)
+        public static Temperature FromDegreesRoemer(double value)
         {
-            return new Temperature(degreesroemer, TemperatureUnit.DegreeRoemer);
+            return new Temperature(value, TemperatureUnit.DegreeRoemer);
         }
 
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.Kelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Temperature FromKelvins(double kelvins)
+        public static Temperature FromKelvins(double value)
         {
-            return new Temperature(kelvins, TemperatureUnit.Kelvin);
+            return new Temperature(value, TemperatureUnit.Kelvin);
         }
 
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.MillidegreeCelsius"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Temperature FromMillidegreesCelsius(double millidegreescelsius)
+        public static Temperature FromMillidegreesCelsius(double value)
         {
-            return new Temperature(millidegreescelsius, TemperatureUnit.MillidegreeCelsius);
+            return new Temperature(value, TemperatureUnit.MillidegreeCelsius);
         }
 
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.SolarTemperature"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Temperature FromSolarTemperatures(double solartemperatures)
+        public static Temperature FromSolarTemperatures(double value)
         {
-            return new Temperature(solartemperatures, TemperatureUnit.SolarTemperature);
+            return new Temperature(value, TemperatureUnit.SolarTemperature);
         }
 
         /// <summary>

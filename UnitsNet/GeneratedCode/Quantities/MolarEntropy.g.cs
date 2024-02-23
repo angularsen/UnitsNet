@@ -237,27 +237,27 @@ namespace UnitsNet
         ///     Creates a <see cref="MolarEntropy"/> from <see cref="MolarEntropyUnit.JoulePerMoleKelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarEntropy FromJoulesPerMoleKelvin(double joulespermolekelvin)
+        public static MolarEntropy FromJoulesPerMoleKelvin(double value)
         {
-            return new MolarEntropy(joulespermolekelvin, MolarEntropyUnit.JoulePerMoleKelvin);
+            return new MolarEntropy(value, MolarEntropyUnit.JoulePerMoleKelvin);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarEntropy"/> from <see cref="MolarEntropyUnit.KilojoulePerMoleKelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarEntropy FromKilojoulesPerMoleKelvin(double kilojoulespermolekelvin)
+        public static MolarEntropy FromKilojoulesPerMoleKelvin(double value)
         {
-            return new MolarEntropy(kilojoulespermolekelvin, MolarEntropyUnit.KilojoulePerMoleKelvin);
+            return new MolarEntropy(value, MolarEntropyUnit.KilojoulePerMoleKelvin);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarEntropy"/> from <see cref="MolarEntropyUnit.MegajoulePerMoleKelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarEntropy FromMegajoulesPerMoleKelvin(double megajoulespermolekelvin)
+        public static MolarEntropy FromMegajoulesPerMoleKelvin(double value)
         {
-            return new MolarEntropy(megajoulespermolekelvin, MolarEntropyUnit.MegajoulePerMoleKelvin);
+            return new MolarEntropy(value, MolarEntropyUnit.MegajoulePerMoleKelvin);
         }
 
         /// <summary>

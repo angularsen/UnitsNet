@@ -305,90 +305,90 @@ namespace UnitsNet
         ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReciprocalLength FromInverseCentimeters(double inversecentimeters)
+        public static ReciprocalLength FromInverseCentimeters(double value)
         {
-            return new ReciprocalLength(inversecentimeters, ReciprocalLengthUnit.InverseCentimeter);
+            return new ReciprocalLength(value, ReciprocalLengthUnit.InverseCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReciprocalLength FromInverseFeet(double inversefeet)
+        public static ReciprocalLength FromInverseFeet(double value)
         {
-            return new ReciprocalLength(inversefeet, ReciprocalLengthUnit.InverseFoot);
+            return new ReciprocalLength(value, ReciprocalLengthUnit.InverseFoot);
         }
 
         /// <summary>
         ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReciprocalLength FromInverseInches(double inverseinches)
+        public static ReciprocalLength FromInverseInches(double value)
         {
-            return new ReciprocalLength(inverseinches, ReciprocalLengthUnit.InverseInch);
+            return new ReciprocalLength(value, ReciprocalLengthUnit.InverseInch);
         }
 
         /// <summary>
         ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReciprocalLength FromInverseMeters(double inversemeters)
+        public static ReciprocalLength FromInverseMeters(double value)
         {
-            return new ReciprocalLength(inversemeters, ReciprocalLengthUnit.InverseMeter);
+            return new ReciprocalLength(value, ReciprocalLengthUnit.InverseMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseMicroinch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReciprocalLength FromInverseMicroinches(double inversemicroinches)
+        public static ReciprocalLength FromInverseMicroinches(double value)
         {
-            return new ReciprocalLength(inversemicroinches, ReciprocalLengthUnit.InverseMicroinch);
+            return new ReciprocalLength(value, ReciprocalLengthUnit.InverseMicroinch);
         }
 
         /// <summary>
         ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseMil"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReciprocalLength FromInverseMils(double inversemils)
+        public static ReciprocalLength FromInverseMils(double value)
         {
-            return new ReciprocalLength(inversemils, ReciprocalLengthUnit.InverseMil);
+            return new ReciprocalLength(value, ReciprocalLengthUnit.InverseMil);
         }
 
         /// <summary>
         ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseMile"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReciprocalLength FromInverseMiles(double inversemiles)
+        public static ReciprocalLength FromInverseMiles(double value)
         {
-            return new ReciprocalLength(inversemiles, ReciprocalLengthUnit.InverseMile);
+            return new ReciprocalLength(value, ReciprocalLengthUnit.InverseMile);
         }
 
         /// <summary>
         ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReciprocalLength FromInverseMillimeters(double inversemillimeters)
+        public static ReciprocalLength FromInverseMillimeters(double value)
         {
-            return new ReciprocalLength(inversemillimeters, ReciprocalLengthUnit.InverseMillimeter);
+            return new ReciprocalLength(value, ReciprocalLengthUnit.InverseMillimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseUsSurveyFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReciprocalLength FromInverseUsSurveyFeet(double inverseussurveyfeet)
+        public static ReciprocalLength FromInverseUsSurveyFeet(double value)
         {
-            return new ReciprocalLength(inverseussurveyfeet, ReciprocalLengthUnit.InverseUsSurveyFoot);
+            return new ReciprocalLength(value, ReciprocalLengthUnit.InverseUsSurveyFoot);
         }
 
         /// <summary>
         ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseYard"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ReciprocalLength FromInverseYards(double inverseyards)
+        public static ReciprocalLength FromInverseYards(double value)
         {
-            return new ReciprocalLength(inverseyards, ReciprocalLengthUnit.InverseYard);
+            return new ReciprocalLength(value, ReciprocalLengthUnit.InverseYard);
         }
 
         /// <summary>

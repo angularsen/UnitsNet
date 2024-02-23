@@ -302,90 +302,90 @@ namespace UnitsNet
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.CandelaPerSquareFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromCandelasPerSquareFoot(double candelaspersquarefoot)
+        public static Luminance FromCandelasPerSquareFoot(double value)
         {
-            return new Luminance(candelaspersquarefoot, LuminanceUnit.CandelaPerSquareFoot);
+            return new Luminance(value, LuminanceUnit.CandelaPerSquareFoot);
         }
 
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.CandelaPerSquareInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromCandelasPerSquareInch(double candelaspersquareinch)
+        public static Luminance FromCandelasPerSquareInch(double value)
         {
-            return new Luminance(candelaspersquareinch, LuminanceUnit.CandelaPerSquareInch);
+            return new Luminance(value, LuminanceUnit.CandelaPerSquareInch);
         }
 
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.CandelaPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromCandelasPerSquareMeter(double candelaspersquaremeter)
+        public static Luminance FromCandelasPerSquareMeter(double value)
         {
-            return new Luminance(candelaspersquaremeter, LuminanceUnit.CandelaPerSquareMeter);
+            return new Luminance(value, LuminanceUnit.CandelaPerSquareMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.CenticandelaPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromCenticandelasPerSquareMeter(double centicandelaspersquaremeter)
+        public static Luminance FromCenticandelasPerSquareMeter(double value)
         {
-            return new Luminance(centicandelaspersquaremeter, LuminanceUnit.CenticandelaPerSquareMeter);
+            return new Luminance(value, LuminanceUnit.CenticandelaPerSquareMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.DecicandelaPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromDecicandelasPerSquareMeter(double decicandelaspersquaremeter)
+        public static Luminance FromDecicandelasPerSquareMeter(double value)
         {
-            return new Luminance(decicandelaspersquaremeter, LuminanceUnit.DecicandelaPerSquareMeter);
+            return new Luminance(value, LuminanceUnit.DecicandelaPerSquareMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.KilocandelaPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromKilocandelasPerSquareMeter(double kilocandelaspersquaremeter)
+        public static Luminance FromKilocandelasPerSquareMeter(double value)
         {
-            return new Luminance(kilocandelaspersquaremeter, LuminanceUnit.KilocandelaPerSquareMeter);
+            return new Luminance(value, LuminanceUnit.KilocandelaPerSquareMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.MicrocandelaPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromMicrocandelasPerSquareMeter(double microcandelaspersquaremeter)
+        public static Luminance FromMicrocandelasPerSquareMeter(double value)
         {
-            return new Luminance(microcandelaspersquaremeter, LuminanceUnit.MicrocandelaPerSquareMeter);
+            return new Luminance(value, LuminanceUnit.MicrocandelaPerSquareMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.MillicandelaPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromMillicandelasPerSquareMeter(double millicandelaspersquaremeter)
+        public static Luminance FromMillicandelasPerSquareMeter(double value)
         {
-            return new Luminance(millicandelaspersquaremeter, LuminanceUnit.MillicandelaPerSquareMeter);
+            return new Luminance(value, LuminanceUnit.MillicandelaPerSquareMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.NanocandelaPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromNanocandelasPerSquareMeter(double nanocandelaspersquaremeter)
+        public static Luminance FromNanocandelasPerSquareMeter(double value)
         {
-            return new Luminance(nanocandelaspersquaremeter, LuminanceUnit.NanocandelaPerSquareMeter);
+            return new Luminance(value, LuminanceUnit.NanocandelaPerSquareMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.Nit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromNits(double nits)
+        public static Luminance FromNits(double value)
         {
-            return new Luminance(nits, LuminanceUnit.Nit);
+            return new Luminance(value, LuminanceUnit.Nit);
         }
 
         /// <summary>
