@@ -33,6 +33,7 @@ namespace UnitsNet
         public static TQuantity Sum<TQuantity>(this IEnumerable<TQuantity> source, Enum unitType)
             where TQuantity : IQuantity
         {
+            Half x = (Half)3f;
             return (TQuantity) Quantity.From(source.Sum(x => x.As(unitType)), unitType);
         }
 
