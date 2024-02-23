@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct Angle :
-        IArithmeticQuantity<Angle, AngleUnit, double>,
+        IArithmeticQuantity<Angle, AngleUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Angle, Duration, RotationalSpeed>,
         IDivisionOperators<Angle, TimeSpan, RotationalSpeed>,
@@ -169,7 +169,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -347,144 +347,128 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Arcminute"/>.
         /// </summary>
-        public static Angle FromArcminutes(QuantityValue arcminutes)
+        public static Angle FromArcminutes(double value)
         {
-            double value = (double) arcminutes;
             return new Angle(value, AngleUnit.Arcminute);
         }
 
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Arcsecond"/>.
         /// </summary>
-        public static Angle FromArcseconds(QuantityValue arcseconds)
+        public static Angle FromArcseconds(double value)
         {
-            double value = (double) arcseconds;
             return new Angle(value, AngleUnit.Arcsecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Centiradian"/>.
         /// </summary>
-        public static Angle FromCentiradians(QuantityValue centiradians)
+        public static Angle FromCentiradians(double value)
         {
-            double value = (double) centiradians;
             return new Angle(value, AngleUnit.Centiradian);
         }
 
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Deciradian"/>.
         /// </summary>
-        public static Angle FromDeciradians(QuantityValue deciradians)
+        public static Angle FromDeciradians(double value)
         {
-            double value = (double) deciradians;
             return new Angle(value, AngleUnit.Deciradian);
         }
 
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Degree"/>.
         /// </summary>
-        public static Angle FromDegrees(QuantityValue degrees)
+        public static Angle FromDegrees(double value)
         {
-            double value = (double) degrees;
             return new Angle(value, AngleUnit.Degree);
         }
 
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Gradian"/>.
         /// </summary>
-        public static Angle FromGradians(QuantityValue gradians)
+        public static Angle FromGradians(double value)
         {
-            double value = (double) gradians;
             return new Angle(value, AngleUnit.Gradian);
         }
 
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Microdegree"/>.
         /// </summary>
-        public static Angle FromMicrodegrees(QuantityValue microdegrees)
+        public static Angle FromMicrodegrees(double value)
         {
-            double value = (double) microdegrees;
             return new Angle(value, AngleUnit.Microdegree);
         }
 
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Microradian"/>.
         /// </summary>
-        public static Angle FromMicroradians(QuantityValue microradians)
+        public static Angle FromMicroradians(double value)
         {
-            double value = (double) microradians;
             return new Angle(value, AngleUnit.Microradian);
         }
 
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Millidegree"/>.
         /// </summary>
-        public static Angle FromMillidegrees(QuantityValue millidegrees)
+        public static Angle FromMillidegrees(double value)
         {
-            double value = (double) millidegrees;
             return new Angle(value, AngleUnit.Millidegree);
         }
 
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Milliradian"/>.
         /// </summary>
-        public static Angle FromMilliradians(QuantityValue milliradians)
+        public static Angle FromMilliradians(double value)
         {
-            double value = (double) milliradians;
             return new Angle(value, AngleUnit.Milliradian);
         }
 
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Nanodegree"/>.
         /// </summary>
-        public static Angle FromNanodegrees(QuantityValue nanodegrees)
+        public static Angle FromNanodegrees(double value)
         {
-            double value = (double) nanodegrees;
             return new Angle(value, AngleUnit.Nanodegree);
         }
 
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Nanoradian"/>.
         /// </summary>
-        public static Angle FromNanoradians(QuantityValue nanoradians)
+        public static Angle FromNanoradians(double value)
         {
-            double value = (double) nanoradians;
             return new Angle(value, AngleUnit.Nanoradian);
         }
 
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.NatoMil"/>.
         /// </summary>
-        public static Angle FromNatoMils(QuantityValue natomils)
+        public static Angle FromNatoMils(double value)
         {
-            double value = (double) natomils;
             return new Angle(value, AngleUnit.NatoMil);
         }
 
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Radian"/>.
         /// </summary>
-        public static Angle FromRadians(QuantityValue radians)
+        public static Angle FromRadians(double value)
         {
-            double value = (double) radians;
             return new Angle(value, AngleUnit.Radian);
         }
 
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Revolution"/>.
         /// </summary>
-        public static Angle FromRevolutions(QuantityValue revolutions)
+        public static Angle FromRevolutions(double value)
         {
-            double value = (double) revolutions;
             return new Angle(value, AngleUnit.Revolution);
         }
 
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Tilt"/>.
         /// </summary>
-        public static Angle FromTilt(QuantityValue tilt)
+        public static Angle FromTilt(double value)
         {
-            double value = (double) tilt;
             return new Angle(value, AngleUnit.Tilt);
         }
 
@@ -494,9 +478,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Angle unit value.</returns>
-        public static Angle From(QuantityValue value, AngleUnit fromUnit)
+        public static Angle From(double value, AngleUnit fromUnit)
         {
-            return new Angle((double)value, fromUnit);
+            return new Angle(value, fromUnit);
         }
 
         #endregion
@@ -933,15 +917,6 @@ namespace UnitsNet
             if (!(unit is AngleUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AngleUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is AngleUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AngleUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -1081,18 +1056,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<AngleUnit> IQuantity<AngleUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not AngleUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AngleUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

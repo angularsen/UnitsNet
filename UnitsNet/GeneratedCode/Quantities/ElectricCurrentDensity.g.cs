@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     public readonly partial struct ElectricCurrentDensity :
-        IArithmeticQuantity<ElectricCurrentDensity, ElectricCurrentDensityUnit, double>,
+        IArithmeticQuantity<ElectricCurrentDensity, ElectricCurrentDensityUnit>,
         IComparable,
         IComparable<ElectricCurrentDensity>,
         IConvertible,
@@ -151,7 +151,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -238,27 +238,24 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCurrentDensity"/> from <see cref="ElectricCurrentDensityUnit.AmperePerSquareFoot"/>.
         /// </summary>
-        public static ElectricCurrentDensity FromAmperesPerSquareFoot(QuantityValue amperespersquarefoot)
+        public static ElectricCurrentDensity FromAmperesPerSquareFoot(double value)
         {
-            double value = (double) amperespersquarefoot;
             return new ElectricCurrentDensity(value, ElectricCurrentDensityUnit.AmperePerSquareFoot);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricCurrentDensity"/> from <see cref="ElectricCurrentDensityUnit.AmperePerSquareInch"/>.
         /// </summary>
-        public static ElectricCurrentDensity FromAmperesPerSquareInch(QuantityValue amperespersquareinch)
+        public static ElectricCurrentDensity FromAmperesPerSquareInch(double value)
         {
-            double value = (double) amperespersquareinch;
             return new ElectricCurrentDensity(value, ElectricCurrentDensityUnit.AmperePerSquareInch);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricCurrentDensity"/> from <see cref="ElectricCurrentDensityUnit.AmperePerSquareMeter"/>.
         /// </summary>
-        public static ElectricCurrentDensity FromAmperesPerSquareMeter(QuantityValue amperespersquaremeter)
+        public static ElectricCurrentDensity FromAmperesPerSquareMeter(double value)
         {
-            double value = (double) amperespersquaremeter;
             return new ElectricCurrentDensity(value, ElectricCurrentDensityUnit.AmperePerSquareMeter);
         }
 
@@ -268,9 +265,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricCurrentDensity unit value.</returns>
-        public static ElectricCurrentDensity From(QuantityValue value, ElectricCurrentDensityUnit fromUnit)
+        public static ElectricCurrentDensity From(double value, ElectricCurrentDensityUnit fromUnit)
         {
-            return new ElectricCurrentDensity((double)value, fromUnit);
+            return new ElectricCurrentDensity(value, fromUnit);
         }
 
         #endregion
@@ -685,15 +682,6 @@ namespace UnitsNet
             if (!(unit is ElectricCurrentDensityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricCurrentDensityUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is ElectricCurrentDensityUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricCurrentDensityUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -807,18 +795,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ElectricCurrentDensityUnit> IQuantity<ElectricCurrentDensityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not ElectricCurrentDensityUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricCurrentDensityUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

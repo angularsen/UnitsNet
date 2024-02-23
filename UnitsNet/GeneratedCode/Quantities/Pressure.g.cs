@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct Pressure :
-        IArithmeticQuantity<Pressure, PressureUnit, double>,
+        IArithmeticQuantity<Pressure, PressureUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<Pressure, Area, Force>,
         IDivisionOperators<Pressure, ReciprocalArea, Force>,
@@ -206,7 +206,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -615,441 +615,392 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Atmosphere"/>.
         /// </summary>
-        public static Pressure FromAtmospheres(QuantityValue atmospheres)
+        public static Pressure FromAtmospheres(double value)
         {
-            double value = (double) atmospheres;
             return new Pressure(value, PressureUnit.Atmosphere);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Bar"/>.
         /// </summary>
-        public static Pressure FromBars(QuantityValue bars)
+        public static Pressure FromBars(double value)
         {
-            double value = (double) bars;
             return new Pressure(value, PressureUnit.Bar);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Centibar"/>.
         /// </summary>
-        public static Pressure FromCentibars(QuantityValue centibars)
+        public static Pressure FromCentibars(double value)
         {
-            double value = (double) centibars;
             return new Pressure(value, PressureUnit.Centibar);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.CentimeterOfWaterColumn"/>.
         /// </summary>
-        public static Pressure FromCentimetersOfWaterColumn(QuantityValue centimetersofwatercolumn)
+        public static Pressure FromCentimetersOfWaterColumn(double value)
         {
-            double value = (double) centimetersofwatercolumn;
             return new Pressure(value, PressureUnit.CentimeterOfWaterColumn);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Decapascal"/>.
         /// </summary>
-        public static Pressure FromDecapascals(QuantityValue decapascals)
+        public static Pressure FromDecapascals(double value)
         {
-            double value = (double) decapascals;
             return new Pressure(value, PressureUnit.Decapascal);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Decibar"/>.
         /// </summary>
-        public static Pressure FromDecibars(QuantityValue decibars)
+        public static Pressure FromDecibars(double value)
         {
-            double value = (double) decibars;
             return new Pressure(value, PressureUnit.Decibar);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.DynePerSquareCentimeter"/>.
         /// </summary>
-        public static Pressure FromDynesPerSquareCentimeter(QuantityValue dynespersquarecentimeter)
+        public static Pressure FromDynesPerSquareCentimeter(double value)
         {
-            double value = (double) dynespersquarecentimeter;
             return new Pressure(value, PressureUnit.DynePerSquareCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.FootOfElevation"/>.
         /// </summary>
-        public static Pressure FromFeetOfElevation(QuantityValue feetofelevation)
+        public static Pressure FromFeetOfElevation(double value)
         {
-            double value = (double) feetofelevation;
             return new Pressure(value, PressureUnit.FootOfElevation);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.FootOfHead"/>.
         /// </summary>
-        public static Pressure FromFeetOfHead(QuantityValue feetofhead)
+        public static Pressure FromFeetOfHead(double value)
         {
-            double value = (double) feetofhead;
             return new Pressure(value, PressureUnit.FootOfHead);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Gigapascal"/>.
         /// </summary>
-        public static Pressure FromGigapascals(QuantityValue gigapascals)
+        public static Pressure FromGigapascals(double value)
         {
-            double value = (double) gigapascals;
             return new Pressure(value, PressureUnit.Gigapascal);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Hectopascal"/>.
         /// </summary>
-        public static Pressure FromHectopascals(QuantityValue hectopascals)
+        public static Pressure FromHectopascals(double value)
         {
-            double value = (double) hectopascals;
             return new Pressure(value, PressureUnit.Hectopascal);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.InchOfMercury"/>.
         /// </summary>
-        public static Pressure FromInchesOfMercury(QuantityValue inchesofmercury)
+        public static Pressure FromInchesOfMercury(double value)
         {
-            double value = (double) inchesofmercury;
             return new Pressure(value, PressureUnit.InchOfMercury);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.InchOfWaterColumn"/>.
         /// </summary>
-        public static Pressure FromInchesOfWaterColumn(QuantityValue inchesofwatercolumn)
+        public static Pressure FromInchesOfWaterColumn(double value)
         {
-            double value = (double) inchesofwatercolumn;
             return new Pressure(value, PressureUnit.InchOfWaterColumn);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Kilobar"/>.
         /// </summary>
-        public static Pressure FromKilobars(QuantityValue kilobars)
+        public static Pressure FromKilobars(double value)
         {
-            double value = (double) kilobars;
             return new Pressure(value, PressureUnit.Kilobar);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.KilogramForcePerSquareCentimeter"/>.
         /// </summary>
-        public static Pressure FromKilogramsForcePerSquareCentimeter(QuantityValue kilogramsforcepersquarecentimeter)
+        public static Pressure FromKilogramsForcePerSquareCentimeter(double value)
         {
-            double value = (double) kilogramsforcepersquarecentimeter;
             return new Pressure(value, PressureUnit.KilogramForcePerSquareCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.KilogramForcePerSquareMeter"/>.
         /// </summary>
-        public static Pressure FromKilogramsForcePerSquareMeter(QuantityValue kilogramsforcepersquaremeter)
+        public static Pressure FromKilogramsForcePerSquareMeter(double value)
         {
-            double value = (double) kilogramsforcepersquaremeter;
             return new Pressure(value, PressureUnit.KilogramForcePerSquareMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.KilogramForcePerSquareMillimeter"/>.
         /// </summary>
-        public static Pressure FromKilogramsForcePerSquareMillimeter(QuantityValue kilogramsforcepersquaremillimeter)
+        public static Pressure FromKilogramsForcePerSquareMillimeter(double value)
         {
-            double value = (double) kilogramsforcepersquaremillimeter;
             return new Pressure(value, PressureUnit.KilogramForcePerSquareMillimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.KilonewtonPerSquareCentimeter"/>.
         /// </summary>
-        public static Pressure FromKilonewtonsPerSquareCentimeter(QuantityValue kilonewtonspersquarecentimeter)
+        public static Pressure FromKilonewtonsPerSquareCentimeter(double value)
         {
-            double value = (double) kilonewtonspersquarecentimeter;
             return new Pressure(value, PressureUnit.KilonewtonPerSquareCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.KilonewtonPerSquareMeter"/>.
         /// </summary>
-        public static Pressure FromKilonewtonsPerSquareMeter(QuantityValue kilonewtonspersquaremeter)
+        public static Pressure FromKilonewtonsPerSquareMeter(double value)
         {
-            double value = (double) kilonewtonspersquaremeter;
             return new Pressure(value, PressureUnit.KilonewtonPerSquareMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.KilonewtonPerSquareMillimeter"/>.
         /// </summary>
-        public static Pressure FromKilonewtonsPerSquareMillimeter(QuantityValue kilonewtonspersquaremillimeter)
+        public static Pressure FromKilonewtonsPerSquareMillimeter(double value)
         {
-            double value = (double) kilonewtonspersquaremillimeter;
             return new Pressure(value, PressureUnit.KilonewtonPerSquareMillimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Kilopascal"/>.
         /// </summary>
-        public static Pressure FromKilopascals(QuantityValue kilopascals)
+        public static Pressure FromKilopascals(double value)
         {
-            double value = (double) kilopascals;
             return new Pressure(value, PressureUnit.Kilopascal);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.KilopoundForcePerSquareFoot"/>.
         /// </summary>
-        public static Pressure FromKilopoundsForcePerSquareFoot(QuantityValue kilopoundsforcepersquarefoot)
+        public static Pressure FromKilopoundsForcePerSquareFoot(double value)
         {
-            double value = (double) kilopoundsforcepersquarefoot;
             return new Pressure(value, PressureUnit.KilopoundForcePerSquareFoot);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.KilopoundForcePerSquareInch"/>.
         /// </summary>
-        public static Pressure FromKilopoundsForcePerSquareInch(QuantityValue kilopoundsforcepersquareinch)
+        public static Pressure FromKilopoundsForcePerSquareInch(double value)
         {
-            double value = (double) kilopoundsforcepersquareinch;
             return new Pressure(value, PressureUnit.KilopoundForcePerSquareInch);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.KilopoundForcePerSquareMil"/>.
         /// </summary>
-        public static Pressure FromKilopoundsForcePerSquareMil(QuantityValue kilopoundsforcepersquaremil)
+        public static Pressure FromKilopoundsForcePerSquareMil(double value)
         {
-            double value = (double) kilopoundsforcepersquaremil;
             return new Pressure(value, PressureUnit.KilopoundForcePerSquareMil);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Megabar"/>.
         /// </summary>
-        public static Pressure FromMegabars(QuantityValue megabars)
+        public static Pressure FromMegabars(double value)
         {
-            double value = (double) megabars;
             return new Pressure(value, PressureUnit.Megabar);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.MeganewtonPerSquareMeter"/>.
         /// </summary>
-        public static Pressure FromMeganewtonsPerSquareMeter(QuantityValue meganewtonspersquaremeter)
+        public static Pressure FromMeganewtonsPerSquareMeter(double value)
         {
-            double value = (double) meganewtonspersquaremeter;
             return new Pressure(value, PressureUnit.MeganewtonPerSquareMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Megapascal"/>.
         /// </summary>
-        public static Pressure FromMegapascals(QuantityValue megapascals)
+        public static Pressure FromMegapascals(double value)
         {
-            double value = (double) megapascals;
             return new Pressure(value, PressureUnit.Megapascal);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.MeterOfElevation"/>.
         /// </summary>
-        public static Pressure FromMetersOfElevation(QuantityValue metersofelevation)
+        public static Pressure FromMetersOfElevation(double value)
         {
-            double value = (double) metersofelevation;
             return new Pressure(value, PressureUnit.MeterOfElevation);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.MeterOfHead"/>.
         /// </summary>
-        public static Pressure FromMetersOfHead(QuantityValue metersofhead)
+        public static Pressure FromMetersOfHead(double value)
         {
-            double value = (double) metersofhead;
             return new Pressure(value, PressureUnit.MeterOfHead);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.MeterOfWaterColumn"/>.
         /// </summary>
-        public static Pressure FromMetersOfWaterColumn(QuantityValue metersofwatercolumn)
+        public static Pressure FromMetersOfWaterColumn(double value)
         {
-            double value = (double) metersofwatercolumn;
             return new Pressure(value, PressureUnit.MeterOfWaterColumn);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Microbar"/>.
         /// </summary>
-        public static Pressure FromMicrobars(QuantityValue microbars)
+        public static Pressure FromMicrobars(double value)
         {
-            double value = (double) microbars;
             return new Pressure(value, PressureUnit.Microbar);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Micropascal"/>.
         /// </summary>
-        public static Pressure FromMicropascals(QuantityValue micropascals)
+        public static Pressure FromMicropascals(double value)
         {
-            double value = (double) micropascals;
             return new Pressure(value, PressureUnit.Micropascal);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Millibar"/>.
         /// </summary>
-        public static Pressure FromMillibars(QuantityValue millibars)
+        public static Pressure FromMillibars(double value)
         {
-            double value = (double) millibars;
             return new Pressure(value, PressureUnit.Millibar);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.MillimeterOfMercury"/>.
         /// </summary>
-        public static Pressure FromMillimetersOfMercury(QuantityValue millimetersofmercury)
+        public static Pressure FromMillimetersOfMercury(double value)
         {
-            double value = (double) millimetersofmercury;
             return new Pressure(value, PressureUnit.MillimeterOfMercury);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.MillimeterOfWaterColumn"/>.
         /// </summary>
-        public static Pressure FromMillimetersOfWaterColumn(QuantityValue millimetersofwatercolumn)
+        public static Pressure FromMillimetersOfWaterColumn(double value)
         {
-            double value = (double) millimetersofwatercolumn;
             return new Pressure(value, PressureUnit.MillimeterOfWaterColumn);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Millipascal"/>.
         /// </summary>
-        public static Pressure FromMillipascals(QuantityValue millipascals)
+        public static Pressure FromMillipascals(double value)
         {
-            double value = (double) millipascals;
             return new Pressure(value, PressureUnit.Millipascal);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.NewtonPerSquareCentimeter"/>.
         /// </summary>
-        public static Pressure FromNewtonsPerSquareCentimeter(QuantityValue newtonspersquarecentimeter)
+        public static Pressure FromNewtonsPerSquareCentimeter(double value)
         {
-            double value = (double) newtonspersquarecentimeter;
             return new Pressure(value, PressureUnit.NewtonPerSquareCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.NewtonPerSquareMeter"/>.
         /// </summary>
-        public static Pressure FromNewtonsPerSquareMeter(QuantityValue newtonspersquaremeter)
+        public static Pressure FromNewtonsPerSquareMeter(double value)
         {
-            double value = (double) newtonspersquaremeter;
             return new Pressure(value, PressureUnit.NewtonPerSquareMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.NewtonPerSquareMillimeter"/>.
         /// </summary>
-        public static Pressure FromNewtonsPerSquareMillimeter(QuantityValue newtonspersquaremillimeter)
+        public static Pressure FromNewtonsPerSquareMillimeter(double value)
         {
-            double value = (double) newtonspersquaremillimeter;
             return new Pressure(value, PressureUnit.NewtonPerSquareMillimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Pascal"/>.
         /// </summary>
-        public static Pressure FromPascals(QuantityValue pascals)
+        public static Pressure FromPascals(double value)
         {
-            double value = (double) pascals;
             return new Pressure(value, PressureUnit.Pascal);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.PoundForcePerSquareFoot"/>.
         /// </summary>
-        public static Pressure FromPoundsForcePerSquareFoot(QuantityValue poundsforcepersquarefoot)
+        public static Pressure FromPoundsForcePerSquareFoot(double value)
         {
-            double value = (double) poundsforcepersquarefoot;
             return new Pressure(value, PressureUnit.PoundForcePerSquareFoot);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.PoundForcePerSquareInch"/>.
         /// </summary>
-        public static Pressure FromPoundsForcePerSquareInch(QuantityValue poundsforcepersquareinch)
+        public static Pressure FromPoundsForcePerSquareInch(double value)
         {
-            double value = (double) poundsforcepersquareinch;
             return new Pressure(value, PressureUnit.PoundForcePerSquareInch);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.PoundForcePerSquareMil"/>.
         /// </summary>
-        public static Pressure FromPoundsForcePerSquareMil(QuantityValue poundsforcepersquaremil)
+        public static Pressure FromPoundsForcePerSquareMil(double value)
         {
-            double value = (double) poundsforcepersquaremil;
             return new Pressure(value, PressureUnit.PoundForcePerSquareMil);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.PoundPerInchSecondSquared"/>.
         /// </summary>
-        public static Pressure FromPoundsPerInchSecondSquared(QuantityValue poundsperinchsecondsquared)
+        public static Pressure FromPoundsPerInchSecondSquared(double value)
         {
-            double value = (double) poundsperinchsecondsquared;
             return new Pressure(value, PressureUnit.PoundPerInchSecondSquared);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.TechnicalAtmosphere"/>.
         /// </summary>
-        public static Pressure FromTechnicalAtmospheres(QuantityValue technicalatmospheres)
+        public static Pressure FromTechnicalAtmospheres(double value)
         {
-            double value = (double) technicalatmospheres;
             return new Pressure(value, PressureUnit.TechnicalAtmosphere);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.TonneForcePerSquareCentimeter"/>.
         /// </summary>
-        public static Pressure FromTonnesForcePerSquareCentimeter(QuantityValue tonnesforcepersquarecentimeter)
+        public static Pressure FromTonnesForcePerSquareCentimeter(double value)
         {
-            double value = (double) tonnesforcepersquarecentimeter;
             return new Pressure(value, PressureUnit.TonneForcePerSquareCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.TonneForcePerSquareMeter"/>.
         /// </summary>
-        public static Pressure FromTonnesForcePerSquareMeter(QuantityValue tonnesforcepersquaremeter)
+        public static Pressure FromTonnesForcePerSquareMeter(double value)
         {
-            double value = (double) tonnesforcepersquaremeter;
             return new Pressure(value, PressureUnit.TonneForcePerSquareMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.TonneForcePerSquareMillimeter"/>.
         /// </summary>
-        public static Pressure FromTonnesForcePerSquareMillimeter(QuantityValue tonnesforcepersquaremillimeter)
+        public static Pressure FromTonnesForcePerSquareMillimeter(double value)
         {
-            double value = (double) tonnesforcepersquaremillimeter;
             return new Pressure(value, PressureUnit.TonneForcePerSquareMillimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Torr"/>.
         /// </summary>
-        public static Pressure FromTorrs(QuantityValue torrs)
+        public static Pressure FromTorrs(double value)
         {
-            double value = (double) torrs;
             return new Pressure(value, PressureUnit.Torr);
         }
 
@@ -1059,9 +1010,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Pressure unit value.</returns>
-        public static Pressure From(QuantityValue value, PressureUnit fromUnit)
+        public static Pressure From(double value, PressureUnit fromUnit)
         {
-            return new Pressure((double)value, fromUnit);
+            return new Pressure(value, fromUnit);
         }
 
         #endregion
@@ -1522,15 +1473,6 @@ namespace UnitsNet
             if (!(unit is PressureUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PressureUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is PressureUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PressureUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -1736,18 +1678,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<PressureUnit> IQuantity<PressureUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not PressureUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PressureUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

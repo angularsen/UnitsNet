@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToSolidAngle
     /// </summary>
     public static class NumberToSolidAngleExtensions
     {
-        /// <inheritdoc cref="SolidAngle.FromSteradians(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="SolidAngle.FromSteradians(double)" />
         public static SolidAngle Steradians<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

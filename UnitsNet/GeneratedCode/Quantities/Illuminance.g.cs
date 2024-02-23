@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     public readonly partial struct Illuminance :
-        IArithmeticQuantity<Illuminance, IlluminanceUnit, double>,
+        IArithmeticQuantity<Illuminance, IlluminanceUnit>,
         IComparable,
         IComparable<Illuminance>,
         IConvertible,
@@ -152,7 +152,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -246,36 +246,32 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Illuminance"/> from <see cref="IlluminanceUnit.Kilolux"/>.
         /// </summary>
-        public static Illuminance FromKilolux(QuantityValue kilolux)
+        public static Illuminance FromKilolux(double value)
         {
-            double value = (double) kilolux;
             return new Illuminance(value, IlluminanceUnit.Kilolux);
         }
 
         /// <summary>
         ///     Creates a <see cref="Illuminance"/> from <see cref="IlluminanceUnit.Lux"/>.
         /// </summary>
-        public static Illuminance FromLux(QuantityValue lux)
+        public static Illuminance FromLux(double value)
         {
-            double value = (double) lux;
             return new Illuminance(value, IlluminanceUnit.Lux);
         }
 
         /// <summary>
         ///     Creates a <see cref="Illuminance"/> from <see cref="IlluminanceUnit.Megalux"/>.
         /// </summary>
-        public static Illuminance FromMegalux(QuantityValue megalux)
+        public static Illuminance FromMegalux(double value)
         {
-            double value = (double) megalux;
             return new Illuminance(value, IlluminanceUnit.Megalux);
         }
 
         /// <summary>
         ///     Creates a <see cref="Illuminance"/> from <see cref="IlluminanceUnit.Millilux"/>.
         /// </summary>
-        public static Illuminance FromMillilux(QuantityValue millilux)
+        public static Illuminance FromMillilux(double value)
         {
-            double value = (double) millilux;
             return new Illuminance(value, IlluminanceUnit.Millilux);
         }
 
@@ -285,9 +281,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Illuminance unit value.</returns>
-        public static Illuminance From(QuantityValue value, IlluminanceUnit fromUnit)
+        public static Illuminance From(double value, IlluminanceUnit fromUnit)
         {
-            return new Illuminance((double)value, fromUnit);
+            return new Illuminance(value, fromUnit);
         }
 
         #endregion
@@ -702,15 +698,6 @@ namespace UnitsNet
             if (!(unit is IlluminanceUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(IlluminanceUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is IlluminanceUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(IlluminanceUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -826,18 +813,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<IlluminanceUnit> IQuantity<IlluminanceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not IlluminanceUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(IlluminanceUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

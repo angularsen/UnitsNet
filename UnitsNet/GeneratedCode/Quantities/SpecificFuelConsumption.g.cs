@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     public readonly partial struct SpecificFuelConsumption :
-        IArithmeticQuantity<SpecificFuelConsumption, SpecificFuelConsumptionUnit, double>,
+        IArithmeticQuantity<SpecificFuelConsumption, SpecificFuelConsumptionUnit>,
         IComparable,
         IComparable<SpecificFuelConsumption>,
         IConvertible,
@@ -152,7 +152,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -246,36 +246,32 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificFuelConsumption"/> from <see cref="SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond"/>.
         /// </summary>
-        public static SpecificFuelConsumption FromGramsPerKiloNewtonSecond(QuantityValue gramsperkilonewtonsecond)
+        public static SpecificFuelConsumption FromGramsPerKiloNewtonSecond(double value)
         {
-            double value = (double) gramsperkilonewtonsecond;
             return new SpecificFuelConsumption(value, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="SpecificFuelConsumption"/> from <see cref="SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour"/>.
         /// </summary>
-        public static SpecificFuelConsumption FromKilogramsPerKilogramForceHour(QuantityValue kilogramsperkilogramforcehour)
+        public static SpecificFuelConsumption FromKilogramsPerKilogramForceHour(double value)
         {
-            double value = (double) kilogramsperkilogramforcehour;
             return new SpecificFuelConsumption(value, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="SpecificFuelConsumption"/> from <see cref="SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond"/>.
         /// </summary>
-        public static SpecificFuelConsumption FromKilogramsPerKiloNewtonSecond(QuantityValue kilogramsperkilonewtonsecond)
+        public static SpecificFuelConsumption FromKilogramsPerKiloNewtonSecond(double value)
         {
-            double value = (double) kilogramsperkilonewtonsecond;
             return new SpecificFuelConsumption(value, SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="SpecificFuelConsumption"/> from <see cref="SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour"/>.
         /// </summary>
-        public static SpecificFuelConsumption FromPoundsMassPerPoundForceHour(QuantityValue poundsmassperpoundforcehour)
+        public static SpecificFuelConsumption FromPoundsMassPerPoundForceHour(double value)
         {
-            double value = (double) poundsmassperpoundforcehour;
             return new SpecificFuelConsumption(value, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour);
         }
 
@@ -285,9 +281,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>SpecificFuelConsumption unit value.</returns>
-        public static SpecificFuelConsumption From(QuantityValue value, SpecificFuelConsumptionUnit fromUnit)
+        public static SpecificFuelConsumption From(double value, SpecificFuelConsumptionUnit fromUnit)
         {
-            return new SpecificFuelConsumption((double)value, fromUnit);
+            return new SpecificFuelConsumption(value, fromUnit);
         }
 
         #endregion
@@ -702,15 +698,6 @@ namespace UnitsNet
             if (!(unit is SpecificFuelConsumptionUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificFuelConsumptionUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is SpecificFuelConsumptionUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificFuelConsumptionUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -826,18 +813,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<SpecificFuelConsumptionUnit> IQuantity<SpecificFuelConsumptionUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not SpecificFuelConsumptionUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificFuelConsumptionUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

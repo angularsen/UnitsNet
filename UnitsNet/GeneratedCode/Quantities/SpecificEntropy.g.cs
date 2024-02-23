@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct SpecificEntropy :
-        IArithmeticQuantity<SpecificEntropy, SpecificEntropyUnit, double>,
+        IArithmeticQuantity<SpecificEntropy, SpecificEntropyUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<SpecificEntropy, Mass, Entropy>,
         IMultiplyOperators<SpecificEntropy, TemperatureDelta, SpecificEnergy>,
@@ -161,7 +161,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -290,81 +290,72 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEntropy"/> from <see cref="SpecificEntropyUnit.BtuPerPoundFahrenheit"/>.
         /// </summary>
-        public static SpecificEntropy FromBtusPerPoundFahrenheit(QuantityValue btusperpoundfahrenheit)
+        public static SpecificEntropy FromBtusPerPoundFahrenheit(double value)
         {
-            double value = (double) btusperpoundfahrenheit;
             return new SpecificEntropy(value, SpecificEntropyUnit.BtuPerPoundFahrenheit);
         }
 
         /// <summary>
         ///     Creates a <see cref="SpecificEntropy"/> from <see cref="SpecificEntropyUnit.CaloriePerGramKelvin"/>.
         /// </summary>
-        public static SpecificEntropy FromCaloriesPerGramKelvin(QuantityValue caloriespergramkelvin)
+        public static SpecificEntropy FromCaloriesPerGramKelvin(double value)
         {
-            double value = (double) caloriespergramkelvin;
             return new SpecificEntropy(value, SpecificEntropyUnit.CaloriePerGramKelvin);
         }
 
         /// <summary>
         ///     Creates a <see cref="SpecificEntropy"/> from <see cref="SpecificEntropyUnit.JoulePerKilogramDegreeCelsius"/>.
         /// </summary>
-        public static SpecificEntropy FromJoulesPerKilogramDegreeCelsius(QuantityValue joulesperkilogramdegreecelsius)
+        public static SpecificEntropy FromJoulesPerKilogramDegreeCelsius(double value)
         {
-            double value = (double) joulesperkilogramdegreecelsius;
             return new SpecificEntropy(value, SpecificEntropyUnit.JoulePerKilogramDegreeCelsius);
         }
 
         /// <summary>
         ///     Creates a <see cref="SpecificEntropy"/> from <see cref="SpecificEntropyUnit.JoulePerKilogramKelvin"/>.
         /// </summary>
-        public static SpecificEntropy FromJoulesPerKilogramKelvin(QuantityValue joulesperkilogramkelvin)
+        public static SpecificEntropy FromJoulesPerKilogramKelvin(double value)
         {
-            double value = (double) joulesperkilogramkelvin;
             return new SpecificEntropy(value, SpecificEntropyUnit.JoulePerKilogramKelvin);
         }
 
         /// <summary>
         ///     Creates a <see cref="SpecificEntropy"/> from <see cref="SpecificEntropyUnit.KilocaloriePerGramKelvin"/>.
         /// </summary>
-        public static SpecificEntropy FromKilocaloriesPerGramKelvin(QuantityValue kilocaloriespergramkelvin)
+        public static SpecificEntropy FromKilocaloriesPerGramKelvin(double value)
         {
-            double value = (double) kilocaloriespergramkelvin;
             return new SpecificEntropy(value, SpecificEntropyUnit.KilocaloriePerGramKelvin);
         }
 
         /// <summary>
         ///     Creates a <see cref="SpecificEntropy"/> from <see cref="SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius"/>.
         /// </summary>
-        public static SpecificEntropy FromKilojoulesPerKilogramDegreeCelsius(QuantityValue kilojoulesperkilogramdegreecelsius)
+        public static SpecificEntropy FromKilojoulesPerKilogramDegreeCelsius(double value)
         {
-            double value = (double) kilojoulesperkilogramdegreecelsius;
             return new SpecificEntropy(value, SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius);
         }
 
         /// <summary>
         ///     Creates a <see cref="SpecificEntropy"/> from <see cref="SpecificEntropyUnit.KilojoulePerKilogramKelvin"/>.
         /// </summary>
-        public static SpecificEntropy FromKilojoulesPerKilogramKelvin(QuantityValue kilojoulesperkilogramkelvin)
+        public static SpecificEntropy FromKilojoulesPerKilogramKelvin(double value)
         {
-            double value = (double) kilojoulesperkilogramkelvin;
             return new SpecificEntropy(value, SpecificEntropyUnit.KilojoulePerKilogramKelvin);
         }
 
         /// <summary>
         ///     Creates a <see cref="SpecificEntropy"/> from <see cref="SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius"/>.
         /// </summary>
-        public static SpecificEntropy FromMegajoulesPerKilogramDegreeCelsius(QuantityValue megajoulesperkilogramdegreecelsius)
+        public static SpecificEntropy FromMegajoulesPerKilogramDegreeCelsius(double value)
         {
-            double value = (double) megajoulesperkilogramdegreecelsius;
             return new SpecificEntropy(value, SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius);
         }
 
         /// <summary>
         ///     Creates a <see cref="SpecificEntropy"/> from <see cref="SpecificEntropyUnit.MegajoulePerKilogramKelvin"/>.
         /// </summary>
-        public static SpecificEntropy FromMegajoulesPerKilogramKelvin(QuantityValue megajoulesperkilogramkelvin)
+        public static SpecificEntropy FromMegajoulesPerKilogramKelvin(double value)
         {
-            double value = (double) megajoulesperkilogramkelvin;
             return new SpecificEntropy(value, SpecificEntropyUnit.MegajoulePerKilogramKelvin);
         }
 
@@ -374,9 +365,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>SpecificEntropy unit value.</returns>
-        public static SpecificEntropy From(QuantityValue value, SpecificEntropyUnit fromUnit)
+        public static SpecificEntropy From(double value, SpecificEntropyUnit fromUnit)
         {
-            return new SpecificEntropy((double)value, fromUnit);
+            return new SpecificEntropy(value, fromUnit);
         }
 
         #endregion
@@ -807,15 +798,6 @@ namespace UnitsNet
             if (!(unit is SpecificEntropyUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificEntropyUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is SpecificEntropyUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificEntropyUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -941,18 +923,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<SpecificEntropyUnit> IQuantity<SpecificEntropyUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not SpecificEntropyUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificEntropyUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct VolumeFlow :
-        IArithmeticQuantity<VolumeFlow, VolumeFlowUnit, double>,
+        IArithmeticQuantity<VolumeFlow, VolumeFlowUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<VolumeFlow, Speed, Area>,
         IMultiplyOperators<VolumeFlow, Density, MassFlow>,
@@ -222,7 +222,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -757,603 +757,536 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.AcreFootPerDay"/>.
         /// </summary>
-        public static VolumeFlow FromAcreFeetPerDay(QuantityValue acrefeetperday)
+        public static VolumeFlow FromAcreFeetPerDay(double value)
         {
-            double value = (double) acrefeetperday;
             return new VolumeFlow(value, VolumeFlowUnit.AcreFootPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.AcreFootPerHour"/>.
         /// </summary>
-        public static VolumeFlow FromAcreFeetPerHour(QuantityValue acrefeetperhour)
+        public static VolumeFlow FromAcreFeetPerHour(double value)
         {
-            double value = (double) acrefeetperhour;
             return new VolumeFlow(value, VolumeFlowUnit.AcreFootPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.AcreFootPerMinute"/>.
         /// </summary>
-        public static VolumeFlow FromAcreFeetPerMinute(QuantityValue acrefeetperminute)
+        public static VolumeFlow FromAcreFeetPerMinute(double value)
         {
-            double value = (double) acrefeetperminute;
             return new VolumeFlow(value, VolumeFlowUnit.AcreFootPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.AcreFootPerSecond"/>.
         /// </summary>
-        public static VolumeFlow FromAcreFeetPerSecond(QuantityValue acrefeetpersecond)
+        public static VolumeFlow FromAcreFeetPerSecond(double value)
         {
-            double value = (double) acrefeetpersecond;
             return new VolumeFlow(value, VolumeFlowUnit.AcreFootPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CentiliterPerDay"/>.
         /// </summary>
-        public static VolumeFlow FromCentilitersPerDay(QuantityValue centilitersperday)
+        public static VolumeFlow FromCentilitersPerDay(double value)
         {
-            double value = (double) centilitersperday;
             return new VolumeFlow(value, VolumeFlowUnit.CentiliterPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CentiliterPerHour"/>.
         /// </summary>
-        public static VolumeFlow FromCentilitersPerHour(QuantityValue centilitersperhour)
+        public static VolumeFlow FromCentilitersPerHour(double value)
         {
-            double value = (double) centilitersperhour;
             return new VolumeFlow(value, VolumeFlowUnit.CentiliterPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CentiliterPerMinute"/>.
         /// </summary>
-        public static VolumeFlow FromCentilitersPerMinute(QuantityValue centilitersperminute)
+        public static VolumeFlow FromCentilitersPerMinute(double value)
         {
-            double value = (double) centilitersperminute;
             return new VolumeFlow(value, VolumeFlowUnit.CentiliterPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CentiliterPerSecond"/>.
         /// </summary>
-        public static VolumeFlow FromCentilitersPerSecond(QuantityValue centiliterspersecond)
+        public static VolumeFlow FromCentilitersPerSecond(double value)
         {
-            double value = (double) centiliterspersecond;
             return new VolumeFlow(value, VolumeFlowUnit.CentiliterPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CubicCentimeterPerMinute"/>.
         /// </summary>
-        public static VolumeFlow FromCubicCentimetersPerMinute(QuantityValue cubiccentimetersperminute)
+        public static VolumeFlow FromCubicCentimetersPerMinute(double value)
         {
-            double value = (double) cubiccentimetersperminute;
             return new VolumeFlow(value, VolumeFlowUnit.CubicCentimeterPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CubicDecimeterPerMinute"/>.
         /// </summary>
-        public static VolumeFlow FromCubicDecimetersPerMinute(QuantityValue cubicdecimetersperminute)
+        public static VolumeFlow FromCubicDecimetersPerMinute(double value)
         {
-            double value = (double) cubicdecimetersperminute;
             return new VolumeFlow(value, VolumeFlowUnit.CubicDecimeterPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CubicFootPerHour"/>.
         /// </summary>
-        public static VolumeFlow FromCubicFeetPerHour(QuantityValue cubicfeetperhour)
+        public static VolumeFlow FromCubicFeetPerHour(double value)
         {
-            double value = (double) cubicfeetperhour;
             return new VolumeFlow(value, VolumeFlowUnit.CubicFootPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CubicFootPerMinute"/>.
         /// </summary>
-        public static VolumeFlow FromCubicFeetPerMinute(QuantityValue cubicfeetperminute)
+        public static VolumeFlow FromCubicFeetPerMinute(double value)
         {
-            double value = (double) cubicfeetperminute;
             return new VolumeFlow(value, VolumeFlowUnit.CubicFootPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CubicFootPerSecond"/>.
         /// </summary>
-        public static VolumeFlow FromCubicFeetPerSecond(QuantityValue cubicfeetpersecond)
+        public static VolumeFlow FromCubicFeetPerSecond(double value)
         {
-            double value = (double) cubicfeetpersecond;
             return new VolumeFlow(value, VolumeFlowUnit.CubicFootPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CubicMeterPerDay"/>.
         /// </summary>
-        public static VolumeFlow FromCubicMetersPerDay(QuantityValue cubicmetersperday)
+        public static VolumeFlow FromCubicMetersPerDay(double value)
         {
-            double value = (double) cubicmetersperday;
             return new VolumeFlow(value, VolumeFlowUnit.CubicMeterPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CubicMeterPerHour"/>.
         /// </summary>
-        public static VolumeFlow FromCubicMetersPerHour(QuantityValue cubicmetersperhour)
+        public static VolumeFlow FromCubicMetersPerHour(double value)
         {
-            double value = (double) cubicmetersperhour;
             return new VolumeFlow(value, VolumeFlowUnit.CubicMeterPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CubicMeterPerMinute"/>.
         /// </summary>
-        public static VolumeFlow FromCubicMetersPerMinute(QuantityValue cubicmetersperminute)
+        public static VolumeFlow FromCubicMetersPerMinute(double value)
         {
-            double value = (double) cubicmetersperminute;
             return new VolumeFlow(value, VolumeFlowUnit.CubicMeterPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CubicMeterPerSecond"/>.
         /// </summary>
-        public static VolumeFlow FromCubicMetersPerSecond(QuantityValue cubicmeterspersecond)
+        public static VolumeFlow FromCubicMetersPerSecond(double value)
         {
-            double value = (double) cubicmeterspersecond;
             return new VolumeFlow(value, VolumeFlowUnit.CubicMeterPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CubicMillimeterPerSecond"/>.
         /// </summary>
-        public static VolumeFlow FromCubicMillimetersPerSecond(QuantityValue cubicmillimeterspersecond)
+        public static VolumeFlow FromCubicMillimetersPerSecond(double value)
         {
-            double value = (double) cubicmillimeterspersecond;
             return new VolumeFlow(value, VolumeFlowUnit.CubicMillimeterPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CubicYardPerDay"/>.
         /// </summary>
-        public static VolumeFlow FromCubicYardsPerDay(QuantityValue cubicyardsperday)
+        public static VolumeFlow FromCubicYardsPerDay(double value)
         {
-            double value = (double) cubicyardsperday;
             return new VolumeFlow(value, VolumeFlowUnit.CubicYardPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CubicYardPerHour"/>.
         /// </summary>
-        public static VolumeFlow FromCubicYardsPerHour(QuantityValue cubicyardsperhour)
+        public static VolumeFlow FromCubicYardsPerHour(double value)
         {
-            double value = (double) cubicyardsperhour;
             return new VolumeFlow(value, VolumeFlowUnit.CubicYardPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CubicYardPerMinute"/>.
         /// </summary>
-        public static VolumeFlow FromCubicYardsPerMinute(QuantityValue cubicyardsperminute)
+        public static VolumeFlow FromCubicYardsPerMinute(double value)
         {
-            double value = (double) cubicyardsperminute;
             return new VolumeFlow(value, VolumeFlowUnit.CubicYardPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CubicYardPerSecond"/>.
         /// </summary>
-        public static VolumeFlow FromCubicYardsPerSecond(QuantityValue cubicyardspersecond)
+        public static VolumeFlow FromCubicYardsPerSecond(double value)
         {
-            double value = (double) cubicyardspersecond;
             return new VolumeFlow(value, VolumeFlowUnit.CubicYardPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.DeciliterPerDay"/>.
         /// </summary>
-        public static VolumeFlow FromDecilitersPerDay(QuantityValue decilitersperday)
+        public static VolumeFlow FromDecilitersPerDay(double value)
         {
-            double value = (double) decilitersperday;
             return new VolumeFlow(value, VolumeFlowUnit.DeciliterPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.DeciliterPerHour"/>.
         /// </summary>
-        public static VolumeFlow FromDecilitersPerHour(QuantityValue decilitersperhour)
+        public static VolumeFlow FromDecilitersPerHour(double value)
         {
-            double value = (double) decilitersperhour;
             return new VolumeFlow(value, VolumeFlowUnit.DeciliterPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.DeciliterPerMinute"/>.
         /// </summary>
-        public static VolumeFlow FromDecilitersPerMinute(QuantityValue decilitersperminute)
+        public static VolumeFlow FromDecilitersPerMinute(double value)
         {
-            double value = (double) decilitersperminute;
             return new VolumeFlow(value, VolumeFlowUnit.DeciliterPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.DeciliterPerSecond"/>.
         /// </summary>
-        public static VolumeFlow FromDecilitersPerSecond(QuantityValue deciliterspersecond)
+        public static VolumeFlow FromDecilitersPerSecond(double value)
         {
-            double value = (double) deciliterspersecond;
             return new VolumeFlow(value, VolumeFlowUnit.DeciliterPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.KiloliterPerDay"/>.
         /// </summary>
-        public static VolumeFlow FromKilolitersPerDay(QuantityValue kilolitersperday)
+        public static VolumeFlow FromKilolitersPerDay(double value)
         {
-            double value = (double) kilolitersperday;
             return new VolumeFlow(value, VolumeFlowUnit.KiloliterPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.KiloliterPerHour"/>.
         /// </summary>
-        public static VolumeFlow FromKilolitersPerHour(QuantityValue kilolitersperhour)
+        public static VolumeFlow FromKilolitersPerHour(double value)
         {
-            double value = (double) kilolitersperhour;
             return new VolumeFlow(value, VolumeFlowUnit.KiloliterPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.KiloliterPerMinute"/>.
         /// </summary>
-        public static VolumeFlow FromKilolitersPerMinute(QuantityValue kilolitersperminute)
+        public static VolumeFlow FromKilolitersPerMinute(double value)
         {
-            double value = (double) kilolitersperminute;
             return new VolumeFlow(value, VolumeFlowUnit.KiloliterPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.KiloliterPerSecond"/>.
         /// </summary>
-        public static VolumeFlow FromKilolitersPerSecond(QuantityValue kiloliterspersecond)
+        public static VolumeFlow FromKilolitersPerSecond(double value)
         {
-            double value = (double) kiloliterspersecond;
             return new VolumeFlow(value, VolumeFlowUnit.KiloliterPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.KilousGallonPerMinute"/>.
         /// </summary>
-        public static VolumeFlow FromKilousGallonsPerMinute(QuantityValue kilousgallonsperminute)
+        public static VolumeFlow FromKilousGallonsPerMinute(double value)
         {
-            double value = (double) kilousgallonsperminute;
             return new VolumeFlow(value, VolumeFlowUnit.KilousGallonPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.LiterPerDay"/>.
         /// </summary>
-        public static VolumeFlow FromLitersPerDay(QuantityValue litersperday)
+        public static VolumeFlow FromLitersPerDay(double value)
         {
-            double value = (double) litersperday;
             return new VolumeFlow(value, VolumeFlowUnit.LiterPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.LiterPerHour"/>.
         /// </summary>
-        public static VolumeFlow FromLitersPerHour(QuantityValue litersperhour)
+        public static VolumeFlow FromLitersPerHour(double value)
         {
-            double value = (double) litersperhour;
             return new VolumeFlow(value, VolumeFlowUnit.LiterPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.LiterPerMinute"/>.
         /// </summary>
-        public static VolumeFlow FromLitersPerMinute(QuantityValue litersperminute)
+        public static VolumeFlow FromLitersPerMinute(double value)
         {
-            double value = (double) litersperminute;
             return new VolumeFlow(value, VolumeFlowUnit.LiterPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.LiterPerSecond"/>.
         /// </summary>
-        public static VolumeFlow FromLitersPerSecond(QuantityValue literspersecond)
+        public static VolumeFlow FromLitersPerSecond(double value)
         {
-            double value = (double) literspersecond;
             return new VolumeFlow(value, VolumeFlowUnit.LiterPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MegaliterPerDay"/>.
         /// </summary>
-        public static VolumeFlow FromMegalitersPerDay(QuantityValue megalitersperday)
+        public static VolumeFlow FromMegalitersPerDay(double value)
         {
-            double value = (double) megalitersperday;
             return new VolumeFlow(value, VolumeFlowUnit.MegaliterPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MegaliterPerHour"/>.
         /// </summary>
-        public static VolumeFlow FromMegalitersPerHour(QuantityValue megalitersperhour)
+        public static VolumeFlow FromMegalitersPerHour(double value)
         {
-            double value = (double) megalitersperhour;
             return new VolumeFlow(value, VolumeFlowUnit.MegaliterPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MegaliterPerMinute"/>.
         /// </summary>
-        public static VolumeFlow FromMegalitersPerMinute(QuantityValue megalitersperminute)
+        public static VolumeFlow FromMegalitersPerMinute(double value)
         {
-            double value = (double) megalitersperminute;
             return new VolumeFlow(value, VolumeFlowUnit.MegaliterPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MegaliterPerSecond"/>.
         /// </summary>
-        public static VolumeFlow FromMegalitersPerSecond(QuantityValue megaliterspersecond)
+        public static VolumeFlow FromMegalitersPerSecond(double value)
         {
-            double value = (double) megaliterspersecond;
             return new VolumeFlow(value, VolumeFlowUnit.MegaliterPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MegaukGallonPerDay"/>.
         /// </summary>
-        public static VolumeFlow FromMegaukGallonsPerDay(QuantityValue megaukgallonsperday)
+        public static VolumeFlow FromMegaukGallonsPerDay(double value)
         {
-            double value = (double) megaukgallonsperday;
             return new VolumeFlow(value, VolumeFlowUnit.MegaukGallonPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MegaukGallonPerSecond"/>.
         /// </summary>
-        public static VolumeFlow FromMegaukGallonsPerSecond(QuantityValue megaukgallonspersecond)
+        public static VolumeFlow FromMegaukGallonsPerSecond(double value)
         {
-            double value = (double) megaukgallonspersecond;
             return new VolumeFlow(value, VolumeFlowUnit.MegaukGallonPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MegausGallonPerDay"/>.
         /// </summary>
-        public static VolumeFlow FromMegausGallonsPerDay(QuantityValue megausgallonsperday)
+        public static VolumeFlow FromMegausGallonsPerDay(double value)
         {
-            double value = (double) megausgallonsperday;
             return new VolumeFlow(value, VolumeFlowUnit.MegausGallonPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MicroliterPerDay"/>.
         /// </summary>
-        public static VolumeFlow FromMicrolitersPerDay(QuantityValue microlitersperday)
+        public static VolumeFlow FromMicrolitersPerDay(double value)
         {
-            double value = (double) microlitersperday;
             return new VolumeFlow(value, VolumeFlowUnit.MicroliterPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MicroliterPerHour"/>.
         /// </summary>
-        public static VolumeFlow FromMicrolitersPerHour(QuantityValue microlitersperhour)
+        public static VolumeFlow FromMicrolitersPerHour(double value)
         {
-            double value = (double) microlitersperhour;
             return new VolumeFlow(value, VolumeFlowUnit.MicroliterPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MicroliterPerMinute"/>.
         /// </summary>
-        public static VolumeFlow FromMicrolitersPerMinute(QuantityValue microlitersperminute)
+        public static VolumeFlow FromMicrolitersPerMinute(double value)
         {
-            double value = (double) microlitersperminute;
             return new VolumeFlow(value, VolumeFlowUnit.MicroliterPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MicroliterPerSecond"/>.
         /// </summary>
-        public static VolumeFlow FromMicrolitersPerSecond(QuantityValue microliterspersecond)
+        public static VolumeFlow FromMicrolitersPerSecond(double value)
         {
-            double value = (double) microliterspersecond;
             return new VolumeFlow(value, VolumeFlowUnit.MicroliterPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MilliliterPerDay"/>.
         /// </summary>
-        public static VolumeFlow FromMillilitersPerDay(QuantityValue millilitersperday)
+        public static VolumeFlow FromMillilitersPerDay(double value)
         {
-            double value = (double) millilitersperday;
             return new VolumeFlow(value, VolumeFlowUnit.MilliliterPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MilliliterPerHour"/>.
         /// </summary>
-        public static VolumeFlow FromMillilitersPerHour(QuantityValue millilitersperhour)
+        public static VolumeFlow FromMillilitersPerHour(double value)
         {
-            double value = (double) millilitersperhour;
             return new VolumeFlow(value, VolumeFlowUnit.MilliliterPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MilliliterPerMinute"/>.
         /// </summary>
-        public static VolumeFlow FromMillilitersPerMinute(QuantityValue millilitersperminute)
+        public static VolumeFlow FromMillilitersPerMinute(double value)
         {
-            double value = (double) millilitersperminute;
             return new VolumeFlow(value, VolumeFlowUnit.MilliliterPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MilliliterPerSecond"/>.
         /// </summary>
-        public static VolumeFlow FromMillilitersPerSecond(QuantityValue milliliterspersecond)
+        public static VolumeFlow FromMillilitersPerSecond(double value)
         {
-            double value = (double) milliliterspersecond;
             return new VolumeFlow(value, VolumeFlowUnit.MilliliterPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MillionUsGallonPerDay"/>.
         /// </summary>
-        public static VolumeFlow FromMillionUsGallonsPerDay(QuantityValue millionusgallonsperday)
+        public static VolumeFlow FromMillionUsGallonsPerDay(double value)
         {
-            double value = (double) millionusgallonsperday;
             return new VolumeFlow(value, VolumeFlowUnit.MillionUsGallonPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.NanoliterPerDay"/>.
         /// </summary>
-        public static VolumeFlow FromNanolitersPerDay(QuantityValue nanolitersperday)
+        public static VolumeFlow FromNanolitersPerDay(double value)
         {
-            double value = (double) nanolitersperday;
             return new VolumeFlow(value, VolumeFlowUnit.NanoliterPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.NanoliterPerHour"/>.
         /// </summary>
-        public static VolumeFlow FromNanolitersPerHour(QuantityValue nanolitersperhour)
+        public static VolumeFlow FromNanolitersPerHour(double value)
         {
-            double value = (double) nanolitersperhour;
             return new VolumeFlow(value, VolumeFlowUnit.NanoliterPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.NanoliterPerMinute"/>.
         /// </summary>
-        public static VolumeFlow FromNanolitersPerMinute(QuantityValue nanolitersperminute)
+        public static VolumeFlow FromNanolitersPerMinute(double value)
         {
-            double value = (double) nanolitersperminute;
             return new VolumeFlow(value, VolumeFlowUnit.NanoliterPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.NanoliterPerSecond"/>.
         /// </summary>
-        public static VolumeFlow FromNanolitersPerSecond(QuantityValue nanoliterspersecond)
+        public static VolumeFlow FromNanolitersPerSecond(double value)
         {
-            double value = (double) nanoliterspersecond;
             return new VolumeFlow(value, VolumeFlowUnit.NanoliterPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.OilBarrelPerDay"/>.
         /// </summary>
-        public static VolumeFlow FromOilBarrelsPerDay(QuantityValue oilbarrelsperday)
+        public static VolumeFlow FromOilBarrelsPerDay(double value)
         {
-            double value = (double) oilbarrelsperday;
             return new VolumeFlow(value, VolumeFlowUnit.OilBarrelPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.OilBarrelPerHour"/>.
         /// </summary>
-        public static VolumeFlow FromOilBarrelsPerHour(QuantityValue oilbarrelsperhour)
+        public static VolumeFlow FromOilBarrelsPerHour(double value)
         {
-            double value = (double) oilbarrelsperhour;
             return new VolumeFlow(value, VolumeFlowUnit.OilBarrelPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.OilBarrelPerMinute"/>.
         /// </summary>
-        public static VolumeFlow FromOilBarrelsPerMinute(QuantityValue oilbarrelsperminute)
+        public static VolumeFlow FromOilBarrelsPerMinute(double value)
         {
-            double value = (double) oilbarrelsperminute;
             return new VolumeFlow(value, VolumeFlowUnit.OilBarrelPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.OilBarrelPerSecond"/>.
         /// </summary>
-        public static VolumeFlow FromOilBarrelsPerSecond(QuantityValue oilbarrelspersecond)
+        public static VolumeFlow FromOilBarrelsPerSecond(double value)
         {
-            double value = (double) oilbarrelspersecond;
             return new VolumeFlow(value, VolumeFlowUnit.OilBarrelPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.UkGallonPerDay"/>.
         /// </summary>
-        public static VolumeFlow FromUkGallonsPerDay(QuantityValue ukgallonsperday)
+        public static VolumeFlow FromUkGallonsPerDay(double value)
         {
-            double value = (double) ukgallonsperday;
             return new VolumeFlow(value, VolumeFlowUnit.UkGallonPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.UkGallonPerHour"/>.
         /// </summary>
-        public static VolumeFlow FromUkGallonsPerHour(QuantityValue ukgallonsperhour)
+        public static VolumeFlow FromUkGallonsPerHour(double value)
         {
-            double value = (double) ukgallonsperhour;
             return new VolumeFlow(value, VolumeFlowUnit.UkGallonPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.UkGallonPerMinute"/>.
         /// </summary>
-        public static VolumeFlow FromUkGallonsPerMinute(QuantityValue ukgallonsperminute)
+        public static VolumeFlow FromUkGallonsPerMinute(double value)
         {
-            double value = (double) ukgallonsperminute;
             return new VolumeFlow(value, VolumeFlowUnit.UkGallonPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.UkGallonPerSecond"/>.
         /// </summary>
-        public static VolumeFlow FromUkGallonsPerSecond(QuantityValue ukgallonspersecond)
+        public static VolumeFlow FromUkGallonsPerSecond(double value)
         {
-            double value = (double) ukgallonspersecond;
             return new VolumeFlow(value, VolumeFlowUnit.UkGallonPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.UsGallonPerDay"/>.
         /// </summary>
-        public static VolumeFlow FromUsGallonsPerDay(QuantityValue usgallonsperday)
+        public static VolumeFlow FromUsGallonsPerDay(double value)
         {
-            double value = (double) usgallonsperday;
             return new VolumeFlow(value, VolumeFlowUnit.UsGallonPerDay);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.UsGallonPerHour"/>.
         /// </summary>
-        public static VolumeFlow FromUsGallonsPerHour(QuantityValue usgallonsperhour)
+        public static VolumeFlow FromUsGallonsPerHour(double value)
         {
-            double value = (double) usgallonsperhour;
             return new VolumeFlow(value, VolumeFlowUnit.UsGallonPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.UsGallonPerMinute"/>.
         /// </summary>
-        public static VolumeFlow FromUsGallonsPerMinute(QuantityValue usgallonsperminute)
+        public static VolumeFlow FromUsGallonsPerMinute(double value)
         {
-            double value = (double) usgallonsperminute;
             return new VolumeFlow(value, VolumeFlowUnit.UsGallonPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.UsGallonPerSecond"/>.
         /// </summary>
-        public static VolumeFlow FromUsGallonsPerSecond(QuantityValue usgallonspersecond)
+        public static VolumeFlow FromUsGallonsPerSecond(double value)
         {
-            double value = (double) usgallonspersecond;
             return new VolumeFlow(value, VolumeFlowUnit.UsGallonPerSecond);
         }
 
@@ -1363,9 +1296,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>VolumeFlow unit value.</returns>
-        public static VolumeFlow From(QuantityValue value, VolumeFlowUnit fromUnit)
+        public static VolumeFlow From(double value, VolumeFlowUnit fromUnit)
         {
-            return new VolumeFlow((double)value, fromUnit);
+            return new VolumeFlow(value, fromUnit);
         }
 
         #endregion
@@ -1820,15 +1753,6 @@ namespace UnitsNet
             if (!(unit is VolumeFlowUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeFlowUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is VolumeFlowUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeFlowUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -2070,18 +1994,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<VolumeFlowUnit> IQuantity<VolumeFlowUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not VolumeFlowUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeFlowUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

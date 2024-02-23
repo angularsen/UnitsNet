@@ -11,7 +11,6 @@ namespace CodeGen.JsonTypes
 #pragma warning disable 0649
 
         public BaseDimensions BaseDimensions = new(); // Default to empty
-        public string ValueType = "double";
         public string BaseUnit = null!;
         public bool GenerateArithmetic = true;
         public bool Logarithmic = false;

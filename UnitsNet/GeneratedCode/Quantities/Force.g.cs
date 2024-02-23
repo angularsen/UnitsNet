@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct Force :
-        IArithmeticQuantity<Force, ForceUnit, double>,
+        IArithmeticQuantity<Force, ForceUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Force, Mass, Acceleration>,
         IDivisionOperators<Force, ForceChangeRate, Duration>,
@@ -175,7 +175,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -346,135 +346,120 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Decanewton"/>.
         /// </summary>
-        public static Force FromDecanewtons(QuantityValue decanewtons)
+        public static Force FromDecanewtons(double value)
         {
-            double value = (double) decanewtons;
             return new Force(value, ForceUnit.Decanewton);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Dyn"/>.
         /// </summary>
-        public static Force FromDyne(QuantityValue dyne)
+        public static Force FromDyne(double value)
         {
-            double value = (double) dyne;
             return new Force(value, ForceUnit.Dyn);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.KilogramForce"/>.
         /// </summary>
-        public static Force FromKilogramsForce(QuantityValue kilogramsforce)
+        public static Force FromKilogramsForce(double value)
         {
-            double value = (double) kilogramsforce;
             return new Force(value, ForceUnit.KilogramForce);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Kilonewton"/>.
         /// </summary>
-        public static Force FromKilonewtons(QuantityValue kilonewtons)
+        public static Force FromKilonewtons(double value)
         {
-            double value = (double) kilonewtons;
             return new Force(value, ForceUnit.Kilonewton);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.KiloPond"/>.
         /// </summary>
-        public static Force FromKiloPonds(QuantityValue kiloponds)
+        public static Force FromKiloPonds(double value)
         {
-            double value = (double) kiloponds;
             return new Force(value, ForceUnit.KiloPond);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.KilopoundForce"/>.
         /// </summary>
-        public static Force FromKilopoundsForce(QuantityValue kilopoundsforce)
+        public static Force FromKilopoundsForce(double value)
         {
-            double value = (double) kilopoundsforce;
             return new Force(value, ForceUnit.KilopoundForce);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Meganewton"/>.
         /// </summary>
-        public static Force FromMeganewtons(QuantityValue meganewtons)
+        public static Force FromMeganewtons(double value)
         {
-            double value = (double) meganewtons;
             return new Force(value, ForceUnit.Meganewton);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Micronewton"/>.
         /// </summary>
-        public static Force FromMicronewtons(QuantityValue micronewtons)
+        public static Force FromMicronewtons(double value)
         {
-            double value = (double) micronewtons;
             return new Force(value, ForceUnit.Micronewton);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Millinewton"/>.
         /// </summary>
-        public static Force FromMillinewtons(QuantityValue millinewtons)
+        public static Force FromMillinewtons(double value)
         {
-            double value = (double) millinewtons;
             return new Force(value, ForceUnit.Millinewton);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Newton"/>.
         /// </summary>
-        public static Force FromNewtons(QuantityValue newtons)
+        public static Force FromNewtons(double value)
         {
-            double value = (double) newtons;
             return new Force(value, ForceUnit.Newton);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.OunceForce"/>.
         /// </summary>
-        public static Force FromOunceForce(QuantityValue ounceforce)
+        public static Force FromOunceForce(double value)
         {
-            double value = (double) ounceforce;
             return new Force(value, ForceUnit.OunceForce);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Poundal"/>.
         /// </summary>
-        public static Force FromPoundals(QuantityValue poundals)
+        public static Force FromPoundals(double value)
         {
-            double value = (double) poundals;
             return new Force(value, ForceUnit.Poundal);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.PoundForce"/>.
         /// </summary>
-        public static Force FromPoundsForce(QuantityValue poundsforce)
+        public static Force FromPoundsForce(double value)
         {
-            double value = (double) poundsforce;
             return new Force(value, ForceUnit.PoundForce);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.ShortTonForce"/>.
         /// </summary>
-        public static Force FromShortTonsForce(QuantityValue shorttonsforce)
+        public static Force FromShortTonsForce(double value)
         {
-            double value = (double) shorttonsforce;
             return new Force(value, ForceUnit.ShortTonForce);
         }
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.TonneForce"/>.
         /// </summary>
-        public static Force FromTonnesForce(QuantityValue tonnesforce)
+        public static Force FromTonnesForce(double value)
         {
-            double value = (double) tonnesforce;
             return new Force(value, ForceUnit.TonneForce);
         }
 
@@ -484,9 +469,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Force unit value.</returns>
-        public static Force From(QuantityValue value, ForceUnit fromUnit)
+        public static Force From(double value, ForceUnit fromUnit)
         {
-            return new Force((double)value, fromUnit);
+            return new Force(value, fromUnit);
         }
 
         #endregion
@@ -965,15 +950,6 @@ namespace UnitsNet
             if (!(unit is ForceUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForceUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is ForceUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForceUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -1111,18 +1087,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ForceUnit> IQuantity<ForceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not ForceUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForceUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

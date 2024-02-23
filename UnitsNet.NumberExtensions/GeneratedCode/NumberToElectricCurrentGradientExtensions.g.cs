@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrentGradient
     /// </summary>
     public static class NumberToElectricCurrentGradientExtensions
     {
-        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerMicrosecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerMicrosecond(double)" />
         public static ElectricCurrentGradient AmperesPerMicrosecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrentGradient
 #endif
             => ElectricCurrentGradient.FromAmperesPerMicrosecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerMillisecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerMillisecond(double)" />
         public static ElectricCurrentGradient AmperesPerMillisecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrentGradient
 #endif
             => ElectricCurrentGradient.FromAmperesPerMillisecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerMinute(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerMinute(double)" />
         public static ElectricCurrentGradient AmperesPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrentGradient
 #endif
             => ElectricCurrentGradient.FromAmperesPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerNanosecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerNanosecond(double)" />
         public static ElectricCurrentGradient AmperesPerNanosecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrentGradient
 #endif
             => ElectricCurrentGradient.FromAmperesPerNanosecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerSecond(double)" />
         public static ElectricCurrentGradient AmperesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrentGradient
 #endif
             => ElectricCurrentGradient.FromAmperesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCurrentGradient.FromMilliamperesPerMinute(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricCurrentGradient.FromMilliamperesPerMinute(double)" />
         public static ElectricCurrentGradient MilliamperesPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrentGradient
 #endif
             => ElectricCurrentGradient.FromMilliamperesPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCurrentGradient.FromMilliamperesPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricCurrentGradient.FromMilliamperesPerSecond(double)" />
         public static ElectricCurrentGradient MilliamperesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

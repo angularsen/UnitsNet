@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     public readonly partial struct FuelEfficiency :
-        IArithmeticQuantity<FuelEfficiency, FuelEfficiencyUnit, double>,
+        IArithmeticQuantity<FuelEfficiency, FuelEfficiencyUnit>,
         IComparable,
         IComparable<FuelEfficiency>,
         IConvertible,
@@ -152,7 +152,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -246,36 +246,32 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="FuelEfficiency"/> from <see cref="FuelEfficiencyUnit.KilometerPerLiter"/>.
         /// </summary>
-        public static FuelEfficiency FromKilometersPerLiter(QuantityValue kilometersperliter)
+        public static FuelEfficiency FromKilometersPerLiter(double value)
         {
-            double value = (double) kilometersperliter;
             return new FuelEfficiency(value, FuelEfficiencyUnit.KilometerPerLiter);
         }
 
         /// <summary>
         ///     Creates a <see cref="FuelEfficiency"/> from <see cref="FuelEfficiencyUnit.LiterPer100Kilometers"/>.
         /// </summary>
-        public static FuelEfficiency FromLitersPer100Kilometers(QuantityValue litersper100kilometers)
+        public static FuelEfficiency FromLitersPer100Kilometers(double value)
         {
-            double value = (double) litersper100kilometers;
             return new FuelEfficiency(value, FuelEfficiencyUnit.LiterPer100Kilometers);
         }
 
         /// <summary>
         ///     Creates a <see cref="FuelEfficiency"/> from <see cref="FuelEfficiencyUnit.MilePerUkGallon"/>.
         /// </summary>
-        public static FuelEfficiency FromMilesPerUkGallon(QuantityValue milesperukgallon)
+        public static FuelEfficiency FromMilesPerUkGallon(double value)
         {
-            double value = (double) milesperukgallon;
             return new FuelEfficiency(value, FuelEfficiencyUnit.MilePerUkGallon);
         }
 
         /// <summary>
         ///     Creates a <see cref="FuelEfficiency"/> from <see cref="FuelEfficiencyUnit.MilePerUsGallon"/>.
         /// </summary>
-        public static FuelEfficiency FromMilesPerUsGallon(QuantityValue milesperusgallon)
+        public static FuelEfficiency FromMilesPerUsGallon(double value)
         {
-            double value = (double) milesperusgallon;
             return new FuelEfficiency(value, FuelEfficiencyUnit.MilePerUsGallon);
         }
 
@@ -285,9 +281,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>FuelEfficiency unit value.</returns>
-        public static FuelEfficiency From(QuantityValue value, FuelEfficiencyUnit fromUnit)
+        public static FuelEfficiency From(double value, FuelEfficiencyUnit fromUnit)
         {
-            return new FuelEfficiency((double)value, fromUnit);
+            return new FuelEfficiency(value, fromUnit);
         }
 
         #endregion
@@ -702,15 +698,6 @@ namespace UnitsNet
             if (!(unit is FuelEfficiencyUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(FuelEfficiencyUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is FuelEfficiencyUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(FuelEfficiencyUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -826,18 +813,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<FuelEfficiencyUnit> IQuantity<FuelEfficiencyUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not FuelEfficiencyUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(FuelEfficiencyUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

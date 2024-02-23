@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct ElectricPotential :
-        IArithmeticQuantity<ElectricPotential, ElectricPotentialUnit, double>,
+        IArithmeticQuantity<ElectricPotential, ElectricPotentialUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<ElectricPotential, ElectricResistance, ElectricCurrent>,
         IDivisionOperators<ElectricPotential, ElectricCurrent, ElectricResistance>,
@@ -160,7 +160,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -268,54 +268,48 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotential"/> from <see cref="ElectricPotentialUnit.Kilovolt"/>.
         /// </summary>
-        public static ElectricPotential FromKilovolts(QuantityValue kilovolts)
+        public static ElectricPotential FromKilovolts(double value)
         {
-            double value = (double) kilovolts;
             return new ElectricPotential(value, ElectricPotentialUnit.Kilovolt);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricPotential"/> from <see cref="ElectricPotentialUnit.Megavolt"/>.
         /// </summary>
-        public static ElectricPotential FromMegavolts(QuantityValue megavolts)
+        public static ElectricPotential FromMegavolts(double value)
         {
-            double value = (double) megavolts;
             return new ElectricPotential(value, ElectricPotentialUnit.Megavolt);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricPotential"/> from <see cref="ElectricPotentialUnit.Microvolt"/>.
         /// </summary>
-        public static ElectricPotential FromMicrovolts(QuantityValue microvolts)
+        public static ElectricPotential FromMicrovolts(double value)
         {
-            double value = (double) microvolts;
             return new ElectricPotential(value, ElectricPotentialUnit.Microvolt);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricPotential"/> from <see cref="ElectricPotentialUnit.Millivolt"/>.
         /// </summary>
-        public static ElectricPotential FromMillivolts(QuantityValue millivolts)
+        public static ElectricPotential FromMillivolts(double value)
         {
-            double value = (double) millivolts;
             return new ElectricPotential(value, ElectricPotentialUnit.Millivolt);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricPotential"/> from <see cref="ElectricPotentialUnit.Nanovolt"/>.
         /// </summary>
-        public static ElectricPotential FromNanovolts(QuantityValue nanovolts)
+        public static ElectricPotential FromNanovolts(double value)
         {
-            double value = (double) nanovolts;
             return new ElectricPotential(value, ElectricPotentialUnit.Nanovolt);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricPotential"/> from <see cref="ElectricPotentialUnit.Volt"/>.
         /// </summary>
-        public static ElectricPotential FromVolts(QuantityValue volts)
+        public static ElectricPotential FromVolts(double value)
         {
-            double value = (double) volts;
             return new ElectricPotential(value, ElectricPotentialUnit.Volt);
         }
 
@@ -325,9 +319,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricPotential unit value.</returns>
-        public static ElectricPotential From(QuantityValue value, ElectricPotentialUnit fromUnit)
+        public static ElectricPotential From(double value, ElectricPotentialUnit fromUnit)
         {
-            return new ElectricPotential((double)value, fromUnit);
+            return new ElectricPotential(value, fromUnit);
         }
 
         #endregion
@@ -770,15 +764,6 @@ namespace UnitsNet
             if (!(unit is ElectricPotentialUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricPotentialUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is ElectricPotentialUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricPotentialUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -898,18 +883,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ElectricPotentialUnit> IQuantity<ElectricPotentialUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not ElectricPotentialUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricPotentialUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

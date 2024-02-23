@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     public readonly partial struct Permeability :
-        IArithmeticQuantity<Permeability, PermeabilityUnit, double>,
+        IArithmeticQuantity<Permeability, PermeabilityUnit>,
         IComparable,
         IComparable<Permeability>,
         IConvertible,
@@ -149,7 +149,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -222,9 +222,8 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Permeability"/> from <see cref="PermeabilityUnit.HenryPerMeter"/>.
         /// </summary>
-        public static Permeability FromHenriesPerMeter(QuantityValue henriespermeter)
+        public static Permeability FromHenriesPerMeter(double value)
         {
-            double value = (double) henriespermeter;
             return new Permeability(value, PermeabilityUnit.HenryPerMeter);
         }
 
@@ -234,9 +233,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Permeability unit value.</returns>
-        public static Permeability From(QuantityValue value, PermeabilityUnit fromUnit)
+        public static Permeability From(double value, PermeabilityUnit fromUnit)
         {
-            return new Permeability((double)value, fromUnit);
+            return new Permeability(value, fromUnit);
         }
 
         #endregion
@@ -651,15 +650,6 @@ namespace UnitsNet
             if (!(unit is PermeabilityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PermeabilityUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is PermeabilityUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PermeabilityUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -769,18 +759,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<PermeabilityUnit> IQuantity<PermeabilityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not PermeabilityUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PermeabilityUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

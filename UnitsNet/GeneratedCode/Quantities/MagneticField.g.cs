@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     public readonly partial struct MagneticField :
-        IArithmeticQuantity<MagneticField, MagneticFieldUnit, double>,
+        IArithmeticQuantity<MagneticField, MagneticFieldUnit>,
         IComparable,
         IComparable<MagneticField>,
         IConvertible,
@@ -154,7 +154,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -262,54 +262,48 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MagneticField"/> from <see cref="MagneticFieldUnit.Gauss"/>.
         /// </summary>
-        public static MagneticField FromGausses(QuantityValue gausses)
+        public static MagneticField FromGausses(double value)
         {
-            double value = (double) gausses;
             return new MagneticField(value, MagneticFieldUnit.Gauss);
         }
 
         /// <summary>
         ///     Creates a <see cref="MagneticField"/> from <see cref="MagneticFieldUnit.Microtesla"/>.
         /// </summary>
-        public static MagneticField FromMicroteslas(QuantityValue microteslas)
+        public static MagneticField FromMicroteslas(double value)
         {
-            double value = (double) microteslas;
             return new MagneticField(value, MagneticFieldUnit.Microtesla);
         }
 
         /// <summary>
         ///     Creates a <see cref="MagneticField"/> from <see cref="MagneticFieldUnit.Milligauss"/>.
         /// </summary>
-        public static MagneticField FromMilligausses(QuantityValue milligausses)
+        public static MagneticField FromMilligausses(double value)
         {
-            double value = (double) milligausses;
             return new MagneticField(value, MagneticFieldUnit.Milligauss);
         }
 
         /// <summary>
         ///     Creates a <see cref="MagneticField"/> from <see cref="MagneticFieldUnit.Millitesla"/>.
         /// </summary>
-        public static MagneticField FromMilliteslas(QuantityValue milliteslas)
+        public static MagneticField FromMilliteslas(double value)
         {
-            double value = (double) milliteslas;
             return new MagneticField(value, MagneticFieldUnit.Millitesla);
         }
 
         /// <summary>
         ///     Creates a <see cref="MagneticField"/> from <see cref="MagneticFieldUnit.Nanotesla"/>.
         /// </summary>
-        public static MagneticField FromNanoteslas(QuantityValue nanoteslas)
+        public static MagneticField FromNanoteslas(double value)
         {
-            double value = (double) nanoteslas;
             return new MagneticField(value, MagneticFieldUnit.Nanotesla);
         }
 
         /// <summary>
         ///     Creates a <see cref="MagneticField"/> from <see cref="MagneticFieldUnit.Tesla"/>.
         /// </summary>
-        public static MagneticField FromTeslas(QuantityValue teslas)
+        public static MagneticField FromTeslas(double value)
         {
-            double value = (double) teslas;
             return new MagneticField(value, MagneticFieldUnit.Tesla);
         }
 
@@ -319,9 +313,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>MagneticField unit value.</returns>
-        public static MagneticField From(QuantityValue value, MagneticFieldUnit fromUnit)
+        public static MagneticField From(double value, MagneticFieldUnit fromUnit)
         {
-            return new MagneticField((double)value, fromUnit);
+            return new MagneticField(value, fromUnit);
         }
 
         #endregion
@@ -736,15 +730,6 @@ namespace UnitsNet
             if (!(unit is MagneticFieldUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MagneticFieldUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is MagneticFieldUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MagneticFieldUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -864,18 +849,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<MagneticFieldUnit> IQuantity<MagneticFieldUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not MagneticFieldUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MagneticFieldUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

@@ -37,7 +37,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct RatioChangeRate :
-        IArithmeticQuantity<RatioChangeRate, RatioChangeRateUnit, double>,
+        IArithmeticQuantity<RatioChangeRate, RatioChangeRateUnit>,
         IComparable,
         IComparable<RatioChangeRate>,
         IConvertible,
@@ -147,7 +147,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -227,18 +227,16 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RatioChangeRate"/> from <see cref="RatioChangeRateUnit.DecimalFractionPerSecond"/>.
         /// </summary>
-        public static RatioChangeRate FromDecimalFractionsPerSecond(QuantityValue decimalfractionspersecond)
+        public static RatioChangeRate FromDecimalFractionsPerSecond(double value)
         {
-            double value = (double) decimalfractionspersecond;
             return new RatioChangeRate(value, RatioChangeRateUnit.DecimalFractionPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="RatioChangeRate"/> from <see cref="RatioChangeRateUnit.PercentPerSecond"/>.
         /// </summary>
-        public static RatioChangeRate FromPercentsPerSecond(QuantityValue percentspersecond)
+        public static RatioChangeRate FromPercentsPerSecond(double value)
         {
-            double value = (double) percentspersecond;
             return new RatioChangeRate(value, RatioChangeRateUnit.PercentPerSecond);
         }
 
@@ -248,9 +246,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>RatioChangeRate unit value.</returns>
-        public static RatioChangeRate From(QuantityValue value, RatioChangeRateUnit fromUnit)
+        public static RatioChangeRate From(double value, RatioChangeRateUnit fromUnit)
         {
-            return new RatioChangeRate((double)value, fromUnit);
+            return new RatioChangeRate(value, fromUnit);
         }
 
         #endregion
@@ -665,15 +663,6 @@ namespace UnitsNet
             if (!(unit is RatioChangeRateUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RatioChangeRateUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is RatioChangeRateUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RatioChangeRateUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -785,18 +774,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<RatioChangeRateUnit> IQuantity<RatioChangeRateUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not RatioChangeRateUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RatioChangeRateUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

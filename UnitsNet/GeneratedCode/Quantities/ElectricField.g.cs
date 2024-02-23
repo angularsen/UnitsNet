@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     public readonly partial struct ElectricField :
-        IArithmeticQuantity<ElectricField, ElectricFieldUnit, double>,
+        IArithmeticQuantity<ElectricField, ElectricFieldUnit>,
         IComparable,
         IComparable<ElectricField>,
         IConvertible,
@@ -149,7 +149,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -222,9 +222,8 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricField"/> from <see cref="ElectricFieldUnit.VoltPerMeter"/>.
         /// </summary>
-        public static ElectricField FromVoltsPerMeter(QuantityValue voltspermeter)
+        public static ElectricField FromVoltsPerMeter(double value)
         {
-            double value = (double) voltspermeter;
             return new ElectricField(value, ElectricFieldUnit.VoltPerMeter);
         }
 
@@ -234,9 +233,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricField unit value.</returns>
-        public static ElectricField From(QuantityValue value, ElectricFieldUnit fromUnit)
+        public static ElectricField From(double value, ElectricFieldUnit fromUnit)
         {
-            return new ElectricField((double)value, fromUnit);
+            return new ElectricField(value, fromUnit);
         }
 
         #endregion
@@ -651,15 +650,6 @@ namespace UnitsNet
             if (!(unit is ElectricFieldUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricFieldUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is ElectricFieldUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricFieldUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -769,18 +759,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ElectricFieldUnit> IQuantity<ElectricFieldUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not ElectricFieldUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricFieldUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

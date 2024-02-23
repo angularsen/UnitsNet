@@ -37,7 +37,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct ReactiveEnergy :
-        IArithmeticQuantity<ReactiveEnergy, ReactiveEnergyUnit, double>,
+        IArithmeticQuantity<ReactiveEnergy, ReactiveEnergyUnit>,
         IComparable,
         IComparable<ReactiveEnergy>,
         IConvertible,
@@ -148,7 +148,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -235,27 +235,24 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReactiveEnergy"/> from <see cref="ReactiveEnergyUnit.KilovoltampereReactiveHour"/>.
         /// </summary>
-        public static ReactiveEnergy FromKilovoltampereReactiveHours(QuantityValue kilovoltamperereactivehours)
+        public static ReactiveEnergy FromKilovoltampereReactiveHours(double value)
         {
-            double value = (double) kilovoltamperereactivehours;
             return new ReactiveEnergy(value, ReactiveEnergyUnit.KilovoltampereReactiveHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="ReactiveEnergy"/> from <see cref="ReactiveEnergyUnit.MegavoltampereReactiveHour"/>.
         /// </summary>
-        public static ReactiveEnergy FromMegavoltampereReactiveHours(QuantityValue megavoltamperereactivehours)
+        public static ReactiveEnergy FromMegavoltampereReactiveHours(double value)
         {
-            double value = (double) megavoltamperereactivehours;
             return new ReactiveEnergy(value, ReactiveEnergyUnit.MegavoltampereReactiveHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="ReactiveEnergy"/> from <see cref="ReactiveEnergyUnit.VoltampereReactiveHour"/>.
         /// </summary>
-        public static ReactiveEnergy FromVoltampereReactiveHours(QuantityValue voltamperereactivehours)
+        public static ReactiveEnergy FromVoltampereReactiveHours(double value)
         {
-            double value = (double) voltamperereactivehours;
             return new ReactiveEnergy(value, ReactiveEnergyUnit.VoltampereReactiveHour);
         }
 
@@ -265,9 +262,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ReactiveEnergy unit value.</returns>
-        public static ReactiveEnergy From(QuantityValue value, ReactiveEnergyUnit fromUnit)
+        public static ReactiveEnergy From(double value, ReactiveEnergyUnit fromUnit)
         {
-            return new ReactiveEnergy((double)value, fromUnit);
+            return new ReactiveEnergy(value, fromUnit);
         }
 
         #endregion
@@ -682,15 +679,6 @@ namespace UnitsNet
             if (!(unit is ReactiveEnergyUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ReactiveEnergyUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is ReactiveEnergyUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ReactiveEnergyUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -804,18 +792,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ReactiveEnergyUnit> IQuantity<ReactiveEnergyUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not ReactiveEnergyUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ReactiveEnergyUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

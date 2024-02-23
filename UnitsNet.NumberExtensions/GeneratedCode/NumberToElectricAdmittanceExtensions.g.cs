@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
     /// </summary>
     public static class NumberToElectricAdmittanceExtensions
     {
-        /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(double)" />
         public static ElectricAdmittance Microsiemens<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
 #endif
             => ElectricAdmittance.FromMicrosiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(double)" />
         public static ElectricAdmittance Millisiemens<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
 #endif
             => ElectricAdmittance.FromMillisiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(double)" />
         public static ElectricAdmittance Nanosiemens<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
 #endif
             => ElectricAdmittance.FromNanosiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricAdmittance.FromSiemens(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricAdmittance.FromSiemens(double)" />
         public static ElectricAdmittance Siemens<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

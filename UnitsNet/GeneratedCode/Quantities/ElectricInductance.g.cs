@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     public readonly partial struct ElectricInductance :
-        IArithmeticQuantity<ElectricInductance, ElectricInductanceUnit, double>,
+        IArithmeticQuantity<ElectricInductance, ElectricInductanceUnit>,
         IComparable,
         IComparable<ElectricInductance>,
         IConvertible,
@@ -153,7 +153,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -254,45 +254,40 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Henry"/>.
         /// </summary>
-        public static ElectricInductance FromHenries(QuantityValue henries)
+        public static ElectricInductance FromHenries(double value)
         {
-            double value = (double) henries;
             return new ElectricInductance(value, ElectricInductanceUnit.Henry);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Microhenry"/>.
         /// </summary>
-        public static ElectricInductance FromMicrohenries(QuantityValue microhenries)
+        public static ElectricInductance FromMicrohenries(double value)
         {
-            double value = (double) microhenries;
             return new ElectricInductance(value, ElectricInductanceUnit.Microhenry);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Millihenry"/>.
         /// </summary>
-        public static ElectricInductance FromMillihenries(QuantityValue millihenries)
+        public static ElectricInductance FromMillihenries(double value)
         {
-            double value = (double) millihenries;
             return new ElectricInductance(value, ElectricInductanceUnit.Millihenry);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Nanohenry"/>.
         /// </summary>
-        public static ElectricInductance FromNanohenries(QuantityValue nanohenries)
+        public static ElectricInductance FromNanohenries(double value)
         {
-            double value = (double) nanohenries;
             return new ElectricInductance(value, ElectricInductanceUnit.Nanohenry);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Picohenry"/>.
         /// </summary>
-        public static ElectricInductance FromPicohenries(QuantityValue picohenries)
+        public static ElectricInductance FromPicohenries(double value)
         {
-            double value = (double) picohenries;
             return new ElectricInductance(value, ElectricInductanceUnit.Picohenry);
         }
 
@@ -302,9 +297,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricInductance unit value.</returns>
-        public static ElectricInductance From(QuantityValue value, ElectricInductanceUnit fromUnit)
+        public static ElectricInductance From(double value, ElectricInductanceUnit fromUnit)
         {
-            return new ElectricInductance((double)value, fromUnit);
+            return new ElectricInductance(value, fromUnit);
         }
 
         #endregion
@@ -719,15 +714,6 @@ namespace UnitsNet
             if (!(unit is ElectricInductanceUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricInductanceUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is ElectricInductanceUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricInductanceUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -845,18 +831,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ElectricInductanceUnit> IQuantity<ElectricInductanceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not ElectricInductanceUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricInductanceUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

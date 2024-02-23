@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct SpecificVolume :
-        IArithmeticQuantity<SpecificVolume, SpecificVolumeUnit, double>,
+        IArithmeticQuantity<SpecificVolume, SpecificVolumeUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<SpecificVolume, Mass, Volume>,
 #endif
@@ -154,7 +154,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -241,27 +241,24 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificVolume"/> from <see cref="SpecificVolumeUnit.CubicFootPerPound"/>.
         /// </summary>
-        public static SpecificVolume FromCubicFeetPerPound(QuantityValue cubicfeetperpound)
+        public static SpecificVolume FromCubicFeetPerPound(double value)
         {
-            double value = (double) cubicfeetperpound;
             return new SpecificVolume(value, SpecificVolumeUnit.CubicFootPerPound);
         }
 
         /// <summary>
         ///     Creates a <see cref="SpecificVolume"/> from <see cref="SpecificVolumeUnit.CubicMeterPerKilogram"/>.
         /// </summary>
-        public static SpecificVolume FromCubicMetersPerKilogram(QuantityValue cubicmetersperkilogram)
+        public static SpecificVolume FromCubicMetersPerKilogram(double value)
         {
-            double value = (double) cubicmetersperkilogram;
             return new SpecificVolume(value, SpecificVolumeUnit.CubicMeterPerKilogram);
         }
 
         /// <summary>
         ///     Creates a <see cref="SpecificVolume"/> from <see cref="SpecificVolumeUnit.MillicubicMeterPerKilogram"/>.
         /// </summary>
-        public static SpecificVolume FromMillicubicMetersPerKilogram(QuantityValue millicubicmetersperkilogram)
+        public static SpecificVolume FromMillicubicMetersPerKilogram(double value)
         {
-            double value = (double) millicubicmetersperkilogram;
             return new SpecificVolume(value, SpecificVolumeUnit.MillicubicMeterPerKilogram);
         }
 
@@ -271,9 +268,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>SpecificVolume unit value.</returns>
-        public static SpecificVolume From(QuantityValue value, SpecificVolumeUnit fromUnit)
+        public static SpecificVolume From(double value, SpecificVolumeUnit fromUnit)
         {
-            return new SpecificVolume((double)value, fromUnit);
+            return new SpecificVolume(value, fromUnit);
         }
 
         #endregion
@@ -704,15 +701,6 @@ namespace UnitsNet
             if (!(unit is SpecificVolumeUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificVolumeUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is SpecificVolumeUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificVolumeUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -826,18 +814,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<SpecificVolumeUnit> IQuantity<SpecificVolumeUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not SpecificVolumeUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificVolumeUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

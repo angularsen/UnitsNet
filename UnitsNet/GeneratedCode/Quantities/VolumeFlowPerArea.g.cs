@@ -37,7 +37,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct VolumeFlowPerArea :
-        IArithmeticQuantity<VolumeFlowPerArea, VolumeFlowPerAreaUnit, double>,
+        IArithmeticQuantity<VolumeFlowPerArea, VolumeFlowPerAreaUnit>,
         IComparable,
         IComparable<VolumeFlowPerArea>,
         IConvertible,
@@ -147,7 +147,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -227,18 +227,16 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeFlowPerArea"/> from <see cref="VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot"/>.
         /// </summary>
-        public static VolumeFlowPerArea FromCubicFeetPerMinutePerSquareFoot(QuantityValue cubicfeetperminutepersquarefoot)
+        public static VolumeFlowPerArea FromCubicFeetPerMinutePerSquareFoot(double value)
         {
-            double value = (double) cubicfeetperminutepersquarefoot;
             return new VolumeFlowPerArea(value, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot);
         }
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlowPerArea"/> from <see cref="VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter"/>.
         /// </summary>
-        public static VolumeFlowPerArea FromCubicMetersPerSecondPerSquareMeter(QuantityValue cubicmeterspersecondpersquaremeter)
+        public static VolumeFlowPerArea FromCubicMetersPerSecondPerSquareMeter(double value)
         {
-            double value = (double) cubicmeterspersecondpersquaremeter;
             return new VolumeFlowPerArea(value, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter);
         }
 
@@ -248,9 +246,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>VolumeFlowPerArea unit value.</returns>
-        public static VolumeFlowPerArea From(QuantityValue value, VolumeFlowPerAreaUnit fromUnit)
+        public static VolumeFlowPerArea From(double value, VolumeFlowPerAreaUnit fromUnit)
         {
-            return new VolumeFlowPerArea((double)value, fromUnit);
+            return new VolumeFlowPerArea(value, fromUnit);
         }
 
         #endregion
@@ -665,15 +663,6 @@ namespace UnitsNet
             if (!(unit is VolumeFlowPerAreaUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeFlowPerAreaUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is VolumeFlowPerAreaUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeFlowPerAreaUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -785,18 +774,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<VolumeFlowPerAreaUnit> IQuantity<VolumeFlowPerAreaUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not VolumeFlowPerAreaUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeFlowPerAreaUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

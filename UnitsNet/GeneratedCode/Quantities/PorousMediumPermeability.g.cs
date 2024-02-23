@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     public readonly partial struct PorousMediumPermeability :
-        IArithmeticQuantity<PorousMediumPermeability, PorousMediumPermeabilityUnit, double>,
+        IArithmeticQuantity<PorousMediumPermeability, PorousMediumPermeabilityUnit>,
         IComparable,
         IComparable<PorousMediumPermeability>,
         IConvertible,
@@ -153,7 +153,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -254,45 +254,40 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PorousMediumPermeability"/> from <see cref="PorousMediumPermeabilityUnit.Darcy"/>.
         /// </summary>
-        public static PorousMediumPermeability FromDarcys(QuantityValue darcys)
+        public static PorousMediumPermeability FromDarcys(double value)
         {
-            double value = (double) darcys;
             return new PorousMediumPermeability(value, PorousMediumPermeabilityUnit.Darcy);
         }
 
         /// <summary>
         ///     Creates a <see cref="PorousMediumPermeability"/> from <see cref="PorousMediumPermeabilityUnit.Microdarcy"/>.
         /// </summary>
-        public static PorousMediumPermeability FromMicrodarcys(QuantityValue microdarcys)
+        public static PorousMediumPermeability FromMicrodarcys(double value)
         {
-            double value = (double) microdarcys;
             return new PorousMediumPermeability(value, PorousMediumPermeabilityUnit.Microdarcy);
         }
 
         /// <summary>
         ///     Creates a <see cref="PorousMediumPermeability"/> from <see cref="PorousMediumPermeabilityUnit.Millidarcy"/>.
         /// </summary>
-        public static PorousMediumPermeability FromMillidarcys(QuantityValue millidarcys)
+        public static PorousMediumPermeability FromMillidarcys(double value)
         {
-            double value = (double) millidarcys;
             return new PorousMediumPermeability(value, PorousMediumPermeabilityUnit.Millidarcy);
         }
 
         /// <summary>
         ///     Creates a <see cref="PorousMediumPermeability"/> from <see cref="PorousMediumPermeabilityUnit.SquareCentimeter"/>.
         /// </summary>
-        public static PorousMediumPermeability FromSquareCentimeters(QuantityValue squarecentimeters)
+        public static PorousMediumPermeability FromSquareCentimeters(double value)
         {
-            double value = (double) squarecentimeters;
             return new PorousMediumPermeability(value, PorousMediumPermeabilityUnit.SquareCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="PorousMediumPermeability"/> from <see cref="PorousMediumPermeabilityUnit.SquareMeter"/>.
         /// </summary>
-        public static PorousMediumPermeability FromSquareMeters(QuantityValue squaremeters)
+        public static PorousMediumPermeability FromSquareMeters(double value)
         {
-            double value = (double) squaremeters;
             return new PorousMediumPermeability(value, PorousMediumPermeabilityUnit.SquareMeter);
         }
 
@@ -302,9 +297,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>PorousMediumPermeability unit value.</returns>
-        public static PorousMediumPermeability From(QuantityValue value, PorousMediumPermeabilityUnit fromUnit)
+        public static PorousMediumPermeability From(double value, PorousMediumPermeabilityUnit fromUnit)
         {
-            return new PorousMediumPermeability((double)value, fromUnit);
+            return new PorousMediumPermeability(value, fromUnit);
         }
 
         #endregion
@@ -719,15 +714,6 @@ namespace UnitsNet
             if (!(unit is PorousMediumPermeabilityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PorousMediumPermeabilityUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is PorousMediumPermeabilityUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PorousMediumPermeabilityUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -845,18 +831,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<PorousMediumPermeabilityUnit> IQuantity<PorousMediumPermeabilityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not PorousMediumPermeabilityUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PorousMediumPermeabilityUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

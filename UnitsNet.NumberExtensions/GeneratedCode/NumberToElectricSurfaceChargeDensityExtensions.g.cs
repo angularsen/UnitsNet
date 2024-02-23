@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricSurfaceChargeDensity
     /// </summary>
     public static class NumberToElectricSurfaceChargeDensityExtensions
     {
-        /// <inheritdoc cref="ElectricSurfaceChargeDensity.FromCoulombsPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricSurfaceChargeDensity.FromCoulombsPerSquareCentimeter(double)" />
         public static ElectricSurfaceChargeDensity CoulombsPerSquareCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricSurfaceChargeDensity
 #endif
             => ElectricSurfaceChargeDensity.FromCoulombsPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricSurfaceChargeDensity.FromCoulombsPerSquareInch(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricSurfaceChargeDensity.FromCoulombsPerSquareInch(double)" />
         public static ElectricSurfaceChargeDensity CoulombsPerSquareInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricSurfaceChargeDensity
 #endif
             => ElectricSurfaceChargeDensity.FromCoulombsPerSquareInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(double)" />
         public static ElectricSurfaceChargeDensity CoulombsPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct RotationalStiffnessPerLength :
-        IArithmeticQuantity<RotationalStiffnessPerLength, RotationalStiffnessPerLengthUnit, double>,
+        IArithmeticQuantity<RotationalStiffnessPerLength, RotationalStiffnessPerLengthUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<RotationalStiffnessPerLength, Length, RotationalStiffness>,
 #endif
@@ -156,7 +156,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -257,45 +257,40 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalStiffnessPerLength"/> from <see cref="RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter"/>.
         /// </summary>
-        public static RotationalStiffnessPerLength FromKilonewtonMetersPerRadianPerMeter(QuantityValue kilonewtonmetersperradianpermeter)
+        public static RotationalStiffnessPerLength FromKilonewtonMetersPerRadianPerMeter(double value)
         {
-            double value = (double) kilonewtonmetersperradianpermeter;
             return new RotationalStiffnessPerLength(value, RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffnessPerLength"/> from <see cref="RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot"/>.
         /// </summary>
-        public static RotationalStiffnessPerLength FromKilopoundForceFeetPerDegreesPerFeet(QuantityValue kilopoundforcefeetperdegreesperfeet)
+        public static RotationalStiffnessPerLength FromKilopoundForceFeetPerDegreesPerFeet(double value)
         {
-            double value = (double) kilopoundforcefeetperdegreesperfeet;
             return new RotationalStiffnessPerLength(value, RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffnessPerLength"/> from <see cref="RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter"/>.
         /// </summary>
-        public static RotationalStiffnessPerLength FromMeganewtonMetersPerRadianPerMeter(QuantityValue meganewtonmetersperradianpermeter)
+        public static RotationalStiffnessPerLength FromMeganewtonMetersPerRadianPerMeter(double value)
         {
-            double value = (double) meganewtonmetersperradianpermeter;
             return new RotationalStiffnessPerLength(value, RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffnessPerLength"/> from <see cref="RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter"/>.
         /// </summary>
-        public static RotationalStiffnessPerLength FromNewtonMetersPerRadianPerMeter(QuantityValue newtonmetersperradianpermeter)
+        public static RotationalStiffnessPerLength FromNewtonMetersPerRadianPerMeter(double value)
         {
-            double value = (double) newtonmetersperradianpermeter;
             return new RotationalStiffnessPerLength(value, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffnessPerLength"/> from <see cref="RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot"/>.
         /// </summary>
-        public static RotationalStiffnessPerLength FromPoundForceFeetPerDegreesPerFeet(QuantityValue poundforcefeetperdegreesperfeet)
+        public static RotationalStiffnessPerLength FromPoundForceFeetPerDegreesPerFeet(double value)
         {
-            double value = (double) poundforcefeetperdegreesperfeet;
             return new RotationalStiffnessPerLength(value, RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot);
         }
 
@@ -305,9 +300,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>RotationalStiffnessPerLength unit value.</returns>
-        public static RotationalStiffnessPerLength From(QuantityValue value, RotationalStiffnessPerLengthUnit fromUnit)
+        public static RotationalStiffnessPerLength From(double value, RotationalStiffnessPerLengthUnit fromUnit)
         {
-            return new RotationalStiffnessPerLength((double)value, fromUnit);
+            return new RotationalStiffnessPerLength(value, fromUnit);
         }
 
         #endregion
@@ -732,15 +727,6 @@ namespace UnitsNet
             if (!(unit is RotationalStiffnessPerLengthUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalStiffnessPerLengthUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is RotationalStiffnessPerLengthUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalStiffnessPerLengthUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -858,18 +844,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<RotationalStiffnessPerLengthUnit> IQuantity<RotationalStiffnessPerLengthUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not RotationalStiffnessPerLengthUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalStiffnessPerLengthUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

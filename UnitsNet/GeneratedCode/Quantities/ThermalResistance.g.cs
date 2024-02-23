@@ -37,7 +37,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct ThermalResistance :
-        IArithmeticQuantity<ThermalResistance, ThermalResistanceUnit, double>,
+        IArithmeticQuantity<ThermalResistance, ThermalResistanceUnit>,
         IComparable,
         IComparable<ThermalResistance>,
         IConvertible,
@@ -151,7 +151,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -259,54 +259,48 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ThermalResistance"/> from <see cref="ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu"/>.
         /// </summary>
-        public static ThermalResistance FromHourSquareFeetDegreesFahrenheitPerBtu(QuantityValue hoursquarefeetdegreesfahrenheitperbtu)
+        public static ThermalResistance FromHourSquareFeetDegreesFahrenheitPerBtu(double value)
         {
-            double value = (double) hoursquarefeetdegreesfahrenheitperbtu;
             return new ThermalResistance(value, ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu);
         }
 
         /// <summary>
         ///     Creates a <see cref="ThermalResistance"/> from <see cref="ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie"/>.
         /// </summary>
-        public static ThermalResistance FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(QuantityValue squarecentimeterhourdegreescelsiusperkilocalorie)
+        public static ThermalResistance FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(double value)
         {
-            double value = (double) squarecentimeterhourdegreescelsiusperkilocalorie;
             return new ThermalResistance(value, ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie);
         }
 
         /// <summary>
         ///     Creates a <see cref="ThermalResistance"/> from <see cref="ThermalResistanceUnit.SquareCentimeterKelvinPerWatt"/>.
         /// </summary>
-        public static ThermalResistance FromSquareCentimeterKelvinsPerWatt(QuantityValue squarecentimeterkelvinsperwatt)
+        public static ThermalResistance FromSquareCentimeterKelvinsPerWatt(double value)
         {
-            double value = (double) squarecentimeterkelvinsperwatt;
             return new ThermalResistance(value, ThermalResistanceUnit.SquareCentimeterKelvinPerWatt);
         }
 
         /// <summary>
         ///     Creates a <see cref="ThermalResistance"/> from <see cref="ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt"/>.
         /// </summary>
-        public static ThermalResistance FromSquareMeterDegreesCelsiusPerWatt(QuantityValue squaremeterdegreescelsiusperwatt)
+        public static ThermalResistance FromSquareMeterDegreesCelsiusPerWatt(double value)
         {
-            double value = (double) squaremeterdegreescelsiusperwatt;
             return new ThermalResistance(value, ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt);
         }
 
         /// <summary>
         ///     Creates a <see cref="ThermalResistance"/> from <see cref="ThermalResistanceUnit.SquareMeterKelvinPerKilowatt"/>.
         /// </summary>
-        public static ThermalResistance FromSquareMeterKelvinsPerKilowatt(QuantityValue squaremeterkelvinsperkilowatt)
+        public static ThermalResistance FromSquareMeterKelvinsPerKilowatt(double value)
         {
-            double value = (double) squaremeterkelvinsperkilowatt;
             return new ThermalResistance(value, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt);
         }
 
         /// <summary>
         ///     Creates a <see cref="ThermalResistance"/> from <see cref="ThermalResistanceUnit.SquareMeterKelvinPerWatt"/>.
         /// </summary>
-        public static ThermalResistance FromSquareMeterKelvinsPerWatt(QuantityValue squaremeterkelvinsperwatt)
+        public static ThermalResistance FromSquareMeterKelvinsPerWatt(double value)
         {
-            double value = (double) squaremeterkelvinsperwatt;
             return new ThermalResistance(value, ThermalResistanceUnit.SquareMeterKelvinPerWatt);
         }
 
@@ -316,9 +310,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ThermalResistance unit value.</returns>
-        public static ThermalResistance From(QuantityValue value, ThermalResistanceUnit fromUnit)
+        public static ThermalResistance From(double value, ThermalResistanceUnit fromUnit)
         {
-            return new ThermalResistance((double)value, fromUnit);
+            return new ThermalResistance(value, fromUnit);
         }
 
         #endregion
@@ -733,15 +727,6 @@ namespace UnitsNet
             if (!(unit is ThermalResistanceUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ThermalResistanceUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is ThermalResistanceUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ThermalResistanceUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -861,18 +846,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ThermalResistanceUnit> IQuantity<ThermalResistanceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not ThermalResistanceUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ThermalResistanceUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

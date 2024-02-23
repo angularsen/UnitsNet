@@ -37,7 +37,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct Scalar :
-        IArithmeticQuantity<Scalar, ScalarUnit, double>,
+        IArithmeticQuantity<Scalar, ScalarUnit>,
         IComparable,
         IComparable<Scalar>,
         IConvertible,
@@ -146,7 +146,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -219,9 +219,8 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Scalar"/> from <see cref="ScalarUnit.Amount"/>.
         /// </summary>
-        public static Scalar FromAmount(QuantityValue amount)
+        public static Scalar FromAmount(double value)
         {
-            double value = (double) amount;
             return new Scalar(value, ScalarUnit.Amount);
         }
 
@@ -231,9 +230,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Scalar unit value.</returns>
-        public static Scalar From(QuantityValue value, ScalarUnit fromUnit)
+        public static Scalar From(double value, ScalarUnit fromUnit)
         {
-            return new Scalar((double)value, fromUnit);
+            return new Scalar(value, fromUnit);
         }
 
         #endregion
@@ -648,15 +647,6 @@ namespace UnitsNet
             if (!(unit is ScalarUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ScalarUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is ScalarUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ScalarUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -766,18 +756,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ScalarUnit> IQuantity<ScalarUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not ScalarUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ScalarUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

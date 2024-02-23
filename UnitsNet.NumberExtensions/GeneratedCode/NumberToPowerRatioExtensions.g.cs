@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerRatio
     /// </summary>
     public static class NumberToPowerRatioExtensions
     {
-        /// <inheritdoc cref="PowerRatio.FromDecibelMilliwatts(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerRatio.FromDecibelMilliwatts(double)" />
         public static PowerRatio DecibelMilliwatts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToPowerRatio
 #endif
             => PowerRatio.FromDecibelMilliwatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerRatio.FromDecibelWatts(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerRatio.FromDecibelWatts(double)" />
         public static PowerRatio DecibelWatts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

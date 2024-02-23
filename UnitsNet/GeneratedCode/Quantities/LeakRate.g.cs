@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     public readonly partial struct LeakRate :
-        IArithmeticQuantity<LeakRate, LeakRateUnit, double>,
+        IArithmeticQuantity<LeakRate, LeakRateUnit>,
         IComparable,
         IComparable<LeakRate>,
         IConvertible,
@@ -151,7 +151,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -238,27 +238,24 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="LeakRate"/> from <see cref="LeakRateUnit.MillibarLiterPerSecond"/>.
         /// </summary>
-        public static LeakRate FromMillibarLitersPerSecond(QuantityValue millibarliterspersecond)
+        public static LeakRate FromMillibarLitersPerSecond(double value)
         {
-            double value = (double) millibarliterspersecond;
             return new LeakRate(value, LeakRateUnit.MillibarLiterPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="LeakRate"/> from <see cref="LeakRateUnit.PascalCubicMeterPerSecond"/>.
         /// </summary>
-        public static LeakRate FromPascalCubicMetersPerSecond(QuantityValue pascalcubicmeterspersecond)
+        public static LeakRate FromPascalCubicMetersPerSecond(double value)
         {
-            double value = (double) pascalcubicmeterspersecond;
             return new LeakRate(value, LeakRateUnit.PascalCubicMeterPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="LeakRate"/> from <see cref="LeakRateUnit.TorrLiterPerSecond"/>.
         /// </summary>
-        public static LeakRate FromTorrLitersPerSecond(QuantityValue torrliterspersecond)
+        public static LeakRate FromTorrLitersPerSecond(double value)
         {
-            double value = (double) torrliterspersecond;
             return new LeakRate(value, LeakRateUnit.TorrLiterPerSecond);
         }
 
@@ -268,9 +265,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>LeakRate unit value.</returns>
-        public static LeakRate From(QuantityValue value, LeakRateUnit fromUnit)
+        public static LeakRate From(double value, LeakRateUnit fromUnit)
         {
-            return new LeakRate((double)value, fromUnit);
+            return new LeakRate(value, fromUnit);
         }
 
         #endregion
@@ -685,15 +682,6 @@ namespace UnitsNet
             if (!(unit is LeakRateUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LeakRateUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is LeakRateUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LeakRateUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -807,18 +795,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<LeakRateUnit> IQuantity<LeakRateUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not LeakRateUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LeakRateUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

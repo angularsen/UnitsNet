@@ -37,7 +37,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct ReactivePower :
-        IArithmeticQuantity<ReactivePower, ReactivePowerUnit, double>,
+        IArithmeticQuantity<ReactivePower, ReactivePowerUnit>,
         IComparable,
         IComparable<ReactivePower>,
         IConvertible,
@@ -149,7 +149,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -243,36 +243,32 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReactivePower"/> from <see cref="ReactivePowerUnit.GigavoltampereReactive"/>.
         /// </summary>
-        public static ReactivePower FromGigavoltamperesReactive(QuantityValue gigavoltamperesreactive)
+        public static ReactivePower FromGigavoltamperesReactive(double value)
         {
-            double value = (double) gigavoltamperesreactive;
             return new ReactivePower(value, ReactivePowerUnit.GigavoltampereReactive);
         }
 
         /// <summary>
         ///     Creates a <see cref="ReactivePower"/> from <see cref="ReactivePowerUnit.KilovoltampereReactive"/>.
         /// </summary>
-        public static ReactivePower FromKilovoltamperesReactive(QuantityValue kilovoltamperesreactive)
+        public static ReactivePower FromKilovoltamperesReactive(double value)
         {
-            double value = (double) kilovoltamperesreactive;
             return new ReactivePower(value, ReactivePowerUnit.KilovoltampereReactive);
         }
 
         /// <summary>
         ///     Creates a <see cref="ReactivePower"/> from <see cref="ReactivePowerUnit.MegavoltampereReactive"/>.
         /// </summary>
-        public static ReactivePower FromMegavoltamperesReactive(QuantityValue megavoltamperesreactive)
+        public static ReactivePower FromMegavoltamperesReactive(double value)
         {
-            double value = (double) megavoltamperesreactive;
             return new ReactivePower(value, ReactivePowerUnit.MegavoltampereReactive);
         }
 
         /// <summary>
         ///     Creates a <see cref="ReactivePower"/> from <see cref="ReactivePowerUnit.VoltampereReactive"/>.
         /// </summary>
-        public static ReactivePower FromVoltamperesReactive(QuantityValue voltamperesreactive)
+        public static ReactivePower FromVoltamperesReactive(double value)
         {
-            double value = (double) voltamperesreactive;
             return new ReactivePower(value, ReactivePowerUnit.VoltampereReactive);
         }
 
@@ -282,9 +278,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ReactivePower unit value.</returns>
-        public static ReactivePower From(QuantityValue value, ReactivePowerUnit fromUnit)
+        public static ReactivePower From(double value, ReactivePowerUnit fromUnit)
         {
-            return new ReactivePower((double)value, fromUnit);
+            return new ReactivePower(value, fromUnit);
         }
 
         #endregion
@@ -699,15 +695,6 @@ namespace UnitsNet
             if (!(unit is ReactivePowerUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ReactivePowerUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is ReactivePowerUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ReactivePowerUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -823,18 +810,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ReactivePowerUnit> IQuantity<ReactivePowerUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not ReactivePowerUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ReactivePowerUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

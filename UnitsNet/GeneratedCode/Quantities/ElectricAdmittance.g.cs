@@ -37,7 +37,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct ElectricAdmittance :
-        IArithmeticQuantity<ElectricAdmittance, ElectricAdmittanceUnit, double>,
+        IArithmeticQuantity<ElectricAdmittance, ElectricAdmittanceUnit>,
         IComparable,
         IComparable<ElectricAdmittance>,
         IConvertible,
@@ -149,7 +149,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -243,36 +243,32 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Microsiemens"/>.
         /// </summary>
-        public static ElectricAdmittance FromMicrosiemens(QuantityValue microsiemens)
+        public static ElectricAdmittance FromMicrosiemens(double value)
         {
-            double value = (double) microsiemens;
             return new ElectricAdmittance(value, ElectricAdmittanceUnit.Microsiemens);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Millisiemens"/>.
         /// </summary>
-        public static ElectricAdmittance FromMillisiemens(QuantityValue millisiemens)
+        public static ElectricAdmittance FromMillisiemens(double value)
         {
-            double value = (double) millisiemens;
             return new ElectricAdmittance(value, ElectricAdmittanceUnit.Millisiemens);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Nanosiemens"/>.
         /// </summary>
-        public static ElectricAdmittance FromNanosiemens(QuantityValue nanosiemens)
+        public static ElectricAdmittance FromNanosiemens(double value)
         {
-            double value = (double) nanosiemens;
             return new ElectricAdmittance(value, ElectricAdmittanceUnit.Nanosiemens);
         }
 
         /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Siemens"/>.
         /// </summary>
-        public static ElectricAdmittance FromSiemens(QuantityValue siemens)
+        public static ElectricAdmittance FromSiemens(double value)
         {
-            double value = (double) siemens;
             return new ElectricAdmittance(value, ElectricAdmittanceUnit.Siemens);
         }
 
@@ -282,9 +278,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricAdmittance unit value.</returns>
-        public static ElectricAdmittance From(QuantityValue value, ElectricAdmittanceUnit fromUnit)
+        public static ElectricAdmittance From(double value, ElectricAdmittanceUnit fromUnit)
         {
-            return new ElectricAdmittance((double)value, fromUnit);
+            return new ElectricAdmittance(value, fromUnit);
         }
 
         #endregion
@@ -699,15 +695,6 @@ namespace UnitsNet
             if (!(unit is ElectricAdmittanceUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricAdmittanceUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is ElectricAdmittanceUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricAdmittanceUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -823,18 +810,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ElectricAdmittanceUnit> IQuantity<ElectricAdmittanceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not ElectricAdmittanceUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricAdmittanceUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

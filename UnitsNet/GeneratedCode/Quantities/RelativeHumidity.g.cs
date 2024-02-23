@@ -37,7 +37,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct RelativeHumidity :
-        IArithmeticQuantity<RelativeHumidity, RelativeHumidityUnit, double>,
+        IArithmeticQuantity<RelativeHumidity, RelativeHumidityUnit>,
         IComparable,
         IComparable<RelativeHumidity>,
         IConvertible,
@@ -146,7 +146,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -219,9 +219,8 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RelativeHumidity"/> from <see cref="RelativeHumidityUnit.Percent"/>.
         /// </summary>
-        public static RelativeHumidity FromPercent(QuantityValue percent)
+        public static RelativeHumidity FromPercent(double value)
         {
-            double value = (double) percent;
             return new RelativeHumidity(value, RelativeHumidityUnit.Percent);
         }
 
@@ -231,9 +230,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>RelativeHumidity unit value.</returns>
-        public static RelativeHumidity From(QuantityValue value, RelativeHumidityUnit fromUnit)
+        public static RelativeHumidity From(double value, RelativeHumidityUnit fromUnit)
         {
-            return new RelativeHumidity((double)value, fromUnit);
+            return new RelativeHumidity(value, fromUnit);
         }
 
         #endregion
@@ -648,15 +647,6 @@ namespace UnitsNet
             if (!(unit is RelativeHumidityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RelativeHumidityUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is RelativeHumidityUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RelativeHumidityUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -766,18 +756,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<RelativeHumidityUnit> IQuantity<RelativeHumidityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not RelativeHumidityUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RelativeHumidityUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

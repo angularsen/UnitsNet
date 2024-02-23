@@ -57,27 +57,5 @@ namespace UnitsNet.Tests
             Assert.Equal(0.0508, inSI.Value);
             Assert.Equal(LengthUnit.Meter, inSI.Unit);
         }
-
-
-        [Fact]
-        public void IQuantityTUnitDouble_Value_ReturnsDouble()
-        {
-            IQuantity<TemperatureUnit, double> doubleQuantity = Temperature.FromDegreesCelsius(1234.5);
-            Assert.IsType<double>(doubleQuantity.Value);
-        }
-
-        [Fact]
-        public void IQuantityTUnitDouble_AsEnum_ReturnsDouble()
-        {
-            IQuantity<TemperatureUnit, double> doubleQuantity = Temperature.FromDegreesCelsius(1234.5);
-            Assert.IsType<double>(doubleQuantity.As(TemperatureUnit.Kelvin));
-        }
-
-        [Fact]
-        public void IQuantityTUnitDouble_AsUnitSystem_ReturnsDouble()
-        {
-            IQuantity<TemperatureUnit, double> doubleQuantity = Temperature.FromDegreesCelsius(1234.5);
-            Assert.IsType<double>(doubleQuantity.As(UnitSystem.SI));
-        }
     }
 }

@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct TemperatureDelta :
-        IArithmeticQuantity<TemperatureDelta, TemperatureDeltaUnit, double>,
+        IArithmeticQuantity<TemperatureDelta, TemperatureDeltaUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<TemperatureDelta, Entropy, Energy>,
         IDivisionOperators<TemperatureDelta, TemperatureGradient, Length>,
@@ -164,7 +164,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -293,81 +293,72 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureDelta"/> from <see cref="TemperatureDeltaUnit.DegreeCelsius"/>.
         /// </summary>
-        public static TemperatureDelta FromDegreesCelsius(QuantityValue degreescelsius)
+        public static TemperatureDelta FromDegreesCelsius(double value)
         {
-            double value = (double) degreescelsius;
             return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeCelsius);
         }
 
         /// <summary>
         ///     Creates a <see cref="TemperatureDelta"/> from <see cref="TemperatureDeltaUnit.DegreeDelisle"/>.
         /// </summary>
-        public static TemperatureDelta FromDegreesDelisle(QuantityValue degreesdelisle)
+        public static TemperatureDelta FromDegreesDelisle(double value)
         {
-            double value = (double) degreesdelisle;
             return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeDelisle);
         }
 
         /// <summary>
         ///     Creates a <see cref="TemperatureDelta"/> from <see cref="TemperatureDeltaUnit.DegreeFahrenheit"/>.
         /// </summary>
-        public static TemperatureDelta FromDegreesFahrenheit(QuantityValue degreesfahrenheit)
+        public static TemperatureDelta FromDegreesFahrenheit(double value)
         {
-            double value = (double) degreesfahrenheit;
             return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeFahrenheit);
         }
 
         /// <summary>
         ///     Creates a <see cref="TemperatureDelta"/> from <see cref="TemperatureDeltaUnit.DegreeNewton"/>.
         /// </summary>
-        public static TemperatureDelta FromDegreesNewton(QuantityValue degreesnewton)
+        public static TemperatureDelta FromDegreesNewton(double value)
         {
-            double value = (double) degreesnewton;
             return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeNewton);
         }
 
         /// <summary>
         ///     Creates a <see cref="TemperatureDelta"/> from <see cref="TemperatureDeltaUnit.DegreeRankine"/>.
         /// </summary>
-        public static TemperatureDelta FromDegreesRankine(QuantityValue degreesrankine)
+        public static TemperatureDelta FromDegreesRankine(double value)
         {
-            double value = (double) degreesrankine;
             return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeRankine);
         }
 
         /// <summary>
         ///     Creates a <see cref="TemperatureDelta"/> from <see cref="TemperatureDeltaUnit.DegreeReaumur"/>.
         /// </summary>
-        public static TemperatureDelta FromDegreesReaumur(QuantityValue degreesreaumur)
+        public static TemperatureDelta FromDegreesReaumur(double value)
         {
-            double value = (double) degreesreaumur;
             return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeReaumur);
         }
 
         /// <summary>
         ///     Creates a <see cref="TemperatureDelta"/> from <see cref="TemperatureDeltaUnit.DegreeRoemer"/>.
         /// </summary>
-        public static TemperatureDelta FromDegreesRoemer(QuantityValue degreesroemer)
+        public static TemperatureDelta FromDegreesRoemer(double value)
         {
-            double value = (double) degreesroemer;
             return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeRoemer);
         }
 
         /// <summary>
         ///     Creates a <see cref="TemperatureDelta"/> from <see cref="TemperatureDeltaUnit.Kelvin"/>.
         /// </summary>
-        public static TemperatureDelta FromKelvins(QuantityValue kelvins)
+        public static TemperatureDelta FromKelvins(double value)
         {
-            double value = (double) kelvins;
             return new TemperatureDelta(value, TemperatureDeltaUnit.Kelvin);
         }
 
         /// <summary>
         ///     Creates a <see cref="TemperatureDelta"/> from <see cref="TemperatureDeltaUnit.MillidegreeCelsius"/>.
         /// </summary>
-        public static TemperatureDelta FromMillidegreesCelsius(QuantityValue millidegreescelsius)
+        public static TemperatureDelta FromMillidegreesCelsius(double value)
         {
-            double value = (double) millidegreescelsius;
             return new TemperatureDelta(value, TemperatureDeltaUnit.MillidegreeCelsius);
         }
 
@@ -377,9 +368,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>TemperatureDelta unit value.</returns>
-        public static TemperatureDelta From(QuantityValue value, TemperatureDeltaUnit fromUnit)
+        public static TemperatureDelta From(double value, TemperatureDeltaUnit fromUnit)
         {
-            return new TemperatureDelta((double)value, fromUnit);
+            return new TemperatureDelta(value, fromUnit);
         }
 
         #endregion
@@ -828,15 +819,6 @@ namespace UnitsNet
             if (!(unit is TemperatureDeltaUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureDeltaUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is TemperatureDeltaUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureDeltaUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -962,18 +944,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<TemperatureDeltaUnit> IQuantity<TemperatureDeltaUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not TemperatureDeltaUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureDeltaUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

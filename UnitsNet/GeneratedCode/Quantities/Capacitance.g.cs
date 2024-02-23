@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     public readonly partial struct Capacitance :
-        IArithmeticQuantity<Capacitance, CapacitanceUnit, double>,
+        IArithmeticQuantity<Capacitance, CapacitanceUnit>,
         IComparable,
         IComparable<Capacitance>,
         IConvertible,
@@ -155,7 +155,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -270,63 +270,56 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Farad"/>.
         /// </summary>
-        public static Capacitance FromFarads(QuantityValue farads)
+        public static Capacitance FromFarads(double value)
         {
-            double value = (double) farads;
             return new Capacitance(value, CapacitanceUnit.Farad);
         }
 
         /// <summary>
         ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Kilofarad"/>.
         /// </summary>
-        public static Capacitance FromKilofarads(QuantityValue kilofarads)
+        public static Capacitance FromKilofarads(double value)
         {
-            double value = (double) kilofarads;
             return new Capacitance(value, CapacitanceUnit.Kilofarad);
         }
 
         /// <summary>
         ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Megafarad"/>.
         /// </summary>
-        public static Capacitance FromMegafarads(QuantityValue megafarads)
+        public static Capacitance FromMegafarads(double value)
         {
-            double value = (double) megafarads;
             return new Capacitance(value, CapacitanceUnit.Megafarad);
         }
 
         /// <summary>
         ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Microfarad"/>.
         /// </summary>
-        public static Capacitance FromMicrofarads(QuantityValue microfarads)
+        public static Capacitance FromMicrofarads(double value)
         {
-            double value = (double) microfarads;
             return new Capacitance(value, CapacitanceUnit.Microfarad);
         }
 
         /// <summary>
         ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Millifarad"/>.
         /// </summary>
-        public static Capacitance FromMillifarads(QuantityValue millifarads)
+        public static Capacitance FromMillifarads(double value)
         {
-            double value = (double) millifarads;
             return new Capacitance(value, CapacitanceUnit.Millifarad);
         }
 
         /// <summary>
         ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Nanofarad"/>.
         /// </summary>
-        public static Capacitance FromNanofarads(QuantityValue nanofarads)
+        public static Capacitance FromNanofarads(double value)
         {
-            double value = (double) nanofarads;
             return new Capacitance(value, CapacitanceUnit.Nanofarad);
         }
 
         /// <summary>
         ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Picofarad"/>.
         /// </summary>
-        public static Capacitance FromPicofarads(QuantityValue picofarads)
+        public static Capacitance FromPicofarads(double value)
         {
-            double value = (double) picofarads;
             return new Capacitance(value, CapacitanceUnit.Picofarad);
         }
 
@@ -336,9 +329,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Capacitance unit value.</returns>
-        public static Capacitance From(QuantityValue value, CapacitanceUnit fromUnit)
+        public static Capacitance From(double value, CapacitanceUnit fromUnit)
         {
-            return new Capacitance((double)value, fromUnit);
+            return new Capacitance(value, fromUnit);
         }
 
         #endregion
@@ -753,15 +746,6 @@ namespace UnitsNet
             if (!(unit is CapacitanceUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(CapacitanceUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is CapacitanceUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(CapacitanceUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -883,18 +867,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<CapacitanceUnit> IQuantity<CapacitanceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not CapacitanceUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(CapacitanceUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

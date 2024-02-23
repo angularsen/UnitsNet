@@ -37,7 +37,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct Ratio :
-        IArithmeticQuantity<Ratio, RatioUnit, double>,
+        IArithmeticQuantity<Ratio, RatioUnit>,
         IComparable,
         IComparable<Ratio>,
         IConvertible,
@@ -151,7 +151,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -259,54 +259,48 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Ratio"/> from <see cref="RatioUnit.DecimalFraction"/>.
         /// </summary>
-        public static Ratio FromDecimalFractions(QuantityValue decimalfractions)
+        public static Ratio FromDecimalFractions(double value)
         {
-            double value = (double) decimalfractions;
             return new Ratio(value, RatioUnit.DecimalFraction);
         }
 
         /// <summary>
         ///     Creates a <see cref="Ratio"/> from <see cref="RatioUnit.PartPerBillion"/>.
         /// </summary>
-        public static Ratio FromPartsPerBillion(QuantityValue partsperbillion)
+        public static Ratio FromPartsPerBillion(double value)
         {
-            double value = (double) partsperbillion;
             return new Ratio(value, RatioUnit.PartPerBillion);
         }
 
         /// <summary>
         ///     Creates a <see cref="Ratio"/> from <see cref="RatioUnit.PartPerMillion"/>.
         /// </summary>
-        public static Ratio FromPartsPerMillion(QuantityValue partspermillion)
+        public static Ratio FromPartsPerMillion(double value)
         {
-            double value = (double) partspermillion;
             return new Ratio(value, RatioUnit.PartPerMillion);
         }
 
         /// <summary>
         ///     Creates a <see cref="Ratio"/> from <see cref="RatioUnit.PartPerThousand"/>.
         /// </summary>
-        public static Ratio FromPartsPerThousand(QuantityValue partsperthousand)
+        public static Ratio FromPartsPerThousand(double value)
         {
-            double value = (double) partsperthousand;
             return new Ratio(value, RatioUnit.PartPerThousand);
         }
 
         /// <summary>
         ///     Creates a <see cref="Ratio"/> from <see cref="RatioUnit.PartPerTrillion"/>.
         /// </summary>
-        public static Ratio FromPartsPerTrillion(QuantityValue partspertrillion)
+        public static Ratio FromPartsPerTrillion(double value)
         {
-            double value = (double) partspertrillion;
             return new Ratio(value, RatioUnit.PartPerTrillion);
         }
 
         /// <summary>
         ///     Creates a <see cref="Ratio"/> from <see cref="RatioUnit.Percent"/>.
         /// </summary>
-        public static Ratio FromPercent(QuantityValue percent)
+        public static Ratio FromPercent(double value)
         {
-            double value = (double) percent;
             return new Ratio(value, RatioUnit.Percent);
         }
 
@@ -316,9 +310,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Ratio unit value.</returns>
-        public static Ratio From(QuantityValue value, RatioUnit fromUnit)
+        public static Ratio From(double value, RatioUnit fromUnit)
         {
-            return new Ratio((double)value, fromUnit);
+            return new Ratio(value, fromUnit);
         }
 
         #endregion
@@ -733,15 +727,6 @@ namespace UnitsNet
             if (!(unit is RatioUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RatioUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is RatioUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RatioUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -861,18 +846,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<RatioUnit> IQuantity<RatioUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not RatioUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RatioUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

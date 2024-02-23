@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToLinearDensity
     /// </summary>
     public static class NumberToLinearDensityExtensions
     {
-        /// <inheritdoc cref="LinearDensity.FromGramsPerCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="LinearDensity.FromGramsPerCentimeter(double)" />
         public static LinearDensity GramsPerCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToLinearDensity
 #endif
             => LinearDensity.FromGramsPerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearDensity.FromGramsPerMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="LinearDensity.FromGramsPerMeter(double)" />
         public static LinearDensity GramsPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToLinearDensity
 #endif
             => LinearDensity.FromGramsPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearDensity.FromGramsPerMillimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="LinearDensity.FromGramsPerMillimeter(double)" />
         public static LinearDensity GramsPerMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToLinearDensity
 #endif
             => LinearDensity.FromGramsPerMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearDensity.FromKilogramsPerCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="LinearDensity.FromKilogramsPerCentimeter(double)" />
         public static LinearDensity KilogramsPerCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToLinearDensity
 #endif
             => LinearDensity.FromKilogramsPerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearDensity.FromKilogramsPerMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="LinearDensity.FromKilogramsPerMeter(double)" />
         public static LinearDensity KilogramsPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToLinearDensity
 #endif
             => LinearDensity.FromKilogramsPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearDensity.FromKilogramsPerMillimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="LinearDensity.FromKilogramsPerMillimeter(double)" />
         public static LinearDensity KilogramsPerMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToLinearDensity
 #endif
             => LinearDensity.FromKilogramsPerMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearDensity.FromMicrogramsPerCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="LinearDensity.FromMicrogramsPerCentimeter(double)" />
         public static LinearDensity MicrogramsPerCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToLinearDensity
 #endif
             => LinearDensity.FromMicrogramsPerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearDensity.FromMicrogramsPerMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="LinearDensity.FromMicrogramsPerMeter(double)" />
         public static LinearDensity MicrogramsPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToLinearDensity
 #endif
             => LinearDensity.FromMicrogramsPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearDensity.FromMicrogramsPerMillimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="LinearDensity.FromMicrogramsPerMillimeter(double)" />
         public static LinearDensity MicrogramsPerMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -104,7 +104,7 @@ namespace UnitsNet.NumberExtensions.NumberToLinearDensity
 #endif
             => LinearDensity.FromMicrogramsPerMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearDensity.FromMilligramsPerCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="LinearDensity.FromMilligramsPerCentimeter(double)" />
         public static LinearDensity MilligramsPerCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -112,7 +112,7 @@ namespace UnitsNet.NumberExtensions.NumberToLinearDensity
 #endif
             => LinearDensity.FromMilligramsPerCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearDensity.FromMilligramsPerMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="LinearDensity.FromMilligramsPerMeter(double)" />
         public static LinearDensity MilligramsPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -120,7 +120,7 @@ namespace UnitsNet.NumberExtensions.NumberToLinearDensity
 #endif
             => LinearDensity.FromMilligramsPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearDensity.FromMilligramsPerMillimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="LinearDensity.FromMilligramsPerMillimeter(double)" />
         public static LinearDensity MilligramsPerMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -128,7 +128,7 @@ namespace UnitsNet.NumberExtensions.NumberToLinearDensity
 #endif
             => LinearDensity.FromMilligramsPerMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearDensity.FromPoundsPerFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="LinearDensity.FromPoundsPerFoot(double)" />
         public static LinearDensity PoundsPerFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -136,7 +136,7 @@ namespace UnitsNet.NumberExtensions.NumberToLinearDensity
 #endif
             => LinearDensity.FromPoundsPerFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearDensity.FromPoundsPerInch(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="LinearDensity.FromPoundsPerInch(double)" />
         public static LinearDensity PoundsPerInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

@@ -43,7 +43,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     public readonly partial struct Density :
-        IArithmeticQuantity<Density, DensityUnit, double>,
+        IArithmeticQuantity<Density, DensityUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<Density, KinematicViscosity, DynamicViscosity>,
         IMultiplyOperators<Density, Area, LinearDensity>,
@@ -216,7 +216,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -674,504 +674,448 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.CentigramPerDeciliter"/>.
         /// </summary>
-        public static Density FromCentigramsPerDeciliter(QuantityValue centigramsperdeciliter)
+        public static Density FromCentigramsPerDeciliter(double value)
         {
-            double value = (double) centigramsperdeciliter;
             return new Density(value, DensityUnit.CentigramPerDeciliter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.CentigramPerLiter"/>.
         /// </summary>
-        public static Density FromCentigramsPerLiter(QuantityValue centigramsperliter)
+        public static Density FromCentigramsPerLiter(double value)
         {
-            double value = (double) centigramsperliter;
             return new Density(value, DensityUnit.CentigramPerLiter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.CentigramPerMilliliter"/>.
         /// </summary>
-        public static Density FromCentigramsPerMilliliter(QuantityValue centigramspermilliliter)
+        public static Density FromCentigramsPerMilliliter(double value)
         {
-            double value = (double) centigramspermilliliter;
             return new Density(value, DensityUnit.CentigramPerMilliliter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.DecigramPerDeciliter"/>.
         /// </summary>
-        public static Density FromDecigramsPerDeciliter(QuantityValue decigramsperdeciliter)
+        public static Density FromDecigramsPerDeciliter(double value)
         {
-            double value = (double) decigramsperdeciliter;
             return new Density(value, DensityUnit.DecigramPerDeciliter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.DecigramPerLiter"/>.
         /// </summary>
-        public static Density FromDecigramsPerLiter(QuantityValue decigramsperliter)
+        public static Density FromDecigramsPerLiter(double value)
         {
-            double value = (double) decigramsperliter;
             return new Density(value, DensityUnit.DecigramPerLiter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.DecigramPerMilliliter"/>.
         /// </summary>
-        public static Density FromDecigramsPerMilliliter(QuantityValue decigramspermilliliter)
+        public static Density FromDecigramsPerMilliliter(double value)
         {
-            double value = (double) decigramspermilliliter;
             return new Density(value, DensityUnit.DecigramPerMilliliter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.FemtogramPerDeciliter"/>.
         /// </summary>
-        public static Density FromFemtogramsPerDeciliter(QuantityValue femtogramsperdeciliter)
+        public static Density FromFemtogramsPerDeciliter(double value)
         {
-            double value = (double) femtogramsperdeciliter;
             return new Density(value, DensityUnit.FemtogramPerDeciliter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.FemtogramPerLiter"/>.
         /// </summary>
-        public static Density FromFemtogramsPerLiter(QuantityValue femtogramsperliter)
+        public static Density FromFemtogramsPerLiter(double value)
         {
-            double value = (double) femtogramsperliter;
             return new Density(value, DensityUnit.FemtogramPerLiter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.FemtogramPerMilliliter"/>.
         /// </summary>
-        public static Density FromFemtogramsPerMilliliter(QuantityValue femtogramspermilliliter)
+        public static Density FromFemtogramsPerMilliliter(double value)
         {
-            double value = (double) femtogramspermilliliter;
             return new Density(value, DensityUnit.FemtogramPerMilliliter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.GramPerCubicCentimeter"/>.
         /// </summary>
-        public static Density FromGramsPerCubicCentimeter(QuantityValue gramspercubiccentimeter)
+        public static Density FromGramsPerCubicCentimeter(double value)
         {
-            double value = (double) gramspercubiccentimeter;
             return new Density(value, DensityUnit.GramPerCubicCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.GramPerCubicFoot"/>.
         /// </summary>
-        public static Density FromGramsPerCubicFoot(QuantityValue gramspercubicfoot)
+        public static Density FromGramsPerCubicFoot(double value)
         {
-            double value = (double) gramspercubicfoot;
             return new Density(value, DensityUnit.GramPerCubicFoot);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.GramPerCubicInch"/>.
         /// </summary>
-        public static Density FromGramsPerCubicInch(QuantityValue gramspercubicinch)
+        public static Density FromGramsPerCubicInch(double value)
         {
-            double value = (double) gramspercubicinch;
             return new Density(value, DensityUnit.GramPerCubicInch);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.GramPerCubicMeter"/>.
         /// </summary>
-        public static Density FromGramsPerCubicMeter(QuantityValue gramspercubicmeter)
+        public static Density FromGramsPerCubicMeter(double value)
         {
-            double value = (double) gramspercubicmeter;
             return new Density(value, DensityUnit.GramPerCubicMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.GramPerCubicMillimeter"/>.
         /// </summary>
-        public static Density FromGramsPerCubicMillimeter(QuantityValue gramspercubicmillimeter)
+        public static Density FromGramsPerCubicMillimeter(double value)
         {
-            double value = (double) gramspercubicmillimeter;
             return new Density(value, DensityUnit.GramPerCubicMillimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.GramPerDeciliter"/>.
         /// </summary>
-        public static Density FromGramsPerDeciliter(QuantityValue gramsperdeciliter)
+        public static Density FromGramsPerDeciliter(double value)
         {
-            double value = (double) gramsperdeciliter;
             return new Density(value, DensityUnit.GramPerDeciliter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.GramPerLiter"/>.
         /// </summary>
-        public static Density FromGramsPerLiter(QuantityValue gramsperliter)
+        public static Density FromGramsPerLiter(double value)
         {
-            double value = (double) gramsperliter;
             return new Density(value, DensityUnit.GramPerLiter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.GramPerMilliliter"/>.
         /// </summary>
-        public static Density FromGramsPerMilliliter(QuantityValue gramspermilliliter)
+        public static Density FromGramsPerMilliliter(double value)
         {
-            double value = (double) gramspermilliliter;
             return new Density(value, DensityUnit.GramPerMilliliter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.KilogramPerCubicCentimeter"/>.
         /// </summary>
-        public static Density FromKilogramsPerCubicCentimeter(QuantityValue kilogramspercubiccentimeter)
+        public static Density FromKilogramsPerCubicCentimeter(double value)
         {
-            double value = (double) kilogramspercubiccentimeter;
             return new Density(value, DensityUnit.KilogramPerCubicCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.KilogramPerCubicMeter"/>.
         /// </summary>
-        public static Density FromKilogramsPerCubicMeter(QuantityValue kilogramspercubicmeter)
+        public static Density FromKilogramsPerCubicMeter(double value)
         {
-            double value = (double) kilogramspercubicmeter;
             return new Density(value, DensityUnit.KilogramPerCubicMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.KilogramPerCubicMillimeter"/>.
         /// </summary>
-        public static Density FromKilogramsPerCubicMillimeter(QuantityValue kilogramspercubicmillimeter)
+        public static Density FromKilogramsPerCubicMillimeter(double value)
         {
-            double value = (double) kilogramspercubicmillimeter;
             return new Density(value, DensityUnit.KilogramPerCubicMillimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.KilogramPerLiter"/>.
         /// </summary>
-        public static Density FromKilogramsPerLiter(QuantityValue kilogramsperliter)
+        public static Density FromKilogramsPerLiter(double value)
         {
-            double value = (double) kilogramsperliter;
             return new Density(value, DensityUnit.KilogramPerLiter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.KilopoundPerCubicFoot"/>.
         /// </summary>
-        public static Density FromKilopoundsPerCubicFoot(QuantityValue kilopoundspercubicfoot)
+        public static Density FromKilopoundsPerCubicFoot(double value)
         {
-            double value = (double) kilopoundspercubicfoot;
             return new Density(value, DensityUnit.KilopoundPerCubicFoot);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.KilopoundPerCubicInch"/>.
         /// </summary>
-        public static Density FromKilopoundsPerCubicInch(QuantityValue kilopoundspercubicinch)
+        public static Density FromKilopoundsPerCubicInch(double value)
         {
-            double value = (double) kilopoundspercubicinch;
             return new Density(value, DensityUnit.KilopoundPerCubicInch);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.KilopoundPerCubicYard"/>.
         /// </summary>
-        public static Density FromKilopoundsPerCubicYard(QuantityValue kilopoundspercubicyard)
+        public static Density FromKilopoundsPerCubicYard(double value)
         {
-            double value = (double) kilopoundspercubicyard;
             return new Density(value, DensityUnit.KilopoundPerCubicYard);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.MicrogramPerCubicMeter"/>.
         /// </summary>
-        public static Density FromMicrogramsPerCubicMeter(QuantityValue microgramspercubicmeter)
+        public static Density FromMicrogramsPerCubicMeter(double value)
         {
-            double value = (double) microgramspercubicmeter;
             return new Density(value, DensityUnit.MicrogramPerCubicMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.MicrogramPerDeciliter"/>.
         /// </summary>
-        public static Density FromMicrogramsPerDeciliter(QuantityValue microgramsperdeciliter)
+        public static Density FromMicrogramsPerDeciliter(double value)
         {
-            double value = (double) microgramsperdeciliter;
             return new Density(value, DensityUnit.MicrogramPerDeciliter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.MicrogramPerLiter"/>.
         /// </summary>
-        public static Density FromMicrogramsPerLiter(QuantityValue microgramsperliter)
+        public static Density FromMicrogramsPerLiter(double value)
         {
-            double value = (double) microgramsperliter;
             return new Density(value, DensityUnit.MicrogramPerLiter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.MicrogramPerMilliliter"/>.
         /// </summary>
-        public static Density FromMicrogramsPerMilliliter(QuantityValue microgramspermilliliter)
+        public static Density FromMicrogramsPerMilliliter(double value)
         {
-            double value = (double) microgramspermilliliter;
             return new Density(value, DensityUnit.MicrogramPerMilliliter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.MilligramPerCubicMeter"/>.
         /// </summary>
-        public static Density FromMilligramsPerCubicMeter(QuantityValue milligramspercubicmeter)
+        public static Density FromMilligramsPerCubicMeter(double value)
         {
-            double value = (double) milligramspercubicmeter;
             return new Density(value, DensityUnit.MilligramPerCubicMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.MilligramPerDeciliter"/>.
         /// </summary>
-        public static Density FromMilligramsPerDeciliter(QuantityValue milligramsperdeciliter)
+        public static Density FromMilligramsPerDeciliter(double value)
         {
-            double value = (double) milligramsperdeciliter;
             return new Density(value, DensityUnit.MilligramPerDeciliter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.MilligramPerLiter"/>.
         /// </summary>
-        public static Density FromMilligramsPerLiter(QuantityValue milligramsperliter)
+        public static Density FromMilligramsPerLiter(double value)
         {
-            double value = (double) milligramsperliter;
             return new Density(value, DensityUnit.MilligramPerLiter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.MilligramPerMilliliter"/>.
         /// </summary>
-        public static Density FromMilligramsPerMilliliter(QuantityValue milligramspermilliliter)
+        public static Density FromMilligramsPerMilliliter(double value)
         {
-            double value = (double) milligramspermilliliter;
             return new Density(value, DensityUnit.MilligramPerMilliliter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.NanogramPerDeciliter"/>.
         /// </summary>
-        public static Density FromNanogramsPerDeciliter(QuantityValue nanogramsperdeciliter)
+        public static Density FromNanogramsPerDeciliter(double value)
         {
-            double value = (double) nanogramsperdeciliter;
             return new Density(value, DensityUnit.NanogramPerDeciliter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.NanogramPerLiter"/>.
         /// </summary>
-        public static Density FromNanogramsPerLiter(QuantityValue nanogramsperliter)
+        public static Density FromNanogramsPerLiter(double value)
         {
-            double value = (double) nanogramsperliter;
             return new Density(value, DensityUnit.NanogramPerLiter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.NanogramPerMilliliter"/>.
         /// </summary>
-        public static Density FromNanogramsPerMilliliter(QuantityValue nanogramspermilliliter)
+        public static Density FromNanogramsPerMilliliter(double value)
         {
-            double value = (double) nanogramspermilliliter;
             return new Density(value, DensityUnit.NanogramPerMilliliter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PicogramPerDeciliter"/>.
         /// </summary>
-        public static Density FromPicogramsPerDeciliter(QuantityValue picogramsperdeciliter)
+        public static Density FromPicogramsPerDeciliter(double value)
         {
-            double value = (double) picogramsperdeciliter;
             return new Density(value, DensityUnit.PicogramPerDeciliter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PicogramPerLiter"/>.
         /// </summary>
-        public static Density FromPicogramsPerLiter(QuantityValue picogramsperliter)
+        public static Density FromPicogramsPerLiter(double value)
         {
-            double value = (double) picogramsperliter;
             return new Density(value, DensityUnit.PicogramPerLiter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PicogramPerMilliliter"/>.
         /// </summary>
-        public static Density FromPicogramsPerMilliliter(QuantityValue picogramspermilliliter)
+        public static Density FromPicogramsPerMilliliter(double value)
         {
-            double value = (double) picogramspermilliliter;
             return new Density(value, DensityUnit.PicogramPerMilliliter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PoundPerCubicCentimeter"/>.
         /// </summary>
-        public static Density FromPoundsPerCubicCentimeter(QuantityValue poundspercubiccentimeter)
+        public static Density FromPoundsPerCubicCentimeter(double value)
         {
-            double value = (double) poundspercubiccentimeter;
             return new Density(value, DensityUnit.PoundPerCubicCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PoundPerCubicFoot"/>.
         /// </summary>
-        public static Density FromPoundsPerCubicFoot(QuantityValue poundspercubicfoot)
+        public static Density FromPoundsPerCubicFoot(double value)
         {
-            double value = (double) poundspercubicfoot;
             return new Density(value, DensityUnit.PoundPerCubicFoot);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PoundPerCubicInch"/>.
         /// </summary>
-        public static Density FromPoundsPerCubicInch(QuantityValue poundspercubicinch)
+        public static Density FromPoundsPerCubicInch(double value)
         {
-            double value = (double) poundspercubicinch;
             return new Density(value, DensityUnit.PoundPerCubicInch);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PoundPerCubicMeter"/>.
         /// </summary>
-        public static Density FromPoundsPerCubicMeter(QuantityValue poundspercubicmeter)
+        public static Density FromPoundsPerCubicMeter(double value)
         {
-            double value = (double) poundspercubicmeter;
             return new Density(value, DensityUnit.PoundPerCubicMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PoundPerCubicMillimeter"/>.
         /// </summary>
-        public static Density FromPoundsPerCubicMillimeter(QuantityValue poundspercubicmillimeter)
+        public static Density FromPoundsPerCubicMillimeter(double value)
         {
-            double value = (double) poundspercubicmillimeter;
             return new Density(value, DensityUnit.PoundPerCubicMillimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PoundPerCubicYard"/>.
         /// </summary>
-        public static Density FromPoundsPerCubicYard(QuantityValue poundspercubicyard)
+        public static Density FromPoundsPerCubicYard(double value)
         {
-            double value = (double) poundspercubicyard;
             return new Density(value, DensityUnit.PoundPerCubicYard);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PoundPerImperialGallon"/>.
         /// </summary>
-        public static Density FromPoundsPerImperialGallon(QuantityValue poundsperimperialgallon)
+        public static Density FromPoundsPerImperialGallon(double value)
         {
-            double value = (double) poundsperimperialgallon;
             return new Density(value, DensityUnit.PoundPerImperialGallon);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PoundPerUSGallon"/>.
         /// </summary>
-        public static Density FromPoundsPerUSGallon(QuantityValue poundsperusgallon)
+        public static Density FromPoundsPerUSGallon(double value)
         {
-            double value = (double) poundsperusgallon;
             return new Density(value, DensityUnit.PoundPerUSGallon);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.SlugPerCubicCentimeter"/>.
         /// </summary>
-        public static Density FromSlugsPerCubicCentimeter(QuantityValue slugspercubiccentimeter)
+        public static Density FromSlugsPerCubicCentimeter(double value)
         {
-            double value = (double) slugspercubiccentimeter;
             return new Density(value, DensityUnit.SlugPerCubicCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.SlugPerCubicFoot"/>.
         /// </summary>
-        public static Density FromSlugsPerCubicFoot(QuantityValue slugspercubicfoot)
+        public static Density FromSlugsPerCubicFoot(double value)
         {
-            double value = (double) slugspercubicfoot;
             return new Density(value, DensityUnit.SlugPerCubicFoot);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.SlugPerCubicInch"/>.
         /// </summary>
-        public static Density FromSlugsPerCubicInch(QuantityValue slugspercubicinch)
+        public static Density FromSlugsPerCubicInch(double value)
         {
-            double value = (double) slugspercubicinch;
             return new Density(value, DensityUnit.SlugPerCubicInch);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.SlugPerCubicMeter"/>.
         /// </summary>
-        public static Density FromSlugsPerCubicMeter(QuantityValue slugspercubicmeter)
+        public static Density FromSlugsPerCubicMeter(double value)
         {
-            double value = (double) slugspercubicmeter;
             return new Density(value, DensityUnit.SlugPerCubicMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.SlugPerCubicMillimeter"/>.
         /// </summary>
-        public static Density FromSlugsPerCubicMillimeter(QuantityValue slugspercubicmillimeter)
+        public static Density FromSlugsPerCubicMillimeter(double value)
         {
-            double value = (double) slugspercubicmillimeter;
             return new Density(value, DensityUnit.SlugPerCubicMillimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.TonnePerCubicCentimeter"/>.
         /// </summary>
-        public static Density FromTonnesPerCubicCentimeter(QuantityValue tonnespercubiccentimeter)
+        public static Density FromTonnesPerCubicCentimeter(double value)
         {
-            double value = (double) tonnespercubiccentimeter;
             return new Density(value, DensityUnit.TonnePerCubicCentimeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.TonnePerCubicFoot"/>.
         /// </summary>
-        public static Density FromTonnesPerCubicFoot(QuantityValue tonnespercubicfoot)
+        public static Density FromTonnesPerCubicFoot(double value)
         {
-            double value = (double) tonnespercubicfoot;
             return new Density(value, DensityUnit.TonnePerCubicFoot);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.TonnePerCubicInch"/>.
         /// </summary>
-        public static Density FromTonnesPerCubicInch(QuantityValue tonnespercubicinch)
+        public static Density FromTonnesPerCubicInch(double value)
         {
-            double value = (double) tonnespercubicinch;
             return new Density(value, DensityUnit.TonnePerCubicInch);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.TonnePerCubicMeter"/>.
         /// </summary>
-        public static Density FromTonnesPerCubicMeter(QuantityValue tonnespercubicmeter)
+        public static Density FromTonnesPerCubicMeter(double value)
         {
-            double value = (double) tonnespercubicmeter;
             return new Density(value, DensityUnit.TonnePerCubicMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.TonnePerCubicMillimeter"/>.
         /// </summary>
-        public static Density FromTonnesPerCubicMillimeter(QuantityValue tonnespercubicmillimeter)
+        public static Density FromTonnesPerCubicMillimeter(double value)
         {
-            double value = (double) tonnespercubicmillimeter;
             return new Density(value, DensityUnit.TonnePerCubicMillimeter);
         }
 
@@ -1181,9 +1125,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Density unit value.</returns>
-        public static Density From(QuantityValue value, DensityUnit fromUnit)
+        public static Density From(double value, DensityUnit fromUnit)
         {
-            return new Density((double)value, fromUnit);
+            return new Density(value, fromUnit);
         }
 
         #endregion
@@ -1644,15 +1588,6 @@ namespace UnitsNet
             if (!(unit is DensityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DensityUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is DensityUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DensityUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -1872,18 +1807,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<DensityUnit> IQuantity<DensityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not DensityUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DensityUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

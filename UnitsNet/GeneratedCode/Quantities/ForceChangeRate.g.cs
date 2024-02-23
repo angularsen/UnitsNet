@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct ForceChangeRate :
-        IArithmeticQuantity<ForceChangeRate, ForceChangeRateUnit, double>,
+        IArithmeticQuantity<ForceChangeRate, ForceChangeRateUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<ForceChangeRate, Duration, Force>,
         IMultiplyOperators<ForceChangeRate, TimeSpan, Force>,
@@ -167,7 +167,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -338,135 +338,120 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ForceChangeRate"/> from <see cref="ForceChangeRateUnit.CentinewtonPerSecond"/>.
         /// </summary>
-        public static ForceChangeRate FromCentinewtonsPerSecond(QuantityValue centinewtonspersecond)
+        public static ForceChangeRate FromCentinewtonsPerSecond(double value)
         {
-            double value = (double) centinewtonspersecond;
             return new ForceChangeRate(value, ForceChangeRateUnit.CentinewtonPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="ForceChangeRate"/> from <see cref="ForceChangeRateUnit.DecanewtonPerMinute"/>.
         /// </summary>
-        public static ForceChangeRate FromDecanewtonsPerMinute(QuantityValue decanewtonsperminute)
+        public static ForceChangeRate FromDecanewtonsPerMinute(double value)
         {
-            double value = (double) decanewtonsperminute;
             return new ForceChangeRate(value, ForceChangeRateUnit.DecanewtonPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="ForceChangeRate"/> from <see cref="ForceChangeRateUnit.DecanewtonPerSecond"/>.
         /// </summary>
-        public static ForceChangeRate FromDecanewtonsPerSecond(QuantityValue decanewtonspersecond)
+        public static ForceChangeRate FromDecanewtonsPerSecond(double value)
         {
-            double value = (double) decanewtonspersecond;
             return new ForceChangeRate(value, ForceChangeRateUnit.DecanewtonPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="ForceChangeRate"/> from <see cref="ForceChangeRateUnit.DecinewtonPerSecond"/>.
         /// </summary>
-        public static ForceChangeRate FromDecinewtonsPerSecond(QuantityValue decinewtonspersecond)
+        public static ForceChangeRate FromDecinewtonsPerSecond(double value)
         {
-            double value = (double) decinewtonspersecond;
             return new ForceChangeRate(value, ForceChangeRateUnit.DecinewtonPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="ForceChangeRate"/> from <see cref="ForceChangeRateUnit.KilonewtonPerMinute"/>.
         /// </summary>
-        public static ForceChangeRate FromKilonewtonsPerMinute(QuantityValue kilonewtonsperminute)
+        public static ForceChangeRate FromKilonewtonsPerMinute(double value)
         {
-            double value = (double) kilonewtonsperminute;
             return new ForceChangeRate(value, ForceChangeRateUnit.KilonewtonPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="ForceChangeRate"/> from <see cref="ForceChangeRateUnit.KilonewtonPerSecond"/>.
         /// </summary>
-        public static ForceChangeRate FromKilonewtonsPerSecond(QuantityValue kilonewtonspersecond)
+        public static ForceChangeRate FromKilonewtonsPerSecond(double value)
         {
-            double value = (double) kilonewtonspersecond;
             return new ForceChangeRate(value, ForceChangeRateUnit.KilonewtonPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="ForceChangeRate"/> from <see cref="ForceChangeRateUnit.KilopoundForcePerMinute"/>.
         /// </summary>
-        public static ForceChangeRate FromKilopoundsForcePerMinute(QuantityValue kilopoundsforceperminute)
+        public static ForceChangeRate FromKilopoundsForcePerMinute(double value)
         {
-            double value = (double) kilopoundsforceperminute;
             return new ForceChangeRate(value, ForceChangeRateUnit.KilopoundForcePerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="ForceChangeRate"/> from <see cref="ForceChangeRateUnit.KilopoundForcePerSecond"/>.
         /// </summary>
-        public static ForceChangeRate FromKilopoundsForcePerSecond(QuantityValue kilopoundsforcepersecond)
+        public static ForceChangeRate FromKilopoundsForcePerSecond(double value)
         {
-            double value = (double) kilopoundsforcepersecond;
             return new ForceChangeRate(value, ForceChangeRateUnit.KilopoundForcePerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="ForceChangeRate"/> from <see cref="ForceChangeRateUnit.MicronewtonPerSecond"/>.
         /// </summary>
-        public static ForceChangeRate FromMicronewtonsPerSecond(QuantityValue micronewtonspersecond)
+        public static ForceChangeRate FromMicronewtonsPerSecond(double value)
         {
-            double value = (double) micronewtonspersecond;
             return new ForceChangeRate(value, ForceChangeRateUnit.MicronewtonPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="ForceChangeRate"/> from <see cref="ForceChangeRateUnit.MillinewtonPerSecond"/>.
         /// </summary>
-        public static ForceChangeRate FromMillinewtonsPerSecond(QuantityValue millinewtonspersecond)
+        public static ForceChangeRate FromMillinewtonsPerSecond(double value)
         {
-            double value = (double) millinewtonspersecond;
             return new ForceChangeRate(value, ForceChangeRateUnit.MillinewtonPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="ForceChangeRate"/> from <see cref="ForceChangeRateUnit.NanonewtonPerSecond"/>.
         /// </summary>
-        public static ForceChangeRate FromNanonewtonsPerSecond(QuantityValue nanonewtonspersecond)
+        public static ForceChangeRate FromNanonewtonsPerSecond(double value)
         {
-            double value = (double) nanonewtonspersecond;
             return new ForceChangeRate(value, ForceChangeRateUnit.NanonewtonPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="ForceChangeRate"/> from <see cref="ForceChangeRateUnit.NewtonPerMinute"/>.
         /// </summary>
-        public static ForceChangeRate FromNewtonsPerMinute(QuantityValue newtonsperminute)
+        public static ForceChangeRate FromNewtonsPerMinute(double value)
         {
-            double value = (double) newtonsperminute;
             return new ForceChangeRate(value, ForceChangeRateUnit.NewtonPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="ForceChangeRate"/> from <see cref="ForceChangeRateUnit.NewtonPerSecond"/>.
         /// </summary>
-        public static ForceChangeRate FromNewtonsPerSecond(QuantityValue newtonspersecond)
+        public static ForceChangeRate FromNewtonsPerSecond(double value)
         {
-            double value = (double) newtonspersecond;
             return new ForceChangeRate(value, ForceChangeRateUnit.NewtonPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="ForceChangeRate"/> from <see cref="ForceChangeRateUnit.PoundForcePerMinute"/>.
         /// </summary>
-        public static ForceChangeRate FromPoundsForcePerMinute(QuantityValue poundsforceperminute)
+        public static ForceChangeRate FromPoundsForcePerMinute(double value)
         {
-            double value = (double) poundsforceperminute;
             return new ForceChangeRate(value, ForceChangeRateUnit.PoundForcePerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="ForceChangeRate"/> from <see cref="ForceChangeRateUnit.PoundForcePerSecond"/>.
         /// </summary>
-        public static ForceChangeRate FromPoundsForcePerSecond(QuantityValue poundsforcepersecond)
+        public static ForceChangeRate FromPoundsForcePerSecond(double value)
         {
-            double value = (double) poundsforcepersecond;
             return new ForceChangeRate(value, ForceChangeRateUnit.PoundForcePerSecond);
         }
 
@@ -476,9 +461,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ForceChangeRate unit value.</returns>
-        public static ForceChangeRate From(QuantityValue value, ForceChangeRateUnit fromUnit)
+        public static ForceChangeRate From(double value, ForceChangeRateUnit fromUnit)
         {
-            return new ForceChangeRate((double)value, fromUnit);
+            return new ForceChangeRate(value, fromUnit);
         }
 
         #endregion
@@ -915,15 +900,6 @@ namespace UnitsNet
             if (!(unit is ForceChangeRateUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForceChangeRateUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is ForceChangeRateUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForceChangeRateUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -1061,18 +1037,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ForceChangeRateUnit> IQuantity<ForceChangeRateUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not ForceChangeRateUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForceChangeRateUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

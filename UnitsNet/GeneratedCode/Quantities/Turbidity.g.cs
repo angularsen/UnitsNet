@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     public readonly partial struct Turbidity :
-        IArithmeticQuantity<Turbidity, TurbidityUnit, double>,
+        IArithmeticQuantity<Turbidity, TurbidityUnit>,
         IComparable,
         IComparable<Turbidity>,
         IConvertible,
@@ -149,7 +149,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -222,9 +222,8 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Turbidity"/> from <see cref="TurbidityUnit.NTU"/>.
         /// </summary>
-        public static Turbidity FromNTU(QuantityValue ntu)
+        public static Turbidity FromNTU(double value)
         {
-            double value = (double) ntu;
             return new Turbidity(value, TurbidityUnit.NTU);
         }
 
@@ -234,9 +233,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Turbidity unit value.</returns>
-        public static Turbidity From(QuantityValue value, TurbidityUnit fromUnit)
+        public static Turbidity From(double value, TurbidityUnit fromUnit)
         {
-            return new Turbidity((double)value, fromUnit);
+            return new Turbidity(value, fromUnit);
         }
 
         #endregion
@@ -651,15 +650,6 @@ namespace UnitsNet
             if (!(unit is TurbidityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TurbidityUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is TurbidityUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TurbidityUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -769,18 +759,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<TurbidityUnit> IQuantity<TurbidityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not TurbidityUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TurbidityUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

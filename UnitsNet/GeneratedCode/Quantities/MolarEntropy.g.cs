@@ -37,7 +37,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct MolarEntropy :
-        IArithmeticQuantity<MolarEntropy, MolarEntropyUnit, double>,
+        IArithmeticQuantity<MolarEntropy, MolarEntropyUnit>,
         IComparable,
         IComparable<MolarEntropy>,
         IConvertible,
@@ -148,7 +148,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -235,27 +235,24 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarEntropy"/> from <see cref="MolarEntropyUnit.JoulePerMoleKelvin"/>.
         /// </summary>
-        public static MolarEntropy FromJoulesPerMoleKelvin(QuantityValue joulespermolekelvin)
+        public static MolarEntropy FromJoulesPerMoleKelvin(double value)
         {
-            double value = (double) joulespermolekelvin;
             return new MolarEntropy(value, MolarEntropyUnit.JoulePerMoleKelvin);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarEntropy"/> from <see cref="MolarEntropyUnit.KilojoulePerMoleKelvin"/>.
         /// </summary>
-        public static MolarEntropy FromKilojoulesPerMoleKelvin(QuantityValue kilojoulespermolekelvin)
+        public static MolarEntropy FromKilojoulesPerMoleKelvin(double value)
         {
-            double value = (double) kilojoulespermolekelvin;
             return new MolarEntropy(value, MolarEntropyUnit.KilojoulePerMoleKelvin);
         }
 
         /// <summary>
         ///     Creates a <see cref="MolarEntropy"/> from <see cref="MolarEntropyUnit.MegajoulePerMoleKelvin"/>.
         /// </summary>
-        public static MolarEntropy FromMegajoulesPerMoleKelvin(QuantityValue megajoulespermolekelvin)
+        public static MolarEntropy FromMegajoulesPerMoleKelvin(double value)
         {
-            double value = (double) megajoulespermolekelvin;
             return new MolarEntropy(value, MolarEntropyUnit.MegajoulePerMoleKelvin);
         }
 
@@ -265,9 +262,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>MolarEntropy unit value.</returns>
-        public static MolarEntropy From(QuantityValue value, MolarEntropyUnit fromUnit)
+        public static MolarEntropy From(double value, MolarEntropyUnit fromUnit)
         {
-            return new MolarEntropy((double)value, fromUnit);
+            return new MolarEntropy(value, fromUnit);
         }
 
         #endregion
@@ -682,15 +679,6 @@ namespace UnitsNet
             if (!(unit is MolarEntropyUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarEntropyUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is MolarEntropyUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarEntropyUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -804,18 +792,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<MolarEntropyUnit> IQuantity<MolarEntropyUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not MolarEntropyUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarEntropyUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

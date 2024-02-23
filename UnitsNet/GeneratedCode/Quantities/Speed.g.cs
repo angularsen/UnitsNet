@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct Speed :
-        IArithmeticQuantity<Speed, SpeedUnit, double>,
+        IArithmeticQuantity<Speed, SpeedUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Speed, Duration, Acceleration>,
         IDivisionOperators<Speed, TimeSpan, Acceleration>,
@@ -193,7 +193,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -490,297 +490,264 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.CentimeterPerHour"/>.
         /// </summary>
-        public static Speed FromCentimetersPerHour(QuantityValue centimetersperhour)
+        public static Speed FromCentimetersPerHour(double value)
         {
-            double value = (double) centimetersperhour;
             return new Speed(value, SpeedUnit.CentimeterPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.CentimeterPerMinute"/>.
         /// </summary>
-        public static Speed FromCentimetersPerMinute(QuantityValue centimetersperminute)
+        public static Speed FromCentimetersPerMinute(double value)
         {
-            double value = (double) centimetersperminute;
             return new Speed(value, SpeedUnit.CentimeterPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.CentimeterPerSecond"/>.
         /// </summary>
-        public static Speed FromCentimetersPerSecond(QuantityValue centimeterspersecond)
+        public static Speed FromCentimetersPerSecond(double value)
         {
-            double value = (double) centimeterspersecond;
             return new Speed(value, SpeedUnit.CentimeterPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.DecimeterPerMinute"/>.
         /// </summary>
-        public static Speed FromDecimetersPerMinute(QuantityValue decimetersperminute)
+        public static Speed FromDecimetersPerMinute(double value)
         {
-            double value = (double) decimetersperminute;
             return new Speed(value, SpeedUnit.DecimeterPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.DecimeterPerSecond"/>.
         /// </summary>
-        public static Speed FromDecimetersPerSecond(QuantityValue decimeterspersecond)
+        public static Speed FromDecimetersPerSecond(double value)
         {
-            double value = (double) decimeterspersecond;
             return new Speed(value, SpeedUnit.DecimeterPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.FootPerHour"/>.
         /// </summary>
-        public static Speed FromFeetPerHour(QuantityValue feetperhour)
+        public static Speed FromFeetPerHour(double value)
         {
-            double value = (double) feetperhour;
             return new Speed(value, SpeedUnit.FootPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.FootPerMinute"/>.
         /// </summary>
-        public static Speed FromFeetPerMinute(QuantityValue feetperminute)
+        public static Speed FromFeetPerMinute(double value)
         {
-            double value = (double) feetperminute;
             return new Speed(value, SpeedUnit.FootPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.FootPerSecond"/>.
         /// </summary>
-        public static Speed FromFeetPerSecond(QuantityValue feetpersecond)
+        public static Speed FromFeetPerSecond(double value)
         {
-            double value = (double) feetpersecond;
             return new Speed(value, SpeedUnit.FootPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.InchPerHour"/>.
         /// </summary>
-        public static Speed FromInchesPerHour(QuantityValue inchesperhour)
+        public static Speed FromInchesPerHour(double value)
         {
-            double value = (double) inchesperhour;
             return new Speed(value, SpeedUnit.InchPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.InchPerMinute"/>.
         /// </summary>
-        public static Speed FromInchesPerMinute(QuantityValue inchesperminute)
+        public static Speed FromInchesPerMinute(double value)
         {
-            double value = (double) inchesperminute;
             return new Speed(value, SpeedUnit.InchPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.InchPerSecond"/>.
         /// </summary>
-        public static Speed FromInchesPerSecond(QuantityValue inchespersecond)
+        public static Speed FromInchesPerSecond(double value)
         {
-            double value = (double) inchespersecond;
             return new Speed(value, SpeedUnit.InchPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.KilometerPerHour"/>.
         /// </summary>
-        public static Speed FromKilometersPerHour(QuantityValue kilometersperhour)
+        public static Speed FromKilometersPerHour(double value)
         {
-            double value = (double) kilometersperhour;
             return new Speed(value, SpeedUnit.KilometerPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.KilometerPerMinute"/>.
         /// </summary>
-        public static Speed FromKilometersPerMinute(QuantityValue kilometersperminute)
+        public static Speed FromKilometersPerMinute(double value)
         {
-            double value = (double) kilometersperminute;
             return new Speed(value, SpeedUnit.KilometerPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.KilometerPerSecond"/>.
         /// </summary>
-        public static Speed FromKilometersPerSecond(QuantityValue kilometerspersecond)
+        public static Speed FromKilometersPerSecond(double value)
         {
-            double value = (double) kilometerspersecond;
             return new Speed(value, SpeedUnit.KilometerPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.Knot"/>.
         /// </summary>
-        public static Speed FromKnots(QuantityValue knots)
+        public static Speed FromKnots(double value)
         {
-            double value = (double) knots;
             return new Speed(value, SpeedUnit.Knot);
         }
 
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.Mach"/>.
         /// </summary>
-        public static Speed FromMach(QuantityValue mach)
+        public static Speed FromMach(double value)
         {
-            double value = (double) mach;
             return new Speed(value, SpeedUnit.Mach);
         }
 
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MeterPerHour"/>.
         /// </summary>
-        public static Speed FromMetersPerHour(QuantityValue metersperhour)
+        public static Speed FromMetersPerHour(double value)
         {
-            double value = (double) metersperhour;
             return new Speed(value, SpeedUnit.MeterPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MeterPerMinute"/>.
         /// </summary>
-        public static Speed FromMetersPerMinute(QuantityValue metersperminute)
+        public static Speed FromMetersPerMinute(double value)
         {
-            double value = (double) metersperminute;
             return new Speed(value, SpeedUnit.MeterPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MeterPerSecond"/>.
         /// </summary>
-        public static Speed FromMetersPerSecond(QuantityValue meterspersecond)
+        public static Speed FromMetersPerSecond(double value)
         {
-            double value = (double) meterspersecond;
             return new Speed(value, SpeedUnit.MeterPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MicrometerPerMinute"/>.
         /// </summary>
-        public static Speed FromMicrometersPerMinute(QuantityValue micrometersperminute)
+        public static Speed FromMicrometersPerMinute(double value)
         {
-            double value = (double) micrometersperminute;
             return new Speed(value, SpeedUnit.MicrometerPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MicrometerPerSecond"/>.
         /// </summary>
-        public static Speed FromMicrometersPerSecond(QuantityValue micrometerspersecond)
+        public static Speed FromMicrometersPerSecond(double value)
         {
-            double value = (double) micrometerspersecond;
             return new Speed(value, SpeedUnit.MicrometerPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MilePerHour"/>.
         /// </summary>
-        public static Speed FromMilesPerHour(QuantityValue milesperhour)
+        public static Speed FromMilesPerHour(double value)
         {
-            double value = (double) milesperhour;
             return new Speed(value, SpeedUnit.MilePerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MillimeterPerHour"/>.
         /// </summary>
-        public static Speed FromMillimetersPerHour(QuantityValue millimetersperhour)
+        public static Speed FromMillimetersPerHour(double value)
         {
-            double value = (double) millimetersperhour;
             return new Speed(value, SpeedUnit.MillimeterPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MillimeterPerMinute"/>.
         /// </summary>
-        public static Speed FromMillimetersPerMinute(QuantityValue millimetersperminute)
+        public static Speed FromMillimetersPerMinute(double value)
         {
-            double value = (double) millimetersperminute;
             return new Speed(value, SpeedUnit.MillimeterPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MillimeterPerSecond"/>.
         /// </summary>
-        public static Speed FromMillimetersPerSecond(QuantityValue millimeterspersecond)
+        public static Speed FromMillimetersPerSecond(double value)
         {
-            double value = (double) millimeterspersecond;
             return new Speed(value, SpeedUnit.MillimeterPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.NanometerPerMinute"/>.
         /// </summary>
-        public static Speed FromNanometersPerMinute(QuantityValue nanometersperminute)
+        public static Speed FromNanometersPerMinute(double value)
         {
-            double value = (double) nanometersperminute;
             return new Speed(value, SpeedUnit.NanometerPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.NanometerPerSecond"/>.
         /// </summary>
-        public static Speed FromNanometersPerSecond(QuantityValue nanometerspersecond)
+        public static Speed FromNanometersPerSecond(double value)
         {
-            double value = (double) nanometerspersecond;
             return new Speed(value, SpeedUnit.NanometerPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.UsSurveyFootPerHour"/>.
         /// </summary>
-        public static Speed FromUsSurveyFeetPerHour(QuantityValue ussurveyfeetperhour)
+        public static Speed FromUsSurveyFeetPerHour(double value)
         {
-            double value = (double) ussurveyfeetperhour;
             return new Speed(value, SpeedUnit.UsSurveyFootPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.UsSurveyFootPerMinute"/>.
         /// </summary>
-        public static Speed FromUsSurveyFeetPerMinute(QuantityValue ussurveyfeetperminute)
+        public static Speed FromUsSurveyFeetPerMinute(double value)
         {
-            double value = (double) ussurveyfeetperminute;
             return new Speed(value, SpeedUnit.UsSurveyFootPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.UsSurveyFootPerSecond"/>.
         /// </summary>
-        public static Speed FromUsSurveyFeetPerSecond(QuantityValue ussurveyfeetpersecond)
+        public static Speed FromUsSurveyFeetPerSecond(double value)
         {
-            double value = (double) ussurveyfeetpersecond;
             return new Speed(value, SpeedUnit.UsSurveyFootPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.YardPerHour"/>.
         /// </summary>
-        public static Speed FromYardsPerHour(QuantityValue yardsperhour)
+        public static Speed FromYardsPerHour(double value)
         {
-            double value = (double) yardsperhour;
             return new Speed(value, SpeedUnit.YardPerHour);
         }
 
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.YardPerMinute"/>.
         /// </summary>
-        public static Speed FromYardsPerMinute(QuantityValue yardsperminute)
+        public static Speed FromYardsPerMinute(double value)
         {
-            double value = (double) yardsperminute;
             return new Speed(value, SpeedUnit.YardPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.YardPerSecond"/>.
         /// </summary>
-        public static Speed FromYardsPerSecond(QuantityValue yardspersecond)
+        public static Speed FromYardsPerSecond(double value)
         {
-            double value = (double) yardspersecond;
             return new Speed(value, SpeedUnit.YardPerSecond);
         }
 
@@ -790,9 +757,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Speed unit value.</returns>
-        public static Speed From(QuantityValue value, SpeedUnit fromUnit)
+        public static Speed From(double value, SpeedUnit fromUnit)
         {
-            return new Speed((double)value, fromUnit);
+            return new Speed(value, fromUnit);
         }
 
         #endregion
@@ -1277,15 +1244,6 @@ namespace UnitsNet
             if (!(unit is SpeedUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpeedUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is SpeedUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpeedUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -1459,18 +1417,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<SpeedUnit> IQuantity<SpeedUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not SpeedUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpeedUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

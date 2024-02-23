@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct AreaDensity :
-        IArithmeticQuantity<AreaDensity, AreaDensityUnit, double>,
+        IArithmeticQuantity<AreaDensity, AreaDensityUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<AreaDensity, Area, Mass>,
 #endif
@@ -154,7 +154,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -241,27 +241,24 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.GramPerSquareMeter"/>.
         /// </summary>
-        public static AreaDensity FromGramsPerSquareMeter(QuantityValue gramspersquaremeter)
+        public static AreaDensity FromGramsPerSquareMeter(double value)
         {
-            double value = (double) gramspersquaremeter;
             return new AreaDensity(value, AreaDensityUnit.GramPerSquareMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.KilogramPerSquareMeter"/>.
         /// </summary>
-        public static AreaDensity FromKilogramsPerSquareMeter(QuantityValue kilogramspersquaremeter)
+        public static AreaDensity FromKilogramsPerSquareMeter(double value)
         {
-            double value = (double) kilogramspersquaremeter;
             return new AreaDensity(value, AreaDensityUnit.KilogramPerSquareMeter);
         }
 
         /// <summary>
         ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.MilligramPerSquareMeter"/>.
         /// </summary>
-        public static AreaDensity FromMilligramsPerSquareMeter(QuantityValue milligramspersquaremeter)
+        public static AreaDensity FromMilligramsPerSquareMeter(double value)
         {
-            double value = (double) milligramspersquaremeter;
             return new AreaDensity(value, AreaDensityUnit.MilligramPerSquareMeter);
         }
 
@@ -271,9 +268,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>AreaDensity unit value.</returns>
-        public static AreaDensity From(QuantityValue value, AreaDensityUnit fromUnit)
+        public static AreaDensity From(double value, AreaDensityUnit fromUnit)
         {
-            return new AreaDensity((double)value, fromUnit);
+            return new AreaDensity(value, fromUnit);
         }
 
         #endregion
@@ -698,15 +695,6 @@ namespace UnitsNet
             if (!(unit is AreaDensityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AreaDensityUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is AreaDensityUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AreaDensityUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -820,18 +808,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<AreaDensityUnit> IQuantity<AreaDensityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not AreaDensityUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AreaDensityUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

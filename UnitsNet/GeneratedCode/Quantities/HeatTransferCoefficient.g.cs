@@ -37,7 +37,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct HeatTransferCoefficient :
-        IArithmeticQuantity<HeatTransferCoefficient, HeatTransferCoefficientUnit, double>,
+        IArithmeticQuantity<HeatTransferCoefficient, HeatTransferCoefficientUnit>,
         IComparable,
         IComparable<HeatTransferCoefficient>,
         IConvertible,
@@ -151,7 +151,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -260,9 +260,8 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="HeatTransferCoefficient"/> from <see cref="HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit"/>.
         /// </summary>
-        public static HeatTransferCoefficient FromBtusPerHourSquareFootDegreeFahrenheit(QuantityValue btusperhoursquarefootdegreefahrenheit)
+        public static HeatTransferCoefficient FromBtusPerHourSquareFootDegreeFahrenheit(double value)
         {
-            double value = (double) btusperhoursquarefootdegreefahrenheit;
             return new HeatTransferCoefficient(value, HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit);
         }
 
@@ -270,45 +269,40 @@ namespace UnitsNet
         ///     Creates a <see cref="HeatTransferCoefficient"/> from <see cref="HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit"/>.
         /// </summary>
         [Obsolete("The name of this definition incorrectly omitted time as divisor, please use BtuPerHourSquareFootDegreeFahrenheit instead")]
-        public static HeatTransferCoefficient FromBtusPerSquareFootDegreeFahrenheit(QuantityValue btuspersquarefootdegreefahrenheit)
+        public static HeatTransferCoefficient FromBtusPerSquareFootDegreeFahrenheit(double value)
         {
-            double value = (double) btuspersquarefootdegreefahrenheit;
             return new HeatTransferCoefficient(value, HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit);
         }
 
         /// <summary>
         ///     Creates a <see cref="HeatTransferCoefficient"/> from <see cref="HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius"/>.
         /// </summary>
-        public static HeatTransferCoefficient FromCaloriesPerHourSquareMeterDegreeCelsius(QuantityValue caloriesperhoursquaremeterdegreecelsius)
+        public static HeatTransferCoefficient FromCaloriesPerHourSquareMeterDegreeCelsius(double value)
         {
-            double value = (double) caloriesperhoursquaremeterdegreecelsius;
             return new HeatTransferCoefficient(value, HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius);
         }
 
         /// <summary>
         ///     Creates a <see cref="HeatTransferCoefficient"/> from <see cref="HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius"/>.
         /// </summary>
-        public static HeatTransferCoefficient FromKilocaloriesPerHourSquareMeterDegreeCelsius(QuantityValue kilocaloriesperhoursquaremeterdegreecelsius)
+        public static HeatTransferCoefficient FromKilocaloriesPerHourSquareMeterDegreeCelsius(double value)
         {
-            double value = (double) kilocaloriesperhoursquaremeterdegreecelsius;
             return new HeatTransferCoefficient(value, HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius);
         }
 
         /// <summary>
         ///     Creates a <see cref="HeatTransferCoefficient"/> from <see cref="HeatTransferCoefficientUnit.WattPerSquareMeterCelsius"/>.
         /// </summary>
-        public static HeatTransferCoefficient FromWattsPerSquareMeterCelsius(QuantityValue wattspersquaremetercelsius)
+        public static HeatTransferCoefficient FromWattsPerSquareMeterCelsius(double value)
         {
-            double value = (double) wattspersquaremetercelsius;
             return new HeatTransferCoefficient(value, HeatTransferCoefficientUnit.WattPerSquareMeterCelsius);
         }
 
         /// <summary>
         ///     Creates a <see cref="HeatTransferCoefficient"/> from <see cref="HeatTransferCoefficientUnit.WattPerSquareMeterKelvin"/>.
         /// </summary>
-        public static HeatTransferCoefficient FromWattsPerSquareMeterKelvin(QuantityValue wattspersquaremeterkelvin)
+        public static HeatTransferCoefficient FromWattsPerSquareMeterKelvin(double value)
         {
-            double value = (double) wattspersquaremeterkelvin;
             return new HeatTransferCoefficient(value, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin);
         }
 
@@ -318,9 +312,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>HeatTransferCoefficient unit value.</returns>
-        public static HeatTransferCoefficient From(QuantityValue value, HeatTransferCoefficientUnit fromUnit)
+        public static HeatTransferCoefficient From(double value, HeatTransferCoefficientUnit fromUnit)
         {
-            return new HeatTransferCoefficient((double)value, fromUnit);
+            return new HeatTransferCoefficient(value, fromUnit);
         }
 
         #endregion
@@ -735,15 +729,6 @@ namespace UnitsNet
             if (!(unit is HeatTransferCoefficientUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(HeatTransferCoefficientUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is HeatTransferCoefficientUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(HeatTransferCoefficientUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -863,18 +848,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<HeatTransferCoefficientUnit> IQuantity<HeatTransferCoefficientUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not HeatTransferCoefficientUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(HeatTransferCoefficientUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

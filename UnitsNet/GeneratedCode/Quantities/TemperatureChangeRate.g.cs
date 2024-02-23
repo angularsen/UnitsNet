@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct TemperatureChangeRate :
-        IArithmeticQuantity<TemperatureChangeRate, TemperatureChangeRateUnit, double>,
+        IArithmeticQuantity<TemperatureChangeRate, TemperatureChangeRateUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<TemperatureChangeRate, Duration, TemperatureDelta>,
         IMultiplyOperators<TemperatureChangeRate, TimeSpan, TemperatureDelta>,
@@ -162,7 +162,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -298,90 +298,80 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond"/>.
         /// </summary>
-        public static TemperatureChangeRate FromCentidegreesCelsiusPerSecond(QuantityValue centidegreescelsiuspersecond)
+        public static TemperatureChangeRate FromCentidegreesCelsiusPerSecond(double value)
         {
-            double value = (double) centidegreescelsiuspersecond;
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond"/>.
         /// </summary>
-        public static TemperatureChangeRate FromDecadegreesCelsiusPerSecond(QuantityValue decadegreescelsiuspersecond)
+        public static TemperatureChangeRate FromDecadegreesCelsiusPerSecond(double value)
         {
-            double value = (double) decadegreescelsiuspersecond;
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond"/>.
         /// </summary>
-        public static TemperatureChangeRate FromDecidegreesCelsiusPerSecond(QuantityValue decidegreescelsiuspersecond)
+        public static TemperatureChangeRate FromDecidegreesCelsiusPerSecond(double value)
         {
-            double value = (double) decidegreescelsiuspersecond;
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.DegreeCelsiusPerMinute"/>.
         /// </summary>
-        public static TemperatureChangeRate FromDegreesCelsiusPerMinute(QuantityValue degreescelsiusperminute)
+        public static TemperatureChangeRate FromDegreesCelsiusPerMinute(double value)
         {
-            double value = (double) degreescelsiusperminute;
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DegreeCelsiusPerMinute);
         }
 
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.DegreeCelsiusPerSecond"/>.
         /// </summary>
-        public static TemperatureChangeRate FromDegreesCelsiusPerSecond(QuantityValue degreescelsiuspersecond)
+        public static TemperatureChangeRate FromDegreesCelsiusPerSecond(double value)
         {
-            double value = (double) degreescelsiuspersecond;
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DegreeCelsiusPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond"/>.
         /// </summary>
-        public static TemperatureChangeRate FromHectodegreesCelsiusPerSecond(QuantityValue hectodegreescelsiuspersecond)
+        public static TemperatureChangeRate FromHectodegreesCelsiusPerSecond(double value)
         {
-            double value = (double) hectodegreescelsiuspersecond;
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond"/>.
         /// </summary>
-        public static TemperatureChangeRate FromKilodegreesCelsiusPerSecond(QuantityValue kilodegreescelsiuspersecond)
+        public static TemperatureChangeRate FromKilodegreesCelsiusPerSecond(double value)
         {
-            double value = (double) kilodegreescelsiuspersecond;
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond"/>.
         /// </summary>
-        public static TemperatureChangeRate FromMicrodegreesCelsiusPerSecond(QuantityValue microdegreescelsiuspersecond)
+        public static TemperatureChangeRate FromMicrodegreesCelsiusPerSecond(double value)
         {
-            double value = (double) microdegreescelsiuspersecond;
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond"/>.
         /// </summary>
-        public static TemperatureChangeRate FromMillidegreesCelsiusPerSecond(QuantityValue millidegreescelsiuspersecond)
+        public static TemperatureChangeRate FromMillidegreesCelsiusPerSecond(double value)
         {
-            double value = (double) millidegreescelsiuspersecond;
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond"/>.
         /// </summary>
-        public static TemperatureChangeRate FromNanodegreesCelsiusPerSecond(QuantityValue nanodegreescelsiuspersecond)
+        public static TemperatureChangeRate FromNanodegreesCelsiusPerSecond(double value)
         {
-            double value = (double) nanodegreescelsiuspersecond;
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond);
         }
 
@@ -391,9 +381,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>TemperatureChangeRate unit value.</returns>
-        public static TemperatureChangeRate From(QuantityValue value, TemperatureChangeRateUnit fromUnit)
+        public static TemperatureChangeRate From(double value, TemperatureChangeRateUnit fromUnit)
         {
-            return new TemperatureChangeRate((double)value, fromUnit);
+            return new TemperatureChangeRate(value, fromUnit);
         }
 
         #endregion
@@ -830,15 +820,6 @@ namespace UnitsNet
             if (!(unit is TemperatureChangeRateUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureChangeRateUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is TemperatureChangeRateUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureChangeRateUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -966,18 +947,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<TemperatureChangeRateUnit> IQuantity<TemperatureChangeRateUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not TemperatureChangeRateUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureChangeRateUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

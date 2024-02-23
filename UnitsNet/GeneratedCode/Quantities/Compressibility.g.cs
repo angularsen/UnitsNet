@@ -37,7 +37,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct Compressibility :
-        IArithmeticQuantity<Compressibility, CompressibilityUnit, double>,
+        IArithmeticQuantity<Compressibility, CompressibilityUnit>,
         IComparable,
         IComparable<Compressibility>,
         IConvertible,
@@ -152,7 +152,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -267,63 +267,56 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InverseAtmosphere"/>.
         /// </summary>
-        public static Compressibility FromInverseAtmospheres(QuantityValue inverseatmospheres)
+        public static Compressibility FromInverseAtmospheres(double value)
         {
-            double value = (double) inverseatmospheres;
             return new Compressibility(value, CompressibilityUnit.InverseAtmosphere);
         }
 
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InverseBar"/>.
         /// </summary>
-        public static Compressibility FromInverseBars(QuantityValue inversebars)
+        public static Compressibility FromInverseBars(double value)
         {
-            double value = (double) inversebars;
             return new Compressibility(value, CompressibilityUnit.InverseBar);
         }
 
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InverseKilopascal"/>.
         /// </summary>
-        public static Compressibility FromInverseKilopascals(QuantityValue inversekilopascals)
+        public static Compressibility FromInverseKilopascals(double value)
         {
-            double value = (double) inversekilopascals;
             return new Compressibility(value, CompressibilityUnit.InverseKilopascal);
         }
 
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InverseMegapascal"/>.
         /// </summary>
-        public static Compressibility FromInverseMegapascals(QuantityValue inversemegapascals)
+        public static Compressibility FromInverseMegapascals(double value)
         {
-            double value = (double) inversemegapascals;
             return new Compressibility(value, CompressibilityUnit.InverseMegapascal);
         }
 
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InverseMillibar"/>.
         /// </summary>
-        public static Compressibility FromInverseMillibars(QuantityValue inversemillibars)
+        public static Compressibility FromInverseMillibars(double value)
         {
-            double value = (double) inversemillibars;
             return new Compressibility(value, CompressibilityUnit.InverseMillibar);
         }
 
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InversePascal"/>.
         /// </summary>
-        public static Compressibility FromInversePascals(QuantityValue inversepascals)
+        public static Compressibility FromInversePascals(double value)
         {
-            double value = (double) inversepascals;
             return new Compressibility(value, CompressibilityUnit.InversePascal);
         }
 
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InversePoundForcePerSquareInch"/>.
         /// </summary>
-        public static Compressibility FromInversePoundsForcePerSquareInch(QuantityValue inversepoundsforcepersquareinch)
+        public static Compressibility FromInversePoundsForcePerSquareInch(double value)
         {
-            double value = (double) inversepoundsforcepersquareinch;
             return new Compressibility(value, CompressibilityUnit.InversePoundForcePerSquareInch);
         }
 
@@ -333,9 +326,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Compressibility unit value.</returns>
-        public static Compressibility From(QuantityValue value, CompressibilityUnit fromUnit)
+        public static Compressibility From(double value, CompressibilityUnit fromUnit)
         {
-            return new Compressibility((double)value, fromUnit);
+            return new Compressibility(value, fromUnit);
         }
 
         #endregion
@@ -750,15 +743,6 @@ namespace UnitsNet
             if (!(unit is CompressibilityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(CompressibilityUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is CompressibilityUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(CompressibilityUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -880,18 +864,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<CompressibilityUnit> IQuantity<CompressibilityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not CompressibilityUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(CompressibilityUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

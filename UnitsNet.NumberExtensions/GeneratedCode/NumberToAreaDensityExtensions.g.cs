@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToAreaDensity
     /// </summary>
     public static class NumberToAreaDensityExtensions
     {
-        /// <inheritdoc cref="AreaDensity.FromGramsPerSquareMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AreaDensity.FromGramsPerSquareMeter(double)" />
         public static AreaDensity GramsPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToAreaDensity
 #endif
             => AreaDensity.FromGramsPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AreaDensity.FromKilogramsPerSquareMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AreaDensity.FromKilogramsPerSquareMeter(double)" />
         public static AreaDensity KilogramsPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToAreaDensity
 #endif
             => AreaDensity.FromKilogramsPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AreaDensity.FromMilligramsPerSquareMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AreaDensity.FromMilligramsPerSquareMeter(double)" />
         public static AreaDensity MilligramsPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

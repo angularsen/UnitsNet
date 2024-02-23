@@ -15,9 +15,6 @@ namespace CodeGen
 
         public static readonly IReadOnlyDictionary<Prefix, PrefixInfo> Entries = new[]
         {
-            // Need to append 'd' suffix for double in order to later search/replace "d" with "m"
-            // when creating decimal conversion functions in CodeGen.Generator.FixConversionFunctionsForDecimalValueTypes.
-
             // SI prefixes
             new PrefixInfo(Prefix.Yocto, "1e-24d", "y",(Chinese, "夭")),
             new PrefixInfo(Prefix.Zepto, "1e-21d", "z",(Chinese, "仄")),

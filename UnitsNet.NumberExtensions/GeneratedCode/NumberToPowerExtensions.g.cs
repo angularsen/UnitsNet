@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToPower
     /// </summary>
     public static class NumberToPowerExtensions
     {
-        /// <inheritdoc cref="Power.FromBoilerHorsepower(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Power.FromBoilerHorsepower(double)" />
         public static Power BoilerHorsepower<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToPower
 #endif
             => Power.FromBoilerHorsepower(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromBritishThermalUnitsPerHour(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Power.FromBritishThermalUnitsPerHour(double)" />
         public static Power BritishThermalUnitsPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToPower
 #endif
             => Power.FromBritishThermalUnitsPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromDecawatts(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Power.FromDecawatts(double)" />
         public static Power Decawatts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToPower
 #endif
             => Power.FromDecawatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromDeciwatts(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Power.FromDeciwatts(double)" />
         public static Power Deciwatts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToPower
 #endif
             => Power.FromDeciwatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromElectricalHorsepower(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Power.FromElectricalHorsepower(double)" />
         public static Power ElectricalHorsepower<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToPower
 #endif
             => Power.FromElectricalHorsepower(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromFemtowatts(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Power.FromFemtowatts(double)" />
         public static Power Femtowatts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToPower
 #endif
             => Power.FromFemtowatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromGigajoulesPerHour(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Power.FromGigajoulesPerHour(double)" />
         public static Power GigajoulesPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToPower
 #endif
             => Power.FromGigajoulesPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromGigawatts(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Power.FromGigawatts(double)" />
         public static Power Gigawatts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToPower
 #endif
             => Power.FromGigawatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromHydraulicHorsepower(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Power.FromHydraulicHorsepower(double)" />
         public static Power HydraulicHorsepower<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -104,7 +104,7 @@ namespace UnitsNet.NumberExtensions.NumberToPower
 #endif
             => Power.FromHydraulicHorsepower(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromJoulesPerHour(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Power.FromJoulesPerHour(double)" />
         public static Power JoulesPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -112,7 +112,7 @@ namespace UnitsNet.NumberExtensions.NumberToPower
 #endif
             => Power.FromJoulesPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromKilobritishThermalUnitsPerHour(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Power.FromKilobritishThermalUnitsPerHour(double)" />
         public static Power KilobritishThermalUnitsPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -120,7 +120,7 @@ namespace UnitsNet.NumberExtensions.NumberToPower
 #endif
             => Power.FromKilobritishThermalUnitsPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromKilojoulesPerHour(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Power.FromKilojoulesPerHour(double)" />
         public static Power KilojoulesPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -128,7 +128,7 @@ namespace UnitsNet.NumberExtensions.NumberToPower
 #endif
             => Power.FromKilojoulesPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromKilowatts(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Power.FromKilowatts(double)" />
         public static Power Kilowatts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -136,7 +136,7 @@ namespace UnitsNet.NumberExtensions.NumberToPower
 #endif
             => Power.FromKilowatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromMechanicalHorsepower(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Power.FromMechanicalHorsepower(double)" />
         public static Power MechanicalHorsepower<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -144,7 +144,7 @@ namespace UnitsNet.NumberExtensions.NumberToPower
 #endif
             => Power.FromMechanicalHorsepower(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromMegabritishThermalUnitsPerHour(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Power.FromMegabritishThermalUnitsPerHour(double)" />
         public static Power MegabritishThermalUnitsPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -152,7 +152,7 @@ namespace UnitsNet.NumberExtensions.NumberToPower
 #endif
             => Power.FromMegabritishThermalUnitsPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromMegajoulesPerHour(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Power.FromMegajoulesPerHour(double)" />
         public static Power MegajoulesPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -160,7 +160,7 @@ namespace UnitsNet.NumberExtensions.NumberToPower
 #endif
             => Power.FromMegajoulesPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromMegawatts(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Power.FromMegawatts(double)" />
         public static Power Megawatts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -168,7 +168,7 @@ namespace UnitsNet.NumberExtensions.NumberToPower
 #endif
             => Power.FromMegawatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromMetricHorsepower(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Power.FromMetricHorsepower(double)" />
         public static Power MetricHorsepower<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -176,7 +176,7 @@ namespace UnitsNet.NumberExtensions.NumberToPower
 #endif
             => Power.FromMetricHorsepower(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromMicrowatts(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Power.FromMicrowatts(double)" />
         public static Power Microwatts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -184,7 +184,7 @@ namespace UnitsNet.NumberExtensions.NumberToPower
 #endif
             => Power.FromMicrowatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromMillijoulesPerHour(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Power.FromMillijoulesPerHour(double)" />
         public static Power MillijoulesPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -192,7 +192,7 @@ namespace UnitsNet.NumberExtensions.NumberToPower
 #endif
             => Power.FromMillijoulesPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromMilliwatts(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Power.FromMilliwatts(double)" />
         public static Power Milliwatts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -200,7 +200,7 @@ namespace UnitsNet.NumberExtensions.NumberToPower
 #endif
             => Power.FromMilliwatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromNanowatts(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Power.FromNanowatts(double)" />
         public static Power Nanowatts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -208,7 +208,7 @@ namespace UnitsNet.NumberExtensions.NumberToPower
 #endif
             => Power.FromNanowatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromPetawatts(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Power.FromPetawatts(double)" />
         public static Power Petawatts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -216,7 +216,7 @@ namespace UnitsNet.NumberExtensions.NumberToPower
 #endif
             => Power.FromPetawatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromPicowatts(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Power.FromPicowatts(double)" />
         public static Power Picowatts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -224,7 +224,7 @@ namespace UnitsNet.NumberExtensions.NumberToPower
 #endif
             => Power.FromPicowatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromTerawatts(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Power.FromTerawatts(double)" />
         public static Power Terawatts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -232,7 +232,7 @@ namespace UnitsNet.NumberExtensions.NumberToPower
 #endif
             => Power.FromTerawatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Power.FromWatts(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Power.FromWatts(double)" />
         public static Power Watts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

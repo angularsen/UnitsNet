@@ -13,7 +13,7 @@ namespace UnitsNet.Tests
 
         public Enum Unit => throw new NotImplementedException();
 
-        public QuantityValue Value => throw new NotImplementedException();
+        public double Value => throw new NotImplementedException();
 
         public double As(Enum unit ) => throw new NotImplementedException();
 

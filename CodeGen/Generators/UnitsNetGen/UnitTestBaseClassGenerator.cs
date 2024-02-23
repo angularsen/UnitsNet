@@ -41,11 +41,6 @@ namespace CodeGen.Generators.UnitsNetGen
         private readonly string _baseUnitFullName;
 
         /// <summary>
-        /// Constructors for decimal-backed quantities require decimal numbers as input, so add the "m" suffix to numbers when constructing those quantities.
-        /// </summary>
-        private readonly string _numberSuffix;
-
-        /// <summary>
         /// Other unit, if more than one unit exists for quantity, otherwise same as <see cref="_baseUnit"/>.
         /// </summary>
         private readonly Unit _otherOrBaseUnit;
@@ -66,7 +61,6 @@ namespace CodeGen.Generators.UnitsNetGen
 
             _baseUnitEnglishAbbreviation = GetEnglishAbbreviation(_baseUnit);
             _baseUnitFullName = $"{_unitEnumName}.{_baseUnit.SingularName}";
-            _numberSuffix = quantity.ValueType == "decimal" ? "m" : "";
 
             // Try to pick another unit, or fall back to base unit if only a single unit.
             _otherOrBaseUnit = quantity.Units.Where(u => u != _baseUnit).DefaultIfEmpty(_baseUnit).First();
@@ -117,7 +111,7 @@ namespace UnitsNet.Tests
                 if (unit.SkipConversionGeneration) continue;
 
                 Writer.WL($@"
-        protected abstract {_quantity.ValueType} {unit.PluralName}InOne{_baseUnit.SingularName} {{ get; }}");
+        protected abstract double {unit.PluralName}InOne{_baseUnit.SingularName} {{ get; }}");
             }
 
             Writer.WL();
@@ -128,12 +122,12 @@ namespace UnitsNet.Tests
                 if (unit.SkipConversionGeneration) continue;
 
                 Writer.WL($@"
-        protected virtual {_quantity.ValueType} {unit.PluralName}Tolerance {{ get {{ return { (_quantity.ValueType == "decimal" ? "1e-9m" : "1e-5") }; }} }}");
+        protected virtual double {unit.PluralName}Tolerance {{ get {{ return 1e-5; }} }}");
             }
             Writer.WL($@"
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
-        protected ({_quantity.ValueType} UnitsInBaseUnit, {_quantity.ValueType} Tolerence) GetConversionFactor({_unitEnumName} unit)
+        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor({_unitEnumName} unit)
         {{
             return unit switch
             {{");
@@ -162,14 +156,10 @@ namespace UnitsNet.Tests
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {{
             var quantity = new {_quantity.Name}();
-            Assert.Equal(0, quantity.Value);");
-            if (_quantity.ValueType == "decimal") Writer.WL(@"
-            Assert.Equal(0m, ((IValueQuantity<decimal>)quantity).Value);");
-            Writer.WL($@"
+            Assert.Equal(0, quantity.Value);
             Assert.Equal({_baseUnitFullName}, quantity.Unit);
         }}
-");
-            if (_quantity.ValueType == "double") Writer.WL($@"
+
         [Fact]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {{
@@ -187,7 +177,6 @@ namespace UnitsNet.Tests
 
             Assert.Null(exception);
         }}
-"); Writer.WL($@"
 
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
@@ -250,8 +239,7 @@ namespace UnitsNet.Tests
             }
             Writer.WL($@"
         }}
-");
-            if (_quantity.ValueType == "double") Writer.WL($@"
+
         [Fact]
         public void From{_baseUnit.PluralName}_WithInfinityValue_DoNotThrowsArgumentException()
         {{
@@ -269,7 +257,6 @@ namespace UnitsNet.Tests
 
             Assert.Null(exception);
         }}
-"); Writer.WL($@"
 
         [Fact]
         public void As()
@@ -521,7 +508,7 @@ namespace UnitsNet.Tests
         [InlineData(1, {_baseUnitFullName}, 1, {_otherOrBaseUnitFullName}, false)] // Different unit.");
             }
             Writer.WL($@"
-        public void Equals_ReturnsTrue_IfValueAndUnitAreEqual({_quantity.ValueType} valueA, {_unitEnumName} unitA, {_quantity.ValueType} valueB, {_unitEnumName} unitB, bool expectEqual)
+        public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, {_unitEnumName} unitA, double valueB, {_unitEnumName} unitB, bool expectEqual)
         {{
             var a = new {_quantity.Name}(valueA, unitA);
             var b = new {_quantity.Name}(valueB, unitB);
@@ -642,10 +629,10 @@ namespace UnitsNet.Tests
             try
             {{
                 CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal(""0.1{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s1""));
-                Assert.Equal(""0.12{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s2""));
-                Assert.Equal(""0.123{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s3""));
-                Assert.Equal(""0.1235{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s4""));
+                Assert.Equal(""0.1{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456, {_baseUnitFullName}).ToString(""s1""));
+                Assert.Equal(""0.12{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456, {_baseUnitFullName}).ToString(""s2""));
+                Assert.Equal(""0.123{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456, {_baseUnitFullName}).ToString(""s3""));
+                Assert.Equal(""0.1235{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456, {_baseUnitFullName}).ToString(""s4""));
             }}
             finally
             {{
@@ -657,10 +644,10 @@ namespace UnitsNet.Tests
         public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
         {{
             var culture = CultureInfo.InvariantCulture;
-            Assert.Equal(""0.1{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s1"", culture));
-            Assert.Equal(""0.12{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s2"", culture));
-            Assert.Equal(""0.123{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s3"", culture));
-            Assert.Equal(""0.1235{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s4"", culture));
+            Assert.Equal(""0.1{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456, {_baseUnitFullName}).ToString(""s1"", culture));
+            Assert.Equal(""0.12{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456, {_baseUnitFullName}).ToString(""s2"", culture));
+            Assert.Equal(""0.123{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456, {_baseUnitFullName}).ToString(""s3"", culture));
+            Assert.Equal(""0.1235{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456, {_baseUnitFullName}).ToString(""s4"", culture));
         }}
 
         [Theory]
