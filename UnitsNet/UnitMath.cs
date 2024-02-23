@@ -17,7 +17,7 @@ namespace UnitsNet
         /// <returns>A quantity with a value, such that 0 ≤ value ≤ <see cref="F:System.Double.MaxValue" />.</returns>
         public static TQuantity Abs<TQuantity>(this TQuantity value) where TQuantity : IQuantity
         {
-            return value.Value >= 0.0 ? value : (TQuantity) Quantity.From(-value.Value, value.Unit);
+            return value.Value >= 0 ? value : (TQuantity) Quantity.From(-value.Value, value.Unit);
         }
 
         /// <summary>Computes the sum of a sequence of <typeparamref name="TQuantity" /> values.</summary>
@@ -220,7 +220,7 @@ namespace UnitsNet
         {
             var minValue = (TQuantity)min.ToUnit(value.Unit);
             var maxValue = (TQuantity)max.ToUnit(value.Unit);
-            
+
             if (minValue.CompareTo(maxValue) > 0)
             {
                 throw new ArgumentException($"min ({min}) cannot be greater than max ({max})", nameof(min));
