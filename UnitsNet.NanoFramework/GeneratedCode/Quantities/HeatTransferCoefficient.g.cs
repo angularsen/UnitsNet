@@ -51,7 +51,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public HeatTransferCoefficient(double value, HeatTransferCoefficientUnit unit)
         {
             _value = value;
@@ -117,38 +116,32 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="HeatTransferCoefficient"/> from <see cref="HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatTransferCoefficient FromBtusPerHourSquareFootDegreeFahrenheit(double btusperhoursquarefootdegreefahrenheit) => new HeatTransferCoefficient(btusperhoursquarefootdegreefahrenheit, HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit);
 
         /// <summary>
         ///     Creates a <see cref="HeatTransferCoefficient"/> from <see cref="HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Obsolete("The name of this definition incorrectly omitted time as divisor, please use BtuPerHourSquareFootDegreeFahrenheit instead")]
         public static HeatTransferCoefficient FromBtusPerSquareFootDegreeFahrenheit(double btuspersquarefootdegreefahrenheit) => new HeatTransferCoefficient(btuspersquarefootdegreefahrenheit, HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit);
 
         /// <summary>
         ///     Creates a <see cref="HeatTransferCoefficient"/> from <see cref="HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatTransferCoefficient FromCaloriesPerHourSquareMeterDegreeCelsius(double caloriesperhoursquaremeterdegreecelsius) => new HeatTransferCoefficient(caloriesperhoursquaremeterdegreecelsius, HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius);
 
         /// <summary>
         ///     Creates a <see cref="HeatTransferCoefficient"/> from <see cref="HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatTransferCoefficient FromKilocaloriesPerHourSquareMeterDegreeCelsius(double kilocaloriesperhoursquaremeterdegreecelsius) => new HeatTransferCoefficient(kilocaloriesperhoursquaremeterdegreecelsius, HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius);
 
         /// <summary>
         ///     Creates a <see cref="HeatTransferCoefficient"/> from <see cref="HeatTransferCoefficientUnit.WattPerSquareMeterCelsius"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatTransferCoefficient FromWattsPerSquareMeterCelsius(double wattspersquaremetercelsius) => new HeatTransferCoefficient(wattspersquaremetercelsius, HeatTransferCoefficientUnit.WattPerSquareMeterCelsius);
 
         /// <summary>
         ///     Creates a <see cref="HeatTransferCoefficient"/> from <see cref="HeatTransferCoefficientUnit.WattPerSquareMeterKelvin"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatTransferCoefficient FromWattsPerSquareMeterKelvin(double wattspersquaremeterkelvin) => new HeatTransferCoefficient(wattspersquaremeterkelvin, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin);
 
         /// <summary>

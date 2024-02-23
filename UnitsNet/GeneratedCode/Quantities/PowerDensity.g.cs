@@ -121,7 +121,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public PowerDensity(double value, PowerDensityUnit unit)
         {
             _value = value;
@@ -564,7 +563,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.DecawattPerCubicFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromDecawattsPerCubicFoot(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.DecawattPerCubicFoot);
@@ -573,7 +571,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.DecawattPerCubicInch"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromDecawattsPerCubicInch(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.DecawattPerCubicInch);
@@ -582,7 +579,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.DecawattPerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromDecawattsPerCubicMeter(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.DecawattPerCubicMeter);
@@ -591,7 +587,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.DecawattPerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromDecawattsPerLiter(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.DecawattPerLiter);
@@ -600,7 +595,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.DeciwattPerCubicFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromDeciwattsPerCubicFoot(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.DeciwattPerCubicFoot);
@@ -609,7 +603,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.DeciwattPerCubicInch"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromDeciwattsPerCubicInch(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.DeciwattPerCubicInch);
@@ -618,7 +611,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.DeciwattPerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromDeciwattsPerCubicMeter(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.DeciwattPerCubicMeter);
@@ -627,7 +619,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.DeciwattPerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromDeciwattsPerLiter(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.DeciwattPerLiter);
@@ -636,7 +627,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.GigawattPerCubicFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromGigawattsPerCubicFoot(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.GigawattPerCubicFoot);
@@ -645,7 +635,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.GigawattPerCubicInch"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromGigawattsPerCubicInch(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.GigawattPerCubicInch);
@@ -654,7 +643,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.GigawattPerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromGigawattsPerCubicMeter(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.GigawattPerCubicMeter);
@@ -663,7 +651,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.GigawattPerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromGigawattsPerLiter(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.GigawattPerLiter);
@@ -672,7 +659,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.KilowattPerCubicFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromKilowattsPerCubicFoot(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.KilowattPerCubicFoot);
@@ -681,7 +667,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.KilowattPerCubicInch"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromKilowattsPerCubicInch(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.KilowattPerCubicInch);
@@ -690,7 +675,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.KilowattPerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromKilowattsPerCubicMeter(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.KilowattPerCubicMeter);
@@ -699,7 +683,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.KilowattPerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromKilowattsPerLiter(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.KilowattPerLiter);
@@ -708,7 +691,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.MegawattPerCubicFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromMegawattsPerCubicFoot(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.MegawattPerCubicFoot);
@@ -717,7 +699,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.MegawattPerCubicInch"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromMegawattsPerCubicInch(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.MegawattPerCubicInch);
@@ -726,7 +707,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.MegawattPerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromMegawattsPerCubicMeter(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.MegawattPerCubicMeter);
@@ -735,7 +715,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.MegawattPerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromMegawattsPerLiter(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.MegawattPerLiter);
@@ -744,7 +723,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.MicrowattPerCubicFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromMicrowattsPerCubicFoot(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.MicrowattPerCubicFoot);
@@ -753,7 +731,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.MicrowattPerCubicInch"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromMicrowattsPerCubicInch(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.MicrowattPerCubicInch);
@@ -762,7 +739,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.MicrowattPerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromMicrowattsPerCubicMeter(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.MicrowattPerCubicMeter);
@@ -771,7 +747,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.MicrowattPerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromMicrowattsPerLiter(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.MicrowattPerLiter);
@@ -780,7 +755,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.MilliwattPerCubicFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromMilliwattsPerCubicFoot(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.MilliwattPerCubicFoot);
@@ -789,7 +763,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.MilliwattPerCubicInch"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromMilliwattsPerCubicInch(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.MilliwattPerCubicInch);
@@ -798,7 +771,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.MilliwattPerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromMilliwattsPerCubicMeter(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.MilliwattPerCubicMeter);
@@ -807,7 +779,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.MilliwattPerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromMilliwattsPerLiter(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.MilliwattPerLiter);
@@ -816,7 +787,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.NanowattPerCubicFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromNanowattsPerCubicFoot(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.NanowattPerCubicFoot);
@@ -825,7 +795,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.NanowattPerCubicInch"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromNanowattsPerCubicInch(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.NanowattPerCubicInch);
@@ -834,7 +803,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.NanowattPerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromNanowattsPerCubicMeter(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.NanowattPerCubicMeter);
@@ -843,7 +811,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.NanowattPerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromNanowattsPerLiter(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.NanowattPerLiter);
@@ -852,7 +819,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.PicowattPerCubicFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromPicowattsPerCubicFoot(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.PicowattPerCubicFoot);
@@ -861,7 +827,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.PicowattPerCubicInch"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromPicowattsPerCubicInch(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.PicowattPerCubicInch);
@@ -870,7 +835,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.PicowattPerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromPicowattsPerCubicMeter(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.PicowattPerCubicMeter);
@@ -879,7 +843,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.PicowattPerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromPicowattsPerLiter(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.PicowattPerLiter);
@@ -888,7 +851,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.TerawattPerCubicFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromTerawattsPerCubicFoot(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.TerawattPerCubicFoot);
@@ -897,7 +859,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.TerawattPerCubicInch"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromTerawattsPerCubicInch(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.TerawattPerCubicInch);
@@ -906,7 +867,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.TerawattPerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromTerawattsPerCubicMeter(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.TerawattPerCubicMeter);
@@ -915,7 +875,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.TerawattPerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromTerawattsPerLiter(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.TerawattPerLiter);
@@ -924,7 +883,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.WattPerCubicFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromWattsPerCubicFoot(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.WattPerCubicFoot);
@@ -933,7 +891,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.WattPerCubicInch"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromWattsPerCubicInch(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.WattPerCubicInch);
@@ -942,7 +899,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.WattPerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromWattsPerCubicMeter(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.WattPerCubicMeter);
@@ -951,7 +907,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.WattPerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerDensity FromWattsPerLiter(double value)
         {
             return new PowerDensity(value, PowerDensityUnit.WattPerLiter);

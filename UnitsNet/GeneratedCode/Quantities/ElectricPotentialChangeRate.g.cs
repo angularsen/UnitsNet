@@ -97,7 +97,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ElectricPotentialChangeRate(double value, ElectricPotentialChangeRateUnit unit)
         {
             _value = value;
@@ -372,7 +371,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.KilovoltPerHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialChangeRate FromKilovoltsPerHour(double value)
         {
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.KilovoltPerHour);
@@ -381,7 +379,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialChangeRate FromKilovoltsPerMicrosecond(double value)
         {
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond);
@@ -390,7 +387,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.KilovoltPerMinute"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialChangeRate FromKilovoltsPerMinute(double value)
         {
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.KilovoltPerMinute);
@@ -399,7 +395,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.KilovoltPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialChangeRate FromKilovoltsPerSecond(double value)
         {
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.KilovoltPerSecond);
@@ -408,7 +403,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.MegavoltPerHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialChangeRate FromMegavoltsPerHour(double value)
         {
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.MegavoltPerHour);
@@ -417,7 +411,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialChangeRate FromMegavoltsPerMicrosecond(double value)
         {
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond);
@@ -426,7 +419,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.MegavoltPerMinute"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialChangeRate FromMegavoltsPerMinute(double value)
         {
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.MegavoltPerMinute);
@@ -435,7 +427,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.MegavoltPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialChangeRate FromMegavoltsPerSecond(double value)
         {
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.MegavoltPerSecond);
@@ -444,7 +435,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.MicrovoltPerHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialChangeRate FromMicrovoltsPerHour(double value)
         {
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.MicrovoltPerHour);
@@ -453,7 +443,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialChangeRate FromMicrovoltsPerMicrosecond(double value)
         {
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond);
@@ -462,7 +451,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.MicrovoltPerMinute"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialChangeRate FromMicrovoltsPerMinute(double value)
         {
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.MicrovoltPerMinute);
@@ -471,7 +459,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.MicrovoltPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialChangeRate FromMicrovoltsPerSecond(double value)
         {
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.MicrovoltPerSecond);
@@ -480,7 +467,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.MillivoltPerHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialChangeRate FromMillivoltsPerHour(double value)
         {
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.MillivoltPerHour);
@@ -489,7 +475,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialChangeRate FromMillivoltsPerMicrosecond(double value)
         {
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond);
@@ -498,7 +483,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.MillivoltPerMinute"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialChangeRate FromMillivoltsPerMinute(double value)
         {
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.MillivoltPerMinute);
@@ -507,7 +491,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.MillivoltPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialChangeRate FromMillivoltsPerSecond(double value)
         {
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.MillivoltPerSecond);
@@ -516,7 +499,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.VoltPerHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialChangeRate FromVoltsPerHour(double value)
         {
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.VoltPerHour);
@@ -525,7 +507,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.VoltPerMicrosecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialChangeRate FromVoltsPerMicrosecond(double value)
         {
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.VoltPerMicrosecond);
@@ -534,7 +515,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.VoltPerMinute"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialChangeRate FromVoltsPerMinute(double value)
         {
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.VoltPerMinute);
@@ -543,7 +523,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.VoltPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialChangeRate FromVoltsPerSecond(double value)
         {
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.VoltPerSecond);

@@ -98,7 +98,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public MolarMass(double value, MolarMassUnit unit)
         {
             _value = value;
@@ -324,7 +323,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.CentigramPerMole"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MolarMass FromCentigramsPerMole(double value)
         {
             return new MolarMass(value, MolarMassUnit.CentigramPerMole);
@@ -333,7 +331,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.DecagramPerMole"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MolarMass FromDecagramsPerMole(double value)
         {
             return new MolarMass(value, MolarMassUnit.DecagramPerMole);
@@ -342,7 +339,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.DecigramPerMole"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MolarMass FromDecigramsPerMole(double value)
         {
             return new MolarMass(value, MolarMassUnit.DecigramPerMole);
@@ -351,7 +347,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.GramPerMole"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MolarMass FromGramsPerMole(double value)
         {
             return new MolarMass(value, MolarMassUnit.GramPerMole);
@@ -360,7 +355,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.HectogramPerMole"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MolarMass FromHectogramsPerMole(double value)
         {
             return new MolarMass(value, MolarMassUnit.HectogramPerMole);
@@ -369,7 +363,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.KilogramPerKilomole"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MolarMass FromKilogramsPerKilomole(double value)
         {
             return new MolarMass(value, MolarMassUnit.KilogramPerKilomole);
@@ -378,7 +371,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.KilogramPerMole"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MolarMass FromKilogramsPerMole(double value)
         {
             return new MolarMass(value, MolarMassUnit.KilogramPerMole);
@@ -387,7 +379,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.KilopoundPerMole"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MolarMass FromKilopoundsPerMole(double value)
         {
             return new MolarMass(value, MolarMassUnit.KilopoundPerMole);
@@ -396,7 +387,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.MegapoundPerMole"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MolarMass FromMegapoundsPerMole(double value)
         {
             return new MolarMass(value, MolarMassUnit.MegapoundPerMole);
@@ -405,7 +395,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.MicrogramPerMole"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MolarMass FromMicrogramsPerMole(double value)
         {
             return new MolarMass(value, MolarMassUnit.MicrogramPerMole);
@@ -414,7 +403,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.MilligramPerMole"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MolarMass FromMilligramsPerMole(double value)
         {
             return new MolarMass(value, MolarMassUnit.MilligramPerMole);
@@ -423,7 +411,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.NanogramPerMole"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MolarMass FromNanogramsPerMole(double value)
         {
             return new MolarMass(value, MolarMassUnit.NanogramPerMole);
@@ -432,7 +419,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.PoundPerMole"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MolarMass FromPoundsPerMole(double value)
         {
             return new MolarMass(value, MolarMassUnit.PoundPerMole);

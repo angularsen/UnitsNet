@@ -54,7 +54,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ElectricConductance(double value, ElectricConductanceUnit unit)
         {
             _value = value;
@@ -114,31 +113,26 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Kilosiemens"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductance FromKilosiemens(double kilosiemens) => new ElectricConductance(kilosiemens, ElectricConductanceUnit.Kilosiemens);
 
         /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Microsiemens"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductance FromMicrosiemens(double microsiemens) => new ElectricConductance(microsiemens, ElectricConductanceUnit.Microsiemens);
 
         /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Millisiemens"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductance FromMillisiemens(double millisiemens) => new ElectricConductance(millisiemens, ElectricConductanceUnit.Millisiemens);
 
         /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Nanosiemens"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductance FromNanosiemens(double nanosiemens) => new ElectricConductance(nanosiemens, ElectricConductanceUnit.Nanosiemens);
 
         /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Siemens"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductance FromSiemens(double siemens) => new ElectricConductance(siemens, ElectricConductanceUnit.Siemens);
 
         /// <summary>

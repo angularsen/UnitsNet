@@ -83,7 +83,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ElectricSurfaceChargeDensity(double value, ElectricSurfaceChargeDensityUnit unit)
         {
             _value = value;
@@ -239,7 +238,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricSurfaceChargeDensity"/> from <see cref="ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricSurfaceChargeDensity FromCoulombsPerSquareCentimeter(double value)
         {
             return new ElectricSurfaceChargeDensity(value, ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter);
@@ -248,7 +246,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricSurfaceChargeDensity"/> from <see cref="ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricSurfaceChargeDensity FromCoulombsPerSquareInch(double value)
         {
             return new ElectricSurfaceChargeDensity(value, ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch);
@@ -257,7 +254,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricSurfaceChargeDensity"/> from <see cref="ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricSurfaceChargeDensity FromCoulombsPerSquareMeter(double value)
         {
             return new ElectricSurfaceChargeDensity(value, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter);

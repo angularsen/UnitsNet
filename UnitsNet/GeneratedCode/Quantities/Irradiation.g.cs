@@ -87,7 +87,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Irradiation(double value, IrradiationUnit unit)
         {
             _value = value;
@@ -271,7 +270,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.JoulePerSquareCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Irradiation FromJoulesPerSquareCentimeter(double value)
         {
             return new Irradiation(value, IrradiationUnit.JoulePerSquareCentimeter);
@@ -280,7 +278,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.JoulePerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Irradiation FromJoulesPerSquareMeter(double value)
         {
             return new Irradiation(value, IrradiationUnit.JoulePerSquareMeter);
@@ -289,7 +286,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.JoulePerSquareMillimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Irradiation FromJoulesPerSquareMillimeter(double value)
         {
             return new Irradiation(value, IrradiationUnit.JoulePerSquareMillimeter);
@@ -298,7 +294,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.KilojoulePerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Irradiation FromKilojoulesPerSquareMeter(double value)
         {
             return new Irradiation(value, IrradiationUnit.KilojoulePerSquareMeter);
@@ -307,7 +302,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.KilowattHourPerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Irradiation FromKilowattHoursPerSquareMeter(double value)
         {
             return new Irradiation(value, IrradiationUnit.KilowattHourPerSquareMeter);
@@ -316,7 +310,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.MillijoulePerSquareCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Irradiation FromMillijoulesPerSquareCentimeter(double value)
         {
             return new Irradiation(value, IrradiationUnit.MillijoulePerSquareCentimeter);
@@ -325,7 +318,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.WattHourPerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Irradiation FromWattHoursPerSquareMeter(double value)
         {
             return new Irradiation(value, IrradiationUnit.WattHourPerSquareMeter);

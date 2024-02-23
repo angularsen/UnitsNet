@@ -84,7 +84,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public SpecificFuelConsumption(double value, SpecificFuelConsumptionUnit unit)
         {
             _value = value;
@@ -247,7 +246,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificFuelConsumption"/> from <see cref="SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificFuelConsumption FromGramsPerKiloNewtonSecond(double value)
         {
             return new SpecificFuelConsumption(value, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond);
@@ -256,7 +254,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificFuelConsumption"/> from <see cref="SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificFuelConsumption FromKilogramsPerKilogramForceHour(double value)
         {
             return new SpecificFuelConsumption(value, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour);
@@ -265,7 +262,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificFuelConsumption"/> from <see cref="SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificFuelConsumption FromKilogramsPerKiloNewtonSecond(double value)
         {
             return new SpecificFuelConsumption(value, SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond);
@@ -274,7 +270,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificFuelConsumption"/> from <see cref="SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificFuelConsumption FromPoundsMassPerPoundForceHour(double value)
         {
             return new SpecificFuelConsumption(value, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour);

@@ -78,7 +78,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Scalar(double value, ScalarUnit unit)
         {
             _value = value;
@@ -220,7 +219,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Scalar"/> from <see cref="ScalarUnit.Amount"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Scalar FromAmount(double value)
         {
             return new Scalar(value, ScalarUnit.Amount);

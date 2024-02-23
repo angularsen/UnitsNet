@@ -51,7 +51,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public RelativeHumidity(double value, RelativeHumidityUnit unit)
         {
             _value = value;
@@ -91,7 +90,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RelativeHumidity"/> from <see cref="RelativeHumidityUnit.Percent"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RelativeHumidity FromPercent(double percent) => new RelativeHumidity(percent, RelativeHumidityUnit.Percent);
 
         /// <summary>

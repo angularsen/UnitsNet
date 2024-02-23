@@ -107,7 +107,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public VolumeConcentration(double value, VolumeConcentrationUnit unit)
         {
             _value = value;
@@ -382,7 +381,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.CentilitersPerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromCentilitersPerLiter(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.CentilitersPerLiter);
@@ -391,7 +389,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.CentilitersPerMililiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromCentilitersPerMililiter(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.CentilitersPerMililiter);
@@ -400,7 +397,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.DecilitersPerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromDecilitersPerLiter(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.DecilitersPerLiter);
@@ -409,7 +405,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.DecilitersPerMililiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromDecilitersPerMililiter(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.DecilitersPerMililiter);
@@ -418,7 +413,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.DecimalFraction"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromDecimalFractions(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.DecimalFraction);
@@ -427,7 +421,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.LitersPerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromLitersPerLiter(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.LitersPerLiter);
@@ -436,7 +429,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.LitersPerMililiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromLitersPerMililiter(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.LitersPerMililiter);
@@ -445,7 +437,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.MicrolitersPerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromMicrolitersPerLiter(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.MicrolitersPerLiter);
@@ -454,7 +445,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.MicrolitersPerMililiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromMicrolitersPerMililiter(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.MicrolitersPerMililiter);
@@ -463,7 +453,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.MillilitersPerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromMillilitersPerLiter(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.MillilitersPerLiter);
@@ -472,7 +461,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.MillilitersPerMililiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromMillilitersPerMililiter(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.MillilitersPerMililiter);
@@ -481,7 +469,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.NanolitersPerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromNanolitersPerLiter(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.NanolitersPerLiter);
@@ -490,7 +477,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.NanolitersPerMililiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromNanolitersPerMililiter(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.NanolitersPerMililiter);
@@ -499,7 +485,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.PartPerBillion"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromPartsPerBillion(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.PartPerBillion);
@@ -508,7 +493,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.PartPerMillion"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromPartsPerMillion(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.PartPerMillion);
@@ -517,7 +501,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.PartPerThousand"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromPartsPerThousand(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.PartPerThousand);
@@ -526,7 +509,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.PartPerTrillion"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromPartsPerTrillion(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.PartPerTrillion);
@@ -535,7 +517,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.Percent"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromPercent(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.Percent);
@@ -544,7 +525,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.PicolitersPerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromPicolitersPerLiter(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.PicolitersPerLiter);
@@ -553,7 +533,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.PicolitersPerMililiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromPicolitersPerMililiter(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.PicolitersPerMililiter);

@@ -108,7 +108,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Area(double value, AreaUnit unit)
         {
             _value = value;
@@ -341,7 +340,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.Acre"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Area FromAcres(double value)
         {
             return new Area(value, AreaUnit.Acre);
@@ -350,7 +348,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.Hectare"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Area FromHectares(double value)
         {
             return new Area(value, AreaUnit.Hectare);
@@ -359,7 +356,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Area FromSquareCentimeters(double value)
         {
             return new Area(value, AreaUnit.SquareCentimeter);
@@ -368,7 +364,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareDecimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Area FromSquareDecimeters(double value)
         {
             return new Area(value, AreaUnit.SquareDecimeter);
@@ -377,7 +372,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Area FromSquareFeet(double value)
         {
             return new Area(value, AreaUnit.SquareFoot);
@@ -386,7 +380,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareInch"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Area FromSquareInches(double value)
         {
             return new Area(value, AreaUnit.SquareInch);
@@ -395,7 +388,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareKilometer"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Area FromSquareKilometers(double value)
         {
             return new Area(value, AreaUnit.SquareKilometer);
@@ -404,7 +396,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Area FromSquareMeters(double value)
         {
             return new Area(value, AreaUnit.SquareMeter);
@@ -413,7 +404,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareMicrometer"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Area FromSquareMicrometers(double value)
         {
             return new Area(value, AreaUnit.SquareMicrometer);
@@ -422,7 +412,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareMile"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Area FromSquareMiles(double value)
         {
             return new Area(value, AreaUnit.SquareMile);
@@ -431,7 +420,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareMillimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Area FromSquareMillimeters(double value)
         {
             return new Area(value, AreaUnit.SquareMillimeter);
@@ -440,7 +428,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareNauticalMile"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Area FromSquareNauticalMiles(double value)
         {
             return new Area(value, AreaUnit.SquareNauticalMile);
@@ -449,7 +436,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareYard"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Area FromSquareYards(double value)
         {
             return new Area(value, AreaUnit.SquareYard);
@@ -458,7 +444,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.UsSurveySquareFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Area FromUsSurveySquareFeet(double value)
         {
             return new Area(value, AreaUnit.UsSurveySquareFoot);

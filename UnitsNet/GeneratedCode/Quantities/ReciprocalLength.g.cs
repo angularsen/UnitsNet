@@ -99,7 +99,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ReciprocalLength(double value, ReciprocalLengthUnit unit)
         {
             _value = value;
@@ -304,7 +303,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalLength FromInverseCentimeters(double value)
         {
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseCentimeter);
@@ -313,7 +311,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalLength FromInverseFeet(double value)
         {
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseFoot);
@@ -322,7 +319,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseInch"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalLength FromInverseInches(double value)
         {
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseInch);
@@ -331,7 +327,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalLength FromInverseMeters(double value)
         {
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseMeter);
@@ -340,7 +335,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseMicroinch"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalLength FromInverseMicroinches(double value)
         {
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseMicroinch);
@@ -349,7 +343,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseMil"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalLength FromInverseMils(double value)
         {
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseMil);
@@ -358,7 +351,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseMile"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalLength FromInverseMiles(double value)
         {
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseMile);
@@ -367,7 +359,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseMillimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalLength FromInverseMillimeters(double value)
         {
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseMillimeter);
@@ -376,7 +367,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseUsSurveyFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalLength FromInverseUsSurveyFeet(double value)
         {
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseUsSurveyFoot);
@@ -385,7 +375,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseYard"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalLength FromInverseYards(double value)
         {
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseYard);

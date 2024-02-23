@@ -84,7 +84,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public FuelEfficiency(double value, FuelEfficiencyUnit unit)
         {
             _value = value;
@@ -247,7 +246,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="FuelEfficiency"/> from <see cref="FuelEfficiencyUnit.KilometerPerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static FuelEfficiency FromKilometersPerLiter(double value)
         {
             return new FuelEfficiency(value, FuelEfficiencyUnit.KilometerPerLiter);
@@ -256,7 +254,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="FuelEfficiency"/> from <see cref="FuelEfficiencyUnit.LiterPer100Kilometers"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static FuelEfficiency FromLitersPer100Kilometers(double value)
         {
             return new FuelEfficiency(value, FuelEfficiencyUnit.LiterPer100Kilometers);
@@ -265,7 +262,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="FuelEfficiency"/> from <see cref="FuelEfficiencyUnit.MilePerUkGallon"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static FuelEfficiency FromMilesPerUkGallon(double value)
         {
             return new FuelEfficiency(value, FuelEfficiencyUnit.MilePerUkGallon);
@@ -274,7 +270,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="FuelEfficiency"/> from <see cref="FuelEfficiencyUnit.MilePerUsGallon"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static FuelEfficiency FromMilesPerUsGallon(double value)
         {
             return new FuelEfficiency(value, FuelEfficiencyUnit.MilePerUsGallon);

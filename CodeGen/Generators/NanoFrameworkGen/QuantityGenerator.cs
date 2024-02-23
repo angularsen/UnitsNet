@@ -65,7 +65,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name=""value"">The numeric value to construct this quantity with.</param>
         /// <param name=""unit"">The unit representation to construct this quantity with.</param>
-        /// <exception cref=""ArgumentException"">If value is NaN or Infinity.</exception>
         public {_quantity.Name}(double value, {_unitEnumName} unit)
         {{
             _value = value;
@@ -142,8 +141,7 @@ namespace UnitsNet
                 Writer.WL($@"
         /// <summary>
         ///     Creates a <see cref=""{_quantity.Name}""/> from <see cref=""{_unitEnumName}.{unit.SingularName}""/>.
-        /// </summary>
-        /// <exception cref=""ArgumentException"">If value is NaN or Infinity.</exception>");
+        /// </summary>");
                 Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit));
                 Writer.WL($@"
         public static {_quantity.Name} From{unit.PluralName}(double {valueParamName}) => new {_quantity.Name}({valueParamName}, {_unitEnumName}.{unit.SingularName});

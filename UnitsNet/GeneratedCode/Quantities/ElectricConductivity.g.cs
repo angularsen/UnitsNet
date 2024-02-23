@@ -86,7 +86,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ElectricConductivity(double value, ElectricConductivityUnit unit)
         {
             _value = value;
@@ -263,7 +262,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.MicrosiemensPerCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductivity FromMicrosiemensPerCentimeter(double value)
         {
             return new ElectricConductivity(value, ElectricConductivityUnit.MicrosiemensPerCentimeter);
@@ -272,7 +270,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.MillisiemensPerCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductivity FromMillisiemensPerCentimeter(double value)
         {
             return new ElectricConductivity(value, ElectricConductivityUnit.MillisiemensPerCentimeter);
@@ -281,7 +278,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.SiemensPerCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductivity FromSiemensPerCentimeter(double value)
         {
             return new ElectricConductivity(value, ElectricConductivityUnit.SiemensPerCentimeter);
@@ -290,7 +286,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.SiemensPerFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductivity FromSiemensPerFoot(double value)
         {
             return new ElectricConductivity(value, ElectricConductivityUnit.SiemensPerFoot);
@@ -299,7 +294,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.SiemensPerInch"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductivity FromSiemensPerInch(double value)
         {
             return new ElectricConductivity(value, ElectricConductivityUnit.SiemensPerInch);
@@ -308,7 +302,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.SiemensPerMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductivity FromSiemensPerMeter(double value)
         {
             return new ElectricConductivity(value, ElectricConductivityUnit.SiemensPerMeter);

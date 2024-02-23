@@ -99,7 +99,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ForceChangeRate(double value, ForceChangeRateUnit unit)
         {
             _value = value;
@@ -339,7 +338,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ForceChangeRate"/> from <see cref="ForceChangeRateUnit.CentinewtonPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ForceChangeRate FromCentinewtonsPerSecond(double value)
         {
             return new ForceChangeRate(value, ForceChangeRateUnit.CentinewtonPerSecond);
@@ -348,7 +346,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ForceChangeRate"/> from <see cref="ForceChangeRateUnit.DecanewtonPerMinute"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ForceChangeRate FromDecanewtonsPerMinute(double value)
         {
             return new ForceChangeRate(value, ForceChangeRateUnit.DecanewtonPerMinute);
@@ -357,7 +354,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ForceChangeRate"/> from <see cref="ForceChangeRateUnit.DecanewtonPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ForceChangeRate FromDecanewtonsPerSecond(double value)
         {
             return new ForceChangeRate(value, ForceChangeRateUnit.DecanewtonPerSecond);
@@ -366,7 +362,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ForceChangeRate"/> from <see cref="ForceChangeRateUnit.DecinewtonPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ForceChangeRate FromDecinewtonsPerSecond(double value)
         {
             return new ForceChangeRate(value, ForceChangeRateUnit.DecinewtonPerSecond);
@@ -375,7 +370,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ForceChangeRate"/> from <see cref="ForceChangeRateUnit.KilonewtonPerMinute"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ForceChangeRate FromKilonewtonsPerMinute(double value)
         {
             return new ForceChangeRate(value, ForceChangeRateUnit.KilonewtonPerMinute);
@@ -384,7 +378,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ForceChangeRate"/> from <see cref="ForceChangeRateUnit.KilonewtonPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ForceChangeRate FromKilonewtonsPerSecond(double value)
         {
             return new ForceChangeRate(value, ForceChangeRateUnit.KilonewtonPerSecond);
@@ -393,7 +386,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ForceChangeRate"/> from <see cref="ForceChangeRateUnit.KilopoundForcePerMinute"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ForceChangeRate FromKilopoundsForcePerMinute(double value)
         {
             return new ForceChangeRate(value, ForceChangeRateUnit.KilopoundForcePerMinute);
@@ -402,7 +394,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ForceChangeRate"/> from <see cref="ForceChangeRateUnit.KilopoundForcePerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ForceChangeRate FromKilopoundsForcePerSecond(double value)
         {
             return new ForceChangeRate(value, ForceChangeRateUnit.KilopoundForcePerSecond);
@@ -411,7 +402,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ForceChangeRate"/> from <see cref="ForceChangeRateUnit.MicronewtonPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ForceChangeRate FromMicronewtonsPerSecond(double value)
         {
             return new ForceChangeRate(value, ForceChangeRateUnit.MicronewtonPerSecond);
@@ -420,7 +410,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ForceChangeRate"/> from <see cref="ForceChangeRateUnit.MillinewtonPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ForceChangeRate FromMillinewtonsPerSecond(double value)
         {
             return new ForceChangeRate(value, ForceChangeRateUnit.MillinewtonPerSecond);
@@ -429,7 +418,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ForceChangeRate"/> from <see cref="ForceChangeRateUnit.NanonewtonPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ForceChangeRate FromNanonewtonsPerSecond(double value)
         {
             return new ForceChangeRate(value, ForceChangeRateUnit.NanonewtonPerSecond);
@@ -438,7 +426,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ForceChangeRate"/> from <see cref="ForceChangeRateUnit.NewtonPerMinute"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ForceChangeRate FromNewtonsPerMinute(double value)
         {
             return new ForceChangeRate(value, ForceChangeRateUnit.NewtonPerMinute);
@@ -447,7 +434,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ForceChangeRate"/> from <see cref="ForceChangeRateUnit.NewtonPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ForceChangeRate FromNewtonsPerSecond(double value)
         {
             return new ForceChangeRate(value, ForceChangeRateUnit.NewtonPerSecond);
@@ -456,7 +442,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ForceChangeRate"/> from <see cref="ForceChangeRateUnit.PoundForcePerMinute"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ForceChangeRate FromPoundsForcePerMinute(double value)
         {
             return new ForceChangeRate(value, ForceChangeRateUnit.PoundForcePerMinute);
@@ -465,7 +450,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ForceChangeRate"/> from <see cref="ForceChangeRateUnit.PoundForcePerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ForceChangeRate FromPoundsForcePerSecond(double value)
         {
             return new ForceChangeRate(value, ForceChangeRateUnit.PoundForcePerSecond);

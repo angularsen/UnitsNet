@@ -79,7 +79,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Level(double value, LevelUnit unit)
         {
             _value = value;
@@ -228,7 +227,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Level"/> from <see cref="LevelUnit.Decibel"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Level FromDecibels(double value)
         {
             return new Level(value, LevelUnit.Decibel);
@@ -237,7 +235,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Level"/> from <see cref="LevelUnit.Neper"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Level FromNepers(double value)
         {
             return new Level(value, LevelUnit.Neper);

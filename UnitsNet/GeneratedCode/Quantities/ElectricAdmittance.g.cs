@@ -81,7 +81,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ElectricAdmittance(double value, ElectricAdmittanceUnit unit)
         {
             _value = value;
@@ -244,7 +243,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Microsiemens"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricAdmittance FromMicrosiemens(double value)
         {
             return new ElectricAdmittance(value, ElectricAdmittanceUnit.Microsiemens);
@@ -253,7 +251,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Millisiemens"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricAdmittance FromMillisiemens(double value)
         {
             return new ElectricAdmittance(value, ElectricAdmittanceUnit.Millisiemens);
@@ -262,7 +259,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Nanosiemens"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricAdmittance FromNanosiemens(double value)
         {
             return new ElectricAdmittance(value, ElectricAdmittanceUnit.Nanosiemens);
@@ -271,7 +267,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Siemens"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricAdmittance FromSiemens(double value)
         {
             return new ElectricAdmittance(value, ElectricAdmittanceUnit.Siemens);

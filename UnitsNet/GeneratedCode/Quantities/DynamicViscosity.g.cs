@@ -96,7 +96,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public DynamicViscosity(double value, DynamicViscosityUnit unit)
         {
             _value = value;
@@ -301,7 +300,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DynamicViscosity"/> from <see cref="DynamicViscosityUnit.Centipoise"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static DynamicViscosity FromCentipoise(double value)
         {
             return new DynamicViscosity(value, DynamicViscosityUnit.Centipoise);
@@ -310,7 +308,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DynamicViscosity"/> from <see cref="DynamicViscosityUnit.MicropascalSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static DynamicViscosity FromMicropascalSeconds(double value)
         {
             return new DynamicViscosity(value, DynamicViscosityUnit.MicropascalSecond);
@@ -319,7 +316,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DynamicViscosity"/> from <see cref="DynamicViscosityUnit.MillipascalSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static DynamicViscosity FromMillipascalSeconds(double value)
         {
             return new DynamicViscosity(value, DynamicViscosityUnit.MillipascalSecond);
@@ -328,7 +324,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DynamicViscosity"/> from <see cref="DynamicViscosityUnit.NewtonSecondPerMeterSquared"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static DynamicViscosity FromNewtonSecondsPerMeterSquared(double value)
         {
             return new DynamicViscosity(value, DynamicViscosityUnit.NewtonSecondPerMeterSquared);
@@ -337,7 +332,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DynamicViscosity"/> from <see cref="DynamicViscosityUnit.PascalSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static DynamicViscosity FromPascalSeconds(double value)
         {
             return new DynamicViscosity(value, DynamicViscosityUnit.PascalSecond);
@@ -346,7 +340,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DynamicViscosity"/> from <see cref="DynamicViscosityUnit.Poise"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static DynamicViscosity FromPoise(double value)
         {
             return new DynamicViscosity(value, DynamicViscosityUnit.Poise);
@@ -355,7 +348,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DynamicViscosity"/> from <see cref="DynamicViscosityUnit.PoundForceSecondPerSquareFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static DynamicViscosity FromPoundsForceSecondPerSquareFoot(double value)
         {
             return new DynamicViscosity(value, DynamicViscosityUnit.PoundForceSecondPerSquareFoot);
@@ -364,7 +356,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DynamicViscosity"/> from <see cref="DynamicViscosityUnit.PoundForceSecondPerSquareInch"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static DynamicViscosity FromPoundsForceSecondPerSquareInch(double value)
         {
             return new DynamicViscosity(value, DynamicViscosityUnit.PoundForceSecondPerSquareInch);
@@ -373,7 +364,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DynamicViscosity"/> from <see cref="DynamicViscosityUnit.PoundPerFootSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static DynamicViscosity FromPoundsPerFootSecond(double value)
         {
             return new DynamicViscosity(value, DynamicViscosityUnit.PoundPerFootSecond);
@@ -382,7 +372,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DynamicViscosity"/> from <see cref="DynamicViscosityUnit.Reyn"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static DynamicViscosity FromReyns(double value)
         {
             return new DynamicViscosity(value, DynamicViscosityUnit.Reyn);

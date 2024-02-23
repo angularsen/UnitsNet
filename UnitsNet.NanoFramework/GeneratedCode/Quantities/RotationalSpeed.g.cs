@@ -51,7 +51,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public RotationalSpeed(double value, RotationalSpeedUnit unit)
         {
             _value = value;
@@ -151,79 +150,66 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalSpeed"/> from <see cref="RotationalSpeedUnit.CentiradianPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalSpeed FromCentiradiansPerSecond(double centiradianspersecond) => new RotationalSpeed(centiradianspersecond, RotationalSpeedUnit.CentiradianPerSecond);
 
         /// <summary>
         ///     Creates a <see cref="RotationalSpeed"/> from <see cref="RotationalSpeedUnit.DeciradianPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalSpeed FromDeciradiansPerSecond(double deciradianspersecond) => new RotationalSpeed(deciradianspersecond, RotationalSpeedUnit.DeciradianPerSecond);
 
         /// <summary>
         ///     Creates a <see cref="RotationalSpeed"/> from <see cref="RotationalSpeedUnit.DegreePerMinute"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalSpeed FromDegreesPerMinute(double degreesperminute) => new RotationalSpeed(degreesperminute, RotationalSpeedUnit.DegreePerMinute);
 
         /// <summary>
         ///     Creates a <see cref="RotationalSpeed"/> from <see cref="RotationalSpeedUnit.DegreePerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalSpeed FromDegreesPerSecond(double degreespersecond) => new RotationalSpeed(degreespersecond, RotationalSpeedUnit.DegreePerSecond);
 
         /// <summary>
         ///     Creates a <see cref="RotationalSpeed"/> from <see cref="RotationalSpeedUnit.MicrodegreePerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalSpeed FromMicrodegreesPerSecond(double microdegreespersecond) => new RotationalSpeed(microdegreespersecond, RotationalSpeedUnit.MicrodegreePerSecond);
 
         /// <summary>
         ///     Creates a <see cref="RotationalSpeed"/> from <see cref="RotationalSpeedUnit.MicroradianPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalSpeed FromMicroradiansPerSecond(double microradianspersecond) => new RotationalSpeed(microradianspersecond, RotationalSpeedUnit.MicroradianPerSecond);
 
         /// <summary>
         ///     Creates a <see cref="RotationalSpeed"/> from <see cref="RotationalSpeedUnit.MillidegreePerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalSpeed FromMillidegreesPerSecond(double millidegreespersecond) => new RotationalSpeed(millidegreespersecond, RotationalSpeedUnit.MillidegreePerSecond);
 
         /// <summary>
         ///     Creates a <see cref="RotationalSpeed"/> from <see cref="RotationalSpeedUnit.MilliradianPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalSpeed FromMilliradiansPerSecond(double milliradianspersecond) => new RotationalSpeed(milliradianspersecond, RotationalSpeedUnit.MilliradianPerSecond);
 
         /// <summary>
         ///     Creates a <see cref="RotationalSpeed"/> from <see cref="RotationalSpeedUnit.NanodegreePerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalSpeed FromNanodegreesPerSecond(double nanodegreespersecond) => new RotationalSpeed(nanodegreespersecond, RotationalSpeedUnit.NanodegreePerSecond);
 
         /// <summary>
         ///     Creates a <see cref="RotationalSpeed"/> from <see cref="RotationalSpeedUnit.NanoradianPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalSpeed FromNanoradiansPerSecond(double nanoradianspersecond) => new RotationalSpeed(nanoradianspersecond, RotationalSpeedUnit.NanoradianPerSecond);
 
         /// <summary>
         ///     Creates a <see cref="RotationalSpeed"/> from <see cref="RotationalSpeedUnit.RadianPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalSpeed FromRadiansPerSecond(double radianspersecond) => new RotationalSpeed(radianspersecond, RotationalSpeedUnit.RadianPerSecond);
 
         /// <summary>
         ///     Creates a <see cref="RotationalSpeed"/> from <see cref="RotationalSpeedUnit.RevolutionPerMinute"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalSpeed FromRevolutionsPerMinute(double revolutionsperminute) => new RotationalSpeed(revolutionsperminute, RotationalSpeedUnit.RevolutionPerMinute);
 
         /// <summary>
         ///     Creates a <see cref="RotationalSpeed"/> from <see cref="RotationalSpeedUnit.RevolutionPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalSpeed FromRevolutionsPerSecond(double revolutionspersecond) => new RotationalSpeed(revolutionspersecond, RotationalSpeedUnit.RevolutionPerSecond);
 
         /// <summary>

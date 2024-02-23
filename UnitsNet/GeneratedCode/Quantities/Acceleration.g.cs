@@ -102,7 +102,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Acceleration(double value, AccelerationUnit unit)
         {
             _value = value;
@@ -335,7 +334,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.CentimeterPerSecondSquared"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Acceleration FromCentimetersPerSecondSquared(double value)
         {
             return new Acceleration(value, AccelerationUnit.CentimeterPerSecondSquared);
@@ -344,7 +342,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.DecimeterPerSecondSquared"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Acceleration FromDecimetersPerSecondSquared(double value)
         {
             return new Acceleration(value, AccelerationUnit.DecimeterPerSecondSquared);
@@ -353,7 +350,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.FootPerSecondSquared"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Acceleration FromFeetPerSecondSquared(double value)
         {
             return new Acceleration(value, AccelerationUnit.FootPerSecondSquared);
@@ -362,7 +358,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.InchPerSecondSquared"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Acceleration FromInchesPerSecondSquared(double value)
         {
             return new Acceleration(value, AccelerationUnit.InchPerSecondSquared);
@@ -371,7 +366,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.KilometerPerSecondSquared"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Acceleration FromKilometersPerSecondSquared(double value)
         {
             return new Acceleration(value, AccelerationUnit.KilometerPerSecondSquared);
@@ -380,7 +374,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.KnotPerHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Acceleration FromKnotsPerHour(double value)
         {
             return new Acceleration(value, AccelerationUnit.KnotPerHour);
@@ -389,7 +382,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.KnotPerMinute"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Acceleration FromKnotsPerMinute(double value)
         {
             return new Acceleration(value, AccelerationUnit.KnotPerMinute);
@@ -398,7 +390,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.KnotPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Acceleration FromKnotsPerSecond(double value)
         {
             return new Acceleration(value, AccelerationUnit.KnotPerSecond);
@@ -407,7 +398,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.MeterPerSecondSquared"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Acceleration FromMetersPerSecondSquared(double value)
         {
             return new Acceleration(value, AccelerationUnit.MeterPerSecondSquared);
@@ -416,7 +406,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.MicrometerPerSecondSquared"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Acceleration FromMicrometersPerSecondSquared(double value)
         {
             return new Acceleration(value, AccelerationUnit.MicrometerPerSecondSquared);
@@ -425,7 +414,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.MillimeterPerSecondSquared"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Acceleration FromMillimetersPerSecondSquared(double value)
         {
             return new Acceleration(value, AccelerationUnit.MillimeterPerSecondSquared);
@@ -434,7 +422,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.MillistandardGravity"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Acceleration FromMillistandardGravity(double value)
         {
             return new Acceleration(value, AccelerationUnit.MillistandardGravity);
@@ -443,7 +430,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.NanometerPerSecondSquared"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Acceleration FromNanometersPerSecondSquared(double value)
         {
             return new Acceleration(value, AccelerationUnit.NanometerPerSecondSquared);
@@ -452,7 +438,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.StandardGravity"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Acceleration FromStandardGravity(double value)
         {
             return new Acceleration(value, AccelerationUnit.StandardGravity);

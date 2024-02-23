@@ -81,7 +81,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Permeability(double value, PermeabilityUnit unit)
         {
             _value = value;
@@ -223,7 +222,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Permeability"/> from <see cref="PermeabilityUnit.HenryPerMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Permeability FromHenriesPerMeter(double value)
         {
             return new Permeability(value, PermeabilityUnit.HenryPerMeter);

@@ -82,7 +82,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ElectricPotentialDc(double value, ElectricPotentialDcUnit unit)
         {
             _value = value;
@@ -252,7 +251,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialDc"/> from <see cref="ElectricPotentialDcUnit.KilovoltDc"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialDc FromKilovoltsDc(double value)
         {
             return new ElectricPotentialDc(value, ElectricPotentialDcUnit.KilovoltDc);
@@ -261,7 +259,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialDc"/> from <see cref="ElectricPotentialDcUnit.MegavoltDc"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialDc FromMegavoltsDc(double value)
         {
             return new ElectricPotentialDc(value, ElectricPotentialDcUnit.MegavoltDc);
@@ -270,7 +267,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialDc"/> from <see cref="ElectricPotentialDcUnit.MicrovoltDc"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialDc FromMicrovoltsDc(double value)
         {
             return new ElectricPotentialDc(value, ElectricPotentialDcUnit.MicrovoltDc);
@@ -279,7 +275,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialDc"/> from <see cref="ElectricPotentialDcUnit.MillivoltDc"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialDc FromMillivoltsDc(double value)
         {
             return new ElectricPotentialDc(value, ElectricPotentialDcUnit.MillivoltDc);
@@ -288,7 +283,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialDc"/> from <see cref="ElectricPotentialDcUnit.VoltDc"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialDc FromVoltsDc(double value)
         {
             return new ElectricPotentialDc(value, ElectricPotentialDcUnit.VoltDc);

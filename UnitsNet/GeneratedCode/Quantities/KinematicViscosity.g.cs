@@ -98,7 +98,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public KinematicViscosity(double value, KinematicViscosityUnit unit)
         {
             _value = value;
@@ -296,7 +295,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="KinematicViscosity"/> from <see cref="KinematicViscosityUnit.Centistokes"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static KinematicViscosity FromCentistokes(double value)
         {
             return new KinematicViscosity(value, KinematicViscosityUnit.Centistokes);
@@ -305,7 +303,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="KinematicViscosity"/> from <see cref="KinematicViscosityUnit.Decistokes"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static KinematicViscosity FromDecistokes(double value)
         {
             return new KinematicViscosity(value, KinematicViscosityUnit.Decistokes);
@@ -314,7 +311,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="KinematicViscosity"/> from <see cref="KinematicViscosityUnit.Kilostokes"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static KinematicViscosity FromKilostokes(double value)
         {
             return new KinematicViscosity(value, KinematicViscosityUnit.Kilostokes);
@@ -323,7 +319,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="KinematicViscosity"/> from <see cref="KinematicViscosityUnit.Microstokes"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static KinematicViscosity FromMicrostokes(double value)
         {
             return new KinematicViscosity(value, KinematicViscosityUnit.Microstokes);
@@ -332,7 +327,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="KinematicViscosity"/> from <see cref="KinematicViscosityUnit.Millistokes"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static KinematicViscosity FromMillistokes(double value)
         {
             return new KinematicViscosity(value, KinematicViscosityUnit.Millistokes);
@@ -341,7 +335,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="KinematicViscosity"/> from <see cref="KinematicViscosityUnit.Nanostokes"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static KinematicViscosity FromNanostokes(double value)
         {
             return new KinematicViscosity(value, KinematicViscosityUnit.Nanostokes);
@@ -350,7 +343,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="KinematicViscosity"/> from <see cref="KinematicViscosityUnit.SquareFootPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static KinematicViscosity FromSquareFeetPerSecond(double value)
         {
             return new KinematicViscosity(value, KinematicViscosityUnit.SquareFootPerSecond);
@@ -359,7 +351,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="KinematicViscosity"/> from <see cref="KinematicViscosityUnit.SquareMeterPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static KinematicViscosity FromSquareMetersPerSecond(double value)
         {
             return new KinematicViscosity(value, KinematicViscosityUnit.SquareMeterPerSecond);
@@ -368,7 +359,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="KinematicViscosity"/> from <see cref="KinematicViscosityUnit.Stokes"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static KinematicViscosity FromStokes(double value)
         {
             return new KinematicViscosity(value, KinematicViscosityUnit.Stokes);

@@ -90,7 +90,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ElectricResistance(double value, ElectricResistanceUnit unit)
         {
             _value = value;
@@ -274,7 +273,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Gigaohm"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricResistance FromGigaohms(double value)
         {
             return new ElectricResistance(value, ElectricResistanceUnit.Gigaohm);
@@ -283,7 +281,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Kiloohm"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricResistance FromKiloohms(double value)
         {
             return new ElectricResistance(value, ElectricResistanceUnit.Kiloohm);
@@ -292,7 +289,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Megaohm"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricResistance FromMegaohms(double value)
         {
             return new ElectricResistance(value, ElectricResistanceUnit.Megaohm);
@@ -301,7 +297,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Microohm"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricResistance FromMicroohms(double value)
         {
             return new ElectricResistance(value, ElectricResistanceUnit.Microohm);
@@ -310,7 +305,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Milliohm"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricResistance FromMilliohms(double value)
         {
             return new ElectricResistance(value, ElectricResistanceUnit.Milliohm);
@@ -319,7 +313,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Ohm"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricResistance FromOhms(double value)
         {
             return new ElectricResistance(value, ElectricResistanceUnit.Ohm);
@@ -328,7 +321,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Teraohm"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricResistance FromTeraohms(double value)
         {
             return new ElectricResistance(value, ElectricResistanceUnit.Teraohm);

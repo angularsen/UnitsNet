@@ -54,7 +54,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ElectricCurrentDensity(double value, ElectricCurrentDensityUnit unit)
         {
             _value = value;
@@ -104,19 +103,16 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCurrentDensity"/> from <see cref="ElectricCurrentDensityUnit.AmperePerSquareFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrentDensity FromAmperesPerSquareFoot(double amperespersquarefoot) => new ElectricCurrentDensity(amperespersquarefoot, ElectricCurrentDensityUnit.AmperePerSquareFoot);
 
         /// <summary>
         ///     Creates a <see cref="ElectricCurrentDensity"/> from <see cref="ElectricCurrentDensityUnit.AmperePerSquareInch"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrentDensity FromAmperesPerSquareInch(double amperespersquareinch) => new ElectricCurrentDensity(amperespersquareinch, ElectricCurrentDensityUnit.AmperePerSquareInch);
 
         /// <summary>
         ///     Creates a <see cref="ElectricCurrentDensity"/> from <see cref="ElectricCurrentDensityUnit.AmperePerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrentDensity FromAmperesPerSquareMeter(double amperespersquaremeter) => new ElectricCurrentDensity(amperespersquaremeter, ElectricCurrentDensityUnit.AmperePerSquareMeter);
 
         /// <summary>

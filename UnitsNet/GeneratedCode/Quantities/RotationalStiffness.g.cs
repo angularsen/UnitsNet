@@ -118,7 +118,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public RotationalStiffness(double value, RotationalStiffnessUnit unit)
         {
             _value = value;
@@ -484,7 +483,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.CentinewtonMeterPerDegree"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffness FromCentinewtonMetersPerDegree(double value)
         {
             return new RotationalStiffness(value, RotationalStiffnessUnit.CentinewtonMeterPerDegree);
@@ -493,7 +491,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.CentinewtonMillimeterPerDegree"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffness FromCentinewtonMillimetersPerDegree(double value)
         {
             return new RotationalStiffness(value, RotationalStiffnessUnit.CentinewtonMillimeterPerDegree);
@@ -502,7 +499,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.CentinewtonMillimeterPerRadian"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffness FromCentinewtonMillimetersPerRadian(double value)
         {
             return new RotationalStiffness(value, RotationalStiffnessUnit.CentinewtonMillimeterPerRadian);
@@ -511,7 +507,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.DecanewtonMeterPerDegree"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffness FromDecanewtonMetersPerDegree(double value)
         {
             return new RotationalStiffness(value, RotationalStiffnessUnit.DecanewtonMeterPerDegree);
@@ -520,7 +515,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.DecanewtonMillimeterPerDegree"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffness FromDecanewtonMillimetersPerDegree(double value)
         {
             return new RotationalStiffness(value, RotationalStiffnessUnit.DecanewtonMillimeterPerDegree);
@@ -529,7 +523,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.DecanewtonMillimeterPerRadian"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffness FromDecanewtonMillimetersPerRadian(double value)
         {
             return new RotationalStiffness(value, RotationalStiffnessUnit.DecanewtonMillimeterPerRadian);
@@ -538,7 +531,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.DecinewtonMeterPerDegree"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffness FromDecinewtonMetersPerDegree(double value)
         {
             return new RotationalStiffness(value, RotationalStiffnessUnit.DecinewtonMeterPerDegree);
@@ -547,7 +539,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.DecinewtonMillimeterPerDegree"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffness FromDecinewtonMillimetersPerDegree(double value)
         {
             return new RotationalStiffness(value, RotationalStiffnessUnit.DecinewtonMillimeterPerDegree);
@@ -556,7 +547,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.DecinewtonMillimeterPerRadian"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffness FromDecinewtonMillimetersPerRadian(double value)
         {
             return new RotationalStiffness(value, RotationalStiffnessUnit.DecinewtonMillimeterPerRadian);
@@ -565,7 +555,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.KilonewtonMeterPerDegree"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffness FromKilonewtonMetersPerDegree(double value)
         {
             return new RotationalStiffness(value, RotationalStiffnessUnit.KilonewtonMeterPerDegree);
@@ -574,7 +563,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.KilonewtonMeterPerRadian"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffness FromKilonewtonMetersPerRadian(double value)
         {
             return new RotationalStiffness(value, RotationalStiffnessUnit.KilonewtonMeterPerRadian);
@@ -583,7 +571,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.KilonewtonMillimeterPerDegree"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffness FromKilonewtonMillimetersPerDegree(double value)
         {
             return new RotationalStiffness(value, RotationalStiffnessUnit.KilonewtonMillimeterPerDegree);
@@ -592,7 +579,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.KilonewtonMillimeterPerRadian"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffness FromKilonewtonMillimetersPerRadian(double value)
         {
             return new RotationalStiffness(value, RotationalStiffnessUnit.KilonewtonMillimeterPerRadian);
@@ -601,7 +587,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.KilopoundForceFootPerDegrees"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffness FromKilopoundForceFeetPerDegrees(double value)
         {
             return new RotationalStiffness(value, RotationalStiffnessUnit.KilopoundForceFootPerDegrees);
@@ -610,7 +595,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.MeganewtonMeterPerDegree"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffness FromMeganewtonMetersPerDegree(double value)
         {
             return new RotationalStiffness(value, RotationalStiffnessUnit.MeganewtonMeterPerDegree);
@@ -619,7 +603,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.MeganewtonMeterPerRadian"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffness FromMeganewtonMetersPerRadian(double value)
         {
             return new RotationalStiffness(value, RotationalStiffnessUnit.MeganewtonMeterPerRadian);
@@ -628,7 +611,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.MeganewtonMillimeterPerDegree"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffness FromMeganewtonMillimetersPerDegree(double value)
         {
             return new RotationalStiffness(value, RotationalStiffnessUnit.MeganewtonMillimeterPerDegree);
@@ -637,7 +619,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.MeganewtonMillimeterPerRadian"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffness FromMeganewtonMillimetersPerRadian(double value)
         {
             return new RotationalStiffness(value, RotationalStiffnessUnit.MeganewtonMillimeterPerRadian);
@@ -646,7 +627,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.MicronewtonMeterPerDegree"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffness FromMicronewtonMetersPerDegree(double value)
         {
             return new RotationalStiffness(value, RotationalStiffnessUnit.MicronewtonMeterPerDegree);
@@ -655,7 +635,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.MicronewtonMillimeterPerDegree"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffness FromMicronewtonMillimetersPerDegree(double value)
         {
             return new RotationalStiffness(value, RotationalStiffnessUnit.MicronewtonMillimeterPerDegree);
@@ -664,7 +643,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.MicronewtonMillimeterPerRadian"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffness FromMicronewtonMillimetersPerRadian(double value)
         {
             return new RotationalStiffness(value, RotationalStiffnessUnit.MicronewtonMillimeterPerRadian);
@@ -673,7 +651,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.MillinewtonMeterPerDegree"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffness FromMillinewtonMetersPerDegree(double value)
         {
             return new RotationalStiffness(value, RotationalStiffnessUnit.MillinewtonMeterPerDegree);
@@ -682,7 +659,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.MillinewtonMillimeterPerDegree"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffness FromMillinewtonMillimetersPerDegree(double value)
         {
             return new RotationalStiffness(value, RotationalStiffnessUnit.MillinewtonMillimeterPerDegree);
@@ -691,7 +667,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.MillinewtonMillimeterPerRadian"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffness FromMillinewtonMillimetersPerRadian(double value)
         {
             return new RotationalStiffness(value, RotationalStiffnessUnit.MillinewtonMillimeterPerRadian);
@@ -700,7 +675,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.NanonewtonMeterPerDegree"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffness FromNanonewtonMetersPerDegree(double value)
         {
             return new RotationalStiffness(value, RotationalStiffnessUnit.NanonewtonMeterPerDegree);
@@ -709,7 +683,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.NanonewtonMillimeterPerDegree"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffness FromNanonewtonMillimetersPerDegree(double value)
         {
             return new RotationalStiffness(value, RotationalStiffnessUnit.NanonewtonMillimeterPerDegree);
@@ -718,7 +691,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.NanonewtonMillimeterPerRadian"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffness FromNanonewtonMillimetersPerRadian(double value)
         {
             return new RotationalStiffness(value, RotationalStiffnessUnit.NanonewtonMillimeterPerRadian);
@@ -727,7 +699,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.NewtonMeterPerDegree"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffness FromNewtonMetersPerDegree(double value)
         {
             return new RotationalStiffness(value, RotationalStiffnessUnit.NewtonMeterPerDegree);
@@ -736,7 +707,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.NewtonMeterPerRadian"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffness FromNewtonMetersPerRadian(double value)
         {
             return new RotationalStiffness(value, RotationalStiffnessUnit.NewtonMeterPerRadian);
@@ -745,7 +715,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.NewtonMillimeterPerDegree"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffness FromNewtonMillimetersPerDegree(double value)
         {
             return new RotationalStiffness(value, RotationalStiffnessUnit.NewtonMillimeterPerDegree);
@@ -754,7 +723,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.NewtonMillimeterPerRadian"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffness FromNewtonMillimetersPerRadian(double value)
         {
             return new RotationalStiffness(value, RotationalStiffnessUnit.NewtonMillimeterPerRadian);
@@ -763,7 +731,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.PoundForceFeetPerRadian"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffness FromPoundForceFeetPerRadian(double value)
         {
             return new RotationalStiffness(value, RotationalStiffnessUnit.PoundForceFeetPerRadian);
@@ -772,7 +739,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.PoundForceFootPerDegrees"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffness FromPoundForceFeetPerDegrees(double value)
         {
             return new RotationalStiffness(value, RotationalStiffnessUnit.PoundForceFootPerDegrees);

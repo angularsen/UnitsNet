@@ -51,7 +51,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Angle(double value, AngleUnit unit)
         {
             _value = value;
@@ -166,97 +165,81 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Arcminute"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Angle FromArcminutes(double arcminutes) => new Angle(arcminutes, AngleUnit.Arcminute);
 
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Arcsecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Angle FromArcseconds(double arcseconds) => new Angle(arcseconds, AngleUnit.Arcsecond);
 
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Centiradian"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Angle FromCentiradians(double centiradians) => new Angle(centiradians, AngleUnit.Centiradian);
 
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Deciradian"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Angle FromDeciradians(double deciradians) => new Angle(deciradians, AngleUnit.Deciradian);
 
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Degree"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Angle FromDegrees(double degrees) => new Angle(degrees, AngleUnit.Degree);
 
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Gradian"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Angle FromGradians(double gradians) => new Angle(gradians, AngleUnit.Gradian);
 
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Microdegree"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Angle FromMicrodegrees(double microdegrees) => new Angle(microdegrees, AngleUnit.Microdegree);
 
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Microradian"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Angle FromMicroradians(double microradians) => new Angle(microradians, AngleUnit.Microradian);
 
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Millidegree"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Angle FromMillidegrees(double millidegrees) => new Angle(millidegrees, AngleUnit.Millidegree);
 
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Milliradian"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Angle FromMilliradians(double milliradians) => new Angle(milliradians, AngleUnit.Milliradian);
 
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Nanodegree"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Angle FromNanodegrees(double nanodegrees) => new Angle(nanodegrees, AngleUnit.Nanodegree);
 
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Nanoradian"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Angle FromNanoradians(double nanoradians) => new Angle(nanoradians, AngleUnit.Nanoradian);
 
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.NatoMil"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Angle FromNatoMils(double natomils) => new Angle(natomils, AngleUnit.NatoMil);
 
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Radian"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Angle FromRadians(double radians) => new Angle(radians, AngleUnit.Radian);
 
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Revolution"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Angle FromRevolutions(double revolutions) => new Angle(revolutions, AngleUnit.Revolution);
 
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Tilt"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Angle FromTilt(double tilt) => new Angle(tilt, AngleUnit.Tilt);
 
         /// <summary>

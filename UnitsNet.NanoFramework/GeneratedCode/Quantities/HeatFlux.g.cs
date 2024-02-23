@@ -51,7 +51,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public HeatFlux(double value, HeatFluxUnit unit)
         {
             _value = value;
@@ -176,109 +175,91 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.BtuPerHourSquareFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromBtusPerHourSquareFoot(double btusperhoursquarefoot) => new HeatFlux(btusperhoursquarefoot, HeatFluxUnit.BtuPerHourSquareFoot);
 
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.BtuPerMinuteSquareFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromBtusPerMinuteSquareFoot(double btusperminutesquarefoot) => new HeatFlux(btusperminutesquarefoot, HeatFluxUnit.BtuPerMinuteSquareFoot);
 
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.BtuPerSecondSquareFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromBtusPerSecondSquareFoot(double btuspersecondsquarefoot) => new HeatFlux(btuspersecondsquarefoot, HeatFluxUnit.BtuPerSecondSquareFoot);
 
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.BtuPerSecondSquareInch"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromBtusPerSecondSquareInch(double btuspersecondsquareinch) => new HeatFlux(btuspersecondsquareinch, HeatFluxUnit.BtuPerSecondSquareInch);
 
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.CaloriePerSecondSquareCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromCaloriesPerSecondSquareCentimeter(double caloriespersecondsquarecentimeter) => new HeatFlux(caloriespersecondsquarecentimeter, HeatFluxUnit.CaloriePerSecondSquareCentimeter);
 
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.CentiwattPerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromCentiwattsPerSquareMeter(double centiwattspersquaremeter) => new HeatFlux(centiwattspersquaremeter, HeatFluxUnit.CentiwattPerSquareMeter);
 
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.DeciwattPerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromDeciwattsPerSquareMeter(double deciwattspersquaremeter) => new HeatFlux(deciwattspersquaremeter, HeatFluxUnit.DeciwattPerSquareMeter);
 
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.KilocaloriePerHourSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromKilocaloriesPerHourSquareMeter(double kilocaloriesperhoursquaremeter) => new HeatFlux(kilocaloriesperhoursquaremeter, HeatFluxUnit.KilocaloriePerHourSquareMeter);
 
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.KilocaloriePerSecondSquareCentimeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromKilocaloriesPerSecondSquareCentimeter(double kilocaloriespersecondsquarecentimeter) => new HeatFlux(kilocaloriespersecondsquarecentimeter, HeatFluxUnit.KilocaloriePerSecondSquareCentimeter);
 
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.KilowattPerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromKilowattsPerSquareMeter(double kilowattspersquaremeter) => new HeatFlux(kilowattspersquaremeter, HeatFluxUnit.KilowattPerSquareMeter);
 
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.MicrowattPerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromMicrowattsPerSquareMeter(double microwattspersquaremeter) => new HeatFlux(microwattspersquaremeter, HeatFluxUnit.MicrowattPerSquareMeter);
 
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.MilliwattPerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromMilliwattsPerSquareMeter(double milliwattspersquaremeter) => new HeatFlux(milliwattspersquaremeter, HeatFluxUnit.MilliwattPerSquareMeter);
 
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.NanowattPerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromNanowattsPerSquareMeter(double nanowattspersquaremeter) => new HeatFlux(nanowattspersquaremeter, HeatFluxUnit.NanowattPerSquareMeter);
 
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.PoundForcePerFootSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromPoundsForcePerFootSecond(double poundsforceperfootsecond) => new HeatFlux(poundsforceperfootsecond, HeatFluxUnit.PoundForcePerFootSecond);
 
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.PoundPerSecondCubed"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromPoundsPerSecondCubed(double poundspersecondcubed) => new HeatFlux(poundspersecondcubed, HeatFluxUnit.PoundPerSecondCubed);
 
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.WattPerSquareFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromWattsPerSquareFoot(double wattspersquarefoot) => new HeatFlux(wattspersquarefoot, HeatFluxUnit.WattPerSquareFoot);
 
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.WattPerSquareInch"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromWattsPerSquareInch(double wattspersquareinch) => new HeatFlux(wattspersquareinch, HeatFluxUnit.WattPerSquareInch);
 
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.WattPerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromWattsPerSquareMeter(double wattspersquaremeter) => new HeatFlux(wattspersquaremeter, HeatFluxUnit.WattPerSquareMeter);
 
         /// <summary>

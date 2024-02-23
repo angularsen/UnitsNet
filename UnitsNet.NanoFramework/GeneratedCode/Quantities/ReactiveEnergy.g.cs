@@ -51,7 +51,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ReactiveEnergy(double value, ReactiveEnergyUnit unit)
         {
             _value = value;
@@ -101,19 +100,16 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReactiveEnergy"/> from <see cref="ReactiveEnergyUnit.KilovoltampereReactiveHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReactiveEnergy FromKilovoltampereReactiveHours(double kilovoltamperereactivehours) => new ReactiveEnergy(kilovoltamperereactivehours, ReactiveEnergyUnit.KilovoltampereReactiveHour);
 
         /// <summary>
         ///     Creates a <see cref="ReactiveEnergy"/> from <see cref="ReactiveEnergyUnit.MegavoltampereReactiveHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReactiveEnergy FromMegavoltampereReactiveHours(double megavoltamperereactivehours) => new ReactiveEnergy(megavoltamperereactivehours, ReactiveEnergyUnit.MegavoltampereReactiveHour);
 
         /// <summary>
         ///     Creates a <see cref="ReactiveEnergy"/> from <see cref="ReactiveEnergyUnit.VoltampereReactiveHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReactiveEnergy FromVoltampereReactiveHours(double voltamperereactivehours) => new ReactiveEnergy(voltamperereactivehours, ReactiveEnergyUnit.VoltampereReactiveHour);
 
         /// <summary>

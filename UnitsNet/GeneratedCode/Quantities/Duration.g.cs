@@ -106,7 +106,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Duration(double value, DurationUnit unit)
         {
             _value = value;
@@ -318,7 +317,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Day"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Duration FromDays(double value)
         {
             return new Duration(value, DurationUnit.Day);
@@ -327,7 +325,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Hour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Duration FromHours(double value)
         {
             return new Duration(value, DurationUnit.Hour);
@@ -336,7 +333,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.JulianYear"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Duration FromJulianYears(double value)
         {
             return new Duration(value, DurationUnit.JulianYear);
@@ -345,7 +341,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Microsecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Duration FromMicroseconds(double value)
         {
             return new Duration(value, DurationUnit.Microsecond);
@@ -354,7 +349,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Millisecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Duration FromMilliseconds(double value)
         {
             return new Duration(value, DurationUnit.Millisecond);
@@ -363,7 +357,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Minute"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Duration FromMinutes(double value)
         {
             return new Duration(value, DurationUnit.Minute);
@@ -372,7 +365,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Month30"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Duration FromMonths30(double value)
         {
             return new Duration(value, DurationUnit.Month30);
@@ -381,7 +373,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Nanosecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Duration FromNanoseconds(double value)
         {
             return new Duration(value, DurationUnit.Nanosecond);
@@ -390,7 +381,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Second"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Duration FromSeconds(double value)
         {
             return new Duration(value, DurationUnit.Second);
@@ -399,7 +389,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Week"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Duration FromWeeks(double value)
         {
             return new Duration(value, DurationUnit.Week);
@@ -408,7 +397,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Year365"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Duration FromYears365(double value)
         {
             return new Duration(value, DurationUnit.Year365);

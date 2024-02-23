@@ -83,7 +83,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public WarpingMomentOfInertia(double value, WarpingMomentOfInertiaUnit unit)
         {
             _value = value;
@@ -260,7 +259,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="WarpingMomentOfInertia"/> from <see cref="WarpingMomentOfInertiaUnit.CentimeterToTheSixth"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static WarpingMomentOfInertia FromCentimetersToTheSixth(double value)
         {
             return new WarpingMomentOfInertia(value, WarpingMomentOfInertiaUnit.CentimeterToTheSixth);
@@ -269,7 +267,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="WarpingMomentOfInertia"/> from <see cref="WarpingMomentOfInertiaUnit.DecimeterToTheSixth"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static WarpingMomentOfInertia FromDecimetersToTheSixth(double value)
         {
             return new WarpingMomentOfInertia(value, WarpingMomentOfInertiaUnit.DecimeterToTheSixth);
@@ -278,7 +275,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="WarpingMomentOfInertia"/> from <see cref="WarpingMomentOfInertiaUnit.FootToTheSixth"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static WarpingMomentOfInertia FromFeetToTheSixth(double value)
         {
             return new WarpingMomentOfInertia(value, WarpingMomentOfInertiaUnit.FootToTheSixth);
@@ -287,7 +283,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="WarpingMomentOfInertia"/> from <see cref="WarpingMomentOfInertiaUnit.InchToTheSixth"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static WarpingMomentOfInertia FromInchesToTheSixth(double value)
         {
             return new WarpingMomentOfInertia(value, WarpingMomentOfInertiaUnit.InchToTheSixth);
@@ -296,7 +291,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="WarpingMomentOfInertia"/> from <see cref="WarpingMomentOfInertiaUnit.MeterToTheSixth"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static WarpingMomentOfInertia FromMetersToTheSixth(double value)
         {
             return new WarpingMomentOfInertia(value, WarpingMomentOfInertiaUnit.MeterToTheSixth);
@@ -305,7 +299,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="WarpingMomentOfInertia"/> from <see cref="WarpingMomentOfInertiaUnit.MillimeterToTheSixth"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static WarpingMomentOfInertia FromMillimetersToTheSixth(double value)
         {
             return new WarpingMomentOfInertia(value, WarpingMomentOfInertiaUnit.MillimeterToTheSixth);

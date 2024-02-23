@@ -86,7 +86,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public AreaDensity(double value, AreaDensityUnit unit)
         {
             _value = value;
@@ -242,7 +241,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.GramPerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AreaDensity FromGramsPerSquareMeter(double value)
         {
             return new AreaDensity(value, AreaDensityUnit.GramPerSquareMeter);
@@ -251,7 +249,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.KilogramPerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AreaDensity FromKilogramsPerSquareMeter(double value)
         {
             return new AreaDensity(value, AreaDensityUnit.KilogramPerSquareMeter);
@@ -260,7 +257,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.MilligramPerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AreaDensity FromMilligramsPerSquareMeter(double value)
         {
             return new AreaDensity(value, AreaDensityUnit.MilligramPerSquareMeter);

@@ -125,7 +125,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Speed(double value, SpeedUnit unit)
         {
             _value = value;
@@ -491,7 +490,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.CentimeterPerHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromCentimetersPerHour(double value)
         {
             return new Speed(value, SpeedUnit.CentimeterPerHour);
@@ -500,7 +498,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.CentimeterPerMinute"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromCentimetersPerMinute(double value)
         {
             return new Speed(value, SpeedUnit.CentimeterPerMinute);
@@ -509,7 +506,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.CentimeterPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromCentimetersPerSecond(double value)
         {
             return new Speed(value, SpeedUnit.CentimeterPerSecond);
@@ -518,7 +514,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.DecimeterPerMinute"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromDecimetersPerMinute(double value)
         {
             return new Speed(value, SpeedUnit.DecimeterPerMinute);
@@ -527,7 +522,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.DecimeterPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromDecimetersPerSecond(double value)
         {
             return new Speed(value, SpeedUnit.DecimeterPerSecond);
@@ -536,7 +530,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.FootPerHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromFeetPerHour(double value)
         {
             return new Speed(value, SpeedUnit.FootPerHour);
@@ -545,7 +538,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.FootPerMinute"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromFeetPerMinute(double value)
         {
             return new Speed(value, SpeedUnit.FootPerMinute);
@@ -554,7 +546,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.FootPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromFeetPerSecond(double value)
         {
             return new Speed(value, SpeedUnit.FootPerSecond);
@@ -563,7 +554,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.InchPerHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromInchesPerHour(double value)
         {
             return new Speed(value, SpeedUnit.InchPerHour);
@@ -572,7 +562,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.InchPerMinute"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromInchesPerMinute(double value)
         {
             return new Speed(value, SpeedUnit.InchPerMinute);
@@ -581,7 +570,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.InchPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromInchesPerSecond(double value)
         {
             return new Speed(value, SpeedUnit.InchPerSecond);
@@ -590,7 +578,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.KilometerPerHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromKilometersPerHour(double value)
         {
             return new Speed(value, SpeedUnit.KilometerPerHour);
@@ -599,7 +586,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.KilometerPerMinute"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromKilometersPerMinute(double value)
         {
             return new Speed(value, SpeedUnit.KilometerPerMinute);
@@ -608,7 +594,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.KilometerPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromKilometersPerSecond(double value)
         {
             return new Speed(value, SpeedUnit.KilometerPerSecond);
@@ -617,7 +602,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.Knot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromKnots(double value)
         {
             return new Speed(value, SpeedUnit.Knot);
@@ -626,7 +610,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.Mach"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromMach(double value)
         {
             return new Speed(value, SpeedUnit.Mach);
@@ -635,7 +618,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MeterPerHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromMetersPerHour(double value)
         {
             return new Speed(value, SpeedUnit.MeterPerHour);
@@ -644,7 +626,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MeterPerMinute"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromMetersPerMinute(double value)
         {
             return new Speed(value, SpeedUnit.MeterPerMinute);
@@ -653,7 +634,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MeterPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromMetersPerSecond(double value)
         {
             return new Speed(value, SpeedUnit.MeterPerSecond);
@@ -662,7 +642,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MicrometerPerMinute"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromMicrometersPerMinute(double value)
         {
             return new Speed(value, SpeedUnit.MicrometerPerMinute);
@@ -671,7 +650,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MicrometerPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromMicrometersPerSecond(double value)
         {
             return new Speed(value, SpeedUnit.MicrometerPerSecond);
@@ -680,7 +658,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MilePerHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromMilesPerHour(double value)
         {
             return new Speed(value, SpeedUnit.MilePerHour);
@@ -689,7 +666,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MillimeterPerHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromMillimetersPerHour(double value)
         {
             return new Speed(value, SpeedUnit.MillimeterPerHour);
@@ -698,7 +674,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MillimeterPerMinute"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromMillimetersPerMinute(double value)
         {
             return new Speed(value, SpeedUnit.MillimeterPerMinute);
@@ -707,7 +682,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MillimeterPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromMillimetersPerSecond(double value)
         {
             return new Speed(value, SpeedUnit.MillimeterPerSecond);
@@ -716,7 +690,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.NanometerPerMinute"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromNanometersPerMinute(double value)
         {
             return new Speed(value, SpeedUnit.NanometerPerMinute);
@@ -725,7 +698,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.NanometerPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromNanometersPerSecond(double value)
         {
             return new Speed(value, SpeedUnit.NanometerPerSecond);
@@ -734,7 +706,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.UsSurveyFootPerHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromUsSurveyFeetPerHour(double value)
         {
             return new Speed(value, SpeedUnit.UsSurveyFootPerHour);
@@ -743,7 +714,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.UsSurveyFootPerMinute"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromUsSurveyFeetPerMinute(double value)
         {
             return new Speed(value, SpeedUnit.UsSurveyFootPerMinute);
@@ -752,7 +722,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.UsSurveyFootPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromUsSurveyFeetPerSecond(double value)
         {
             return new Speed(value, SpeedUnit.UsSurveyFootPerSecond);
@@ -761,7 +730,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.YardPerHour"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromYardsPerHour(double value)
         {
             return new Speed(value, SpeedUnit.YardPerHour);
@@ -770,7 +738,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.YardPerMinute"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromYardsPerMinute(double value)
         {
             return new Speed(value, SpeedUnit.YardPerMinute);
@@ -779,7 +746,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.YardPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromYardsPerSecond(double value)
         {
             return new Speed(value, SpeedUnit.YardPerSecond);

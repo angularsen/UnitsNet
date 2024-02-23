@@ -81,7 +81,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public SolidAngle(double value, SolidAngleUnit unit)
         {
             _value = value;
@@ -223,7 +222,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SolidAngle"/> from <see cref="SolidAngleUnit.Steradian"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SolidAngle FromSteradians(double value)
         {
             return new SolidAngle(value, SolidAngleUnit.Steradian);

@@ -88,7 +88,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public LuminousIntensity(double value, LuminousIntensityUnit unit)
         {
             _value = value;
@@ -230,7 +229,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="LuminousIntensity"/> from <see cref="LuminousIntensityUnit.Candela"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LuminousIntensity FromCandela(double value)
         {
             return new LuminousIntensity(value, LuminousIntensityUnit.Candela);

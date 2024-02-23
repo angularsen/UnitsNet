@@ -51,7 +51,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ElectricAdmittance(double value, ElectricAdmittanceUnit unit)
         {
             _value = value;
@@ -106,25 +105,21 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Microsiemens"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricAdmittance FromMicrosiemens(double microsiemens) => new ElectricAdmittance(microsiemens, ElectricAdmittanceUnit.Microsiemens);
 
         /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Millisiemens"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricAdmittance FromMillisiemens(double millisiemens) => new ElectricAdmittance(millisiemens, ElectricAdmittanceUnit.Millisiemens);
 
         /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Nanosiemens"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricAdmittance FromNanosiemens(double nanosiemens) => new ElectricAdmittance(nanosiemens, ElectricAdmittanceUnit.Nanosiemens);
 
         /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Siemens"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricAdmittance FromSiemens(double siemens) => new ElectricAdmittance(siemens, ElectricAdmittanceUnit.Siemens);
 
         /// <summary>

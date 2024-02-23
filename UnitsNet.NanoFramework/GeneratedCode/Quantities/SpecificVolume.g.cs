@@ -51,7 +51,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public SpecificVolume(double value, SpecificVolumeUnit unit)
         {
             _value = value;
@@ -101,19 +100,16 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificVolume"/> from <see cref="SpecificVolumeUnit.CubicFootPerPound"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificVolume FromCubicFeetPerPound(double cubicfeetperpound) => new SpecificVolume(cubicfeetperpound, SpecificVolumeUnit.CubicFootPerPound);
 
         /// <summary>
         ///     Creates a <see cref="SpecificVolume"/> from <see cref="SpecificVolumeUnit.CubicMeterPerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificVolume FromCubicMetersPerKilogram(double cubicmetersperkilogram) => new SpecificVolume(cubicmetersperkilogram, SpecificVolumeUnit.CubicMeterPerKilogram);
 
         /// <summary>
         ///     Creates a <see cref="SpecificVolume"/> from <see cref="SpecificVolumeUnit.MillicubicMeterPerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificVolume FromMillicubicMetersPerKilogram(double millicubicmetersperkilogram) => new SpecificVolume(millicubicmetersperkilogram, SpecificVolumeUnit.MillicubicMeterPerKilogram);
 
         /// <summary>

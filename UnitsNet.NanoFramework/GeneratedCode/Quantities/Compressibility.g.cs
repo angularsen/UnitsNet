@@ -51,7 +51,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Compressibility(double value, CompressibilityUnit unit)
         {
             _value = value;
@@ -121,43 +120,36 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InverseAtmosphere"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Compressibility FromInverseAtmospheres(double inverseatmospheres) => new Compressibility(inverseatmospheres, CompressibilityUnit.InverseAtmosphere);
 
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InverseBar"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Compressibility FromInverseBars(double inversebars) => new Compressibility(inversebars, CompressibilityUnit.InverseBar);
 
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InverseKilopascal"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Compressibility FromInverseKilopascals(double inversekilopascals) => new Compressibility(inversekilopascals, CompressibilityUnit.InverseKilopascal);
 
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InverseMegapascal"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Compressibility FromInverseMegapascals(double inversemegapascals) => new Compressibility(inversemegapascals, CompressibilityUnit.InverseMegapascal);
 
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InverseMillibar"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Compressibility FromInverseMillibars(double inversemillibars) => new Compressibility(inversemillibars, CompressibilityUnit.InverseMillibar);
 
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InversePascal"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Compressibility FromInversePascals(double inversepascals) => new Compressibility(inversepascals, CompressibilityUnit.InversePascal);
 
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InversePoundForcePerSquareInch"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Compressibility FromInversePoundsForcePerSquareInch(double inversepoundsforcepersquareinch) => new Compressibility(inversepoundsforcepersquareinch, CompressibilityUnit.InversePoundForcePerSquareInch);
 
         /// <summary>

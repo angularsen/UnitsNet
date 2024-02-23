@@ -96,7 +96,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public TemperatureDelta(double value, TemperatureDeltaUnit unit)
         {
             _value = value;
@@ -294,7 +293,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureDelta"/> from <see cref="TemperatureDeltaUnit.DegreeCelsius"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static TemperatureDelta FromDegreesCelsius(double value)
         {
             return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeCelsius);
@@ -303,7 +301,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureDelta"/> from <see cref="TemperatureDeltaUnit.DegreeDelisle"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static TemperatureDelta FromDegreesDelisle(double value)
         {
             return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeDelisle);
@@ -312,7 +309,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureDelta"/> from <see cref="TemperatureDeltaUnit.DegreeFahrenheit"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static TemperatureDelta FromDegreesFahrenheit(double value)
         {
             return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeFahrenheit);
@@ -321,7 +317,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureDelta"/> from <see cref="TemperatureDeltaUnit.DegreeNewton"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static TemperatureDelta FromDegreesNewton(double value)
         {
             return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeNewton);
@@ -330,7 +325,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureDelta"/> from <see cref="TemperatureDeltaUnit.DegreeRankine"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static TemperatureDelta FromDegreesRankine(double value)
         {
             return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeRankine);
@@ -339,7 +333,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureDelta"/> from <see cref="TemperatureDeltaUnit.DegreeReaumur"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static TemperatureDelta FromDegreesReaumur(double value)
         {
             return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeReaumur);
@@ -348,7 +341,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureDelta"/> from <see cref="TemperatureDeltaUnit.DegreeRoemer"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static TemperatureDelta FromDegreesRoemer(double value)
         {
             return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeRoemer);
@@ -357,7 +349,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureDelta"/> from <see cref="TemperatureDeltaUnit.Kelvin"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static TemperatureDelta FromKelvins(double value)
         {
             return new TemperatureDelta(value, TemperatureDeltaUnit.Kelvin);
@@ -366,7 +357,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureDelta"/> from <see cref="TemperatureDeltaUnit.MillidegreeCelsius"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static TemperatureDelta FromMillidegreesCelsius(double value)
         {
             return new TemperatureDelta(value, TemperatureDeltaUnit.MillidegreeCelsius);

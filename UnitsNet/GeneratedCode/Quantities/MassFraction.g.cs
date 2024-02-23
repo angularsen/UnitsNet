@@ -110,7 +110,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public MassFraction(double value, MassFractionUnit unit)
         {
             _value = value;
@@ -413,7 +412,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.CentigramPerGram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFraction FromCentigramsPerGram(double value)
         {
             return new MassFraction(value, MassFractionUnit.CentigramPerGram);
@@ -422,7 +420,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.CentigramPerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFraction FromCentigramsPerKilogram(double value)
         {
             return new MassFraction(value, MassFractionUnit.CentigramPerKilogram);
@@ -431,7 +428,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.DecagramPerGram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFraction FromDecagramsPerGram(double value)
         {
             return new MassFraction(value, MassFractionUnit.DecagramPerGram);
@@ -440,7 +436,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.DecagramPerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFraction FromDecagramsPerKilogram(double value)
         {
             return new MassFraction(value, MassFractionUnit.DecagramPerKilogram);
@@ -449,7 +444,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.DecigramPerGram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFraction FromDecigramsPerGram(double value)
         {
             return new MassFraction(value, MassFractionUnit.DecigramPerGram);
@@ -458,7 +452,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.DecigramPerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFraction FromDecigramsPerKilogram(double value)
         {
             return new MassFraction(value, MassFractionUnit.DecigramPerKilogram);
@@ -467,7 +460,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.DecimalFraction"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFraction FromDecimalFractions(double value)
         {
             return new MassFraction(value, MassFractionUnit.DecimalFraction);
@@ -476,7 +468,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.GramPerGram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFraction FromGramsPerGram(double value)
         {
             return new MassFraction(value, MassFractionUnit.GramPerGram);
@@ -485,7 +476,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.GramPerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFraction FromGramsPerKilogram(double value)
         {
             return new MassFraction(value, MassFractionUnit.GramPerKilogram);
@@ -494,7 +484,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.HectogramPerGram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFraction FromHectogramsPerGram(double value)
         {
             return new MassFraction(value, MassFractionUnit.HectogramPerGram);
@@ -503,7 +492,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.HectogramPerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFraction FromHectogramsPerKilogram(double value)
         {
             return new MassFraction(value, MassFractionUnit.HectogramPerKilogram);
@@ -512,7 +500,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.KilogramPerGram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFraction FromKilogramsPerGram(double value)
         {
             return new MassFraction(value, MassFractionUnit.KilogramPerGram);
@@ -521,7 +508,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.KilogramPerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFraction FromKilogramsPerKilogram(double value)
         {
             return new MassFraction(value, MassFractionUnit.KilogramPerKilogram);
@@ -530,7 +516,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.MicrogramPerGram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFraction FromMicrogramsPerGram(double value)
         {
             return new MassFraction(value, MassFractionUnit.MicrogramPerGram);
@@ -539,7 +524,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.MicrogramPerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFraction FromMicrogramsPerKilogram(double value)
         {
             return new MassFraction(value, MassFractionUnit.MicrogramPerKilogram);
@@ -548,7 +532,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.MilligramPerGram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFraction FromMilligramsPerGram(double value)
         {
             return new MassFraction(value, MassFractionUnit.MilligramPerGram);
@@ -557,7 +540,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.MilligramPerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFraction FromMilligramsPerKilogram(double value)
         {
             return new MassFraction(value, MassFractionUnit.MilligramPerKilogram);
@@ -566,7 +548,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.NanogramPerGram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFraction FromNanogramsPerGram(double value)
         {
             return new MassFraction(value, MassFractionUnit.NanogramPerGram);
@@ -575,7 +556,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.NanogramPerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFraction FromNanogramsPerKilogram(double value)
         {
             return new MassFraction(value, MassFractionUnit.NanogramPerKilogram);
@@ -584,7 +564,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.PartPerBillion"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFraction FromPartsPerBillion(double value)
         {
             return new MassFraction(value, MassFractionUnit.PartPerBillion);
@@ -593,7 +572,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.PartPerMillion"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFraction FromPartsPerMillion(double value)
         {
             return new MassFraction(value, MassFractionUnit.PartPerMillion);
@@ -602,7 +580,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.PartPerThousand"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFraction FromPartsPerThousand(double value)
         {
             return new MassFraction(value, MassFractionUnit.PartPerThousand);
@@ -611,7 +588,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.PartPerTrillion"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFraction FromPartsPerTrillion(double value)
         {
             return new MassFraction(value, MassFractionUnit.PartPerTrillion);
@@ -620,7 +596,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.Percent"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFraction FromPercent(double value)
         {
             return new MassFraction(value, MassFractionUnit.Percent);

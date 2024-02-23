@@ -119,7 +119,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public SpecificEnergy(double value, SpecificEnergyUnit unit)
         {
             _value = value;
@@ -464,7 +463,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.BtuPerPound"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromBtuPerPound(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.BtuPerPound);
@@ -473,7 +471,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.CaloriePerGram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromCaloriesPerGram(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.CaloriePerGram);
@@ -482,7 +479,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.GigawattDayPerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromGigawattDaysPerKilogram(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.GigawattDayPerKilogram);
@@ -491,7 +487,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.GigawattDayPerShortTon"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromGigawattDaysPerShortTon(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.GigawattDayPerShortTon);
@@ -500,7 +495,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.GigawattDayPerTonne"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromGigawattDaysPerTonne(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.GigawattDayPerTonne);
@@ -509,7 +503,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.GigawattHourPerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromGigawattHoursPerKilogram(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.GigawattHourPerKilogram);
@@ -518,7 +511,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.GigawattHourPerPound"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromGigawattHoursPerPound(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.GigawattHourPerPound);
@@ -527,7 +519,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.JoulePerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromJoulesPerKilogram(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.JoulePerKilogram);
@@ -536,7 +527,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.KilocaloriePerGram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromKilocaloriesPerGram(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.KilocaloriePerGram);
@@ -545,7 +535,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.KilojoulePerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromKilojoulesPerKilogram(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.KilojoulePerKilogram);
@@ -554,7 +543,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.KilowattDayPerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromKilowattDaysPerKilogram(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.KilowattDayPerKilogram);
@@ -563,7 +551,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.KilowattDayPerShortTon"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromKilowattDaysPerShortTon(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.KilowattDayPerShortTon);
@@ -572,7 +559,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.KilowattDayPerTonne"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromKilowattDaysPerTonne(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.KilowattDayPerTonne);
@@ -581,7 +567,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.KilowattHourPerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromKilowattHoursPerKilogram(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.KilowattHourPerKilogram);
@@ -590,7 +575,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.KilowattHourPerPound"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromKilowattHoursPerPound(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.KilowattHourPerPound);
@@ -599,7 +583,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.MegajoulePerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromMegajoulesPerKilogram(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.MegajoulePerKilogram);
@@ -608,7 +591,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.MegaJoulePerTonne"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromMegaJoulesPerTonne(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.MegaJoulePerTonne);
@@ -617,7 +599,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.MegawattDayPerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromMegawattDaysPerKilogram(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.MegawattDayPerKilogram);
@@ -626,7 +607,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.MegawattDayPerShortTon"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromMegawattDaysPerShortTon(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.MegawattDayPerShortTon);
@@ -635,7 +615,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.MegawattDayPerTonne"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromMegawattDaysPerTonne(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.MegawattDayPerTonne);
@@ -644,7 +623,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.MegawattHourPerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromMegawattHoursPerKilogram(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.MegawattHourPerKilogram);
@@ -653,7 +631,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.MegawattHourPerPound"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromMegawattHoursPerPound(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.MegawattHourPerPound);
@@ -662,7 +639,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.TerawattDayPerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromTerawattDaysPerKilogram(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.TerawattDayPerKilogram);
@@ -671,7 +647,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.TerawattDayPerShortTon"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromTerawattDaysPerShortTon(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.TerawattDayPerShortTon);
@@ -680,7 +655,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.TerawattDayPerTonne"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromTerawattDaysPerTonne(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.TerawattDayPerTonne);
@@ -689,7 +663,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.WattDayPerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromWattDaysPerKilogram(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.WattDayPerKilogram);
@@ -698,7 +671,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.WattDayPerShortTon"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromWattDaysPerShortTon(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.WattDayPerShortTon);
@@ -707,7 +679,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.WattDayPerTonne"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromWattDaysPerTonne(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.WattDayPerTonne);
@@ -716,7 +687,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.WattHourPerKilogram"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromWattHoursPerKilogram(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.WattHourPerKilogram);
@@ -725,7 +695,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.WattHourPerPound"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromWattHoursPerPound(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.WattHourPerPound);

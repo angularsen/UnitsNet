@@ -103,7 +103,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Information(double value, InformationUnit unit)
         {
             _value = value;
@@ -420,7 +419,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Bit"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromBits(double value)
         {
             return new Information(value, InformationUnit.Bit);
@@ -429,7 +427,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Byte"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromBytes(double value)
         {
             return new Information(value, InformationUnit.Byte);
@@ -438,7 +435,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Exabit"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromExabits(double value)
         {
             return new Information(value, InformationUnit.Exabit);
@@ -447,7 +443,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Exabyte"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromExabytes(double value)
         {
             return new Information(value, InformationUnit.Exabyte);
@@ -456,7 +451,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Exbibit"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromExbibits(double value)
         {
             return new Information(value, InformationUnit.Exbibit);
@@ -465,7 +459,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Exbibyte"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromExbibytes(double value)
         {
             return new Information(value, InformationUnit.Exbibyte);
@@ -474,7 +467,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Gibibit"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromGibibits(double value)
         {
             return new Information(value, InformationUnit.Gibibit);
@@ -483,7 +475,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Gibibyte"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromGibibytes(double value)
         {
             return new Information(value, InformationUnit.Gibibyte);
@@ -492,7 +483,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Gigabit"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromGigabits(double value)
         {
             return new Information(value, InformationUnit.Gigabit);
@@ -501,7 +491,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Gigabyte"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromGigabytes(double value)
         {
             return new Information(value, InformationUnit.Gigabyte);
@@ -510,7 +499,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Kibibit"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromKibibits(double value)
         {
             return new Information(value, InformationUnit.Kibibit);
@@ -519,7 +507,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Kibibyte"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromKibibytes(double value)
         {
             return new Information(value, InformationUnit.Kibibyte);
@@ -528,7 +515,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Kilobit"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromKilobits(double value)
         {
             return new Information(value, InformationUnit.Kilobit);
@@ -537,7 +523,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Kilobyte"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromKilobytes(double value)
         {
             return new Information(value, InformationUnit.Kilobyte);
@@ -546,7 +531,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Mebibit"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromMebibits(double value)
         {
             return new Information(value, InformationUnit.Mebibit);
@@ -555,7 +539,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Mebibyte"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromMebibytes(double value)
         {
             return new Information(value, InformationUnit.Mebibyte);
@@ -564,7 +547,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Megabit"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromMegabits(double value)
         {
             return new Information(value, InformationUnit.Megabit);
@@ -573,7 +555,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Megabyte"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromMegabytes(double value)
         {
             return new Information(value, InformationUnit.Megabyte);
@@ -582,7 +563,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Pebibit"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromPebibits(double value)
         {
             return new Information(value, InformationUnit.Pebibit);
@@ -591,7 +571,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Pebibyte"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromPebibytes(double value)
         {
             return new Information(value, InformationUnit.Pebibyte);
@@ -600,7 +579,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Petabit"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromPetabits(double value)
         {
             return new Information(value, InformationUnit.Petabit);
@@ -609,7 +587,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Petabyte"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromPetabytes(double value)
         {
             return new Information(value, InformationUnit.Petabyte);
@@ -618,7 +595,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Tebibit"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromTebibits(double value)
         {
             return new Information(value, InformationUnit.Tebibit);
@@ -627,7 +603,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Tebibyte"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromTebibytes(double value)
         {
             return new Information(value, InformationUnit.Tebibyte);
@@ -636,7 +611,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Terabit"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromTerabits(double value)
         {
             return new Information(value, InformationUnit.Terabit);
@@ -645,7 +619,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Terabyte"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromTerabytes(double value)
         {
             return new Information(value, InformationUnit.Terabyte);

@@ -51,7 +51,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Temperature(double value, TemperatureUnit unit)
         {
             _value = value;
@@ -136,61 +135,51 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeCelsius"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Temperature FromDegreesCelsius(double degreescelsius) => new Temperature(degreescelsius, TemperatureUnit.DegreeCelsius);
 
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeDelisle"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Temperature FromDegreesDelisle(double degreesdelisle) => new Temperature(degreesdelisle, TemperatureUnit.DegreeDelisle);
 
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeFahrenheit"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Temperature FromDegreesFahrenheit(double degreesfahrenheit) => new Temperature(degreesfahrenheit, TemperatureUnit.DegreeFahrenheit);
 
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeNewton"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Temperature FromDegreesNewton(double degreesnewton) => new Temperature(degreesnewton, TemperatureUnit.DegreeNewton);
 
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeRankine"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Temperature FromDegreesRankine(double degreesrankine) => new Temperature(degreesrankine, TemperatureUnit.DegreeRankine);
 
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeReaumur"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Temperature FromDegreesReaumur(double degreesreaumur) => new Temperature(degreesreaumur, TemperatureUnit.DegreeReaumur);
 
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeRoemer"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Temperature FromDegreesRoemer(double degreesroemer) => new Temperature(degreesroemer, TemperatureUnit.DegreeRoemer);
 
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.Kelvin"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Temperature FromKelvins(double kelvins) => new Temperature(kelvins, TemperatureUnit.Kelvin);
 
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.MillidegreeCelsius"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Temperature FromMillidegreesCelsius(double millidegreescelsius) => new Temperature(millidegreescelsius, TemperatureUnit.MillidegreeCelsius);
 
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.SolarTemperature"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Temperature FromSolarTemperatures(double solartemperatures) => new Temperature(solartemperatures, TemperatureUnit.SolarTemperature);
 
         /// <summary>

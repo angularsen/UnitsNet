@@ -51,7 +51,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public RotationalStiffnessPerLength(double value, RotationalStiffnessPerLengthUnit unit)
         {
             _value = value;
@@ -111,31 +110,26 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalStiffnessPerLength"/> from <see cref="RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffnessPerLength FromKilonewtonMetersPerRadianPerMeter(double kilonewtonmetersperradianpermeter) => new RotationalStiffnessPerLength(kilonewtonmetersperradianpermeter, RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter);
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffnessPerLength"/> from <see cref="RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffnessPerLength FromKilopoundForceFeetPerDegreesPerFeet(double kilopoundforcefeetperdegreesperfeet) => new RotationalStiffnessPerLength(kilopoundforcefeetperdegreesperfeet, RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot);
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffnessPerLength"/> from <see cref="RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffnessPerLength FromMeganewtonMetersPerRadianPerMeter(double meganewtonmetersperradianpermeter) => new RotationalStiffnessPerLength(meganewtonmetersperradianpermeter, RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter);
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffnessPerLength"/> from <see cref="RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffnessPerLength FromNewtonMetersPerRadianPerMeter(double newtonmetersperradianpermeter) => new RotationalStiffnessPerLength(newtonmetersperradianpermeter, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter);
 
         /// <summary>
         ///     Creates a <see cref="RotationalStiffnessPerLength"/> from <see cref="RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffnessPerLength FromPoundForceFeetPerDegreesPerFeet(double poundforcefeetperdegreesperfeet) => new RotationalStiffnessPerLength(poundforcefeetperdegreesperfeet, RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot);
 
         /// <summary>

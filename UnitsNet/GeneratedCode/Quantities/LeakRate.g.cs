@@ -83,7 +83,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public LeakRate(double value, LeakRateUnit unit)
         {
             _value = value;
@@ -239,7 +238,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="LeakRate"/> from <see cref="LeakRateUnit.MillibarLiterPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LeakRate FromMillibarLitersPerSecond(double value)
         {
             return new LeakRate(value, LeakRateUnit.MillibarLiterPerSecond);
@@ -248,7 +246,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="LeakRate"/> from <see cref="LeakRateUnit.PascalCubicMeterPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LeakRate FromPascalCubicMetersPerSecond(double value)
         {
             return new LeakRate(value, LeakRateUnit.PascalCubicMeterPerSecond);
@@ -257,7 +254,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="LeakRate"/> from <see cref="LeakRateUnit.TorrLiterPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LeakRate FromTorrLitersPerSecond(double value)
         {
             return new LeakRate(value, LeakRateUnit.TorrLiterPerSecond);

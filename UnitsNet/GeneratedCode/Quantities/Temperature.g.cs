@@ -87,7 +87,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Temperature(double value, TemperatureUnit unit)
         {
             _value = value;
@@ -289,7 +288,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeCelsius"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Temperature FromDegreesCelsius(double value)
         {
             return new Temperature(value, TemperatureUnit.DegreeCelsius);
@@ -298,7 +296,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeDelisle"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Temperature FromDegreesDelisle(double value)
         {
             return new Temperature(value, TemperatureUnit.DegreeDelisle);
@@ -307,7 +304,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeFahrenheit"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Temperature FromDegreesFahrenheit(double value)
         {
             return new Temperature(value, TemperatureUnit.DegreeFahrenheit);
@@ -316,7 +312,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeNewton"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Temperature FromDegreesNewton(double value)
         {
             return new Temperature(value, TemperatureUnit.DegreeNewton);
@@ -325,7 +320,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeRankine"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Temperature FromDegreesRankine(double value)
         {
             return new Temperature(value, TemperatureUnit.DegreeRankine);
@@ -334,7 +328,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeReaumur"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Temperature FromDegreesReaumur(double value)
         {
             return new Temperature(value, TemperatureUnit.DegreeReaumur);
@@ -343,7 +336,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeRoemer"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Temperature FromDegreesRoemer(double value)
         {
             return new Temperature(value, TemperatureUnit.DegreeRoemer);
@@ -352,7 +344,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.Kelvin"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Temperature FromKelvins(double value)
         {
             return new Temperature(value, TemperatureUnit.Kelvin);
@@ -361,7 +352,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.MillidegreeCelsius"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Temperature FromMillidegreesCelsius(double value)
         {
             return new Temperature(value, TemperatureUnit.MillidegreeCelsius);
@@ -370,7 +360,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.SolarTemperature"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Temperature FromSolarTemperatures(double value)
         {
             return new Temperature(value, TemperatureUnit.SolarTemperature);

@@ -79,7 +79,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public VolumeFlowPerArea(double value, VolumeFlowPerAreaUnit unit)
         {
             _value = value;
@@ -228,7 +227,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeFlowPerArea"/> from <see cref="VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeFlowPerArea FromCubicFeetPerMinutePerSquareFoot(double value)
         {
             return new VolumeFlowPerArea(value, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot);
@@ -237,7 +235,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeFlowPerArea"/> from <see cref="VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeFlowPerArea FromCubicMetersPerSecondPerSquareMeter(double value)
         {
             return new VolumeFlowPerArea(value, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter);

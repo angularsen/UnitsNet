@@ -51,7 +51,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ThermalResistance(double value, ThermalResistanceUnit unit)
         {
             _value = value;
@@ -116,37 +115,31 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ThermalResistance"/> from <see cref="ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ThermalResistance FromHourSquareFeetDegreesFahrenheitPerBtu(double hoursquarefeetdegreesfahrenheitperbtu) => new ThermalResistance(hoursquarefeetdegreesfahrenheitperbtu, ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu);
 
         /// <summary>
         ///     Creates a <see cref="ThermalResistance"/> from <see cref="ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ThermalResistance FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(double squarecentimeterhourdegreescelsiusperkilocalorie) => new ThermalResistance(squarecentimeterhourdegreescelsiusperkilocalorie, ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie);
 
         /// <summary>
         ///     Creates a <see cref="ThermalResistance"/> from <see cref="ThermalResistanceUnit.SquareCentimeterKelvinPerWatt"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ThermalResistance FromSquareCentimeterKelvinsPerWatt(double squarecentimeterkelvinsperwatt) => new ThermalResistance(squarecentimeterkelvinsperwatt, ThermalResistanceUnit.SquareCentimeterKelvinPerWatt);
 
         /// <summary>
         ///     Creates a <see cref="ThermalResistance"/> from <see cref="ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ThermalResistance FromSquareMeterDegreesCelsiusPerWatt(double squaremeterdegreescelsiusperwatt) => new ThermalResistance(squaremeterdegreescelsiusperwatt, ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt);
 
         /// <summary>
         ///     Creates a <see cref="ThermalResistance"/> from <see cref="ThermalResistanceUnit.SquareMeterKelvinPerKilowatt"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ThermalResistance FromSquareMeterKelvinsPerKilowatt(double squaremeterkelvinsperkilowatt) => new ThermalResistance(squaremeterkelvinsperkilowatt, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt);
 
         /// <summary>
         ///     Creates a <see cref="ThermalResistance"/> from <see cref="ThermalResistanceUnit.SquareMeterKelvinPerWatt"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ThermalResistance FromSquareMeterKelvinsPerWatt(double squaremeterkelvinsperwatt) => new ThermalResistance(squaremeterkelvinsperwatt, ThermalResistanceUnit.SquareMeterKelvinPerWatt);
 
         /// <summary>

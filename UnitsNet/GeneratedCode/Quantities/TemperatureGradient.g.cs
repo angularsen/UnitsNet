@@ -87,7 +87,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public TemperatureGradient(double value, TemperatureGradientUnit unit)
         {
             _value = value;
@@ -250,7 +249,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureGradient"/> from <see cref="TemperatureGradientUnit.DegreeCelsiusPerKilometer"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static TemperatureGradient FromDegreesCelsiusPerKilometer(double value)
         {
             return new TemperatureGradient(value, TemperatureGradientUnit.DegreeCelsiusPerKilometer);
@@ -259,7 +257,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureGradient"/> from <see cref="TemperatureGradientUnit.DegreeCelsiusPerMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static TemperatureGradient FromDegreesCelsiusPerMeter(double value)
         {
             return new TemperatureGradient(value, TemperatureGradientUnit.DegreeCelsiusPerMeter);
@@ -268,7 +265,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureGradient"/> from <see cref="TemperatureGradientUnit.DegreeFahrenheitPerFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static TemperatureGradient FromDegreesFahrenheitPerFoot(double value)
         {
             return new TemperatureGradient(value, TemperatureGradientUnit.DegreeFahrenheitPerFoot);
@@ -277,7 +273,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureGradient"/> from <see cref="TemperatureGradientUnit.KelvinPerMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static TemperatureGradient FromKelvinsPerMeter(double value)
         {
             return new TemperatureGradient(value, TemperatureGradientUnit.KelvinPerMeter);

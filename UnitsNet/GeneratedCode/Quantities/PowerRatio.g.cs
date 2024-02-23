@@ -79,7 +79,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public PowerRatio(double value, PowerRatioUnit unit)
         {
             _value = value;
@@ -228,7 +227,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerRatio"/> from <see cref="PowerRatioUnit.DecibelMilliwatt"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerRatio FromDecibelMilliwatts(double value)
         {
             return new PowerRatio(value, PowerRatioUnit.DecibelMilliwatt);
@@ -237,7 +235,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerRatio"/> from <see cref="PowerRatioUnit.DecibelWatt"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerRatio FromDecibelWatts(double value)
         {
             return new PowerRatio(value, PowerRatioUnit.DecibelWatt);

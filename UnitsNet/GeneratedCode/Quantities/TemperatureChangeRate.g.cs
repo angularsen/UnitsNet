@@ -94,7 +94,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public TemperatureChangeRate(double value, TemperatureChangeRateUnit unit)
         {
             _value = value;
@@ -299,7 +298,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static TemperatureChangeRate FromCentidegreesCelsiusPerSecond(double value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond);
@@ -308,7 +306,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static TemperatureChangeRate FromDecadegreesCelsiusPerSecond(double value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond);
@@ -317,7 +314,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static TemperatureChangeRate FromDecidegreesCelsiusPerSecond(double value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond);
@@ -326,7 +322,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.DegreeCelsiusPerMinute"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static TemperatureChangeRate FromDegreesCelsiusPerMinute(double value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DegreeCelsiusPerMinute);
@@ -335,7 +330,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.DegreeCelsiusPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static TemperatureChangeRate FromDegreesCelsiusPerSecond(double value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DegreeCelsiusPerSecond);
@@ -344,7 +338,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static TemperatureChangeRate FromHectodegreesCelsiusPerSecond(double value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond);
@@ -353,7 +346,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static TemperatureChangeRate FromKilodegreesCelsiusPerSecond(double value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond);
@@ -362,7 +354,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static TemperatureChangeRate FromMicrodegreesCelsiusPerSecond(double value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond);
@@ -371,7 +362,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static TemperatureChangeRate FromMillidegreesCelsiusPerSecond(double value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond);
@@ -380,7 +370,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static TemperatureChangeRate FromNanodegreesCelsiusPerSecond(double value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond);

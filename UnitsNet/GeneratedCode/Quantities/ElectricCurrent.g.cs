@@ -97,7 +97,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public ElectricCurrent(double value, ElectricCurrentUnit unit)
         {
             _value = value;
@@ -295,7 +294,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Ampere"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrent FromAmperes(double value)
         {
             return new ElectricCurrent(value, ElectricCurrentUnit.Ampere);
@@ -304,7 +302,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Centiampere"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrent FromCentiamperes(double value)
         {
             return new ElectricCurrent(value, ElectricCurrentUnit.Centiampere);
@@ -313,7 +310,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Femtoampere"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrent FromFemtoamperes(double value)
         {
             return new ElectricCurrent(value, ElectricCurrentUnit.Femtoampere);
@@ -322,7 +318,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Kiloampere"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrent FromKiloamperes(double value)
         {
             return new ElectricCurrent(value, ElectricCurrentUnit.Kiloampere);
@@ -331,7 +326,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Megaampere"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrent FromMegaamperes(double value)
         {
             return new ElectricCurrent(value, ElectricCurrentUnit.Megaampere);
@@ -340,7 +334,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Microampere"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrent FromMicroamperes(double value)
         {
             return new ElectricCurrent(value, ElectricCurrentUnit.Microampere);
@@ -349,7 +342,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Milliampere"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrent FromMilliamperes(double value)
         {
             return new ElectricCurrent(value, ElectricCurrentUnit.Milliampere);
@@ -358,7 +350,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Nanoampere"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrent FromNanoamperes(double value)
         {
             return new ElectricCurrent(value, ElectricCurrentUnit.Nanoampere);
@@ -367,7 +358,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Picoampere"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrent FromPicoamperes(double value)
         {
             return new ElectricCurrent(value, ElectricCurrentUnit.Picoampere);

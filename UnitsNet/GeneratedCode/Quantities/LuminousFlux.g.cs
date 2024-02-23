@@ -81,7 +81,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public LuminousFlux(double value, LuminousFluxUnit unit)
         {
             _value = value;
@@ -223,7 +222,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="LuminousFlux"/> from <see cref="LuminousFluxUnit.Lumen"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LuminousFlux FromLumens(double value)
         {
             return new LuminousFlux(value, LuminousFluxUnit.Lumen);

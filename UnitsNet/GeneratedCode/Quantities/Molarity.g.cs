@@ -98,7 +98,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public Molarity(double value, MolarityUnit unit)
         {
             _value = value;
@@ -310,7 +309,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.CentimolePerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Molarity FromCentimolesPerLiter(double value)
         {
             return new Molarity(value, MolarityUnit.CentimolePerLiter);
@@ -319,7 +317,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.DecimolePerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Molarity FromDecimolesPerLiter(double value)
         {
             return new Molarity(value, MolarityUnit.DecimolePerLiter);
@@ -328,7 +325,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.FemtomolePerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Molarity FromFemtomolesPerLiter(double value)
         {
             return new Molarity(value, MolarityUnit.FemtomolePerLiter);
@@ -337,7 +333,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.KilomolePerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Molarity FromKilomolesPerCubicMeter(double value)
         {
             return new Molarity(value, MolarityUnit.KilomolePerCubicMeter);
@@ -346,7 +341,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.MicromolePerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Molarity FromMicromolesPerLiter(double value)
         {
             return new Molarity(value, MolarityUnit.MicromolePerLiter);
@@ -355,7 +349,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.MillimolePerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Molarity FromMillimolesPerLiter(double value)
         {
             return new Molarity(value, MolarityUnit.MillimolePerLiter);
@@ -364,7 +357,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.MolePerCubicMeter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Molarity FromMolesPerCubicMeter(double value)
         {
             return new Molarity(value, MolarityUnit.MolePerCubicMeter);
@@ -373,7 +365,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.MolePerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Molarity FromMolesPerLiter(double value)
         {
             return new Molarity(value, MolarityUnit.MolePerLiter);
@@ -382,7 +373,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.NanomolePerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Molarity FromNanomolesPerLiter(double value)
         {
             return new Molarity(value, MolarityUnit.NanomolePerLiter);
@@ -391,7 +381,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.PicomolePerLiter"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Molarity FromPicomolesPerLiter(double value)
         {
             return new Molarity(value, MolarityUnit.PicomolePerLiter);
@@ -400,7 +389,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.PoundMolePerCubicFoot"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Molarity FromPoundMolesPerCubicFoot(double value)
         {
             return new Molarity(value, MolarityUnit.PoundMolePerCubicFoot);

@@ -81,7 +81,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public AmplitudeRatio(double value, AmplitudeRatioUnit unit)
         {
             _value = value;
@@ -244,7 +243,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmplitudeRatio"/> from <see cref="AmplitudeRatioUnit.DecibelMicrovolt"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AmplitudeRatio FromDecibelMicrovolts(double value)
         {
             return new AmplitudeRatio(value, AmplitudeRatioUnit.DecibelMicrovolt);
@@ -253,7 +251,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmplitudeRatio"/> from <see cref="AmplitudeRatioUnit.DecibelMillivolt"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AmplitudeRatio FromDecibelMillivolts(double value)
         {
             return new AmplitudeRatio(value, AmplitudeRatioUnit.DecibelMillivolt);
@@ -262,7 +259,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmplitudeRatio"/> from <see cref="AmplitudeRatioUnit.DecibelUnloaded"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AmplitudeRatio FromDecibelsUnloaded(double value)
         {
             return new AmplitudeRatio(value, AmplitudeRatioUnit.DecibelUnloaded);
@@ -271,7 +267,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmplitudeRatio"/> from <see cref="AmplitudeRatioUnit.DecibelVolt"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AmplitudeRatio FromDecibelVolts(double value)
         {
             return new AmplitudeRatio(value, AmplitudeRatioUnit.DecibelVolt);

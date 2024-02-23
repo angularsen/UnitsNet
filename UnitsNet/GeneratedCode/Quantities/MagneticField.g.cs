@@ -86,7 +86,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public MagneticField(double value, MagneticFieldUnit unit)
         {
             _value = value;
@@ -263,7 +262,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MagneticField"/> from <see cref="MagneticFieldUnit.Gauss"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MagneticField FromGausses(double value)
         {
             return new MagneticField(value, MagneticFieldUnit.Gauss);
@@ -272,7 +270,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MagneticField"/> from <see cref="MagneticFieldUnit.Microtesla"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MagneticField FromMicroteslas(double value)
         {
             return new MagneticField(value, MagneticFieldUnit.Microtesla);
@@ -281,7 +278,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MagneticField"/> from <see cref="MagneticFieldUnit.Milligauss"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MagneticField FromMilligausses(double value)
         {
             return new MagneticField(value, MagneticFieldUnit.Milligauss);
@@ -290,7 +286,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MagneticField"/> from <see cref="MagneticFieldUnit.Millitesla"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MagneticField FromMilliteslas(double value)
         {
             return new MagneticField(value, MagneticFieldUnit.Millitesla);
@@ -299,7 +294,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MagneticField"/> from <see cref="MagneticFieldUnit.Nanotesla"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MagneticField FromNanoteslas(double value)
         {
             return new MagneticField(value, MagneticFieldUnit.Nanotesla);
@@ -308,7 +302,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MagneticField"/> from <see cref="MagneticFieldUnit.Tesla"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MagneticField FromTeslas(double value)
         {
             return new MagneticField(value, MagneticFieldUnit.Tesla);

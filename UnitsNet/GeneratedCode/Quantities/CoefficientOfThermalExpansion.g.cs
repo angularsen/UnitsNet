@@ -92,7 +92,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public CoefficientOfThermalExpansion(double value, CoefficientOfThermalExpansionUnit unit)
         {
             _value = value;
@@ -293,7 +292,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.InverseDegreeCelsius"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Obsolete("Use PerDegreeCelsius instead.")]
         public static CoefficientOfThermalExpansion FromInverseDegreeCelsius(double value)
         {
@@ -303,7 +301,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Obsolete("Use PerDegreeFahrenheit instead.")]
         public static CoefficientOfThermalExpansion FromInverseDegreeFahrenheit(double value)
         {
@@ -313,7 +310,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.InverseKelvin"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Obsolete("Use PerKelvin instead.")]
         public static CoefficientOfThermalExpansion FromInverseKelvin(double value)
         {
@@ -323,7 +319,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.PerDegreeCelsius"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static CoefficientOfThermalExpansion FromPerDegreeCelsius(double value)
         {
             return new CoefficientOfThermalExpansion(value, CoefficientOfThermalExpansionUnit.PerDegreeCelsius);
@@ -332,7 +327,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static CoefficientOfThermalExpansion FromPerDegreeFahrenheit(double value)
         {
             return new CoefficientOfThermalExpansion(value, CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit);
@@ -341,7 +335,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.PerKelvin"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static CoefficientOfThermalExpansion FromPerKelvin(double value)
         {
             return new CoefficientOfThermalExpansion(value, CoefficientOfThermalExpansionUnit.PerKelvin);
@@ -350,7 +343,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static CoefficientOfThermalExpansion FromPpmPerDegreeCelsius(double value)
         {
             return new CoefficientOfThermalExpansion(value, CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius);
@@ -359,7 +351,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static CoefficientOfThermalExpansion FromPpmPerDegreeFahrenheit(double value)
         {
             return new CoefficientOfThermalExpansion(value, CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit);
@@ -368,7 +359,6 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.PpmPerKelvin"/>.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static CoefficientOfThermalExpansion FromPpmPerKelvin(double value)
         {
             return new CoefficientOfThermalExpansion(value, CoefficientOfThermalExpansionUnit.PpmPerKelvin);
