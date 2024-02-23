@@ -14,7 +14,7 @@ namespace UnitsNet
         /// <returns>The TimeSpan with the same time as the duration</returns>
         public TimeSpan ToTimeSpan()
         {
-            return TimeSpan.FromSeconds(Seconds);
+            return TimeSpan.FromTicks((long)(Seconds * TimeSpan.TicksPerSecond));
         }
 
         /// <summary>Get <see cref="DateTime"/> from <see cref="DateTime"/> plus <see cref="Duration"/>.</summary>
