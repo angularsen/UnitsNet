@@ -99,32 +99,35 @@ stages:
 
 - stage: Publish
   dependsOn: Build
-  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   jobs:
-  - job: Publish
+  - deployment: Publish
     displayName: Publish nugets
-    steps:
-    - task: DownloadPipelineArtifact@2
-      displayName: Download nugets from pipeline
-      inputs:
-        buildType: 'current'
-        artifactName: 'nugets'
-        targetPath: '$(Build.ArtifactStagingDirectory)'
+    environment: 'Publish'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: DownloadPipelineArtifact@2
+            displayName: Download nugets from pipeline
+            inputs:
+              buildType: 'current'
+              artifactName: 'nugets'
+              targetPath: '$(Build.ArtifactStagingDirectory)'
 
-    - task: Bash@3
-      displayName: 'Push to nuget.org'
-      env:
-        NUGET_ORG_APIKEY: '$(NUGET_ORG_APIKEY)'
-      inputs:
-        targetType: 'inline'
-        script: 'dotnet nuget push "*.nupkg" --skip-duplicate --api-key $NUGET_ORG_APIKEY --source https://api.nuget.org/v3/index.json'
-        workingDirectory: '$(Build.ArtifactStagingDirectory)'
+          - task: Bash@3
+            displayName: 'Push to nuget.org'
+            env:
+              NUGET_ORG_APIKEY: '$(NUGET_ORG_APIKEY)'
+            inputs:
+              targetType: 'inline'
+              script: 'dotnet nuget push "*.nupkg" --skip-duplicate --api-key $NUGET_ORG_APIKEY --source https://api.nuget.org/v3/index.json'
+              workingDirectory: '$(Build.ArtifactStagingDirectory)'
 
-    - task: NuGetCommand@2
-      displayName: Push to internal NuGet feed
-      inputs:
-        command: 'push'
-        packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
-        nuGetFeedType: 'internal'
-        publishVstsFeed: 'fee4c64f-3e49-4618-9ea4-5a3167257c37/989275f4-a952-4abd-ae82-2e7a0cb97b9b'
-        allowPackageConflicts: true
+          - task: NuGetCommand@2
+            displayName: Push to internal NuGet feed
+            inputs:
+              command: 'push'
+              packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
+              nuGetFeedType: 'internal'
+              publishVstsFeed: 'fee4c64f-3e49-4618-9ea4-5a3167257c37/989275f4-a952-4abd-ae82-2e7a0cb97b9b'
+              allowPackageConflicts: true
