@@ -38,6 +38,16 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
+        public void UnitsNetBaseJsonConverter_ConvertValueUnit_works_as_expected()
+        {
+            var result = _sut.Test_ConvertDoubleValueUnit("PowerUnit.Watt", 10.2365);
+
+            Assert.NotNull(result);
+            Assert.IsType<Power>(result);
+            Assert.True(Power.FromWatts(10.2365).Equals((Power)result, 1e-5, ComparisonType.Absolute));
+        }
+
+        [Fact]
         public void UnitsNetBaseJsonConverter_ConvertValueUnit_throws_UnitsNetException_when_unit_does_not_exist()
         {
             var result = Assert.Throws<UnitsNetException>(() => _sut.Test_ConvertDoubleValueUnit("SomeImaginaryUnit.Watt", 10.2365D));
@@ -45,6 +55,16 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             Assert.Equal("Unable to find enum type.", result.Message);
             Assert.True(result.Data.Contains("type"));
             Assert.Equal("UnitsNet.Units.SomeImaginaryUnit,UnitsNet", result.Data["type"]);
+        }
+
+        [Fact]
+        public void UnitsNetBaseJsonConverter_ConvertValueUnit_throws_UnitsNetException_when_unit_is_in_unexpected_format()
+        {
+            var result = Assert.Throws<UnitsNetException>(() => _sut.Test_ConvertDoubleValueUnit("PowerUnit Watt", 10.2365));
+
+            Assert.Equal("\"PowerUnit Watt\" is not a valid unit.", result.Message);
+            Assert.True(result.Data.Contains("type"));
+            Assert.Equal("PowerUnit Watt", result.Data["type"]);
         }
 
         [Fact]
@@ -86,6 +106,48 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             Assert.Equal(10.2365, result?.Value);
         }
 
+        /// <summary>
+        ///     Testing backwards compatibility with deserializing <see cref="decimal"/> based quantity JSON into <see cref="double"/> based quantities.
+        ///     <br/><br/>
+        ///     In v5 and below, there were 3 <see cref="decimal"/> based quantities <see cref="Power"/>, <see cref="Information"/> and <see cref="BitRate"/>.
+        ///     Since JSON does not support decimal values, the JSON schema emitted the value as a string instead of a number and included a 'ValueType'
+        ///     discriminator to describe whether the value was double or decimal.
+        ///     <br/><br/>
+        ///     <see cref="double"/> based quantities were serialized with <see cref="UnitsNetBaseJsonConverter{T}.ValueUnit"/> DTO, with <c>double Value</c> + <c>string Unit</c> properties.<br />
+        ///     <see cref="decimal"/> based quantities were serialized with <see cref="UnitsNetBaseJsonConverter{T}.ExtendedValueUnit"/> DTO, extending with ValueString and ValueType properties.
+        /// </summary>
+        [Fact]
+        public void UnitsNetBaseJsonConverter_ReadValueUnit_works_with_legacy_decimal_quantity()
+        {
+            var token = new JObject {{"Unit", "PowerUnit.Watt"}, {"Value", 10.2365}, {"ValueString", "10.2365"}, {"ValueType", "decimal"}};
+
+            var result = _sut.Test_ReadDoubleValueUnit(token);
+
+            Assert.NotNull(result);
+            Assert.Equal("PowerUnit.Watt", result?.Unit);
+            Assert.Equal(10.2365, result?.Value);
+        }
+
+        [Fact]
+        public void UnitsNetBaseJsonConverter_ReadValueUnit_returns_null_when_value_is_a_string()
+        {
+            var token = new JObject {{"Unit", "PowerUnit.Watt"}, {"Value", "10.2365"}};
+
+            var result = _sut.Test_ReadDoubleValueUnit(token);
+
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public void UnitsNetBaseJsonConverter_ReadValueUnit_returns_null_when_value_type_is_not_a_string()
+        {
+            var token = new JObject {{"Unit", "PowerUnit.Watt"}, {"Value", 10.2365}, {"ValueType", 123}};
+
+            var result = _sut.Test_ReadDoubleValueUnit(token);
+
+            Assert.Null(result);
+        }
+
         [Fact]
         public void UnitsNetBaseJsonConverter_ReadDoubleValueUnit_works_with_empty_token()
         {
@@ -94,6 +156,51 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             var result = _sut.Test_ReadDoubleValueUnit(token);
 
             Assert.Null(result);
+        }
+
+        [Theory]
+        [InlineData(false, true)]
+        [InlineData(true, false)]
+        public void UnitsNetBaseJsonConverter_ReadValueUnit_returns_null_when_unit_or_value_is_missing(bool withUnit, bool withValue)
+        {
+            var token = new JObject();
+
+            if (withUnit)
+            {
+                token.Add("Unit", "PowerUnit.Watt");
+            }
+
+            if (withValue)
+            {
+                token.Add("Value", 10.2365);
+            }
+
+            var result = _sut.Test_ReadDoubleValueUnit(token);
+
+            Assert.Null(result);
+        }
+
+        [Theory]
+        [InlineData("Unit", "Value")]
+        [InlineData("unit", "Value")]
+        [InlineData("Unit", "value")]
+        [InlineData("unit", "value")]
+        [InlineData("unIT", "vAlUe")]
+        public void UnitsNetBaseJsonConverter_ReadValueUnit_works_case_insensitive(
+            string unitPropertyName,
+            string valuePropertyName)
+        {
+            var token = new JObject
+            {
+                {unitPropertyName, "PowerUnit.Watt"},
+                {valuePropertyName, 10.2365},
+            };
+
+            var result = _sut.Test_ReadDoubleValueUnit(token);
+
+            Assert.NotNull(result);
+            Assert.Equal("PowerUnit.Watt", result?.Unit);
+            Assert.Equal(10.2365, result?.Value);
         }
 
         /// <summary>
