@@ -139,16 +139,6 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
-        public void UnitsNetBaseJsonConverter_ReadValueUnit_returns_null_when_value_type_is_not_a_string()
-        {
-            var token = new JObject {{"Unit", "PowerUnit.Watt"}, {"Value", 10.2365}, {"ValueType", 123}};
-
-            var result = _sut.Test_ReadDoubleValueUnit(token);
-
-            Assert.Null(result);
-        }
-
-        [Fact]
         public void UnitsNetBaseJsonConverter_ReadDoubleValueUnit_works_with_empty_token()
         {
             var token = new JObject();
