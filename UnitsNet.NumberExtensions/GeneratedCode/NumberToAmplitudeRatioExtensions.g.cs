@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToAmplitudeRatio
     /// </summary>
     public static class NumberToAmplitudeRatioExtensions
     {
-        /// <inheritdoc cref="AmplitudeRatio.FromDecibelMicrovolts(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AmplitudeRatio.FromDecibelMicrovolts(double)" />
         public static AmplitudeRatio DecibelMicrovolts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToAmplitudeRatio
 #endif
             => AmplitudeRatio.FromDecibelMicrovolts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmplitudeRatio.FromDecibelMillivolts(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AmplitudeRatio.FromDecibelMillivolts(double)" />
         public static AmplitudeRatio DecibelMillivolts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToAmplitudeRatio
 #endif
             => AmplitudeRatio.FromDecibelMillivolts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmplitudeRatio.FromDecibelsUnloaded(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AmplitudeRatio.FromDecibelsUnloaded(double)" />
         public static AmplitudeRatio DecibelsUnloaded<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToAmplitudeRatio
 #endif
             => AmplitudeRatio.FromDecibelsUnloaded(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmplitudeRatio.FromDecibelVolts(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AmplitudeRatio.FromDecibelVolts(double)" />
         public static AmplitudeRatio DecibelVolts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

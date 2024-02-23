@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureGradient
     /// </summary>
     public static class NumberToTemperatureGradientExtensions
     {
-        /// <inheritdoc cref="TemperatureGradient.FromDegreesCelsiusPerKilometer(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="TemperatureGradient.FromDegreesCelsiusPerKilometer(double)" />
         public static TemperatureGradient DegreesCelsiusPerKilometer<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureGradient
 #endif
             => TemperatureGradient.FromDegreesCelsiusPerKilometer(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureGradient.FromDegreesCelsiusPerMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="TemperatureGradient.FromDegreesCelsiusPerMeter(double)" />
         public static TemperatureGradient DegreesCelsiusPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureGradient
 #endif
             => TemperatureGradient.FromDegreesCelsiusPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureGradient.FromDegreesFahrenheitPerFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="TemperatureGradient.FromDegreesFahrenheitPerFoot(double)" />
         public static TemperatureGradient DegreesFahrenheitPerFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureGradient
 #endif
             => TemperatureGradient.FromDegreesFahrenheitPerFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureGradient.FromKelvinsPerMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="TemperatureGradient.FromKelvinsPerMeter(double)" />
         public static TemperatureGradient KelvinsPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

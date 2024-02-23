@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
     /// </summary>
     public static class NumberToBitRateExtensions
     {
-        /// <inheritdoc cref="BitRate.FromBitsPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromBitsPerSecond(double)" />
         public static BitRate BitsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
 #endif
             => BitRate.FromBitsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromBytesPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromBytesPerSecond(double)" />
         public static BitRate BytesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
 #endif
             => BitRate.FromBytesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromExabitsPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromExabitsPerSecond(double)" />
         public static BitRate ExabitsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
 #endif
             => BitRate.FromExabitsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromExabytesPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromExabytesPerSecond(double)" />
         public static BitRate ExabytesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
 #endif
             => BitRate.FromExabytesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromExbibitsPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromExbibitsPerSecond(double)" />
         public static BitRate ExbibitsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
 #endif
             => BitRate.FromExbibitsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromExbibytesPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromExbibytesPerSecond(double)" />
         public static BitRate ExbibytesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
 #endif
             => BitRate.FromExbibytesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromGibibitsPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromGibibitsPerSecond(double)" />
         public static BitRate GibibitsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
 #endif
             => BitRate.FromGibibitsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromGibibytesPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromGibibytesPerSecond(double)" />
         public static BitRate GibibytesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
 #endif
             => BitRate.FromGibibytesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromGigabitsPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromGigabitsPerSecond(double)" />
         public static BitRate GigabitsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -104,7 +104,7 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
 #endif
             => BitRate.FromGigabitsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromGigabytesPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromGigabytesPerSecond(double)" />
         public static BitRate GigabytesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -112,7 +112,7 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
 #endif
             => BitRate.FromGigabytesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromKibibitsPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromKibibitsPerSecond(double)" />
         public static BitRate KibibitsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -120,7 +120,7 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
 #endif
             => BitRate.FromKibibitsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromKibibytesPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromKibibytesPerSecond(double)" />
         public static BitRate KibibytesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -128,7 +128,7 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
 #endif
             => BitRate.FromKibibytesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromKilobitsPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromKilobitsPerSecond(double)" />
         public static BitRate KilobitsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -136,7 +136,7 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
 #endif
             => BitRate.FromKilobitsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromKilobytesPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromKilobytesPerSecond(double)" />
         public static BitRate KilobytesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -144,7 +144,7 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
 #endif
             => BitRate.FromKilobytesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromMebibitsPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromMebibitsPerSecond(double)" />
         public static BitRate MebibitsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -152,7 +152,7 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
 #endif
             => BitRate.FromMebibitsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromMebibytesPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromMebibytesPerSecond(double)" />
         public static BitRate MebibytesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -160,7 +160,7 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
 #endif
             => BitRate.FromMebibytesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromMegabitsPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromMegabitsPerSecond(double)" />
         public static BitRate MegabitsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -168,7 +168,7 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
 #endif
             => BitRate.FromMegabitsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromMegabytesPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromMegabytesPerSecond(double)" />
         public static BitRate MegabytesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -176,7 +176,7 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
 #endif
             => BitRate.FromMegabytesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromPebibitsPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromPebibitsPerSecond(double)" />
         public static BitRate PebibitsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -184,7 +184,7 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
 #endif
             => BitRate.FromPebibitsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromPebibytesPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromPebibytesPerSecond(double)" />
         public static BitRate PebibytesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -192,7 +192,7 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
 #endif
             => BitRate.FromPebibytesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromPetabitsPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromPetabitsPerSecond(double)" />
         public static BitRate PetabitsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -200,7 +200,7 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
 #endif
             => BitRate.FromPetabitsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromPetabytesPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromPetabytesPerSecond(double)" />
         public static BitRate PetabytesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -208,7 +208,7 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
 #endif
             => BitRate.FromPetabytesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromTebibitsPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromTebibitsPerSecond(double)" />
         public static BitRate TebibitsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -216,7 +216,7 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
 #endif
             => BitRate.FromTebibitsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromTebibytesPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromTebibytesPerSecond(double)" />
         public static BitRate TebibytesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -224,7 +224,7 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
 #endif
             => BitRate.FromTebibytesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromTerabitsPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromTerabitsPerSecond(double)" />
         public static BitRate TerabitsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -232,7 +232,7 @@ namespace UnitsNet.NumberExtensions.NumberToBitRate
 #endif
             => BitRate.FromTerabitsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromTerabytesPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromTerabytesPerSecond(double)" />
         public static BitRate TerabytesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

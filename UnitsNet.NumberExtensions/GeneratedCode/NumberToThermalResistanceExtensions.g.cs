@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToThermalResistance
     /// </summary>
     public static class NumberToThermalResistanceExtensions
     {
-        /// <inheritdoc cref="ThermalResistance.FromHourSquareFeetDegreesFahrenheitPerBtu(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ThermalResistance.FromHourSquareFeetDegreesFahrenheitPerBtu(double)" />
         public static ThermalResistance HourSquareFeetDegreesFahrenheitPerBtu<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToThermalResistance
 #endif
             => ThermalResistance.FromHourSquareFeetDegreesFahrenheitPerBtu(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ThermalResistance.FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ThermalResistance.FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(double)" />
         public static ThermalResistance SquareCentimeterHourDegreesCelsiusPerKilocalorie<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToThermalResistance
 #endif
             => ThermalResistance.FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ThermalResistance.FromSquareCentimeterKelvinsPerWatt(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ThermalResistance.FromSquareCentimeterKelvinsPerWatt(double)" />
         public static ThermalResistance SquareCentimeterKelvinsPerWatt<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToThermalResistance
 #endif
             => ThermalResistance.FromSquareCentimeterKelvinsPerWatt(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ThermalResistance.FromSquareMeterDegreesCelsiusPerWatt(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ThermalResistance.FromSquareMeterDegreesCelsiusPerWatt(double)" />
         public static ThermalResistance SquareMeterDegreesCelsiusPerWatt<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToThermalResistance
 #endif
             => ThermalResistance.FromSquareMeterDegreesCelsiusPerWatt(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ThermalResistance.FromSquareMeterKelvinsPerKilowatt(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ThermalResistance.FromSquareMeterKelvinsPerKilowatt(double)" />
         public static ThermalResistance SquareMeterKelvinsPerKilowatt<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToThermalResistance
 #endif
             => ThermalResistance.FromSquareMeterKelvinsPerKilowatt(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ThermalResistance.FromSquareMeterKelvinsPerWatt(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ThermalResistance.FromSquareMeterKelvinsPerWatt(double)" />
         public static ThermalResistance SquareMeterKelvinsPerWatt<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

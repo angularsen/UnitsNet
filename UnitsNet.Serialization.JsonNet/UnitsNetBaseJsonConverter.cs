@@ -21,7 +21,7 @@ namespace UnitsNet.Serialization.JsonNet
 
         /// <summary>
         /// Register custom types so that the converter can instantiate these quantities.
-        /// Instead of calling <see cref="Quantity.From(UnitsNet.QuantityValue,System.Enum)"/>, the <see cref="Activator"/> will be used to instantiate the object.
+        /// Instead of calling <see cref="Quantity.From(double,System.Enum)"/>, the <see cref="Activator"/> will be used to instantiate the object.
         /// It is therefore assumed that the constructor of <paramref name="quantity"/> is specified with <c>new T(double value, typeof(<paramref name="unit"/>) unit)</c>.
         /// Registering the same <paramref name="unit"/> multiple times, it will overwrite the one registered.
         /// </summary>
@@ -57,38 +57,20 @@ namespace UnitsNet.Serialization.JsonNet
 
             var unit = jsonObject.GetValue(nameof(ValueUnit.Unit), StringComparison.OrdinalIgnoreCase);
             var value = jsonObject.GetValue(nameof(ValueUnit.Value), StringComparison.OrdinalIgnoreCase);
-            var valueType = jsonObject.GetValue(nameof(ExtendedValueUnit.ValueType), StringComparison.OrdinalIgnoreCase);
-            var valueString = jsonObject.GetValue(nameof(ExtendedValueUnit.ValueString), StringComparison.OrdinalIgnoreCase);
 
             if (unit == null || value == null)
             {
                 return null;
             }
 
-            if (valueType == null)
-            {
-                if (value.Type != JTokenType.Float && value.Type != JTokenType.Integer)
-                {
-                    return null;
-                }
-
-                return new ValueUnit {
-                    Unit = unit.Value<string>() ?? throw new InvalidOperationException("Unit was not a string."),
-                    Value = value.Value<double>()
-                };
-            }
-
-            if (valueType.Type != JTokenType.String)
+            if (value.Type != JTokenType.Float && value.Type != JTokenType.Integer)
             {
                 return null;
             }
 
-            return new ExtendedValueUnit
-            {
+            return new ValueUnit {
                 Unit = unit.Value<string>() ?? throw new InvalidOperationException("Unit was not a string."),
-                Value = value.Value<double>(),
-                ValueType = valueType.Value<string>(),
-                ValueString = valueString?.Value<string>()
+                Value = value.Value<double>()
             };
         }
 
@@ -113,11 +95,7 @@ namespace UnitsNet.Serialization.JsonNet
                 return (IQuantity)Activator.CreateInstance(registeredQuantity, valueUnit.Value, unit);
             }
 
-            return valueUnit switch
-            {
-                ExtendedValueUnit {ValueType: "decimal", ValueString: {}} extendedValueUnit => Quantity.From(decimal.Parse(extendedValueUnit.ValueString, CultureInfo.InvariantCulture), unit),
-                _ => Quantity.From(valueUnit.Value, unit)
-            };
+            return Quantity.From(valueUnit.Value, unit);
         }
 
         private (Type? Quantity, Type? Unit) GetRegisteredType(string unit)
@@ -181,18 +159,6 @@ namespace UnitsNet.Serialization.JsonNet
         protected ValueUnit ConvertIQuantity(IQuantity quantity)
         {
             quantity = quantity ?? throw new ArgumentNullException(nameof(quantity));
-
-            if (quantity is IValueQuantity<decimal> d)
-            {
-                return new ExtendedValueUnit
-                {
-                    Unit = $"{quantity.QuantityInfo.UnitType.Name}.{quantity.Unit}",
-                    // The type of "Value" is still double
-                    Value = (double)quantity.Value,
-                    ValueString = d.Value.ToString(CultureInfo.InvariantCulture),
-                    ValueType = "decimal"
-                };
-            }
 
             return new ValueUnit {Value = (double)quantity.Value, Unit = $"{quantity.QuantityInfo.UnitType.Name}.{quantity.Unit}"};
         }
@@ -262,28 +228,6 @@ namespace UnitsNet.Serialization.JsonNet
             /// </summary>
             [JsonProperty(Order = 2)]
             public double Value { get; set; }
-        }
-
-        /// <summary>
-        ///     A structure used to serialize/deserialize non-double Units.NET unit instances.
-        /// </summary>
-        /// <remarks>
-        ///     This type was added for lossless serialization of quantities with <see cref="decimal"/> values.
-        ///     The <see cref="decimal"/> type distinguishes between 100 and 100.00 but Json.NET does not, therefore we serialize decimal values as string.
-        /// </remarks>
-        protected sealed class ExtendedValueUnit : ValueUnit
-        {
-            /// <summary>
-            ///     The value as a string.
-            /// </summary>
-            [JsonProperty(Order = 3)]
-            public string? ValueString { get; set; }
-
-            /// <summary>
-            ///     The type of the value, e.g. "decimal".
-            /// </summary>
-            [JsonProperty(Order = 4)]
-            public string? ValueType { get; set; }
         }
     }
 }

@@ -46,7 +46,6 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        // Note: Attribute arguments cannot be of type decimal.
         [InlineData(-20, 0.01)]
         [InlineData(-10, 0.1)]
         [InlineData(0, 1)]

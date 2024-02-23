@@ -37,7 +37,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct PowerRatio :
-        IArithmeticQuantity<PowerRatio, PowerRatioUnit, double>,
+        IArithmeticQuantity<PowerRatio, PowerRatioUnit>,
         IComparable,
         IComparable<PowerRatio>,
         IConvertible,
@@ -148,7 +148,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -229,9 +229,8 @@ namespace UnitsNet
         ///     Creates a <see cref="PowerRatio"/> from <see cref="PowerRatioUnit.DecibelMilliwatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PowerRatio FromDecibelMilliwatts(QuantityValue decibelmilliwatts)
+        public static PowerRatio FromDecibelMilliwatts(double value)
         {
-            double value = (double) decibelmilliwatts;
             return new PowerRatio(value, PowerRatioUnit.DecibelMilliwatt);
         }
 
@@ -239,9 +238,8 @@ namespace UnitsNet
         ///     Creates a <see cref="PowerRatio"/> from <see cref="PowerRatioUnit.DecibelWatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static PowerRatio FromDecibelWatts(QuantityValue decibelwatts)
+        public static PowerRatio FromDecibelWatts(double value)
         {
-            double value = (double) decibelwatts;
             return new PowerRatio(value, PowerRatioUnit.DecibelWatt);
         }
 
@@ -251,9 +249,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>PowerRatio unit value.</returns>
-        public static PowerRatio From(QuantityValue value, PowerRatioUnit fromUnit)
+        public static PowerRatio From(double value, PowerRatioUnit fromUnit)
         {
-            return new PowerRatio((double)value, fromUnit);
+            return new PowerRatio(value, fromUnit);
         }
 
         #endregion
@@ -437,14 +435,14 @@ namespace UnitsNet
         public static PowerRatio operator *(PowerRatio left, double right)
         {
             // Logarithmic multiplication = addition
-            return new PowerRatio(left.Value + (double)right, left.Unit);
+            return new PowerRatio(left.Value + right, left.Unit);
         }
 
         /// <summary>Get <see cref="PowerRatio"/> from logarithmic division of <see cref="PowerRatio"/> by value.</summary>
         public static PowerRatio operator /(PowerRatio left, double right)
         {
             // Logarithmic division = subtraction
-            return new PowerRatio(left.Value - (double)right, left.Unit);
+            return new PowerRatio(left.Value - right, left.Unit);
         }
 
         /// <summary>Get ratio value from logarithmic division of <see cref="PowerRatio"/> by <see cref="PowerRatio"/>.</summary>
@@ -676,15 +674,6 @@ namespace UnitsNet
             if (!(unit is PowerRatioUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PowerRatioUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is PowerRatioUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PowerRatioUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -796,18 +785,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<PowerRatioUnit> IQuantity<PowerRatioUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not PowerRatioUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PowerRatioUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToMolarity
     /// </summary>
     public static class NumberToMolarityExtensions
     {
-        /// <inheritdoc cref="Molarity.FromCentimolesPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Molarity.FromCentimolesPerLiter(double)" />
         public static Molarity CentimolesPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToMolarity
 #endif
             => Molarity.FromCentimolesPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Molarity.FromDecimolesPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Molarity.FromDecimolesPerLiter(double)" />
         public static Molarity DecimolesPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToMolarity
 #endif
             => Molarity.FromDecimolesPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Molarity.FromFemtomolesPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Molarity.FromFemtomolesPerLiter(double)" />
         public static Molarity FemtomolesPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToMolarity
 #endif
             => Molarity.FromFemtomolesPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Molarity.FromKilomolesPerCubicMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Molarity.FromKilomolesPerCubicMeter(double)" />
         public static Molarity KilomolesPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToMolarity
 #endif
             => Molarity.FromKilomolesPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Molarity.FromMicromolesPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Molarity.FromMicromolesPerLiter(double)" />
         public static Molarity MicromolesPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToMolarity
 #endif
             => Molarity.FromMicromolesPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Molarity.FromMillimolesPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Molarity.FromMillimolesPerLiter(double)" />
         public static Molarity MillimolesPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToMolarity
 #endif
             => Molarity.FromMillimolesPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Molarity.FromMolesPerCubicMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Molarity.FromMolesPerCubicMeter(double)" />
         public static Molarity MolesPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToMolarity
 #endif
             => Molarity.FromMolesPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Molarity.FromMolesPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Molarity.FromMolesPerLiter(double)" />
         public static Molarity MolesPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToMolarity
 #endif
             => Molarity.FromMolesPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Molarity.FromNanomolesPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Molarity.FromNanomolesPerLiter(double)" />
         public static Molarity NanomolesPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -104,7 +104,7 @@ namespace UnitsNet.NumberExtensions.NumberToMolarity
 #endif
             => Molarity.FromNanomolesPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Molarity.FromPicomolesPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Molarity.FromPicomolesPerLiter(double)" />
         public static Molarity PicomolesPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -112,7 +112,7 @@ namespace UnitsNet.NumberExtensions.NumberToMolarity
 #endif
             => Molarity.FromPicomolesPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Molarity.FromPoundMolesPerCubicFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Molarity.FromPoundMolesPerCubicFoot(double)" />
         public static Molarity PoundMolesPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

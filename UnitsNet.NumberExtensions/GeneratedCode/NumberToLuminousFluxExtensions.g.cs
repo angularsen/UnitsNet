@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToLuminousFlux
     /// </summary>
     public static class NumberToLuminousFluxExtensions
     {
-        /// <inheritdoc cref="LuminousFlux.FromLumens(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="LuminousFlux.FromLumens(double)" />
         public static LuminousFlux Lumens<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

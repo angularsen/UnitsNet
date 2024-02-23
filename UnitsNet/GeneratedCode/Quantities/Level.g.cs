@@ -37,7 +37,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct Level :
-        IArithmeticQuantity<Level, LevelUnit, double>,
+        IArithmeticQuantity<Level, LevelUnit>,
         IComparable,
         IComparable<Level>,
         IConvertible,
@@ -148,7 +148,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -229,9 +229,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Level"/> from <see cref="LevelUnit.Decibel"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Level FromDecibels(QuantityValue decibels)
+        public static Level FromDecibels(double value)
         {
-            double value = (double) decibels;
             return new Level(value, LevelUnit.Decibel);
         }
 
@@ -239,9 +238,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Level"/> from <see cref="LevelUnit.Neper"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Level FromNepers(QuantityValue nepers)
+        public static Level FromNepers(double value)
         {
-            double value = (double) nepers;
             return new Level(value, LevelUnit.Neper);
         }
 
@@ -251,9 +249,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Level unit value.</returns>
-        public static Level From(QuantityValue value, LevelUnit fromUnit)
+        public static Level From(double value, LevelUnit fromUnit)
         {
-            return new Level((double)value, fromUnit);
+            return new Level(value, fromUnit);
         }
 
         #endregion
@@ -437,14 +435,14 @@ namespace UnitsNet
         public static Level operator *(Level left, double right)
         {
             // Logarithmic multiplication = addition
-            return new Level(left.Value + (double)right, left.Unit);
+            return new Level(left.Value + right, left.Unit);
         }
 
         /// <summary>Get <see cref="Level"/> from logarithmic division of <see cref="Level"/> by value.</summary>
         public static Level operator /(Level left, double right)
         {
             // Logarithmic division = subtraction
-            return new Level(left.Value - (double)right, left.Unit);
+            return new Level(left.Value - right, left.Unit);
         }
 
         /// <summary>Get ratio value from logarithmic division of <see cref="Level"/> by <see cref="Level"/>.</summary>
@@ -676,15 +674,6 @@ namespace UnitsNet
             if (!(unit is LevelUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LevelUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is LevelUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LevelUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -796,18 +785,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<LevelUnit> IQuantity<LevelUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not LevelUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LevelUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

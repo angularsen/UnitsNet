@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToDuration
     /// </summary>
     public static class NumberToDurationExtensions
     {
-        /// <inheritdoc cref="Duration.FromDays(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Duration.FromDays(double)" />
         public static Duration Days<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToDuration
 #endif
             => Duration.FromDays(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Duration.FromHours(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Duration.FromHours(double)" />
         public static Duration Hours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToDuration
 #endif
             => Duration.FromHours(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Duration.FromJulianYears(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Duration.FromJulianYears(double)" />
         public static Duration JulianYears<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToDuration
 #endif
             => Duration.FromJulianYears(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Duration.FromMicroseconds(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Duration.FromMicroseconds(double)" />
         public static Duration Microseconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToDuration
 #endif
             => Duration.FromMicroseconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Duration.FromMilliseconds(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Duration.FromMilliseconds(double)" />
         public static Duration Milliseconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToDuration
 #endif
             => Duration.FromMilliseconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Duration.FromMinutes(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Duration.FromMinutes(double)" />
         public static Duration Minutes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToDuration
 #endif
             => Duration.FromMinutes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Duration.FromMonths30(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Duration.FromMonths30(double)" />
         public static Duration Months30<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToDuration
 #endif
             => Duration.FromMonths30(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Duration.FromNanoseconds(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Duration.FromNanoseconds(double)" />
         public static Duration Nanoseconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToDuration
 #endif
             => Duration.FromNanoseconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Duration.FromSeconds(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Duration.FromSeconds(double)" />
         public static Duration Seconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -104,7 +104,7 @@ namespace UnitsNet.NumberExtensions.NumberToDuration
 #endif
             => Duration.FromSeconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Duration.FromWeeks(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Duration.FromWeeks(double)" />
         public static Duration Weeks<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -112,7 +112,7 @@ namespace UnitsNet.NumberExtensions.NumberToDuration
 #endif
             => Duration.FromWeeks(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Duration.FromYears365(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Duration.FromYears365(double)" />
         public static Duration Years365<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

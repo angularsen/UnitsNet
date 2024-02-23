@@ -37,7 +37,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct ApparentPower :
-        IArithmeticQuantity<ApparentPower, ApparentPowerUnit, double>,
+        IArithmeticQuantity<ApparentPower, ApparentPowerUnit>,
         IComparable,
         IComparable<ApparentPower>,
         IConvertible,
@@ -152,7 +152,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -261,9 +261,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Gigavoltampere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ApparentPower FromGigavoltamperes(QuantityValue gigavoltamperes)
+        public static ApparentPower FromGigavoltamperes(double value)
         {
-            double value = (double) gigavoltamperes;
             return new ApparentPower(value, ApparentPowerUnit.Gigavoltampere);
         }
 
@@ -271,9 +270,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Kilovoltampere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ApparentPower FromKilovoltamperes(QuantityValue kilovoltamperes)
+        public static ApparentPower FromKilovoltamperes(double value)
         {
-            double value = (double) kilovoltamperes;
             return new ApparentPower(value, ApparentPowerUnit.Kilovoltampere);
         }
 
@@ -281,9 +279,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Megavoltampere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ApparentPower FromMegavoltamperes(QuantityValue megavoltamperes)
+        public static ApparentPower FromMegavoltamperes(double value)
         {
-            double value = (double) megavoltamperes;
             return new ApparentPower(value, ApparentPowerUnit.Megavoltampere);
         }
 
@@ -291,9 +288,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Microvoltampere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ApparentPower FromMicrovoltamperes(QuantityValue microvoltamperes)
+        public static ApparentPower FromMicrovoltamperes(double value)
         {
-            double value = (double) microvoltamperes;
             return new ApparentPower(value, ApparentPowerUnit.Microvoltampere);
         }
 
@@ -301,9 +297,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Millivoltampere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ApparentPower FromMillivoltamperes(QuantityValue millivoltamperes)
+        public static ApparentPower FromMillivoltamperes(double value)
         {
-            double value = (double) millivoltamperes;
             return new ApparentPower(value, ApparentPowerUnit.Millivoltampere);
         }
 
@@ -311,9 +306,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Voltampere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ApparentPower FromVoltamperes(QuantityValue voltamperes)
+        public static ApparentPower FromVoltamperes(double value)
         {
-            double value = (double) voltamperes;
             return new ApparentPower(value, ApparentPowerUnit.Voltampere);
         }
 
@@ -323,9 +317,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ApparentPower unit value.</returns>
-        public static ApparentPower From(QuantityValue value, ApparentPowerUnit fromUnit)
+        public static ApparentPower From(double value, ApparentPowerUnit fromUnit)
         {
-            return new ApparentPower((double)value, fromUnit);
+            return new ApparentPower(value, fromUnit);
         }
 
         #endregion
@@ -740,15 +734,6 @@ namespace UnitsNet
             if (!(unit is ApparentPowerUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ApparentPowerUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is ApparentPowerUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ApparentPowerUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -868,18 +853,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ApparentPowerUnit> IQuantity<ApparentPowerUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not ApparentPowerUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ApparentPowerUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

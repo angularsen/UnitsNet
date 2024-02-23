@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     public readonly partial struct Magnetization :
-        IArithmeticQuantity<Magnetization, MagnetizationUnit, double>,
+        IArithmeticQuantity<Magnetization, MagnetizationUnit>,
         IComparable,
         IComparable<Magnetization>,
         IConvertible,
@@ -150,7 +150,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -224,9 +224,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Magnetization"/> from <see cref="MagnetizationUnit.AmperePerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Magnetization FromAmperesPerMeter(QuantityValue amperespermeter)
+        public static Magnetization FromAmperesPerMeter(double value)
         {
-            double value = (double) amperespermeter;
             return new Magnetization(value, MagnetizationUnit.AmperePerMeter);
         }
 
@@ -236,9 +235,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Magnetization unit value.</returns>
-        public static Magnetization From(QuantityValue value, MagnetizationUnit fromUnit)
+        public static Magnetization From(double value, MagnetizationUnit fromUnit)
         {
-            return new Magnetization((double)value, fromUnit);
+            return new Magnetization(value, fromUnit);
         }
 
         #endregion
@@ -653,15 +652,6 @@ namespace UnitsNet
             if (!(unit is MagnetizationUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MagnetizationUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is MagnetizationUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MagnetizationUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -771,18 +761,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<MagnetizationUnit> IQuantity<MagnetizationUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not MagnetizationUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MagnetizationUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

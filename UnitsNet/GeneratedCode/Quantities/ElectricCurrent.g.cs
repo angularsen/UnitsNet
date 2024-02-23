@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct ElectricCurrent :
-        IArithmeticQuantity<ElectricCurrent, ElectricCurrentUnit, double>,
+        IArithmeticQuantity<ElectricCurrent, ElectricCurrentUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<ElectricCurrent, Duration, ElectricCharge>,
         IMultiplyOperators<ElectricCurrent, TimeSpan, ElectricCharge>,
@@ -166,7 +166,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -296,9 +296,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Ampere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrent FromAmperes(QuantityValue amperes)
+        public static ElectricCurrent FromAmperes(double value)
         {
-            double value = (double) amperes;
             return new ElectricCurrent(value, ElectricCurrentUnit.Ampere);
         }
 
@@ -306,9 +305,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Centiampere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrent FromCentiamperes(QuantityValue centiamperes)
+        public static ElectricCurrent FromCentiamperes(double value)
         {
-            double value = (double) centiamperes;
             return new ElectricCurrent(value, ElectricCurrentUnit.Centiampere);
         }
 
@@ -316,9 +314,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Femtoampere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrent FromFemtoamperes(QuantityValue femtoamperes)
+        public static ElectricCurrent FromFemtoamperes(double value)
         {
-            double value = (double) femtoamperes;
             return new ElectricCurrent(value, ElectricCurrentUnit.Femtoampere);
         }
 
@@ -326,9 +323,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Kiloampere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrent FromKiloamperes(QuantityValue kiloamperes)
+        public static ElectricCurrent FromKiloamperes(double value)
         {
-            double value = (double) kiloamperes;
             return new ElectricCurrent(value, ElectricCurrentUnit.Kiloampere);
         }
 
@@ -336,9 +332,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Megaampere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrent FromMegaamperes(QuantityValue megaamperes)
+        public static ElectricCurrent FromMegaamperes(double value)
         {
-            double value = (double) megaamperes;
             return new ElectricCurrent(value, ElectricCurrentUnit.Megaampere);
         }
 
@@ -346,9 +341,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Microampere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrent FromMicroamperes(QuantityValue microamperes)
+        public static ElectricCurrent FromMicroamperes(double value)
         {
-            double value = (double) microamperes;
             return new ElectricCurrent(value, ElectricCurrentUnit.Microampere);
         }
 
@@ -356,9 +350,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Milliampere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrent FromMilliamperes(QuantityValue milliamperes)
+        public static ElectricCurrent FromMilliamperes(double value)
         {
-            double value = (double) milliamperes;
             return new ElectricCurrent(value, ElectricCurrentUnit.Milliampere);
         }
 
@@ -366,9 +359,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Nanoampere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrent FromNanoamperes(QuantityValue nanoamperes)
+        public static ElectricCurrent FromNanoamperes(double value)
         {
-            double value = (double) nanoamperes;
             return new ElectricCurrent(value, ElectricCurrentUnit.Nanoampere);
         }
 
@@ -376,9 +368,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Picoampere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrent FromPicoamperes(QuantityValue picoamperes)
+        public static ElectricCurrent FromPicoamperes(double value)
         {
-            double value = (double) picoamperes;
             return new ElectricCurrent(value, ElectricCurrentUnit.Picoampere);
         }
 
@@ -388,9 +379,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricCurrent unit value.</returns>
-        public static ElectricCurrent From(QuantityValue value, ElectricCurrentUnit fromUnit)
+        public static ElectricCurrent From(double value, ElectricCurrentUnit fromUnit)
         {
-            return new ElectricCurrent((double)value, fromUnit);
+            return new ElectricCurrent(value, fromUnit);
         }
 
         #endregion
@@ -851,15 +842,6 @@ namespace UnitsNet
             if (!(unit is ElectricCurrentUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricCurrentUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is ElectricCurrentUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricCurrentUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -985,18 +967,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ElectricCurrentUnit> IQuantity<ElectricCurrentUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not ElectricCurrentUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricCurrentUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

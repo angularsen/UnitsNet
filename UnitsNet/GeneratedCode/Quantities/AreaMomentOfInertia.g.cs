@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct AreaMomentOfInertia :
-        IArithmeticQuantity<AreaMomentOfInertia, AreaMomentOfInertiaUnit, double>,
+        IArithmeticQuantity<AreaMomentOfInertia, AreaMomentOfInertiaUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<AreaMomentOfInertia, Length, Volume>,
 #endif
@@ -158,7 +158,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -267,9 +267,8 @@ namespace UnitsNet
         ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.CentimeterToTheFourth"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AreaMomentOfInertia FromCentimetersToTheFourth(QuantityValue centimeterstothefourth)
+        public static AreaMomentOfInertia FromCentimetersToTheFourth(double value)
         {
-            double value = (double) centimeterstothefourth;
             return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.CentimeterToTheFourth);
         }
 
@@ -277,9 +276,8 @@ namespace UnitsNet
         ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.DecimeterToTheFourth"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AreaMomentOfInertia FromDecimetersToTheFourth(QuantityValue decimeterstothefourth)
+        public static AreaMomentOfInertia FromDecimetersToTheFourth(double value)
         {
-            double value = (double) decimeterstothefourth;
             return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.DecimeterToTheFourth);
         }
 
@@ -287,9 +285,8 @@ namespace UnitsNet
         ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.FootToTheFourth"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AreaMomentOfInertia FromFeetToTheFourth(QuantityValue feettothefourth)
+        public static AreaMomentOfInertia FromFeetToTheFourth(double value)
         {
-            double value = (double) feettothefourth;
             return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.FootToTheFourth);
         }
 
@@ -297,9 +294,8 @@ namespace UnitsNet
         ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.InchToTheFourth"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AreaMomentOfInertia FromInchesToTheFourth(QuantityValue inchestothefourth)
+        public static AreaMomentOfInertia FromInchesToTheFourth(double value)
         {
-            double value = (double) inchestothefourth;
             return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.InchToTheFourth);
         }
 
@@ -307,9 +303,8 @@ namespace UnitsNet
         ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.MeterToTheFourth"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AreaMomentOfInertia FromMetersToTheFourth(QuantityValue meterstothefourth)
+        public static AreaMomentOfInertia FromMetersToTheFourth(double value)
         {
-            double value = (double) meterstothefourth;
             return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.MeterToTheFourth);
         }
 
@@ -317,9 +312,8 @@ namespace UnitsNet
         ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.MillimeterToTheFourth"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static AreaMomentOfInertia FromMillimetersToTheFourth(QuantityValue millimeterstothefourth)
+        public static AreaMomentOfInertia FromMillimetersToTheFourth(double value)
         {
-            double value = (double) millimeterstothefourth;
             return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.MillimeterToTheFourth);
         }
 
@@ -329,9 +323,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>AreaMomentOfInertia unit value.</returns>
-        public static AreaMomentOfInertia From(QuantityValue value, AreaMomentOfInertiaUnit fromUnit)
+        public static AreaMomentOfInertia From(double value, AreaMomentOfInertiaUnit fromUnit)
         {
-            return new AreaMomentOfInertia((double)value, fromUnit);
+            return new AreaMomentOfInertia(value, fromUnit);
         }
 
         #endregion
@@ -756,15 +750,6 @@ namespace UnitsNet
             if (!(unit is AreaMomentOfInertiaUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AreaMomentOfInertiaUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is AreaMomentOfInertiaUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AreaMomentOfInertiaUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -884,18 +869,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<AreaMomentOfInertiaUnit> IQuantity<AreaMomentOfInertiaUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not AreaMomentOfInertiaUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AreaMomentOfInertiaUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

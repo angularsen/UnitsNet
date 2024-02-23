@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct Volume :
-        IArithmeticQuantity<Volume, VolumeUnit, double>,
+        IArithmeticQuantity<Volume, VolumeUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Volume, Length, Area>,
         IMultiplyOperators<Volume, EnergyDensity, Energy>,
@@ -212,7 +212,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -657,9 +657,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.AcreFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromAcreFeet(QuantityValue acrefeet)
+        public static Volume FromAcreFeet(double value)
         {
-            double value = (double) acrefeet;
             return new Volume(value, VolumeUnit.AcreFoot);
         }
 
@@ -667,9 +666,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.AuTablespoon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromAuTablespoons(QuantityValue autablespoons)
+        public static Volume FromAuTablespoons(double value)
         {
-            double value = (double) autablespoons;
             return new Volume(value, VolumeUnit.AuTablespoon);
         }
 
@@ -677,9 +675,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.BoardFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromBoardFeet(QuantityValue boardfeet)
+        public static Volume FromBoardFeet(double value)
         {
-            double value = (double) boardfeet;
             return new Volume(value, VolumeUnit.BoardFoot);
         }
 
@@ -687,9 +684,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Centiliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromCentiliters(QuantityValue centiliters)
+        public static Volume FromCentiliters(double value)
         {
-            double value = (double) centiliters;
             return new Volume(value, VolumeUnit.Centiliter);
         }
 
@@ -697,9 +693,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromCubicCentimeters(QuantityValue cubiccentimeters)
+        public static Volume FromCubicCentimeters(double value)
         {
-            double value = (double) cubiccentimeters;
             return new Volume(value, VolumeUnit.CubicCentimeter);
         }
 
@@ -707,9 +702,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicDecimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromCubicDecimeters(QuantityValue cubicdecimeters)
+        public static Volume FromCubicDecimeters(double value)
         {
-            double value = (double) cubicdecimeters;
             return new Volume(value, VolumeUnit.CubicDecimeter);
         }
 
@@ -717,9 +711,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromCubicFeet(QuantityValue cubicfeet)
+        public static Volume FromCubicFeet(double value)
         {
-            double value = (double) cubicfeet;
             return new Volume(value, VolumeUnit.CubicFoot);
         }
 
@@ -727,9 +720,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicHectometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromCubicHectometers(QuantityValue cubichectometers)
+        public static Volume FromCubicHectometers(double value)
         {
-            double value = (double) cubichectometers;
             return new Volume(value, VolumeUnit.CubicHectometer);
         }
 
@@ -737,9 +729,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromCubicInches(QuantityValue cubicinches)
+        public static Volume FromCubicInches(double value)
         {
-            double value = (double) cubicinches;
             return new Volume(value, VolumeUnit.CubicInch);
         }
 
@@ -747,9 +738,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicKilometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromCubicKilometers(QuantityValue cubickilometers)
+        public static Volume FromCubicKilometers(double value)
         {
-            double value = (double) cubickilometers;
             return new Volume(value, VolumeUnit.CubicKilometer);
         }
 
@@ -757,9 +747,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromCubicMeters(QuantityValue cubicmeters)
+        public static Volume FromCubicMeters(double value)
         {
-            double value = (double) cubicmeters;
             return new Volume(value, VolumeUnit.CubicMeter);
         }
 
@@ -767,9 +756,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicMicrometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromCubicMicrometers(QuantityValue cubicmicrometers)
+        public static Volume FromCubicMicrometers(double value)
         {
-            double value = (double) cubicmicrometers;
             return new Volume(value, VolumeUnit.CubicMicrometer);
         }
 
@@ -777,9 +765,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicMile"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromCubicMiles(QuantityValue cubicmiles)
+        public static Volume FromCubicMiles(double value)
         {
-            double value = (double) cubicmiles;
             return new Volume(value, VolumeUnit.CubicMile);
         }
 
@@ -787,9 +774,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromCubicMillimeters(QuantityValue cubicmillimeters)
+        public static Volume FromCubicMillimeters(double value)
         {
-            double value = (double) cubicmillimeters;
             return new Volume(value, VolumeUnit.CubicMillimeter);
         }
 
@@ -797,9 +783,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicYard"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromCubicYards(QuantityValue cubicyards)
+        public static Volume FromCubicYards(double value)
         {
-            double value = (double) cubicyards;
             return new Volume(value, VolumeUnit.CubicYard);
         }
 
@@ -807,9 +792,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Decaliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromDecaliters(QuantityValue decaliters)
+        public static Volume FromDecaliters(double value)
         {
-            double value = (double) decaliters;
             return new Volume(value, VolumeUnit.Decaliter);
         }
 
@@ -817,9 +801,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.DecausGallon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromDecausGallons(QuantityValue decausgallons)
+        public static Volume FromDecausGallons(double value)
         {
-            double value = (double) decausgallons;
             return new Volume(value, VolumeUnit.DecausGallon);
         }
 
@@ -827,9 +810,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Deciliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromDeciliters(QuantityValue deciliters)
+        public static Volume FromDeciliters(double value)
         {
-            double value = (double) deciliters;
             return new Volume(value, VolumeUnit.Deciliter);
         }
 
@@ -837,9 +819,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.DeciusGallon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromDeciusGallons(QuantityValue deciusgallons)
+        public static Volume FromDeciusGallons(double value)
         {
-            double value = (double) deciusgallons;
             return new Volume(value, VolumeUnit.DeciusGallon);
         }
 
@@ -847,9 +828,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.HectocubicFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromHectocubicFeet(QuantityValue hectocubicfeet)
+        public static Volume FromHectocubicFeet(double value)
         {
-            double value = (double) hectocubicfeet;
             return new Volume(value, VolumeUnit.HectocubicFoot);
         }
 
@@ -857,9 +837,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.HectocubicMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromHectocubicMeters(QuantityValue hectocubicmeters)
+        public static Volume FromHectocubicMeters(double value)
         {
-            double value = (double) hectocubicmeters;
             return new Volume(value, VolumeUnit.HectocubicMeter);
         }
 
@@ -867,9 +846,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Hectoliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromHectoliters(QuantityValue hectoliters)
+        public static Volume FromHectoliters(double value)
         {
-            double value = (double) hectoliters;
             return new Volume(value, VolumeUnit.Hectoliter);
         }
 
@@ -877,9 +855,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.HectousGallon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromHectousGallons(QuantityValue hectousgallons)
+        public static Volume FromHectousGallons(double value)
         {
-            double value = (double) hectousgallons;
             return new Volume(value, VolumeUnit.HectousGallon);
         }
 
@@ -887,9 +864,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.ImperialBeerBarrel"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromImperialBeerBarrels(QuantityValue imperialbeerbarrels)
+        public static Volume FromImperialBeerBarrels(double value)
         {
-            double value = (double) imperialbeerbarrels;
             return new Volume(value, VolumeUnit.ImperialBeerBarrel);
         }
 
@@ -897,9 +873,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.ImperialGallon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromImperialGallons(QuantityValue imperialgallons)
+        public static Volume FromImperialGallons(double value)
         {
-            double value = (double) imperialgallons;
             return new Volume(value, VolumeUnit.ImperialGallon);
         }
 
@@ -907,9 +882,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.ImperialOunce"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromImperialOunces(QuantityValue imperialounces)
+        public static Volume FromImperialOunces(double value)
         {
-            double value = (double) imperialounces;
             return new Volume(value, VolumeUnit.ImperialOunce);
         }
 
@@ -917,9 +891,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.ImperialPint"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromImperialPints(QuantityValue imperialpints)
+        public static Volume FromImperialPints(double value)
         {
-            double value = (double) imperialpints;
             return new Volume(value, VolumeUnit.ImperialPint);
         }
 
@@ -927,9 +900,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.ImperialQuart"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromImperialQuarts(QuantityValue imperialquarts)
+        public static Volume FromImperialQuarts(double value)
         {
-            double value = (double) imperialquarts;
             return new Volume(value, VolumeUnit.ImperialQuart);
         }
 
@@ -937,9 +909,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.KilocubicFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromKilocubicFeet(QuantityValue kilocubicfeet)
+        public static Volume FromKilocubicFeet(double value)
         {
-            double value = (double) kilocubicfeet;
             return new Volume(value, VolumeUnit.KilocubicFoot);
         }
 
@@ -947,9 +918,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.KilocubicMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromKilocubicMeters(QuantityValue kilocubicmeters)
+        public static Volume FromKilocubicMeters(double value)
         {
-            double value = (double) kilocubicmeters;
             return new Volume(value, VolumeUnit.KilocubicMeter);
         }
 
@@ -957,9 +927,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.KiloimperialGallon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromKiloimperialGallons(QuantityValue kiloimperialgallons)
+        public static Volume FromKiloimperialGallons(double value)
         {
-            double value = (double) kiloimperialgallons;
             return new Volume(value, VolumeUnit.KiloimperialGallon);
         }
 
@@ -967,9 +936,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Kiloliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromKiloliters(QuantityValue kiloliters)
+        public static Volume FromKiloliters(double value)
         {
-            double value = (double) kiloliters;
             return new Volume(value, VolumeUnit.Kiloliter);
         }
 
@@ -977,9 +945,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.KilousGallon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromKilousGallons(QuantityValue kilousgallons)
+        public static Volume FromKilousGallons(double value)
         {
-            double value = (double) kilousgallons;
             return new Volume(value, VolumeUnit.KilousGallon);
         }
 
@@ -987,9 +954,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Liter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromLiters(QuantityValue liters)
+        public static Volume FromLiters(double value)
         {
-            double value = (double) liters;
             return new Volume(value, VolumeUnit.Liter);
         }
 
@@ -997,9 +963,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.MegacubicFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromMegacubicFeet(QuantityValue megacubicfeet)
+        public static Volume FromMegacubicFeet(double value)
         {
-            double value = (double) megacubicfeet;
             return new Volume(value, VolumeUnit.MegacubicFoot);
         }
 
@@ -1007,9 +972,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.MegaimperialGallon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromMegaimperialGallons(QuantityValue megaimperialgallons)
+        public static Volume FromMegaimperialGallons(double value)
         {
-            double value = (double) megaimperialgallons;
             return new Volume(value, VolumeUnit.MegaimperialGallon);
         }
 
@@ -1017,9 +981,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Megaliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromMegaliters(QuantityValue megaliters)
+        public static Volume FromMegaliters(double value)
         {
-            double value = (double) megaliters;
             return new Volume(value, VolumeUnit.Megaliter);
         }
 
@@ -1027,9 +990,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.MegausGallon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromMegausGallons(QuantityValue megausgallons)
+        public static Volume FromMegausGallons(double value)
         {
-            double value = (double) megausgallons;
             return new Volume(value, VolumeUnit.MegausGallon);
         }
 
@@ -1037,9 +999,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.MetricCup"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromMetricCups(QuantityValue metriccups)
+        public static Volume FromMetricCups(double value)
         {
-            double value = (double) metriccups;
             return new Volume(value, VolumeUnit.MetricCup);
         }
 
@@ -1047,9 +1008,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.MetricTeaspoon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromMetricTeaspoons(QuantityValue metricteaspoons)
+        public static Volume FromMetricTeaspoons(double value)
         {
-            double value = (double) metricteaspoons;
             return new Volume(value, VolumeUnit.MetricTeaspoon);
         }
 
@@ -1057,9 +1017,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Microliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromMicroliters(QuantityValue microliters)
+        public static Volume FromMicroliters(double value)
         {
-            double value = (double) microliters;
             return new Volume(value, VolumeUnit.Microliter);
         }
 
@@ -1067,9 +1026,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Milliliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromMilliliters(QuantityValue milliliters)
+        public static Volume FromMilliliters(double value)
         {
-            double value = (double) milliliters;
             return new Volume(value, VolumeUnit.Milliliter);
         }
 
@@ -1077,9 +1035,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Nanoliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromNanoliters(QuantityValue nanoliters)
+        public static Volume FromNanoliters(double value)
         {
-            double value = (double) nanoliters;
             return new Volume(value, VolumeUnit.Nanoliter);
         }
 
@@ -1087,9 +1044,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.OilBarrel"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromOilBarrels(QuantityValue oilbarrels)
+        public static Volume FromOilBarrels(double value)
         {
-            double value = (double) oilbarrels;
             return new Volume(value, VolumeUnit.OilBarrel);
         }
 
@@ -1097,9 +1053,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UkTablespoon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromUkTablespoons(QuantityValue uktablespoons)
+        public static Volume FromUkTablespoons(double value)
         {
-            double value = (double) uktablespoons;
             return new Volume(value, VolumeUnit.UkTablespoon);
         }
 
@@ -1107,9 +1062,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsBeerBarrel"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromUsBeerBarrels(QuantityValue usbeerbarrels)
+        public static Volume FromUsBeerBarrels(double value)
         {
-            double value = (double) usbeerbarrels;
             return new Volume(value, VolumeUnit.UsBeerBarrel);
         }
 
@@ -1117,9 +1071,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsCustomaryCup"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromUsCustomaryCups(QuantityValue uscustomarycups)
+        public static Volume FromUsCustomaryCups(double value)
         {
-            double value = (double) uscustomarycups;
             return new Volume(value, VolumeUnit.UsCustomaryCup);
         }
 
@@ -1127,9 +1080,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsGallon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromUsGallons(QuantityValue usgallons)
+        public static Volume FromUsGallons(double value)
         {
-            double value = (double) usgallons;
             return new Volume(value, VolumeUnit.UsGallon);
         }
 
@@ -1137,9 +1089,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsLegalCup"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromUsLegalCups(QuantityValue uslegalcups)
+        public static Volume FromUsLegalCups(double value)
         {
-            double value = (double) uslegalcups;
             return new Volume(value, VolumeUnit.UsLegalCup);
         }
 
@@ -1147,9 +1098,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsOunce"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromUsOunces(QuantityValue usounces)
+        public static Volume FromUsOunces(double value)
         {
-            double value = (double) usounces;
             return new Volume(value, VolumeUnit.UsOunce);
         }
 
@@ -1157,9 +1107,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsPint"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromUsPints(QuantityValue uspints)
+        public static Volume FromUsPints(double value)
         {
-            double value = (double) uspints;
             return new Volume(value, VolumeUnit.UsPint);
         }
 
@@ -1167,9 +1116,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsQuart"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromUsQuarts(QuantityValue usquarts)
+        public static Volume FromUsQuarts(double value)
         {
-            double value = (double) usquarts;
             return new Volume(value, VolumeUnit.UsQuart);
         }
 
@@ -1177,9 +1125,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsTablespoon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromUsTablespoons(QuantityValue ustablespoons)
+        public static Volume FromUsTablespoons(double value)
         {
-            double value = (double) ustablespoons;
             return new Volume(value, VolumeUnit.UsTablespoon);
         }
 
@@ -1187,9 +1134,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsTeaspoon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Volume FromUsTeaspoons(QuantityValue usteaspoons)
+        public static Volume FromUsTeaspoons(double value)
         {
-            double value = (double) usteaspoons;
             return new Volume(value, VolumeUnit.UsTeaspoon);
         }
 
@@ -1199,9 +1145,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Volume unit value.</returns>
-        public static Volume From(QuantityValue value, VolumeUnit fromUnit)
+        public static Volume From(double value, VolumeUnit fromUnit)
         {
-            return new Volume((double)value, fromUnit);
+            return new Volume(value, fromUnit);
         }
 
         #endregion
@@ -1662,15 +1608,6 @@ namespace UnitsNet
             if (!(unit is VolumeUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is VolumeUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -1886,18 +1823,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<VolumeUnit> IQuantity<VolumeUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not VolumeUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

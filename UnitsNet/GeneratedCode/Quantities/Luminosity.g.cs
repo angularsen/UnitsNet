@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     public readonly partial struct Luminosity :
-        IArithmeticQuantity<Luminosity, LuminosityUnit, double>,
+        IArithmeticQuantity<Luminosity, LuminosityUnit>,
         IComparable,
         IComparable<Luminosity>,
         IConvertible,
@@ -163,7 +163,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -328,9 +328,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Decawatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminosity FromDecawatts(QuantityValue decawatts)
+        public static Luminosity FromDecawatts(double value)
         {
-            double value = (double) decawatts;
             return new Luminosity(value, LuminosityUnit.Decawatt);
         }
 
@@ -338,9 +337,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Deciwatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminosity FromDeciwatts(QuantityValue deciwatts)
+        public static Luminosity FromDeciwatts(double value)
         {
-            double value = (double) deciwatts;
             return new Luminosity(value, LuminosityUnit.Deciwatt);
         }
 
@@ -348,9 +346,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Femtowatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminosity FromFemtowatts(QuantityValue femtowatts)
+        public static Luminosity FromFemtowatts(double value)
         {
-            double value = (double) femtowatts;
             return new Luminosity(value, LuminosityUnit.Femtowatt);
         }
 
@@ -358,9 +355,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Gigawatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminosity FromGigawatts(QuantityValue gigawatts)
+        public static Luminosity FromGigawatts(double value)
         {
-            double value = (double) gigawatts;
             return new Luminosity(value, LuminosityUnit.Gigawatt);
         }
 
@@ -368,9 +364,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Kilowatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminosity FromKilowatts(QuantityValue kilowatts)
+        public static Luminosity FromKilowatts(double value)
         {
-            double value = (double) kilowatts;
             return new Luminosity(value, LuminosityUnit.Kilowatt);
         }
 
@@ -378,9 +373,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Megawatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminosity FromMegawatts(QuantityValue megawatts)
+        public static Luminosity FromMegawatts(double value)
         {
-            double value = (double) megawatts;
             return new Luminosity(value, LuminosityUnit.Megawatt);
         }
 
@@ -388,9 +382,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Microwatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminosity FromMicrowatts(QuantityValue microwatts)
+        public static Luminosity FromMicrowatts(double value)
         {
-            double value = (double) microwatts;
             return new Luminosity(value, LuminosityUnit.Microwatt);
         }
 
@@ -398,9 +391,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Milliwatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminosity FromMilliwatts(QuantityValue milliwatts)
+        public static Luminosity FromMilliwatts(double value)
         {
-            double value = (double) milliwatts;
             return new Luminosity(value, LuminosityUnit.Milliwatt);
         }
 
@@ -408,9 +400,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Nanowatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminosity FromNanowatts(QuantityValue nanowatts)
+        public static Luminosity FromNanowatts(double value)
         {
-            double value = (double) nanowatts;
             return new Luminosity(value, LuminosityUnit.Nanowatt);
         }
 
@@ -418,9 +409,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Petawatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminosity FromPetawatts(QuantityValue petawatts)
+        public static Luminosity FromPetawatts(double value)
         {
-            double value = (double) petawatts;
             return new Luminosity(value, LuminosityUnit.Petawatt);
         }
 
@@ -428,9 +418,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Picowatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminosity FromPicowatts(QuantityValue picowatts)
+        public static Luminosity FromPicowatts(double value)
         {
-            double value = (double) picowatts;
             return new Luminosity(value, LuminosityUnit.Picowatt);
         }
 
@@ -438,9 +427,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.SolarLuminosity"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminosity FromSolarLuminosities(QuantityValue solarluminosities)
+        public static Luminosity FromSolarLuminosities(double value)
         {
-            double value = (double) solarluminosities;
             return new Luminosity(value, LuminosityUnit.SolarLuminosity);
         }
 
@@ -448,9 +436,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Terawatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminosity FromTerawatts(QuantityValue terawatts)
+        public static Luminosity FromTerawatts(double value)
         {
-            double value = (double) terawatts;
             return new Luminosity(value, LuminosityUnit.Terawatt);
         }
 
@@ -458,9 +445,8 @@ namespace UnitsNet
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Watt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminosity FromWatts(QuantityValue watts)
+        public static Luminosity FromWatts(double value)
         {
-            double value = (double) watts;
             return new Luminosity(value, LuminosityUnit.Watt);
         }
 
@@ -470,9 +456,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Luminosity unit value.</returns>
-        public static Luminosity From(QuantityValue value, LuminosityUnit fromUnit)
+        public static Luminosity From(double value, LuminosityUnit fromUnit)
         {
-            return new Luminosity((double)value, fromUnit);
+            return new Luminosity(value, fromUnit);
         }
 
         #endregion
@@ -887,15 +873,6 @@ namespace UnitsNet
             if (!(unit is LuminosityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LuminosityUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is LuminosityUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LuminosityUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -1031,18 +1008,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<LuminosityUnit> IQuantity<LuminosityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not LuminosityUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LuminosityUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

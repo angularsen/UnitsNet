@@ -37,7 +37,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct RadiationExposure :
-        IArithmeticQuantity<RadiationExposure, RadiationExposureUnit, double>,
+        IArithmeticQuantity<RadiationExposure, RadiationExposureUnit>,
         IComparable,
         IComparable<RadiationExposure>,
         IConvertible,
@@ -154,7 +154,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -277,9 +277,8 @@ namespace UnitsNet
         ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.CoulombPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RadiationExposure FromCoulombsPerKilogram(QuantityValue coulombsperkilogram)
+        public static RadiationExposure FromCoulombsPerKilogram(double value)
         {
-            double value = (double) coulombsperkilogram;
             return new RadiationExposure(value, RadiationExposureUnit.CoulombPerKilogram);
         }
 
@@ -287,9 +286,8 @@ namespace UnitsNet
         ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.MicrocoulombPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RadiationExposure FromMicrocoulombsPerKilogram(QuantityValue microcoulombsperkilogram)
+        public static RadiationExposure FromMicrocoulombsPerKilogram(double value)
         {
-            double value = (double) microcoulombsperkilogram;
             return new RadiationExposure(value, RadiationExposureUnit.MicrocoulombPerKilogram);
         }
 
@@ -297,9 +295,8 @@ namespace UnitsNet
         ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.Microroentgen"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RadiationExposure FromMicroroentgens(QuantityValue microroentgens)
+        public static RadiationExposure FromMicroroentgens(double value)
         {
-            double value = (double) microroentgens;
             return new RadiationExposure(value, RadiationExposureUnit.Microroentgen);
         }
 
@@ -307,9 +304,8 @@ namespace UnitsNet
         ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.MillicoulombPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RadiationExposure FromMillicoulombsPerKilogram(QuantityValue millicoulombsperkilogram)
+        public static RadiationExposure FromMillicoulombsPerKilogram(double value)
         {
-            double value = (double) millicoulombsperkilogram;
             return new RadiationExposure(value, RadiationExposureUnit.MillicoulombPerKilogram);
         }
 
@@ -317,9 +313,8 @@ namespace UnitsNet
         ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.Milliroentgen"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RadiationExposure FromMilliroentgens(QuantityValue milliroentgens)
+        public static RadiationExposure FromMilliroentgens(double value)
         {
-            double value = (double) milliroentgens;
             return new RadiationExposure(value, RadiationExposureUnit.Milliroentgen);
         }
 
@@ -327,9 +322,8 @@ namespace UnitsNet
         ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.NanocoulombPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RadiationExposure FromNanocoulombsPerKilogram(QuantityValue nanocoulombsperkilogram)
+        public static RadiationExposure FromNanocoulombsPerKilogram(double value)
         {
-            double value = (double) nanocoulombsperkilogram;
             return new RadiationExposure(value, RadiationExposureUnit.NanocoulombPerKilogram);
         }
 
@@ -337,9 +331,8 @@ namespace UnitsNet
         ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.PicocoulombPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RadiationExposure FromPicocoulombsPerKilogram(QuantityValue picocoulombsperkilogram)
+        public static RadiationExposure FromPicocoulombsPerKilogram(double value)
         {
-            double value = (double) picocoulombsperkilogram;
             return new RadiationExposure(value, RadiationExposureUnit.PicocoulombPerKilogram);
         }
 
@@ -347,9 +340,8 @@ namespace UnitsNet
         ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.Roentgen"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static RadiationExposure FromRoentgens(QuantityValue roentgens)
+        public static RadiationExposure FromRoentgens(double value)
         {
-            double value = (double) roentgens;
             return new RadiationExposure(value, RadiationExposureUnit.Roentgen);
         }
 
@@ -359,9 +351,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>RadiationExposure unit value.</returns>
-        public static RadiationExposure From(QuantityValue value, RadiationExposureUnit fromUnit)
+        public static RadiationExposure From(double value, RadiationExposureUnit fromUnit)
         {
-            return new RadiationExposure((double)value, fromUnit);
+            return new RadiationExposure(value, fromUnit);
         }
 
         #endregion
@@ -776,15 +768,6 @@ namespace UnitsNet
             if (!(unit is RadiationExposureUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RadiationExposureUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is RadiationExposureUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RadiationExposureUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -908,18 +891,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<RadiationExposureUnit> IQuantity<RadiationExposureUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not RadiationExposureUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RadiationExposureUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

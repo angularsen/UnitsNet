@@ -72,7 +72,7 @@ namespace UnitsNet
         /// <summary>
         ///     The value this quantity was constructed with. See also <see cref="Unit"/>.
         /// </summary>
-        QuantityValue Value { get; }
+        double Value { get; }
 
         /// <summary>
         ///     Converts this <see cref="IQuantity"/> to an <see cref="IQuantity"/> in the given <paramref name="unit"/>.
@@ -143,48 +143,21 @@ namespace UnitsNet
     }
 
     /// <summary>
-    ///     A quantity backed by a particular value type with a stronger typed interface where the unit enum type is known, to avoid passing in the
-    ///     wrong unit enum type and not having to cast from <see cref="Enum"/>.
-    /// </summary>
-    /// <typeparam name="TUnitType">The unit type of the quantity.</typeparam>
-    /// <typeparam name="TValueType">The value type of the quantity.</typeparam>
-    public interface IQuantity<TUnitType, out TValueType> : IQuantity<TUnitType>, IValueQuantity<TValueType>
-        where TUnitType : Enum
-#if NET7_0_OR_GREATER
-        where TValueType : INumber<TValueType>
-#else
-        where TValueType : struct
-#endif
-    {
-        /// <summary>
-        ///     Convert to a unit representation <typeparamref name="TUnitType"/>.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        new TValueType As(TUnitType unit);
-    }
-
-    /// <summary>
     ///     An <see cref="IQuantity{TUnitType}"/> that (in .NET 7+) implements generic math interfaces for equality, comparison and parsing.
     /// </summary>
     /// <typeparam name="TSelf">The type itself, for the CRT pattern.</typeparam>
     /// <typeparam name="TUnitType">The underlying unit enum type.</typeparam>
-    /// <typeparam name="TValueType">The underlying value type for internal representation.</typeparam>
 #if NET7_0_OR_GREATER
-    public interface IQuantity<TSelf, TUnitType, out TValueType>
-        : IQuantity<TUnitType, TValueType>
+    public interface IQuantity<TSelf, TUnitType>
+        : IQuantity<TUnitType>
         , IComparisonOperators<TSelf, TSelf, bool>
         , IParsable<TSelf>
 #else
-    public interface IQuantity<in TSelf, TUnitType, out TValueType>
-        : IQuantity<TUnitType, TValueType>
+    public interface IQuantity<in TSelf, TUnitType>
+        : IQuantity<TUnitType>
 #endif
-        where TSelf : IQuantity<TSelf, TUnitType, TValueType>
+        where TSelf : IQuantity<TSelf, TUnitType>
         where TUnitType : Enum
-#if NET7_0_OR_GREATER
-        where TValueType : INumber<TValueType>
-#else
-        where TValueType : struct
-#endif
     {
         /// <summary>
         ///     <para>

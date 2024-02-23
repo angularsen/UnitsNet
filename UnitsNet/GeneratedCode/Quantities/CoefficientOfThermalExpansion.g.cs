@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct CoefficientOfThermalExpansion :
-        IArithmeticQuantity<CoefficientOfThermalExpansion, CoefficientOfThermalExpansionUnit, double>,
+        IArithmeticQuantity<CoefficientOfThermalExpansion, CoefficientOfThermalExpansionUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<CoefficientOfThermalExpansion, TemperatureDelta, double>,
 #endif
@@ -161,7 +161,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -295,9 +295,8 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Obsolete("Use PerDegreeCelsius instead.")]
-        public static CoefficientOfThermalExpansion FromInverseDegreeCelsius(QuantityValue inversedegreecelsius)
+        public static CoefficientOfThermalExpansion FromInverseDegreeCelsius(double value)
         {
-            double value = (double) inversedegreecelsius;
             return new CoefficientOfThermalExpansion(value, CoefficientOfThermalExpansionUnit.InverseDegreeCelsius);
         }
 
@@ -306,9 +305,8 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Obsolete("Use PerDegreeFahrenheit instead.")]
-        public static CoefficientOfThermalExpansion FromInverseDegreeFahrenheit(QuantityValue inversedegreefahrenheit)
+        public static CoefficientOfThermalExpansion FromInverseDegreeFahrenheit(double value)
         {
-            double value = (double) inversedegreefahrenheit;
             return new CoefficientOfThermalExpansion(value, CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit);
         }
 
@@ -317,9 +315,8 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Obsolete("Use PerKelvin instead.")]
-        public static CoefficientOfThermalExpansion FromInverseKelvin(QuantityValue inversekelvin)
+        public static CoefficientOfThermalExpansion FromInverseKelvin(double value)
         {
-            double value = (double) inversekelvin;
             return new CoefficientOfThermalExpansion(value, CoefficientOfThermalExpansionUnit.InverseKelvin);
         }
 
@@ -327,9 +324,8 @@ namespace UnitsNet
         ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.PerDegreeCelsius"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static CoefficientOfThermalExpansion FromPerDegreeCelsius(QuantityValue perdegreecelsius)
+        public static CoefficientOfThermalExpansion FromPerDegreeCelsius(double value)
         {
-            double value = (double) perdegreecelsius;
             return new CoefficientOfThermalExpansion(value, CoefficientOfThermalExpansionUnit.PerDegreeCelsius);
         }
 
@@ -337,9 +333,8 @@ namespace UnitsNet
         ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static CoefficientOfThermalExpansion FromPerDegreeFahrenheit(QuantityValue perdegreefahrenheit)
+        public static CoefficientOfThermalExpansion FromPerDegreeFahrenheit(double value)
         {
-            double value = (double) perdegreefahrenheit;
             return new CoefficientOfThermalExpansion(value, CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit);
         }
 
@@ -347,9 +342,8 @@ namespace UnitsNet
         ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.PerKelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static CoefficientOfThermalExpansion FromPerKelvin(QuantityValue perkelvin)
+        public static CoefficientOfThermalExpansion FromPerKelvin(double value)
         {
-            double value = (double) perkelvin;
             return new CoefficientOfThermalExpansion(value, CoefficientOfThermalExpansionUnit.PerKelvin);
         }
 
@@ -357,9 +351,8 @@ namespace UnitsNet
         ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static CoefficientOfThermalExpansion FromPpmPerDegreeCelsius(QuantityValue ppmperdegreecelsius)
+        public static CoefficientOfThermalExpansion FromPpmPerDegreeCelsius(double value)
         {
-            double value = (double) ppmperdegreecelsius;
             return new CoefficientOfThermalExpansion(value, CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius);
         }
 
@@ -367,9 +360,8 @@ namespace UnitsNet
         ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static CoefficientOfThermalExpansion FromPpmPerDegreeFahrenheit(QuantityValue ppmperdegreefahrenheit)
+        public static CoefficientOfThermalExpansion FromPpmPerDegreeFahrenheit(double value)
         {
-            double value = (double) ppmperdegreefahrenheit;
             return new CoefficientOfThermalExpansion(value, CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit);
         }
 
@@ -377,9 +369,8 @@ namespace UnitsNet
         ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.PpmPerKelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static CoefficientOfThermalExpansion FromPpmPerKelvin(QuantityValue ppmperkelvin)
+        public static CoefficientOfThermalExpansion FromPpmPerKelvin(double value)
         {
-            double value = (double) ppmperkelvin;
             return new CoefficientOfThermalExpansion(value, CoefficientOfThermalExpansionUnit.PpmPerKelvin);
         }
 
@@ -389,9 +380,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>CoefficientOfThermalExpansion unit value.</returns>
-        public static CoefficientOfThermalExpansion From(QuantityValue value, CoefficientOfThermalExpansionUnit fromUnit)
+        public static CoefficientOfThermalExpansion From(double value, CoefficientOfThermalExpansionUnit fromUnit)
         {
-            return new CoefficientOfThermalExpansion((double)value, fromUnit);
+            return new CoefficientOfThermalExpansion(value, fromUnit);
         }
 
         #endregion
@@ -816,15 +807,6 @@ namespace UnitsNet
             if (!(unit is CoefficientOfThermalExpansionUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(CoefficientOfThermalExpansionUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is CoefficientOfThermalExpansionUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(CoefficientOfThermalExpansionUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -950,18 +932,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<CoefficientOfThermalExpansionUnit> IQuantity<CoefficientOfThermalExpansionUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not CoefficientOfThermalExpansionUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(CoefficientOfThermalExpansionUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

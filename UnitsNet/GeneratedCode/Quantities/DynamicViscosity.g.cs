@@ -43,7 +43,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     public readonly partial struct DynamicViscosity :
-        IArithmeticQuantity<DynamicViscosity, DynamicViscosityUnit, double>,
+        IArithmeticQuantity<DynamicViscosity, DynamicViscosityUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<DynamicViscosity, Density, KinematicViscosity>,
 #endif
@@ -165,7 +165,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -302,9 +302,8 @@ namespace UnitsNet
         ///     Creates a <see cref="DynamicViscosity"/> from <see cref="DynamicViscosityUnit.Centipoise"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DynamicViscosity FromCentipoise(QuantityValue centipoise)
+        public static DynamicViscosity FromCentipoise(double value)
         {
-            double value = (double) centipoise;
             return new DynamicViscosity(value, DynamicViscosityUnit.Centipoise);
         }
 
@@ -312,9 +311,8 @@ namespace UnitsNet
         ///     Creates a <see cref="DynamicViscosity"/> from <see cref="DynamicViscosityUnit.MicropascalSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DynamicViscosity FromMicropascalSeconds(QuantityValue micropascalseconds)
+        public static DynamicViscosity FromMicropascalSeconds(double value)
         {
-            double value = (double) micropascalseconds;
             return new DynamicViscosity(value, DynamicViscosityUnit.MicropascalSecond);
         }
 
@@ -322,9 +320,8 @@ namespace UnitsNet
         ///     Creates a <see cref="DynamicViscosity"/> from <see cref="DynamicViscosityUnit.MillipascalSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DynamicViscosity FromMillipascalSeconds(QuantityValue millipascalseconds)
+        public static DynamicViscosity FromMillipascalSeconds(double value)
         {
-            double value = (double) millipascalseconds;
             return new DynamicViscosity(value, DynamicViscosityUnit.MillipascalSecond);
         }
 
@@ -332,9 +329,8 @@ namespace UnitsNet
         ///     Creates a <see cref="DynamicViscosity"/> from <see cref="DynamicViscosityUnit.NewtonSecondPerMeterSquared"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DynamicViscosity FromNewtonSecondsPerMeterSquared(QuantityValue newtonsecondspermetersquared)
+        public static DynamicViscosity FromNewtonSecondsPerMeterSquared(double value)
         {
-            double value = (double) newtonsecondspermetersquared;
             return new DynamicViscosity(value, DynamicViscosityUnit.NewtonSecondPerMeterSquared);
         }
 
@@ -342,9 +338,8 @@ namespace UnitsNet
         ///     Creates a <see cref="DynamicViscosity"/> from <see cref="DynamicViscosityUnit.PascalSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DynamicViscosity FromPascalSeconds(QuantityValue pascalseconds)
+        public static DynamicViscosity FromPascalSeconds(double value)
         {
-            double value = (double) pascalseconds;
             return new DynamicViscosity(value, DynamicViscosityUnit.PascalSecond);
         }
 
@@ -352,9 +347,8 @@ namespace UnitsNet
         ///     Creates a <see cref="DynamicViscosity"/> from <see cref="DynamicViscosityUnit.Poise"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DynamicViscosity FromPoise(QuantityValue poise)
+        public static DynamicViscosity FromPoise(double value)
         {
-            double value = (double) poise;
             return new DynamicViscosity(value, DynamicViscosityUnit.Poise);
         }
 
@@ -362,9 +356,8 @@ namespace UnitsNet
         ///     Creates a <see cref="DynamicViscosity"/> from <see cref="DynamicViscosityUnit.PoundForceSecondPerSquareFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DynamicViscosity FromPoundsForceSecondPerSquareFoot(QuantityValue poundsforcesecondpersquarefoot)
+        public static DynamicViscosity FromPoundsForceSecondPerSquareFoot(double value)
         {
-            double value = (double) poundsforcesecondpersquarefoot;
             return new DynamicViscosity(value, DynamicViscosityUnit.PoundForceSecondPerSquareFoot);
         }
 
@@ -372,9 +365,8 @@ namespace UnitsNet
         ///     Creates a <see cref="DynamicViscosity"/> from <see cref="DynamicViscosityUnit.PoundForceSecondPerSquareInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DynamicViscosity FromPoundsForceSecondPerSquareInch(QuantityValue poundsforcesecondpersquareinch)
+        public static DynamicViscosity FromPoundsForceSecondPerSquareInch(double value)
         {
-            double value = (double) poundsforcesecondpersquareinch;
             return new DynamicViscosity(value, DynamicViscosityUnit.PoundForceSecondPerSquareInch);
         }
 
@@ -382,9 +374,8 @@ namespace UnitsNet
         ///     Creates a <see cref="DynamicViscosity"/> from <see cref="DynamicViscosityUnit.PoundPerFootSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DynamicViscosity FromPoundsPerFootSecond(QuantityValue poundsperfootsecond)
+        public static DynamicViscosity FromPoundsPerFootSecond(double value)
         {
-            double value = (double) poundsperfootsecond;
             return new DynamicViscosity(value, DynamicViscosityUnit.PoundPerFootSecond);
         }
 
@@ -392,9 +383,8 @@ namespace UnitsNet
         ///     Creates a <see cref="DynamicViscosity"/> from <see cref="DynamicViscosityUnit.Reyn"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static DynamicViscosity FromReyns(QuantityValue reyns)
+        public static DynamicViscosity FromReyns(double value)
         {
-            double value = (double) reyns;
             return new DynamicViscosity(value, DynamicViscosityUnit.Reyn);
         }
 
@@ -404,9 +394,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>DynamicViscosity unit value.</returns>
-        public static DynamicViscosity From(QuantityValue value, DynamicViscosityUnit fromUnit)
+        public static DynamicViscosity From(double value, DynamicViscosityUnit fromUnit)
         {
-            return new DynamicViscosity((double)value, fromUnit);
+            return new DynamicViscosity(value, fromUnit);
         }
 
         #endregion
@@ -831,15 +821,6 @@ namespace UnitsNet
             if (!(unit is DynamicViscosityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DynamicViscosityUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is DynamicViscosityUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DynamicViscosityUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -967,18 +948,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<DynamicViscosityUnit> IQuantity<DynamicViscosityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not DynamicViscosityUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DynamicViscosityUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

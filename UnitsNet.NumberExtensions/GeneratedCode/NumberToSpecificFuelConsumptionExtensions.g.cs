@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificFuelConsumption
     /// </summary>
     public static class NumberToSpecificFuelConsumptionExtensions
     {
-        /// <inheritdoc cref="SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(double)" />
         public static SpecificFuelConsumption GramsPerKiloNewtonSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificFuelConsumption
 #endif
             => SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="SpecificFuelConsumption.FromKilogramsPerKilogramForceHour(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="SpecificFuelConsumption.FromKilogramsPerKilogramForceHour(double)" />
         public static SpecificFuelConsumption KilogramsPerKilogramForceHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificFuelConsumption
 #endif
             => SpecificFuelConsumption.FromKilogramsPerKilogramForceHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="SpecificFuelConsumption.FromKilogramsPerKiloNewtonSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="SpecificFuelConsumption.FromKilogramsPerKiloNewtonSecond(double)" />
         public static SpecificFuelConsumption KilogramsPerKiloNewtonSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificFuelConsumption
 #endif
             => SpecificFuelConsumption.FromKilogramsPerKiloNewtonSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(double)" />
         public static SpecificFuelConsumption PoundsMassPerPoundForceHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

@@ -37,7 +37,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct WarpingMomentOfInertia :
-        IArithmeticQuantity<WarpingMomentOfInertia, WarpingMomentOfInertiaUnit, double>,
+        IArithmeticQuantity<WarpingMomentOfInertia, WarpingMomentOfInertiaUnit>,
         IComparable,
         IComparable<WarpingMomentOfInertia>,
         IConvertible,
@@ -152,7 +152,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -261,9 +261,8 @@ namespace UnitsNet
         ///     Creates a <see cref="WarpingMomentOfInertia"/> from <see cref="WarpingMomentOfInertiaUnit.CentimeterToTheSixth"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static WarpingMomentOfInertia FromCentimetersToTheSixth(QuantityValue centimeterstothesixth)
+        public static WarpingMomentOfInertia FromCentimetersToTheSixth(double value)
         {
-            double value = (double) centimeterstothesixth;
             return new WarpingMomentOfInertia(value, WarpingMomentOfInertiaUnit.CentimeterToTheSixth);
         }
 
@@ -271,9 +270,8 @@ namespace UnitsNet
         ///     Creates a <see cref="WarpingMomentOfInertia"/> from <see cref="WarpingMomentOfInertiaUnit.DecimeterToTheSixth"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static WarpingMomentOfInertia FromDecimetersToTheSixth(QuantityValue decimeterstothesixth)
+        public static WarpingMomentOfInertia FromDecimetersToTheSixth(double value)
         {
-            double value = (double) decimeterstothesixth;
             return new WarpingMomentOfInertia(value, WarpingMomentOfInertiaUnit.DecimeterToTheSixth);
         }
 
@@ -281,9 +279,8 @@ namespace UnitsNet
         ///     Creates a <see cref="WarpingMomentOfInertia"/> from <see cref="WarpingMomentOfInertiaUnit.FootToTheSixth"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static WarpingMomentOfInertia FromFeetToTheSixth(QuantityValue feettothesixth)
+        public static WarpingMomentOfInertia FromFeetToTheSixth(double value)
         {
-            double value = (double) feettothesixth;
             return new WarpingMomentOfInertia(value, WarpingMomentOfInertiaUnit.FootToTheSixth);
         }
 
@@ -291,9 +288,8 @@ namespace UnitsNet
         ///     Creates a <see cref="WarpingMomentOfInertia"/> from <see cref="WarpingMomentOfInertiaUnit.InchToTheSixth"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static WarpingMomentOfInertia FromInchesToTheSixth(QuantityValue inchestothesixth)
+        public static WarpingMomentOfInertia FromInchesToTheSixth(double value)
         {
-            double value = (double) inchestothesixth;
             return new WarpingMomentOfInertia(value, WarpingMomentOfInertiaUnit.InchToTheSixth);
         }
 
@@ -301,9 +297,8 @@ namespace UnitsNet
         ///     Creates a <see cref="WarpingMomentOfInertia"/> from <see cref="WarpingMomentOfInertiaUnit.MeterToTheSixth"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static WarpingMomentOfInertia FromMetersToTheSixth(QuantityValue meterstothesixth)
+        public static WarpingMomentOfInertia FromMetersToTheSixth(double value)
         {
-            double value = (double) meterstothesixth;
             return new WarpingMomentOfInertia(value, WarpingMomentOfInertiaUnit.MeterToTheSixth);
         }
 
@@ -311,9 +306,8 @@ namespace UnitsNet
         ///     Creates a <see cref="WarpingMomentOfInertia"/> from <see cref="WarpingMomentOfInertiaUnit.MillimeterToTheSixth"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static WarpingMomentOfInertia FromMillimetersToTheSixth(QuantityValue millimeterstothesixth)
+        public static WarpingMomentOfInertia FromMillimetersToTheSixth(double value)
         {
-            double value = (double) millimeterstothesixth;
             return new WarpingMomentOfInertia(value, WarpingMomentOfInertiaUnit.MillimeterToTheSixth);
         }
 
@@ -323,9 +317,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>WarpingMomentOfInertia unit value.</returns>
-        public static WarpingMomentOfInertia From(QuantityValue value, WarpingMomentOfInertiaUnit fromUnit)
+        public static WarpingMomentOfInertia From(double value, WarpingMomentOfInertiaUnit fromUnit)
         {
-            return new WarpingMomentOfInertia((double)value, fromUnit);
+            return new WarpingMomentOfInertia(value, fromUnit);
         }
 
         #endregion
@@ -740,15 +734,6 @@ namespace UnitsNet
             if (!(unit is WarpingMomentOfInertiaUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(WarpingMomentOfInertiaUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is WarpingMomentOfInertiaUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(WarpingMomentOfInertiaUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -868,18 +853,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<WarpingMomentOfInertiaUnit> IQuantity<WarpingMomentOfInertiaUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not WarpingMomentOfInertiaUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(WarpingMomentOfInertiaUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

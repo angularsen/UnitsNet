@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToReactivePower
     /// </summary>
     public static class NumberToReactivePowerExtensions
     {
-        /// <inheritdoc cref="ReactivePower.FromGigavoltamperesReactive(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ReactivePower.FromGigavoltamperesReactive(double)" />
         public static ReactivePower GigavoltamperesReactive<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToReactivePower
 #endif
             => ReactivePower.FromGigavoltamperesReactive(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReactivePower.FromKilovoltamperesReactive(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ReactivePower.FromKilovoltamperesReactive(double)" />
         public static ReactivePower KilovoltamperesReactive<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToReactivePower
 #endif
             => ReactivePower.FromKilovoltamperesReactive(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReactivePower.FromMegavoltamperesReactive(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ReactivePower.FromMegavoltamperesReactive(double)" />
         public static ReactivePower MegavoltamperesReactive<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToReactivePower
 #endif
             => ReactivePower.FromMegavoltamperesReactive(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReactivePower.FromVoltamperesReactive(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ReactivePower.FromVoltamperesReactive(double)" />
         public static ReactivePower VoltamperesReactive<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     public readonly partial struct ThermalConductivity :
-        IArithmeticQuantity<ThermalConductivity, ThermalConductivityUnit, double>,
+        IArithmeticQuantity<ThermalConductivity, ThermalConductivityUnit>,
         IComparable,
         IComparable<ThermalConductivity>,
         IConvertible,
@@ -151,7 +151,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -232,9 +232,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ThermalConductivity"/> from <see cref="ThermalConductivityUnit.BtuPerHourFootFahrenheit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ThermalConductivity FromBtusPerHourFootFahrenheit(QuantityValue btusperhourfootfahrenheit)
+        public static ThermalConductivity FromBtusPerHourFootFahrenheit(double value)
         {
-            double value = (double) btusperhourfootfahrenheit;
             return new ThermalConductivity(value, ThermalConductivityUnit.BtuPerHourFootFahrenheit);
         }
 
@@ -242,9 +241,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ThermalConductivity"/> from <see cref="ThermalConductivityUnit.WattPerMeterKelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ThermalConductivity FromWattsPerMeterKelvin(QuantityValue wattspermeterkelvin)
+        public static ThermalConductivity FromWattsPerMeterKelvin(double value)
         {
-            double value = (double) wattspermeterkelvin;
             return new ThermalConductivity(value, ThermalConductivityUnit.WattPerMeterKelvin);
         }
 
@@ -254,9 +252,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ThermalConductivity unit value.</returns>
-        public static ThermalConductivity From(QuantityValue value, ThermalConductivityUnit fromUnit)
+        public static ThermalConductivity From(double value, ThermalConductivityUnit fromUnit)
         {
-            return new ThermalConductivity((double)value, fromUnit);
+            return new ThermalConductivity(value, fromUnit);
         }
 
         #endregion
@@ -671,15 +669,6 @@ namespace UnitsNet
             if (!(unit is ThermalConductivityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ThermalConductivityUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is ThermalConductivityUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ThermalConductivityUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -791,18 +780,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ThermalConductivityUnit> IQuantity<ThermalConductivityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not ThermalConductivityUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ThermalConductivityUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToMagnetization
     /// </summary>
     public static class NumberToMagnetizationExtensions
     {
-        /// <inheritdoc cref="Magnetization.FromAmperesPerMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Magnetization.FromAmperesPerMeter(double)" />
         public static Magnetization AmperesPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

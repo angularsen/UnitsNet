@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToPermeability
     /// </summary>
     public static class NumberToPermeabilityExtensions
     {
-        /// <inheritdoc cref="Permeability.FromHenriesPerMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Permeability.FromHenriesPerMeter(double)" />
         public static Permeability HenriesPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

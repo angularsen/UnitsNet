@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     public readonly partial struct ElectricConductance :
-        IArithmeticQuantity<ElectricConductance, ElectricConductanceUnit, double>,
+        IArithmeticQuantity<ElectricConductance, ElectricConductanceUnit>,
         IComparable,
         IComparable<ElectricConductance>,
         IConvertible,
@@ -154,7 +154,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -256,9 +256,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Kilosiemens"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricConductance FromKilosiemens(QuantityValue kilosiemens)
+        public static ElectricConductance FromKilosiemens(double value)
         {
-            double value = (double) kilosiemens;
             return new ElectricConductance(value, ElectricConductanceUnit.Kilosiemens);
         }
 
@@ -266,9 +265,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Microsiemens"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricConductance FromMicrosiemens(QuantityValue microsiemens)
+        public static ElectricConductance FromMicrosiemens(double value)
         {
-            double value = (double) microsiemens;
             return new ElectricConductance(value, ElectricConductanceUnit.Microsiemens);
         }
 
@@ -276,9 +274,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Millisiemens"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricConductance FromMillisiemens(QuantityValue millisiemens)
+        public static ElectricConductance FromMillisiemens(double value)
         {
-            double value = (double) millisiemens;
             return new ElectricConductance(value, ElectricConductanceUnit.Millisiemens);
         }
 
@@ -286,9 +283,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Nanosiemens"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricConductance FromNanosiemens(QuantityValue nanosiemens)
+        public static ElectricConductance FromNanosiemens(double value)
         {
-            double value = (double) nanosiemens;
             return new ElectricConductance(value, ElectricConductanceUnit.Nanosiemens);
         }
 
@@ -296,9 +292,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Siemens"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricConductance FromSiemens(QuantityValue siemens)
+        public static ElectricConductance FromSiemens(double value)
         {
-            double value = (double) siemens;
             return new ElectricConductance(value, ElectricConductanceUnit.Siemens);
         }
 
@@ -308,9 +303,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricConductance unit value.</returns>
-        public static ElectricConductance From(QuantityValue value, ElectricConductanceUnit fromUnit)
+        public static ElectricConductance From(double value, ElectricConductanceUnit fromUnit)
         {
-            return new ElectricConductance((double)value, fromUnit);
+            return new ElectricConductance(value, fromUnit);
         }
 
         #endregion
@@ -725,15 +720,6 @@ namespace UnitsNet
             if (!(unit is ElectricConductanceUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricConductanceUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is ElectricConductanceUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricConductanceUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -851,18 +837,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ElectricConductanceUnit> IQuantity<ElectricConductanceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not ElectricConductanceUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricConductanceUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

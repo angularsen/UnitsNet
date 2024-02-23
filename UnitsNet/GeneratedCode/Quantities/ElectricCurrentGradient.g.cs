@@ -40,7 +40,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     public readonly partial struct ElectricCurrentGradient :
-        IArithmeticQuantity<ElectricCurrentGradient, ElectricCurrentGradientUnit, double>,
+        IArithmeticQuantity<ElectricCurrentGradient, ElectricCurrentGradientUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<ElectricCurrentGradient, Duration, ElectricCurrent>,
         IMultiplyOperators<ElectricCurrentGradient, TimeSpan, ElectricCurrent>,
@@ -160,7 +160,7 @@ namespace UnitsNet
         public double Value => _value;
 
         /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        double IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -276,9 +276,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrentGradientUnit.AmperePerMicrosecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrentGradient FromAmperesPerMicrosecond(QuantityValue amperespermicrosecond)
+        public static ElectricCurrentGradient FromAmperesPerMicrosecond(double value)
         {
-            double value = (double) amperespermicrosecond;
             return new ElectricCurrentGradient(value, ElectricCurrentGradientUnit.AmperePerMicrosecond);
         }
 
@@ -286,9 +285,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrentGradientUnit.AmperePerMillisecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrentGradient FromAmperesPerMillisecond(QuantityValue amperespermillisecond)
+        public static ElectricCurrentGradient FromAmperesPerMillisecond(double value)
         {
-            double value = (double) amperespermillisecond;
             return new ElectricCurrentGradient(value, ElectricCurrentGradientUnit.AmperePerMillisecond);
         }
 
@@ -296,9 +294,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrentGradientUnit.AmperePerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrentGradient FromAmperesPerMinute(QuantityValue amperesperminute)
+        public static ElectricCurrentGradient FromAmperesPerMinute(double value)
         {
-            double value = (double) amperesperminute;
             return new ElectricCurrentGradient(value, ElectricCurrentGradientUnit.AmperePerMinute);
         }
 
@@ -306,9 +303,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrentGradientUnit.AmperePerNanosecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrentGradient FromAmperesPerNanosecond(QuantityValue amperespernanosecond)
+        public static ElectricCurrentGradient FromAmperesPerNanosecond(double value)
         {
-            double value = (double) amperespernanosecond;
             return new ElectricCurrentGradient(value, ElectricCurrentGradientUnit.AmperePerNanosecond);
         }
 
@@ -316,9 +312,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrentGradientUnit.AmperePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrentGradient FromAmperesPerSecond(QuantityValue amperespersecond)
+        public static ElectricCurrentGradient FromAmperesPerSecond(double value)
         {
-            double value = (double) amperespersecond;
             return new ElectricCurrentGradient(value, ElectricCurrentGradientUnit.AmperePerSecond);
         }
 
@@ -326,9 +321,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrentGradientUnit.MilliamperePerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrentGradient FromMilliamperesPerMinute(QuantityValue milliamperesperminute)
+        public static ElectricCurrentGradient FromMilliamperesPerMinute(double value)
         {
-            double value = (double) milliamperesperminute;
             return new ElectricCurrentGradient(value, ElectricCurrentGradientUnit.MilliamperePerMinute);
         }
 
@@ -336,9 +330,8 @@ namespace UnitsNet
         ///     Creates a <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrentGradientUnit.MilliamperePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCurrentGradient FromMilliamperesPerSecond(QuantityValue milliamperespersecond)
+        public static ElectricCurrentGradient FromMilliamperesPerSecond(double value)
         {
-            double value = (double) milliamperespersecond;
             return new ElectricCurrentGradient(value, ElectricCurrentGradientUnit.MilliamperePerSecond);
         }
 
@@ -348,9 +341,9 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricCurrentGradient unit value.</returns>
-        public static ElectricCurrentGradient From(QuantityValue value, ElectricCurrentGradientUnit fromUnit)
+        public static ElectricCurrentGradient From(double value, ElectricCurrentGradientUnit fromUnit)
         {
-            return new ElectricCurrentGradient((double)value, fromUnit);
+            return new ElectricCurrentGradient(value, fromUnit);
         }
 
         #endregion
@@ -787,15 +780,6 @@ namespace UnitsNet
             if (!(unit is ElectricCurrentGradientUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricCurrentGradientUnit)} is supported.", nameof(unit));
 
-            return (double)As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        double IValueQuantity<double>.As(Enum unit)
-        {
-            if (!(unit is ElectricCurrentGradientUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricCurrentGradientUnit)} is supported.", nameof(unit));
-
             return As(typedUnit);
         }
 
@@ -917,18 +901,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ElectricCurrentGradientUnit> IQuantity<ElectricCurrentGradientUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(Enum unit)
-        {
-            if (unit is not ElectricCurrentGradientUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricCurrentGradientUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IValueQuantity<double> IValueQuantity<double>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 

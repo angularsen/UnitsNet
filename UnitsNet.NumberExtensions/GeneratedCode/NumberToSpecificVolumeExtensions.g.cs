@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificVolume
     /// </summary>
     public static class NumberToSpecificVolumeExtensions
     {
-        /// <inheritdoc cref="SpecificVolume.FromCubicFeetPerPound(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="SpecificVolume.FromCubicFeetPerPound(double)" />
         public static SpecificVolume CubicFeetPerPound<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificVolume
 #endif
             => SpecificVolume.FromCubicFeetPerPound(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="SpecificVolume.FromCubicMetersPerKilogram(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="SpecificVolume.FromCubicMetersPerKilogram(double)" />
         public static SpecificVolume CubicMetersPerKilogram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificVolume
 #endif
             => SpecificVolume.FromCubicMetersPerKilogram(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="SpecificVolume.FromMillicubicMetersPerKilogram(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="SpecificVolume.FromMillicubicMetersPerKilogram(double)" />
         public static SpecificVolume MillicubicMetersPerKilogram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
