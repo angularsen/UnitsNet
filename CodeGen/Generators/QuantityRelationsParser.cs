@@ -59,15 +59,6 @@ namespace CodeGen.Generators
                 })
                 .ToList());
 
-            // We can infer TimeSpan relations from Duration relations.
-            // Because TimeSpan can be implicitly cast to Duration and vice versa,
-            // we only need to infer the relations where Duration is the left operand.
-            var timeSpanQuantity = pseudoQuantity with { Name = "TimeSpan" };
-            relations.AddRange(relations
-                .Where(r => r.LeftQuantity.Name is "Duration")
-                .Select(r => r with { LeftQuantity = timeSpanQuantity })
-                .ToList());
-
             // Sort all relations to keep generated operators in a consistent order.
             relations.Sort();
             
@@ -94,9 +85,9 @@ namespace CodeGen.Generators
                         // The left operand of a relation is responsible for generating the operator.
                         quantityRelations.Add(relation);
                     }
-                    else if (relation.RightQuantity == quantity && relation.LeftQuantity.Name is "double" or "TimeSpan")
+                    else if (relation.RightQuantity == quantity && relation.LeftQuantity.Name is "double")
                     {
-                        // Because we cannot add generated operators to double or TimeSpan, we make the right operand responsible in this case.
+                        // Because we cannot add operators to double we make the right operand responsible in this case.
                         quantityRelations.Add(relation);
                     }
                 }

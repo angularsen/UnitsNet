@@ -748,16 +748,6 @@ namespace UnitsNet
                     var rightParameter = relation.RightQuantity.Name.ToCamelCase();
                     var rightConversionProperty = relation.RightUnit.PluralName;
 
-                    if (relation.LeftQuantity.Name is nameof(TimeSpan))
-                    {
-                        leftConversionProperty = "Total" + leftConversionProperty;
-                    }
-
-                    if (relation.RightQuantity.Name is nameof(TimeSpan))
-                    {
-                        rightConversionProperty = "Total" + rightConversionProperty;
-                    }
-
                     if (leftParameter == rightParameter)
                     {
                         leftParameter = "left";
