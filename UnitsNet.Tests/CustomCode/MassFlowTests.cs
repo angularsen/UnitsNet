@@ -98,13 +98,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void TimeSpanTimesMassFlowEqualsMass()
-        {
-            Mass mass = TimeSpan.FromSeconds(4.0) * MassFlow.FromKilogramsPerSecond(20.0);
-            Assert.Equal(mass, Mass.FromKilograms(80.0));
-        }
-
-        [Fact]
         public void MassFlowDividedByBrakeSpecificFuelConsumptionEqualsPower()
         {
             Power power = MassFlow.FromTonnesPerDay(20) / BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(180.0);
