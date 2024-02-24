@@ -581,12 +581,6 @@ namespace UnitsNet
             return AmountOfSubstance.FromKilomoles(molarFlow.KilomolesPerSecond * duration.Seconds);
         }
 
-        /// <summary>Get <see cref="AmountOfSubstance"/> from <see cref="TimeSpan"/> * <see cref="MolarFlow"/>.</summary>
-        public static AmountOfSubstance operator *(TimeSpan timeSpan, MolarFlow molarFlow)
-        {
-            return AmountOfSubstance.FromKilomoles(timeSpan.TotalSeconds * molarFlow.KilomolesPerSecond);
-        }
-
         /// <summary>Get <see cref="MassFlow"/> from <see cref="MolarFlow"/> * <see cref="MolarMass"/>.</summary>
         public static MassFlow operator *(MolarFlow molarFlow, MolarMass molarMass)
         {

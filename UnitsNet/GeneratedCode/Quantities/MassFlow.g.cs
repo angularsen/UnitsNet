@@ -1012,12 +1012,6 @@ namespace UnitsNet
             return Mass.FromKilograms(massFlow.KilogramsPerSecond * duration.Seconds);
         }
 
-        /// <summary>Get <see cref="Mass"/> from <see cref="TimeSpan"/> * <see cref="MassFlow"/>.</summary>
-        public static Mass operator *(TimeSpan timeSpan, MassFlow massFlow)
-        {
-            return Mass.FromKilograms(timeSpan.TotalSeconds * massFlow.KilogramsPerSecond);
-        }
-
         /// <summary>Get <see cref="MassFlux"/> from <see cref="MassFlow"/> / <see cref="Area"/>.</summary>
         public static MassFlux operator /(MassFlow massFlow, Area area)
         {

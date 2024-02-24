@@ -545,12 +545,6 @@ namespace UnitsNet
             return ElectricCurrent.FromAmperes(electricCurrentGradient.AmperesPerSecond * duration.Seconds);
         }
 
-        /// <summary>Get <see cref="ElectricCurrent"/> from <see cref="TimeSpan"/> * <see cref="ElectricCurrentGradient"/>.</summary>
-        public static ElectricCurrent operator *(TimeSpan timeSpan, ElectricCurrentGradient electricCurrentGradient)
-        {
-            return ElectricCurrent.FromAmperes(timeSpan.TotalSeconds * electricCurrentGradient.AmperesPerSecond);
-        }
-
         #endregion
 
         #region Equality / IComparable

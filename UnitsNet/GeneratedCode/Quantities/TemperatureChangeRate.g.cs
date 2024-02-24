@@ -596,12 +596,6 @@ namespace UnitsNet
             return TemperatureDelta.FromDegreesCelsius(temperatureChangeRate.DegreesCelsiusPerSecond * duration.Seconds);
         }
 
-        /// <summary>Get <see cref="TemperatureDelta"/> from <see cref="TimeSpan"/> * <see cref="TemperatureChangeRate"/>.</summary>
-        public static TemperatureDelta operator *(TimeSpan timeSpan, TemperatureChangeRate temperatureChangeRate)
-        {
-            return TemperatureDelta.FromDegreesCelsius(timeSpan.TotalSeconds * temperatureChangeRate.DegreesCelsiusPerSecond);
-        }
-
         #endregion
 
         #region Equality / IComparable

@@ -896,12 +896,6 @@ namespace UnitsNet
             return Energy.FromJoules(power.Watts * duration.Seconds);
         }
 
-        /// <summary>Get <see cref="Energy"/> from <see cref="TimeSpan"/> * <see cref="Power"/>.</summary>
-        public static Energy operator *(TimeSpan timeSpan, Power power)
-        {
-            return Energy.FromJoules(timeSpan.TotalSeconds * power.Watts);
-        }
-
         /// <summary>Get <see cref="Force"/> from <see cref="Power"/> / <see cref="Speed"/>.</summary>
         public static Force operator /(Power power, Speed speed)
         {

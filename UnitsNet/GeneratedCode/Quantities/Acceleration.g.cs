@@ -685,12 +685,6 @@ namespace UnitsNet
             return Speed.FromMetersPerSecond(acceleration.MetersPerSecondSquared * duration.Seconds);
         }
 
-        /// <summary>Get <see cref="Speed"/> from <see cref="TimeSpan"/> * <see cref="Acceleration"/>.</summary>
-        public static Speed operator *(TimeSpan timeSpan, Acceleration acceleration)
-        {
-            return Speed.FromMetersPerSecond(timeSpan.TotalSeconds * acceleration.MetersPerSecondSquared);
-        }
-
         #endregion
 
         #region Equality / IComparable

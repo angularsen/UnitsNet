@@ -582,12 +582,6 @@ namespace UnitsNet
             return ElectricCharge.FromAmpereHours(electricCurrent.Amperes * duration.Hours);
         }
 
-        /// <summary>Get <see cref="ElectricCharge"/> from <see cref="TimeSpan"/> * <see cref="ElectricCurrent"/>.</summary>
-        public static ElectricCharge operator *(TimeSpan timeSpan, ElectricCurrent electricCurrent)
-        {
-            return ElectricCharge.FromAmpereHours(timeSpan.TotalHours * electricCurrent.Amperes);
-        }
-
         /// <summary>Get <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrent"/> / <see cref="Duration"/>.</summary>
         public static ElectricCurrentGradient operator /(ElectricCurrent electricCurrent, Duration duration)
         {

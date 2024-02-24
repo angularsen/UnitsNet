@@ -647,12 +647,6 @@ namespace UnitsNet
             return Angle.FromRadians(rotationalSpeed.RadiansPerSecond * duration.Seconds);
         }
 
-        /// <summary>Get <see cref="Angle"/> from <see cref="TimeSpan"/> * <see cref="RotationalSpeed"/>.</summary>
-        public static Angle operator *(TimeSpan timeSpan, RotationalSpeed rotationalSpeed)
-        {
-            return Angle.FromRadians(timeSpan.TotalSeconds * rotationalSpeed.RadiansPerSecond);
-        }
-
         #endregion
 
         #region Equality / IComparable

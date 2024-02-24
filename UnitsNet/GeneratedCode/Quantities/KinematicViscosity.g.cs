@@ -584,12 +584,6 @@ namespace UnitsNet
             return Area.FromSquareMeters(kinematicViscosity.SquareMetersPerSecond * duration.Seconds);
         }
 
-        /// <summary>Get <see cref="Area"/> from <see cref="TimeSpan"/> * <see cref="KinematicViscosity"/>.</summary>
-        public static Area operator *(TimeSpan timeSpan, KinematicViscosity kinematicViscosity)
-        {
-            return Area.FromSquareMeters(timeSpan.TotalSeconds * kinematicViscosity.SquareMetersPerSecond);
-        }
-
         /// <summary>Get <see cref="DynamicViscosity"/> from <see cref="KinematicViscosity"/> * <see cref="Density"/>.</summary>
         public static DynamicViscosity operator *(KinematicViscosity kinematicViscosity, Density density)
         {

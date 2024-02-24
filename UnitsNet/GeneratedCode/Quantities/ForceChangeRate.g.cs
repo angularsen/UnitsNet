@@ -681,12 +681,6 @@ namespace UnitsNet
             return Force.FromNewtons(forceChangeRate.NewtonsPerSecond * duration.Seconds);
         }
 
-        /// <summary>Get <see cref="Force"/> from <see cref="TimeSpan"/> * <see cref="ForceChangeRate"/>.</summary>
-        public static Force operator *(TimeSpan timeSpan, ForceChangeRate forceChangeRate)
-        {
-            return Force.FromNewtons(timeSpan.TotalSeconds * forceChangeRate.NewtonsPerSecond);
-        }
-
         #endregion
 
         #region Equality / IComparable

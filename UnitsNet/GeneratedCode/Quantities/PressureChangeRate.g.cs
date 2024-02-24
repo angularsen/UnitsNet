@@ -732,12 +732,6 @@ namespace UnitsNet
             return Pressure.FromPascals(pressureChangeRate.PascalsPerSecond * duration.Seconds);
         }
 
-        /// <summary>Get <see cref="Pressure"/> from <see cref="TimeSpan"/> * <see cref="PressureChangeRate"/>.</summary>
-        public static Pressure operator *(TimeSpan timeSpan, PressureChangeRate pressureChangeRate)
-        {
-            return Pressure.FromPascals(timeSpan.TotalSeconds * pressureChangeRate.PascalsPerSecond);
-        }
-
         #endregion
 
         #region Equality / IComparable

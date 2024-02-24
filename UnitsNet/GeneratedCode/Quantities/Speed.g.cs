@@ -1012,12 +1012,6 @@ namespace UnitsNet
             return Length.FromMeters(speed.MetersPerSecond * duration.Seconds);
         }
 
-        /// <summary>Get <see cref="Length"/> from <see cref="TimeSpan"/> * <see cref="Speed"/>.</summary>
-        public static Length operator *(TimeSpan timeSpan, Speed speed)
-        {
-            return Length.FromMeters(timeSpan.TotalSeconds * speed.MetersPerSecond);
-        }
-
         /// <summary>Get <see cref="MassFlux"/> from <see cref="Speed"/> * <see cref="Density"/>.</summary>
         public static MassFlux operator *(Speed speed, Density density)
         {
