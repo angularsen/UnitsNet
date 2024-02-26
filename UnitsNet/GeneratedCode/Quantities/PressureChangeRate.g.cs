@@ -43,7 +43,6 @@ namespace UnitsNet
         IArithmeticQuantity<PressureChangeRate, PressureChangeRateUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<PressureChangeRate, Duration, Pressure>,
-        IMultiplyOperators<PressureChangeRate, TimeSpan, Pressure>,
 #endif
         IComparable,
         IComparable<PressureChangeRate>,
@@ -712,18 +711,6 @@ namespace UnitsNet
         public static Pressure operator *(PressureChangeRate pressureChangeRate, Duration duration)
         {
             return Pressure.FromPascals(pressureChangeRate.PascalsPerSecond * duration.Seconds);
-        }
-
-        /// <summary>Get <see cref="Pressure"/> from <see cref="PressureChangeRate"/> * <see cref="TimeSpan"/>.</summary>
-        public static Pressure operator *(PressureChangeRate pressureChangeRate, TimeSpan timeSpan)
-        {
-            return Pressure.FromPascals(pressureChangeRate.PascalsPerSecond * timeSpan.TotalSeconds);
-        }
-
-        /// <summary>Get <see cref="Pressure"/> from <see cref="TimeSpan"/> * <see cref="PressureChangeRate"/>.</summary>
-        public static Pressure operator *(TimeSpan timeSpan, PressureChangeRate pressureChangeRate)
-        {
-            return Pressure.FromPascals(timeSpan.TotalSeconds * pressureChangeRate.PascalsPerSecond);
         }
 
         #endregion

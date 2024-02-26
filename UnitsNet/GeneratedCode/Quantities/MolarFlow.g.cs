@@ -43,7 +43,6 @@ namespace UnitsNet
         IArithmeticQuantity<MolarFlow, MolarFlowUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<MolarFlow, Duration, AmountOfSubstance>,
-        IMultiplyOperators<MolarFlow, TimeSpan, AmountOfSubstance>,
         IMultiplyOperators<MolarFlow, MolarMass, MassFlow>,
         IDivisionOperators<MolarFlow, Molarity, VolumeFlow>,
 #endif
@@ -570,18 +569,6 @@ namespace UnitsNet
         public static AmountOfSubstance operator *(MolarFlow molarFlow, Duration duration)
         {
             return AmountOfSubstance.FromKilomoles(molarFlow.KilomolesPerSecond * duration.Seconds);
-        }
-
-        /// <summary>Get <see cref="AmountOfSubstance"/> from <see cref="MolarFlow"/> * <see cref="TimeSpan"/>.</summary>
-        public static AmountOfSubstance operator *(MolarFlow molarFlow, TimeSpan timeSpan)
-        {
-            return AmountOfSubstance.FromKilomoles(molarFlow.KilomolesPerSecond * timeSpan.TotalSeconds);
-        }
-
-        /// <summary>Get <see cref="AmountOfSubstance"/> from <see cref="TimeSpan"/> * <see cref="MolarFlow"/>.</summary>
-        public static AmountOfSubstance operator *(TimeSpan timeSpan, MolarFlow molarFlow)
-        {
-            return AmountOfSubstance.FromKilomoles(timeSpan.TotalSeconds * molarFlow.KilomolesPerSecond);
         }
 
         /// <summary>Get <see cref="MassFlow"/> from <see cref="MolarFlow"/> * <see cref="MolarMass"/>.</summary>

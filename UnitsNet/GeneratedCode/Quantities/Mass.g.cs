@@ -54,7 +54,6 @@ namespace UnitsNet
         IMultiplyOperators<Mass, MassFraction, Mass>,
         IDivisionOperators<Mass, MassFraction, Mass>,
         IDivisionOperators<Mass, Duration, MassFlow>,
-        IDivisionOperators<Mass, TimeSpan, MassFlow>,
         IMultiplyOperators<Mass, SpecificVolume, Volume>,
         IDivisionOperators<Mass, Density, Volume>,
 #endif
@@ -935,12 +934,6 @@ namespace UnitsNet
         public static MassFlow operator /(Mass mass, Duration duration)
         {
             return MassFlow.FromKilogramsPerSecond(mass.Kilograms / duration.Seconds);
-        }
-
-        /// <summary>Get <see cref="MassFlow"/> from <see cref="Mass"/> / <see cref="TimeSpan"/>.</summary>
-        public static MassFlow operator /(Mass mass, TimeSpan timeSpan)
-        {
-            return MassFlow.FromKilogramsPerSecond(mass.Kilograms / timeSpan.TotalSeconds);
         }
 
         /// <summary>Get <see cref="Volume"/> from <see cref="Mass"/> * <see cref="SpecificVolume"/>.</summary>

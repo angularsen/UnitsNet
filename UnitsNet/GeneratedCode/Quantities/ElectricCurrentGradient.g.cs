@@ -43,7 +43,6 @@ namespace UnitsNet
         IArithmeticQuantity<ElectricCurrentGradient, ElectricCurrentGradientUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<ElectricCurrentGradient, Duration, ElectricCurrent>,
-        IMultiplyOperators<ElectricCurrentGradient, TimeSpan, ElectricCurrent>,
 #endif
         IComparable,
         IComparable<ElectricCurrentGradient>,
@@ -536,18 +535,6 @@ namespace UnitsNet
         public static ElectricCurrent operator *(ElectricCurrentGradient electricCurrentGradient, Duration duration)
         {
             return ElectricCurrent.FromAmperes(electricCurrentGradient.AmperesPerSecond * duration.Seconds);
-        }
-
-        /// <summary>Get <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentGradient"/> * <see cref="TimeSpan"/>.</summary>
-        public static ElectricCurrent operator *(ElectricCurrentGradient electricCurrentGradient, TimeSpan timeSpan)
-        {
-            return ElectricCurrent.FromAmperes(electricCurrentGradient.AmperesPerSecond * timeSpan.TotalSeconds);
-        }
-
-        /// <summary>Get <see cref="ElectricCurrent"/> from <see cref="TimeSpan"/> * <see cref="ElectricCurrentGradient"/>.</summary>
-        public static ElectricCurrent operator *(TimeSpan timeSpan, ElectricCurrentGradient electricCurrentGradient)
-        {
-            return ElectricCurrent.FromAmperes(timeSpan.TotalSeconds * electricCurrentGradient.AmperesPerSecond);
         }
 
         #endregion

@@ -105,13 +105,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void TimeSpanTimesPowerEqualsEnergy()
-        {
-            Energy energy = TimeSpan.FromSeconds(8.0) * Power.FromWatts(5.0);
-            Assert.Equal(energy, Energy.FromJoules(40.0));
-        }
-
-        [Fact]
         public void PowerTimesBrakeSpecificFuelConsumptionEqualsMassFlow()
         {
             MassFlow massFlow = Power.FromKilowatts(20.0 / 24.0 * 1e6 / 180.0) * BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(180.0);

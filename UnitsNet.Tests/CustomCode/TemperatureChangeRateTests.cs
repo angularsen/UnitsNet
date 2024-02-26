@@ -37,13 +37,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void TimeSpanMultipliedWithTemperatureChangeRateEqualsTemperatureDelta()
-        {
-            TemperatureDelta d = new TimeSpan(0, 0, -10) * TemperatureChangeRate.FromDegreesCelsiusPerSecond(2);
-            Assert.Equal(TemperatureDelta.FromDegreesCelsius(-20), d);
-        }
-
-        [Fact]
         public void TemperatureChangeRateMultipliedWithDurationEqualsTemperatureDelta()
         {
             TemperatureDelta d = TemperatureChangeRate.FromDegreesCelsiusPerSecond(2) * Duration.FromSeconds(10);

@@ -132,13 +132,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void TimeSpanTimesSpeedEqualsLength()
-        {
-            Length length = TimeSpan.FromSeconds(2)*Speed.FromMetersPerSecond(20);
-            Assert.Equal(length, Length.FromMeters(40));
-        }
-
-        [Fact]
         public void SpeedTimesLengthEqualsKinematicViscosity()
         {
             KinematicViscosity kinematicViscosity = Length.FromMeters(20) * Speed.FromMetersPerSecond(2);

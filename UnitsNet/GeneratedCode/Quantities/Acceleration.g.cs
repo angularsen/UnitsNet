@@ -44,10 +44,8 @@ namespace UnitsNet
 #if NET7_0_OR_GREATER
         IMultiplyOperators<Acceleration, Mass, Force>,
         IDivisionOperators<Acceleration, Duration, Jerk>,
-        IDivisionOperators<Acceleration, TimeSpan, Jerk>,
         IMultiplyOperators<Acceleration, Density, SpecificWeight>,
         IMultiplyOperators<Acceleration, Duration, Speed>,
-        IMultiplyOperators<Acceleration, TimeSpan, Speed>,
 #endif
         IComparable,
         IComparable<Acceleration>,
@@ -660,12 +658,6 @@ namespace UnitsNet
             return Jerk.FromMetersPerSecondCubed(acceleration.MetersPerSecondSquared / duration.Seconds);
         }
 
-        /// <summary>Get <see cref="Jerk"/> from <see cref="Acceleration"/> / <see cref="TimeSpan"/>.</summary>
-        public static Jerk operator /(Acceleration acceleration, TimeSpan timeSpan)
-        {
-            return Jerk.FromMetersPerSecondCubed(acceleration.MetersPerSecondSquared / timeSpan.TotalSeconds);
-        }
-
         /// <summary>Get <see cref="SpecificWeight"/> from <see cref="Acceleration"/> * <see cref="Density"/>.</summary>
         public static SpecificWeight operator *(Acceleration acceleration, Density density)
         {
@@ -676,18 +668,6 @@ namespace UnitsNet
         public static Speed operator *(Acceleration acceleration, Duration duration)
         {
             return Speed.FromMetersPerSecond(acceleration.MetersPerSecondSquared * duration.Seconds);
-        }
-
-        /// <summary>Get <see cref="Speed"/> from <see cref="Acceleration"/> * <see cref="TimeSpan"/>.</summary>
-        public static Speed operator *(Acceleration acceleration, TimeSpan timeSpan)
-        {
-            return Speed.FromMetersPerSecond(acceleration.MetersPerSecondSquared * timeSpan.TotalSeconds);
-        }
-
-        /// <summary>Get <see cref="Speed"/> from <see cref="TimeSpan"/> * <see cref="Acceleration"/>.</summary>
-        public static Speed operator *(TimeSpan timeSpan, Acceleration acceleration)
-        {
-            return Speed.FromMetersPerSecond(timeSpan.TotalSeconds * acceleration.MetersPerSecondSquared);
         }
 
         #endregion
