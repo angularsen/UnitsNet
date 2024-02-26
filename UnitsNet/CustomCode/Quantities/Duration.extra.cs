@@ -11,9 +11,19 @@ namespace UnitsNet
         /// <summary>
         ///     Convert a Duration to a TimeSpan.
         /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     Throws if the duration exceeds the <see cref="TimeSpan"/>.<see cref="TimeSpan.MaxValue"/> or
+        ///     <see cref="TimeSpan.MinValue"/>, which would cause it to roll over from positive to negative and vice versa.
+        /// </exception>
         /// <returns>The TimeSpan with the same time as the duration</returns>
         public TimeSpan ToTimeSpan()
         {
+            if (Seconds > TimeSpan.MaxValue.TotalSeconds) throw new ArgumentOutOfRangeException(nameof(Seconds),
+                    "The duration is too large for a TimeSpan, which would roll over from positive to negative.");
+
+            if (Seconds < TimeSpan.MinValue.TotalSeconds) throw new ArgumentOutOfRangeException(nameof(Seconds),
+                    "The duration is too small for a TimeSpan, which would roll over from negative to positive.");
+
             return TimeSpan.FromTicks((long)(Seconds * TimeSpan.TicksPerSecond));
         }
 

@@ -34,6 +34,20 @@ namespace UnitsNet.Tests
         protected override double JulianYearsInOneSecond => 3.16880878140289e-08;
 
         [Fact]
+        public static void ToTimeSpanShouldThrowExceptionOnValuesLargerThanTimeSpanMax()
+        {
+            Duration duration = Duration.FromSeconds(TimeSpan.MaxValue.TotalSeconds + 1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => duration.ToTimeSpan());
+        }
+
+        [Fact]
+        public static void ToTimeSpanShouldThrowExceptionOnValuesSmallerThanTimeSpanMin()
+        {
+            Duration duration = Duration.FromSeconds(TimeSpan.MinValue.TotalSeconds - 1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => duration.ToTimeSpan());
+        }
+
+        [Fact]
         public static void ToTimeSpanShouldNotThrowExceptionOnValuesSlightlyLargerThanTimeSpanMin()
         {
             Duration duration = Duration.FromSeconds(TimeSpan.MinValue.TotalSeconds + 1);
