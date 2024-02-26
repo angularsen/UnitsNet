@@ -1,6 +1,8 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using System;
+
 namespace UnitsNet
 {
     public partial struct TemperatureDelta
@@ -39,6 +41,18 @@ namespace UnitsNet
         public static double operator *(TemperatureDelta temperatureDelta, CoefficientOfThermalExpansion cte)
         {
             return temperatureDelta.Kelvins * cte.PerKelvin;
+        }
+
+        /// <summary> Get <see cref="TemperatureChangeRate"/> from <see cref="TemperatureDelta"/> divided by <see cref="TimeSpan"/>.</summary>
+        public static TemperatureChangeRate operator /(TemperatureDelta temperatureDelta, TimeSpan timespan)
+        {
+            return TemperatureChangeRate.FromDegreesCelsiusPerSecond(temperatureDelta.Kelvins / timespan.TotalSeconds);
+        }
+
+        /// <summary> Get <see cref="TemperatureChangeRate"/> from <see cref="TemperatureDelta"/> divided by <see cref="Duration"/>.</summary>
+        public static TemperatureChangeRate operator /(TemperatureDelta temperatureDelta, Duration duration)
+        {
+            return TemperatureChangeRate.FromDegreesCelsiusPerSecond(temperatureDelta.Kelvins / duration.Seconds);
         }
     }
 }
