@@ -66,14 +66,14 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Fact]
-        public void TemperatureDeltaDevidedByTimeSpanEqualsTemperatureChangeRate()
+        public void TemperatureDeltaDividedByTimeSpanEqualsTemperatureChangeRate()
         {
             TemperatureChangeRate changeRate = TemperatureDelta.FromKelvins(20) / TimeSpan.FromSeconds(2); ;
             Assert.Equal(TemperatureChangeRate.FromDegreesCelsiusPerSecond(10), changeRate);
         }
 
         [Fact]
-        public void TemperatureDeltaDevidedByDurationEqualsTemperatureChangeRate()
+        public void TemperatureDeltaDividedByDurationEqualsTemperatureChangeRate()
         {
             TemperatureChangeRate changeRate = TemperatureDelta.FromKelvins(20) / Duration.FromSeconds(2); ;
             Assert.Equal(TemperatureChangeRate.FromDegreesCelsiusPerSecond(10), changeRate);
