@@ -142,6 +142,7 @@
   "Speed.MeterPerSecond = Length.Meter / Duration.Second",
   "Speed.MeterPerSecond = MassFlux.KilogramPerSecondPerSquareMeter / Density.KilogramPerCubicMeter",
   "Speed.MeterPerSecond = VolumeFlow.CubicMeterPerSecond / Area.SquareMeter",
+  "TemperatureChangeRate.DegreeCelsiusPerSecond = TemperatureDelta.DegreeCelsius / Duration.Second",
   "TemperatureDelta.DegreeCelsius = TemperatureChangeRate.DegreeCelsiusPerSecond * Duration.Second",
   "TemperatureDelta.DegreeCelsius = TemperatureGradient.DegreeCelsiusPerKilometer * Length.Kilometer",
   "TemperatureDelta.Kelvin = Energy.Joule / Entropy.JoulePerKelvin",

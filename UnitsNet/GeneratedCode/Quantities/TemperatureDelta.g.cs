@@ -45,6 +45,7 @@ namespace UnitsNet
         IMultiplyOperators<TemperatureDelta, Entropy, Energy>,
         IDivisionOperators<TemperatureDelta, TemperatureGradient, Length>,
         IMultiplyOperators<TemperatureDelta, SpecificEntropy, SpecificEnergy>,
+        IDivisionOperators<TemperatureDelta, Duration, TemperatureChangeRate>,
         IDivisionOperators<TemperatureDelta, Length, TemperatureGradient>,
         IMultiplyOperators<TemperatureDelta, CoefficientOfThermalExpansion, double>,
 #endif
@@ -583,6 +584,12 @@ namespace UnitsNet
         public static SpecificEnergy operator *(TemperatureDelta temperatureDelta, SpecificEntropy specificEntropy)
         {
             return SpecificEnergy.FromJoulesPerKilogram(temperatureDelta.Kelvins * specificEntropy.JoulesPerKilogramKelvin);
+        }
+
+        /// <summary>Get <see cref="TemperatureChangeRate"/> from <see cref="TemperatureDelta"/> / <see cref="Duration"/>.</summary>
+        public static TemperatureChangeRate operator /(TemperatureDelta temperatureDelta, Duration duration)
+        {
+            return TemperatureChangeRate.FromDegreesCelsiusPerSecond(temperatureDelta.DegreesCelsius / duration.Seconds);
         }
 
         /// <summary>Get <see cref="TemperatureGradient"/> from <see cref="TemperatureDelta"/> / <see cref="Length"/>.</summary>
