@@ -33,19 +33,6 @@
       ]
     },
     {
-      "SingularName": "BtuPerSquareFootDegreeFahrenheit",
-      "PluralName": "BtusPerSquareFootDegreeFahrenheit",
-      "ObsoleteText": "The name of this definition incorrectly omitted time as divisor, please use BtuPerHourSquareFootDegreeFahrenheit instead",
-      "FromUnitToBaseFunc": "{x} * 5.6782633411134878",
-      "FromBaseToUnitFunc": "{x} / 5.6782633411134878",
-      "Localization": [
-        {
-          "Culture": "en-US",
-          "Abbreviations": [ "Btu/ft²·°F" ]
-        }
-      ]
-    },
-    {
       "SingularName": "BtuPerHourSquareFootDegreeFahrenheit",
       "PluralName": "BtusPerHourSquareFootDegreeFahrenheit",
       "FromUnitToBaseFunc": "{x} * 5.6782633411134878",
