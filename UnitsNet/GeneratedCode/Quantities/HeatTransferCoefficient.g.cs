@@ -66,7 +66,6 @@ namespace UnitsNet
                 new UnitInfo<HeatTransferCoefficientUnit>[]
                 {
                     new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit, "BtusPerHourSquareFootDegreeFahrenheit", BaseUnits.Undefined, "HeatTransferCoefficient"),
-                    new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit, "BtusPerSquareFootDegreeFahrenheit", BaseUnits.Undefined, "HeatTransferCoefficient"),
                     new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius, "CaloriesPerHourSquareMeterDegreeCelsius", BaseUnits.Undefined, "HeatTransferCoefficient"),
                     new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius, "KilocaloriesPerHourSquareMeterDegreeCelsius", BaseUnits.Undefined, "HeatTransferCoefficient"),
                     new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, "WattsPerSquareMeterCelsius", BaseUnits.Undefined, "HeatTransferCoefficient"),
@@ -179,12 +178,6 @@ namespace UnitsNet
         public double BtusPerHourSquareFootDegreeFahrenheit => As(HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit"/>
-        /// </summary>
-        [Obsolete("The name of this definition incorrectly omitted time as divisor, please use BtuPerHourSquareFootDegreeFahrenheit instead")]
-        public double BtusPerSquareFootDegreeFahrenheit => As(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit);
-
-        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius"/>
         /// </summary>
         public double CaloriesPerHourSquareMeterDegreeCelsius => As(HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius);
@@ -216,7 +209,6 @@ namespace UnitsNet
         {
             // Register in unit converter: HeatTransferCoefficientUnit -> BaseUnit
             unitConverter.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, quantity => quantity.ToUnit(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin));
-            unitConverter.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, quantity => quantity.ToUnit(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin));
             unitConverter.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, quantity => quantity.ToUnit(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin));
             unitConverter.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, quantity => quantity.ToUnit(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin));
             unitConverter.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, quantity => quantity.ToUnit(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin));
@@ -226,7 +218,6 @@ namespace UnitsNet
 
             // Register in unit converter: BaseUnit -> HeatTransferCoefficientUnit
             unitConverter.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit, quantity => quantity.ToUnit(HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit));
-            unitConverter.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit, quantity => quantity.ToUnit(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit));
             unitConverter.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius, quantity => quantity.ToUnit(HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius));
             unitConverter.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius, quantity => quantity.ToUnit(HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius));
             unitConverter.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, quantity => quantity.ToUnit(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius));
@@ -263,15 +254,6 @@ namespace UnitsNet
         public static HeatTransferCoefficient FromBtusPerHourSquareFootDegreeFahrenheit(double value)
         {
             return new HeatTransferCoefficient(value, HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="HeatTransferCoefficient"/> from <see cref="HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit"/>.
-        /// </summary>
-        [Obsolete("The name of this definition incorrectly omitted time as divisor, please use BtuPerHourSquareFootDegreeFahrenheit instead")]
-        public static HeatTransferCoefficient FromBtusPerSquareFootDegreeFahrenheit(double value)
-        {
-            return new HeatTransferCoefficient(value, HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit);
         }
 
         /// <summary>
@@ -791,14 +773,12 @@ namespace UnitsNet
             {
                 // HeatTransferCoefficientUnit -> BaseUnit
                 (HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin) => new HeatTransferCoefficient(_value * 5.6782633411134878, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin),
-                (HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin) => new HeatTransferCoefficient(_value * 5.6782633411134878, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin),
                 (HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin) => new HeatTransferCoefficient((_value * 4.1868) / 3600, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin),
                 (HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin) => new HeatTransferCoefficient(((_value * 4.1868) / 3600) * 1e3d, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin),
                 (HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin) => new HeatTransferCoefficient(_value, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin),
 
                 // BaseUnit -> HeatTransferCoefficientUnit
                 (HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit) => new HeatTransferCoefficient(_value / 5.6782633411134878, HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit),
-                (HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit) => new HeatTransferCoefficient(_value / 5.6782633411134878, HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit),
                 (HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius) => new HeatTransferCoefficient((_value / 4.1868) * 3600, HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius),
                 (HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius) => new HeatTransferCoefficient(((_value / 4.1868) * 3600) / 1e3d, HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius),
                 (HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, HeatTransferCoefficientUnit.WattPerSquareMeterCelsius) => new HeatTransferCoefficient(_value, HeatTransferCoefficientUnit.WattPerSquareMeterCelsius),
