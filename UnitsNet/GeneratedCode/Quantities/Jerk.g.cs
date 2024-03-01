@@ -21,6 +21,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -38,6 +41,9 @@ namespace UnitsNet
     [DataContract]
     public readonly partial struct Jerk :
         IArithmeticQuantity<Jerk, JerkUnit>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<Jerk, Duration, Acceleration>,
+#endif
         IComparable,
         IComparable<Jerk>,
         IConvertible,
@@ -583,6 +589,16 @@ namespace UnitsNet
         public static double operator /(Jerk left, Jerk right)
         {
             return left.MetersPerSecondCubed / right.MetersPerSecondCubed;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Acceleration"/> from <see cref="Jerk"/> * <see cref="Duration"/>.</summary>
+        public static Acceleration operator *(Jerk jerk, Duration duration)
+        {
+            return Acceleration.FromMetersPerSecondSquared(jerk.MetersPerSecondCubed * duration.Seconds);
         }
 
         #endregion

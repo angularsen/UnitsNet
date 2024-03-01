@@ -42,11 +42,15 @@ namespace UnitsNet
     public readonly partial struct Pressure :
         IArithmeticQuantity<Pressure, PressureUnit>,
 #if NET7_0_OR_GREATER
-        IMultiplyOperators<Pressure, Area, Force>,
+        IDivisionOperators<Pressure, PressureChangeRate, Duration>,
         IDivisionOperators<Pressure, ReciprocalArea, Force>,
+        IMultiplyOperators<Pressure, Area, Force>,
+        IMultiplyOperators<Pressure, Length, ForcePerLength>,
         IDivisionOperators<Pressure, ReciprocalLength, ForcePerLength>,
         IDivisionOperators<Pressure, SpecificWeight, Length>,
         IDivisionOperators<Pressure, Duration, PressureChangeRate>,
+        IDivisionOperators<Pressure, Force, ReciprocalArea>,
+        IDivisionOperators<Pressure, ForcePerLength, ReciprocalLength>,
         IDivisionOperators<Pressure, Length, SpecificWeight>,
 #endif
         IComparable,
@@ -1208,22 +1212,34 @@ namespace UnitsNet
 
         #region Relational Operators
 
+        /// <summary>Get <see cref="Duration"/> from <see cref="Pressure"/> / <see cref="PressureChangeRate"/>.</summary>
+        public static Duration operator /(Pressure pressure, PressureChangeRate pressureChangeRate)
+        {
+            return Duration.FromSeconds(pressure.Pascals / pressureChangeRate.PascalsPerSecond);
+        }
+
+        /// <summary>Get <see cref="Force"/> from <see cref="Pressure"/> / <see cref="ReciprocalArea"/>.</summary>
+        public static Force operator /(Pressure pressure, ReciprocalArea reciprocalArea)
+        {
+            return Force.FromNewtons(pressure.NewtonsPerSquareMeter / reciprocalArea.InverseSquareMeters);
+        }
+
         /// <summary>Get <see cref="Force"/> from <see cref="Pressure"/> * <see cref="Area"/>.</summary>
         public static Force operator *(Pressure pressure, Area area)
         {
             return Force.FromNewtons(pressure.Pascals * area.SquareMeters);
         }
 
-        /// <summary>Get <see cref="Force"/> from <see cref="Pressure"/> / <see cref="ReciprocalArea"/>.</summary>
-        public static Force operator /(Pressure pressure, ReciprocalArea reciprocalArea)
+        /// <summary>Get <see cref="ForcePerLength"/> from <see cref="Pressure"/> * <see cref="Length"/>.</summary>
+        public static ForcePerLength operator *(Pressure pressure, Length length)
         {
-            return Force.FromNewtons(pressure.Pascals / reciprocalArea.InverseSquareMeters);
+            return ForcePerLength.FromNewtonsPerMeter(pressure.NewtonsPerSquareMeter * length.Meters);
         }
 
         /// <summary>Get <see cref="ForcePerLength"/> from <see cref="Pressure"/> / <see cref="ReciprocalLength"/>.</summary>
         public static ForcePerLength operator /(Pressure pressure, ReciprocalLength reciprocalLength)
         {
-            return ForcePerLength.FromNewtonsPerMeter(pressure.Pascals / reciprocalLength.InverseMeters);
+            return ForcePerLength.FromNewtonsPerMeter(pressure.NewtonsPerSquareMeter / reciprocalLength.InverseMeters);
         }
 
         /// <summary>Get <see cref="Length"/> from <see cref="Pressure"/> / <see cref="SpecificWeight"/>.</summary>
@@ -1236,6 +1252,18 @@ namespace UnitsNet
         public static PressureChangeRate operator /(Pressure pressure, Duration duration)
         {
             return PressureChangeRate.FromPascalsPerSecond(pressure.Pascals / duration.Seconds);
+        }
+
+        /// <summary>Get <see cref="ReciprocalArea"/> from <see cref="Pressure"/> / <see cref="Force"/>.</summary>
+        public static ReciprocalArea operator /(Pressure pressure, Force force)
+        {
+            return ReciprocalArea.FromInverseSquareMeters(pressure.NewtonsPerSquareMeter / force.Newtons);
+        }
+
+        /// <summary>Get <see cref="ReciprocalLength"/> from <see cref="Pressure"/> / <see cref="ForcePerLength"/>.</summary>
+        public static ReciprocalLength operator /(Pressure pressure, ForcePerLength forcePerLength)
+        {
+            return ReciprocalLength.FromInverseMeters(pressure.NewtonsPerSquareMeter / forcePerLength.NewtonsPerMeter);
         }
 
         /// <summary>Get <see cref="SpecificWeight"/> from <see cref="Pressure"/> / <see cref="Length"/>.</summary>

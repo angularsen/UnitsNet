@@ -47,6 +47,8 @@ namespace UnitsNet
         IDivisionOperators<MassFlow, VolumeFlow, Density>,
         IMultiplyOperators<MassFlow, Duration, Mass>,
         IDivisionOperators<MassFlow, Area, MassFlux>,
+        IDivisionOperators<MassFlow, MolarMass, MolarFlow>,
+        IDivisionOperators<MassFlow, MolarFlow, MolarMass>,
         IMultiplyOperators<MassFlow, SpecificEnergy, Power>,
         IDivisionOperators<MassFlow, BrakeSpecificFuelConsumption, Power>,
         IDivisionOperators<MassFlow, Density, VolumeFlow>,
@@ -982,6 +984,18 @@ namespace UnitsNet
         public static MassFlux operator /(MassFlow massFlow, Area area)
         {
             return MassFlux.FromKilogramsPerSecondPerSquareMeter(massFlow.KilogramsPerSecond / area.SquareMeters);
+        }
+
+        /// <summary>Get <see cref="MolarFlow"/> from <see cref="MassFlow"/> / <see cref="MolarMass"/>.</summary>
+        public static MolarFlow operator /(MassFlow massFlow, MolarMass molarMass)
+        {
+            return MolarFlow.FromKilomolesPerSecond(massFlow.KilogramsPerSecond / molarMass.KilogramsPerKilomole);
+        }
+
+        /// <summary>Get <see cref="MolarMass"/> from <see cref="MassFlow"/> / <see cref="MolarFlow"/>.</summary>
+        public static MolarMass operator /(MassFlow massFlow, MolarFlow molarFlow)
+        {
+            return MolarMass.FromKilogramsPerKilomole(massFlow.KilogramsPerSecond / molarFlow.KilomolesPerSecond);
         }
 
         /// <summary>Get <see cref="Power"/> from <see cref="MassFlow"/> * <see cref="SpecificEnergy"/>.</summary>

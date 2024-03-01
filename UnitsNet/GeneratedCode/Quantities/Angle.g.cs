@@ -42,6 +42,7 @@ namespace UnitsNet
     public readonly partial struct Angle :
         IArithmeticQuantity<Angle, AngleUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<Angle, RotationalSpeed, Duration>,
         IDivisionOperators<Angle, Duration, RotationalSpeed>,
         IMultiplyOperators<Angle, RotationalStiffness, Torque>,
 #endif
@@ -675,6 +676,12 @@ namespace UnitsNet
         #endregion
 
         #region Relational Operators
+
+        /// <summary>Get <see cref="Duration"/> from <see cref="Angle"/> / <see cref="RotationalSpeed"/>.</summary>
+        public static Duration operator /(Angle angle, RotationalSpeed rotationalSpeed)
+        {
+            return Duration.FromSeconds(angle.Radians / rotationalSpeed.RadiansPerSecond);
+        }
 
         /// <summary>Get <see cref="RotationalSpeed"/> from <see cref="Angle"/> / <see cref="Duration"/>.</summary>
         public static RotationalSpeed operator /(Angle angle, Duration duration)

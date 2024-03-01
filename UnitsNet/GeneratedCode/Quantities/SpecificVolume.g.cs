@@ -43,6 +43,7 @@ namespace UnitsNet
         IArithmeticQuantity<SpecificVolume, SpecificVolumeUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<SpecificVolume, Mass, Volume>,
+        IMultiplyOperators<SpecificVolume, Density, double>,
 #endif
         IComparable,
         IComparable<SpecificVolume>,
@@ -477,6 +478,12 @@ namespace UnitsNet
         public static Volume operator *(SpecificVolume specificVolume, Mass mass)
         {
             return Volume.FromCubicMeters(specificVolume.CubicMetersPerKilogram * mass.Kilograms);
+        }
+
+        /// <summary>Get <see cref="double"/> from <see cref="SpecificVolume"/> * <see cref="Density"/>.</summary>
+        public static double operator *(SpecificVolume specificVolume, Density density)
+        {
+            return specificVolume.CubicMetersPerKilogram * density.KilogramsPerCubicMeter;
         }
 
         #endregion

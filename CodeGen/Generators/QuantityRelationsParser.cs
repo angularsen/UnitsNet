@@ -25,13 +25,16 @@ namespace CodeGen.Generators
         ///
         ///     The format of a relation definition is "Quantity.Unit operator Quantity.Unit = Quantity.Unit" (See examples below).
         ///     "double" can be used as a unitless operand.
-        ///     "1" can be used as the left operand to define inverse relations.
+        ///     "1" can be used as the result operand to define inverse relations.
+        ///
+        ///     Division relations are inferred from multiplication relations,
+        ///     but this can be skipped if the string ends with "NoInferredDivision".
         /// </summary>
         /// <example>
         /// [
-        ///     "Power.Watt = ElectricPotential.Volt * ElectricCurrent.Ampere",
-        ///     "Speed.MeterPerSecond = Length.Meter / Duration.Second",
-        ///     "ReciprocalLength.InverseMeter = 1 / Length.Meter"
+        ///   "1 = Length.Meter * ReciprocalLength.InverseMeter"
+        ///   "Power.Watt = ElectricPotential.Volt * ElectricCurrent.Ampere",
+        ///   "Mass.Kilogram = MassConcentration.KilogramPerCubicMeter * Volume.CubicMeter -- NoInferredDivision",
         /// ]
         /// </example>
         /// <param name="rootDir">Repository root directory.</param>
@@ -58,10 +61,25 @@ namespace CodeGen.Generators
                     RightUnit = r.LeftUnit,
                 })
                 .ToList());
+            
+            // We can infer division relations from multiplication relations.
+            relations.AddRange(relations
+                .Where(r => r is { Operator: "*", NoInferredDivision: false })
+                .Select(r => r with
+                {
+                    Operator = "/",
+                    LeftQuantity = r.ResultQuantity,
+                    LeftUnit = r.ResultUnit,
+                    ResultQuantity = r.LeftQuantity,
+                    ResultUnit = r.LeftUnit,
+                })
+                // Skip division between equal quantities because the ratio is already generated as part of the Arithmetic Operators.
+                .Where(r => r.LeftQuantity != r.RightQuantity)
+                .ToList());
 
             // Sort all relations to keep generated operators in a consistent order.
             relations.Sort();
-            
+
             var duplicates = relations
                 .GroupBy(r => r.SortString)
                 .Where(g => g.Count() > 1)
@@ -72,6 +90,18 @@ namespace CodeGen.Generators
             {
                 var list = string.Join("\n  ", duplicates);
                 throw new UnitsNetCodeGenException($"Duplicate inferred relations:\n  {list}");
+            }
+            
+            var ambiguous = relations
+                .GroupBy(r => $"{r.LeftQuantity.Name} {r.Operator} {r.RightQuantity.Name}")
+                .Where(g => g.Count() > 1)
+                .Select(g => g.Key)
+                .ToList();
+
+            if (ambiguous.Any())
+            {
+                var list = string.Join("\n  ", ambiguous);
+                throw new UnitsNetCodeGenException($"Ambiguous inferred relations:\n  {list}\n\nHint: you could use NoInferredDivision in the definition file.");
             }
 
             foreach (var quantity in quantities)
@@ -122,7 +152,7 @@ namespace CodeGen.Generators
         {
             var segments = relationString.Split(' ');
 
-            if (segments is not [_, "=", _, "*" or "/", _])
+            if (segments is not [_, "=", _, "*", _, ..])
             {
                 throw new Exception($"Invalid relation string: {relationString}");
             }
@@ -140,15 +170,14 @@ namespace CodeGen.Generators
             var rightUnit = GetUnit(rightQuantity, right.ElementAtOrDefault(1));
             var resultUnit = GetUnit(resultQuantity, result.ElementAtOrDefault(1));
 
-            if (leftQuantity.Name == "1")
+            if (resultQuantity.Name == "1")
             {
                 @operator = "inverse";
-                leftQuantity = resultQuantity;
-                leftUnit = resultUnit;
             }
 
             return new QuantityRelation
             {
+                NoInferredDivision = segments.Contains("NoInferredDivision"),
                 Operator = @operator,
                 LeftQuantity = leftQuantity,
                 LeftUnit = leftUnit,

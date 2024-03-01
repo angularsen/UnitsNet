@@ -47,6 +47,7 @@ namespace UnitsNet
 #if NET7_0_OR_GREATER
         IMultiplyOperators<ReciprocalArea, Force, Pressure>,
         IMultiplyOperators<ReciprocalArea, Area, Ratio>,
+        IMultiplyOperators<ReciprocalArea, Length, ReciprocalLength>,
         IDivisionOperators<ReciprocalArea, ReciprocalLength, ReciprocalLength>,
 #endif
         IComparable,
@@ -600,6 +601,13 @@ namespace UnitsNet
 
         #region Relational Operators
 
+        /// <summary>Calculates the inverse of this quantity.</summary>
+        /// <returns>The corresponding inverse quantity, <see cref="Area"/>.</returns>
+        public Area Inverse()
+        {
+            return InverseSquareMeters == 0.0 ? Area.Zero : Area.FromSquareMeters(1 / InverseSquareMeters);
+        }
+
         /// <summary>Get <see cref="Pressure"/> from <see cref="ReciprocalArea"/> * <see cref="Force"/>.</summary>
         public static Pressure operator *(ReciprocalArea reciprocalArea, Force force)
         {
@@ -612,11 +620,10 @@ namespace UnitsNet
             return Ratio.FromDecimalFractions(reciprocalArea.InverseSquareMeters * area.SquareMeters);
         }
 
-        /// <summary>Calculates the inverse of this quantity.</summary>
-        /// <returns>The corresponding inverse quantity, <see cref="Area"/>.</returns>
-        public Area Inverse()
+        /// <summary>Get <see cref="ReciprocalLength"/> from <see cref="ReciprocalArea"/> * <see cref="Length"/>.</summary>
+        public static ReciprocalLength operator *(ReciprocalArea reciprocalArea, Length length)
         {
-            return InverseSquareMeters == 0.0 ? Area.Zero : Area.FromSquareMeters(1 / InverseSquareMeters);
+            return ReciprocalLength.FromInverseMeters(reciprocalArea.InverseSquareMeters * length.Meters);
         }
 
         /// <summary>Get <see cref="ReciprocalLength"/> from <see cref="ReciprocalArea"/> / <see cref="ReciprocalLength"/>.</summary>

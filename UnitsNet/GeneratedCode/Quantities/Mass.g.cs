@@ -46,6 +46,7 @@ namespace UnitsNet
         IDivisionOperators<Mass, AreaDensity, Area>,
         IDivisionOperators<Mass, Area, AreaDensity>,
         IDivisionOperators<Mass, Volume, Density>,
+        IDivisionOperators<Mass, MassFlow, Duration>,
         IMultiplyOperators<Mass, SpecificEnergy, Energy>,
         IMultiplyOperators<Mass, SpecificEntropy, Entropy>,
         IMultiplyOperators<Mass, Acceleration, Force>,
@@ -54,6 +55,7 @@ namespace UnitsNet
         IMultiplyOperators<Mass, MassFraction, Mass>,
         IDivisionOperators<Mass, MassFraction, Mass>,
         IDivisionOperators<Mass, Duration, MassFlow>,
+        IDivisionOperators<Mass, AmountOfSubstance, MolarMass>,
         IMultiplyOperators<Mass, SpecificVolume, Volume>,
         IDivisionOperators<Mass, Density, Volume>,
 #endif
@@ -867,7 +869,7 @@ namespace UnitsNet
         /// <summary>Get <see cref="AmountOfSubstance"/> from <see cref="Mass"/> / <see cref="MolarMass"/>.</summary>
         public static AmountOfSubstance operator /(Mass mass, MolarMass molarMass)
         {
-            return AmountOfSubstance.FromMoles(mass.Kilograms / molarMass.KilogramsPerMole);
+            return AmountOfSubstance.FromMoles(mass.Grams / molarMass.GramsPerMole);
         }
 
         /// <summary>Get <see cref="Area"/> from <see cref="Mass"/> / <see cref="AreaDensity"/>.</summary>
@@ -886,6 +888,12 @@ namespace UnitsNet
         public static Density operator /(Mass mass, Volume volume)
         {
             return Density.FromKilogramsPerCubicMeter(mass.Kilograms / volume.CubicMeters);
+        }
+
+        /// <summary>Get <see cref="Duration"/> from <see cref="Mass"/> / <see cref="MassFlow"/>.</summary>
+        public static Duration operator /(Mass mass, MassFlow massFlow)
+        {
+            return Duration.FromSeconds(mass.Kilograms / massFlow.KilogramsPerSecond);
         }
 
         /// <summary>Get <see cref="Energy"/> from <see cref="Mass"/> * <see cref="SpecificEnergy"/>.</summary>
@@ -934,6 +942,12 @@ namespace UnitsNet
         public static MassFlow operator /(Mass mass, Duration duration)
         {
             return MassFlow.FromKilogramsPerSecond(mass.Kilograms / duration.Seconds);
+        }
+
+        /// <summary>Get <see cref="MolarMass"/> from <see cref="Mass"/> / <see cref="AmountOfSubstance"/>.</summary>
+        public static MolarMass operator /(Mass mass, AmountOfSubstance amountOfSubstance)
+        {
+            return MolarMass.FromGramsPerMole(mass.Grams / amountOfSubstance.Moles);
         }
 
         /// <summary>Get <see cref="Volume"/> from <see cref="Mass"/> * <see cref="SpecificVolume"/>.</summary>

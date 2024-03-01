@@ -42,6 +42,7 @@ namespace UnitsNet
     public readonly partial struct Acceleration :
         IArithmeticQuantity<Acceleration, AccelerationUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<Acceleration, Jerk, Duration>,
         IMultiplyOperators<Acceleration, Mass, Force>,
         IDivisionOperators<Acceleration, Duration, Jerk>,
         IMultiplyOperators<Acceleration, Density, SpecificWeight>,
@@ -645,6 +646,12 @@ namespace UnitsNet
         #endregion
 
         #region Relational Operators
+
+        /// <summary>Get <see cref="Duration"/> from <see cref="Acceleration"/> / <see cref="Jerk"/>.</summary>
+        public static Duration operator /(Acceleration acceleration, Jerk jerk)
+        {
+            return Duration.FromSeconds(acceleration.MetersPerSecondSquared / jerk.MetersPerSecondCubed);
+        }
 
         /// <summary>Get <see cref="Force"/> from <see cref="Acceleration"/> * <see cref="Mass"/>.</summary>
         public static Force operator *(Acceleration acceleration, Mass mass)

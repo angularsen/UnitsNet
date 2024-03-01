@@ -7,6 +7,7 @@ namespace CodeGen.JsonTypes
 {
     internal record QuantityRelation : IComparable<QuantityRelation>
     {
+        public bool NoInferredDivision = false;
         public string Operator = null!;
 
         public Quantity LeftQuantity = null!;

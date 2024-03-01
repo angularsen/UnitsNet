@@ -42,7 +42,9 @@ namespace UnitsNet
     public readonly partial struct AmountOfSubstance :
         IArithmeticQuantity<AmountOfSubstance, AmountOfSubstanceUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<AmountOfSubstance, MolarFlow, Duration>,
         IMultiplyOperators<AmountOfSubstance, MolarMass, Mass>,
+        IDivisionOperators<AmountOfSubstance, Duration, MolarFlow>,
         IDivisionOperators<AmountOfSubstance, Volume, Molarity>,
         IDivisionOperators<AmountOfSubstance, Molarity, Volume>,
 #endif
@@ -693,10 +695,22 @@ namespace UnitsNet
 
         #region Relational Operators
 
+        /// <summary>Get <see cref="Duration"/> from <see cref="AmountOfSubstance"/> / <see cref="MolarFlow"/>.</summary>
+        public static Duration operator /(AmountOfSubstance amountOfSubstance, MolarFlow molarFlow)
+        {
+            return Duration.FromSeconds(amountOfSubstance.Kilomoles / molarFlow.KilomolesPerSecond);
+        }
+
         /// <summary>Get <see cref="Mass"/> from <see cref="AmountOfSubstance"/> * <see cref="MolarMass"/>.</summary>
         public static Mass operator *(AmountOfSubstance amountOfSubstance, MolarMass molarMass)
         {
             return Mass.FromGrams(amountOfSubstance.Moles * molarMass.GramsPerMole);
+        }
+
+        /// <summary>Get <see cref="MolarFlow"/> from <see cref="AmountOfSubstance"/> / <see cref="Duration"/>.</summary>
+        public static MolarFlow operator /(AmountOfSubstance amountOfSubstance, Duration duration)
+        {
+            return MolarFlow.FromKilomolesPerSecond(amountOfSubstance.Kilomoles / duration.Seconds);
         }
 
         /// <summary>Get <see cref="Molarity"/> from <see cref="AmountOfSubstance"/> / <see cref="Volume"/>.</summary>

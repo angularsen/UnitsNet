@@ -569,6 +569,12 @@ namespace UnitsNet
 
         #region Relational Operators
 
+        /// <summary>Get <see cref="TemperatureDelta"/> from <see cref="double"/> / <see cref="CoefficientOfThermalExpansion"/>.</summary>
+        public static TemperatureDelta operator /(double value, CoefficientOfThermalExpansion coefficientOfThermalExpansion)
+        {
+            return TemperatureDelta.FromKelvins(value / coefficientOfThermalExpansion.PerKelvin);
+        }
+
         /// <summary>Get <see cref="double"/> from <see cref="CoefficientOfThermalExpansion"/> * <see cref="TemperatureDelta"/>.</summary>
         public static double operator *(CoefficientOfThermalExpansion coefficientOfThermalExpansion, TemperatureDelta temperatureDelta)
         {

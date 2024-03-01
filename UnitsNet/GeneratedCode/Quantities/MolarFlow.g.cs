@@ -44,6 +44,7 @@ namespace UnitsNet
 #if NET7_0_OR_GREATER
         IMultiplyOperators<MolarFlow, Duration, AmountOfSubstance>,
         IMultiplyOperators<MolarFlow, MolarMass, MassFlow>,
+        IDivisionOperators<MolarFlow, VolumeFlow, Molarity>,
         IDivisionOperators<MolarFlow, Molarity, VolumeFlow>,
 #endif
         IComparable,
@@ -575,6 +576,12 @@ namespace UnitsNet
         public static MassFlow operator *(MolarFlow molarFlow, MolarMass molarMass)
         {
             return MassFlow.FromKilogramsPerSecond(molarFlow.KilomolesPerSecond * molarMass.KilogramsPerKilomole);
+        }
+
+        /// <summary>Get <see cref="Molarity"/> from <see cref="MolarFlow"/> / <see cref="VolumeFlow"/>.</summary>
+        public static Molarity operator /(MolarFlow molarFlow, VolumeFlow volumeFlow)
+        {
+            return Molarity.FromMolesPerCubicMeter(molarFlow.MolesPerSecond / volumeFlow.CubicMetersPerSecond);
         }
 
         /// <summary>Get <see cref="VolumeFlow"/> from <see cref="MolarFlow"/> / <see cref="Molarity"/>.</summary>

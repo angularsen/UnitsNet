@@ -43,6 +43,7 @@ namespace UnitsNet
         IArithmeticQuantity<Entropy, EntropyUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<Entropy, TemperatureDelta, Energy>,
+        IDivisionOperators<Entropy, SpecificEntropy, Mass>,
         IDivisionOperators<Entropy, Mass, SpecificEntropy>,
 #endif
         IComparable,
@@ -536,6 +537,12 @@ namespace UnitsNet
         public static Energy operator *(Entropy entropy, TemperatureDelta temperatureDelta)
         {
             return Energy.FromJoules(entropy.JoulesPerKelvin * temperatureDelta.Kelvins);
+        }
+
+        /// <summary>Get <see cref="Mass"/> from <see cref="Entropy"/> / <see cref="SpecificEntropy"/>.</summary>
+        public static Mass operator /(Entropy entropy, SpecificEntropy specificEntropy)
+        {
+            return Mass.FromKilograms(entropy.JoulesPerKelvin / specificEntropy.JoulesPerKilogramKelvin);
         }
 
         /// <summary>Get <see cref="SpecificEntropy"/> from <see cref="Entropy"/> / <see cref="Mass"/>.</summary>

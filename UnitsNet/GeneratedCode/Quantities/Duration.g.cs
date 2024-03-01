@@ -42,6 +42,7 @@ namespace UnitsNet
     public readonly partial struct Duration :
         IArithmeticQuantity<Duration, DurationUnit>,
 #if NET7_0_OR_GREATER
+        IMultiplyOperators<Duration, Jerk, Acceleration>,
         IMultiplyOperators<Duration, MolarFlow, AmountOfSubstance>,
         IMultiplyOperators<Duration, RotationalSpeed, Angle>,
         IMultiplyOperators<Duration, KinematicViscosity, Area>,
@@ -606,6 +607,12 @@ namespace UnitsNet
         #endregion
 
         #region Relational Operators
+
+        /// <summary>Get <see cref="Acceleration"/> from <see cref="Duration"/> * <see cref="Jerk"/>.</summary>
+        public static Acceleration operator *(Duration duration, Jerk jerk)
+        {
+            return Acceleration.FromMetersPerSecondSquared(duration.Seconds * jerk.MetersPerSecondCubed);
+        }
 
         /// <summary>Get <see cref="AmountOfSubstance"/> from <see cref="Duration"/> * <see cref="MolarFlow"/>.</summary>
         public static AmountOfSubstance operator *(Duration duration, MolarFlow molarFlow)

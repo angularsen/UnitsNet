@@ -43,11 +43,14 @@ namespace UnitsNet
         IArithmeticQuantity<Length, LengthUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<Length, Length, Area>,
+        IMultiplyOperators<Length, Volume, AreaMomentOfInertia>,
         IDivisionOperators<Length, Speed, Duration>,
         IMultiplyOperators<Length, ForcePerLength, Force>,
+        IMultiplyOperators<Length, Pressure, ForcePerLength>,
         IMultiplyOperators<Length, Speed, KinematicViscosity>,
         IMultiplyOperators<Length, LinearDensity, Mass>,
         IMultiplyOperators<Length, SpecificWeight, Pressure>,
+        IMultiplyOperators<Length, ReciprocalArea, ReciprocalLength>,
         IMultiplyOperators<Length, RotationalStiffnessPerLength, RotationalStiffness>,
         IDivisionOperators<Length, Duration, Speed>,
         IMultiplyOperators<Length, TemperatureGradient, TemperatureDelta>,
@@ -1101,10 +1104,23 @@ namespace UnitsNet
 
         #region Relational Operators
 
+        /// <summary>Calculates the inverse of this quantity.</summary>
+        /// <returns>The corresponding inverse quantity, <see cref="ReciprocalLength"/>.</returns>
+        public ReciprocalLength Inverse()
+        {
+            return Meters == 0.0 ? ReciprocalLength.Zero : ReciprocalLength.FromInverseMeters(1 / Meters);
+        }
+
         /// <summary>Get <see cref="Area"/> from <see cref="Length"/> * <see cref="Length"/>.</summary>
         public static Area operator *(Length left, Length right)
         {
             return Area.FromSquareMeters(left.Meters * right.Meters);
+        }
+
+        /// <summary>Get <see cref="AreaMomentOfInertia"/> from <see cref="Length"/> * <see cref="Volume"/>.</summary>
+        public static AreaMomentOfInertia operator *(Length length, Volume volume)
+        {
+            return AreaMomentOfInertia.FromMetersToTheFourth(length.Meters * volume.CubicMeters);
         }
 
         /// <summary>Get <see cref="Duration"/> from <see cref="Length"/> / <see cref="Speed"/>.</summary>
@@ -1117,6 +1133,12 @@ namespace UnitsNet
         public static Force operator *(Length length, ForcePerLength forcePerLength)
         {
             return Force.FromNewtons(length.Meters * forcePerLength.NewtonsPerMeter);
+        }
+
+        /// <summary>Get <see cref="ForcePerLength"/> from <see cref="Length"/> * <see cref="Pressure"/>.</summary>
+        public static ForcePerLength operator *(Length length, Pressure pressure)
+        {
+            return ForcePerLength.FromNewtonsPerMeter(length.Meters * pressure.NewtonsPerSquareMeter);
         }
 
         /// <summary>Get <see cref="KinematicViscosity"/> from <see cref="Length"/> * <see cref="Speed"/>.</summary>
@@ -1137,11 +1159,10 @@ namespace UnitsNet
             return Pressure.FromPascals(length.Meters * specificWeight.NewtonsPerCubicMeter);
         }
 
-        /// <summary>Calculates the inverse of this quantity.</summary>
-        /// <returns>The corresponding inverse quantity, <see cref="ReciprocalLength"/>.</returns>
-        public ReciprocalLength Inverse()
+        /// <summary>Get <see cref="ReciprocalLength"/> from <see cref="Length"/> * <see cref="ReciprocalArea"/>.</summary>
+        public static ReciprocalLength operator *(Length length, ReciprocalArea reciprocalArea)
         {
-            return Meters == 0.0 ? ReciprocalLength.Zero : ReciprocalLength.FromInverseMeters(1 / Meters);
+            return ReciprocalLength.FromInverseMeters(length.Meters * reciprocalArea.InverseSquareMeters);
         }
 
         /// <summary>Get <see cref="RotationalStiffness"/> from <see cref="Length"/> * <see cref="RotationalStiffnessPerLength"/>.</summary>
