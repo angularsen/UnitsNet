@@ -26,8 +26,6 @@ namespace UnitsNet.Units
     public enum HeatTransferCoefficientUnit
     {
         BtuPerHourSquareFootDegreeFahrenheit = 11,
-        [System.Obsolete("The name of this definition incorrectly omitted time as divisor, please use BtuPerHourSquareFootDegreeFahrenheit instead")]
-        BtuPerSquareFootDegreeFahrenheit = 1,
         CaloriePerHourSquareMeterDegreeCelsius = 5,
         KilocaloriePerHourSquareMeterDegreeCelsius = 8,
         WattPerSquareMeterCelsius = 2,
