@@ -43,7 +43,9 @@ namespace UnitsNet
         IArithmeticQuantity<Force, ForceUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Force, Mass, Acceleration>,
+        IDivisionOperators<Force, Pressure, Area>,
         IDivisionOperators<Force, ForceChangeRate, Duration>,
+        IDivisionOperators<Force, Duration, ForceChangeRate>,
         IMultiplyOperators<Force, ReciprocalLength, ForcePerLength>,
         IDivisionOperators<Force, Length, ForcePerLength>,
         IDivisionOperators<Force, ForcePerLength, Length>,
@@ -674,10 +676,22 @@ namespace UnitsNet
             return Acceleration.FromMetersPerSecondSquared(force.Newtons / mass.Kilograms);
         }
 
+        /// <summary>Get <see cref="Area"/> from <see cref="Force"/> / <see cref="Pressure"/>.</summary>
+        public static Area operator /(Force force, Pressure pressure)
+        {
+            return Area.FromSquareMeters(force.Newtons / pressure.Pascals);
+        }
+
         /// <summary>Get <see cref="Duration"/> from <see cref="Force"/> / <see cref="ForceChangeRate"/>.</summary>
         public static Duration operator /(Force force, ForceChangeRate forceChangeRate)
         {
             return Duration.FromSeconds(force.Newtons / forceChangeRate.NewtonsPerSecond);
+        }
+
+        /// <summary>Get <see cref="ForceChangeRate"/> from <see cref="Force"/> / <see cref="Duration"/>.</summary>
+        public static ForceChangeRate operator /(Force force, Duration duration)
+        {
+            return ForceChangeRate.FromNewtonsPerSecond(force.Newtons / duration.Seconds);
         }
 
         /// <summary>Get <see cref="ForcePerLength"/> from <see cref="Force"/> * <see cref="ReciprocalLength"/>.</summary>

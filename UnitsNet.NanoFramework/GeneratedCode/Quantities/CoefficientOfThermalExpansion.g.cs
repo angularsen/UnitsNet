@@ -79,24 +79,6 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CoefficientOfThermalExpansionUnit.InverseDegreeCelsius"/>
-        /// </summary>
-        [Obsolete("Use PerDegreeCelsius instead.")]
-        public double InverseDegreeCelsius => As(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit"/>
-        /// </summary>
-        [Obsolete("Use PerDegreeFahrenheit instead.")]
-        public double InverseDegreeFahrenheit => As(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CoefficientOfThermalExpansionUnit.InverseKelvin"/>
-        /// </summary>
-        [Obsolete("Use PerKelvin instead.")]
-        public double InverseKelvin => As(CoefficientOfThermalExpansionUnit.InverseKelvin);
-
-        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CoefficientOfThermalExpansionUnit.PerDegreeCelsius"/>
         /// </summary>
         public double PerDegreeCelsius => As(CoefficientOfThermalExpansionUnit.PerDegreeCelsius);
@@ -129,24 +111,6 @@ namespace UnitsNet
         #endregion
 
         #region Static Factory Methods
-
-        /// <summary>
-        ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.InverseDegreeCelsius"/>.
-        /// </summary>
-        [Obsolete("Use PerDegreeCelsius instead.")]
-        public static CoefficientOfThermalExpansion FromInverseDegreeCelsius(double inversedegreecelsius) => new CoefficientOfThermalExpansion(inversedegreecelsius, CoefficientOfThermalExpansionUnit.InverseDegreeCelsius);
-
-        /// <summary>
-        ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit"/>.
-        /// </summary>
-        [Obsolete("Use PerDegreeFahrenheit instead.")]
-        public static CoefficientOfThermalExpansion FromInverseDegreeFahrenheit(double inversedegreefahrenheit) => new CoefficientOfThermalExpansion(inversedegreefahrenheit, CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit);
-
-        /// <summary>
-        ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.InverseKelvin"/>.
-        /// </summary>
-        [Obsolete("Use PerKelvin instead.")]
-        public static CoefficientOfThermalExpansion FromInverseKelvin(double inversekelvin) => new CoefficientOfThermalExpansion(inversekelvin, CoefficientOfThermalExpansionUnit.InverseKelvin);
 
         /// <summary>
         ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.PerDegreeCelsius"/>.
@@ -218,9 +182,6 @@ namespace UnitsNet
                 {
                     return Unit switch
                     {
-                        CoefficientOfThermalExpansionUnit.InverseDegreeCelsius => _value,
-                        CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit => _value * 9 / 5,
-                        CoefficientOfThermalExpansionUnit.InverseKelvin => _value,
                         CoefficientOfThermalExpansionUnit.PerDegreeCelsius => _value,
                         CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit => _value * 9 / 5,
                         CoefficientOfThermalExpansionUnit.PerKelvin => _value,
@@ -240,9 +201,6 @@ namespace UnitsNet
 
                     return unit switch
                     {
-                        CoefficientOfThermalExpansionUnit.InverseDegreeCelsius => baseUnitValue,
-                        CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit => baseUnitValue * 5 / 9,
-                        CoefficientOfThermalExpansionUnit.InverseKelvin => baseUnitValue,
                         CoefficientOfThermalExpansionUnit.PerDegreeCelsius => baseUnitValue,
                         CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit => baseUnitValue * 5 / 9,
                         CoefficientOfThermalExpansionUnit.PerKelvin => baseUnitValue,

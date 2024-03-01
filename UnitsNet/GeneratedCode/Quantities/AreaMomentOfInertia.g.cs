@@ -42,6 +42,7 @@ namespace UnitsNet
     public readonly partial struct AreaMomentOfInertia :
         IArithmeticQuantity<AreaMomentOfInertia, AreaMomentOfInertiaUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<AreaMomentOfInertia, Volume, Length>,
         IDivisionOperators<AreaMomentOfInertia, Length, Volume>,
 #endif
         IComparable,
@@ -514,6 +515,12 @@ namespace UnitsNet
         #endregion
 
         #region Relational Operators
+
+        /// <summary>Get <see cref="Length"/> from <see cref="AreaMomentOfInertia"/> / <see cref="Volume"/>.</summary>
+        public static Length operator /(AreaMomentOfInertia areaMomentOfInertia, Volume volume)
+        {
+            return Length.FromMeters(areaMomentOfInertia.MetersToTheFourth / volume.CubicMeters);
+        }
 
         /// <summary>Get <see cref="Volume"/> from <see cref="AreaMomentOfInertia"/> / <see cref="Length"/>.</summary>
         public static Volume operator /(AreaMomentOfInertia areaMomentOfInertia, Length length)

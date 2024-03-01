@@ -43,6 +43,7 @@ namespace UnitsNet
         IArithmeticQuantity<RotationalSpeed, RotationalSpeedUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<RotationalSpeed, Duration, Angle>,
+        IMultiplyOperators<RotationalSpeed, Torque, Power>,
 #endif
         IComparable,
         IComparable<RotationalSpeed>,
@@ -631,6 +632,12 @@ namespace UnitsNet
         public static Angle operator *(RotationalSpeed rotationalSpeed, Duration duration)
         {
             return Angle.FromRadians(rotationalSpeed.RadiansPerSecond * duration.Seconds);
+        }
+
+        /// <summary>Get <see cref="Power"/> from <see cref="RotationalSpeed"/> * <see cref="Torque"/>.</summary>
+        public static Power operator *(RotationalSpeed rotationalSpeed, Torque torque)
+        {
+            return Power.FromWatts(rotationalSpeed.RadiansPerSecond * torque.NewtonMeters);
         }
 
         #endregion

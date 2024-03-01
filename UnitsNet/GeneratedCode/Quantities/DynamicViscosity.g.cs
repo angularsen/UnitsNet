@@ -45,6 +45,7 @@ namespace UnitsNet
     public readonly partial struct DynamicViscosity :
         IArithmeticQuantity<DynamicViscosity, DynamicViscosityUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<DynamicViscosity, KinematicViscosity, Density>,
         IDivisionOperators<DynamicViscosity, Density, KinematicViscosity>,
 #endif
         IComparable,
@@ -581,6 +582,12 @@ namespace UnitsNet
         #endregion
 
         #region Relational Operators
+
+        /// <summary>Get <see cref="Density"/> from <see cref="DynamicViscosity"/> / <see cref="KinematicViscosity"/>.</summary>
+        public static Density operator /(DynamicViscosity dynamicViscosity, KinematicViscosity kinematicViscosity)
+        {
+            return Density.FromKilogramsPerCubicMeter(dynamicViscosity.NewtonSecondsPerMeterSquared / kinematicViscosity.SquareMetersPerSecond);
+        }
 
         /// <summary>Get <see cref="KinematicViscosity"/> from <see cref="DynamicViscosity"/> / <see cref="Density"/>.</summary>
         public static KinematicViscosity operator /(DynamicViscosity dynamicViscosity, Density density)

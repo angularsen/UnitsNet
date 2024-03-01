@@ -151,8 +151,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void VolumeDividedByVolumeFlowEqualsTimeSpan()
         {
-            TimeSpan timeSpan = Volume.FromCubicMeters(20) / VolumeFlow.FromCubicMetersPerSecond(2);
-            Assert.Equal(TimeSpan.FromSeconds(10), timeSpan);
+            Duration duration = Volume.FromCubicMeters(20) / VolumeFlow.FromCubicMetersPerSecond(2);
+            Assert.Equal(Duration.FromSeconds(10), duration);
         }
     }
 }

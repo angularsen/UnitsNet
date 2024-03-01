@@ -46,12 +46,15 @@ namespace UnitsNet
         IDivisionOperators<Power, ElectricPotential, ElectricCurrent>,
         IDivisionOperators<Power, ElectricCurrent, ElectricPotential>,
         IMultiplyOperators<Power, Duration, Energy>,
+        IDivisionOperators<Power, Frequency, Energy>,
         IDivisionOperators<Power, Speed, Force>,
+        IDivisionOperators<Power, Energy, Frequency>,
         IDivisionOperators<Power, Area, HeatFlux>,
         IMultiplyOperators<Power, BrakeSpecificFuelConsumption, MassFlow>,
         IDivisionOperators<Power, SpecificEnergy, MassFlow>,
         IDivisionOperators<Power, Torque, RotationalSpeed>,
         IDivisionOperators<Power, MassFlow, SpecificEnergy>,
+        IDivisionOperators<Power, Force, Speed>,
         IDivisionOperators<Power, RotationalSpeed, Torque>,
 #endif
         IComparable,
@@ -869,10 +872,22 @@ namespace UnitsNet
             return Energy.FromJoules(power.Watts * duration.Seconds);
         }
 
+        /// <summary>Get <see cref="Energy"/> from <see cref="Power"/> / <see cref="Frequency"/>.</summary>
+        public static Energy operator /(Power power, Frequency frequency)
+        {
+            return Energy.FromJoules(power.Watts / frequency.PerSecond);
+        }
+
         /// <summary>Get <see cref="Force"/> from <see cref="Power"/> / <see cref="Speed"/>.</summary>
         public static Force operator /(Power power, Speed speed)
         {
             return Force.FromNewtons(power.Watts / speed.MetersPerSecond);
+        }
+
+        /// <summary>Get <see cref="Frequency"/> from <see cref="Power"/> / <see cref="Energy"/>.</summary>
+        public static Frequency operator /(Power power, Energy energy)
+        {
+            return Frequency.FromPerSecond(power.Watts / energy.Joules);
         }
 
         /// <summary>Get <see cref="HeatFlux"/> from <see cref="Power"/> / <see cref="Area"/>.</summary>
@@ -903,6 +918,12 @@ namespace UnitsNet
         public static SpecificEnergy operator /(Power power, MassFlow massFlow)
         {
             return SpecificEnergy.FromJoulesPerKilogram(power.Watts / massFlow.KilogramsPerSecond);
+        }
+
+        /// <summary>Get <see cref="Speed"/> from <see cref="Power"/> / <see cref="Force"/>.</summary>
+        public static Speed operator /(Power power, Force force)
+        {
+            return Speed.FromMetersPerSecond(power.Watts / force.Newtons);
         }
 
         /// <summary>Get <see cref="Torque"/> from <see cref="Power"/> / <see cref="RotationalSpeed"/>.</summary>

@@ -42,8 +42,10 @@ namespace UnitsNet
     public readonly partial struct Area :
         IArithmeticQuantity<Area, AreaUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<Area, KinematicViscosity, Duration>,
         IMultiplyOperators<Area, Pressure, Force>,
         IMultiplyOperators<Area, SpecificWeight, ForcePerLength>,
+        IDivisionOperators<Area, Duration, KinematicViscosity>,
         IDivisionOperators<Area, Length, Length>,
         IMultiplyOperators<Area, Density, LinearDensity>,
         IMultiplyOperators<Area, Luminance, LuminousIntensity>,
@@ -654,6 +656,19 @@ namespace UnitsNet
 
         #region Relational Operators
 
+        /// <summary>Calculates the inverse of this quantity.</summary>
+        /// <returns>The corresponding inverse quantity, <see cref="ReciprocalArea"/>.</returns>
+        public ReciprocalArea Inverse()
+        {
+            return SquareMeters == 0.0 ? ReciprocalArea.Zero : ReciprocalArea.FromInverseSquareMeters(1 / SquareMeters);
+        }
+
+        /// <summary>Get <see cref="Duration"/> from <see cref="Area"/> / <see cref="KinematicViscosity"/>.</summary>
+        public static Duration operator /(Area area, KinematicViscosity kinematicViscosity)
+        {
+            return Duration.FromSeconds(area.SquareMeters / kinematicViscosity.SquareMetersPerSecond);
+        }
+
         /// <summary>Get <see cref="Force"/> from <see cref="Area"/> * <see cref="Pressure"/>.</summary>
         public static Force operator *(Area area, Pressure pressure)
         {
@@ -664,6 +679,12 @@ namespace UnitsNet
         public static ForcePerLength operator *(Area area, SpecificWeight specificWeight)
         {
             return ForcePerLength.FromNewtonsPerMeter(area.SquareMeters * specificWeight.NewtonsPerCubicMeter);
+        }
+
+        /// <summary>Get <see cref="KinematicViscosity"/> from <see cref="Area"/> / <see cref="Duration"/>.</summary>
+        public static KinematicViscosity operator /(Area area, Duration duration)
+        {
+            return KinematicViscosity.FromSquareMetersPerSecond(area.SquareMeters / duration.Seconds);
         }
 
         /// <summary>Get <see cref="Length"/> from <see cref="Area"/> / <see cref="Length"/>.</summary>
@@ -693,7 +714,7 @@ namespace UnitsNet
         /// <summary>Get <see cref="MassFlow"/> from <see cref="Area"/> * <see cref="MassFlux"/>.</summary>
         public static MassFlow operator *(Area area, MassFlux massFlux)
         {
-            return MassFlow.FromGramsPerSecond(area.SquareMeters * massFlux.GramsPerSecondPerSquareMeter);
+            return MassFlow.FromKilogramsPerSecond(area.SquareMeters * massFlux.KilogramsPerSecondPerSquareMeter);
         }
 
         /// <summary>Get <see cref="Power"/> from <see cref="Area"/> * <see cref="HeatFlux"/>.</summary>
@@ -706,13 +727,6 @@ namespace UnitsNet
         public static Ratio operator *(Area area, ReciprocalArea reciprocalArea)
         {
             return Ratio.FromDecimalFractions(area.SquareMeters * reciprocalArea.InverseSquareMeters);
-        }
-
-        /// <summary>Calculates the inverse of this quantity.</summary>
-        /// <returns>The corresponding inverse quantity, <see cref="ReciprocalArea"/>.</returns>
-        public ReciprocalArea Inverse()
-        {
-            return SquareMeters == 0.0 ? ReciprocalArea.Zero : ReciprocalArea.FromInverseSquareMeters(1 / SquareMeters);
         }
 
         /// <summary>Get <see cref="Torque"/> from <see cref="Area"/> * <see cref="ForcePerLength"/>.</summary>

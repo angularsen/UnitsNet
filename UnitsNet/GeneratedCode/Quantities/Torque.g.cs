@@ -43,8 +43,11 @@ namespace UnitsNet
         IArithmeticQuantity<Torque, TorqueUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Torque, RotationalStiffness, Angle>,
+        IDivisionOperators<Torque, ForcePerLength, Area>,
         IDivisionOperators<Torque, Length, Force>,
+        IDivisionOperators<Torque, Area, ForcePerLength>,
         IDivisionOperators<Torque, Force, Length>,
+        IMultiplyOperators<Torque, RotationalSpeed, Power>,
         IDivisionOperators<Torque, Angle, RotationalStiffness>,
 #endif
         IComparable,
@@ -828,16 +831,34 @@ namespace UnitsNet
             return Angle.FromRadians(torque.NewtonMeters / rotationalStiffness.NewtonMetersPerRadian);
         }
 
+        /// <summary>Get <see cref="Area"/> from <see cref="Torque"/> / <see cref="ForcePerLength"/>.</summary>
+        public static Area operator /(Torque torque, ForcePerLength forcePerLength)
+        {
+            return Area.FromSquareMeters(torque.NewtonMeters / forcePerLength.NewtonsPerMeter);
+        }
+
         /// <summary>Get <see cref="Force"/> from <see cref="Torque"/> / <see cref="Length"/>.</summary>
         public static Force operator /(Torque torque, Length length)
         {
             return Force.FromNewtons(torque.NewtonMeters / length.Meters);
         }
 
+        /// <summary>Get <see cref="ForcePerLength"/> from <see cref="Torque"/> / <see cref="Area"/>.</summary>
+        public static ForcePerLength operator /(Torque torque, Area area)
+        {
+            return ForcePerLength.FromNewtonsPerMeter(torque.NewtonMeters / area.SquareMeters);
+        }
+
         /// <summary>Get <see cref="Length"/> from <see cref="Torque"/> / <see cref="Force"/>.</summary>
         public static Length operator /(Torque torque, Force force)
         {
             return Length.FromMeters(torque.NewtonMeters / force.Newtons);
+        }
+
+        /// <summary>Get <see cref="Power"/> from <see cref="Torque"/> * <see cref="RotationalSpeed"/>.</summary>
+        public static Power operator *(Torque torque, RotationalSpeed rotationalSpeed)
+        {
+            return Power.FromWatts(torque.NewtonMeters * rotationalSpeed.RadiansPerSecond);
         }
 
         /// <summary>Get <see cref="RotationalStiffness"/> from <see cref="Torque"/> / <see cref="Angle"/>.</summary>

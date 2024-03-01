@@ -48,6 +48,8 @@ namespace UnitsNet
         IMultiplyOperators<SpecificEnergy, Mass, Energy>,
         IMultiplyOperators<SpecificEnergy, MassFlow, Power>,
         IDivisionOperators<SpecificEnergy, TemperatureDelta, SpecificEntropy>,
+        IDivisionOperators<SpecificEnergy, Speed, Speed>,
+        IDivisionOperators<SpecificEnergy, SpecificEntropy, TemperatureDelta>,
         IMultiplyOperators<SpecificEnergy, BrakeSpecificFuelConsumption, double>,
 #endif
         IComparable,
@@ -927,6 +929,18 @@ namespace UnitsNet
         public static SpecificEntropy operator /(SpecificEnergy specificEnergy, TemperatureDelta temperatureDelta)
         {
             return SpecificEntropy.FromJoulesPerKilogramKelvin(specificEnergy.JoulesPerKilogram / temperatureDelta.Kelvins);
+        }
+
+        /// <summary>Get <see cref="Speed"/> from <see cref="SpecificEnergy"/> / <see cref="Speed"/>.</summary>
+        public static Speed operator /(SpecificEnergy specificEnergy, Speed speed)
+        {
+            return Speed.FromMetersPerSecond(specificEnergy.JoulesPerKilogram / speed.MetersPerSecond);
+        }
+
+        /// <summary>Get <see cref="TemperatureDelta"/> from <see cref="SpecificEnergy"/> / <see cref="SpecificEntropy"/>.</summary>
+        public static TemperatureDelta operator /(SpecificEnergy specificEnergy, SpecificEntropy specificEntropy)
+        {
+            return TemperatureDelta.FromKelvins(specificEnergy.JoulesPerKilogram / specificEntropy.JoulesPerKilogramKelvin);
         }
 
         /// <summary>Get <see cref="double"/> from <see cref="SpecificEnergy"/> * <see cref="BrakeSpecificFuelConsumption"/>.</summary>

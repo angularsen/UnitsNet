@@ -45,8 +45,11 @@ namespace UnitsNet
     public readonly partial struct Molarity :
         IArithmeticQuantity<Molarity, MolarityUnit>,
 #if NET7_0_OR_GREATER
+        IMultiplyOperators<Molarity, Volume, AmountOfSubstance>,
         IMultiplyOperators<Molarity, MolarMass, MassConcentration>,
+        IMultiplyOperators<Molarity, VolumeFlow, MolarFlow>,
         IMultiplyOperators<Molarity, VolumeConcentration, Molarity>,
+        IDivisionOperators<Molarity, VolumeConcentration, Molarity>,
 #endif
         IComparable,
         IComparable<Molarity>,
@@ -599,16 +602,34 @@ namespace UnitsNet
 
         #region Relational Operators
 
+        /// <summary>Get <see cref="AmountOfSubstance"/> from <see cref="Molarity"/> * <see cref="Volume"/>.</summary>
+        public static AmountOfSubstance operator *(Molarity molarity, Volume volume)
+        {
+            return AmountOfSubstance.FromMoles(molarity.MolesPerCubicMeter * volume.CubicMeters);
+        }
+
         /// <summary>Get <see cref="MassConcentration"/> from <see cref="Molarity"/> * <see cref="MolarMass"/>.</summary>
         public static MassConcentration operator *(Molarity molarity, MolarMass molarMass)
         {
-            return MassConcentration.FromGramsPerCubicMeter(molarity.MolesPerCubicMeter * molarMass.GramsPerMole);
+            return MassConcentration.FromKilogramsPerCubicMeter(molarity.MolesPerCubicMeter * molarMass.KilogramsPerMole);
+        }
+
+        /// <summary>Get <see cref="MolarFlow"/> from <see cref="Molarity"/> * <see cref="VolumeFlow"/>.</summary>
+        public static MolarFlow operator *(Molarity molarity, VolumeFlow volumeFlow)
+        {
+            return MolarFlow.FromMolesPerSecond(molarity.MolesPerCubicMeter * volumeFlow.CubicMetersPerSecond);
         }
 
         /// <summary>Get <see cref="Molarity"/> from <see cref="Molarity"/> * <see cref="VolumeConcentration"/>.</summary>
         public static Molarity operator *(Molarity molarity, VolumeConcentration volumeConcentration)
         {
             return Molarity.FromMolesPerCubicMeter(molarity.MolesPerCubicMeter * volumeConcentration.DecimalFractions);
+        }
+
+        /// <summary>Get <see cref="Molarity"/> from <see cref="Molarity"/> / <see cref="VolumeConcentration"/>.</summary>
+        public static Molarity operator /(Molarity molarity, VolumeConcentration volumeConcentration)
+        {
+            return Molarity.FromMolesPerCubicMeter(molarity.MolesPerCubicMeter / volumeConcentration.DecimalFractions);
         }
 
         #endregion

@@ -47,6 +47,7 @@ namespace UnitsNet
 #if NET7_0_OR_GREATER
         IMultiplyOperators<KinematicViscosity, Duration, Area>,
         IMultiplyOperators<KinematicViscosity, Density, DynamicViscosity>,
+        IDivisionOperators<KinematicViscosity, Speed, Length>,
         IDivisionOperators<KinematicViscosity, Length, Speed>,
 #endif
         IComparable,
@@ -578,6 +579,12 @@ namespace UnitsNet
         public static DynamicViscosity operator *(KinematicViscosity kinematicViscosity, Density density)
         {
             return DynamicViscosity.FromNewtonSecondsPerMeterSquared(kinematicViscosity.SquareMetersPerSecond * density.KilogramsPerCubicMeter);
+        }
+
+        /// <summary>Get <see cref="Length"/> from <see cref="KinematicViscosity"/> / <see cref="Speed"/>.</summary>
+        public static Length operator /(KinematicViscosity kinematicViscosity, Speed speed)
+        {
+            return Length.FromMeters(kinematicViscosity.SquareMetersPerSecond / speed.MetersPerSecond);
         }
 
         /// <summary>Get <see cref="Speed"/> from <see cref="KinematicViscosity"/> / <see cref="Length"/>.</summary>

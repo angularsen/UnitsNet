@@ -42,6 +42,7 @@ namespace UnitsNet
     public readonly partial struct TemperatureDelta :
         IArithmeticQuantity<TemperatureDelta, TemperatureDeltaUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<TemperatureDelta, TemperatureChangeRate, Duration>,
         IMultiplyOperators<TemperatureDelta, Entropy, Energy>,
         IDivisionOperators<TemperatureDelta, TemperatureGradient, Length>,
         IMultiplyOperators<TemperatureDelta, SpecificEntropy, SpecificEnergy>,
@@ -568,6 +569,18 @@ namespace UnitsNet
 
         #region Relational Operators
 
+        /// <summary>Get <see cref="CoefficientOfThermalExpansion"/> from <see cref="double"/> / <see cref="TemperatureDelta"/>.</summary>
+        public static CoefficientOfThermalExpansion operator /(double value, TemperatureDelta temperatureDelta)
+        {
+            return CoefficientOfThermalExpansion.FromPerKelvin(value / temperatureDelta.Kelvins);
+        }
+
+        /// <summary>Get <see cref="Duration"/> from <see cref="TemperatureDelta"/> / <see cref="TemperatureChangeRate"/>.</summary>
+        public static Duration operator /(TemperatureDelta temperatureDelta, TemperatureChangeRate temperatureChangeRate)
+        {
+            return Duration.FromSeconds(temperatureDelta.DegreesCelsius / temperatureChangeRate.DegreesCelsiusPerSecond);
+        }
+
         /// <summary>Get <see cref="Energy"/> from <see cref="TemperatureDelta"/> * <see cref="Entropy"/>.</summary>
         public static Energy operator *(TemperatureDelta temperatureDelta, Entropy entropy)
         {
@@ -577,7 +590,7 @@ namespace UnitsNet
         /// <summary>Get <see cref="Length"/> from <see cref="TemperatureDelta"/> / <see cref="TemperatureGradient"/>.</summary>
         public static Length operator /(TemperatureDelta temperatureDelta, TemperatureGradient temperatureGradient)
         {
-            return Length.FromKilometers(temperatureDelta.Kelvins / temperatureGradient.DegreesCelsiusPerKilometer);
+            return Length.FromKilometers(temperatureDelta.DegreesCelsius / temperatureGradient.DegreesCelsiusPerKilometer);
         }
 
         /// <summary>Get <see cref="SpecificEnergy"/> from <see cref="TemperatureDelta"/> * <see cref="SpecificEntropy"/>.</summary>
@@ -595,7 +608,7 @@ namespace UnitsNet
         /// <summary>Get <see cref="TemperatureGradient"/> from <see cref="TemperatureDelta"/> / <see cref="Length"/>.</summary>
         public static TemperatureGradient operator /(TemperatureDelta temperatureDelta, Length length)
         {
-            return TemperatureGradient.FromKelvinsPerMeter(temperatureDelta.Kelvins / length.Meters);
+            return TemperatureGradient.FromDegreesCelsiusPerKilometer(temperatureDelta.DegreesCelsius / length.Kilometers);
         }
 
         /// <summary>Get <see cref="double"/> from <see cref="TemperatureDelta"/> * <see cref="CoefficientOfThermalExpansion"/>.</summary>
