@@ -67,7 +67,6 @@
   "SpecificEnergy.JoulePerKilogram = Speed.MeterPerSecond * Speed.MeterPerSecond",
   "SpecificWeight.NewtonPerCubicMeter = Acceleration.MeterPerSecondSquared * Density.KilogramPerCubicMeter",
   "Speed.MeterPerSecond = Acceleration.MeterPerSecondSquared * Duration.Second",
-  "TemperatureChangeRate.DegreeCelsiusPerSecond = TemperatureDelta.DegreeCelsius / Duration.Second",
   "TemperatureDelta.DegreeCelsius = TemperatureChangeRate.DegreeCelsiusPerSecond * Duration.Second",
   "TemperatureDelta.DegreeCelsius = TemperatureGradient.DegreeCelsiusPerKilometer * Length.Kilometer",
   "Torque.NewtonMeter = ForcePerLength.NewtonPerMeter * Area.SquareMeter",
