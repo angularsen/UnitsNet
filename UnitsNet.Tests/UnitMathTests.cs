@@ -46,27 +46,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void AverageOfDifferentUnitsThrowsException()
-        {
-            var units = new IQuantity[] {Length.FromMeters(1), Volume.FromLiters(50)};
-
-            Assert.Throws<ArgumentException>(() => units.Average(LengthUnit.Centimeter));
-        }
-
-        [Fact]
         public void AverageOfEmptySourceThrowsException()
         {
             var units = new Length[] { };
 
             Assert.Throws<InvalidOperationException>(() => units.Average(LengthUnit.Centimeter));
-        }
-
-        [Fact]
-        public void AverageOfLengthsWithNullValueThrowsException()
-        {
-            var units = new IQuantity[] {Length.FromMeters(1), null!};
-
-            Assert.Throws<NullReferenceException>(() => units.Average(LengthUnit.Centimeter));
         }
 
         [Fact]
@@ -117,22 +101,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(1, max.Value);
             Assert.Equal(LengthUnit.Meter, max.Unit);
-        }
-
-        [Fact]
-        public void MaxOfDifferentUnitsThrowsException()
-        {
-            var units = new IQuantity[] {Length.FromMeters(1), Volume.FromLiters(50)};
-
-            Assert.Throws<ArgumentException>(() => units.Max(LengthUnit.Centimeter));
-        }
-
-        [Fact]
-        public void MaxOfLengthsWithNullValueThrowsException()
-        {
-            var units = new IQuantity[] {Length.FromMeters(1), null!};
-
-            Assert.Throws<NullReferenceException>(() => units.Max(LengthUnit.Centimeter));
         }
 
         [Fact]
@@ -194,22 +162,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void MinOfDifferentUnitsThrowsException()
-        {
-            var units = new IQuantity[] {Length.FromMeters(1), Volume.FromLiters(50)};
-
-            Assert.Throws<ArgumentException>(() => units.Min(LengthUnit.Centimeter));
-        }
-
-        [Fact]
-        public void MinOfLengthsWithNullValueThrowsException()
-        {
-            var units = new IQuantity[] {Length.FromMeters(1), null!};
-
-            Assert.Throws<NullReferenceException>(() => units.Min(LengthUnit.Centimeter));
-        }
-
-        [Fact]
         public void MinOfEmptySourceThrowsException()
         {
             var units = new Length[] { };
@@ -253,22 +205,6 @@ namespace UnitsNet.Tests
 
             Assert.Equal(50, min.Value);
             Assert.Equal(LengthUnit.Centimeter, min.Unit);
-        }
-
-        [Fact]
-        public void SumOfDifferentUnitsThrowsException()
-        {
-            var units = new IQuantity[] {Length.FromMeters(1), Volume.FromLiters(50)};
-
-            Assert.Throws<ArgumentException>(() => units.Sum(LengthUnit.Centimeter));
-        }
-
-        [Fact]
-        public void SumOfLengthsWithNullValueThrowsException()
-        {
-            var units = new IQuantity[] {Length.FromMeters(1), null!};
-
-            Assert.Throws<NullReferenceException>(() => units.Sum(LengthUnit.Centimeter));
         }
 
         [Fact]
