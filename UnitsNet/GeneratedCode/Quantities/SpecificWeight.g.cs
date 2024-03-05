@@ -21,12 +21,11 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
-using System.Numerics;
-#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+using System.Numerics;
+using Fractions;
 
 #nullable enable
 
@@ -60,7 +59,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        private readonly Fraction _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -106,7 +105,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public SpecificWeight(double value, SpecificWeightUnit unit)
+        public SpecificWeight(Fraction value, SpecificWeightUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -120,7 +119,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public SpecificWeight(double value, UnitSystem unitSystem)
+        public SpecificWeight(Fraction value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -171,10 +170,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public Fraction Value => _value;
 
         /// <inheritdoc />
-        double IQuantity.Value => _value;
+        Fraction IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -199,87 +198,87 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.KilogramForcePerCubicCentimeter"/>
         /// </summary>
-        public double KilogramsForcePerCubicCentimeter => As(SpecificWeightUnit.KilogramForcePerCubicCentimeter);
+        public Fraction KilogramsForcePerCubicCentimeter => As(SpecificWeightUnit.KilogramForcePerCubicCentimeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.KilogramForcePerCubicMeter"/>
         /// </summary>
-        public double KilogramsForcePerCubicMeter => As(SpecificWeightUnit.KilogramForcePerCubicMeter);
+        public Fraction KilogramsForcePerCubicMeter => As(SpecificWeightUnit.KilogramForcePerCubicMeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.KilogramForcePerCubicMillimeter"/>
         /// </summary>
-        public double KilogramsForcePerCubicMillimeter => As(SpecificWeightUnit.KilogramForcePerCubicMillimeter);
+        public Fraction KilogramsForcePerCubicMillimeter => As(SpecificWeightUnit.KilogramForcePerCubicMillimeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.KilonewtonPerCubicCentimeter"/>
         /// </summary>
-        public double KilonewtonsPerCubicCentimeter => As(SpecificWeightUnit.KilonewtonPerCubicCentimeter);
+        public Fraction KilonewtonsPerCubicCentimeter => As(SpecificWeightUnit.KilonewtonPerCubicCentimeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.KilonewtonPerCubicMeter"/>
         /// </summary>
-        public double KilonewtonsPerCubicMeter => As(SpecificWeightUnit.KilonewtonPerCubicMeter);
+        public Fraction KilonewtonsPerCubicMeter => As(SpecificWeightUnit.KilonewtonPerCubicMeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.KilonewtonPerCubicMillimeter"/>
         /// </summary>
-        public double KilonewtonsPerCubicMillimeter => As(SpecificWeightUnit.KilonewtonPerCubicMillimeter);
+        public Fraction KilonewtonsPerCubicMillimeter => As(SpecificWeightUnit.KilonewtonPerCubicMillimeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.KilopoundForcePerCubicFoot"/>
         /// </summary>
-        public double KilopoundsForcePerCubicFoot => As(SpecificWeightUnit.KilopoundForcePerCubicFoot);
+        public Fraction KilopoundsForcePerCubicFoot => As(SpecificWeightUnit.KilopoundForcePerCubicFoot);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.KilopoundForcePerCubicInch"/>
         /// </summary>
-        public double KilopoundsForcePerCubicInch => As(SpecificWeightUnit.KilopoundForcePerCubicInch);
+        public Fraction KilopoundsForcePerCubicInch => As(SpecificWeightUnit.KilopoundForcePerCubicInch);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.MeganewtonPerCubicMeter"/>
         /// </summary>
-        public double MeganewtonsPerCubicMeter => As(SpecificWeightUnit.MeganewtonPerCubicMeter);
+        public Fraction MeganewtonsPerCubicMeter => As(SpecificWeightUnit.MeganewtonPerCubicMeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.NewtonPerCubicCentimeter"/>
         /// </summary>
-        public double NewtonsPerCubicCentimeter => As(SpecificWeightUnit.NewtonPerCubicCentimeter);
+        public Fraction NewtonsPerCubicCentimeter => As(SpecificWeightUnit.NewtonPerCubicCentimeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.NewtonPerCubicMeter"/>
         /// </summary>
-        public double NewtonsPerCubicMeter => As(SpecificWeightUnit.NewtonPerCubicMeter);
+        public Fraction NewtonsPerCubicMeter => As(SpecificWeightUnit.NewtonPerCubicMeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.NewtonPerCubicMillimeter"/>
         /// </summary>
-        public double NewtonsPerCubicMillimeter => As(SpecificWeightUnit.NewtonPerCubicMillimeter);
+        public Fraction NewtonsPerCubicMillimeter => As(SpecificWeightUnit.NewtonPerCubicMillimeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.PoundForcePerCubicFoot"/>
         /// </summary>
-        public double PoundsForcePerCubicFoot => As(SpecificWeightUnit.PoundForcePerCubicFoot);
+        public Fraction PoundsForcePerCubicFoot => As(SpecificWeightUnit.PoundForcePerCubicFoot);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.PoundForcePerCubicInch"/>
         /// </summary>
-        public double PoundsForcePerCubicInch => As(SpecificWeightUnit.PoundForcePerCubicInch);
+        public Fraction PoundsForcePerCubicInch => As(SpecificWeightUnit.PoundForcePerCubicInch);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.TonneForcePerCubicCentimeter"/>
         /// </summary>
-        public double TonnesForcePerCubicCentimeter => As(SpecificWeightUnit.TonneForcePerCubicCentimeter);
+        public Fraction TonnesForcePerCubicCentimeter => As(SpecificWeightUnit.TonneForcePerCubicCentimeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.TonneForcePerCubicMeter"/>
         /// </summary>
-        public double TonnesForcePerCubicMeter => As(SpecificWeightUnit.TonneForcePerCubicMeter);
+        public Fraction TonnesForcePerCubicMeter => As(SpecificWeightUnit.TonneForcePerCubicMeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.TonneForcePerCubicMillimeter"/>
         /// </summary>
-        public double TonnesForcePerCubicMillimeter => As(SpecificWeightUnit.TonneForcePerCubicMillimeter);
+        public Fraction TonnesForcePerCubicMillimeter => As(SpecificWeightUnit.TonneForcePerCubicMillimeter);
 
         #endregion
 
@@ -359,7 +358,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.KilogramForcePerCubicCentimeter"/>.
         /// </summary>
-        public static SpecificWeight FromKilogramsForcePerCubicCentimeter(double value)
+        public static SpecificWeight FromKilogramsForcePerCubicCentimeter(Fraction value)
         {
             return new SpecificWeight(value, SpecificWeightUnit.KilogramForcePerCubicCentimeter);
         }
@@ -367,7 +366,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.KilogramForcePerCubicMeter"/>.
         /// </summary>
-        public static SpecificWeight FromKilogramsForcePerCubicMeter(double value)
+        public static SpecificWeight FromKilogramsForcePerCubicMeter(Fraction value)
         {
             return new SpecificWeight(value, SpecificWeightUnit.KilogramForcePerCubicMeter);
         }
@@ -375,7 +374,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.KilogramForcePerCubicMillimeter"/>.
         /// </summary>
-        public static SpecificWeight FromKilogramsForcePerCubicMillimeter(double value)
+        public static SpecificWeight FromKilogramsForcePerCubicMillimeter(Fraction value)
         {
             return new SpecificWeight(value, SpecificWeightUnit.KilogramForcePerCubicMillimeter);
         }
@@ -383,7 +382,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.KilonewtonPerCubicCentimeter"/>.
         /// </summary>
-        public static SpecificWeight FromKilonewtonsPerCubicCentimeter(double value)
+        public static SpecificWeight FromKilonewtonsPerCubicCentimeter(Fraction value)
         {
             return new SpecificWeight(value, SpecificWeightUnit.KilonewtonPerCubicCentimeter);
         }
@@ -391,7 +390,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.KilonewtonPerCubicMeter"/>.
         /// </summary>
-        public static SpecificWeight FromKilonewtonsPerCubicMeter(double value)
+        public static SpecificWeight FromKilonewtonsPerCubicMeter(Fraction value)
         {
             return new SpecificWeight(value, SpecificWeightUnit.KilonewtonPerCubicMeter);
         }
@@ -399,7 +398,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.KilonewtonPerCubicMillimeter"/>.
         /// </summary>
-        public static SpecificWeight FromKilonewtonsPerCubicMillimeter(double value)
+        public static SpecificWeight FromKilonewtonsPerCubicMillimeter(Fraction value)
         {
             return new SpecificWeight(value, SpecificWeightUnit.KilonewtonPerCubicMillimeter);
         }
@@ -407,7 +406,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.KilopoundForcePerCubicFoot"/>.
         /// </summary>
-        public static SpecificWeight FromKilopoundsForcePerCubicFoot(double value)
+        public static SpecificWeight FromKilopoundsForcePerCubicFoot(Fraction value)
         {
             return new SpecificWeight(value, SpecificWeightUnit.KilopoundForcePerCubicFoot);
         }
@@ -415,7 +414,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.KilopoundForcePerCubicInch"/>.
         /// </summary>
-        public static SpecificWeight FromKilopoundsForcePerCubicInch(double value)
+        public static SpecificWeight FromKilopoundsForcePerCubicInch(Fraction value)
         {
             return new SpecificWeight(value, SpecificWeightUnit.KilopoundForcePerCubicInch);
         }
@@ -423,7 +422,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.MeganewtonPerCubicMeter"/>.
         /// </summary>
-        public static SpecificWeight FromMeganewtonsPerCubicMeter(double value)
+        public static SpecificWeight FromMeganewtonsPerCubicMeter(Fraction value)
         {
             return new SpecificWeight(value, SpecificWeightUnit.MeganewtonPerCubicMeter);
         }
@@ -431,7 +430,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.NewtonPerCubicCentimeter"/>.
         /// </summary>
-        public static SpecificWeight FromNewtonsPerCubicCentimeter(double value)
+        public static SpecificWeight FromNewtonsPerCubicCentimeter(Fraction value)
         {
             return new SpecificWeight(value, SpecificWeightUnit.NewtonPerCubicCentimeter);
         }
@@ -439,7 +438,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.NewtonPerCubicMeter"/>.
         /// </summary>
-        public static SpecificWeight FromNewtonsPerCubicMeter(double value)
+        public static SpecificWeight FromNewtonsPerCubicMeter(Fraction value)
         {
             return new SpecificWeight(value, SpecificWeightUnit.NewtonPerCubicMeter);
         }
@@ -447,7 +446,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.NewtonPerCubicMillimeter"/>.
         /// </summary>
-        public static SpecificWeight FromNewtonsPerCubicMillimeter(double value)
+        public static SpecificWeight FromNewtonsPerCubicMillimeter(Fraction value)
         {
             return new SpecificWeight(value, SpecificWeightUnit.NewtonPerCubicMillimeter);
         }
@@ -455,7 +454,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.PoundForcePerCubicFoot"/>.
         /// </summary>
-        public static SpecificWeight FromPoundsForcePerCubicFoot(double value)
+        public static SpecificWeight FromPoundsForcePerCubicFoot(Fraction value)
         {
             return new SpecificWeight(value, SpecificWeightUnit.PoundForcePerCubicFoot);
         }
@@ -463,7 +462,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.PoundForcePerCubicInch"/>.
         /// </summary>
-        public static SpecificWeight FromPoundsForcePerCubicInch(double value)
+        public static SpecificWeight FromPoundsForcePerCubicInch(Fraction value)
         {
             return new SpecificWeight(value, SpecificWeightUnit.PoundForcePerCubicInch);
         }
@@ -471,7 +470,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.TonneForcePerCubicCentimeter"/>.
         /// </summary>
-        public static SpecificWeight FromTonnesForcePerCubicCentimeter(double value)
+        public static SpecificWeight FromTonnesForcePerCubicCentimeter(Fraction value)
         {
             return new SpecificWeight(value, SpecificWeightUnit.TonneForcePerCubicCentimeter);
         }
@@ -479,7 +478,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.TonneForcePerCubicMeter"/>.
         /// </summary>
-        public static SpecificWeight FromTonnesForcePerCubicMeter(double value)
+        public static SpecificWeight FromTonnesForcePerCubicMeter(Fraction value)
         {
             return new SpecificWeight(value, SpecificWeightUnit.TonneForcePerCubicMeter);
         }
@@ -487,7 +486,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.TonneForcePerCubicMillimeter"/>.
         /// </summary>
-        public static SpecificWeight FromTonnesForcePerCubicMillimeter(double value)
+        public static SpecificWeight FromTonnesForcePerCubicMillimeter(Fraction value)
         {
             return new SpecificWeight(value, SpecificWeightUnit.TonneForcePerCubicMillimeter);
         }
@@ -498,7 +497,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>SpecificWeight unit value.</returns>
-        public static SpecificWeight From(double value, SpecificWeightUnit fromUnit)
+        public static SpecificWeight From(Fraction value, SpecificWeightUnit fromUnit)
         {
             return new SpecificWeight(value, fromUnit);
         }
@@ -654,7 +653,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static SpecificWeight operator -(SpecificWeight right)
         {
-            return new SpecificWeight(-right.Value, right.Unit);
+            return new SpecificWeight(right.Value.Invert(), right.Unit);
         }
 
         /// <summary>Get <see cref="SpecificWeight"/> from adding two <see cref="SpecificWeight"/>.</summary>
@@ -670,25 +669,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="SpecificWeight"/> from multiplying value and <see cref="SpecificWeight"/>.</summary>
-        public static SpecificWeight operator *(double left, SpecificWeight right)
+        public static SpecificWeight operator *(Fraction left, SpecificWeight right)
         {
             return new SpecificWeight(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="SpecificWeight"/> from multiplying value and <see cref="SpecificWeight"/>.</summary>
-        public static SpecificWeight operator *(SpecificWeight left, double right)
+        public static SpecificWeight operator *(SpecificWeight left, Fraction right)
         {
             return new SpecificWeight(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="SpecificWeight"/> from dividing <see cref="SpecificWeight"/> by value.</summary>
-        public static SpecificWeight operator /(SpecificWeight left, double right)
+        public static SpecificWeight operator /(SpecificWeight left, Fraction right)
         {
             return new SpecificWeight(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="SpecificWeight"/> by <see cref="SpecificWeight"/>.</summary>
-        public static double operator /(SpecificWeight left, SpecificWeight right)
+        public static Fraction operator /(SpecificWeight left, SpecificWeight right)
         {
             return left.NewtonsPerCubicMeter / right.NewtonsPerCubicMeter;
         }
@@ -749,27 +748,20 @@ namespace UnitsNet
             return left.Value > right.ToUnit(left.Unit).Value;
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="SpecificWeight"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(SpecificWeight other, SpecificWeight tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="SpecificWeight"/> quantities.</summary>
         public static bool operator ==(SpecificWeight left, SpecificWeight right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="SpecificWeight"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(SpecificWeight other, SpecificWeight tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="SpecificWeight"/> quantities.</summary>
         public static bool operator !=(SpecificWeight left, SpecificWeight right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="SpecificWeight"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(SpecificWeight other, SpecificWeight tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="SpecificWeight"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is SpecificWeight otherQuantity))
@@ -779,14 +771,11 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="SpecificWeight"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(SpecificWeight other, SpecificWeight tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="SpecificWeight"/> quantities.</summary>
         public bool Equals(SpecificWeight other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.IsEquivalentTo(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>Compares the current <see cref="SpecificWeight"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
         /// <param name="obj">An object to compare with this instance.</param>
@@ -870,10 +859,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.Comparison.Equals(
+            return UnitsNet.FractionComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: tolerance,
+                tolerance: (Fraction)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -890,7 +879,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(SpecificWeight other, SpecificWeight tolerance)
         {
-            return UnitsNet.Comparison.Equals(
+            return UnitsNet.FractionComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -903,7 +892,8 @@ namespace UnitsNet
         /// <returns>A hash code for the current SpecificWeight.</returns>
         public override int GetHashCode()
         {
-            return new { Info.Name, Value, Unit }.GetHashCode();
+            var valueInBaseUnit = As(BaseUnit);
+            return new { Info.Name, valueInBaseUnit }.GetHashCode();
         }
 
         #endregion
@@ -914,7 +904,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(SpecificWeightUnit unit)
+        public Fraction As(SpecificWeightUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -923,7 +913,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public Fraction As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -938,7 +928,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        double IQuantity.As(Enum unit)
+        Fraction IQuantity.As(Enum unit)
         {
             if (!(unit is SpecificWeightUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificWeightUnit)} is supported.", nameof(unit));
@@ -1004,40 +994,40 @@ namespace UnitsNet
             SpecificWeight? convertedOrNull = (Unit, unit) switch
             {
                 // SpecificWeightUnit -> BaseUnit
-                (SpecificWeightUnit.KilogramForcePerCubicCentimeter, SpecificWeightUnit.NewtonPerCubicMeter) => new SpecificWeight(_value * 9.80665e6, SpecificWeightUnit.NewtonPerCubicMeter),
-                (SpecificWeightUnit.KilogramForcePerCubicMeter, SpecificWeightUnit.NewtonPerCubicMeter) => new SpecificWeight(_value * 9.80665, SpecificWeightUnit.NewtonPerCubicMeter),
-                (SpecificWeightUnit.KilogramForcePerCubicMillimeter, SpecificWeightUnit.NewtonPerCubicMeter) => new SpecificWeight(_value * 9.80665e9, SpecificWeightUnit.NewtonPerCubicMeter),
-                (SpecificWeightUnit.KilonewtonPerCubicCentimeter, SpecificWeightUnit.NewtonPerCubicMeter) => new SpecificWeight((_value * 1000000) * 1e3d, SpecificWeightUnit.NewtonPerCubicMeter),
-                (SpecificWeightUnit.KilonewtonPerCubicMeter, SpecificWeightUnit.NewtonPerCubicMeter) => new SpecificWeight((_value) * 1e3d, SpecificWeightUnit.NewtonPerCubicMeter),
-                (SpecificWeightUnit.KilonewtonPerCubicMillimeter, SpecificWeightUnit.NewtonPerCubicMeter) => new SpecificWeight((_value * 1000000000) * 1e3d, SpecificWeightUnit.NewtonPerCubicMeter),
-                (SpecificWeightUnit.KilopoundForcePerCubicFoot, SpecificWeightUnit.NewtonPerCubicMeter) => new SpecificWeight((_value * 1.570874638462462e2) * 1e3d, SpecificWeightUnit.NewtonPerCubicMeter),
-                (SpecificWeightUnit.KilopoundForcePerCubicInch, SpecificWeightUnit.NewtonPerCubicMeter) => new SpecificWeight((_value * 2.714471375263134e5) * 1e3d, SpecificWeightUnit.NewtonPerCubicMeter),
-                (SpecificWeightUnit.MeganewtonPerCubicMeter, SpecificWeightUnit.NewtonPerCubicMeter) => new SpecificWeight((_value) * 1e6d, SpecificWeightUnit.NewtonPerCubicMeter),
+                (SpecificWeightUnit.KilogramForcePerCubicCentimeter, SpecificWeightUnit.NewtonPerCubicMeter) => new SpecificWeight(_value * 9806650, SpecificWeightUnit.NewtonPerCubicMeter),
+                (SpecificWeightUnit.KilogramForcePerCubicMeter, SpecificWeightUnit.NewtonPerCubicMeter) => new SpecificWeight(_value * new Fraction(196133, 20000, false), SpecificWeightUnit.NewtonPerCubicMeter),
+                (SpecificWeightUnit.KilogramForcePerCubicMillimeter, SpecificWeightUnit.NewtonPerCubicMeter) => new SpecificWeight(_value * 9806650000, SpecificWeightUnit.NewtonPerCubicMeter),
+                (SpecificWeightUnit.KilonewtonPerCubicCentimeter, SpecificWeightUnit.NewtonPerCubicMeter) => new SpecificWeight(_value * 1000000000, SpecificWeightUnit.NewtonPerCubicMeter),
+                (SpecificWeightUnit.KilonewtonPerCubicMeter, SpecificWeightUnit.NewtonPerCubicMeter) => new SpecificWeight(_value * 1000, SpecificWeightUnit.NewtonPerCubicMeter),
+                (SpecificWeightUnit.KilonewtonPerCubicMillimeter, SpecificWeightUnit.NewtonPerCubicMeter) => new SpecificWeight(_value * 1000000000000, SpecificWeightUnit.NewtonPerCubicMeter),
+                (SpecificWeightUnit.KilopoundForcePerCubicFoot, SpecificWeightUnit.NewtonPerCubicMeter) => new SpecificWeight(_value * new Fraction(785437319231231, 5000000000, false), SpecificWeightUnit.NewtonPerCubicMeter),
+                (SpecificWeightUnit.KilopoundForcePerCubicInch, SpecificWeightUnit.NewtonPerCubicMeter) => new SpecificWeight(_value * new Fraction(1357235687631567, 5000000, false), SpecificWeightUnit.NewtonPerCubicMeter),
+                (SpecificWeightUnit.MeganewtonPerCubicMeter, SpecificWeightUnit.NewtonPerCubicMeter) => new SpecificWeight(_value * 1000000, SpecificWeightUnit.NewtonPerCubicMeter),
                 (SpecificWeightUnit.NewtonPerCubicCentimeter, SpecificWeightUnit.NewtonPerCubicMeter) => new SpecificWeight(_value * 1000000, SpecificWeightUnit.NewtonPerCubicMeter),
                 (SpecificWeightUnit.NewtonPerCubicMillimeter, SpecificWeightUnit.NewtonPerCubicMeter) => new SpecificWeight(_value * 1000000000, SpecificWeightUnit.NewtonPerCubicMeter),
-                (SpecificWeightUnit.PoundForcePerCubicFoot, SpecificWeightUnit.NewtonPerCubicMeter) => new SpecificWeight(_value * 1.570874638462462e2, SpecificWeightUnit.NewtonPerCubicMeter),
-                (SpecificWeightUnit.PoundForcePerCubicInch, SpecificWeightUnit.NewtonPerCubicMeter) => new SpecificWeight(_value * 2.714471375263134e5, SpecificWeightUnit.NewtonPerCubicMeter),
-                (SpecificWeightUnit.TonneForcePerCubicCentimeter, SpecificWeightUnit.NewtonPerCubicMeter) => new SpecificWeight(_value * 9.80665e9, SpecificWeightUnit.NewtonPerCubicMeter),
-                (SpecificWeightUnit.TonneForcePerCubicMeter, SpecificWeightUnit.NewtonPerCubicMeter) => new SpecificWeight(_value * 9.80665e3, SpecificWeightUnit.NewtonPerCubicMeter),
-                (SpecificWeightUnit.TonneForcePerCubicMillimeter, SpecificWeightUnit.NewtonPerCubicMeter) => new SpecificWeight(_value * 9.80665e12, SpecificWeightUnit.NewtonPerCubicMeter),
+                (SpecificWeightUnit.PoundForcePerCubicFoot, SpecificWeightUnit.NewtonPerCubicMeter) => new SpecificWeight(_value * new Fraction(785437319231231, 5000000000000, false), SpecificWeightUnit.NewtonPerCubicMeter),
+                (SpecificWeightUnit.PoundForcePerCubicInch, SpecificWeightUnit.NewtonPerCubicMeter) => new SpecificWeight(_value * new Fraction(1357235687631567, 5000000000, false), SpecificWeightUnit.NewtonPerCubicMeter),
+                (SpecificWeightUnit.TonneForcePerCubicCentimeter, SpecificWeightUnit.NewtonPerCubicMeter) => new SpecificWeight(_value * 9806650000, SpecificWeightUnit.NewtonPerCubicMeter),
+                (SpecificWeightUnit.TonneForcePerCubicMeter, SpecificWeightUnit.NewtonPerCubicMeter) => new SpecificWeight(_value * new Fraction(196133, 20, false), SpecificWeightUnit.NewtonPerCubicMeter),
+                (SpecificWeightUnit.TonneForcePerCubicMillimeter, SpecificWeightUnit.NewtonPerCubicMeter) => new SpecificWeight(_value * 9806650000000, SpecificWeightUnit.NewtonPerCubicMeter),
 
                 // BaseUnit -> SpecificWeightUnit
-                (SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.KilogramForcePerCubicCentimeter) => new SpecificWeight(_value / 9.80665e6, SpecificWeightUnit.KilogramForcePerCubicCentimeter),
-                (SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.KilogramForcePerCubicMeter) => new SpecificWeight(_value / 9.80665, SpecificWeightUnit.KilogramForcePerCubicMeter),
-                (SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.KilogramForcePerCubicMillimeter) => new SpecificWeight(_value / 9.80665e9, SpecificWeightUnit.KilogramForcePerCubicMillimeter),
-                (SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.KilonewtonPerCubicCentimeter) => new SpecificWeight((_value * 0.000001) / 1e3d, SpecificWeightUnit.KilonewtonPerCubicCentimeter),
-                (SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.KilonewtonPerCubicMeter) => new SpecificWeight((_value) / 1e3d, SpecificWeightUnit.KilonewtonPerCubicMeter),
-                (SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.KilonewtonPerCubicMillimeter) => new SpecificWeight((_value * 0.000000001) / 1e3d, SpecificWeightUnit.KilonewtonPerCubicMillimeter),
-                (SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.KilopoundForcePerCubicFoot) => new SpecificWeight((_value / 1.570874638462462e2) / 1e3d, SpecificWeightUnit.KilopoundForcePerCubicFoot),
-                (SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.KilopoundForcePerCubicInch) => new SpecificWeight((_value / 2.714471375263134e5) / 1e3d, SpecificWeightUnit.KilopoundForcePerCubicInch),
-                (SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.MeganewtonPerCubicMeter) => new SpecificWeight((_value) / 1e6d, SpecificWeightUnit.MeganewtonPerCubicMeter),
-                (SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.NewtonPerCubicCentimeter) => new SpecificWeight(_value * 0.000001, SpecificWeightUnit.NewtonPerCubicCentimeter),
-                (SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.NewtonPerCubicMillimeter) => new SpecificWeight(_value * 0.000000001, SpecificWeightUnit.NewtonPerCubicMillimeter),
-                (SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.PoundForcePerCubicFoot) => new SpecificWeight(_value / 1.570874638462462e2, SpecificWeightUnit.PoundForcePerCubicFoot),
-                (SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.PoundForcePerCubicInch) => new SpecificWeight(_value / 2.714471375263134e5, SpecificWeightUnit.PoundForcePerCubicInch),
-                (SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.TonneForcePerCubicCentimeter) => new SpecificWeight(_value / 9.80665e9, SpecificWeightUnit.TonneForcePerCubicCentimeter),
-                (SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.TonneForcePerCubicMeter) => new SpecificWeight(_value / 9.80665e3, SpecificWeightUnit.TonneForcePerCubicMeter),
-                (SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.TonneForcePerCubicMillimeter) => new SpecificWeight(_value / 9.80665e12, SpecificWeightUnit.TonneForcePerCubicMillimeter),
+                (SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.KilogramForcePerCubicCentimeter) => new SpecificWeight(_value / 9806650, SpecificWeightUnit.KilogramForcePerCubicCentimeter),
+                (SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.KilogramForcePerCubicMeter) => new SpecificWeight(_value * new Fraction(20000, 196133, false), SpecificWeightUnit.KilogramForcePerCubicMeter),
+                (SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.KilogramForcePerCubicMillimeter) => new SpecificWeight(_value / 9806650000, SpecificWeightUnit.KilogramForcePerCubicMillimeter),
+                (SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.KilonewtonPerCubicCentimeter) => new SpecificWeight(_value / 1000000000, SpecificWeightUnit.KilonewtonPerCubicCentimeter),
+                (SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.KilonewtonPerCubicMeter) => new SpecificWeight(_value / 1000, SpecificWeightUnit.KilonewtonPerCubicMeter),
+                (SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.KilonewtonPerCubicMillimeter) => new SpecificWeight(_value / 1000000000000, SpecificWeightUnit.KilonewtonPerCubicMillimeter),
+                (SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.KilopoundForcePerCubicFoot) => new SpecificWeight(_value * new Fraction(5000000000, 785437319231231, false), SpecificWeightUnit.KilopoundForcePerCubicFoot),
+                (SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.KilopoundForcePerCubicInch) => new SpecificWeight(_value * new Fraction(5000000, 1357235687631567, false), SpecificWeightUnit.KilopoundForcePerCubicInch),
+                (SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.MeganewtonPerCubicMeter) => new SpecificWeight(_value / 1000000, SpecificWeightUnit.MeganewtonPerCubicMeter),
+                (SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.NewtonPerCubicCentimeter) => new SpecificWeight(_value / 1000000, SpecificWeightUnit.NewtonPerCubicCentimeter),
+                (SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.NewtonPerCubicMillimeter) => new SpecificWeight(_value / 1000000000, SpecificWeightUnit.NewtonPerCubicMillimeter),
+                (SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.PoundForcePerCubicFoot) => new SpecificWeight(_value * new Fraction(5000000000000, 785437319231231, false), SpecificWeightUnit.PoundForcePerCubicFoot),
+                (SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.PoundForcePerCubicInch) => new SpecificWeight(_value * new Fraction(5000000000, 1357235687631567, false), SpecificWeightUnit.PoundForcePerCubicInch),
+                (SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.TonneForcePerCubicCentimeter) => new SpecificWeight(_value / 9806650000, SpecificWeightUnit.TonneForcePerCubicCentimeter),
+                (SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.TonneForcePerCubicMeter) => new SpecificWeight(_value * new Fraction(20, 196133, false), SpecificWeightUnit.TonneForcePerCubicMeter),
+                (SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.TonneForcePerCubicMillimeter) => new SpecificWeight(_value / 9806650000000, SpecificWeightUnit.TonneForcePerCubicMillimeter),
 
                 _ => null
             };

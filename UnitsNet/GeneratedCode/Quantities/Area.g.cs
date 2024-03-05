@@ -21,12 +21,11 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
-using System.Numerics;
-#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+using System.Numerics;
+using Fractions;
 
 #nullable enable
 
@@ -67,7 +66,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        private readonly Fraction _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -110,7 +109,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Area(double value, AreaUnit unit)
+        public Area(Fraction value, AreaUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -124,7 +123,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Area(double value, UnitSystem unitSystem)
+        public Area(Fraction value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -175,10 +174,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public Fraction Value => _value;
 
         /// <inheritdoc />
-        double IQuantity.Value => _value;
+        Fraction IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -203,72 +202,72 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.Acre"/>
         /// </summary>
-        public double Acres => As(AreaUnit.Acre);
+        public Fraction Acres => As(AreaUnit.Acre);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.Hectare"/>
         /// </summary>
-        public double Hectares => As(AreaUnit.Hectare);
+        public Fraction Hectares => As(AreaUnit.Hectare);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareCentimeter"/>
         /// </summary>
-        public double SquareCentimeters => As(AreaUnit.SquareCentimeter);
+        public Fraction SquareCentimeters => As(AreaUnit.SquareCentimeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareDecimeter"/>
         /// </summary>
-        public double SquareDecimeters => As(AreaUnit.SquareDecimeter);
+        public Fraction SquareDecimeters => As(AreaUnit.SquareDecimeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareFoot"/>
         /// </summary>
-        public double SquareFeet => As(AreaUnit.SquareFoot);
+        public Fraction SquareFeet => As(AreaUnit.SquareFoot);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareInch"/>
         /// </summary>
-        public double SquareInches => As(AreaUnit.SquareInch);
+        public Fraction SquareInches => As(AreaUnit.SquareInch);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareKilometer"/>
         /// </summary>
-        public double SquareKilometers => As(AreaUnit.SquareKilometer);
+        public Fraction SquareKilometers => As(AreaUnit.SquareKilometer);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareMeter"/>
         /// </summary>
-        public double SquareMeters => As(AreaUnit.SquareMeter);
+        public Fraction SquareMeters => As(AreaUnit.SquareMeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareMicrometer"/>
         /// </summary>
-        public double SquareMicrometers => As(AreaUnit.SquareMicrometer);
+        public Fraction SquareMicrometers => As(AreaUnit.SquareMicrometer);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareMile"/>
         /// </summary>
-        public double SquareMiles => As(AreaUnit.SquareMile);
+        public Fraction SquareMiles => As(AreaUnit.SquareMile);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareMillimeter"/>
         /// </summary>
-        public double SquareMillimeters => As(AreaUnit.SquareMillimeter);
+        public Fraction SquareMillimeters => As(AreaUnit.SquareMillimeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareNauticalMile"/>
         /// </summary>
-        public double SquareNauticalMiles => As(AreaUnit.SquareNauticalMile);
+        public Fraction SquareNauticalMiles => As(AreaUnit.SquareNauticalMile);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareYard"/>
         /// </summary>
-        public double SquareYards => As(AreaUnit.SquareYard);
+        public Fraction SquareYards => As(AreaUnit.SquareYard);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.UsSurveySquareFoot"/>
         /// </summary>
-        public double UsSurveySquareFeet => As(AreaUnit.UsSurveySquareFoot);
+        public Fraction UsSurveySquareFeet => As(AreaUnit.UsSurveySquareFoot);
 
         #endregion
 
@@ -342,7 +341,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.Acre"/>.
         /// </summary>
-        public static Area FromAcres(double value)
+        public static Area FromAcres(Fraction value)
         {
             return new Area(value, AreaUnit.Acre);
         }
@@ -350,7 +349,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.Hectare"/>.
         /// </summary>
-        public static Area FromHectares(double value)
+        public static Area FromHectares(Fraction value)
         {
             return new Area(value, AreaUnit.Hectare);
         }
@@ -358,7 +357,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareCentimeter"/>.
         /// </summary>
-        public static Area FromSquareCentimeters(double value)
+        public static Area FromSquareCentimeters(Fraction value)
         {
             return new Area(value, AreaUnit.SquareCentimeter);
         }
@@ -366,7 +365,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareDecimeter"/>.
         /// </summary>
-        public static Area FromSquareDecimeters(double value)
+        public static Area FromSquareDecimeters(Fraction value)
         {
             return new Area(value, AreaUnit.SquareDecimeter);
         }
@@ -374,7 +373,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareFoot"/>.
         /// </summary>
-        public static Area FromSquareFeet(double value)
+        public static Area FromSquareFeet(Fraction value)
         {
             return new Area(value, AreaUnit.SquareFoot);
         }
@@ -382,7 +381,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareInch"/>.
         /// </summary>
-        public static Area FromSquareInches(double value)
+        public static Area FromSquareInches(Fraction value)
         {
             return new Area(value, AreaUnit.SquareInch);
         }
@@ -390,7 +389,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareKilometer"/>.
         /// </summary>
-        public static Area FromSquareKilometers(double value)
+        public static Area FromSquareKilometers(Fraction value)
         {
             return new Area(value, AreaUnit.SquareKilometer);
         }
@@ -398,7 +397,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareMeter"/>.
         /// </summary>
-        public static Area FromSquareMeters(double value)
+        public static Area FromSquareMeters(Fraction value)
         {
             return new Area(value, AreaUnit.SquareMeter);
         }
@@ -406,7 +405,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareMicrometer"/>.
         /// </summary>
-        public static Area FromSquareMicrometers(double value)
+        public static Area FromSquareMicrometers(Fraction value)
         {
             return new Area(value, AreaUnit.SquareMicrometer);
         }
@@ -414,7 +413,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareMile"/>.
         /// </summary>
-        public static Area FromSquareMiles(double value)
+        public static Area FromSquareMiles(Fraction value)
         {
             return new Area(value, AreaUnit.SquareMile);
         }
@@ -422,7 +421,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareMillimeter"/>.
         /// </summary>
-        public static Area FromSquareMillimeters(double value)
+        public static Area FromSquareMillimeters(Fraction value)
         {
             return new Area(value, AreaUnit.SquareMillimeter);
         }
@@ -430,7 +429,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareNauticalMile"/>.
         /// </summary>
-        public static Area FromSquareNauticalMiles(double value)
+        public static Area FromSquareNauticalMiles(Fraction value)
         {
             return new Area(value, AreaUnit.SquareNauticalMile);
         }
@@ -438,7 +437,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareYard"/>.
         /// </summary>
-        public static Area FromSquareYards(double value)
+        public static Area FromSquareYards(Fraction value)
         {
             return new Area(value, AreaUnit.SquareYard);
         }
@@ -446,7 +445,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.UsSurveySquareFoot"/>.
         /// </summary>
-        public static Area FromUsSurveySquareFeet(double value)
+        public static Area FromUsSurveySquareFeet(Fraction value)
         {
             return new Area(value, AreaUnit.UsSurveySquareFoot);
         }
@@ -457,7 +456,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Area unit value.</returns>
-        public static Area From(double value, AreaUnit fromUnit)
+        public static Area From(Fraction value, AreaUnit fromUnit)
         {
             return new Area(value, fromUnit);
         }
@@ -613,7 +612,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static Area operator -(Area right)
         {
-            return new Area(-right.Value, right.Unit);
+            return new Area(right.Value.Invert(), right.Unit);
         }
 
         /// <summary>Get <see cref="Area"/> from adding two <see cref="Area"/>.</summary>
@@ -629,25 +628,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Area"/> from multiplying value and <see cref="Area"/>.</summary>
-        public static Area operator *(double left, Area right)
+        public static Area operator *(Fraction left, Area right)
         {
             return new Area(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Area"/> from multiplying value and <see cref="Area"/>.</summary>
-        public static Area operator *(Area left, double right)
+        public static Area operator *(Area left, Fraction right)
         {
             return new Area(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Area"/> from dividing <see cref="Area"/> by value.</summary>
-        public static Area operator /(Area left, double right)
+        public static Area operator /(Area left, Fraction right)
         {
             return new Area(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Area"/> by <see cref="Area"/>.</summary>
-        public static double operator /(Area left, Area right)
+        public static Fraction operator /(Area left, Area right)
         {
             return left.SquareMeters / right.SquareMeters;
         }
@@ -660,7 +659,7 @@ namespace UnitsNet
         /// <returns>The corresponding inverse quantity, <see cref="ReciprocalArea"/>.</returns>
         public ReciprocalArea Inverse()
         {
-            return SquareMeters == 0.0 ? ReciprocalArea.Zero : ReciprocalArea.FromInverseSquareMeters(1 / SquareMeters);
+            return ReciprocalArea.FromInverseSquareMeters(SquareMeters.Reciprocal());
         }
 
         /// <summary>Get <see cref="Duration"/> from <see cref="Area"/> / <see cref="KinematicViscosity"/>.</summary>
@@ -775,27 +774,20 @@ namespace UnitsNet
             return left.Value > right.ToUnit(left.Unit).Value;
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="Area"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Area other, Area tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Area"/> quantities.</summary>
         public static bool operator ==(Area left, Area right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="Area"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Area other, Area tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="Area"/> quantities.</summary>
         public static bool operator !=(Area left, Area right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="Area"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(Area other, Area tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Area"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is Area otherQuantity))
@@ -805,14 +797,11 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="Area"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(Area other, Area tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Area"/> quantities.</summary>
         public bool Equals(Area other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.IsEquivalentTo(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>Compares the current <see cref="Area"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
         /// <param name="obj">An object to compare with this instance.</param>
@@ -896,10 +885,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.Comparison.Equals(
+            return UnitsNet.FractionComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: tolerance,
+                tolerance: (Fraction)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -916,7 +905,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(Area other, Area tolerance)
         {
-            return UnitsNet.Comparison.Equals(
+            return UnitsNet.FractionComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -929,7 +918,8 @@ namespace UnitsNet
         /// <returns>A hash code for the current Area.</returns>
         public override int GetHashCode()
         {
-            return new { Info.Name, Value, Unit }.GetHashCode();
+            var valueInBaseUnit = As(BaseUnit);
+            return new { Info.Name, valueInBaseUnit }.GetHashCode();
         }
 
         #endregion
@@ -940,7 +930,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(AreaUnit unit)
+        public Fraction As(AreaUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -949,7 +939,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public Fraction As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -964,7 +954,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        double IQuantity.As(Enum unit)
+        Fraction IQuantity.As(Enum unit)
         {
             if (!(unit is AreaUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AreaUnit)} is supported.", nameof(unit));
@@ -1030,34 +1020,34 @@ namespace UnitsNet
             Area? convertedOrNull = (Unit, unit) switch
             {
                 // AreaUnit -> BaseUnit
-                (AreaUnit.Acre, AreaUnit.SquareMeter) => new Area(_value * 4046.8564224, AreaUnit.SquareMeter),
-                (AreaUnit.Hectare, AreaUnit.SquareMeter) => new Area(_value * 1e4, AreaUnit.SquareMeter),
-                (AreaUnit.SquareCentimeter, AreaUnit.SquareMeter) => new Area(_value * 1e-4, AreaUnit.SquareMeter),
-                (AreaUnit.SquareDecimeter, AreaUnit.SquareMeter) => new Area(_value * 1e-2, AreaUnit.SquareMeter),
-                (AreaUnit.SquareFoot, AreaUnit.SquareMeter) => new Area(_value * 9.290304e-2, AreaUnit.SquareMeter),
-                (AreaUnit.SquareInch, AreaUnit.SquareMeter) => new Area(_value * 0.00064516, AreaUnit.SquareMeter),
-                (AreaUnit.SquareKilometer, AreaUnit.SquareMeter) => new Area(_value * 1e6, AreaUnit.SquareMeter),
-                (AreaUnit.SquareMicrometer, AreaUnit.SquareMeter) => new Area(_value * 1e-12, AreaUnit.SquareMeter),
-                (AreaUnit.SquareMile, AreaUnit.SquareMeter) => new Area(_value * 1609.344 * 1609.344, AreaUnit.SquareMeter),
-                (AreaUnit.SquareMillimeter, AreaUnit.SquareMeter) => new Area(_value * 1e-6, AreaUnit.SquareMeter),
+                (AreaUnit.Acre, AreaUnit.SquareMeter) => new Area(_value * new Fraction(316160658, 78125, false), AreaUnit.SquareMeter),
+                (AreaUnit.Hectare, AreaUnit.SquareMeter) => new Area(_value * 10000, AreaUnit.SquareMeter),
+                (AreaUnit.SquareCentimeter, AreaUnit.SquareMeter) => new Area(_value / 10000, AreaUnit.SquareMeter),
+                (AreaUnit.SquareDecimeter, AreaUnit.SquareMeter) => new Area(_value / 100, AreaUnit.SquareMeter),
+                (AreaUnit.SquareFoot, AreaUnit.SquareMeter) => new Area(_value * new Fraction(145161, 1562500, false), AreaUnit.SquareMeter),
+                (AreaUnit.SquareInch, AreaUnit.SquareMeter) => new Area(_value * new Fraction(16129, 25000000, false), AreaUnit.SquareMeter),
+                (AreaUnit.SquareKilometer, AreaUnit.SquareMeter) => new Area(_value * 1000000, AreaUnit.SquareMeter),
+                (AreaUnit.SquareMicrometer, AreaUnit.SquareMeter) => new Area(_value / 1000000000000, AreaUnit.SquareMeter),
+                (AreaUnit.SquareMile, AreaUnit.SquareMeter) => new Area(_value * new Fraction(40468564224, 15625, false), AreaUnit.SquareMeter),
+                (AreaUnit.SquareMillimeter, AreaUnit.SquareMeter) => new Area(_value / 1000000, AreaUnit.SquareMeter),
                 (AreaUnit.SquareNauticalMile, AreaUnit.SquareMeter) => new Area(_value * 3429904, AreaUnit.SquareMeter),
-                (AreaUnit.SquareYard, AreaUnit.SquareMeter) => new Area(_value * 0.9144 * 0.9144, AreaUnit.SquareMeter),
-                (AreaUnit.UsSurveySquareFoot, AreaUnit.SquareMeter) => new Area(_value * (1200.0 / 3937.0) * (1200.0 / 3937.0), AreaUnit.SquareMeter),
+                (AreaUnit.SquareYard, AreaUnit.SquareMeter) => new Area(_value * new Fraction(1306449, 1562500, false), AreaUnit.SquareMeter),
+                (AreaUnit.UsSurveySquareFoot, AreaUnit.SquareMeter) => new Area(_value * new Fraction(1440000, 15499969, false), AreaUnit.SquareMeter),
 
                 // BaseUnit -> AreaUnit
-                (AreaUnit.SquareMeter, AreaUnit.Acre) => new Area(_value / 4046.8564224, AreaUnit.Acre),
-                (AreaUnit.SquareMeter, AreaUnit.Hectare) => new Area(_value / 1e4, AreaUnit.Hectare),
-                (AreaUnit.SquareMeter, AreaUnit.SquareCentimeter) => new Area(_value / 1e-4, AreaUnit.SquareCentimeter),
-                (AreaUnit.SquareMeter, AreaUnit.SquareDecimeter) => new Area(_value / 1e-2, AreaUnit.SquareDecimeter),
-                (AreaUnit.SquareMeter, AreaUnit.SquareFoot) => new Area(_value / 9.290304e-2, AreaUnit.SquareFoot),
-                (AreaUnit.SquareMeter, AreaUnit.SquareInch) => new Area(_value / 0.00064516, AreaUnit.SquareInch),
-                (AreaUnit.SquareMeter, AreaUnit.SquareKilometer) => new Area(_value / 1e6, AreaUnit.SquareKilometer),
-                (AreaUnit.SquareMeter, AreaUnit.SquareMicrometer) => new Area(_value / 1e-12, AreaUnit.SquareMicrometer),
-                (AreaUnit.SquareMeter, AreaUnit.SquareMile) => new Area(_value / 1609.344 / 1609.344, AreaUnit.SquareMile),
-                (AreaUnit.SquareMeter, AreaUnit.SquareMillimeter) => new Area(_value / 1e-6, AreaUnit.SquareMillimeter),
+                (AreaUnit.SquareMeter, AreaUnit.Acre) => new Area(_value * new Fraction(78125, 316160658, false), AreaUnit.Acre),
+                (AreaUnit.SquareMeter, AreaUnit.Hectare) => new Area(_value / 10000, AreaUnit.Hectare),
+                (AreaUnit.SquareMeter, AreaUnit.SquareCentimeter) => new Area(_value * 10000, AreaUnit.SquareCentimeter),
+                (AreaUnit.SquareMeter, AreaUnit.SquareDecimeter) => new Area(_value * 100, AreaUnit.SquareDecimeter),
+                (AreaUnit.SquareMeter, AreaUnit.SquareFoot) => new Area(_value * new Fraction(1562500, 145161, false), AreaUnit.SquareFoot),
+                (AreaUnit.SquareMeter, AreaUnit.SquareInch) => new Area(_value * new Fraction(25000000, 16129, false), AreaUnit.SquareInch),
+                (AreaUnit.SquareMeter, AreaUnit.SquareKilometer) => new Area(_value / 1000000, AreaUnit.SquareKilometer),
+                (AreaUnit.SquareMeter, AreaUnit.SquareMicrometer) => new Area(_value * 1000000000000, AreaUnit.SquareMicrometer),
+                (AreaUnit.SquareMeter, AreaUnit.SquareMile) => new Area(_value * new Fraction(15625, 40468564224, false), AreaUnit.SquareMile),
+                (AreaUnit.SquareMeter, AreaUnit.SquareMillimeter) => new Area(_value * 1000000, AreaUnit.SquareMillimeter),
                 (AreaUnit.SquareMeter, AreaUnit.SquareNauticalMile) => new Area(_value / 3429904, AreaUnit.SquareNauticalMile),
-                (AreaUnit.SquareMeter, AreaUnit.SquareYard) => new Area(_value / 0.9144 / 0.9144, AreaUnit.SquareYard),
-                (AreaUnit.SquareMeter, AreaUnit.UsSurveySquareFoot) => new Area(_value / (1200.0 / 3937.0) / (1200.0 / 3937.0), AreaUnit.UsSurveySquareFoot),
+                (AreaUnit.SquareMeter, AreaUnit.SquareYard) => new Area(_value * new Fraction(1562500, 1306449, false), AreaUnit.SquareYard),
+                (AreaUnit.SquareMeter, AreaUnit.UsSurveySquareFoot) => new Area(_value * new Fraction(15499969, 1440000, false), AreaUnit.UsSurveySquareFoot),
 
                 _ => null
             };

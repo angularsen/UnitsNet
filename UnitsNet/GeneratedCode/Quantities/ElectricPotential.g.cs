@@ -21,12 +21,11 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
-using System.Numerics;
-#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+using System.Numerics;
+using Fractions;
 
 #nullable enable
 
@@ -57,7 +56,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        private readonly Fraction _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -92,7 +91,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public ElectricPotential(double value, ElectricPotentialUnit unit)
+        public ElectricPotential(Fraction value, ElectricPotentialUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -106,7 +105,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ElectricPotential(double value, UnitSystem unitSystem)
+        public ElectricPotential(Fraction value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -157,10 +156,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public Fraction Value => _value;
 
         /// <inheritdoc />
-        double IQuantity.Value => _value;
+        Fraction IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -185,32 +184,32 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialUnit.Kilovolt"/>
         /// </summary>
-        public double Kilovolts => As(ElectricPotentialUnit.Kilovolt);
+        public Fraction Kilovolts => As(ElectricPotentialUnit.Kilovolt);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialUnit.Megavolt"/>
         /// </summary>
-        public double Megavolts => As(ElectricPotentialUnit.Megavolt);
+        public Fraction Megavolts => As(ElectricPotentialUnit.Megavolt);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialUnit.Microvolt"/>
         /// </summary>
-        public double Microvolts => As(ElectricPotentialUnit.Microvolt);
+        public Fraction Microvolts => As(ElectricPotentialUnit.Microvolt);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialUnit.Millivolt"/>
         /// </summary>
-        public double Millivolts => As(ElectricPotentialUnit.Millivolt);
+        public Fraction Millivolts => As(ElectricPotentialUnit.Millivolt);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialUnit.Nanovolt"/>
         /// </summary>
-        public double Nanovolts => As(ElectricPotentialUnit.Nanovolt);
+        public Fraction Nanovolts => As(ElectricPotentialUnit.Nanovolt);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialUnit.Volt"/>
         /// </summary>
-        public double Volts => As(ElectricPotentialUnit.Volt);
+        public Fraction Volts => As(ElectricPotentialUnit.Volt);
 
         #endregion
 
@@ -268,7 +267,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotential"/> from <see cref="ElectricPotentialUnit.Kilovolt"/>.
         /// </summary>
-        public static ElectricPotential FromKilovolts(double value)
+        public static ElectricPotential FromKilovolts(Fraction value)
         {
             return new ElectricPotential(value, ElectricPotentialUnit.Kilovolt);
         }
@@ -276,7 +275,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotential"/> from <see cref="ElectricPotentialUnit.Megavolt"/>.
         /// </summary>
-        public static ElectricPotential FromMegavolts(double value)
+        public static ElectricPotential FromMegavolts(Fraction value)
         {
             return new ElectricPotential(value, ElectricPotentialUnit.Megavolt);
         }
@@ -284,7 +283,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotential"/> from <see cref="ElectricPotentialUnit.Microvolt"/>.
         /// </summary>
-        public static ElectricPotential FromMicrovolts(double value)
+        public static ElectricPotential FromMicrovolts(Fraction value)
         {
             return new ElectricPotential(value, ElectricPotentialUnit.Microvolt);
         }
@@ -292,7 +291,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotential"/> from <see cref="ElectricPotentialUnit.Millivolt"/>.
         /// </summary>
-        public static ElectricPotential FromMillivolts(double value)
+        public static ElectricPotential FromMillivolts(Fraction value)
         {
             return new ElectricPotential(value, ElectricPotentialUnit.Millivolt);
         }
@@ -300,7 +299,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotential"/> from <see cref="ElectricPotentialUnit.Nanovolt"/>.
         /// </summary>
-        public static ElectricPotential FromNanovolts(double value)
+        public static ElectricPotential FromNanovolts(Fraction value)
         {
             return new ElectricPotential(value, ElectricPotentialUnit.Nanovolt);
         }
@@ -308,7 +307,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricPotential"/> from <see cref="ElectricPotentialUnit.Volt"/>.
         /// </summary>
-        public static ElectricPotential FromVolts(double value)
+        public static ElectricPotential FromVolts(Fraction value)
         {
             return new ElectricPotential(value, ElectricPotentialUnit.Volt);
         }
@@ -319,7 +318,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricPotential unit value.</returns>
-        public static ElectricPotential From(double value, ElectricPotentialUnit fromUnit)
+        public static ElectricPotential From(Fraction value, ElectricPotentialUnit fromUnit)
         {
             return new ElectricPotential(value, fromUnit);
         }
@@ -475,7 +474,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static ElectricPotential operator -(ElectricPotential right)
         {
-            return new ElectricPotential(-right.Value, right.Unit);
+            return new ElectricPotential(right.Value.Invert(), right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricPotential"/> from adding two <see cref="ElectricPotential"/>.</summary>
@@ -491,25 +490,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="ElectricPotential"/> from multiplying value and <see cref="ElectricPotential"/>.</summary>
-        public static ElectricPotential operator *(double left, ElectricPotential right)
+        public static ElectricPotential operator *(Fraction left, ElectricPotential right)
         {
             return new ElectricPotential(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricPotential"/> from multiplying value and <see cref="ElectricPotential"/>.</summary>
-        public static ElectricPotential operator *(ElectricPotential left, double right)
+        public static ElectricPotential operator *(ElectricPotential left, Fraction right)
         {
             return new ElectricPotential(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricPotential"/> from dividing <see cref="ElectricPotential"/> by value.</summary>
-        public static ElectricPotential operator /(ElectricPotential left, double right)
+        public static ElectricPotential operator /(ElectricPotential left, Fraction right)
         {
             return new ElectricPotential(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ElectricPotential"/> by <see cref="ElectricPotential"/>.</summary>
-        public static double operator /(ElectricPotential left, ElectricPotential right)
+        public static Fraction operator /(ElectricPotential left, ElectricPotential right)
         {
             return left.Volts / right.Volts;
         }
@@ -570,27 +569,20 @@ namespace UnitsNet
             return left.Value > right.ToUnit(left.Unit).Value;
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="ElectricPotential"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(ElectricPotential other, ElectricPotential tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="ElectricPotential"/> quantities.</summary>
         public static bool operator ==(ElectricPotential left, ElectricPotential right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="ElectricPotential"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(ElectricPotential other, ElectricPotential tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="ElectricPotential"/> quantities.</summary>
         public static bool operator !=(ElectricPotential left, ElectricPotential right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="ElectricPotential"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(ElectricPotential other, ElectricPotential tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="ElectricPotential"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is ElectricPotential otherQuantity))
@@ -600,14 +592,11 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="ElectricPotential"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(ElectricPotential other, ElectricPotential tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="ElectricPotential"/> quantities.</summary>
         public bool Equals(ElectricPotential other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.IsEquivalentTo(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>Compares the current <see cref="ElectricPotential"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
         /// <param name="obj">An object to compare with this instance.</param>
@@ -691,10 +680,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.Comparison.Equals(
+            return UnitsNet.FractionComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: tolerance,
+                tolerance: (Fraction)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -711,7 +700,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(ElectricPotential other, ElectricPotential tolerance)
         {
-            return UnitsNet.Comparison.Equals(
+            return UnitsNet.FractionComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -724,7 +713,8 @@ namespace UnitsNet
         /// <returns>A hash code for the current ElectricPotential.</returns>
         public override int GetHashCode()
         {
-            return new { Info.Name, Value, Unit }.GetHashCode();
+            var valueInBaseUnit = As(BaseUnit);
+            return new { Info.Name, valueInBaseUnit }.GetHashCode();
         }
 
         #endregion
@@ -735,7 +725,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(ElectricPotentialUnit unit)
+        public Fraction As(ElectricPotentialUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -744,7 +734,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public Fraction As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -759,7 +749,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        double IQuantity.As(Enum unit)
+        Fraction IQuantity.As(Enum unit)
         {
             if (!(unit is ElectricPotentialUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricPotentialUnit)} is supported.", nameof(unit));
@@ -825,18 +815,18 @@ namespace UnitsNet
             ElectricPotential? convertedOrNull = (Unit, unit) switch
             {
                 // ElectricPotentialUnit -> BaseUnit
-                (ElectricPotentialUnit.Kilovolt, ElectricPotentialUnit.Volt) => new ElectricPotential((_value) * 1e3d, ElectricPotentialUnit.Volt),
-                (ElectricPotentialUnit.Megavolt, ElectricPotentialUnit.Volt) => new ElectricPotential((_value) * 1e6d, ElectricPotentialUnit.Volt),
-                (ElectricPotentialUnit.Microvolt, ElectricPotentialUnit.Volt) => new ElectricPotential((_value) * 1e-6d, ElectricPotentialUnit.Volt),
-                (ElectricPotentialUnit.Millivolt, ElectricPotentialUnit.Volt) => new ElectricPotential((_value) * 1e-3d, ElectricPotentialUnit.Volt),
-                (ElectricPotentialUnit.Nanovolt, ElectricPotentialUnit.Volt) => new ElectricPotential((_value) * 1e-9d, ElectricPotentialUnit.Volt),
+                (ElectricPotentialUnit.Kilovolt, ElectricPotentialUnit.Volt) => new ElectricPotential(_value * 1000, ElectricPotentialUnit.Volt),
+                (ElectricPotentialUnit.Megavolt, ElectricPotentialUnit.Volt) => new ElectricPotential(_value * 1000000, ElectricPotentialUnit.Volt),
+                (ElectricPotentialUnit.Microvolt, ElectricPotentialUnit.Volt) => new ElectricPotential(_value / 1000000, ElectricPotentialUnit.Volt),
+                (ElectricPotentialUnit.Millivolt, ElectricPotentialUnit.Volt) => new ElectricPotential(_value / 1000, ElectricPotentialUnit.Volt),
+                (ElectricPotentialUnit.Nanovolt, ElectricPotentialUnit.Volt) => new ElectricPotential(_value / 1000000000, ElectricPotentialUnit.Volt),
 
                 // BaseUnit -> ElectricPotentialUnit
-                (ElectricPotentialUnit.Volt, ElectricPotentialUnit.Kilovolt) => new ElectricPotential((_value) / 1e3d, ElectricPotentialUnit.Kilovolt),
-                (ElectricPotentialUnit.Volt, ElectricPotentialUnit.Megavolt) => new ElectricPotential((_value) / 1e6d, ElectricPotentialUnit.Megavolt),
-                (ElectricPotentialUnit.Volt, ElectricPotentialUnit.Microvolt) => new ElectricPotential((_value) / 1e-6d, ElectricPotentialUnit.Microvolt),
-                (ElectricPotentialUnit.Volt, ElectricPotentialUnit.Millivolt) => new ElectricPotential((_value) / 1e-3d, ElectricPotentialUnit.Millivolt),
-                (ElectricPotentialUnit.Volt, ElectricPotentialUnit.Nanovolt) => new ElectricPotential((_value) / 1e-9d, ElectricPotentialUnit.Nanovolt),
+                (ElectricPotentialUnit.Volt, ElectricPotentialUnit.Kilovolt) => new ElectricPotential(_value / 1000, ElectricPotentialUnit.Kilovolt),
+                (ElectricPotentialUnit.Volt, ElectricPotentialUnit.Megavolt) => new ElectricPotential(_value / 1000000, ElectricPotentialUnit.Megavolt),
+                (ElectricPotentialUnit.Volt, ElectricPotentialUnit.Microvolt) => new ElectricPotential(_value * 1000000, ElectricPotentialUnit.Microvolt),
+                (ElectricPotentialUnit.Volt, ElectricPotentialUnit.Millivolt) => new ElectricPotential(_value * 1000, ElectricPotentialUnit.Millivolt),
+                (ElectricPotentialUnit.Volt, ElectricPotentialUnit.Nanovolt) => new ElectricPotential(_value * 1000000000, ElectricPotentialUnit.Nanovolt),
 
                 _ => null
             };

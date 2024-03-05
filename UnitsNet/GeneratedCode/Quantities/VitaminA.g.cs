@@ -24,6 +24,8 @@ using System.Linq;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+using System.Numerics;
+using Fractions;
 
 #nullable enable
 
@@ -48,7 +50,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        private readonly Fraction _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -78,7 +80,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public VitaminA(double value, VitaminAUnit unit)
+        public VitaminA(Fraction value, VitaminAUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -92,7 +94,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public VitaminA(double value, UnitSystem unitSystem)
+        public VitaminA(Fraction value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -143,10 +145,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public Fraction Value => _value;
 
         /// <inheritdoc />
-        double IQuantity.Value => _value;
+        Fraction IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -171,7 +173,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VitaminAUnit.InternationalUnit"/>
         /// </summary>
-        public double InternationalUnits => As(VitaminAUnit.InternationalUnit);
+        public Fraction InternationalUnits => As(VitaminAUnit.InternationalUnit);
 
         #endregion
 
@@ -219,7 +221,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VitaminA"/> from <see cref="VitaminAUnit.InternationalUnit"/>.
         /// </summary>
-        public static VitaminA FromInternationalUnits(double value)
+        public static VitaminA FromInternationalUnits(Fraction value)
         {
             return new VitaminA(value, VitaminAUnit.InternationalUnit);
         }
@@ -230,7 +232,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>VitaminA unit value.</returns>
-        public static VitaminA From(double value, VitaminAUnit fromUnit)
+        public static VitaminA From(Fraction value, VitaminAUnit fromUnit)
         {
             return new VitaminA(value, fromUnit);
         }
@@ -386,7 +388,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static VitaminA operator -(VitaminA right)
         {
-            return new VitaminA(-right.Value, right.Unit);
+            return new VitaminA(right.Value.Invert(), right.Unit);
         }
 
         /// <summary>Get <see cref="VitaminA"/> from adding two <see cref="VitaminA"/>.</summary>
@@ -402,25 +404,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="VitaminA"/> from multiplying value and <see cref="VitaminA"/>.</summary>
-        public static VitaminA operator *(double left, VitaminA right)
+        public static VitaminA operator *(Fraction left, VitaminA right)
         {
             return new VitaminA(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="VitaminA"/> from multiplying value and <see cref="VitaminA"/>.</summary>
-        public static VitaminA operator *(VitaminA left, double right)
+        public static VitaminA operator *(VitaminA left, Fraction right)
         {
             return new VitaminA(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="VitaminA"/> from dividing <see cref="VitaminA"/> by value.</summary>
-        public static VitaminA operator /(VitaminA left, double right)
+        public static VitaminA operator /(VitaminA left, Fraction right)
         {
             return new VitaminA(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="VitaminA"/> by <see cref="VitaminA"/>.</summary>
-        public static double operator /(VitaminA left, VitaminA right)
+        public static Fraction operator /(VitaminA left, VitaminA right)
         {
             return left.InternationalUnits / right.InternationalUnits;
         }
@@ -453,27 +455,20 @@ namespace UnitsNet
             return left.Value > right.ToUnit(left.Unit).Value;
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="VitaminA"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(VitaminA other, VitaminA tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="VitaminA"/> quantities.</summary>
         public static bool operator ==(VitaminA left, VitaminA right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="VitaminA"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(VitaminA other, VitaminA tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="VitaminA"/> quantities.</summary>
         public static bool operator !=(VitaminA left, VitaminA right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="VitaminA"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(VitaminA other, VitaminA tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="VitaminA"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is VitaminA otherQuantity))
@@ -483,14 +478,11 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="VitaminA"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(VitaminA other, VitaminA tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="VitaminA"/> quantities.</summary>
         public bool Equals(VitaminA other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.IsEquivalentTo(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>Compares the current <see cref="VitaminA"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
         /// <param name="obj">An object to compare with this instance.</param>
@@ -574,10 +566,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.Comparison.Equals(
+            return UnitsNet.FractionComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: tolerance,
+                tolerance: (Fraction)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -594,7 +586,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(VitaminA other, VitaminA tolerance)
         {
-            return UnitsNet.Comparison.Equals(
+            return UnitsNet.FractionComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -607,7 +599,8 @@ namespace UnitsNet
         /// <returns>A hash code for the current VitaminA.</returns>
         public override int GetHashCode()
         {
-            return new { Info.Name, Value, Unit }.GetHashCode();
+            var valueInBaseUnit = As(BaseUnit);
+            return new { Info.Name, valueInBaseUnit }.GetHashCode();
         }
 
         #endregion
@@ -618,7 +611,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(VitaminAUnit unit)
+        public Fraction As(VitaminAUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -627,7 +620,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public Fraction As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -642,7 +635,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        double IQuantity.As(Enum unit)
+        Fraction IQuantity.As(Enum unit)
         {
             if (!(unit is VitaminAUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VitaminAUnit)} is supported.", nameof(unit));

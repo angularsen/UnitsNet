@@ -24,6 +24,8 @@ using System.Linq;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+using System.Numerics;
+using Fractions;
 
 #nullable enable
 
@@ -51,7 +53,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        private readonly Fraction _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -81,7 +83,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Permeability(double value, PermeabilityUnit unit)
+        public Permeability(Fraction value, PermeabilityUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -95,7 +97,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Permeability(double value, UnitSystem unitSystem)
+        public Permeability(Fraction value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -146,10 +148,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public Fraction Value => _value;
 
         /// <inheritdoc />
-        double IQuantity.Value => _value;
+        Fraction IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -174,7 +176,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PermeabilityUnit.HenryPerMeter"/>
         /// </summary>
-        public double HenriesPerMeter => As(PermeabilityUnit.HenryPerMeter);
+        public Fraction HenriesPerMeter => As(PermeabilityUnit.HenryPerMeter);
 
         #endregion
 
@@ -222,7 +224,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Permeability"/> from <see cref="PermeabilityUnit.HenryPerMeter"/>.
         /// </summary>
-        public static Permeability FromHenriesPerMeter(double value)
+        public static Permeability FromHenriesPerMeter(Fraction value)
         {
             return new Permeability(value, PermeabilityUnit.HenryPerMeter);
         }
@@ -233,7 +235,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Permeability unit value.</returns>
-        public static Permeability From(double value, PermeabilityUnit fromUnit)
+        public static Permeability From(Fraction value, PermeabilityUnit fromUnit)
         {
             return new Permeability(value, fromUnit);
         }
@@ -389,7 +391,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static Permeability operator -(Permeability right)
         {
-            return new Permeability(-right.Value, right.Unit);
+            return new Permeability(right.Value.Invert(), right.Unit);
         }
 
         /// <summary>Get <see cref="Permeability"/> from adding two <see cref="Permeability"/>.</summary>
@@ -405,25 +407,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Permeability"/> from multiplying value and <see cref="Permeability"/>.</summary>
-        public static Permeability operator *(double left, Permeability right)
+        public static Permeability operator *(Fraction left, Permeability right)
         {
             return new Permeability(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Permeability"/> from multiplying value and <see cref="Permeability"/>.</summary>
-        public static Permeability operator *(Permeability left, double right)
+        public static Permeability operator *(Permeability left, Fraction right)
         {
             return new Permeability(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Permeability"/> from dividing <see cref="Permeability"/> by value.</summary>
-        public static Permeability operator /(Permeability left, double right)
+        public static Permeability operator /(Permeability left, Fraction right)
         {
             return new Permeability(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Permeability"/> by <see cref="Permeability"/>.</summary>
-        public static double operator /(Permeability left, Permeability right)
+        public static Fraction operator /(Permeability left, Permeability right)
         {
             return left.HenriesPerMeter / right.HenriesPerMeter;
         }
@@ -456,27 +458,20 @@ namespace UnitsNet
             return left.Value > right.ToUnit(left.Unit).Value;
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="Permeability"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Permeability other, Permeability tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Permeability"/> quantities.</summary>
         public static bool operator ==(Permeability left, Permeability right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="Permeability"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Permeability other, Permeability tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="Permeability"/> quantities.</summary>
         public static bool operator !=(Permeability left, Permeability right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="Permeability"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(Permeability other, Permeability tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Permeability"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is Permeability otherQuantity))
@@ -486,14 +481,11 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="Permeability"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(Permeability other, Permeability tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Permeability"/> quantities.</summary>
         public bool Equals(Permeability other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.IsEquivalentTo(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>Compares the current <see cref="Permeability"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
         /// <param name="obj">An object to compare with this instance.</param>
@@ -577,10 +569,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.Comparison.Equals(
+            return UnitsNet.FractionComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: tolerance,
+                tolerance: (Fraction)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -597,7 +589,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(Permeability other, Permeability tolerance)
         {
-            return UnitsNet.Comparison.Equals(
+            return UnitsNet.FractionComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -610,7 +602,8 @@ namespace UnitsNet
         /// <returns>A hash code for the current Permeability.</returns>
         public override int GetHashCode()
         {
-            return new { Info.Name, Value, Unit }.GetHashCode();
+            var valueInBaseUnit = As(BaseUnit);
+            return new { Info.Name, valueInBaseUnit }.GetHashCode();
         }
 
         #endregion
@@ -621,7 +614,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(PermeabilityUnit unit)
+        public Fraction As(PermeabilityUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -630,7 +623,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public Fraction As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -645,7 +638,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        double IQuantity.As(Enum unit)
+        Fraction IQuantity.As(Enum unit)
         {
             if (!(unit is PermeabilityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PermeabilityUnit)} is supported.", nameof(unit));

@@ -21,12 +21,11 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
-using System.Numerics;
-#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+using System.Numerics;
+using Fractions;
 
 #nullable enable
 
@@ -69,7 +68,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        private readonly Fraction _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -125,7 +124,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Mass(double value, MassUnit unit)
+        public Mass(Fraction value, MassUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -139,7 +138,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Mass(double value, UnitSystem unitSystem)
+        public Mass(Fraction value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -190,10 +189,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public Fraction Value => _value;
 
         /// <inheritdoc />
-        double IQuantity.Value => _value;
+        Fraction IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -218,137 +217,137 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Centigram"/>
         /// </summary>
-        public double Centigrams => As(MassUnit.Centigram);
+        public Fraction Centigrams => As(MassUnit.Centigram);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Decagram"/>
         /// </summary>
-        public double Decagrams => As(MassUnit.Decagram);
+        public Fraction Decagrams => As(MassUnit.Decagram);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Decigram"/>
         /// </summary>
-        public double Decigrams => As(MassUnit.Decigram);
+        public Fraction Decigrams => As(MassUnit.Decigram);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.EarthMass"/>
         /// </summary>
-        public double EarthMasses => As(MassUnit.EarthMass);
+        public Fraction EarthMasses => As(MassUnit.EarthMass);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Femtogram"/>
         /// </summary>
-        public double Femtograms => As(MassUnit.Femtogram);
+        public Fraction Femtograms => As(MassUnit.Femtogram);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Grain"/>
         /// </summary>
-        public double Grains => As(MassUnit.Grain);
+        public Fraction Grains => As(MassUnit.Grain);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Gram"/>
         /// </summary>
-        public double Grams => As(MassUnit.Gram);
+        public Fraction Grams => As(MassUnit.Gram);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Hectogram"/>
         /// </summary>
-        public double Hectograms => As(MassUnit.Hectogram);
+        public Fraction Hectograms => As(MassUnit.Hectogram);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Kilogram"/>
         /// </summary>
-        public double Kilograms => As(MassUnit.Kilogram);
+        public Fraction Kilograms => As(MassUnit.Kilogram);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Kilopound"/>
         /// </summary>
-        public double Kilopounds => As(MassUnit.Kilopound);
+        public Fraction Kilopounds => As(MassUnit.Kilopound);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Kilotonne"/>
         /// </summary>
-        public double Kilotonnes => As(MassUnit.Kilotonne);
+        public Fraction Kilotonnes => As(MassUnit.Kilotonne);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.LongHundredweight"/>
         /// </summary>
-        public double LongHundredweight => As(MassUnit.LongHundredweight);
+        public Fraction LongHundredweight => As(MassUnit.LongHundredweight);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.LongTon"/>
         /// </summary>
-        public double LongTons => As(MassUnit.LongTon);
+        public Fraction LongTons => As(MassUnit.LongTon);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Megapound"/>
         /// </summary>
-        public double Megapounds => As(MassUnit.Megapound);
+        public Fraction Megapounds => As(MassUnit.Megapound);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Megatonne"/>
         /// </summary>
-        public double Megatonnes => As(MassUnit.Megatonne);
+        public Fraction Megatonnes => As(MassUnit.Megatonne);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Microgram"/>
         /// </summary>
-        public double Micrograms => As(MassUnit.Microgram);
+        public Fraction Micrograms => As(MassUnit.Microgram);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Milligram"/>
         /// </summary>
-        public double Milligrams => As(MassUnit.Milligram);
+        public Fraction Milligrams => As(MassUnit.Milligram);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Nanogram"/>
         /// </summary>
-        public double Nanograms => As(MassUnit.Nanogram);
+        public Fraction Nanograms => As(MassUnit.Nanogram);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Ounce"/>
         /// </summary>
-        public double Ounces => As(MassUnit.Ounce);
+        public Fraction Ounces => As(MassUnit.Ounce);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Picogram"/>
         /// </summary>
-        public double Picograms => As(MassUnit.Picogram);
+        public Fraction Picograms => As(MassUnit.Picogram);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Pound"/>
         /// </summary>
-        public double Pounds => As(MassUnit.Pound);
+        public Fraction Pounds => As(MassUnit.Pound);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.ShortHundredweight"/>
         /// </summary>
-        public double ShortHundredweight => As(MassUnit.ShortHundredweight);
+        public Fraction ShortHundredweight => As(MassUnit.ShortHundredweight);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.ShortTon"/>
         /// </summary>
-        public double ShortTons => As(MassUnit.ShortTon);
+        public Fraction ShortTons => As(MassUnit.ShortTon);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Slug"/>
         /// </summary>
-        public double Slugs => As(MassUnit.Slug);
+        public Fraction Slugs => As(MassUnit.Slug);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.SolarMass"/>
         /// </summary>
-        public double SolarMasses => As(MassUnit.SolarMass);
+        public Fraction SolarMasses => As(MassUnit.SolarMass);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Stone"/>
         /// </summary>
-        public double Stone => As(MassUnit.Stone);
+        public Fraction Stone => As(MassUnit.Stone);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Tonne"/>
         /// </summary>
-        public double Tonnes => As(MassUnit.Tonne);
+        public Fraction Tonnes => As(MassUnit.Tonne);
 
         #endregion
 
@@ -448,7 +447,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Centigram"/>.
         /// </summary>
-        public static Mass FromCentigrams(double value)
+        public static Mass FromCentigrams(Fraction value)
         {
             return new Mass(value, MassUnit.Centigram);
         }
@@ -456,7 +455,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Decagram"/>.
         /// </summary>
-        public static Mass FromDecagrams(double value)
+        public static Mass FromDecagrams(Fraction value)
         {
             return new Mass(value, MassUnit.Decagram);
         }
@@ -464,7 +463,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Decigram"/>.
         /// </summary>
-        public static Mass FromDecigrams(double value)
+        public static Mass FromDecigrams(Fraction value)
         {
             return new Mass(value, MassUnit.Decigram);
         }
@@ -472,7 +471,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.EarthMass"/>.
         /// </summary>
-        public static Mass FromEarthMasses(double value)
+        public static Mass FromEarthMasses(Fraction value)
         {
             return new Mass(value, MassUnit.EarthMass);
         }
@@ -480,7 +479,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Femtogram"/>.
         /// </summary>
-        public static Mass FromFemtograms(double value)
+        public static Mass FromFemtograms(Fraction value)
         {
             return new Mass(value, MassUnit.Femtogram);
         }
@@ -488,7 +487,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Grain"/>.
         /// </summary>
-        public static Mass FromGrains(double value)
+        public static Mass FromGrains(Fraction value)
         {
             return new Mass(value, MassUnit.Grain);
         }
@@ -496,7 +495,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Gram"/>.
         /// </summary>
-        public static Mass FromGrams(double value)
+        public static Mass FromGrams(Fraction value)
         {
             return new Mass(value, MassUnit.Gram);
         }
@@ -504,7 +503,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Hectogram"/>.
         /// </summary>
-        public static Mass FromHectograms(double value)
+        public static Mass FromHectograms(Fraction value)
         {
             return new Mass(value, MassUnit.Hectogram);
         }
@@ -512,7 +511,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Kilogram"/>.
         /// </summary>
-        public static Mass FromKilograms(double value)
+        public static Mass FromKilograms(Fraction value)
         {
             return new Mass(value, MassUnit.Kilogram);
         }
@@ -520,7 +519,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Kilopound"/>.
         /// </summary>
-        public static Mass FromKilopounds(double value)
+        public static Mass FromKilopounds(Fraction value)
         {
             return new Mass(value, MassUnit.Kilopound);
         }
@@ -528,7 +527,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Kilotonne"/>.
         /// </summary>
-        public static Mass FromKilotonnes(double value)
+        public static Mass FromKilotonnes(Fraction value)
         {
             return new Mass(value, MassUnit.Kilotonne);
         }
@@ -536,7 +535,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.LongHundredweight"/>.
         /// </summary>
-        public static Mass FromLongHundredweight(double value)
+        public static Mass FromLongHundredweight(Fraction value)
         {
             return new Mass(value, MassUnit.LongHundredweight);
         }
@@ -544,7 +543,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.LongTon"/>.
         /// </summary>
-        public static Mass FromLongTons(double value)
+        public static Mass FromLongTons(Fraction value)
         {
             return new Mass(value, MassUnit.LongTon);
         }
@@ -552,7 +551,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Megapound"/>.
         /// </summary>
-        public static Mass FromMegapounds(double value)
+        public static Mass FromMegapounds(Fraction value)
         {
             return new Mass(value, MassUnit.Megapound);
         }
@@ -560,7 +559,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Megatonne"/>.
         /// </summary>
-        public static Mass FromMegatonnes(double value)
+        public static Mass FromMegatonnes(Fraction value)
         {
             return new Mass(value, MassUnit.Megatonne);
         }
@@ -568,7 +567,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Microgram"/>.
         /// </summary>
-        public static Mass FromMicrograms(double value)
+        public static Mass FromMicrograms(Fraction value)
         {
             return new Mass(value, MassUnit.Microgram);
         }
@@ -576,7 +575,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Milligram"/>.
         /// </summary>
-        public static Mass FromMilligrams(double value)
+        public static Mass FromMilligrams(Fraction value)
         {
             return new Mass(value, MassUnit.Milligram);
         }
@@ -584,7 +583,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Nanogram"/>.
         /// </summary>
-        public static Mass FromNanograms(double value)
+        public static Mass FromNanograms(Fraction value)
         {
             return new Mass(value, MassUnit.Nanogram);
         }
@@ -592,7 +591,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Ounce"/>.
         /// </summary>
-        public static Mass FromOunces(double value)
+        public static Mass FromOunces(Fraction value)
         {
             return new Mass(value, MassUnit.Ounce);
         }
@@ -600,7 +599,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Picogram"/>.
         /// </summary>
-        public static Mass FromPicograms(double value)
+        public static Mass FromPicograms(Fraction value)
         {
             return new Mass(value, MassUnit.Picogram);
         }
@@ -608,7 +607,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Pound"/>.
         /// </summary>
-        public static Mass FromPounds(double value)
+        public static Mass FromPounds(Fraction value)
         {
             return new Mass(value, MassUnit.Pound);
         }
@@ -616,7 +615,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.ShortHundredweight"/>.
         /// </summary>
-        public static Mass FromShortHundredweight(double value)
+        public static Mass FromShortHundredweight(Fraction value)
         {
             return new Mass(value, MassUnit.ShortHundredweight);
         }
@@ -624,7 +623,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.ShortTon"/>.
         /// </summary>
-        public static Mass FromShortTons(double value)
+        public static Mass FromShortTons(Fraction value)
         {
             return new Mass(value, MassUnit.ShortTon);
         }
@@ -632,7 +631,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Slug"/>.
         /// </summary>
-        public static Mass FromSlugs(double value)
+        public static Mass FromSlugs(Fraction value)
         {
             return new Mass(value, MassUnit.Slug);
         }
@@ -640,7 +639,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.SolarMass"/>.
         /// </summary>
-        public static Mass FromSolarMasses(double value)
+        public static Mass FromSolarMasses(Fraction value)
         {
             return new Mass(value, MassUnit.SolarMass);
         }
@@ -648,7 +647,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Stone"/>.
         /// </summary>
-        public static Mass FromStone(double value)
+        public static Mass FromStone(Fraction value)
         {
             return new Mass(value, MassUnit.Stone);
         }
@@ -656,7 +655,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Tonne"/>.
         /// </summary>
-        public static Mass FromTonnes(double value)
+        public static Mass FromTonnes(Fraction value)
         {
             return new Mass(value, MassUnit.Tonne);
         }
@@ -667,7 +666,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Mass unit value.</returns>
-        public static Mass From(double value, MassUnit fromUnit)
+        public static Mass From(Fraction value, MassUnit fromUnit)
         {
             return new Mass(value, fromUnit);
         }
@@ -823,7 +822,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static Mass operator -(Mass right)
         {
-            return new Mass(-right.Value, right.Unit);
+            return new Mass(right.Value.Invert(), right.Unit);
         }
 
         /// <summary>Get <see cref="Mass"/> from adding two <see cref="Mass"/>.</summary>
@@ -839,25 +838,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Mass"/> from multiplying value and <see cref="Mass"/>.</summary>
-        public static Mass operator *(double left, Mass right)
+        public static Mass operator *(Fraction left, Mass right)
         {
             return new Mass(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Mass"/> from multiplying value and <see cref="Mass"/>.</summary>
-        public static Mass operator *(Mass left, double right)
+        public static Mass operator *(Mass left, Fraction right)
         {
             return new Mass(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Mass"/> from dividing <see cref="Mass"/> by value.</summary>
-        public static Mass operator /(Mass left, double right)
+        public static Mass operator /(Mass left, Fraction right)
         {
             return new Mass(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Mass"/> by <see cref="Mass"/>.</summary>
-        public static double operator /(Mass left, Mass right)
+        public static Fraction operator /(Mass left, Mass right)
         {
             return left.Kilograms / right.Kilograms;
         }
@@ -990,27 +989,20 @@ namespace UnitsNet
             return left.Value > right.ToUnit(left.Unit).Value;
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="Mass"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Mass other, Mass tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Mass"/> quantities.</summary>
         public static bool operator ==(Mass left, Mass right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="Mass"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Mass other, Mass tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="Mass"/> quantities.</summary>
         public static bool operator !=(Mass left, Mass right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="Mass"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(Mass other, Mass tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Mass"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is Mass otherQuantity))
@@ -1020,14 +1012,11 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="Mass"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(Mass other, Mass tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Mass"/> quantities.</summary>
         public bool Equals(Mass other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.IsEquivalentTo(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>Compares the current <see cref="Mass"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
         /// <param name="obj">An object to compare with this instance.</param>
@@ -1111,10 +1100,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.Comparison.Equals(
+            return UnitsNet.FractionComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: tolerance,
+                tolerance: (Fraction)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -1131,7 +1120,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(Mass other, Mass tolerance)
         {
-            return UnitsNet.Comparison.Equals(
+            return UnitsNet.FractionComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -1144,7 +1133,8 @@ namespace UnitsNet
         /// <returns>A hash code for the current Mass.</returns>
         public override int GetHashCode()
         {
-            return new { Info.Name, Value, Unit }.GetHashCode();
+            var valueInBaseUnit = As(BaseUnit);
+            return new { Info.Name, valueInBaseUnit }.GetHashCode();
         }
 
         #endregion
@@ -1155,7 +1145,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(MassUnit unit)
+        public Fraction As(MassUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -1164,7 +1154,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public Fraction As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -1179,7 +1169,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        double IQuantity.As(Enum unit)
+        Fraction IQuantity.As(Enum unit)
         {
             if (!(unit is MassUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassUnit)} is supported.", nameof(unit));
@@ -1245,60 +1235,60 @@ namespace UnitsNet
             Mass? convertedOrNull = (Unit, unit) switch
             {
                 // MassUnit -> BaseUnit
-                (MassUnit.Centigram, MassUnit.Kilogram) => new Mass((_value / 1e3) * 1e-2d, MassUnit.Kilogram),
-                (MassUnit.Decagram, MassUnit.Kilogram) => new Mass((_value / 1e3) * 1e1d, MassUnit.Kilogram),
-                (MassUnit.Decigram, MassUnit.Kilogram) => new Mass((_value / 1e3) * 1e-1d, MassUnit.Kilogram),
-                (MassUnit.EarthMass, MassUnit.Kilogram) => new Mass(_value * 5.9722E+24, MassUnit.Kilogram),
-                (MassUnit.Femtogram, MassUnit.Kilogram) => new Mass((_value / 1e3) * 1e-15d, MassUnit.Kilogram),
-                (MassUnit.Grain, MassUnit.Kilogram) => new Mass(_value / 15432.358352941431, MassUnit.Kilogram),
-                (MassUnit.Gram, MassUnit.Kilogram) => new Mass(_value / 1e3, MassUnit.Kilogram),
-                (MassUnit.Hectogram, MassUnit.Kilogram) => new Mass((_value / 1e3) * 1e2d, MassUnit.Kilogram),
-                (MassUnit.Kilopound, MassUnit.Kilogram) => new Mass((_value * 0.45359237) * 1e3d, MassUnit.Kilogram),
-                (MassUnit.Kilotonne, MassUnit.Kilogram) => new Mass((_value * 1e3) * 1e3d, MassUnit.Kilogram),
-                (MassUnit.LongHundredweight, MassUnit.Kilogram) => new Mass(_value / 0.01968413055222121, MassUnit.Kilogram),
-                (MassUnit.LongTon, MassUnit.Kilogram) => new Mass(_value * 1.0160469088e3, MassUnit.Kilogram),
-                (MassUnit.Megapound, MassUnit.Kilogram) => new Mass((_value * 0.45359237) * 1e6d, MassUnit.Kilogram),
-                (MassUnit.Megatonne, MassUnit.Kilogram) => new Mass((_value * 1e3) * 1e6d, MassUnit.Kilogram),
-                (MassUnit.Microgram, MassUnit.Kilogram) => new Mass((_value / 1e3) * 1e-6d, MassUnit.Kilogram),
-                (MassUnit.Milligram, MassUnit.Kilogram) => new Mass((_value / 1e3) * 1e-3d, MassUnit.Kilogram),
-                (MassUnit.Nanogram, MassUnit.Kilogram) => new Mass((_value / 1e3) * 1e-9d, MassUnit.Kilogram),
-                (MassUnit.Ounce, MassUnit.Kilogram) => new Mass(_value * 0.028349523125, MassUnit.Kilogram),
-                (MassUnit.Picogram, MassUnit.Kilogram) => new Mass((_value / 1e3) * 1e-12d, MassUnit.Kilogram),
-                (MassUnit.Pound, MassUnit.Kilogram) => new Mass(_value * 0.45359237, MassUnit.Kilogram),
-                (MassUnit.ShortHundredweight, MassUnit.Kilogram) => new Mass(_value / 0.022046226218487758, MassUnit.Kilogram),
-                (MassUnit.ShortTon, MassUnit.Kilogram) => new Mass(_value * 9.0718474e2, MassUnit.Kilogram),
-                (MassUnit.Slug, MassUnit.Kilogram) => new Mass(_value / 6.852176556196105e-2, MassUnit.Kilogram),
-                (MassUnit.SolarMass, MassUnit.Kilogram) => new Mass(_value * 1.98947e30, MassUnit.Kilogram),
-                (MassUnit.Stone, MassUnit.Kilogram) => new Mass(_value / 0.1574731728702698, MassUnit.Kilogram),
-                (MassUnit.Tonne, MassUnit.Kilogram) => new Mass(_value * 1e3, MassUnit.Kilogram),
+                (MassUnit.Centigram, MassUnit.Kilogram) => new Mass(_value / 100000, MassUnit.Kilogram),
+                (MassUnit.Decagram, MassUnit.Kilogram) => new Mass(_value / 100, MassUnit.Kilogram),
+                (MassUnit.Decigram, MassUnit.Kilogram) => new Mass(_value / 10000, MassUnit.Kilogram),
+                (MassUnit.EarthMass, MassUnit.Kilogram) => new Mass(_value * 597220 * BigInteger.Pow(10, 19), MassUnit.Kilogram),
+                (MassUnit.Femtogram, MassUnit.Kilogram) => new Mass(_value / 1000000000000000000, MassUnit.Kilogram),
+                (MassUnit.Grain, MassUnit.Kilogram) => new Mass(_value * new Fraction(1000000000000, 15432358352941431, false), MassUnit.Kilogram),
+                (MassUnit.Gram, MassUnit.Kilogram) => new Mass(_value / 1000, MassUnit.Kilogram),
+                (MassUnit.Hectogram, MassUnit.Kilogram) => new Mass(_value / 10, MassUnit.Kilogram),
+                (MassUnit.Kilopound, MassUnit.Kilogram) => new Mass(_value * new Fraction(45359237, 100000, false), MassUnit.Kilogram),
+                (MassUnit.Kilotonne, MassUnit.Kilogram) => new Mass(_value * 1000000, MassUnit.Kilogram),
+                (MassUnit.LongHundredweight, MassUnit.Kilogram) => new Mass(_value * new Fraction(100000000000000000, 1968413055222121, false), MassUnit.Kilogram),
+                (MassUnit.LongTon, MassUnit.Kilogram) => new Mass(_value * new Fraction(317514659, 312500, false), MassUnit.Kilogram),
+                (MassUnit.Megapound, MassUnit.Kilogram) => new Mass(_value * new Fraction(45359237, 100, false), MassUnit.Kilogram),
+                (MassUnit.Megatonne, MassUnit.Kilogram) => new Mass(_value * 1000000000, MassUnit.Kilogram),
+                (MassUnit.Microgram, MassUnit.Kilogram) => new Mass(_value / 1000000000, MassUnit.Kilogram),
+                (MassUnit.Milligram, MassUnit.Kilogram) => new Mass(_value / 1000000, MassUnit.Kilogram),
+                (MassUnit.Nanogram, MassUnit.Kilogram) => new Mass(_value / 1000000000000, MassUnit.Kilogram),
+                (MassUnit.Ounce, MassUnit.Kilogram) => new Mass(_value * new Fraction(45359237, 1600000000, false), MassUnit.Kilogram),
+                (MassUnit.Picogram, MassUnit.Kilogram) => new Mass(_value / 1000000000000000, MassUnit.Kilogram),
+                (MassUnit.Pound, MassUnit.Kilogram) => new Mass(_value * new Fraction(45359237, 100000000, false), MassUnit.Kilogram),
+                (MassUnit.ShortHundredweight, MassUnit.Kilogram) => new Mass(_value * new Fraction(500000000000000000, 11023113109243879, false), MassUnit.Kilogram),
+                (MassUnit.ShortTon, MassUnit.Kilogram) => new Mass(_value * new Fraction(45359237, 50000, false), MassUnit.Kilogram),
+                (MassUnit.Slug, MassUnit.Kilogram) => new Mass(_value * new Fraction(20000000000000000, 1370435311239221, false), MassUnit.Kilogram),
+                (MassUnit.SolarMass, MassUnit.Kilogram) => new Mass(_value * 198947000000 * BigInteger.Pow(10, 19), MassUnit.Kilogram),
+                (MassUnit.Stone, MassUnit.Kilogram) => new Mass(_value * new Fraction(5000000000000000, 787365864351349, false), MassUnit.Kilogram),
+                (MassUnit.Tonne, MassUnit.Kilogram) => new Mass(_value * 1000, MassUnit.Kilogram),
 
                 // BaseUnit -> MassUnit
-                (MassUnit.Kilogram, MassUnit.Centigram) => new Mass((_value * 1e3) / 1e-2d, MassUnit.Centigram),
-                (MassUnit.Kilogram, MassUnit.Decagram) => new Mass((_value * 1e3) / 1e1d, MassUnit.Decagram),
-                (MassUnit.Kilogram, MassUnit.Decigram) => new Mass((_value * 1e3) / 1e-1d, MassUnit.Decigram),
-                (MassUnit.Kilogram, MassUnit.EarthMass) => new Mass(_value / 5.9722E+24, MassUnit.EarthMass),
-                (MassUnit.Kilogram, MassUnit.Femtogram) => new Mass((_value * 1e3) / 1e-15d, MassUnit.Femtogram),
-                (MassUnit.Kilogram, MassUnit.Grain) => new Mass(_value * 15432.358352941431, MassUnit.Grain),
-                (MassUnit.Kilogram, MassUnit.Gram) => new Mass(_value * 1e3, MassUnit.Gram),
-                (MassUnit.Kilogram, MassUnit.Hectogram) => new Mass((_value * 1e3) / 1e2d, MassUnit.Hectogram),
-                (MassUnit.Kilogram, MassUnit.Kilopound) => new Mass((_value / 0.45359237) / 1e3d, MassUnit.Kilopound),
-                (MassUnit.Kilogram, MassUnit.Kilotonne) => new Mass((_value / 1e3) / 1e3d, MassUnit.Kilotonne),
-                (MassUnit.Kilogram, MassUnit.LongHundredweight) => new Mass(_value * 0.01968413055222121, MassUnit.LongHundredweight),
-                (MassUnit.Kilogram, MassUnit.LongTon) => new Mass(_value / 1.0160469088e3, MassUnit.LongTon),
-                (MassUnit.Kilogram, MassUnit.Megapound) => new Mass((_value / 0.45359237) / 1e6d, MassUnit.Megapound),
-                (MassUnit.Kilogram, MassUnit.Megatonne) => new Mass((_value / 1e3) / 1e6d, MassUnit.Megatonne),
-                (MassUnit.Kilogram, MassUnit.Microgram) => new Mass((_value * 1e3) / 1e-6d, MassUnit.Microgram),
-                (MassUnit.Kilogram, MassUnit.Milligram) => new Mass((_value * 1e3) / 1e-3d, MassUnit.Milligram),
-                (MassUnit.Kilogram, MassUnit.Nanogram) => new Mass((_value * 1e3) / 1e-9d, MassUnit.Nanogram),
-                (MassUnit.Kilogram, MassUnit.Ounce) => new Mass(_value / 0.028349523125, MassUnit.Ounce),
-                (MassUnit.Kilogram, MassUnit.Picogram) => new Mass((_value * 1e3) / 1e-12d, MassUnit.Picogram),
-                (MassUnit.Kilogram, MassUnit.Pound) => new Mass(_value / 0.45359237, MassUnit.Pound),
-                (MassUnit.Kilogram, MassUnit.ShortHundredweight) => new Mass(_value * 0.022046226218487758, MassUnit.ShortHundredweight),
-                (MassUnit.Kilogram, MassUnit.ShortTon) => new Mass(_value / 9.0718474e2, MassUnit.ShortTon),
-                (MassUnit.Kilogram, MassUnit.Slug) => new Mass(_value * 6.852176556196105e-2, MassUnit.Slug),
-                (MassUnit.Kilogram, MassUnit.SolarMass) => new Mass(_value / 1.98947e30, MassUnit.SolarMass),
-                (MassUnit.Kilogram, MassUnit.Stone) => new Mass(_value * 0.1574731728702698, MassUnit.Stone),
-                (MassUnit.Kilogram, MassUnit.Tonne) => new Mass(_value / 1e3, MassUnit.Tonne),
+                (MassUnit.Kilogram, MassUnit.Centigram) => new Mass(_value * 100000, MassUnit.Centigram),
+                (MassUnit.Kilogram, MassUnit.Decagram) => new Mass(_value * 100, MassUnit.Decagram),
+                (MassUnit.Kilogram, MassUnit.Decigram) => new Mass(_value * 10000, MassUnit.Decigram),
+                (MassUnit.Kilogram, MassUnit.EarthMass) => new Mass(_value / 597220 / BigInteger.Pow(10, 19), MassUnit.EarthMass),
+                (MassUnit.Kilogram, MassUnit.Femtogram) => new Mass(_value * 1000000000000000000, MassUnit.Femtogram),
+                (MassUnit.Kilogram, MassUnit.Grain) => new Mass(_value * new Fraction(15432358352941431, 1000000000000, false), MassUnit.Grain),
+                (MassUnit.Kilogram, MassUnit.Gram) => new Mass(_value * 1000, MassUnit.Gram),
+                (MassUnit.Kilogram, MassUnit.Hectogram) => new Mass(_value * 10, MassUnit.Hectogram),
+                (MassUnit.Kilogram, MassUnit.Kilopound) => new Mass(_value * new Fraction(100000, 45359237, false), MassUnit.Kilopound),
+                (MassUnit.Kilogram, MassUnit.Kilotonne) => new Mass(_value / 1000000, MassUnit.Kilotonne),
+                (MassUnit.Kilogram, MassUnit.LongHundredweight) => new Mass(_value * new Fraction(1968413055222121, 100000000000000000, false), MassUnit.LongHundredweight),
+                (MassUnit.Kilogram, MassUnit.LongTon) => new Mass(_value * new Fraction(312500, 317514659, false), MassUnit.LongTon),
+                (MassUnit.Kilogram, MassUnit.Megapound) => new Mass(_value * new Fraction(100, 45359237, false), MassUnit.Megapound),
+                (MassUnit.Kilogram, MassUnit.Megatonne) => new Mass(_value / 1000000000, MassUnit.Megatonne),
+                (MassUnit.Kilogram, MassUnit.Microgram) => new Mass(_value * 1000000000, MassUnit.Microgram),
+                (MassUnit.Kilogram, MassUnit.Milligram) => new Mass(_value * 1000000, MassUnit.Milligram),
+                (MassUnit.Kilogram, MassUnit.Nanogram) => new Mass(_value * 1000000000000, MassUnit.Nanogram),
+                (MassUnit.Kilogram, MassUnit.Ounce) => new Mass(_value * new Fraction(1600000000, 45359237, false), MassUnit.Ounce),
+                (MassUnit.Kilogram, MassUnit.Picogram) => new Mass(_value * 1000000000000000, MassUnit.Picogram),
+                (MassUnit.Kilogram, MassUnit.Pound) => new Mass(_value * new Fraction(100000000, 45359237, false), MassUnit.Pound),
+                (MassUnit.Kilogram, MassUnit.ShortHundredweight) => new Mass(_value * new Fraction(11023113109243879, 500000000000000000, false), MassUnit.ShortHundredweight),
+                (MassUnit.Kilogram, MassUnit.ShortTon) => new Mass(_value * new Fraction(50000, 45359237, false), MassUnit.ShortTon),
+                (MassUnit.Kilogram, MassUnit.Slug) => new Mass(_value * new Fraction(1370435311239221, 20000000000000000, false), MassUnit.Slug),
+                (MassUnit.Kilogram, MassUnit.SolarMass) => new Mass(_value / 198947000000 / BigInteger.Pow(10, 19), MassUnit.SolarMass),
+                (MassUnit.Kilogram, MassUnit.Stone) => new Mass(_value * new Fraction(787365864351349, 5000000000000000, false), MassUnit.Stone),
+                (MassUnit.Kilogram, MassUnit.Tonne) => new Mass(_value / 1000, MassUnit.Tonne),
 
                 _ => null
             };

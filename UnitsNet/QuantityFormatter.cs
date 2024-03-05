@@ -155,7 +155,7 @@ namespace UnitsNet
                         return abbreviations[precisionSpecifier];
                     case 'V':
                     case 'v':
-                        return quantity.Value.ToString(formatProvider);
+                        return quantity.Value.ToDouble().ToString(formatProvider);
                     case 'U':
                     case 'u':
                         return quantity.Unit.ToString();
@@ -180,8 +180,8 @@ namespace UnitsNet
 
         private static string ToStringWithSignificantDigitsAfterRadix<TUnitType>(IQuantity<TUnitType> quantity, IFormatProvider formatProvider, int number) where TUnitType : Enum
         {
-            string formatForSignificantDigits = UnitFormatter.GetFormat(quantity.Value, number);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(quantity.Unit, quantity.Value, formatProvider, Enumerable.Empty<object>());
+            string formatForSignificantDigits = UnitFormatter.GetFormat(quantity.Value.ToDouble(), number);
+            object[] formatArgs = UnitFormatter.GetFormatArgs(quantity.Unit, quantity.Value.ToDouble(), formatProvider, Enumerable.Empty<object>());
             return string.Format(formatProvider, formatForSignificantDigits, formatArgs);
         }
     }

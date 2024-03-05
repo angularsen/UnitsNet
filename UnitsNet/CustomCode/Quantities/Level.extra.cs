@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using Fractions;
 using UnitsNet.Units;
 
 namespace UnitsNet
@@ -27,7 +28,7 @@ namespace UnitsNet
                 throw new ArgumentOutOfRangeException(nameof(reference), errorMessage);
             // ReSharper restore CompareOfFloatsByEqualityOperator
 
-            _value = 10*Math.Log10(quantity/reference);
+            _value = Fraction.FromDoubleRounded(10*Math.Log10(quantity/reference));
             _unit = LevelUnit.Decibel;
         }
     }

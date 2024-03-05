@@ -24,6 +24,8 @@ using System.Linq;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+using System.Numerics;
+using Fractions;
 
 #nullable enable
 
@@ -48,7 +50,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        private readonly Fraction _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -87,7 +89,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Temperature(double value, TemperatureUnit unit)
+        public Temperature(Fraction value, TemperatureUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -101,7 +103,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Temperature(double value, UnitSystem unitSystem)
+        public Temperature(Fraction value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -149,10 +151,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public Fraction Value => _value;
 
         /// <inheritdoc />
-        double IQuantity.Value => _value;
+        Fraction IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -177,52 +179,52 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureUnit.DegreeCelsius"/>
         /// </summary>
-        public double DegreesCelsius => As(TemperatureUnit.DegreeCelsius);
+        public Fraction DegreesCelsius => As(TemperatureUnit.DegreeCelsius);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureUnit.DegreeDelisle"/>
         /// </summary>
-        public double DegreesDelisle => As(TemperatureUnit.DegreeDelisle);
+        public Fraction DegreesDelisle => As(TemperatureUnit.DegreeDelisle);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureUnit.DegreeFahrenheit"/>
         /// </summary>
-        public double DegreesFahrenheit => As(TemperatureUnit.DegreeFahrenheit);
+        public Fraction DegreesFahrenheit => As(TemperatureUnit.DegreeFahrenheit);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureUnit.DegreeNewton"/>
         /// </summary>
-        public double DegreesNewton => As(TemperatureUnit.DegreeNewton);
+        public Fraction DegreesNewton => As(TemperatureUnit.DegreeNewton);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureUnit.DegreeRankine"/>
         /// </summary>
-        public double DegreesRankine => As(TemperatureUnit.DegreeRankine);
+        public Fraction DegreesRankine => As(TemperatureUnit.DegreeRankine);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureUnit.DegreeReaumur"/>
         /// </summary>
-        public double DegreesReaumur => As(TemperatureUnit.DegreeReaumur);
+        public Fraction DegreesReaumur => As(TemperatureUnit.DegreeReaumur);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureUnit.DegreeRoemer"/>
         /// </summary>
-        public double DegreesRoemer => As(TemperatureUnit.DegreeRoemer);
+        public Fraction DegreesRoemer => As(TemperatureUnit.DegreeRoemer);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureUnit.Kelvin"/>
         /// </summary>
-        public double Kelvins => As(TemperatureUnit.Kelvin);
+        public Fraction Kelvins => As(TemperatureUnit.Kelvin);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureUnit.MillidegreeCelsius"/>
         /// </summary>
-        public double MillidegreesCelsius => As(TemperatureUnit.MillidegreeCelsius);
+        public Fraction MillidegreesCelsius => As(TemperatureUnit.MillidegreeCelsius);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureUnit.SolarTemperature"/>
         /// </summary>
-        public double SolarTemperatures => As(TemperatureUnit.SolarTemperature);
+        public Fraction SolarTemperatures => As(TemperatureUnit.SolarTemperature);
 
         #endregion
 
@@ -288,7 +290,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeCelsius"/>.
         /// </summary>
-        public static Temperature FromDegreesCelsius(double value)
+        public static Temperature FromDegreesCelsius(Fraction value)
         {
             return new Temperature(value, TemperatureUnit.DegreeCelsius);
         }
@@ -296,7 +298,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeDelisle"/>.
         /// </summary>
-        public static Temperature FromDegreesDelisle(double value)
+        public static Temperature FromDegreesDelisle(Fraction value)
         {
             return new Temperature(value, TemperatureUnit.DegreeDelisle);
         }
@@ -304,7 +306,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeFahrenheit"/>.
         /// </summary>
-        public static Temperature FromDegreesFahrenheit(double value)
+        public static Temperature FromDegreesFahrenheit(Fraction value)
         {
             return new Temperature(value, TemperatureUnit.DegreeFahrenheit);
         }
@@ -312,7 +314,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeNewton"/>.
         /// </summary>
-        public static Temperature FromDegreesNewton(double value)
+        public static Temperature FromDegreesNewton(Fraction value)
         {
             return new Temperature(value, TemperatureUnit.DegreeNewton);
         }
@@ -320,7 +322,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeRankine"/>.
         /// </summary>
-        public static Temperature FromDegreesRankine(double value)
+        public static Temperature FromDegreesRankine(Fraction value)
         {
             return new Temperature(value, TemperatureUnit.DegreeRankine);
         }
@@ -328,7 +330,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeReaumur"/>.
         /// </summary>
-        public static Temperature FromDegreesReaumur(double value)
+        public static Temperature FromDegreesReaumur(Fraction value)
         {
             return new Temperature(value, TemperatureUnit.DegreeReaumur);
         }
@@ -336,7 +338,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeRoemer"/>.
         /// </summary>
-        public static Temperature FromDegreesRoemer(double value)
+        public static Temperature FromDegreesRoemer(Fraction value)
         {
             return new Temperature(value, TemperatureUnit.DegreeRoemer);
         }
@@ -344,7 +346,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.Kelvin"/>.
         /// </summary>
-        public static Temperature FromKelvins(double value)
+        public static Temperature FromKelvins(Fraction value)
         {
             return new Temperature(value, TemperatureUnit.Kelvin);
         }
@@ -352,7 +354,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.MillidegreeCelsius"/>.
         /// </summary>
-        public static Temperature FromMillidegreesCelsius(double value)
+        public static Temperature FromMillidegreesCelsius(Fraction value)
         {
             return new Temperature(value, TemperatureUnit.MillidegreeCelsius);
         }
@@ -360,7 +362,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.SolarTemperature"/>.
         /// </summary>
-        public static Temperature FromSolarTemperatures(double value)
+        public static Temperature FromSolarTemperatures(Fraction value)
         {
             return new Temperature(value, TemperatureUnit.SolarTemperature);
         }
@@ -371,7 +373,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Temperature unit value.</returns>
-        public static Temperature From(double value, TemperatureUnit fromUnit)
+        public static Temperature From(Fraction value, TemperatureUnit fromUnit)
         {
             return new Temperature(value, fromUnit);
         }
@@ -548,27 +550,20 @@ namespace UnitsNet
             return left.Value > right.ToUnit(left.Unit).Value;
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="Temperature"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Temperature other, Temperature tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Temperature"/> quantities.</summary>
         public static bool operator ==(Temperature left, Temperature right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="Temperature"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Temperature other, Temperature tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="Temperature"/> quantities.</summary>
         public static bool operator !=(Temperature left, Temperature right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="Temperature"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(Temperature other, Temperature tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Temperature"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is Temperature otherQuantity))
@@ -578,14 +573,11 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="Temperature"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(Temperature other, Temperature tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Temperature"/> quantities.</summary>
         public bool Equals(Temperature other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.IsEquivalentTo(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>Compares the current <see cref="Temperature"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
         /// <param name="obj">An object to compare with this instance.</param>
@@ -669,10 +661,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.Comparison.Equals(
+            return UnitsNet.FractionComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: tolerance,
+                tolerance: (Fraction)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -689,7 +681,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(Temperature other, Temperature tolerance)
         {
-            return UnitsNet.Comparison.Equals(
+            return UnitsNet.FractionComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -702,7 +694,8 @@ namespace UnitsNet
         /// <returns>A hash code for the current Temperature.</returns>
         public override int GetHashCode()
         {
-            return new { Info.Name, Value, Unit }.GetHashCode();
+            var valueInBaseUnit = As(BaseUnit);
+            return new { Info.Name, valueInBaseUnit }.GetHashCode();
         }
 
         #endregion
@@ -713,7 +706,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(TemperatureUnit unit)
+        public Fraction As(TemperatureUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -722,7 +715,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public Fraction As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -737,7 +730,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        double IQuantity.As(Enum unit)
+        Fraction IQuantity.As(Enum unit)
         {
             if (!(unit is TemperatureUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureUnit)} is supported.", nameof(unit));
@@ -803,25 +796,25 @@ namespace UnitsNet
             Temperature? convertedOrNull = (Unit, unit) switch
             {
                 // TemperatureUnit -> BaseUnit
-                (TemperatureUnit.DegreeCelsius, TemperatureUnit.Kelvin) => new Temperature(_value + 273.15, TemperatureUnit.Kelvin),
-                (TemperatureUnit.DegreeDelisle, TemperatureUnit.Kelvin) => new Temperature(_value * -2 / 3 + 373.15, TemperatureUnit.Kelvin),
-                (TemperatureUnit.DegreeFahrenheit, TemperatureUnit.Kelvin) => new Temperature(_value * 5 / 9 + 459.67 * 5 / 9, TemperatureUnit.Kelvin),
-                (TemperatureUnit.DegreeNewton, TemperatureUnit.Kelvin) => new Temperature(_value * 100 / 33 + 273.15, TemperatureUnit.Kelvin),
-                (TemperatureUnit.DegreeRankine, TemperatureUnit.Kelvin) => new Temperature(_value * 5 / 9, TemperatureUnit.Kelvin),
-                (TemperatureUnit.DegreeReaumur, TemperatureUnit.Kelvin) => new Temperature(_value * 5 / 4 + 273.15, TemperatureUnit.Kelvin),
-                (TemperatureUnit.DegreeRoemer, TemperatureUnit.Kelvin) => new Temperature(_value * 40 / 21 + 273.15 - 7.5 * 40d / 21, TemperatureUnit.Kelvin),
-                (TemperatureUnit.MillidegreeCelsius, TemperatureUnit.Kelvin) => new Temperature(_value / 1000 + 273.15, TemperatureUnit.Kelvin),
+                (TemperatureUnit.DegreeCelsius, TemperatureUnit.Kelvin) => new Temperature(_value + new Fraction(5463, 20, false), TemperatureUnit.Kelvin),
+                (TemperatureUnit.DegreeDelisle, TemperatureUnit.Kelvin) => new Temperature(_value * new Fraction(-2, 3, false) + new Fraction(7463, 20, false), TemperatureUnit.Kelvin),
+                (TemperatureUnit.DegreeFahrenheit, TemperatureUnit.Kelvin) => new Temperature(_value * new Fraction(5, 9, false) + new Fraction(45967, 180, false), TemperatureUnit.Kelvin),
+                (TemperatureUnit.DegreeNewton, TemperatureUnit.Kelvin) => new Temperature(_value * new Fraction(100, 33, false) + new Fraction(5463, 20, false), TemperatureUnit.Kelvin),
+                (TemperatureUnit.DegreeRankine, TemperatureUnit.Kelvin) => new Temperature(_value * new Fraction(5, 9, false), TemperatureUnit.Kelvin),
+                (TemperatureUnit.DegreeReaumur, TemperatureUnit.Kelvin) => new Temperature(_value * new Fraction(5, 4, false) + new Fraction(5463, 20, false), TemperatureUnit.Kelvin),
+                (TemperatureUnit.DegreeRoemer, TemperatureUnit.Kelvin) => new Temperature(_value * new Fraction(40, 21, false) + new Fraction(36241, 140, false), TemperatureUnit.Kelvin),
+                (TemperatureUnit.MillidegreeCelsius, TemperatureUnit.Kelvin) => new Temperature(_value / 1000 + new Fraction(5463, 20, false), TemperatureUnit.Kelvin),
                 (TemperatureUnit.SolarTemperature, TemperatureUnit.Kelvin) => new Temperature(_value * 5778, TemperatureUnit.Kelvin),
 
                 // BaseUnit -> TemperatureUnit
-                (TemperatureUnit.Kelvin, TemperatureUnit.DegreeCelsius) => new Temperature(_value - 273.15, TemperatureUnit.DegreeCelsius),
-                (TemperatureUnit.Kelvin, TemperatureUnit.DegreeDelisle) => new Temperature((_value - 373.15) * -3 / 2, TemperatureUnit.DegreeDelisle),
-                (TemperatureUnit.Kelvin, TemperatureUnit.DegreeFahrenheit) => new Temperature((_value - 459.67 * 5 / 9) * 9 / 5, TemperatureUnit.DegreeFahrenheit),
-                (TemperatureUnit.Kelvin, TemperatureUnit.DegreeNewton) => new Temperature((_value - 273.15) * 33 / 100, TemperatureUnit.DegreeNewton),
-                (TemperatureUnit.Kelvin, TemperatureUnit.DegreeRankine) => new Temperature(_value * 9 / 5, TemperatureUnit.DegreeRankine),
-                (TemperatureUnit.Kelvin, TemperatureUnit.DegreeReaumur) => new Temperature((_value - 273.15) * 4 / 5, TemperatureUnit.DegreeReaumur),
-                (TemperatureUnit.Kelvin, TemperatureUnit.DegreeRoemer) => new Temperature((_value - (273.15 - 7.5 * 40d / 21)) * 21 / 40, TemperatureUnit.DegreeRoemer),
-                (TemperatureUnit.Kelvin, TemperatureUnit.MillidegreeCelsius) => new Temperature((_value - 273.15) * 1000, TemperatureUnit.MillidegreeCelsius),
+                (TemperatureUnit.Kelvin, TemperatureUnit.DegreeCelsius) => new Temperature(_value + new Fraction(-5463, 20, false), TemperatureUnit.DegreeCelsius),
+                (TemperatureUnit.Kelvin, TemperatureUnit.DegreeDelisle) => new Temperature(_value * new Fraction(-3, 2, false) + new Fraction(22389, 40, false), TemperatureUnit.DegreeDelisle),
+                (TemperatureUnit.Kelvin, TemperatureUnit.DegreeFahrenheit) => new Temperature(_value * new Fraction(9, 5, false) + new Fraction(-45967, 100, false), TemperatureUnit.DegreeFahrenheit),
+                (TemperatureUnit.Kelvin, TemperatureUnit.DegreeNewton) => new Temperature(_value * new Fraction(33, 100, false) + new Fraction(-180279, 2000, false), TemperatureUnit.DegreeNewton),
+                (TemperatureUnit.Kelvin, TemperatureUnit.DegreeRankine) => new Temperature(_value * new Fraction(9, 5, false), TemperatureUnit.DegreeRankine),
+                (TemperatureUnit.Kelvin, TemperatureUnit.DegreeReaumur) => new Temperature(_value * new Fraction(4, 5, false) + new Fraction(-5463, 25, false), TemperatureUnit.DegreeReaumur),
+                (TemperatureUnit.Kelvin, TemperatureUnit.DegreeRoemer) => new Temperature(_value * new Fraction(21, 40, false) + new Fraction(-108723, 800, false), TemperatureUnit.DegreeRoemer),
+                (TemperatureUnit.Kelvin, TemperatureUnit.MillidegreeCelsius) => new Temperature(_value * 1000 + -273150, TemperatureUnit.MillidegreeCelsius),
                 (TemperatureUnit.Kelvin, TemperatureUnit.SolarTemperature) => new Temperature(_value / 5778, TemperatureUnit.SolarTemperature),
 
                 _ => null

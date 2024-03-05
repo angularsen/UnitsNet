@@ -4,6 +4,7 @@
 using System;
 using System.ComponentModel;
 using System.Globalization;
+using Fractions;
 
 namespace UnitsNet
 {
@@ -173,11 +174,11 @@ namespace UnitsNet
             {
                 IQuantity? quantity = null;
 
-                if (double.TryParse(stringValue, NumberStyles.Any, culture, out double dvalue))
+                if (Fraction.TryParse(stringValue, NumberStyles.Any, culture, out Fraction fraction))
                 {
                     var defaultUnit = GetAttribute<DefaultUnitAttribute>(context) ?? new DefaultUnitAttribute(default(TQuantity).Unit);
                     if(defaultUnit.UnitType != null)
-                        quantity = Quantity.From(dvalue, defaultUnit.UnitType);
+                        quantity = Quantity.From(fraction, defaultUnit.UnitType);
                 }
                 else
                 {

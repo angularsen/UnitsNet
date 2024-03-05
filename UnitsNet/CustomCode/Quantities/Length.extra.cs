@@ -5,13 +5,14 @@ using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Threading;
+using Fractions;
 using UnitsNet.Units;
 
 namespace UnitsNet
 {
     public partial struct Length
     {
-        private const double InchesInOneFoot = 12;
+        private const int InchesInOneFoot = 12;
 
         /// <summary>
         ///     Converts the length to a customary feet/inches combination.
@@ -21,17 +22,17 @@ namespace UnitsNet
             get
             {
                 var inInches = Inches;
-                var feet = Math.Truncate(inInches / InchesInOneFoot);
+                var feet = Math.Truncate((inInches / InchesInOneFoot).ToDouble()); // TODO?
                 var inches = inInches % InchesInOneFoot;
 
-                return new FeetInches(feet, inches);
+                return new FeetInches(Fraction.FromDoubleRounded(feet), inches);
             }
         }
 
         /// <summary>
         ///     Get length from combination of feet and inches.
         /// </summary>
-        public static Length FromFeetInches(double feet, double inches)
+        public static Length FromFeetInches(Fraction feet, Fraction inches)
         {
             return FromInches(InchesInOneFoot*feet + inches);
         }
@@ -122,7 +123,7 @@ namespace UnitsNet
         /// <summary>
         ///     Construct from feet and inches.
         /// </summary>
-        public FeetInches(double feet, double inches)
+        public FeetInches(Fraction feet, Fraction inches)
         {
             Feet = feet;
             Inches = inches;
@@ -131,12 +132,12 @@ namespace UnitsNet
         /// <summary>
         ///     The feet value it was constructed with.
         /// </summary>
-        public double Feet { get; }
+        public Fraction Feet { get; }
 
         /// <summary>
         ///     The inches value it was constructed with.
         /// </summary>
-        public double Inches { get; }
+        public Fraction Inches { get; }
 
         /// <inheritdoc cref="ToString(IFormatProvider)"/>
         public override string ToString()
@@ -161,7 +162,7 @@ namespace UnitsNet
 
             // Note that it isn't customary to use fractions - one wouldn't say "I am 5 feet and 4.5 inches".
             // So inches are rounded when converting from base units to feet/inches.
-            return string.Format(cultureInfo, "{0:n0} {1} {2:n0} {3}", Feet, footUnit, Math.Round(Inches), inchUnit);
+            return string.Format(cultureInfo, "{0:n0} {1} {2:n0} {3}", Feet, footUnit, Math.Round(Inches.ToDouble()), inchUnit);
         }
 
         /// <summary>
@@ -189,9 +190,10 @@ namespace UnitsNet
             {
                 throw new ArgumentOutOfRangeException(nameof(fractionDenominator), "Denominator for fractional inch must be greater than zero.");
             }
-
-            var inchTrunc = (int)Math.Truncate(Inches);
-            var numerator = (int)Math.Round((Inches - inchTrunc) * fractionDenominator);
+            
+            // TODO this could probably be done better with the fractions
+            var inchTrunc = (int)Math.Truncate(Inches.ToDouble());
+            var numerator = (int)Math.Round((Inches - inchTrunc).ToDouble() * fractionDenominator); 
 
             if (numerator == fractionDenominator)
             {

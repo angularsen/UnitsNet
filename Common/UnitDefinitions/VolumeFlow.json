@@ -94,8 +94,8 @@
     {
       "SingularName": "CubicFootPerHour",
       "PluralName": "CubicFeetPerHour",
-      "FromUnitToBaseFunc": "{x} * 7.8657907199999087346816086183876e-6",
-      "FromBaseToUnitFunc": "{x} / 7.8657907199999087346816086183876e-6",
+      "FromUnitToBaseFunc": "{x} * 0.0283168466e-6 / 3600",
+      "FromBaseToUnitFunc": "{x} / (0.0283168466e-6 / 3600)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -357,8 +357,8 @@
     {
       "SingularName": "OilBarrelPerDay",
       "PluralName": "OilBarrelsPerDay",
-      "FromUnitToBaseFunc": "{x} * 1.8401307283333333333333333333333e-6",
-      "FromBaseToUnitFunc": "{x} / 1.8401307283333333333333333333333e-6",
+      "FromUnitToBaseFunc": "{x} * 1.8401307283333e-6",
+      "FromBaseToUnitFunc": "{x} / 1.8401307283333e-6",
       "Localization": [
         {
           "Culture": "en-US",

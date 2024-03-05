@@ -21,12 +21,11 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
-using System.Numerics;
-#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+using System.Numerics;
+using Fractions;
 
 #nullable enable
 
@@ -54,7 +53,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        private readonly Fraction _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -87,7 +86,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public TemperatureGradient(double value, TemperatureGradientUnit unit)
+        public TemperatureGradient(Fraction value, TemperatureGradientUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -101,7 +100,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public TemperatureGradient(double value, UnitSystem unitSystem)
+        public TemperatureGradient(Fraction value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -152,10 +151,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public Fraction Value => _value;
 
         /// <inheritdoc />
-        double IQuantity.Value => _value;
+        Fraction IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -180,22 +179,22 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureGradientUnit.DegreeCelsiusPerKilometer"/>
         /// </summary>
-        public double DegreesCelsiusPerKilometer => As(TemperatureGradientUnit.DegreeCelsiusPerKilometer);
+        public Fraction DegreesCelsiusPerKilometer => As(TemperatureGradientUnit.DegreeCelsiusPerKilometer);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureGradientUnit.DegreeCelsiusPerMeter"/>
         /// </summary>
-        public double DegreesCelsiusPerMeter => As(TemperatureGradientUnit.DegreeCelsiusPerMeter);
+        public Fraction DegreesCelsiusPerMeter => As(TemperatureGradientUnit.DegreeCelsiusPerMeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureGradientUnit.DegreeFahrenheitPerFoot"/>
         /// </summary>
-        public double DegreesFahrenheitPerFoot => As(TemperatureGradientUnit.DegreeFahrenheitPerFoot);
+        public Fraction DegreesFahrenheitPerFoot => As(TemperatureGradientUnit.DegreeFahrenheitPerFoot);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureGradientUnit.KelvinPerMeter"/>
         /// </summary>
-        public double KelvinsPerMeter => As(TemperatureGradientUnit.KelvinPerMeter);
+        public Fraction KelvinsPerMeter => As(TemperatureGradientUnit.KelvinPerMeter);
 
         #endregion
 
@@ -249,7 +248,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureGradient"/> from <see cref="TemperatureGradientUnit.DegreeCelsiusPerKilometer"/>.
         /// </summary>
-        public static TemperatureGradient FromDegreesCelsiusPerKilometer(double value)
+        public static TemperatureGradient FromDegreesCelsiusPerKilometer(Fraction value)
         {
             return new TemperatureGradient(value, TemperatureGradientUnit.DegreeCelsiusPerKilometer);
         }
@@ -257,7 +256,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureGradient"/> from <see cref="TemperatureGradientUnit.DegreeCelsiusPerMeter"/>.
         /// </summary>
-        public static TemperatureGradient FromDegreesCelsiusPerMeter(double value)
+        public static TemperatureGradient FromDegreesCelsiusPerMeter(Fraction value)
         {
             return new TemperatureGradient(value, TemperatureGradientUnit.DegreeCelsiusPerMeter);
         }
@@ -265,7 +264,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureGradient"/> from <see cref="TemperatureGradientUnit.DegreeFahrenheitPerFoot"/>.
         /// </summary>
-        public static TemperatureGradient FromDegreesFahrenheitPerFoot(double value)
+        public static TemperatureGradient FromDegreesFahrenheitPerFoot(Fraction value)
         {
             return new TemperatureGradient(value, TemperatureGradientUnit.DegreeFahrenheitPerFoot);
         }
@@ -273,7 +272,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureGradient"/> from <see cref="TemperatureGradientUnit.KelvinPerMeter"/>.
         /// </summary>
-        public static TemperatureGradient FromKelvinsPerMeter(double value)
+        public static TemperatureGradient FromKelvinsPerMeter(Fraction value)
         {
             return new TemperatureGradient(value, TemperatureGradientUnit.KelvinPerMeter);
         }
@@ -284,7 +283,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>TemperatureGradient unit value.</returns>
-        public static TemperatureGradient From(double value, TemperatureGradientUnit fromUnit)
+        public static TemperatureGradient From(Fraction value, TemperatureGradientUnit fromUnit)
         {
             return new TemperatureGradient(value, fromUnit);
         }
@@ -440,7 +439,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static TemperatureGradient operator -(TemperatureGradient right)
         {
-            return new TemperatureGradient(-right.Value, right.Unit);
+            return new TemperatureGradient(right.Value.Invert(), right.Unit);
         }
 
         /// <summary>Get <see cref="TemperatureGradient"/> from adding two <see cref="TemperatureGradient"/>.</summary>
@@ -456,25 +455,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="TemperatureGradient"/> from multiplying value and <see cref="TemperatureGradient"/>.</summary>
-        public static TemperatureGradient operator *(double left, TemperatureGradient right)
+        public static TemperatureGradient operator *(Fraction left, TemperatureGradient right)
         {
             return new TemperatureGradient(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="TemperatureGradient"/> from multiplying value and <see cref="TemperatureGradient"/>.</summary>
-        public static TemperatureGradient operator *(TemperatureGradient left, double right)
+        public static TemperatureGradient operator *(TemperatureGradient left, Fraction right)
         {
             return new TemperatureGradient(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="TemperatureGradient"/> from dividing <see cref="TemperatureGradient"/> by value.</summary>
-        public static TemperatureGradient operator /(TemperatureGradient left, double right)
+        public static TemperatureGradient operator /(TemperatureGradient left, Fraction right)
         {
             return new TemperatureGradient(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="TemperatureGradient"/> by <see cref="TemperatureGradient"/>.</summary>
-        public static double operator /(TemperatureGradient left, TemperatureGradient right)
+        public static Fraction operator /(TemperatureGradient left, TemperatureGradient right)
         {
             return left.KelvinsPerMeter / right.KelvinsPerMeter;
         }
@@ -517,27 +516,20 @@ namespace UnitsNet
             return left.Value > right.ToUnit(left.Unit).Value;
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="TemperatureGradient"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(TemperatureGradient other, TemperatureGradient tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="TemperatureGradient"/> quantities.</summary>
         public static bool operator ==(TemperatureGradient left, TemperatureGradient right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="TemperatureGradient"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(TemperatureGradient other, TemperatureGradient tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="TemperatureGradient"/> quantities.</summary>
         public static bool operator !=(TemperatureGradient left, TemperatureGradient right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="TemperatureGradient"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(TemperatureGradient other, TemperatureGradient tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="TemperatureGradient"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is TemperatureGradient otherQuantity))
@@ -547,14 +539,11 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="TemperatureGradient"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(TemperatureGradient other, TemperatureGradient tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="TemperatureGradient"/> quantities.</summary>
         public bool Equals(TemperatureGradient other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.IsEquivalentTo(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>Compares the current <see cref="TemperatureGradient"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
         /// <param name="obj">An object to compare with this instance.</param>
@@ -638,10 +627,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.Comparison.Equals(
+            return UnitsNet.FractionComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: tolerance,
+                tolerance: (Fraction)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -658,7 +647,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(TemperatureGradient other, TemperatureGradient tolerance)
         {
-            return UnitsNet.Comparison.Equals(
+            return UnitsNet.FractionComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -671,7 +660,8 @@ namespace UnitsNet
         /// <returns>A hash code for the current TemperatureGradient.</returns>
         public override int GetHashCode()
         {
-            return new { Info.Name, Value, Unit }.GetHashCode();
+            var valueInBaseUnit = As(BaseUnit);
+            return new { Info.Name, valueInBaseUnit }.GetHashCode();
         }
 
         #endregion
@@ -682,7 +672,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(TemperatureGradientUnit unit)
+        public Fraction As(TemperatureGradientUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -691,7 +681,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public Fraction As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -706,7 +696,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        double IQuantity.As(Enum unit)
+        Fraction IQuantity.As(Enum unit)
         {
             if (!(unit is TemperatureGradientUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureGradientUnit)} is supported.", nameof(unit));
@@ -772,14 +762,14 @@ namespace UnitsNet
             TemperatureGradient? convertedOrNull = (Unit, unit) switch
             {
                 // TemperatureGradientUnit -> BaseUnit
-                (TemperatureGradientUnit.DegreeCelsiusPerKilometer, TemperatureGradientUnit.KelvinPerMeter) => new TemperatureGradient(_value / 1e3, TemperatureGradientUnit.KelvinPerMeter),
+                (TemperatureGradientUnit.DegreeCelsiusPerKilometer, TemperatureGradientUnit.KelvinPerMeter) => new TemperatureGradient(_value / 1000, TemperatureGradientUnit.KelvinPerMeter),
                 (TemperatureGradientUnit.DegreeCelsiusPerMeter, TemperatureGradientUnit.KelvinPerMeter) => new TemperatureGradient(_value, TemperatureGradientUnit.KelvinPerMeter),
-                (TemperatureGradientUnit.DegreeFahrenheitPerFoot, TemperatureGradientUnit.KelvinPerMeter) => new TemperatureGradient((_value / 0.3048) * 5 / 9, TemperatureGradientUnit.KelvinPerMeter),
+                (TemperatureGradientUnit.DegreeFahrenheitPerFoot, TemperatureGradientUnit.KelvinPerMeter) => new TemperatureGradient(_value * new Fraction(6250, 3429, false), TemperatureGradientUnit.KelvinPerMeter),
 
                 // BaseUnit -> TemperatureGradientUnit
-                (TemperatureGradientUnit.KelvinPerMeter, TemperatureGradientUnit.DegreeCelsiusPerKilometer) => new TemperatureGradient(_value * 1e3, TemperatureGradientUnit.DegreeCelsiusPerKilometer),
+                (TemperatureGradientUnit.KelvinPerMeter, TemperatureGradientUnit.DegreeCelsiusPerKilometer) => new TemperatureGradient(_value * 1000, TemperatureGradientUnit.DegreeCelsiusPerKilometer),
                 (TemperatureGradientUnit.KelvinPerMeter, TemperatureGradientUnit.DegreeCelsiusPerMeter) => new TemperatureGradient(_value, TemperatureGradientUnit.DegreeCelsiusPerMeter),
-                (TemperatureGradientUnit.KelvinPerMeter, TemperatureGradientUnit.DegreeFahrenheitPerFoot) => new TemperatureGradient((_value * 0.3048) * 9 / 5, TemperatureGradientUnit.DegreeFahrenheitPerFoot),
+                (TemperatureGradientUnit.KelvinPerMeter, TemperatureGradientUnit.DegreeFahrenheitPerFoot) => new TemperatureGradient(_value * new Fraction(3429, 6250, false), TemperatureGradientUnit.DegreeFahrenheitPerFoot),
 
                 _ => null
             };

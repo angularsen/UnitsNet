@@ -24,6 +24,8 @@ using System.Linq;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+using System.Numerics;
+using Fractions;
 
 #nullable enable
 
@@ -51,7 +53,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        private readonly Fraction _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -81,7 +83,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public ElectricField(double value, ElectricFieldUnit unit)
+        public ElectricField(Fraction value, ElectricFieldUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -95,7 +97,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ElectricField(double value, UnitSystem unitSystem)
+        public ElectricField(Fraction value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -146,10 +148,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public Fraction Value => _value;
 
         /// <inheritdoc />
-        double IQuantity.Value => _value;
+        Fraction IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -174,7 +176,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricFieldUnit.VoltPerMeter"/>
         /// </summary>
-        public double VoltsPerMeter => As(ElectricFieldUnit.VoltPerMeter);
+        public Fraction VoltsPerMeter => As(ElectricFieldUnit.VoltPerMeter);
 
         #endregion
 
@@ -222,7 +224,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricField"/> from <see cref="ElectricFieldUnit.VoltPerMeter"/>.
         /// </summary>
-        public static ElectricField FromVoltsPerMeter(double value)
+        public static ElectricField FromVoltsPerMeter(Fraction value)
         {
             return new ElectricField(value, ElectricFieldUnit.VoltPerMeter);
         }
@@ -233,7 +235,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricField unit value.</returns>
-        public static ElectricField From(double value, ElectricFieldUnit fromUnit)
+        public static ElectricField From(Fraction value, ElectricFieldUnit fromUnit)
         {
             return new ElectricField(value, fromUnit);
         }
@@ -389,7 +391,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static ElectricField operator -(ElectricField right)
         {
-            return new ElectricField(-right.Value, right.Unit);
+            return new ElectricField(right.Value.Invert(), right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricField"/> from adding two <see cref="ElectricField"/>.</summary>
@@ -405,25 +407,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="ElectricField"/> from multiplying value and <see cref="ElectricField"/>.</summary>
-        public static ElectricField operator *(double left, ElectricField right)
+        public static ElectricField operator *(Fraction left, ElectricField right)
         {
             return new ElectricField(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricField"/> from multiplying value and <see cref="ElectricField"/>.</summary>
-        public static ElectricField operator *(ElectricField left, double right)
+        public static ElectricField operator *(ElectricField left, Fraction right)
         {
             return new ElectricField(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricField"/> from dividing <see cref="ElectricField"/> by value.</summary>
-        public static ElectricField operator /(ElectricField left, double right)
+        public static ElectricField operator /(ElectricField left, Fraction right)
         {
             return new ElectricField(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ElectricField"/> by <see cref="ElectricField"/>.</summary>
-        public static double operator /(ElectricField left, ElectricField right)
+        public static Fraction operator /(ElectricField left, ElectricField right)
         {
             return left.VoltsPerMeter / right.VoltsPerMeter;
         }
@@ -456,27 +458,20 @@ namespace UnitsNet
             return left.Value > right.ToUnit(left.Unit).Value;
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="ElectricField"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(ElectricField other, ElectricField tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="ElectricField"/> quantities.</summary>
         public static bool operator ==(ElectricField left, ElectricField right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="ElectricField"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(ElectricField other, ElectricField tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="ElectricField"/> quantities.</summary>
         public static bool operator !=(ElectricField left, ElectricField right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="ElectricField"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(ElectricField other, ElectricField tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="ElectricField"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is ElectricField otherQuantity))
@@ -486,14 +481,11 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="ElectricField"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(ElectricField other, ElectricField tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="ElectricField"/> quantities.</summary>
         public bool Equals(ElectricField other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.IsEquivalentTo(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>Compares the current <see cref="ElectricField"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
         /// <param name="obj">An object to compare with this instance.</param>
@@ -577,10 +569,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.Comparison.Equals(
+            return UnitsNet.FractionComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: tolerance,
+                tolerance: (Fraction)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -597,7 +589,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(ElectricField other, ElectricField tolerance)
         {
-            return UnitsNet.Comparison.Equals(
+            return UnitsNet.FractionComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -610,7 +602,8 @@ namespace UnitsNet
         /// <returns>A hash code for the current ElectricField.</returns>
         public override int GetHashCode()
         {
-            return new { Info.Name, Value, Unit }.GetHashCode();
+            var valueInBaseUnit = As(BaseUnit);
+            return new { Info.Name, valueInBaseUnit }.GetHashCode();
         }
 
         #endregion
@@ -621,7 +614,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(ElectricFieldUnit unit)
+        public Fraction As(ElectricFieldUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -630,7 +623,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public Fraction As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -645,7 +638,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        double IQuantity.As(Enum unit)
+        Fraction IQuantity.As(Enum unit)
         {
             if (!(unit is ElectricFieldUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricFieldUnit)} is supported.", nameof(unit));

@@ -1,5 +1,6 @@
 ﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
+using Fractions;
 using UnitsNet.Units;
 
 namespace UnitsNet.Benchmark
@@ -7,32 +8,32 @@ namespace UnitsNet.Benchmark
     [MemoryDiagnoser]
     public class UnitsNetBenchmarks
     {
-        private readonly Length _length = Length.FromMeters(3.0);
-        private readonly IQuantity _lengthIQuantity = Length.FromMeters(3.0);
+        private readonly Length _length = Length.FromMeters(3);
+        private readonly IQuantity _lengthIQuantity = Length.FromMeters(3);
 
         [Benchmark]
         [BenchmarkCategory("Construction")]
-        public Length Constructor() => new Length(3.0, LengthUnit.Meter);
+        public Length Constructor() => new Length(3, LengthUnit.Meter);
 
         [Benchmark]
         [BenchmarkCategory("Construction")]
-        public Length Constructor_SI() => new Length(3.0, UnitSystem.SI);
+        public Length Constructor_SI() => new Length(3, UnitSystem.SI);
 
         [Benchmark]
         [BenchmarkCategory("Construction")]
-        public Length FromMethod() => Length.FromMeters(3.0);
+        public Length FromMethod() => Length.FromMeters(3);
 
         [Benchmark]
         [BenchmarkCategory("Transformation")]
-        public double ToProperty() => _length.Centimeters;
+        public Fraction ToProperty() => _length.Centimeters;
 
         [Benchmark]
         [BenchmarkCategory("Transformation, Value")]
-        public double As() => _length.As(LengthUnit.Centimeter);
+        public Fraction As() => _length.As(LengthUnit.Centimeter);
 
         [Benchmark]
         [BenchmarkCategory("Transformation, Value")]
-        public double As_SI() => _length.As(UnitSystem.SI);
+        public Fraction As_SI() => _length.As(UnitSystem.SI);
 
         [Benchmark]
         [BenchmarkCategory("Transformation, Quantity")]
@@ -60,15 +61,15 @@ namespace UnitsNet.Benchmark
 
         [Benchmark]
         [BenchmarkCategory("Construction")]
-        public IQuantity QuantityFrom() => Quantity.From(3.0, LengthUnit.Meter);
+        public IQuantity QuantityFrom() => Quantity.From(3, LengthUnit.Meter);
 
         [Benchmark]
         [BenchmarkCategory("Transformation, Value")]
-        public double IQuantity_As() => _lengthIQuantity.As(LengthUnit.Centimeter);
+        public Fraction IQuantity_As() => _lengthIQuantity.As(LengthUnit.Centimeter);
 
         [Benchmark]
         [BenchmarkCategory("Transformation, Value")]
-        public double IQuantity_As_SI() => _lengthIQuantity.As(UnitSystem.SI);
+        public Fraction IQuantity_As_SI() => _lengthIQuantity.As(UnitSystem.SI);
 
         [Benchmark]
         [BenchmarkCategory("Transformation, Quantity")]
@@ -82,6 +83,8 @@ namespace UnitsNet.Benchmark
     class Program
     {
         static void Main(string[] args)
-            => BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly).Run(args);
+        {
+            BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly).Run(args);
+        }
     }
 }

@@ -24,6 +24,8 @@ using System.Linq;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+using System.Numerics;
+using Fractions;
 
 #nullable enable
 
@@ -48,7 +50,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        private readonly Fraction _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -78,7 +80,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public RelativeHumidity(double value, RelativeHumidityUnit unit)
+        public RelativeHumidity(Fraction value, RelativeHumidityUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -92,7 +94,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public RelativeHumidity(double value, UnitSystem unitSystem)
+        public RelativeHumidity(Fraction value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -143,10 +145,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public Fraction Value => _value;
 
         /// <inheritdoc />
-        double IQuantity.Value => _value;
+        Fraction IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -171,7 +173,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RelativeHumidityUnit.Percent"/>
         /// </summary>
-        public double Percent => As(RelativeHumidityUnit.Percent);
+        public Fraction Percent => As(RelativeHumidityUnit.Percent);
 
         #endregion
 
@@ -219,7 +221,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RelativeHumidity"/> from <see cref="RelativeHumidityUnit.Percent"/>.
         /// </summary>
-        public static RelativeHumidity FromPercent(double value)
+        public static RelativeHumidity FromPercent(Fraction value)
         {
             return new RelativeHumidity(value, RelativeHumidityUnit.Percent);
         }
@@ -230,7 +232,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>RelativeHumidity unit value.</returns>
-        public static RelativeHumidity From(double value, RelativeHumidityUnit fromUnit)
+        public static RelativeHumidity From(Fraction value, RelativeHumidityUnit fromUnit)
         {
             return new RelativeHumidity(value, fromUnit);
         }
@@ -386,7 +388,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static RelativeHumidity operator -(RelativeHumidity right)
         {
-            return new RelativeHumidity(-right.Value, right.Unit);
+            return new RelativeHumidity(right.Value.Invert(), right.Unit);
         }
 
         /// <summary>Get <see cref="RelativeHumidity"/> from adding two <see cref="RelativeHumidity"/>.</summary>
@@ -402,25 +404,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="RelativeHumidity"/> from multiplying value and <see cref="RelativeHumidity"/>.</summary>
-        public static RelativeHumidity operator *(double left, RelativeHumidity right)
+        public static RelativeHumidity operator *(Fraction left, RelativeHumidity right)
         {
             return new RelativeHumidity(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="RelativeHumidity"/> from multiplying value and <see cref="RelativeHumidity"/>.</summary>
-        public static RelativeHumidity operator *(RelativeHumidity left, double right)
+        public static RelativeHumidity operator *(RelativeHumidity left, Fraction right)
         {
             return new RelativeHumidity(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="RelativeHumidity"/> from dividing <see cref="RelativeHumidity"/> by value.</summary>
-        public static RelativeHumidity operator /(RelativeHumidity left, double right)
+        public static RelativeHumidity operator /(RelativeHumidity left, Fraction right)
         {
             return new RelativeHumidity(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="RelativeHumidity"/> by <see cref="RelativeHumidity"/>.</summary>
-        public static double operator /(RelativeHumidity left, RelativeHumidity right)
+        public static Fraction operator /(RelativeHumidity left, RelativeHumidity right)
         {
             return left.Percent / right.Percent;
         }
@@ -453,27 +455,20 @@ namespace UnitsNet
             return left.Value > right.ToUnit(left.Unit).Value;
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="RelativeHumidity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(RelativeHumidity other, RelativeHumidity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="RelativeHumidity"/> quantities.</summary>
         public static bool operator ==(RelativeHumidity left, RelativeHumidity right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="RelativeHumidity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(RelativeHumidity other, RelativeHumidity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="RelativeHumidity"/> quantities.</summary>
         public static bool operator !=(RelativeHumidity left, RelativeHumidity right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="RelativeHumidity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(RelativeHumidity other, RelativeHumidity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="RelativeHumidity"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is RelativeHumidity otherQuantity))
@@ -483,14 +478,11 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="RelativeHumidity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(RelativeHumidity other, RelativeHumidity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="RelativeHumidity"/> quantities.</summary>
         public bool Equals(RelativeHumidity other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.IsEquivalentTo(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>Compares the current <see cref="RelativeHumidity"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
         /// <param name="obj">An object to compare with this instance.</param>
@@ -574,10 +566,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.Comparison.Equals(
+            return UnitsNet.FractionComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: tolerance,
+                tolerance: (Fraction)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -594,7 +586,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(RelativeHumidity other, RelativeHumidity tolerance)
         {
-            return UnitsNet.Comparison.Equals(
+            return UnitsNet.FractionComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -607,7 +599,8 @@ namespace UnitsNet
         /// <returns>A hash code for the current RelativeHumidity.</returns>
         public override int GetHashCode()
         {
-            return new { Info.Name, Value, Unit }.GetHashCode();
+            var valueInBaseUnit = As(BaseUnit);
+            return new { Info.Name, valueInBaseUnit }.GetHashCode();
         }
 
         #endregion
@@ -618,7 +611,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(RelativeHumidityUnit unit)
+        public Fraction As(RelativeHumidityUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -627,7 +620,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public Fraction As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -642,7 +635,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        double IQuantity.As(Enum unit)
+        Fraction IQuantity.As(Enum unit)
         {
             if (!(unit is RelativeHumidityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RelativeHumidityUnit)} is supported.", nameof(unit));

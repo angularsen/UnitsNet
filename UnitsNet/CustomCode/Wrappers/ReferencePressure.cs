@@ -3,6 +3,7 @@
 
 using System;
 using System.Linq;
+using Fractions;
 using UnitsNet.CustomCode.Units;
 using UnitsNet.Units;
 
@@ -130,7 +131,7 @@ namespace UnitsNet.Wrappers
         /// </summary>
         /// <param name="reference">The <see cref="PressureReference" /> to convert <see cref="ReferencePressure" /> to.</param>
         /// <returns>The value of pressure at <see cref="PressureReference" /></returns>
-        private double AsBaseNumericType(PressureReference reference)
+        private Fraction AsBaseNumericType(PressureReference reference)
         {
             var baseReferenceValue = AsBaseReference();
 
@@ -156,7 +157,7 @@ namespace UnitsNet.Wrappers
         ///     <see cref="BaseReference" />
         /// </summary>
         /// <returns>The value of pressure at the <see cref="BaseReference" /></returns>
-        private double AsBaseReference()
+        private Fraction AsBaseReference()
         {
             switch (Reference)
             {

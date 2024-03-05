@@ -1,4 +1,5 @@
 ﻿using System;
+using Fractions;
 
 namespace UnitsNet.Tests.CustomQuantities
 {
@@ -8,7 +9,7 @@ namespace UnitsNet.Tests.CustomQuantities
     /// </summary>
     public readonly struct HowMuch : IQuantity
     {
-        public HowMuch(double value, HowMuchUnit unit)
+        public HowMuch(Fraction value, HowMuchUnit unit)
         {
             Unit = unit;
             Value = value;
@@ -19,7 +20,7 @@ namespace UnitsNet.Tests.CustomQuantities
         Enum IQuantity.Unit => Unit;
         public HowMuchUnit Unit { get; }
 
-        public double Value { get; }
+        public Fraction Value { get; }
 
         #region IQuantity
 
@@ -40,9 +41,9 @@ namespace UnitsNet.Tests.CustomQuantities
             Zero,
             BaseDimensions.Dimensionless);
 
-        public double As(Enum unit) => Convert.ToDouble(unit);
+        public Fraction As(Enum unit) => Convert.ToInt32(unit);
 
-        public double As(UnitSystem unitSystem) => throw new NotImplementedException();
+        public Fraction As(UnitSystem unitSystem) => throw new NotImplementedException();
 
         public IQuantity ToUnit(Enum unit)
         {

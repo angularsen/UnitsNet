@@ -24,6 +24,8 @@ using System.Linq;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+using System.Numerics;
+using Fractions;
 
 #nullable enable
 
@@ -48,7 +50,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        private readonly Fraction _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -79,7 +81,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Level(double value, LevelUnit unit)
+        public Level(Fraction value, LevelUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -93,7 +95,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Level(double value, UnitSystem unitSystem)
+        public Level(Fraction value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -144,10 +146,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public Fraction Value => _value;
 
         /// <inheritdoc />
-        double IQuantity.Value => _value;
+        Fraction IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -172,12 +174,12 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LevelUnit.Decibel"/>
         /// </summary>
-        public double Decibels => As(LevelUnit.Decibel);
+        public Fraction Decibels => As(LevelUnit.Decibel);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LevelUnit.Neper"/>
         /// </summary>
-        public double Nepers => As(LevelUnit.Neper);
+        public Fraction Nepers => As(LevelUnit.Neper);
 
         #endregion
 
@@ -227,7 +229,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Level"/> from <see cref="LevelUnit.Decibel"/>.
         /// </summary>
-        public static Level FromDecibels(double value)
+        public static Level FromDecibels(Fraction value)
         {
             return new Level(value, LevelUnit.Decibel);
         }
@@ -235,7 +237,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Level"/> from <see cref="LevelUnit.Neper"/>.
         /// </summary>
-        public static Level FromNepers(double value)
+        public static Level FromNepers(Fraction value)
         {
             return new Level(value, LevelUnit.Neper);
         }
@@ -246,7 +248,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Level unit value.</returns>
-        public static Level From(double value, LevelUnit fromUnit)
+        public static Level From(Fraction value, LevelUnit fromUnit)
         {
             return new Level(value, fromUnit);
         }
@@ -402,7 +404,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static Level operator -(Level right)
         {
-            return new Level(-right.Value, right.Unit);
+            return new Level(right.Value.Invert(), right.Unit);
         }
 
         /// <summary>Get <see cref="Level"/> from logarithmic addition of two <see cref="Level"/>.</summary>
@@ -410,7 +412,10 @@ namespace UnitsNet
         {
             // Logarithmic addition
             // Formula: 10 * log10(10^(x/10) + 10^(y/10))
-            return new Level(10 * Math.Log10(Math.Pow(10, left.Value / 10) + Math.Pow(10, right.ToUnit(left.Unit).Value / 10)), left.Unit);
+            // TODO see if we can switch to operating in linear space: left + right.ToUnit(left.Unit)
+            return new Level(10 * Fraction.FromDoubleRounded(Math.Log10(
+                Math.Pow(10, (left.Value / 10).ToDouble()) + Math.Pow(10, (right.ToUnit(left.Unit).Value / 10).ToDouble()))),
+                left.Unit);
         }
 
         /// <summary>Get <see cref="Level"/> from logarithmic subtraction of two <see cref="Level"/>.</summary>
@@ -418,35 +423,39 @@ namespace UnitsNet
         {
             // Logarithmic subtraction
             // Formula: 10 * log10(10^(x/10) - 10^(y/10))
-            return new Level(10 * Math.Log10(Math.Pow(10, left.Value / 10) - Math.Pow(10, right.ToUnit(left.Unit).Value / 10)), left.Unit);
+            // TODO see if we can switch to operating in linear space: left - right.ToUnit(left.Unit)
+            return new Level(10 * Fraction.FromDoubleRounded(Math.Log10(
+                Math.Pow(10, (left.Value / 10).ToDouble()) - Math.Pow(10, (right.ToUnit(left.Unit).Value / 10).ToDouble()))),
+                left.Unit);
         }
 
         /// <summary>Get <see cref="Level"/> from logarithmic multiplication of value and <see cref="Level"/>.</summary>
-        public static Level operator *(double left, Level right)
+        public static Level operator *(Fraction left, Level right)
         {
             // Logarithmic multiplication = addition
+            // TODO see if we can switch to operating in linear space: left * right.ToUnit(left.Unit)
             return new Level(left + right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Level"/> from logarithmic multiplication of value and <see cref="Level"/>.</summary>
-        public static Level operator *(Level left, double right)
+        public static Level operator *(Level left, Fraction right)
         {
             // Logarithmic multiplication = addition
             return new Level(left.Value + right, left.Unit);
         }
 
         /// <summary>Get <see cref="Level"/> from logarithmic division of <see cref="Level"/> by value.</summary>
-        public static Level operator /(Level left, double right)
+        public static Level operator /(Level left, Fraction right)
         {
             // Logarithmic division = subtraction
             return new Level(left.Value - right, left.Unit);
         }
 
         /// <summary>Get ratio value from logarithmic division of <see cref="Level"/> by <see cref="Level"/>.</summary>
-        public static double operator /(Level left, Level right)
+        public static Fraction operator /(Level left, Level right)
         {
             // Logarithmic division = subtraction
-            return Convert.ToDouble(left.Value - right.ToUnit(left.Unit).Value);
+            return left.Value - right.ToUnit(left.Unit).Value;
         }
 
         #endregion
@@ -477,27 +486,20 @@ namespace UnitsNet
             return left.Value > right.ToUnit(left.Unit).Value;
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="Level"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Level other, Level tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Level"/> quantities.</summary>
         public static bool operator ==(Level left, Level right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="Level"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Level other, Level tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="Level"/> quantities.</summary>
         public static bool operator !=(Level left, Level right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="Level"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(Level other, Level tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Level"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is Level otherQuantity))
@@ -507,14 +509,11 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="Level"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(Level other, Level tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Level"/> quantities.</summary>
         public bool Equals(Level other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.IsEquivalentTo(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>Compares the current <see cref="Level"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
         /// <param name="obj">An object to compare with this instance.</param>
@@ -598,10 +597,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.Comparison.Equals(
+            return UnitsNet.FractionComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: tolerance,
+                tolerance: (Fraction)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -618,7 +617,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(Level other, Level tolerance)
         {
-            return UnitsNet.Comparison.Equals(
+            return UnitsNet.FractionComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -631,7 +630,8 @@ namespace UnitsNet
         /// <returns>A hash code for the current Level.</returns>
         public override int GetHashCode()
         {
-            return new { Info.Name, Value, Unit }.GetHashCode();
+            var valueInBaseUnit = As(BaseUnit);
+            return new { Info.Name, valueInBaseUnit }.GetHashCode();
         }
 
         #endregion
@@ -642,7 +642,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(LevelUnit unit)
+        public Fraction As(LevelUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -651,7 +651,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public Fraction As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -666,7 +666,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        double IQuantity.As(Enum unit)
+        Fraction IQuantity.As(Enum unit)
         {
             if (!(unit is LevelUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LevelUnit)} is supported.", nameof(unit));
@@ -732,10 +732,10 @@ namespace UnitsNet
             Level? convertedOrNull = (Unit, unit) switch
             {
                 // LevelUnit -> BaseUnit
-                (LevelUnit.Neper, LevelUnit.Decibel) => new Level((1 / 0.115129254) * _value, LevelUnit.Decibel),
+                (LevelUnit.Neper, LevelUnit.Decibel) => new Level(_value * new Fraction(500000000, 57564627, false), LevelUnit.Decibel),
 
                 // BaseUnit -> LevelUnit
-                (LevelUnit.Decibel, LevelUnit.Neper) => new Level(0.115129254 * _value, LevelUnit.Neper),
+                (LevelUnit.Decibel, LevelUnit.Neper) => new Level(_value * new Fraction(57564627, 500000000, false), LevelUnit.Neper),
 
                 _ => null
             };

@@ -1,5 +1,6 @@
 ﻿#nullable enable
 using System;
+using Fractions;
 
 namespace UnitsNet.Tests
 {
@@ -13,11 +14,11 @@ namespace UnitsNet.Tests
 
         public Enum Unit => throw new NotImplementedException();
 
-        public double Value => throw new NotImplementedException();
+        public Fraction Value => throw new NotImplementedException();
 
-        public double As(Enum unit ) => throw new NotImplementedException();
+        public Fraction As(Enum unit ) => throw new NotImplementedException();
 
-        public double As(UnitSystem unitSystem ) => throw new NotImplementedException();
+        public Fraction As(UnitSystem unitSystem ) => throw new NotImplementedException();
 
         public bool Equals(IQuantity? other, double tolerance, ComparisonType comparisonType) => throw new NotImplementedException();
 

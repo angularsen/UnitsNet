@@ -24,6 +24,8 @@ using System.Linq;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+using System.Numerics;
+using Fractions;
 
 #nullable enable
 
@@ -51,7 +53,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        private readonly Fraction _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -94,7 +96,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Luminosity(double value, LuminosityUnit unit)
+        public Luminosity(Fraction value, LuminosityUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -108,7 +110,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Luminosity(double value, UnitSystem unitSystem)
+        public Luminosity(Fraction value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -159,10 +161,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public Fraction Value => _value;
 
         /// <inheritdoc />
-        double IQuantity.Value => _value;
+        Fraction IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -187,72 +189,72 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Decawatt"/>
         /// </summary>
-        public double Decawatts => As(LuminosityUnit.Decawatt);
+        public Fraction Decawatts => As(LuminosityUnit.Decawatt);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Deciwatt"/>
         /// </summary>
-        public double Deciwatts => As(LuminosityUnit.Deciwatt);
+        public Fraction Deciwatts => As(LuminosityUnit.Deciwatt);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Femtowatt"/>
         /// </summary>
-        public double Femtowatts => As(LuminosityUnit.Femtowatt);
+        public Fraction Femtowatts => As(LuminosityUnit.Femtowatt);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Gigawatt"/>
         /// </summary>
-        public double Gigawatts => As(LuminosityUnit.Gigawatt);
+        public Fraction Gigawatts => As(LuminosityUnit.Gigawatt);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Kilowatt"/>
         /// </summary>
-        public double Kilowatts => As(LuminosityUnit.Kilowatt);
+        public Fraction Kilowatts => As(LuminosityUnit.Kilowatt);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Megawatt"/>
         /// </summary>
-        public double Megawatts => As(LuminosityUnit.Megawatt);
+        public Fraction Megawatts => As(LuminosityUnit.Megawatt);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Microwatt"/>
         /// </summary>
-        public double Microwatts => As(LuminosityUnit.Microwatt);
+        public Fraction Microwatts => As(LuminosityUnit.Microwatt);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Milliwatt"/>
         /// </summary>
-        public double Milliwatts => As(LuminosityUnit.Milliwatt);
+        public Fraction Milliwatts => As(LuminosityUnit.Milliwatt);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Nanowatt"/>
         /// </summary>
-        public double Nanowatts => As(LuminosityUnit.Nanowatt);
+        public Fraction Nanowatts => As(LuminosityUnit.Nanowatt);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Petawatt"/>
         /// </summary>
-        public double Petawatts => As(LuminosityUnit.Petawatt);
+        public Fraction Petawatts => As(LuminosityUnit.Petawatt);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Picowatt"/>
         /// </summary>
-        public double Picowatts => As(LuminosityUnit.Picowatt);
+        public Fraction Picowatts => As(LuminosityUnit.Picowatt);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.SolarLuminosity"/>
         /// </summary>
-        public double SolarLuminosities => As(LuminosityUnit.SolarLuminosity);
+        public Fraction SolarLuminosities => As(LuminosityUnit.SolarLuminosity);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Terawatt"/>
         /// </summary>
-        public double Terawatts => As(LuminosityUnit.Terawatt);
+        public Fraction Terawatts => As(LuminosityUnit.Terawatt);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Watt"/>
         /// </summary>
-        public double Watts => As(LuminosityUnit.Watt);
+        public Fraction Watts => As(LuminosityUnit.Watt);
 
         #endregion
 
@@ -326,7 +328,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Decawatt"/>.
         /// </summary>
-        public static Luminosity FromDecawatts(double value)
+        public static Luminosity FromDecawatts(Fraction value)
         {
             return new Luminosity(value, LuminosityUnit.Decawatt);
         }
@@ -334,7 +336,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Deciwatt"/>.
         /// </summary>
-        public static Luminosity FromDeciwatts(double value)
+        public static Luminosity FromDeciwatts(Fraction value)
         {
             return new Luminosity(value, LuminosityUnit.Deciwatt);
         }
@@ -342,7 +344,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Femtowatt"/>.
         /// </summary>
-        public static Luminosity FromFemtowatts(double value)
+        public static Luminosity FromFemtowatts(Fraction value)
         {
             return new Luminosity(value, LuminosityUnit.Femtowatt);
         }
@@ -350,7 +352,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Gigawatt"/>.
         /// </summary>
-        public static Luminosity FromGigawatts(double value)
+        public static Luminosity FromGigawatts(Fraction value)
         {
             return new Luminosity(value, LuminosityUnit.Gigawatt);
         }
@@ -358,7 +360,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Kilowatt"/>.
         /// </summary>
-        public static Luminosity FromKilowatts(double value)
+        public static Luminosity FromKilowatts(Fraction value)
         {
             return new Luminosity(value, LuminosityUnit.Kilowatt);
         }
@@ -366,7 +368,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Megawatt"/>.
         /// </summary>
-        public static Luminosity FromMegawatts(double value)
+        public static Luminosity FromMegawatts(Fraction value)
         {
             return new Luminosity(value, LuminosityUnit.Megawatt);
         }
@@ -374,7 +376,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Microwatt"/>.
         /// </summary>
-        public static Luminosity FromMicrowatts(double value)
+        public static Luminosity FromMicrowatts(Fraction value)
         {
             return new Luminosity(value, LuminosityUnit.Microwatt);
         }
@@ -382,7 +384,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Milliwatt"/>.
         /// </summary>
-        public static Luminosity FromMilliwatts(double value)
+        public static Luminosity FromMilliwatts(Fraction value)
         {
             return new Luminosity(value, LuminosityUnit.Milliwatt);
         }
@@ -390,7 +392,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Nanowatt"/>.
         /// </summary>
-        public static Luminosity FromNanowatts(double value)
+        public static Luminosity FromNanowatts(Fraction value)
         {
             return new Luminosity(value, LuminosityUnit.Nanowatt);
         }
@@ -398,7 +400,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Petawatt"/>.
         /// </summary>
-        public static Luminosity FromPetawatts(double value)
+        public static Luminosity FromPetawatts(Fraction value)
         {
             return new Luminosity(value, LuminosityUnit.Petawatt);
         }
@@ -406,7 +408,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Picowatt"/>.
         /// </summary>
-        public static Luminosity FromPicowatts(double value)
+        public static Luminosity FromPicowatts(Fraction value)
         {
             return new Luminosity(value, LuminosityUnit.Picowatt);
         }
@@ -414,7 +416,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.SolarLuminosity"/>.
         /// </summary>
-        public static Luminosity FromSolarLuminosities(double value)
+        public static Luminosity FromSolarLuminosities(Fraction value)
         {
             return new Luminosity(value, LuminosityUnit.SolarLuminosity);
         }
@@ -422,7 +424,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Terawatt"/>.
         /// </summary>
-        public static Luminosity FromTerawatts(double value)
+        public static Luminosity FromTerawatts(Fraction value)
         {
             return new Luminosity(value, LuminosityUnit.Terawatt);
         }
@@ -430,7 +432,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Watt"/>.
         /// </summary>
-        public static Luminosity FromWatts(double value)
+        public static Luminosity FromWatts(Fraction value)
         {
             return new Luminosity(value, LuminosityUnit.Watt);
         }
@@ -441,7 +443,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Luminosity unit value.</returns>
-        public static Luminosity From(double value, LuminosityUnit fromUnit)
+        public static Luminosity From(Fraction value, LuminosityUnit fromUnit)
         {
             return new Luminosity(value, fromUnit);
         }
@@ -597,7 +599,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static Luminosity operator -(Luminosity right)
         {
-            return new Luminosity(-right.Value, right.Unit);
+            return new Luminosity(right.Value.Invert(), right.Unit);
         }
 
         /// <summary>Get <see cref="Luminosity"/> from adding two <see cref="Luminosity"/>.</summary>
@@ -613,25 +615,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Luminosity"/> from multiplying value and <see cref="Luminosity"/>.</summary>
-        public static Luminosity operator *(double left, Luminosity right)
+        public static Luminosity operator *(Fraction left, Luminosity right)
         {
             return new Luminosity(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Luminosity"/> from multiplying value and <see cref="Luminosity"/>.</summary>
-        public static Luminosity operator *(Luminosity left, double right)
+        public static Luminosity operator *(Luminosity left, Fraction right)
         {
             return new Luminosity(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Luminosity"/> from dividing <see cref="Luminosity"/> by value.</summary>
-        public static Luminosity operator /(Luminosity left, double right)
+        public static Luminosity operator /(Luminosity left, Fraction right)
         {
             return new Luminosity(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Luminosity"/> by <see cref="Luminosity"/>.</summary>
-        public static double operator /(Luminosity left, Luminosity right)
+        public static Fraction operator /(Luminosity left, Luminosity right)
         {
             return left.Watts / right.Watts;
         }
@@ -664,27 +666,20 @@ namespace UnitsNet
             return left.Value > right.ToUnit(left.Unit).Value;
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="Luminosity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Luminosity other, Luminosity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Luminosity"/> quantities.</summary>
         public static bool operator ==(Luminosity left, Luminosity right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="Luminosity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Luminosity other, Luminosity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="Luminosity"/> quantities.</summary>
         public static bool operator !=(Luminosity left, Luminosity right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="Luminosity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(Luminosity other, Luminosity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Luminosity"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is Luminosity otherQuantity))
@@ -694,14 +689,11 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="Luminosity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(Luminosity other, Luminosity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Luminosity"/> quantities.</summary>
         public bool Equals(Luminosity other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.IsEquivalentTo(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>Compares the current <see cref="Luminosity"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
         /// <param name="obj">An object to compare with this instance.</param>
@@ -785,10 +777,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.Comparison.Equals(
+            return UnitsNet.FractionComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: tolerance,
+                tolerance: (Fraction)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -805,7 +797,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(Luminosity other, Luminosity tolerance)
         {
-            return UnitsNet.Comparison.Equals(
+            return UnitsNet.FractionComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -818,7 +810,8 @@ namespace UnitsNet
         /// <returns>A hash code for the current Luminosity.</returns>
         public override int GetHashCode()
         {
-            return new { Info.Name, Value, Unit }.GetHashCode();
+            var valueInBaseUnit = As(BaseUnit);
+            return new { Info.Name, valueInBaseUnit }.GetHashCode();
         }
 
         #endregion
@@ -829,7 +822,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(LuminosityUnit unit)
+        public Fraction As(LuminosityUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -838,7 +831,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public Fraction As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -853,7 +846,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        double IQuantity.As(Enum unit)
+        Fraction IQuantity.As(Enum unit)
         {
             if (!(unit is LuminosityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LuminosityUnit)} is supported.", nameof(unit));
@@ -919,34 +912,34 @@ namespace UnitsNet
             Luminosity? convertedOrNull = (Unit, unit) switch
             {
                 // LuminosityUnit -> BaseUnit
-                (LuminosityUnit.Decawatt, LuminosityUnit.Watt) => new Luminosity((_value) * 1e1d, LuminosityUnit.Watt),
-                (LuminosityUnit.Deciwatt, LuminosityUnit.Watt) => new Luminosity((_value) * 1e-1d, LuminosityUnit.Watt),
-                (LuminosityUnit.Femtowatt, LuminosityUnit.Watt) => new Luminosity((_value) * 1e-15d, LuminosityUnit.Watt),
-                (LuminosityUnit.Gigawatt, LuminosityUnit.Watt) => new Luminosity((_value) * 1e9d, LuminosityUnit.Watt),
-                (LuminosityUnit.Kilowatt, LuminosityUnit.Watt) => new Luminosity((_value) * 1e3d, LuminosityUnit.Watt),
-                (LuminosityUnit.Megawatt, LuminosityUnit.Watt) => new Luminosity((_value) * 1e6d, LuminosityUnit.Watt),
-                (LuminosityUnit.Microwatt, LuminosityUnit.Watt) => new Luminosity((_value) * 1e-6d, LuminosityUnit.Watt),
-                (LuminosityUnit.Milliwatt, LuminosityUnit.Watt) => new Luminosity((_value) * 1e-3d, LuminosityUnit.Watt),
-                (LuminosityUnit.Nanowatt, LuminosityUnit.Watt) => new Luminosity((_value) * 1e-9d, LuminosityUnit.Watt),
-                (LuminosityUnit.Petawatt, LuminosityUnit.Watt) => new Luminosity((_value) * 1e15d, LuminosityUnit.Watt),
-                (LuminosityUnit.Picowatt, LuminosityUnit.Watt) => new Luminosity((_value) * 1e-12d, LuminosityUnit.Watt),
-                (LuminosityUnit.SolarLuminosity, LuminosityUnit.Watt) => new Luminosity(_value * 3.846e26, LuminosityUnit.Watt),
-                (LuminosityUnit.Terawatt, LuminosityUnit.Watt) => new Luminosity((_value) * 1e12d, LuminosityUnit.Watt),
+                (LuminosityUnit.Decawatt, LuminosityUnit.Watt) => new Luminosity(_value * 10, LuminosityUnit.Watt),
+                (LuminosityUnit.Deciwatt, LuminosityUnit.Watt) => new Luminosity(_value / 10, LuminosityUnit.Watt),
+                (LuminosityUnit.Femtowatt, LuminosityUnit.Watt) => new Luminosity(_value / 1000000000000000, LuminosityUnit.Watt),
+                (LuminosityUnit.Gigawatt, LuminosityUnit.Watt) => new Luminosity(_value * 1000000000, LuminosityUnit.Watt),
+                (LuminosityUnit.Kilowatt, LuminosityUnit.Watt) => new Luminosity(_value * 1000, LuminosityUnit.Watt),
+                (LuminosityUnit.Megawatt, LuminosityUnit.Watt) => new Luminosity(_value * 1000000, LuminosityUnit.Watt),
+                (LuminosityUnit.Microwatt, LuminosityUnit.Watt) => new Luminosity(_value / 1000000, LuminosityUnit.Watt),
+                (LuminosityUnit.Milliwatt, LuminosityUnit.Watt) => new Luminosity(_value / 1000, LuminosityUnit.Watt),
+                (LuminosityUnit.Nanowatt, LuminosityUnit.Watt) => new Luminosity(_value / 1000000000, LuminosityUnit.Watt),
+                (LuminosityUnit.Petawatt, LuminosityUnit.Watt) => new Luminosity(_value * 1000000000000000, LuminosityUnit.Watt),
+                (LuminosityUnit.Picowatt, LuminosityUnit.Watt) => new Luminosity(_value / 1000000000000, LuminosityUnit.Watt),
+                (LuminosityUnit.SolarLuminosity, LuminosityUnit.Watt) => new Luminosity(_value * 38460000 * BigInteger.Pow(10, 19), LuminosityUnit.Watt),
+                (LuminosityUnit.Terawatt, LuminosityUnit.Watt) => new Luminosity(_value * 1000000000000, LuminosityUnit.Watt),
 
                 // BaseUnit -> LuminosityUnit
-                (LuminosityUnit.Watt, LuminosityUnit.Decawatt) => new Luminosity((_value) / 1e1d, LuminosityUnit.Decawatt),
-                (LuminosityUnit.Watt, LuminosityUnit.Deciwatt) => new Luminosity((_value) / 1e-1d, LuminosityUnit.Deciwatt),
-                (LuminosityUnit.Watt, LuminosityUnit.Femtowatt) => new Luminosity((_value) / 1e-15d, LuminosityUnit.Femtowatt),
-                (LuminosityUnit.Watt, LuminosityUnit.Gigawatt) => new Luminosity((_value) / 1e9d, LuminosityUnit.Gigawatt),
-                (LuminosityUnit.Watt, LuminosityUnit.Kilowatt) => new Luminosity((_value) / 1e3d, LuminosityUnit.Kilowatt),
-                (LuminosityUnit.Watt, LuminosityUnit.Megawatt) => new Luminosity((_value) / 1e6d, LuminosityUnit.Megawatt),
-                (LuminosityUnit.Watt, LuminosityUnit.Microwatt) => new Luminosity((_value) / 1e-6d, LuminosityUnit.Microwatt),
-                (LuminosityUnit.Watt, LuminosityUnit.Milliwatt) => new Luminosity((_value) / 1e-3d, LuminosityUnit.Milliwatt),
-                (LuminosityUnit.Watt, LuminosityUnit.Nanowatt) => new Luminosity((_value) / 1e-9d, LuminosityUnit.Nanowatt),
-                (LuminosityUnit.Watt, LuminosityUnit.Petawatt) => new Luminosity((_value) / 1e15d, LuminosityUnit.Petawatt),
-                (LuminosityUnit.Watt, LuminosityUnit.Picowatt) => new Luminosity((_value) / 1e-12d, LuminosityUnit.Picowatt),
-                (LuminosityUnit.Watt, LuminosityUnit.SolarLuminosity) => new Luminosity(_value / 3.846e26, LuminosityUnit.SolarLuminosity),
-                (LuminosityUnit.Watt, LuminosityUnit.Terawatt) => new Luminosity((_value) / 1e12d, LuminosityUnit.Terawatt),
+                (LuminosityUnit.Watt, LuminosityUnit.Decawatt) => new Luminosity(_value / 10, LuminosityUnit.Decawatt),
+                (LuminosityUnit.Watt, LuminosityUnit.Deciwatt) => new Luminosity(_value * 10, LuminosityUnit.Deciwatt),
+                (LuminosityUnit.Watt, LuminosityUnit.Femtowatt) => new Luminosity(_value * 1000000000000000, LuminosityUnit.Femtowatt),
+                (LuminosityUnit.Watt, LuminosityUnit.Gigawatt) => new Luminosity(_value / 1000000000, LuminosityUnit.Gigawatt),
+                (LuminosityUnit.Watt, LuminosityUnit.Kilowatt) => new Luminosity(_value / 1000, LuminosityUnit.Kilowatt),
+                (LuminosityUnit.Watt, LuminosityUnit.Megawatt) => new Luminosity(_value / 1000000, LuminosityUnit.Megawatt),
+                (LuminosityUnit.Watt, LuminosityUnit.Microwatt) => new Luminosity(_value * 1000000, LuminosityUnit.Microwatt),
+                (LuminosityUnit.Watt, LuminosityUnit.Milliwatt) => new Luminosity(_value * 1000, LuminosityUnit.Milliwatt),
+                (LuminosityUnit.Watt, LuminosityUnit.Nanowatt) => new Luminosity(_value * 1000000000, LuminosityUnit.Nanowatt),
+                (LuminosityUnit.Watt, LuminosityUnit.Petawatt) => new Luminosity(_value / 1000000000000000, LuminosityUnit.Petawatt),
+                (LuminosityUnit.Watt, LuminosityUnit.Picowatt) => new Luminosity(_value * 1000000000000, LuminosityUnit.Picowatt),
+                (LuminosityUnit.Watt, LuminosityUnit.SolarLuminosity) => new Luminosity(_value / 38460000 / BigInteger.Pow(10, 19), LuminosityUnit.SolarLuminosity),
+                (LuminosityUnit.Watt, LuminosityUnit.Terawatt) => new Luminosity(_value / 1000000000000, LuminosityUnit.Terawatt),
 
                 _ => null
             };

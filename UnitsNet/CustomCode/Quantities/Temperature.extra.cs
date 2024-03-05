@@ -1,6 +1,7 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using Fractions;
 using UnitsNet.Units;
 
 namespace UnitsNet
@@ -58,9 +59,9 @@ namespace UnitsNet
         /// <param name="factor">Factor to multiply by.</param>
         /// <param name="unit">Unit to perform multiplication in.</param>
         /// <returns>The resulting <see cref="Temperature" />.</returns>
-        public Temperature Multiply(double factor, TemperatureUnit unit)
+        public Temperature Multiply(Fraction factor, TemperatureUnit unit)
         {
-            double resultInUnit = As(unit) * factor;
+            Fraction resultInUnit = As(unit) * factor;
             return From(resultInUnit, unit);
         }
 
@@ -75,9 +76,9 @@ namespace UnitsNet
         /// <param name="divisor">Factor to multiply by.</param>
         /// <param name="unit">Unit to perform multiplication in.</param>
         /// <returns>The resulting <see cref="Temperature" />.</returns>
-        public Temperature Divide(double divisor, TemperatureUnit unit)
+        public Temperature Divide(Fraction divisor, TemperatureUnit unit)
         {
-            double resultInUnit = As(unit) / divisor;
+            Fraction resultInUnit = As(unit) / divisor;
             return From(resultInUnit, unit);
         }
     }

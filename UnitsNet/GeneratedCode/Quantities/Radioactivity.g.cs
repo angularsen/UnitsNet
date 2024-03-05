@@ -24,6 +24,8 @@ using System.Linq;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+using System.Numerics;
+using Fractions;
 
 #nullable enable
 
@@ -48,7 +50,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        private readonly Fraction _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -106,7 +108,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Radioactivity(double value, RadioactivityUnit unit)
+        public Radioactivity(Fraction value, RadioactivityUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -120,7 +122,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Radioactivity(double value, UnitSystem unitSystem)
+        public Radioactivity(Fraction value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -171,10 +173,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public Fraction Value => _value;
 
         /// <inheritdoc />
-        double IQuantity.Value => _value;
+        Fraction IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -199,147 +201,147 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadioactivityUnit.Becquerel"/>
         /// </summary>
-        public double Becquerels => As(RadioactivityUnit.Becquerel);
+        public Fraction Becquerels => As(RadioactivityUnit.Becquerel);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadioactivityUnit.Curie"/>
         /// </summary>
-        public double Curies => As(RadioactivityUnit.Curie);
+        public Fraction Curies => As(RadioactivityUnit.Curie);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadioactivityUnit.Exabecquerel"/>
         /// </summary>
-        public double Exabecquerels => As(RadioactivityUnit.Exabecquerel);
+        public Fraction Exabecquerels => As(RadioactivityUnit.Exabecquerel);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadioactivityUnit.Gigabecquerel"/>
         /// </summary>
-        public double Gigabecquerels => As(RadioactivityUnit.Gigabecquerel);
+        public Fraction Gigabecquerels => As(RadioactivityUnit.Gigabecquerel);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadioactivityUnit.Gigacurie"/>
         /// </summary>
-        public double Gigacuries => As(RadioactivityUnit.Gigacurie);
+        public Fraction Gigacuries => As(RadioactivityUnit.Gigacurie);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadioactivityUnit.Gigarutherford"/>
         /// </summary>
-        public double Gigarutherfords => As(RadioactivityUnit.Gigarutherford);
+        public Fraction Gigarutherfords => As(RadioactivityUnit.Gigarutherford);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadioactivityUnit.Kilobecquerel"/>
         /// </summary>
-        public double Kilobecquerels => As(RadioactivityUnit.Kilobecquerel);
+        public Fraction Kilobecquerels => As(RadioactivityUnit.Kilobecquerel);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadioactivityUnit.Kilocurie"/>
         /// </summary>
-        public double Kilocuries => As(RadioactivityUnit.Kilocurie);
+        public Fraction Kilocuries => As(RadioactivityUnit.Kilocurie);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadioactivityUnit.Kilorutherford"/>
         /// </summary>
-        public double Kilorutherfords => As(RadioactivityUnit.Kilorutherford);
+        public Fraction Kilorutherfords => As(RadioactivityUnit.Kilorutherford);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadioactivityUnit.Megabecquerel"/>
         /// </summary>
-        public double Megabecquerels => As(RadioactivityUnit.Megabecquerel);
+        public Fraction Megabecquerels => As(RadioactivityUnit.Megabecquerel);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadioactivityUnit.Megacurie"/>
         /// </summary>
-        public double Megacuries => As(RadioactivityUnit.Megacurie);
+        public Fraction Megacuries => As(RadioactivityUnit.Megacurie);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadioactivityUnit.Megarutherford"/>
         /// </summary>
-        public double Megarutherfords => As(RadioactivityUnit.Megarutherford);
+        public Fraction Megarutherfords => As(RadioactivityUnit.Megarutherford);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadioactivityUnit.Microbecquerel"/>
         /// </summary>
-        public double Microbecquerels => As(RadioactivityUnit.Microbecquerel);
+        public Fraction Microbecquerels => As(RadioactivityUnit.Microbecquerel);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadioactivityUnit.Microcurie"/>
         /// </summary>
-        public double Microcuries => As(RadioactivityUnit.Microcurie);
+        public Fraction Microcuries => As(RadioactivityUnit.Microcurie);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadioactivityUnit.Microrutherford"/>
         /// </summary>
-        public double Microrutherfords => As(RadioactivityUnit.Microrutherford);
+        public Fraction Microrutherfords => As(RadioactivityUnit.Microrutherford);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadioactivityUnit.Millibecquerel"/>
         /// </summary>
-        public double Millibecquerels => As(RadioactivityUnit.Millibecquerel);
+        public Fraction Millibecquerels => As(RadioactivityUnit.Millibecquerel);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadioactivityUnit.Millicurie"/>
         /// </summary>
-        public double Millicuries => As(RadioactivityUnit.Millicurie);
+        public Fraction Millicuries => As(RadioactivityUnit.Millicurie);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadioactivityUnit.Millirutherford"/>
         /// </summary>
-        public double Millirutherfords => As(RadioactivityUnit.Millirutherford);
+        public Fraction Millirutherfords => As(RadioactivityUnit.Millirutherford);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadioactivityUnit.Nanobecquerel"/>
         /// </summary>
-        public double Nanobecquerels => As(RadioactivityUnit.Nanobecquerel);
+        public Fraction Nanobecquerels => As(RadioactivityUnit.Nanobecquerel);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadioactivityUnit.Nanocurie"/>
         /// </summary>
-        public double Nanocuries => As(RadioactivityUnit.Nanocurie);
+        public Fraction Nanocuries => As(RadioactivityUnit.Nanocurie);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadioactivityUnit.Nanorutherford"/>
         /// </summary>
-        public double Nanorutherfords => As(RadioactivityUnit.Nanorutherford);
+        public Fraction Nanorutherfords => As(RadioactivityUnit.Nanorutherford);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadioactivityUnit.Petabecquerel"/>
         /// </summary>
-        public double Petabecquerels => As(RadioactivityUnit.Petabecquerel);
+        public Fraction Petabecquerels => As(RadioactivityUnit.Petabecquerel);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadioactivityUnit.Picobecquerel"/>
         /// </summary>
-        public double Picobecquerels => As(RadioactivityUnit.Picobecquerel);
+        public Fraction Picobecquerels => As(RadioactivityUnit.Picobecquerel);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadioactivityUnit.Picocurie"/>
         /// </summary>
-        public double Picocuries => As(RadioactivityUnit.Picocurie);
+        public Fraction Picocuries => As(RadioactivityUnit.Picocurie);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadioactivityUnit.Picorutherford"/>
         /// </summary>
-        public double Picorutherfords => As(RadioactivityUnit.Picorutherford);
+        public Fraction Picorutherfords => As(RadioactivityUnit.Picorutherford);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadioactivityUnit.Rutherford"/>
         /// </summary>
-        public double Rutherfords => As(RadioactivityUnit.Rutherford);
+        public Fraction Rutherfords => As(RadioactivityUnit.Rutherford);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadioactivityUnit.Terabecquerel"/>
         /// </summary>
-        public double Terabecquerels => As(RadioactivityUnit.Terabecquerel);
+        public Fraction Terabecquerels => As(RadioactivityUnit.Terabecquerel);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadioactivityUnit.Teracurie"/>
         /// </summary>
-        public double Teracuries => As(RadioactivityUnit.Teracurie);
+        public Fraction Teracuries => As(RadioactivityUnit.Teracurie);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadioactivityUnit.Terarutherford"/>
         /// </summary>
-        public double Terarutherfords => As(RadioactivityUnit.Terarutherford);
+        public Fraction Terarutherfords => As(RadioactivityUnit.Terarutherford);
 
         #endregion
 
@@ -443,7 +445,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Becquerel"/>.
         /// </summary>
-        public static Radioactivity FromBecquerels(double value)
+        public static Radioactivity FromBecquerels(Fraction value)
         {
             return new Radioactivity(value, RadioactivityUnit.Becquerel);
         }
@@ -451,7 +453,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Curie"/>.
         /// </summary>
-        public static Radioactivity FromCuries(double value)
+        public static Radioactivity FromCuries(Fraction value)
         {
             return new Radioactivity(value, RadioactivityUnit.Curie);
         }
@@ -459,7 +461,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Exabecquerel"/>.
         /// </summary>
-        public static Radioactivity FromExabecquerels(double value)
+        public static Radioactivity FromExabecquerels(Fraction value)
         {
             return new Radioactivity(value, RadioactivityUnit.Exabecquerel);
         }
@@ -467,7 +469,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Gigabecquerel"/>.
         /// </summary>
-        public static Radioactivity FromGigabecquerels(double value)
+        public static Radioactivity FromGigabecquerels(Fraction value)
         {
             return new Radioactivity(value, RadioactivityUnit.Gigabecquerel);
         }
@@ -475,7 +477,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Gigacurie"/>.
         /// </summary>
-        public static Radioactivity FromGigacuries(double value)
+        public static Radioactivity FromGigacuries(Fraction value)
         {
             return new Radioactivity(value, RadioactivityUnit.Gigacurie);
         }
@@ -483,7 +485,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Gigarutherford"/>.
         /// </summary>
-        public static Radioactivity FromGigarutherfords(double value)
+        public static Radioactivity FromGigarutherfords(Fraction value)
         {
             return new Radioactivity(value, RadioactivityUnit.Gigarutherford);
         }
@@ -491,7 +493,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Kilobecquerel"/>.
         /// </summary>
-        public static Radioactivity FromKilobecquerels(double value)
+        public static Radioactivity FromKilobecquerels(Fraction value)
         {
             return new Radioactivity(value, RadioactivityUnit.Kilobecquerel);
         }
@@ -499,7 +501,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Kilocurie"/>.
         /// </summary>
-        public static Radioactivity FromKilocuries(double value)
+        public static Radioactivity FromKilocuries(Fraction value)
         {
             return new Radioactivity(value, RadioactivityUnit.Kilocurie);
         }
@@ -507,7 +509,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Kilorutherford"/>.
         /// </summary>
-        public static Radioactivity FromKilorutherfords(double value)
+        public static Radioactivity FromKilorutherfords(Fraction value)
         {
             return new Radioactivity(value, RadioactivityUnit.Kilorutherford);
         }
@@ -515,7 +517,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Megabecquerel"/>.
         /// </summary>
-        public static Radioactivity FromMegabecquerels(double value)
+        public static Radioactivity FromMegabecquerels(Fraction value)
         {
             return new Radioactivity(value, RadioactivityUnit.Megabecquerel);
         }
@@ -523,7 +525,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Megacurie"/>.
         /// </summary>
-        public static Radioactivity FromMegacuries(double value)
+        public static Radioactivity FromMegacuries(Fraction value)
         {
             return new Radioactivity(value, RadioactivityUnit.Megacurie);
         }
@@ -531,7 +533,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Megarutherford"/>.
         /// </summary>
-        public static Radioactivity FromMegarutherfords(double value)
+        public static Radioactivity FromMegarutherfords(Fraction value)
         {
             return new Radioactivity(value, RadioactivityUnit.Megarutherford);
         }
@@ -539,7 +541,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Microbecquerel"/>.
         /// </summary>
-        public static Radioactivity FromMicrobecquerels(double value)
+        public static Radioactivity FromMicrobecquerels(Fraction value)
         {
             return new Radioactivity(value, RadioactivityUnit.Microbecquerel);
         }
@@ -547,7 +549,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Microcurie"/>.
         /// </summary>
-        public static Radioactivity FromMicrocuries(double value)
+        public static Radioactivity FromMicrocuries(Fraction value)
         {
             return new Radioactivity(value, RadioactivityUnit.Microcurie);
         }
@@ -555,7 +557,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Microrutherford"/>.
         /// </summary>
-        public static Radioactivity FromMicrorutherfords(double value)
+        public static Radioactivity FromMicrorutherfords(Fraction value)
         {
             return new Radioactivity(value, RadioactivityUnit.Microrutherford);
         }
@@ -563,7 +565,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Millibecquerel"/>.
         /// </summary>
-        public static Radioactivity FromMillibecquerels(double value)
+        public static Radioactivity FromMillibecquerels(Fraction value)
         {
             return new Radioactivity(value, RadioactivityUnit.Millibecquerel);
         }
@@ -571,7 +573,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Millicurie"/>.
         /// </summary>
-        public static Radioactivity FromMillicuries(double value)
+        public static Radioactivity FromMillicuries(Fraction value)
         {
             return new Radioactivity(value, RadioactivityUnit.Millicurie);
         }
@@ -579,7 +581,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Millirutherford"/>.
         /// </summary>
-        public static Radioactivity FromMillirutherfords(double value)
+        public static Radioactivity FromMillirutherfords(Fraction value)
         {
             return new Radioactivity(value, RadioactivityUnit.Millirutherford);
         }
@@ -587,7 +589,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Nanobecquerel"/>.
         /// </summary>
-        public static Radioactivity FromNanobecquerels(double value)
+        public static Radioactivity FromNanobecquerels(Fraction value)
         {
             return new Radioactivity(value, RadioactivityUnit.Nanobecquerel);
         }
@@ -595,7 +597,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Nanocurie"/>.
         /// </summary>
-        public static Radioactivity FromNanocuries(double value)
+        public static Radioactivity FromNanocuries(Fraction value)
         {
             return new Radioactivity(value, RadioactivityUnit.Nanocurie);
         }
@@ -603,7 +605,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Nanorutherford"/>.
         /// </summary>
-        public static Radioactivity FromNanorutherfords(double value)
+        public static Radioactivity FromNanorutherfords(Fraction value)
         {
             return new Radioactivity(value, RadioactivityUnit.Nanorutherford);
         }
@@ -611,7 +613,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Petabecquerel"/>.
         /// </summary>
-        public static Radioactivity FromPetabecquerels(double value)
+        public static Radioactivity FromPetabecquerels(Fraction value)
         {
             return new Radioactivity(value, RadioactivityUnit.Petabecquerel);
         }
@@ -619,7 +621,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Picobecquerel"/>.
         /// </summary>
-        public static Radioactivity FromPicobecquerels(double value)
+        public static Radioactivity FromPicobecquerels(Fraction value)
         {
             return new Radioactivity(value, RadioactivityUnit.Picobecquerel);
         }
@@ -627,7 +629,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Picocurie"/>.
         /// </summary>
-        public static Radioactivity FromPicocuries(double value)
+        public static Radioactivity FromPicocuries(Fraction value)
         {
             return new Radioactivity(value, RadioactivityUnit.Picocurie);
         }
@@ -635,7 +637,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Picorutherford"/>.
         /// </summary>
-        public static Radioactivity FromPicorutherfords(double value)
+        public static Radioactivity FromPicorutherfords(Fraction value)
         {
             return new Radioactivity(value, RadioactivityUnit.Picorutherford);
         }
@@ -643,7 +645,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Rutherford"/>.
         /// </summary>
-        public static Radioactivity FromRutherfords(double value)
+        public static Radioactivity FromRutherfords(Fraction value)
         {
             return new Radioactivity(value, RadioactivityUnit.Rutherford);
         }
@@ -651,7 +653,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Terabecquerel"/>.
         /// </summary>
-        public static Radioactivity FromTerabecquerels(double value)
+        public static Radioactivity FromTerabecquerels(Fraction value)
         {
             return new Radioactivity(value, RadioactivityUnit.Terabecquerel);
         }
@@ -659,7 +661,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Teracurie"/>.
         /// </summary>
-        public static Radioactivity FromTeracuries(double value)
+        public static Radioactivity FromTeracuries(Fraction value)
         {
             return new Radioactivity(value, RadioactivityUnit.Teracurie);
         }
@@ -667,7 +669,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Radioactivity"/> from <see cref="RadioactivityUnit.Terarutherford"/>.
         /// </summary>
-        public static Radioactivity FromTerarutherfords(double value)
+        public static Radioactivity FromTerarutherfords(Fraction value)
         {
             return new Radioactivity(value, RadioactivityUnit.Terarutherford);
         }
@@ -678,7 +680,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Radioactivity unit value.</returns>
-        public static Radioactivity From(double value, RadioactivityUnit fromUnit)
+        public static Radioactivity From(Fraction value, RadioactivityUnit fromUnit)
         {
             return new Radioactivity(value, fromUnit);
         }
@@ -834,7 +836,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static Radioactivity operator -(Radioactivity right)
         {
-            return new Radioactivity(-right.Value, right.Unit);
+            return new Radioactivity(right.Value.Invert(), right.Unit);
         }
 
         /// <summary>Get <see cref="Radioactivity"/> from adding two <see cref="Radioactivity"/>.</summary>
@@ -850,25 +852,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Radioactivity"/> from multiplying value and <see cref="Radioactivity"/>.</summary>
-        public static Radioactivity operator *(double left, Radioactivity right)
+        public static Radioactivity operator *(Fraction left, Radioactivity right)
         {
             return new Radioactivity(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Radioactivity"/> from multiplying value and <see cref="Radioactivity"/>.</summary>
-        public static Radioactivity operator *(Radioactivity left, double right)
+        public static Radioactivity operator *(Radioactivity left, Fraction right)
         {
             return new Radioactivity(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Radioactivity"/> from dividing <see cref="Radioactivity"/> by value.</summary>
-        public static Radioactivity operator /(Radioactivity left, double right)
+        public static Radioactivity operator /(Radioactivity left, Fraction right)
         {
             return new Radioactivity(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Radioactivity"/> by <see cref="Radioactivity"/>.</summary>
-        public static double operator /(Radioactivity left, Radioactivity right)
+        public static Fraction operator /(Radioactivity left, Radioactivity right)
         {
             return left.Becquerels / right.Becquerels;
         }
@@ -901,27 +903,20 @@ namespace UnitsNet
             return left.Value > right.ToUnit(left.Unit).Value;
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="Radioactivity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Radioactivity other, Radioactivity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Radioactivity"/> quantities.</summary>
         public static bool operator ==(Radioactivity left, Radioactivity right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="Radioactivity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Radioactivity other, Radioactivity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="Radioactivity"/> quantities.</summary>
         public static bool operator !=(Radioactivity left, Radioactivity right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="Radioactivity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(Radioactivity other, Radioactivity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Radioactivity"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is Radioactivity otherQuantity))
@@ -931,14 +926,11 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="Radioactivity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(Radioactivity other, Radioactivity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Radioactivity"/> quantities.</summary>
         public bool Equals(Radioactivity other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.IsEquivalentTo(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>Compares the current <see cref="Radioactivity"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
         /// <param name="obj">An object to compare with this instance.</param>
@@ -1022,10 +1014,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.Comparison.Equals(
+            return UnitsNet.FractionComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: tolerance,
+                tolerance: (Fraction)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -1042,7 +1034,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(Radioactivity other, Radioactivity tolerance)
         {
-            return UnitsNet.Comparison.Equals(
+            return UnitsNet.FractionComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -1055,7 +1047,8 @@ namespace UnitsNet
         /// <returns>A hash code for the current Radioactivity.</returns>
         public override int GetHashCode()
         {
-            return new { Info.Name, Value, Unit }.GetHashCode();
+            var valueInBaseUnit = As(BaseUnit);
+            return new { Info.Name, valueInBaseUnit }.GetHashCode();
         }
 
         #endregion
@@ -1066,7 +1059,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(RadioactivityUnit unit)
+        public Fraction As(RadioactivityUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -1075,7 +1068,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public Fraction As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -1090,7 +1083,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        double IQuantity.As(Enum unit)
+        Fraction IQuantity.As(Enum unit)
         {
             if (!(unit is RadioactivityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RadioactivityUnit)} is supported.", nameof(unit));
@@ -1156,64 +1149,64 @@ namespace UnitsNet
             Radioactivity? convertedOrNull = (Unit, unit) switch
             {
                 // RadioactivityUnit -> BaseUnit
-                (RadioactivityUnit.Curie, RadioactivityUnit.Becquerel) => new Radioactivity(_value * 3.7e10, RadioactivityUnit.Becquerel),
-                (RadioactivityUnit.Exabecquerel, RadioactivityUnit.Becquerel) => new Radioactivity((_value) * 1e18d, RadioactivityUnit.Becquerel),
-                (RadioactivityUnit.Gigabecquerel, RadioactivityUnit.Becquerel) => new Radioactivity((_value) * 1e9d, RadioactivityUnit.Becquerel),
-                (RadioactivityUnit.Gigacurie, RadioactivityUnit.Becquerel) => new Radioactivity((_value * 3.7e10) * 1e9d, RadioactivityUnit.Becquerel),
-                (RadioactivityUnit.Gigarutherford, RadioactivityUnit.Becquerel) => new Radioactivity((_value * 1e6) * 1e9d, RadioactivityUnit.Becquerel),
-                (RadioactivityUnit.Kilobecquerel, RadioactivityUnit.Becquerel) => new Radioactivity((_value) * 1e3d, RadioactivityUnit.Becquerel),
-                (RadioactivityUnit.Kilocurie, RadioactivityUnit.Becquerel) => new Radioactivity((_value * 3.7e10) * 1e3d, RadioactivityUnit.Becquerel),
-                (RadioactivityUnit.Kilorutherford, RadioactivityUnit.Becquerel) => new Radioactivity((_value * 1e6) * 1e3d, RadioactivityUnit.Becquerel),
-                (RadioactivityUnit.Megabecquerel, RadioactivityUnit.Becquerel) => new Radioactivity((_value) * 1e6d, RadioactivityUnit.Becquerel),
-                (RadioactivityUnit.Megacurie, RadioactivityUnit.Becquerel) => new Radioactivity((_value * 3.7e10) * 1e6d, RadioactivityUnit.Becquerel),
-                (RadioactivityUnit.Megarutherford, RadioactivityUnit.Becquerel) => new Radioactivity((_value * 1e6) * 1e6d, RadioactivityUnit.Becquerel),
-                (RadioactivityUnit.Microbecquerel, RadioactivityUnit.Becquerel) => new Radioactivity((_value) * 1e-6d, RadioactivityUnit.Becquerel),
-                (RadioactivityUnit.Microcurie, RadioactivityUnit.Becquerel) => new Radioactivity((_value * 3.7e10) * 1e-6d, RadioactivityUnit.Becquerel),
-                (RadioactivityUnit.Microrutherford, RadioactivityUnit.Becquerel) => new Radioactivity((_value * 1e6) * 1e-6d, RadioactivityUnit.Becquerel),
-                (RadioactivityUnit.Millibecquerel, RadioactivityUnit.Becquerel) => new Radioactivity((_value) * 1e-3d, RadioactivityUnit.Becquerel),
-                (RadioactivityUnit.Millicurie, RadioactivityUnit.Becquerel) => new Radioactivity((_value * 3.7e10) * 1e-3d, RadioactivityUnit.Becquerel),
-                (RadioactivityUnit.Millirutherford, RadioactivityUnit.Becquerel) => new Radioactivity((_value * 1e6) * 1e-3d, RadioactivityUnit.Becquerel),
-                (RadioactivityUnit.Nanobecquerel, RadioactivityUnit.Becquerel) => new Radioactivity((_value) * 1e-9d, RadioactivityUnit.Becquerel),
-                (RadioactivityUnit.Nanocurie, RadioactivityUnit.Becquerel) => new Radioactivity((_value * 3.7e10) * 1e-9d, RadioactivityUnit.Becquerel),
-                (RadioactivityUnit.Nanorutherford, RadioactivityUnit.Becquerel) => new Radioactivity((_value * 1e6) * 1e-9d, RadioactivityUnit.Becquerel),
-                (RadioactivityUnit.Petabecquerel, RadioactivityUnit.Becquerel) => new Radioactivity((_value) * 1e15d, RadioactivityUnit.Becquerel),
-                (RadioactivityUnit.Picobecquerel, RadioactivityUnit.Becquerel) => new Radioactivity((_value) * 1e-12d, RadioactivityUnit.Becquerel),
-                (RadioactivityUnit.Picocurie, RadioactivityUnit.Becquerel) => new Radioactivity((_value * 3.7e10) * 1e-12d, RadioactivityUnit.Becquerel),
-                (RadioactivityUnit.Picorutherford, RadioactivityUnit.Becquerel) => new Radioactivity((_value * 1e6) * 1e-12d, RadioactivityUnit.Becquerel),
-                (RadioactivityUnit.Rutherford, RadioactivityUnit.Becquerel) => new Radioactivity(_value * 1e6, RadioactivityUnit.Becquerel),
-                (RadioactivityUnit.Terabecquerel, RadioactivityUnit.Becquerel) => new Radioactivity((_value) * 1e12d, RadioactivityUnit.Becquerel),
-                (RadioactivityUnit.Teracurie, RadioactivityUnit.Becquerel) => new Radioactivity((_value * 3.7e10) * 1e12d, RadioactivityUnit.Becquerel),
-                (RadioactivityUnit.Terarutherford, RadioactivityUnit.Becquerel) => new Radioactivity((_value * 1e6) * 1e12d, RadioactivityUnit.Becquerel),
+                (RadioactivityUnit.Curie, RadioactivityUnit.Becquerel) => new Radioactivity(_value * 37000000000, RadioactivityUnit.Becquerel),
+                (RadioactivityUnit.Exabecquerel, RadioactivityUnit.Becquerel) => new Radioactivity(_value * 1000000000000000000, RadioactivityUnit.Becquerel),
+                (RadioactivityUnit.Gigabecquerel, RadioactivityUnit.Becquerel) => new Radioactivity(_value * 1000000000, RadioactivityUnit.Becquerel),
+                (RadioactivityUnit.Gigacurie, RadioactivityUnit.Becquerel) => new Radioactivity(_value * new Fraction(37, 10, false) * BigInteger.Pow(10, 19), RadioactivityUnit.Becquerel),
+                (RadioactivityUnit.Gigarutherford, RadioactivityUnit.Becquerel) => new Radioactivity(_value * 1000000000000000, RadioactivityUnit.Becquerel),
+                (RadioactivityUnit.Kilobecquerel, RadioactivityUnit.Becquerel) => new Radioactivity(_value * 1000, RadioactivityUnit.Becquerel),
+                (RadioactivityUnit.Kilocurie, RadioactivityUnit.Becquerel) => new Radioactivity(_value * 37000000000000, RadioactivityUnit.Becquerel),
+                (RadioactivityUnit.Kilorutherford, RadioactivityUnit.Becquerel) => new Radioactivity(_value * 1000000000, RadioactivityUnit.Becquerel),
+                (RadioactivityUnit.Megabecquerel, RadioactivityUnit.Becquerel) => new Radioactivity(_value * 1000000, RadioactivityUnit.Becquerel),
+                (RadioactivityUnit.Megacurie, RadioactivityUnit.Becquerel) => new Radioactivity(_value * 37000000000000000, RadioactivityUnit.Becquerel),
+                (RadioactivityUnit.Megarutherford, RadioactivityUnit.Becquerel) => new Radioactivity(_value * 1000000000000, RadioactivityUnit.Becquerel),
+                (RadioactivityUnit.Microbecquerel, RadioactivityUnit.Becquerel) => new Radioactivity(_value / 1000000, RadioactivityUnit.Becquerel),
+                (RadioactivityUnit.Microcurie, RadioactivityUnit.Becquerel) => new Radioactivity(_value * 37000, RadioactivityUnit.Becquerel),
+                (RadioactivityUnit.Microrutherford, RadioactivityUnit.Becquerel) => new Radioactivity(_value, RadioactivityUnit.Becquerel),
+                (RadioactivityUnit.Millibecquerel, RadioactivityUnit.Becquerel) => new Radioactivity(_value / 1000, RadioactivityUnit.Becquerel),
+                (RadioactivityUnit.Millicurie, RadioactivityUnit.Becquerel) => new Radioactivity(_value * 37000000, RadioactivityUnit.Becquerel),
+                (RadioactivityUnit.Millirutherford, RadioactivityUnit.Becquerel) => new Radioactivity(_value * 1000, RadioactivityUnit.Becquerel),
+                (RadioactivityUnit.Nanobecquerel, RadioactivityUnit.Becquerel) => new Radioactivity(_value / 1000000000, RadioactivityUnit.Becquerel),
+                (RadioactivityUnit.Nanocurie, RadioactivityUnit.Becquerel) => new Radioactivity(_value * 37, RadioactivityUnit.Becquerel),
+                (RadioactivityUnit.Nanorutherford, RadioactivityUnit.Becquerel) => new Radioactivity(_value / 1000, RadioactivityUnit.Becquerel),
+                (RadioactivityUnit.Petabecquerel, RadioactivityUnit.Becquerel) => new Radioactivity(_value * 1000000000000000, RadioactivityUnit.Becquerel),
+                (RadioactivityUnit.Picobecquerel, RadioactivityUnit.Becquerel) => new Radioactivity(_value / 1000000000000, RadioactivityUnit.Becquerel),
+                (RadioactivityUnit.Picocurie, RadioactivityUnit.Becquerel) => new Radioactivity(_value * new Fraction(37, 1000, false), RadioactivityUnit.Becquerel),
+                (RadioactivityUnit.Picorutherford, RadioactivityUnit.Becquerel) => new Radioactivity(_value / 1000000, RadioactivityUnit.Becquerel),
+                (RadioactivityUnit.Rutherford, RadioactivityUnit.Becquerel) => new Radioactivity(_value * 1000000, RadioactivityUnit.Becquerel),
+                (RadioactivityUnit.Terabecquerel, RadioactivityUnit.Becquerel) => new Radioactivity(_value * 1000000000000, RadioactivityUnit.Becquerel),
+                (RadioactivityUnit.Teracurie, RadioactivityUnit.Becquerel) => new Radioactivity(_value * 3700 * BigInteger.Pow(10, 19), RadioactivityUnit.Becquerel),
+                (RadioactivityUnit.Terarutherford, RadioactivityUnit.Becquerel) => new Radioactivity(_value * 1000000000000000000, RadioactivityUnit.Becquerel),
 
                 // BaseUnit -> RadioactivityUnit
-                (RadioactivityUnit.Becquerel, RadioactivityUnit.Curie) => new Radioactivity(_value / 3.7e10, RadioactivityUnit.Curie),
-                (RadioactivityUnit.Becquerel, RadioactivityUnit.Exabecquerel) => new Radioactivity((_value) / 1e18d, RadioactivityUnit.Exabecquerel),
-                (RadioactivityUnit.Becquerel, RadioactivityUnit.Gigabecquerel) => new Radioactivity((_value) / 1e9d, RadioactivityUnit.Gigabecquerel),
-                (RadioactivityUnit.Becquerel, RadioactivityUnit.Gigacurie) => new Radioactivity((_value / 3.7e10) / 1e9d, RadioactivityUnit.Gigacurie),
-                (RadioactivityUnit.Becquerel, RadioactivityUnit.Gigarutherford) => new Radioactivity((_value / 1e6) / 1e9d, RadioactivityUnit.Gigarutherford),
-                (RadioactivityUnit.Becquerel, RadioactivityUnit.Kilobecquerel) => new Radioactivity((_value) / 1e3d, RadioactivityUnit.Kilobecquerel),
-                (RadioactivityUnit.Becquerel, RadioactivityUnit.Kilocurie) => new Radioactivity((_value / 3.7e10) / 1e3d, RadioactivityUnit.Kilocurie),
-                (RadioactivityUnit.Becquerel, RadioactivityUnit.Kilorutherford) => new Radioactivity((_value / 1e6) / 1e3d, RadioactivityUnit.Kilorutherford),
-                (RadioactivityUnit.Becquerel, RadioactivityUnit.Megabecquerel) => new Radioactivity((_value) / 1e6d, RadioactivityUnit.Megabecquerel),
-                (RadioactivityUnit.Becquerel, RadioactivityUnit.Megacurie) => new Radioactivity((_value / 3.7e10) / 1e6d, RadioactivityUnit.Megacurie),
-                (RadioactivityUnit.Becquerel, RadioactivityUnit.Megarutherford) => new Radioactivity((_value / 1e6) / 1e6d, RadioactivityUnit.Megarutherford),
-                (RadioactivityUnit.Becquerel, RadioactivityUnit.Microbecquerel) => new Radioactivity((_value) / 1e-6d, RadioactivityUnit.Microbecquerel),
-                (RadioactivityUnit.Becquerel, RadioactivityUnit.Microcurie) => new Radioactivity((_value / 3.7e10) / 1e-6d, RadioactivityUnit.Microcurie),
-                (RadioactivityUnit.Becquerel, RadioactivityUnit.Microrutherford) => new Radioactivity((_value / 1e6) / 1e-6d, RadioactivityUnit.Microrutherford),
-                (RadioactivityUnit.Becquerel, RadioactivityUnit.Millibecquerel) => new Radioactivity((_value) / 1e-3d, RadioactivityUnit.Millibecquerel),
-                (RadioactivityUnit.Becquerel, RadioactivityUnit.Millicurie) => new Radioactivity((_value / 3.7e10) / 1e-3d, RadioactivityUnit.Millicurie),
-                (RadioactivityUnit.Becquerel, RadioactivityUnit.Millirutherford) => new Radioactivity((_value / 1e6) / 1e-3d, RadioactivityUnit.Millirutherford),
-                (RadioactivityUnit.Becquerel, RadioactivityUnit.Nanobecquerel) => new Radioactivity((_value) / 1e-9d, RadioactivityUnit.Nanobecquerel),
-                (RadioactivityUnit.Becquerel, RadioactivityUnit.Nanocurie) => new Radioactivity((_value / 3.7e10) / 1e-9d, RadioactivityUnit.Nanocurie),
-                (RadioactivityUnit.Becquerel, RadioactivityUnit.Nanorutherford) => new Radioactivity((_value / 1e6) / 1e-9d, RadioactivityUnit.Nanorutherford),
-                (RadioactivityUnit.Becquerel, RadioactivityUnit.Petabecquerel) => new Radioactivity((_value) / 1e15d, RadioactivityUnit.Petabecquerel),
-                (RadioactivityUnit.Becquerel, RadioactivityUnit.Picobecquerel) => new Radioactivity((_value) / 1e-12d, RadioactivityUnit.Picobecquerel),
-                (RadioactivityUnit.Becquerel, RadioactivityUnit.Picocurie) => new Radioactivity((_value / 3.7e10) / 1e-12d, RadioactivityUnit.Picocurie),
-                (RadioactivityUnit.Becquerel, RadioactivityUnit.Picorutherford) => new Radioactivity((_value / 1e6) / 1e-12d, RadioactivityUnit.Picorutherford),
-                (RadioactivityUnit.Becquerel, RadioactivityUnit.Rutherford) => new Radioactivity(_value / 1e6, RadioactivityUnit.Rutherford),
-                (RadioactivityUnit.Becquerel, RadioactivityUnit.Terabecquerel) => new Radioactivity((_value) / 1e12d, RadioactivityUnit.Terabecquerel),
-                (RadioactivityUnit.Becquerel, RadioactivityUnit.Teracurie) => new Radioactivity((_value / 3.7e10) / 1e12d, RadioactivityUnit.Teracurie),
-                (RadioactivityUnit.Becquerel, RadioactivityUnit.Terarutherford) => new Radioactivity((_value / 1e6) / 1e12d, RadioactivityUnit.Terarutherford),
+                (RadioactivityUnit.Becquerel, RadioactivityUnit.Curie) => new Radioactivity(_value / 37000000000, RadioactivityUnit.Curie),
+                (RadioactivityUnit.Becquerel, RadioactivityUnit.Exabecquerel) => new Radioactivity(_value / 1000000000000000000, RadioactivityUnit.Exabecquerel),
+                (RadioactivityUnit.Becquerel, RadioactivityUnit.Gigabecquerel) => new Radioactivity(_value / 1000000000, RadioactivityUnit.Gigabecquerel),
+                (RadioactivityUnit.Becquerel, RadioactivityUnit.Gigacurie) => new Radioactivity(_value * new Fraction(10, 37, false) / BigInteger.Pow(10, 19), RadioactivityUnit.Gigacurie),
+                (RadioactivityUnit.Becquerel, RadioactivityUnit.Gigarutherford) => new Radioactivity(_value / 1000000000000000, RadioactivityUnit.Gigarutherford),
+                (RadioactivityUnit.Becquerel, RadioactivityUnit.Kilobecquerel) => new Radioactivity(_value / 1000, RadioactivityUnit.Kilobecquerel),
+                (RadioactivityUnit.Becquerel, RadioactivityUnit.Kilocurie) => new Radioactivity(_value / 37000000000000, RadioactivityUnit.Kilocurie),
+                (RadioactivityUnit.Becquerel, RadioactivityUnit.Kilorutherford) => new Radioactivity(_value / 1000000000, RadioactivityUnit.Kilorutherford),
+                (RadioactivityUnit.Becquerel, RadioactivityUnit.Megabecquerel) => new Radioactivity(_value / 1000000, RadioactivityUnit.Megabecquerel),
+                (RadioactivityUnit.Becquerel, RadioactivityUnit.Megacurie) => new Radioactivity(_value / 37000000000000000, RadioactivityUnit.Megacurie),
+                (RadioactivityUnit.Becquerel, RadioactivityUnit.Megarutherford) => new Radioactivity(_value / 1000000000000, RadioactivityUnit.Megarutherford),
+                (RadioactivityUnit.Becquerel, RadioactivityUnit.Microbecquerel) => new Radioactivity(_value * 1000000, RadioactivityUnit.Microbecquerel),
+                (RadioactivityUnit.Becquerel, RadioactivityUnit.Microcurie) => new Radioactivity(_value / 37000, RadioactivityUnit.Microcurie),
+                (RadioactivityUnit.Becquerel, RadioactivityUnit.Microrutherford) => new Radioactivity(_value, RadioactivityUnit.Microrutherford),
+                (RadioactivityUnit.Becquerel, RadioactivityUnit.Millibecquerel) => new Radioactivity(_value * 1000, RadioactivityUnit.Millibecquerel),
+                (RadioactivityUnit.Becquerel, RadioactivityUnit.Millicurie) => new Radioactivity(_value / 37000000, RadioactivityUnit.Millicurie),
+                (RadioactivityUnit.Becquerel, RadioactivityUnit.Millirutherford) => new Radioactivity(_value / 1000, RadioactivityUnit.Millirutherford),
+                (RadioactivityUnit.Becquerel, RadioactivityUnit.Nanobecquerel) => new Radioactivity(_value * 1000000000, RadioactivityUnit.Nanobecquerel),
+                (RadioactivityUnit.Becquerel, RadioactivityUnit.Nanocurie) => new Radioactivity(_value / 37, RadioactivityUnit.Nanocurie),
+                (RadioactivityUnit.Becquerel, RadioactivityUnit.Nanorutherford) => new Radioactivity(_value * 1000, RadioactivityUnit.Nanorutherford),
+                (RadioactivityUnit.Becquerel, RadioactivityUnit.Petabecquerel) => new Radioactivity(_value / 1000000000000000, RadioactivityUnit.Petabecquerel),
+                (RadioactivityUnit.Becquerel, RadioactivityUnit.Picobecquerel) => new Radioactivity(_value * 1000000000000, RadioactivityUnit.Picobecquerel),
+                (RadioactivityUnit.Becquerel, RadioactivityUnit.Picocurie) => new Radioactivity(_value * new Fraction(1000, 37, false), RadioactivityUnit.Picocurie),
+                (RadioactivityUnit.Becquerel, RadioactivityUnit.Picorutherford) => new Radioactivity(_value * 1000000, RadioactivityUnit.Picorutherford),
+                (RadioactivityUnit.Becquerel, RadioactivityUnit.Rutherford) => new Radioactivity(_value / 1000000, RadioactivityUnit.Rutherford),
+                (RadioactivityUnit.Becquerel, RadioactivityUnit.Terabecquerel) => new Radioactivity(_value / 1000000000000, RadioactivityUnit.Terabecquerel),
+                (RadioactivityUnit.Becquerel, RadioactivityUnit.Teracurie) => new Radioactivity(_value / 3700 / BigInteger.Pow(10, 19), RadioactivityUnit.Teracurie),
+                (RadioactivityUnit.Becquerel, RadioactivityUnit.Terarutherford) => new Radioactivity(_value / 1000000000000000000, RadioactivityUnit.Terarutherford),
 
                 _ => null
             };

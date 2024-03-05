@@ -1,8 +1,9 @@
-// Licensed under MIT No Attribution, see LICENSE file at the root.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
 using System.Numerics;
+using Fractions;
 
 namespace UnitsNet;
 
@@ -16,8 +17,8 @@ public interface IArithmeticQuantity<TSelf, TUnitType> : IQuantity<TSelf, TUnitT
     , IAdditionOperators<TSelf, TSelf, TSelf>
     , IAdditiveIdentity<TSelf, TSelf>
     , ISubtractionOperators<TSelf, TSelf, TSelf>
-    , IMultiplyOperators<TSelf, double, TSelf>
-    , IDivisionOperators<TSelf, double, TSelf>
+    , IMultiplyOperators<TSelf, Fraction, TSelf>
+    , IDivisionOperators<TSelf, Fraction, TSelf>
     , IUnaryNegationOperators<TSelf, TSelf>
 #endif
     where TSelf : IArithmeticQuantity<TSelf, TUnitType>

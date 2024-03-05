@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+using Fractions;
 
 namespace UnitsNet
 {
@@ -103,7 +104,7 @@ namespace UnitsNet
         /// <param name="unit">Unit enum value.</param>
         /// <returns>An <see cref="IQuantity"/> object.</returns>
         /// <exception cref="ArgumentException">Unit value is not a know unit enum type.</exception>
-        public IQuantity From(double value, Enum unit)
+        public IQuantity From(Fraction value, Enum unit)
         {
             // TODO Support custom units, currently only hardcoded built-in quantities are supported.
             return Quantity.TryFrom(value, unit, out IQuantity? quantity)
@@ -112,15 +113,16 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="Quantity.TryFrom(double,System.Enum,out UnitsNet.IQuantity)"/>
-        public bool TryFrom(double value, Enum unit, [NotNullWhen(true)] out IQuantity? quantity)
+        // [Obsolete("Please use the Quantity.TryFrom")] // TODO not sure this if this method is still needed (unless we add back the QuantityValue)
+        public bool TryFrom(Fraction value, Enum unit, [NotNullWhen(true)] out IQuantity? quantity) 
         {
-            // Implicit cast to QuantityValue would prevent TryFrom from being called,
-            // so we need to explicitly check this here for double arguments.
-            if (double.IsNaN(value) || double.IsInfinity(value))
-            {
-                quantity = default(IQuantity);
-                return false;
-            }
+            // // Implicit cast to QuantityValue would prevent TryFrom from being called,
+            // // so we need to explicitly check this here for double arguments.
+            // if (double.IsNaN(value) || double.IsInfinity(value))
+            // {
+            //     quantity = default(IQuantity);
+            //     return false;
+            // }
 
             // TODO Support custom units, currently only hardcoded built-in quantities are supported.
             return Quantity.TryFrom(value, unit, out quantity);

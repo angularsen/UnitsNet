@@ -24,6 +24,8 @@ using System.Linq;
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+using System.Numerics;
+using Fractions;
 
 #nullable enable
 
@@ -48,7 +50,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        private readonly Fraction _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -83,7 +85,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public ApparentPower(double value, ApparentPowerUnit unit)
+        public ApparentPower(Fraction value, ApparentPowerUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -97,7 +99,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ApparentPower(double value, UnitSystem unitSystem)
+        public ApparentPower(Fraction value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -148,10 +150,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public Fraction Value => _value;
 
         /// <inheritdoc />
-        double IQuantity.Value => _value;
+        Fraction IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -176,32 +178,32 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ApparentPowerUnit.Gigavoltampere"/>
         /// </summary>
-        public double Gigavoltamperes => As(ApparentPowerUnit.Gigavoltampere);
+        public Fraction Gigavoltamperes => As(ApparentPowerUnit.Gigavoltampere);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ApparentPowerUnit.Kilovoltampere"/>
         /// </summary>
-        public double Kilovoltamperes => As(ApparentPowerUnit.Kilovoltampere);
+        public Fraction Kilovoltamperes => As(ApparentPowerUnit.Kilovoltampere);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ApparentPowerUnit.Megavoltampere"/>
         /// </summary>
-        public double Megavoltamperes => As(ApparentPowerUnit.Megavoltampere);
+        public Fraction Megavoltamperes => As(ApparentPowerUnit.Megavoltampere);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ApparentPowerUnit.Microvoltampere"/>
         /// </summary>
-        public double Microvoltamperes => As(ApparentPowerUnit.Microvoltampere);
+        public Fraction Microvoltamperes => As(ApparentPowerUnit.Microvoltampere);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ApparentPowerUnit.Millivoltampere"/>
         /// </summary>
-        public double Millivoltamperes => As(ApparentPowerUnit.Millivoltampere);
+        public Fraction Millivoltamperes => As(ApparentPowerUnit.Millivoltampere);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ApparentPowerUnit.Voltampere"/>
         /// </summary>
-        public double Voltamperes => As(ApparentPowerUnit.Voltampere);
+        public Fraction Voltamperes => As(ApparentPowerUnit.Voltampere);
 
         #endregion
 
@@ -259,7 +261,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Gigavoltampere"/>.
         /// </summary>
-        public static ApparentPower FromGigavoltamperes(double value)
+        public static ApparentPower FromGigavoltamperes(Fraction value)
         {
             return new ApparentPower(value, ApparentPowerUnit.Gigavoltampere);
         }
@@ -267,7 +269,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Kilovoltampere"/>.
         /// </summary>
-        public static ApparentPower FromKilovoltamperes(double value)
+        public static ApparentPower FromKilovoltamperes(Fraction value)
         {
             return new ApparentPower(value, ApparentPowerUnit.Kilovoltampere);
         }
@@ -275,7 +277,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Megavoltampere"/>.
         /// </summary>
-        public static ApparentPower FromMegavoltamperes(double value)
+        public static ApparentPower FromMegavoltamperes(Fraction value)
         {
             return new ApparentPower(value, ApparentPowerUnit.Megavoltampere);
         }
@@ -283,7 +285,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Microvoltampere"/>.
         /// </summary>
-        public static ApparentPower FromMicrovoltamperes(double value)
+        public static ApparentPower FromMicrovoltamperes(Fraction value)
         {
             return new ApparentPower(value, ApparentPowerUnit.Microvoltampere);
         }
@@ -291,7 +293,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Millivoltampere"/>.
         /// </summary>
-        public static ApparentPower FromMillivoltamperes(double value)
+        public static ApparentPower FromMillivoltamperes(Fraction value)
         {
             return new ApparentPower(value, ApparentPowerUnit.Millivoltampere);
         }
@@ -299,7 +301,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Voltampere"/>.
         /// </summary>
-        public static ApparentPower FromVoltamperes(double value)
+        public static ApparentPower FromVoltamperes(Fraction value)
         {
             return new ApparentPower(value, ApparentPowerUnit.Voltampere);
         }
@@ -310,7 +312,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ApparentPower unit value.</returns>
-        public static ApparentPower From(double value, ApparentPowerUnit fromUnit)
+        public static ApparentPower From(Fraction value, ApparentPowerUnit fromUnit)
         {
             return new ApparentPower(value, fromUnit);
         }
@@ -466,7 +468,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static ApparentPower operator -(ApparentPower right)
         {
-            return new ApparentPower(-right.Value, right.Unit);
+            return new ApparentPower(right.Value.Invert(), right.Unit);
         }
 
         /// <summary>Get <see cref="ApparentPower"/> from adding two <see cref="ApparentPower"/>.</summary>
@@ -482,25 +484,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="ApparentPower"/> from multiplying value and <see cref="ApparentPower"/>.</summary>
-        public static ApparentPower operator *(double left, ApparentPower right)
+        public static ApparentPower operator *(Fraction left, ApparentPower right)
         {
             return new ApparentPower(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ApparentPower"/> from multiplying value and <see cref="ApparentPower"/>.</summary>
-        public static ApparentPower operator *(ApparentPower left, double right)
+        public static ApparentPower operator *(ApparentPower left, Fraction right)
         {
             return new ApparentPower(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ApparentPower"/> from dividing <see cref="ApparentPower"/> by value.</summary>
-        public static ApparentPower operator /(ApparentPower left, double right)
+        public static ApparentPower operator /(ApparentPower left, Fraction right)
         {
             return new ApparentPower(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ApparentPower"/> by <see cref="ApparentPower"/>.</summary>
-        public static double operator /(ApparentPower left, ApparentPower right)
+        public static Fraction operator /(ApparentPower left, ApparentPower right)
         {
             return left.Voltamperes / right.Voltamperes;
         }
@@ -533,27 +535,20 @@ namespace UnitsNet
             return left.Value > right.ToUnit(left.Unit).Value;
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="ApparentPower"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(ApparentPower other, ApparentPower tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="ApparentPower"/> quantities.</summary>
         public static bool operator ==(ApparentPower left, ApparentPower right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="ApparentPower"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(ApparentPower other, ApparentPower tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="ApparentPower"/> quantities.</summary>
         public static bool operator !=(ApparentPower left, ApparentPower right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="ApparentPower"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(ApparentPower other, ApparentPower tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="ApparentPower"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is ApparentPower otherQuantity))
@@ -563,14 +558,11 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="ApparentPower"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(ApparentPower other, ApparentPower tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="ApparentPower"/> quantities.</summary>
         public bool Equals(ApparentPower other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.IsEquivalentTo(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>Compares the current <see cref="ApparentPower"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
         /// <param name="obj">An object to compare with this instance.</param>
@@ -654,10 +646,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.Comparison.Equals(
+            return UnitsNet.FractionComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: tolerance,
+                tolerance: (Fraction)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -674,7 +666,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(ApparentPower other, ApparentPower tolerance)
         {
-            return UnitsNet.Comparison.Equals(
+            return UnitsNet.FractionComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -687,7 +679,8 @@ namespace UnitsNet
         /// <returns>A hash code for the current ApparentPower.</returns>
         public override int GetHashCode()
         {
-            return new { Info.Name, Value, Unit }.GetHashCode();
+            var valueInBaseUnit = As(BaseUnit);
+            return new { Info.Name, valueInBaseUnit }.GetHashCode();
         }
 
         #endregion
@@ -698,7 +691,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(ApparentPowerUnit unit)
+        public Fraction As(ApparentPowerUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -707,7 +700,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public Fraction As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -722,7 +715,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        double IQuantity.As(Enum unit)
+        Fraction IQuantity.As(Enum unit)
         {
             if (!(unit is ApparentPowerUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ApparentPowerUnit)} is supported.", nameof(unit));
@@ -788,18 +781,18 @@ namespace UnitsNet
             ApparentPower? convertedOrNull = (Unit, unit) switch
             {
                 // ApparentPowerUnit -> BaseUnit
-                (ApparentPowerUnit.Gigavoltampere, ApparentPowerUnit.Voltampere) => new ApparentPower((_value) * 1e9d, ApparentPowerUnit.Voltampere),
-                (ApparentPowerUnit.Kilovoltampere, ApparentPowerUnit.Voltampere) => new ApparentPower((_value) * 1e3d, ApparentPowerUnit.Voltampere),
-                (ApparentPowerUnit.Megavoltampere, ApparentPowerUnit.Voltampere) => new ApparentPower((_value) * 1e6d, ApparentPowerUnit.Voltampere),
-                (ApparentPowerUnit.Microvoltampere, ApparentPowerUnit.Voltampere) => new ApparentPower((_value) * 1e-6d, ApparentPowerUnit.Voltampere),
-                (ApparentPowerUnit.Millivoltampere, ApparentPowerUnit.Voltampere) => new ApparentPower((_value) * 1e-3d, ApparentPowerUnit.Voltampere),
+                (ApparentPowerUnit.Gigavoltampere, ApparentPowerUnit.Voltampere) => new ApparentPower(_value * 1000000000, ApparentPowerUnit.Voltampere),
+                (ApparentPowerUnit.Kilovoltampere, ApparentPowerUnit.Voltampere) => new ApparentPower(_value * 1000, ApparentPowerUnit.Voltampere),
+                (ApparentPowerUnit.Megavoltampere, ApparentPowerUnit.Voltampere) => new ApparentPower(_value * 1000000, ApparentPowerUnit.Voltampere),
+                (ApparentPowerUnit.Microvoltampere, ApparentPowerUnit.Voltampere) => new ApparentPower(_value / 1000000, ApparentPowerUnit.Voltampere),
+                (ApparentPowerUnit.Millivoltampere, ApparentPowerUnit.Voltampere) => new ApparentPower(_value / 1000, ApparentPowerUnit.Voltampere),
 
                 // BaseUnit -> ApparentPowerUnit
-                (ApparentPowerUnit.Voltampere, ApparentPowerUnit.Gigavoltampere) => new ApparentPower((_value) / 1e9d, ApparentPowerUnit.Gigavoltampere),
-                (ApparentPowerUnit.Voltampere, ApparentPowerUnit.Kilovoltampere) => new ApparentPower((_value) / 1e3d, ApparentPowerUnit.Kilovoltampere),
-                (ApparentPowerUnit.Voltampere, ApparentPowerUnit.Megavoltampere) => new ApparentPower((_value) / 1e6d, ApparentPowerUnit.Megavoltampere),
-                (ApparentPowerUnit.Voltampere, ApparentPowerUnit.Microvoltampere) => new ApparentPower((_value) / 1e-6d, ApparentPowerUnit.Microvoltampere),
-                (ApparentPowerUnit.Voltampere, ApparentPowerUnit.Millivoltampere) => new ApparentPower((_value) / 1e-3d, ApparentPowerUnit.Millivoltampere),
+                (ApparentPowerUnit.Voltampere, ApparentPowerUnit.Gigavoltampere) => new ApparentPower(_value / 1000000000, ApparentPowerUnit.Gigavoltampere),
+                (ApparentPowerUnit.Voltampere, ApparentPowerUnit.Kilovoltampere) => new ApparentPower(_value / 1000, ApparentPowerUnit.Kilovoltampere),
+                (ApparentPowerUnit.Voltampere, ApparentPowerUnit.Megavoltampere) => new ApparentPower(_value / 1000000, ApparentPowerUnit.Megavoltampere),
+                (ApparentPowerUnit.Voltampere, ApparentPowerUnit.Microvoltampere) => new ApparentPower(_value * 1000000, ApparentPowerUnit.Microvoltampere),
+                (ApparentPowerUnit.Voltampere, ApparentPowerUnit.Millivoltampere) => new ApparentPower(_value * 1000, ApparentPowerUnit.Millivoltampere),
 
                 _ => null
             };

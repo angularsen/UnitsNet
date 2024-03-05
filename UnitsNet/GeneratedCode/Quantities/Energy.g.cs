@@ -21,12 +21,11 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
-using System.Numerics;
-#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+using System.Numerics;
+using Fractions;
 
 #nullable enable
 
@@ -64,7 +63,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        private readonly Fraction _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -133,7 +132,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Energy(double value, EnergyUnit unit)
+        public Energy(Fraction value, EnergyUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -147,7 +146,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Energy(double value, UnitSystem unitSystem)
+        public Energy(Fraction value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -198,10 +197,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public Fraction Value => _value;
 
         /// <inheritdoc />
-        double IQuantity.Value => _value;
+        Fraction IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -226,202 +225,202 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.BritishThermalUnit"/>
         /// </summary>
-        public double BritishThermalUnits => As(EnergyUnit.BritishThermalUnit);
+        public Fraction BritishThermalUnits => As(EnergyUnit.BritishThermalUnit);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Calorie"/>
         /// </summary>
-        public double Calories => As(EnergyUnit.Calorie);
+        public Fraction Calories => As(EnergyUnit.Calorie);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.DecathermEc"/>
         /// </summary>
-        public double DecathermsEc => As(EnergyUnit.DecathermEc);
+        public Fraction DecathermsEc => As(EnergyUnit.DecathermEc);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.DecathermImperial"/>
         /// </summary>
-        public double DecathermsImperial => As(EnergyUnit.DecathermImperial);
+        public Fraction DecathermsImperial => As(EnergyUnit.DecathermImperial);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.DecathermUs"/>
         /// </summary>
-        public double DecathermsUs => As(EnergyUnit.DecathermUs);
+        public Fraction DecathermsUs => As(EnergyUnit.DecathermUs);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.ElectronVolt"/>
         /// </summary>
-        public double ElectronVolts => As(EnergyUnit.ElectronVolt);
+        public Fraction ElectronVolts => As(EnergyUnit.ElectronVolt);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Erg"/>
         /// </summary>
-        public double Ergs => As(EnergyUnit.Erg);
+        public Fraction Ergs => As(EnergyUnit.Erg);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.FootPound"/>
         /// </summary>
-        public double FootPounds => As(EnergyUnit.FootPound);
+        public Fraction FootPounds => As(EnergyUnit.FootPound);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.GigabritishThermalUnit"/>
         /// </summary>
-        public double GigabritishThermalUnits => As(EnergyUnit.GigabritishThermalUnit);
+        public Fraction GigabritishThermalUnits => As(EnergyUnit.GigabritishThermalUnit);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.GigaelectronVolt"/>
         /// </summary>
-        public double GigaelectronVolts => As(EnergyUnit.GigaelectronVolt);
+        public Fraction GigaelectronVolts => As(EnergyUnit.GigaelectronVolt);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Gigajoule"/>
         /// </summary>
-        public double Gigajoules => As(EnergyUnit.Gigajoule);
+        public Fraction Gigajoules => As(EnergyUnit.Gigajoule);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.GigawattDay"/>
         /// </summary>
-        public double GigawattDays => As(EnergyUnit.GigawattDay);
+        public Fraction GigawattDays => As(EnergyUnit.GigawattDay);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.GigawattHour"/>
         /// </summary>
-        public double GigawattHours => As(EnergyUnit.GigawattHour);
+        public Fraction GigawattHours => As(EnergyUnit.GigawattHour);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.HorsepowerHour"/>
         /// </summary>
-        public double HorsepowerHours => As(EnergyUnit.HorsepowerHour);
+        public Fraction HorsepowerHours => As(EnergyUnit.HorsepowerHour);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Joule"/>
         /// </summary>
-        public double Joules => As(EnergyUnit.Joule);
+        public Fraction Joules => As(EnergyUnit.Joule);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.KilobritishThermalUnit"/>
         /// </summary>
-        public double KilobritishThermalUnits => As(EnergyUnit.KilobritishThermalUnit);
+        public Fraction KilobritishThermalUnits => As(EnergyUnit.KilobritishThermalUnit);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Kilocalorie"/>
         /// </summary>
-        public double Kilocalories => As(EnergyUnit.Kilocalorie);
+        public Fraction Kilocalories => As(EnergyUnit.Kilocalorie);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.KiloelectronVolt"/>
         /// </summary>
-        public double KiloelectronVolts => As(EnergyUnit.KiloelectronVolt);
+        public Fraction KiloelectronVolts => As(EnergyUnit.KiloelectronVolt);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Kilojoule"/>
         /// </summary>
-        public double Kilojoules => As(EnergyUnit.Kilojoule);
+        public Fraction Kilojoules => As(EnergyUnit.Kilojoule);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.KilowattDay"/>
         /// </summary>
-        public double KilowattDays => As(EnergyUnit.KilowattDay);
+        public Fraction KilowattDays => As(EnergyUnit.KilowattDay);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.KilowattHour"/>
         /// </summary>
-        public double KilowattHours => As(EnergyUnit.KilowattHour);
+        public Fraction KilowattHours => As(EnergyUnit.KilowattHour);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.MegabritishThermalUnit"/>
         /// </summary>
-        public double MegabritishThermalUnits => As(EnergyUnit.MegabritishThermalUnit);
+        public Fraction MegabritishThermalUnits => As(EnergyUnit.MegabritishThermalUnit);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Megacalorie"/>
         /// </summary>
-        public double Megacalories => As(EnergyUnit.Megacalorie);
+        public Fraction Megacalories => As(EnergyUnit.Megacalorie);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.MegaelectronVolt"/>
         /// </summary>
-        public double MegaelectronVolts => As(EnergyUnit.MegaelectronVolt);
+        public Fraction MegaelectronVolts => As(EnergyUnit.MegaelectronVolt);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Megajoule"/>
         /// </summary>
-        public double Megajoules => As(EnergyUnit.Megajoule);
+        public Fraction Megajoules => As(EnergyUnit.Megajoule);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.MegawattDay"/>
         /// </summary>
-        public double MegawattDays => As(EnergyUnit.MegawattDay);
+        public Fraction MegawattDays => As(EnergyUnit.MegawattDay);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.MegawattHour"/>
         /// </summary>
-        public double MegawattHours => As(EnergyUnit.MegawattHour);
+        public Fraction MegawattHours => As(EnergyUnit.MegawattHour);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Microjoule"/>
         /// </summary>
-        public double Microjoules => As(EnergyUnit.Microjoule);
+        public Fraction Microjoules => As(EnergyUnit.Microjoule);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Millijoule"/>
         /// </summary>
-        public double Millijoules => As(EnergyUnit.Millijoule);
+        public Fraction Millijoules => As(EnergyUnit.Millijoule);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Nanojoule"/>
         /// </summary>
-        public double Nanojoules => As(EnergyUnit.Nanojoule);
+        public Fraction Nanojoules => As(EnergyUnit.Nanojoule);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Petajoule"/>
         /// </summary>
-        public double Petajoules => As(EnergyUnit.Petajoule);
+        public Fraction Petajoules => As(EnergyUnit.Petajoule);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.TeraelectronVolt"/>
         /// </summary>
-        public double TeraelectronVolts => As(EnergyUnit.TeraelectronVolt);
+        public Fraction TeraelectronVolts => As(EnergyUnit.TeraelectronVolt);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Terajoule"/>
         /// </summary>
-        public double Terajoules => As(EnergyUnit.Terajoule);
+        public Fraction Terajoules => As(EnergyUnit.Terajoule);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.TerawattDay"/>
         /// </summary>
-        public double TerawattDays => As(EnergyUnit.TerawattDay);
+        public Fraction TerawattDays => As(EnergyUnit.TerawattDay);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.TerawattHour"/>
         /// </summary>
-        public double TerawattHours => As(EnergyUnit.TerawattHour);
+        public Fraction TerawattHours => As(EnergyUnit.TerawattHour);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.ThermEc"/>
         /// </summary>
-        public double ThermsEc => As(EnergyUnit.ThermEc);
+        public Fraction ThermsEc => As(EnergyUnit.ThermEc);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.ThermImperial"/>
         /// </summary>
-        public double ThermsImperial => As(EnergyUnit.ThermImperial);
+        public Fraction ThermsImperial => As(EnergyUnit.ThermImperial);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.ThermUs"/>
         /// </summary>
-        public double ThermsUs => As(EnergyUnit.ThermUs);
+        public Fraction ThermsUs => As(EnergyUnit.ThermUs);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.WattDay"/>
         /// </summary>
-        public double WattDays => As(EnergyUnit.WattDay);
+        public Fraction WattDays => As(EnergyUnit.WattDay);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.WattHour"/>
         /// </summary>
-        public double WattHours => As(EnergyUnit.WattHour);
+        public Fraction WattHours => As(EnergyUnit.WattHour);
 
         #endregion
 
@@ -547,7 +546,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.BritishThermalUnit"/>.
         /// </summary>
-        public static Energy FromBritishThermalUnits(double value)
+        public static Energy FromBritishThermalUnits(Fraction value)
         {
             return new Energy(value, EnergyUnit.BritishThermalUnit);
         }
@@ -555,7 +554,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Calorie"/>.
         /// </summary>
-        public static Energy FromCalories(double value)
+        public static Energy FromCalories(Fraction value)
         {
             return new Energy(value, EnergyUnit.Calorie);
         }
@@ -563,7 +562,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.DecathermEc"/>.
         /// </summary>
-        public static Energy FromDecathermsEc(double value)
+        public static Energy FromDecathermsEc(Fraction value)
         {
             return new Energy(value, EnergyUnit.DecathermEc);
         }
@@ -571,7 +570,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.DecathermImperial"/>.
         /// </summary>
-        public static Energy FromDecathermsImperial(double value)
+        public static Energy FromDecathermsImperial(Fraction value)
         {
             return new Energy(value, EnergyUnit.DecathermImperial);
         }
@@ -579,7 +578,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.DecathermUs"/>.
         /// </summary>
-        public static Energy FromDecathermsUs(double value)
+        public static Energy FromDecathermsUs(Fraction value)
         {
             return new Energy(value, EnergyUnit.DecathermUs);
         }
@@ -587,7 +586,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.ElectronVolt"/>.
         /// </summary>
-        public static Energy FromElectronVolts(double value)
+        public static Energy FromElectronVolts(Fraction value)
         {
             return new Energy(value, EnergyUnit.ElectronVolt);
         }
@@ -595,7 +594,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Erg"/>.
         /// </summary>
-        public static Energy FromErgs(double value)
+        public static Energy FromErgs(Fraction value)
         {
             return new Energy(value, EnergyUnit.Erg);
         }
@@ -603,7 +602,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.FootPound"/>.
         /// </summary>
-        public static Energy FromFootPounds(double value)
+        public static Energy FromFootPounds(Fraction value)
         {
             return new Energy(value, EnergyUnit.FootPound);
         }
@@ -611,7 +610,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.GigabritishThermalUnit"/>.
         /// </summary>
-        public static Energy FromGigabritishThermalUnits(double value)
+        public static Energy FromGigabritishThermalUnits(Fraction value)
         {
             return new Energy(value, EnergyUnit.GigabritishThermalUnit);
         }
@@ -619,7 +618,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.GigaelectronVolt"/>.
         /// </summary>
-        public static Energy FromGigaelectronVolts(double value)
+        public static Energy FromGigaelectronVolts(Fraction value)
         {
             return new Energy(value, EnergyUnit.GigaelectronVolt);
         }
@@ -627,7 +626,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Gigajoule"/>.
         /// </summary>
-        public static Energy FromGigajoules(double value)
+        public static Energy FromGigajoules(Fraction value)
         {
             return new Energy(value, EnergyUnit.Gigajoule);
         }
@@ -635,7 +634,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.GigawattDay"/>.
         /// </summary>
-        public static Energy FromGigawattDays(double value)
+        public static Energy FromGigawattDays(Fraction value)
         {
             return new Energy(value, EnergyUnit.GigawattDay);
         }
@@ -643,7 +642,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.GigawattHour"/>.
         /// </summary>
-        public static Energy FromGigawattHours(double value)
+        public static Energy FromGigawattHours(Fraction value)
         {
             return new Energy(value, EnergyUnit.GigawattHour);
         }
@@ -651,7 +650,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.HorsepowerHour"/>.
         /// </summary>
-        public static Energy FromHorsepowerHours(double value)
+        public static Energy FromHorsepowerHours(Fraction value)
         {
             return new Energy(value, EnergyUnit.HorsepowerHour);
         }
@@ -659,7 +658,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Joule"/>.
         /// </summary>
-        public static Energy FromJoules(double value)
+        public static Energy FromJoules(Fraction value)
         {
             return new Energy(value, EnergyUnit.Joule);
         }
@@ -667,7 +666,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.KilobritishThermalUnit"/>.
         /// </summary>
-        public static Energy FromKilobritishThermalUnits(double value)
+        public static Energy FromKilobritishThermalUnits(Fraction value)
         {
             return new Energy(value, EnergyUnit.KilobritishThermalUnit);
         }
@@ -675,7 +674,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Kilocalorie"/>.
         /// </summary>
-        public static Energy FromKilocalories(double value)
+        public static Energy FromKilocalories(Fraction value)
         {
             return new Energy(value, EnergyUnit.Kilocalorie);
         }
@@ -683,7 +682,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.KiloelectronVolt"/>.
         /// </summary>
-        public static Energy FromKiloelectronVolts(double value)
+        public static Energy FromKiloelectronVolts(Fraction value)
         {
             return new Energy(value, EnergyUnit.KiloelectronVolt);
         }
@@ -691,7 +690,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Kilojoule"/>.
         /// </summary>
-        public static Energy FromKilojoules(double value)
+        public static Energy FromKilojoules(Fraction value)
         {
             return new Energy(value, EnergyUnit.Kilojoule);
         }
@@ -699,7 +698,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.KilowattDay"/>.
         /// </summary>
-        public static Energy FromKilowattDays(double value)
+        public static Energy FromKilowattDays(Fraction value)
         {
             return new Energy(value, EnergyUnit.KilowattDay);
         }
@@ -707,7 +706,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.KilowattHour"/>.
         /// </summary>
-        public static Energy FromKilowattHours(double value)
+        public static Energy FromKilowattHours(Fraction value)
         {
             return new Energy(value, EnergyUnit.KilowattHour);
         }
@@ -715,7 +714,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.MegabritishThermalUnit"/>.
         /// </summary>
-        public static Energy FromMegabritishThermalUnits(double value)
+        public static Energy FromMegabritishThermalUnits(Fraction value)
         {
             return new Energy(value, EnergyUnit.MegabritishThermalUnit);
         }
@@ -723,7 +722,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Megacalorie"/>.
         /// </summary>
-        public static Energy FromMegacalories(double value)
+        public static Energy FromMegacalories(Fraction value)
         {
             return new Energy(value, EnergyUnit.Megacalorie);
         }
@@ -731,7 +730,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.MegaelectronVolt"/>.
         /// </summary>
-        public static Energy FromMegaelectronVolts(double value)
+        public static Energy FromMegaelectronVolts(Fraction value)
         {
             return new Energy(value, EnergyUnit.MegaelectronVolt);
         }
@@ -739,7 +738,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Megajoule"/>.
         /// </summary>
-        public static Energy FromMegajoules(double value)
+        public static Energy FromMegajoules(Fraction value)
         {
             return new Energy(value, EnergyUnit.Megajoule);
         }
@@ -747,7 +746,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.MegawattDay"/>.
         /// </summary>
-        public static Energy FromMegawattDays(double value)
+        public static Energy FromMegawattDays(Fraction value)
         {
             return new Energy(value, EnergyUnit.MegawattDay);
         }
@@ -755,7 +754,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.MegawattHour"/>.
         /// </summary>
-        public static Energy FromMegawattHours(double value)
+        public static Energy FromMegawattHours(Fraction value)
         {
             return new Energy(value, EnergyUnit.MegawattHour);
         }
@@ -763,7 +762,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Microjoule"/>.
         /// </summary>
-        public static Energy FromMicrojoules(double value)
+        public static Energy FromMicrojoules(Fraction value)
         {
             return new Energy(value, EnergyUnit.Microjoule);
         }
@@ -771,7 +770,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Millijoule"/>.
         /// </summary>
-        public static Energy FromMillijoules(double value)
+        public static Energy FromMillijoules(Fraction value)
         {
             return new Energy(value, EnergyUnit.Millijoule);
         }
@@ -779,7 +778,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Nanojoule"/>.
         /// </summary>
-        public static Energy FromNanojoules(double value)
+        public static Energy FromNanojoules(Fraction value)
         {
             return new Energy(value, EnergyUnit.Nanojoule);
         }
@@ -787,7 +786,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Petajoule"/>.
         /// </summary>
-        public static Energy FromPetajoules(double value)
+        public static Energy FromPetajoules(Fraction value)
         {
             return new Energy(value, EnergyUnit.Petajoule);
         }
@@ -795,7 +794,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.TeraelectronVolt"/>.
         /// </summary>
-        public static Energy FromTeraelectronVolts(double value)
+        public static Energy FromTeraelectronVolts(Fraction value)
         {
             return new Energy(value, EnergyUnit.TeraelectronVolt);
         }
@@ -803,7 +802,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Terajoule"/>.
         /// </summary>
-        public static Energy FromTerajoules(double value)
+        public static Energy FromTerajoules(Fraction value)
         {
             return new Energy(value, EnergyUnit.Terajoule);
         }
@@ -811,7 +810,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.TerawattDay"/>.
         /// </summary>
-        public static Energy FromTerawattDays(double value)
+        public static Energy FromTerawattDays(Fraction value)
         {
             return new Energy(value, EnergyUnit.TerawattDay);
         }
@@ -819,7 +818,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.TerawattHour"/>.
         /// </summary>
-        public static Energy FromTerawattHours(double value)
+        public static Energy FromTerawattHours(Fraction value)
         {
             return new Energy(value, EnergyUnit.TerawattHour);
         }
@@ -827,7 +826,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.ThermEc"/>.
         /// </summary>
-        public static Energy FromThermsEc(double value)
+        public static Energy FromThermsEc(Fraction value)
         {
             return new Energy(value, EnergyUnit.ThermEc);
         }
@@ -835,7 +834,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.ThermImperial"/>.
         /// </summary>
-        public static Energy FromThermsImperial(double value)
+        public static Energy FromThermsImperial(Fraction value)
         {
             return new Energy(value, EnergyUnit.ThermImperial);
         }
@@ -843,7 +842,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.ThermUs"/>.
         /// </summary>
-        public static Energy FromThermsUs(double value)
+        public static Energy FromThermsUs(Fraction value)
         {
             return new Energy(value, EnergyUnit.ThermUs);
         }
@@ -851,7 +850,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.WattDay"/>.
         /// </summary>
-        public static Energy FromWattDays(double value)
+        public static Energy FromWattDays(Fraction value)
         {
             return new Energy(value, EnergyUnit.WattDay);
         }
@@ -859,7 +858,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.WattHour"/>.
         /// </summary>
-        public static Energy FromWattHours(double value)
+        public static Energy FromWattHours(Fraction value)
         {
             return new Energy(value, EnergyUnit.WattHour);
         }
@@ -870,7 +869,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Energy unit value.</returns>
-        public static Energy From(double value, EnergyUnit fromUnit)
+        public static Energy From(Fraction value, EnergyUnit fromUnit)
         {
             return new Energy(value, fromUnit);
         }
@@ -1026,7 +1025,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static Energy operator -(Energy right)
         {
-            return new Energy(-right.Value, right.Unit);
+            return new Energy(right.Value.Invert(), right.Unit);
         }
 
         /// <summary>Get <see cref="Energy"/> from adding two <see cref="Energy"/>.</summary>
@@ -1042,25 +1041,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Energy"/> from multiplying value and <see cref="Energy"/>.</summary>
-        public static Energy operator *(double left, Energy right)
+        public static Energy operator *(Fraction left, Energy right)
         {
             return new Energy(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Energy"/> from multiplying value and <see cref="Energy"/>.</summary>
-        public static Energy operator *(Energy left, double right)
+        public static Energy operator *(Energy left, Fraction right)
         {
             return new Energy(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Energy"/> from dividing <see cref="Energy"/> by value.</summary>
-        public static Energy operator /(Energy left, double right)
+        public static Energy operator /(Energy left, Fraction right)
         {
             return new Energy(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Energy"/> by <see cref="Energy"/>.</summary>
-        public static double operator /(Energy left, Energy right)
+        public static Fraction operator /(Energy left, Energy right)
         {
             return left.Joules / right.Joules;
         }
@@ -1163,27 +1162,20 @@ namespace UnitsNet
             return left.Value > right.ToUnit(left.Unit).Value;
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="Energy"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Energy other, Energy tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Energy"/> quantities.</summary>
         public static bool operator ==(Energy left, Energy right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="Energy"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Energy other, Energy tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="Energy"/> quantities.</summary>
         public static bool operator !=(Energy left, Energy right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="Energy"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(Energy other, Energy tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Energy"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is Energy otherQuantity))
@@ -1193,14 +1185,11 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="Energy"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(Energy other, Energy tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Energy"/> quantities.</summary>
         public bool Equals(Energy other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.IsEquivalentTo(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>Compares the current <see cref="Energy"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
         /// <param name="obj">An object to compare with this instance.</param>
@@ -1284,10 +1273,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.Comparison.Equals(
+            return UnitsNet.FractionComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: tolerance,
+                tolerance: (Fraction)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -1304,7 +1293,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(Energy other, Energy tolerance)
         {
-            return UnitsNet.Comparison.Equals(
+            return UnitsNet.FractionComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -1317,7 +1306,8 @@ namespace UnitsNet
         /// <returns>A hash code for the current Energy.</returns>
         public override int GetHashCode()
         {
-            return new { Info.Name, Value, Unit }.GetHashCode();
+            var valueInBaseUnit = As(BaseUnit);
+            return new { Info.Name, valueInBaseUnit }.GetHashCode();
         }
 
         #endregion
@@ -1328,7 +1318,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(EnergyUnit unit)
+        public Fraction As(EnergyUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -1337,7 +1327,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public Fraction As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -1352,7 +1342,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        double IQuantity.As(Enum unit)
+        Fraction IQuantity.As(Enum unit)
         {
             if (!(unit is EnergyUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(EnergyUnit)} is supported.", nameof(unit));
@@ -1418,86 +1408,86 @@ namespace UnitsNet
             Energy? convertedOrNull = (Unit, unit) switch
             {
                 // EnergyUnit -> BaseUnit
-                (EnergyUnit.BritishThermalUnit, EnergyUnit.Joule) => new Energy(_value * 1055.05585262, EnergyUnit.Joule),
-                (EnergyUnit.Calorie, EnergyUnit.Joule) => new Energy(_value * 4.184, EnergyUnit.Joule),
-                (EnergyUnit.DecathermEc, EnergyUnit.Joule) => new Energy((_value * 1.05505585262e8) * 1e1d, EnergyUnit.Joule),
-                (EnergyUnit.DecathermImperial, EnergyUnit.Joule) => new Energy((_value * 1.05505585257348e8) * 1e1d, EnergyUnit.Joule),
-                (EnergyUnit.DecathermUs, EnergyUnit.Joule) => new Energy((_value * 1.054804e8) * 1e1d, EnergyUnit.Joule),
-                (EnergyUnit.ElectronVolt, EnergyUnit.Joule) => new Energy(_value * 1.602176565e-19, EnergyUnit.Joule),
-                (EnergyUnit.Erg, EnergyUnit.Joule) => new Energy(_value * 1e-7, EnergyUnit.Joule),
-                (EnergyUnit.FootPound, EnergyUnit.Joule) => new Energy(_value * 1.355817948, EnergyUnit.Joule),
-                (EnergyUnit.GigabritishThermalUnit, EnergyUnit.Joule) => new Energy((_value * 1055.05585262) * 1e9d, EnergyUnit.Joule),
-                (EnergyUnit.GigaelectronVolt, EnergyUnit.Joule) => new Energy((_value * 1.602176565e-19) * 1e9d, EnergyUnit.Joule),
-                (EnergyUnit.Gigajoule, EnergyUnit.Joule) => new Energy((_value) * 1e9d, EnergyUnit.Joule),
-                (EnergyUnit.GigawattDay, EnergyUnit.Joule) => new Energy((_value * 24 * 3600d) * 1e9d, EnergyUnit.Joule),
-                (EnergyUnit.GigawattHour, EnergyUnit.Joule) => new Energy((_value * 3600d) * 1e9d, EnergyUnit.Joule),
-                (EnergyUnit.HorsepowerHour, EnergyUnit.Joule) => new Energy(_value * 2.6845195377e6, EnergyUnit.Joule),
-                (EnergyUnit.KilobritishThermalUnit, EnergyUnit.Joule) => new Energy((_value * 1055.05585262) * 1e3d, EnergyUnit.Joule),
-                (EnergyUnit.Kilocalorie, EnergyUnit.Joule) => new Energy((_value * 4.184) * 1e3d, EnergyUnit.Joule),
-                (EnergyUnit.KiloelectronVolt, EnergyUnit.Joule) => new Energy((_value * 1.602176565e-19) * 1e3d, EnergyUnit.Joule),
-                (EnergyUnit.Kilojoule, EnergyUnit.Joule) => new Energy((_value) * 1e3d, EnergyUnit.Joule),
-                (EnergyUnit.KilowattDay, EnergyUnit.Joule) => new Energy((_value * 24 * 3600d) * 1e3d, EnergyUnit.Joule),
-                (EnergyUnit.KilowattHour, EnergyUnit.Joule) => new Energy((_value * 3600d) * 1e3d, EnergyUnit.Joule),
-                (EnergyUnit.MegabritishThermalUnit, EnergyUnit.Joule) => new Energy((_value * 1055.05585262) * 1e6d, EnergyUnit.Joule),
-                (EnergyUnit.Megacalorie, EnergyUnit.Joule) => new Energy((_value * 4.184) * 1e6d, EnergyUnit.Joule),
-                (EnergyUnit.MegaelectronVolt, EnergyUnit.Joule) => new Energy((_value * 1.602176565e-19) * 1e6d, EnergyUnit.Joule),
-                (EnergyUnit.Megajoule, EnergyUnit.Joule) => new Energy((_value) * 1e6d, EnergyUnit.Joule),
-                (EnergyUnit.MegawattDay, EnergyUnit.Joule) => new Energy((_value * 24 * 3600d) * 1e6d, EnergyUnit.Joule),
-                (EnergyUnit.MegawattHour, EnergyUnit.Joule) => new Energy((_value * 3600d) * 1e6d, EnergyUnit.Joule),
-                (EnergyUnit.Microjoule, EnergyUnit.Joule) => new Energy((_value) * 1e-6d, EnergyUnit.Joule),
-                (EnergyUnit.Millijoule, EnergyUnit.Joule) => new Energy((_value) * 1e-3d, EnergyUnit.Joule),
-                (EnergyUnit.Nanojoule, EnergyUnit.Joule) => new Energy((_value) * 1e-9d, EnergyUnit.Joule),
-                (EnergyUnit.Petajoule, EnergyUnit.Joule) => new Energy((_value) * 1e15d, EnergyUnit.Joule),
-                (EnergyUnit.TeraelectronVolt, EnergyUnit.Joule) => new Energy((_value * 1.602176565e-19) * 1e12d, EnergyUnit.Joule),
-                (EnergyUnit.Terajoule, EnergyUnit.Joule) => new Energy((_value) * 1e12d, EnergyUnit.Joule),
-                (EnergyUnit.TerawattDay, EnergyUnit.Joule) => new Energy((_value * 24 * 3600d) * 1e12d, EnergyUnit.Joule),
-                (EnergyUnit.TerawattHour, EnergyUnit.Joule) => new Energy((_value * 3600d) * 1e12d, EnergyUnit.Joule),
-                (EnergyUnit.ThermEc, EnergyUnit.Joule) => new Energy(_value * 1.05505585262e8, EnergyUnit.Joule),
-                (EnergyUnit.ThermImperial, EnergyUnit.Joule) => new Energy(_value * 1.05505585257348e8, EnergyUnit.Joule),
-                (EnergyUnit.ThermUs, EnergyUnit.Joule) => new Energy(_value * 1.054804e8, EnergyUnit.Joule),
-                (EnergyUnit.WattDay, EnergyUnit.Joule) => new Energy(_value * 24 * 3600d, EnergyUnit.Joule),
-                (EnergyUnit.WattHour, EnergyUnit.Joule) => new Energy(_value * 3600d, EnergyUnit.Joule),
+                (EnergyUnit.BritishThermalUnit, EnergyUnit.Joule) => new Energy(_value * new Fraction(52752792631, 50000000, false), EnergyUnit.Joule),
+                (EnergyUnit.Calorie, EnergyUnit.Joule) => new Energy(_value * new Fraction(523, 125, false), EnergyUnit.Joule),
+                (EnergyUnit.DecathermEc, EnergyUnit.Joule) => new Energy(_value * new Fraction(52752792631, 50, false), EnergyUnit.Joule),
+                (EnergyUnit.DecathermImperial, EnergyUnit.Joule) => new Energy(_value * new Fraction(26376396314337, 25000, false), EnergyUnit.Joule),
+                (EnergyUnit.DecathermUs, EnergyUnit.Joule) => new Energy(_value * 1054804000, EnergyUnit.Joule),
+                (EnergyUnit.ElectronVolt, EnergyUnit.Joule) => new Energy(_value * new Fraction(320435313, 200000000, false) / BigInteger.Pow(10, 19), EnergyUnit.Joule),
+                (EnergyUnit.Erg, EnergyUnit.Joule) => new Energy(_value / 10000000, EnergyUnit.Joule),
+                (EnergyUnit.FootPound, EnergyUnit.Joule) => new Energy(_value * new Fraction(338954487, 250000000, false), EnergyUnit.Joule),
+                (EnergyUnit.GigabritishThermalUnit, EnergyUnit.Joule) => new Energy(_value * 1055055852620, EnergyUnit.Joule),
+                (EnergyUnit.GigaelectronVolt, EnergyUnit.Joule) => new Energy(_value * new Fraction(320435313, 2000000000000000000, false), EnergyUnit.Joule),
+                (EnergyUnit.Gigajoule, EnergyUnit.Joule) => new Energy(_value * 1000000000, EnergyUnit.Joule),
+                (EnergyUnit.GigawattDay, EnergyUnit.Joule) => new Energy(_value * 86400000000000, EnergyUnit.Joule),
+                (EnergyUnit.GigawattHour, EnergyUnit.Joule) => new Energy(_value * 3600000000000, EnergyUnit.Joule),
+                (EnergyUnit.HorsepowerHour, EnergyUnit.Joule) => new Energy(_value * new Fraction(26845195377, 10000, false), EnergyUnit.Joule),
+                (EnergyUnit.KilobritishThermalUnit, EnergyUnit.Joule) => new Energy(_value * new Fraction(52752792631, 50000, false), EnergyUnit.Joule),
+                (EnergyUnit.Kilocalorie, EnergyUnit.Joule) => new Energy(_value * 4184, EnergyUnit.Joule),
+                (EnergyUnit.KiloelectronVolt, EnergyUnit.Joule) => new Energy(_value * new Fraction(320435313, 200000, false) / BigInteger.Pow(10, 19), EnergyUnit.Joule),
+                (EnergyUnit.Kilojoule, EnergyUnit.Joule) => new Energy(_value * 1000, EnergyUnit.Joule),
+                (EnergyUnit.KilowattDay, EnergyUnit.Joule) => new Energy(_value * 86400000, EnergyUnit.Joule),
+                (EnergyUnit.KilowattHour, EnergyUnit.Joule) => new Energy(_value * 3600000, EnergyUnit.Joule),
+                (EnergyUnit.MegabritishThermalUnit, EnergyUnit.Joule) => new Energy(_value * new Fraction(52752792631, 50, false), EnergyUnit.Joule),
+                (EnergyUnit.Megacalorie, EnergyUnit.Joule) => new Energy(_value * 4184000, EnergyUnit.Joule),
+                (EnergyUnit.MegaelectronVolt, EnergyUnit.Joule) => new Energy(_value * new Fraction(320435313, 200, false) / BigInteger.Pow(10, 19), EnergyUnit.Joule),
+                (EnergyUnit.Megajoule, EnergyUnit.Joule) => new Energy(_value * 1000000, EnergyUnit.Joule),
+                (EnergyUnit.MegawattDay, EnergyUnit.Joule) => new Energy(_value * 86400000000, EnergyUnit.Joule),
+                (EnergyUnit.MegawattHour, EnergyUnit.Joule) => new Energy(_value * 3600000000, EnergyUnit.Joule),
+                (EnergyUnit.Microjoule, EnergyUnit.Joule) => new Energy(_value / 1000000, EnergyUnit.Joule),
+                (EnergyUnit.Millijoule, EnergyUnit.Joule) => new Energy(_value / 1000, EnergyUnit.Joule),
+                (EnergyUnit.Nanojoule, EnergyUnit.Joule) => new Energy(_value / 1000000000, EnergyUnit.Joule),
+                (EnergyUnit.Petajoule, EnergyUnit.Joule) => new Energy(_value * 1000000000000000, EnergyUnit.Joule),
+                (EnergyUnit.TeraelectronVolt, EnergyUnit.Joule) => new Energy(_value * new Fraction(320435313, 2000000000000000, false), EnergyUnit.Joule),
+                (EnergyUnit.Terajoule, EnergyUnit.Joule) => new Energy(_value * 1000000000000, EnergyUnit.Joule),
+                (EnergyUnit.TerawattDay, EnergyUnit.Joule) => new Energy(_value * 86400000000000000, EnergyUnit.Joule),
+                (EnergyUnit.TerawattHour, EnergyUnit.Joule) => new Energy(_value * 3600000000000000, EnergyUnit.Joule),
+                (EnergyUnit.ThermEc, EnergyUnit.Joule) => new Energy(_value * new Fraction(52752792631, 500, false), EnergyUnit.Joule),
+                (EnergyUnit.ThermImperial, EnergyUnit.Joule) => new Energy(_value * new Fraction(26376396314337, 250000, false), EnergyUnit.Joule),
+                (EnergyUnit.ThermUs, EnergyUnit.Joule) => new Energy(_value * 105480400, EnergyUnit.Joule),
+                (EnergyUnit.WattDay, EnergyUnit.Joule) => new Energy(_value * 86400, EnergyUnit.Joule),
+                (EnergyUnit.WattHour, EnergyUnit.Joule) => new Energy(_value * 3600, EnergyUnit.Joule),
 
                 // BaseUnit -> EnergyUnit
-                (EnergyUnit.Joule, EnergyUnit.BritishThermalUnit) => new Energy(_value / 1055.05585262, EnergyUnit.BritishThermalUnit),
-                (EnergyUnit.Joule, EnergyUnit.Calorie) => new Energy(_value / 4.184, EnergyUnit.Calorie),
-                (EnergyUnit.Joule, EnergyUnit.DecathermEc) => new Energy((_value / 1.05505585262e8) / 1e1d, EnergyUnit.DecathermEc),
-                (EnergyUnit.Joule, EnergyUnit.DecathermImperial) => new Energy((_value / 1.05505585257348e8) / 1e1d, EnergyUnit.DecathermImperial),
-                (EnergyUnit.Joule, EnergyUnit.DecathermUs) => new Energy((_value / 1.054804e8) / 1e1d, EnergyUnit.DecathermUs),
-                (EnergyUnit.Joule, EnergyUnit.ElectronVolt) => new Energy(_value / 1.602176565e-19, EnergyUnit.ElectronVolt),
-                (EnergyUnit.Joule, EnergyUnit.Erg) => new Energy(_value / 1e-7, EnergyUnit.Erg),
-                (EnergyUnit.Joule, EnergyUnit.FootPound) => new Energy(_value / 1.355817948, EnergyUnit.FootPound),
-                (EnergyUnit.Joule, EnergyUnit.GigabritishThermalUnit) => new Energy((_value / 1055.05585262) / 1e9d, EnergyUnit.GigabritishThermalUnit),
-                (EnergyUnit.Joule, EnergyUnit.GigaelectronVolt) => new Energy((_value / 1.602176565e-19) / 1e9d, EnergyUnit.GigaelectronVolt),
-                (EnergyUnit.Joule, EnergyUnit.Gigajoule) => new Energy((_value) / 1e9d, EnergyUnit.Gigajoule),
-                (EnergyUnit.Joule, EnergyUnit.GigawattDay) => new Energy((_value / (24 * 3600d)) / 1e9d, EnergyUnit.GigawattDay),
-                (EnergyUnit.Joule, EnergyUnit.GigawattHour) => new Energy((_value / 3600d) / 1e9d, EnergyUnit.GigawattHour),
-                (EnergyUnit.Joule, EnergyUnit.HorsepowerHour) => new Energy(_value / 2.6845195377e6, EnergyUnit.HorsepowerHour),
-                (EnergyUnit.Joule, EnergyUnit.KilobritishThermalUnit) => new Energy((_value / 1055.05585262) / 1e3d, EnergyUnit.KilobritishThermalUnit),
-                (EnergyUnit.Joule, EnergyUnit.Kilocalorie) => new Energy((_value / 4.184) / 1e3d, EnergyUnit.Kilocalorie),
-                (EnergyUnit.Joule, EnergyUnit.KiloelectronVolt) => new Energy((_value / 1.602176565e-19) / 1e3d, EnergyUnit.KiloelectronVolt),
-                (EnergyUnit.Joule, EnergyUnit.Kilojoule) => new Energy((_value) / 1e3d, EnergyUnit.Kilojoule),
-                (EnergyUnit.Joule, EnergyUnit.KilowattDay) => new Energy((_value / (24 * 3600d)) / 1e3d, EnergyUnit.KilowattDay),
-                (EnergyUnit.Joule, EnergyUnit.KilowattHour) => new Energy((_value / 3600d) / 1e3d, EnergyUnit.KilowattHour),
-                (EnergyUnit.Joule, EnergyUnit.MegabritishThermalUnit) => new Energy((_value / 1055.05585262) / 1e6d, EnergyUnit.MegabritishThermalUnit),
-                (EnergyUnit.Joule, EnergyUnit.Megacalorie) => new Energy((_value / 4.184) / 1e6d, EnergyUnit.Megacalorie),
-                (EnergyUnit.Joule, EnergyUnit.MegaelectronVolt) => new Energy((_value / 1.602176565e-19) / 1e6d, EnergyUnit.MegaelectronVolt),
-                (EnergyUnit.Joule, EnergyUnit.Megajoule) => new Energy((_value) / 1e6d, EnergyUnit.Megajoule),
-                (EnergyUnit.Joule, EnergyUnit.MegawattDay) => new Energy((_value / (24 * 3600d)) / 1e6d, EnergyUnit.MegawattDay),
-                (EnergyUnit.Joule, EnergyUnit.MegawattHour) => new Energy((_value / 3600d) / 1e6d, EnergyUnit.MegawattHour),
-                (EnergyUnit.Joule, EnergyUnit.Microjoule) => new Energy((_value) / 1e-6d, EnergyUnit.Microjoule),
-                (EnergyUnit.Joule, EnergyUnit.Millijoule) => new Energy((_value) / 1e-3d, EnergyUnit.Millijoule),
-                (EnergyUnit.Joule, EnergyUnit.Nanojoule) => new Energy((_value) / 1e-9d, EnergyUnit.Nanojoule),
-                (EnergyUnit.Joule, EnergyUnit.Petajoule) => new Energy((_value) / 1e15d, EnergyUnit.Petajoule),
-                (EnergyUnit.Joule, EnergyUnit.TeraelectronVolt) => new Energy((_value / 1.602176565e-19) / 1e12d, EnergyUnit.TeraelectronVolt),
-                (EnergyUnit.Joule, EnergyUnit.Terajoule) => new Energy((_value) / 1e12d, EnergyUnit.Terajoule),
-                (EnergyUnit.Joule, EnergyUnit.TerawattDay) => new Energy((_value / (24 * 3600d)) / 1e12d, EnergyUnit.TerawattDay),
-                (EnergyUnit.Joule, EnergyUnit.TerawattHour) => new Energy((_value / 3600d) / 1e12d, EnergyUnit.TerawattHour),
-                (EnergyUnit.Joule, EnergyUnit.ThermEc) => new Energy(_value / 1.05505585262e8, EnergyUnit.ThermEc),
-                (EnergyUnit.Joule, EnergyUnit.ThermImperial) => new Energy(_value / 1.05505585257348e8, EnergyUnit.ThermImperial),
-                (EnergyUnit.Joule, EnergyUnit.ThermUs) => new Energy(_value / 1.054804e8, EnergyUnit.ThermUs),
-                (EnergyUnit.Joule, EnergyUnit.WattDay) => new Energy(_value / (24 * 3600d), EnergyUnit.WattDay),
-                (EnergyUnit.Joule, EnergyUnit.WattHour) => new Energy(_value / 3600d, EnergyUnit.WattHour),
+                (EnergyUnit.Joule, EnergyUnit.BritishThermalUnit) => new Energy(_value * new Fraction(50000000, 52752792631, false), EnergyUnit.BritishThermalUnit),
+                (EnergyUnit.Joule, EnergyUnit.Calorie) => new Energy(_value * new Fraction(125, 523, false), EnergyUnit.Calorie),
+                (EnergyUnit.Joule, EnergyUnit.DecathermEc) => new Energy(_value * new Fraction(50, 52752792631, false), EnergyUnit.DecathermEc),
+                (EnergyUnit.Joule, EnergyUnit.DecathermImperial) => new Energy(_value * new Fraction(25000, 26376396314337, false), EnergyUnit.DecathermImperial),
+                (EnergyUnit.Joule, EnergyUnit.DecathermUs) => new Energy(_value / 1054804000, EnergyUnit.DecathermUs),
+                (EnergyUnit.Joule, EnergyUnit.ElectronVolt) => new Energy(_value * new Fraction(200000000, 320435313, false) * BigInteger.Pow(10, 19), EnergyUnit.ElectronVolt),
+                (EnergyUnit.Joule, EnergyUnit.Erg) => new Energy(_value * 10000000, EnergyUnit.Erg),
+                (EnergyUnit.Joule, EnergyUnit.FootPound) => new Energy(_value * new Fraction(250000000, 338954487, false), EnergyUnit.FootPound),
+                (EnergyUnit.Joule, EnergyUnit.GigabritishThermalUnit) => new Energy(_value / 1055055852620, EnergyUnit.GigabritishThermalUnit),
+                (EnergyUnit.Joule, EnergyUnit.GigaelectronVolt) => new Energy(_value * new Fraction(2000000000000000000, 320435313, false), EnergyUnit.GigaelectronVolt),
+                (EnergyUnit.Joule, EnergyUnit.Gigajoule) => new Energy(_value / 1000000000, EnergyUnit.Gigajoule),
+                (EnergyUnit.Joule, EnergyUnit.GigawattDay) => new Energy(_value / 86400000000000, EnergyUnit.GigawattDay),
+                (EnergyUnit.Joule, EnergyUnit.GigawattHour) => new Energy(_value / 3600000000000, EnergyUnit.GigawattHour),
+                (EnergyUnit.Joule, EnergyUnit.HorsepowerHour) => new Energy(_value * new Fraction(10000, 26845195377, false), EnergyUnit.HorsepowerHour),
+                (EnergyUnit.Joule, EnergyUnit.KilobritishThermalUnit) => new Energy(_value * new Fraction(50000, 52752792631, false), EnergyUnit.KilobritishThermalUnit),
+                (EnergyUnit.Joule, EnergyUnit.Kilocalorie) => new Energy(_value / 4184, EnergyUnit.Kilocalorie),
+                (EnergyUnit.Joule, EnergyUnit.KiloelectronVolt) => new Energy(_value * new Fraction(200000, 320435313, false) * BigInteger.Pow(10, 19), EnergyUnit.KiloelectronVolt),
+                (EnergyUnit.Joule, EnergyUnit.Kilojoule) => new Energy(_value / 1000, EnergyUnit.Kilojoule),
+                (EnergyUnit.Joule, EnergyUnit.KilowattDay) => new Energy(_value / 86400000, EnergyUnit.KilowattDay),
+                (EnergyUnit.Joule, EnergyUnit.KilowattHour) => new Energy(_value / 3600000, EnergyUnit.KilowattHour),
+                (EnergyUnit.Joule, EnergyUnit.MegabritishThermalUnit) => new Energy(_value * new Fraction(50, 52752792631, false), EnergyUnit.MegabritishThermalUnit),
+                (EnergyUnit.Joule, EnergyUnit.Megacalorie) => new Energy(_value / 4184000, EnergyUnit.Megacalorie),
+                (EnergyUnit.Joule, EnergyUnit.MegaelectronVolt) => new Energy(_value * new Fraction(200, 320435313, false) * BigInteger.Pow(10, 19), EnergyUnit.MegaelectronVolt),
+                (EnergyUnit.Joule, EnergyUnit.Megajoule) => new Energy(_value / 1000000, EnergyUnit.Megajoule),
+                (EnergyUnit.Joule, EnergyUnit.MegawattDay) => new Energy(_value / 86400000000, EnergyUnit.MegawattDay),
+                (EnergyUnit.Joule, EnergyUnit.MegawattHour) => new Energy(_value / 3600000000, EnergyUnit.MegawattHour),
+                (EnergyUnit.Joule, EnergyUnit.Microjoule) => new Energy(_value * 1000000, EnergyUnit.Microjoule),
+                (EnergyUnit.Joule, EnergyUnit.Millijoule) => new Energy(_value * 1000, EnergyUnit.Millijoule),
+                (EnergyUnit.Joule, EnergyUnit.Nanojoule) => new Energy(_value * 1000000000, EnergyUnit.Nanojoule),
+                (EnergyUnit.Joule, EnergyUnit.Petajoule) => new Energy(_value / 1000000000000000, EnergyUnit.Petajoule),
+                (EnergyUnit.Joule, EnergyUnit.TeraelectronVolt) => new Energy(_value * new Fraction(2000000000000000, 320435313, false), EnergyUnit.TeraelectronVolt),
+                (EnergyUnit.Joule, EnergyUnit.Terajoule) => new Energy(_value / 1000000000000, EnergyUnit.Terajoule),
+                (EnergyUnit.Joule, EnergyUnit.TerawattDay) => new Energy(_value / 86400000000000000, EnergyUnit.TerawattDay),
+                (EnergyUnit.Joule, EnergyUnit.TerawattHour) => new Energy(_value / 3600000000000000, EnergyUnit.TerawattHour),
+                (EnergyUnit.Joule, EnergyUnit.ThermEc) => new Energy(_value * new Fraction(500, 52752792631, false), EnergyUnit.ThermEc),
+                (EnergyUnit.Joule, EnergyUnit.ThermImperial) => new Energy(_value * new Fraction(250000, 26376396314337, false), EnergyUnit.ThermImperial),
+                (EnergyUnit.Joule, EnergyUnit.ThermUs) => new Energy(_value / 105480400, EnergyUnit.ThermUs),
+                (EnergyUnit.Joule, EnergyUnit.WattDay) => new Energy(_value / 86400, EnergyUnit.WattDay),
+                (EnergyUnit.Joule, EnergyUnit.WattHour) => new Energy(_value / 3600, EnergyUnit.WattHour),
 
                 _ => null
             };

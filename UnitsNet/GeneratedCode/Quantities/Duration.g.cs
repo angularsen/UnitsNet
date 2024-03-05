@@ -21,12 +21,11 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
-using System.Numerics;
-#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+using System.Numerics;
+using Fractions;
 
 #nullable enable
 
@@ -67,7 +66,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        private readonly Fraction _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -107,7 +106,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Duration(double value, DurationUnit unit)
+        public Duration(Fraction value, DurationUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -121,7 +120,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Duration(double value, UnitSystem unitSystem)
+        public Duration(Fraction value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -172,10 +171,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public Fraction Value => _value;
 
         /// <inheritdoc />
-        double IQuantity.Value => _value;
+        Fraction IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -200,57 +199,57 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Day"/>
         /// </summary>
-        public double Days => As(DurationUnit.Day);
+        public Fraction Days => As(DurationUnit.Day);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Hour"/>
         /// </summary>
-        public double Hours => As(DurationUnit.Hour);
+        public Fraction Hours => As(DurationUnit.Hour);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.JulianYear"/>
         /// </summary>
-        public double JulianYears => As(DurationUnit.JulianYear);
+        public Fraction JulianYears => As(DurationUnit.JulianYear);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Microsecond"/>
         /// </summary>
-        public double Microseconds => As(DurationUnit.Microsecond);
+        public Fraction Microseconds => As(DurationUnit.Microsecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Millisecond"/>
         /// </summary>
-        public double Milliseconds => As(DurationUnit.Millisecond);
+        public Fraction Milliseconds => As(DurationUnit.Millisecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Minute"/>
         /// </summary>
-        public double Minutes => As(DurationUnit.Minute);
+        public Fraction Minutes => As(DurationUnit.Minute);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Month30"/>
         /// </summary>
-        public double Months30 => As(DurationUnit.Month30);
+        public Fraction Months30 => As(DurationUnit.Month30);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Nanosecond"/>
         /// </summary>
-        public double Nanoseconds => As(DurationUnit.Nanosecond);
+        public Fraction Nanoseconds => As(DurationUnit.Nanosecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Second"/>
         /// </summary>
-        public double Seconds => As(DurationUnit.Second);
+        public Fraction Seconds => As(DurationUnit.Second);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Week"/>
         /// </summary>
-        public double Weeks => As(DurationUnit.Week);
+        public Fraction Weeks => As(DurationUnit.Week);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Year365"/>
         /// </summary>
-        public double Years365 => As(DurationUnit.Year365);
+        public Fraction Years365 => As(DurationUnit.Year365);
 
         #endregion
 
@@ -318,7 +317,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Day"/>.
         /// </summary>
-        public static Duration FromDays(double value)
+        public static Duration FromDays(Fraction value)
         {
             return new Duration(value, DurationUnit.Day);
         }
@@ -326,7 +325,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Hour"/>.
         /// </summary>
-        public static Duration FromHours(double value)
+        public static Duration FromHours(Fraction value)
         {
             return new Duration(value, DurationUnit.Hour);
         }
@@ -334,7 +333,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.JulianYear"/>.
         /// </summary>
-        public static Duration FromJulianYears(double value)
+        public static Duration FromJulianYears(Fraction value)
         {
             return new Duration(value, DurationUnit.JulianYear);
         }
@@ -342,7 +341,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Microsecond"/>.
         /// </summary>
-        public static Duration FromMicroseconds(double value)
+        public static Duration FromMicroseconds(Fraction value)
         {
             return new Duration(value, DurationUnit.Microsecond);
         }
@@ -350,7 +349,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Millisecond"/>.
         /// </summary>
-        public static Duration FromMilliseconds(double value)
+        public static Duration FromMilliseconds(Fraction value)
         {
             return new Duration(value, DurationUnit.Millisecond);
         }
@@ -358,7 +357,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Minute"/>.
         /// </summary>
-        public static Duration FromMinutes(double value)
+        public static Duration FromMinutes(Fraction value)
         {
             return new Duration(value, DurationUnit.Minute);
         }
@@ -366,7 +365,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Month30"/>.
         /// </summary>
-        public static Duration FromMonths30(double value)
+        public static Duration FromMonths30(Fraction value)
         {
             return new Duration(value, DurationUnit.Month30);
         }
@@ -374,7 +373,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Nanosecond"/>.
         /// </summary>
-        public static Duration FromNanoseconds(double value)
+        public static Duration FromNanoseconds(Fraction value)
         {
             return new Duration(value, DurationUnit.Nanosecond);
         }
@@ -382,7 +381,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Second"/>.
         /// </summary>
-        public static Duration FromSeconds(double value)
+        public static Duration FromSeconds(Fraction value)
         {
             return new Duration(value, DurationUnit.Second);
         }
@@ -390,7 +389,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Week"/>.
         /// </summary>
-        public static Duration FromWeeks(double value)
+        public static Duration FromWeeks(Fraction value)
         {
             return new Duration(value, DurationUnit.Week);
         }
@@ -398,7 +397,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Year365"/>.
         /// </summary>
-        public static Duration FromYears365(double value)
+        public static Duration FromYears365(Fraction value)
         {
             return new Duration(value, DurationUnit.Year365);
         }
@@ -409,7 +408,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Duration unit value.</returns>
-        public static Duration From(double value, DurationUnit fromUnit)
+        public static Duration From(Fraction value, DurationUnit fromUnit)
         {
             return new Duration(value, fromUnit);
         }
@@ -565,7 +564,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static Duration operator -(Duration right)
         {
-            return new Duration(-right.Value, right.Unit);
+            return new Duration(right.Value.Invert(), right.Unit);
         }
 
         /// <summary>Get <see cref="Duration"/> from adding two <see cref="Duration"/>.</summary>
@@ -581,25 +580,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Duration"/> from multiplying value and <see cref="Duration"/>.</summary>
-        public static Duration operator *(double left, Duration right)
+        public static Duration operator *(Fraction left, Duration right)
         {
             return new Duration(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Duration"/> from multiplying value and <see cref="Duration"/>.</summary>
-        public static Duration operator *(Duration left, double right)
+        public static Duration operator *(Duration left, Fraction right)
         {
             return new Duration(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Duration"/> from dividing <see cref="Duration"/> by value.</summary>
-        public static Duration operator /(Duration left, double right)
+        public static Duration operator /(Duration left, Fraction right)
         {
             return new Duration(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Duration"/> by <see cref="Duration"/>.</summary>
-        public static double operator /(Duration left, Duration right)
+        public static Fraction operator /(Duration left, Duration right)
         {
             return left.Seconds / right.Seconds;
         }
@@ -720,27 +719,20 @@ namespace UnitsNet
             return left.Value > right.ToUnit(left.Unit).Value;
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="Duration"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Duration other, Duration tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Duration"/> quantities.</summary>
         public static bool operator ==(Duration left, Duration right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="Duration"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Duration other, Duration tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="Duration"/> quantities.</summary>
         public static bool operator !=(Duration left, Duration right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="Duration"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(Duration other, Duration tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Duration"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is Duration otherQuantity))
@@ -750,14 +742,11 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="Duration"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(Duration other, Duration tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Duration"/> quantities.</summary>
         public bool Equals(Duration other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.IsEquivalentTo(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>Compares the current <see cref="Duration"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
         /// <param name="obj">An object to compare with this instance.</param>
@@ -841,10 +830,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.Comparison.Equals(
+            return UnitsNet.FractionComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: tolerance,
+                tolerance: (Fraction)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -861,7 +850,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(Duration other, Duration tolerance)
         {
-            return UnitsNet.Comparison.Equals(
+            return UnitsNet.FractionComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -874,7 +863,8 @@ namespace UnitsNet
         /// <returns>A hash code for the current Duration.</returns>
         public override int GetHashCode()
         {
-            return new { Info.Name, Value, Unit }.GetHashCode();
+            var valueInBaseUnit = As(BaseUnit);
+            return new { Info.Name, valueInBaseUnit }.GetHashCode();
         }
 
         #endregion
@@ -885,7 +875,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(DurationUnit unit)
+        public Fraction As(DurationUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -894,7 +884,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public Fraction As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -909,7 +899,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        double IQuantity.As(Enum unit)
+        Fraction IQuantity.As(Enum unit)
         {
             if (!(unit is DurationUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DurationUnit)} is supported.", nameof(unit));
@@ -975,28 +965,28 @@ namespace UnitsNet
             Duration? convertedOrNull = (Unit, unit) switch
             {
                 // DurationUnit -> BaseUnit
-                (DurationUnit.Day, DurationUnit.Second) => new Duration(_value * 24 * 3600, DurationUnit.Second),
+                (DurationUnit.Day, DurationUnit.Second) => new Duration(_value * 86400, DurationUnit.Second),
                 (DurationUnit.Hour, DurationUnit.Second) => new Duration(_value * 3600, DurationUnit.Second),
-                (DurationUnit.JulianYear, DurationUnit.Second) => new Duration(_value * 365.25 * 24 * 3600, DurationUnit.Second),
-                (DurationUnit.Microsecond, DurationUnit.Second) => new Duration((_value) * 1e-6d, DurationUnit.Second),
-                (DurationUnit.Millisecond, DurationUnit.Second) => new Duration((_value) * 1e-3d, DurationUnit.Second),
+                (DurationUnit.JulianYear, DurationUnit.Second) => new Duration(_value * 31557600, DurationUnit.Second),
+                (DurationUnit.Microsecond, DurationUnit.Second) => new Duration(_value / 1000000, DurationUnit.Second),
+                (DurationUnit.Millisecond, DurationUnit.Second) => new Duration(_value / 1000, DurationUnit.Second),
                 (DurationUnit.Minute, DurationUnit.Second) => new Duration(_value * 60, DurationUnit.Second),
-                (DurationUnit.Month30, DurationUnit.Second) => new Duration(_value * 30 * 24 * 3600, DurationUnit.Second),
-                (DurationUnit.Nanosecond, DurationUnit.Second) => new Duration((_value) * 1e-9d, DurationUnit.Second),
-                (DurationUnit.Week, DurationUnit.Second) => new Duration(_value * 7 * 24 * 3600, DurationUnit.Second),
-                (DurationUnit.Year365, DurationUnit.Second) => new Duration(_value * 365 * 24 * 3600, DurationUnit.Second),
+                (DurationUnit.Month30, DurationUnit.Second) => new Duration(_value * 2592000, DurationUnit.Second),
+                (DurationUnit.Nanosecond, DurationUnit.Second) => new Duration(_value / 1000000000, DurationUnit.Second),
+                (DurationUnit.Week, DurationUnit.Second) => new Duration(_value * 604800, DurationUnit.Second),
+                (DurationUnit.Year365, DurationUnit.Second) => new Duration(_value * 31536000, DurationUnit.Second),
 
                 // BaseUnit -> DurationUnit
-                (DurationUnit.Second, DurationUnit.Day) => new Duration(_value / (24 * 3600), DurationUnit.Day),
+                (DurationUnit.Second, DurationUnit.Day) => new Duration(_value / 86400, DurationUnit.Day),
                 (DurationUnit.Second, DurationUnit.Hour) => new Duration(_value / 3600, DurationUnit.Hour),
-                (DurationUnit.Second, DurationUnit.JulianYear) => new Duration(_value / (365.25 * 24 * 3600), DurationUnit.JulianYear),
-                (DurationUnit.Second, DurationUnit.Microsecond) => new Duration((_value) / 1e-6d, DurationUnit.Microsecond),
-                (DurationUnit.Second, DurationUnit.Millisecond) => new Duration((_value) / 1e-3d, DurationUnit.Millisecond),
+                (DurationUnit.Second, DurationUnit.JulianYear) => new Duration(_value / 31557600, DurationUnit.JulianYear),
+                (DurationUnit.Second, DurationUnit.Microsecond) => new Duration(_value * 1000000, DurationUnit.Microsecond),
+                (DurationUnit.Second, DurationUnit.Millisecond) => new Duration(_value * 1000, DurationUnit.Millisecond),
                 (DurationUnit.Second, DurationUnit.Minute) => new Duration(_value / 60, DurationUnit.Minute),
-                (DurationUnit.Second, DurationUnit.Month30) => new Duration(_value / (30 * 24 * 3600), DurationUnit.Month30),
-                (DurationUnit.Second, DurationUnit.Nanosecond) => new Duration((_value) / 1e-9d, DurationUnit.Nanosecond),
-                (DurationUnit.Second, DurationUnit.Week) => new Duration(_value / (7 * 24 * 3600), DurationUnit.Week),
-                (DurationUnit.Second, DurationUnit.Year365) => new Duration(_value / (365 * 24 * 3600), DurationUnit.Year365),
+                (DurationUnit.Second, DurationUnit.Month30) => new Duration(_value / 2592000, DurationUnit.Month30),
+                (DurationUnit.Second, DurationUnit.Nanosecond) => new Duration(_value * 1000000000, DurationUnit.Nanosecond),
+                (DurationUnit.Second, DurationUnit.Week) => new Duration(_value / 604800, DurationUnit.Week),
+                (DurationUnit.Second, DurationUnit.Year365) => new Duration(_value / 31536000, DurationUnit.Year365),
 
                 _ => null
             };

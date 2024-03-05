@@ -229,8 +229,8 @@
     {
       "SingularName": "ImperialOunce",
       "PluralName": "ImperialOunces",
-      "FromUnitToBaseFunc": "{x} * 2.8413062499962901241875439064617e-5",
-      "FromBaseToUnitFunc": "{x} / 2.8413062499962901241875439064617e-5",
+      "FromUnitToBaseFunc": "{x} * 2.84130625e-5",
+      "FromBaseToUnitFunc": "{x} / 2.84130625e-5",
       "Localization": [
         {
           "Culture": "en-US",
@@ -264,8 +264,8 @@
     {
       "SingularName": "UsOunce",
       "PluralName": "UsOunces",
-      "FromUnitToBaseFunc": "{x} * 2.957352956253760505068307980135e-5",
-      "FromBaseToUnitFunc": "{x} / 2.957352956253760505068307980135e-5",
+      "FromUnitToBaseFunc": "{x} * 2.95735295625e-5",
+      "FromBaseToUnitFunc": "{x} / 2.95735295625e-5",
       "Localization": [
         {
           "Culture": "en-US",

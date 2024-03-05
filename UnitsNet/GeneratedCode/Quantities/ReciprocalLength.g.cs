@@ -21,12 +21,11 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
-using System.Numerics;
-#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+using System.Numerics;
+using Fractions;
 
 #nullable enable
 
@@ -61,7 +60,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        private readonly Fraction _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -100,7 +99,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public ReciprocalLength(double value, ReciprocalLengthUnit unit)
+        public ReciprocalLength(Fraction value, ReciprocalLengthUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -114,7 +113,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ReciprocalLength(double value, UnitSystem unitSystem)
+        public ReciprocalLength(Fraction value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -165,10 +164,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public Fraction Value => _value;
 
         /// <inheritdoc />
-        double IQuantity.Value => _value;
+        Fraction IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -193,52 +192,52 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseCentimeter"/>
         /// </summary>
-        public double InverseCentimeters => As(ReciprocalLengthUnit.InverseCentimeter);
+        public Fraction InverseCentimeters => As(ReciprocalLengthUnit.InverseCentimeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseFoot"/>
         /// </summary>
-        public double InverseFeet => As(ReciprocalLengthUnit.InverseFoot);
+        public Fraction InverseFeet => As(ReciprocalLengthUnit.InverseFoot);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseInch"/>
         /// </summary>
-        public double InverseInches => As(ReciprocalLengthUnit.InverseInch);
+        public Fraction InverseInches => As(ReciprocalLengthUnit.InverseInch);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseMeter"/>
         /// </summary>
-        public double InverseMeters => As(ReciprocalLengthUnit.InverseMeter);
+        public Fraction InverseMeters => As(ReciprocalLengthUnit.InverseMeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseMicroinch"/>
         /// </summary>
-        public double InverseMicroinches => As(ReciprocalLengthUnit.InverseMicroinch);
+        public Fraction InverseMicroinches => As(ReciprocalLengthUnit.InverseMicroinch);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseMil"/>
         /// </summary>
-        public double InverseMils => As(ReciprocalLengthUnit.InverseMil);
+        public Fraction InverseMils => As(ReciprocalLengthUnit.InverseMil);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseMile"/>
         /// </summary>
-        public double InverseMiles => As(ReciprocalLengthUnit.InverseMile);
+        public Fraction InverseMiles => As(ReciprocalLengthUnit.InverseMile);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseMillimeter"/>
         /// </summary>
-        public double InverseMillimeters => As(ReciprocalLengthUnit.InverseMillimeter);
+        public Fraction InverseMillimeters => As(ReciprocalLengthUnit.InverseMillimeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseUsSurveyFoot"/>
         /// </summary>
-        public double InverseUsSurveyFeet => As(ReciprocalLengthUnit.InverseUsSurveyFoot);
+        public Fraction InverseUsSurveyFeet => As(ReciprocalLengthUnit.InverseUsSurveyFoot);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseYard"/>
         /// </summary>
-        public double InverseYards => As(ReciprocalLengthUnit.InverseYard);
+        public Fraction InverseYards => As(ReciprocalLengthUnit.InverseYard);
 
         #endregion
 
@@ -304,7 +303,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseCentimeter"/>.
         /// </summary>
-        public static ReciprocalLength FromInverseCentimeters(double value)
+        public static ReciprocalLength FromInverseCentimeters(Fraction value)
         {
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseCentimeter);
         }
@@ -312,7 +311,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseFoot"/>.
         /// </summary>
-        public static ReciprocalLength FromInverseFeet(double value)
+        public static ReciprocalLength FromInverseFeet(Fraction value)
         {
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseFoot);
         }
@@ -320,7 +319,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseInch"/>.
         /// </summary>
-        public static ReciprocalLength FromInverseInches(double value)
+        public static ReciprocalLength FromInverseInches(Fraction value)
         {
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseInch);
         }
@@ -328,7 +327,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseMeter"/>.
         /// </summary>
-        public static ReciprocalLength FromInverseMeters(double value)
+        public static ReciprocalLength FromInverseMeters(Fraction value)
         {
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseMeter);
         }
@@ -336,7 +335,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseMicroinch"/>.
         /// </summary>
-        public static ReciprocalLength FromInverseMicroinches(double value)
+        public static ReciprocalLength FromInverseMicroinches(Fraction value)
         {
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseMicroinch);
         }
@@ -344,7 +343,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseMil"/>.
         /// </summary>
-        public static ReciprocalLength FromInverseMils(double value)
+        public static ReciprocalLength FromInverseMils(Fraction value)
         {
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseMil);
         }
@@ -352,7 +351,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseMile"/>.
         /// </summary>
-        public static ReciprocalLength FromInverseMiles(double value)
+        public static ReciprocalLength FromInverseMiles(Fraction value)
         {
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseMile);
         }
@@ -360,7 +359,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseMillimeter"/>.
         /// </summary>
-        public static ReciprocalLength FromInverseMillimeters(double value)
+        public static ReciprocalLength FromInverseMillimeters(Fraction value)
         {
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseMillimeter);
         }
@@ -368,7 +367,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseUsSurveyFoot"/>.
         /// </summary>
-        public static ReciprocalLength FromInverseUsSurveyFeet(double value)
+        public static ReciprocalLength FromInverseUsSurveyFeet(Fraction value)
         {
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseUsSurveyFoot);
         }
@@ -376,7 +375,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseYard"/>.
         /// </summary>
-        public static ReciprocalLength FromInverseYards(double value)
+        public static ReciprocalLength FromInverseYards(Fraction value)
         {
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseYard);
         }
@@ -387,7 +386,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ReciprocalLength unit value.</returns>
-        public static ReciprocalLength From(double value, ReciprocalLengthUnit fromUnit)
+        public static ReciprocalLength From(Fraction value, ReciprocalLengthUnit fromUnit)
         {
             return new ReciprocalLength(value, fromUnit);
         }
@@ -543,7 +542,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static ReciprocalLength operator -(ReciprocalLength right)
         {
-            return new ReciprocalLength(-right.Value, right.Unit);
+            return new ReciprocalLength(right.Value.Invert(), right.Unit);
         }
 
         /// <summary>Get <see cref="ReciprocalLength"/> from adding two <see cref="ReciprocalLength"/>.</summary>
@@ -559,25 +558,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="ReciprocalLength"/> from multiplying value and <see cref="ReciprocalLength"/>.</summary>
-        public static ReciprocalLength operator *(double left, ReciprocalLength right)
+        public static ReciprocalLength operator *(Fraction left, ReciprocalLength right)
         {
             return new ReciprocalLength(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ReciprocalLength"/> from multiplying value and <see cref="ReciprocalLength"/>.</summary>
-        public static ReciprocalLength operator *(ReciprocalLength left, double right)
+        public static ReciprocalLength operator *(ReciprocalLength left, Fraction right)
         {
             return new ReciprocalLength(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ReciprocalLength"/> from dividing <see cref="ReciprocalLength"/> by value.</summary>
-        public static ReciprocalLength operator /(ReciprocalLength left, double right)
+        public static ReciprocalLength operator /(ReciprocalLength left, Fraction right)
         {
             return new ReciprocalLength(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ReciprocalLength"/> by <see cref="ReciprocalLength"/>.</summary>
-        public static double operator /(ReciprocalLength left, ReciprocalLength right)
+        public static Fraction operator /(ReciprocalLength left, ReciprocalLength right)
         {
             return left.InverseMeters / right.InverseMeters;
         }
@@ -590,7 +589,7 @@ namespace UnitsNet
         /// <returns>The corresponding inverse quantity, <see cref="Length"/>.</returns>
         public Length Inverse()
         {
-            return InverseMeters == 0.0 ? Length.Zero : Length.FromMeters(1 / InverseMeters);
+            return Length.FromMeters(InverseMeters.Reciprocal());
         }
 
         /// <summary>Get <see cref="ForcePerLength"/> from <see cref="ReciprocalLength"/> * <see cref="Force"/>.</summary>
@@ -651,27 +650,20 @@ namespace UnitsNet
             return left.Value > right.ToUnit(left.Unit).Value;
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="ReciprocalLength"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(ReciprocalLength other, ReciprocalLength tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="ReciprocalLength"/> quantities.</summary>
         public static bool operator ==(ReciprocalLength left, ReciprocalLength right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="ReciprocalLength"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(ReciprocalLength other, ReciprocalLength tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="ReciprocalLength"/> quantities.</summary>
         public static bool operator !=(ReciprocalLength left, ReciprocalLength right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="ReciprocalLength"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(ReciprocalLength other, ReciprocalLength tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="ReciprocalLength"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is ReciprocalLength otherQuantity))
@@ -681,14 +673,11 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="ReciprocalLength"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(ReciprocalLength other, ReciprocalLength tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="ReciprocalLength"/> quantities.</summary>
         public bool Equals(ReciprocalLength other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.IsEquivalentTo(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>Compares the current <see cref="ReciprocalLength"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
         /// <param name="obj">An object to compare with this instance.</param>
@@ -772,10 +761,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.Comparison.Equals(
+            return UnitsNet.FractionComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: tolerance,
+                tolerance: (Fraction)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -792,7 +781,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(ReciprocalLength other, ReciprocalLength tolerance)
         {
-            return UnitsNet.Comparison.Equals(
+            return UnitsNet.FractionComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -805,7 +794,8 @@ namespace UnitsNet
         /// <returns>A hash code for the current ReciprocalLength.</returns>
         public override int GetHashCode()
         {
-            return new { Info.Name, Value, Unit }.GetHashCode();
+            var valueInBaseUnit = As(BaseUnit);
+            return new { Info.Name, valueInBaseUnit }.GetHashCode();
         }
 
         #endregion
@@ -816,7 +806,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(ReciprocalLengthUnit unit)
+        public Fraction As(ReciprocalLengthUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -825,7 +815,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public Fraction As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -840,7 +830,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        double IQuantity.As(Enum unit)
+        Fraction IQuantity.As(Enum unit)
         {
             if (!(unit is ReciprocalLengthUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ReciprocalLengthUnit)} is supported.", nameof(unit));
@@ -906,26 +896,26 @@ namespace UnitsNet
             ReciprocalLength? convertedOrNull = (Unit, unit) switch
             {
                 // ReciprocalLengthUnit -> BaseUnit
-                (ReciprocalLengthUnit.InverseCentimeter, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(_value * 1e2, ReciprocalLengthUnit.InverseMeter),
-                (ReciprocalLengthUnit.InverseFoot, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(_value / 0.3048, ReciprocalLengthUnit.InverseMeter),
-                (ReciprocalLengthUnit.InverseInch, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(_value / 2.54e-2, ReciprocalLengthUnit.InverseMeter),
-                (ReciprocalLengthUnit.InverseMicroinch, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(_value / 2.54e-8, ReciprocalLengthUnit.InverseMeter),
-                (ReciprocalLengthUnit.InverseMil, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(_value / 2.54e-5, ReciprocalLengthUnit.InverseMeter),
-                (ReciprocalLengthUnit.InverseMile, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(_value / 1609.344, ReciprocalLengthUnit.InverseMeter),
-                (ReciprocalLengthUnit.InverseMillimeter, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(_value * 1e3, ReciprocalLengthUnit.InverseMeter),
-                (ReciprocalLengthUnit.InverseUsSurveyFoot, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(_value * 3937 / 1200, ReciprocalLengthUnit.InverseMeter),
-                (ReciprocalLengthUnit.InverseYard, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(_value / 0.9144, ReciprocalLengthUnit.InverseMeter),
+                (ReciprocalLengthUnit.InverseCentimeter, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(_value * 100, ReciprocalLengthUnit.InverseMeter),
+                (ReciprocalLengthUnit.InverseFoot, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(_value * new Fraction(1250, 381, false), ReciprocalLengthUnit.InverseMeter),
+                (ReciprocalLengthUnit.InverseInch, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(_value * new Fraction(5000, 127, false), ReciprocalLengthUnit.InverseMeter),
+                (ReciprocalLengthUnit.InverseMicroinch, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(_value * new Fraction(5000000000, 127, false), ReciprocalLengthUnit.InverseMeter),
+                (ReciprocalLengthUnit.InverseMil, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(_value * new Fraction(5000000, 127, false), ReciprocalLengthUnit.InverseMeter),
+                (ReciprocalLengthUnit.InverseMile, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(_value * new Fraction(125, 201168, false), ReciprocalLengthUnit.InverseMeter),
+                (ReciprocalLengthUnit.InverseMillimeter, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(_value * 1000, ReciprocalLengthUnit.InverseMeter),
+                (ReciprocalLengthUnit.InverseUsSurveyFoot, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(_value * new Fraction(3937, 1200, false), ReciprocalLengthUnit.InverseMeter),
+                (ReciprocalLengthUnit.InverseYard, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(_value * new Fraction(1250, 1143, false), ReciprocalLengthUnit.InverseMeter),
 
                 // BaseUnit -> ReciprocalLengthUnit
-                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseCentimeter) => new ReciprocalLength(_value / 1e2, ReciprocalLengthUnit.InverseCentimeter),
-                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseFoot) => new ReciprocalLength(_value * 0.3048, ReciprocalLengthUnit.InverseFoot),
-                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseInch) => new ReciprocalLength(_value * 2.54e-2, ReciprocalLengthUnit.InverseInch),
-                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseMicroinch) => new ReciprocalLength(_value * 2.54e-8, ReciprocalLengthUnit.InverseMicroinch),
-                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseMil) => new ReciprocalLength(_value * 2.54e-5, ReciprocalLengthUnit.InverseMil),
-                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseMile) => new ReciprocalLength(_value * 1609.344, ReciprocalLengthUnit.InverseMile),
-                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseMillimeter) => new ReciprocalLength(_value / 1e3, ReciprocalLengthUnit.InverseMillimeter),
-                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseUsSurveyFoot) => new ReciprocalLength(_value * 1200 / 3937, ReciprocalLengthUnit.InverseUsSurveyFoot),
-                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseYard) => new ReciprocalLength(_value * 0.9144, ReciprocalLengthUnit.InverseYard),
+                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseCentimeter) => new ReciprocalLength(_value / 100, ReciprocalLengthUnit.InverseCentimeter),
+                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseFoot) => new ReciprocalLength(_value * new Fraction(381, 1250, false), ReciprocalLengthUnit.InverseFoot),
+                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseInch) => new ReciprocalLength(_value * new Fraction(127, 5000, false), ReciprocalLengthUnit.InverseInch),
+                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseMicroinch) => new ReciprocalLength(_value * new Fraction(127, 5000000000, false), ReciprocalLengthUnit.InverseMicroinch),
+                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseMil) => new ReciprocalLength(_value * new Fraction(127, 5000000, false), ReciprocalLengthUnit.InverseMil),
+                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseMile) => new ReciprocalLength(_value * new Fraction(201168, 125, false), ReciprocalLengthUnit.InverseMile),
+                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseMillimeter) => new ReciprocalLength(_value / 1000, ReciprocalLengthUnit.InverseMillimeter),
+                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseUsSurveyFoot) => new ReciprocalLength(_value * new Fraction(1200, 3937, false), ReciprocalLengthUnit.InverseUsSurveyFoot),
+                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseYard) => new ReciprocalLength(_value * new Fraction(1143, 1250, false), ReciprocalLengthUnit.InverseYard),
 
                 _ => null
             };

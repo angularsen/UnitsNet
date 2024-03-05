@@ -21,12 +21,11 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
-using System.Numerics;
-#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+using System.Numerics;
+using Fractions;
 
 #nullable enable
 
@@ -55,7 +54,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        private readonly Fraction _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -90,7 +89,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Ratio(double value, RatioUnit unit)
+        public Ratio(Fraction value, RatioUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -104,7 +103,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Ratio(double value, UnitSystem unitSystem)
+        public Ratio(Fraction value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -155,10 +154,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public Fraction Value => _value;
 
         /// <inheritdoc />
-        double IQuantity.Value => _value;
+        Fraction IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -183,32 +182,32 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RatioUnit.DecimalFraction"/>
         /// </summary>
-        public double DecimalFractions => As(RatioUnit.DecimalFraction);
+        public Fraction DecimalFractions => As(RatioUnit.DecimalFraction);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RatioUnit.PartPerBillion"/>
         /// </summary>
-        public double PartsPerBillion => As(RatioUnit.PartPerBillion);
+        public Fraction PartsPerBillion => As(RatioUnit.PartPerBillion);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RatioUnit.PartPerMillion"/>
         /// </summary>
-        public double PartsPerMillion => As(RatioUnit.PartPerMillion);
+        public Fraction PartsPerMillion => As(RatioUnit.PartPerMillion);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RatioUnit.PartPerThousand"/>
         /// </summary>
-        public double PartsPerThousand => As(RatioUnit.PartPerThousand);
+        public Fraction PartsPerThousand => As(RatioUnit.PartPerThousand);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RatioUnit.PartPerTrillion"/>
         /// </summary>
-        public double PartsPerTrillion => As(RatioUnit.PartPerTrillion);
+        public Fraction PartsPerTrillion => As(RatioUnit.PartPerTrillion);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RatioUnit.Percent"/>
         /// </summary>
-        public double Percent => As(RatioUnit.Percent);
+        public Fraction Percent => As(RatioUnit.Percent);
 
         #endregion
 
@@ -266,7 +265,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Ratio"/> from <see cref="RatioUnit.DecimalFraction"/>.
         /// </summary>
-        public static Ratio FromDecimalFractions(double value)
+        public static Ratio FromDecimalFractions(Fraction value)
         {
             return new Ratio(value, RatioUnit.DecimalFraction);
         }
@@ -274,7 +273,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Ratio"/> from <see cref="RatioUnit.PartPerBillion"/>.
         /// </summary>
-        public static Ratio FromPartsPerBillion(double value)
+        public static Ratio FromPartsPerBillion(Fraction value)
         {
             return new Ratio(value, RatioUnit.PartPerBillion);
         }
@@ -282,7 +281,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Ratio"/> from <see cref="RatioUnit.PartPerMillion"/>.
         /// </summary>
-        public static Ratio FromPartsPerMillion(double value)
+        public static Ratio FromPartsPerMillion(Fraction value)
         {
             return new Ratio(value, RatioUnit.PartPerMillion);
         }
@@ -290,7 +289,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Ratio"/> from <see cref="RatioUnit.PartPerThousand"/>.
         /// </summary>
-        public static Ratio FromPartsPerThousand(double value)
+        public static Ratio FromPartsPerThousand(Fraction value)
         {
             return new Ratio(value, RatioUnit.PartPerThousand);
         }
@@ -298,7 +297,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Ratio"/> from <see cref="RatioUnit.PartPerTrillion"/>.
         /// </summary>
-        public static Ratio FromPartsPerTrillion(double value)
+        public static Ratio FromPartsPerTrillion(Fraction value)
         {
             return new Ratio(value, RatioUnit.PartPerTrillion);
         }
@@ -306,7 +305,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Ratio"/> from <see cref="RatioUnit.Percent"/>.
         /// </summary>
-        public static Ratio FromPercent(double value)
+        public static Ratio FromPercent(Fraction value)
         {
             return new Ratio(value, RatioUnit.Percent);
         }
@@ -317,7 +316,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Ratio unit value.</returns>
-        public static Ratio From(double value, RatioUnit fromUnit)
+        public static Ratio From(Fraction value, RatioUnit fromUnit)
         {
             return new Ratio(value, fromUnit);
         }
@@ -473,7 +472,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static Ratio operator -(Ratio right)
         {
-            return new Ratio(-right.Value, right.Unit);
+            return new Ratio(right.Value.Invert(), right.Unit);
         }
 
         /// <summary>Get <see cref="Ratio"/> from adding two <see cref="Ratio"/>.</summary>
@@ -489,25 +488,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Ratio"/> from multiplying value and <see cref="Ratio"/>.</summary>
-        public static Ratio operator *(double left, Ratio right)
+        public static Ratio operator *(Fraction left, Ratio right)
         {
             return new Ratio(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Ratio"/> from multiplying value and <see cref="Ratio"/>.</summary>
-        public static Ratio operator *(Ratio left, double right)
+        public static Ratio operator *(Ratio left, Fraction right)
         {
             return new Ratio(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Ratio"/> from dividing <see cref="Ratio"/> by value.</summary>
-        public static Ratio operator /(Ratio left, double right)
+        public static Ratio operator /(Ratio left, Fraction right)
         {
             return new Ratio(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Ratio"/> by <see cref="Ratio"/>.</summary>
-        public static double operator /(Ratio left, Ratio right)
+        public static Fraction operator /(Ratio left, Ratio right)
         {
             return left.DecimalFractions / right.DecimalFractions;
         }
@@ -556,27 +555,20 @@ namespace UnitsNet
             return left.Value > right.ToUnit(left.Unit).Value;
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="Ratio"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Ratio other, Ratio tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Ratio"/> quantities.</summary>
         public static bool operator ==(Ratio left, Ratio right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="Ratio"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Ratio other, Ratio tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="Ratio"/> quantities.</summary>
         public static bool operator !=(Ratio left, Ratio right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="Ratio"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(Ratio other, Ratio tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Ratio"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is Ratio otherQuantity))
@@ -586,14 +578,11 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="Ratio"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(Ratio other, Ratio tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Ratio"/> quantities.</summary>
         public bool Equals(Ratio other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.IsEquivalentTo(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>Compares the current <see cref="Ratio"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
         /// <param name="obj">An object to compare with this instance.</param>
@@ -677,10 +666,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.Comparison.Equals(
+            return UnitsNet.FractionComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: tolerance,
+                tolerance: (Fraction)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -697,7 +686,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(Ratio other, Ratio tolerance)
         {
-            return UnitsNet.Comparison.Equals(
+            return UnitsNet.FractionComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -710,7 +699,8 @@ namespace UnitsNet
         /// <returns>A hash code for the current Ratio.</returns>
         public override int GetHashCode()
         {
-            return new { Info.Name, Value, Unit }.GetHashCode();
+            var valueInBaseUnit = As(BaseUnit);
+            return new { Info.Name, valueInBaseUnit }.GetHashCode();
         }
 
         #endregion
@@ -721,7 +711,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(RatioUnit unit)
+        public Fraction As(RatioUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -730,7 +720,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public Fraction As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -745,7 +735,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        double IQuantity.As(Enum unit)
+        Fraction IQuantity.As(Enum unit)
         {
             if (!(unit is RatioUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RatioUnit)} is supported.", nameof(unit));
@@ -811,18 +801,18 @@ namespace UnitsNet
             Ratio? convertedOrNull = (Unit, unit) switch
             {
                 // RatioUnit -> BaseUnit
-                (RatioUnit.PartPerBillion, RatioUnit.DecimalFraction) => new Ratio(_value / 1e9, RatioUnit.DecimalFraction),
-                (RatioUnit.PartPerMillion, RatioUnit.DecimalFraction) => new Ratio(_value / 1e6, RatioUnit.DecimalFraction),
-                (RatioUnit.PartPerThousand, RatioUnit.DecimalFraction) => new Ratio(_value / 1e3, RatioUnit.DecimalFraction),
-                (RatioUnit.PartPerTrillion, RatioUnit.DecimalFraction) => new Ratio(_value / 1e12, RatioUnit.DecimalFraction),
-                (RatioUnit.Percent, RatioUnit.DecimalFraction) => new Ratio(_value / 1e2, RatioUnit.DecimalFraction),
+                (RatioUnit.PartPerBillion, RatioUnit.DecimalFraction) => new Ratio(_value / 1000000000, RatioUnit.DecimalFraction),
+                (RatioUnit.PartPerMillion, RatioUnit.DecimalFraction) => new Ratio(_value / 1000000, RatioUnit.DecimalFraction),
+                (RatioUnit.PartPerThousand, RatioUnit.DecimalFraction) => new Ratio(_value / 1000, RatioUnit.DecimalFraction),
+                (RatioUnit.PartPerTrillion, RatioUnit.DecimalFraction) => new Ratio(_value / 1000000000000, RatioUnit.DecimalFraction),
+                (RatioUnit.Percent, RatioUnit.DecimalFraction) => new Ratio(_value / 100, RatioUnit.DecimalFraction),
 
                 // BaseUnit -> RatioUnit
-                (RatioUnit.DecimalFraction, RatioUnit.PartPerBillion) => new Ratio(_value * 1e9, RatioUnit.PartPerBillion),
-                (RatioUnit.DecimalFraction, RatioUnit.PartPerMillion) => new Ratio(_value * 1e6, RatioUnit.PartPerMillion),
-                (RatioUnit.DecimalFraction, RatioUnit.PartPerThousand) => new Ratio(_value * 1e3, RatioUnit.PartPerThousand),
-                (RatioUnit.DecimalFraction, RatioUnit.PartPerTrillion) => new Ratio(_value * 1e12, RatioUnit.PartPerTrillion),
-                (RatioUnit.DecimalFraction, RatioUnit.Percent) => new Ratio(_value * 1e2, RatioUnit.Percent),
+                (RatioUnit.DecimalFraction, RatioUnit.PartPerBillion) => new Ratio(_value * 1000000000, RatioUnit.PartPerBillion),
+                (RatioUnit.DecimalFraction, RatioUnit.PartPerMillion) => new Ratio(_value * 1000000, RatioUnit.PartPerMillion),
+                (RatioUnit.DecimalFraction, RatioUnit.PartPerThousand) => new Ratio(_value * 1000, RatioUnit.PartPerThousand),
+                (RatioUnit.DecimalFraction, RatioUnit.PartPerTrillion) => new Ratio(_value * 1000000000000, RatioUnit.PartPerTrillion),
+                (RatioUnit.DecimalFraction, RatioUnit.Percent) => new Ratio(_value * 100, RatioUnit.Percent),
 
                 _ => null
             };
