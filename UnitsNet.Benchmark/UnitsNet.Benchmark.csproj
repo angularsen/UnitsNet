@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net6.0;net48</TargetFrameworks>
+    <TargetFramework>net8.0</TargetFramework>
     <Version>4.0.0.0</Version>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
     <AssemblyTitle>UnitsNet.Benchmark</AssemblyTitle>
