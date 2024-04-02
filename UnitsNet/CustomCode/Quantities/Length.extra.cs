@@ -141,6 +141,18 @@ namespace UnitsNet
             return Duration.FromSeconds(length.Meters/speed.MetersPerSecond);
         }
 
+        /// <summary>Get <see cref="ReciprocalLength"/> from <see cref="Length"/> divided by <see cref="Area"/>.</summary>
+        public static ReciprocalLength operator /(Length length, Area area)
+        {
+            return ReciprocalLength.FromInverseMeters(length.Meters / area.SquareMeters);
+        }
+
+        /// <summary>Get <see cref="ReciprocalArea"/> from <see cref="Length"/> divided by <see cref="Volume"/>.</summary>
+        public static ReciprocalArea operator /(Length length, Volume volume)
+        {
+            return ReciprocalArea.FromInverseSquareMeters(length.Meters / volume.CubicMeters);
+        }
+
         /// <summary>Get <see cref="Area"/> from <see cref="Length"/> times <see cref="Length"/>.</summary>
         public static Area operator *(Length length1, Length length2)
         {
