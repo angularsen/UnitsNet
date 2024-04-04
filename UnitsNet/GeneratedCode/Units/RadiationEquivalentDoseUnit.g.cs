@@ -23,17 +23,19 @@ namespace UnitsNet.Units
     // Disable missing XML comment warnings for the generated unit enums.
     #pragma warning disable 1591
 
-    public enum IrradiationUnit
+    public enum RadiationEquivalentDoseUnit
     {
-        BtuPerSquareFoot = 15,
-        JoulePerSquareCentimeter = 1,
-        JoulePerSquareMeter = 2,
-        JoulePerSquareMillimeter = 3,
-        KilobtuPerSquareFoot = 9,
-        KilojoulePerSquareMeter = 4,
-        KilowattHourPerSquareMeter = 5,
-        MillijoulePerSquareCentimeter = 6,
-        WattHourPerSquareMeter = 7,
+        Microsievert = 1,
+        MilliroentgenEquivalentMan = 2,
+        Millisievert = 7,
+        Nanosievert = 5,
+        RoentgenEquivalentMan = 4,
+
+        /// <summary>
+        ///     The sievert is a unit in the International System of Units (SI) intended to represent the stochastic health risk of ionizing radiation, which is defined as the probability of causing radiation-induced cancer and genetic damage.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Sievert</remarks>
+        Sievert = 9,
     }
 
     #pragma warning restore 1591
