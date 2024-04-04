@@ -29,7 +29,7 @@ namespace CodeGen.Generators.NanoFrameworkGen
     <title>Units.NET {_quantity.Name} - nanoFramework</title>
     <authors>Andreas Gullberg Larsen,nanoframework</authors>
     <owners>UnitsNet</owners>
-    <license type=""expression"">MIT</license>
+    <license type=""expression"">MIT-0</license>
     <projectUrl>https://github.com/angularsen/UnitsNet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Adds {_quantity.Name} units for Units.NET on .NET nanoFramework. For .NET or .NET Core, use UnitsNet instead.</description>
