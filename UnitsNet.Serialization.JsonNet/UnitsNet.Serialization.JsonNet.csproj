@@ -48,7 +48,6 @@
 
   <!-- NuGet references that work for both signed and unsigned -->
   <ItemGroup>
-    <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
