@@ -46,6 +46,7 @@ namespace UnitsNet
         IMultiplyOperators<Area, Pressure, Force>,
         IMultiplyOperators<Area, SpecificWeight, ForcePerLength>,
         IDivisionOperators<Area, Duration, KinematicViscosity>,
+        IMultiplyOperators<Area, ReciprocalLength, Length>,
         IDivisionOperators<Area, Length, Length>,
         IMultiplyOperators<Area, Density, LinearDensity>,
         IMultiplyOperators<Area, Luminance, LuminousIntensity>,
@@ -53,8 +54,10 @@ namespace UnitsNet
         IMultiplyOperators<Area, MassFlux, MassFlow>,
         IMultiplyOperators<Area, HeatFlux, Power>,
         IMultiplyOperators<Area, ReciprocalArea, Ratio>,
+        IDivisionOperators<Area, Volume, ReciprocalLength>,
         IMultiplyOperators<Area, ForcePerLength, Torque>,
         IMultiplyOperators<Area, Length, Volume>,
+        IDivisionOperators<Area, ReciprocalLength, Volume>,
         IMultiplyOperators<Area, Speed, VolumeFlow>,
 #endif
         IComparable,
@@ -687,6 +690,12 @@ namespace UnitsNet
             return KinematicViscosity.FromSquareMetersPerSecond(area.SquareMeters / duration.Seconds);
         }
 
+        /// <summary>Get <see cref="Length"/> from <see cref="Area"/> * <see cref="ReciprocalLength"/>.</summary>
+        public static Length operator *(Area area, ReciprocalLength reciprocalLength)
+        {
+            return Length.FromMeters(area.SquareMeters * reciprocalLength.InverseMeters);
+        }
+
         /// <summary>Get <see cref="Length"/> from <see cref="Area"/> / <see cref="Length"/>.</summary>
         public static Length operator /(Area area, Length length)
         {
@@ -729,6 +738,12 @@ namespace UnitsNet
             return Ratio.FromDecimalFractions(area.SquareMeters * reciprocalArea.InverseSquareMeters);
         }
 
+        /// <summary>Get <see cref="ReciprocalLength"/> from <see cref="Area"/> / <see cref="Volume"/>.</summary>
+        public static ReciprocalLength operator /(Area area, Volume volume)
+        {
+            return ReciprocalLength.FromInverseMeters(area.SquareMeters / volume.CubicMeters);
+        }
+
         /// <summary>Get <see cref="Torque"/> from <see cref="Area"/> * <see cref="ForcePerLength"/>.</summary>
         public static Torque operator *(Area area, ForcePerLength forcePerLength)
         {
@@ -739,6 +754,12 @@ namespace UnitsNet
         public static Volume operator *(Area area, Length length)
         {
             return Volume.FromCubicMeters(area.SquareMeters * length.Meters);
+        }
+
+        /// <summary>Get <see cref="Volume"/> from <see cref="Area"/> / <see cref="ReciprocalLength"/>.</summary>
+        public static Volume operator /(Area area, ReciprocalLength reciprocalLength)
+        {
+            return Volume.FromCubicMeters(area.SquareMeters / reciprocalLength.InverseMeters);
         }
 
         /// <summary>Get <see cref="VolumeFlow"/> from <see cref="Area"/> * <see cref="Speed"/>.</summary>

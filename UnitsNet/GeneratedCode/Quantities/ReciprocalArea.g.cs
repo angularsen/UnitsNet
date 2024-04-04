@@ -45,6 +45,7 @@ namespace UnitsNet
     public readonly partial struct ReciprocalArea :
         IArithmeticQuantity<ReciprocalArea, ReciprocalAreaUnit>,
 #if NET7_0_OR_GREATER
+        IMultiplyOperators<ReciprocalArea, Volume, Length>,
         IMultiplyOperators<ReciprocalArea, Force, Pressure>,
         IMultiplyOperators<ReciprocalArea, Area, Ratio>,
         IMultiplyOperators<ReciprocalArea, Length, ReciprocalLength>,
@@ -606,6 +607,12 @@ namespace UnitsNet
         public Area Inverse()
         {
             return InverseSquareMeters == 0.0 ? Area.Zero : Area.FromSquareMeters(1 / InverseSquareMeters);
+        }
+
+        /// <summary>Get <see cref="Length"/> from <see cref="ReciprocalArea"/> * <see cref="Volume"/>.</summary>
+        public static Length operator *(ReciprocalArea reciprocalArea, Volume volume)
+        {
+            return Length.FromMeters(reciprocalArea.InverseSquareMeters * volume.CubicMeters);
         }
 
         /// <summary>Get <see cref="Pressure"/> from <see cref="ReciprocalArea"/> * <see cref="Force"/>.</summary>
