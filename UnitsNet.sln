@@ -40,6 +40,7 @@ ProjectSection(SolutionItems) = preProject
 	UnitsNet.sln.DotSettings = UnitsNet.sln.DotSettings
 	UnitsNet.snk = UnitsNet.snk
 	azure-pipelines.yml = azure-pipelines.yml
+	Directory.Packages.props = Directory.Packages.props
 EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{71C6EF60-7E52-4DF4-BA93-5FAF6D89AEC6}"
