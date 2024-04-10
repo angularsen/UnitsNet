@@ -86,7 +86,7 @@ namespace UnitsNet.Tests
             Assert.Equal(RadiationEquivalentDoseUnit.Sievert, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new RadiationEquivalentDose(double.PositiveInfinity, RadiationEquivalentDoseUnit.Sievert));
@@ -96,7 +96,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new RadiationEquivalentDose(double.NaN, RadiationEquivalentDoseUnit.Sievert));
@@ -180,7 +180,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromSieverts_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => RadiationEquivalentDose.FromSieverts(double.PositiveInfinity));
@@ -190,7 +190,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromSieverts_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => RadiationEquivalentDose.FromSieverts(double.NaN));
@@ -597,8 +597,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, RadiationEquivalentDoseUnit.Sievert, 1, RadiationEquivalentDoseUnit.Sievert, true)]  // Same value and unit.
         [InlineData(1, RadiationEquivalentDoseUnit.Sievert, 2, RadiationEquivalentDoseUnit.Sievert, false)] // Different value.
-        [InlineData(2, RadiationEquivalentDoseUnit.Sievert, 1, RadiationEquivalentDoseUnit.Microsievert, false)] // Different value and unit.
-        [InlineData(1, RadiationEquivalentDoseUnit.Sievert, 1, RadiationEquivalentDoseUnit.Microsievert, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, RadiationEquivalentDoseUnit unitA, double valueB, RadiationEquivalentDoseUnit unitB, bool expectEqual)
         {
             var a = new RadiationEquivalentDose(valueA, unitA);
@@ -907,7 +905,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = RadiationEquivalentDose.FromSieverts(1.0);
-            Assert.Equal(new {RadiationEquivalentDose.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(RadiationEquivalentDose.Info.Name, quantity.Sieverts);
+            #else
+            var expected = new {RadiationEquivalentDose.Info.Name, valueInBaseUnit = quantity.Sieverts}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

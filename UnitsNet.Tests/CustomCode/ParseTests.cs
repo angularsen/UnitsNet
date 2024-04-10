@@ -39,10 +39,10 @@ namespace UnitsNet.Tests
         [InlineData("1 kg", typeof(FormatException))] // Wrong measurement type.
         [InlineData("1ft monkey 1in", typeof(FormatException))] // Invalid separator between two valid measurements.
         [InlineData("1ft 1invalid", typeof(FormatException))] // Valid
-        public void ParseLength_InvalidString_USEnglish_ThrowsException(string s, Type expectedExceptionType)
+        public void ParseLength_InvalidString_USEnglish_ThrowsException(string? s, Type expectedExceptionType)
         {
             var usEnglish = CultureInfo.GetCultureInfo("en-US");
-            Assert.Throws(expectedExceptionType, () => Length.Parse(s, usEnglish));
+            Assert.Throws(expectedExceptionType, () => Length.Parse(s!, usEnglish));
         }
 
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
@@ -125,10 +125,10 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData("kg", typeof(UnitNotFoundException))]
         [InlineData(null, typeof(ArgumentNullException))]
-        public void ParseLengthUnitUsEnglish_ThrowsExceptionOnInvalidString(string s, Type expectedExceptionType)
+        public void ParseLengthUnitUsEnglish_ThrowsExceptionOnInvalidString(string? s, Type expectedExceptionType)
         {
             var usEnglish = CultureInfo.GetCultureInfo("en-US");
-            Assert.Throws(expectedExceptionType, () => Length.ParseUnit(s, usEnglish));
+            Assert.Throws(expectedExceptionType, () => Length.ParseUnit(s!, usEnglish));
         }
 
         [Theory]
@@ -137,7 +137,7 @@ namespace UnitsNet.Tests
         [InlineData("2 kg", false)]
         [InlineData(null, false)]
         [InlineData("foo", false)]
-        public void TryParseLengthUnitUsEnglish(string s, bool expected)
+        public void TryParseLengthUnitUsEnglish(string? s, bool expected)
         {
             CultureInfo usEnglish = CultureInfo.GetCultureInfo("en-US");
             bool actual = Length.TryParse(s, usEnglish, out Length _);

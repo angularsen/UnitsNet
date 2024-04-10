@@ -32,6 +32,14 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiation
     /// </summary>
     public static class NumberToIrradiationExtensions
     {
+        /// <inheritdoc cref="Irradiation.FromBtusPerSquareFoot(QuantityValue)" />
+        public static Irradiation BtusPerSquareFoot<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Irradiation.FromBtusPerSquareFoot(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Irradiation.FromJoulesPerSquareCentimeter(QuantityValue)" />
         public static Irradiation JoulesPerSquareCentimeter<T>(this T value)
             where T : notnull
@@ -55,6 +63,14 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiation
             , INumber<T>
 #endif
             => Irradiation.FromJoulesPerSquareMillimeter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Irradiation.FromKilobtusPerSquareFoot(QuantityValue)" />
+        public static Irradiation KilobtusPerSquareFoot<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Irradiation.FromKilobtusPerSquareFoot(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Irradiation.FromKilojoulesPerSquareMeter(QuantityValue)" />
         public static Irradiation KilojoulesPerSquareMeter<T>(this T value)

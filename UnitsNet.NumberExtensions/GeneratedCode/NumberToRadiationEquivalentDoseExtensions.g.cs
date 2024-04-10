@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToRadiationEquivalentDose
     /// </summary>
     public static class NumberToRadiationEquivalentDoseExtensions
     {
-        /// <inheritdoc cref="RadiationEquivalentDose.FromMicrosieverts(double)" />
+        /// <inheritdoc cref="RadiationEquivalentDose.FromMicrosieverts(QuantityValue)" />
         public static RadiationEquivalentDose Microsieverts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToRadiationEquivalentDose
 #endif
             => RadiationEquivalentDose.FromMicrosieverts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RadiationEquivalentDose.FromMilliroentgensEquivalentMan(double)" />
+        /// <inheritdoc cref="RadiationEquivalentDose.FromMilliroentgensEquivalentMan(QuantityValue)" />
         public static RadiationEquivalentDose MilliroentgensEquivalentMan<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToRadiationEquivalentDose
 #endif
             => RadiationEquivalentDose.FromMilliroentgensEquivalentMan(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RadiationEquivalentDose.FromMillisieverts(double)" />
+        /// <inheritdoc cref="RadiationEquivalentDose.FromMillisieverts(QuantityValue)" />
         public static RadiationEquivalentDose Millisieverts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToRadiationEquivalentDose
 #endif
             => RadiationEquivalentDose.FromMillisieverts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RadiationEquivalentDose.FromNanosieverts(double)" />
+        /// <inheritdoc cref="RadiationEquivalentDose.FromNanosieverts(QuantityValue)" />
         public static RadiationEquivalentDose Nanosieverts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToRadiationEquivalentDose
 #endif
             => RadiationEquivalentDose.FromNanosieverts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RadiationEquivalentDose.FromRoentgensEquivalentMan(double)" />
+        /// <inheritdoc cref="RadiationEquivalentDose.FromRoentgensEquivalentMan(QuantityValue)" />
         public static RadiationEquivalentDose RoentgensEquivalentMan<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToRadiationEquivalentDose
 #endif
             => RadiationEquivalentDose.FromRoentgensEquivalentMan(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RadiationEquivalentDose.FromSieverts(double)" />
+        /// <inheritdoc cref="RadiationEquivalentDose.FromSieverts(QuantityValue)" />
         public static RadiationEquivalentDose Sieverts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

@@ -119,38 +119,38 @@ public class DefaultQuantityValueFormatterTests
     /// </remarks>
     public class StandardFormatsCompatibilityTests
     {
-        public static IEnumerable GeneralFormatsToTest =>
+        public static IEnumerable<object[]> GeneralFormatsToTest =>
             from stringFormat in GeneralFormats
             from valueToTest in TerminatingFractions
             from cultureToTest in TestCulturesNames
             select new object[] { valueToTest, stringFormat, cultureToTest };
 
-        public static IEnumerable FixedPointFormatsToTest =>
+        public static IEnumerable<object[]> FixedPointFormatsToTest =>
             from stringFormat in FixedPointFormats
             from valueToTest in TerminatingFractions
             from cultureToTest in TestCulturesNames
             select new object[] { valueToTest, stringFormat, cultureToTest };
 
-        public static IEnumerable NumberFormatsToTest =>
+        public static IEnumerable<object[]> NumberFormatsToTest =>
             from stringFormat in NumberFormats
             from valueToTest in TerminatingFractions
             from cultureToTest in TestCulturesNames
             select new object[] { valueToTest, stringFormat, cultureToTest };
 
-        public static IEnumerable ScientificFormatsToTest =>
+        public static IEnumerable<object[]> ScientificFormatsToTest =>
             from stringFormat in ScientificFormats
             from valueToTest in TerminatingFractions
             from cultureToTest in TestCulturesNames
             select new object[] { valueToTest, stringFormat, cultureToTest };
 
         // this currency format is currently implemented via the ToDouble().ToString(..) so there isn't any need to test with the cultures
-        public static IEnumerable CurrencyFormatsToTest =>
+        public static IEnumerable<object[]> CurrencyFormatsToTest =>
             from stringFormat in CurrencyFormats
             from valueToTest in TerminatingFractions
             select new object[] { valueToTest, stringFormat };
 
         // the percentage format is currently implemented via the ToDouble().ToString(..) so there isn't any need to test with the cultures
-        public static IEnumerable PercentageFormatsToTest =>
+        public static IEnumerable<object[]> PercentageFormatsToTest =>
             from stringFormat in PercentageFormats
             from valueToTest in TerminatingFractions
             select new object[] { valueToTest, stringFormat };

@@ -41,10 +41,12 @@ namespace UnitsNet
         IArithmeticQuantity<Volume, VolumeUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<Volume, Molarity, AmountOfSubstance>,
+        IMultiplyOperators<Volume, ReciprocalLength, Area>,
         IDivisionOperators<Volume, Length, Area>,
         IMultiplyOperators<Volume, Length, AreaMomentOfInertia>,
         IDivisionOperators<Volume, VolumeFlow, Duration>,
         IMultiplyOperators<Volume, EnergyDensity, Energy>,
+        IMultiplyOperators<Volume, ReciprocalArea, Length>,
         IDivisionOperators<Volume, Area, Length>,
         IMultiplyOperators<Volume, Density, Mass>,
         IMultiplyOperators<Volume, MassConcentration, Mass>,
@@ -1297,6 +1299,12 @@ namespace UnitsNet
             return AmountOfSubstance.FromMoles(volume.CubicMeters * molarity.MolesPerCubicMeter);
         }
 
+        /// <summary>Get <see cref="Area"/> from <see cref="Volume"/> * <see cref="ReciprocalLength"/>.</summary>
+        public static Area operator *(Volume volume, ReciprocalLength reciprocalLength)
+        {
+            return Area.FromSquareMeters(volume.CubicMeters * reciprocalLength.InverseMeters);
+        }
+
         /// <summary>Get <see cref="Area"/> from <see cref="Volume"/> / <see cref="Length"/>.</summary>
         public static Area operator /(Volume volume, Length length)
         {
@@ -1319,6 +1327,12 @@ namespace UnitsNet
         public static Energy operator *(Volume volume, EnergyDensity energyDensity)
         {
             return Energy.FromJoules(volume.CubicMeters * energyDensity.JoulesPerCubicMeter);
+        }
+
+        /// <summary>Get <see cref="Length"/> from <see cref="Volume"/> * <see cref="ReciprocalArea"/>.</summary>
+        public static Length operator *(Volume volume, ReciprocalArea reciprocalArea)
+        {
+            return Length.FromMeters(volume.CubicMeters * reciprocalArea.InverseSquareMeters);
         }
 
         /// <summary>Get <see cref="Length"/> from <see cref="Volume"/> / <see cref="Area"/>.</summary>
@@ -1643,7 +1657,7 @@ namespace UnitsNet
                 (VolumeUnit.CubicDecimeter, VolumeUnit.CubicMeter) => new Volume(_value / 1000, VolumeUnit.CubicMeter),
                 (VolumeUnit.CubicFoot, VolumeUnit.CubicMeter) => new Volume(_value * new QuantityValue(55306341, 1953125000, false), VolumeUnit.CubicMeter),
                 (VolumeUnit.CubicHectometer, VolumeUnit.CubicMeter) => new Volume(_value * 1000000, VolumeUnit.CubicMeter),
-                (VolumeUnit.CubicInch, VolumeUnit.CubicMeter) => new Volume(_value * new QuantityValue(16387, 1000000000, false), VolumeUnit.CubicMeter),
+                (VolumeUnit.CubicInch, VolumeUnit.CubicMeter) => new Volume(_value * new QuantityValue(2048383, 125000000000, false), VolumeUnit.CubicMeter),
                 (VolumeUnit.CubicKilometer, VolumeUnit.CubicMeter) => new Volume(_value * 1000000000, VolumeUnit.CubicMeter),
                 (VolumeUnit.CubicMicrometer, VolumeUnit.CubicMeter) => new Volume(_value / 1000000000000000000, VolumeUnit.CubicMeter),
                 (VolumeUnit.CubicMile, VolumeUnit.CubicMeter) => new Volume(_value * new QuantityValue(208409091272029, 50000, false), VolumeUnit.CubicMeter),
@@ -1698,7 +1712,7 @@ namespace UnitsNet
                 (VolumeUnit.CubicMeter, VolumeUnit.CubicDecimeter) => new Volume(_value * 1000, VolumeUnit.CubicDecimeter),
                 (VolumeUnit.CubicMeter, VolumeUnit.CubicFoot) => new Volume(_value * new QuantityValue(1953125000, 55306341, false), VolumeUnit.CubicFoot),
                 (VolumeUnit.CubicMeter, VolumeUnit.CubicHectometer) => new Volume(_value / 1000000, VolumeUnit.CubicHectometer),
-                (VolumeUnit.CubicMeter, VolumeUnit.CubicInch) => new Volume(_value * new QuantityValue(1000000000, 16387, false), VolumeUnit.CubicInch),
+                (VolumeUnit.CubicMeter, VolumeUnit.CubicInch) => new Volume(_value * new QuantityValue(125000000000, 2048383, false), VolumeUnit.CubicInch),
                 (VolumeUnit.CubicMeter, VolumeUnit.CubicKilometer) => new Volume(_value / 1000000000, VolumeUnit.CubicKilometer),
                 (VolumeUnit.CubicMeter, VolumeUnit.CubicMicrometer) => new Volume(_value * 1000000000000000000, VolumeUnit.CubicMicrometer),
                 (VolumeUnit.CubicMeter, VolumeUnit.CubicMile) => new Volume(_value * new QuantityValue(50000, 208409091272029, false), VolumeUnit.CubicMile),
