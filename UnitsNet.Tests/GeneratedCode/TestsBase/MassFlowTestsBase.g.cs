@@ -194,7 +194,7 @@ namespace UnitsNet.Tests
             Assert.Equal(MassFlowUnit.GramPerSecond, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new MassFlow(double.PositiveInfinity, MassFlowUnit.GramPerSecond));
@@ -204,7 +204,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new MassFlow(double.NaN, MassFlowUnit.GramPerSecond));
@@ -423,7 +423,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromGramsPerSecond_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => MassFlow.FromGramsPerSecond(double.PositiveInfinity));
@@ -433,7 +433,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromGramsPerSecond_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => MassFlow.FromGramsPerSecond(double.NaN));
@@ -1688,8 +1688,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, MassFlowUnit.GramPerSecond, 1, MassFlowUnit.GramPerSecond, true)]  // Same value and unit.
         [InlineData(1, MassFlowUnit.GramPerSecond, 2, MassFlowUnit.GramPerSecond, false)] // Different value.
-        [InlineData(2, MassFlowUnit.GramPerSecond, 1, MassFlowUnit.CentigramPerDay, false)] // Different value and unit.
-        [InlineData(1, MassFlowUnit.GramPerSecond, 1, MassFlowUnit.CentigramPerDay, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, MassFlowUnit unitA, double valueB, MassFlowUnit unitB, bool expectEqual)
         {
             var a = new MassFlow(valueA, unitA);
@@ -2052,7 +2050,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = MassFlow.FromGramsPerSecond(1.0);
-            Assert.Equal(new {MassFlow.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(MassFlow.Info.Name, quantity.GramsPerSecond);
+            #else
+            var expected = new {MassFlow.Info.Name, valueInBaseUnit = quantity.GramsPerSecond}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

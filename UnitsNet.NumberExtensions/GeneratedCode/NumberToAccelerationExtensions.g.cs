@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToAcceleration
     /// </summary>
     public static class NumberToAccelerationExtensions
     {
-        /// <inheritdoc cref="Acceleration.FromCentimetersPerSecondSquared(double)" />
+        /// <inheritdoc cref="Acceleration.FromCentimetersPerSecondSquared(QuantityValue)" />
         public static Acceleration CentimetersPerSecondSquared<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToAcceleration
 #endif
             => Acceleration.FromCentimetersPerSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Acceleration.FromDecimetersPerSecondSquared(double)" />
+        /// <inheritdoc cref="Acceleration.FromDecimetersPerSecondSquared(QuantityValue)" />
         public static Acceleration DecimetersPerSecondSquared<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToAcceleration
 #endif
             => Acceleration.FromDecimetersPerSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Acceleration.FromFeetPerSecondSquared(double)" />
+        /// <inheritdoc cref="Acceleration.FromFeetPerSecondSquared(QuantityValue)" />
         public static Acceleration FeetPerSecondSquared<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToAcceleration
 #endif
             => Acceleration.FromFeetPerSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Acceleration.FromInchesPerSecondSquared(double)" />
+        /// <inheritdoc cref="Acceleration.FromInchesPerSecondSquared(QuantityValue)" />
         public static Acceleration InchesPerSecondSquared<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToAcceleration
 #endif
             => Acceleration.FromInchesPerSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Acceleration.FromKilometersPerSecondSquared(double)" />
+        /// <inheritdoc cref="Acceleration.FromKilometersPerSecondSquared(QuantityValue)" />
         public static Acceleration KilometersPerSecondSquared<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToAcceleration
 #endif
             => Acceleration.FromKilometersPerSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Acceleration.FromKnotsPerHour(double)" />
+        /// <inheritdoc cref="Acceleration.FromKnotsPerHour(QuantityValue)" />
         public static Acceleration KnotsPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToAcceleration
 #endif
             => Acceleration.FromKnotsPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Acceleration.FromKnotsPerMinute(double)" />
+        /// <inheritdoc cref="Acceleration.FromKnotsPerMinute(QuantityValue)" />
         public static Acceleration KnotsPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToAcceleration
 #endif
             => Acceleration.FromKnotsPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Acceleration.FromKnotsPerSecond(double)" />
+        /// <inheritdoc cref="Acceleration.FromKnotsPerSecond(QuantityValue)" />
         public static Acceleration KnotsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToAcceleration
 #endif
             => Acceleration.FromKnotsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Acceleration.FromMetersPerSecondSquared(double)" />
+        /// <inheritdoc cref="Acceleration.FromMetersPerSecondSquared(QuantityValue)" />
         public static Acceleration MetersPerSecondSquared<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -104,7 +104,7 @@ namespace UnitsNet.NumberExtensions.NumberToAcceleration
 #endif
             => Acceleration.FromMetersPerSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Acceleration.FromMicrometersPerSecondSquared(double)" />
+        /// <inheritdoc cref="Acceleration.FromMicrometersPerSecondSquared(QuantityValue)" />
         public static Acceleration MicrometersPerSecondSquared<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -112,7 +112,7 @@ namespace UnitsNet.NumberExtensions.NumberToAcceleration
 #endif
             => Acceleration.FromMicrometersPerSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Acceleration.FromMillimetersPerSecondSquared(double)" />
+        /// <inheritdoc cref="Acceleration.FromMillimetersPerSecondSquared(QuantityValue)" />
         public static Acceleration MillimetersPerSecondSquared<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -120,7 +120,7 @@ namespace UnitsNet.NumberExtensions.NumberToAcceleration
 #endif
             => Acceleration.FromMillimetersPerSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Acceleration.FromMillistandardGravity(double)" />
+        /// <inheritdoc cref="Acceleration.FromMillistandardGravity(QuantityValue)" />
         public static Acceleration MillistandardGravity<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -128,7 +128,7 @@ namespace UnitsNet.NumberExtensions.NumberToAcceleration
 #endif
             => Acceleration.FromMillistandardGravity(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Acceleration.FromNanometersPerSecondSquared(double)" />
+        /// <inheritdoc cref="Acceleration.FromNanometersPerSecondSquared(QuantityValue)" />
         public static Acceleration NanometersPerSecondSquared<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -136,7 +136,7 @@ namespace UnitsNet.NumberExtensions.NumberToAcceleration
 #endif
             => Acceleration.FromNanometersPerSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Acceleration.FromStandardGravity(double)" />
+        /// <inheritdoc cref="Acceleration.FromStandardGravity(QuantityValue)" />
         public static Acceleration StandardGravity<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

@@ -134,7 +134,7 @@ namespace UnitsNet.Tests
             Assert.Equal(PressureChangeRateUnit.PascalPerSecond, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new PressureChangeRate(double.PositiveInfinity, PressureChangeRateUnit.PascalPerSecond));
@@ -144,7 +144,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new PressureChangeRate(double.NaN, PressureChangeRateUnit.PascalPerSecond));
@@ -288,7 +288,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromPascalsPerSecond_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => PressureChangeRate.FromPascalsPerSecond(double.PositiveInfinity));
@@ -298,7 +298,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromPascalsPerSecond_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => PressureChangeRate.FromPascalsPerSecond(double.NaN));
@@ -1641,8 +1641,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, PressureChangeRateUnit.PascalPerSecond, 1, PressureChangeRateUnit.PascalPerSecond, true)]  // Same value and unit.
         [InlineData(1, PressureChangeRateUnit.PascalPerSecond, 2, PressureChangeRateUnit.PascalPerSecond, false)] // Different value.
-        [InlineData(2, PressureChangeRateUnit.PascalPerSecond, 1, PressureChangeRateUnit.AtmospherePerSecond, false)] // Different value and unit.
-        [InlineData(1, PressureChangeRateUnit.PascalPerSecond, 1, PressureChangeRateUnit.AtmospherePerSecond, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, PressureChangeRateUnit unitA, double valueB, PressureChangeRateUnit unitB, bool expectEqual)
         {
             var a = new PressureChangeRate(valueA, unitA);
@@ -1975,7 +1973,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = PressureChangeRate.FromPascalsPerSecond(1.0);
-            Assert.Equal(new {PressureChangeRate.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(PressureChangeRate.Info.Name, quantity.PascalsPerSecond);
+            #else
+            var expected = new {PressureChangeRate.Info.Name, valueInBaseUnit = quantity.PascalsPerSecond}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

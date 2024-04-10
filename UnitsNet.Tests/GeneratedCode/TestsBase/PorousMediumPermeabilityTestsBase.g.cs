@@ -82,7 +82,7 @@ namespace UnitsNet.Tests
             Assert.Equal(PorousMediumPermeabilityUnit.SquareMeter, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new PorousMediumPermeability(double.PositiveInfinity, PorousMediumPermeabilityUnit.SquareMeter));
@@ -92,7 +92,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new PorousMediumPermeability(double.NaN, PorousMediumPermeabilityUnit.SquareMeter));
@@ -171,7 +171,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromSquareMeters_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => PorousMediumPermeability.FromSquareMeters(double.PositiveInfinity));
@@ -181,7 +181,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromSquareMeters_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => PorousMediumPermeability.FromSquareMeters(double.NaN));
@@ -466,8 +466,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, PorousMediumPermeabilityUnit.SquareMeter, 1, PorousMediumPermeabilityUnit.SquareMeter, true)]  // Same value and unit.
         [InlineData(1, PorousMediumPermeabilityUnit.SquareMeter, 2, PorousMediumPermeabilityUnit.SquareMeter, false)] // Different value.
-        [InlineData(2, PorousMediumPermeabilityUnit.SquareMeter, 1, PorousMediumPermeabilityUnit.Darcy, false)] // Different value and unit.
-        [InlineData(1, PorousMediumPermeabilityUnit.SquareMeter, 1, PorousMediumPermeabilityUnit.Darcy, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, PorousMediumPermeabilityUnit unitA, double valueB, PorousMediumPermeabilityUnit unitB, bool expectEqual)
         {
             var a = new PorousMediumPermeability(valueA, unitA);
@@ -774,7 +772,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = PorousMediumPermeability.FromSquareMeters(1.0);
-            Assert.Equal(new {PorousMediumPermeability.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(PorousMediumPermeability.Info.Name, quantity.SquareMeters);
+            #else
+            var expected = new {PorousMediumPermeability.Info.Name, valueInBaseUnit = quantity.SquareMeters}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

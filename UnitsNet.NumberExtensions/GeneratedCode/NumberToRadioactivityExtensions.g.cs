@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
     /// </summary>
     public static class NumberToRadioactivityExtensions
     {
-        /// <inheritdoc cref="Radioactivity.FromBecquerels(double)" />
+        /// <inheritdoc cref="Radioactivity.FromBecquerels(QuantityValue)" />
         public static Radioactivity Becquerels<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
 #endif
             => Radioactivity.FromBecquerels(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Radioactivity.FromCuries(double)" />
+        /// <inheritdoc cref="Radioactivity.FromCuries(QuantityValue)" />
         public static Radioactivity Curies<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
 #endif
             => Radioactivity.FromCuries(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Radioactivity.FromExabecquerels(double)" />
+        /// <inheritdoc cref="Radioactivity.FromExabecquerels(QuantityValue)" />
         public static Radioactivity Exabecquerels<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
 #endif
             => Radioactivity.FromExabecquerels(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Radioactivity.FromGigabecquerels(double)" />
+        /// <inheritdoc cref="Radioactivity.FromGigabecquerels(QuantityValue)" />
         public static Radioactivity Gigabecquerels<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
 #endif
             => Radioactivity.FromGigabecquerels(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Radioactivity.FromGigacuries(double)" />
+        /// <inheritdoc cref="Radioactivity.FromGigacuries(QuantityValue)" />
         public static Radioactivity Gigacuries<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
 #endif
             => Radioactivity.FromGigacuries(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Radioactivity.FromGigarutherfords(double)" />
+        /// <inheritdoc cref="Radioactivity.FromGigarutherfords(QuantityValue)" />
         public static Radioactivity Gigarutherfords<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
 #endif
             => Radioactivity.FromGigarutherfords(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Radioactivity.FromKilobecquerels(double)" />
+        /// <inheritdoc cref="Radioactivity.FromKilobecquerels(QuantityValue)" />
         public static Radioactivity Kilobecquerels<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
 #endif
             => Radioactivity.FromKilobecquerels(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Radioactivity.FromKilocuries(double)" />
+        /// <inheritdoc cref="Radioactivity.FromKilocuries(QuantityValue)" />
         public static Radioactivity Kilocuries<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
 #endif
             => Radioactivity.FromKilocuries(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Radioactivity.FromKilorutherfords(double)" />
+        /// <inheritdoc cref="Radioactivity.FromKilorutherfords(QuantityValue)" />
         public static Radioactivity Kilorutherfords<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -104,7 +104,7 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
 #endif
             => Radioactivity.FromKilorutherfords(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Radioactivity.FromMegabecquerels(double)" />
+        /// <inheritdoc cref="Radioactivity.FromMegabecquerels(QuantityValue)" />
         public static Radioactivity Megabecquerels<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -112,7 +112,7 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
 #endif
             => Radioactivity.FromMegabecquerels(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Radioactivity.FromMegacuries(double)" />
+        /// <inheritdoc cref="Radioactivity.FromMegacuries(QuantityValue)" />
         public static Radioactivity Megacuries<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -120,7 +120,7 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
 #endif
             => Radioactivity.FromMegacuries(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Radioactivity.FromMegarutherfords(double)" />
+        /// <inheritdoc cref="Radioactivity.FromMegarutherfords(QuantityValue)" />
         public static Radioactivity Megarutherfords<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -128,7 +128,7 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
 #endif
             => Radioactivity.FromMegarutherfords(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Radioactivity.FromMicrobecquerels(double)" />
+        /// <inheritdoc cref="Radioactivity.FromMicrobecquerels(QuantityValue)" />
         public static Radioactivity Microbecquerels<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -136,7 +136,7 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
 #endif
             => Radioactivity.FromMicrobecquerels(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Radioactivity.FromMicrocuries(double)" />
+        /// <inheritdoc cref="Radioactivity.FromMicrocuries(QuantityValue)" />
         public static Radioactivity Microcuries<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -144,7 +144,7 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
 #endif
             => Radioactivity.FromMicrocuries(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Radioactivity.FromMicrorutherfords(double)" />
+        /// <inheritdoc cref="Radioactivity.FromMicrorutherfords(QuantityValue)" />
         public static Radioactivity Microrutherfords<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -152,7 +152,7 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
 #endif
             => Radioactivity.FromMicrorutherfords(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Radioactivity.FromMillibecquerels(double)" />
+        /// <inheritdoc cref="Radioactivity.FromMillibecquerels(QuantityValue)" />
         public static Radioactivity Millibecquerels<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -160,7 +160,7 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
 #endif
             => Radioactivity.FromMillibecquerels(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Radioactivity.FromMillicuries(double)" />
+        /// <inheritdoc cref="Radioactivity.FromMillicuries(QuantityValue)" />
         public static Radioactivity Millicuries<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -168,7 +168,7 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
 #endif
             => Radioactivity.FromMillicuries(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Radioactivity.FromMillirutherfords(double)" />
+        /// <inheritdoc cref="Radioactivity.FromMillirutherfords(QuantityValue)" />
         public static Radioactivity Millirutherfords<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -176,7 +176,7 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
 #endif
             => Radioactivity.FromMillirutherfords(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Radioactivity.FromNanobecquerels(double)" />
+        /// <inheritdoc cref="Radioactivity.FromNanobecquerels(QuantityValue)" />
         public static Radioactivity Nanobecquerels<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -184,7 +184,7 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
 #endif
             => Radioactivity.FromNanobecquerels(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Radioactivity.FromNanocuries(double)" />
+        /// <inheritdoc cref="Radioactivity.FromNanocuries(QuantityValue)" />
         public static Radioactivity Nanocuries<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -192,7 +192,7 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
 #endif
             => Radioactivity.FromNanocuries(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Radioactivity.FromNanorutherfords(double)" />
+        /// <inheritdoc cref="Radioactivity.FromNanorutherfords(QuantityValue)" />
         public static Radioactivity Nanorutherfords<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -200,7 +200,7 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
 #endif
             => Radioactivity.FromNanorutherfords(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Radioactivity.FromPetabecquerels(double)" />
+        /// <inheritdoc cref="Radioactivity.FromPetabecquerels(QuantityValue)" />
         public static Radioactivity Petabecquerels<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -208,7 +208,7 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
 #endif
             => Radioactivity.FromPetabecquerels(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Radioactivity.FromPicobecquerels(double)" />
+        /// <inheritdoc cref="Radioactivity.FromPicobecquerels(QuantityValue)" />
         public static Radioactivity Picobecquerels<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -216,7 +216,7 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
 #endif
             => Radioactivity.FromPicobecquerels(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Radioactivity.FromPicocuries(double)" />
+        /// <inheritdoc cref="Radioactivity.FromPicocuries(QuantityValue)" />
         public static Radioactivity Picocuries<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -224,7 +224,7 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
 #endif
             => Radioactivity.FromPicocuries(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Radioactivity.FromPicorutherfords(double)" />
+        /// <inheritdoc cref="Radioactivity.FromPicorutherfords(QuantityValue)" />
         public static Radioactivity Picorutherfords<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -232,7 +232,7 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
 #endif
             => Radioactivity.FromPicorutherfords(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Radioactivity.FromRutherfords(double)" />
+        /// <inheritdoc cref="Radioactivity.FromRutherfords(QuantityValue)" />
         public static Radioactivity Rutherfords<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -240,7 +240,7 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
 #endif
             => Radioactivity.FromRutherfords(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Radioactivity.FromTerabecquerels(double)" />
+        /// <inheritdoc cref="Radioactivity.FromTerabecquerels(QuantityValue)" />
         public static Radioactivity Terabecquerels<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -248,7 +248,7 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
 #endif
             => Radioactivity.FromTerabecquerels(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Radioactivity.FromTeracuries(double)" />
+        /// <inheritdoc cref="Radioactivity.FromTeracuries(QuantityValue)" />
         public static Radioactivity Teracuries<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -256,7 +256,7 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
 #endif
             => Radioactivity.FromTeracuries(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Radioactivity.FromTerarutherfords(double)" />
+        /// <inheritdoc cref="Radioactivity.FromTerarutherfords(QuantityValue)" />
         public static Radioactivity Terarutherfords<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

@@ -25,7 +25,6 @@ using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 using System.Numerics;
-using Fractions;
 
 #nullable enable
 
@@ -50,7 +49,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly Fraction _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -83,7 +82,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public ReactivePower(Fraction value, ReactivePowerUnit unit)
+        public ReactivePower(QuantityValue value, ReactivePowerUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -97,7 +96,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ReactivePower(Fraction value, UnitSystem unitSystem)
+        public ReactivePower(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -148,10 +147,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public Fraction Value => _value;
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
-        Fraction IQuantity.Value => _value;
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -176,22 +175,22 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReactivePowerUnit.GigavoltampereReactive"/>
         /// </summary>
-        public Fraction GigavoltamperesReactive => As(ReactivePowerUnit.GigavoltampereReactive);
+        public QuantityValue GigavoltamperesReactive => As(ReactivePowerUnit.GigavoltampereReactive);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReactivePowerUnit.KilovoltampereReactive"/>
         /// </summary>
-        public Fraction KilovoltamperesReactive => As(ReactivePowerUnit.KilovoltampereReactive);
+        public QuantityValue KilovoltamperesReactive => As(ReactivePowerUnit.KilovoltampereReactive);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReactivePowerUnit.MegavoltampereReactive"/>
         /// </summary>
-        public Fraction MegavoltamperesReactive => As(ReactivePowerUnit.MegavoltampereReactive);
+        public QuantityValue MegavoltamperesReactive => As(ReactivePowerUnit.MegavoltampereReactive);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReactivePowerUnit.VoltampereReactive"/>
         /// </summary>
-        public Fraction VoltamperesReactive => As(ReactivePowerUnit.VoltampereReactive);
+        public QuantityValue VoltamperesReactive => As(ReactivePowerUnit.VoltampereReactive);
 
         #endregion
 
@@ -245,7 +244,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReactivePower"/> from <see cref="ReactivePowerUnit.GigavoltampereReactive"/>.
         /// </summary>
-        public static ReactivePower FromGigavoltamperesReactive(Fraction value)
+        public static ReactivePower FromGigavoltamperesReactive(QuantityValue value)
         {
             return new ReactivePower(value, ReactivePowerUnit.GigavoltampereReactive);
         }
@@ -253,7 +252,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReactivePower"/> from <see cref="ReactivePowerUnit.KilovoltampereReactive"/>.
         /// </summary>
-        public static ReactivePower FromKilovoltamperesReactive(Fraction value)
+        public static ReactivePower FromKilovoltamperesReactive(QuantityValue value)
         {
             return new ReactivePower(value, ReactivePowerUnit.KilovoltampereReactive);
         }
@@ -261,7 +260,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReactivePower"/> from <see cref="ReactivePowerUnit.MegavoltampereReactive"/>.
         /// </summary>
-        public static ReactivePower FromMegavoltamperesReactive(Fraction value)
+        public static ReactivePower FromMegavoltamperesReactive(QuantityValue value)
         {
             return new ReactivePower(value, ReactivePowerUnit.MegavoltampereReactive);
         }
@@ -269,7 +268,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReactivePower"/> from <see cref="ReactivePowerUnit.VoltampereReactive"/>.
         /// </summary>
-        public static ReactivePower FromVoltamperesReactive(Fraction value)
+        public static ReactivePower FromVoltamperesReactive(QuantityValue value)
         {
             return new ReactivePower(value, ReactivePowerUnit.VoltampereReactive);
         }
@@ -280,7 +279,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ReactivePower unit value.</returns>
-        public static ReactivePower From(Fraction value, ReactivePowerUnit fromUnit)
+        public static ReactivePower From(QuantityValue value, ReactivePowerUnit fromUnit)
         {
             return new ReactivePower(value, fromUnit);
         }
@@ -436,7 +435,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static ReactivePower operator -(ReactivePower right)
         {
-            return new ReactivePower(right.Value.Invert(), right.Unit);
+            return new ReactivePower(-right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ReactivePower"/> from adding two <see cref="ReactivePower"/>.</summary>
@@ -452,25 +451,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="ReactivePower"/> from multiplying value and <see cref="ReactivePower"/>.</summary>
-        public static ReactivePower operator *(Fraction left, ReactivePower right)
+        public static ReactivePower operator *(QuantityValue left, ReactivePower right)
         {
             return new ReactivePower(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ReactivePower"/> from multiplying value and <see cref="ReactivePower"/>.</summary>
-        public static ReactivePower operator *(ReactivePower left, Fraction right)
+        public static ReactivePower operator *(ReactivePower left, QuantityValue right)
         {
             return new ReactivePower(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ReactivePower"/> from dividing <see cref="ReactivePower"/> by value.</summary>
-        public static ReactivePower operator /(ReactivePower left, Fraction right)
+        public static ReactivePower operator /(ReactivePower left, QuantityValue right)
         {
             return new ReactivePower(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ReactivePower"/> by <see cref="ReactivePower"/>.</summary>
-        public static Fraction operator /(ReactivePower left, ReactivePower right)
+        public static QuantityValue operator /(ReactivePower left, ReactivePower right)
         {
             return left.VoltamperesReactive / right.VoltamperesReactive;
         }
@@ -529,7 +528,7 @@ namespace UnitsNet
         /// <summary>Indicates strict equality of two <see cref="ReactivePower"/> quantities.</summary>
         public bool Equals(ReactivePower other)
         {
-            return _value.IsEquivalentTo(other.As(this.Unit));
+            return _value.Equals(other.As(this.Unit));
         }
 
         /// <summary>Compares the current <see cref="ReactivePower"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
@@ -614,10 +613,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: (Fraction)tolerance,
+                tolerance: (QuantityValue)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -634,7 +633,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(ReactivePower other, ReactivePower tolerance)
         {
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -648,7 +647,11 @@ namespace UnitsNet
         public override int GetHashCode()
         {
             var valueInBaseUnit = As(BaseUnit);
+            #if NET7_0_OR_GREATER
+            return HashCode.Combine(Info.Name, valueInBaseUnit);
+            #else
             return new { Info.Name, valueInBaseUnit }.GetHashCode();
+            #endif
         }
 
         #endregion
@@ -659,7 +662,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public Fraction As(ReactivePowerUnit unit)
+        public QuantityValue As(ReactivePowerUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -668,7 +671,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public Fraction As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -683,7 +686,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        Fraction IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
             if (!(unit is ReactivePowerUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ReactivePowerUnit)} is supported.", nameof(unit));

@@ -238,7 +238,7 @@ namespace UnitsNet.Tests
             Assert.Equal(PowerDensityUnit.WattPerCubicMeter, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new PowerDensity(double.PositiveInfinity, PowerDensityUnit.WattPerCubicMeter));
@@ -248,7 +248,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new PowerDensity(double.NaN, PowerDensityUnit.WattPerCubicMeter));
@@ -522,7 +522,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromWattsPerCubicMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => PowerDensity.FromWattsPerCubicMeter(double.PositiveInfinity));
@@ -532,7 +532,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromWattsPerCubicMeter_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => PowerDensity.FromWattsPerCubicMeter(double.NaN));
@@ -1743,8 +1743,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, PowerDensityUnit.WattPerCubicMeter, 1, PowerDensityUnit.WattPerCubicMeter, true)]  // Same value and unit.
         [InlineData(1, PowerDensityUnit.WattPerCubicMeter, 2, PowerDensityUnit.WattPerCubicMeter, false)] // Different value.
-        [InlineData(2, PowerDensityUnit.WattPerCubicMeter, 1, PowerDensityUnit.DecawattPerCubicFoot, false)] // Different value and unit.
-        [InlineData(1, PowerDensityUnit.WattPerCubicMeter, 1, PowerDensityUnit.DecawattPerCubicFoot, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, PowerDensityUnit unitA, double valueB, PowerDensityUnit unitB, bool expectEqual)
         {
             var a = new PowerDensity(valueA, unitA);
@@ -2129,7 +2127,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = PowerDensity.FromWattsPerCubicMeter(1.0);
-            Assert.Equal(new {PowerDensity.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(PowerDensity.Info.Name, quantity.WattsPerCubicMeter);
+            #else
+            var expected = new {PowerDensity.Info.Name, valueInBaseUnit = quantity.WattsPerCubicMeter}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

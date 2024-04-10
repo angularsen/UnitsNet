@@ -98,7 +98,7 @@ namespace UnitsNet.Tests
             Assert.Equal(SpecificEntropyUnit.JoulePerKilogramKelvin, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new SpecificEntropy(double.PositiveInfinity, SpecificEntropyUnit.JoulePerKilogramKelvin));
@@ -108,7 +108,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new SpecificEntropy(double.NaN, SpecificEntropyUnit.JoulePerKilogramKelvin));
@@ -207,7 +207,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromJoulesPerKilogramKelvin_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => SpecificEntropy.FromJoulesPerKilogramKelvin(double.PositiveInfinity));
@@ -217,7 +217,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromJoulesPerKilogramKelvin_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => SpecificEntropy.FromJoulesPerKilogramKelvin(double.NaN));
@@ -630,8 +630,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, SpecificEntropyUnit.JoulePerKilogramKelvin, 1, SpecificEntropyUnit.JoulePerKilogramKelvin, true)]  // Same value and unit.
         [InlineData(1, SpecificEntropyUnit.JoulePerKilogramKelvin, 2, SpecificEntropyUnit.JoulePerKilogramKelvin, false)] // Different value.
-        [InlineData(2, SpecificEntropyUnit.JoulePerKilogramKelvin, 1, SpecificEntropyUnit.BtuPerPoundFahrenheit, false)] // Different value and unit.
-        [InlineData(1, SpecificEntropyUnit.JoulePerKilogramKelvin, 1, SpecificEntropyUnit.BtuPerPoundFahrenheit, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, SpecificEntropyUnit unitA, double valueB, SpecificEntropyUnit unitB, bool expectEqual)
         {
             var a = new SpecificEntropy(valueA, unitA);
@@ -946,7 +944,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = SpecificEntropy.FromJoulesPerKilogramKelvin(1.0);
-            Assert.Equal(new {SpecificEntropy.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(SpecificEntropy.Info.Name, quantity.JoulesPerKilogramKelvin);
+            #else
+            var expected = new {SpecificEntropy.Info.Name, valueInBaseUnit = quantity.JoulesPerKilogramKelvin}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

@@ -25,7 +25,6 @@ using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 using System.Numerics;
-using Fractions;
 
 #nullable enable
 
@@ -53,7 +52,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly Fraction _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -83,7 +82,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public MagneticFlux(Fraction value, MagneticFluxUnit unit)
+        public MagneticFlux(QuantityValue value, MagneticFluxUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -97,7 +96,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public MagneticFlux(Fraction value, UnitSystem unitSystem)
+        public MagneticFlux(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -148,10 +147,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public Fraction Value => _value;
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
-        Fraction IQuantity.Value => _value;
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -176,7 +175,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MagneticFluxUnit.Weber"/>
         /// </summary>
-        public Fraction Webers => As(MagneticFluxUnit.Weber);
+        public QuantityValue Webers => As(MagneticFluxUnit.Weber);
 
         #endregion
 
@@ -224,7 +223,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MagneticFlux"/> from <see cref="MagneticFluxUnit.Weber"/>.
         /// </summary>
-        public static MagneticFlux FromWebers(Fraction value)
+        public static MagneticFlux FromWebers(QuantityValue value)
         {
             return new MagneticFlux(value, MagneticFluxUnit.Weber);
         }
@@ -235,7 +234,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>MagneticFlux unit value.</returns>
-        public static MagneticFlux From(Fraction value, MagneticFluxUnit fromUnit)
+        public static MagneticFlux From(QuantityValue value, MagneticFluxUnit fromUnit)
         {
             return new MagneticFlux(value, fromUnit);
         }
@@ -391,7 +390,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static MagneticFlux operator -(MagneticFlux right)
         {
-            return new MagneticFlux(right.Value.Invert(), right.Unit);
+            return new MagneticFlux(-right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="MagneticFlux"/> from adding two <see cref="MagneticFlux"/>.</summary>
@@ -407,25 +406,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="MagneticFlux"/> from multiplying value and <see cref="MagneticFlux"/>.</summary>
-        public static MagneticFlux operator *(Fraction left, MagneticFlux right)
+        public static MagneticFlux operator *(QuantityValue left, MagneticFlux right)
         {
             return new MagneticFlux(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="MagneticFlux"/> from multiplying value and <see cref="MagneticFlux"/>.</summary>
-        public static MagneticFlux operator *(MagneticFlux left, Fraction right)
+        public static MagneticFlux operator *(MagneticFlux left, QuantityValue right)
         {
             return new MagneticFlux(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="MagneticFlux"/> from dividing <see cref="MagneticFlux"/> by value.</summary>
-        public static MagneticFlux operator /(MagneticFlux left, Fraction right)
+        public static MagneticFlux operator /(MagneticFlux left, QuantityValue right)
         {
             return new MagneticFlux(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="MagneticFlux"/> by <see cref="MagneticFlux"/>.</summary>
-        public static Fraction operator /(MagneticFlux left, MagneticFlux right)
+        public static QuantityValue operator /(MagneticFlux left, MagneticFlux right)
         {
             return left.Webers / right.Webers;
         }
@@ -484,7 +483,7 @@ namespace UnitsNet
         /// <summary>Indicates strict equality of two <see cref="MagneticFlux"/> quantities.</summary>
         public bool Equals(MagneticFlux other)
         {
-            return _value.IsEquivalentTo(other.As(this.Unit));
+            return _value.Equals(other.As(this.Unit));
         }
 
         /// <summary>Compares the current <see cref="MagneticFlux"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
@@ -569,10 +568,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: (Fraction)tolerance,
+                tolerance: (QuantityValue)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -589,7 +588,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(MagneticFlux other, MagneticFlux tolerance)
         {
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -603,7 +602,11 @@ namespace UnitsNet
         public override int GetHashCode()
         {
             var valueInBaseUnit = As(BaseUnit);
+            #if NET7_0_OR_GREATER
+            return HashCode.Combine(Info.Name, valueInBaseUnit);
+            #else
             return new { Info.Name, valueInBaseUnit }.GetHashCode();
+            #endif
         }
 
         #endregion
@@ -614,7 +617,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public Fraction As(MagneticFluxUnit unit)
+        public QuantityValue As(MagneticFluxUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -623,7 +626,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public Fraction As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -638,7 +641,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        Fraction IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
             if (!(unit is MagneticFluxUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MagneticFluxUnit)} is supported.", nameof(unit));

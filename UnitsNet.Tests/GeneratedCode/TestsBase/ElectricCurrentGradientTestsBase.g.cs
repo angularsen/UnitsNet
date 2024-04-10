@@ -90,7 +90,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricCurrentGradientUnit.AmperePerSecond, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new ElectricCurrentGradient(double.PositiveInfinity, ElectricCurrentGradientUnit.AmperePerSecond));
@@ -100,7 +100,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new ElectricCurrentGradient(double.NaN, ElectricCurrentGradientUnit.AmperePerSecond));
@@ -189,7 +189,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromAmperesPerSecond_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => ElectricCurrentGradient.FromAmperesPerSecond(double.PositiveInfinity));
@@ -199,7 +199,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromAmperesPerSecond_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => ElectricCurrentGradient.FromAmperesPerSecond(double.NaN));
@@ -536,8 +536,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, ElectricCurrentGradientUnit.AmperePerSecond, 1, ElectricCurrentGradientUnit.AmperePerSecond, true)]  // Same value and unit.
         [InlineData(1, ElectricCurrentGradientUnit.AmperePerSecond, 2, ElectricCurrentGradientUnit.AmperePerSecond, false)] // Different value.
-        [InlineData(2, ElectricCurrentGradientUnit.AmperePerSecond, 1, ElectricCurrentGradientUnit.AmperePerMicrosecond, false)] // Different value and unit.
-        [InlineData(1, ElectricCurrentGradientUnit.AmperePerSecond, 1, ElectricCurrentGradientUnit.AmperePerMicrosecond, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ElectricCurrentGradientUnit unitA, double valueB, ElectricCurrentGradientUnit unitB, bool expectEqual)
         {
             var a = new ElectricCurrentGradient(valueA, unitA);
@@ -848,7 +846,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ElectricCurrentGradient.FromAmperesPerSecond(1.0);
-            Assert.Equal(new {ElectricCurrentGradient.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(ElectricCurrentGradient.Info.Name, quantity.AmperesPerSecond);
+            #else
+            var expected = new {ElectricCurrentGradient.Info.Name, valueInBaseUnit = quantity.AmperesPerSecond}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

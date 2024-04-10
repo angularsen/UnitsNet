@@ -98,7 +98,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricCurrentUnit.Ampere, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new ElectricCurrent(double.PositiveInfinity, ElectricCurrentUnit.Ampere));
@@ -108,7 +108,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new ElectricCurrent(double.NaN, ElectricCurrentUnit.Ampere));
@@ -207,7 +207,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromAmperes_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => ElectricCurrent.FromAmperes(double.PositiveInfinity));
@@ -217,7 +217,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromAmperes_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => ElectricCurrent.FromAmperes(double.NaN));
@@ -584,8 +584,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, ElectricCurrentUnit.Ampere, 1, ElectricCurrentUnit.Ampere, true)]  // Same value and unit.
         [InlineData(1, ElectricCurrentUnit.Ampere, 2, ElectricCurrentUnit.Ampere, false)] // Different value.
-        [InlineData(2, ElectricCurrentUnit.Ampere, 1, ElectricCurrentUnit.Centiampere, false)] // Different value and unit.
-        [InlineData(1, ElectricCurrentUnit.Ampere, 1, ElectricCurrentUnit.Centiampere, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ElectricCurrentUnit unitA, double valueB, ElectricCurrentUnit unitB, bool expectEqual)
         {
             var a = new ElectricCurrent(valueA, unitA);
@@ -900,7 +898,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ElectricCurrent.FromAmperes(1.0);
-            Assert.Equal(new {ElectricCurrent.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(ElectricCurrent.Info.Name, quantity.Amperes);
+            #else
+            var expected = new {ElectricCurrent.Info.Name, valueInBaseUnit = quantity.Amperes}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

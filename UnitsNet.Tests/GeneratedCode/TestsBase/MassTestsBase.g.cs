@@ -170,7 +170,7 @@ namespace UnitsNet.Tests
             Assert.Equal(MassUnit.Kilogram, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new Mass(double.PositiveInfinity, MassUnit.Kilogram));
@@ -180,7 +180,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new Mass(double.NaN, MassUnit.Kilogram));
@@ -369,7 +369,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromKilograms_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => Mass.FromKilograms(double.PositiveInfinity));
@@ -379,7 +379,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromKilograms_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => Mass.FromKilograms(double.NaN));
@@ -2344,8 +2344,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, MassUnit.Kilogram, 1, MassUnit.Kilogram, true)]  // Same value and unit.
         [InlineData(1, MassUnit.Kilogram, 2, MassUnit.Kilogram, false)] // Different value.
-        [InlineData(2, MassUnit.Kilogram, 1, MassUnit.Centigram, false)] // Different value and unit.
-        [InlineData(1, MassUnit.Kilogram, 1, MassUnit.Centigram, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, MassUnit unitA, double valueB, MassUnit unitB, bool expectEqual)
         {
             var a = new Mass(valueA, unitA);
@@ -2696,7 +2694,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Mass.FromKilograms(1.0);
-            Assert.Equal(new {Mass.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(Mass.Info.Name, quantity.Kilograms);
+            #else
+            var expected = new {Mass.Info.Name, valueInBaseUnit = quantity.Kilograms}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

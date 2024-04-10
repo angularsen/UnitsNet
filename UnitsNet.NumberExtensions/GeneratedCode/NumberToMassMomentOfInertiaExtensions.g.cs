@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
     /// </summary>
     public static class NumberToMassMomentOfInertiaExtensions
     {
-        /// <inheritdoc cref="MassMomentOfInertia.FromGramSquareCentimeters(double)" />
+        /// <inheritdoc cref="MassMomentOfInertia.FromGramSquareCentimeters(QuantityValue)" />
         public static MassMomentOfInertia GramSquareCentimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
 #endif
             => MassMomentOfInertia.FromGramSquareCentimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromGramSquareDecimeters(double)" />
+        /// <inheritdoc cref="MassMomentOfInertia.FromGramSquareDecimeters(QuantityValue)" />
         public static MassMomentOfInertia GramSquareDecimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
 #endif
             => MassMomentOfInertia.FromGramSquareDecimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromGramSquareMeters(double)" />
+        /// <inheritdoc cref="MassMomentOfInertia.FromGramSquareMeters(QuantityValue)" />
         public static MassMomentOfInertia GramSquareMeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
 #endif
             => MassMomentOfInertia.FromGramSquareMeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromGramSquareMillimeters(double)" />
+        /// <inheritdoc cref="MassMomentOfInertia.FromGramSquareMillimeters(QuantityValue)" />
         public static MassMomentOfInertia GramSquareMillimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
 #endif
             => MassMomentOfInertia.FromGramSquareMillimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromKilogramSquareCentimeters(double)" />
+        /// <inheritdoc cref="MassMomentOfInertia.FromKilogramSquareCentimeters(QuantityValue)" />
         public static MassMomentOfInertia KilogramSquareCentimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
 #endif
             => MassMomentOfInertia.FromKilogramSquareCentimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromKilogramSquareDecimeters(double)" />
+        /// <inheritdoc cref="MassMomentOfInertia.FromKilogramSquareDecimeters(QuantityValue)" />
         public static MassMomentOfInertia KilogramSquareDecimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
 #endif
             => MassMomentOfInertia.FromKilogramSquareDecimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromKilogramSquareMeters(double)" />
+        /// <inheritdoc cref="MassMomentOfInertia.FromKilogramSquareMeters(QuantityValue)" />
         public static MassMomentOfInertia KilogramSquareMeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
 #endif
             => MassMomentOfInertia.FromKilogramSquareMeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromKilogramSquareMillimeters(double)" />
+        /// <inheritdoc cref="MassMomentOfInertia.FromKilogramSquareMillimeters(QuantityValue)" />
         public static MassMomentOfInertia KilogramSquareMillimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
 #endif
             => MassMomentOfInertia.FromKilogramSquareMillimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromKilotonneSquareCentimeters(double)" />
+        /// <inheritdoc cref="MassMomentOfInertia.FromKilotonneSquareCentimeters(QuantityValue)" />
         public static MassMomentOfInertia KilotonneSquareCentimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -104,7 +104,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
 #endif
             => MassMomentOfInertia.FromKilotonneSquareCentimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromKilotonneSquareDecimeters(double)" />
+        /// <inheritdoc cref="MassMomentOfInertia.FromKilotonneSquareDecimeters(QuantityValue)" />
         public static MassMomentOfInertia KilotonneSquareDecimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -112,7 +112,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
 #endif
             => MassMomentOfInertia.FromKilotonneSquareDecimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromKilotonneSquareMeters(double)" />
+        /// <inheritdoc cref="MassMomentOfInertia.FromKilotonneSquareMeters(QuantityValue)" />
         public static MassMomentOfInertia KilotonneSquareMeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -120,7 +120,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
 #endif
             => MassMomentOfInertia.FromKilotonneSquareMeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromKilotonneSquareMilimeters(double)" />
+        /// <inheritdoc cref="MassMomentOfInertia.FromKilotonneSquareMilimeters(QuantityValue)" />
         public static MassMomentOfInertia KilotonneSquareMilimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -128,7 +128,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
 #endif
             => MassMomentOfInertia.FromKilotonneSquareMilimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromMegatonneSquareCentimeters(double)" />
+        /// <inheritdoc cref="MassMomentOfInertia.FromMegatonneSquareCentimeters(QuantityValue)" />
         public static MassMomentOfInertia MegatonneSquareCentimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -136,7 +136,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
 #endif
             => MassMomentOfInertia.FromMegatonneSquareCentimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromMegatonneSquareDecimeters(double)" />
+        /// <inheritdoc cref="MassMomentOfInertia.FromMegatonneSquareDecimeters(QuantityValue)" />
         public static MassMomentOfInertia MegatonneSquareDecimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -144,7 +144,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
 #endif
             => MassMomentOfInertia.FromMegatonneSquareDecimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromMegatonneSquareMeters(double)" />
+        /// <inheritdoc cref="MassMomentOfInertia.FromMegatonneSquareMeters(QuantityValue)" />
         public static MassMomentOfInertia MegatonneSquareMeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -152,7 +152,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
 #endif
             => MassMomentOfInertia.FromMegatonneSquareMeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromMegatonneSquareMilimeters(double)" />
+        /// <inheritdoc cref="MassMomentOfInertia.FromMegatonneSquareMilimeters(QuantityValue)" />
         public static MassMomentOfInertia MegatonneSquareMilimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -160,7 +160,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
 #endif
             => MassMomentOfInertia.FromMegatonneSquareMilimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromMilligramSquareCentimeters(double)" />
+        /// <inheritdoc cref="MassMomentOfInertia.FromMilligramSquareCentimeters(QuantityValue)" />
         public static MassMomentOfInertia MilligramSquareCentimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -168,7 +168,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
 #endif
             => MassMomentOfInertia.FromMilligramSquareCentimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromMilligramSquareDecimeters(double)" />
+        /// <inheritdoc cref="MassMomentOfInertia.FromMilligramSquareDecimeters(QuantityValue)" />
         public static MassMomentOfInertia MilligramSquareDecimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -176,7 +176,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
 #endif
             => MassMomentOfInertia.FromMilligramSquareDecimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromMilligramSquareMeters(double)" />
+        /// <inheritdoc cref="MassMomentOfInertia.FromMilligramSquareMeters(QuantityValue)" />
         public static MassMomentOfInertia MilligramSquareMeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -184,7 +184,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
 #endif
             => MassMomentOfInertia.FromMilligramSquareMeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromMilligramSquareMillimeters(double)" />
+        /// <inheritdoc cref="MassMomentOfInertia.FromMilligramSquareMillimeters(QuantityValue)" />
         public static MassMomentOfInertia MilligramSquareMillimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -192,7 +192,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
 #endif
             => MassMomentOfInertia.FromMilligramSquareMillimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromPoundSquareFeet(double)" />
+        /// <inheritdoc cref="MassMomentOfInertia.FromPoundSquareFeet(QuantityValue)" />
         public static MassMomentOfInertia PoundSquareFeet<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -200,7 +200,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
 #endif
             => MassMomentOfInertia.FromPoundSquareFeet(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromPoundSquareInches(double)" />
+        /// <inheritdoc cref="MassMomentOfInertia.FromPoundSquareInches(QuantityValue)" />
         public static MassMomentOfInertia PoundSquareInches<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -208,7 +208,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
 #endif
             => MassMomentOfInertia.FromPoundSquareInches(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromSlugSquareFeet(double)" />
+        /// <inheritdoc cref="MassMomentOfInertia.FromSlugSquareFeet(QuantityValue)" />
         public static MassMomentOfInertia SlugSquareFeet<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -216,7 +216,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
 #endif
             => MassMomentOfInertia.FromSlugSquareFeet(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromSlugSquareInches(double)" />
+        /// <inheritdoc cref="MassMomentOfInertia.FromSlugSquareInches(QuantityValue)" />
         public static MassMomentOfInertia SlugSquareInches<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -224,7 +224,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
 #endif
             => MassMomentOfInertia.FromSlugSquareInches(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromTonneSquareCentimeters(double)" />
+        /// <inheritdoc cref="MassMomentOfInertia.FromTonneSquareCentimeters(QuantityValue)" />
         public static MassMomentOfInertia TonneSquareCentimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -232,7 +232,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
 #endif
             => MassMomentOfInertia.FromTonneSquareCentimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromTonneSquareDecimeters(double)" />
+        /// <inheritdoc cref="MassMomentOfInertia.FromTonneSquareDecimeters(QuantityValue)" />
         public static MassMomentOfInertia TonneSquareDecimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -240,7 +240,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
 #endif
             => MassMomentOfInertia.FromTonneSquareDecimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromTonneSquareMeters(double)" />
+        /// <inheritdoc cref="MassMomentOfInertia.FromTonneSquareMeters(QuantityValue)" />
         public static MassMomentOfInertia TonneSquareMeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -248,7 +248,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
 #endif
             => MassMomentOfInertia.FromTonneSquareMeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassMomentOfInertia.FromTonneSquareMilimeters(double)" />
+        /// <inheritdoc cref="MassMomentOfInertia.FromTonneSquareMilimeters(QuantityValue)" />
         public static MassMomentOfInertia TonneSquareMilimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

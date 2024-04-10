@@ -25,7 +25,6 @@ using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 using System.Numerics;
-using Fractions;
 
 #nullable enable
 
@@ -50,7 +49,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly Fraction _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -83,7 +82,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public AmplitudeRatio(Fraction value, AmplitudeRatioUnit unit)
+        public AmplitudeRatio(QuantityValue value, AmplitudeRatioUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -97,7 +96,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public AmplitudeRatio(Fraction value, UnitSystem unitSystem)
+        public AmplitudeRatio(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -148,10 +147,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public Fraction Value => _value;
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
-        Fraction IQuantity.Value => _value;
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -176,22 +175,22 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmplitudeRatioUnit.DecibelMicrovolt"/>
         /// </summary>
-        public Fraction DecibelMicrovolts => As(AmplitudeRatioUnit.DecibelMicrovolt);
+        public QuantityValue DecibelMicrovolts => As(AmplitudeRatioUnit.DecibelMicrovolt);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmplitudeRatioUnit.DecibelMillivolt"/>
         /// </summary>
-        public Fraction DecibelMillivolts => As(AmplitudeRatioUnit.DecibelMillivolt);
+        public QuantityValue DecibelMillivolts => As(AmplitudeRatioUnit.DecibelMillivolt);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmplitudeRatioUnit.DecibelUnloaded"/>
         /// </summary>
-        public Fraction DecibelsUnloaded => As(AmplitudeRatioUnit.DecibelUnloaded);
+        public QuantityValue DecibelsUnloaded => As(AmplitudeRatioUnit.DecibelUnloaded);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmplitudeRatioUnit.DecibelVolt"/>
         /// </summary>
-        public Fraction DecibelVolts => As(AmplitudeRatioUnit.DecibelVolt);
+        public QuantityValue DecibelVolts => As(AmplitudeRatioUnit.DecibelVolt);
 
         #endregion
 
@@ -245,7 +244,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmplitudeRatio"/> from <see cref="AmplitudeRatioUnit.DecibelMicrovolt"/>.
         /// </summary>
-        public static AmplitudeRatio FromDecibelMicrovolts(Fraction value)
+        public static AmplitudeRatio FromDecibelMicrovolts(QuantityValue value)
         {
             return new AmplitudeRatio(value, AmplitudeRatioUnit.DecibelMicrovolt);
         }
@@ -253,7 +252,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmplitudeRatio"/> from <see cref="AmplitudeRatioUnit.DecibelMillivolt"/>.
         /// </summary>
-        public static AmplitudeRatio FromDecibelMillivolts(Fraction value)
+        public static AmplitudeRatio FromDecibelMillivolts(QuantityValue value)
         {
             return new AmplitudeRatio(value, AmplitudeRatioUnit.DecibelMillivolt);
         }
@@ -261,7 +260,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmplitudeRatio"/> from <see cref="AmplitudeRatioUnit.DecibelUnloaded"/>.
         /// </summary>
-        public static AmplitudeRatio FromDecibelsUnloaded(Fraction value)
+        public static AmplitudeRatio FromDecibelsUnloaded(QuantityValue value)
         {
             return new AmplitudeRatio(value, AmplitudeRatioUnit.DecibelUnloaded);
         }
@@ -269,7 +268,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmplitudeRatio"/> from <see cref="AmplitudeRatioUnit.DecibelVolt"/>.
         /// </summary>
-        public static AmplitudeRatio FromDecibelVolts(Fraction value)
+        public static AmplitudeRatio FromDecibelVolts(QuantityValue value)
         {
             return new AmplitudeRatio(value, AmplitudeRatioUnit.DecibelVolt);
         }
@@ -280,7 +279,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>AmplitudeRatio unit value.</returns>
-        public static AmplitudeRatio From(Fraction value, AmplitudeRatioUnit fromUnit)
+        public static AmplitudeRatio From(QuantityValue value, AmplitudeRatioUnit fromUnit)
         {
             return new AmplitudeRatio(value, fromUnit);
         }
@@ -436,7 +435,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static AmplitudeRatio operator -(AmplitudeRatio right)
         {
-            return new AmplitudeRatio(right.Value.Invert(), right.Unit);
+            return new AmplitudeRatio(-right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="AmplitudeRatio"/> from logarithmic addition of two <see cref="AmplitudeRatio"/>.</summary>
@@ -445,8 +444,8 @@ namespace UnitsNet
             // Logarithmic addition
             // Formula: 20 * log10(10^(x/20) + 10^(y/20))
             // TODO see if we can switch to operating in linear space: left + right.ToUnit(left.Unit)
-            return new AmplitudeRatio(10 * Fraction.FromDoubleRounded(Math.Log10(
-                Math.Pow(10, (left.Value / 10).ToDouble()) + Math.Pow(10, (right.ToUnit(left.Unit).Value / 10).ToDouble()))),
+            return new AmplitudeRatio(20 * QuantityValue.FromDoubleRounded(Math.Log10(
+                Math.Pow(10, (left.Value / 20).ToDouble()) + Math.Pow(10, (right.ToUnit(left.Unit).Value / 20).ToDouble()))),
                 left.Unit);
         }
 
@@ -456,13 +455,13 @@ namespace UnitsNet
             // Logarithmic subtraction
             // Formula: 20 * log10(10^(x/20) - 10^(y/20))
             // TODO see if we can switch to operating in linear space: left - right.ToUnit(left.Unit)
-            return new AmplitudeRatio(10 * Fraction.FromDoubleRounded(Math.Log10(
-                Math.Pow(10, (left.Value / 10).ToDouble()) - Math.Pow(10, (right.ToUnit(left.Unit).Value / 10).ToDouble()))),
+            return new AmplitudeRatio(20 * QuantityValue.FromDoubleRounded(Math.Log10(
+                Math.Pow(10, (left.Value / 20).ToDouble()) - Math.Pow(10, (right.ToUnit(left.Unit).Value / 20).ToDouble()))),
                 left.Unit);
         }
 
         /// <summary>Get <see cref="AmplitudeRatio"/> from logarithmic multiplication of value and <see cref="AmplitudeRatio"/>.</summary>
-        public static AmplitudeRatio operator *(Fraction left, AmplitudeRatio right)
+        public static AmplitudeRatio operator *(QuantityValue left, AmplitudeRatio right)
         {
             // Logarithmic multiplication = addition
             // TODO see if we can switch to operating in linear space: left * right.ToUnit(left.Unit)
@@ -470,21 +469,21 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="AmplitudeRatio"/> from logarithmic multiplication of value and <see cref="AmplitudeRatio"/>.</summary>
-        public static AmplitudeRatio operator *(AmplitudeRatio left, Fraction right)
+        public static AmplitudeRatio operator *(AmplitudeRatio left, QuantityValue right)
         {
             // Logarithmic multiplication = addition
             return new AmplitudeRatio(left.Value + right, left.Unit);
         }
 
         /// <summary>Get <see cref="AmplitudeRatio"/> from logarithmic division of <see cref="AmplitudeRatio"/> by value.</summary>
-        public static AmplitudeRatio operator /(AmplitudeRatio left, Fraction right)
+        public static AmplitudeRatio operator /(AmplitudeRatio left, QuantityValue right)
         {
             // Logarithmic division = subtraction
             return new AmplitudeRatio(left.Value - right, left.Unit);
         }
 
         /// <summary>Get ratio value from logarithmic division of <see cref="AmplitudeRatio"/> by <see cref="AmplitudeRatio"/>.</summary>
-        public static Fraction operator /(AmplitudeRatio left, AmplitudeRatio right)
+        public static QuantityValue operator /(AmplitudeRatio left, AmplitudeRatio right)
         {
             // Logarithmic division = subtraction
             return left.Value - right.ToUnit(left.Unit).Value;
@@ -544,7 +543,7 @@ namespace UnitsNet
         /// <summary>Indicates strict equality of two <see cref="AmplitudeRatio"/> quantities.</summary>
         public bool Equals(AmplitudeRatio other)
         {
-            return _value.IsEquivalentTo(other.As(this.Unit));
+            return _value.Equals(other.As(this.Unit));
         }
 
         /// <summary>Compares the current <see cref="AmplitudeRatio"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
@@ -629,10 +628,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: (Fraction)tolerance,
+                tolerance: (QuantityValue)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -649,7 +648,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(AmplitudeRatio other, AmplitudeRatio tolerance)
         {
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -663,7 +662,11 @@ namespace UnitsNet
         public override int GetHashCode()
         {
             var valueInBaseUnit = As(BaseUnit);
+            #if NET7_0_OR_GREATER
+            return HashCode.Combine(Info.Name, valueInBaseUnit);
+            #else
             return new { Info.Name, valueInBaseUnit }.GetHashCode();
+            #endif
         }
 
         #endregion
@@ -674,7 +677,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public Fraction As(AmplitudeRatioUnit unit)
+        public QuantityValue As(AmplitudeRatioUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -683,7 +686,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public Fraction As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -698,7 +701,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        Fraction IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
             if (!(unit is AmplitudeRatioUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AmplitudeRatioUnit)} is supported.", nameof(unit));
@@ -766,12 +769,12 @@ namespace UnitsNet
                 // AmplitudeRatioUnit -> BaseUnit
                 (AmplitudeRatioUnit.DecibelMicrovolt, AmplitudeRatioUnit.DecibelVolt) => new AmplitudeRatio(_value + -120, AmplitudeRatioUnit.DecibelVolt),
                 (AmplitudeRatioUnit.DecibelMillivolt, AmplitudeRatioUnit.DecibelVolt) => new AmplitudeRatio(_value + -60, AmplitudeRatioUnit.DecibelVolt),
-                (AmplitudeRatioUnit.DecibelUnloaded, AmplitudeRatioUnit.DecibelVolt) => new AmplitudeRatio(_value + new Fraction(-2218487499, 1000000000, false), AmplitudeRatioUnit.DecibelVolt),
+                (AmplitudeRatioUnit.DecibelUnloaded, AmplitudeRatioUnit.DecibelVolt) => new AmplitudeRatio(_value + new QuantityValue(-2218487499, 1000000000, false), AmplitudeRatioUnit.DecibelVolt),
 
                 // BaseUnit -> AmplitudeRatioUnit
                 (AmplitudeRatioUnit.DecibelVolt, AmplitudeRatioUnit.DecibelMicrovolt) => new AmplitudeRatio(_value + 120, AmplitudeRatioUnit.DecibelMicrovolt),
                 (AmplitudeRatioUnit.DecibelVolt, AmplitudeRatioUnit.DecibelMillivolt) => new AmplitudeRatio(_value + 60, AmplitudeRatioUnit.DecibelMillivolt),
-                (AmplitudeRatioUnit.DecibelVolt, AmplitudeRatioUnit.DecibelUnloaded) => new AmplitudeRatio(_value + new Fraction(2218487499, 1000000000, false), AmplitudeRatioUnit.DecibelUnloaded),
+                (AmplitudeRatioUnit.DecibelVolt, AmplitudeRatioUnit.DecibelUnloaded) => new AmplitudeRatio(_value + new QuantityValue(2218487499, 1000000000, false), AmplitudeRatioUnit.DecibelUnloaded),
 
                 _ => null
             };

@@ -25,7 +25,6 @@ using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 using System.Numerics;
-using Fractions;
 
 #nullable enable
 
@@ -53,7 +52,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly Fraction _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -87,7 +86,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public ElectricConductance(Fraction value, ElectricConductanceUnit unit)
+        public ElectricConductance(QuantityValue value, ElectricConductanceUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -101,7 +100,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ElectricConductance(Fraction value, UnitSystem unitSystem)
+        public ElectricConductance(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -152,10 +151,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public Fraction Value => _value;
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
-        Fraction IQuantity.Value => _value;
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -180,27 +179,27 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Kilosiemens"/>
         /// </summary>
-        public Fraction Kilosiemens => As(ElectricConductanceUnit.Kilosiemens);
+        public QuantityValue Kilosiemens => As(ElectricConductanceUnit.Kilosiemens);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Microsiemens"/>
         /// </summary>
-        public Fraction Microsiemens => As(ElectricConductanceUnit.Microsiemens);
+        public QuantityValue Microsiemens => As(ElectricConductanceUnit.Microsiemens);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Millisiemens"/>
         /// </summary>
-        public Fraction Millisiemens => As(ElectricConductanceUnit.Millisiemens);
+        public QuantityValue Millisiemens => As(ElectricConductanceUnit.Millisiemens);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Nanosiemens"/>
         /// </summary>
-        public Fraction Nanosiemens => As(ElectricConductanceUnit.Nanosiemens);
+        public QuantityValue Nanosiemens => As(ElectricConductanceUnit.Nanosiemens);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Siemens"/>
         /// </summary>
-        public Fraction Siemens => As(ElectricConductanceUnit.Siemens);
+        public QuantityValue Siemens => As(ElectricConductanceUnit.Siemens);
 
         #endregion
 
@@ -256,7 +255,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Kilosiemens"/>.
         /// </summary>
-        public static ElectricConductance FromKilosiemens(Fraction value)
+        public static ElectricConductance FromKilosiemens(QuantityValue value)
         {
             return new ElectricConductance(value, ElectricConductanceUnit.Kilosiemens);
         }
@@ -264,7 +263,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Microsiemens"/>.
         /// </summary>
-        public static ElectricConductance FromMicrosiemens(Fraction value)
+        public static ElectricConductance FromMicrosiemens(QuantityValue value)
         {
             return new ElectricConductance(value, ElectricConductanceUnit.Microsiemens);
         }
@@ -272,7 +271,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Millisiemens"/>.
         /// </summary>
-        public static ElectricConductance FromMillisiemens(Fraction value)
+        public static ElectricConductance FromMillisiemens(QuantityValue value)
         {
             return new ElectricConductance(value, ElectricConductanceUnit.Millisiemens);
         }
@@ -280,7 +279,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Nanosiemens"/>.
         /// </summary>
-        public static ElectricConductance FromNanosiemens(Fraction value)
+        public static ElectricConductance FromNanosiemens(QuantityValue value)
         {
             return new ElectricConductance(value, ElectricConductanceUnit.Nanosiemens);
         }
@@ -288,7 +287,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Siemens"/>.
         /// </summary>
-        public static ElectricConductance FromSiemens(Fraction value)
+        public static ElectricConductance FromSiemens(QuantityValue value)
         {
             return new ElectricConductance(value, ElectricConductanceUnit.Siemens);
         }
@@ -299,7 +298,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricConductance unit value.</returns>
-        public static ElectricConductance From(Fraction value, ElectricConductanceUnit fromUnit)
+        public static ElectricConductance From(QuantityValue value, ElectricConductanceUnit fromUnit)
         {
             return new ElectricConductance(value, fromUnit);
         }
@@ -455,7 +454,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static ElectricConductance operator -(ElectricConductance right)
         {
-            return new ElectricConductance(right.Value.Invert(), right.Unit);
+            return new ElectricConductance(-right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricConductance"/> from adding two <see cref="ElectricConductance"/>.</summary>
@@ -471,25 +470,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="ElectricConductance"/> from multiplying value and <see cref="ElectricConductance"/>.</summary>
-        public static ElectricConductance operator *(Fraction left, ElectricConductance right)
+        public static ElectricConductance operator *(QuantityValue left, ElectricConductance right)
         {
             return new ElectricConductance(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricConductance"/> from multiplying value and <see cref="ElectricConductance"/>.</summary>
-        public static ElectricConductance operator *(ElectricConductance left, Fraction right)
+        public static ElectricConductance operator *(ElectricConductance left, QuantityValue right)
         {
             return new ElectricConductance(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricConductance"/> from dividing <see cref="ElectricConductance"/> by value.</summary>
-        public static ElectricConductance operator /(ElectricConductance left, Fraction right)
+        public static ElectricConductance operator /(ElectricConductance left, QuantityValue right)
         {
             return new ElectricConductance(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ElectricConductance"/> by <see cref="ElectricConductance"/>.</summary>
-        public static Fraction operator /(ElectricConductance left, ElectricConductance right)
+        public static QuantityValue operator /(ElectricConductance left, ElectricConductance right)
         {
             return left.Siemens / right.Siemens;
         }
@@ -548,7 +547,7 @@ namespace UnitsNet
         /// <summary>Indicates strict equality of two <see cref="ElectricConductance"/> quantities.</summary>
         public bool Equals(ElectricConductance other)
         {
-            return _value.IsEquivalentTo(other.As(this.Unit));
+            return _value.Equals(other.As(this.Unit));
         }
 
         /// <summary>Compares the current <see cref="ElectricConductance"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
@@ -633,10 +632,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: (Fraction)tolerance,
+                tolerance: (QuantityValue)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -653,7 +652,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(ElectricConductance other, ElectricConductance tolerance)
         {
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -667,7 +666,11 @@ namespace UnitsNet
         public override int GetHashCode()
         {
             var valueInBaseUnit = As(BaseUnit);
+            #if NET7_0_OR_GREATER
+            return HashCode.Combine(Info.Name, valueInBaseUnit);
+            #else
             return new { Info.Name, valueInBaseUnit }.GetHashCode();
+            #endif
         }
 
         #endregion
@@ -678,7 +681,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public Fraction As(ElectricConductanceUnit unit)
+        public QuantityValue As(ElectricConductanceUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -687,7 +690,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public Fraction As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -702,7 +705,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        Fraction IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
             if (!(unit is ElectricConductanceUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricConductanceUnit)} is supported.", nameof(unit));

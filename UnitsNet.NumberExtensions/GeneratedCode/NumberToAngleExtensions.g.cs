@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
     /// </summary>
     public static class NumberToAngleExtensions
     {
-        /// <inheritdoc cref="Angle.FromArcminutes(double)" />
+        /// <inheritdoc cref="Angle.FromArcminutes(QuantityValue)" />
         public static Angle Arcminutes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
 #endif
             => Angle.FromArcminutes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Angle.FromArcseconds(double)" />
+        /// <inheritdoc cref="Angle.FromArcseconds(QuantityValue)" />
         public static Angle Arcseconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
 #endif
             => Angle.FromArcseconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Angle.FromCentiradians(double)" />
+        /// <inheritdoc cref="Angle.FromCentiradians(QuantityValue)" />
         public static Angle Centiradians<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
 #endif
             => Angle.FromCentiradians(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Angle.FromDeciradians(double)" />
+        /// <inheritdoc cref="Angle.FromDeciradians(QuantityValue)" />
         public static Angle Deciradians<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
 #endif
             => Angle.FromDeciradians(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Angle.FromDegrees(double)" />
+        /// <inheritdoc cref="Angle.FromDegrees(QuantityValue)" />
         public static Angle Degrees<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
 #endif
             => Angle.FromDegrees(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Angle.FromGradians(double)" />
+        /// <inheritdoc cref="Angle.FromGradians(QuantityValue)" />
         public static Angle Gradians<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
 #endif
             => Angle.FromGradians(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Angle.FromMicrodegrees(double)" />
+        /// <inheritdoc cref="Angle.FromMicrodegrees(QuantityValue)" />
         public static Angle Microdegrees<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
 #endif
             => Angle.FromMicrodegrees(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Angle.FromMicroradians(double)" />
+        /// <inheritdoc cref="Angle.FromMicroradians(QuantityValue)" />
         public static Angle Microradians<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
 #endif
             => Angle.FromMicroradians(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Angle.FromMillidegrees(double)" />
+        /// <inheritdoc cref="Angle.FromMillidegrees(QuantityValue)" />
         public static Angle Millidegrees<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -104,7 +104,7 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
 #endif
             => Angle.FromMillidegrees(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Angle.FromMilliradians(double)" />
+        /// <inheritdoc cref="Angle.FromMilliradians(QuantityValue)" />
         public static Angle Milliradians<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -112,7 +112,7 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
 #endif
             => Angle.FromMilliradians(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Angle.FromNanodegrees(double)" />
+        /// <inheritdoc cref="Angle.FromNanodegrees(QuantityValue)" />
         public static Angle Nanodegrees<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -120,7 +120,7 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
 #endif
             => Angle.FromNanodegrees(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Angle.FromNanoradians(double)" />
+        /// <inheritdoc cref="Angle.FromNanoradians(QuantityValue)" />
         public static Angle Nanoradians<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -128,7 +128,7 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
 #endif
             => Angle.FromNanoradians(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Angle.FromNatoMils(double)" />
+        /// <inheritdoc cref="Angle.FromNatoMils(QuantityValue)" />
         public static Angle NatoMils<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -136,7 +136,7 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
 #endif
             => Angle.FromNatoMils(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Angle.FromRadians(double)" />
+        /// <inheritdoc cref="Angle.FromRadians(QuantityValue)" />
         public static Angle Radians<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -144,7 +144,7 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
 #endif
             => Angle.FromRadians(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Angle.FromRevolutions(double)" />
+        /// <inheritdoc cref="Angle.FromRevolutions(QuantityValue)" />
         public static Angle Revolutions<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -152,7 +152,7 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
 #endif
             => Angle.FromRevolutions(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Angle.FromTilt(double)" />
+        /// <inheritdoc cref="Angle.FromTilt(QuantityValue)" />
         public static Angle Tilt<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

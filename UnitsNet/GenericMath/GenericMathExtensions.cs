@@ -54,7 +54,7 @@ public static class GenericMathExtensions
     /// <typeparam name="T">The value type.</typeparam>
     /// <returns>The average.</returns>
     public static T Average<T>(this IEnumerable<T> source)
-        where T : IAdditionOperators<T, T, T>, IAdditiveIdentity<T, T>, IDivisionOperators<T, double, T>
+        where T : IAdditionOperators<T, T, T>, IAdditiveIdentity<T, T>, IDivisionOperators<T, QuantityValue, T>
     {
         // Put accumulator on right hand side of the addition operator to construct quantities with the same unit as the values.
         // The addition operator implementation picks the unit from the left hand side, and the additive identity (e.g. Length.Zero) is always the base unit.

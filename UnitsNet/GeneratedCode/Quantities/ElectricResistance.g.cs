@@ -25,7 +25,6 @@ using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 using System.Numerics;
-using Fractions;
 
 #nullable enable
 
@@ -53,7 +52,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly Fraction _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -89,7 +88,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public ElectricResistance(Fraction value, ElectricResistanceUnit unit)
+        public ElectricResistance(QuantityValue value, ElectricResistanceUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -103,7 +102,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ElectricResistance(Fraction value, UnitSystem unitSystem)
+        public ElectricResistance(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -154,10 +153,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public Fraction Value => _value;
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
-        Fraction IQuantity.Value => _value;
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -182,37 +181,37 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistanceUnit.Gigaohm"/>
         /// </summary>
-        public Fraction Gigaohms => As(ElectricResistanceUnit.Gigaohm);
+        public QuantityValue Gigaohms => As(ElectricResistanceUnit.Gigaohm);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistanceUnit.Kiloohm"/>
         /// </summary>
-        public Fraction Kiloohms => As(ElectricResistanceUnit.Kiloohm);
+        public QuantityValue Kiloohms => As(ElectricResistanceUnit.Kiloohm);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistanceUnit.Megaohm"/>
         /// </summary>
-        public Fraction Megaohms => As(ElectricResistanceUnit.Megaohm);
+        public QuantityValue Megaohms => As(ElectricResistanceUnit.Megaohm);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistanceUnit.Microohm"/>
         /// </summary>
-        public Fraction Microohms => As(ElectricResistanceUnit.Microohm);
+        public QuantityValue Microohms => As(ElectricResistanceUnit.Microohm);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistanceUnit.Milliohm"/>
         /// </summary>
-        public Fraction Milliohms => As(ElectricResistanceUnit.Milliohm);
+        public QuantityValue Milliohms => As(ElectricResistanceUnit.Milliohm);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistanceUnit.Ohm"/>
         /// </summary>
-        public Fraction Ohms => As(ElectricResistanceUnit.Ohm);
+        public QuantityValue Ohms => As(ElectricResistanceUnit.Ohm);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistanceUnit.Teraohm"/>
         /// </summary>
-        public Fraction Teraohms => As(ElectricResistanceUnit.Teraohm);
+        public QuantityValue Teraohms => As(ElectricResistanceUnit.Teraohm);
 
         #endregion
 
@@ -272,7 +271,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Gigaohm"/>.
         /// </summary>
-        public static ElectricResistance FromGigaohms(Fraction value)
+        public static ElectricResistance FromGigaohms(QuantityValue value)
         {
             return new ElectricResistance(value, ElectricResistanceUnit.Gigaohm);
         }
@@ -280,7 +279,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Kiloohm"/>.
         /// </summary>
-        public static ElectricResistance FromKiloohms(Fraction value)
+        public static ElectricResistance FromKiloohms(QuantityValue value)
         {
             return new ElectricResistance(value, ElectricResistanceUnit.Kiloohm);
         }
@@ -288,7 +287,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Megaohm"/>.
         /// </summary>
-        public static ElectricResistance FromMegaohms(Fraction value)
+        public static ElectricResistance FromMegaohms(QuantityValue value)
         {
             return new ElectricResistance(value, ElectricResistanceUnit.Megaohm);
         }
@@ -296,7 +295,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Microohm"/>.
         /// </summary>
-        public static ElectricResistance FromMicroohms(Fraction value)
+        public static ElectricResistance FromMicroohms(QuantityValue value)
         {
             return new ElectricResistance(value, ElectricResistanceUnit.Microohm);
         }
@@ -304,7 +303,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Milliohm"/>.
         /// </summary>
-        public static ElectricResistance FromMilliohms(Fraction value)
+        public static ElectricResistance FromMilliohms(QuantityValue value)
         {
             return new ElectricResistance(value, ElectricResistanceUnit.Milliohm);
         }
@@ -312,7 +311,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Ohm"/>.
         /// </summary>
-        public static ElectricResistance FromOhms(Fraction value)
+        public static ElectricResistance FromOhms(QuantityValue value)
         {
             return new ElectricResistance(value, ElectricResistanceUnit.Ohm);
         }
@@ -320,7 +319,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Teraohm"/>.
         /// </summary>
-        public static ElectricResistance FromTeraohms(Fraction value)
+        public static ElectricResistance FromTeraohms(QuantityValue value)
         {
             return new ElectricResistance(value, ElectricResistanceUnit.Teraohm);
         }
@@ -331,7 +330,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricResistance unit value.</returns>
-        public static ElectricResistance From(Fraction value, ElectricResistanceUnit fromUnit)
+        public static ElectricResistance From(QuantityValue value, ElectricResistanceUnit fromUnit)
         {
             return new ElectricResistance(value, fromUnit);
         }
@@ -487,7 +486,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static ElectricResistance operator -(ElectricResistance right)
         {
-            return new ElectricResistance(right.Value.Invert(), right.Unit);
+            return new ElectricResistance(-right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricResistance"/> from adding two <see cref="ElectricResistance"/>.</summary>
@@ -503,25 +502,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="ElectricResistance"/> from multiplying value and <see cref="ElectricResistance"/>.</summary>
-        public static ElectricResistance operator *(Fraction left, ElectricResistance right)
+        public static ElectricResistance operator *(QuantityValue left, ElectricResistance right)
         {
             return new ElectricResistance(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricResistance"/> from multiplying value and <see cref="ElectricResistance"/>.</summary>
-        public static ElectricResistance operator *(ElectricResistance left, Fraction right)
+        public static ElectricResistance operator *(ElectricResistance left, QuantityValue right)
         {
             return new ElectricResistance(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricResistance"/> from dividing <see cref="ElectricResistance"/> by value.</summary>
-        public static ElectricResistance operator /(ElectricResistance left, Fraction right)
+        public static ElectricResistance operator /(ElectricResistance left, QuantityValue right)
         {
             return new ElectricResistance(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ElectricResistance"/> by <see cref="ElectricResistance"/>.</summary>
-        public static Fraction operator /(ElectricResistance left, ElectricResistance right)
+        public static QuantityValue operator /(ElectricResistance left, ElectricResistance right)
         {
             return left.Ohms / right.Ohms;
         }
@@ -590,7 +589,7 @@ namespace UnitsNet
         /// <summary>Indicates strict equality of two <see cref="ElectricResistance"/> quantities.</summary>
         public bool Equals(ElectricResistance other)
         {
-            return _value.IsEquivalentTo(other.As(this.Unit));
+            return _value.Equals(other.As(this.Unit));
         }
 
         /// <summary>Compares the current <see cref="ElectricResistance"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
@@ -675,10 +674,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: (Fraction)tolerance,
+                tolerance: (QuantityValue)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -695,7 +694,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(ElectricResistance other, ElectricResistance tolerance)
         {
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -709,7 +708,11 @@ namespace UnitsNet
         public override int GetHashCode()
         {
             var valueInBaseUnit = As(BaseUnit);
+            #if NET7_0_OR_GREATER
+            return HashCode.Combine(Info.Name, valueInBaseUnit);
+            #else
             return new { Info.Name, valueInBaseUnit }.GetHashCode();
+            #endif
         }
 
         #endregion
@@ -720,7 +723,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public Fraction As(ElectricResistanceUnit unit)
+        public QuantityValue As(ElectricResistanceUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -729,7 +732,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public Fraction As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -744,7 +747,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        Fraction IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
             if (!(unit is ElectricResistanceUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricResistanceUnit)} is supported.", nameof(unit));

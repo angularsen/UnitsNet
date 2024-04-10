@@ -25,7 +25,6 @@ using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 using System.Numerics;
-using Fractions;
 
 #nullable enable
 
@@ -55,7 +54,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly Fraction _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -100,7 +99,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Angle(Fraction value, AngleUnit unit)
+        public Angle(QuantityValue value, AngleUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -114,7 +113,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Angle(Fraction value, UnitSystem unitSystem)
+        public Angle(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -165,10 +164,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public Fraction Value => _value;
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
-        Fraction IQuantity.Value => _value;
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -193,82 +192,82 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Arcminute"/>
         /// </summary>
-        public Fraction Arcminutes => As(AngleUnit.Arcminute);
+        public QuantityValue Arcminutes => As(AngleUnit.Arcminute);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Arcsecond"/>
         /// </summary>
-        public Fraction Arcseconds => As(AngleUnit.Arcsecond);
+        public QuantityValue Arcseconds => As(AngleUnit.Arcsecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Centiradian"/>
         /// </summary>
-        public Fraction Centiradians => As(AngleUnit.Centiradian);
+        public QuantityValue Centiradians => As(AngleUnit.Centiradian);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Deciradian"/>
         /// </summary>
-        public Fraction Deciradians => As(AngleUnit.Deciradian);
+        public QuantityValue Deciradians => As(AngleUnit.Deciradian);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Degree"/>
         /// </summary>
-        public Fraction Degrees => As(AngleUnit.Degree);
+        public QuantityValue Degrees => As(AngleUnit.Degree);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Gradian"/>
         /// </summary>
-        public Fraction Gradians => As(AngleUnit.Gradian);
+        public QuantityValue Gradians => As(AngleUnit.Gradian);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Microdegree"/>
         /// </summary>
-        public Fraction Microdegrees => As(AngleUnit.Microdegree);
+        public QuantityValue Microdegrees => As(AngleUnit.Microdegree);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Microradian"/>
         /// </summary>
-        public Fraction Microradians => As(AngleUnit.Microradian);
+        public QuantityValue Microradians => As(AngleUnit.Microradian);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Millidegree"/>
         /// </summary>
-        public Fraction Millidegrees => As(AngleUnit.Millidegree);
+        public QuantityValue Millidegrees => As(AngleUnit.Millidegree);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Milliradian"/>
         /// </summary>
-        public Fraction Milliradians => As(AngleUnit.Milliradian);
+        public QuantityValue Milliradians => As(AngleUnit.Milliradian);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Nanodegree"/>
         /// </summary>
-        public Fraction Nanodegrees => As(AngleUnit.Nanodegree);
+        public QuantityValue Nanodegrees => As(AngleUnit.Nanodegree);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Nanoradian"/>
         /// </summary>
-        public Fraction Nanoradians => As(AngleUnit.Nanoradian);
+        public QuantityValue Nanoradians => As(AngleUnit.Nanoradian);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.NatoMil"/>
         /// </summary>
-        public Fraction NatoMils => As(AngleUnit.NatoMil);
+        public QuantityValue NatoMils => As(AngleUnit.NatoMil);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Radian"/>
         /// </summary>
-        public Fraction Radians => As(AngleUnit.Radian);
+        public QuantityValue Radians => As(AngleUnit.Radian);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Revolution"/>
         /// </summary>
-        public Fraction Revolutions => As(AngleUnit.Revolution);
+        public QuantityValue Revolutions => As(AngleUnit.Revolution);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Tilt"/>
         /// </summary>
-        public Fraction Tilt => As(AngleUnit.Tilt);
+        public QuantityValue Tilt => As(AngleUnit.Tilt);
 
         #endregion
 
@@ -346,7 +345,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Arcminute"/>.
         /// </summary>
-        public static Angle FromArcminutes(Fraction value)
+        public static Angle FromArcminutes(QuantityValue value)
         {
             return new Angle(value, AngleUnit.Arcminute);
         }
@@ -354,7 +353,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Arcsecond"/>.
         /// </summary>
-        public static Angle FromArcseconds(Fraction value)
+        public static Angle FromArcseconds(QuantityValue value)
         {
             return new Angle(value, AngleUnit.Arcsecond);
         }
@@ -362,7 +361,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Centiradian"/>.
         /// </summary>
-        public static Angle FromCentiradians(Fraction value)
+        public static Angle FromCentiradians(QuantityValue value)
         {
             return new Angle(value, AngleUnit.Centiradian);
         }
@@ -370,7 +369,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Deciradian"/>.
         /// </summary>
-        public static Angle FromDeciradians(Fraction value)
+        public static Angle FromDeciradians(QuantityValue value)
         {
             return new Angle(value, AngleUnit.Deciradian);
         }
@@ -378,7 +377,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Degree"/>.
         /// </summary>
-        public static Angle FromDegrees(Fraction value)
+        public static Angle FromDegrees(QuantityValue value)
         {
             return new Angle(value, AngleUnit.Degree);
         }
@@ -386,7 +385,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Gradian"/>.
         /// </summary>
-        public static Angle FromGradians(Fraction value)
+        public static Angle FromGradians(QuantityValue value)
         {
             return new Angle(value, AngleUnit.Gradian);
         }
@@ -394,7 +393,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Microdegree"/>.
         /// </summary>
-        public static Angle FromMicrodegrees(Fraction value)
+        public static Angle FromMicrodegrees(QuantityValue value)
         {
             return new Angle(value, AngleUnit.Microdegree);
         }
@@ -402,7 +401,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Microradian"/>.
         /// </summary>
-        public static Angle FromMicroradians(Fraction value)
+        public static Angle FromMicroradians(QuantityValue value)
         {
             return new Angle(value, AngleUnit.Microradian);
         }
@@ -410,7 +409,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Millidegree"/>.
         /// </summary>
-        public static Angle FromMillidegrees(Fraction value)
+        public static Angle FromMillidegrees(QuantityValue value)
         {
             return new Angle(value, AngleUnit.Millidegree);
         }
@@ -418,7 +417,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Milliradian"/>.
         /// </summary>
-        public static Angle FromMilliradians(Fraction value)
+        public static Angle FromMilliradians(QuantityValue value)
         {
             return new Angle(value, AngleUnit.Milliradian);
         }
@@ -426,7 +425,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Nanodegree"/>.
         /// </summary>
-        public static Angle FromNanodegrees(Fraction value)
+        public static Angle FromNanodegrees(QuantityValue value)
         {
             return new Angle(value, AngleUnit.Nanodegree);
         }
@@ -434,7 +433,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Nanoradian"/>.
         /// </summary>
-        public static Angle FromNanoradians(Fraction value)
+        public static Angle FromNanoradians(QuantityValue value)
         {
             return new Angle(value, AngleUnit.Nanoradian);
         }
@@ -442,7 +441,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.NatoMil"/>.
         /// </summary>
-        public static Angle FromNatoMils(Fraction value)
+        public static Angle FromNatoMils(QuantityValue value)
         {
             return new Angle(value, AngleUnit.NatoMil);
         }
@@ -450,7 +449,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Radian"/>.
         /// </summary>
-        public static Angle FromRadians(Fraction value)
+        public static Angle FromRadians(QuantityValue value)
         {
             return new Angle(value, AngleUnit.Radian);
         }
@@ -458,7 +457,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Revolution"/>.
         /// </summary>
-        public static Angle FromRevolutions(Fraction value)
+        public static Angle FromRevolutions(QuantityValue value)
         {
             return new Angle(value, AngleUnit.Revolution);
         }
@@ -466,7 +465,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Tilt"/>.
         /// </summary>
-        public static Angle FromTilt(Fraction value)
+        public static Angle FromTilt(QuantityValue value)
         {
             return new Angle(value, AngleUnit.Tilt);
         }
@@ -477,7 +476,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Angle unit value.</returns>
-        public static Angle From(Fraction value, AngleUnit fromUnit)
+        public static Angle From(QuantityValue value, AngleUnit fromUnit)
         {
             return new Angle(value, fromUnit);
         }
@@ -633,7 +632,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static Angle operator -(Angle right)
         {
-            return new Angle(right.Value.Invert(), right.Unit);
+            return new Angle(-right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Angle"/> from adding two <see cref="Angle"/>.</summary>
@@ -649,25 +648,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Angle"/> from multiplying value and <see cref="Angle"/>.</summary>
-        public static Angle operator *(Fraction left, Angle right)
+        public static Angle operator *(QuantityValue left, Angle right)
         {
             return new Angle(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Angle"/> from multiplying value and <see cref="Angle"/>.</summary>
-        public static Angle operator *(Angle left, Fraction right)
+        public static Angle operator *(Angle left, QuantityValue right)
         {
             return new Angle(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Angle"/> from dividing <see cref="Angle"/> by value.</summary>
-        public static Angle operator /(Angle left, Fraction right)
+        public static Angle operator /(Angle left, QuantityValue right)
         {
             return new Angle(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Angle"/> by <see cref="Angle"/>.</summary>
-        public static Fraction operator /(Angle left, Angle right)
+        public static QuantityValue operator /(Angle left, Angle right)
         {
             return left.Degrees / right.Degrees;
         }
@@ -748,7 +747,7 @@ namespace UnitsNet
         /// <summary>Indicates strict equality of two <see cref="Angle"/> quantities.</summary>
         public bool Equals(Angle other)
         {
-            return _value.IsEquivalentTo(other.As(this.Unit));
+            return _value.Equals(other.As(this.Unit));
         }
 
         /// <summary>Compares the current <see cref="Angle"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
@@ -833,10 +832,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: (Fraction)tolerance,
+                tolerance: (QuantityValue)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -853,7 +852,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(Angle other, Angle tolerance)
         {
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -867,7 +866,11 @@ namespace UnitsNet
         public override int GetHashCode()
         {
             var valueInBaseUnit = As(BaseUnit);
+            #if NET7_0_OR_GREATER
+            return HashCode.Combine(Info.Name, valueInBaseUnit);
+            #else
             return new { Info.Name, valueInBaseUnit }.GetHashCode();
+            #endif
         }
 
         #endregion
@@ -878,7 +881,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public Fraction As(AngleUnit unit)
+        public QuantityValue As(AngleUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -887,7 +890,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public Fraction As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -902,7 +905,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        Fraction IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
             if (!(unit is AngleUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AngleUnit)} is supported.", nameof(unit));
@@ -970,36 +973,36 @@ namespace UnitsNet
                 // AngleUnit -> BaseUnit
                 (AngleUnit.Arcminute, AngleUnit.Degree) => new Angle(_value / 60, AngleUnit.Degree),
                 (AngleUnit.Arcsecond, AngleUnit.Degree) => new Angle(_value / 3600, AngleUnit.Degree),
-                (AngleUnit.Centiradian, AngleUnit.Degree) => new Angle(_value * new Fraction(704311011, 1229254610, false), AngleUnit.Degree),
-                (AngleUnit.Deciradian, AngleUnit.Degree) => new Angle(_value * new Fraction(704311011, 122925461, false), AngleUnit.Degree),
-                (AngleUnit.Gradian, AngleUnit.Degree) => new Angle(_value * new Fraction(9, 10, false), AngleUnit.Degree),
+                (AngleUnit.Centiradian, AngleUnit.Degree) => new Angle(_value * new QuantityValue(180000000000000, 314159265358979, false), AngleUnit.Degree),
+                (AngleUnit.Deciradian, AngleUnit.Degree) => new Angle(_value * new QuantityValue(1800000000000000, 314159265358979, false), AngleUnit.Degree),
+                (AngleUnit.Gradian, AngleUnit.Degree) => new Angle(_value * new QuantityValue(9, 10, false), AngleUnit.Degree),
                 (AngleUnit.Microdegree, AngleUnit.Degree) => new Angle(_value / 1000000, AngleUnit.Degree),
-                (AngleUnit.Microradian, AngleUnit.Degree) => new Angle(_value * new Fraction(704311011, 12292546100000, false), AngleUnit.Degree),
+                (AngleUnit.Microradian, AngleUnit.Degree) => new Angle(_value * new QuantityValue(18000000000, 314159265358979, false), AngleUnit.Degree),
                 (AngleUnit.Millidegree, AngleUnit.Degree) => new Angle(_value / 1000, AngleUnit.Degree),
-                (AngleUnit.Milliradian, AngleUnit.Degree) => new Angle(_value * new Fraction(704311011, 12292546100, false), AngleUnit.Degree),
+                (AngleUnit.Milliradian, AngleUnit.Degree) => new Angle(_value * new QuantityValue(18000000000000, 314159265358979, false), AngleUnit.Degree),
                 (AngleUnit.Nanodegree, AngleUnit.Degree) => new Angle(_value / 1000000000, AngleUnit.Degree),
-                (AngleUnit.Nanoradian, AngleUnit.Degree) => new Angle(_value * new Fraction(704311011, 12292546100000000, false), AngleUnit.Degree),
-                (AngleUnit.NatoMil, AngleUnit.Degree) => new Angle(_value * new Fraction(9, 160, false), AngleUnit.Degree),
-                (AngleUnit.Radian, AngleUnit.Degree) => new Angle(_value * new Fraction(7043110110, 122925461, false), AngleUnit.Degree),
+                (AngleUnit.Nanoradian, AngleUnit.Degree) => new Angle(_value * new QuantityValue(18000000, 314159265358979, false), AngleUnit.Degree),
+                (AngleUnit.NatoMil, AngleUnit.Degree) => new Angle(_value * new QuantityValue(9, 160, false), AngleUnit.Degree),
+                (AngleUnit.Radian, AngleUnit.Degree) => new Angle(_value * new QuantityValue(18000000000000000, 314159265358979, false), AngleUnit.Degree),
                 (AngleUnit.Revolution, AngleUnit.Degree) => new Angle(_value * 360, AngleUnit.Degree),
-                (AngleUnit.Tilt, AngleUnit.Degree) => new Angle(Fraction.FromDoubleRounded(Math.Asin((_value).ToDouble())) * new Fraction(7043110110, 122925461, false), AngleUnit.Degree),
+                (AngleUnit.Tilt, AngleUnit.Degree) => new Angle(QuantityValue.FromDoubleRounded(Math.Asin((_value).ToDouble())) * new QuantityValue(18000000000000000, 314159265358979, false), AngleUnit.Degree),
 
                 // BaseUnit -> AngleUnit
                 (AngleUnit.Degree, AngleUnit.Arcminute) => new Angle(_value * 60, AngleUnit.Arcminute),
                 (AngleUnit.Degree, AngleUnit.Arcsecond) => new Angle(_value * 3600, AngleUnit.Arcsecond),
-                (AngleUnit.Degree, AngleUnit.Centiradian) => new Angle(_value * new Fraction(1229254610, 704311011, false), AngleUnit.Centiradian),
-                (AngleUnit.Degree, AngleUnit.Deciradian) => new Angle(_value * new Fraction(122925461, 704311011, false), AngleUnit.Deciradian),
-                (AngleUnit.Degree, AngleUnit.Gradian) => new Angle(_value * new Fraction(10, 9, false), AngleUnit.Gradian),
+                (AngleUnit.Degree, AngleUnit.Centiradian) => new Angle(_value * new QuantityValue(314159265358979, 180000000000000, false), AngleUnit.Centiradian),
+                (AngleUnit.Degree, AngleUnit.Deciradian) => new Angle(_value * new QuantityValue(314159265358979, 1800000000000000, false), AngleUnit.Deciradian),
+                (AngleUnit.Degree, AngleUnit.Gradian) => new Angle(_value * new QuantityValue(10, 9, false), AngleUnit.Gradian),
                 (AngleUnit.Degree, AngleUnit.Microdegree) => new Angle(_value * 1000000, AngleUnit.Microdegree),
-                (AngleUnit.Degree, AngleUnit.Microradian) => new Angle(_value * new Fraction(12292546100000, 704311011, false), AngleUnit.Microradian),
+                (AngleUnit.Degree, AngleUnit.Microradian) => new Angle(_value * new QuantityValue(314159265358979, 18000000000, false), AngleUnit.Microradian),
                 (AngleUnit.Degree, AngleUnit.Millidegree) => new Angle(_value * 1000, AngleUnit.Millidegree),
-                (AngleUnit.Degree, AngleUnit.Milliradian) => new Angle(_value * new Fraction(12292546100, 704311011, false), AngleUnit.Milliradian),
+                (AngleUnit.Degree, AngleUnit.Milliradian) => new Angle(_value * new QuantityValue(314159265358979, 18000000000000, false), AngleUnit.Milliradian),
                 (AngleUnit.Degree, AngleUnit.Nanodegree) => new Angle(_value * 1000000000, AngleUnit.Nanodegree),
-                (AngleUnit.Degree, AngleUnit.Nanoradian) => new Angle(_value * new Fraction(12292546100000000, 704311011, false), AngleUnit.Nanoradian),
-                (AngleUnit.Degree, AngleUnit.NatoMil) => new Angle(_value * new Fraction(160, 9, false), AngleUnit.NatoMil),
-                (AngleUnit.Degree, AngleUnit.Radian) => new Angle(_value * new Fraction(122925461, 7043110110, false), AngleUnit.Radian),
+                (AngleUnit.Degree, AngleUnit.Nanoradian) => new Angle(_value * new QuantityValue(314159265358979, 18000000, false), AngleUnit.Nanoradian),
+                (AngleUnit.Degree, AngleUnit.NatoMil) => new Angle(_value * new QuantityValue(160, 9, false), AngleUnit.NatoMil),
+                (AngleUnit.Degree, AngleUnit.Radian) => new Angle(_value * new QuantityValue(314159265358979, 18000000000000000, false), AngleUnit.Radian),
                 (AngleUnit.Degree, AngleUnit.Revolution) => new Angle(_value / 360, AngleUnit.Revolution),
-                (AngleUnit.Degree, AngleUnit.Tilt) => new Angle(Fraction.FromDoubleRounded(Math.Sin((_value * new Fraction(122925461, 7043110110, false)).ToDouble())), AngleUnit.Tilt),
+                (AngleUnit.Degree, AngleUnit.Tilt) => new Angle(QuantityValue.FromDoubleRounded(Math.Sin((_value * new QuantityValue(314159265358979, 18000000000000000, false)).ToDouble())), AngleUnit.Tilt),
 
                 _ => null
             };

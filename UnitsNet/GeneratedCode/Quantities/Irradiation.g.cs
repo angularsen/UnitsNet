@@ -25,7 +25,6 @@ using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 using System.Numerics;
-using Fractions;
 
 #nullable enable
 
@@ -53,7 +52,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly Fraction _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -89,7 +88,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Irradiation(Fraction value, IrradiationUnit unit)
+        public Irradiation(QuantityValue value, IrradiationUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -103,7 +102,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Irradiation(Fraction value, UnitSystem unitSystem)
+        public Irradiation(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -154,10 +153,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public Fraction Value => _value;
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
-        Fraction IQuantity.Value => _value;
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -182,37 +181,37 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.JoulePerSquareCentimeter"/>
         /// </summary>
-        public Fraction JoulesPerSquareCentimeter => As(IrradiationUnit.JoulePerSquareCentimeter);
+        public QuantityValue JoulesPerSquareCentimeter => As(IrradiationUnit.JoulePerSquareCentimeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.JoulePerSquareMeter"/>
         /// </summary>
-        public Fraction JoulesPerSquareMeter => As(IrradiationUnit.JoulePerSquareMeter);
+        public QuantityValue JoulesPerSquareMeter => As(IrradiationUnit.JoulePerSquareMeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.JoulePerSquareMillimeter"/>
         /// </summary>
-        public Fraction JoulesPerSquareMillimeter => As(IrradiationUnit.JoulePerSquareMillimeter);
+        public QuantityValue JoulesPerSquareMillimeter => As(IrradiationUnit.JoulePerSquareMillimeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.KilojoulePerSquareMeter"/>
         /// </summary>
-        public Fraction KilojoulesPerSquareMeter => As(IrradiationUnit.KilojoulePerSquareMeter);
+        public QuantityValue KilojoulesPerSquareMeter => As(IrradiationUnit.KilojoulePerSquareMeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.KilowattHourPerSquareMeter"/>
         /// </summary>
-        public Fraction KilowattHoursPerSquareMeter => As(IrradiationUnit.KilowattHourPerSquareMeter);
+        public QuantityValue KilowattHoursPerSquareMeter => As(IrradiationUnit.KilowattHourPerSquareMeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.MillijoulePerSquareCentimeter"/>
         /// </summary>
-        public Fraction MillijoulesPerSquareCentimeter => As(IrradiationUnit.MillijoulePerSquareCentimeter);
+        public QuantityValue MillijoulesPerSquareCentimeter => As(IrradiationUnit.MillijoulePerSquareCentimeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.WattHourPerSquareMeter"/>
         /// </summary>
-        public Fraction WattHoursPerSquareMeter => As(IrradiationUnit.WattHourPerSquareMeter);
+        public QuantityValue WattHoursPerSquareMeter => As(IrradiationUnit.WattHourPerSquareMeter);
 
         #endregion
 
@@ -272,7 +271,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.JoulePerSquareCentimeter"/>.
         /// </summary>
-        public static Irradiation FromJoulesPerSquareCentimeter(Fraction value)
+        public static Irradiation FromJoulesPerSquareCentimeter(QuantityValue value)
         {
             return new Irradiation(value, IrradiationUnit.JoulePerSquareCentimeter);
         }
@@ -280,7 +279,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.JoulePerSquareMeter"/>.
         /// </summary>
-        public static Irradiation FromJoulesPerSquareMeter(Fraction value)
+        public static Irradiation FromJoulesPerSquareMeter(QuantityValue value)
         {
             return new Irradiation(value, IrradiationUnit.JoulePerSquareMeter);
         }
@@ -288,7 +287,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.JoulePerSquareMillimeter"/>.
         /// </summary>
-        public static Irradiation FromJoulesPerSquareMillimeter(Fraction value)
+        public static Irradiation FromJoulesPerSquareMillimeter(QuantityValue value)
         {
             return new Irradiation(value, IrradiationUnit.JoulePerSquareMillimeter);
         }
@@ -296,7 +295,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.KilojoulePerSquareMeter"/>.
         /// </summary>
-        public static Irradiation FromKilojoulesPerSquareMeter(Fraction value)
+        public static Irradiation FromKilojoulesPerSquareMeter(QuantityValue value)
         {
             return new Irradiation(value, IrradiationUnit.KilojoulePerSquareMeter);
         }
@@ -304,7 +303,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.KilowattHourPerSquareMeter"/>.
         /// </summary>
-        public static Irradiation FromKilowattHoursPerSquareMeter(Fraction value)
+        public static Irradiation FromKilowattHoursPerSquareMeter(QuantityValue value)
         {
             return new Irradiation(value, IrradiationUnit.KilowattHourPerSquareMeter);
         }
@@ -312,7 +311,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.MillijoulePerSquareCentimeter"/>.
         /// </summary>
-        public static Irradiation FromMillijoulesPerSquareCentimeter(Fraction value)
+        public static Irradiation FromMillijoulesPerSquareCentimeter(QuantityValue value)
         {
             return new Irradiation(value, IrradiationUnit.MillijoulePerSquareCentimeter);
         }
@@ -320,7 +319,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.WattHourPerSquareMeter"/>.
         /// </summary>
-        public static Irradiation FromWattHoursPerSquareMeter(Fraction value)
+        public static Irradiation FromWattHoursPerSquareMeter(QuantityValue value)
         {
             return new Irradiation(value, IrradiationUnit.WattHourPerSquareMeter);
         }
@@ -331,7 +330,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Irradiation unit value.</returns>
-        public static Irradiation From(Fraction value, IrradiationUnit fromUnit)
+        public static Irradiation From(QuantityValue value, IrradiationUnit fromUnit)
         {
             return new Irradiation(value, fromUnit);
         }
@@ -487,7 +486,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static Irradiation operator -(Irradiation right)
         {
-            return new Irradiation(right.Value.Invert(), right.Unit);
+            return new Irradiation(-right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Irradiation"/> from adding two <see cref="Irradiation"/>.</summary>
@@ -503,25 +502,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Irradiation"/> from multiplying value and <see cref="Irradiation"/>.</summary>
-        public static Irradiation operator *(Fraction left, Irradiation right)
+        public static Irradiation operator *(QuantityValue left, Irradiation right)
         {
             return new Irradiation(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Irradiation"/> from multiplying value and <see cref="Irradiation"/>.</summary>
-        public static Irradiation operator *(Irradiation left, Fraction right)
+        public static Irradiation operator *(Irradiation left, QuantityValue right)
         {
             return new Irradiation(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Irradiation"/> from dividing <see cref="Irradiation"/> by value.</summary>
-        public static Irradiation operator /(Irradiation left, Fraction right)
+        public static Irradiation operator /(Irradiation left, QuantityValue right)
         {
             return new Irradiation(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Irradiation"/> by <see cref="Irradiation"/>.</summary>
-        public static Fraction operator /(Irradiation left, Irradiation right)
+        public static QuantityValue operator /(Irradiation left, Irradiation right)
         {
             return left.JoulesPerSquareMeter / right.JoulesPerSquareMeter;
         }
@@ -580,7 +579,7 @@ namespace UnitsNet
         /// <summary>Indicates strict equality of two <see cref="Irradiation"/> quantities.</summary>
         public bool Equals(Irradiation other)
         {
-            return _value.IsEquivalentTo(other.As(this.Unit));
+            return _value.Equals(other.As(this.Unit));
         }
 
         /// <summary>Compares the current <see cref="Irradiation"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
@@ -665,10 +664,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: (Fraction)tolerance,
+                tolerance: (QuantityValue)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -685,7 +684,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(Irradiation other, Irradiation tolerance)
         {
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -699,7 +698,11 @@ namespace UnitsNet
         public override int GetHashCode()
         {
             var valueInBaseUnit = As(BaseUnit);
+            #if NET7_0_OR_GREATER
+            return HashCode.Combine(Info.Name, valueInBaseUnit);
+            #else
             return new { Info.Name, valueInBaseUnit }.GetHashCode();
+            #endif
         }
 
         #endregion
@@ -710,7 +713,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public Fraction As(IrradiationUnit unit)
+        public QuantityValue As(IrradiationUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -719,7 +722,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public Fraction As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -734,7 +737,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        Fraction IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
             if (!(unit is IrradiationUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(IrradiationUnit)} is supported.", nameof(unit));

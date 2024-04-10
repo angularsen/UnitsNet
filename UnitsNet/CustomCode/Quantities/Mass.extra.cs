@@ -6,7 +6,6 @@ using System.Threading;
 using System.Globalization;
 using System.Numerics;
 using UnitsNet.Units;
-using Fractions;
 
 namespace UnitsNet
 {
@@ -22,7 +21,7 @@ namespace UnitsNet
         ///     StonePounds related code makes it easier to work with Stone/Pound combination, which are customarily used in the UK
         ///     to express body weight. For example, someone weighs 11 stone 4 pounds (about 72 kilograms).
         /// </summary>
-        private static readonly Fraction StonesInOnePound = 14;
+        private static readonly QuantityValue StonesInOnePound = 14;
 
         /// <summary>
         ///     Converts the mass to a customary stone/pounds combination.
@@ -31,10 +30,10 @@ namespace UnitsNet
         {
             get
             {
-                Fraction inPounds = Pounds;
+                QuantityValue inPounds = Pounds;
 
-                var stones = (inPounds / StonesInOnePound).ToBigInteger(); // BigInteger division returns the quotient (equivalent to Math.Truncate)
-                Fraction pounds = inPounds % StonesInOnePound;
+                var stones = (BigInteger)(inPounds / StonesInOnePound); // BigInteger division returns the quotient (equivalent to Math.Truncate)
+                QuantityValue pounds = inPounds % StonesInOnePound;
 
                 return new StonePounds(stones, pounds);
             }
@@ -43,7 +42,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from combination of stone and pounds.
         /// </summary>
-        public static Mass FromStonePounds(Fraction stone, Fraction pounds)
+        public static Mass FromStonePounds(QuantityValue stone, QuantityValue pounds)
         {
             return FromPounds(StonesInOnePound*stone + pounds);
         }
@@ -58,7 +57,7 @@ namespace UnitsNet
         /// <summary>
         ///     Construct from stone and pounds.
         /// </summary>
-        public StonePounds(Fraction stone, Fraction pounds)
+        public StonePounds(QuantityValue stone, QuantityValue pounds)
         {
             Stone = stone;
             Pounds = pounds;
@@ -67,12 +66,12 @@ namespace UnitsNet
         /// <summary>
         ///     The stone value it was created with.
         /// </summary>
-        public Fraction Stone { get; }
+        public QuantityValue Stone { get; }
 
         /// <summary>
         ///     The pounds value it was created with.
         /// </summary>
-        public Fraction Pounds { get; }
+        public QuantityValue Pounds { get; }
 
         /// <inheritdoc cref="ToString(IFormatProvider)"/>
         public override string ToString()

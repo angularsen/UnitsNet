@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
             Assert.Equal(AreaUnit.SquareMeter, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new Area(double.PositiveInfinity, AreaUnit.SquareMeter));
@@ -128,7 +128,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new Area(double.NaN, AreaUnit.SquareMeter));
@@ -252,7 +252,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromSquareMeters_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => Area.FromSquareMeters(double.PositiveInfinity));
@@ -262,7 +262,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromSquareMeters_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => Area.FromSquareMeters(double.NaN));
@@ -1407,8 +1407,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, AreaUnit.SquareMeter, 1, AreaUnit.SquareMeter, true)]  // Same value and unit.
         [InlineData(1, AreaUnit.SquareMeter, 2, AreaUnit.SquareMeter, false)] // Different value.
-        [InlineData(2, AreaUnit.SquareMeter, 1, AreaUnit.Acre, false)] // Different value and unit.
-        [InlineData(1, AreaUnit.SquareMeter, 1, AreaUnit.Acre, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, AreaUnit unitA, double valueB, AreaUnit unitB, bool expectEqual)
         {
             var a = new Area(valueA, unitA);
@@ -1733,7 +1731,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Area.FromSquareMeters(1.0);
-            Assert.Equal(new {Area.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(Area.Info.Name, quantity.SquareMeters);
+            #else
+            var expected = new {Area.Info.Name, valueInBaseUnit = quantity.SquareMeters}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

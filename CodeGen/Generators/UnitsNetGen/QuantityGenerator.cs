@@ -43,7 +43,6 @@ using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 using System.Numerics;
-using Fractions;
 
 #nullable enable
 
@@ -89,7 +88,7 @@ namespace UnitsNet
                             default:
                                 continue;
                         }
-                        Writer.WL($"<{relation.LeftQuantity.Name}, {relation.RightQuantity.Name}, {relation.ResultQuantity.Name.Replace("double", "Fraction")}>,");
+                        Writer.WL($"<{relation.LeftQuantity.Name}, {relation.RightQuantity.Name}, {relation.ResultQuantity.Name.Replace("double", "QuantityValue")}>,");
                     }
                 }
 
@@ -110,7 +109,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = ""Value"", Order = 1)]
-        private readonly Fraction _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -202,7 +201,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name=""value"">The numeric value to construct this quantity with.</param>
         /// <param name=""unit"">The unit representation to construct this quantity with.</param>
-        public {_quantity.Name}(Fraction value, {_unitEnumName} unit)
+        public {_quantity.Name}(QuantityValue value, {_unitEnumName} unit)
         {{");
             Writer.WL(@"
             _value = value;");
@@ -218,7 +217,7 @@ namespace UnitsNet
         /// <param name=""unitSystem"">The unit system to create the quantity with.</param>
         /// <exception cref=""ArgumentNullException"">The given <see cref=""UnitSystem""/> is null.</exception>
         /// <exception cref=""ArgumentException"">No unit was found for the given <see cref=""UnitSystem""/>.</exception>
-        public {_quantity.Name}(Fraction value, UnitSystem unitSystem)
+        public {_quantity.Name}(QuantityValue value, UnitSystem unitSystem)
         {{
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -289,10 +288,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public Fraction Value => _value;
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
-        Fraction IQuantity.Value => _value;
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -329,7 +328,7 @@ namespace UnitsNet
         /// </summary>");
                 Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit));
                 Writer.WL($@"
-        public Fraction {unit.PluralName} => As({_unitEnumName}.{unit.SingularName});
+        public QuantityValue {unit.PluralName} => As({_unitEnumName}.{unit.SingularName});
 ");
             }
 
@@ -420,7 +419,7 @@ namespace UnitsNet
         /// </summary>");
                 Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit));
                 Writer.WL($@"
-        public static {_quantity.Name} From{unit.PluralName}(Fraction value)
+        public static {_quantity.Name} From{unit.PluralName}(QuantityValue value)
         {{
             return new {_quantity.Name}(value, {_unitEnumName}.{unit.SingularName});
         }}
@@ -434,7 +433,7 @@ namespace UnitsNet
         /// <param name=""value"">Value to convert from.</param>
         /// <param name=""fromUnit"">Unit to convert from.</param>
         /// <returns>{_quantity.Name} unit value.</returns>
-        public static {_quantity.Name} From(Fraction value, {_unitEnumName} fromUnit)
+        public static {_quantity.Name} From(QuantityValue value, {_unitEnumName} fromUnit)
         {{
             return new {_quantity.Name}(value, fromUnit);
         }}
@@ -609,7 +608,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static {_quantity.Name} operator -({_quantity.Name} right)
         {{
-            return new {_quantity.Name}(right.Value.Invert(), right.Unit);
+            return new {_quantity.Name}(-right.Value, right.Unit);
         }}
 
         /// <summary>Get <see cref=""{_quantity.Name}""/> from adding two <see cref=""{_quantity.Name}""/>.</summary>
@@ -625,25 +624,25 @@ namespace UnitsNet
         }}
 
         /// <summary>Get <see cref=""{_quantity.Name}""/> from multiplying value and <see cref=""{_quantity.Name}""/>.</summary>
-        public static {_quantity.Name} operator *(Fraction left, {_quantity.Name} right)
+        public static {_quantity.Name} operator *(QuantityValue left, {_quantity.Name} right)
         {{
             return new {_quantity.Name}(left * right.Value, right.Unit);
         }}
 
         /// <summary>Get <see cref=""{_quantity.Name}""/> from multiplying value and <see cref=""{_quantity.Name}""/>.</summary>
-        public static {_quantity.Name} operator *({_quantity.Name} left, Fraction right)
+        public static {_quantity.Name} operator *({_quantity.Name} left, QuantityValue right)
         {{
             return new {_quantity.Name}(left.Value * right, left.Unit);
         }}
 
         /// <summary>Get <see cref=""{_quantity.Name}""/> from dividing <see cref=""{_quantity.Name}""/> by value.</summary>
-        public static {_quantity.Name} operator /({_quantity.Name} left, Fraction right)
+        public static {_quantity.Name} operator /({_quantity.Name} left, QuantityValue right)
         {{
             return new {_quantity.Name}(left.Value / right, left.Unit);
         }}
 
         /// <summary>Get ratio value from dividing <see cref=""{_quantity.Name}""/> by <see cref=""{_quantity.Name}""/>.</summary>
-        public static Fraction operator /({_quantity.Name} left, {_quantity.Name} right)
+        public static QuantityValue operator /({_quantity.Name} left, {_quantity.Name} right)
         {{
             return left.{_baseUnit.PluralName} / right.{_baseUnit.PluralName};
         }}
@@ -663,7 +662,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static {_quantity.Name} operator -({_quantity.Name} right)
         {{
-            return new {_quantity.Name}(right.Value.Invert(), right.Unit);
+            return new {_quantity.Name}(-right.Value, right.Unit);
         }}
 
         /// <summary>Get <see cref=""{_quantity.Name}""/> from logarithmic addition of two <see cref=""{_quantity.Name}""/>.</summary>
@@ -672,8 +671,8 @@ namespace UnitsNet
             // Logarithmic addition
             // Formula: {x} * log10(10^(x/{x}) + 10^(y/{x}))
             // TODO see if we can switch to operating in linear space: left + right.ToUnit(left.Unit)
-            return new {_quantity.Name}(10 * Fraction.FromDoubleRounded(Math.Log10(
-                Math.Pow(10, (left.Value / 10).ToDouble()) + Math.Pow(10, (right.ToUnit(left.Unit).Value / 10).ToDouble()))),
+            return new {_quantity.Name}({x} * QuantityValue.FromDoubleRounded(Math.Log10(
+                Math.Pow(10, (left.Value / {x}).ToDouble()) + Math.Pow(10, (right.ToUnit(left.Unit).Value / {x}).ToDouble()))),
                 left.Unit);
         }}
 
@@ -683,13 +682,13 @@ namespace UnitsNet
             // Logarithmic subtraction
             // Formula: {x} * log10(10^(x/{x}) - 10^(y/{x}))
             // TODO see if we can switch to operating in linear space: left - right.ToUnit(left.Unit)
-            return new {_quantity.Name}(10 * Fraction.FromDoubleRounded(Math.Log10(
-                Math.Pow(10, (left.Value / 10).ToDouble()) - Math.Pow(10, (right.ToUnit(left.Unit).Value / 10).ToDouble()))),
+            return new {_quantity.Name}({x} * QuantityValue.FromDoubleRounded(Math.Log10(
+                Math.Pow(10, (left.Value / {x}).ToDouble()) - Math.Pow(10, (right.ToUnit(left.Unit).Value / {x}).ToDouble()))),
                 left.Unit);
         }}
 
         /// <summary>Get <see cref=""{_quantity.Name}""/> from logarithmic multiplication of value and <see cref=""{_quantity.Name}""/>.</summary>
-        public static {_quantity.Name} operator *(Fraction left, {_quantity.Name} right)
+        public static {_quantity.Name} operator *(QuantityValue left, {_quantity.Name} right)
         {{
             // Logarithmic multiplication = addition
             // TODO see if we can switch to operating in linear space: left * right.ToUnit(left.Unit)
@@ -697,21 +696,21 @@ namespace UnitsNet
         }}
 
         /// <summary>Get <see cref=""{_quantity.Name}""/> from logarithmic multiplication of value and <see cref=""{_quantity.Name}""/>.</summary>
-        public static {_quantity.Name} operator *({_quantity.Name} left, Fraction right)
+        public static {_quantity.Name} operator *({_quantity.Name} left, QuantityValue right)
         {{
             // Logarithmic multiplication = addition
             return new {_quantity.Name}(left.Value + right, left.Unit);
         }}
 
         /// <summary>Get <see cref=""{_quantity.Name}""/> from logarithmic division of <see cref=""{_quantity.Name}""/> by value.</summary>
-        public static {_quantity.Name} operator /({_quantity.Name} left, Fraction right)
+        public static {_quantity.Name} operator /({_quantity.Name} left, QuantityValue right)
         {{
             // Logarithmic division = subtraction
             return new {_quantity.Name}(left.Value - right, left.Unit);
         }}
 
         /// <summary>Get ratio value from logarithmic division of <see cref=""{_quantity.Name}""/> by <see cref=""{_quantity.Name}""/>.</summary>
-        public static Fraction operator /({_quantity.Name} left, {_quantity.Name} right)
+        public static QuantityValue operator /({_quantity.Name} left, {_quantity.Name} right)
         {{
             // Logarithmic division = subtraction
             return left.Value - right.ToUnit(left.Unit).Value;
@@ -741,7 +740,7 @@ namespace UnitsNet
         /// <returns>The corresponding inverse quantity, <see cref=""{relation.RightQuantity.Name}""/>.</returns>
         public {relation.RightQuantity.Name} Inverse()
         {{
-            return {relation.RightQuantity.Name}.From{relation.RightUnit.PluralName}({relation.LeftUnit.PluralName}.Reciprocal());
+            return {relation.RightQuantity.Name}.From{relation.RightUnit.PluralName}(QuantityValue.Inverse({relation.LeftUnit.PluralName}));
         }}
 ");
                 }
@@ -765,13 +764,13 @@ namespace UnitsNet
 
                     if (leftParameterName is "double") 
                     {
-                        leftParameterType = "Fraction";
+                        leftParameterType = "QuantityValue";
                         leftParameterName = leftPart = "value";
                     }
 
                     if (rightParameterName is "double")
                     {
-                        rightParameterType = "Fraction";
+                        rightParameterType = "QuantityValue";
                         rightParameterName = rightPart = "value";
                     }
 
@@ -780,7 +779,7 @@ namespace UnitsNet
                     var resultType = relation.ResultQuantity.Name;
                     if (resultType is "double")
                     {
-                        resultType = "Fraction";
+                        resultType = "QuantityValue";
                     }
                     else
                     {
@@ -858,7 +857,7 @@ namespace UnitsNet
         /// <summary>Indicates strict equality of two <see cref=""{_quantity.Name}""/> quantities.</summary>
         public bool Equals({_quantity.Name} other)
         {{
-            return _value.IsEquivalentTo(other.As(this.Unit));
+            return _value.Equals(other.As(this.Unit));
         }}
 
         /// <summary>Compares the current <see cref=""{_quantity.Name}""/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
@@ -943,10 +942,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), ""Tolerance must be greater than or equal to 0."");
 
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: (Fraction)tolerance,
+                tolerance: (QuantityValue)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }}
 
@@ -963,7 +962,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals({_quantity.Name} other, {_quantity.Name} tolerance)
         {{
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -977,7 +976,11 @@ namespace UnitsNet
         public override int GetHashCode()
         {{
             var valueInBaseUnit = As(BaseUnit);
+            #if NET7_0_OR_GREATER
+            return HashCode.Combine(Info.Name, valueInBaseUnit);
+            #else
             return new {{ Info.Name, valueInBaseUnit }}.GetHashCode();
+            #endif
         }}
 
         #endregion
@@ -993,7 +996,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name=""unit"" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public Fraction As({_unitEnumName} unit)
+        public QuantityValue As({_unitEnumName} unit)
         {{
             if (Unit == unit)
                 return Value;
@@ -1005,7 +1008,7 @@ namespace UnitsNet
             Writer.WL($@"
 
         /// <inheritdoc cref=""IQuantity.As(UnitSystem)""/>
-        public Fraction As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {{
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -1022,7 +1025,7 @@ namespace UnitsNet
 
             Writer.WL($@"
         /// <inheritdoc />
-        Fraction IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {{
             if (!(unit is {_unitEnumName} typedUnit))
                 throw new ArgumentException($""The given unit is of type {{unit.GetType()}}. Only {{typeof({_unitEnumName})}} is supported."", nameof(unit));

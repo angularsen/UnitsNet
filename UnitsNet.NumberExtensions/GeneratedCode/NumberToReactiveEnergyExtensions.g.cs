@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToReactiveEnergy
     /// </summary>
     public static class NumberToReactiveEnergyExtensions
     {
-        /// <inheritdoc cref="ReactiveEnergy.FromKilovoltampereReactiveHours(double)" />
+        /// <inheritdoc cref="ReactiveEnergy.FromKilovoltampereReactiveHours(QuantityValue)" />
         public static ReactiveEnergy KilovoltampereReactiveHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToReactiveEnergy
 #endif
             => ReactiveEnergy.FromKilovoltampereReactiveHours(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReactiveEnergy.FromMegavoltampereReactiveHours(double)" />
+        /// <inheritdoc cref="ReactiveEnergy.FromMegavoltampereReactiveHours(QuantityValue)" />
         public static ReactiveEnergy MegavoltampereReactiveHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToReactiveEnergy
 #endif
             => ReactiveEnergy.FromMegavoltampereReactiveHours(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReactiveEnergy.FromVoltampereReactiveHours(double)" />
+        /// <inheritdoc cref="ReactiveEnergy.FromVoltampereReactiveHours(QuantityValue)" />
         public static ReactiveEnergy VoltampereReactiveHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

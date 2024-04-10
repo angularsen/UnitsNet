@@ -25,7 +25,6 @@ using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 using System.Numerics;
-using Fractions;
 
 #nullable enable
 
@@ -53,7 +52,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly Fraction _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -95,7 +94,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Frequency(Fraction value, FrequencyUnit unit)
+        public Frequency(QuantityValue value, FrequencyUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -109,7 +108,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Frequency(Fraction value, UnitSystem unitSystem)
+        public Frequency(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -160,10 +159,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public Fraction Value => _value;
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
-        Fraction IQuantity.Value => _value;
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -188,67 +187,67 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FrequencyUnit.BeatPerMinute"/>
         /// </summary>
-        public Fraction BeatsPerMinute => As(FrequencyUnit.BeatPerMinute);
+        public QuantityValue BeatsPerMinute => As(FrequencyUnit.BeatPerMinute);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FrequencyUnit.BUnit"/>
         /// </summary>
-        public Fraction BUnits => As(FrequencyUnit.BUnit);
+        public QuantityValue BUnits => As(FrequencyUnit.BUnit);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FrequencyUnit.CyclePerHour"/>
         /// </summary>
-        public Fraction CyclesPerHour => As(FrequencyUnit.CyclePerHour);
+        public QuantityValue CyclesPerHour => As(FrequencyUnit.CyclePerHour);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FrequencyUnit.CyclePerMinute"/>
         /// </summary>
-        public Fraction CyclesPerMinute => As(FrequencyUnit.CyclePerMinute);
+        public QuantityValue CyclesPerMinute => As(FrequencyUnit.CyclePerMinute);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FrequencyUnit.Gigahertz"/>
         /// </summary>
-        public Fraction Gigahertz => As(FrequencyUnit.Gigahertz);
+        public QuantityValue Gigahertz => As(FrequencyUnit.Gigahertz);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FrequencyUnit.Hertz"/>
         /// </summary>
-        public Fraction Hertz => As(FrequencyUnit.Hertz);
+        public QuantityValue Hertz => As(FrequencyUnit.Hertz);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FrequencyUnit.Kilohertz"/>
         /// </summary>
-        public Fraction Kilohertz => As(FrequencyUnit.Kilohertz);
+        public QuantityValue Kilohertz => As(FrequencyUnit.Kilohertz);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FrequencyUnit.Megahertz"/>
         /// </summary>
-        public Fraction Megahertz => As(FrequencyUnit.Megahertz);
+        public QuantityValue Megahertz => As(FrequencyUnit.Megahertz);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FrequencyUnit.Microhertz"/>
         /// </summary>
-        public Fraction Microhertz => As(FrequencyUnit.Microhertz);
+        public QuantityValue Microhertz => As(FrequencyUnit.Microhertz);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FrequencyUnit.Millihertz"/>
         /// </summary>
-        public Fraction Millihertz => As(FrequencyUnit.Millihertz);
+        public QuantityValue Millihertz => As(FrequencyUnit.Millihertz);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FrequencyUnit.PerSecond"/>
         /// </summary>
-        public Fraction PerSecond => As(FrequencyUnit.PerSecond);
+        public QuantityValue PerSecond => As(FrequencyUnit.PerSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FrequencyUnit.RadianPerSecond"/>
         /// </summary>
-        public Fraction RadiansPerSecond => As(FrequencyUnit.RadianPerSecond);
+        public QuantityValue RadiansPerSecond => As(FrequencyUnit.RadianPerSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FrequencyUnit.Terahertz"/>
         /// </summary>
-        public Fraction Terahertz => As(FrequencyUnit.Terahertz);
+        public QuantityValue Terahertz => As(FrequencyUnit.Terahertz);
 
         #endregion
 
@@ -320,7 +319,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.BeatPerMinute"/>.
         /// </summary>
-        public static Frequency FromBeatsPerMinute(Fraction value)
+        public static Frequency FromBeatsPerMinute(QuantityValue value)
         {
             return new Frequency(value, FrequencyUnit.BeatPerMinute);
         }
@@ -328,7 +327,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.BUnit"/>.
         /// </summary>
-        public static Frequency FromBUnits(Fraction value)
+        public static Frequency FromBUnits(QuantityValue value)
         {
             return new Frequency(value, FrequencyUnit.BUnit);
         }
@@ -336,7 +335,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.CyclePerHour"/>.
         /// </summary>
-        public static Frequency FromCyclesPerHour(Fraction value)
+        public static Frequency FromCyclesPerHour(QuantityValue value)
         {
             return new Frequency(value, FrequencyUnit.CyclePerHour);
         }
@@ -344,7 +343,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.CyclePerMinute"/>.
         /// </summary>
-        public static Frequency FromCyclesPerMinute(Fraction value)
+        public static Frequency FromCyclesPerMinute(QuantityValue value)
         {
             return new Frequency(value, FrequencyUnit.CyclePerMinute);
         }
@@ -352,7 +351,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.Gigahertz"/>.
         /// </summary>
-        public static Frequency FromGigahertz(Fraction value)
+        public static Frequency FromGigahertz(QuantityValue value)
         {
             return new Frequency(value, FrequencyUnit.Gigahertz);
         }
@@ -360,7 +359,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.Hertz"/>.
         /// </summary>
-        public static Frequency FromHertz(Fraction value)
+        public static Frequency FromHertz(QuantityValue value)
         {
             return new Frequency(value, FrequencyUnit.Hertz);
         }
@@ -368,7 +367,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.Kilohertz"/>.
         /// </summary>
-        public static Frequency FromKilohertz(Fraction value)
+        public static Frequency FromKilohertz(QuantityValue value)
         {
             return new Frequency(value, FrequencyUnit.Kilohertz);
         }
@@ -376,7 +375,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.Megahertz"/>.
         /// </summary>
-        public static Frequency FromMegahertz(Fraction value)
+        public static Frequency FromMegahertz(QuantityValue value)
         {
             return new Frequency(value, FrequencyUnit.Megahertz);
         }
@@ -384,7 +383,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.Microhertz"/>.
         /// </summary>
-        public static Frequency FromMicrohertz(Fraction value)
+        public static Frequency FromMicrohertz(QuantityValue value)
         {
             return new Frequency(value, FrequencyUnit.Microhertz);
         }
@@ -392,7 +391,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.Millihertz"/>.
         /// </summary>
-        public static Frequency FromMillihertz(Fraction value)
+        public static Frequency FromMillihertz(QuantityValue value)
         {
             return new Frequency(value, FrequencyUnit.Millihertz);
         }
@@ -400,7 +399,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.PerSecond"/>.
         /// </summary>
-        public static Frequency FromPerSecond(Fraction value)
+        public static Frequency FromPerSecond(QuantityValue value)
         {
             return new Frequency(value, FrequencyUnit.PerSecond);
         }
@@ -408,7 +407,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.RadianPerSecond"/>.
         /// </summary>
-        public static Frequency FromRadiansPerSecond(Fraction value)
+        public static Frequency FromRadiansPerSecond(QuantityValue value)
         {
             return new Frequency(value, FrequencyUnit.RadianPerSecond);
         }
@@ -416,7 +415,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.Terahertz"/>.
         /// </summary>
-        public static Frequency FromTerahertz(Fraction value)
+        public static Frequency FromTerahertz(QuantityValue value)
         {
             return new Frequency(value, FrequencyUnit.Terahertz);
         }
@@ -427,7 +426,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Frequency unit value.</returns>
-        public static Frequency From(Fraction value, FrequencyUnit fromUnit)
+        public static Frequency From(QuantityValue value, FrequencyUnit fromUnit)
         {
             return new Frequency(value, fromUnit);
         }
@@ -583,7 +582,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static Frequency operator -(Frequency right)
         {
-            return new Frequency(right.Value.Invert(), right.Unit);
+            return new Frequency(-right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Frequency"/> from adding two <see cref="Frequency"/>.</summary>
@@ -599,25 +598,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Frequency"/> from multiplying value and <see cref="Frequency"/>.</summary>
-        public static Frequency operator *(Fraction left, Frequency right)
+        public static Frequency operator *(QuantityValue left, Frequency right)
         {
             return new Frequency(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Frequency"/> from multiplying value and <see cref="Frequency"/>.</summary>
-        public static Frequency operator *(Frequency left, Fraction right)
+        public static Frequency operator *(Frequency left, QuantityValue right)
         {
             return new Frequency(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Frequency"/> from dividing <see cref="Frequency"/> by value.</summary>
-        public static Frequency operator /(Frequency left, Fraction right)
+        public static Frequency operator /(Frequency left, QuantityValue right)
         {
             return new Frequency(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Frequency"/> by <see cref="Frequency"/>.</summary>
-        public static Fraction operator /(Frequency left, Frequency right)
+        public static QuantityValue operator /(Frequency left, Frequency right)
         {
             return left.Hertz / right.Hertz;
         }
@@ -686,7 +685,7 @@ namespace UnitsNet
         /// <summary>Indicates strict equality of two <see cref="Frequency"/> quantities.</summary>
         public bool Equals(Frequency other)
         {
-            return _value.IsEquivalentTo(other.As(this.Unit));
+            return _value.Equals(other.As(this.Unit));
         }
 
         /// <summary>Compares the current <see cref="Frequency"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
@@ -771,10 +770,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: (Fraction)tolerance,
+                tolerance: (QuantityValue)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -791,7 +790,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(Frequency other, Frequency tolerance)
         {
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -805,7 +804,11 @@ namespace UnitsNet
         public override int GetHashCode()
         {
             var valueInBaseUnit = As(BaseUnit);
+            #if NET7_0_OR_GREATER
+            return HashCode.Combine(Info.Name, valueInBaseUnit);
+            #else
             return new { Info.Name, valueInBaseUnit }.GetHashCode();
+            #endif
         }
 
         #endregion
@@ -816,7 +819,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public Fraction As(FrequencyUnit unit)
+        public QuantityValue As(FrequencyUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -825,7 +828,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public Fraction As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -840,7 +843,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        Fraction IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
             if (!(unit is FrequencyUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(FrequencyUnit)} is supported.", nameof(unit));
@@ -907,7 +910,7 @@ namespace UnitsNet
             {
                 // FrequencyUnit -> BaseUnit
                 (FrequencyUnit.BeatPerMinute, FrequencyUnit.Hertz) => new Frequency(_value / 60, FrequencyUnit.Hertz),
-                (FrequencyUnit.BUnit, FrequencyUnit.Hertz) => new Frequency(Fraction.FromDoubleRounded(Math.Pow(_value.ToDouble(), 0.5)) * new Fraction(2314456473, 73189540, false), FrequencyUnit.Hertz),
+                (FrequencyUnit.BUnit, FrequencyUnit.Hertz) => new Frequency(QuantityValue.FromDoubleRounded(Math.Sqrt((_value * 1000).ToDouble())), FrequencyUnit.Hertz),
                 (FrequencyUnit.CyclePerHour, FrequencyUnit.Hertz) => new Frequency(_value / 3600, FrequencyUnit.Hertz),
                 (FrequencyUnit.CyclePerMinute, FrequencyUnit.Hertz) => new Frequency(_value / 60, FrequencyUnit.Hertz),
                 (FrequencyUnit.Gigahertz, FrequencyUnit.Hertz) => new Frequency(_value * 1000000000, FrequencyUnit.Hertz),
@@ -916,12 +919,12 @@ namespace UnitsNet
                 (FrequencyUnit.Microhertz, FrequencyUnit.Hertz) => new Frequency(_value / 1000000, FrequencyUnit.Hertz),
                 (FrequencyUnit.Millihertz, FrequencyUnit.Hertz) => new Frequency(_value / 1000, FrequencyUnit.Hertz),
                 (FrequencyUnit.PerSecond, FrequencyUnit.Hertz) => new Frequency(_value, FrequencyUnit.Hertz),
-                (FrequencyUnit.RadianPerSecond, FrequencyUnit.Hertz) => new Frequency(_value * new Fraction(625000000, 3926990817, false), FrequencyUnit.Hertz),
+                (FrequencyUnit.RadianPerSecond, FrequencyUnit.Hertz) => new Frequency(_value * new QuantityValue(625000000, 3926990817, false), FrequencyUnit.Hertz),
                 (FrequencyUnit.Terahertz, FrequencyUnit.Hertz) => new Frequency(_value * 1000000000000, FrequencyUnit.Hertz),
 
                 // BaseUnit -> FrequencyUnit
                 (FrequencyUnit.Hertz, FrequencyUnit.BeatPerMinute) => new Frequency(_value * 60, FrequencyUnit.BeatPerMinute),
-                (FrequencyUnit.Hertz, FrequencyUnit.BUnit) => new Frequency(Fraction.Pow(_value, 2) / 1000, FrequencyUnit.BUnit),
+                (FrequencyUnit.Hertz, FrequencyUnit.BUnit) => new Frequency((_value ^ 2) / 1000, FrequencyUnit.BUnit),
                 (FrequencyUnit.Hertz, FrequencyUnit.CyclePerHour) => new Frequency(_value * 3600, FrequencyUnit.CyclePerHour),
                 (FrequencyUnit.Hertz, FrequencyUnit.CyclePerMinute) => new Frequency(_value * 60, FrequencyUnit.CyclePerMinute),
                 (FrequencyUnit.Hertz, FrequencyUnit.Gigahertz) => new Frequency(_value / 1000000000, FrequencyUnit.Gigahertz),
@@ -930,7 +933,7 @@ namespace UnitsNet
                 (FrequencyUnit.Hertz, FrequencyUnit.Microhertz) => new Frequency(_value * 1000000, FrequencyUnit.Microhertz),
                 (FrequencyUnit.Hertz, FrequencyUnit.Millihertz) => new Frequency(_value * 1000, FrequencyUnit.Millihertz),
                 (FrequencyUnit.Hertz, FrequencyUnit.PerSecond) => new Frequency(_value, FrequencyUnit.PerSecond),
-                (FrequencyUnit.Hertz, FrequencyUnit.RadianPerSecond) => new Frequency(_value * new Fraction(3926990817, 625000000, false), FrequencyUnit.RadianPerSecond),
+                (FrequencyUnit.Hertz, FrequencyUnit.RadianPerSecond) => new Frequency(_value * new QuantityValue(3926990817, 625000000, false), FrequencyUnit.RadianPerSecond),
                 (FrequencyUnit.Hertz, FrequencyUnit.Terahertz) => new Frequency(_value / 1000000000000, FrequencyUnit.Terahertz),
 
                 _ => null

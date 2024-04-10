@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricField
     /// </summary>
     public static class NumberToElectricFieldExtensions
     {
-        /// <inheritdoc cref="ElectricField.FromVoltsPerMeter(double)" />
+        /// <inheritdoc cref="ElectricField.FromVoltsPerMeter(QuantityValue)" />
         public static ElectricField VoltsPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

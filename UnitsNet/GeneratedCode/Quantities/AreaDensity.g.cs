@@ -25,7 +25,6 @@ using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 using System.Numerics;
-using Fractions;
 
 #nullable enable
 
@@ -53,7 +52,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly Fraction _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -85,7 +84,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public AreaDensity(Fraction value, AreaDensityUnit unit)
+        public AreaDensity(QuantityValue value, AreaDensityUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -99,7 +98,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public AreaDensity(Fraction value, UnitSystem unitSystem)
+        public AreaDensity(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -150,10 +149,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public Fraction Value => _value;
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
-        Fraction IQuantity.Value => _value;
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -178,17 +177,17 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaDensityUnit.GramPerSquareMeter"/>
         /// </summary>
-        public Fraction GramsPerSquareMeter => As(AreaDensityUnit.GramPerSquareMeter);
+        public QuantityValue GramsPerSquareMeter => As(AreaDensityUnit.GramPerSquareMeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaDensityUnit.KilogramPerSquareMeter"/>
         /// </summary>
-        public Fraction KilogramsPerSquareMeter => As(AreaDensityUnit.KilogramPerSquareMeter);
+        public QuantityValue KilogramsPerSquareMeter => As(AreaDensityUnit.KilogramPerSquareMeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaDensityUnit.MilligramPerSquareMeter"/>
         /// </summary>
-        public Fraction MilligramsPerSquareMeter => As(AreaDensityUnit.MilligramPerSquareMeter);
+        public QuantityValue MilligramsPerSquareMeter => As(AreaDensityUnit.MilligramPerSquareMeter);
 
         #endregion
 
@@ -240,7 +239,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.GramPerSquareMeter"/>.
         /// </summary>
-        public static AreaDensity FromGramsPerSquareMeter(Fraction value)
+        public static AreaDensity FromGramsPerSquareMeter(QuantityValue value)
         {
             return new AreaDensity(value, AreaDensityUnit.GramPerSquareMeter);
         }
@@ -248,7 +247,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.KilogramPerSquareMeter"/>.
         /// </summary>
-        public static AreaDensity FromKilogramsPerSquareMeter(Fraction value)
+        public static AreaDensity FromKilogramsPerSquareMeter(QuantityValue value)
         {
             return new AreaDensity(value, AreaDensityUnit.KilogramPerSquareMeter);
         }
@@ -256,7 +255,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.MilligramPerSquareMeter"/>.
         /// </summary>
-        public static AreaDensity FromMilligramsPerSquareMeter(Fraction value)
+        public static AreaDensity FromMilligramsPerSquareMeter(QuantityValue value)
         {
             return new AreaDensity(value, AreaDensityUnit.MilligramPerSquareMeter);
         }
@@ -267,7 +266,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>AreaDensity unit value.</returns>
-        public static AreaDensity From(Fraction value, AreaDensityUnit fromUnit)
+        public static AreaDensity From(QuantityValue value, AreaDensityUnit fromUnit)
         {
             return new AreaDensity(value, fromUnit);
         }
@@ -423,7 +422,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static AreaDensity operator -(AreaDensity right)
         {
-            return new AreaDensity(right.Value.Invert(), right.Unit);
+            return new AreaDensity(-right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="AreaDensity"/> from adding two <see cref="AreaDensity"/>.</summary>
@@ -439,25 +438,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="AreaDensity"/> from multiplying value and <see cref="AreaDensity"/>.</summary>
-        public static AreaDensity operator *(Fraction left, AreaDensity right)
+        public static AreaDensity operator *(QuantityValue left, AreaDensity right)
         {
             return new AreaDensity(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="AreaDensity"/> from multiplying value and <see cref="AreaDensity"/>.</summary>
-        public static AreaDensity operator *(AreaDensity left, Fraction right)
+        public static AreaDensity operator *(AreaDensity left, QuantityValue right)
         {
             return new AreaDensity(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="AreaDensity"/> from dividing <see cref="AreaDensity"/> by value.</summary>
-        public static AreaDensity operator /(AreaDensity left, Fraction right)
+        public static AreaDensity operator /(AreaDensity left, QuantityValue right)
         {
             return new AreaDensity(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="AreaDensity"/> by <see cref="AreaDensity"/>.</summary>
-        public static Fraction operator /(AreaDensity left, AreaDensity right)
+        public static QuantityValue operator /(AreaDensity left, AreaDensity right)
         {
             return left.KilogramsPerSquareMeter / right.KilogramsPerSquareMeter;
         }
@@ -526,7 +525,7 @@ namespace UnitsNet
         /// <summary>Indicates strict equality of two <see cref="AreaDensity"/> quantities.</summary>
         public bool Equals(AreaDensity other)
         {
-            return _value.IsEquivalentTo(other.As(this.Unit));
+            return _value.Equals(other.As(this.Unit));
         }
 
         /// <summary>Compares the current <see cref="AreaDensity"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
@@ -611,10 +610,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: (Fraction)tolerance,
+                tolerance: (QuantityValue)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -631,7 +630,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(AreaDensity other, AreaDensity tolerance)
         {
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -645,7 +644,11 @@ namespace UnitsNet
         public override int GetHashCode()
         {
             var valueInBaseUnit = As(BaseUnit);
+            #if NET7_0_OR_GREATER
+            return HashCode.Combine(Info.Name, valueInBaseUnit);
+            #else
             return new { Info.Name, valueInBaseUnit }.GetHashCode();
+            #endif
         }
 
         #endregion
@@ -656,7 +659,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public Fraction As(AreaDensityUnit unit)
+        public QuantityValue As(AreaDensityUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -665,7 +668,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public Fraction As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -680,7 +683,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        Fraction IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
             if (!(unit is AreaDensityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AreaDensityUnit)} is supported.", nameof(unit));

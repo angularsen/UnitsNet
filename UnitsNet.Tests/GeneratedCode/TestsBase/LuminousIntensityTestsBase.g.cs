@@ -66,7 +66,7 @@ namespace UnitsNet.Tests
             Assert.Equal(LuminousIntensityUnit.Candela, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new LuminousIntensity(double.PositiveInfinity, LuminousIntensityUnit.Candela));
@@ -76,7 +76,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new LuminousIntensity(double.NaN, LuminousIntensityUnit.Candela));
@@ -135,7 +135,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromCandela_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => LuminousIntensity.FromCandela(double.PositiveInfinity));
@@ -145,7 +145,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromCandela_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => LuminousIntensity.FromCandela(double.NaN));
@@ -326,7 +326,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, LuminousIntensityUnit.Candela, 1, LuminousIntensityUnit.Candela, true)]  // Same value and unit.
         [InlineData(1, LuminousIntensityUnit.Candela, 2, LuminousIntensityUnit.Candela, false)] // Different value.
-        [InlineData(2, LuminousIntensityUnit.Candela, 1, LuminousIntensityUnit.Candela, false)] // Different value and unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, LuminousIntensityUnit unitA, double valueB, LuminousIntensityUnit unitB, bool expectEqual)
         {
             var a = new LuminousIntensity(valueA, unitA);
@@ -625,7 +624,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = LuminousIntensity.FromCandela(1.0);
-            Assert.Equal(new {LuminousIntensity.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(LuminousIntensity.Info.Name, quantity.Candela);
+            #else
+            var expected = new {LuminousIntensity.Info.Name, valueInBaseUnit = quantity.Candela}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

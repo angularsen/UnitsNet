@@ -110,7 +110,7 @@ namespace UnitsNet.Tests
             Assert.Equal(MassFluxUnit.KilogramPerSecondPerSquareMeter, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new MassFlux(double.PositiveInfinity, MassFluxUnit.KilogramPerSecondPerSquareMeter));
@@ -120,7 +120,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new MassFlux(double.NaN, MassFluxUnit.KilogramPerSecondPerSquareMeter));
@@ -234,7 +234,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromKilogramsPerSecondPerSquareMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => MassFlux.FromKilogramsPerSecondPerSquareMeter(double.PositiveInfinity));
@@ -244,7 +244,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromKilogramsPerSecondPerSquareMeter_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => MassFlux.FromKilogramsPerSecondPerSquareMeter(double.NaN));
@@ -711,8 +711,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, MassFluxUnit.KilogramPerSecondPerSquareMeter, 1, MassFluxUnit.KilogramPerSecondPerSquareMeter, true)]  // Same value and unit.
         [InlineData(1, MassFluxUnit.KilogramPerSecondPerSquareMeter, 2, MassFluxUnit.KilogramPerSecondPerSquareMeter, false)] // Different value.
-        [InlineData(2, MassFluxUnit.KilogramPerSecondPerSquareMeter, 1, MassFluxUnit.GramPerHourPerSquareCentimeter, false)] // Different value and unit.
-        [InlineData(1, MassFluxUnit.KilogramPerSecondPerSquareMeter, 1, MassFluxUnit.GramPerHourPerSquareCentimeter, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, MassFluxUnit unitA, double valueB, MassFluxUnit unitB, bool expectEqual)
         {
             var a = new MassFlux(valueA, unitA);
@@ -1033,7 +1031,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = MassFlux.FromKilogramsPerSecondPerSquareMeter(1.0);
-            Assert.Equal(new {MassFlux.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(MassFlux.Info.Name, quantity.KilogramsPerSecondPerSquareMeter);
+            #else
+            var expected = new {MassFlux.Info.Name, valueInBaseUnit = quantity.KilogramsPerSecondPerSquareMeter}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

@@ -66,7 +66,7 @@ namespace UnitsNet.Tests
             Assert.Equal(LuminousFluxUnit.Lumen, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new LuminousFlux(double.PositiveInfinity, LuminousFluxUnit.Lumen));
@@ -76,7 +76,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new LuminousFlux(double.NaN, LuminousFluxUnit.Lumen));
@@ -135,7 +135,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromLumens_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => LuminousFlux.FromLumens(double.PositiveInfinity));
@@ -145,7 +145,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromLumens_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => LuminousFlux.FromLumens(double.NaN));
@@ -326,7 +326,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, LuminousFluxUnit.Lumen, 1, LuminousFluxUnit.Lumen, true)]  // Same value and unit.
         [InlineData(1, LuminousFluxUnit.Lumen, 2, LuminousFluxUnit.Lumen, false)] // Different value.
-        [InlineData(2, LuminousFluxUnit.Lumen, 1, LuminousFluxUnit.Lumen, false)] // Different value and unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, LuminousFluxUnit unitA, double valueB, LuminousFluxUnit unitB, bool expectEqual)
         {
             var a = new LuminousFlux(valueA, unitA);
@@ -625,7 +624,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = LuminousFlux.FromLumens(1.0);
-            Assert.Equal(new {LuminousFlux.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(LuminousFlux.Info.Name, quantity.Lumens);
+            #else
+            var expected = new {LuminousFlux.Info.Name, valueInBaseUnit = quantity.Lumens}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

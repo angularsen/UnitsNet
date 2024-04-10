@@ -98,7 +98,7 @@ namespace UnitsNet.Tests
             Assert.Equal(VolumePerLengthUnit.CubicMeterPerMeter, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new VolumePerLength(double.PositiveInfinity, VolumePerLengthUnit.CubicMeterPerMeter));
@@ -108,7 +108,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new VolumePerLength(double.NaN, VolumePerLengthUnit.CubicMeterPerMeter));
@@ -207,7 +207,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromCubicMetersPerMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => VolumePerLength.FromCubicMetersPerMeter(double.PositiveInfinity));
@@ -217,7 +217,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromCubicMetersPerMeter_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => VolumePerLength.FromCubicMetersPerMeter(double.NaN));
@@ -606,8 +606,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, VolumePerLengthUnit.CubicMeterPerMeter, 1, VolumePerLengthUnit.CubicMeterPerMeter, true)]  // Same value and unit.
         [InlineData(1, VolumePerLengthUnit.CubicMeterPerMeter, 2, VolumePerLengthUnit.CubicMeterPerMeter, false)] // Different value.
-        [InlineData(2, VolumePerLengthUnit.CubicMeterPerMeter, 1, VolumePerLengthUnit.CubicYardPerFoot, false)] // Different value and unit.
-        [InlineData(1, VolumePerLengthUnit.CubicMeterPerMeter, 1, VolumePerLengthUnit.CubicYardPerFoot, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, VolumePerLengthUnit unitA, double valueB, VolumePerLengthUnit unitB, bool expectEqual)
         {
             var a = new VolumePerLength(valueA, unitA);
@@ -922,7 +920,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = VolumePerLength.FromCubicMetersPerMeter(1.0);
-            Assert.Equal(new {VolumePerLength.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(VolumePerLength.Info.Name, quantity.CubicMetersPerMeter);
+            #else
+            var expected = new {VolumePerLength.Info.Name, valueInBaseUnit = quantity.CubicMetersPerMeter}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToEntropy
     /// </summary>
     public static class NumberToEntropyExtensions
     {
-        /// <inheritdoc cref="Entropy.FromCaloriesPerKelvin(double)" />
+        /// <inheritdoc cref="Entropy.FromCaloriesPerKelvin(QuantityValue)" />
         public static Entropy CaloriesPerKelvin<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToEntropy
 #endif
             => Entropy.FromCaloriesPerKelvin(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Entropy.FromJoulesPerDegreeCelsius(double)" />
+        /// <inheritdoc cref="Entropy.FromJoulesPerDegreeCelsius(QuantityValue)" />
         public static Entropy JoulesPerDegreeCelsius<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToEntropy
 #endif
             => Entropy.FromJoulesPerDegreeCelsius(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Entropy.FromJoulesPerKelvin(double)" />
+        /// <inheritdoc cref="Entropy.FromJoulesPerKelvin(QuantityValue)" />
         public static Entropy JoulesPerKelvin<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToEntropy
 #endif
             => Entropy.FromJoulesPerKelvin(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Entropy.FromKilocaloriesPerKelvin(double)" />
+        /// <inheritdoc cref="Entropy.FromKilocaloriesPerKelvin(QuantityValue)" />
         public static Entropy KilocaloriesPerKelvin<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToEntropy
 #endif
             => Entropy.FromKilocaloriesPerKelvin(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Entropy.FromKilojoulesPerDegreeCelsius(double)" />
+        /// <inheritdoc cref="Entropy.FromKilojoulesPerDegreeCelsius(QuantityValue)" />
         public static Entropy KilojoulesPerDegreeCelsius<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToEntropy
 #endif
             => Entropy.FromKilojoulesPerDegreeCelsius(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Entropy.FromKilojoulesPerKelvin(double)" />
+        /// <inheritdoc cref="Entropy.FromKilojoulesPerKelvin(QuantityValue)" />
         public static Entropy KilojoulesPerKelvin<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToEntropy
 #endif
             => Entropy.FromKilojoulesPerKelvin(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Entropy.FromMegajoulesPerKelvin(double)" />
+        /// <inheritdoc cref="Entropy.FromMegajoulesPerKelvin(QuantityValue)" />
         public static Entropy MegajoulesPerKelvin<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

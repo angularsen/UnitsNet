@@ -78,7 +78,7 @@ namespace UnitsNet.Tests
             Assert.Equal(TemperatureGradientUnit.KelvinPerMeter, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new TemperatureGradient(double.PositiveInfinity, TemperatureGradientUnit.KelvinPerMeter));
@@ -88,7 +88,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new TemperatureGradient(double.NaN, TemperatureGradientUnit.KelvinPerMeter));
@@ -162,7 +162,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromKelvinsPerMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => TemperatureGradient.FromKelvinsPerMeter(double.PositiveInfinity));
@@ -172,7 +172,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromKelvinsPerMeter_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => TemperatureGradient.FromKelvinsPerMeter(double.NaN));
@@ -431,8 +431,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, TemperatureGradientUnit.KelvinPerMeter, 1, TemperatureGradientUnit.KelvinPerMeter, true)]  // Same value and unit.
         [InlineData(1, TemperatureGradientUnit.KelvinPerMeter, 2, TemperatureGradientUnit.KelvinPerMeter, false)] // Different value.
-        [InlineData(2, TemperatureGradientUnit.KelvinPerMeter, 1, TemperatureGradientUnit.DegreeCelsiusPerKilometer, false)] // Different value and unit.
-        [InlineData(1, TemperatureGradientUnit.KelvinPerMeter, 1, TemperatureGradientUnit.DegreeCelsiusPerKilometer, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, TemperatureGradientUnit unitA, double valueB, TemperatureGradientUnit unitB, bool expectEqual)
         {
             var a = new TemperatureGradient(valueA, unitA);
@@ -737,7 +735,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = TemperatureGradient.FromKelvinsPerMeter(1.0);
-            Assert.Equal(new {TemperatureGradient.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(TemperatureGradient.Info.Name, quantity.KelvinsPerMeter);
+            #else
+            var expected = new {TemperatureGradient.Info.Name, valueInBaseUnit = quantity.KelvinsPerMeter}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

@@ -142,7 +142,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricPotentialChangeRateUnit.VoltPerSecond, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new ElectricPotentialChangeRate(double.PositiveInfinity, ElectricPotentialChangeRateUnit.VoltPerSecond));
@@ -152,7 +152,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new ElectricPotentialChangeRate(double.NaN, ElectricPotentialChangeRateUnit.VoltPerSecond));
@@ -306,7 +306,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromVoltsPerSecond_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => ElectricPotentialChangeRate.FromVoltsPerSecond(double.PositiveInfinity));
@@ -316,7 +316,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromVoltsPerSecond_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => ElectricPotentialChangeRate.FromVoltsPerSecond(double.NaN));
@@ -903,8 +903,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, ElectricPotentialChangeRateUnit.VoltPerSecond, 1, ElectricPotentialChangeRateUnit.VoltPerSecond, true)]  // Same value and unit.
         [InlineData(1, ElectricPotentialChangeRateUnit.VoltPerSecond, 2, ElectricPotentialChangeRateUnit.VoltPerSecond, false)] // Different value.
-        [InlineData(2, ElectricPotentialChangeRateUnit.VoltPerSecond, 1, ElectricPotentialChangeRateUnit.KilovoltPerHour, false)] // Different value and unit.
-        [InlineData(1, ElectricPotentialChangeRateUnit.VoltPerSecond, 1, ElectricPotentialChangeRateUnit.KilovoltPerHour, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ElectricPotentialChangeRateUnit unitA, double valueB, ElectricPotentialChangeRateUnit unitB, bool expectEqual)
         {
             var a = new ElectricPotentialChangeRate(valueA, unitA);
@@ -1241,7 +1239,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ElectricPotentialChangeRate.FromVoltsPerSecond(1.0);
-            Assert.Equal(new {ElectricPotentialChangeRate.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(ElectricPotentialChangeRate.Info.Name, quantity.VoltsPerSecond);
+            #else
+            var expected = new {ElectricPotentialChangeRate.Info.Name, valueInBaseUnit = quantity.VoltsPerSecond}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

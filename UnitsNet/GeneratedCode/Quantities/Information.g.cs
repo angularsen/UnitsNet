@@ -25,7 +25,6 @@ using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 using System.Numerics;
-using Fractions;
 
 #nullable enable
 
@@ -50,7 +49,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly Fraction _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -105,7 +104,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Information(Fraction value, InformationUnit unit)
+        public Information(QuantityValue value, InformationUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -119,7 +118,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Information(Fraction value, UnitSystem unitSystem)
+        public Information(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -170,10 +169,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public Fraction Value => _value;
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
-        Fraction IQuantity.Value => _value;
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -198,132 +197,132 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Bit"/>
         /// </summary>
-        public Fraction Bits => As(InformationUnit.Bit);
+        public QuantityValue Bits => As(InformationUnit.Bit);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Byte"/>
         /// </summary>
-        public Fraction Bytes => As(InformationUnit.Byte);
+        public QuantityValue Bytes => As(InformationUnit.Byte);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Exabit"/>
         /// </summary>
-        public Fraction Exabits => As(InformationUnit.Exabit);
+        public QuantityValue Exabits => As(InformationUnit.Exabit);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Exabyte"/>
         /// </summary>
-        public Fraction Exabytes => As(InformationUnit.Exabyte);
+        public QuantityValue Exabytes => As(InformationUnit.Exabyte);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Exbibit"/>
         /// </summary>
-        public Fraction Exbibits => As(InformationUnit.Exbibit);
+        public QuantityValue Exbibits => As(InformationUnit.Exbibit);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Exbibyte"/>
         /// </summary>
-        public Fraction Exbibytes => As(InformationUnit.Exbibyte);
+        public QuantityValue Exbibytes => As(InformationUnit.Exbibyte);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Gibibit"/>
         /// </summary>
-        public Fraction Gibibits => As(InformationUnit.Gibibit);
+        public QuantityValue Gibibits => As(InformationUnit.Gibibit);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Gibibyte"/>
         /// </summary>
-        public Fraction Gibibytes => As(InformationUnit.Gibibyte);
+        public QuantityValue Gibibytes => As(InformationUnit.Gibibyte);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Gigabit"/>
         /// </summary>
-        public Fraction Gigabits => As(InformationUnit.Gigabit);
+        public QuantityValue Gigabits => As(InformationUnit.Gigabit);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Gigabyte"/>
         /// </summary>
-        public Fraction Gigabytes => As(InformationUnit.Gigabyte);
+        public QuantityValue Gigabytes => As(InformationUnit.Gigabyte);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Kibibit"/>
         /// </summary>
-        public Fraction Kibibits => As(InformationUnit.Kibibit);
+        public QuantityValue Kibibits => As(InformationUnit.Kibibit);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Kibibyte"/>
         /// </summary>
-        public Fraction Kibibytes => As(InformationUnit.Kibibyte);
+        public QuantityValue Kibibytes => As(InformationUnit.Kibibyte);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Kilobit"/>
         /// </summary>
-        public Fraction Kilobits => As(InformationUnit.Kilobit);
+        public QuantityValue Kilobits => As(InformationUnit.Kilobit);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Kilobyte"/>
         /// </summary>
-        public Fraction Kilobytes => As(InformationUnit.Kilobyte);
+        public QuantityValue Kilobytes => As(InformationUnit.Kilobyte);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Mebibit"/>
         /// </summary>
-        public Fraction Mebibits => As(InformationUnit.Mebibit);
+        public QuantityValue Mebibits => As(InformationUnit.Mebibit);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Mebibyte"/>
         /// </summary>
-        public Fraction Mebibytes => As(InformationUnit.Mebibyte);
+        public QuantityValue Mebibytes => As(InformationUnit.Mebibyte);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Megabit"/>
         /// </summary>
-        public Fraction Megabits => As(InformationUnit.Megabit);
+        public QuantityValue Megabits => As(InformationUnit.Megabit);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Megabyte"/>
         /// </summary>
-        public Fraction Megabytes => As(InformationUnit.Megabyte);
+        public QuantityValue Megabytes => As(InformationUnit.Megabyte);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Pebibit"/>
         /// </summary>
-        public Fraction Pebibits => As(InformationUnit.Pebibit);
+        public QuantityValue Pebibits => As(InformationUnit.Pebibit);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Pebibyte"/>
         /// </summary>
-        public Fraction Pebibytes => As(InformationUnit.Pebibyte);
+        public QuantityValue Pebibytes => As(InformationUnit.Pebibyte);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Petabit"/>
         /// </summary>
-        public Fraction Petabits => As(InformationUnit.Petabit);
+        public QuantityValue Petabits => As(InformationUnit.Petabit);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Petabyte"/>
         /// </summary>
-        public Fraction Petabytes => As(InformationUnit.Petabyte);
+        public QuantityValue Petabytes => As(InformationUnit.Petabyte);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Tebibit"/>
         /// </summary>
-        public Fraction Tebibits => As(InformationUnit.Tebibit);
+        public QuantityValue Tebibits => As(InformationUnit.Tebibit);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Tebibyte"/>
         /// </summary>
-        public Fraction Tebibytes => As(InformationUnit.Tebibyte);
+        public QuantityValue Tebibytes => As(InformationUnit.Tebibyte);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Terabit"/>
         /// </summary>
-        public Fraction Terabits => As(InformationUnit.Terabit);
+        public QuantityValue Terabits => As(InformationUnit.Terabit);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Terabyte"/>
         /// </summary>
-        public Fraction Terabytes => As(InformationUnit.Terabyte);
+        public QuantityValue Terabytes => As(InformationUnit.Terabyte);
 
         #endregion
 
@@ -421,7 +420,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Bit"/>.
         /// </summary>
-        public static Information FromBits(Fraction value)
+        public static Information FromBits(QuantityValue value)
         {
             return new Information(value, InformationUnit.Bit);
         }
@@ -429,7 +428,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Byte"/>.
         /// </summary>
-        public static Information FromBytes(Fraction value)
+        public static Information FromBytes(QuantityValue value)
         {
             return new Information(value, InformationUnit.Byte);
         }
@@ -437,7 +436,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Exabit"/>.
         /// </summary>
-        public static Information FromExabits(Fraction value)
+        public static Information FromExabits(QuantityValue value)
         {
             return new Information(value, InformationUnit.Exabit);
         }
@@ -445,7 +444,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Exabyte"/>.
         /// </summary>
-        public static Information FromExabytes(Fraction value)
+        public static Information FromExabytes(QuantityValue value)
         {
             return new Information(value, InformationUnit.Exabyte);
         }
@@ -453,7 +452,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Exbibit"/>.
         /// </summary>
-        public static Information FromExbibits(Fraction value)
+        public static Information FromExbibits(QuantityValue value)
         {
             return new Information(value, InformationUnit.Exbibit);
         }
@@ -461,7 +460,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Exbibyte"/>.
         /// </summary>
-        public static Information FromExbibytes(Fraction value)
+        public static Information FromExbibytes(QuantityValue value)
         {
             return new Information(value, InformationUnit.Exbibyte);
         }
@@ -469,7 +468,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Gibibit"/>.
         /// </summary>
-        public static Information FromGibibits(Fraction value)
+        public static Information FromGibibits(QuantityValue value)
         {
             return new Information(value, InformationUnit.Gibibit);
         }
@@ -477,7 +476,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Gibibyte"/>.
         /// </summary>
-        public static Information FromGibibytes(Fraction value)
+        public static Information FromGibibytes(QuantityValue value)
         {
             return new Information(value, InformationUnit.Gibibyte);
         }
@@ -485,7 +484,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Gigabit"/>.
         /// </summary>
-        public static Information FromGigabits(Fraction value)
+        public static Information FromGigabits(QuantityValue value)
         {
             return new Information(value, InformationUnit.Gigabit);
         }
@@ -493,7 +492,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Gigabyte"/>.
         /// </summary>
-        public static Information FromGigabytes(Fraction value)
+        public static Information FromGigabytes(QuantityValue value)
         {
             return new Information(value, InformationUnit.Gigabyte);
         }
@@ -501,7 +500,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Kibibit"/>.
         /// </summary>
-        public static Information FromKibibits(Fraction value)
+        public static Information FromKibibits(QuantityValue value)
         {
             return new Information(value, InformationUnit.Kibibit);
         }
@@ -509,7 +508,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Kibibyte"/>.
         /// </summary>
-        public static Information FromKibibytes(Fraction value)
+        public static Information FromKibibytes(QuantityValue value)
         {
             return new Information(value, InformationUnit.Kibibyte);
         }
@@ -517,7 +516,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Kilobit"/>.
         /// </summary>
-        public static Information FromKilobits(Fraction value)
+        public static Information FromKilobits(QuantityValue value)
         {
             return new Information(value, InformationUnit.Kilobit);
         }
@@ -525,7 +524,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Kilobyte"/>.
         /// </summary>
-        public static Information FromKilobytes(Fraction value)
+        public static Information FromKilobytes(QuantityValue value)
         {
             return new Information(value, InformationUnit.Kilobyte);
         }
@@ -533,7 +532,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Mebibit"/>.
         /// </summary>
-        public static Information FromMebibits(Fraction value)
+        public static Information FromMebibits(QuantityValue value)
         {
             return new Information(value, InformationUnit.Mebibit);
         }
@@ -541,7 +540,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Mebibyte"/>.
         /// </summary>
-        public static Information FromMebibytes(Fraction value)
+        public static Information FromMebibytes(QuantityValue value)
         {
             return new Information(value, InformationUnit.Mebibyte);
         }
@@ -549,7 +548,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Megabit"/>.
         /// </summary>
-        public static Information FromMegabits(Fraction value)
+        public static Information FromMegabits(QuantityValue value)
         {
             return new Information(value, InformationUnit.Megabit);
         }
@@ -557,7 +556,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Megabyte"/>.
         /// </summary>
-        public static Information FromMegabytes(Fraction value)
+        public static Information FromMegabytes(QuantityValue value)
         {
             return new Information(value, InformationUnit.Megabyte);
         }
@@ -565,7 +564,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Pebibit"/>.
         /// </summary>
-        public static Information FromPebibits(Fraction value)
+        public static Information FromPebibits(QuantityValue value)
         {
             return new Information(value, InformationUnit.Pebibit);
         }
@@ -573,7 +572,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Pebibyte"/>.
         /// </summary>
-        public static Information FromPebibytes(Fraction value)
+        public static Information FromPebibytes(QuantityValue value)
         {
             return new Information(value, InformationUnit.Pebibyte);
         }
@@ -581,7 +580,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Petabit"/>.
         /// </summary>
-        public static Information FromPetabits(Fraction value)
+        public static Information FromPetabits(QuantityValue value)
         {
             return new Information(value, InformationUnit.Petabit);
         }
@@ -589,7 +588,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Petabyte"/>.
         /// </summary>
-        public static Information FromPetabytes(Fraction value)
+        public static Information FromPetabytes(QuantityValue value)
         {
             return new Information(value, InformationUnit.Petabyte);
         }
@@ -597,7 +596,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Tebibit"/>.
         /// </summary>
-        public static Information FromTebibits(Fraction value)
+        public static Information FromTebibits(QuantityValue value)
         {
             return new Information(value, InformationUnit.Tebibit);
         }
@@ -605,7 +604,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Tebibyte"/>.
         /// </summary>
-        public static Information FromTebibytes(Fraction value)
+        public static Information FromTebibytes(QuantityValue value)
         {
             return new Information(value, InformationUnit.Tebibyte);
         }
@@ -613,7 +612,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Terabit"/>.
         /// </summary>
-        public static Information FromTerabits(Fraction value)
+        public static Information FromTerabits(QuantityValue value)
         {
             return new Information(value, InformationUnit.Terabit);
         }
@@ -621,7 +620,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Terabyte"/>.
         /// </summary>
-        public static Information FromTerabytes(Fraction value)
+        public static Information FromTerabytes(QuantityValue value)
         {
             return new Information(value, InformationUnit.Terabyte);
         }
@@ -632,7 +631,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Information unit value.</returns>
-        public static Information From(Fraction value, InformationUnit fromUnit)
+        public static Information From(QuantityValue value, InformationUnit fromUnit)
         {
             return new Information(value, fromUnit);
         }
@@ -788,7 +787,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static Information operator -(Information right)
         {
-            return new Information(right.Value.Invert(), right.Unit);
+            return new Information(-right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Information"/> from adding two <see cref="Information"/>.</summary>
@@ -804,25 +803,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Information"/> from multiplying value and <see cref="Information"/>.</summary>
-        public static Information operator *(Fraction left, Information right)
+        public static Information operator *(QuantityValue left, Information right)
         {
             return new Information(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Information"/> from multiplying value and <see cref="Information"/>.</summary>
-        public static Information operator *(Information left, Fraction right)
+        public static Information operator *(Information left, QuantityValue right)
         {
             return new Information(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Information"/> from dividing <see cref="Information"/> by value.</summary>
-        public static Information operator /(Information left, Fraction right)
+        public static Information operator /(Information left, QuantityValue right)
         {
             return new Information(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Information"/> by <see cref="Information"/>.</summary>
-        public static Fraction operator /(Information left, Information right)
+        public static QuantityValue operator /(Information left, Information right)
         {
             return left.Bits / right.Bits;
         }
@@ -881,7 +880,7 @@ namespace UnitsNet
         /// <summary>Indicates strict equality of two <see cref="Information"/> quantities.</summary>
         public bool Equals(Information other)
         {
-            return _value.IsEquivalentTo(other.As(this.Unit));
+            return _value.Equals(other.As(this.Unit));
         }
 
         /// <summary>Compares the current <see cref="Information"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
@@ -966,10 +965,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: (Fraction)tolerance,
+                tolerance: (QuantityValue)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -986,7 +985,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(Information other, Information tolerance)
         {
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -1000,7 +999,11 @@ namespace UnitsNet
         public override int GetHashCode()
         {
             var valueInBaseUnit = As(BaseUnit);
+            #if NET7_0_OR_GREATER
+            return HashCode.Combine(Info.Name, valueInBaseUnit);
+            #else
             return new { Info.Name, valueInBaseUnit }.GetHashCode();
+            #endif
         }
 
         #endregion
@@ -1011,7 +1014,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public Fraction As(InformationUnit unit)
+        public QuantityValue As(InformationUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -1020,7 +1023,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public Fraction As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -1035,7 +1038,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        Fraction IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
             if (!(unit is InformationUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(InformationUnit)} is supported.", nameof(unit));

@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToKinematicViscosity
     /// </summary>
     public static class NumberToKinematicViscosityExtensions
     {
-        /// <inheritdoc cref="KinematicViscosity.FromCentistokes(double)" />
+        /// <inheritdoc cref="KinematicViscosity.FromCentistokes(QuantityValue)" />
         public static KinematicViscosity Centistokes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToKinematicViscosity
 #endif
             => KinematicViscosity.FromCentistokes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="KinematicViscosity.FromDecistokes(double)" />
+        /// <inheritdoc cref="KinematicViscosity.FromDecistokes(QuantityValue)" />
         public static KinematicViscosity Decistokes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToKinematicViscosity
 #endif
             => KinematicViscosity.FromDecistokes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="KinematicViscosity.FromKilostokes(double)" />
+        /// <inheritdoc cref="KinematicViscosity.FromKilostokes(QuantityValue)" />
         public static KinematicViscosity Kilostokes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToKinematicViscosity
 #endif
             => KinematicViscosity.FromKilostokes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="KinematicViscosity.FromMicrostokes(double)" />
+        /// <inheritdoc cref="KinematicViscosity.FromMicrostokes(QuantityValue)" />
         public static KinematicViscosity Microstokes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToKinematicViscosity
 #endif
             => KinematicViscosity.FromMicrostokes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="KinematicViscosity.FromMillistokes(double)" />
+        /// <inheritdoc cref="KinematicViscosity.FromMillistokes(QuantityValue)" />
         public static KinematicViscosity Millistokes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToKinematicViscosity
 #endif
             => KinematicViscosity.FromMillistokes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="KinematicViscosity.FromNanostokes(double)" />
+        /// <inheritdoc cref="KinematicViscosity.FromNanostokes(QuantityValue)" />
         public static KinematicViscosity Nanostokes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToKinematicViscosity
 #endif
             => KinematicViscosity.FromNanostokes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="KinematicViscosity.FromSquareFeetPerSecond(double)" />
+        /// <inheritdoc cref="KinematicViscosity.FromSquareFeetPerSecond(QuantityValue)" />
         public static KinematicViscosity SquareFeetPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToKinematicViscosity
 #endif
             => KinematicViscosity.FromSquareFeetPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="KinematicViscosity.FromSquareMetersPerSecond(double)" />
+        /// <inheritdoc cref="KinematicViscosity.FromSquareMetersPerSecond(QuantityValue)" />
         public static KinematicViscosity SquareMetersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToKinematicViscosity
 #endif
             => KinematicViscosity.FromSquareMetersPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="KinematicViscosity.FromStokes(double)" />
+        /// <inheritdoc cref="KinematicViscosity.FromStokes(QuantityValue)" />
         public static KinematicViscosity Stokes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

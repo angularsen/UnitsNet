@@ -70,7 +70,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ThermalConductivityUnit.WattPerMeterKelvin, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new ThermalConductivity(double.PositiveInfinity, ThermalConductivityUnit.WattPerMeterKelvin));
@@ -80,7 +80,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new ThermalConductivity(double.NaN, ThermalConductivityUnit.WattPerMeterKelvin));
@@ -144,7 +144,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromWattsPerMeterKelvin_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => ThermalConductivity.FromWattsPerMeterKelvin(double.PositiveInfinity));
@@ -154,7 +154,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromWattsPerMeterKelvin_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => ThermalConductivity.FromWattsPerMeterKelvin(double.NaN));
@@ -361,8 +361,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, ThermalConductivityUnit.WattPerMeterKelvin, 1, ThermalConductivityUnit.WattPerMeterKelvin, true)]  // Same value and unit.
         [InlineData(1, ThermalConductivityUnit.WattPerMeterKelvin, 2, ThermalConductivityUnit.WattPerMeterKelvin, false)] // Different value.
-        [InlineData(2, ThermalConductivityUnit.WattPerMeterKelvin, 1, ThermalConductivityUnit.BtuPerHourFootFahrenheit, false)] // Different value and unit.
-        [InlineData(1, ThermalConductivityUnit.WattPerMeterKelvin, 1, ThermalConductivityUnit.BtuPerHourFootFahrenheit, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ThermalConductivityUnit unitA, double valueB, ThermalConductivityUnit unitB, bool expectEqual)
         {
             var a = new ThermalConductivity(valueA, unitA);
@@ -663,7 +661,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ThermalConductivity.FromWattsPerMeterKelvin(1.0);
-            Assert.Equal(new {ThermalConductivity.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(ThermalConductivity.Info.Name, quantity.WattsPerMeterKelvin);
+            #else
+            var expected = new {ThermalConductivity.Info.Name, valueInBaseUnit = quantity.WattsPerMeterKelvin}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

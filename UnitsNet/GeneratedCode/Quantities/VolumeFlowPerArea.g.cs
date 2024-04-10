@@ -25,7 +25,6 @@ using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 using System.Numerics;
-using Fractions;
 
 #nullable enable
 
@@ -50,7 +49,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly Fraction _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -81,7 +80,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public VolumeFlowPerArea(Fraction value, VolumeFlowPerAreaUnit unit)
+        public VolumeFlowPerArea(QuantityValue value, VolumeFlowPerAreaUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -95,7 +94,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public VolumeFlowPerArea(Fraction value, UnitSystem unitSystem)
+        public VolumeFlowPerArea(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -146,10 +145,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public Fraction Value => _value;
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
-        Fraction IQuantity.Value => _value;
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -174,12 +173,12 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot"/>
         /// </summary>
-        public Fraction CubicFeetPerMinutePerSquareFoot => As(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot);
+        public QuantityValue CubicFeetPerMinutePerSquareFoot => As(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter"/>
         /// </summary>
-        public Fraction CubicMetersPerSecondPerSquareMeter => As(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter);
+        public QuantityValue CubicMetersPerSecondPerSquareMeter => As(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter);
 
         #endregion
 
@@ -229,7 +228,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeFlowPerArea"/> from <see cref="VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot"/>.
         /// </summary>
-        public static VolumeFlowPerArea FromCubicFeetPerMinutePerSquareFoot(Fraction value)
+        public static VolumeFlowPerArea FromCubicFeetPerMinutePerSquareFoot(QuantityValue value)
         {
             return new VolumeFlowPerArea(value, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot);
         }
@@ -237,7 +236,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeFlowPerArea"/> from <see cref="VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter"/>.
         /// </summary>
-        public static VolumeFlowPerArea FromCubicMetersPerSecondPerSquareMeter(Fraction value)
+        public static VolumeFlowPerArea FromCubicMetersPerSecondPerSquareMeter(QuantityValue value)
         {
             return new VolumeFlowPerArea(value, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter);
         }
@@ -248,7 +247,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>VolumeFlowPerArea unit value.</returns>
-        public static VolumeFlowPerArea From(Fraction value, VolumeFlowPerAreaUnit fromUnit)
+        public static VolumeFlowPerArea From(QuantityValue value, VolumeFlowPerAreaUnit fromUnit)
         {
             return new VolumeFlowPerArea(value, fromUnit);
         }
@@ -404,7 +403,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static VolumeFlowPerArea operator -(VolumeFlowPerArea right)
         {
-            return new VolumeFlowPerArea(right.Value.Invert(), right.Unit);
+            return new VolumeFlowPerArea(-right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="VolumeFlowPerArea"/> from adding two <see cref="VolumeFlowPerArea"/>.</summary>
@@ -420,25 +419,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="VolumeFlowPerArea"/> from multiplying value and <see cref="VolumeFlowPerArea"/>.</summary>
-        public static VolumeFlowPerArea operator *(Fraction left, VolumeFlowPerArea right)
+        public static VolumeFlowPerArea operator *(QuantityValue left, VolumeFlowPerArea right)
         {
             return new VolumeFlowPerArea(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="VolumeFlowPerArea"/> from multiplying value and <see cref="VolumeFlowPerArea"/>.</summary>
-        public static VolumeFlowPerArea operator *(VolumeFlowPerArea left, Fraction right)
+        public static VolumeFlowPerArea operator *(VolumeFlowPerArea left, QuantityValue right)
         {
             return new VolumeFlowPerArea(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="VolumeFlowPerArea"/> from dividing <see cref="VolumeFlowPerArea"/> by value.</summary>
-        public static VolumeFlowPerArea operator /(VolumeFlowPerArea left, Fraction right)
+        public static VolumeFlowPerArea operator /(VolumeFlowPerArea left, QuantityValue right)
         {
             return new VolumeFlowPerArea(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="VolumeFlowPerArea"/> by <see cref="VolumeFlowPerArea"/>.</summary>
-        public static Fraction operator /(VolumeFlowPerArea left, VolumeFlowPerArea right)
+        public static QuantityValue operator /(VolumeFlowPerArea left, VolumeFlowPerArea right)
         {
             return left.CubicMetersPerSecondPerSquareMeter / right.CubicMetersPerSecondPerSquareMeter;
         }
@@ -497,7 +496,7 @@ namespace UnitsNet
         /// <summary>Indicates strict equality of two <see cref="VolumeFlowPerArea"/> quantities.</summary>
         public bool Equals(VolumeFlowPerArea other)
         {
-            return _value.IsEquivalentTo(other.As(this.Unit));
+            return _value.Equals(other.As(this.Unit));
         }
 
         /// <summary>Compares the current <see cref="VolumeFlowPerArea"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
@@ -582,10 +581,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: (Fraction)tolerance,
+                tolerance: (QuantityValue)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -602,7 +601,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(VolumeFlowPerArea other, VolumeFlowPerArea tolerance)
         {
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -616,7 +615,11 @@ namespace UnitsNet
         public override int GetHashCode()
         {
             var valueInBaseUnit = As(BaseUnit);
+            #if NET7_0_OR_GREATER
+            return HashCode.Combine(Info.Name, valueInBaseUnit);
+            #else
             return new { Info.Name, valueInBaseUnit }.GetHashCode();
+            #endif
         }
 
         #endregion
@@ -627,7 +630,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public Fraction As(VolumeFlowPerAreaUnit unit)
+        public QuantityValue As(VolumeFlowPerAreaUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -636,7 +639,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public Fraction As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -651,7 +654,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        Fraction IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
             if (!(unit is VolumeFlowPerAreaUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeFlowPerAreaUnit)} is supported.", nameof(unit));
@@ -717,10 +720,10 @@ namespace UnitsNet
             VolumeFlowPerArea? convertedOrNull = (Unit, unit) switch
             {
                 // VolumeFlowPerAreaUnit -> BaseUnit
-                (VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter) => new VolumeFlowPerArea(_value * new Fraction(500000, 98425197, false), VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter),
+                (VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter) => new VolumeFlowPerArea(_value * new QuantityValue(500000, 98425197, false), VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter),
 
                 // BaseUnit -> VolumeFlowPerAreaUnit
-                (VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot) => new VolumeFlowPerArea(_value * new Fraction(98425197, 500000, false), VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot),
+                (VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot) => new VolumeFlowPerArea(_value * new QuantityValue(98425197, 500000, false), VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot),
 
                 _ => null
             };

@@ -218,7 +218,7 @@ namespace UnitsNet.Tests
             Assert.Null(q);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void AllowSpecialValue()
         {
             try

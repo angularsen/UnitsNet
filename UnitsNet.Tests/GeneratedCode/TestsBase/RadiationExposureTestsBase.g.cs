@@ -94,7 +94,7 @@ namespace UnitsNet.Tests
             Assert.Equal(RadiationExposureUnit.CoulombPerKilogram, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new RadiationExposure(double.PositiveInfinity, RadiationExposureUnit.CoulombPerKilogram));
@@ -104,7 +104,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new RadiationExposure(double.NaN, RadiationExposureUnit.CoulombPerKilogram));
@@ -198,7 +198,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromCoulombsPerKilogram_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => RadiationExposure.FromCoulombsPerKilogram(double.PositiveInfinity));
@@ -208,7 +208,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromCoulombsPerKilogram_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => RadiationExposure.FromCoulombsPerKilogram(double.NaN));
@@ -571,8 +571,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, RadiationExposureUnit.CoulombPerKilogram, 1, RadiationExposureUnit.CoulombPerKilogram, true)]  // Same value and unit.
         [InlineData(1, RadiationExposureUnit.CoulombPerKilogram, 2, RadiationExposureUnit.CoulombPerKilogram, false)] // Different value.
-        [InlineData(2, RadiationExposureUnit.CoulombPerKilogram, 1, RadiationExposureUnit.MicrocoulombPerKilogram, false)] // Different value and unit.
-        [InlineData(1, RadiationExposureUnit.CoulombPerKilogram, 1, RadiationExposureUnit.MicrocoulombPerKilogram, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, RadiationExposureUnit unitA, double valueB, RadiationExposureUnit unitB, bool expectEqual)
         {
             var a = new RadiationExposure(valueA, unitA);
@@ -885,7 +883,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = RadiationExposure.FromCoulombsPerKilogram(1.0);
-            Assert.Equal(new {RadiationExposure.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(RadiationExposure.Info.Name, quantity.CoulombsPerKilogram);
+            #else
+            var expected = new {RadiationExposure.Info.Name, valueInBaseUnit = quantity.CoulombsPerKilogram}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

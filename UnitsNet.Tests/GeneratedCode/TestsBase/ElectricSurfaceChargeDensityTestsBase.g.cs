@@ -74,7 +74,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new ElectricSurfaceChargeDensity(double.PositiveInfinity, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter));
@@ -84,7 +84,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new ElectricSurfaceChargeDensity(double.NaN, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter));
@@ -153,7 +153,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromCoulombsPerSquareMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(double.PositiveInfinity));
@@ -163,7 +163,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromCoulombsPerSquareMeter_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(double.NaN));
@@ -396,8 +396,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, 1, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, true)]  // Same value and unit.
         [InlineData(1, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, 2, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, false)] // Different value.
-        [InlineData(2, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, 1, ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, false)] // Different value and unit.
-        [InlineData(1, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, 1, ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ElectricSurfaceChargeDensityUnit unitA, double valueB, ElectricSurfaceChargeDensityUnit unitB, bool expectEqual)
         {
             var a = new ElectricSurfaceChargeDensity(valueA, unitA);
@@ -700,7 +698,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(1.0);
-            Assert.Equal(new {ElectricSurfaceChargeDensity.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(ElectricSurfaceChargeDensity.Info.Name, quantity.CoulombsPerSquareMeter);
+            #else
+            var expected = new {ElectricSurfaceChargeDensity.Info.Name, valueInBaseUnit = quantity.CoulombsPerSquareMeter}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

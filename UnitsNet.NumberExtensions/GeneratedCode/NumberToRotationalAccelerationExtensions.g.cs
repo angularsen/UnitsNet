@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalAcceleration
     /// </summary>
     public static class NumberToRotationalAccelerationExtensions
     {
-        /// <inheritdoc cref="RotationalAcceleration.FromDegreesPerSecondSquared(double)" />
+        /// <inheritdoc cref="RotationalAcceleration.FromDegreesPerSecondSquared(QuantityValue)" />
         public static RotationalAcceleration DegreesPerSecondSquared<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalAcceleration
 #endif
             => RotationalAcceleration.FromDegreesPerSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(double)" />
+        /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(QuantityValue)" />
         public static RotationalAcceleration RadiansPerSecondSquared<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalAcceleration
 #endif
             => RotationalAcceleration.FromRadiansPerSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(double)" />
+        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(QuantityValue)" />
         public static RotationalAcceleration RevolutionsPerMinutePerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalAcceleration
 #endif
             => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerSecondSquared(double)" />
+        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerSecondSquared(QuantityValue)" />
         public static RotationalAcceleration RevolutionsPerSecondSquared<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

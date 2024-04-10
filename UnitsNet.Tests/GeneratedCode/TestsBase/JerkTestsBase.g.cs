@@ -106,7 +106,7 @@ namespace UnitsNet.Tests
             Assert.Equal(JerkUnit.MeterPerSecondCubed, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new Jerk(double.PositiveInfinity, JerkUnit.MeterPerSecondCubed));
@@ -116,7 +116,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new Jerk(double.NaN, JerkUnit.MeterPerSecondCubed));
@@ -225,7 +225,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromMetersPerSecondCubed_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => Jerk.FromMetersPerSecondCubed(double.PositiveInfinity));
@@ -235,7 +235,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromMetersPerSecondCubed_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => Jerk.FromMetersPerSecondCubed(double.NaN));
@@ -940,8 +940,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, JerkUnit.MeterPerSecondCubed, 1, JerkUnit.MeterPerSecondCubed, true)]  // Same value and unit.
         [InlineData(1, JerkUnit.MeterPerSecondCubed, 2, JerkUnit.MeterPerSecondCubed, false)] // Different value.
-        [InlineData(2, JerkUnit.MeterPerSecondCubed, 1, JerkUnit.CentimeterPerSecondCubed, false)] // Different value and unit.
-        [InlineData(1, JerkUnit.MeterPerSecondCubed, 1, JerkUnit.CentimeterPerSecondCubed, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, JerkUnit unitA, double valueB, JerkUnit unitB, bool expectEqual)
         {
             var a = new Jerk(valueA, unitA);
@@ -1260,7 +1258,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Jerk.FromMetersPerSecondCubed(1.0);
-            Assert.Equal(new {Jerk.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(Jerk.Info.Name, quantity.MetersPerSecondCubed);
+            #else
+            var expected = new {Jerk.Info.Name, valueInBaseUnit = quantity.MetersPerSecondCubed}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

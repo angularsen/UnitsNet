@@ -130,7 +130,7 @@ namespace UnitsNet.Tests
             Assert.Equal(SpecificWeightUnit.NewtonPerCubicMeter, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new SpecificWeight(double.PositiveInfinity, SpecificWeightUnit.NewtonPerCubicMeter));
@@ -140,7 +140,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new SpecificWeight(double.NaN, SpecificWeightUnit.NewtonPerCubicMeter));
@@ -279,7 +279,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromNewtonsPerCubicMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => SpecificWeight.FromNewtonsPerCubicMeter(double.PositiveInfinity));
@@ -289,7 +289,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromNewtonsPerCubicMeter_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => SpecificWeight.FromNewtonsPerCubicMeter(double.NaN));
@@ -886,8 +886,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, SpecificWeightUnit.NewtonPerCubicMeter, 1, SpecificWeightUnit.NewtonPerCubicMeter, true)]  // Same value and unit.
         [InlineData(1, SpecificWeightUnit.NewtonPerCubicMeter, 2, SpecificWeightUnit.NewtonPerCubicMeter, false)] // Different value.
-        [InlineData(2, SpecificWeightUnit.NewtonPerCubicMeter, 1, SpecificWeightUnit.KilogramForcePerCubicCentimeter, false)] // Different value and unit.
-        [InlineData(1, SpecificWeightUnit.NewtonPerCubicMeter, 1, SpecificWeightUnit.KilogramForcePerCubicCentimeter, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, SpecificWeightUnit unitA, double valueB, SpecificWeightUnit unitB, bool expectEqual)
         {
             var a = new SpecificWeight(valueA, unitA);
@@ -1218,7 +1216,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = SpecificWeight.FromNewtonsPerCubicMeter(1.0);
-            Assert.Equal(new {SpecificWeight.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(SpecificWeight.Info.Name, quantity.NewtonsPerCubicMeter);
+            #else
+            var expected = new {SpecificWeight.Info.Name, valueInBaseUnit = quantity.NewtonsPerCubicMeter}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

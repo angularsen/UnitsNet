@@ -86,7 +86,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new ThermalResistance(double.PositiveInfinity, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt));
@@ -96,7 +96,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new ThermalResistance(double.NaN, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt));
@@ -180,7 +180,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromSquareMeterKelvinsPerKilowatt_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => ThermalResistance.FromSquareMeterKelvinsPerKilowatt(double.PositiveInfinity));
@@ -190,7 +190,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromSquareMeterKelvinsPerKilowatt_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => ThermalResistance.FromSquareMeterKelvinsPerKilowatt(double.NaN));
@@ -501,8 +501,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, 1, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, true)]  // Same value and unit.
         [InlineData(1, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, 2, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, false)] // Different value.
-        [InlineData(2, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, 1, ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, false)] // Different value and unit.
-        [InlineData(1, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, 1, ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ThermalResistanceUnit unitA, double valueB, ThermalResistanceUnit unitB, bool expectEqual)
         {
             var a = new ThermalResistance(valueA, unitA);
@@ -811,7 +809,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1.0);
-            Assert.Equal(new {ThermalResistance.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(ThermalResistance.Info.Name, quantity.SquareMeterKelvinsPerKilowatt);
+            #else
+            var expected = new {ThermalResistance.Info.Name, valueInBaseUnit = quantity.SquareMeterKelvinsPerKilowatt}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

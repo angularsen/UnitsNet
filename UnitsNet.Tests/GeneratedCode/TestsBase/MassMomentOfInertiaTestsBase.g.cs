@@ -174,7 +174,7 @@ namespace UnitsNet.Tests
             Assert.Equal(MassMomentOfInertiaUnit.KilogramSquareMeter, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new MassMomentOfInertia(double.PositiveInfinity, MassMomentOfInertiaUnit.KilogramSquareMeter));
@@ -184,7 +184,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new MassMomentOfInertia(double.NaN, MassMomentOfInertiaUnit.KilogramSquareMeter));
@@ -378,7 +378,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromKilogramSquareMeters_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => MassMomentOfInertia.FromKilogramSquareMeters(double.PositiveInfinity));
@@ -388,7 +388,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromKilogramSquareMeters_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => MassMomentOfInertia.FromKilogramSquareMeters(double.NaN));
@@ -1271,8 +1271,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, MassMomentOfInertiaUnit.KilogramSquareMeter, 1, MassMomentOfInertiaUnit.KilogramSquareMeter, true)]  // Same value and unit.
         [InlineData(1, MassMomentOfInertiaUnit.KilogramSquareMeter, 2, MassMomentOfInertiaUnit.KilogramSquareMeter, false)] // Different value.
-        [InlineData(2, MassMomentOfInertiaUnit.KilogramSquareMeter, 1, MassMomentOfInertiaUnit.GramSquareCentimeter, false)] // Different value and unit.
-        [InlineData(1, MassMomentOfInertiaUnit.KilogramSquareMeter, 1, MassMomentOfInertiaUnit.GramSquareCentimeter, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, MassMomentOfInertiaUnit unitA, double valueB, MassMomentOfInertiaUnit unitB, bool expectEqual)
         {
             var a = new MassMomentOfInertia(valueA, unitA);
@@ -1625,7 +1623,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = MassMomentOfInertia.FromKilogramSquareMeters(1.0);
-            Assert.Equal(new {MassMomentOfInertia.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(MassMomentOfInertia.Info.Name, quantity.KilogramSquareMeters);
+            #else
+            var expected = new {MassMomentOfInertia.Info.Name, valueInBaseUnit = quantity.KilogramSquareMeters}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToTemperature
     /// </summary>
     public static class NumberToTemperatureExtensions
     {
-        /// <inheritdoc cref="Temperature.FromDegreesCelsius(double)" />
+        /// <inheritdoc cref="Temperature.FromDegreesCelsius(QuantityValue)" />
         public static Temperature DegreesCelsius<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToTemperature
 #endif
             => Temperature.FromDegreesCelsius(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Temperature.FromDegreesDelisle(double)" />
+        /// <inheritdoc cref="Temperature.FromDegreesDelisle(QuantityValue)" />
         public static Temperature DegreesDelisle<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToTemperature
 #endif
             => Temperature.FromDegreesDelisle(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Temperature.FromDegreesFahrenheit(double)" />
+        /// <inheritdoc cref="Temperature.FromDegreesFahrenheit(QuantityValue)" />
         public static Temperature DegreesFahrenheit<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToTemperature
 #endif
             => Temperature.FromDegreesFahrenheit(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Temperature.FromDegreesNewton(double)" />
+        /// <inheritdoc cref="Temperature.FromDegreesNewton(QuantityValue)" />
         public static Temperature DegreesNewton<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToTemperature
 #endif
             => Temperature.FromDegreesNewton(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Temperature.FromDegreesRankine(double)" />
+        /// <inheritdoc cref="Temperature.FromDegreesRankine(QuantityValue)" />
         public static Temperature DegreesRankine<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToTemperature
 #endif
             => Temperature.FromDegreesRankine(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Temperature.FromDegreesReaumur(double)" />
+        /// <inheritdoc cref="Temperature.FromDegreesReaumur(QuantityValue)" />
         public static Temperature DegreesReaumur<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToTemperature
 #endif
             => Temperature.FromDegreesReaumur(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Temperature.FromDegreesRoemer(double)" />
+        /// <inheritdoc cref="Temperature.FromDegreesRoemer(QuantityValue)" />
         public static Temperature DegreesRoemer<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToTemperature
 #endif
             => Temperature.FromDegreesRoemer(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Temperature.FromKelvins(double)" />
+        /// <inheritdoc cref="Temperature.FromKelvins(QuantityValue)" />
         public static Temperature Kelvins<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToTemperature
 #endif
             => Temperature.FromKelvins(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Temperature.FromMillidegreesCelsius(double)" />
+        /// <inheritdoc cref="Temperature.FromMillidegreesCelsius(QuantityValue)" />
         public static Temperature MillidegreesCelsius<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -104,7 +104,7 @@ namespace UnitsNet.NumberExtensions.NumberToTemperature
 #endif
             => Temperature.FromMillidegreesCelsius(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Temperature.FromSolarTemperatures(double)" />
+        /// <inheritdoc cref="Temperature.FromSolarTemperatures(QuantityValue)" />
         public static Temperature SolarTemperatures<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

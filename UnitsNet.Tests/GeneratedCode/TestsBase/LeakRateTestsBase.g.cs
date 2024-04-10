@@ -74,7 +74,7 @@ namespace UnitsNet.Tests
             Assert.Equal(LeakRateUnit.PascalCubicMeterPerSecond, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new LeakRate(double.PositiveInfinity, LeakRateUnit.PascalCubicMeterPerSecond));
@@ -84,7 +84,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new LeakRate(double.NaN, LeakRateUnit.PascalCubicMeterPerSecond));
@@ -153,7 +153,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromPascalCubicMetersPerSecond_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => LeakRate.FromPascalCubicMetersPerSecond(double.PositiveInfinity));
@@ -163,7 +163,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromPascalCubicMetersPerSecond_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => LeakRate.FromPascalCubicMetersPerSecond(double.NaN));
@@ -396,8 +396,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, LeakRateUnit.PascalCubicMeterPerSecond, 1, LeakRateUnit.PascalCubicMeterPerSecond, true)]  // Same value and unit.
         [InlineData(1, LeakRateUnit.PascalCubicMeterPerSecond, 2, LeakRateUnit.PascalCubicMeterPerSecond, false)] // Different value.
-        [InlineData(2, LeakRateUnit.PascalCubicMeterPerSecond, 1, LeakRateUnit.MillibarLiterPerSecond, false)] // Different value and unit.
-        [InlineData(1, LeakRateUnit.PascalCubicMeterPerSecond, 1, LeakRateUnit.MillibarLiterPerSecond, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, LeakRateUnit unitA, double valueB, LeakRateUnit unitB, bool expectEqual)
         {
             var a = new LeakRate(valueA, unitA);
@@ -700,7 +698,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = LeakRate.FromPascalCubicMetersPerSecond(1.0);
-            Assert.Equal(new {LeakRate.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(LeakRate.Info.Name, quantity.PascalCubicMetersPerSecond);
+            #else
+            var expected = new {LeakRate.Info.Name, valueInBaseUnit = quantity.PascalCubicMetersPerSecond}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

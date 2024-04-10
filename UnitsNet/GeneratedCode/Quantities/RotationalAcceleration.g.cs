@@ -25,7 +25,6 @@ using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 using System.Numerics;
-using Fractions;
 
 #nullable enable
 
@@ -50,7 +49,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly Fraction _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -83,7 +82,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public RotationalAcceleration(Fraction value, RotationalAccelerationUnit unit)
+        public RotationalAcceleration(QuantityValue value, RotationalAccelerationUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -97,7 +96,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public RotationalAcceleration(Fraction value, UnitSystem unitSystem)
+        public RotationalAcceleration(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -148,10 +147,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public Fraction Value => _value;
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
-        Fraction IQuantity.Value => _value;
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -176,22 +175,22 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalAccelerationUnit.DegreePerSecondSquared"/>
         /// </summary>
-        public Fraction DegreesPerSecondSquared => As(RotationalAccelerationUnit.DegreePerSecondSquared);
+        public QuantityValue DegreesPerSecondSquared => As(RotationalAccelerationUnit.DegreePerSecondSquared);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalAccelerationUnit.RadianPerSecondSquared"/>
         /// </summary>
-        public Fraction RadiansPerSecondSquared => As(RotationalAccelerationUnit.RadianPerSecondSquared);
+        public QuantityValue RadiansPerSecondSquared => As(RotationalAccelerationUnit.RadianPerSecondSquared);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalAccelerationUnit.RevolutionPerMinutePerSecond"/>
         /// </summary>
-        public Fraction RevolutionsPerMinutePerSecond => As(RotationalAccelerationUnit.RevolutionPerMinutePerSecond);
+        public QuantityValue RevolutionsPerMinutePerSecond => As(RotationalAccelerationUnit.RevolutionPerMinutePerSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalAccelerationUnit.RevolutionPerSecondSquared"/>
         /// </summary>
-        public Fraction RevolutionsPerSecondSquared => As(RotationalAccelerationUnit.RevolutionPerSecondSquared);
+        public QuantityValue RevolutionsPerSecondSquared => As(RotationalAccelerationUnit.RevolutionPerSecondSquared);
 
         #endregion
 
@@ -245,7 +244,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalAcceleration"/> from <see cref="RotationalAccelerationUnit.DegreePerSecondSquared"/>.
         /// </summary>
-        public static RotationalAcceleration FromDegreesPerSecondSquared(Fraction value)
+        public static RotationalAcceleration FromDegreesPerSecondSquared(QuantityValue value)
         {
             return new RotationalAcceleration(value, RotationalAccelerationUnit.DegreePerSecondSquared);
         }
@@ -253,7 +252,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalAcceleration"/> from <see cref="RotationalAccelerationUnit.RadianPerSecondSquared"/>.
         /// </summary>
-        public static RotationalAcceleration FromRadiansPerSecondSquared(Fraction value)
+        public static RotationalAcceleration FromRadiansPerSecondSquared(QuantityValue value)
         {
             return new RotationalAcceleration(value, RotationalAccelerationUnit.RadianPerSecondSquared);
         }
@@ -261,7 +260,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalAcceleration"/> from <see cref="RotationalAccelerationUnit.RevolutionPerMinutePerSecond"/>.
         /// </summary>
-        public static RotationalAcceleration FromRevolutionsPerMinutePerSecond(Fraction value)
+        public static RotationalAcceleration FromRevolutionsPerMinutePerSecond(QuantityValue value)
         {
             return new RotationalAcceleration(value, RotationalAccelerationUnit.RevolutionPerMinutePerSecond);
         }
@@ -269,7 +268,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RotationalAcceleration"/> from <see cref="RotationalAccelerationUnit.RevolutionPerSecondSquared"/>.
         /// </summary>
-        public static RotationalAcceleration FromRevolutionsPerSecondSquared(Fraction value)
+        public static RotationalAcceleration FromRevolutionsPerSecondSquared(QuantityValue value)
         {
             return new RotationalAcceleration(value, RotationalAccelerationUnit.RevolutionPerSecondSquared);
         }
@@ -280,7 +279,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>RotationalAcceleration unit value.</returns>
-        public static RotationalAcceleration From(Fraction value, RotationalAccelerationUnit fromUnit)
+        public static RotationalAcceleration From(QuantityValue value, RotationalAccelerationUnit fromUnit)
         {
             return new RotationalAcceleration(value, fromUnit);
         }
@@ -436,7 +435,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static RotationalAcceleration operator -(RotationalAcceleration right)
         {
-            return new RotationalAcceleration(right.Value.Invert(), right.Unit);
+            return new RotationalAcceleration(-right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="RotationalAcceleration"/> from adding two <see cref="RotationalAcceleration"/>.</summary>
@@ -452,25 +451,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="RotationalAcceleration"/> from multiplying value and <see cref="RotationalAcceleration"/>.</summary>
-        public static RotationalAcceleration operator *(Fraction left, RotationalAcceleration right)
+        public static RotationalAcceleration operator *(QuantityValue left, RotationalAcceleration right)
         {
             return new RotationalAcceleration(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="RotationalAcceleration"/> from multiplying value and <see cref="RotationalAcceleration"/>.</summary>
-        public static RotationalAcceleration operator *(RotationalAcceleration left, Fraction right)
+        public static RotationalAcceleration operator *(RotationalAcceleration left, QuantityValue right)
         {
             return new RotationalAcceleration(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="RotationalAcceleration"/> from dividing <see cref="RotationalAcceleration"/> by value.</summary>
-        public static RotationalAcceleration operator /(RotationalAcceleration left, Fraction right)
+        public static RotationalAcceleration operator /(RotationalAcceleration left, QuantityValue right)
         {
             return new RotationalAcceleration(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="RotationalAcceleration"/> by <see cref="RotationalAcceleration"/>.</summary>
-        public static Fraction operator /(RotationalAcceleration left, RotationalAcceleration right)
+        public static QuantityValue operator /(RotationalAcceleration left, RotationalAcceleration right)
         {
             return left.RadiansPerSecondSquared / right.RadiansPerSecondSquared;
         }
@@ -529,7 +528,7 @@ namespace UnitsNet
         /// <summary>Indicates strict equality of two <see cref="RotationalAcceleration"/> quantities.</summary>
         public bool Equals(RotationalAcceleration other)
         {
-            return _value.IsEquivalentTo(other.As(this.Unit));
+            return _value.Equals(other.As(this.Unit));
         }
 
         /// <summary>Compares the current <see cref="RotationalAcceleration"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
@@ -614,10 +613,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: (Fraction)tolerance,
+                tolerance: (QuantityValue)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -634,7 +633,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(RotationalAcceleration other, RotationalAcceleration tolerance)
         {
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -648,7 +647,11 @@ namespace UnitsNet
         public override int GetHashCode()
         {
             var valueInBaseUnit = As(BaseUnit);
+            #if NET7_0_OR_GREATER
+            return HashCode.Combine(Info.Name, valueInBaseUnit);
+            #else
             return new { Info.Name, valueInBaseUnit }.GetHashCode();
+            #endif
         }
 
         #endregion
@@ -659,7 +662,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public Fraction As(RotationalAccelerationUnit unit)
+        public QuantityValue As(RotationalAccelerationUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -668,7 +671,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public Fraction As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -683,7 +686,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        Fraction IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
             if (!(unit is RotationalAccelerationUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalAccelerationUnit)} is supported.", nameof(unit));
@@ -749,14 +752,14 @@ namespace UnitsNet
             RotationalAcceleration? convertedOrNull = (Unit, unit) switch
             {
                 // RotationalAccelerationUnit -> BaseUnit
-                (RotationalAccelerationUnit.DegreePerSecondSquared, RotationalAccelerationUnit.RadianPerSecondSquared) => new RotationalAcceleration(_value * new Fraction(122925461, 7043110110, false), RotationalAccelerationUnit.RadianPerSecondSquared),
-                (RotationalAccelerationUnit.RevolutionPerMinutePerSecond, RotationalAccelerationUnit.RadianPerSecondSquared) => new RotationalAcceleration(_value * new Fraction(122925461, 1173851685, false), RotationalAccelerationUnit.RadianPerSecondSquared),
-                (RotationalAccelerationUnit.RevolutionPerSecondSquared, RotationalAccelerationUnit.RadianPerSecondSquared) => new RotationalAcceleration(_value * new Fraction(491701844, 78256779, false), RotationalAccelerationUnit.RadianPerSecondSquared),
+                (RotationalAccelerationUnit.DegreePerSecondSquared, RotationalAccelerationUnit.RadianPerSecondSquared) => new RotationalAcceleration(_value * new QuantityValue(314159265358979, 18000000000000000, false), RotationalAccelerationUnit.RadianPerSecondSquared),
+                (RotationalAccelerationUnit.RevolutionPerMinutePerSecond, RotationalAccelerationUnit.RadianPerSecondSquared) => new RotationalAcceleration(_value * new QuantityValue(314159265358979, 3000000000000000, false), RotationalAccelerationUnit.RadianPerSecondSquared),
+                (RotationalAccelerationUnit.RevolutionPerSecondSquared, RotationalAccelerationUnit.RadianPerSecondSquared) => new RotationalAcceleration(_value * new QuantityValue(314159265358979, 50000000000000, false), RotationalAccelerationUnit.RadianPerSecondSquared),
 
                 // BaseUnit -> RotationalAccelerationUnit
-                (RotationalAccelerationUnit.RadianPerSecondSquared, RotationalAccelerationUnit.DegreePerSecondSquared) => new RotationalAcceleration(_value * new Fraction(7043110110, 122925461, false), RotationalAccelerationUnit.DegreePerSecondSquared),
-                (RotationalAccelerationUnit.RadianPerSecondSquared, RotationalAccelerationUnit.RevolutionPerMinutePerSecond) => new RotationalAcceleration(_value * new Fraction(1173851685, 122925461, false), RotationalAccelerationUnit.RevolutionPerMinutePerSecond),
-                (RotationalAccelerationUnit.RadianPerSecondSquared, RotationalAccelerationUnit.RevolutionPerSecondSquared) => new RotationalAcceleration(_value * new Fraction(78256779, 491701844, false), RotationalAccelerationUnit.RevolutionPerSecondSquared),
+                (RotationalAccelerationUnit.RadianPerSecondSquared, RotationalAccelerationUnit.DegreePerSecondSquared) => new RotationalAcceleration(_value * new QuantityValue(18000000000000000, 314159265358979, false), RotationalAccelerationUnit.DegreePerSecondSquared),
+                (RotationalAccelerationUnit.RadianPerSecondSquared, RotationalAccelerationUnit.RevolutionPerMinutePerSecond) => new RotationalAcceleration(_value * new QuantityValue(3000000000000000, 314159265358979, false), RotationalAccelerationUnit.RevolutionPerMinutePerSecond),
+                (RotationalAccelerationUnit.RadianPerSecondSquared, RotationalAccelerationUnit.RevolutionPerSecondSquared) => new RotationalAcceleration(_value * new QuantityValue(50000000000000, 314159265358979, false), RotationalAccelerationUnit.RevolutionPerSecondSquared),
 
                 _ => null
             };

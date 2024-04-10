@@ -106,7 +106,7 @@ namespace UnitsNet.Tests
             Assert.Equal(MolarityUnit.MolePerCubicMeter, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new Molarity(double.PositiveInfinity, MolarityUnit.MolePerCubicMeter));
@@ -116,7 +116,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new Molarity(double.NaN, MolarityUnit.MolePerCubicMeter));
@@ -225,7 +225,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromMolesPerCubicMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => Molarity.FromMolesPerCubicMeter(double.PositiveInfinity));
@@ -235,7 +235,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromMolesPerCubicMeter_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => Molarity.FromMolesPerCubicMeter(double.NaN));
@@ -868,8 +868,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, MolarityUnit.MolePerCubicMeter, 1, MolarityUnit.MolePerCubicMeter, true)]  // Same value and unit.
         [InlineData(1, MolarityUnit.MolePerCubicMeter, 2, MolarityUnit.MolePerCubicMeter, false)] // Different value.
-        [InlineData(2, MolarityUnit.MolePerCubicMeter, 1, MolarityUnit.CentimolePerLiter, false)] // Different value and unit.
-        [InlineData(1, MolarityUnit.MolePerCubicMeter, 1, MolarityUnit.CentimolePerLiter, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, MolarityUnit unitA, double valueB, MolarityUnit unitB, bool expectEqual)
         {
             var a = new Molarity(valueA, unitA);
@@ -1188,7 +1186,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Molarity.FromMolesPerCubicMeter(1.0);
-            Assert.Equal(new {Molarity.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(Molarity.Info.Name, quantity.MolesPerCubicMeter);
+            #else
+            var expected = new {Molarity.Info.Name, valueInBaseUnit = quantity.MolesPerCubicMeter}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

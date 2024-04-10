@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiance
     /// </summary>
     public static class NumberToIrradianceExtensions
     {
-        /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareCentimeter(double)" />
+        /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareCentimeter(QuantityValue)" />
         public static Irradiance KilowattsPerSquareCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiance
 #endif
             => Irradiance.FromKilowattsPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareMeter(double)" />
+        /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareMeter(QuantityValue)" />
         public static Irradiance KilowattsPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiance
 #endif
             => Irradiance.FromKilowattsPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromMegawattsPerSquareCentimeter(double)" />
+        /// <inheritdoc cref="Irradiance.FromMegawattsPerSquareCentimeter(QuantityValue)" />
         public static Irradiance MegawattsPerSquareCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiance
 #endif
             => Irradiance.FromMegawattsPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromMegawattsPerSquareMeter(double)" />
+        /// <inheritdoc cref="Irradiance.FromMegawattsPerSquareMeter(QuantityValue)" />
         public static Irradiance MegawattsPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiance
 #endif
             => Irradiance.FromMegawattsPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromMicrowattsPerSquareCentimeter(double)" />
+        /// <inheritdoc cref="Irradiance.FromMicrowattsPerSquareCentimeter(QuantityValue)" />
         public static Irradiance MicrowattsPerSquareCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiance
 #endif
             => Irradiance.FromMicrowattsPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromMicrowattsPerSquareMeter(double)" />
+        /// <inheritdoc cref="Irradiance.FromMicrowattsPerSquareMeter(QuantityValue)" />
         public static Irradiance MicrowattsPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiance
 #endif
             => Irradiance.FromMicrowattsPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromMilliwattsPerSquareCentimeter(double)" />
+        /// <inheritdoc cref="Irradiance.FromMilliwattsPerSquareCentimeter(QuantityValue)" />
         public static Irradiance MilliwattsPerSquareCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiance
 #endif
             => Irradiance.FromMilliwattsPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromMilliwattsPerSquareMeter(double)" />
+        /// <inheritdoc cref="Irradiance.FromMilliwattsPerSquareMeter(QuantityValue)" />
         public static Irradiance MilliwattsPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiance
 #endif
             => Irradiance.FromMilliwattsPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromNanowattsPerSquareCentimeter(double)" />
+        /// <inheritdoc cref="Irradiance.FromNanowattsPerSquareCentimeter(QuantityValue)" />
         public static Irradiance NanowattsPerSquareCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -104,7 +104,7 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiance
 #endif
             => Irradiance.FromNanowattsPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromNanowattsPerSquareMeter(double)" />
+        /// <inheritdoc cref="Irradiance.FromNanowattsPerSquareMeter(QuantityValue)" />
         public static Irradiance NanowattsPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -112,7 +112,7 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiance
 #endif
             => Irradiance.FromNanowattsPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromPicowattsPerSquareCentimeter(double)" />
+        /// <inheritdoc cref="Irradiance.FromPicowattsPerSquareCentimeter(QuantityValue)" />
         public static Irradiance PicowattsPerSquareCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -120,7 +120,7 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiance
 #endif
             => Irradiance.FromPicowattsPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromPicowattsPerSquareMeter(double)" />
+        /// <inheritdoc cref="Irradiance.FromPicowattsPerSquareMeter(QuantityValue)" />
         public static Irradiance PicowattsPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -128,7 +128,7 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiance
 #endif
             => Irradiance.FromPicowattsPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromWattsPerSquareCentimeter(double)" />
+        /// <inheritdoc cref="Irradiance.FromWattsPerSquareCentimeter(QuantityValue)" />
         public static Irradiance WattsPerSquareCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -136,7 +136,7 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiance
 #endif
             => Irradiance.FromWattsPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromWattsPerSquareMeter(double)" />
+        /// <inheritdoc cref="Irradiance.FromWattsPerSquareMeter(QuantityValue)" />
         public static Irradiance WattsPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

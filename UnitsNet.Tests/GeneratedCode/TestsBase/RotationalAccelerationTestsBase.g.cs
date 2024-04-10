@@ -78,7 +78,7 @@ namespace UnitsNet.Tests
             Assert.Equal(RotationalAccelerationUnit.RadianPerSecondSquared, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new RotationalAcceleration(double.PositiveInfinity, RotationalAccelerationUnit.RadianPerSecondSquared));
@@ -88,7 +88,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new RotationalAcceleration(double.NaN, RotationalAccelerationUnit.RadianPerSecondSquared));
@@ -162,7 +162,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromRadiansPerSecondSquared_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => RotationalAcceleration.FromRadiansPerSecondSquared(double.PositiveInfinity));
@@ -172,7 +172,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromRadiansPerSecondSquared_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => RotationalAcceleration.FromRadiansPerSecondSquared(double.NaN));
@@ -455,8 +455,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, RotationalAccelerationUnit.RadianPerSecondSquared, 1, RotationalAccelerationUnit.RadianPerSecondSquared, true)]  // Same value and unit.
         [InlineData(1, RotationalAccelerationUnit.RadianPerSecondSquared, 2, RotationalAccelerationUnit.RadianPerSecondSquared, false)] // Different value.
-        [InlineData(2, RotationalAccelerationUnit.RadianPerSecondSquared, 1, RotationalAccelerationUnit.DegreePerSecondSquared, false)] // Different value and unit.
-        [InlineData(1, RotationalAccelerationUnit.RadianPerSecondSquared, 1, RotationalAccelerationUnit.DegreePerSecondSquared, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, RotationalAccelerationUnit unitA, double valueB, RotationalAccelerationUnit unitB, bool expectEqual)
         {
             var a = new RotationalAcceleration(valueA, unitA);
@@ -761,7 +759,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = RotationalAcceleration.FromRadiansPerSecondSquared(1.0);
-            Assert.Equal(new {RotationalAcceleration.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(RotationalAcceleration.Info.Name, quantity.RadiansPerSecondSquared);
+            #else
+            var expected = new {RotationalAcceleration.Info.Name, valueInBaseUnit = quantity.RadiansPerSecondSquared}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

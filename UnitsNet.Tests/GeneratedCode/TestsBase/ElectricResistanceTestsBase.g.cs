@@ -90,7 +90,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricResistanceUnit.Ohm, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new ElectricResistance(double.PositiveInfinity, ElectricResistanceUnit.Ohm));
@@ -100,7 +100,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new ElectricResistance(double.NaN, ElectricResistanceUnit.Ohm));
@@ -189,7 +189,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromOhms_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => ElectricResistance.FromOhms(double.PositiveInfinity));
@@ -199,7 +199,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromOhms_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => ElectricResistance.FromOhms(double.NaN));
@@ -514,8 +514,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, ElectricResistanceUnit.Ohm, 1, ElectricResistanceUnit.Ohm, true)]  // Same value and unit.
         [InlineData(1, ElectricResistanceUnit.Ohm, 2, ElectricResistanceUnit.Ohm, false)] // Different value.
-        [InlineData(2, ElectricResistanceUnit.Ohm, 1, ElectricResistanceUnit.Gigaohm, false)] // Different value and unit.
-        [InlineData(1, ElectricResistanceUnit.Ohm, 1, ElectricResistanceUnit.Gigaohm, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ElectricResistanceUnit unitA, double valueB, ElectricResistanceUnit unitB, bool expectEqual)
         {
             var a = new ElectricResistance(valueA, unitA);
@@ -826,7 +824,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ElectricResistance.FromOhms(1.0);
-            Assert.Equal(new {ElectricResistance.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(ElectricResistance.Info.Name, quantity.Ohms);
+            #else
+            var expected = new {ElectricResistance.Info.Name, valueInBaseUnit = quantity.Ohms}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

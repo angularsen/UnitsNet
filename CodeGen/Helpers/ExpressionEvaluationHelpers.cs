@@ -18,7 +18,7 @@ internal static class ExpressionEvaluationHelpers
 
         return coefficient.Denominator.IsOne
             ? coefficient.Numerator.ToString()
-            : $"new Fraction({coefficient.Numerator}, {coefficient.Denominator}, false)";
+            : $"new QuantityValue({coefficient.Numerator}, {coefficient.Denominator}, false)";
     }
 
     private static string GetFractionalConstantFormat(this Fraction coefficient)
@@ -95,7 +95,7 @@ internal static class ExpressionEvaluationHelpers
             return $"{csharpParameter} / -{coefficient.Denominator}";
         }
 
-        return $"{csharpParameter} * new Fraction({coefficient.Numerator}, {coefficient.Denominator}, false)";
+        return $"{csharpParameter} * new QuantityValue({coefficient.Numerator}, {coefficient.Denominator}, false)";
     }
 
     private static string GetFractionalExpressionFormat(this Fraction coefficient, string csharpParameter)
@@ -156,7 +156,7 @@ internal static class ExpressionEvaluationHelpers
         // TODO see about redirecting these to a static method in the quantity's class which is responsible for handling the required operations (efficiently)
         var mainArgument = $"({customFunction.Terms.GetExpressionFormat(csharpParameter)}).ToDouble()";
         var functionArguments = string.Join(", ", customFunction.AdditionalParameters.Prepend(mainArgument));
-        return $"Fraction.FromDoubleRounded(Math.{customFunction.Name}({functionArguments}))";
+        return $"QuantityValue.FromDoubleRounded(Math.{customFunction.Name}({functionArguments}))";
     }
 
     public static string GetExponentFormat(this Fraction exponent, string csharpParameter)
@@ -167,8 +167,8 @@ internal static class ExpressionEvaluationHelpers
         }
 
         return exponent.Denominator.IsOne
-            ? $"Fraction.Pow({csharpParameter}, {exponent.ToInt32()})"
-            : $"Fraction.FromDoubleRounded(Math.Pow({csharpParameter}.ToDouble(), {exponent.ToDouble()}))";
+            ? $"({csharpParameter} ^ {exponent.ToInt32()})"
+            : $"QuantityValue.FromDoubleRounded(Math.Pow({csharpParameter}.ToDouble(), {exponent.ToDouble()}))";
     }
 
     public static string GetExpressionFormat(this ExpressionTerm term, string csharpParameter)

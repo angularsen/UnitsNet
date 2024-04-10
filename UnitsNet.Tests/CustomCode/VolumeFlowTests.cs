@@ -49,7 +49,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double CubicDecimetersPerMinuteInOneCubicMeterPerSecond => 6e4;
 
-        protected override double CubicFeetPerHourInOneCubicMeterPerSecond => 1.271328001973604e+5;
+        protected override double CubicFeetPerHourInOneCubicMeterPerSecond => 127132.86571572398; 
 
         protected override double CubicFeetPerMinuteInOneCubicMeterPerSecond => 2.11888E3;
 

@@ -70,7 +70,7 @@ namespace UnitsNet.Tests
             Assert.Equal(RatioChangeRateUnit.DecimalFractionPerSecond, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new RatioChangeRate(double.PositiveInfinity, RatioChangeRateUnit.DecimalFractionPerSecond));
@@ -80,7 +80,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new RatioChangeRate(double.NaN, RatioChangeRateUnit.DecimalFractionPerSecond));
@@ -144,7 +144,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromDecimalFractionsPerSecond_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => RatioChangeRate.FromDecimalFractionsPerSecond(double.PositiveInfinity));
@@ -154,7 +154,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromDecimalFractionsPerSecond_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => RatioChangeRate.FromDecimalFractionsPerSecond(double.NaN));
@@ -361,8 +361,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, RatioChangeRateUnit.DecimalFractionPerSecond, 1, RatioChangeRateUnit.DecimalFractionPerSecond, true)]  // Same value and unit.
         [InlineData(1, RatioChangeRateUnit.DecimalFractionPerSecond, 2, RatioChangeRateUnit.DecimalFractionPerSecond, false)] // Different value.
-        [InlineData(2, RatioChangeRateUnit.DecimalFractionPerSecond, 1, RatioChangeRateUnit.PercentPerSecond, false)] // Different value and unit.
-        [InlineData(1, RatioChangeRateUnit.DecimalFractionPerSecond, 1, RatioChangeRateUnit.PercentPerSecond, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, RatioChangeRateUnit unitA, double valueB, RatioChangeRateUnit unitB, bool expectEqual)
         {
             var a = new RatioChangeRate(valueA, unitA);
@@ -663,7 +661,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = RatioChangeRate.FromDecimalFractionsPerSecond(1.0);
-            Assert.Equal(new {RatioChangeRate.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(RatioChangeRate.Info.Name, quantity.DecimalFractionsPerSecond);
+            #else
+            var expected = new {RatioChangeRate.Info.Name, valueInBaseUnit = quantity.DecimalFractionsPerSecond}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

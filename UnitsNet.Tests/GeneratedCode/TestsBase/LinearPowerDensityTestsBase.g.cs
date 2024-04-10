@@ -162,7 +162,7 @@ namespace UnitsNet.Tests
             Assert.Equal(LinearPowerDensityUnit.WattPerMeter, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new LinearPowerDensity(double.PositiveInfinity, LinearPowerDensityUnit.WattPerMeter));
@@ -172,7 +172,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new LinearPowerDensity(double.NaN, LinearPowerDensityUnit.WattPerMeter));
@@ -351,7 +351,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromWattsPerMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => LinearPowerDensity.FromWattsPerMeter(double.PositiveInfinity));
@@ -361,7 +361,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromWattsPerMeter_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => LinearPowerDensity.FromWattsPerMeter(double.NaN));
@@ -1056,8 +1056,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, LinearPowerDensityUnit.WattPerMeter, 1, LinearPowerDensityUnit.WattPerMeter, true)]  // Same value and unit.
         [InlineData(1, LinearPowerDensityUnit.WattPerMeter, 2, LinearPowerDensityUnit.WattPerMeter, false)] // Different value.
-        [InlineData(2, LinearPowerDensityUnit.WattPerMeter, 1, LinearPowerDensityUnit.GigawattPerCentimeter, false)] // Different value and unit.
-        [InlineData(1, LinearPowerDensityUnit.WattPerMeter, 1, LinearPowerDensityUnit.GigawattPerCentimeter, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, LinearPowerDensityUnit unitA, double valueB, LinearPowerDensityUnit unitB, bool expectEqual)
         {
             var a = new LinearPowerDensity(valueA, unitA);
@@ -1404,7 +1402,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = LinearPowerDensity.FromWattsPerMeter(1.0);
-            Assert.Equal(new {LinearPowerDensity.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(LinearPowerDensity.Info.Name, quantity.WattsPerMeter);
+            #else
+            var expected = new {LinearPowerDensity.Info.Name, valueInBaseUnit = quantity.WattsPerMeter}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

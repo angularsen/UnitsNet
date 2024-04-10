@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToLeakRate
     /// </summary>
     public static class NumberToLeakRateExtensions
     {
-        /// <inheritdoc cref="LeakRate.FromMillibarLitersPerSecond(double)" />
+        /// <inheritdoc cref="LeakRate.FromMillibarLitersPerSecond(QuantityValue)" />
         public static LeakRate MillibarLitersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToLeakRate
 #endif
             => LeakRate.FromMillibarLitersPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LeakRate.FromPascalCubicMetersPerSecond(double)" />
+        /// <inheritdoc cref="LeakRate.FromPascalCubicMetersPerSecond(QuantityValue)" />
         public static LeakRate PascalCubicMetersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToLeakRate
 #endif
             => LeakRate.FromPascalCubicMetersPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LeakRate.FromTorrLitersPerSecond(double)" />
+        /// <inheritdoc cref="LeakRate.FromTorrLitersPerSecond(QuantityValue)" />
         public static LeakRate TorrLitersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

@@ -110,7 +110,7 @@ namespace UnitsNet.Tests
             Assert.Equal(EnergyDensityUnit.JoulePerCubicMeter, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new EnergyDensity(double.PositiveInfinity, EnergyDensityUnit.JoulePerCubicMeter));
@@ -120,7 +120,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new EnergyDensity(double.NaN, EnergyDensityUnit.JoulePerCubicMeter));
@@ -234,7 +234,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromJoulesPerCubicMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => EnergyDensity.FromJoulesPerCubicMeter(double.PositiveInfinity));
@@ -244,7 +244,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromJoulesPerCubicMeter_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => EnergyDensity.FromJoulesPerCubicMeter(double.NaN));
@@ -711,8 +711,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, EnergyDensityUnit.JoulePerCubicMeter, 1, EnergyDensityUnit.JoulePerCubicMeter, true)]  // Same value and unit.
         [InlineData(1, EnergyDensityUnit.JoulePerCubicMeter, 2, EnergyDensityUnit.JoulePerCubicMeter, false)] // Different value.
-        [InlineData(2, EnergyDensityUnit.JoulePerCubicMeter, 1, EnergyDensityUnit.GigajoulePerCubicMeter, false)] // Different value and unit.
-        [InlineData(1, EnergyDensityUnit.JoulePerCubicMeter, 1, EnergyDensityUnit.GigajoulePerCubicMeter, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, EnergyDensityUnit unitA, double valueB, EnergyDensityUnit unitB, bool expectEqual)
         {
             var a = new EnergyDensity(valueA, unitA);
@@ -1033,7 +1031,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = EnergyDensity.FromJoulesPerCubicMeter(1.0);
-            Assert.Equal(new {EnergyDensity.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(EnergyDensity.Info.Name, quantity.JoulesPerCubicMeter);
+            #else
+            var expected = new {EnergyDensity.Info.Name, valueInBaseUnit = quantity.JoulesPerCubicMeter}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

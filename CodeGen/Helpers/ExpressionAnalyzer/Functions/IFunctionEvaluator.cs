@@ -1,5 +1,5 @@
-﻿using CodeGen.Helpers.ExpressionAnalyzer.Expressions;
-using Fractions;
+﻿using System;
+using CodeGen.Helpers.ExpressionAnalyzer.Expressions;
 
 namespace CodeGen.Helpers.ExpressionAnalyzer.Functions;
 
@@ -20,16 +20,7 @@ internal interface IFunctionEvaluator
     ///     Parses the given expression and returns a pending term.
     /// </summary>
     /// <param name="expressionToParse">The expression to parse.</param>
-    /// <param name="exponent">The exponent to use in the parsing process.</param>
+    /// <param name="expressionResolver">Can be used to evaluate the function body expression.</param>
     /// <returns>A <see cref="ExpressionEvaluationTerm" /> that represents the parsed expression.</returns>
-    ExpressionEvaluationTerm GetFunctionBody(string expressionToParse, Fraction exponent);
-
-    /// <summary>
-    ///     Creates a composite expression from the given parameters.
-    /// </summary>
-    /// <param name="coefficient">The coefficient to use in the expression.</param>
-    /// <param name="exponent">The exponent to use in the expression.</param>
-    /// <param name="functionBody">The body of the function to use in the expression.</param>
-    /// <returns>A <see cref="CompositeExpression" /> that represents the created expression.</returns>
-    CompositeExpression CreateExpression(Fraction coefficient, Fraction exponent, CompositeExpression functionBody);
+    CompositeExpression CreateExpression(ExpressionEvaluationTerm expressionToParse, Func<ExpressionEvaluationTerm, CompositeExpression> expressionResolver);
 }

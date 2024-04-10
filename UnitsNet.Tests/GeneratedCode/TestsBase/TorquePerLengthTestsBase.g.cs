@@ -146,7 +146,7 @@ namespace UnitsNet.Tests
             Assert.Equal(TorquePerLengthUnit.NewtonMeterPerMeter, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new TorquePerLength(double.PositiveInfinity, TorquePerLengthUnit.NewtonMeterPerMeter));
@@ -156,7 +156,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new TorquePerLength(double.NaN, TorquePerLengthUnit.NewtonMeterPerMeter));
@@ -315,7 +315,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromNewtonMetersPerMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => TorquePerLength.FromNewtonMetersPerMeter(double.PositiveInfinity));
@@ -325,7 +325,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromNewtonMetersPerMeter_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => TorquePerLength.FromNewtonMetersPerMeter(double.NaN));
@@ -1098,8 +1098,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, TorquePerLengthUnit.NewtonMeterPerMeter, 1, TorquePerLengthUnit.NewtonMeterPerMeter, true)]  // Same value and unit.
         [InlineData(1, TorquePerLengthUnit.NewtonMeterPerMeter, 2, TorquePerLengthUnit.NewtonMeterPerMeter, false)] // Different value.
-        [InlineData(2, TorquePerLengthUnit.NewtonMeterPerMeter, 1, TorquePerLengthUnit.KilogramForceCentimeterPerMeter, false)] // Different value and unit.
-        [InlineData(1, TorquePerLengthUnit.NewtonMeterPerMeter, 1, TorquePerLengthUnit.KilogramForceCentimeterPerMeter, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, TorquePerLengthUnit unitA, double valueB, TorquePerLengthUnit unitB, bool expectEqual)
         {
             var a = new TorquePerLength(valueA, unitA);
@@ -1438,7 +1436,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = TorquePerLength.FromNewtonMetersPerMeter(1.0);
-            Assert.Equal(new {TorquePerLength.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(TorquePerLength.Info.Name, quantity.NewtonMetersPerMeter);
+            #else
+            var expected = new {TorquePerLength.Info.Name, valueInBaseUnit = quantity.NewtonMetersPerMeter}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

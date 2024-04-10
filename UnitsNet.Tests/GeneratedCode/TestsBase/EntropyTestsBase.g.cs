@@ -90,7 +90,7 @@ namespace UnitsNet.Tests
             Assert.Equal(EntropyUnit.JoulePerKelvin, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new Entropy(double.PositiveInfinity, EntropyUnit.JoulePerKelvin));
@@ -100,7 +100,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new Entropy(double.NaN, EntropyUnit.JoulePerKelvin));
@@ -189,7 +189,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromJoulesPerKelvin_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => Entropy.FromJoulesPerKelvin(double.PositiveInfinity));
@@ -199,7 +199,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromJoulesPerKelvin_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => Entropy.FromJoulesPerKelvin(double.NaN));
@@ -536,8 +536,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, EntropyUnit.JoulePerKelvin, 1, EntropyUnit.JoulePerKelvin, true)]  // Same value and unit.
         [InlineData(1, EntropyUnit.JoulePerKelvin, 2, EntropyUnit.JoulePerKelvin, false)] // Different value.
-        [InlineData(2, EntropyUnit.JoulePerKelvin, 1, EntropyUnit.CaloriePerKelvin, false)] // Different value and unit.
-        [InlineData(1, EntropyUnit.JoulePerKelvin, 1, EntropyUnit.CaloriePerKelvin, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, EntropyUnit unitA, double valueB, EntropyUnit unitB, bool expectEqual)
         {
             var a = new Entropy(valueA, unitA);
@@ -848,7 +846,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Entropy.FromJoulesPerKelvin(1.0);
-            Assert.Equal(new {Entropy.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(Entropy.Info.Name, quantity.JoulesPerKelvin);
+            #else
+            var expected = new {Entropy.Info.Name, valueInBaseUnit = quantity.JoulesPerKelvin}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

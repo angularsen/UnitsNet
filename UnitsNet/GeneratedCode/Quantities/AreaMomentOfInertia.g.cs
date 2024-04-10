@@ -25,7 +25,6 @@ using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 using System.Numerics;
-using Fractions;
 
 #nullable enable
 
@@ -54,7 +53,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly Fraction _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -89,7 +88,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public AreaMomentOfInertia(Fraction value, AreaMomentOfInertiaUnit unit)
+        public AreaMomentOfInertia(QuantityValue value, AreaMomentOfInertiaUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -103,7 +102,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public AreaMomentOfInertia(Fraction value, UnitSystem unitSystem)
+        public AreaMomentOfInertia(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -154,10 +153,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public Fraction Value => _value;
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
-        Fraction IQuantity.Value => _value;
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -182,32 +181,32 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaMomentOfInertiaUnit.CentimeterToTheFourth"/>
         /// </summary>
-        public Fraction CentimetersToTheFourth => As(AreaMomentOfInertiaUnit.CentimeterToTheFourth);
+        public QuantityValue CentimetersToTheFourth => As(AreaMomentOfInertiaUnit.CentimeterToTheFourth);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaMomentOfInertiaUnit.DecimeterToTheFourth"/>
         /// </summary>
-        public Fraction DecimetersToTheFourth => As(AreaMomentOfInertiaUnit.DecimeterToTheFourth);
+        public QuantityValue DecimetersToTheFourth => As(AreaMomentOfInertiaUnit.DecimeterToTheFourth);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaMomentOfInertiaUnit.FootToTheFourth"/>
         /// </summary>
-        public Fraction FeetToTheFourth => As(AreaMomentOfInertiaUnit.FootToTheFourth);
+        public QuantityValue FeetToTheFourth => As(AreaMomentOfInertiaUnit.FootToTheFourth);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaMomentOfInertiaUnit.InchToTheFourth"/>
         /// </summary>
-        public Fraction InchesToTheFourth => As(AreaMomentOfInertiaUnit.InchToTheFourth);
+        public QuantityValue InchesToTheFourth => As(AreaMomentOfInertiaUnit.InchToTheFourth);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaMomentOfInertiaUnit.MeterToTheFourth"/>
         /// </summary>
-        public Fraction MetersToTheFourth => As(AreaMomentOfInertiaUnit.MeterToTheFourth);
+        public QuantityValue MetersToTheFourth => As(AreaMomentOfInertiaUnit.MeterToTheFourth);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaMomentOfInertiaUnit.MillimeterToTheFourth"/>
         /// </summary>
-        public Fraction MillimetersToTheFourth => As(AreaMomentOfInertiaUnit.MillimeterToTheFourth);
+        public QuantityValue MillimetersToTheFourth => As(AreaMomentOfInertiaUnit.MillimeterToTheFourth);
 
         #endregion
 
@@ -265,7 +264,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.CentimeterToTheFourth"/>.
         /// </summary>
-        public static AreaMomentOfInertia FromCentimetersToTheFourth(Fraction value)
+        public static AreaMomentOfInertia FromCentimetersToTheFourth(QuantityValue value)
         {
             return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.CentimeterToTheFourth);
         }
@@ -273,7 +272,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.DecimeterToTheFourth"/>.
         /// </summary>
-        public static AreaMomentOfInertia FromDecimetersToTheFourth(Fraction value)
+        public static AreaMomentOfInertia FromDecimetersToTheFourth(QuantityValue value)
         {
             return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.DecimeterToTheFourth);
         }
@@ -281,7 +280,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.FootToTheFourth"/>.
         /// </summary>
-        public static AreaMomentOfInertia FromFeetToTheFourth(Fraction value)
+        public static AreaMomentOfInertia FromFeetToTheFourth(QuantityValue value)
         {
             return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.FootToTheFourth);
         }
@@ -289,7 +288,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.InchToTheFourth"/>.
         /// </summary>
-        public static AreaMomentOfInertia FromInchesToTheFourth(Fraction value)
+        public static AreaMomentOfInertia FromInchesToTheFourth(QuantityValue value)
         {
             return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.InchToTheFourth);
         }
@@ -297,7 +296,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.MeterToTheFourth"/>.
         /// </summary>
-        public static AreaMomentOfInertia FromMetersToTheFourth(Fraction value)
+        public static AreaMomentOfInertia FromMetersToTheFourth(QuantityValue value)
         {
             return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.MeterToTheFourth);
         }
@@ -305,7 +304,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.MillimeterToTheFourth"/>.
         /// </summary>
-        public static AreaMomentOfInertia FromMillimetersToTheFourth(Fraction value)
+        public static AreaMomentOfInertia FromMillimetersToTheFourth(QuantityValue value)
         {
             return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.MillimeterToTheFourth);
         }
@@ -316,7 +315,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>AreaMomentOfInertia unit value.</returns>
-        public static AreaMomentOfInertia From(Fraction value, AreaMomentOfInertiaUnit fromUnit)
+        public static AreaMomentOfInertia From(QuantityValue value, AreaMomentOfInertiaUnit fromUnit)
         {
             return new AreaMomentOfInertia(value, fromUnit);
         }
@@ -472,7 +471,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static AreaMomentOfInertia operator -(AreaMomentOfInertia right)
         {
-            return new AreaMomentOfInertia(right.Value.Invert(), right.Unit);
+            return new AreaMomentOfInertia(-right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="AreaMomentOfInertia"/> from adding two <see cref="AreaMomentOfInertia"/>.</summary>
@@ -488,25 +487,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="AreaMomentOfInertia"/> from multiplying value and <see cref="AreaMomentOfInertia"/>.</summary>
-        public static AreaMomentOfInertia operator *(Fraction left, AreaMomentOfInertia right)
+        public static AreaMomentOfInertia operator *(QuantityValue left, AreaMomentOfInertia right)
         {
             return new AreaMomentOfInertia(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="AreaMomentOfInertia"/> from multiplying value and <see cref="AreaMomentOfInertia"/>.</summary>
-        public static AreaMomentOfInertia operator *(AreaMomentOfInertia left, Fraction right)
+        public static AreaMomentOfInertia operator *(AreaMomentOfInertia left, QuantityValue right)
         {
             return new AreaMomentOfInertia(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="AreaMomentOfInertia"/> from dividing <see cref="AreaMomentOfInertia"/> by value.</summary>
-        public static AreaMomentOfInertia operator /(AreaMomentOfInertia left, Fraction right)
+        public static AreaMomentOfInertia operator /(AreaMomentOfInertia left, QuantityValue right)
         {
             return new AreaMomentOfInertia(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="AreaMomentOfInertia"/> by <see cref="AreaMomentOfInertia"/>.</summary>
-        public static Fraction operator /(AreaMomentOfInertia left, AreaMomentOfInertia right)
+        public static QuantityValue operator /(AreaMomentOfInertia left, AreaMomentOfInertia right)
         {
             return left.MetersToTheFourth / right.MetersToTheFourth;
         }
@@ -581,7 +580,7 @@ namespace UnitsNet
         /// <summary>Indicates strict equality of two <see cref="AreaMomentOfInertia"/> quantities.</summary>
         public bool Equals(AreaMomentOfInertia other)
         {
-            return _value.IsEquivalentTo(other.As(this.Unit));
+            return _value.Equals(other.As(this.Unit));
         }
 
         /// <summary>Compares the current <see cref="AreaMomentOfInertia"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
@@ -666,10 +665,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: (Fraction)tolerance,
+                tolerance: (QuantityValue)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -686,7 +685,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(AreaMomentOfInertia other, AreaMomentOfInertia tolerance)
         {
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -700,7 +699,11 @@ namespace UnitsNet
         public override int GetHashCode()
         {
             var valueInBaseUnit = As(BaseUnit);
+            #if NET7_0_OR_GREATER
+            return HashCode.Combine(Info.Name, valueInBaseUnit);
+            #else
             return new { Info.Name, valueInBaseUnit }.GetHashCode();
+            #endif
         }
 
         #endregion
@@ -711,7 +714,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public Fraction As(AreaMomentOfInertiaUnit unit)
+        public QuantityValue As(AreaMomentOfInertiaUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -720,7 +723,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public Fraction As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -735,7 +738,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        Fraction IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
             if (!(unit is AreaMomentOfInertiaUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AreaMomentOfInertiaUnit)} is supported.", nameof(unit));
@@ -803,15 +806,15 @@ namespace UnitsNet
                 // AreaMomentOfInertiaUnit -> BaseUnit
                 (AreaMomentOfInertiaUnit.CentimeterToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth) => new AreaMomentOfInertia(_value / 100000000, AreaMomentOfInertiaUnit.MeterToTheFourth),
                 (AreaMomentOfInertiaUnit.DecimeterToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth) => new AreaMomentOfInertia(_value / 10000, AreaMomentOfInertiaUnit.MeterToTheFourth),
-                (AreaMomentOfInertiaUnit.FootToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth) => new AreaMomentOfInertia(_value * new Fraction(21071715921, 2441406250000, false), AreaMomentOfInertiaUnit.MeterToTheFourth),
-                (AreaMomentOfInertiaUnit.InchToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth) => new AreaMomentOfInertia(_value * new Fraction(260144641, 625000000000000, false), AreaMomentOfInertiaUnit.MeterToTheFourth),
+                (AreaMomentOfInertiaUnit.FootToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth) => new AreaMomentOfInertia(_value * new QuantityValue(21071715921, 2441406250000, false), AreaMomentOfInertiaUnit.MeterToTheFourth),
+                (AreaMomentOfInertiaUnit.InchToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth) => new AreaMomentOfInertia(_value * new QuantityValue(260144641, 625000000000000, false), AreaMomentOfInertiaUnit.MeterToTheFourth),
                 (AreaMomentOfInertiaUnit.MillimeterToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth) => new AreaMomentOfInertia(_value / 1000000000000, AreaMomentOfInertiaUnit.MeterToTheFourth),
 
                 // BaseUnit -> AreaMomentOfInertiaUnit
                 (AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.CentimeterToTheFourth) => new AreaMomentOfInertia(_value * 100000000, AreaMomentOfInertiaUnit.CentimeterToTheFourth),
                 (AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.DecimeterToTheFourth) => new AreaMomentOfInertia(_value * 10000, AreaMomentOfInertiaUnit.DecimeterToTheFourth),
-                (AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.FootToTheFourth) => new AreaMomentOfInertia(_value * new Fraction(2441406250000, 21071715921, false), AreaMomentOfInertiaUnit.FootToTheFourth),
-                (AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.InchToTheFourth) => new AreaMomentOfInertia(_value * new Fraction(625000000000000, 260144641, false), AreaMomentOfInertiaUnit.InchToTheFourth),
+                (AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.FootToTheFourth) => new AreaMomentOfInertia(_value * new QuantityValue(2441406250000, 21071715921, false), AreaMomentOfInertiaUnit.FootToTheFourth),
+                (AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.InchToTheFourth) => new AreaMomentOfInertia(_value * new QuantityValue(625000000000000, 260144641, false), AreaMomentOfInertiaUnit.InchToTheFourth),
                 (AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.MillimeterToTheFourth) => new AreaMomentOfInertia(_value * 1000000000000, AreaMomentOfInertiaUnit.MillimeterToTheFourth),
 
                 _ => null

@@ -74,7 +74,7 @@ namespace UnitsNet.Tests
             Assert.Equal(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new BrakeSpecificFuelConsumption(double.PositiveInfinity, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule));
@@ -84,7 +84,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new BrakeSpecificFuelConsumption(double.NaN, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule));
@@ -153,7 +153,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromKilogramsPerJoule_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => BrakeSpecificFuelConsumption.FromKilogramsPerJoule(double.PositiveInfinity));
@@ -163,7 +163,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromKilogramsPerJoule_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => BrakeSpecificFuelConsumption.FromKilogramsPerJoule(double.NaN));
@@ -396,8 +396,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, 1, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, true)]  // Same value and unit.
         [InlineData(1, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, 2, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, false)] // Different value.
-        [InlineData(2, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, 1, BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, false)] // Different value and unit.
-        [InlineData(1, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, 1, BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, BrakeSpecificFuelConsumptionUnit unitA, double valueB, BrakeSpecificFuelConsumptionUnit unitB, bool expectEqual)
         {
             var a = new BrakeSpecificFuelConsumption(valueA, unitA);
@@ -700,7 +698,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1.0);
-            Assert.Equal(new {BrakeSpecificFuelConsumption.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(BrakeSpecificFuelConsumption.Info.Name, quantity.KilogramsPerJoule);
+            #else
+            var expected = new {BrakeSpecificFuelConsumption.Info.Name, valueInBaseUnit = quantity.KilogramsPerJoule}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

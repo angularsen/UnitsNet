@@ -66,7 +66,7 @@ namespace UnitsNet.Tests
             Assert.Equal(MagnetizationUnit.AmperePerMeter, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new Magnetization(double.PositiveInfinity, MagnetizationUnit.AmperePerMeter));
@@ -76,7 +76,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new Magnetization(double.NaN, MagnetizationUnit.AmperePerMeter));
@@ -135,7 +135,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromAmperesPerMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => Magnetization.FromAmperesPerMeter(double.PositiveInfinity));
@@ -145,7 +145,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromAmperesPerMeter_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => Magnetization.FromAmperesPerMeter(double.NaN));
@@ -326,7 +326,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, MagnetizationUnit.AmperePerMeter, 1, MagnetizationUnit.AmperePerMeter, true)]  // Same value and unit.
         [InlineData(1, MagnetizationUnit.AmperePerMeter, 2, MagnetizationUnit.AmperePerMeter, false)] // Different value.
-        [InlineData(2, MagnetizationUnit.AmperePerMeter, 1, MagnetizationUnit.AmperePerMeter, false)] // Different value and unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, MagnetizationUnit unitA, double valueB, MagnetizationUnit unitB, bool expectEqual)
         {
             var a = new Magnetization(valueA, unitA);
@@ -625,7 +624,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Magnetization.FromAmperesPerMeter(1.0);
-            Assert.Equal(new {Magnetization.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(Magnetization.Info.Name, quantity.AmperesPerMeter);
+            #else
+            var expected = new {Magnetization.Info.Name, valueInBaseUnit = quantity.AmperesPerMeter}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

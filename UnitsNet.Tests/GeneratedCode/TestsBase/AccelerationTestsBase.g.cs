@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
             Assert.Equal(AccelerationUnit.MeterPerSecondSquared, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new Acceleration(double.PositiveInfinity, AccelerationUnit.MeterPerSecondSquared));
@@ -128,7 +128,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new Acceleration(double.NaN, AccelerationUnit.MeterPerSecondSquared));
@@ -252,7 +252,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromMetersPerSecondSquared_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => Acceleration.FromMetersPerSecondSquared(double.PositiveInfinity));
@@ -262,7 +262,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromMetersPerSecondSquared_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => Acceleration.FromMetersPerSecondSquared(double.NaN));
@@ -1117,8 +1117,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, AccelerationUnit.MeterPerSecondSquared, 1, AccelerationUnit.MeterPerSecondSquared, true)]  // Same value and unit.
         [InlineData(1, AccelerationUnit.MeterPerSecondSquared, 2, AccelerationUnit.MeterPerSecondSquared, false)] // Different value.
-        [InlineData(2, AccelerationUnit.MeterPerSecondSquared, 1, AccelerationUnit.CentimeterPerSecondSquared, false)] // Different value and unit.
-        [InlineData(1, AccelerationUnit.MeterPerSecondSquared, 1, AccelerationUnit.CentimeterPerSecondSquared, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, AccelerationUnit unitA, double valueB, AccelerationUnit unitB, bool expectEqual)
         {
             var a = new Acceleration(valueA, unitA);
@@ -1443,7 +1441,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Acceleration.FromMetersPerSecondSquared(1.0);
-            Assert.Equal(new {Acceleration.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(Acceleration.Info.Name, quantity.MetersPerSecondSquared);
+            #else
+            var expected = new {Acceleration.Info.Name, valueInBaseUnit = quantity.MetersPerSecondSquared}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

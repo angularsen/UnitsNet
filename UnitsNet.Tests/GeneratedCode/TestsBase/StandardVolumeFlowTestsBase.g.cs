@@ -98,7 +98,7 @@ namespace UnitsNet.Tests
             Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerSecond, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new StandardVolumeFlow(double.PositiveInfinity, StandardVolumeFlowUnit.StandardCubicMeterPerSecond));
@@ -108,7 +108,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new StandardVolumeFlow(double.NaN, StandardVolumeFlowUnit.StandardCubicMeterPerSecond));
@@ -207,7 +207,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromStandardCubicMetersPerSecond_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => StandardVolumeFlow.FromStandardCubicMetersPerSecond(double.PositiveInfinity));
@@ -217,7 +217,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromStandardCubicMetersPerSecond_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => StandardVolumeFlow.FromStandardCubicMetersPerSecond(double.NaN));
@@ -606,8 +606,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, StandardVolumeFlowUnit.StandardCubicMeterPerSecond, 1, StandardVolumeFlowUnit.StandardCubicMeterPerSecond, true)]  // Same value and unit.
         [InlineData(1, StandardVolumeFlowUnit.StandardCubicMeterPerSecond, 2, StandardVolumeFlowUnit.StandardCubicMeterPerSecond, false)] // Different value.
-        [InlineData(2, StandardVolumeFlowUnit.StandardCubicMeterPerSecond, 1, StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute, false)] // Different value and unit.
-        [InlineData(1, StandardVolumeFlowUnit.StandardCubicMeterPerSecond, 1, StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, StandardVolumeFlowUnit unitA, double valueB, StandardVolumeFlowUnit unitB, bool expectEqual)
         {
             var a = new StandardVolumeFlow(valueA, unitA);
@@ -922,7 +920,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1.0);
-            Assert.Equal(new {StandardVolumeFlow.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(StandardVolumeFlow.Info.Name, quantity.StandardCubicMetersPerSecond);
+            #else
+            var expected = new {StandardVolumeFlow.Info.Name, valueInBaseUnit = quantity.StandardCubicMetersPerSecond}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

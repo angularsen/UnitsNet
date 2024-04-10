@@ -178,7 +178,7 @@ namespace UnitsNet.Tests
             Assert.Equal(RadioactivityUnit.Becquerel, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new Radioactivity(double.PositiveInfinity, RadioactivityUnit.Becquerel));
@@ -188,7 +188,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new Radioactivity(double.NaN, RadioactivityUnit.Becquerel));
@@ -387,7 +387,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromBecquerels_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => Radioactivity.FromBecquerels(double.PositiveInfinity));
@@ -397,7 +397,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromBecquerels_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => Radioactivity.FromBecquerels(double.NaN));
@@ -1826,8 +1826,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, RadioactivityUnit.Becquerel, 1, RadioactivityUnit.Becquerel, true)]  // Same value and unit.
         [InlineData(1, RadioactivityUnit.Becquerel, 2, RadioactivityUnit.Becquerel, false)] // Different value.
-        [InlineData(2, RadioactivityUnit.Becquerel, 1, RadioactivityUnit.Curie, false)] // Different value and unit.
-        [InlineData(1, RadioactivityUnit.Becquerel, 1, RadioactivityUnit.Curie, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, RadioactivityUnit unitA, double valueB, RadioactivityUnit unitB, bool expectEqual)
         {
             var a = new Radioactivity(valueA, unitA);
@@ -2182,7 +2180,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Radioactivity.FromBecquerels(1.0);
-            Assert.Equal(new {Radioactivity.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(Radioactivity.Info.Name, quantity.Becquerels);
+            #else
+            var expected = new {Radioactivity.Info.Name, valueInBaseUnit = quantity.Becquerels}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

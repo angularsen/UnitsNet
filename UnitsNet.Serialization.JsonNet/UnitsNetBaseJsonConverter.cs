@@ -3,7 +3,6 @@
 
 using System;
 using System.Collections.Concurrent;
-using System.Globalization;
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -21,7 +20,7 @@ namespace UnitsNet.Serialization.JsonNet
 
         /// <summary>
         /// Register custom types so that the converter can instantiate these quantities.
-        /// Instead of calling <see cref="Quantity.From(double,System.Enum)"/>, the <see cref="Activator"/> will be used to instantiate the object.
+        /// Instead of calling <see cref="Quantity.From(QuantityValue,System.Enum)"/>, the <see cref="Activator"/> will be used to instantiate the object.
         /// It is therefore assumed that the constructor of <paramref name="quantity"/> is specified with <c>new T(double value, typeof(<paramref name="unit"/>) unit)</c>.
         /// Registering the same <paramref name="unit"/> multiple times, it will overwrite the one registered.
         /// </summary>
@@ -92,10 +91,10 @@ namespace UnitsNet.Serialization.JsonNet
 
             if (registeredQuantity is not null)
             {
-                return (IQuantity)Activator.CreateInstance(registeredQuantity, valueUnit.Value, unit);
+                return (IQuantity)Activator.CreateInstance(registeredQuantity,  (QuantityValue)valueUnit.Value, unit);
             }
 
-            return Quantity.From(valueUnit.Value, unit);
+            return Quantity.From(QuantityValue.FromDoubleRounded(valueUnit.Value), unit);
         }
 
         private (Type? Quantity, Type? Unit) GetRegisteredType(string unit)

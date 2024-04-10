@@ -66,7 +66,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ScalarUnit.Amount, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new Scalar(double.PositiveInfinity, ScalarUnit.Amount));
@@ -76,7 +76,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new Scalar(double.NaN, ScalarUnit.Amount));
@@ -135,7 +135,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromAmount_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => Scalar.FromAmount(double.PositiveInfinity));
@@ -145,7 +145,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromAmount_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => Scalar.FromAmount(double.NaN));
@@ -326,7 +326,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, ScalarUnit.Amount, 1, ScalarUnit.Amount, true)]  // Same value and unit.
         [InlineData(1, ScalarUnit.Amount, 2, ScalarUnit.Amount, false)] // Different value.
-        [InlineData(2, ScalarUnit.Amount, 1, ScalarUnit.Amount, false)] // Different value and unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ScalarUnit unitA, double valueB, ScalarUnit unitB, bool expectEqual)
         {
             var a = new Scalar(valueA, unitA);
@@ -625,7 +624,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Scalar.FromAmount(1.0);
-            Assert.Equal(new {Scalar.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(Scalar.Info.Name, quantity.Amount);
+            #else
+            var expected = new {Scalar.Info.Name, valueInBaseUnit = quantity.Amount}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

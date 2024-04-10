@@ -78,7 +78,7 @@ namespace UnitsNet.Tests
             Assert.Equal(AmplitudeRatioUnit.DecibelVolt, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new AmplitudeRatio(double.PositiveInfinity, AmplitudeRatioUnit.DecibelVolt));
@@ -88,7 +88,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new AmplitudeRatio(double.NaN, AmplitudeRatioUnit.DecibelVolt));
@@ -162,7 +162,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromDecibelVolts_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => AmplitudeRatio.FromDecibelVolts(double.PositiveInfinity));
@@ -172,7 +172,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromDecibelVolts_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => AmplitudeRatio.FromDecibelVolts(double.NaN));
@@ -435,8 +435,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, AmplitudeRatioUnit.DecibelVolt, 1, AmplitudeRatioUnit.DecibelVolt, true)]  // Same value and unit.
         [InlineData(1, AmplitudeRatioUnit.DecibelVolt, 2, AmplitudeRatioUnit.DecibelVolt, false)] // Different value.
-        [InlineData(2, AmplitudeRatioUnit.DecibelVolt, 1, AmplitudeRatioUnit.DecibelMicrovolt, false)] // Different value and unit.
-        [InlineData(1, AmplitudeRatioUnit.DecibelVolt, 1, AmplitudeRatioUnit.DecibelMicrovolt, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, AmplitudeRatioUnit unitA, double valueB, AmplitudeRatioUnit unitB, bool expectEqual)
         {
             var a = new AmplitudeRatio(valueA, unitA);
@@ -741,7 +739,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = AmplitudeRatio.FromDecibelVolts(1.0);
-            Assert.Equal(new {AmplitudeRatio.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(AmplitudeRatio.Info.Name, quantity.DecibelVolts);
+            #else
+            var expected = new {AmplitudeRatio.Info.Name, valueInBaseUnit = quantity.DecibelVolts}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

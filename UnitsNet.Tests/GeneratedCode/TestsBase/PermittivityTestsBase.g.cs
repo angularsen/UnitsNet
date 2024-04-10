@@ -66,7 +66,7 @@ namespace UnitsNet.Tests
             Assert.Equal(PermittivityUnit.FaradPerMeter, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new Permittivity(double.PositiveInfinity, PermittivityUnit.FaradPerMeter));
@@ -76,7 +76,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new Permittivity(double.NaN, PermittivityUnit.FaradPerMeter));
@@ -135,7 +135,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromFaradsPerMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => Permittivity.FromFaradsPerMeter(double.PositiveInfinity));
@@ -145,7 +145,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromFaradsPerMeter_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => Permittivity.FromFaradsPerMeter(double.NaN));
@@ -326,7 +326,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, PermittivityUnit.FaradPerMeter, 1, PermittivityUnit.FaradPerMeter, true)]  // Same value and unit.
         [InlineData(1, PermittivityUnit.FaradPerMeter, 2, PermittivityUnit.FaradPerMeter, false)] // Different value.
-        [InlineData(2, PermittivityUnit.FaradPerMeter, 1, PermittivityUnit.FaradPerMeter, false)] // Different value and unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, PermittivityUnit unitA, double valueB, PermittivityUnit unitB, bool expectEqual)
         {
             var a = new Permittivity(valueA, unitA);
@@ -625,7 +624,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Permittivity.FromFaradsPerMeter(1.0);
-            Assert.Equal(new {Permittivity.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(Permittivity.Info.Name, quantity.FaradsPerMeter);
+            #else
+            var expected = new {Permittivity.Info.Name, valueInBaseUnit = quantity.FaradsPerMeter}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

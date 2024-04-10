@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToArea
     /// </summary>
     public static class NumberToAreaExtensions
     {
-        /// <inheritdoc cref="Area.FromAcres(double)" />
+        /// <inheritdoc cref="Area.FromAcres(QuantityValue)" />
         public static Area Acres<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToArea
 #endif
             => Area.FromAcres(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Area.FromHectares(double)" />
+        /// <inheritdoc cref="Area.FromHectares(QuantityValue)" />
         public static Area Hectares<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToArea
 #endif
             => Area.FromHectares(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Area.FromSquareCentimeters(double)" />
+        /// <inheritdoc cref="Area.FromSquareCentimeters(QuantityValue)" />
         public static Area SquareCentimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToArea
 #endif
             => Area.FromSquareCentimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Area.FromSquareDecimeters(double)" />
+        /// <inheritdoc cref="Area.FromSquareDecimeters(QuantityValue)" />
         public static Area SquareDecimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToArea
 #endif
             => Area.FromSquareDecimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Area.FromSquareFeet(double)" />
+        /// <inheritdoc cref="Area.FromSquareFeet(QuantityValue)" />
         public static Area SquareFeet<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToArea
 #endif
             => Area.FromSquareFeet(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Area.FromSquareInches(double)" />
+        /// <inheritdoc cref="Area.FromSquareInches(QuantityValue)" />
         public static Area SquareInches<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToArea
 #endif
             => Area.FromSquareInches(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Area.FromSquareKilometers(double)" />
+        /// <inheritdoc cref="Area.FromSquareKilometers(QuantityValue)" />
         public static Area SquareKilometers<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToArea
 #endif
             => Area.FromSquareKilometers(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Area.FromSquareMeters(double)" />
+        /// <inheritdoc cref="Area.FromSquareMeters(QuantityValue)" />
         public static Area SquareMeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToArea
 #endif
             => Area.FromSquareMeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Area.FromSquareMicrometers(double)" />
+        /// <inheritdoc cref="Area.FromSquareMicrometers(QuantityValue)" />
         public static Area SquareMicrometers<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -104,7 +104,7 @@ namespace UnitsNet.NumberExtensions.NumberToArea
 #endif
             => Area.FromSquareMicrometers(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Area.FromSquareMiles(double)" />
+        /// <inheritdoc cref="Area.FromSquareMiles(QuantityValue)" />
         public static Area SquareMiles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -112,7 +112,7 @@ namespace UnitsNet.NumberExtensions.NumberToArea
 #endif
             => Area.FromSquareMiles(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Area.FromSquareMillimeters(double)" />
+        /// <inheritdoc cref="Area.FromSquareMillimeters(QuantityValue)" />
         public static Area SquareMillimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -120,7 +120,7 @@ namespace UnitsNet.NumberExtensions.NumberToArea
 #endif
             => Area.FromSquareMillimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Area.FromSquareNauticalMiles(double)" />
+        /// <inheritdoc cref="Area.FromSquareNauticalMiles(QuantityValue)" />
         public static Area SquareNauticalMiles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -128,7 +128,7 @@ namespace UnitsNet.NumberExtensions.NumberToArea
 #endif
             => Area.FromSquareNauticalMiles(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Area.FromSquareYards(double)" />
+        /// <inheritdoc cref="Area.FromSquareYards(QuantityValue)" />
         public static Area SquareYards<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -136,7 +136,7 @@ namespace UnitsNet.NumberExtensions.NumberToArea
 #endif
             => Area.FromSquareYards(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Area.FromUsSurveySquareFeet(double)" />
+        /// <inheritdoc cref="Area.FromUsSurveySquareFeet(QuantityValue)" />
         public static Area UsSurveySquareFeet<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

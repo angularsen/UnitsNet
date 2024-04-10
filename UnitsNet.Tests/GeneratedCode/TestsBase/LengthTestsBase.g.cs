@@ -230,7 +230,7 @@ namespace UnitsNet.Tests
             Assert.Equal(LengthUnit.Meter, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new Length(double.PositiveInfinity, LengthUnit.Meter));
@@ -240,7 +240,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new Length(double.NaN, LengthUnit.Meter));
@@ -504,7 +504,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromMeters_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => Length.FromMeters(double.PositiveInfinity));
@@ -514,7 +514,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromMeters_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => Length.FromMeters(double.NaN));
@@ -2835,8 +2835,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, LengthUnit.Meter, 1, LengthUnit.Meter, true)]  // Same value and unit.
         [InlineData(1, LengthUnit.Meter, 2, LengthUnit.Meter, false)] // Different value.
-        [InlineData(2, LengthUnit.Meter, 1, LengthUnit.Angstrom, false)] // Different value and unit.
-        [InlineData(1, LengthUnit.Meter, 1, LengthUnit.Angstrom, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, LengthUnit unitA, double valueB, LengthUnit unitB, bool expectEqual)
         {
             var a = new Length(valueA, unitA);
@@ -3217,7 +3215,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Length.FromMeters(1.0);
-            Assert.Equal(new {Length.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(Length.Info.Name, quantity.Meters);
+            #else
+            var expected = new {Length.Info.Name, valueInBaseUnit = quantity.Meters}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

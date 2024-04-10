@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToStandardVolumeFlow
     /// </summary>
     public static class NumberToStandardVolumeFlowExtensions
     {
-        /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicCentimetersPerMinute(double)" />
+        /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicCentimetersPerMinute(QuantityValue)" />
         public static StandardVolumeFlow StandardCubicCentimetersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToStandardVolumeFlow
 #endif
             => StandardVolumeFlow.FromStandardCubicCentimetersPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicFeetPerHour(double)" />
+        /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicFeetPerHour(QuantityValue)" />
         public static StandardVolumeFlow StandardCubicFeetPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToStandardVolumeFlow
 #endif
             => StandardVolumeFlow.FromStandardCubicFeetPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicFeetPerMinute(double)" />
+        /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicFeetPerMinute(QuantityValue)" />
         public static StandardVolumeFlow StandardCubicFeetPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToStandardVolumeFlow
 #endif
             => StandardVolumeFlow.FromStandardCubicFeetPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicFeetPerSecond(double)" />
+        /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicFeetPerSecond(QuantityValue)" />
         public static StandardVolumeFlow StandardCubicFeetPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToStandardVolumeFlow
 #endif
             => StandardVolumeFlow.FromStandardCubicFeetPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicMetersPerDay(double)" />
+        /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicMetersPerDay(QuantityValue)" />
         public static StandardVolumeFlow StandardCubicMetersPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToStandardVolumeFlow
 #endif
             => StandardVolumeFlow.FromStandardCubicMetersPerDay(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicMetersPerHour(double)" />
+        /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicMetersPerHour(QuantityValue)" />
         public static StandardVolumeFlow StandardCubicMetersPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToStandardVolumeFlow
 #endif
             => StandardVolumeFlow.FromStandardCubicMetersPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicMetersPerMinute(double)" />
+        /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicMetersPerMinute(QuantityValue)" />
         public static StandardVolumeFlow StandardCubicMetersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToStandardVolumeFlow
 #endif
             => StandardVolumeFlow.FromStandardCubicMetersPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicMetersPerSecond(double)" />
+        /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicMetersPerSecond(QuantityValue)" />
         public static StandardVolumeFlow StandardCubicMetersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToStandardVolumeFlow
 #endif
             => StandardVolumeFlow.FromStandardCubicMetersPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="StandardVolumeFlow.FromStandardLitersPerMinute(double)" />
+        /// <inheritdoc cref="StandardVolumeFlow.FromStandardLitersPerMinute(QuantityValue)" />
         public static StandardVolumeFlow StandardLitersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

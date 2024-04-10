@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffness
     /// </summary>
     public static class NumberToRotationalStiffnessExtensions
     {
-        /// <inheritdoc cref="RotationalStiffness.FromCentinewtonMetersPerDegree(double)" />
+        /// <inheritdoc cref="RotationalStiffness.FromCentinewtonMetersPerDegree(QuantityValue)" />
         public static RotationalStiffness CentinewtonMetersPerDegree<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffness
 #endif
             => RotationalStiffness.FromCentinewtonMetersPerDegree(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffness.FromCentinewtonMillimetersPerDegree(double)" />
+        /// <inheritdoc cref="RotationalStiffness.FromCentinewtonMillimetersPerDegree(QuantityValue)" />
         public static RotationalStiffness CentinewtonMillimetersPerDegree<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffness
 #endif
             => RotationalStiffness.FromCentinewtonMillimetersPerDegree(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffness.FromCentinewtonMillimetersPerRadian(double)" />
+        /// <inheritdoc cref="RotationalStiffness.FromCentinewtonMillimetersPerRadian(QuantityValue)" />
         public static RotationalStiffness CentinewtonMillimetersPerRadian<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffness
 #endif
             => RotationalStiffness.FromCentinewtonMillimetersPerRadian(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffness.FromDecanewtonMetersPerDegree(double)" />
+        /// <inheritdoc cref="RotationalStiffness.FromDecanewtonMetersPerDegree(QuantityValue)" />
         public static RotationalStiffness DecanewtonMetersPerDegree<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffness
 #endif
             => RotationalStiffness.FromDecanewtonMetersPerDegree(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffness.FromDecanewtonMillimetersPerDegree(double)" />
+        /// <inheritdoc cref="RotationalStiffness.FromDecanewtonMillimetersPerDegree(QuantityValue)" />
         public static RotationalStiffness DecanewtonMillimetersPerDegree<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffness
 #endif
             => RotationalStiffness.FromDecanewtonMillimetersPerDegree(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffness.FromDecanewtonMillimetersPerRadian(double)" />
+        /// <inheritdoc cref="RotationalStiffness.FromDecanewtonMillimetersPerRadian(QuantityValue)" />
         public static RotationalStiffness DecanewtonMillimetersPerRadian<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffness
 #endif
             => RotationalStiffness.FromDecanewtonMillimetersPerRadian(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffness.FromDecinewtonMetersPerDegree(double)" />
+        /// <inheritdoc cref="RotationalStiffness.FromDecinewtonMetersPerDegree(QuantityValue)" />
         public static RotationalStiffness DecinewtonMetersPerDegree<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffness
 #endif
             => RotationalStiffness.FromDecinewtonMetersPerDegree(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffness.FromDecinewtonMillimetersPerDegree(double)" />
+        /// <inheritdoc cref="RotationalStiffness.FromDecinewtonMillimetersPerDegree(QuantityValue)" />
         public static RotationalStiffness DecinewtonMillimetersPerDegree<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffness
 #endif
             => RotationalStiffness.FromDecinewtonMillimetersPerDegree(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffness.FromDecinewtonMillimetersPerRadian(double)" />
+        /// <inheritdoc cref="RotationalStiffness.FromDecinewtonMillimetersPerRadian(QuantityValue)" />
         public static RotationalStiffness DecinewtonMillimetersPerRadian<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -104,7 +104,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffness
 #endif
             => RotationalStiffness.FromDecinewtonMillimetersPerRadian(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerDegree(double)" />
+        /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerDegree(QuantityValue)" />
         public static RotationalStiffness KilonewtonMetersPerDegree<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -112,7 +112,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffness
 #endif
             => RotationalStiffness.FromKilonewtonMetersPerDegree(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerRadian(double)" />
+        /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerRadian(QuantityValue)" />
         public static RotationalStiffness KilonewtonMetersPerRadian<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -120,7 +120,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffness
 #endif
             => RotationalStiffness.FromKilonewtonMetersPerRadian(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMillimetersPerDegree(double)" />
+        /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMillimetersPerDegree(QuantityValue)" />
         public static RotationalStiffness KilonewtonMillimetersPerDegree<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -128,7 +128,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffness
 #endif
             => RotationalStiffness.FromKilonewtonMillimetersPerDegree(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMillimetersPerRadian(double)" />
+        /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMillimetersPerRadian(QuantityValue)" />
         public static RotationalStiffness KilonewtonMillimetersPerRadian<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -136,7 +136,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffness
 #endif
             => RotationalStiffness.FromKilonewtonMillimetersPerRadian(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffness.FromKilopoundForceFeetPerDegrees(double)" />
+        /// <inheritdoc cref="RotationalStiffness.FromKilopoundForceFeetPerDegrees(QuantityValue)" />
         public static RotationalStiffness KilopoundForceFeetPerDegrees<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -144,7 +144,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffness
 #endif
             => RotationalStiffness.FromKilopoundForceFeetPerDegrees(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerDegree(double)" />
+        /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerDegree(QuantityValue)" />
         public static RotationalStiffness MeganewtonMetersPerDegree<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -152,7 +152,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffness
 #endif
             => RotationalStiffness.FromMeganewtonMetersPerDegree(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerRadian(double)" />
+        /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerRadian(QuantityValue)" />
         public static RotationalStiffness MeganewtonMetersPerRadian<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -160,7 +160,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffness
 #endif
             => RotationalStiffness.FromMeganewtonMetersPerRadian(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMillimetersPerDegree(double)" />
+        /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMillimetersPerDegree(QuantityValue)" />
         public static RotationalStiffness MeganewtonMillimetersPerDegree<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -168,7 +168,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffness
 #endif
             => RotationalStiffness.FromMeganewtonMillimetersPerDegree(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMillimetersPerRadian(double)" />
+        /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMillimetersPerRadian(QuantityValue)" />
         public static RotationalStiffness MeganewtonMillimetersPerRadian<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -176,7 +176,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffness
 #endif
             => RotationalStiffness.FromMeganewtonMillimetersPerRadian(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffness.FromMicronewtonMetersPerDegree(double)" />
+        /// <inheritdoc cref="RotationalStiffness.FromMicronewtonMetersPerDegree(QuantityValue)" />
         public static RotationalStiffness MicronewtonMetersPerDegree<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -184,7 +184,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffness
 #endif
             => RotationalStiffness.FromMicronewtonMetersPerDegree(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffness.FromMicronewtonMillimetersPerDegree(double)" />
+        /// <inheritdoc cref="RotationalStiffness.FromMicronewtonMillimetersPerDegree(QuantityValue)" />
         public static RotationalStiffness MicronewtonMillimetersPerDegree<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -192,7 +192,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffness
 #endif
             => RotationalStiffness.FromMicronewtonMillimetersPerDegree(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffness.FromMicronewtonMillimetersPerRadian(double)" />
+        /// <inheritdoc cref="RotationalStiffness.FromMicronewtonMillimetersPerRadian(QuantityValue)" />
         public static RotationalStiffness MicronewtonMillimetersPerRadian<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -200,7 +200,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffness
 #endif
             => RotationalStiffness.FromMicronewtonMillimetersPerRadian(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffness.FromMillinewtonMetersPerDegree(double)" />
+        /// <inheritdoc cref="RotationalStiffness.FromMillinewtonMetersPerDegree(QuantityValue)" />
         public static RotationalStiffness MillinewtonMetersPerDegree<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -208,7 +208,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffness
 #endif
             => RotationalStiffness.FromMillinewtonMetersPerDegree(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffness.FromMillinewtonMillimetersPerDegree(double)" />
+        /// <inheritdoc cref="RotationalStiffness.FromMillinewtonMillimetersPerDegree(QuantityValue)" />
         public static RotationalStiffness MillinewtonMillimetersPerDegree<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -216,7 +216,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffness
 #endif
             => RotationalStiffness.FromMillinewtonMillimetersPerDegree(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffness.FromMillinewtonMillimetersPerRadian(double)" />
+        /// <inheritdoc cref="RotationalStiffness.FromMillinewtonMillimetersPerRadian(QuantityValue)" />
         public static RotationalStiffness MillinewtonMillimetersPerRadian<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -224,7 +224,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffness
 #endif
             => RotationalStiffness.FromMillinewtonMillimetersPerRadian(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffness.FromNanonewtonMetersPerDegree(double)" />
+        /// <inheritdoc cref="RotationalStiffness.FromNanonewtonMetersPerDegree(QuantityValue)" />
         public static RotationalStiffness NanonewtonMetersPerDegree<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -232,7 +232,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffness
 #endif
             => RotationalStiffness.FromNanonewtonMetersPerDegree(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffness.FromNanonewtonMillimetersPerDegree(double)" />
+        /// <inheritdoc cref="RotationalStiffness.FromNanonewtonMillimetersPerDegree(QuantityValue)" />
         public static RotationalStiffness NanonewtonMillimetersPerDegree<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -240,7 +240,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffness
 #endif
             => RotationalStiffness.FromNanonewtonMillimetersPerDegree(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffness.FromNanonewtonMillimetersPerRadian(double)" />
+        /// <inheritdoc cref="RotationalStiffness.FromNanonewtonMillimetersPerRadian(QuantityValue)" />
         public static RotationalStiffness NanonewtonMillimetersPerRadian<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -248,7 +248,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffness
 #endif
             => RotationalStiffness.FromNanonewtonMillimetersPerRadian(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerDegree(double)" />
+        /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerDegree(QuantityValue)" />
         public static RotationalStiffness NewtonMetersPerDegree<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -256,7 +256,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffness
 #endif
             => RotationalStiffness.FromNewtonMetersPerDegree(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerRadian(double)" />
+        /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerRadian(QuantityValue)" />
         public static RotationalStiffness NewtonMetersPerRadian<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -264,7 +264,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffness
 #endif
             => RotationalStiffness.FromNewtonMetersPerRadian(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffness.FromNewtonMillimetersPerDegree(double)" />
+        /// <inheritdoc cref="RotationalStiffness.FromNewtonMillimetersPerDegree(QuantityValue)" />
         public static RotationalStiffness NewtonMillimetersPerDegree<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -272,7 +272,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffness
 #endif
             => RotationalStiffness.FromNewtonMillimetersPerDegree(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffness.FromNewtonMillimetersPerRadian(double)" />
+        /// <inheritdoc cref="RotationalStiffness.FromNewtonMillimetersPerRadian(QuantityValue)" />
         public static RotationalStiffness NewtonMillimetersPerRadian<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -280,7 +280,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffness
 #endif
             => RotationalStiffness.FromNewtonMillimetersPerRadian(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffness.FromPoundForceFeetPerRadian(double)" />
+        /// <inheritdoc cref="RotationalStiffness.FromPoundForceFeetPerRadian(QuantityValue)" />
         public static RotationalStiffness PoundForceFeetPerRadian<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -288,7 +288,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffness
 #endif
             => RotationalStiffness.FromPoundForceFeetPerRadian(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffness.FromPoundForceFeetPerDegrees(double)" />
+        /// <inheritdoc cref="RotationalStiffness.FromPoundForceFeetPerDegrees(QuantityValue)" />
         public static RotationalStiffness PoundForceFeetPerDegrees<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

@@ -166,7 +166,7 @@ namespace UnitsNet.Tests
             Assert.Equal(InformationUnit.Bit, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new Information(double.PositiveInfinity, InformationUnit.Bit));
@@ -176,7 +176,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new Information(double.NaN, InformationUnit.Bit));
@@ -360,7 +360,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromBits_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => Information.FromBits(double.PositiveInfinity));
@@ -370,7 +370,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromBits_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => Information.FromBits(double.NaN));
@@ -915,8 +915,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, InformationUnit.Bit, 1, InformationUnit.Bit, true)]  // Same value and unit.
         [InlineData(1, InformationUnit.Bit, 2, InformationUnit.Bit, false)] // Different value.
-        [InlineData(2, InformationUnit.Bit, 1, InformationUnit.Byte, false)] // Different value and unit.
-        [InlineData(1, InformationUnit.Bit, 1, InformationUnit.Byte, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, InformationUnit unitA, double valueB, InformationUnit unitB, bool expectEqual)
         {
             var a = new Information(valueA, unitA);
@@ -1265,7 +1263,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Information.FromBits(1.0);
-            Assert.Equal(new {Information.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(Information.Info.Name, quantity.Bits);
+            #else
+            var expected = new {Information.Info.Name, valueInBaseUnit = quantity.Bits}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

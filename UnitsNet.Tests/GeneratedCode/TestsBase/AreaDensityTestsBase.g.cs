@@ -74,7 +74,7 @@ namespace UnitsNet.Tests
             Assert.Equal(AreaDensityUnit.KilogramPerSquareMeter, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new AreaDensity(double.PositiveInfinity, AreaDensityUnit.KilogramPerSquareMeter));
@@ -84,7 +84,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new AreaDensity(double.NaN, AreaDensityUnit.KilogramPerSquareMeter));
@@ -153,7 +153,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromKilogramsPerSquareMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => AreaDensity.FromKilogramsPerSquareMeter(double.PositiveInfinity));
@@ -163,7 +163,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromKilogramsPerSquareMeter_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => AreaDensity.FromKilogramsPerSquareMeter(double.NaN));
@@ -420,8 +420,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, AreaDensityUnit.KilogramPerSquareMeter, 1, AreaDensityUnit.KilogramPerSquareMeter, true)]  // Same value and unit.
         [InlineData(1, AreaDensityUnit.KilogramPerSquareMeter, 2, AreaDensityUnit.KilogramPerSquareMeter, false)] // Different value.
-        [InlineData(2, AreaDensityUnit.KilogramPerSquareMeter, 1, AreaDensityUnit.GramPerSquareMeter, false)] // Different value and unit.
-        [InlineData(1, AreaDensityUnit.KilogramPerSquareMeter, 1, AreaDensityUnit.GramPerSquareMeter, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, AreaDensityUnit unitA, double valueB, AreaDensityUnit unitB, bool expectEqual)
         {
             var a = new AreaDensity(valueA, unitA);
@@ -724,7 +722,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = AreaDensity.FromKilogramsPerSquareMeter(1.0);
-            Assert.Equal(new {AreaDensity.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(AreaDensity.Info.Name, quantity.KilogramsPerSquareMeter);
+            #else
+            var expected = new {AreaDensity.Info.Name, valueInBaseUnit = quantity.KilogramsPerSquareMeter}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

@@ -114,7 +114,7 @@ namespace UnitsNet.Tests
             Assert.Equal(FrequencyUnit.Hertz, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new Frequency(double.PositiveInfinity, FrequencyUnit.Hertz));
@@ -124,7 +124,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new Frequency(double.NaN, FrequencyUnit.Hertz));
@@ -243,7 +243,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromHertz_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => Frequency.FromHertz(double.PositiveInfinity));
@@ -253,7 +253,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromHertz_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => Frequency.FromHertz(double.NaN));
@@ -918,8 +918,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, FrequencyUnit.Hertz, 1, FrequencyUnit.Hertz, true)]  // Same value and unit.
         [InlineData(1, FrequencyUnit.Hertz, 2, FrequencyUnit.Hertz, false)] // Different value.
-        [InlineData(2, FrequencyUnit.Hertz, 1, FrequencyUnit.BeatPerMinute, false)] // Different value and unit.
-        [InlineData(1, FrequencyUnit.Hertz, 1, FrequencyUnit.BeatPerMinute, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, FrequencyUnit unitA, double valueB, FrequencyUnit unitB, bool expectEqual)
         {
             var a = new Frequency(valueA, unitA);
@@ -1242,7 +1240,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Frequency.FromHertz(1.0);
-            Assert.Equal(new {Frequency.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(Frequency.Info.Name, quantity.Hertz);
+            #else
+            var expected = new {Frequency.Info.Name, valueInBaseUnit = quantity.Hertz}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

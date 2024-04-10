@@ -25,7 +25,6 @@ using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 using System.Numerics;
-using Fractions;
 
 #nullable enable
 
@@ -50,7 +49,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly Fraction _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -100,7 +99,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public TorquePerLength(Fraction value, TorquePerLengthUnit unit)
+        public TorquePerLength(QuantityValue value, TorquePerLengthUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -114,7 +113,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public TorquePerLength(Fraction value, UnitSystem unitSystem)
+        public TorquePerLength(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -165,10 +164,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public Fraction Value => _value;
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
-        Fraction IQuantity.Value => _value;
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -193,107 +192,107 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.KilogramForceCentimeterPerMeter"/>
         /// </summary>
-        public Fraction KilogramForceCentimetersPerMeter => As(TorquePerLengthUnit.KilogramForceCentimeterPerMeter);
+        public QuantityValue KilogramForceCentimetersPerMeter => As(TorquePerLengthUnit.KilogramForceCentimeterPerMeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.KilogramForceMeterPerMeter"/>
         /// </summary>
-        public Fraction KilogramForceMetersPerMeter => As(TorquePerLengthUnit.KilogramForceMeterPerMeter);
+        public QuantityValue KilogramForceMetersPerMeter => As(TorquePerLengthUnit.KilogramForceMeterPerMeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.KilogramForceMillimeterPerMeter"/>
         /// </summary>
-        public Fraction KilogramForceMillimetersPerMeter => As(TorquePerLengthUnit.KilogramForceMillimeterPerMeter);
+        public QuantityValue KilogramForceMillimetersPerMeter => As(TorquePerLengthUnit.KilogramForceMillimeterPerMeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.KilonewtonCentimeterPerMeter"/>
         /// </summary>
-        public Fraction KilonewtonCentimetersPerMeter => As(TorquePerLengthUnit.KilonewtonCentimeterPerMeter);
+        public QuantityValue KilonewtonCentimetersPerMeter => As(TorquePerLengthUnit.KilonewtonCentimeterPerMeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.KilonewtonMeterPerMeter"/>
         /// </summary>
-        public Fraction KilonewtonMetersPerMeter => As(TorquePerLengthUnit.KilonewtonMeterPerMeter);
+        public QuantityValue KilonewtonMetersPerMeter => As(TorquePerLengthUnit.KilonewtonMeterPerMeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.KilonewtonMillimeterPerMeter"/>
         /// </summary>
-        public Fraction KilonewtonMillimetersPerMeter => As(TorquePerLengthUnit.KilonewtonMillimeterPerMeter);
+        public QuantityValue KilonewtonMillimetersPerMeter => As(TorquePerLengthUnit.KilonewtonMillimeterPerMeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.KilopoundForceFootPerFoot"/>
         /// </summary>
-        public Fraction KilopoundForceFeetPerFoot => As(TorquePerLengthUnit.KilopoundForceFootPerFoot);
+        public QuantityValue KilopoundForceFeetPerFoot => As(TorquePerLengthUnit.KilopoundForceFootPerFoot);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.KilopoundForceInchPerFoot"/>
         /// </summary>
-        public Fraction KilopoundForceInchesPerFoot => As(TorquePerLengthUnit.KilopoundForceInchPerFoot);
+        public QuantityValue KilopoundForceInchesPerFoot => As(TorquePerLengthUnit.KilopoundForceInchPerFoot);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.MeganewtonCentimeterPerMeter"/>
         /// </summary>
-        public Fraction MeganewtonCentimetersPerMeter => As(TorquePerLengthUnit.MeganewtonCentimeterPerMeter);
+        public QuantityValue MeganewtonCentimetersPerMeter => As(TorquePerLengthUnit.MeganewtonCentimeterPerMeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.MeganewtonMeterPerMeter"/>
         /// </summary>
-        public Fraction MeganewtonMetersPerMeter => As(TorquePerLengthUnit.MeganewtonMeterPerMeter);
+        public QuantityValue MeganewtonMetersPerMeter => As(TorquePerLengthUnit.MeganewtonMeterPerMeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.MeganewtonMillimeterPerMeter"/>
         /// </summary>
-        public Fraction MeganewtonMillimetersPerMeter => As(TorquePerLengthUnit.MeganewtonMillimeterPerMeter);
+        public QuantityValue MeganewtonMillimetersPerMeter => As(TorquePerLengthUnit.MeganewtonMillimeterPerMeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.MegapoundForceFootPerFoot"/>
         /// </summary>
-        public Fraction MegapoundForceFeetPerFoot => As(TorquePerLengthUnit.MegapoundForceFootPerFoot);
+        public QuantityValue MegapoundForceFeetPerFoot => As(TorquePerLengthUnit.MegapoundForceFootPerFoot);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.MegapoundForceInchPerFoot"/>
         /// </summary>
-        public Fraction MegapoundForceInchesPerFoot => As(TorquePerLengthUnit.MegapoundForceInchPerFoot);
+        public QuantityValue MegapoundForceInchesPerFoot => As(TorquePerLengthUnit.MegapoundForceInchPerFoot);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.NewtonCentimeterPerMeter"/>
         /// </summary>
-        public Fraction NewtonCentimetersPerMeter => As(TorquePerLengthUnit.NewtonCentimeterPerMeter);
+        public QuantityValue NewtonCentimetersPerMeter => As(TorquePerLengthUnit.NewtonCentimeterPerMeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.NewtonMeterPerMeter"/>
         /// </summary>
-        public Fraction NewtonMetersPerMeter => As(TorquePerLengthUnit.NewtonMeterPerMeter);
+        public QuantityValue NewtonMetersPerMeter => As(TorquePerLengthUnit.NewtonMeterPerMeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.NewtonMillimeterPerMeter"/>
         /// </summary>
-        public Fraction NewtonMillimetersPerMeter => As(TorquePerLengthUnit.NewtonMillimeterPerMeter);
+        public QuantityValue NewtonMillimetersPerMeter => As(TorquePerLengthUnit.NewtonMillimeterPerMeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.PoundForceFootPerFoot"/>
         /// </summary>
-        public Fraction PoundForceFeetPerFoot => As(TorquePerLengthUnit.PoundForceFootPerFoot);
+        public QuantityValue PoundForceFeetPerFoot => As(TorquePerLengthUnit.PoundForceFootPerFoot);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.PoundForceInchPerFoot"/>
         /// </summary>
-        public Fraction PoundForceInchesPerFoot => As(TorquePerLengthUnit.PoundForceInchPerFoot);
+        public QuantityValue PoundForceInchesPerFoot => As(TorquePerLengthUnit.PoundForceInchPerFoot);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.TonneForceCentimeterPerMeter"/>
         /// </summary>
-        public Fraction TonneForceCentimetersPerMeter => As(TorquePerLengthUnit.TonneForceCentimeterPerMeter);
+        public QuantityValue TonneForceCentimetersPerMeter => As(TorquePerLengthUnit.TonneForceCentimeterPerMeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.TonneForceMeterPerMeter"/>
         /// </summary>
-        public Fraction TonneForceMetersPerMeter => As(TorquePerLengthUnit.TonneForceMeterPerMeter);
+        public QuantityValue TonneForceMetersPerMeter => As(TorquePerLengthUnit.TonneForceMeterPerMeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.TonneForceMillimeterPerMeter"/>
         /// </summary>
-        public Fraction TonneForceMillimetersPerMeter => As(TorquePerLengthUnit.TonneForceMillimeterPerMeter);
+        public QuantityValue TonneForceMillimetersPerMeter => As(TorquePerLengthUnit.TonneForceMillimeterPerMeter);
 
         #endregion
 
@@ -381,7 +380,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TorquePerLength"/> from <see cref="TorquePerLengthUnit.KilogramForceCentimeterPerMeter"/>.
         /// </summary>
-        public static TorquePerLength FromKilogramForceCentimetersPerMeter(Fraction value)
+        public static TorquePerLength FromKilogramForceCentimetersPerMeter(QuantityValue value)
         {
             return new TorquePerLength(value, TorquePerLengthUnit.KilogramForceCentimeterPerMeter);
         }
@@ -389,7 +388,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TorquePerLength"/> from <see cref="TorquePerLengthUnit.KilogramForceMeterPerMeter"/>.
         /// </summary>
-        public static TorquePerLength FromKilogramForceMetersPerMeter(Fraction value)
+        public static TorquePerLength FromKilogramForceMetersPerMeter(QuantityValue value)
         {
             return new TorquePerLength(value, TorquePerLengthUnit.KilogramForceMeterPerMeter);
         }
@@ -397,7 +396,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TorquePerLength"/> from <see cref="TorquePerLengthUnit.KilogramForceMillimeterPerMeter"/>.
         /// </summary>
-        public static TorquePerLength FromKilogramForceMillimetersPerMeter(Fraction value)
+        public static TorquePerLength FromKilogramForceMillimetersPerMeter(QuantityValue value)
         {
             return new TorquePerLength(value, TorquePerLengthUnit.KilogramForceMillimeterPerMeter);
         }
@@ -405,7 +404,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TorquePerLength"/> from <see cref="TorquePerLengthUnit.KilonewtonCentimeterPerMeter"/>.
         /// </summary>
-        public static TorquePerLength FromKilonewtonCentimetersPerMeter(Fraction value)
+        public static TorquePerLength FromKilonewtonCentimetersPerMeter(QuantityValue value)
         {
             return new TorquePerLength(value, TorquePerLengthUnit.KilonewtonCentimeterPerMeter);
         }
@@ -413,7 +412,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TorquePerLength"/> from <see cref="TorquePerLengthUnit.KilonewtonMeterPerMeter"/>.
         /// </summary>
-        public static TorquePerLength FromKilonewtonMetersPerMeter(Fraction value)
+        public static TorquePerLength FromKilonewtonMetersPerMeter(QuantityValue value)
         {
             return new TorquePerLength(value, TorquePerLengthUnit.KilonewtonMeterPerMeter);
         }
@@ -421,7 +420,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TorquePerLength"/> from <see cref="TorquePerLengthUnit.KilonewtonMillimeterPerMeter"/>.
         /// </summary>
-        public static TorquePerLength FromKilonewtonMillimetersPerMeter(Fraction value)
+        public static TorquePerLength FromKilonewtonMillimetersPerMeter(QuantityValue value)
         {
             return new TorquePerLength(value, TorquePerLengthUnit.KilonewtonMillimeterPerMeter);
         }
@@ -429,7 +428,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TorquePerLength"/> from <see cref="TorquePerLengthUnit.KilopoundForceFootPerFoot"/>.
         /// </summary>
-        public static TorquePerLength FromKilopoundForceFeetPerFoot(Fraction value)
+        public static TorquePerLength FromKilopoundForceFeetPerFoot(QuantityValue value)
         {
             return new TorquePerLength(value, TorquePerLengthUnit.KilopoundForceFootPerFoot);
         }
@@ -437,7 +436,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TorquePerLength"/> from <see cref="TorquePerLengthUnit.KilopoundForceInchPerFoot"/>.
         /// </summary>
-        public static TorquePerLength FromKilopoundForceInchesPerFoot(Fraction value)
+        public static TorquePerLength FromKilopoundForceInchesPerFoot(QuantityValue value)
         {
             return new TorquePerLength(value, TorquePerLengthUnit.KilopoundForceInchPerFoot);
         }
@@ -445,7 +444,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TorquePerLength"/> from <see cref="TorquePerLengthUnit.MeganewtonCentimeterPerMeter"/>.
         /// </summary>
-        public static TorquePerLength FromMeganewtonCentimetersPerMeter(Fraction value)
+        public static TorquePerLength FromMeganewtonCentimetersPerMeter(QuantityValue value)
         {
             return new TorquePerLength(value, TorquePerLengthUnit.MeganewtonCentimeterPerMeter);
         }
@@ -453,7 +452,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TorquePerLength"/> from <see cref="TorquePerLengthUnit.MeganewtonMeterPerMeter"/>.
         /// </summary>
-        public static TorquePerLength FromMeganewtonMetersPerMeter(Fraction value)
+        public static TorquePerLength FromMeganewtonMetersPerMeter(QuantityValue value)
         {
             return new TorquePerLength(value, TorquePerLengthUnit.MeganewtonMeterPerMeter);
         }
@@ -461,7 +460,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TorquePerLength"/> from <see cref="TorquePerLengthUnit.MeganewtonMillimeterPerMeter"/>.
         /// </summary>
-        public static TorquePerLength FromMeganewtonMillimetersPerMeter(Fraction value)
+        public static TorquePerLength FromMeganewtonMillimetersPerMeter(QuantityValue value)
         {
             return new TorquePerLength(value, TorquePerLengthUnit.MeganewtonMillimeterPerMeter);
         }
@@ -469,7 +468,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TorquePerLength"/> from <see cref="TorquePerLengthUnit.MegapoundForceFootPerFoot"/>.
         /// </summary>
-        public static TorquePerLength FromMegapoundForceFeetPerFoot(Fraction value)
+        public static TorquePerLength FromMegapoundForceFeetPerFoot(QuantityValue value)
         {
             return new TorquePerLength(value, TorquePerLengthUnit.MegapoundForceFootPerFoot);
         }
@@ -477,7 +476,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TorquePerLength"/> from <see cref="TorquePerLengthUnit.MegapoundForceInchPerFoot"/>.
         /// </summary>
-        public static TorquePerLength FromMegapoundForceInchesPerFoot(Fraction value)
+        public static TorquePerLength FromMegapoundForceInchesPerFoot(QuantityValue value)
         {
             return new TorquePerLength(value, TorquePerLengthUnit.MegapoundForceInchPerFoot);
         }
@@ -485,7 +484,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TorquePerLength"/> from <see cref="TorquePerLengthUnit.NewtonCentimeterPerMeter"/>.
         /// </summary>
-        public static TorquePerLength FromNewtonCentimetersPerMeter(Fraction value)
+        public static TorquePerLength FromNewtonCentimetersPerMeter(QuantityValue value)
         {
             return new TorquePerLength(value, TorquePerLengthUnit.NewtonCentimeterPerMeter);
         }
@@ -493,7 +492,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TorquePerLength"/> from <see cref="TorquePerLengthUnit.NewtonMeterPerMeter"/>.
         /// </summary>
-        public static TorquePerLength FromNewtonMetersPerMeter(Fraction value)
+        public static TorquePerLength FromNewtonMetersPerMeter(QuantityValue value)
         {
             return new TorquePerLength(value, TorquePerLengthUnit.NewtonMeterPerMeter);
         }
@@ -501,7 +500,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TorquePerLength"/> from <see cref="TorquePerLengthUnit.NewtonMillimeterPerMeter"/>.
         /// </summary>
-        public static TorquePerLength FromNewtonMillimetersPerMeter(Fraction value)
+        public static TorquePerLength FromNewtonMillimetersPerMeter(QuantityValue value)
         {
             return new TorquePerLength(value, TorquePerLengthUnit.NewtonMillimeterPerMeter);
         }
@@ -509,7 +508,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TorquePerLength"/> from <see cref="TorquePerLengthUnit.PoundForceFootPerFoot"/>.
         /// </summary>
-        public static TorquePerLength FromPoundForceFeetPerFoot(Fraction value)
+        public static TorquePerLength FromPoundForceFeetPerFoot(QuantityValue value)
         {
             return new TorquePerLength(value, TorquePerLengthUnit.PoundForceFootPerFoot);
         }
@@ -517,7 +516,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TorquePerLength"/> from <see cref="TorquePerLengthUnit.PoundForceInchPerFoot"/>.
         /// </summary>
-        public static TorquePerLength FromPoundForceInchesPerFoot(Fraction value)
+        public static TorquePerLength FromPoundForceInchesPerFoot(QuantityValue value)
         {
             return new TorquePerLength(value, TorquePerLengthUnit.PoundForceInchPerFoot);
         }
@@ -525,7 +524,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TorquePerLength"/> from <see cref="TorquePerLengthUnit.TonneForceCentimeterPerMeter"/>.
         /// </summary>
-        public static TorquePerLength FromTonneForceCentimetersPerMeter(Fraction value)
+        public static TorquePerLength FromTonneForceCentimetersPerMeter(QuantityValue value)
         {
             return new TorquePerLength(value, TorquePerLengthUnit.TonneForceCentimeterPerMeter);
         }
@@ -533,7 +532,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TorquePerLength"/> from <see cref="TorquePerLengthUnit.TonneForceMeterPerMeter"/>.
         /// </summary>
-        public static TorquePerLength FromTonneForceMetersPerMeter(Fraction value)
+        public static TorquePerLength FromTonneForceMetersPerMeter(QuantityValue value)
         {
             return new TorquePerLength(value, TorquePerLengthUnit.TonneForceMeterPerMeter);
         }
@@ -541,7 +540,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TorquePerLength"/> from <see cref="TorquePerLengthUnit.TonneForceMillimeterPerMeter"/>.
         /// </summary>
-        public static TorquePerLength FromTonneForceMillimetersPerMeter(Fraction value)
+        public static TorquePerLength FromTonneForceMillimetersPerMeter(QuantityValue value)
         {
             return new TorquePerLength(value, TorquePerLengthUnit.TonneForceMillimeterPerMeter);
         }
@@ -552,7 +551,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>TorquePerLength unit value.</returns>
-        public static TorquePerLength From(Fraction value, TorquePerLengthUnit fromUnit)
+        public static TorquePerLength From(QuantityValue value, TorquePerLengthUnit fromUnit)
         {
             return new TorquePerLength(value, fromUnit);
         }
@@ -708,7 +707,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static TorquePerLength operator -(TorquePerLength right)
         {
-            return new TorquePerLength(right.Value.Invert(), right.Unit);
+            return new TorquePerLength(-right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="TorquePerLength"/> from adding two <see cref="TorquePerLength"/>.</summary>
@@ -724,25 +723,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="TorquePerLength"/> from multiplying value and <see cref="TorquePerLength"/>.</summary>
-        public static TorquePerLength operator *(Fraction left, TorquePerLength right)
+        public static TorquePerLength operator *(QuantityValue left, TorquePerLength right)
         {
             return new TorquePerLength(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="TorquePerLength"/> from multiplying value and <see cref="TorquePerLength"/>.</summary>
-        public static TorquePerLength operator *(TorquePerLength left, Fraction right)
+        public static TorquePerLength operator *(TorquePerLength left, QuantityValue right)
         {
             return new TorquePerLength(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="TorquePerLength"/> from dividing <see cref="TorquePerLength"/> by value.</summary>
-        public static TorquePerLength operator /(TorquePerLength left, Fraction right)
+        public static TorquePerLength operator /(TorquePerLength left, QuantityValue right)
         {
             return new TorquePerLength(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="TorquePerLength"/> by <see cref="TorquePerLength"/>.</summary>
-        public static Fraction operator /(TorquePerLength left, TorquePerLength right)
+        public static QuantityValue operator /(TorquePerLength left, TorquePerLength right)
         {
             return left.NewtonMetersPerMeter / right.NewtonMetersPerMeter;
         }
@@ -801,7 +800,7 @@ namespace UnitsNet
         /// <summary>Indicates strict equality of two <see cref="TorquePerLength"/> quantities.</summary>
         public bool Equals(TorquePerLength other)
         {
-            return _value.IsEquivalentTo(other.As(this.Unit));
+            return _value.Equals(other.As(this.Unit));
         }
 
         /// <summary>Compares the current <see cref="TorquePerLength"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
@@ -886,10 +885,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: (Fraction)tolerance,
+                tolerance: (QuantityValue)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -906,7 +905,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(TorquePerLength other, TorquePerLength tolerance)
         {
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -920,7 +919,11 @@ namespace UnitsNet
         public override int GetHashCode()
         {
             var valueInBaseUnit = As(BaseUnit);
+            #if NET7_0_OR_GREATER
+            return HashCode.Combine(Info.Name, valueInBaseUnit);
+            #else
             return new { Info.Name, valueInBaseUnit }.GetHashCode();
+            #endif
         }
 
         #endregion
@@ -931,7 +934,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public Fraction As(TorquePerLengthUnit unit)
+        public QuantityValue As(TorquePerLengthUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -940,7 +943,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public Fraction As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -955,7 +958,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        Fraction IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
             if (!(unit is TorquePerLengthUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TorquePerLengthUnit)} is supported.", nameof(unit));
@@ -1021,48 +1024,48 @@ namespace UnitsNet
             TorquePerLength? convertedOrNull = (Unit, unit) switch
             {
                 // TorquePerLengthUnit -> BaseUnit
-                (TorquePerLengthUnit.KilogramForceCentimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * new Fraction(245166254990163, 2500000000000000, false), TorquePerLengthUnit.NewtonMeterPerMeter),
-                (TorquePerLengthUnit.KilogramForceMeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * new Fraction(245166254990163, 25000000000000, false), TorquePerLengthUnit.NewtonMeterPerMeter),
-                (TorquePerLengthUnit.KilogramForceMillimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * new Fraction(245166254990163, 25000000000000000, false), TorquePerLengthUnit.NewtonMeterPerMeter),
+                (TorquePerLengthUnit.KilogramForceCentimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * new QuantityValue(245166254990163, 2500000000000000, false), TorquePerLengthUnit.NewtonMeterPerMeter),
+                (TorquePerLengthUnit.KilogramForceMeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * new QuantityValue(245166254990163, 25000000000000, false), TorquePerLengthUnit.NewtonMeterPerMeter),
+                (TorquePerLengthUnit.KilogramForceMillimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * new QuantityValue(245166254990163, 25000000000000000, false), TorquePerLengthUnit.NewtonMeterPerMeter),
                 (TorquePerLengthUnit.KilonewtonCentimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * 10, TorquePerLengthUnit.NewtonMeterPerMeter),
                 (TorquePerLengthUnit.KilonewtonMeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * 1000, TorquePerLengthUnit.NewtonMeterPerMeter),
                 (TorquePerLengthUnit.KilonewtonMillimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value, TorquePerLengthUnit.NewtonMeterPerMeter),
-                (TorquePerLengthUnit.KilopoundForceFootPerFoot, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * new Fraction(222411080763, 50000000, false), TorquePerLengthUnit.NewtonMeterPerMeter),
-                (TorquePerLengthUnit.KilopoundForceInchPerFoot, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * new Fraction(185342573819, 500000000, false), TorquePerLengthUnit.NewtonMeterPerMeter),
+                (TorquePerLengthUnit.KilopoundForceFootPerFoot, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * new QuantityValue(222411080763, 50000000, false), TorquePerLengthUnit.NewtonMeterPerMeter),
+                (TorquePerLengthUnit.KilopoundForceInchPerFoot, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * new QuantityValue(185342573819, 500000000, false), TorquePerLengthUnit.NewtonMeterPerMeter),
                 (TorquePerLengthUnit.MeganewtonCentimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * 10000, TorquePerLengthUnit.NewtonMeterPerMeter),
                 (TorquePerLengthUnit.MeganewtonMeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * 1000000, TorquePerLengthUnit.NewtonMeterPerMeter),
                 (TorquePerLengthUnit.MeganewtonMillimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * 1000, TorquePerLengthUnit.NewtonMeterPerMeter),
-                (TorquePerLengthUnit.MegapoundForceFootPerFoot, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * new Fraction(222411080763, 50000, false), TorquePerLengthUnit.NewtonMeterPerMeter),
-                (TorquePerLengthUnit.MegapoundForceInchPerFoot, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * new Fraction(185342573819, 500000, false), TorquePerLengthUnit.NewtonMeterPerMeter),
+                (TorquePerLengthUnit.MegapoundForceFootPerFoot, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * new QuantityValue(222411080763, 50000, false), TorquePerLengthUnit.NewtonMeterPerMeter),
+                (TorquePerLengthUnit.MegapoundForceInchPerFoot, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * new QuantityValue(185342573819, 500000, false), TorquePerLengthUnit.NewtonMeterPerMeter),
                 (TorquePerLengthUnit.NewtonCentimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value / 100, TorquePerLengthUnit.NewtonMeterPerMeter),
                 (TorquePerLengthUnit.NewtonMillimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value / 1000, TorquePerLengthUnit.NewtonMeterPerMeter),
-                (TorquePerLengthUnit.PoundForceFootPerFoot, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * new Fraction(222411080763, 50000000000, false), TorquePerLengthUnit.NewtonMeterPerMeter),
-                (TorquePerLengthUnit.PoundForceInchPerFoot, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * new Fraction(185342573819, 500000000000, false), TorquePerLengthUnit.NewtonMeterPerMeter),
-                (TorquePerLengthUnit.TonneForceCentimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * new Fraction(245166254990163, 2500000000000, false), TorquePerLengthUnit.NewtonMeterPerMeter),
-                (TorquePerLengthUnit.TonneForceMeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * new Fraction(980665019960653, 100000000000, false), TorquePerLengthUnit.NewtonMeterPerMeter),
-                (TorquePerLengthUnit.TonneForceMillimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * new Fraction(245166254990163, 25000000000000, false), TorquePerLengthUnit.NewtonMeterPerMeter),
+                (TorquePerLengthUnit.PoundForceFootPerFoot, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * new QuantityValue(222411080763, 50000000000, false), TorquePerLengthUnit.NewtonMeterPerMeter),
+                (TorquePerLengthUnit.PoundForceInchPerFoot, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * new QuantityValue(185342573819, 500000000000, false), TorquePerLengthUnit.NewtonMeterPerMeter),
+                (TorquePerLengthUnit.TonneForceCentimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * new QuantityValue(245166254990163, 2500000000000, false), TorquePerLengthUnit.NewtonMeterPerMeter),
+                (TorquePerLengthUnit.TonneForceMeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * new QuantityValue(980665019960653, 100000000000, false), TorquePerLengthUnit.NewtonMeterPerMeter),
+                (TorquePerLengthUnit.TonneForceMillimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * new QuantityValue(245166254990163, 25000000000000, false), TorquePerLengthUnit.NewtonMeterPerMeter),
 
                 // BaseUnit -> TorquePerLengthUnit
-                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilogramForceCentimeterPerMeter) => new TorquePerLength(_value * new Fraction(50985809611121, 5000000000000, false), TorquePerLengthUnit.KilogramForceCentimeterPerMeter),
-                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilogramForceMeterPerMeter) => new TorquePerLength(_value * new Fraction(50985809611121, 500000000000000, false), TorquePerLengthUnit.KilogramForceMeterPerMeter),
-                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilogramForceMillimeterPerMeter) => new TorquePerLength(_value * new Fraction(50985809611121, 500000000000, false), TorquePerLengthUnit.KilogramForceMillimeterPerMeter),
+                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilogramForceCentimeterPerMeter) => new TorquePerLength(_value * new QuantityValue(50985809611121, 5000000000000, false), TorquePerLengthUnit.KilogramForceCentimeterPerMeter),
+                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilogramForceMeterPerMeter) => new TorquePerLength(_value * new QuantityValue(50985809611121, 500000000000000, false), TorquePerLengthUnit.KilogramForceMeterPerMeter),
+                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilogramForceMillimeterPerMeter) => new TorquePerLength(_value * new QuantityValue(50985809611121, 500000000000, false), TorquePerLengthUnit.KilogramForceMillimeterPerMeter),
                 (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilonewtonCentimeterPerMeter) => new TorquePerLength(_value / 10, TorquePerLengthUnit.KilonewtonCentimeterPerMeter),
                 (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilonewtonMeterPerMeter) => new TorquePerLength(_value / 1000, TorquePerLengthUnit.KilonewtonMeterPerMeter),
                 (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilonewtonMillimeterPerMeter) => new TorquePerLength(_value, TorquePerLengthUnit.KilonewtonMillimeterPerMeter),
-                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilopoundForceFootPerFoot) => new TorquePerLength(_value * new Fraction(50000000, 222411080763, false), TorquePerLengthUnit.KilopoundForceFootPerFoot),
-                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilopoundForceInchPerFoot) => new TorquePerLength(_value * new Fraction(500000000, 185342573819, false), TorquePerLengthUnit.KilopoundForceInchPerFoot),
+                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilopoundForceFootPerFoot) => new TorquePerLength(_value * new QuantityValue(50000000, 222411080763, false), TorquePerLengthUnit.KilopoundForceFootPerFoot),
+                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilopoundForceInchPerFoot) => new TorquePerLength(_value * new QuantityValue(500000000, 185342573819, false), TorquePerLengthUnit.KilopoundForceInchPerFoot),
                 (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.MeganewtonCentimeterPerMeter) => new TorquePerLength(_value / 10000, TorquePerLengthUnit.MeganewtonCentimeterPerMeter),
                 (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.MeganewtonMeterPerMeter) => new TorquePerLength(_value / 1000000, TorquePerLengthUnit.MeganewtonMeterPerMeter),
                 (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.MeganewtonMillimeterPerMeter) => new TorquePerLength(_value / 1000, TorquePerLengthUnit.MeganewtonMillimeterPerMeter),
-                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.MegapoundForceFootPerFoot) => new TorquePerLength(_value * new Fraction(50000, 222411080763, false), TorquePerLengthUnit.MegapoundForceFootPerFoot),
-                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.MegapoundForceInchPerFoot) => new TorquePerLength(_value * new Fraction(500000, 185342573819, false), TorquePerLengthUnit.MegapoundForceInchPerFoot),
+                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.MegapoundForceFootPerFoot) => new TorquePerLength(_value * new QuantityValue(50000, 222411080763, false), TorquePerLengthUnit.MegapoundForceFootPerFoot),
+                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.MegapoundForceInchPerFoot) => new TorquePerLength(_value * new QuantityValue(500000, 185342573819, false), TorquePerLengthUnit.MegapoundForceInchPerFoot),
                 (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.NewtonCentimeterPerMeter) => new TorquePerLength(_value * 100, TorquePerLengthUnit.NewtonCentimeterPerMeter),
                 (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.NewtonMillimeterPerMeter) => new TorquePerLength(_value * 1000, TorquePerLengthUnit.NewtonMillimeterPerMeter),
-                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.PoundForceFootPerFoot) => new TorquePerLength(_value * new Fraction(50000000000, 222411080763, false), TorquePerLengthUnit.PoundForceFootPerFoot),
-                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.PoundForceInchPerFoot) => new TorquePerLength(_value * new Fraction(500000000000, 185342573819, false), TorquePerLengthUnit.PoundForceInchPerFoot),
-                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.TonneForceCentimeterPerMeter) => new TorquePerLength(_value * new Fraction(50985809611121, 5000000000000000, false), TorquePerLengthUnit.TonneForceCentimeterPerMeter),
-                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.TonneForceMeterPerMeter) => new TorquePerLength(_value * new Fraction(50985809611121, 500000000000000000, false), TorquePerLengthUnit.TonneForceMeterPerMeter),
-                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.TonneForceMillimeterPerMeter) => new TorquePerLength(_value * new Fraction(50985809611121, 500000000000000, false), TorquePerLengthUnit.TonneForceMillimeterPerMeter),
+                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.PoundForceFootPerFoot) => new TorquePerLength(_value * new QuantityValue(50000000000, 222411080763, false), TorquePerLengthUnit.PoundForceFootPerFoot),
+                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.PoundForceInchPerFoot) => new TorquePerLength(_value * new QuantityValue(500000000000, 185342573819, false), TorquePerLengthUnit.PoundForceInchPerFoot),
+                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.TonneForceCentimeterPerMeter) => new TorquePerLength(_value * new QuantityValue(50985809611121, 5000000000000000, false), TorquePerLengthUnit.TonneForceCentimeterPerMeter),
+                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.TonneForceMeterPerMeter) => new TorquePerLength(_value * new QuantityValue(50985809611121, 500000000000000000, false), TorquePerLengthUnit.TonneForceMeterPerMeter),
+                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.TonneForceMillimeterPerMeter) => new TorquePerLength(_value * new QuantityValue(50985809611121, 500000000000000, false), TorquePerLengthUnit.TonneForceMillimeterPerMeter),
 
                 _ => null
             };

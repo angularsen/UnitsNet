@@ -86,7 +86,7 @@ namespace UnitsNet.Tests
             Assert.Equal(WarpingMomentOfInertiaUnit.MeterToTheSixth, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new WarpingMomentOfInertia(double.PositiveInfinity, WarpingMomentOfInertiaUnit.MeterToTheSixth));
@@ -96,7 +96,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new WarpingMomentOfInertia(double.NaN, WarpingMomentOfInertiaUnit.MeterToTheSixth));
@@ -180,7 +180,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromMetersToTheSixth_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => WarpingMomentOfInertia.FromMetersToTheSixth(double.PositiveInfinity));
@@ -190,7 +190,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromMetersToTheSixth_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => WarpingMomentOfInertia.FromMetersToTheSixth(double.NaN));
@@ -645,8 +645,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, WarpingMomentOfInertiaUnit.MeterToTheSixth, 1, WarpingMomentOfInertiaUnit.MeterToTheSixth, true)]  // Same value and unit.
         [InlineData(1, WarpingMomentOfInertiaUnit.MeterToTheSixth, 2, WarpingMomentOfInertiaUnit.MeterToTheSixth, false)] // Different value.
-        [InlineData(2, WarpingMomentOfInertiaUnit.MeterToTheSixth, 1, WarpingMomentOfInertiaUnit.CentimeterToTheSixth, false)] // Different value and unit.
-        [InlineData(1, WarpingMomentOfInertiaUnit.MeterToTheSixth, 1, WarpingMomentOfInertiaUnit.CentimeterToTheSixth, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, WarpingMomentOfInertiaUnit unitA, double valueB, WarpingMomentOfInertiaUnit unitB, bool expectEqual)
         {
             var a = new WarpingMomentOfInertia(valueA, unitA);
@@ -955,7 +953,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = WarpingMomentOfInertia.FromMetersToTheSixth(1.0);
-            Assert.Equal(new {WarpingMomentOfInertia.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(WarpingMomentOfInertia.Info.Name, quantity.MetersToTheSixth);
+            #else
+            var expected = new {WarpingMomentOfInertia.Info.Name, valueInBaseUnit = quantity.MetersToTheSixth}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

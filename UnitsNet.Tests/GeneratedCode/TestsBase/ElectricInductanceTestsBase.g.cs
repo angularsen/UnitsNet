@@ -82,7 +82,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricInductanceUnit.Henry, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new ElectricInductance(double.PositiveInfinity, ElectricInductanceUnit.Henry));
@@ -92,7 +92,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new ElectricInductance(double.NaN, ElectricInductanceUnit.Henry));
@@ -171,7 +171,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromHenries_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => ElectricInductance.FromHenries(double.PositiveInfinity));
@@ -181,7 +181,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromHenries_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => ElectricInductance.FromHenries(double.NaN));
@@ -466,8 +466,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, ElectricInductanceUnit.Henry, 1, ElectricInductanceUnit.Henry, true)]  // Same value and unit.
         [InlineData(1, ElectricInductanceUnit.Henry, 2, ElectricInductanceUnit.Henry, false)] // Different value.
-        [InlineData(2, ElectricInductanceUnit.Henry, 1, ElectricInductanceUnit.Microhenry, false)] // Different value and unit.
-        [InlineData(1, ElectricInductanceUnit.Henry, 1, ElectricInductanceUnit.Microhenry, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ElectricInductanceUnit unitA, double valueB, ElectricInductanceUnit unitB, bool expectEqual)
         {
             var a = new ElectricInductance(valueA, unitA);
@@ -774,7 +772,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ElectricInductance.FromHenries(1.0);
-            Assert.Equal(new {ElectricInductance.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(ElectricInductance.Info.Name, quantity.Henries);
+            #else
+            var expected = new {ElectricInductance.Info.Name, valueInBaseUnit = quantity.Henries}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

@@ -25,7 +25,6 @@ using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 using System.Numerics;
-using Fractions;
 
 #nullable enable
 
@@ -66,7 +65,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly Fraction _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -137,7 +136,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Length(Fraction value, LengthUnit unit)
+        public Length(QuantityValue value, LengthUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -151,7 +150,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Length(Fraction value, UnitSystem unitSystem)
+        public Length(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -202,10 +201,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public Fraction Value => _value;
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
-        Fraction IQuantity.Value => _value;
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -230,212 +229,212 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Angstrom"/>
         /// </summary>
-        public Fraction Angstroms => As(LengthUnit.Angstrom);
+        public QuantityValue Angstroms => As(LengthUnit.Angstrom);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.AstronomicalUnit"/>
         /// </summary>
-        public Fraction AstronomicalUnits => As(LengthUnit.AstronomicalUnit);
+        public QuantityValue AstronomicalUnits => As(LengthUnit.AstronomicalUnit);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Centimeter"/>
         /// </summary>
-        public Fraction Centimeters => As(LengthUnit.Centimeter);
+        public QuantityValue Centimeters => As(LengthUnit.Centimeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Chain"/>
         /// </summary>
-        public Fraction Chains => As(LengthUnit.Chain);
+        public QuantityValue Chains => As(LengthUnit.Chain);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.DataMile"/>
         /// </summary>
-        public Fraction DataMiles => As(LengthUnit.DataMile);
+        public QuantityValue DataMiles => As(LengthUnit.DataMile);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Decameter"/>
         /// </summary>
-        public Fraction Decameters => As(LengthUnit.Decameter);
+        public QuantityValue Decameters => As(LengthUnit.Decameter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Decimeter"/>
         /// </summary>
-        public Fraction Decimeters => As(LengthUnit.Decimeter);
+        public QuantityValue Decimeters => As(LengthUnit.Decimeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.DtpPica"/>
         /// </summary>
-        public Fraction DtpPicas => As(LengthUnit.DtpPica);
+        public QuantityValue DtpPicas => As(LengthUnit.DtpPica);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.DtpPoint"/>
         /// </summary>
-        public Fraction DtpPoints => As(LengthUnit.DtpPoint);
+        public QuantityValue DtpPoints => As(LengthUnit.DtpPoint);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Fathom"/>
         /// </summary>
-        public Fraction Fathoms => As(LengthUnit.Fathom);
+        public QuantityValue Fathoms => As(LengthUnit.Fathom);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Femtometer"/>
         /// </summary>
-        public Fraction Femtometers => As(LengthUnit.Femtometer);
+        public QuantityValue Femtometers => As(LengthUnit.Femtometer);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Foot"/>
         /// </summary>
-        public Fraction Feet => As(LengthUnit.Foot);
+        public QuantityValue Feet => As(LengthUnit.Foot);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Gigameter"/>
         /// </summary>
-        public Fraction Gigameters => As(LengthUnit.Gigameter);
+        public QuantityValue Gigameters => As(LengthUnit.Gigameter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Hand"/>
         /// </summary>
-        public Fraction Hands => As(LengthUnit.Hand);
+        public QuantityValue Hands => As(LengthUnit.Hand);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Hectometer"/>
         /// </summary>
-        public Fraction Hectometers => As(LengthUnit.Hectometer);
+        public QuantityValue Hectometers => As(LengthUnit.Hectometer);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Inch"/>
         /// </summary>
-        public Fraction Inches => As(LengthUnit.Inch);
+        public QuantityValue Inches => As(LengthUnit.Inch);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Kilofoot"/>
         /// </summary>
-        public Fraction Kilofeet => As(LengthUnit.Kilofoot);
+        public QuantityValue Kilofeet => As(LengthUnit.Kilofoot);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.KilolightYear"/>
         /// </summary>
-        public Fraction KilolightYears => As(LengthUnit.KilolightYear);
+        public QuantityValue KilolightYears => As(LengthUnit.KilolightYear);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Kilometer"/>
         /// </summary>
-        public Fraction Kilometers => As(LengthUnit.Kilometer);
+        public QuantityValue Kilometers => As(LengthUnit.Kilometer);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Kiloparsec"/>
         /// </summary>
-        public Fraction Kiloparsecs => As(LengthUnit.Kiloparsec);
+        public QuantityValue Kiloparsecs => As(LengthUnit.Kiloparsec);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Kiloyard"/>
         /// </summary>
-        public Fraction Kiloyards => As(LengthUnit.Kiloyard);
+        public QuantityValue Kiloyards => As(LengthUnit.Kiloyard);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.LightYear"/>
         /// </summary>
-        public Fraction LightYears => As(LengthUnit.LightYear);
+        public QuantityValue LightYears => As(LengthUnit.LightYear);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.MegalightYear"/>
         /// </summary>
-        public Fraction MegalightYears => As(LengthUnit.MegalightYear);
+        public QuantityValue MegalightYears => As(LengthUnit.MegalightYear);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Megameter"/>
         /// </summary>
-        public Fraction Megameters => As(LengthUnit.Megameter);
+        public QuantityValue Megameters => As(LengthUnit.Megameter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Megaparsec"/>
         /// </summary>
-        public Fraction Megaparsecs => As(LengthUnit.Megaparsec);
+        public QuantityValue Megaparsecs => As(LengthUnit.Megaparsec);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Meter"/>
         /// </summary>
-        public Fraction Meters => As(LengthUnit.Meter);
+        public QuantityValue Meters => As(LengthUnit.Meter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Microinch"/>
         /// </summary>
-        public Fraction Microinches => As(LengthUnit.Microinch);
+        public QuantityValue Microinches => As(LengthUnit.Microinch);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Micrometer"/>
         /// </summary>
-        public Fraction Micrometers => As(LengthUnit.Micrometer);
+        public QuantityValue Micrometers => As(LengthUnit.Micrometer);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Mil"/>
         /// </summary>
-        public Fraction Mils => As(LengthUnit.Mil);
+        public QuantityValue Mils => As(LengthUnit.Mil);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Mile"/>
         /// </summary>
-        public Fraction Miles => As(LengthUnit.Mile);
+        public QuantityValue Miles => As(LengthUnit.Mile);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Millimeter"/>
         /// </summary>
-        public Fraction Millimeters => As(LengthUnit.Millimeter);
+        public QuantityValue Millimeters => As(LengthUnit.Millimeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Nanometer"/>
         /// </summary>
-        public Fraction Nanometers => As(LengthUnit.Nanometer);
+        public QuantityValue Nanometers => As(LengthUnit.Nanometer);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.NauticalMile"/>
         /// </summary>
-        public Fraction NauticalMiles => As(LengthUnit.NauticalMile);
+        public QuantityValue NauticalMiles => As(LengthUnit.NauticalMile);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Parsec"/>
         /// </summary>
-        public Fraction Parsecs => As(LengthUnit.Parsec);
+        public QuantityValue Parsecs => As(LengthUnit.Parsec);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Picometer"/>
         /// </summary>
-        public Fraction Picometers => As(LengthUnit.Picometer);
+        public QuantityValue Picometers => As(LengthUnit.Picometer);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.PrinterPica"/>
         /// </summary>
-        public Fraction PrinterPicas => As(LengthUnit.PrinterPica);
+        public QuantityValue PrinterPicas => As(LengthUnit.PrinterPica);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.PrinterPoint"/>
         /// </summary>
-        public Fraction PrinterPoints => As(LengthUnit.PrinterPoint);
+        public QuantityValue PrinterPoints => As(LengthUnit.PrinterPoint);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Shackle"/>
         /// </summary>
-        public Fraction Shackles => As(LengthUnit.Shackle);
+        public QuantityValue Shackles => As(LengthUnit.Shackle);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.SolarRadius"/>
         /// </summary>
-        public Fraction SolarRadiuses => As(LengthUnit.SolarRadius);
+        public QuantityValue SolarRadiuses => As(LengthUnit.SolarRadius);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Twip"/>
         /// </summary>
-        public Fraction Twips => As(LengthUnit.Twip);
+        public QuantityValue Twips => As(LengthUnit.Twip);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.UsSurveyFoot"/>
         /// </summary>
-        public Fraction UsSurveyFeet => As(LengthUnit.UsSurveyFoot);
+        public QuantityValue UsSurveyFeet => As(LengthUnit.UsSurveyFoot);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Yard"/>
         /// </summary>
-        public Fraction Yards => As(LengthUnit.Yard);
+        public QuantityValue Yards => As(LengthUnit.Yard);
 
         #endregion
 
@@ -565,7 +564,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Angstrom"/>.
         /// </summary>
-        public static Length FromAngstroms(Fraction value)
+        public static Length FromAngstroms(QuantityValue value)
         {
             return new Length(value, LengthUnit.Angstrom);
         }
@@ -573,7 +572,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.AstronomicalUnit"/>.
         /// </summary>
-        public static Length FromAstronomicalUnits(Fraction value)
+        public static Length FromAstronomicalUnits(QuantityValue value)
         {
             return new Length(value, LengthUnit.AstronomicalUnit);
         }
@@ -581,7 +580,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Centimeter"/>.
         /// </summary>
-        public static Length FromCentimeters(Fraction value)
+        public static Length FromCentimeters(QuantityValue value)
         {
             return new Length(value, LengthUnit.Centimeter);
         }
@@ -589,7 +588,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Chain"/>.
         /// </summary>
-        public static Length FromChains(Fraction value)
+        public static Length FromChains(QuantityValue value)
         {
             return new Length(value, LengthUnit.Chain);
         }
@@ -597,7 +596,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.DataMile"/>.
         /// </summary>
-        public static Length FromDataMiles(Fraction value)
+        public static Length FromDataMiles(QuantityValue value)
         {
             return new Length(value, LengthUnit.DataMile);
         }
@@ -605,7 +604,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Decameter"/>.
         /// </summary>
-        public static Length FromDecameters(Fraction value)
+        public static Length FromDecameters(QuantityValue value)
         {
             return new Length(value, LengthUnit.Decameter);
         }
@@ -613,7 +612,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Decimeter"/>.
         /// </summary>
-        public static Length FromDecimeters(Fraction value)
+        public static Length FromDecimeters(QuantityValue value)
         {
             return new Length(value, LengthUnit.Decimeter);
         }
@@ -621,7 +620,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.DtpPica"/>.
         /// </summary>
-        public static Length FromDtpPicas(Fraction value)
+        public static Length FromDtpPicas(QuantityValue value)
         {
             return new Length(value, LengthUnit.DtpPica);
         }
@@ -629,7 +628,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.DtpPoint"/>.
         /// </summary>
-        public static Length FromDtpPoints(Fraction value)
+        public static Length FromDtpPoints(QuantityValue value)
         {
             return new Length(value, LengthUnit.DtpPoint);
         }
@@ -637,7 +636,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Fathom"/>.
         /// </summary>
-        public static Length FromFathoms(Fraction value)
+        public static Length FromFathoms(QuantityValue value)
         {
             return new Length(value, LengthUnit.Fathom);
         }
@@ -645,7 +644,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Femtometer"/>.
         /// </summary>
-        public static Length FromFemtometers(Fraction value)
+        public static Length FromFemtometers(QuantityValue value)
         {
             return new Length(value, LengthUnit.Femtometer);
         }
@@ -653,7 +652,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Foot"/>.
         /// </summary>
-        public static Length FromFeet(Fraction value)
+        public static Length FromFeet(QuantityValue value)
         {
             return new Length(value, LengthUnit.Foot);
         }
@@ -661,7 +660,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Gigameter"/>.
         /// </summary>
-        public static Length FromGigameters(Fraction value)
+        public static Length FromGigameters(QuantityValue value)
         {
             return new Length(value, LengthUnit.Gigameter);
         }
@@ -669,7 +668,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Hand"/>.
         /// </summary>
-        public static Length FromHands(Fraction value)
+        public static Length FromHands(QuantityValue value)
         {
             return new Length(value, LengthUnit.Hand);
         }
@@ -677,7 +676,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Hectometer"/>.
         /// </summary>
-        public static Length FromHectometers(Fraction value)
+        public static Length FromHectometers(QuantityValue value)
         {
             return new Length(value, LengthUnit.Hectometer);
         }
@@ -685,7 +684,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Inch"/>.
         /// </summary>
-        public static Length FromInches(Fraction value)
+        public static Length FromInches(QuantityValue value)
         {
             return new Length(value, LengthUnit.Inch);
         }
@@ -693,7 +692,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Kilofoot"/>.
         /// </summary>
-        public static Length FromKilofeet(Fraction value)
+        public static Length FromKilofeet(QuantityValue value)
         {
             return new Length(value, LengthUnit.Kilofoot);
         }
@@ -701,7 +700,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.KilolightYear"/>.
         /// </summary>
-        public static Length FromKilolightYears(Fraction value)
+        public static Length FromKilolightYears(QuantityValue value)
         {
             return new Length(value, LengthUnit.KilolightYear);
         }
@@ -709,7 +708,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Kilometer"/>.
         /// </summary>
-        public static Length FromKilometers(Fraction value)
+        public static Length FromKilometers(QuantityValue value)
         {
             return new Length(value, LengthUnit.Kilometer);
         }
@@ -717,7 +716,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Kiloparsec"/>.
         /// </summary>
-        public static Length FromKiloparsecs(Fraction value)
+        public static Length FromKiloparsecs(QuantityValue value)
         {
             return new Length(value, LengthUnit.Kiloparsec);
         }
@@ -725,7 +724,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Kiloyard"/>.
         /// </summary>
-        public static Length FromKiloyards(Fraction value)
+        public static Length FromKiloyards(QuantityValue value)
         {
             return new Length(value, LengthUnit.Kiloyard);
         }
@@ -733,7 +732,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.LightYear"/>.
         /// </summary>
-        public static Length FromLightYears(Fraction value)
+        public static Length FromLightYears(QuantityValue value)
         {
             return new Length(value, LengthUnit.LightYear);
         }
@@ -741,7 +740,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.MegalightYear"/>.
         /// </summary>
-        public static Length FromMegalightYears(Fraction value)
+        public static Length FromMegalightYears(QuantityValue value)
         {
             return new Length(value, LengthUnit.MegalightYear);
         }
@@ -749,7 +748,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Megameter"/>.
         /// </summary>
-        public static Length FromMegameters(Fraction value)
+        public static Length FromMegameters(QuantityValue value)
         {
             return new Length(value, LengthUnit.Megameter);
         }
@@ -757,7 +756,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Megaparsec"/>.
         /// </summary>
-        public static Length FromMegaparsecs(Fraction value)
+        public static Length FromMegaparsecs(QuantityValue value)
         {
             return new Length(value, LengthUnit.Megaparsec);
         }
@@ -765,7 +764,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Meter"/>.
         /// </summary>
-        public static Length FromMeters(Fraction value)
+        public static Length FromMeters(QuantityValue value)
         {
             return new Length(value, LengthUnit.Meter);
         }
@@ -773,7 +772,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Microinch"/>.
         /// </summary>
-        public static Length FromMicroinches(Fraction value)
+        public static Length FromMicroinches(QuantityValue value)
         {
             return new Length(value, LengthUnit.Microinch);
         }
@@ -781,7 +780,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Micrometer"/>.
         /// </summary>
-        public static Length FromMicrometers(Fraction value)
+        public static Length FromMicrometers(QuantityValue value)
         {
             return new Length(value, LengthUnit.Micrometer);
         }
@@ -789,7 +788,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Mil"/>.
         /// </summary>
-        public static Length FromMils(Fraction value)
+        public static Length FromMils(QuantityValue value)
         {
             return new Length(value, LengthUnit.Mil);
         }
@@ -797,7 +796,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Mile"/>.
         /// </summary>
-        public static Length FromMiles(Fraction value)
+        public static Length FromMiles(QuantityValue value)
         {
             return new Length(value, LengthUnit.Mile);
         }
@@ -805,7 +804,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Millimeter"/>.
         /// </summary>
-        public static Length FromMillimeters(Fraction value)
+        public static Length FromMillimeters(QuantityValue value)
         {
             return new Length(value, LengthUnit.Millimeter);
         }
@@ -813,7 +812,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Nanometer"/>.
         /// </summary>
-        public static Length FromNanometers(Fraction value)
+        public static Length FromNanometers(QuantityValue value)
         {
             return new Length(value, LengthUnit.Nanometer);
         }
@@ -821,7 +820,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.NauticalMile"/>.
         /// </summary>
-        public static Length FromNauticalMiles(Fraction value)
+        public static Length FromNauticalMiles(QuantityValue value)
         {
             return new Length(value, LengthUnit.NauticalMile);
         }
@@ -829,7 +828,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Parsec"/>.
         /// </summary>
-        public static Length FromParsecs(Fraction value)
+        public static Length FromParsecs(QuantityValue value)
         {
             return new Length(value, LengthUnit.Parsec);
         }
@@ -837,7 +836,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Picometer"/>.
         /// </summary>
-        public static Length FromPicometers(Fraction value)
+        public static Length FromPicometers(QuantityValue value)
         {
             return new Length(value, LengthUnit.Picometer);
         }
@@ -845,7 +844,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.PrinterPica"/>.
         /// </summary>
-        public static Length FromPrinterPicas(Fraction value)
+        public static Length FromPrinterPicas(QuantityValue value)
         {
             return new Length(value, LengthUnit.PrinterPica);
         }
@@ -853,7 +852,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.PrinterPoint"/>.
         /// </summary>
-        public static Length FromPrinterPoints(Fraction value)
+        public static Length FromPrinterPoints(QuantityValue value)
         {
             return new Length(value, LengthUnit.PrinterPoint);
         }
@@ -861,7 +860,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Shackle"/>.
         /// </summary>
-        public static Length FromShackles(Fraction value)
+        public static Length FromShackles(QuantityValue value)
         {
             return new Length(value, LengthUnit.Shackle);
         }
@@ -869,7 +868,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.SolarRadius"/>.
         /// </summary>
-        public static Length FromSolarRadiuses(Fraction value)
+        public static Length FromSolarRadiuses(QuantityValue value)
         {
             return new Length(value, LengthUnit.SolarRadius);
         }
@@ -877,7 +876,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Twip"/>.
         /// </summary>
-        public static Length FromTwips(Fraction value)
+        public static Length FromTwips(QuantityValue value)
         {
             return new Length(value, LengthUnit.Twip);
         }
@@ -885,7 +884,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.UsSurveyFoot"/>.
         /// </summary>
-        public static Length FromUsSurveyFeet(Fraction value)
+        public static Length FromUsSurveyFeet(QuantityValue value)
         {
             return new Length(value, LengthUnit.UsSurveyFoot);
         }
@@ -893,7 +892,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Yard"/>.
         /// </summary>
-        public static Length FromYards(Fraction value)
+        public static Length FromYards(QuantityValue value)
         {
             return new Length(value, LengthUnit.Yard);
         }
@@ -904,7 +903,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Length unit value.</returns>
-        public static Length From(Fraction value, LengthUnit fromUnit)
+        public static Length From(QuantityValue value, LengthUnit fromUnit)
         {
             return new Length(value, fromUnit);
         }
@@ -1060,7 +1059,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static Length operator -(Length right)
         {
-            return new Length(right.Value.Invert(), right.Unit);
+            return new Length(-right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Length"/> from adding two <see cref="Length"/>.</summary>
@@ -1076,25 +1075,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Length"/> from multiplying value and <see cref="Length"/>.</summary>
-        public static Length operator *(Fraction left, Length right)
+        public static Length operator *(QuantityValue left, Length right)
         {
             return new Length(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Length"/> from multiplying value and <see cref="Length"/>.</summary>
-        public static Length operator *(Length left, Fraction right)
+        public static Length operator *(Length left, QuantityValue right)
         {
             return new Length(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Length"/> from dividing <see cref="Length"/> by value.</summary>
-        public static Length operator /(Length left, Fraction right)
+        public static Length operator /(Length left, QuantityValue right)
         {
             return new Length(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Length"/> by <see cref="Length"/>.</summary>
-        public static Fraction operator /(Length left, Length right)
+        public static QuantityValue operator /(Length left, Length right)
         {
             return left.Meters / right.Meters;
         }
@@ -1107,7 +1106,7 @@ namespace UnitsNet
         /// <returns>The corresponding inverse quantity, <see cref="ReciprocalLength"/>.</returns>
         public ReciprocalLength Inverse()
         {
-            return ReciprocalLength.FromInverseMeters(Meters.Reciprocal());
+            return ReciprocalLength.FromInverseMeters(QuantityValue.Inverse(Meters));
         }
 
         /// <summary>Get <see cref="Area"/> from <see cref="Length"/> * <see cref="Length"/>.</summary>
@@ -1248,7 +1247,7 @@ namespace UnitsNet
         /// <summary>Indicates strict equality of two <see cref="Length"/> quantities.</summary>
         public bool Equals(Length other)
         {
-            return _value.IsEquivalentTo(other.As(this.Unit));
+            return _value.Equals(other.As(this.Unit));
         }
 
         /// <summary>Compares the current <see cref="Length"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
@@ -1333,10 +1332,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: (Fraction)tolerance,
+                tolerance: (QuantityValue)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -1353,7 +1352,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(Length other, Length tolerance)
         {
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -1367,7 +1366,11 @@ namespace UnitsNet
         public override int GetHashCode()
         {
             var valueInBaseUnit = As(BaseUnit);
+            #if NET7_0_OR_GREATER
+            return HashCode.Combine(Info.Name, valueInBaseUnit);
+            #else
             return new { Info.Name, valueInBaseUnit }.GetHashCode();
+            #endif
         }
 
         #endregion
@@ -1378,7 +1381,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public Fraction As(LengthUnit unit)
+        public QuantityValue As(LengthUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -1387,7 +1390,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public Fraction As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -1402,7 +1405,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        Fraction IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
             if (!(unit is LengthUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LengthUnit)} is supported.", nameof(unit));
@@ -1471,87 +1474,87 @@ namespace UnitsNet
                 (LengthUnit.Angstrom, LengthUnit.Meter) => new Length(_value / 10000000000, LengthUnit.Meter),
                 (LengthUnit.AstronomicalUnit, LengthUnit.Meter) => new Length(_value * 149597870700, LengthUnit.Meter),
                 (LengthUnit.Centimeter, LengthUnit.Meter) => new Length(_value / 100, LengthUnit.Meter),
-                (LengthUnit.Chain, LengthUnit.Meter) => new Length(_value * new Fraction(12573, 625, false), LengthUnit.Meter),
-                (LengthUnit.DataMile, LengthUnit.Meter) => new Length(_value * new Fraction(9144, 5, false), LengthUnit.Meter),
+                (LengthUnit.Chain, LengthUnit.Meter) => new Length(_value * new QuantityValue(12573, 625, false), LengthUnit.Meter),
+                (LengthUnit.DataMile, LengthUnit.Meter) => new Length(_value * new QuantityValue(9144, 5, false), LengthUnit.Meter),
                 (LengthUnit.Decameter, LengthUnit.Meter) => new Length(_value * 10, LengthUnit.Meter),
                 (LengthUnit.Decimeter, LengthUnit.Meter) => new Length(_value / 10, LengthUnit.Meter),
-                (LengthUnit.DtpPica, LengthUnit.Meter) => new Length(_value * new Fraction(1000000000, 236220472441, false), LengthUnit.Meter),
-                (LengthUnit.DtpPoint, LengthUnit.Meter) => new Length(_value * new Fraction(127, 360000, false), LengthUnit.Meter),
-                (LengthUnit.Fathom, LengthUnit.Meter) => new Length(_value * new Fraction(1143, 625, false), LengthUnit.Meter),
+                (LengthUnit.DtpPica, LengthUnit.Meter) => new Length(_value * new QuantityValue(1000000000, 236220472441, false), LengthUnit.Meter),
+                (LengthUnit.DtpPoint, LengthUnit.Meter) => new Length(_value * new QuantityValue(127, 360000, false), LengthUnit.Meter),
+                (LengthUnit.Fathom, LengthUnit.Meter) => new Length(_value * new QuantityValue(1143, 625, false), LengthUnit.Meter),
                 (LengthUnit.Femtometer, LengthUnit.Meter) => new Length(_value / 1000000000000000, LengthUnit.Meter),
-                (LengthUnit.Foot, LengthUnit.Meter) => new Length(_value * new Fraction(381, 1250, false), LengthUnit.Meter),
+                (LengthUnit.Foot, LengthUnit.Meter) => new Length(_value * new QuantityValue(381, 1250, false), LengthUnit.Meter),
                 (LengthUnit.Gigameter, LengthUnit.Meter) => new Length(_value * 1000000000, LengthUnit.Meter),
-                (LengthUnit.Hand, LengthUnit.Meter) => new Length(_value * new Fraction(127, 1250, false), LengthUnit.Meter),
+                (LengthUnit.Hand, LengthUnit.Meter) => new Length(_value * new QuantityValue(127, 1250, false), LengthUnit.Meter),
                 (LengthUnit.Hectometer, LengthUnit.Meter) => new Length(_value * 100, LengthUnit.Meter),
-                (LengthUnit.Inch, LengthUnit.Meter) => new Length(_value * new Fraction(127, 5000, false), LengthUnit.Meter),
-                (LengthUnit.Kilofoot, LengthUnit.Meter) => new Length(_value * new Fraction(1524, 5, false), LengthUnit.Meter),
-                (LengthUnit.KilolightYear, LengthUnit.Meter) => new Length(_value * new Fraction(473036523629, 500000000000, false) * BigInteger.Pow(10, 19), LengthUnit.Meter),
+                (LengthUnit.Inch, LengthUnit.Meter) => new Length(_value * new QuantityValue(127, 5000, false), LengthUnit.Meter),
+                (LengthUnit.Kilofoot, LengthUnit.Meter) => new Length(_value * new QuantityValue(1524, 5, false), LengthUnit.Meter),
+                (LengthUnit.KilolightYear, LengthUnit.Meter) => new Length(_value * new QuantityValue(473036523629, 500000000000, false) * BigInteger.Pow(10, 19), LengthUnit.Meter),
                 (LengthUnit.Kilometer, LengthUnit.Meter) => new Length(_value * 1000, LengthUnit.Meter),
-                (LengthUnit.Kiloparsec, LengthUnit.Meter) => new Length(_value * new Fraction(19285484883, 6250000000, false) * BigInteger.Pow(10, 19), LengthUnit.Meter),
-                (LengthUnit.Kiloyard, LengthUnit.Meter) => new Length(_value * new Fraction(4572, 5, false), LengthUnit.Meter),
+                (LengthUnit.Kiloparsec, LengthUnit.Meter) => new Length(_value * new QuantityValue(19285484883, 6250000000, false) * BigInteger.Pow(10, 19), LengthUnit.Meter),
+                (LengthUnit.Kiloyard, LengthUnit.Meter) => new Length(_value * new QuantityValue(4572, 5, false), LengthUnit.Meter),
                 (LengthUnit.LightYear, LengthUnit.Meter) => new Length(_value * 9460730472580000, LengthUnit.Meter),
-                (LengthUnit.MegalightYear, LengthUnit.Meter) => new Length(_value * new Fraction(473036523629, 500000000, false) * BigInteger.Pow(10, 19), LengthUnit.Meter),
+                (LengthUnit.MegalightYear, LengthUnit.Meter) => new Length(_value * new QuantityValue(473036523629, 500000000, false) * BigInteger.Pow(10, 19), LengthUnit.Meter),
                 (LengthUnit.Megameter, LengthUnit.Meter) => new Length(_value * 1000000, LengthUnit.Meter),
-                (LengthUnit.Megaparsec, LengthUnit.Meter) => new Length(_value * new Fraction(19285484883, 6250000, false) * BigInteger.Pow(10, 19), LengthUnit.Meter),
-                (LengthUnit.Microinch, LengthUnit.Meter) => new Length(_value * new Fraction(127, 5000000000, false), LengthUnit.Meter),
+                (LengthUnit.Megaparsec, LengthUnit.Meter) => new Length(_value * new QuantityValue(19285484883, 6250000, false) * BigInteger.Pow(10, 19), LengthUnit.Meter),
+                (LengthUnit.Microinch, LengthUnit.Meter) => new Length(_value * new QuantityValue(127, 5000000000, false), LengthUnit.Meter),
                 (LengthUnit.Micrometer, LengthUnit.Meter) => new Length(_value / 1000000, LengthUnit.Meter),
-                (LengthUnit.Mil, LengthUnit.Meter) => new Length(_value * new Fraction(127, 5000000, false), LengthUnit.Meter),
-                (LengthUnit.Mile, LengthUnit.Meter) => new Length(_value * new Fraction(201168, 125, false), LengthUnit.Meter),
+                (LengthUnit.Mil, LengthUnit.Meter) => new Length(_value * new QuantityValue(127, 5000000, false), LengthUnit.Meter),
+                (LengthUnit.Mile, LengthUnit.Meter) => new Length(_value * new QuantityValue(201168, 125, false), LengthUnit.Meter),
                 (LengthUnit.Millimeter, LengthUnit.Meter) => new Length(_value / 1000, LengthUnit.Meter),
                 (LengthUnit.Nanometer, LengthUnit.Meter) => new Length(_value / 1000000000, LengthUnit.Meter),
                 (LengthUnit.NauticalMile, LengthUnit.Meter) => new Length(_value * 1852, LengthUnit.Meter),
                 (LengthUnit.Parsec, LengthUnit.Meter) => new Length(_value * 30856775812800000, LengthUnit.Meter),
                 (LengthUnit.Picometer, LengthUnit.Meter) => new Length(_value / 1000000000000, LengthUnit.Meter),
-                (LengthUnit.PrinterPica, LengthUnit.Meter) => new Length(_value * new Fraction(62500000, 14819143849, false), LengthUnit.Meter),
-                (LengthUnit.PrinterPoint, LengthUnit.Meter) => new Length(_value * new Fraction(127, 361350, false), LengthUnit.Meter),
-                (LengthUnit.Shackle, LengthUnit.Meter) => new Length(_value * new Fraction(3429, 125, false), LengthUnit.Meter),
+                (LengthUnit.PrinterPica, LengthUnit.Meter) => new Length(_value * new QuantityValue(62500000, 14819143849, false), LengthUnit.Meter),
+                (LengthUnit.PrinterPoint, LengthUnit.Meter) => new Length(_value * new QuantityValue(127, 361350, false), LengthUnit.Meter),
+                (LengthUnit.Shackle, LengthUnit.Meter) => new Length(_value * new QuantityValue(3429, 125, false), LengthUnit.Meter),
                 (LengthUnit.SolarRadius, LengthUnit.Meter) => new Length(_value * 695510000, LengthUnit.Meter),
-                (LengthUnit.Twip, LengthUnit.Meter) => new Length(_value * new Fraction(500000000, 28346456692913, false), LengthUnit.Meter),
-                (LengthUnit.UsSurveyFoot, LengthUnit.Meter) => new Length(_value * new Fraction(1200, 3937, false), LengthUnit.Meter),
-                (LengthUnit.Yard, LengthUnit.Meter) => new Length(_value * new Fraction(1143, 1250, false), LengthUnit.Meter),
+                (LengthUnit.Twip, LengthUnit.Meter) => new Length(_value * new QuantityValue(500000000, 28346456692913, false), LengthUnit.Meter),
+                (LengthUnit.UsSurveyFoot, LengthUnit.Meter) => new Length(_value * new QuantityValue(1200, 3937, false), LengthUnit.Meter),
+                (LengthUnit.Yard, LengthUnit.Meter) => new Length(_value * new QuantityValue(1143, 1250, false), LengthUnit.Meter),
 
                 // BaseUnit -> LengthUnit
                 (LengthUnit.Meter, LengthUnit.Angstrom) => new Length(_value * 10000000000, LengthUnit.Angstrom),
                 (LengthUnit.Meter, LengthUnit.AstronomicalUnit) => new Length(_value / 149597870700, LengthUnit.AstronomicalUnit),
                 (LengthUnit.Meter, LengthUnit.Centimeter) => new Length(_value * 100, LengthUnit.Centimeter),
-                (LengthUnit.Meter, LengthUnit.Chain) => new Length(_value * new Fraction(625, 12573, false), LengthUnit.Chain),
-                (LengthUnit.Meter, LengthUnit.DataMile) => new Length(_value * new Fraction(5, 9144, false), LengthUnit.DataMile),
+                (LengthUnit.Meter, LengthUnit.Chain) => new Length(_value * new QuantityValue(625, 12573, false), LengthUnit.Chain),
+                (LengthUnit.Meter, LengthUnit.DataMile) => new Length(_value * new QuantityValue(5, 9144, false), LengthUnit.DataMile),
                 (LengthUnit.Meter, LengthUnit.Decameter) => new Length(_value / 10, LengthUnit.Decameter),
                 (LengthUnit.Meter, LengthUnit.Decimeter) => new Length(_value * 10, LengthUnit.Decimeter),
-                (LengthUnit.Meter, LengthUnit.DtpPica) => new Length(_value * new Fraction(236220472441, 1000000000, false), LengthUnit.DtpPica),
-                (LengthUnit.Meter, LengthUnit.DtpPoint) => new Length(_value * new Fraction(360000, 127, false), LengthUnit.DtpPoint),
-                (LengthUnit.Meter, LengthUnit.Fathom) => new Length(_value * new Fraction(625, 1143, false), LengthUnit.Fathom),
+                (LengthUnit.Meter, LengthUnit.DtpPica) => new Length(_value * new QuantityValue(236220472441, 1000000000, false), LengthUnit.DtpPica),
+                (LengthUnit.Meter, LengthUnit.DtpPoint) => new Length(_value * new QuantityValue(360000, 127, false), LengthUnit.DtpPoint),
+                (LengthUnit.Meter, LengthUnit.Fathom) => new Length(_value * new QuantityValue(625, 1143, false), LengthUnit.Fathom),
                 (LengthUnit.Meter, LengthUnit.Femtometer) => new Length(_value * 1000000000000000, LengthUnit.Femtometer),
-                (LengthUnit.Meter, LengthUnit.Foot) => new Length(_value * new Fraction(1250, 381, false), LengthUnit.Foot),
+                (LengthUnit.Meter, LengthUnit.Foot) => new Length(_value * new QuantityValue(1250, 381, false), LengthUnit.Foot),
                 (LengthUnit.Meter, LengthUnit.Gigameter) => new Length(_value / 1000000000, LengthUnit.Gigameter),
-                (LengthUnit.Meter, LengthUnit.Hand) => new Length(_value * new Fraction(1250, 127, false), LengthUnit.Hand),
+                (LengthUnit.Meter, LengthUnit.Hand) => new Length(_value * new QuantityValue(1250, 127, false), LengthUnit.Hand),
                 (LengthUnit.Meter, LengthUnit.Hectometer) => new Length(_value / 100, LengthUnit.Hectometer),
-                (LengthUnit.Meter, LengthUnit.Inch) => new Length(_value * new Fraction(5000, 127, false), LengthUnit.Inch),
-                (LengthUnit.Meter, LengthUnit.Kilofoot) => new Length(_value * new Fraction(5, 1524, false), LengthUnit.Kilofoot),
-                (LengthUnit.Meter, LengthUnit.KilolightYear) => new Length(_value * new Fraction(500000000000, 473036523629, false) / BigInteger.Pow(10, 19), LengthUnit.KilolightYear),
+                (LengthUnit.Meter, LengthUnit.Inch) => new Length(_value * new QuantityValue(5000, 127, false), LengthUnit.Inch),
+                (LengthUnit.Meter, LengthUnit.Kilofoot) => new Length(_value * new QuantityValue(5, 1524, false), LengthUnit.Kilofoot),
+                (LengthUnit.Meter, LengthUnit.KilolightYear) => new Length(_value * new QuantityValue(500000000000, 473036523629, false) / BigInteger.Pow(10, 19), LengthUnit.KilolightYear),
                 (LengthUnit.Meter, LengthUnit.Kilometer) => new Length(_value / 1000, LengthUnit.Kilometer),
-                (LengthUnit.Meter, LengthUnit.Kiloparsec) => new Length(_value * new Fraction(6250000000, 19285484883, false) / BigInteger.Pow(10, 19), LengthUnit.Kiloparsec),
-                (LengthUnit.Meter, LengthUnit.Kiloyard) => new Length(_value * new Fraction(5, 4572, false), LengthUnit.Kiloyard),
+                (LengthUnit.Meter, LengthUnit.Kiloparsec) => new Length(_value * new QuantityValue(6250000000, 19285484883, false) / BigInteger.Pow(10, 19), LengthUnit.Kiloparsec),
+                (LengthUnit.Meter, LengthUnit.Kiloyard) => new Length(_value * new QuantityValue(5, 4572, false), LengthUnit.Kiloyard),
                 (LengthUnit.Meter, LengthUnit.LightYear) => new Length(_value / 9460730472580000, LengthUnit.LightYear),
-                (LengthUnit.Meter, LengthUnit.MegalightYear) => new Length(_value * new Fraction(500000000, 473036523629, false) / BigInteger.Pow(10, 19), LengthUnit.MegalightYear),
+                (LengthUnit.Meter, LengthUnit.MegalightYear) => new Length(_value * new QuantityValue(500000000, 473036523629, false) / BigInteger.Pow(10, 19), LengthUnit.MegalightYear),
                 (LengthUnit.Meter, LengthUnit.Megameter) => new Length(_value / 1000000, LengthUnit.Megameter),
-                (LengthUnit.Meter, LengthUnit.Megaparsec) => new Length(_value * new Fraction(6250000, 19285484883, false) / BigInteger.Pow(10, 19), LengthUnit.Megaparsec),
-                (LengthUnit.Meter, LengthUnit.Microinch) => new Length(_value * new Fraction(5000000000, 127, false), LengthUnit.Microinch),
+                (LengthUnit.Meter, LengthUnit.Megaparsec) => new Length(_value * new QuantityValue(6250000, 19285484883, false) / BigInteger.Pow(10, 19), LengthUnit.Megaparsec),
+                (LengthUnit.Meter, LengthUnit.Microinch) => new Length(_value * new QuantityValue(5000000000, 127, false), LengthUnit.Microinch),
                 (LengthUnit.Meter, LengthUnit.Micrometer) => new Length(_value * 1000000, LengthUnit.Micrometer),
-                (LengthUnit.Meter, LengthUnit.Mil) => new Length(_value * new Fraction(5000000, 127, false), LengthUnit.Mil),
-                (LengthUnit.Meter, LengthUnit.Mile) => new Length(_value * new Fraction(125, 201168, false), LengthUnit.Mile),
+                (LengthUnit.Meter, LengthUnit.Mil) => new Length(_value * new QuantityValue(5000000, 127, false), LengthUnit.Mil),
+                (LengthUnit.Meter, LengthUnit.Mile) => new Length(_value * new QuantityValue(125, 201168, false), LengthUnit.Mile),
                 (LengthUnit.Meter, LengthUnit.Millimeter) => new Length(_value * 1000, LengthUnit.Millimeter),
                 (LengthUnit.Meter, LengthUnit.Nanometer) => new Length(_value * 1000000000, LengthUnit.Nanometer),
                 (LengthUnit.Meter, LengthUnit.NauticalMile) => new Length(_value / 1852, LengthUnit.NauticalMile),
                 (LengthUnit.Meter, LengthUnit.Parsec) => new Length(_value / 30856775812800000, LengthUnit.Parsec),
                 (LengthUnit.Meter, LengthUnit.Picometer) => new Length(_value * 1000000000000, LengthUnit.Picometer),
-                (LengthUnit.Meter, LengthUnit.PrinterPica) => new Length(_value * new Fraction(14819143849, 62500000, false), LengthUnit.PrinterPica),
-                (LengthUnit.Meter, LengthUnit.PrinterPoint) => new Length(_value * new Fraction(361350, 127, false), LengthUnit.PrinterPoint),
-                (LengthUnit.Meter, LengthUnit.Shackle) => new Length(_value * new Fraction(125, 3429, false), LengthUnit.Shackle),
+                (LengthUnit.Meter, LengthUnit.PrinterPica) => new Length(_value * new QuantityValue(14819143849, 62500000, false), LengthUnit.PrinterPica),
+                (LengthUnit.Meter, LengthUnit.PrinterPoint) => new Length(_value * new QuantityValue(361350, 127, false), LengthUnit.PrinterPoint),
+                (LengthUnit.Meter, LengthUnit.Shackle) => new Length(_value * new QuantityValue(125, 3429, false), LengthUnit.Shackle),
                 (LengthUnit.Meter, LengthUnit.SolarRadius) => new Length(_value / 695510000, LengthUnit.SolarRadius),
-                (LengthUnit.Meter, LengthUnit.Twip) => new Length(_value * new Fraction(28346456692913, 500000000, false), LengthUnit.Twip),
-                (LengthUnit.Meter, LengthUnit.UsSurveyFoot) => new Length(_value * new Fraction(3937, 1200, false), LengthUnit.UsSurveyFoot),
-                (LengthUnit.Meter, LengthUnit.Yard) => new Length(_value * new Fraction(1250, 1143, false), LengthUnit.Yard),
+                (LengthUnit.Meter, LengthUnit.Twip) => new Length(_value * new QuantityValue(28346456692913, 500000000, false), LengthUnit.Twip),
+                (LengthUnit.Meter, LengthUnit.UsSurveyFoot) => new Length(_value * new QuantityValue(3937, 1200, false), LengthUnit.UsSurveyFoot),
+                (LengthUnit.Meter, LengthUnit.Yard) => new Length(_value * new QuantityValue(1250, 1143, false), LengthUnit.Yard),
 
                 _ => null
             };

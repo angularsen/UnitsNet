@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricInductance
     /// </summary>
     public static class NumberToElectricInductanceExtensions
     {
-        /// <inheritdoc cref="ElectricInductance.FromHenries(double)" />
+        /// <inheritdoc cref="ElectricInductance.FromHenries(QuantityValue)" />
         public static ElectricInductance Henries<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricInductance
 #endif
             => ElectricInductance.FromHenries(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricInductance.FromMicrohenries(double)" />
+        /// <inheritdoc cref="ElectricInductance.FromMicrohenries(QuantityValue)" />
         public static ElectricInductance Microhenries<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricInductance
 #endif
             => ElectricInductance.FromMicrohenries(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricInductance.FromMillihenries(double)" />
+        /// <inheritdoc cref="ElectricInductance.FromMillihenries(QuantityValue)" />
         public static ElectricInductance Millihenries<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricInductance
 #endif
             => ElectricInductance.FromMillihenries(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricInductance.FromNanohenries(double)" />
+        /// <inheritdoc cref="ElectricInductance.FromNanohenries(QuantityValue)" />
         public static ElectricInductance Nanohenries<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricInductance
 #endif
             => ElectricInductance.FromNanohenries(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricInductance.FromPicohenries(double)" />
+        /// <inheritdoc cref="ElectricInductance.FromPicohenries(QuantityValue)" />
         public static ElectricInductance Picohenries<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

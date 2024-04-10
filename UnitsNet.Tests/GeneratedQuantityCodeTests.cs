@@ -26,9 +26,15 @@ namespace UnitsNet.Tests
                 Assert.True(Length.FromMeters(1).Equals(Length.FromMeters(1), 0, ComparisonType.Relative), "Integer values have zero difference.");
                 Assert.True(Length.FromMeters(1).Equals(Length.FromMeters(1), smallError, ComparisonType.Relative), "Using a max difference value should not change that fact.");
 
-                Assert.False(Length.FromMeters(1 + 0.39).Equals(Length.FromMeters(1.39), 0, ComparisonType.Relative),
-                    "Example of floating precision arithmetic that produces slightly different results.");
-                Assert.True(Length.FromMeters(1 + 0.39).Equals(Length.FromMeters(1.39), smallError, ComparisonType.Relative), "But the difference is very small");
+                Assert.True(Length.FromMeters(1 + 0.39).Equals(Length.FromMeters(1.39), 0, ComparisonType.Relative),
+                    "Example of floating precision arithmetic that would originally produces slightly different results is now correct:" +
+                    "this is due to the implicit rounding (16 significant digits) that is applied when constructing from double.");
+                
+                Assert.True(Length.FromMeters((1 + 0.39) / double.MaxValue).Equals(Length.FromMeters(1.39 / double.MaxValue), 0, ComparisonType.Relative),
+                    "This is also true for very small values as they would be rounded the same way.");
+                
+                Assert.False((1.39 / double.MaxValue).Equals(Length.FromMeters(1.39 / double.MaxValue).Value.ToDouble()),
+                    "The opposite conversion is not guaranteed to round-trip");
             }
 
             [Fact]

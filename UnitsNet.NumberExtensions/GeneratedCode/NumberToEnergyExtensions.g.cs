@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
     /// </summary>
     public static class NumberToEnergyExtensions
     {
-        /// <inheritdoc cref="Energy.FromBritishThermalUnits(double)" />
+        /// <inheritdoc cref="Energy.FromBritishThermalUnits(QuantityValue)" />
         public static Energy BritishThermalUnits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromBritishThermalUnits(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromCalories(double)" />
+        /// <inheritdoc cref="Energy.FromCalories(QuantityValue)" />
         public static Energy Calories<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromCalories(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromDecathermsEc(double)" />
+        /// <inheritdoc cref="Energy.FromDecathermsEc(QuantityValue)" />
         public static Energy DecathermsEc<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromDecathermsEc(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromDecathermsImperial(double)" />
+        /// <inheritdoc cref="Energy.FromDecathermsImperial(QuantityValue)" />
         public static Energy DecathermsImperial<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromDecathermsImperial(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromDecathermsUs(double)" />
+        /// <inheritdoc cref="Energy.FromDecathermsUs(QuantityValue)" />
         public static Energy DecathermsUs<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromDecathermsUs(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromElectronVolts(double)" />
+        /// <inheritdoc cref="Energy.FromElectronVolts(QuantityValue)" />
         public static Energy ElectronVolts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromElectronVolts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromErgs(double)" />
+        /// <inheritdoc cref="Energy.FromErgs(QuantityValue)" />
         public static Energy Ergs<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromErgs(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromFootPounds(double)" />
+        /// <inheritdoc cref="Energy.FromFootPounds(QuantityValue)" />
         public static Energy FootPounds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromFootPounds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromGigabritishThermalUnits(double)" />
+        /// <inheritdoc cref="Energy.FromGigabritishThermalUnits(QuantityValue)" />
         public static Energy GigabritishThermalUnits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -104,7 +104,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromGigabritishThermalUnits(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromGigaelectronVolts(double)" />
+        /// <inheritdoc cref="Energy.FromGigaelectronVolts(QuantityValue)" />
         public static Energy GigaelectronVolts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -112,7 +112,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromGigaelectronVolts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromGigajoules(double)" />
+        /// <inheritdoc cref="Energy.FromGigajoules(QuantityValue)" />
         public static Energy Gigajoules<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -120,7 +120,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromGigajoules(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromGigawattDays(double)" />
+        /// <inheritdoc cref="Energy.FromGigawattDays(QuantityValue)" />
         public static Energy GigawattDays<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -128,7 +128,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromGigawattDays(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromGigawattHours(double)" />
+        /// <inheritdoc cref="Energy.FromGigawattHours(QuantityValue)" />
         public static Energy GigawattHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -136,7 +136,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromGigawattHours(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromHorsepowerHours(double)" />
+        /// <inheritdoc cref="Energy.FromHorsepowerHours(QuantityValue)" />
         public static Energy HorsepowerHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -144,7 +144,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromHorsepowerHours(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromJoules(double)" />
+        /// <inheritdoc cref="Energy.FromJoules(QuantityValue)" />
         public static Energy Joules<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -152,7 +152,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromJoules(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromKilobritishThermalUnits(double)" />
+        /// <inheritdoc cref="Energy.FromKilobritishThermalUnits(QuantityValue)" />
         public static Energy KilobritishThermalUnits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -160,7 +160,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromKilobritishThermalUnits(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromKilocalories(double)" />
+        /// <inheritdoc cref="Energy.FromKilocalories(QuantityValue)" />
         public static Energy Kilocalories<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -168,7 +168,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromKilocalories(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromKiloelectronVolts(double)" />
+        /// <inheritdoc cref="Energy.FromKiloelectronVolts(QuantityValue)" />
         public static Energy KiloelectronVolts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -176,7 +176,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromKiloelectronVolts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromKilojoules(double)" />
+        /// <inheritdoc cref="Energy.FromKilojoules(QuantityValue)" />
         public static Energy Kilojoules<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -184,7 +184,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromKilojoules(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromKilowattDays(double)" />
+        /// <inheritdoc cref="Energy.FromKilowattDays(QuantityValue)" />
         public static Energy KilowattDays<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -192,7 +192,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromKilowattDays(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromKilowattHours(double)" />
+        /// <inheritdoc cref="Energy.FromKilowattHours(QuantityValue)" />
         public static Energy KilowattHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -200,7 +200,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromKilowattHours(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromMegabritishThermalUnits(double)" />
+        /// <inheritdoc cref="Energy.FromMegabritishThermalUnits(QuantityValue)" />
         public static Energy MegabritishThermalUnits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -208,7 +208,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromMegabritishThermalUnits(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromMegacalories(double)" />
+        /// <inheritdoc cref="Energy.FromMegacalories(QuantityValue)" />
         public static Energy Megacalories<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -216,7 +216,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromMegacalories(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromMegaelectronVolts(double)" />
+        /// <inheritdoc cref="Energy.FromMegaelectronVolts(QuantityValue)" />
         public static Energy MegaelectronVolts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -224,7 +224,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromMegaelectronVolts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromMegajoules(double)" />
+        /// <inheritdoc cref="Energy.FromMegajoules(QuantityValue)" />
         public static Energy Megajoules<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -232,7 +232,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromMegajoules(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromMegawattDays(double)" />
+        /// <inheritdoc cref="Energy.FromMegawattDays(QuantityValue)" />
         public static Energy MegawattDays<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -240,7 +240,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromMegawattDays(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromMegawattHours(double)" />
+        /// <inheritdoc cref="Energy.FromMegawattHours(QuantityValue)" />
         public static Energy MegawattHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -248,7 +248,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromMegawattHours(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromMicrojoules(double)" />
+        /// <inheritdoc cref="Energy.FromMicrojoules(QuantityValue)" />
         public static Energy Microjoules<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -256,7 +256,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromMicrojoules(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromMillijoules(double)" />
+        /// <inheritdoc cref="Energy.FromMillijoules(QuantityValue)" />
         public static Energy Millijoules<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -264,7 +264,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromMillijoules(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromNanojoules(double)" />
+        /// <inheritdoc cref="Energy.FromNanojoules(QuantityValue)" />
         public static Energy Nanojoules<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -272,7 +272,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromNanojoules(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromPetajoules(double)" />
+        /// <inheritdoc cref="Energy.FromPetajoules(QuantityValue)" />
         public static Energy Petajoules<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -280,7 +280,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromPetajoules(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromTeraelectronVolts(double)" />
+        /// <inheritdoc cref="Energy.FromTeraelectronVolts(QuantityValue)" />
         public static Energy TeraelectronVolts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -288,7 +288,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromTeraelectronVolts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromTerajoules(double)" />
+        /// <inheritdoc cref="Energy.FromTerajoules(QuantityValue)" />
         public static Energy Terajoules<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -296,7 +296,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromTerajoules(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromTerawattDays(double)" />
+        /// <inheritdoc cref="Energy.FromTerawattDays(QuantityValue)" />
         public static Energy TerawattDays<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -304,7 +304,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromTerawattDays(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromTerawattHours(double)" />
+        /// <inheritdoc cref="Energy.FromTerawattHours(QuantityValue)" />
         public static Energy TerawattHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -312,7 +312,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromTerawattHours(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromThermsEc(double)" />
+        /// <inheritdoc cref="Energy.FromThermsEc(QuantityValue)" />
         public static Energy ThermsEc<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -320,7 +320,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromThermsEc(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromThermsImperial(double)" />
+        /// <inheritdoc cref="Energy.FromThermsImperial(QuantityValue)" />
         public static Energy ThermsImperial<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -328,7 +328,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromThermsImperial(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromThermsUs(double)" />
+        /// <inheritdoc cref="Energy.FromThermsUs(QuantityValue)" />
         public static Energy ThermsUs<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -336,7 +336,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromThermsUs(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromWattDays(double)" />
+        /// <inheritdoc cref="Energy.FromWattDays(QuantityValue)" />
         public static Energy WattDays<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -344,7 +344,7 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
 #endif
             => Energy.FromWattDays(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Energy.FromWattHours(double)" />
+        /// <inheritdoc cref="Energy.FromWattHours(QuantityValue)" />
         public static Energy WattHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

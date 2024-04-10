@@ -70,7 +70,7 @@ namespace UnitsNet.Tests
             Assert.Equal(PowerRatioUnit.DecibelWatt, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new PowerRatio(double.PositiveInfinity, PowerRatioUnit.DecibelWatt));
@@ -80,7 +80,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new PowerRatio(double.NaN, PowerRatioUnit.DecibelWatt));
@@ -144,7 +144,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromDecibelWatts_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => PowerRatio.FromDecibelWatts(double.PositiveInfinity));
@@ -154,7 +154,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromDecibelWatts_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => PowerRatio.FromDecibelWatts(double.NaN));
@@ -389,8 +389,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, PowerRatioUnit.DecibelWatt, 1, PowerRatioUnit.DecibelWatt, true)]  // Same value and unit.
         [InlineData(1, PowerRatioUnit.DecibelWatt, 2, PowerRatioUnit.DecibelWatt, false)] // Different value.
-        [InlineData(2, PowerRatioUnit.DecibelWatt, 1, PowerRatioUnit.DecibelMilliwatt, false)] // Different value and unit.
-        [InlineData(1, PowerRatioUnit.DecibelWatt, 1, PowerRatioUnit.DecibelMilliwatt, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, PowerRatioUnit unitA, double valueB, PowerRatioUnit unitB, bool expectEqual)
         {
             var a = new PowerRatio(valueA, unitA);
@@ -691,7 +689,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = PowerRatio.FromDecibelWatts(1.0);
-            Assert.Equal(new {PowerRatio.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(PowerRatio.Info.Name, quantity.DecibelWatts);
+            #else
+            var expected = new {PowerRatio.Info.Name, valueInBaseUnit = quantity.DecibelWatts}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

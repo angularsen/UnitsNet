@@ -25,7 +25,6 @@ using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 using System.Numerics;
-using Fractions;
 
 #nullable enable
 
@@ -53,7 +52,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly Fraction _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -92,7 +91,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public TemperatureChangeRate(Fraction value, TemperatureChangeRateUnit unit)
+        public TemperatureChangeRate(QuantityValue value, TemperatureChangeRateUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -106,7 +105,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public TemperatureChangeRate(Fraction value, UnitSystem unitSystem)
+        public TemperatureChangeRate(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -157,10 +156,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public Fraction Value => _value;
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
-        Fraction IQuantity.Value => _value;
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -185,52 +184,52 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond"/>
         /// </summary>
-        public Fraction CentidegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond);
+        public QuantityValue CentidegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond"/>
         /// </summary>
-        public Fraction DecadegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond);
+        public QuantityValue DecadegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond"/>
         /// </summary>
-        public Fraction DecidegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond);
+        public QuantityValue DecidegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.DegreeCelsiusPerMinute"/>
         /// </summary>
-        public Fraction DegreesCelsiusPerMinute => As(TemperatureChangeRateUnit.DegreeCelsiusPerMinute);
+        public QuantityValue DegreesCelsiusPerMinute => As(TemperatureChangeRateUnit.DegreeCelsiusPerMinute);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.DegreeCelsiusPerSecond"/>
         /// </summary>
-        public Fraction DegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.DegreeCelsiusPerSecond);
+        public QuantityValue DegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.DegreeCelsiusPerSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond"/>
         /// </summary>
-        public Fraction HectodegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond);
+        public QuantityValue HectodegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond"/>
         /// </summary>
-        public Fraction KilodegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond);
+        public QuantityValue KilodegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond"/>
         /// </summary>
-        public Fraction MicrodegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond);
+        public QuantityValue MicrodegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond"/>
         /// </summary>
-        public Fraction MillidegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond);
+        public QuantityValue MillidegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond"/>
         /// </summary>
-        public Fraction NanodegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond);
+        public QuantityValue NanodegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond);
 
         #endregion
 
@@ -296,7 +295,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond"/>.
         /// </summary>
-        public static TemperatureChangeRate FromCentidegreesCelsiusPerSecond(Fraction value)
+        public static TemperatureChangeRate FromCentidegreesCelsiusPerSecond(QuantityValue value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond);
         }
@@ -304,7 +303,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond"/>.
         /// </summary>
-        public static TemperatureChangeRate FromDecadegreesCelsiusPerSecond(Fraction value)
+        public static TemperatureChangeRate FromDecadegreesCelsiusPerSecond(QuantityValue value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond);
         }
@@ -312,7 +311,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond"/>.
         /// </summary>
-        public static TemperatureChangeRate FromDecidegreesCelsiusPerSecond(Fraction value)
+        public static TemperatureChangeRate FromDecidegreesCelsiusPerSecond(QuantityValue value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond);
         }
@@ -320,7 +319,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.DegreeCelsiusPerMinute"/>.
         /// </summary>
-        public static TemperatureChangeRate FromDegreesCelsiusPerMinute(Fraction value)
+        public static TemperatureChangeRate FromDegreesCelsiusPerMinute(QuantityValue value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DegreeCelsiusPerMinute);
         }
@@ -328,7 +327,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.DegreeCelsiusPerSecond"/>.
         /// </summary>
-        public static TemperatureChangeRate FromDegreesCelsiusPerSecond(Fraction value)
+        public static TemperatureChangeRate FromDegreesCelsiusPerSecond(QuantityValue value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DegreeCelsiusPerSecond);
         }
@@ -336,7 +335,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond"/>.
         /// </summary>
-        public static TemperatureChangeRate FromHectodegreesCelsiusPerSecond(Fraction value)
+        public static TemperatureChangeRate FromHectodegreesCelsiusPerSecond(QuantityValue value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond);
         }
@@ -344,7 +343,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond"/>.
         /// </summary>
-        public static TemperatureChangeRate FromKilodegreesCelsiusPerSecond(Fraction value)
+        public static TemperatureChangeRate FromKilodegreesCelsiusPerSecond(QuantityValue value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond);
         }
@@ -352,7 +351,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond"/>.
         /// </summary>
-        public static TemperatureChangeRate FromMicrodegreesCelsiusPerSecond(Fraction value)
+        public static TemperatureChangeRate FromMicrodegreesCelsiusPerSecond(QuantityValue value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond);
         }
@@ -360,7 +359,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond"/>.
         /// </summary>
-        public static TemperatureChangeRate FromMillidegreesCelsiusPerSecond(Fraction value)
+        public static TemperatureChangeRate FromMillidegreesCelsiusPerSecond(QuantityValue value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond);
         }
@@ -368,7 +367,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond"/>.
         /// </summary>
-        public static TemperatureChangeRate FromNanodegreesCelsiusPerSecond(Fraction value)
+        public static TemperatureChangeRate FromNanodegreesCelsiusPerSecond(QuantityValue value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond);
         }
@@ -379,7 +378,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>TemperatureChangeRate unit value.</returns>
-        public static TemperatureChangeRate From(Fraction value, TemperatureChangeRateUnit fromUnit)
+        public static TemperatureChangeRate From(QuantityValue value, TemperatureChangeRateUnit fromUnit)
         {
             return new TemperatureChangeRate(value, fromUnit);
         }
@@ -535,7 +534,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static TemperatureChangeRate operator -(TemperatureChangeRate right)
         {
-            return new TemperatureChangeRate(right.Value.Invert(), right.Unit);
+            return new TemperatureChangeRate(-right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="TemperatureChangeRate"/> from adding two <see cref="TemperatureChangeRate"/>.</summary>
@@ -551,25 +550,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="TemperatureChangeRate"/> from multiplying value and <see cref="TemperatureChangeRate"/>.</summary>
-        public static TemperatureChangeRate operator *(Fraction left, TemperatureChangeRate right)
+        public static TemperatureChangeRate operator *(QuantityValue left, TemperatureChangeRate right)
         {
             return new TemperatureChangeRate(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="TemperatureChangeRate"/> from multiplying value and <see cref="TemperatureChangeRate"/>.</summary>
-        public static TemperatureChangeRate operator *(TemperatureChangeRate left, Fraction right)
+        public static TemperatureChangeRate operator *(TemperatureChangeRate left, QuantityValue right)
         {
             return new TemperatureChangeRate(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="TemperatureChangeRate"/> from dividing <see cref="TemperatureChangeRate"/> by value.</summary>
-        public static TemperatureChangeRate operator /(TemperatureChangeRate left, Fraction right)
+        public static TemperatureChangeRate operator /(TemperatureChangeRate left, QuantityValue right)
         {
             return new TemperatureChangeRate(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="TemperatureChangeRate"/> by <see cref="TemperatureChangeRate"/>.</summary>
-        public static Fraction operator /(TemperatureChangeRate left, TemperatureChangeRate right)
+        public static QuantityValue operator /(TemperatureChangeRate left, TemperatureChangeRate right)
         {
             return left.DegreesCelsiusPerSecond / right.DegreesCelsiusPerSecond;
         }
@@ -638,7 +637,7 @@ namespace UnitsNet
         /// <summary>Indicates strict equality of two <see cref="TemperatureChangeRate"/> quantities.</summary>
         public bool Equals(TemperatureChangeRate other)
         {
-            return _value.IsEquivalentTo(other.As(this.Unit));
+            return _value.Equals(other.As(this.Unit));
         }
 
         /// <summary>Compares the current <see cref="TemperatureChangeRate"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
@@ -723,10 +722,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: (Fraction)tolerance,
+                tolerance: (QuantityValue)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -743,7 +742,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(TemperatureChangeRate other, TemperatureChangeRate tolerance)
         {
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -757,7 +756,11 @@ namespace UnitsNet
         public override int GetHashCode()
         {
             var valueInBaseUnit = As(BaseUnit);
+            #if NET7_0_OR_GREATER
+            return HashCode.Combine(Info.Name, valueInBaseUnit);
+            #else
             return new { Info.Name, valueInBaseUnit }.GetHashCode();
+            #endif
         }
 
         #endregion
@@ -768,7 +771,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public Fraction As(TemperatureChangeRateUnit unit)
+        public QuantityValue As(TemperatureChangeRateUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -777,7 +780,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public Fraction As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -792,7 +795,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        Fraction IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
             if (!(unit is TemperatureChangeRateUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureChangeRateUnit)} is supported.", nameof(unit));

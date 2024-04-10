@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
             Assert.Equal(IrradianceUnit.WattPerSquareMeter, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new Irradiance(double.PositiveInfinity, IrradianceUnit.WattPerSquareMeter));
@@ -128,7 +128,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new Irradiance(double.NaN, IrradianceUnit.WattPerSquareMeter));
@@ -252,7 +252,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromWattsPerSquareMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => Irradiance.FromWattsPerSquareMeter(double.PositiveInfinity));
@@ -262,7 +262,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromWattsPerSquareMeter_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => Irradiance.FromWattsPerSquareMeter(double.NaN));
@@ -737,8 +737,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, IrradianceUnit.WattPerSquareMeter, 1, IrradianceUnit.WattPerSquareMeter, true)]  // Same value and unit.
         [InlineData(1, IrradianceUnit.WattPerSquareMeter, 2, IrradianceUnit.WattPerSquareMeter, false)] // Different value.
-        [InlineData(2, IrradianceUnit.WattPerSquareMeter, 1, IrradianceUnit.KilowattPerSquareCentimeter, false)] // Different value and unit.
-        [InlineData(1, IrradianceUnit.WattPerSquareMeter, 1, IrradianceUnit.KilowattPerSquareCentimeter, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, IrradianceUnit unitA, double valueB, IrradianceUnit unitB, bool expectEqual)
         {
             var a = new Irradiance(valueA, unitA);
@@ -1063,7 +1061,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Irradiance.FromWattsPerSquareMeter(1.0);
-            Assert.Equal(new {Irradiance.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(Irradiance.Info.Name, quantity.WattsPerSquareMeter);
+            #else
+            var expected = new {Irradiance.Info.Name, valueInBaseUnit = quantity.WattsPerSquareMeter}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

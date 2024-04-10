@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotentialAc
     /// </summary>
     public static class NumberToElectricPotentialAcExtensions
     {
-        /// <inheritdoc cref="ElectricPotentialAc.FromKilovoltsAc(double)" />
+        /// <inheritdoc cref="ElectricPotentialAc.FromKilovoltsAc(QuantityValue)" />
         public static ElectricPotentialAc KilovoltsAc<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotentialAc
 #endif
             => ElectricPotentialAc.FromKilovoltsAc(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricPotentialAc.FromMegavoltsAc(double)" />
+        /// <inheritdoc cref="ElectricPotentialAc.FromMegavoltsAc(QuantityValue)" />
         public static ElectricPotentialAc MegavoltsAc<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotentialAc
 #endif
             => ElectricPotentialAc.FromMegavoltsAc(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricPotentialAc.FromMicrovoltsAc(double)" />
+        /// <inheritdoc cref="ElectricPotentialAc.FromMicrovoltsAc(QuantityValue)" />
         public static ElectricPotentialAc MicrovoltsAc<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotentialAc
 #endif
             => ElectricPotentialAc.FromMicrovoltsAc(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricPotentialAc.FromMillivoltsAc(double)" />
+        /// <inheritdoc cref="ElectricPotentialAc.FromMillivoltsAc(QuantityValue)" />
         public static ElectricPotentialAc MillivoltsAc<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotentialAc
 #endif
             => ElectricPotentialAc.FromMillivoltsAc(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricPotentialAc.FromVoltsAc(double)" />
+        /// <inheritdoc cref="ElectricPotentialAc.FromVoltsAc(QuantityValue)" />
         public static ElectricPotentialAc VoltsAc<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

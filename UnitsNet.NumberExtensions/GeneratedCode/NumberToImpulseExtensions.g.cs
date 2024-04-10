@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToImpulse
     /// </summary>
     public static class NumberToImpulseExtensions
     {
-        /// <inheritdoc cref="Impulse.FromCentinewtonSeconds(double)" />
+        /// <inheritdoc cref="Impulse.FromCentinewtonSeconds(QuantityValue)" />
         public static Impulse CentinewtonSeconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToImpulse
 #endif
             => Impulse.FromCentinewtonSeconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Impulse.FromDecanewtonSeconds(double)" />
+        /// <inheritdoc cref="Impulse.FromDecanewtonSeconds(QuantityValue)" />
         public static Impulse DecanewtonSeconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToImpulse
 #endif
             => Impulse.FromDecanewtonSeconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Impulse.FromDecinewtonSeconds(double)" />
+        /// <inheritdoc cref="Impulse.FromDecinewtonSeconds(QuantityValue)" />
         public static Impulse DecinewtonSeconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToImpulse
 #endif
             => Impulse.FromDecinewtonSeconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Impulse.FromKilogramMetersPerSecond(double)" />
+        /// <inheritdoc cref="Impulse.FromKilogramMetersPerSecond(QuantityValue)" />
         public static Impulse KilogramMetersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToImpulse
 #endif
             => Impulse.FromKilogramMetersPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Impulse.FromKilonewtonSeconds(double)" />
+        /// <inheritdoc cref="Impulse.FromKilonewtonSeconds(QuantityValue)" />
         public static Impulse KilonewtonSeconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToImpulse
 #endif
             => Impulse.FromKilonewtonSeconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Impulse.FromMeganewtonSeconds(double)" />
+        /// <inheritdoc cref="Impulse.FromMeganewtonSeconds(QuantityValue)" />
         public static Impulse MeganewtonSeconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToImpulse
 #endif
             => Impulse.FromMeganewtonSeconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Impulse.FromMicronewtonSeconds(double)" />
+        /// <inheritdoc cref="Impulse.FromMicronewtonSeconds(QuantityValue)" />
         public static Impulse MicronewtonSeconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToImpulse
 #endif
             => Impulse.FromMicronewtonSeconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Impulse.FromMillinewtonSeconds(double)" />
+        /// <inheritdoc cref="Impulse.FromMillinewtonSeconds(QuantityValue)" />
         public static Impulse MillinewtonSeconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToImpulse
 #endif
             => Impulse.FromMillinewtonSeconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Impulse.FromNanonewtonSeconds(double)" />
+        /// <inheritdoc cref="Impulse.FromNanonewtonSeconds(QuantityValue)" />
         public static Impulse NanonewtonSeconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -104,7 +104,7 @@ namespace UnitsNet.NumberExtensions.NumberToImpulse
 #endif
             => Impulse.FromNanonewtonSeconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Impulse.FromNewtonSeconds(double)" />
+        /// <inheritdoc cref="Impulse.FromNewtonSeconds(QuantityValue)" />
         public static Impulse NewtonSeconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -112,7 +112,7 @@ namespace UnitsNet.NumberExtensions.NumberToImpulse
 #endif
             => Impulse.FromNewtonSeconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Impulse.FromPoundFeetPerSecond(double)" />
+        /// <inheritdoc cref="Impulse.FromPoundFeetPerSecond(QuantityValue)" />
         public static Impulse PoundFeetPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -120,7 +120,7 @@ namespace UnitsNet.NumberExtensions.NumberToImpulse
 #endif
             => Impulse.FromPoundFeetPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Impulse.FromPoundForceSeconds(double)" />
+        /// <inheritdoc cref="Impulse.FromPoundForceSeconds(QuantityValue)" />
         public static Impulse PoundForceSeconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -128,7 +128,7 @@ namespace UnitsNet.NumberExtensions.NumberToImpulse
 #endif
             => Impulse.FromPoundForceSeconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Impulse.FromSlugFeetPerSecond(double)" />
+        /// <inheritdoc cref="Impulse.FromSlugFeetPerSecond(QuantityValue)" />
         public static Impulse SlugFeetPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

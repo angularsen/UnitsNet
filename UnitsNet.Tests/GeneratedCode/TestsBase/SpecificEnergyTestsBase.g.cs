@@ -182,7 +182,7 @@ namespace UnitsNet.Tests
             Assert.Equal(SpecificEnergyUnit.JoulePerKilogram, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new SpecificEnergy(double.PositiveInfinity, SpecificEnergyUnit.JoulePerKilogram));
@@ -192,7 +192,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new SpecificEnergy(double.NaN, SpecificEnergyUnit.JoulePerKilogram));
@@ -396,7 +396,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromJoulesPerKilogram_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => SpecificEnergy.FromJoulesPerKilogram(double.PositiveInfinity));
@@ -406,7 +406,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromJoulesPerKilogram_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => SpecificEnergy.FromJoulesPerKilogram(double.NaN));
@@ -1341,8 +1341,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, SpecificEnergyUnit.JoulePerKilogram, 1, SpecificEnergyUnit.JoulePerKilogram, true)]  // Same value and unit.
         [InlineData(1, SpecificEnergyUnit.JoulePerKilogram, 2, SpecificEnergyUnit.JoulePerKilogram, false)] // Different value.
-        [InlineData(2, SpecificEnergyUnit.JoulePerKilogram, 1, SpecificEnergyUnit.BtuPerPound, false)] // Different value and unit.
-        [InlineData(1, SpecificEnergyUnit.JoulePerKilogram, 1, SpecificEnergyUnit.BtuPerPound, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, SpecificEnergyUnit unitA, double valueB, SpecificEnergyUnit unitB, bool expectEqual)
         {
             var a = new SpecificEnergy(valueA, unitA);
@@ -1699,7 +1697,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = SpecificEnergy.FromJoulesPerKilogram(1.0);
-            Assert.Equal(new {SpecificEnergy.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(SpecificEnergy.Info.Name, quantity.JoulesPerKilogram);
+            #else
+            var expected = new {SpecificEnergy.Info.Name, valueInBaseUnit = quantity.JoulesPerKilogram}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

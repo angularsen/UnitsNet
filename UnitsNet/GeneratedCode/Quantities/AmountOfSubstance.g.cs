@@ -25,7 +25,6 @@ using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 using System.Numerics;
-using Fractions;
 
 #nullable enable
 
@@ -57,7 +56,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly Fraction _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -103,7 +102,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public AmountOfSubstance(Fraction value, AmountOfSubstanceUnit unit)
+        public AmountOfSubstance(QuantityValue value, AmountOfSubstanceUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -117,7 +116,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public AmountOfSubstance(Fraction value, UnitSystem unitSystem)
+        public AmountOfSubstance(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -168,10 +167,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public Fraction Value => _value;
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
-        Fraction IQuantity.Value => _value;
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -196,87 +195,87 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Centimole"/>
         /// </summary>
-        public Fraction Centimoles => As(AmountOfSubstanceUnit.Centimole);
+        public QuantityValue Centimoles => As(AmountOfSubstanceUnit.Centimole);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.CentipoundMole"/>
         /// </summary>
-        public Fraction CentipoundMoles => As(AmountOfSubstanceUnit.CentipoundMole);
+        public QuantityValue CentipoundMoles => As(AmountOfSubstanceUnit.CentipoundMole);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Decimole"/>
         /// </summary>
-        public Fraction Decimoles => As(AmountOfSubstanceUnit.Decimole);
+        public QuantityValue Decimoles => As(AmountOfSubstanceUnit.Decimole);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.DecipoundMole"/>
         /// </summary>
-        public Fraction DecipoundMoles => As(AmountOfSubstanceUnit.DecipoundMole);
+        public QuantityValue DecipoundMoles => As(AmountOfSubstanceUnit.DecipoundMole);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Femtomole"/>
         /// </summary>
-        public Fraction Femtomoles => As(AmountOfSubstanceUnit.Femtomole);
+        public QuantityValue Femtomoles => As(AmountOfSubstanceUnit.Femtomole);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Kilomole"/>
         /// </summary>
-        public Fraction Kilomoles => As(AmountOfSubstanceUnit.Kilomole);
+        public QuantityValue Kilomoles => As(AmountOfSubstanceUnit.Kilomole);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.KilopoundMole"/>
         /// </summary>
-        public Fraction KilopoundMoles => As(AmountOfSubstanceUnit.KilopoundMole);
+        public QuantityValue KilopoundMoles => As(AmountOfSubstanceUnit.KilopoundMole);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Megamole"/>
         /// </summary>
-        public Fraction Megamoles => As(AmountOfSubstanceUnit.Megamole);
+        public QuantityValue Megamoles => As(AmountOfSubstanceUnit.Megamole);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Micromole"/>
         /// </summary>
-        public Fraction Micromoles => As(AmountOfSubstanceUnit.Micromole);
+        public QuantityValue Micromoles => As(AmountOfSubstanceUnit.Micromole);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.MicropoundMole"/>
         /// </summary>
-        public Fraction MicropoundMoles => As(AmountOfSubstanceUnit.MicropoundMole);
+        public QuantityValue MicropoundMoles => As(AmountOfSubstanceUnit.MicropoundMole);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Millimole"/>
         /// </summary>
-        public Fraction Millimoles => As(AmountOfSubstanceUnit.Millimole);
+        public QuantityValue Millimoles => As(AmountOfSubstanceUnit.Millimole);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.MillipoundMole"/>
         /// </summary>
-        public Fraction MillipoundMoles => As(AmountOfSubstanceUnit.MillipoundMole);
+        public QuantityValue MillipoundMoles => As(AmountOfSubstanceUnit.MillipoundMole);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Mole"/>
         /// </summary>
-        public Fraction Moles => As(AmountOfSubstanceUnit.Mole);
+        public QuantityValue Moles => As(AmountOfSubstanceUnit.Mole);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Nanomole"/>
         /// </summary>
-        public Fraction Nanomoles => As(AmountOfSubstanceUnit.Nanomole);
+        public QuantityValue Nanomoles => As(AmountOfSubstanceUnit.Nanomole);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.NanopoundMole"/>
         /// </summary>
-        public Fraction NanopoundMoles => As(AmountOfSubstanceUnit.NanopoundMole);
+        public QuantityValue NanopoundMoles => As(AmountOfSubstanceUnit.NanopoundMole);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Picomole"/>
         /// </summary>
-        public Fraction Picomoles => As(AmountOfSubstanceUnit.Picomole);
+        public QuantityValue Picomoles => As(AmountOfSubstanceUnit.Picomole);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.PoundMole"/>
         /// </summary>
-        public Fraction PoundMoles => As(AmountOfSubstanceUnit.PoundMole);
+        public QuantityValue PoundMoles => As(AmountOfSubstanceUnit.PoundMole);
 
         #endregion
 
@@ -356,7 +355,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Centimole"/>.
         /// </summary>
-        public static AmountOfSubstance FromCentimoles(Fraction value)
+        public static AmountOfSubstance FromCentimoles(QuantityValue value)
         {
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.Centimole);
         }
@@ -364,7 +363,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.CentipoundMole"/>.
         /// </summary>
-        public static AmountOfSubstance FromCentipoundMoles(Fraction value)
+        public static AmountOfSubstance FromCentipoundMoles(QuantityValue value)
         {
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.CentipoundMole);
         }
@@ -372,7 +371,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Decimole"/>.
         /// </summary>
-        public static AmountOfSubstance FromDecimoles(Fraction value)
+        public static AmountOfSubstance FromDecimoles(QuantityValue value)
         {
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.Decimole);
         }
@@ -380,7 +379,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.DecipoundMole"/>.
         /// </summary>
-        public static AmountOfSubstance FromDecipoundMoles(Fraction value)
+        public static AmountOfSubstance FromDecipoundMoles(QuantityValue value)
         {
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.DecipoundMole);
         }
@@ -388,7 +387,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Femtomole"/>.
         /// </summary>
-        public static AmountOfSubstance FromFemtomoles(Fraction value)
+        public static AmountOfSubstance FromFemtomoles(QuantityValue value)
         {
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.Femtomole);
         }
@@ -396,7 +395,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Kilomole"/>.
         /// </summary>
-        public static AmountOfSubstance FromKilomoles(Fraction value)
+        public static AmountOfSubstance FromKilomoles(QuantityValue value)
         {
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.Kilomole);
         }
@@ -404,7 +403,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.KilopoundMole"/>.
         /// </summary>
-        public static AmountOfSubstance FromKilopoundMoles(Fraction value)
+        public static AmountOfSubstance FromKilopoundMoles(QuantityValue value)
         {
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.KilopoundMole);
         }
@@ -412,7 +411,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Megamole"/>.
         /// </summary>
-        public static AmountOfSubstance FromMegamoles(Fraction value)
+        public static AmountOfSubstance FromMegamoles(QuantityValue value)
         {
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.Megamole);
         }
@@ -420,7 +419,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Micromole"/>.
         /// </summary>
-        public static AmountOfSubstance FromMicromoles(Fraction value)
+        public static AmountOfSubstance FromMicromoles(QuantityValue value)
         {
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.Micromole);
         }
@@ -428,7 +427,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.MicropoundMole"/>.
         /// </summary>
-        public static AmountOfSubstance FromMicropoundMoles(Fraction value)
+        public static AmountOfSubstance FromMicropoundMoles(QuantityValue value)
         {
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.MicropoundMole);
         }
@@ -436,7 +435,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Millimole"/>.
         /// </summary>
-        public static AmountOfSubstance FromMillimoles(Fraction value)
+        public static AmountOfSubstance FromMillimoles(QuantityValue value)
         {
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.Millimole);
         }
@@ -444,7 +443,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.MillipoundMole"/>.
         /// </summary>
-        public static AmountOfSubstance FromMillipoundMoles(Fraction value)
+        public static AmountOfSubstance FromMillipoundMoles(QuantityValue value)
         {
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.MillipoundMole);
         }
@@ -452,7 +451,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Mole"/>.
         /// </summary>
-        public static AmountOfSubstance FromMoles(Fraction value)
+        public static AmountOfSubstance FromMoles(QuantityValue value)
         {
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.Mole);
         }
@@ -460,7 +459,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Nanomole"/>.
         /// </summary>
-        public static AmountOfSubstance FromNanomoles(Fraction value)
+        public static AmountOfSubstance FromNanomoles(QuantityValue value)
         {
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.Nanomole);
         }
@@ -468,7 +467,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.NanopoundMole"/>.
         /// </summary>
-        public static AmountOfSubstance FromNanopoundMoles(Fraction value)
+        public static AmountOfSubstance FromNanopoundMoles(QuantityValue value)
         {
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.NanopoundMole);
         }
@@ -476,7 +475,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Picomole"/>.
         /// </summary>
-        public static AmountOfSubstance FromPicomoles(Fraction value)
+        public static AmountOfSubstance FromPicomoles(QuantityValue value)
         {
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.Picomole);
         }
@@ -484,7 +483,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.PoundMole"/>.
         /// </summary>
-        public static AmountOfSubstance FromPoundMoles(Fraction value)
+        public static AmountOfSubstance FromPoundMoles(QuantityValue value)
         {
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.PoundMole);
         }
@@ -495,7 +494,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>AmountOfSubstance unit value.</returns>
-        public static AmountOfSubstance From(Fraction value, AmountOfSubstanceUnit fromUnit)
+        public static AmountOfSubstance From(QuantityValue value, AmountOfSubstanceUnit fromUnit)
         {
             return new AmountOfSubstance(value, fromUnit);
         }
@@ -651,7 +650,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static AmountOfSubstance operator -(AmountOfSubstance right)
         {
-            return new AmountOfSubstance(right.Value.Invert(), right.Unit);
+            return new AmountOfSubstance(-right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="AmountOfSubstance"/> from adding two <see cref="AmountOfSubstance"/>.</summary>
@@ -667,25 +666,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="AmountOfSubstance"/> from multiplying value and <see cref="AmountOfSubstance"/>.</summary>
-        public static AmountOfSubstance operator *(Fraction left, AmountOfSubstance right)
+        public static AmountOfSubstance operator *(QuantityValue left, AmountOfSubstance right)
         {
             return new AmountOfSubstance(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="AmountOfSubstance"/> from multiplying value and <see cref="AmountOfSubstance"/>.</summary>
-        public static AmountOfSubstance operator *(AmountOfSubstance left, Fraction right)
+        public static AmountOfSubstance operator *(AmountOfSubstance left, QuantityValue right)
         {
             return new AmountOfSubstance(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="AmountOfSubstance"/> from dividing <see cref="AmountOfSubstance"/> by value.</summary>
-        public static AmountOfSubstance operator /(AmountOfSubstance left, Fraction right)
+        public static AmountOfSubstance operator /(AmountOfSubstance left, QuantityValue right)
         {
             return new AmountOfSubstance(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="AmountOfSubstance"/> by <see cref="AmountOfSubstance"/>.</summary>
-        public static Fraction operator /(AmountOfSubstance left, AmountOfSubstance right)
+        public static QuantityValue operator /(AmountOfSubstance left, AmountOfSubstance right)
         {
             return left.Moles / right.Moles;
         }
@@ -778,7 +777,7 @@ namespace UnitsNet
         /// <summary>Indicates strict equality of two <see cref="AmountOfSubstance"/> quantities.</summary>
         public bool Equals(AmountOfSubstance other)
         {
-            return _value.IsEquivalentTo(other.As(this.Unit));
+            return _value.Equals(other.As(this.Unit));
         }
 
         /// <summary>Compares the current <see cref="AmountOfSubstance"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
@@ -863,10 +862,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: (Fraction)tolerance,
+                tolerance: (QuantityValue)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -883,7 +882,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(AmountOfSubstance other, AmountOfSubstance tolerance)
         {
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -897,7 +896,11 @@ namespace UnitsNet
         public override int GetHashCode()
         {
             var valueInBaseUnit = As(BaseUnit);
+            #if NET7_0_OR_GREATER
+            return HashCode.Combine(Info.Name, valueInBaseUnit);
+            #else
             return new { Info.Name, valueInBaseUnit }.GetHashCode();
+            #endif
         }
 
         #endregion
@@ -908,7 +911,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public Fraction As(AmountOfSubstanceUnit unit)
+        public QuantityValue As(AmountOfSubstanceUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -917,7 +920,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public Fraction As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -932,7 +935,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        Fraction IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
             if (!(unit is AmountOfSubstanceUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AmountOfSubstanceUnit)} is supported.", nameof(unit));
@@ -999,39 +1002,39 @@ namespace UnitsNet
             {
                 // AmountOfSubstanceUnit -> BaseUnit
                 (AmountOfSubstanceUnit.Centimole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance(_value / 100, AmountOfSubstanceUnit.Mole),
-                (AmountOfSubstanceUnit.CentipoundMole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance(_value * new Fraction(45359237, 10000000, false), AmountOfSubstanceUnit.Mole),
+                (AmountOfSubstanceUnit.CentipoundMole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance(_value * new QuantityValue(45359237, 10000000, false), AmountOfSubstanceUnit.Mole),
                 (AmountOfSubstanceUnit.Decimole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance(_value / 10, AmountOfSubstanceUnit.Mole),
-                (AmountOfSubstanceUnit.DecipoundMole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance(_value * new Fraction(45359237, 1000000, false), AmountOfSubstanceUnit.Mole),
+                (AmountOfSubstanceUnit.DecipoundMole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance(_value * new QuantityValue(45359237, 1000000, false), AmountOfSubstanceUnit.Mole),
                 (AmountOfSubstanceUnit.Femtomole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance(_value / 1000000000000000, AmountOfSubstanceUnit.Mole),
                 (AmountOfSubstanceUnit.Kilomole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance(_value * 1000, AmountOfSubstanceUnit.Mole),
-                (AmountOfSubstanceUnit.KilopoundMole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance(_value * new Fraction(45359237, 100, false), AmountOfSubstanceUnit.Mole),
+                (AmountOfSubstanceUnit.KilopoundMole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance(_value * new QuantityValue(45359237, 100, false), AmountOfSubstanceUnit.Mole),
                 (AmountOfSubstanceUnit.Megamole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance(_value * 1000000, AmountOfSubstanceUnit.Mole),
                 (AmountOfSubstanceUnit.Micromole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance(_value / 1000000, AmountOfSubstanceUnit.Mole),
-                (AmountOfSubstanceUnit.MicropoundMole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance(_value * new Fraction(45359237, 100000000000, false), AmountOfSubstanceUnit.Mole),
+                (AmountOfSubstanceUnit.MicropoundMole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance(_value * new QuantityValue(45359237, 100000000000, false), AmountOfSubstanceUnit.Mole),
                 (AmountOfSubstanceUnit.Millimole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance(_value / 1000, AmountOfSubstanceUnit.Mole),
-                (AmountOfSubstanceUnit.MillipoundMole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance(_value * new Fraction(45359237, 100000000, false), AmountOfSubstanceUnit.Mole),
+                (AmountOfSubstanceUnit.MillipoundMole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance(_value * new QuantityValue(45359237, 100000000, false), AmountOfSubstanceUnit.Mole),
                 (AmountOfSubstanceUnit.Nanomole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance(_value / 1000000000, AmountOfSubstanceUnit.Mole),
-                (AmountOfSubstanceUnit.NanopoundMole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance(_value * new Fraction(45359237, 100000000000000, false), AmountOfSubstanceUnit.Mole),
+                (AmountOfSubstanceUnit.NanopoundMole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance(_value * new QuantityValue(45359237, 100000000000000, false), AmountOfSubstanceUnit.Mole),
                 (AmountOfSubstanceUnit.Picomole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance(_value / 1000000000000, AmountOfSubstanceUnit.Mole),
-                (AmountOfSubstanceUnit.PoundMole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance(_value * new Fraction(45359237, 100000, false), AmountOfSubstanceUnit.Mole),
+                (AmountOfSubstanceUnit.PoundMole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance(_value * new QuantityValue(45359237, 100000, false), AmountOfSubstanceUnit.Mole),
 
                 // BaseUnit -> AmountOfSubstanceUnit
                 (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Centimole) => new AmountOfSubstance(_value * 100, AmountOfSubstanceUnit.Centimole),
-                (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.CentipoundMole) => new AmountOfSubstance(_value * new Fraction(10000000, 45359237, false), AmountOfSubstanceUnit.CentipoundMole),
+                (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.CentipoundMole) => new AmountOfSubstance(_value * new QuantityValue(10000000, 45359237, false), AmountOfSubstanceUnit.CentipoundMole),
                 (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Decimole) => new AmountOfSubstance(_value * 10, AmountOfSubstanceUnit.Decimole),
-                (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.DecipoundMole) => new AmountOfSubstance(_value * new Fraction(1000000, 45359237, false), AmountOfSubstanceUnit.DecipoundMole),
+                (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.DecipoundMole) => new AmountOfSubstance(_value * new QuantityValue(1000000, 45359237, false), AmountOfSubstanceUnit.DecipoundMole),
                 (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Femtomole) => new AmountOfSubstance(_value * 1000000000000000, AmountOfSubstanceUnit.Femtomole),
                 (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Kilomole) => new AmountOfSubstance(_value / 1000, AmountOfSubstanceUnit.Kilomole),
-                (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.KilopoundMole) => new AmountOfSubstance(_value * new Fraction(100, 45359237, false), AmountOfSubstanceUnit.KilopoundMole),
+                (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.KilopoundMole) => new AmountOfSubstance(_value * new QuantityValue(100, 45359237, false), AmountOfSubstanceUnit.KilopoundMole),
                 (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Megamole) => new AmountOfSubstance(_value / 1000000, AmountOfSubstanceUnit.Megamole),
                 (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Micromole) => new AmountOfSubstance(_value * 1000000, AmountOfSubstanceUnit.Micromole),
-                (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.MicropoundMole) => new AmountOfSubstance(_value * new Fraction(100000000000, 45359237, false), AmountOfSubstanceUnit.MicropoundMole),
+                (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.MicropoundMole) => new AmountOfSubstance(_value * new QuantityValue(100000000000, 45359237, false), AmountOfSubstanceUnit.MicropoundMole),
                 (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Millimole) => new AmountOfSubstance(_value * 1000, AmountOfSubstanceUnit.Millimole),
-                (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.MillipoundMole) => new AmountOfSubstance(_value * new Fraction(100000000, 45359237, false), AmountOfSubstanceUnit.MillipoundMole),
+                (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.MillipoundMole) => new AmountOfSubstance(_value * new QuantityValue(100000000, 45359237, false), AmountOfSubstanceUnit.MillipoundMole),
                 (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Nanomole) => new AmountOfSubstance(_value * 1000000000, AmountOfSubstanceUnit.Nanomole),
-                (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.NanopoundMole) => new AmountOfSubstance(_value * new Fraction(100000000000000, 45359237, false), AmountOfSubstanceUnit.NanopoundMole),
+                (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.NanopoundMole) => new AmountOfSubstance(_value * new QuantityValue(100000000000000, 45359237, false), AmountOfSubstanceUnit.NanopoundMole),
                 (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Picomole) => new AmountOfSubstance(_value * 1000000000000, AmountOfSubstanceUnit.Picomole),
-                (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.PoundMole) => new AmountOfSubstance(_value * new Fraction(100000, 45359237, false), AmountOfSubstanceUnit.PoundMole),
+                (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.PoundMole) => new AmountOfSubstance(_value * new QuantityValue(100000, 45359237, false), AmountOfSubstanceUnit.PoundMole),
 
                 _ => null
             };

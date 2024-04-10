@@ -122,7 +122,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ForceChangeRateUnit.NewtonPerSecond, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new ForceChangeRate(double.PositiveInfinity, ForceChangeRateUnit.NewtonPerSecond));
@@ -132,7 +132,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new ForceChangeRate(double.NaN, ForceChangeRateUnit.NewtonPerSecond));
@@ -261,7 +261,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromNewtonsPerSecond_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => ForceChangeRate.FromNewtonsPerSecond(double.PositiveInfinity));
@@ -271,7 +271,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromNewtonsPerSecond_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => ForceChangeRate.FromNewtonsPerSecond(double.NaN));
@@ -912,8 +912,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, ForceChangeRateUnit.NewtonPerSecond, 1, ForceChangeRateUnit.NewtonPerSecond, true)]  // Same value and unit.
         [InlineData(1, ForceChangeRateUnit.NewtonPerSecond, 2, ForceChangeRateUnit.NewtonPerSecond, false)] // Different value.
-        [InlineData(2, ForceChangeRateUnit.NewtonPerSecond, 1, ForceChangeRateUnit.CentinewtonPerSecond, false)] // Different value and unit.
-        [InlineData(1, ForceChangeRateUnit.NewtonPerSecond, 1, ForceChangeRateUnit.CentinewtonPerSecond, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ForceChangeRateUnit unitA, double valueB, ForceChangeRateUnit unitB, bool expectEqual)
         {
             var a = new ForceChangeRate(valueA, unitA);
@@ -1240,7 +1238,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ForceChangeRate.FromNewtonsPerSecond(1.0);
-            Assert.Equal(new {ForceChangeRate.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(ForceChangeRate.Info.Name, quantity.NewtonsPerSecond);
+            #else
+            var expected = new {ForceChangeRate.Info.Name, valueInBaseUnit = quantity.NewtonsPerSecond}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

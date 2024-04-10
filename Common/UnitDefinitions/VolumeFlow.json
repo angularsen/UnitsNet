@@ -70,8 +70,8 @@
     {
       "SingularName": "CubicFootPerSecond",
       "PluralName": "CubicFeetPerSecond",
-      "FromUnitToBaseFunc": "{x} / 35.314666721",
-      "FromBaseToUnitFunc": "{x} * 35.314666721",
+      "FromUnitToBaseFunc": "{x} * 0.028316846592",
+      "FromBaseToUnitFunc": "{x} / 0.028316846592",
       "Localization": [
         {
           "Culture": "en-US",
@@ -82,8 +82,8 @@
     {
       "SingularName": "CubicFootPerMinute",
       "PluralName": "CubicFeetPerMinute",
-      "FromUnitToBaseFunc": "{x} / 2118.88000326",
-      "FromBaseToUnitFunc": "{x} * 2118.88000326",
+      "FromUnitToBaseFunc": "{x} * 0.028316846592 / 60",
+      "FromBaseToUnitFunc": "{x} / (0.028316846592 / 60)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -94,8 +94,8 @@
     {
       "SingularName": "CubicFootPerHour",
       "PluralName": "CubicFeetPerHour",
-      "FromUnitToBaseFunc": "{x} * 0.0283168466e-6 / 3600",
-      "FromBaseToUnitFunc": "{x} / (0.0283168466e-6 / 3600)",
+      "FromUnitToBaseFunc": "{x} * 0.028316846592 / 3600",
+      "FromBaseToUnitFunc": "{x} / (0.028316846592 / 3600)",
       "Localization": [
         {
           "Culture": "en-US",

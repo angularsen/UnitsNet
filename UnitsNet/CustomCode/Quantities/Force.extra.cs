@@ -1,7 +1,6 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using Fractions;
 using UnitsNet.Units;
 
 namespace UnitsNet
@@ -11,7 +10,7 @@ namespace UnitsNet
         /// <summary>Get <see cref="Force"/> from <see cref="Pressure"/> divided by <see cref="Area"/>.</summary>
         public static Force FromPressureByArea(Pressure p, Area area)
         {
-            Fraction newtons = p.Pascals * area.SquareMeters;
+            QuantityValue newtons = p.Pascals * area.SquareMeters;
             return new Force(newtons, ForceUnit.Newton);
         }
 

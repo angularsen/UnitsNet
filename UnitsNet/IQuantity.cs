@@ -3,7 +3,6 @@
 
 using System;
 using System.Globalization;
-using Fractions;
 #if NET7_0_OR_GREATER
 using System.Numerics;
 #endif
@@ -32,7 +31,7 @@ namespace UnitsNet
         /// <param name="unit">The unit enum value. The unit must be compatible, so for <see cref="Length"/> you should provide a <see cref="LengthUnit"/> value.</param>
         /// <returns>Value converted to the specified unit.</returns>
         /// <exception cref="InvalidCastException">Wrong unit enum type was given.</exception>
-        Fraction As(Enum unit);
+        QuantityValue As(Enum unit);
 
         /// <summary>
         ///     Gets the value in the unit determined by the given <see cref="UnitSystem"/>. If multiple units were found for the given <see cref="UnitSystem"/>,
@@ -40,7 +39,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unitSystem">The <see cref="UnitSystem"/> to convert the quantity value to.</param>
         /// <returns>The converted value.</returns>
-        Fraction As(UnitSystem unitSystem);
+        QuantityValue As(UnitSystem unitSystem);
 
         /// <summary>
         ///     <para>
@@ -73,7 +72,7 @@ namespace UnitsNet
         /// <summary>
         ///     The value this quantity was constructed with. See also <see cref="Unit"/>.
         /// </summary>
-        Fraction Value { get; }
+        QuantityValue Value { get; }
 
         /// <summary>
         ///     Converts this <see cref="IQuantity"/> to an <see cref="IQuantity"/> in the given <paramref name="unit"/>.
@@ -118,7 +117,7 @@ namespace UnitsNet
         ///     Convert to a unit representation <typeparamref name="TUnitType"/>.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        Fraction As(TUnitType unit);
+        QuantityValue As(TUnitType unit);
 
         /// <inheritdoc cref="IQuantity.Unit"/>
         new TUnitType Unit { get; }

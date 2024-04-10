@@ -15,7 +15,9 @@ internal record CustomFunction(string Name, CompositeExpression Terms, params st
 
     public override string ToString()
     {
-        return $"{Name}({Terms})";
+        if(AdditionalParameters.Length == 0)
+            return $"{Name}({Terms})";
+        return $"{Name}({Terms}, {string.Join(", ", AdditionalParameters)})";
     }
 
     #endregion

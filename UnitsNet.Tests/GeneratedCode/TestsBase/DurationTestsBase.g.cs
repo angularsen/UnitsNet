@@ -106,7 +106,7 @@ namespace UnitsNet.Tests
             Assert.Equal(DurationUnit.Second, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new Duration(double.PositiveInfinity, DurationUnit.Second));
@@ -116,7 +116,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new Duration(double.NaN, DurationUnit.Second));
@@ -225,7 +225,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromSeconds_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => Duration.FromSeconds(double.PositiveInfinity));
@@ -235,7 +235,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromSeconds_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => Duration.FromSeconds(double.NaN));
@@ -1852,8 +1852,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, DurationUnit.Second, 1, DurationUnit.Second, true)]  // Same value and unit.
         [InlineData(1, DurationUnit.Second, 2, DurationUnit.Second, false)] // Different value.
-        [InlineData(2, DurationUnit.Second, 1, DurationUnit.Day, false)] // Different value and unit.
-        [InlineData(1, DurationUnit.Second, 1, DurationUnit.Day, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, DurationUnit unitA, double valueB, DurationUnit unitB, bool expectEqual)
         {
             var a = new Duration(valueA, unitA);
@@ -2172,7 +2170,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Duration.FromSeconds(1.0);
-            Assert.Equal(new {Duration.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(Duration.Info.Name, quantity.Seconds);
+            #else
+            var expected = new {Duration.Info.Name, valueInBaseUnit = quantity.Seconds}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

@@ -66,7 +66,7 @@ namespace UnitsNet.Tests
             Assert.Equal(PermeabilityUnit.HenryPerMeter, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new Permeability(double.PositiveInfinity, PermeabilityUnit.HenryPerMeter));
@@ -76,7 +76,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new Permeability(double.NaN, PermeabilityUnit.HenryPerMeter));
@@ -135,7 +135,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromHenriesPerMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => Permeability.FromHenriesPerMeter(double.PositiveInfinity));
@@ -145,7 +145,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromHenriesPerMeter_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => Permeability.FromHenriesPerMeter(double.NaN));
@@ -326,7 +326,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, PermeabilityUnit.HenryPerMeter, 1, PermeabilityUnit.HenryPerMeter, true)]  // Same value and unit.
         [InlineData(1, PermeabilityUnit.HenryPerMeter, 2, PermeabilityUnit.HenryPerMeter, false)] // Different value.
-        [InlineData(2, PermeabilityUnit.HenryPerMeter, 1, PermeabilityUnit.HenryPerMeter, false)] // Different value and unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, PermeabilityUnit unitA, double valueB, PermeabilityUnit unitB, bool expectEqual)
         {
             var a = new Permeability(valueA, unitA);
@@ -625,7 +624,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Permeability.FromHenriesPerMeter(1.0);
-            Assert.Equal(new {Permeability.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(Permeability.Info.Name, quantity.HenriesPerMeter);
+            #else
+            var expected = new {Permeability.Info.Name, valueInBaseUnit = quantity.HenriesPerMeter}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

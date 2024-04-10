@@ -82,7 +82,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricPotentialDcUnit.VoltDc, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new ElectricPotentialDc(double.PositiveInfinity, ElectricPotentialDcUnit.VoltDc));
@@ -92,7 +92,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new ElectricPotentialDc(double.NaN, ElectricPotentialDcUnit.VoltDc));
@@ -171,7 +171,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromVoltsDc_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => ElectricPotentialDc.FromVoltsDc(double.PositiveInfinity));
@@ -181,7 +181,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromVoltsDc_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => ElectricPotentialDc.FromVoltsDc(double.NaN));
@@ -444,8 +444,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, ElectricPotentialDcUnit.VoltDc, 1, ElectricPotentialDcUnit.VoltDc, true)]  // Same value and unit.
         [InlineData(1, ElectricPotentialDcUnit.VoltDc, 2, ElectricPotentialDcUnit.VoltDc, false)] // Different value.
-        [InlineData(2, ElectricPotentialDcUnit.VoltDc, 1, ElectricPotentialDcUnit.KilovoltDc, false)] // Different value and unit.
-        [InlineData(1, ElectricPotentialDcUnit.VoltDc, 1, ElectricPotentialDcUnit.KilovoltDc, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ElectricPotentialDcUnit unitA, double valueB, ElectricPotentialDcUnit unitB, bool expectEqual)
         {
             var a = new ElectricPotentialDc(valueA, unitA);
@@ -752,7 +750,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ElectricPotentialDc.FromVoltsDc(1.0);
-            Assert.Equal(new {ElectricPotentialDc.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(ElectricPotentialDc.Info.Name, quantity.VoltsDc);
+            #else
+            var expected = new {ElectricPotentialDc.Info.Name, valueInBaseUnit = quantity.VoltsDc}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

@@ -258,7 +258,7 @@ namespace UnitsNet.Tests
             Assert.Equal(PressureUnit.Pascal, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new Pressure(double.PositiveInfinity, PressureUnit.Pascal));
@@ -268,7 +268,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new Pressure(double.NaN, PressureUnit.Pascal));
@@ -567,7 +567,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromPascals_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => Pressure.FromPascals(double.PositiveInfinity));
@@ -577,7 +577,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromPascals_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => Pressure.FromPascals(double.NaN));
@@ -3048,8 +3048,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, PressureUnit.Pascal, 1, PressureUnit.Pascal, true)]  // Same value and unit.
         [InlineData(1, PressureUnit.Pascal, 2, PressureUnit.Pascal, false)] // Different value.
-        [InlineData(2, PressureUnit.Pascal, 1, PressureUnit.Atmosphere, false)] // Different value and unit.
-        [InlineData(1, PressureUnit.Pascal, 1, PressureUnit.Atmosphere, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, PressureUnit unitA, double valueB, PressureUnit unitB, bool expectEqual)
         {
             var a = new Pressure(valueA, unitA);
@@ -3444,7 +3442,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Pressure.FromPascals(1.0);
-            Assert.Equal(new {Pressure.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(Pressure.Info.Name, quantity.Pascals);
+            #else
+            var expected = new {Pressure.Info.Name, valueInBaseUnit = quantity.Pascals}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

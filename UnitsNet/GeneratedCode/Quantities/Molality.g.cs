@@ -25,7 +25,6 @@ using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 using System.Numerics;
-using Fractions;
 
 #nullable enable
 
@@ -53,7 +52,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly Fraction _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -84,7 +83,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Molality(Fraction value, MolalityUnit unit)
+        public Molality(QuantityValue value, MolalityUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -98,7 +97,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Molality(Fraction value, UnitSystem unitSystem)
+        public Molality(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -149,10 +148,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public Fraction Value => _value;
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
-        Fraction IQuantity.Value => _value;
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -177,12 +176,12 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolalityUnit.MolePerGram"/>
         /// </summary>
-        public Fraction MolesPerGram => As(MolalityUnit.MolePerGram);
+        public QuantityValue MolesPerGram => As(MolalityUnit.MolePerGram);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolalityUnit.MolePerKilogram"/>
         /// </summary>
-        public Fraction MolesPerKilogram => As(MolalityUnit.MolePerKilogram);
+        public QuantityValue MolesPerKilogram => As(MolalityUnit.MolePerKilogram);
 
         #endregion
 
@@ -232,7 +231,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Molality"/> from <see cref="MolalityUnit.MolePerGram"/>.
         /// </summary>
-        public static Molality FromMolesPerGram(Fraction value)
+        public static Molality FromMolesPerGram(QuantityValue value)
         {
             return new Molality(value, MolalityUnit.MolePerGram);
         }
@@ -240,7 +239,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Molality"/> from <see cref="MolalityUnit.MolePerKilogram"/>.
         /// </summary>
-        public static Molality FromMolesPerKilogram(Fraction value)
+        public static Molality FromMolesPerKilogram(QuantityValue value)
         {
             return new Molality(value, MolalityUnit.MolePerKilogram);
         }
@@ -251,7 +250,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Molality unit value.</returns>
-        public static Molality From(Fraction value, MolalityUnit fromUnit)
+        public static Molality From(QuantityValue value, MolalityUnit fromUnit)
         {
             return new Molality(value, fromUnit);
         }
@@ -407,7 +406,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static Molality operator -(Molality right)
         {
-            return new Molality(right.Value.Invert(), right.Unit);
+            return new Molality(-right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Molality"/> from adding two <see cref="Molality"/>.</summary>
@@ -423,25 +422,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Molality"/> from multiplying value and <see cref="Molality"/>.</summary>
-        public static Molality operator *(Fraction left, Molality right)
+        public static Molality operator *(QuantityValue left, Molality right)
         {
             return new Molality(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Molality"/> from multiplying value and <see cref="Molality"/>.</summary>
-        public static Molality operator *(Molality left, Fraction right)
+        public static Molality operator *(Molality left, QuantityValue right)
         {
             return new Molality(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Molality"/> from dividing <see cref="Molality"/> by value.</summary>
-        public static Molality operator /(Molality left, Fraction right)
+        public static Molality operator /(Molality left, QuantityValue right)
         {
             return new Molality(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Molality"/> by <see cref="Molality"/>.</summary>
-        public static Fraction operator /(Molality left, Molality right)
+        public static QuantityValue operator /(Molality left, Molality right)
         {
             return left.MolesPerKilogram / right.MolesPerKilogram;
         }
@@ -500,7 +499,7 @@ namespace UnitsNet
         /// <summary>Indicates strict equality of two <see cref="Molality"/> quantities.</summary>
         public bool Equals(Molality other)
         {
-            return _value.IsEquivalentTo(other.As(this.Unit));
+            return _value.Equals(other.As(this.Unit));
         }
 
         /// <summary>Compares the current <see cref="Molality"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
@@ -585,10 +584,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: (Fraction)tolerance,
+                tolerance: (QuantityValue)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -605,7 +604,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(Molality other, Molality tolerance)
         {
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -619,7 +618,11 @@ namespace UnitsNet
         public override int GetHashCode()
         {
             var valueInBaseUnit = As(BaseUnit);
+            #if NET7_0_OR_GREATER
+            return HashCode.Combine(Info.Name, valueInBaseUnit);
+            #else
             return new { Info.Name, valueInBaseUnit }.GetHashCode();
+            #endif
         }
 
         #endregion
@@ -630,7 +633,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public Fraction As(MolalityUnit unit)
+        public QuantityValue As(MolalityUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -639,7 +642,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public Fraction As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -654,7 +657,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        Fraction IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
             if (!(unit is MolalityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolalityUnit)} is supported.", nameof(unit));

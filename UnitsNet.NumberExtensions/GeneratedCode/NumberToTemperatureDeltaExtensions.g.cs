@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureDelta
     /// </summary>
     public static class NumberToTemperatureDeltaExtensions
     {
-        /// <inheritdoc cref="TemperatureDelta.FromDegreesCelsius(double)" />
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesCelsius(QuantityValue)" />
         public static TemperatureDelta DegreesCelsius<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureDelta
 #endif
             => TemperatureDelta.FromDegreesCelsius(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureDelta.FromDegreesDelisle(double)" />
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesDelisle(QuantityValue)" />
         public static TemperatureDelta DegreesDelisle<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureDelta
 #endif
             => TemperatureDelta.FromDegreesDelisle(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureDelta.FromDegreesFahrenheit(double)" />
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesFahrenheit(QuantityValue)" />
         public static TemperatureDelta DegreesFahrenheit<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureDelta
 #endif
             => TemperatureDelta.FromDegreesFahrenheit(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureDelta.FromDegreesNewton(double)" />
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesNewton(QuantityValue)" />
         public static TemperatureDelta DegreesNewton<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureDelta
 #endif
             => TemperatureDelta.FromDegreesNewton(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureDelta.FromDegreesRankine(double)" />
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesRankine(QuantityValue)" />
         public static TemperatureDelta DegreesRankine<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureDelta
 #endif
             => TemperatureDelta.FromDegreesRankine(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureDelta.FromDegreesReaumur(double)" />
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesReaumur(QuantityValue)" />
         public static TemperatureDelta DegreesReaumur<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureDelta
 #endif
             => TemperatureDelta.FromDegreesReaumur(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureDelta.FromDegreesRoemer(double)" />
+        /// <inheritdoc cref="TemperatureDelta.FromDegreesRoemer(QuantityValue)" />
         public static TemperatureDelta DegreesRoemer<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureDelta
 #endif
             => TemperatureDelta.FromDegreesRoemer(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureDelta.FromKelvins(double)" />
+        /// <inheritdoc cref="TemperatureDelta.FromKelvins(QuantityValue)" />
         public static TemperatureDelta Kelvins<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureDelta
 #endif
             => TemperatureDelta.FromKelvins(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureDelta.FromMillidegreesCelsius(double)" />
+        /// <inheritdoc cref="TemperatureDelta.FromMillidegreesCelsius(QuantityValue)" />
         public static TemperatureDelta MillidegreesCelsius<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

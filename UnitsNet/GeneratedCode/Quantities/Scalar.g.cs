@@ -25,7 +25,6 @@ using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 using System.Numerics;
-using Fractions;
 
 #nullable enable
 
@@ -50,7 +49,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly Fraction _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -80,7 +79,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Scalar(Fraction value, ScalarUnit unit)
+        public Scalar(QuantityValue value, ScalarUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -94,7 +93,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Scalar(Fraction value, UnitSystem unitSystem)
+        public Scalar(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -145,10 +144,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public Fraction Value => _value;
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
-        Fraction IQuantity.Value => _value;
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -173,7 +172,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ScalarUnit.Amount"/>
         /// </summary>
-        public Fraction Amount => As(ScalarUnit.Amount);
+        public QuantityValue Amount => As(ScalarUnit.Amount);
 
         #endregion
 
@@ -221,7 +220,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Scalar"/> from <see cref="ScalarUnit.Amount"/>.
         /// </summary>
-        public static Scalar FromAmount(Fraction value)
+        public static Scalar FromAmount(QuantityValue value)
         {
             return new Scalar(value, ScalarUnit.Amount);
         }
@@ -232,7 +231,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Scalar unit value.</returns>
-        public static Scalar From(Fraction value, ScalarUnit fromUnit)
+        public static Scalar From(QuantityValue value, ScalarUnit fromUnit)
         {
             return new Scalar(value, fromUnit);
         }
@@ -388,7 +387,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static Scalar operator -(Scalar right)
         {
-            return new Scalar(right.Value.Invert(), right.Unit);
+            return new Scalar(-right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Scalar"/> from adding two <see cref="Scalar"/>.</summary>
@@ -404,25 +403,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Scalar"/> from multiplying value and <see cref="Scalar"/>.</summary>
-        public static Scalar operator *(Fraction left, Scalar right)
+        public static Scalar operator *(QuantityValue left, Scalar right)
         {
             return new Scalar(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Scalar"/> from multiplying value and <see cref="Scalar"/>.</summary>
-        public static Scalar operator *(Scalar left, Fraction right)
+        public static Scalar operator *(Scalar left, QuantityValue right)
         {
             return new Scalar(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Scalar"/> from dividing <see cref="Scalar"/> by value.</summary>
-        public static Scalar operator /(Scalar left, Fraction right)
+        public static Scalar operator /(Scalar left, QuantityValue right)
         {
             return new Scalar(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Scalar"/> by <see cref="Scalar"/>.</summary>
-        public static Fraction operator /(Scalar left, Scalar right)
+        public static QuantityValue operator /(Scalar left, Scalar right)
         {
             return left.Amount / right.Amount;
         }
@@ -481,7 +480,7 @@ namespace UnitsNet
         /// <summary>Indicates strict equality of two <see cref="Scalar"/> quantities.</summary>
         public bool Equals(Scalar other)
         {
-            return _value.IsEquivalentTo(other.As(this.Unit));
+            return _value.Equals(other.As(this.Unit));
         }
 
         /// <summary>Compares the current <see cref="Scalar"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
@@ -566,10 +565,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: (Fraction)tolerance,
+                tolerance: (QuantityValue)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -586,7 +585,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(Scalar other, Scalar tolerance)
         {
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -600,7 +599,11 @@ namespace UnitsNet
         public override int GetHashCode()
         {
             var valueInBaseUnit = As(BaseUnit);
+            #if NET7_0_OR_GREATER
+            return HashCode.Combine(Info.Name, valueInBaseUnit);
+            #else
             return new { Info.Name, valueInBaseUnit }.GetHashCode();
+            #endif
         }
 
         #endregion
@@ -611,7 +614,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public Fraction As(ScalarUnit unit)
+        public QuantityValue As(ScalarUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -620,7 +623,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public Fraction As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -635,7 +638,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        Fraction IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
             if (!(unit is ScalarUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ScalarUnit)} is supported.", nameof(unit));

@@ -25,7 +25,6 @@ using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 using System.Numerics;
-using Fractions;
 
 #nullable enable
 
@@ -60,7 +59,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly Fraction _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -100,7 +99,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Molarity(Fraction value, MolarityUnit unit)
+        public Molarity(QuantityValue value, MolarityUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -114,7 +113,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Molarity(Fraction value, UnitSystem unitSystem)
+        public Molarity(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -165,10 +164,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public Fraction Value => _value;
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
-        Fraction IQuantity.Value => _value;
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -193,57 +192,57 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.CentimolePerLiter"/>
         /// </summary>
-        public Fraction CentimolesPerLiter => As(MolarityUnit.CentimolePerLiter);
+        public QuantityValue CentimolesPerLiter => As(MolarityUnit.CentimolePerLiter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.DecimolePerLiter"/>
         /// </summary>
-        public Fraction DecimolesPerLiter => As(MolarityUnit.DecimolePerLiter);
+        public QuantityValue DecimolesPerLiter => As(MolarityUnit.DecimolePerLiter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.FemtomolePerLiter"/>
         /// </summary>
-        public Fraction FemtomolesPerLiter => As(MolarityUnit.FemtomolePerLiter);
+        public QuantityValue FemtomolesPerLiter => As(MolarityUnit.FemtomolePerLiter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.KilomolePerCubicMeter"/>
         /// </summary>
-        public Fraction KilomolesPerCubicMeter => As(MolarityUnit.KilomolePerCubicMeter);
+        public QuantityValue KilomolesPerCubicMeter => As(MolarityUnit.KilomolePerCubicMeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.MicromolePerLiter"/>
         /// </summary>
-        public Fraction MicromolesPerLiter => As(MolarityUnit.MicromolePerLiter);
+        public QuantityValue MicromolesPerLiter => As(MolarityUnit.MicromolePerLiter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.MillimolePerLiter"/>
         /// </summary>
-        public Fraction MillimolesPerLiter => As(MolarityUnit.MillimolePerLiter);
+        public QuantityValue MillimolesPerLiter => As(MolarityUnit.MillimolePerLiter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.MolePerCubicMeter"/>
         /// </summary>
-        public Fraction MolesPerCubicMeter => As(MolarityUnit.MolePerCubicMeter);
+        public QuantityValue MolesPerCubicMeter => As(MolarityUnit.MolePerCubicMeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.MolePerLiter"/>
         /// </summary>
-        public Fraction MolesPerLiter => As(MolarityUnit.MolePerLiter);
+        public QuantityValue MolesPerLiter => As(MolarityUnit.MolePerLiter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.NanomolePerLiter"/>
         /// </summary>
-        public Fraction NanomolesPerLiter => As(MolarityUnit.NanomolePerLiter);
+        public QuantityValue NanomolesPerLiter => As(MolarityUnit.NanomolePerLiter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.PicomolePerLiter"/>
         /// </summary>
-        public Fraction PicomolesPerLiter => As(MolarityUnit.PicomolePerLiter);
+        public QuantityValue PicomolesPerLiter => As(MolarityUnit.PicomolePerLiter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.PoundMolePerCubicFoot"/>
         /// </summary>
-        public Fraction PoundMolesPerCubicFoot => As(MolarityUnit.PoundMolePerCubicFoot);
+        public QuantityValue PoundMolesPerCubicFoot => As(MolarityUnit.PoundMolePerCubicFoot);
 
         #endregion
 
@@ -311,7 +310,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.CentimolePerLiter"/>.
         /// </summary>
-        public static Molarity FromCentimolesPerLiter(Fraction value)
+        public static Molarity FromCentimolesPerLiter(QuantityValue value)
         {
             return new Molarity(value, MolarityUnit.CentimolePerLiter);
         }
@@ -319,7 +318,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.DecimolePerLiter"/>.
         /// </summary>
-        public static Molarity FromDecimolesPerLiter(Fraction value)
+        public static Molarity FromDecimolesPerLiter(QuantityValue value)
         {
             return new Molarity(value, MolarityUnit.DecimolePerLiter);
         }
@@ -327,7 +326,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.FemtomolePerLiter"/>.
         /// </summary>
-        public static Molarity FromFemtomolesPerLiter(Fraction value)
+        public static Molarity FromFemtomolesPerLiter(QuantityValue value)
         {
             return new Molarity(value, MolarityUnit.FemtomolePerLiter);
         }
@@ -335,7 +334,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.KilomolePerCubicMeter"/>.
         /// </summary>
-        public static Molarity FromKilomolesPerCubicMeter(Fraction value)
+        public static Molarity FromKilomolesPerCubicMeter(QuantityValue value)
         {
             return new Molarity(value, MolarityUnit.KilomolePerCubicMeter);
         }
@@ -343,7 +342,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.MicromolePerLiter"/>.
         /// </summary>
-        public static Molarity FromMicromolesPerLiter(Fraction value)
+        public static Molarity FromMicromolesPerLiter(QuantityValue value)
         {
             return new Molarity(value, MolarityUnit.MicromolePerLiter);
         }
@@ -351,7 +350,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.MillimolePerLiter"/>.
         /// </summary>
-        public static Molarity FromMillimolesPerLiter(Fraction value)
+        public static Molarity FromMillimolesPerLiter(QuantityValue value)
         {
             return new Molarity(value, MolarityUnit.MillimolePerLiter);
         }
@@ -359,7 +358,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.MolePerCubicMeter"/>.
         /// </summary>
-        public static Molarity FromMolesPerCubicMeter(Fraction value)
+        public static Molarity FromMolesPerCubicMeter(QuantityValue value)
         {
             return new Molarity(value, MolarityUnit.MolePerCubicMeter);
         }
@@ -367,7 +366,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.MolePerLiter"/>.
         /// </summary>
-        public static Molarity FromMolesPerLiter(Fraction value)
+        public static Molarity FromMolesPerLiter(QuantityValue value)
         {
             return new Molarity(value, MolarityUnit.MolePerLiter);
         }
@@ -375,7 +374,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.NanomolePerLiter"/>.
         /// </summary>
-        public static Molarity FromNanomolesPerLiter(Fraction value)
+        public static Molarity FromNanomolesPerLiter(QuantityValue value)
         {
             return new Molarity(value, MolarityUnit.NanomolePerLiter);
         }
@@ -383,7 +382,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.PicomolePerLiter"/>.
         /// </summary>
-        public static Molarity FromPicomolesPerLiter(Fraction value)
+        public static Molarity FromPicomolesPerLiter(QuantityValue value)
         {
             return new Molarity(value, MolarityUnit.PicomolePerLiter);
         }
@@ -391,7 +390,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.PoundMolePerCubicFoot"/>.
         /// </summary>
-        public static Molarity FromPoundMolesPerCubicFoot(Fraction value)
+        public static Molarity FromPoundMolesPerCubicFoot(QuantityValue value)
         {
             return new Molarity(value, MolarityUnit.PoundMolePerCubicFoot);
         }
@@ -402,7 +401,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Molarity unit value.</returns>
-        public static Molarity From(Fraction value, MolarityUnit fromUnit)
+        public static Molarity From(QuantityValue value, MolarityUnit fromUnit)
         {
             return new Molarity(value, fromUnit);
         }
@@ -558,7 +557,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static Molarity operator -(Molarity right)
         {
-            return new Molarity(right.Value.Invert(), right.Unit);
+            return new Molarity(-right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Molarity"/> from adding two <see cref="Molarity"/>.</summary>
@@ -574,25 +573,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Molarity"/> from multiplying value and <see cref="Molarity"/>.</summary>
-        public static Molarity operator *(Fraction left, Molarity right)
+        public static Molarity operator *(QuantityValue left, Molarity right)
         {
             return new Molarity(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Molarity"/> from multiplying value and <see cref="Molarity"/>.</summary>
-        public static Molarity operator *(Molarity left, Fraction right)
+        public static Molarity operator *(Molarity left, QuantityValue right)
         {
             return new Molarity(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Molarity"/> from dividing <see cref="Molarity"/> by value.</summary>
-        public static Molarity operator /(Molarity left, Fraction right)
+        public static Molarity operator /(Molarity left, QuantityValue right)
         {
             return new Molarity(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Molarity"/> by <see cref="Molarity"/>.</summary>
-        public static Fraction operator /(Molarity left, Molarity right)
+        public static QuantityValue operator /(Molarity left, Molarity right)
         {
             return left.MolesPerCubicMeter / right.MolesPerCubicMeter;
         }
@@ -685,7 +684,7 @@ namespace UnitsNet
         /// <summary>Indicates strict equality of two <see cref="Molarity"/> quantities.</summary>
         public bool Equals(Molarity other)
         {
-            return _value.IsEquivalentTo(other.As(this.Unit));
+            return _value.Equals(other.As(this.Unit));
         }
 
         /// <summary>Compares the current <see cref="Molarity"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
@@ -770,10 +769,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: (Fraction)tolerance,
+                tolerance: (QuantityValue)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -790,7 +789,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(Molarity other, Molarity tolerance)
         {
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -804,7 +803,11 @@ namespace UnitsNet
         public override int GetHashCode()
         {
             var valueInBaseUnit = As(BaseUnit);
+            #if NET7_0_OR_GREATER
+            return HashCode.Combine(Info.Name, valueInBaseUnit);
+            #else
             return new { Info.Name, valueInBaseUnit }.GetHashCode();
+            #endif
         }
 
         #endregion
@@ -815,7 +818,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public Fraction As(MolarityUnit unit)
+        public QuantityValue As(MolarityUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -824,7 +827,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public Fraction As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -839,7 +842,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        Fraction IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
             if (!(unit is MolarityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarityUnit)} is supported.", nameof(unit));
@@ -914,7 +917,7 @@ namespace UnitsNet
                 (MolarityUnit.MolePerLiter, MolarityUnit.MolePerCubicMeter) => new Molarity(_value * 1000, MolarityUnit.MolePerCubicMeter),
                 (MolarityUnit.NanomolePerLiter, MolarityUnit.MolePerCubicMeter) => new Molarity(_value / 1000000, MolarityUnit.MolePerCubicMeter),
                 (MolarityUnit.PicomolePerLiter, MolarityUnit.MolePerCubicMeter) => new Molarity(_value / 1000000000, MolarityUnit.MolePerCubicMeter),
-                (MolarityUnit.PoundMolePerCubicFoot, MolarityUnit.MolePerCubicMeter) => new Molarity(_value * new Fraction(1765733336000000000, 110231131092439, false), MolarityUnit.MolePerCubicMeter),
+                (MolarityUnit.PoundMolePerCubicFoot, MolarityUnit.MolePerCubicMeter) => new Molarity(_value * new QuantityValue(1765733336000000000, 110231131092439, false), MolarityUnit.MolePerCubicMeter),
 
                 // BaseUnit -> MolarityUnit
                 (MolarityUnit.MolePerCubicMeter, MolarityUnit.CentimolePerLiter) => new Molarity(_value / 10, MolarityUnit.CentimolePerLiter),
@@ -926,7 +929,7 @@ namespace UnitsNet
                 (MolarityUnit.MolePerCubicMeter, MolarityUnit.MolePerLiter) => new Molarity(_value / 1000, MolarityUnit.MolePerLiter),
                 (MolarityUnit.MolePerCubicMeter, MolarityUnit.NanomolePerLiter) => new Molarity(_value * 1000000, MolarityUnit.NanomolePerLiter),
                 (MolarityUnit.MolePerCubicMeter, MolarityUnit.PicomolePerLiter) => new Molarity(_value * 1000000000, MolarityUnit.PicomolePerLiter),
-                (MolarityUnit.MolePerCubicMeter, MolarityUnit.PoundMolePerCubicFoot) => new Molarity(_value * new Fraction(110231131092439, 1765733336000000000, false), MolarityUnit.PoundMolePerCubicFoot),
+                (MolarityUnit.MolePerCubicMeter, MolarityUnit.PoundMolePerCubicFoot) => new Molarity(_value * new QuantityValue(110231131092439, 1765733336000000000, false), MolarityUnit.PoundMolePerCubicFoot),
 
                 _ => null
             };

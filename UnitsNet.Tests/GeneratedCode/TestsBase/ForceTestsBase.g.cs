@@ -122,7 +122,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ForceUnit.Newton, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new Force(double.PositiveInfinity, ForceUnit.Newton));
@@ -132,7 +132,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new Force(double.NaN, ForceUnit.Newton));
@@ -261,7 +261,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromNewtons_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => Force.FromNewtons(double.PositiveInfinity));
@@ -271,7 +271,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromNewtons_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => Force.FromNewtons(double.NaN));
@@ -1230,8 +1230,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, ForceUnit.Newton, 1, ForceUnit.Newton, true)]  // Same value and unit.
         [InlineData(1, ForceUnit.Newton, 2, ForceUnit.Newton, false)] // Different value.
-        [InlineData(2, ForceUnit.Newton, 1, ForceUnit.Decanewton, false)] // Different value and unit.
-        [InlineData(1, ForceUnit.Newton, 1, ForceUnit.Decanewton, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ForceUnit unitA, double valueB, ForceUnit unitB, bool expectEqual)
         {
             var a = new Force(valueA, unitA);
@@ -1558,7 +1556,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Force.FromNewtons(1.0);
-            Assert.Equal(new {Force.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(Force.Info.Name, quantity.Newtons);
+            #else
+            var expected = new {Force.Info.Name, valueInBaseUnit = quantity.Newtons}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

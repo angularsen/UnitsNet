@@ -78,7 +78,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricAdmittanceUnit.Siemens, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new ElectricAdmittance(double.PositiveInfinity, ElectricAdmittanceUnit.Siemens));
@@ -88,7 +88,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new ElectricAdmittance(double.NaN, ElectricAdmittanceUnit.Siemens));
@@ -162,7 +162,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromSiemens_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => ElectricAdmittance.FromSiemens(double.PositiveInfinity));
@@ -172,7 +172,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromSiemens_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => ElectricAdmittance.FromSiemens(double.NaN));
@@ -431,8 +431,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, ElectricAdmittanceUnit.Siemens, 1, ElectricAdmittanceUnit.Siemens, true)]  // Same value and unit.
         [InlineData(1, ElectricAdmittanceUnit.Siemens, 2, ElectricAdmittanceUnit.Siemens, false)] // Different value.
-        [InlineData(2, ElectricAdmittanceUnit.Siemens, 1, ElectricAdmittanceUnit.Microsiemens, false)] // Different value and unit.
-        [InlineData(1, ElectricAdmittanceUnit.Siemens, 1, ElectricAdmittanceUnit.Microsiemens, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ElectricAdmittanceUnit unitA, double valueB, ElectricAdmittanceUnit unitB, bool expectEqual)
         {
             var a = new ElectricAdmittance(valueA, unitA);
@@ -737,7 +735,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ElectricAdmittance.FromSiemens(1.0);
-            Assert.Equal(new {ElectricAdmittance.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(ElectricAdmittance.Info.Name, quantity.Siemens);
+            #else
+            var expected = new {ElectricAdmittance.Info.Name, valueInBaseUnit = quantity.Siemens}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

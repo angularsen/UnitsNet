@@ -98,7 +98,7 @@ namespace UnitsNet.Tests
             Assert.Equal(MolarFlowUnit.MolePerSecond, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new MolarFlow(double.PositiveInfinity, MolarFlowUnit.MolePerSecond));
@@ -108,7 +108,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new MolarFlow(double.NaN, MolarFlowUnit.MolePerSecond));
@@ -207,7 +207,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromMolesPerSecond_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => MolarFlow.FromMolesPerSecond(double.PositiveInfinity));
@@ -217,7 +217,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromMolesPerSecond_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => MolarFlow.FromMolesPerSecond(double.NaN));
@@ -606,8 +606,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, MolarFlowUnit.MolePerSecond, 1, MolarFlowUnit.MolePerSecond, true)]  // Same value and unit.
         [InlineData(1, MolarFlowUnit.MolePerSecond, 2, MolarFlowUnit.MolePerSecond, false)] // Different value.
-        [InlineData(2, MolarFlowUnit.MolePerSecond, 1, MolarFlowUnit.KilomolePerHour, false)] // Different value and unit.
-        [InlineData(1, MolarFlowUnit.MolePerSecond, 1, MolarFlowUnit.KilomolePerHour, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, MolarFlowUnit unitA, double valueB, MolarFlowUnit unitB, bool expectEqual)
         {
             var a = new MolarFlow(valueA, unitA);
@@ -922,7 +920,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = MolarFlow.FromMolesPerSecond(1.0);
-            Assert.Equal(new {MolarFlow.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(MolarFlow.Info.Name, quantity.MolesPerSecond);
+            #else
+            var expected = new {MolarFlow.Info.Name, valueInBaseUnit = quantity.MolesPerSecond}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

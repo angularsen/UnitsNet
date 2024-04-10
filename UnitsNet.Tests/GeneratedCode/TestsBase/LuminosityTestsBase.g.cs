@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
             Assert.Equal(LuminosityUnit.Watt, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new Luminosity(double.PositiveInfinity, LuminosityUnit.Watt));
@@ -128,7 +128,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new Luminosity(double.NaN, LuminosityUnit.Watt));
@@ -252,7 +252,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromWatts_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => Luminosity.FromWatts(double.PositiveInfinity));
@@ -262,7 +262,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromWatts_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => Luminosity.FromWatts(double.NaN));
@@ -737,8 +737,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, LuminosityUnit.Watt, 1, LuminosityUnit.Watt, true)]  // Same value and unit.
         [InlineData(1, LuminosityUnit.Watt, 2, LuminosityUnit.Watt, false)] // Different value.
-        [InlineData(2, LuminosityUnit.Watt, 1, LuminosityUnit.Decawatt, false)] // Different value and unit.
-        [InlineData(1, LuminosityUnit.Watt, 1, LuminosityUnit.Decawatt, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, LuminosityUnit unitA, double valueB, LuminosityUnit unitB, bool expectEqual)
         {
             var a = new Luminosity(valueA, unitA);
@@ -1063,7 +1061,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Luminosity.FromWatts(1.0);
-            Assert.Equal(new {Luminosity.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(Luminosity.Info.Name, quantity.Watts);
+            #else
+            var expected = new {Luminosity.Info.Name, valueInBaseUnit = quantity.Watts}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

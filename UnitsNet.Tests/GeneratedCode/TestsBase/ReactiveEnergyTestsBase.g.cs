@@ -74,7 +74,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ReactiveEnergyUnit.VoltampereReactiveHour, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new ReactiveEnergy(double.PositiveInfinity, ReactiveEnergyUnit.VoltampereReactiveHour));
@@ -84,7 +84,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new ReactiveEnergy(double.NaN, ReactiveEnergyUnit.VoltampereReactiveHour));
@@ -153,7 +153,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromVoltampereReactiveHours_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => ReactiveEnergy.FromVoltampereReactiveHours(double.PositiveInfinity));
@@ -163,7 +163,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromVoltampereReactiveHours_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => ReactiveEnergy.FromVoltampereReactiveHours(double.NaN));
@@ -396,8 +396,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, ReactiveEnergyUnit.VoltampereReactiveHour, 1, ReactiveEnergyUnit.VoltampereReactiveHour, true)]  // Same value and unit.
         [InlineData(1, ReactiveEnergyUnit.VoltampereReactiveHour, 2, ReactiveEnergyUnit.VoltampereReactiveHour, false)] // Different value.
-        [InlineData(2, ReactiveEnergyUnit.VoltampereReactiveHour, 1, ReactiveEnergyUnit.KilovoltampereReactiveHour, false)] // Different value and unit.
-        [InlineData(1, ReactiveEnergyUnit.VoltampereReactiveHour, 1, ReactiveEnergyUnit.KilovoltampereReactiveHour, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ReactiveEnergyUnit unitA, double valueB, ReactiveEnergyUnit unitB, bool expectEqual)
         {
             var a = new ReactiveEnergy(valueA, unitA);
@@ -700,7 +698,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ReactiveEnergy.FromVoltampereReactiveHours(1.0);
-            Assert.Equal(new {ReactiveEnergy.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(ReactiveEnergy.Info.Name, quantity.VoltampereReactiveHours);
+            #else
+            var expected = new {ReactiveEnergy.Info.Name, valueInBaseUnit = quantity.VoltampereReactiveHours}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

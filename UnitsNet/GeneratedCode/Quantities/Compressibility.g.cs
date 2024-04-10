@@ -25,7 +25,6 @@ using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 using System.Numerics;
-using Fractions;
 
 #nullable enable
 
@@ -50,7 +49,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly Fraction _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -86,7 +85,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Compressibility(Fraction value, CompressibilityUnit unit)
+        public Compressibility(QuantityValue value, CompressibilityUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -100,7 +99,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Compressibility(Fraction value, UnitSystem unitSystem)
+        public Compressibility(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -151,10 +150,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public Fraction Value => _value;
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
-        Fraction IQuantity.Value => _value;
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -179,37 +178,37 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CompressibilityUnit.InverseAtmosphere"/>
         /// </summary>
-        public Fraction InverseAtmospheres => As(CompressibilityUnit.InverseAtmosphere);
+        public QuantityValue InverseAtmospheres => As(CompressibilityUnit.InverseAtmosphere);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CompressibilityUnit.InverseBar"/>
         /// </summary>
-        public Fraction InverseBars => As(CompressibilityUnit.InverseBar);
+        public QuantityValue InverseBars => As(CompressibilityUnit.InverseBar);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CompressibilityUnit.InverseKilopascal"/>
         /// </summary>
-        public Fraction InverseKilopascals => As(CompressibilityUnit.InverseKilopascal);
+        public QuantityValue InverseKilopascals => As(CompressibilityUnit.InverseKilopascal);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CompressibilityUnit.InverseMegapascal"/>
         /// </summary>
-        public Fraction InverseMegapascals => As(CompressibilityUnit.InverseMegapascal);
+        public QuantityValue InverseMegapascals => As(CompressibilityUnit.InverseMegapascal);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CompressibilityUnit.InverseMillibar"/>
         /// </summary>
-        public Fraction InverseMillibars => As(CompressibilityUnit.InverseMillibar);
+        public QuantityValue InverseMillibars => As(CompressibilityUnit.InverseMillibar);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CompressibilityUnit.InversePascal"/>
         /// </summary>
-        public Fraction InversePascals => As(CompressibilityUnit.InversePascal);
+        public QuantityValue InversePascals => As(CompressibilityUnit.InversePascal);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CompressibilityUnit.InversePoundForcePerSquareInch"/>
         /// </summary>
-        public Fraction InversePoundsForcePerSquareInch => As(CompressibilityUnit.InversePoundForcePerSquareInch);
+        public QuantityValue InversePoundsForcePerSquareInch => As(CompressibilityUnit.InversePoundForcePerSquareInch);
 
         #endregion
 
@@ -269,7 +268,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InverseAtmosphere"/>.
         /// </summary>
-        public static Compressibility FromInverseAtmospheres(Fraction value)
+        public static Compressibility FromInverseAtmospheres(QuantityValue value)
         {
             return new Compressibility(value, CompressibilityUnit.InverseAtmosphere);
         }
@@ -277,7 +276,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InverseBar"/>.
         /// </summary>
-        public static Compressibility FromInverseBars(Fraction value)
+        public static Compressibility FromInverseBars(QuantityValue value)
         {
             return new Compressibility(value, CompressibilityUnit.InverseBar);
         }
@@ -285,7 +284,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InverseKilopascal"/>.
         /// </summary>
-        public static Compressibility FromInverseKilopascals(Fraction value)
+        public static Compressibility FromInverseKilopascals(QuantityValue value)
         {
             return new Compressibility(value, CompressibilityUnit.InverseKilopascal);
         }
@@ -293,7 +292,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InverseMegapascal"/>.
         /// </summary>
-        public static Compressibility FromInverseMegapascals(Fraction value)
+        public static Compressibility FromInverseMegapascals(QuantityValue value)
         {
             return new Compressibility(value, CompressibilityUnit.InverseMegapascal);
         }
@@ -301,7 +300,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InverseMillibar"/>.
         /// </summary>
-        public static Compressibility FromInverseMillibars(Fraction value)
+        public static Compressibility FromInverseMillibars(QuantityValue value)
         {
             return new Compressibility(value, CompressibilityUnit.InverseMillibar);
         }
@@ -309,7 +308,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InversePascal"/>.
         /// </summary>
-        public static Compressibility FromInversePascals(Fraction value)
+        public static Compressibility FromInversePascals(QuantityValue value)
         {
             return new Compressibility(value, CompressibilityUnit.InversePascal);
         }
@@ -317,7 +316,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InversePoundForcePerSquareInch"/>.
         /// </summary>
-        public static Compressibility FromInversePoundsForcePerSquareInch(Fraction value)
+        public static Compressibility FromInversePoundsForcePerSquareInch(QuantityValue value)
         {
             return new Compressibility(value, CompressibilityUnit.InversePoundForcePerSquareInch);
         }
@@ -328,7 +327,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Compressibility unit value.</returns>
-        public static Compressibility From(Fraction value, CompressibilityUnit fromUnit)
+        public static Compressibility From(QuantityValue value, CompressibilityUnit fromUnit)
         {
             return new Compressibility(value, fromUnit);
         }
@@ -484,7 +483,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static Compressibility operator -(Compressibility right)
         {
-            return new Compressibility(right.Value.Invert(), right.Unit);
+            return new Compressibility(-right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Compressibility"/> from adding two <see cref="Compressibility"/>.</summary>
@@ -500,25 +499,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Compressibility"/> from multiplying value and <see cref="Compressibility"/>.</summary>
-        public static Compressibility operator *(Fraction left, Compressibility right)
+        public static Compressibility operator *(QuantityValue left, Compressibility right)
         {
             return new Compressibility(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Compressibility"/> from multiplying value and <see cref="Compressibility"/>.</summary>
-        public static Compressibility operator *(Compressibility left, Fraction right)
+        public static Compressibility operator *(Compressibility left, QuantityValue right)
         {
             return new Compressibility(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Compressibility"/> from dividing <see cref="Compressibility"/> by value.</summary>
-        public static Compressibility operator /(Compressibility left, Fraction right)
+        public static Compressibility operator /(Compressibility left, QuantityValue right)
         {
             return new Compressibility(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Compressibility"/> by <see cref="Compressibility"/>.</summary>
-        public static Fraction operator /(Compressibility left, Compressibility right)
+        public static QuantityValue operator /(Compressibility left, Compressibility right)
         {
             return left.InversePascals / right.InversePascals;
         }
@@ -577,7 +576,7 @@ namespace UnitsNet
         /// <summary>Indicates strict equality of two <see cref="Compressibility"/> quantities.</summary>
         public bool Equals(Compressibility other)
         {
-            return _value.IsEquivalentTo(other.As(this.Unit));
+            return _value.Equals(other.As(this.Unit));
         }
 
         /// <summary>Compares the current <see cref="Compressibility"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
@@ -662,10 +661,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: (Fraction)tolerance,
+                tolerance: (QuantityValue)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -682,7 +681,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(Compressibility other, Compressibility tolerance)
         {
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -696,7 +695,11 @@ namespace UnitsNet
         public override int GetHashCode()
         {
             var valueInBaseUnit = As(BaseUnit);
+            #if NET7_0_OR_GREATER
+            return HashCode.Combine(Info.Name, valueInBaseUnit);
+            #else
             return new { Info.Name, valueInBaseUnit }.GetHashCode();
+            #endif
         }
 
         #endregion
@@ -707,7 +710,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public Fraction As(CompressibilityUnit unit)
+        public QuantityValue As(CompressibilityUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -716,7 +719,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public Fraction As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -731,7 +734,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        Fraction IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
             if (!(unit is CompressibilityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(CompressibilityUnit)} is supported.", nameof(unit));
@@ -802,7 +805,7 @@ namespace UnitsNet
                 (CompressibilityUnit.InverseKilopascal, CompressibilityUnit.InversePascal) => new Compressibility(_value * 1000, CompressibilityUnit.InversePascal),
                 (CompressibilityUnit.InverseMegapascal, CompressibilityUnit.InversePascal) => new Compressibility(_value * 1000000, CompressibilityUnit.InversePascal),
                 (CompressibilityUnit.InverseMillibar, CompressibilityUnit.InversePascal) => new Compressibility(_value * 100, CompressibilityUnit.InversePascal),
-                (CompressibilityUnit.InversePoundForcePerSquareInch, CompressibilityUnit.InversePascal) => new Compressibility(_value * new Fraction(6894757293168361, 1000000000000, false), CompressibilityUnit.InversePascal),
+                (CompressibilityUnit.InversePoundForcePerSquareInch, CompressibilityUnit.InversePascal) => new Compressibility(_value * new QuantityValue(6894757293168361, 1000000000000, false), CompressibilityUnit.InversePascal),
 
                 // BaseUnit -> CompressibilityUnit
                 (CompressibilityUnit.InversePascal, CompressibilityUnit.InverseAtmosphere) => new Compressibility(_value / 101325, CompressibilityUnit.InverseAtmosphere),
@@ -810,7 +813,7 @@ namespace UnitsNet
                 (CompressibilityUnit.InversePascal, CompressibilityUnit.InverseKilopascal) => new Compressibility(_value / 1000, CompressibilityUnit.InverseKilopascal),
                 (CompressibilityUnit.InversePascal, CompressibilityUnit.InverseMegapascal) => new Compressibility(_value / 1000000, CompressibilityUnit.InverseMegapascal),
                 (CompressibilityUnit.InversePascal, CompressibilityUnit.InverseMillibar) => new Compressibility(_value / 100, CompressibilityUnit.InverseMillibar),
-                (CompressibilityUnit.InversePascal, CompressibilityUnit.InversePoundForcePerSquareInch) => new Compressibility(_value * new Fraction(1000000000000, 6894757293168361, false), CompressibilityUnit.InversePoundForcePerSquareInch),
+                (CompressibilityUnit.InversePascal, CompressibilityUnit.InversePoundForcePerSquareInch) => new Compressibility(_value * new QuantityValue(1000000000000, 6894757293168361, false), CompressibilityUnit.InversePoundForcePerSquareInch),
 
                 _ => null
             };

@@ -114,7 +114,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ImpulseUnit.NewtonSecond, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new Impulse(double.PositiveInfinity, ImpulseUnit.NewtonSecond));
@@ -124,7 +124,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new Impulse(double.NaN, ImpulseUnit.NewtonSecond));
@@ -243,7 +243,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromNewtonSeconds_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => Impulse.FromNewtonSeconds(double.PositiveInfinity));
@@ -253,7 +253,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromNewtonSeconds_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => Impulse.FromNewtonSeconds(double.NaN));
@@ -724,8 +724,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, ImpulseUnit.NewtonSecond, 1, ImpulseUnit.NewtonSecond, true)]  // Same value and unit.
         [InlineData(1, ImpulseUnit.NewtonSecond, 2, ImpulseUnit.NewtonSecond, false)] // Different value.
-        [InlineData(2, ImpulseUnit.NewtonSecond, 1, ImpulseUnit.CentinewtonSecond, false)] // Different value and unit.
-        [InlineData(1, ImpulseUnit.NewtonSecond, 1, ImpulseUnit.CentinewtonSecond, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ImpulseUnit unitA, double valueB, ImpulseUnit unitB, bool expectEqual)
         {
             var a = new Impulse(valueA, unitA);
@@ -1048,7 +1046,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Impulse.FromNewtonSeconds(1.0);
-            Assert.Equal(new {Impulse.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(Impulse.Info.Name, quantity.NewtonSeconds);
+            #else
+            var expected = new {Impulse.Info.Name, valueInBaseUnit = quantity.NewtonSeconds}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

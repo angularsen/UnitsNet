@@ -1,6 +1,5 @@
 ﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
-using Fractions;
 using UnitsNet.Units;
 
 namespace UnitsNet.Benchmark
@@ -25,15 +24,15 @@ namespace UnitsNet.Benchmark
 
         [Benchmark]
         [BenchmarkCategory("Transformation")]
-        public Fraction ToProperty() => _length.Centimeters;
+        public QuantityValue ToProperty() => _length.Centimeters;
 
         [Benchmark]
         [BenchmarkCategory("Transformation, Value")]
-        public Fraction As() => _length.As(LengthUnit.Centimeter);
+        public QuantityValue As() => _length.As(LengthUnit.Centimeter);
 
         [Benchmark]
         [BenchmarkCategory("Transformation, Value")]
-        public Fraction As_SI() => _length.As(UnitSystem.SI);
+        public QuantityValue As_SI() => _length.As(UnitSystem.SI);
 
         [Benchmark]
         [BenchmarkCategory("Transformation, Quantity")]
@@ -65,11 +64,11 @@ namespace UnitsNet.Benchmark
 
         [Benchmark]
         [BenchmarkCategory("Transformation, Value")]
-        public Fraction IQuantity_As() => _lengthIQuantity.As(LengthUnit.Centimeter);
+        public QuantityValue IQuantity_As() => _lengthIQuantity.As(LengthUnit.Centimeter);
 
         [Benchmark]
         [BenchmarkCategory("Transformation, Value")]
-        public Fraction IQuantity_As_SI() => _lengthIQuantity.As(UnitSystem.SI);
+        public QuantityValue IQuantity_As_SI() => _lengthIQuantity.As(UnitSystem.SI);
 
         [Benchmark]
         [BenchmarkCategory("Transformation, Quantity")]

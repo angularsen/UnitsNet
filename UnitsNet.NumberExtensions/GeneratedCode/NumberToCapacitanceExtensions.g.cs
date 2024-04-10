@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToCapacitance
     /// </summary>
     public static class NumberToCapacitanceExtensions
     {
-        /// <inheritdoc cref="Capacitance.FromFarads(double)" />
+        /// <inheritdoc cref="Capacitance.FromFarads(QuantityValue)" />
         public static Capacitance Farads<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToCapacitance
 #endif
             => Capacitance.FromFarads(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Capacitance.FromKilofarads(double)" />
+        /// <inheritdoc cref="Capacitance.FromKilofarads(QuantityValue)" />
         public static Capacitance Kilofarads<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToCapacitance
 #endif
             => Capacitance.FromKilofarads(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Capacitance.FromMegafarads(double)" />
+        /// <inheritdoc cref="Capacitance.FromMegafarads(QuantityValue)" />
         public static Capacitance Megafarads<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToCapacitance
 #endif
             => Capacitance.FromMegafarads(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Capacitance.FromMicrofarads(double)" />
+        /// <inheritdoc cref="Capacitance.FromMicrofarads(QuantityValue)" />
         public static Capacitance Microfarads<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToCapacitance
 #endif
             => Capacitance.FromMicrofarads(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Capacitance.FromMillifarads(double)" />
+        /// <inheritdoc cref="Capacitance.FromMillifarads(QuantityValue)" />
         public static Capacitance Millifarads<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToCapacitance
 #endif
             => Capacitance.FromMillifarads(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Capacitance.FromNanofarads(double)" />
+        /// <inheritdoc cref="Capacitance.FromNanofarads(QuantityValue)" />
         public static Capacitance Nanofarads<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToCapacitance
 #endif
             => Capacitance.FromNanofarads(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Capacitance.FromPicofarads(double)" />
+        /// <inheritdoc cref="Capacitance.FromPicofarads(QuantityValue)" />
         public static Capacitance Picofarads<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

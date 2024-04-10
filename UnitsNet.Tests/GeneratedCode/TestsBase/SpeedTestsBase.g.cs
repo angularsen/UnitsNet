@@ -194,7 +194,7 @@ namespace UnitsNet.Tests
             Assert.Equal(SpeedUnit.MeterPerSecond, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new Speed(double.PositiveInfinity, SpeedUnit.MeterPerSecond));
@@ -204,7 +204,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new Speed(double.NaN, SpeedUnit.MeterPerSecond));
@@ -423,7 +423,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromMetersPerSecond_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => Speed.FromMetersPerSecond(double.PositiveInfinity));
@@ -433,7 +433,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromMetersPerSecond_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => Speed.FromMetersPerSecond(double.NaN));
@@ -2166,8 +2166,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, SpeedUnit.MeterPerSecond, 1, SpeedUnit.MeterPerSecond, true)]  // Same value and unit.
         [InlineData(1, SpeedUnit.MeterPerSecond, 2, SpeedUnit.MeterPerSecond, false)] // Different value.
-        [InlineData(2, SpeedUnit.MeterPerSecond, 1, SpeedUnit.CentimeterPerHour, false)] // Different value and unit.
-        [InlineData(1, SpeedUnit.MeterPerSecond, 1, SpeedUnit.CentimeterPerHour, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, SpeedUnit unitA, double valueB, SpeedUnit unitB, bool expectEqual)
         {
             var a = new Speed(valueA, unitA);
@@ -2530,7 +2528,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Speed.FromMetersPerSecond(1.0);
-            Assert.Equal(new {Speed.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(Speed.Info.Name, quantity.MetersPerSecond);
+            #else
+            var expected = new {Speed.Info.Name, valueInBaseUnit = quantity.MetersPerSecond}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

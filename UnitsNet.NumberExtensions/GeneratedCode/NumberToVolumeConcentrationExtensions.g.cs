@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
     /// </summary>
     public static class NumberToVolumeConcentrationExtensions
     {
-        /// <inheritdoc cref="VolumeConcentration.FromCentilitersPerLiter(double)" />
+        /// <inheritdoc cref="VolumeConcentration.FromCentilitersPerLiter(QuantityValue)" />
         public static VolumeConcentration CentilitersPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
 #endif
             => VolumeConcentration.FromCentilitersPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromCentilitersPerMililiter(double)" />
+        /// <inheritdoc cref="VolumeConcentration.FromCentilitersPerMililiter(QuantityValue)" />
         public static VolumeConcentration CentilitersPerMililiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
 #endif
             => VolumeConcentration.FromCentilitersPerMililiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromDecilitersPerLiter(double)" />
+        /// <inheritdoc cref="VolumeConcentration.FromDecilitersPerLiter(QuantityValue)" />
         public static VolumeConcentration DecilitersPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
 #endif
             => VolumeConcentration.FromDecilitersPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromDecilitersPerMililiter(double)" />
+        /// <inheritdoc cref="VolumeConcentration.FromDecilitersPerMililiter(QuantityValue)" />
         public static VolumeConcentration DecilitersPerMililiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
 #endif
             => VolumeConcentration.FromDecilitersPerMililiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromDecimalFractions(double)" />
+        /// <inheritdoc cref="VolumeConcentration.FromDecimalFractions(QuantityValue)" />
         public static VolumeConcentration DecimalFractions<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
 #endif
             => VolumeConcentration.FromDecimalFractions(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromLitersPerLiter(double)" />
+        /// <inheritdoc cref="VolumeConcentration.FromLitersPerLiter(QuantityValue)" />
         public static VolumeConcentration LitersPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
 #endif
             => VolumeConcentration.FromLitersPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromLitersPerMililiter(double)" />
+        /// <inheritdoc cref="VolumeConcentration.FromLitersPerMililiter(QuantityValue)" />
         public static VolumeConcentration LitersPerMililiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
 #endif
             => VolumeConcentration.FromLitersPerMililiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromMicrolitersPerLiter(double)" />
+        /// <inheritdoc cref="VolumeConcentration.FromMicrolitersPerLiter(QuantityValue)" />
         public static VolumeConcentration MicrolitersPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
 #endif
             => VolumeConcentration.FromMicrolitersPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromMicrolitersPerMililiter(double)" />
+        /// <inheritdoc cref="VolumeConcentration.FromMicrolitersPerMililiter(QuantityValue)" />
         public static VolumeConcentration MicrolitersPerMililiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -104,7 +104,7 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
 #endif
             => VolumeConcentration.FromMicrolitersPerMililiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromMillilitersPerLiter(double)" />
+        /// <inheritdoc cref="VolumeConcentration.FromMillilitersPerLiter(QuantityValue)" />
         public static VolumeConcentration MillilitersPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -112,7 +112,7 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
 #endif
             => VolumeConcentration.FromMillilitersPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromMillilitersPerMililiter(double)" />
+        /// <inheritdoc cref="VolumeConcentration.FromMillilitersPerMililiter(QuantityValue)" />
         public static VolumeConcentration MillilitersPerMililiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -120,7 +120,7 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
 #endif
             => VolumeConcentration.FromMillilitersPerMililiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromNanolitersPerLiter(double)" />
+        /// <inheritdoc cref="VolumeConcentration.FromNanolitersPerLiter(QuantityValue)" />
         public static VolumeConcentration NanolitersPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -128,7 +128,7 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
 #endif
             => VolumeConcentration.FromNanolitersPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromNanolitersPerMililiter(double)" />
+        /// <inheritdoc cref="VolumeConcentration.FromNanolitersPerMililiter(QuantityValue)" />
         public static VolumeConcentration NanolitersPerMililiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -136,7 +136,7 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
 #endif
             => VolumeConcentration.FromNanolitersPerMililiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromPartsPerBillion(double)" />
+        /// <inheritdoc cref="VolumeConcentration.FromPartsPerBillion(QuantityValue)" />
         public static VolumeConcentration PartsPerBillion<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -144,7 +144,7 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
 #endif
             => VolumeConcentration.FromPartsPerBillion(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromPartsPerMillion(double)" />
+        /// <inheritdoc cref="VolumeConcentration.FromPartsPerMillion(QuantityValue)" />
         public static VolumeConcentration PartsPerMillion<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -152,7 +152,7 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
 #endif
             => VolumeConcentration.FromPartsPerMillion(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromPartsPerThousand(double)" />
+        /// <inheritdoc cref="VolumeConcentration.FromPartsPerThousand(QuantityValue)" />
         public static VolumeConcentration PartsPerThousand<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -160,7 +160,7 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
 #endif
             => VolumeConcentration.FromPartsPerThousand(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromPartsPerTrillion(double)" />
+        /// <inheritdoc cref="VolumeConcentration.FromPartsPerTrillion(QuantityValue)" />
         public static VolumeConcentration PartsPerTrillion<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -168,7 +168,7 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
 #endif
             => VolumeConcentration.FromPartsPerTrillion(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromPercent(double)" />
+        /// <inheritdoc cref="VolumeConcentration.FromPercent(QuantityValue)" />
         public static VolumeConcentration Percent<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -176,7 +176,7 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
 #endif
             => VolumeConcentration.FromPercent(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromPicolitersPerLiter(double)" />
+        /// <inheritdoc cref="VolumeConcentration.FromPicolitersPerLiter(QuantityValue)" />
         public static VolumeConcentration PicolitersPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -184,7 +184,7 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
 #endif
             => VolumeConcentration.FromPicolitersPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromPicolitersPerMililiter(double)" />
+        /// <inheritdoc cref="VolumeConcentration.FromPicolitersPerMililiter(QuantityValue)" />
         public static VolumeConcentration PicolitersPerMililiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

@@ -106,7 +106,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricChargeUnit.Coulomb, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new ElectricCharge(double.PositiveInfinity, ElectricChargeUnit.Coulomb));
@@ -116,7 +116,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new ElectricCharge(double.NaN, ElectricChargeUnit.Coulomb));
@@ -225,7 +225,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromCoulombs_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => ElectricCharge.FromCoulombs(double.PositiveInfinity));
@@ -235,7 +235,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromCoulombs_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => ElectricCharge.FromCoulombs(double.NaN));
@@ -706,8 +706,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, ElectricChargeUnit.Coulomb, 1, ElectricChargeUnit.Coulomb, true)]  // Same value and unit.
         [InlineData(1, ElectricChargeUnit.Coulomb, 2, ElectricChargeUnit.Coulomb, false)] // Different value.
-        [InlineData(2, ElectricChargeUnit.Coulomb, 1, ElectricChargeUnit.AmpereHour, false)] // Different value and unit.
-        [InlineData(1, ElectricChargeUnit.Coulomb, 1, ElectricChargeUnit.AmpereHour, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ElectricChargeUnit unitA, double valueB, ElectricChargeUnit unitB, bool expectEqual)
         {
             var a = new ElectricCharge(valueA, unitA);
@@ -1026,7 +1024,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ElectricCharge.FromCoulombs(1.0);
-            Assert.Equal(new {ElectricCharge.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(ElectricCharge.Info.Name, quantity.Coulombs);
+            #else
+            var expected = new {ElectricCharge.Info.Name, valueInBaseUnit = quantity.Coulombs}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

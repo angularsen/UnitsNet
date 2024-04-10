@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
     /// </summary>
     public static class NumberToDensityExtensions
     {
-        /// <inheritdoc cref="Density.FromCentigramsPerDeciliter(double)" />
+        /// <inheritdoc cref="Density.FromCentigramsPerDeciliter(QuantityValue)" />
         public static Density CentigramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromCentigramsPerDeciliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromCentigramsPerLiter(double)" />
+        /// <inheritdoc cref="Density.FromCentigramsPerLiter(QuantityValue)" />
         public static Density CentigramsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromCentigramsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromCentigramsPerMilliliter(double)" />
+        /// <inheritdoc cref="Density.FromCentigramsPerMilliliter(QuantityValue)" />
         public static Density CentigramsPerMilliliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromCentigramsPerMilliliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromDecigramsPerDeciliter(double)" />
+        /// <inheritdoc cref="Density.FromDecigramsPerDeciliter(QuantityValue)" />
         public static Density DecigramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromDecigramsPerDeciliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromDecigramsPerLiter(double)" />
+        /// <inheritdoc cref="Density.FromDecigramsPerLiter(QuantityValue)" />
         public static Density DecigramsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromDecigramsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromDecigramsPerMilliliter(double)" />
+        /// <inheritdoc cref="Density.FromDecigramsPerMilliliter(QuantityValue)" />
         public static Density DecigramsPerMilliliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromDecigramsPerMilliliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromFemtogramsPerDeciliter(double)" />
+        /// <inheritdoc cref="Density.FromFemtogramsPerDeciliter(QuantityValue)" />
         public static Density FemtogramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromFemtogramsPerDeciliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromFemtogramsPerLiter(double)" />
+        /// <inheritdoc cref="Density.FromFemtogramsPerLiter(QuantityValue)" />
         public static Density FemtogramsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromFemtogramsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromFemtogramsPerMilliliter(double)" />
+        /// <inheritdoc cref="Density.FromFemtogramsPerMilliliter(QuantityValue)" />
         public static Density FemtogramsPerMilliliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -104,7 +104,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromFemtogramsPerMilliliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromGramsPerCubicCentimeter(double)" />
+        /// <inheritdoc cref="Density.FromGramsPerCubicCentimeter(QuantityValue)" />
         public static Density GramsPerCubicCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -112,7 +112,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromGramsPerCubicCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromGramsPerCubicFoot(double)" />
+        /// <inheritdoc cref="Density.FromGramsPerCubicFoot(QuantityValue)" />
         public static Density GramsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -120,7 +120,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromGramsPerCubicFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromGramsPerCubicInch(double)" />
+        /// <inheritdoc cref="Density.FromGramsPerCubicInch(QuantityValue)" />
         public static Density GramsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -128,7 +128,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromGramsPerCubicInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromGramsPerCubicMeter(double)" />
+        /// <inheritdoc cref="Density.FromGramsPerCubicMeter(QuantityValue)" />
         public static Density GramsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -136,7 +136,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromGramsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromGramsPerCubicMillimeter(double)" />
+        /// <inheritdoc cref="Density.FromGramsPerCubicMillimeter(QuantityValue)" />
         public static Density GramsPerCubicMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -144,7 +144,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromGramsPerCubicMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromGramsPerDeciliter(double)" />
+        /// <inheritdoc cref="Density.FromGramsPerDeciliter(QuantityValue)" />
         public static Density GramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -152,7 +152,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromGramsPerDeciliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromGramsPerLiter(double)" />
+        /// <inheritdoc cref="Density.FromGramsPerLiter(QuantityValue)" />
         public static Density GramsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -160,7 +160,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromGramsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromGramsPerMilliliter(double)" />
+        /// <inheritdoc cref="Density.FromGramsPerMilliliter(QuantityValue)" />
         public static Density GramsPerMilliliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -168,7 +168,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromGramsPerMilliliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromKilogramsPerCubicCentimeter(double)" />
+        /// <inheritdoc cref="Density.FromKilogramsPerCubicCentimeter(QuantityValue)" />
         public static Density KilogramsPerCubicCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -176,7 +176,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromKilogramsPerCubicCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromKilogramsPerCubicMeter(double)" />
+        /// <inheritdoc cref="Density.FromKilogramsPerCubicMeter(QuantityValue)" />
         public static Density KilogramsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -184,7 +184,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromKilogramsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromKilogramsPerCubicMillimeter(double)" />
+        /// <inheritdoc cref="Density.FromKilogramsPerCubicMillimeter(QuantityValue)" />
         public static Density KilogramsPerCubicMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -192,7 +192,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromKilogramsPerCubicMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromKilogramsPerLiter(double)" />
+        /// <inheritdoc cref="Density.FromKilogramsPerLiter(QuantityValue)" />
         public static Density KilogramsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -200,7 +200,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromKilogramsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromKilopoundsPerCubicFoot(double)" />
+        /// <inheritdoc cref="Density.FromKilopoundsPerCubicFoot(QuantityValue)" />
         public static Density KilopoundsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -208,7 +208,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromKilopoundsPerCubicFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromKilopoundsPerCubicInch(double)" />
+        /// <inheritdoc cref="Density.FromKilopoundsPerCubicInch(QuantityValue)" />
         public static Density KilopoundsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -216,7 +216,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromKilopoundsPerCubicInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromKilopoundsPerCubicYard(double)" />
+        /// <inheritdoc cref="Density.FromKilopoundsPerCubicYard(QuantityValue)" />
         public static Density KilopoundsPerCubicYard<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -224,7 +224,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromKilopoundsPerCubicYard(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromMicrogramsPerCubicMeter(double)" />
+        /// <inheritdoc cref="Density.FromMicrogramsPerCubicMeter(QuantityValue)" />
         public static Density MicrogramsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -232,7 +232,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromMicrogramsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromMicrogramsPerDeciliter(double)" />
+        /// <inheritdoc cref="Density.FromMicrogramsPerDeciliter(QuantityValue)" />
         public static Density MicrogramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -240,7 +240,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromMicrogramsPerDeciliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromMicrogramsPerLiter(double)" />
+        /// <inheritdoc cref="Density.FromMicrogramsPerLiter(QuantityValue)" />
         public static Density MicrogramsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -248,7 +248,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromMicrogramsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromMicrogramsPerMilliliter(double)" />
+        /// <inheritdoc cref="Density.FromMicrogramsPerMilliliter(QuantityValue)" />
         public static Density MicrogramsPerMilliliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -256,7 +256,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromMicrogramsPerMilliliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromMilligramsPerCubicMeter(double)" />
+        /// <inheritdoc cref="Density.FromMilligramsPerCubicMeter(QuantityValue)" />
         public static Density MilligramsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -264,7 +264,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromMilligramsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromMilligramsPerDeciliter(double)" />
+        /// <inheritdoc cref="Density.FromMilligramsPerDeciliter(QuantityValue)" />
         public static Density MilligramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -272,7 +272,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromMilligramsPerDeciliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromMilligramsPerLiter(double)" />
+        /// <inheritdoc cref="Density.FromMilligramsPerLiter(QuantityValue)" />
         public static Density MilligramsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -280,7 +280,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromMilligramsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromMilligramsPerMilliliter(double)" />
+        /// <inheritdoc cref="Density.FromMilligramsPerMilliliter(QuantityValue)" />
         public static Density MilligramsPerMilliliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -288,7 +288,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromMilligramsPerMilliliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromNanogramsPerDeciliter(double)" />
+        /// <inheritdoc cref="Density.FromNanogramsPerDeciliter(QuantityValue)" />
         public static Density NanogramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -296,7 +296,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromNanogramsPerDeciliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromNanogramsPerLiter(double)" />
+        /// <inheritdoc cref="Density.FromNanogramsPerLiter(QuantityValue)" />
         public static Density NanogramsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -304,7 +304,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromNanogramsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromNanogramsPerMilliliter(double)" />
+        /// <inheritdoc cref="Density.FromNanogramsPerMilliliter(QuantityValue)" />
         public static Density NanogramsPerMilliliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -312,7 +312,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromNanogramsPerMilliliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromPicogramsPerDeciliter(double)" />
+        /// <inheritdoc cref="Density.FromPicogramsPerDeciliter(QuantityValue)" />
         public static Density PicogramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -320,7 +320,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromPicogramsPerDeciliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromPicogramsPerLiter(double)" />
+        /// <inheritdoc cref="Density.FromPicogramsPerLiter(QuantityValue)" />
         public static Density PicogramsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -328,7 +328,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromPicogramsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromPicogramsPerMilliliter(double)" />
+        /// <inheritdoc cref="Density.FromPicogramsPerMilliliter(QuantityValue)" />
         public static Density PicogramsPerMilliliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -336,7 +336,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromPicogramsPerMilliliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromPoundsPerCubicCentimeter(double)" />
+        /// <inheritdoc cref="Density.FromPoundsPerCubicCentimeter(QuantityValue)" />
         public static Density PoundsPerCubicCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -344,7 +344,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromPoundsPerCubicCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromPoundsPerCubicFoot(double)" />
+        /// <inheritdoc cref="Density.FromPoundsPerCubicFoot(QuantityValue)" />
         public static Density PoundsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -352,7 +352,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromPoundsPerCubicFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromPoundsPerCubicInch(double)" />
+        /// <inheritdoc cref="Density.FromPoundsPerCubicInch(QuantityValue)" />
         public static Density PoundsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -360,7 +360,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromPoundsPerCubicInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromPoundsPerCubicMeter(double)" />
+        /// <inheritdoc cref="Density.FromPoundsPerCubicMeter(QuantityValue)" />
         public static Density PoundsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -368,7 +368,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromPoundsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromPoundsPerCubicMillimeter(double)" />
+        /// <inheritdoc cref="Density.FromPoundsPerCubicMillimeter(QuantityValue)" />
         public static Density PoundsPerCubicMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -376,7 +376,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromPoundsPerCubicMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromPoundsPerCubicYard(double)" />
+        /// <inheritdoc cref="Density.FromPoundsPerCubicYard(QuantityValue)" />
         public static Density PoundsPerCubicYard<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -384,7 +384,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromPoundsPerCubicYard(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(double)" />
+        /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(QuantityValue)" />
         public static Density PoundsPerImperialGallon<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -392,7 +392,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromPoundsPerImperialGallon(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromPoundsPerUSGallon(double)" />
+        /// <inheritdoc cref="Density.FromPoundsPerUSGallon(QuantityValue)" />
         public static Density PoundsPerUSGallon<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -400,7 +400,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromPoundsPerUSGallon(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromSlugsPerCubicCentimeter(double)" />
+        /// <inheritdoc cref="Density.FromSlugsPerCubicCentimeter(QuantityValue)" />
         public static Density SlugsPerCubicCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -408,7 +408,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromSlugsPerCubicCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromSlugsPerCubicFoot(double)" />
+        /// <inheritdoc cref="Density.FromSlugsPerCubicFoot(QuantityValue)" />
         public static Density SlugsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -416,7 +416,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromSlugsPerCubicFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromSlugsPerCubicInch(double)" />
+        /// <inheritdoc cref="Density.FromSlugsPerCubicInch(QuantityValue)" />
         public static Density SlugsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -424,7 +424,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromSlugsPerCubicInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromSlugsPerCubicMeter(double)" />
+        /// <inheritdoc cref="Density.FromSlugsPerCubicMeter(QuantityValue)" />
         public static Density SlugsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -432,7 +432,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromSlugsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromSlugsPerCubicMillimeter(double)" />
+        /// <inheritdoc cref="Density.FromSlugsPerCubicMillimeter(QuantityValue)" />
         public static Density SlugsPerCubicMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -440,7 +440,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromSlugsPerCubicMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromTonnesPerCubicCentimeter(double)" />
+        /// <inheritdoc cref="Density.FromTonnesPerCubicCentimeter(QuantityValue)" />
         public static Density TonnesPerCubicCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -448,7 +448,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromTonnesPerCubicCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromTonnesPerCubicFoot(double)" />
+        /// <inheritdoc cref="Density.FromTonnesPerCubicFoot(QuantityValue)" />
         public static Density TonnesPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -456,7 +456,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromTonnesPerCubicFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromTonnesPerCubicInch(double)" />
+        /// <inheritdoc cref="Density.FromTonnesPerCubicInch(QuantityValue)" />
         public static Density TonnesPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -464,7 +464,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromTonnesPerCubicInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromTonnesPerCubicMeter(double)" />
+        /// <inheritdoc cref="Density.FromTonnesPerCubicMeter(QuantityValue)" />
         public static Density TonnesPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -472,7 +472,7 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
 #endif
             => Density.FromTonnesPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Density.FromTonnesPerCubicMillimeter(double)" />
+        /// <inheritdoc cref="Density.FromTonnesPerCubicMillimeter(QuantityValue)" />
         public static Density TonnesPerCubicMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

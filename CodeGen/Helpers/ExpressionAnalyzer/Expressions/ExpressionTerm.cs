@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Numerics;
+using CodeGen.Helpers.ExpressionAnalyzer.Functions.Math;
 using Fractions;
 
 namespace CodeGen.Helpers.ExpressionAnalyzer.Expressions;
@@ -15,6 +16,8 @@ namespace CodeGen.Helpers.ExpressionAnalyzer.Expressions;
 internal record ExpressionTerm(Fraction Coefficient, Fraction Exponent, CustomFunction? NestedFunction = null) : IComparable<ExpressionTerm>, IComparable
 {
     public bool IsRational => NestedFunction is null && Exponent.Denominator <= BigInteger.One;
+
+    public bool IsConstant => NestedFunction is null && Exponent == Fraction.Zero;
 
     public ExpressionTerm Negate()
     {
@@ -52,22 +55,24 @@ internal record ExpressionTerm(Fraction Coefficient, Fraction Exponent, CustomFu
 
     public override string ToString()
     {
+        var coefficientFormat = Coefficient == Fraction.One ? "" :
+            Coefficient == Fraction.MinusOne ? "-" : $"{Coefficient.ToDouble()} * ";
         if (NestedFunction == null)
         {
             if (Exponent == Fraction.Zero)
             {
-                return $"{Coefficient}";
+                return $"{Coefficient.ToDouble()}";
             }
 
             if (Exponent == Fraction.One)
             {
-                return $"({Coefficient})x";
+                return $"{coefficientFormat}x";
             }
 
-            return $"({Coefficient})x^{Exponent}";
+            return $"{coefficientFormat}x^{Exponent.ToDouble()}";
         }
 
-        return $"({Coefficient}){NestedFunction}";
+        return $"{coefficientFormat}{NestedFunction}";
     }
 
     #endregion
@@ -81,7 +86,7 @@ internal record ExpressionTerm(Fraction Coefficient, Fraction Exponent, CustomFu
 
         return IsRational
             ? Constant(Coefficient * Fraction.Pow(x, Exponent.ToInt32()))
-            : Constant(Coefficient * Fraction.FromDoubleRounded(Math.Pow(x.ToDouble(), Exponent.ToDouble())));
+            : Constant(Coefficient * FractionExtensions.FromDoubleRounded(Math.Pow(x.ToDouble(), Exponent.ToDouble())));
     }
 
     #region Relational members

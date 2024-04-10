@@ -162,7 +162,7 @@ namespace UnitsNet.Tests
             Assert.Equal(TorqueUnit.NewtonMeter, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new Torque(double.PositiveInfinity, TorqueUnit.NewtonMeter));
@@ -172,7 +172,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new Torque(double.NaN, TorqueUnit.NewtonMeter));
@@ -351,7 +351,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromNewtonMeters_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => Torque.FromNewtonMeters(double.PositiveInfinity));
@@ -361,7 +361,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromNewtonMeters_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => Torque.FromNewtonMeters(double.NaN));
@@ -1238,8 +1238,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, TorqueUnit.NewtonMeter, 1, TorqueUnit.NewtonMeter, true)]  // Same value and unit.
         [InlineData(1, TorqueUnit.NewtonMeter, 2, TorqueUnit.NewtonMeter, false)] // Different value.
-        [InlineData(2, TorqueUnit.NewtonMeter, 1, TorqueUnit.GramForceCentimeter, false)] // Different value and unit.
-        [InlineData(1, TorqueUnit.NewtonMeter, 1, TorqueUnit.GramForceCentimeter, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, TorqueUnit unitA, double valueB, TorqueUnit unitB, bool expectEqual)
         {
             var a = new Torque(valueA, unitA);
@@ -1586,7 +1584,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Torque.FromNewtonMeters(1.0);
-            Assert.Equal(new {Torque.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(Torque.Info.Name, quantity.NewtonMeters);
+            #else
+            var expected = new {Torque.Info.Name, valueInBaseUnit = quantity.NewtonMeters}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

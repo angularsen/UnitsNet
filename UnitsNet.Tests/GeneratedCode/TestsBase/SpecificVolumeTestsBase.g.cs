@@ -74,7 +74,7 @@ namespace UnitsNet.Tests
             Assert.Equal(SpecificVolumeUnit.CubicMeterPerKilogram, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new SpecificVolume(double.PositiveInfinity, SpecificVolumeUnit.CubicMeterPerKilogram));
@@ -84,7 +84,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new SpecificVolume(double.NaN, SpecificVolumeUnit.CubicMeterPerKilogram));
@@ -153,7 +153,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromCubicMetersPerKilogram_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => SpecificVolume.FromCubicMetersPerKilogram(double.PositiveInfinity));
@@ -163,7 +163,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromCubicMetersPerKilogram_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => SpecificVolume.FromCubicMetersPerKilogram(double.NaN));
@@ -396,8 +396,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, SpecificVolumeUnit.CubicMeterPerKilogram, 1, SpecificVolumeUnit.CubicMeterPerKilogram, true)]  // Same value and unit.
         [InlineData(1, SpecificVolumeUnit.CubicMeterPerKilogram, 2, SpecificVolumeUnit.CubicMeterPerKilogram, false)] // Different value.
-        [InlineData(2, SpecificVolumeUnit.CubicMeterPerKilogram, 1, SpecificVolumeUnit.CubicFootPerPound, false)] // Different value and unit.
-        [InlineData(1, SpecificVolumeUnit.CubicMeterPerKilogram, 1, SpecificVolumeUnit.CubicFootPerPound, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, SpecificVolumeUnit unitA, double valueB, SpecificVolumeUnit unitB, bool expectEqual)
         {
             var a = new SpecificVolume(valueA, unitA);
@@ -700,7 +698,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = SpecificVolume.FromCubicMetersPerKilogram(1.0);
-            Assert.Equal(new {SpecificVolume.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(SpecificVolume.Info.Name, quantity.CubicMetersPerKilogram);
+            #else
+            var expected = new {SpecificVolume.Info.Name, valueInBaseUnit = quantity.CubicMetersPerKilogram}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

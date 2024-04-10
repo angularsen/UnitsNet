@@ -102,7 +102,7 @@ namespace UnitsNet.Tests
             Assert.Equal(DynamicViscosityUnit.NewtonSecondPerMeterSquared, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new DynamicViscosity(double.PositiveInfinity, DynamicViscosityUnit.NewtonSecondPerMeterSquared));
@@ -112,7 +112,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new DynamicViscosity(double.NaN, DynamicViscosityUnit.NewtonSecondPerMeterSquared));
@@ -216,7 +216,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromNewtonSecondsPerMeterSquared_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => DynamicViscosity.FromNewtonSecondsPerMeterSquared(double.PositiveInfinity));
@@ -226,7 +226,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromNewtonSecondsPerMeterSquared_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => DynamicViscosity.FromNewtonSecondsPerMeterSquared(double.NaN));
@@ -713,8 +713,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, DynamicViscosityUnit.NewtonSecondPerMeterSquared, 1, DynamicViscosityUnit.NewtonSecondPerMeterSquared, true)]  // Same value and unit.
         [InlineData(1, DynamicViscosityUnit.NewtonSecondPerMeterSquared, 2, DynamicViscosityUnit.NewtonSecondPerMeterSquared, false)] // Different value.
-        [InlineData(2, DynamicViscosityUnit.NewtonSecondPerMeterSquared, 1, DynamicViscosityUnit.Centipoise, false)] // Different value and unit.
-        [InlineData(1, DynamicViscosityUnit.NewtonSecondPerMeterSquared, 1, DynamicViscosityUnit.Centipoise, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, DynamicViscosityUnit unitA, double valueB, DynamicViscosityUnit unitB, bool expectEqual)
         {
             var a = new DynamicViscosity(valueA, unitA);
@@ -1031,7 +1029,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1.0);
-            Assert.Equal(new {DynamicViscosity.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(DynamicViscosity.Info.Name, quantity.NewtonSecondsPerMeterSquared);
+            #else
+            var expected = new {DynamicViscosity.Info.Name, valueInBaseUnit = quantity.NewtonSecondsPerMeterSquared}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

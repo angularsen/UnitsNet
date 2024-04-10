@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductance
     /// </summary>
     public static class NumberToElectricConductanceExtensions
     {
-        /// <inheritdoc cref="ElectricConductance.FromKilosiemens(double)" />
+        /// <inheritdoc cref="ElectricConductance.FromKilosiemens(QuantityValue)" />
         public static ElectricConductance Kilosiemens<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductance
 #endif
             => ElectricConductance.FromKilosiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(double)" />
+        /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(QuantityValue)" />
         public static ElectricConductance Microsiemens<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductance
 #endif
             => ElectricConductance.FromMicrosiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductance.FromMillisiemens(double)" />
+        /// <inheritdoc cref="ElectricConductance.FromMillisiemens(QuantityValue)" />
         public static ElectricConductance Millisiemens<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductance
 #endif
             => ElectricConductance.FromMillisiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductance.FromNanosiemens(double)" />
+        /// <inheritdoc cref="ElectricConductance.FromNanosiemens(QuantityValue)" />
         public static ElectricConductance Nanosiemens<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductance
 #endif
             => ElectricConductance.FromNanosiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductance.FromSiemens(double)" />
+        /// <inheritdoc cref="ElectricConductance.FromSiemens(QuantityValue)" />
         public static ElectricConductance Siemens<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

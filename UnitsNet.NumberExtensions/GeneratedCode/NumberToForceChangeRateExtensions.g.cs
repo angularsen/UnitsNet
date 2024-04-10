@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToForceChangeRate
     /// </summary>
     public static class NumberToForceChangeRateExtensions
     {
-        /// <inheritdoc cref="ForceChangeRate.FromCentinewtonsPerSecond(double)" />
+        /// <inheritdoc cref="ForceChangeRate.FromCentinewtonsPerSecond(QuantityValue)" />
         public static ForceChangeRate CentinewtonsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToForceChangeRate
 #endif
             => ForceChangeRate.FromCentinewtonsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerMinute(double)" />
+        /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerMinute(QuantityValue)" />
         public static ForceChangeRate DecanewtonsPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToForceChangeRate
 #endif
             => ForceChangeRate.FromDecanewtonsPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerSecond(double)" />
+        /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerSecond(QuantityValue)" />
         public static ForceChangeRate DecanewtonsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToForceChangeRate
 #endif
             => ForceChangeRate.FromDecanewtonsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForceChangeRate.FromDecinewtonsPerSecond(double)" />
+        /// <inheritdoc cref="ForceChangeRate.FromDecinewtonsPerSecond(QuantityValue)" />
         public static ForceChangeRate DecinewtonsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToForceChangeRate
 #endif
             => ForceChangeRate.FromDecinewtonsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerMinute(double)" />
+        /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerMinute(QuantityValue)" />
         public static ForceChangeRate KilonewtonsPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToForceChangeRate
 #endif
             => ForceChangeRate.FromKilonewtonsPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerSecond(double)" />
+        /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerSecond(QuantityValue)" />
         public static ForceChangeRate KilonewtonsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToForceChangeRate
 #endif
             => ForceChangeRate.FromKilonewtonsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForceChangeRate.FromKilopoundsForcePerMinute(double)" />
+        /// <inheritdoc cref="ForceChangeRate.FromKilopoundsForcePerMinute(QuantityValue)" />
         public static ForceChangeRate KilopoundsForcePerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToForceChangeRate
 #endif
             => ForceChangeRate.FromKilopoundsForcePerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForceChangeRate.FromKilopoundsForcePerSecond(double)" />
+        /// <inheritdoc cref="ForceChangeRate.FromKilopoundsForcePerSecond(QuantityValue)" />
         public static ForceChangeRate KilopoundsForcePerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToForceChangeRate
 #endif
             => ForceChangeRate.FromKilopoundsForcePerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForceChangeRate.FromMicronewtonsPerSecond(double)" />
+        /// <inheritdoc cref="ForceChangeRate.FromMicronewtonsPerSecond(QuantityValue)" />
         public static ForceChangeRate MicronewtonsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -104,7 +104,7 @@ namespace UnitsNet.NumberExtensions.NumberToForceChangeRate
 #endif
             => ForceChangeRate.FromMicronewtonsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForceChangeRate.FromMillinewtonsPerSecond(double)" />
+        /// <inheritdoc cref="ForceChangeRate.FromMillinewtonsPerSecond(QuantityValue)" />
         public static ForceChangeRate MillinewtonsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -112,7 +112,7 @@ namespace UnitsNet.NumberExtensions.NumberToForceChangeRate
 #endif
             => ForceChangeRate.FromMillinewtonsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForceChangeRate.FromNanonewtonsPerSecond(double)" />
+        /// <inheritdoc cref="ForceChangeRate.FromNanonewtonsPerSecond(QuantityValue)" />
         public static ForceChangeRate NanonewtonsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -120,7 +120,7 @@ namespace UnitsNet.NumberExtensions.NumberToForceChangeRate
 #endif
             => ForceChangeRate.FromNanonewtonsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerMinute(double)" />
+        /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerMinute(QuantityValue)" />
         public static ForceChangeRate NewtonsPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -128,7 +128,7 @@ namespace UnitsNet.NumberExtensions.NumberToForceChangeRate
 #endif
             => ForceChangeRate.FromNewtonsPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerSecond(double)" />
+        /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerSecond(QuantityValue)" />
         public static ForceChangeRate NewtonsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -136,7 +136,7 @@ namespace UnitsNet.NumberExtensions.NumberToForceChangeRate
 #endif
             => ForceChangeRate.FromNewtonsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForceChangeRate.FromPoundsForcePerMinute(double)" />
+        /// <inheritdoc cref="ForceChangeRate.FromPoundsForcePerMinute(QuantityValue)" />
         public static ForceChangeRate PoundsForcePerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -144,7 +144,7 @@ namespace UnitsNet.NumberExtensions.NumberToForceChangeRate
 #endif
             => ForceChangeRate.FromPoundsForcePerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForceChangeRate.FromPoundsForcePerSecond(double)" />
+        /// <inheritdoc cref="ForceChangeRate.FromPoundsForcePerSecond(QuantityValue)" />
         public static ForceChangeRate PoundsForcePerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

@@ -7,7 +7,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Fractions;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -18,7 +17,7 @@ namespace UnitsNet
     /// </summary>
     /// <typeparam name="TQuantity">The type of quantity to create, such as <see cref="Length"/>.</typeparam>
     /// <typeparam name="TUnitType">The type of unit enum that belongs to this quantity, such as <see cref="LengthUnit"/> for <see cref="Length"/>.</typeparam>
-    public delegate TQuantity QuantityFromDelegate<out TQuantity, in TUnitType>(Fraction value, TUnitType fromUnit)
+    public delegate TQuantity QuantityFromDelegate<out TQuantity, in TUnitType>(QuantityValue value, TUnitType fromUnit)
         where TQuantity : IQuantity
         where TUnitType : Enum;
 
@@ -184,8 +183,8 @@ namespace UnitsNet
             where TQuantity : IQuantity
             where TUnitType : Enum
         {
-            var value = Fraction.FromString(valueString, ParseNumberStyles, formatProvider); 
-            var parsedUnit = _unitParser.Parse<TUnitType>(unitString, formatProvider);
+            var value = QuantityValue.Parse(valueString, ParseNumberStyles, formatProvider); 
+            TUnitType parsedUnit = _unitParser.Parse<TUnitType>(unitString, formatProvider);
             return fromDelegate(value, parsedUnit);
         }
 
@@ -203,11 +202,15 @@ namespace UnitsNet
         {
             result = default;
 
-            if (!Fraction.TryParse(valueString, ParseNumberStyles, formatProvider, out var value))
-                    return false;
+            if (!QuantityValue.TryParse(valueString, ParseNumberStyles, formatProvider, out QuantityValue value))
+            {
+                return false;
+            }
 
-            if (!_unitParser.TryParse<TUnitType>(unitString, formatProvider, out var parsedUnit))
-                    return false;
+            if (!_unitParser.TryParse(unitString, formatProvider, out TUnitType parsedUnit))
+            {
+                return false;
+            }
 
             result = fromDelegate(value, parsedUnit);
             return true;
@@ -219,7 +222,7 @@ namespace UnitsNet
 
             // the regex coming in contains all allowed units as strings.
             // That means if the unit in str is not formatted right
-            // the regex.Match will ether put str or string.empty into Groups[0] and Groups[1]
+            // the regex.Match will either put str or string.empty into Groups[0] and Groups[1]
             // Therefore a mismatch can be detected by comparing the values of this two groups.
             if (match.Groups[0].Value == match.Groups[1].Value)
             {

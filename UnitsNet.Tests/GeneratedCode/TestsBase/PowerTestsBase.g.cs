@@ -166,7 +166,7 @@ namespace UnitsNet.Tests
             Assert.Equal(PowerUnit.Watt, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new Power(double.PositiveInfinity, PowerUnit.Watt));
@@ -176,7 +176,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new Power(double.NaN, PowerUnit.Watt));
@@ -360,7 +360,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromWatts_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => Power.FromWatts(double.PositiveInfinity));
@@ -370,7 +370,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromWatts_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => Power.FromWatts(double.NaN));
@@ -1207,8 +1207,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, PowerUnit.Watt, 1, PowerUnit.Watt, true)]  // Same value and unit.
         [InlineData(1, PowerUnit.Watt, 2, PowerUnit.Watt, false)] // Different value.
-        [InlineData(2, PowerUnit.Watt, 1, PowerUnit.BoilerHorsepower, false)] // Different value and unit.
-        [InlineData(1, PowerUnit.Watt, 1, PowerUnit.BoilerHorsepower, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, PowerUnit unitA, double valueB, PowerUnit unitB, bool expectEqual)
         {
             var a = new Power(valueA, unitA);
@@ -1557,7 +1555,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Power.FromWatts(1.0);
-            Assert.Equal(new {Power.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(Power.Info.Name, quantity.Watts);
+            #else
+            var expected = new {Power.Info.Name, valueInBaseUnit = quantity.Watts}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

@@ -41,7 +41,7 @@ namespace UnitsNet.Tests
         public void ExpectPowerConvertedCorrectly(double power, double expected)
         {
             Power p = Power.FromWatts(power);
-            double actual = PowerRatio.FromPower(p).DecibelWatts;
+            QuantityValue actual = PowerRatio.FromPower(p).DecibelWatts;
             Assert.Equal(expected, actual);
         }
 
@@ -69,7 +69,10 @@ namespace UnitsNet.Tests
         {
             PowerRatio powerRatio = PowerRatio.FromDecibelMilliwatts(dBmW);
 
-            double actual = Math.Round(powerRatio.ToAmplitudeRatio(ElectricResistance.FromOhms(50)).DecibelMillivolts, 2);
+            double actual = Math.Round(powerRatio.ToAmplitudeRatio(ElectricResistance.FromOhms(50)).DecibelMillivolts.ToDouble(), 2);
+            // TODO ideally we should be able to match without rounding 
+            // QuantityValue actual = powerRatio.ToAmplitudeRatio(ElectricResistance.FromOhms(50)).DecibelMillivolts;
+
             Assert.Equal(expected, actual);
         }
 
@@ -82,7 +85,10 @@ namespace UnitsNet.Tests
         {
             PowerRatio powerRatio = PowerRatio.FromDecibelMilliwatts(dBmW);
 
-            double actual = Math.Round(powerRatio.ToAmplitudeRatio(ElectricResistance.FromOhms(75)).DecibelMillivolts, 2);
+            double actual = Math.Round(powerRatio.ToAmplitudeRatio(ElectricResistance.FromOhms(75)).DecibelMillivolts.ToDouble(), 2);
+            // TODO ideally we should be able to match without rounding 
+            // QuantityValue actual = powerRatio.ToAmplitudeRatio(ElectricResistance.FromOhms(75)).DecibelMillivolts;
+            
             Assert.Equal(expected, actual);
         }
     }

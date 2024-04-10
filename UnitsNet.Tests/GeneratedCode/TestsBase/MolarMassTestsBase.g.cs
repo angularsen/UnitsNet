@@ -114,7 +114,7 @@ namespace UnitsNet.Tests
             Assert.Equal(MolarMassUnit.KilogramPerMole, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new MolarMass(double.PositiveInfinity, MolarMassUnit.KilogramPerMole));
@@ -124,7 +124,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new MolarMass(double.NaN, MolarMassUnit.KilogramPerMole));
@@ -243,7 +243,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromKilogramsPerMole_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => MolarMass.FromKilogramsPerMole(double.PositiveInfinity));
@@ -253,7 +253,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromKilogramsPerMole_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => MolarMass.FromKilogramsPerMole(double.NaN));
@@ -1034,8 +1034,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, MolarMassUnit.KilogramPerMole, 1, MolarMassUnit.KilogramPerMole, true)]  // Same value and unit.
         [InlineData(1, MolarMassUnit.KilogramPerMole, 2, MolarMassUnit.KilogramPerMole, false)] // Different value.
-        [InlineData(2, MolarMassUnit.KilogramPerMole, 1, MolarMassUnit.CentigramPerMole, false)] // Different value and unit.
-        [InlineData(1, MolarMassUnit.KilogramPerMole, 1, MolarMassUnit.CentigramPerMole, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, MolarMassUnit unitA, double valueB, MolarMassUnit unitB, bool expectEqual)
         {
             var a = new MolarMass(valueA, unitA);
@@ -1358,7 +1356,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = MolarMass.FromKilogramsPerMole(1.0);
-            Assert.Equal(new {MolarMass.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(MolarMass.Info.Name, quantity.KilogramsPerMole);
+            #else
+            var expected = new {MolarMass.Info.Name, valueInBaseUnit = quantity.KilogramsPerMole}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

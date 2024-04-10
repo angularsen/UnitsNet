@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToTorquePerLength
     /// </summary>
     public static class NumberToTorquePerLengthExtensions
     {
-        /// <inheritdoc cref="TorquePerLength.FromKilogramForceCentimetersPerMeter(double)" />
+        /// <inheritdoc cref="TorquePerLength.FromKilogramForceCentimetersPerMeter(QuantityValue)" />
         public static TorquePerLength KilogramForceCentimetersPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToTorquePerLength
 #endif
             => TorquePerLength.FromKilogramForceCentimetersPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TorquePerLength.FromKilogramForceMetersPerMeter(double)" />
+        /// <inheritdoc cref="TorquePerLength.FromKilogramForceMetersPerMeter(QuantityValue)" />
         public static TorquePerLength KilogramForceMetersPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToTorquePerLength
 #endif
             => TorquePerLength.FromKilogramForceMetersPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TorquePerLength.FromKilogramForceMillimetersPerMeter(double)" />
+        /// <inheritdoc cref="TorquePerLength.FromKilogramForceMillimetersPerMeter(QuantityValue)" />
         public static TorquePerLength KilogramForceMillimetersPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToTorquePerLength
 #endif
             => TorquePerLength.FromKilogramForceMillimetersPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TorquePerLength.FromKilonewtonCentimetersPerMeter(double)" />
+        /// <inheritdoc cref="TorquePerLength.FromKilonewtonCentimetersPerMeter(QuantityValue)" />
         public static TorquePerLength KilonewtonCentimetersPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToTorquePerLength
 #endif
             => TorquePerLength.FromKilonewtonCentimetersPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TorquePerLength.FromKilonewtonMetersPerMeter(double)" />
+        /// <inheritdoc cref="TorquePerLength.FromKilonewtonMetersPerMeter(QuantityValue)" />
         public static TorquePerLength KilonewtonMetersPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToTorquePerLength
 #endif
             => TorquePerLength.FromKilonewtonMetersPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TorquePerLength.FromKilonewtonMillimetersPerMeter(double)" />
+        /// <inheritdoc cref="TorquePerLength.FromKilonewtonMillimetersPerMeter(QuantityValue)" />
         public static TorquePerLength KilonewtonMillimetersPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToTorquePerLength
 #endif
             => TorquePerLength.FromKilonewtonMillimetersPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TorquePerLength.FromKilopoundForceFeetPerFoot(double)" />
+        /// <inheritdoc cref="TorquePerLength.FromKilopoundForceFeetPerFoot(QuantityValue)" />
         public static TorquePerLength KilopoundForceFeetPerFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToTorquePerLength
 #endif
             => TorquePerLength.FromKilopoundForceFeetPerFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TorquePerLength.FromKilopoundForceInchesPerFoot(double)" />
+        /// <inheritdoc cref="TorquePerLength.FromKilopoundForceInchesPerFoot(QuantityValue)" />
         public static TorquePerLength KilopoundForceInchesPerFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToTorquePerLength
 #endif
             => TorquePerLength.FromKilopoundForceInchesPerFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TorquePerLength.FromMeganewtonCentimetersPerMeter(double)" />
+        /// <inheritdoc cref="TorquePerLength.FromMeganewtonCentimetersPerMeter(QuantityValue)" />
         public static TorquePerLength MeganewtonCentimetersPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -104,7 +104,7 @@ namespace UnitsNet.NumberExtensions.NumberToTorquePerLength
 #endif
             => TorquePerLength.FromMeganewtonCentimetersPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TorquePerLength.FromMeganewtonMetersPerMeter(double)" />
+        /// <inheritdoc cref="TorquePerLength.FromMeganewtonMetersPerMeter(QuantityValue)" />
         public static TorquePerLength MeganewtonMetersPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -112,7 +112,7 @@ namespace UnitsNet.NumberExtensions.NumberToTorquePerLength
 #endif
             => TorquePerLength.FromMeganewtonMetersPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TorquePerLength.FromMeganewtonMillimetersPerMeter(double)" />
+        /// <inheritdoc cref="TorquePerLength.FromMeganewtonMillimetersPerMeter(QuantityValue)" />
         public static TorquePerLength MeganewtonMillimetersPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -120,7 +120,7 @@ namespace UnitsNet.NumberExtensions.NumberToTorquePerLength
 #endif
             => TorquePerLength.FromMeganewtonMillimetersPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TorquePerLength.FromMegapoundForceFeetPerFoot(double)" />
+        /// <inheritdoc cref="TorquePerLength.FromMegapoundForceFeetPerFoot(QuantityValue)" />
         public static TorquePerLength MegapoundForceFeetPerFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -128,7 +128,7 @@ namespace UnitsNet.NumberExtensions.NumberToTorquePerLength
 #endif
             => TorquePerLength.FromMegapoundForceFeetPerFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TorquePerLength.FromMegapoundForceInchesPerFoot(double)" />
+        /// <inheritdoc cref="TorquePerLength.FromMegapoundForceInchesPerFoot(QuantityValue)" />
         public static TorquePerLength MegapoundForceInchesPerFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -136,7 +136,7 @@ namespace UnitsNet.NumberExtensions.NumberToTorquePerLength
 #endif
             => TorquePerLength.FromMegapoundForceInchesPerFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TorquePerLength.FromNewtonCentimetersPerMeter(double)" />
+        /// <inheritdoc cref="TorquePerLength.FromNewtonCentimetersPerMeter(QuantityValue)" />
         public static TorquePerLength NewtonCentimetersPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -144,7 +144,7 @@ namespace UnitsNet.NumberExtensions.NumberToTorquePerLength
 #endif
             => TorquePerLength.FromNewtonCentimetersPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TorquePerLength.FromNewtonMetersPerMeter(double)" />
+        /// <inheritdoc cref="TorquePerLength.FromNewtonMetersPerMeter(QuantityValue)" />
         public static TorquePerLength NewtonMetersPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -152,7 +152,7 @@ namespace UnitsNet.NumberExtensions.NumberToTorquePerLength
 #endif
             => TorquePerLength.FromNewtonMetersPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TorquePerLength.FromNewtonMillimetersPerMeter(double)" />
+        /// <inheritdoc cref="TorquePerLength.FromNewtonMillimetersPerMeter(QuantityValue)" />
         public static TorquePerLength NewtonMillimetersPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -160,7 +160,7 @@ namespace UnitsNet.NumberExtensions.NumberToTorquePerLength
 #endif
             => TorquePerLength.FromNewtonMillimetersPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TorquePerLength.FromPoundForceFeetPerFoot(double)" />
+        /// <inheritdoc cref="TorquePerLength.FromPoundForceFeetPerFoot(QuantityValue)" />
         public static TorquePerLength PoundForceFeetPerFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -168,7 +168,7 @@ namespace UnitsNet.NumberExtensions.NumberToTorquePerLength
 #endif
             => TorquePerLength.FromPoundForceFeetPerFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TorquePerLength.FromPoundForceInchesPerFoot(double)" />
+        /// <inheritdoc cref="TorquePerLength.FromPoundForceInchesPerFoot(QuantityValue)" />
         public static TorquePerLength PoundForceInchesPerFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -176,7 +176,7 @@ namespace UnitsNet.NumberExtensions.NumberToTorquePerLength
 #endif
             => TorquePerLength.FromPoundForceInchesPerFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TorquePerLength.FromTonneForceCentimetersPerMeter(double)" />
+        /// <inheritdoc cref="TorquePerLength.FromTonneForceCentimetersPerMeter(QuantityValue)" />
         public static TorquePerLength TonneForceCentimetersPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -184,7 +184,7 @@ namespace UnitsNet.NumberExtensions.NumberToTorquePerLength
 #endif
             => TorquePerLength.FromTonneForceCentimetersPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TorquePerLength.FromTonneForceMetersPerMeter(double)" />
+        /// <inheritdoc cref="TorquePerLength.FromTonneForceMetersPerMeter(QuantityValue)" />
         public static TorquePerLength TonneForceMetersPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -192,7 +192,7 @@ namespace UnitsNet.NumberExtensions.NumberToTorquePerLength
 #endif
             => TorquePerLength.FromTonneForceMetersPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TorquePerLength.FromTonneForceMillimetersPerMeter(double)" />
+        /// <inheritdoc cref="TorquePerLength.FromTonneForceMillimetersPerMeter(QuantityValue)" />
         public static TorquePerLength TonneForceMillimetersPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

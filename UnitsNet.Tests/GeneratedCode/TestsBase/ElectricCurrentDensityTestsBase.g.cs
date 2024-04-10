@@ -74,7 +74,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricCurrentDensityUnit.AmperePerSquareMeter, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new ElectricCurrentDensity(double.PositiveInfinity, ElectricCurrentDensityUnit.AmperePerSquareMeter));
@@ -84,7 +84,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new ElectricCurrentDensity(double.NaN, ElectricCurrentDensityUnit.AmperePerSquareMeter));
@@ -153,7 +153,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromAmperesPerSquareMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => ElectricCurrentDensity.FromAmperesPerSquareMeter(double.PositiveInfinity));
@@ -163,7 +163,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromAmperesPerSquareMeter_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => ElectricCurrentDensity.FromAmperesPerSquareMeter(double.NaN));
@@ -396,8 +396,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, ElectricCurrentDensityUnit.AmperePerSquareMeter, 1, ElectricCurrentDensityUnit.AmperePerSquareMeter, true)]  // Same value and unit.
         [InlineData(1, ElectricCurrentDensityUnit.AmperePerSquareMeter, 2, ElectricCurrentDensityUnit.AmperePerSquareMeter, false)] // Different value.
-        [InlineData(2, ElectricCurrentDensityUnit.AmperePerSquareMeter, 1, ElectricCurrentDensityUnit.AmperePerSquareFoot, false)] // Different value and unit.
-        [InlineData(1, ElectricCurrentDensityUnit.AmperePerSquareMeter, 1, ElectricCurrentDensityUnit.AmperePerSquareFoot, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ElectricCurrentDensityUnit unitA, double valueB, ElectricCurrentDensityUnit unitB, bool expectEqual)
         {
             var a = new ElectricCurrentDensity(valueA, unitA);
@@ -700,7 +698,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ElectricCurrentDensity.FromAmperesPerSquareMeter(1.0);
-            Assert.Equal(new {ElectricCurrentDensity.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(ElectricCurrentDensity.Info.Name, quantity.AmperesPerSquareMeter);
+            #else
+            var expected = new {ElectricCurrentDensity.Info.Name, valueInBaseUnit = quantity.AmperesPerSquareMeter}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

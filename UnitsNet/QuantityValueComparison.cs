@@ -2,14 +2,13 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
-using Fractions;
 
 namespace UnitsNet;
 
 /// <summary>
 ///     Helper methods to perform relative and absolute comparison.
 /// </summary>
-public static class FractionComparison
+public static class QuantityValueComparison
 {
     /// <summary>
     ///     <para>
@@ -50,7 +49,7 @@ public static class FractionComparison
     /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
     /// <param name="comparisonType">Whether the tolerance is absolute or relative.</param>
     /// <returns></returns>
-    public static bool Equals(Fraction referenceValue, Fraction otherValue, Fraction tolerance, ComparisonType comparisonType)
+    public static bool Equals(QuantityValue referenceValue, QuantityValue otherValue, QuantityValue tolerance, ComparisonType comparisonType)
     {
         if (tolerance < 0)
             throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
@@ -87,13 +86,13 @@ public static class FractionComparison
     /// <param name="otherValue">The value to compare to.</param>
     /// <param name="tolerance">The relative tolerance. Must be greater than or equal to 0.</param>
     /// <returns>True if the two values are equal within the given relative tolerance, otherwise false.</returns>
-    public static bool EqualsRelative(Fraction referenceValue, Fraction otherValue, Fraction tolerance)
+    public static bool EqualsRelative(QuantityValue referenceValue, QuantityValue otherValue, QuantityValue tolerance)
     {
         if (tolerance < 0)
             throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
-        var maxVariation = (referenceValue * tolerance).Abs();
-        return (referenceValue - otherValue).Abs() <= maxVariation;
+        var maxVariation = QuantityValue.Abs(referenceValue * tolerance);
+        return QuantityValue.Abs(referenceValue - otherValue) <= maxVariation;
     }
 
     /// <summary>
@@ -115,11 +114,11 @@ public static class FractionComparison
     /// <param name="value2">The second value.</param>
     /// <param name="tolerance">The absolute tolerance. Must be greater than or equal to 0.</param>
     /// <returns>True if the two values are equal within the given absolute tolerance, otherwise false.</returns>
-    public static bool EqualsAbsolute(Fraction value1, Fraction value2, Fraction tolerance)
+    public static bool EqualsAbsolute(QuantityValue value1, QuantityValue value2, QuantityValue tolerance)
     {
         if (tolerance < 0)
             throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0");
 
-        return (value1 - value2).Abs() <= tolerance;
+        return QuantityValue.Abs(value1 - value2) <= tolerance;
     }
 }

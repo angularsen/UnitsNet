@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalSpeed
     /// </summary>
     public static class NumberToRotationalSpeedExtensions
     {
-        /// <inheritdoc cref="RotationalSpeed.FromCentiradiansPerSecond(double)" />
+        /// <inheritdoc cref="RotationalSpeed.FromCentiradiansPerSecond(QuantityValue)" />
         public static RotationalSpeed CentiradiansPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalSpeed
 #endif
             => RotationalSpeed.FromCentiradiansPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalSpeed.FromDeciradiansPerSecond(double)" />
+        /// <inheritdoc cref="RotationalSpeed.FromDeciradiansPerSecond(QuantityValue)" />
         public static RotationalSpeed DeciradiansPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalSpeed
 #endif
             => RotationalSpeed.FromDeciradiansPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalSpeed.FromDegreesPerMinute(double)" />
+        /// <inheritdoc cref="RotationalSpeed.FromDegreesPerMinute(QuantityValue)" />
         public static RotationalSpeed DegreesPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalSpeed
 #endif
             => RotationalSpeed.FromDegreesPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalSpeed.FromDegreesPerSecond(double)" />
+        /// <inheritdoc cref="RotationalSpeed.FromDegreesPerSecond(QuantityValue)" />
         public static RotationalSpeed DegreesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalSpeed
 #endif
             => RotationalSpeed.FromDegreesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalSpeed.FromMicrodegreesPerSecond(double)" />
+        /// <inheritdoc cref="RotationalSpeed.FromMicrodegreesPerSecond(QuantityValue)" />
         public static RotationalSpeed MicrodegreesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalSpeed
 #endif
             => RotationalSpeed.FromMicrodegreesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalSpeed.FromMicroradiansPerSecond(double)" />
+        /// <inheritdoc cref="RotationalSpeed.FromMicroradiansPerSecond(QuantityValue)" />
         public static RotationalSpeed MicroradiansPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalSpeed
 #endif
             => RotationalSpeed.FromMicroradiansPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalSpeed.FromMillidegreesPerSecond(double)" />
+        /// <inheritdoc cref="RotationalSpeed.FromMillidegreesPerSecond(QuantityValue)" />
         public static RotationalSpeed MillidegreesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalSpeed
 #endif
             => RotationalSpeed.FromMillidegreesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalSpeed.FromMilliradiansPerSecond(double)" />
+        /// <inheritdoc cref="RotationalSpeed.FromMilliradiansPerSecond(QuantityValue)" />
         public static RotationalSpeed MilliradiansPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalSpeed
 #endif
             => RotationalSpeed.FromMilliradiansPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalSpeed.FromNanodegreesPerSecond(double)" />
+        /// <inheritdoc cref="RotationalSpeed.FromNanodegreesPerSecond(QuantityValue)" />
         public static RotationalSpeed NanodegreesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -104,7 +104,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalSpeed
 #endif
             => RotationalSpeed.FromNanodegreesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalSpeed.FromNanoradiansPerSecond(double)" />
+        /// <inheritdoc cref="RotationalSpeed.FromNanoradiansPerSecond(QuantityValue)" />
         public static RotationalSpeed NanoradiansPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -112,7 +112,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalSpeed
 #endif
             => RotationalSpeed.FromNanoradiansPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalSpeed.FromRadiansPerSecond(double)" />
+        /// <inheritdoc cref="RotationalSpeed.FromRadiansPerSecond(QuantityValue)" />
         public static RotationalSpeed RadiansPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -120,7 +120,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalSpeed
 #endif
             => RotationalSpeed.FromRadiansPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalSpeed.FromRevolutionsPerMinute(double)" />
+        /// <inheritdoc cref="RotationalSpeed.FromRevolutionsPerMinute(QuantityValue)" />
         public static RotationalSpeed RevolutionsPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -128,7 +128,7 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalSpeed
 #endif
             => RotationalSpeed.FromRevolutionsPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalSpeed.FromRevolutionsPerSecond(double)" />
+        /// <inheritdoc cref="RotationalSpeed.FromRevolutionsPerSecond(QuantityValue)" />
         public static RotationalSpeed RevolutionsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

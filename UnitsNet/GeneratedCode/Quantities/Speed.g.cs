@@ -25,7 +25,6 @@ using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 using System.Numerics;
-using Fractions;
 
 #nullable enable
 
@@ -60,7 +59,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly Fraction _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -122,7 +121,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Speed(Fraction value, SpeedUnit unit)
+        public Speed(QuantityValue value, SpeedUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -136,7 +135,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Speed(Fraction value, UnitSystem unitSystem)
+        public Speed(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -187,10 +186,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public Fraction Value => _value;
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
-        Fraction IQuantity.Value => _value;
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -215,167 +214,167 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.CentimeterPerHour"/>
         /// </summary>
-        public Fraction CentimetersPerHour => As(SpeedUnit.CentimeterPerHour);
+        public QuantityValue CentimetersPerHour => As(SpeedUnit.CentimeterPerHour);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.CentimeterPerMinute"/>
         /// </summary>
-        public Fraction CentimetersPerMinute => As(SpeedUnit.CentimeterPerMinute);
+        public QuantityValue CentimetersPerMinute => As(SpeedUnit.CentimeterPerMinute);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.CentimeterPerSecond"/>
         /// </summary>
-        public Fraction CentimetersPerSecond => As(SpeedUnit.CentimeterPerSecond);
+        public QuantityValue CentimetersPerSecond => As(SpeedUnit.CentimeterPerSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.DecimeterPerMinute"/>
         /// </summary>
-        public Fraction DecimetersPerMinute => As(SpeedUnit.DecimeterPerMinute);
+        public QuantityValue DecimetersPerMinute => As(SpeedUnit.DecimeterPerMinute);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.DecimeterPerSecond"/>
         /// </summary>
-        public Fraction DecimetersPerSecond => As(SpeedUnit.DecimeterPerSecond);
+        public QuantityValue DecimetersPerSecond => As(SpeedUnit.DecimeterPerSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.FootPerHour"/>
         /// </summary>
-        public Fraction FeetPerHour => As(SpeedUnit.FootPerHour);
+        public QuantityValue FeetPerHour => As(SpeedUnit.FootPerHour);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.FootPerMinute"/>
         /// </summary>
-        public Fraction FeetPerMinute => As(SpeedUnit.FootPerMinute);
+        public QuantityValue FeetPerMinute => As(SpeedUnit.FootPerMinute);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.FootPerSecond"/>
         /// </summary>
-        public Fraction FeetPerSecond => As(SpeedUnit.FootPerSecond);
+        public QuantityValue FeetPerSecond => As(SpeedUnit.FootPerSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.InchPerHour"/>
         /// </summary>
-        public Fraction InchesPerHour => As(SpeedUnit.InchPerHour);
+        public QuantityValue InchesPerHour => As(SpeedUnit.InchPerHour);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.InchPerMinute"/>
         /// </summary>
-        public Fraction InchesPerMinute => As(SpeedUnit.InchPerMinute);
+        public QuantityValue InchesPerMinute => As(SpeedUnit.InchPerMinute);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.InchPerSecond"/>
         /// </summary>
-        public Fraction InchesPerSecond => As(SpeedUnit.InchPerSecond);
+        public QuantityValue InchesPerSecond => As(SpeedUnit.InchPerSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.KilometerPerHour"/>
         /// </summary>
-        public Fraction KilometersPerHour => As(SpeedUnit.KilometerPerHour);
+        public QuantityValue KilometersPerHour => As(SpeedUnit.KilometerPerHour);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.KilometerPerMinute"/>
         /// </summary>
-        public Fraction KilometersPerMinute => As(SpeedUnit.KilometerPerMinute);
+        public QuantityValue KilometersPerMinute => As(SpeedUnit.KilometerPerMinute);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.KilometerPerSecond"/>
         /// </summary>
-        public Fraction KilometersPerSecond => As(SpeedUnit.KilometerPerSecond);
+        public QuantityValue KilometersPerSecond => As(SpeedUnit.KilometerPerSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.Knot"/>
         /// </summary>
-        public Fraction Knots => As(SpeedUnit.Knot);
+        public QuantityValue Knots => As(SpeedUnit.Knot);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.Mach"/>
         /// </summary>
-        public Fraction Mach => As(SpeedUnit.Mach);
+        public QuantityValue Mach => As(SpeedUnit.Mach);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.MeterPerHour"/>
         /// </summary>
-        public Fraction MetersPerHour => As(SpeedUnit.MeterPerHour);
+        public QuantityValue MetersPerHour => As(SpeedUnit.MeterPerHour);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.MeterPerMinute"/>
         /// </summary>
-        public Fraction MetersPerMinute => As(SpeedUnit.MeterPerMinute);
+        public QuantityValue MetersPerMinute => As(SpeedUnit.MeterPerMinute);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.MeterPerSecond"/>
         /// </summary>
-        public Fraction MetersPerSecond => As(SpeedUnit.MeterPerSecond);
+        public QuantityValue MetersPerSecond => As(SpeedUnit.MeterPerSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.MicrometerPerMinute"/>
         /// </summary>
-        public Fraction MicrometersPerMinute => As(SpeedUnit.MicrometerPerMinute);
+        public QuantityValue MicrometersPerMinute => As(SpeedUnit.MicrometerPerMinute);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.MicrometerPerSecond"/>
         /// </summary>
-        public Fraction MicrometersPerSecond => As(SpeedUnit.MicrometerPerSecond);
+        public QuantityValue MicrometersPerSecond => As(SpeedUnit.MicrometerPerSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.MilePerHour"/>
         /// </summary>
-        public Fraction MilesPerHour => As(SpeedUnit.MilePerHour);
+        public QuantityValue MilesPerHour => As(SpeedUnit.MilePerHour);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.MillimeterPerHour"/>
         /// </summary>
-        public Fraction MillimetersPerHour => As(SpeedUnit.MillimeterPerHour);
+        public QuantityValue MillimetersPerHour => As(SpeedUnit.MillimeterPerHour);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.MillimeterPerMinute"/>
         /// </summary>
-        public Fraction MillimetersPerMinute => As(SpeedUnit.MillimeterPerMinute);
+        public QuantityValue MillimetersPerMinute => As(SpeedUnit.MillimeterPerMinute);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.MillimeterPerSecond"/>
         /// </summary>
-        public Fraction MillimetersPerSecond => As(SpeedUnit.MillimeterPerSecond);
+        public QuantityValue MillimetersPerSecond => As(SpeedUnit.MillimeterPerSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.NanometerPerMinute"/>
         /// </summary>
-        public Fraction NanometersPerMinute => As(SpeedUnit.NanometerPerMinute);
+        public QuantityValue NanometersPerMinute => As(SpeedUnit.NanometerPerMinute);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.NanometerPerSecond"/>
         /// </summary>
-        public Fraction NanometersPerSecond => As(SpeedUnit.NanometerPerSecond);
+        public QuantityValue NanometersPerSecond => As(SpeedUnit.NanometerPerSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.UsSurveyFootPerHour"/>
         /// </summary>
-        public Fraction UsSurveyFeetPerHour => As(SpeedUnit.UsSurveyFootPerHour);
+        public QuantityValue UsSurveyFeetPerHour => As(SpeedUnit.UsSurveyFootPerHour);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.UsSurveyFootPerMinute"/>
         /// </summary>
-        public Fraction UsSurveyFeetPerMinute => As(SpeedUnit.UsSurveyFootPerMinute);
+        public QuantityValue UsSurveyFeetPerMinute => As(SpeedUnit.UsSurveyFootPerMinute);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.UsSurveyFootPerSecond"/>
         /// </summary>
-        public Fraction UsSurveyFeetPerSecond => As(SpeedUnit.UsSurveyFootPerSecond);
+        public QuantityValue UsSurveyFeetPerSecond => As(SpeedUnit.UsSurveyFootPerSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.YardPerHour"/>
         /// </summary>
-        public Fraction YardsPerHour => As(SpeedUnit.YardPerHour);
+        public QuantityValue YardsPerHour => As(SpeedUnit.YardPerHour);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.YardPerMinute"/>
         /// </summary>
-        public Fraction YardsPerMinute => As(SpeedUnit.YardPerMinute);
+        public QuantityValue YardsPerMinute => As(SpeedUnit.YardPerMinute);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.YardPerSecond"/>
         /// </summary>
-        public Fraction YardsPerSecond => As(SpeedUnit.YardPerSecond);
+        public QuantityValue YardsPerSecond => As(SpeedUnit.YardPerSecond);
 
         #endregion
 
@@ -487,7 +486,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.CentimeterPerHour"/>.
         /// </summary>
-        public static Speed FromCentimetersPerHour(Fraction value)
+        public static Speed FromCentimetersPerHour(QuantityValue value)
         {
             return new Speed(value, SpeedUnit.CentimeterPerHour);
         }
@@ -495,7 +494,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.CentimeterPerMinute"/>.
         /// </summary>
-        public static Speed FromCentimetersPerMinute(Fraction value)
+        public static Speed FromCentimetersPerMinute(QuantityValue value)
         {
             return new Speed(value, SpeedUnit.CentimeterPerMinute);
         }
@@ -503,7 +502,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.CentimeterPerSecond"/>.
         /// </summary>
-        public static Speed FromCentimetersPerSecond(Fraction value)
+        public static Speed FromCentimetersPerSecond(QuantityValue value)
         {
             return new Speed(value, SpeedUnit.CentimeterPerSecond);
         }
@@ -511,7 +510,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.DecimeterPerMinute"/>.
         /// </summary>
-        public static Speed FromDecimetersPerMinute(Fraction value)
+        public static Speed FromDecimetersPerMinute(QuantityValue value)
         {
             return new Speed(value, SpeedUnit.DecimeterPerMinute);
         }
@@ -519,7 +518,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.DecimeterPerSecond"/>.
         /// </summary>
-        public static Speed FromDecimetersPerSecond(Fraction value)
+        public static Speed FromDecimetersPerSecond(QuantityValue value)
         {
             return new Speed(value, SpeedUnit.DecimeterPerSecond);
         }
@@ -527,7 +526,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.FootPerHour"/>.
         /// </summary>
-        public static Speed FromFeetPerHour(Fraction value)
+        public static Speed FromFeetPerHour(QuantityValue value)
         {
             return new Speed(value, SpeedUnit.FootPerHour);
         }
@@ -535,7 +534,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.FootPerMinute"/>.
         /// </summary>
-        public static Speed FromFeetPerMinute(Fraction value)
+        public static Speed FromFeetPerMinute(QuantityValue value)
         {
             return new Speed(value, SpeedUnit.FootPerMinute);
         }
@@ -543,7 +542,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.FootPerSecond"/>.
         /// </summary>
-        public static Speed FromFeetPerSecond(Fraction value)
+        public static Speed FromFeetPerSecond(QuantityValue value)
         {
             return new Speed(value, SpeedUnit.FootPerSecond);
         }
@@ -551,7 +550,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.InchPerHour"/>.
         /// </summary>
-        public static Speed FromInchesPerHour(Fraction value)
+        public static Speed FromInchesPerHour(QuantityValue value)
         {
             return new Speed(value, SpeedUnit.InchPerHour);
         }
@@ -559,7 +558,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.InchPerMinute"/>.
         /// </summary>
-        public static Speed FromInchesPerMinute(Fraction value)
+        public static Speed FromInchesPerMinute(QuantityValue value)
         {
             return new Speed(value, SpeedUnit.InchPerMinute);
         }
@@ -567,7 +566,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.InchPerSecond"/>.
         /// </summary>
-        public static Speed FromInchesPerSecond(Fraction value)
+        public static Speed FromInchesPerSecond(QuantityValue value)
         {
             return new Speed(value, SpeedUnit.InchPerSecond);
         }
@@ -575,7 +574,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.KilometerPerHour"/>.
         /// </summary>
-        public static Speed FromKilometersPerHour(Fraction value)
+        public static Speed FromKilometersPerHour(QuantityValue value)
         {
             return new Speed(value, SpeedUnit.KilometerPerHour);
         }
@@ -583,7 +582,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.KilometerPerMinute"/>.
         /// </summary>
-        public static Speed FromKilometersPerMinute(Fraction value)
+        public static Speed FromKilometersPerMinute(QuantityValue value)
         {
             return new Speed(value, SpeedUnit.KilometerPerMinute);
         }
@@ -591,7 +590,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.KilometerPerSecond"/>.
         /// </summary>
-        public static Speed FromKilometersPerSecond(Fraction value)
+        public static Speed FromKilometersPerSecond(QuantityValue value)
         {
             return new Speed(value, SpeedUnit.KilometerPerSecond);
         }
@@ -599,7 +598,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.Knot"/>.
         /// </summary>
-        public static Speed FromKnots(Fraction value)
+        public static Speed FromKnots(QuantityValue value)
         {
             return new Speed(value, SpeedUnit.Knot);
         }
@@ -607,7 +606,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.Mach"/>.
         /// </summary>
-        public static Speed FromMach(Fraction value)
+        public static Speed FromMach(QuantityValue value)
         {
             return new Speed(value, SpeedUnit.Mach);
         }
@@ -615,7 +614,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MeterPerHour"/>.
         /// </summary>
-        public static Speed FromMetersPerHour(Fraction value)
+        public static Speed FromMetersPerHour(QuantityValue value)
         {
             return new Speed(value, SpeedUnit.MeterPerHour);
         }
@@ -623,7 +622,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MeterPerMinute"/>.
         /// </summary>
-        public static Speed FromMetersPerMinute(Fraction value)
+        public static Speed FromMetersPerMinute(QuantityValue value)
         {
             return new Speed(value, SpeedUnit.MeterPerMinute);
         }
@@ -631,7 +630,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MeterPerSecond"/>.
         /// </summary>
-        public static Speed FromMetersPerSecond(Fraction value)
+        public static Speed FromMetersPerSecond(QuantityValue value)
         {
             return new Speed(value, SpeedUnit.MeterPerSecond);
         }
@@ -639,7 +638,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MicrometerPerMinute"/>.
         /// </summary>
-        public static Speed FromMicrometersPerMinute(Fraction value)
+        public static Speed FromMicrometersPerMinute(QuantityValue value)
         {
             return new Speed(value, SpeedUnit.MicrometerPerMinute);
         }
@@ -647,7 +646,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MicrometerPerSecond"/>.
         /// </summary>
-        public static Speed FromMicrometersPerSecond(Fraction value)
+        public static Speed FromMicrometersPerSecond(QuantityValue value)
         {
             return new Speed(value, SpeedUnit.MicrometerPerSecond);
         }
@@ -655,7 +654,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MilePerHour"/>.
         /// </summary>
-        public static Speed FromMilesPerHour(Fraction value)
+        public static Speed FromMilesPerHour(QuantityValue value)
         {
             return new Speed(value, SpeedUnit.MilePerHour);
         }
@@ -663,7 +662,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MillimeterPerHour"/>.
         /// </summary>
-        public static Speed FromMillimetersPerHour(Fraction value)
+        public static Speed FromMillimetersPerHour(QuantityValue value)
         {
             return new Speed(value, SpeedUnit.MillimeterPerHour);
         }
@@ -671,7 +670,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MillimeterPerMinute"/>.
         /// </summary>
-        public static Speed FromMillimetersPerMinute(Fraction value)
+        public static Speed FromMillimetersPerMinute(QuantityValue value)
         {
             return new Speed(value, SpeedUnit.MillimeterPerMinute);
         }
@@ -679,7 +678,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MillimeterPerSecond"/>.
         /// </summary>
-        public static Speed FromMillimetersPerSecond(Fraction value)
+        public static Speed FromMillimetersPerSecond(QuantityValue value)
         {
             return new Speed(value, SpeedUnit.MillimeterPerSecond);
         }
@@ -687,7 +686,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.NanometerPerMinute"/>.
         /// </summary>
-        public static Speed FromNanometersPerMinute(Fraction value)
+        public static Speed FromNanometersPerMinute(QuantityValue value)
         {
             return new Speed(value, SpeedUnit.NanometerPerMinute);
         }
@@ -695,7 +694,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.NanometerPerSecond"/>.
         /// </summary>
-        public static Speed FromNanometersPerSecond(Fraction value)
+        public static Speed FromNanometersPerSecond(QuantityValue value)
         {
             return new Speed(value, SpeedUnit.NanometerPerSecond);
         }
@@ -703,7 +702,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.UsSurveyFootPerHour"/>.
         /// </summary>
-        public static Speed FromUsSurveyFeetPerHour(Fraction value)
+        public static Speed FromUsSurveyFeetPerHour(QuantityValue value)
         {
             return new Speed(value, SpeedUnit.UsSurveyFootPerHour);
         }
@@ -711,7 +710,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.UsSurveyFootPerMinute"/>.
         /// </summary>
-        public static Speed FromUsSurveyFeetPerMinute(Fraction value)
+        public static Speed FromUsSurveyFeetPerMinute(QuantityValue value)
         {
             return new Speed(value, SpeedUnit.UsSurveyFootPerMinute);
         }
@@ -719,7 +718,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.UsSurveyFootPerSecond"/>.
         /// </summary>
-        public static Speed FromUsSurveyFeetPerSecond(Fraction value)
+        public static Speed FromUsSurveyFeetPerSecond(QuantityValue value)
         {
             return new Speed(value, SpeedUnit.UsSurveyFootPerSecond);
         }
@@ -727,7 +726,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.YardPerHour"/>.
         /// </summary>
-        public static Speed FromYardsPerHour(Fraction value)
+        public static Speed FromYardsPerHour(QuantityValue value)
         {
             return new Speed(value, SpeedUnit.YardPerHour);
         }
@@ -735,7 +734,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.YardPerMinute"/>.
         /// </summary>
-        public static Speed FromYardsPerMinute(Fraction value)
+        public static Speed FromYardsPerMinute(QuantityValue value)
         {
             return new Speed(value, SpeedUnit.YardPerMinute);
         }
@@ -743,7 +742,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.YardPerSecond"/>.
         /// </summary>
-        public static Speed FromYardsPerSecond(Fraction value)
+        public static Speed FromYardsPerSecond(QuantityValue value)
         {
             return new Speed(value, SpeedUnit.YardPerSecond);
         }
@@ -754,7 +753,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Speed unit value.</returns>
-        public static Speed From(Fraction value, SpeedUnit fromUnit)
+        public static Speed From(QuantityValue value, SpeedUnit fromUnit)
         {
             return new Speed(value, fromUnit);
         }
@@ -910,7 +909,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static Speed operator -(Speed right)
         {
-            return new Speed(right.Value.Invert(), right.Unit);
+            return new Speed(-right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Speed"/> from adding two <see cref="Speed"/>.</summary>
@@ -926,25 +925,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Speed"/> from multiplying value and <see cref="Speed"/>.</summary>
-        public static Speed operator *(Fraction left, Speed right)
+        public static Speed operator *(QuantityValue left, Speed right)
         {
             return new Speed(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Speed"/> from multiplying value and <see cref="Speed"/>.</summary>
-        public static Speed operator *(Speed left, Fraction right)
+        public static Speed operator *(Speed left, QuantityValue right)
         {
             return new Speed(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Speed"/> from dividing <see cref="Speed"/> by value.</summary>
-        public static Speed operator /(Speed left, Fraction right)
+        public static Speed operator /(Speed left, QuantityValue right)
         {
             return new Speed(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Speed"/> by <see cref="Speed"/>.</summary>
-        public static Fraction operator /(Speed left, Speed right)
+        public static QuantityValue operator /(Speed left, Speed right)
         {
             return left.MetersPerSecond / right.MetersPerSecond;
         }
@@ -1055,7 +1054,7 @@ namespace UnitsNet
         /// <summary>Indicates strict equality of two <see cref="Speed"/> quantities.</summary>
         public bool Equals(Speed other)
         {
-            return _value.IsEquivalentTo(other.As(this.Unit));
+            return _value.Equals(other.As(this.Unit));
         }
 
         /// <summary>Compares the current <see cref="Speed"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
@@ -1140,10 +1139,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: (Fraction)tolerance,
+                tolerance: (QuantityValue)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -1160,7 +1159,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(Speed other, Speed tolerance)
         {
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -1174,7 +1173,11 @@ namespace UnitsNet
         public override int GetHashCode()
         {
             var valueInBaseUnit = As(BaseUnit);
+            #if NET7_0_OR_GREATER
+            return HashCode.Combine(Info.Name, valueInBaseUnit);
+            #else
             return new { Info.Name, valueInBaseUnit }.GetHashCode();
+            #endif
         }
 
         #endregion
@@ -1185,7 +1188,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public Fraction As(SpeedUnit unit)
+        public QuantityValue As(SpeedUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -1194,7 +1197,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public Fraction As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -1209,7 +1212,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        Fraction IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
             if (!(unit is SpeedUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpeedUnit)} is supported.", nameof(unit));
@@ -1280,33 +1283,33 @@ namespace UnitsNet
                 (SpeedUnit.CentimeterPerSecond, SpeedUnit.MeterPerSecond) => new Speed(_value / 100, SpeedUnit.MeterPerSecond),
                 (SpeedUnit.DecimeterPerMinute, SpeedUnit.MeterPerSecond) => new Speed(_value / 600, SpeedUnit.MeterPerSecond),
                 (SpeedUnit.DecimeterPerSecond, SpeedUnit.MeterPerSecond) => new Speed(_value / 10, SpeedUnit.MeterPerSecond),
-                (SpeedUnit.FootPerHour, SpeedUnit.MeterPerSecond) => new Speed(_value * new Fraction(127, 1500000, false), SpeedUnit.MeterPerSecond),
-                (SpeedUnit.FootPerMinute, SpeedUnit.MeterPerSecond) => new Speed(_value * new Fraction(127, 25000, false), SpeedUnit.MeterPerSecond),
-                (SpeedUnit.FootPerSecond, SpeedUnit.MeterPerSecond) => new Speed(_value * new Fraction(381, 1250, false), SpeedUnit.MeterPerSecond),
-                (SpeedUnit.InchPerHour, SpeedUnit.MeterPerSecond) => new Speed(_value * new Fraction(127, 18000000, false), SpeedUnit.MeterPerSecond),
-                (SpeedUnit.InchPerMinute, SpeedUnit.MeterPerSecond) => new Speed(_value * new Fraction(127, 300000, false), SpeedUnit.MeterPerSecond),
-                (SpeedUnit.InchPerSecond, SpeedUnit.MeterPerSecond) => new Speed(_value * new Fraction(127, 5000, false), SpeedUnit.MeterPerSecond),
-                (SpeedUnit.KilometerPerHour, SpeedUnit.MeterPerSecond) => new Speed(_value * new Fraction(5, 18, false), SpeedUnit.MeterPerSecond),
-                (SpeedUnit.KilometerPerMinute, SpeedUnit.MeterPerSecond) => new Speed(_value * new Fraction(50, 3, false), SpeedUnit.MeterPerSecond),
+                (SpeedUnit.FootPerHour, SpeedUnit.MeterPerSecond) => new Speed(_value * new QuantityValue(127, 1500000, false), SpeedUnit.MeterPerSecond),
+                (SpeedUnit.FootPerMinute, SpeedUnit.MeterPerSecond) => new Speed(_value * new QuantityValue(127, 25000, false), SpeedUnit.MeterPerSecond),
+                (SpeedUnit.FootPerSecond, SpeedUnit.MeterPerSecond) => new Speed(_value * new QuantityValue(381, 1250, false), SpeedUnit.MeterPerSecond),
+                (SpeedUnit.InchPerHour, SpeedUnit.MeterPerSecond) => new Speed(_value * new QuantityValue(127, 18000000, false), SpeedUnit.MeterPerSecond),
+                (SpeedUnit.InchPerMinute, SpeedUnit.MeterPerSecond) => new Speed(_value * new QuantityValue(127, 300000, false), SpeedUnit.MeterPerSecond),
+                (SpeedUnit.InchPerSecond, SpeedUnit.MeterPerSecond) => new Speed(_value * new QuantityValue(127, 5000, false), SpeedUnit.MeterPerSecond),
+                (SpeedUnit.KilometerPerHour, SpeedUnit.MeterPerSecond) => new Speed(_value * new QuantityValue(5, 18, false), SpeedUnit.MeterPerSecond),
+                (SpeedUnit.KilometerPerMinute, SpeedUnit.MeterPerSecond) => new Speed(_value * new QuantityValue(50, 3, false), SpeedUnit.MeterPerSecond),
                 (SpeedUnit.KilometerPerSecond, SpeedUnit.MeterPerSecond) => new Speed(_value * 1000, SpeedUnit.MeterPerSecond),
-                (SpeedUnit.Knot, SpeedUnit.MeterPerSecond) => new Speed(_value * new Fraction(463, 900, false), SpeedUnit.MeterPerSecond),
-                (SpeedUnit.Mach, SpeedUnit.MeterPerSecond) => new Speed(_value * new Fraction(34029, 100, false), SpeedUnit.MeterPerSecond),
+                (SpeedUnit.Knot, SpeedUnit.MeterPerSecond) => new Speed(_value * new QuantityValue(463, 900, false), SpeedUnit.MeterPerSecond),
+                (SpeedUnit.Mach, SpeedUnit.MeterPerSecond) => new Speed(_value * new QuantityValue(34029, 100, false), SpeedUnit.MeterPerSecond),
                 (SpeedUnit.MeterPerHour, SpeedUnit.MeterPerSecond) => new Speed(_value / 3600, SpeedUnit.MeterPerSecond),
                 (SpeedUnit.MeterPerMinute, SpeedUnit.MeterPerSecond) => new Speed(_value / 60, SpeedUnit.MeterPerSecond),
                 (SpeedUnit.MicrometerPerMinute, SpeedUnit.MeterPerSecond) => new Speed(_value / 60000000, SpeedUnit.MeterPerSecond),
                 (SpeedUnit.MicrometerPerSecond, SpeedUnit.MeterPerSecond) => new Speed(_value / 1000000, SpeedUnit.MeterPerSecond),
-                (SpeedUnit.MilePerHour, SpeedUnit.MeterPerSecond) => new Speed(_value * new Fraction(1397, 3125, false), SpeedUnit.MeterPerSecond),
+                (SpeedUnit.MilePerHour, SpeedUnit.MeterPerSecond) => new Speed(_value * new QuantityValue(1397, 3125, false), SpeedUnit.MeterPerSecond),
                 (SpeedUnit.MillimeterPerHour, SpeedUnit.MeterPerSecond) => new Speed(_value / 3600000, SpeedUnit.MeterPerSecond),
                 (SpeedUnit.MillimeterPerMinute, SpeedUnit.MeterPerSecond) => new Speed(_value / 60000, SpeedUnit.MeterPerSecond),
                 (SpeedUnit.MillimeterPerSecond, SpeedUnit.MeterPerSecond) => new Speed(_value / 1000, SpeedUnit.MeterPerSecond),
                 (SpeedUnit.NanometerPerMinute, SpeedUnit.MeterPerSecond) => new Speed(_value / 60000000000, SpeedUnit.MeterPerSecond),
                 (SpeedUnit.NanometerPerSecond, SpeedUnit.MeterPerSecond) => new Speed(_value / 1000000000, SpeedUnit.MeterPerSecond),
                 (SpeedUnit.UsSurveyFootPerHour, SpeedUnit.MeterPerSecond) => new Speed(_value / 11811, SpeedUnit.MeterPerSecond),
-                (SpeedUnit.UsSurveyFootPerMinute, SpeedUnit.MeterPerSecond) => new Speed(_value * new Fraction(20, 3937, false), SpeedUnit.MeterPerSecond),
-                (SpeedUnit.UsSurveyFootPerSecond, SpeedUnit.MeterPerSecond) => new Speed(_value * new Fraction(1200, 3937, false), SpeedUnit.MeterPerSecond),
-                (SpeedUnit.YardPerHour, SpeedUnit.MeterPerSecond) => new Speed(_value * new Fraction(127, 500000, false), SpeedUnit.MeterPerSecond),
-                (SpeedUnit.YardPerMinute, SpeedUnit.MeterPerSecond) => new Speed(_value * new Fraction(381, 25000, false), SpeedUnit.MeterPerSecond),
-                (SpeedUnit.YardPerSecond, SpeedUnit.MeterPerSecond) => new Speed(_value * new Fraction(1143, 1250, false), SpeedUnit.MeterPerSecond),
+                (SpeedUnit.UsSurveyFootPerMinute, SpeedUnit.MeterPerSecond) => new Speed(_value * new QuantityValue(20, 3937, false), SpeedUnit.MeterPerSecond),
+                (SpeedUnit.UsSurveyFootPerSecond, SpeedUnit.MeterPerSecond) => new Speed(_value * new QuantityValue(1200, 3937, false), SpeedUnit.MeterPerSecond),
+                (SpeedUnit.YardPerHour, SpeedUnit.MeterPerSecond) => new Speed(_value * new QuantityValue(127, 500000, false), SpeedUnit.MeterPerSecond),
+                (SpeedUnit.YardPerMinute, SpeedUnit.MeterPerSecond) => new Speed(_value * new QuantityValue(381, 25000, false), SpeedUnit.MeterPerSecond),
+                (SpeedUnit.YardPerSecond, SpeedUnit.MeterPerSecond) => new Speed(_value * new QuantityValue(1143, 1250, false), SpeedUnit.MeterPerSecond),
 
                 // BaseUnit -> SpeedUnit
                 (SpeedUnit.MeterPerSecond, SpeedUnit.CentimeterPerHour) => new Speed(_value * 360000, SpeedUnit.CentimeterPerHour),
@@ -1314,33 +1317,33 @@ namespace UnitsNet
                 (SpeedUnit.MeterPerSecond, SpeedUnit.CentimeterPerSecond) => new Speed(_value * 100, SpeedUnit.CentimeterPerSecond),
                 (SpeedUnit.MeterPerSecond, SpeedUnit.DecimeterPerMinute) => new Speed(_value * 600, SpeedUnit.DecimeterPerMinute),
                 (SpeedUnit.MeterPerSecond, SpeedUnit.DecimeterPerSecond) => new Speed(_value * 10, SpeedUnit.DecimeterPerSecond),
-                (SpeedUnit.MeterPerSecond, SpeedUnit.FootPerHour) => new Speed(_value * new Fraction(1500000, 127, false), SpeedUnit.FootPerHour),
-                (SpeedUnit.MeterPerSecond, SpeedUnit.FootPerMinute) => new Speed(_value * new Fraction(25000, 127, false), SpeedUnit.FootPerMinute),
-                (SpeedUnit.MeterPerSecond, SpeedUnit.FootPerSecond) => new Speed(_value * new Fraction(1250, 381, false), SpeedUnit.FootPerSecond),
-                (SpeedUnit.MeterPerSecond, SpeedUnit.InchPerHour) => new Speed(_value * new Fraction(18000000, 127, false), SpeedUnit.InchPerHour),
-                (SpeedUnit.MeterPerSecond, SpeedUnit.InchPerMinute) => new Speed(_value * new Fraction(300000, 127, false), SpeedUnit.InchPerMinute),
-                (SpeedUnit.MeterPerSecond, SpeedUnit.InchPerSecond) => new Speed(_value * new Fraction(5000, 127, false), SpeedUnit.InchPerSecond),
-                (SpeedUnit.MeterPerSecond, SpeedUnit.KilometerPerHour) => new Speed(_value * new Fraction(18, 5, false), SpeedUnit.KilometerPerHour),
-                (SpeedUnit.MeterPerSecond, SpeedUnit.KilometerPerMinute) => new Speed(_value * new Fraction(3, 50, false), SpeedUnit.KilometerPerMinute),
+                (SpeedUnit.MeterPerSecond, SpeedUnit.FootPerHour) => new Speed(_value * new QuantityValue(1500000, 127, false), SpeedUnit.FootPerHour),
+                (SpeedUnit.MeterPerSecond, SpeedUnit.FootPerMinute) => new Speed(_value * new QuantityValue(25000, 127, false), SpeedUnit.FootPerMinute),
+                (SpeedUnit.MeterPerSecond, SpeedUnit.FootPerSecond) => new Speed(_value * new QuantityValue(1250, 381, false), SpeedUnit.FootPerSecond),
+                (SpeedUnit.MeterPerSecond, SpeedUnit.InchPerHour) => new Speed(_value * new QuantityValue(18000000, 127, false), SpeedUnit.InchPerHour),
+                (SpeedUnit.MeterPerSecond, SpeedUnit.InchPerMinute) => new Speed(_value * new QuantityValue(300000, 127, false), SpeedUnit.InchPerMinute),
+                (SpeedUnit.MeterPerSecond, SpeedUnit.InchPerSecond) => new Speed(_value * new QuantityValue(5000, 127, false), SpeedUnit.InchPerSecond),
+                (SpeedUnit.MeterPerSecond, SpeedUnit.KilometerPerHour) => new Speed(_value * new QuantityValue(18, 5, false), SpeedUnit.KilometerPerHour),
+                (SpeedUnit.MeterPerSecond, SpeedUnit.KilometerPerMinute) => new Speed(_value * new QuantityValue(3, 50, false), SpeedUnit.KilometerPerMinute),
                 (SpeedUnit.MeterPerSecond, SpeedUnit.KilometerPerSecond) => new Speed(_value / 1000, SpeedUnit.KilometerPerSecond),
-                (SpeedUnit.MeterPerSecond, SpeedUnit.Knot) => new Speed(_value * new Fraction(900, 463, false), SpeedUnit.Knot),
-                (SpeedUnit.MeterPerSecond, SpeedUnit.Mach) => new Speed(_value * new Fraction(100, 34029, false), SpeedUnit.Mach),
+                (SpeedUnit.MeterPerSecond, SpeedUnit.Knot) => new Speed(_value * new QuantityValue(900, 463, false), SpeedUnit.Knot),
+                (SpeedUnit.MeterPerSecond, SpeedUnit.Mach) => new Speed(_value * new QuantityValue(100, 34029, false), SpeedUnit.Mach),
                 (SpeedUnit.MeterPerSecond, SpeedUnit.MeterPerHour) => new Speed(_value * 3600, SpeedUnit.MeterPerHour),
                 (SpeedUnit.MeterPerSecond, SpeedUnit.MeterPerMinute) => new Speed(_value * 60, SpeedUnit.MeterPerMinute),
                 (SpeedUnit.MeterPerSecond, SpeedUnit.MicrometerPerMinute) => new Speed(_value * 60000000, SpeedUnit.MicrometerPerMinute),
                 (SpeedUnit.MeterPerSecond, SpeedUnit.MicrometerPerSecond) => new Speed(_value * 1000000, SpeedUnit.MicrometerPerSecond),
-                (SpeedUnit.MeterPerSecond, SpeedUnit.MilePerHour) => new Speed(_value * new Fraction(3125, 1397, false), SpeedUnit.MilePerHour),
+                (SpeedUnit.MeterPerSecond, SpeedUnit.MilePerHour) => new Speed(_value * new QuantityValue(3125, 1397, false), SpeedUnit.MilePerHour),
                 (SpeedUnit.MeterPerSecond, SpeedUnit.MillimeterPerHour) => new Speed(_value * 3600000, SpeedUnit.MillimeterPerHour),
                 (SpeedUnit.MeterPerSecond, SpeedUnit.MillimeterPerMinute) => new Speed(_value * 60000, SpeedUnit.MillimeterPerMinute),
                 (SpeedUnit.MeterPerSecond, SpeedUnit.MillimeterPerSecond) => new Speed(_value * 1000, SpeedUnit.MillimeterPerSecond),
                 (SpeedUnit.MeterPerSecond, SpeedUnit.NanometerPerMinute) => new Speed(_value * 60000000000, SpeedUnit.NanometerPerMinute),
                 (SpeedUnit.MeterPerSecond, SpeedUnit.NanometerPerSecond) => new Speed(_value * 1000000000, SpeedUnit.NanometerPerSecond),
                 (SpeedUnit.MeterPerSecond, SpeedUnit.UsSurveyFootPerHour) => new Speed(_value * 11811, SpeedUnit.UsSurveyFootPerHour),
-                (SpeedUnit.MeterPerSecond, SpeedUnit.UsSurveyFootPerMinute) => new Speed(_value * new Fraction(3937, 20, false), SpeedUnit.UsSurveyFootPerMinute),
-                (SpeedUnit.MeterPerSecond, SpeedUnit.UsSurveyFootPerSecond) => new Speed(_value * new Fraction(3937, 1200, false), SpeedUnit.UsSurveyFootPerSecond),
-                (SpeedUnit.MeterPerSecond, SpeedUnit.YardPerHour) => new Speed(_value * new Fraction(500000, 127, false), SpeedUnit.YardPerHour),
-                (SpeedUnit.MeterPerSecond, SpeedUnit.YardPerMinute) => new Speed(_value * new Fraction(25000, 381, false), SpeedUnit.YardPerMinute),
-                (SpeedUnit.MeterPerSecond, SpeedUnit.YardPerSecond) => new Speed(_value * new Fraction(1250, 1143, false), SpeedUnit.YardPerSecond),
+                (SpeedUnit.MeterPerSecond, SpeedUnit.UsSurveyFootPerMinute) => new Speed(_value * new QuantityValue(3937, 20, false), SpeedUnit.UsSurveyFootPerMinute),
+                (SpeedUnit.MeterPerSecond, SpeedUnit.UsSurveyFootPerSecond) => new Speed(_value * new QuantityValue(3937, 1200, false), SpeedUnit.UsSurveyFootPerSecond),
+                (SpeedUnit.MeterPerSecond, SpeedUnit.YardPerHour) => new Speed(_value * new QuantityValue(500000, 127, false), SpeedUnit.YardPerHour),
+                (SpeedUnit.MeterPerSecond, SpeedUnit.YardPerMinute) => new Speed(_value * new QuantityValue(25000, 381, false), SpeedUnit.YardPerMinute),
+                (SpeedUnit.MeterPerSecond, SpeedUnit.YardPerSecond) => new Speed(_value * new QuantityValue(1250, 1143, false), SpeedUnit.YardPerSecond),
 
                 _ => null
             };

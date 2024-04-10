@@ -102,7 +102,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ReciprocalLengthUnit.InverseMeter, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new ReciprocalLength(double.PositiveInfinity, ReciprocalLengthUnit.InverseMeter));
@@ -112,7 +112,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new ReciprocalLength(double.NaN, ReciprocalLengthUnit.InverseMeter));
@@ -216,7 +216,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromInverseMeters_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => ReciprocalLength.FromInverseMeters(double.PositiveInfinity));
@@ -226,7 +226,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromInverseMeters_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => ReciprocalLength.FromInverseMeters(double.NaN));
@@ -881,8 +881,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, ReciprocalLengthUnit.InverseMeter, 1, ReciprocalLengthUnit.InverseMeter, true)]  // Same value and unit.
         [InlineData(1, ReciprocalLengthUnit.InverseMeter, 2, ReciprocalLengthUnit.InverseMeter, false)] // Different value.
-        [InlineData(2, ReciprocalLengthUnit.InverseMeter, 1, ReciprocalLengthUnit.InverseCentimeter, false)] // Different value and unit.
-        [InlineData(1, ReciprocalLengthUnit.InverseMeter, 1, ReciprocalLengthUnit.InverseCentimeter, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ReciprocalLengthUnit unitA, double valueB, ReciprocalLengthUnit unitB, bool expectEqual)
         {
             var a = new ReciprocalLength(valueA, unitA);
@@ -1199,7 +1197,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ReciprocalLength.FromInverseMeters(1.0);
-            Assert.Equal(new {ReciprocalLength.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(ReciprocalLength.Info.Name, quantity.InverseMeters);
+            #else
+            var expected = new {ReciprocalLength.Info.Name, valueInBaseUnit = quantity.InverseMeters}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

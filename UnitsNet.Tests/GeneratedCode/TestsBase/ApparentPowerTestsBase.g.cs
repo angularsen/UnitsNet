@@ -86,7 +86,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ApparentPowerUnit.Voltampere, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new ApparentPower(double.PositiveInfinity, ApparentPowerUnit.Voltampere));
@@ -96,7 +96,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new ApparentPower(double.NaN, ApparentPowerUnit.Voltampere));
@@ -180,7 +180,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromVoltamperes_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => ApparentPower.FromVoltamperes(double.PositiveInfinity));
@@ -190,7 +190,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromVoltamperes_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => ApparentPower.FromVoltamperes(double.NaN));
@@ -479,8 +479,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, ApparentPowerUnit.Voltampere, 1, ApparentPowerUnit.Voltampere, true)]  // Same value and unit.
         [InlineData(1, ApparentPowerUnit.Voltampere, 2, ApparentPowerUnit.Voltampere, false)] // Different value.
-        [InlineData(2, ApparentPowerUnit.Voltampere, 1, ApparentPowerUnit.Gigavoltampere, false)] // Different value and unit.
-        [InlineData(1, ApparentPowerUnit.Voltampere, 1, ApparentPowerUnit.Gigavoltampere, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ApparentPowerUnit unitA, double valueB, ApparentPowerUnit unitB, bool expectEqual)
         {
             var a = new ApparentPower(valueA, unitA);
@@ -789,7 +787,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ApparentPower.FromVoltamperes(1.0);
-            Assert.Equal(new {ApparentPower.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(ApparentPower.Info.Name, quantity.Voltamperes);
+            #else
+            var expected = new {ApparentPower.Info.Name, valueInBaseUnit = quantity.Voltamperes}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

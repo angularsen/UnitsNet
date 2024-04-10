@@ -2,7 +2,6 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
-using Fractions;
 using UnitsNet.Units;
 
 namespace UnitsNet
@@ -22,7 +21,7 @@ namespace UnitsNet
                     nameof(power), "The base-10 logarithm of a number ≤ 0 is undefined. Power must be greater than 0 W.");
 
             // P(dBW) = 10*log10(value(W)/reference(W))
-            _value = Fraction.FromDoubleRounded(10 * Math.Log10(power.Watts.ToDouble()));
+            _value = QuantityValue.FromDoubleRounded(10 * Math.Log10(power.Watts.ToDouble()));
             _unit = PowerRatioUnit.DecibelWatt;
         }
 
@@ -38,7 +37,7 @@ namespace UnitsNet
         public Power ToPower()
         {
             // P(W) = 1W * 10^(P(dBW)/10)
-            return Power.FromWatts(Fraction.FromDoubleRounded(Math.Pow(10, DecibelWatts.ToDouble() / 10)));
+            return Power.FromWatts(QuantityValue.FromDoubleRounded(Math.Pow(10, DecibelWatts.ToDouble() / 10)));
         }
 
         /// <summary>
@@ -48,7 +47,7 @@ namespace UnitsNet
         public AmplitudeRatio ToAmplitudeRatio(ElectricResistance impedance)
         {
             // E(dBV) = 10*log10(Z(Ω)/1) + P(dBW)
-            return AmplitudeRatio.FromDecibelVolts(Fraction.FromDoubleRounded(10 * Math.Log10(impedance.Ohms.ToDouble() / 1)) + DecibelWatts);
+            return AmplitudeRatio.FromDecibelVolts(QuantityValue.FromDoubleRounded(10 * Math.Log10(impedance.Ohms.ToDouble() / 1)) + DecibelWatts);
         }
 
         #region Static Methods

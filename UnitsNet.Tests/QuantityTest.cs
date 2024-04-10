@@ -16,7 +16,7 @@ namespace UnitsNet.Tests
         // Exclude Undefined value
         private static readonly int QuantityCount = Quantity.ByName.Count;
 
-        [Theory]
+        [Theory(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         [InlineData(double.NaN)]
         [InlineData(double.PositiveInfinity)]
         [InlineData(double.NegativeInfinity)]
@@ -27,7 +27,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception);
         }
 
-        [Theory]
+        [Theory(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         [InlineData(double.NaN)]
         [InlineData(double.PositiveInfinity)]
         [InlineData(double.NegativeInfinity)]

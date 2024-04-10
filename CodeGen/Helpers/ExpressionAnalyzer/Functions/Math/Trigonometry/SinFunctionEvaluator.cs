@@ -8,6 +8,6 @@ internal class SinFunctionEvaluator : MathFunctionEvaluator
 
     public override Fraction Evaluate(Fraction value)
     {
-        return Fraction.FromDoubleRounded(System.Math.Sin(value.ToDouble()));
+        return FractionExtensions.FromDoubleRounded(System.Math.Sin(value.ToDouble()));
     }
 }

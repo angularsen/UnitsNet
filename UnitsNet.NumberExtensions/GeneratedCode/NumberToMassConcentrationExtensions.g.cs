@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
     /// </summary>
     public static class NumberToMassConcentrationExtensions
     {
-        /// <inheritdoc cref="MassConcentration.FromCentigramsPerDeciliter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromCentigramsPerDeciliter(QuantityValue)" />
         public static MassConcentration CentigramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromCentigramsPerDeciliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromCentigramsPerLiter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromCentigramsPerLiter(QuantityValue)" />
         public static MassConcentration CentigramsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromCentigramsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromCentigramsPerMicroliter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromCentigramsPerMicroliter(QuantityValue)" />
         public static MassConcentration CentigramsPerMicroliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromCentigramsPerMicroliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromCentigramsPerMilliliter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromCentigramsPerMilliliter(QuantityValue)" />
         public static MassConcentration CentigramsPerMilliliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromCentigramsPerMilliliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromDecigramsPerDeciliter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromDecigramsPerDeciliter(QuantityValue)" />
         public static MassConcentration DecigramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromDecigramsPerDeciliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromDecigramsPerLiter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromDecigramsPerLiter(QuantityValue)" />
         public static MassConcentration DecigramsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromDecigramsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromDecigramsPerMicroliter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromDecigramsPerMicroliter(QuantityValue)" />
         public static MassConcentration DecigramsPerMicroliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromDecigramsPerMicroliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromDecigramsPerMilliliter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromDecigramsPerMilliliter(QuantityValue)" />
         public static MassConcentration DecigramsPerMilliliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromDecigramsPerMilliliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromGramsPerCubicCentimeter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromGramsPerCubicCentimeter(QuantityValue)" />
         public static MassConcentration GramsPerCubicCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -104,7 +104,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromGramsPerCubicCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromGramsPerCubicMeter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromGramsPerCubicMeter(QuantityValue)" />
         public static MassConcentration GramsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -112,7 +112,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromGramsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromGramsPerCubicMillimeter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromGramsPerCubicMillimeter(QuantityValue)" />
         public static MassConcentration GramsPerCubicMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -120,7 +120,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromGramsPerCubicMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromGramsPerDeciliter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromGramsPerDeciliter(QuantityValue)" />
         public static MassConcentration GramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -128,7 +128,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromGramsPerDeciliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromGramsPerLiter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromGramsPerLiter(QuantityValue)" />
         public static MassConcentration GramsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -136,7 +136,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromGramsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromGramsPerMicroliter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromGramsPerMicroliter(QuantityValue)" />
         public static MassConcentration GramsPerMicroliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -144,7 +144,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromGramsPerMicroliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromGramsPerMilliliter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromGramsPerMilliliter(QuantityValue)" />
         public static MassConcentration GramsPerMilliliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -152,7 +152,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromGramsPerMilliliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromKilogramsPerCubicCentimeter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromKilogramsPerCubicCentimeter(QuantityValue)" />
         public static MassConcentration KilogramsPerCubicCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -160,7 +160,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromKilogramsPerCubicCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromKilogramsPerCubicMeter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromKilogramsPerCubicMeter(QuantityValue)" />
         public static MassConcentration KilogramsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -168,7 +168,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromKilogramsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromKilogramsPerCubicMillimeter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromKilogramsPerCubicMillimeter(QuantityValue)" />
         public static MassConcentration KilogramsPerCubicMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -176,7 +176,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromKilogramsPerCubicMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromKilogramsPerLiter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromKilogramsPerLiter(QuantityValue)" />
         public static MassConcentration KilogramsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -184,7 +184,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromKilogramsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromKilopoundsPerCubicFoot(double)" />
+        /// <inheritdoc cref="MassConcentration.FromKilopoundsPerCubicFoot(QuantityValue)" />
         public static MassConcentration KilopoundsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -192,7 +192,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromKilopoundsPerCubicFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromKilopoundsPerCubicInch(double)" />
+        /// <inheritdoc cref="MassConcentration.FromKilopoundsPerCubicInch(QuantityValue)" />
         public static MassConcentration KilopoundsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -200,7 +200,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromKilopoundsPerCubicInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromMicrogramsPerCubicMeter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromMicrogramsPerCubicMeter(QuantityValue)" />
         public static MassConcentration MicrogramsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -208,7 +208,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromMicrogramsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromMicrogramsPerDeciliter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromMicrogramsPerDeciliter(QuantityValue)" />
         public static MassConcentration MicrogramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -216,7 +216,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromMicrogramsPerDeciliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromMicrogramsPerLiter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromMicrogramsPerLiter(QuantityValue)" />
         public static MassConcentration MicrogramsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -224,7 +224,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromMicrogramsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromMicrogramsPerMicroliter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromMicrogramsPerMicroliter(QuantityValue)" />
         public static MassConcentration MicrogramsPerMicroliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -232,7 +232,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromMicrogramsPerMicroliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromMicrogramsPerMilliliter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromMicrogramsPerMilliliter(QuantityValue)" />
         public static MassConcentration MicrogramsPerMilliliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -240,7 +240,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromMicrogramsPerMilliliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromMilligramsPerCubicMeter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromMilligramsPerCubicMeter(QuantityValue)" />
         public static MassConcentration MilligramsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -248,7 +248,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromMilligramsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromMilligramsPerDeciliter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromMilligramsPerDeciliter(QuantityValue)" />
         public static MassConcentration MilligramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -256,7 +256,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromMilligramsPerDeciliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromMilligramsPerLiter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromMilligramsPerLiter(QuantityValue)" />
         public static MassConcentration MilligramsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -264,7 +264,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromMilligramsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromMilligramsPerMicroliter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromMilligramsPerMicroliter(QuantityValue)" />
         public static MassConcentration MilligramsPerMicroliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -272,7 +272,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromMilligramsPerMicroliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromMilligramsPerMilliliter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromMilligramsPerMilliliter(QuantityValue)" />
         public static MassConcentration MilligramsPerMilliliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -280,7 +280,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromMilligramsPerMilliliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromNanogramsPerDeciliter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromNanogramsPerDeciliter(QuantityValue)" />
         public static MassConcentration NanogramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -288,7 +288,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromNanogramsPerDeciliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromNanogramsPerLiter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromNanogramsPerLiter(QuantityValue)" />
         public static MassConcentration NanogramsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -296,7 +296,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromNanogramsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromNanogramsPerMicroliter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromNanogramsPerMicroliter(QuantityValue)" />
         public static MassConcentration NanogramsPerMicroliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -304,7 +304,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromNanogramsPerMicroliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromNanogramsPerMilliliter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromNanogramsPerMilliliter(QuantityValue)" />
         public static MassConcentration NanogramsPerMilliliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -312,7 +312,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromNanogramsPerMilliliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromOuncesPerImperialGallon(double)" />
+        /// <inheritdoc cref="MassConcentration.FromOuncesPerImperialGallon(QuantityValue)" />
         public static MassConcentration OuncesPerImperialGallon<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -320,7 +320,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromOuncesPerImperialGallon(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromOuncesPerUSGallon(double)" />
+        /// <inheritdoc cref="MassConcentration.FromOuncesPerUSGallon(QuantityValue)" />
         public static MassConcentration OuncesPerUSGallon<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -328,7 +328,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromOuncesPerUSGallon(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromPicogramsPerDeciliter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromPicogramsPerDeciliter(QuantityValue)" />
         public static MassConcentration PicogramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -336,7 +336,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromPicogramsPerDeciliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromPicogramsPerLiter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromPicogramsPerLiter(QuantityValue)" />
         public static MassConcentration PicogramsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -344,7 +344,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromPicogramsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromPicogramsPerMicroliter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromPicogramsPerMicroliter(QuantityValue)" />
         public static MassConcentration PicogramsPerMicroliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -352,7 +352,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromPicogramsPerMicroliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromPicogramsPerMilliliter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromPicogramsPerMilliliter(QuantityValue)" />
         public static MassConcentration PicogramsPerMilliliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -360,7 +360,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromPicogramsPerMilliliter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromPoundsPerCubicFoot(double)" />
+        /// <inheritdoc cref="MassConcentration.FromPoundsPerCubicFoot(QuantityValue)" />
         public static MassConcentration PoundsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -368,7 +368,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromPoundsPerCubicFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromPoundsPerCubicInch(double)" />
+        /// <inheritdoc cref="MassConcentration.FromPoundsPerCubicInch(QuantityValue)" />
         public static MassConcentration PoundsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -376,7 +376,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromPoundsPerCubicInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromPoundsPerImperialGallon(double)" />
+        /// <inheritdoc cref="MassConcentration.FromPoundsPerImperialGallon(QuantityValue)" />
         public static MassConcentration PoundsPerImperialGallon<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -384,7 +384,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromPoundsPerImperialGallon(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromPoundsPerUSGallon(double)" />
+        /// <inheritdoc cref="MassConcentration.FromPoundsPerUSGallon(QuantityValue)" />
         public static MassConcentration PoundsPerUSGallon<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -392,7 +392,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromPoundsPerUSGallon(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromSlugsPerCubicFoot(double)" />
+        /// <inheritdoc cref="MassConcentration.FromSlugsPerCubicFoot(QuantityValue)" />
         public static MassConcentration SlugsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -400,7 +400,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromSlugsPerCubicFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromTonnesPerCubicCentimeter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromTonnesPerCubicCentimeter(QuantityValue)" />
         public static MassConcentration TonnesPerCubicCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -408,7 +408,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromTonnesPerCubicCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromTonnesPerCubicMeter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromTonnesPerCubicMeter(QuantityValue)" />
         public static MassConcentration TonnesPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -416,7 +416,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassConcentration
 #endif
             => MassConcentration.FromTonnesPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassConcentration.FromTonnesPerCubicMillimeter(double)" />
+        /// <inheritdoc cref="MassConcentration.FromTonnesPerCubicMillimeter(QuantityValue)" />
         public static MassConcentration TonnesPerCubicMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

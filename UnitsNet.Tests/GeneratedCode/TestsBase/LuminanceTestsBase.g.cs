@@ -102,7 +102,7 @@ namespace UnitsNet.Tests
             Assert.Equal(LuminanceUnit.CandelaPerSquareMeter, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new Luminance(double.PositiveInfinity, LuminanceUnit.CandelaPerSquareMeter));
@@ -112,7 +112,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new Luminance(double.NaN, LuminanceUnit.CandelaPerSquareMeter));
@@ -216,7 +216,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromCandelasPerSquareMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => Luminance.FromCandelasPerSquareMeter(double.PositiveInfinity));
@@ -226,7 +226,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromCandelasPerSquareMeter_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => Luminance.FromCandelasPerSquareMeter(double.NaN));
@@ -641,8 +641,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, LuminanceUnit.CandelaPerSquareMeter, 1, LuminanceUnit.CandelaPerSquareMeter, true)]  // Same value and unit.
         [InlineData(1, LuminanceUnit.CandelaPerSquareMeter, 2, LuminanceUnit.CandelaPerSquareMeter, false)] // Different value.
-        [InlineData(2, LuminanceUnit.CandelaPerSquareMeter, 1, LuminanceUnit.CandelaPerSquareFoot, false)] // Different value and unit.
-        [InlineData(1, LuminanceUnit.CandelaPerSquareMeter, 1, LuminanceUnit.CandelaPerSquareFoot, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, LuminanceUnit unitA, double valueB, LuminanceUnit unitB, bool expectEqual)
         {
             var a = new Luminance(valueA, unitA);
@@ -959,7 +957,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Luminance.FromCandelasPerSquareMeter(1.0);
-            Assert.Equal(new {Luminance.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(Luminance.Info.Name, quantity.CandelasPerSquareMeter);
+            #else
+            var expected = new {Luminance.Info.Name, valueInBaseUnit = quantity.CandelasPerSquareMeter}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

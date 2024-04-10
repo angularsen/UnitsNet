@@ -23,7 +23,6 @@ using UnitsNet.Units;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Fractions;
 
 #nullable enable
 
@@ -170,7 +169,7 @@ namespace UnitsNet
         /// <param name="quantityInfo">The <see cref="QuantityInfo"/> of the quantity to create.</param>
         /// <param name="value">The value to construct the quantity with.</param>
         /// <returns>The created quantity.</returns>
-        public static IQuantity FromQuantityInfo(QuantityInfo quantityInfo, Fraction value)
+        public static IQuantity FromQuantityInfo(QuantityInfo quantityInfo, QuantityValue value)
         {
             return quantityInfo.Name switch
             {
@@ -308,7 +307,7 @@ namespace UnitsNet
         /// <param name="unit">Unit enum value.</param>
         /// <param name="quantity">The resulting quantity if successful, otherwise <c>default</c>.</param>
         /// <returns><c>True</c> if successful with <paramref name="quantity"/> assigned the value, otherwise <c>false</c>.</returns>
-        public static bool TryFrom(Fraction value, Enum? unit, [NotNullWhen(true)] out IQuantity? quantity)
+        public static bool TryFrom(QuantityValue value, Enum? unit, [NotNullWhen(true)] out IQuantity? quantity)
         {
             quantity = unit switch
             {

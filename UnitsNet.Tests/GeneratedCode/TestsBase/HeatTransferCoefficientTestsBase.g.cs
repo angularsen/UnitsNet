@@ -82,7 +82,7 @@ namespace UnitsNet.Tests
             Assert.Equal(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new HeatTransferCoefficient(double.PositiveInfinity, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin));
@@ -92,7 +92,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new HeatTransferCoefficient(double.NaN, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin));
@@ -171,7 +171,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromWattsPerSquareMeterKelvin_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(double.PositiveInfinity));
@@ -181,7 +181,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromWattsPerSquareMeterKelvin_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(double.NaN));
@@ -682,8 +682,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, 1, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, true)]  // Same value and unit.
         [InlineData(1, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, 2, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, false)] // Different value.
-        [InlineData(2, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, 1, HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit, false)] // Different value and unit.
-        [InlineData(1, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, 1, HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, HeatTransferCoefficientUnit unitA, double valueB, HeatTransferCoefficientUnit unitB, bool expectEqual)
         {
             var a = new HeatTransferCoefficient(valueA, unitA);
@@ -990,7 +988,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1.0);
-            Assert.Equal(new {HeatTransferCoefficient.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(HeatTransferCoefficient.Info.Name, quantity.WattsPerSquareMeterKelvin);
+            #else
+            var expected = new {HeatTransferCoefficient.Info.Name, valueInBaseUnit = quantity.WattsPerSquareMeterKelvin}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

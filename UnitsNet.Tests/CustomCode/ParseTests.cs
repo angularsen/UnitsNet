@@ -28,7 +28,7 @@ namespace UnitsNet.Tests
         public void ParseLengthToMetersUsEnglish(string s, double expected)
         {
             CultureInfo usEnglish = CultureInfo.GetCultureInfo("en-US");
-            double actual = Length.Parse(s, usEnglish).Meters;
+            QuantityValue actual = Length.Parse(s, usEnglish).Meters;
             Assert.Equal(expected, actual);
         }
 
@@ -58,7 +58,7 @@ namespace UnitsNet.Tests
             numberFormat.NumberDecimalSeparator = ".";
             numberFormat.CurrencyDecimalSeparator = ".";
 
-            double actual = Length.Parse(s, numberFormat).Meters;
+            QuantityValue actual = Length.Parse(s, numberFormat).Meters;
             Assert.Equal(expected, actual);
         }
 
@@ -89,7 +89,7 @@ namespace UnitsNet.Tests
             numberFormat.NumberDecimalSeparator = ",";
             numberFormat.CurrencyDecimalSeparator = ",";
 
-            double actual = Length.Parse(s, numberFormat).Meters;
+            QuantityValue actual = Length.Parse(s, numberFormat).Meters;
             Assert.Equal(expected, actual);
         }
 

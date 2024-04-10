@@ -25,7 +25,6 @@ using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 using System.Numerics;
-using Fractions;
 
 #nullable enable
 
@@ -53,7 +52,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly Fraction _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -84,7 +83,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public ThermalConductivity(Fraction value, ThermalConductivityUnit unit)
+        public ThermalConductivity(QuantityValue value, ThermalConductivityUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -98,7 +97,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ThermalConductivity(Fraction value, UnitSystem unitSystem)
+        public ThermalConductivity(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -149,10 +148,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public Fraction Value => _value;
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
-        Fraction IQuantity.Value => _value;
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -177,12 +176,12 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalConductivityUnit.BtuPerHourFootFahrenheit"/>
         /// </summary>
-        public Fraction BtusPerHourFootFahrenheit => As(ThermalConductivityUnit.BtuPerHourFootFahrenheit);
+        public QuantityValue BtusPerHourFootFahrenheit => As(ThermalConductivityUnit.BtuPerHourFootFahrenheit);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalConductivityUnit.WattPerMeterKelvin"/>
         /// </summary>
-        public Fraction WattsPerMeterKelvin => As(ThermalConductivityUnit.WattPerMeterKelvin);
+        public QuantityValue WattsPerMeterKelvin => As(ThermalConductivityUnit.WattPerMeterKelvin);
 
         #endregion
 
@@ -232,7 +231,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ThermalConductivity"/> from <see cref="ThermalConductivityUnit.BtuPerHourFootFahrenheit"/>.
         /// </summary>
-        public static ThermalConductivity FromBtusPerHourFootFahrenheit(Fraction value)
+        public static ThermalConductivity FromBtusPerHourFootFahrenheit(QuantityValue value)
         {
             return new ThermalConductivity(value, ThermalConductivityUnit.BtuPerHourFootFahrenheit);
         }
@@ -240,7 +239,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ThermalConductivity"/> from <see cref="ThermalConductivityUnit.WattPerMeterKelvin"/>.
         /// </summary>
-        public static ThermalConductivity FromWattsPerMeterKelvin(Fraction value)
+        public static ThermalConductivity FromWattsPerMeterKelvin(QuantityValue value)
         {
             return new ThermalConductivity(value, ThermalConductivityUnit.WattPerMeterKelvin);
         }
@@ -251,7 +250,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ThermalConductivity unit value.</returns>
-        public static ThermalConductivity From(Fraction value, ThermalConductivityUnit fromUnit)
+        public static ThermalConductivity From(QuantityValue value, ThermalConductivityUnit fromUnit)
         {
             return new ThermalConductivity(value, fromUnit);
         }
@@ -407,7 +406,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static ThermalConductivity operator -(ThermalConductivity right)
         {
-            return new ThermalConductivity(right.Value.Invert(), right.Unit);
+            return new ThermalConductivity(-right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ThermalConductivity"/> from adding two <see cref="ThermalConductivity"/>.</summary>
@@ -423,25 +422,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="ThermalConductivity"/> from multiplying value and <see cref="ThermalConductivity"/>.</summary>
-        public static ThermalConductivity operator *(Fraction left, ThermalConductivity right)
+        public static ThermalConductivity operator *(QuantityValue left, ThermalConductivity right)
         {
             return new ThermalConductivity(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ThermalConductivity"/> from multiplying value and <see cref="ThermalConductivity"/>.</summary>
-        public static ThermalConductivity operator *(ThermalConductivity left, Fraction right)
+        public static ThermalConductivity operator *(ThermalConductivity left, QuantityValue right)
         {
             return new ThermalConductivity(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ThermalConductivity"/> from dividing <see cref="ThermalConductivity"/> by value.</summary>
-        public static ThermalConductivity operator /(ThermalConductivity left, Fraction right)
+        public static ThermalConductivity operator /(ThermalConductivity left, QuantityValue right)
         {
             return new ThermalConductivity(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ThermalConductivity"/> by <see cref="ThermalConductivity"/>.</summary>
-        public static Fraction operator /(ThermalConductivity left, ThermalConductivity right)
+        public static QuantityValue operator /(ThermalConductivity left, ThermalConductivity right)
         {
             return left.WattsPerMeterKelvin / right.WattsPerMeterKelvin;
         }
@@ -500,7 +499,7 @@ namespace UnitsNet
         /// <summary>Indicates strict equality of two <see cref="ThermalConductivity"/> quantities.</summary>
         public bool Equals(ThermalConductivity other)
         {
-            return _value.IsEquivalentTo(other.As(this.Unit));
+            return _value.Equals(other.As(this.Unit));
         }
 
         /// <summary>Compares the current <see cref="ThermalConductivity"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
@@ -585,10 +584,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: (Fraction)tolerance,
+                tolerance: (QuantityValue)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -605,7 +604,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(ThermalConductivity other, ThermalConductivity tolerance)
         {
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -619,7 +618,11 @@ namespace UnitsNet
         public override int GetHashCode()
         {
             var valueInBaseUnit = As(BaseUnit);
+            #if NET7_0_OR_GREATER
+            return HashCode.Combine(Info.Name, valueInBaseUnit);
+            #else
             return new { Info.Name, valueInBaseUnit }.GetHashCode();
+            #endif
         }
 
         #endregion
@@ -630,7 +633,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public Fraction As(ThermalConductivityUnit unit)
+        public QuantityValue As(ThermalConductivityUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -639,7 +642,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public Fraction As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -654,7 +657,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        Fraction IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
             if (!(unit is ThermalConductivityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ThermalConductivityUnit)} is supported.", nameof(unit));
@@ -720,10 +723,10 @@ namespace UnitsNet
             ThermalConductivity? convertedOrNull = (Unit, unit) switch
             {
                 // ThermalConductivityUnit -> BaseUnit
-                (ThermalConductivityUnit.BtuPerHourFootFahrenheit, ThermalConductivityUnit.WattPerMeterKelvin) => new ThermalConductivity(_value * new Fraction(173073467, 100000000, false), ThermalConductivityUnit.WattPerMeterKelvin),
+                (ThermalConductivityUnit.BtuPerHourFootFahrenheit, ThermalConductivityUnit.WattPerMeterKelvin) => new ThermalConductivity(_value * new QuantityValue(173073467, 100000000, false), ThermalConductivityUnit.WattPerMeterKelvin),
 
                 // BaseUnit -> ThermalConductivityUnit
-                (ThermalConductivityUnit.WattPerMeterKelvin, ThermalConductivityUnit.BtuPerHourFootFahrenheit) => new ThermalConductivity(_value * new Fraction(100000000, 173073467, false), ThermalConductivityUnit.BtuPerHourFootFahrenheit),
+                (ThermalConductivityUnit.WattPerMeterKelvin, ThermalConductivityUnit.BtuPerHourFootFahrenheit) => new ThermalConductivity(_value * new QuantityValue(100000000, 173073467, false), ThermalConductivityUnit.BtuPerHourFootFahrenheit),
 
                 _ => null
             };

@@ -3,16 +3,16 @@
 
 using System;
 using System.Globalization;
+using System.Numerics;
 using System.Text.RegularExpressions;
 using System.Threading;
-using Fractions;
 using UnitsNet.Units;
 
 namespace UnitsNet
 {
     public partial struct Length
     {
-        private const int InchesInOneFoot = 12;
+        private static readonly QuantityValue InchesInOneFoot = 12;
 
         /// <summary>
         ///     Converts the length to a customary feet/inches combination.
@@ -21,18 +21,15 @@ namespace UnitsNet
         {
             get
             {
-                var inInches = Inches;
-                var feet = Math.Truncate((inInches / InchesInOneFoot).ToDouble()); // TODO?
-                var inches = inInches % InchesInOneFoot;
-
-                return new FeetInches(Fraction.FromDoubleRounded(feet), inches);
+                QuantityValue totalInches = Inches;
+                return new FeetInches((BigInteger) (totalInches / InchesInOneFoot), totalInches % InchesInOneFoot);
             }
         }
 
         /// <summary>
         ///     Get length from combination of feet and inches.
         /// </summary>
-        public static Length FromFeetInches(Fraction feet, Fraction inches)
+        public static Length FromFeetInches(QuantityValue feet, QuantityValue inches)
         {
             return FromInches(InchesInOneFoot*feet + inches);
         }
@@ -123,7 +120,7 @@ namespace UnitsNet
         /// <summary>
         ///     Construct from feet and inches.
         /// </summary>
-        public FeetInches(Fraction feet, Fraction inches)
+        public FeetInches(BigInteger feet, QuantityValue inches)
         {
             Feet = feet;
             Inches = inches;
@@ -132,12 +129,12 @@ namespace UnitsNet
         /// <summary>
         ///     The feet value it was constructed with.
         /// </summary>
-        public Fraction Feet { get; }
+        public BigInteger Feet { get; }
 
         /// <summary>
         ///     The inches value it was constructed with.
         /// </summary>
-        public Fraction Inches { get; }
+        public QuantityValue Inches { get; }
 
         /// <inheritdoc cref="ToString(IFormatProvider)"/>
         public override string ToString()

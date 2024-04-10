@@ -25,7 +25,6 @@ using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 using System.Numerics;
-using Fractions;
 
 #nullable enable
 
@@ -50,7 +49,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly Fraction _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -92,7 +91,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Impulse(Fraction value, ImpulseUnit unit)
+        public Impulse(QuantityValue value, ImpulseUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -106,7 +105,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Impulse(Fraction value, UnitSystem unitSystem)
+        public Impulse(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -157,10 +156,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public Fraction Value => _value;
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
-        Fraction IQuantity.Value => _value;
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -185,67 +184,67 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ImpulseUnit.CentinewtonSecond"/>
         /// </summary>
-        public Fraction CentinewtonSeconds => As(ImpulseUnit.CentinewtonSecond);
+        public QuantityValue CentinewtonSeconds => As(ImpulseUnit.CentinewtonSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ImpulseUnit.DecanewtonSecond"/>
         /// </summary>
-        public Fraction DecanewtonSeconds => As(ImpulseUnit.DecanewtonSecond);
+        public QuantityValue DecanewtonSeconds => As(ImpulseUnit.DecanewtonSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ImpulseUnit.DecinewtonSecond"/>
         /// </summary>
-        public Fraction DecinewtonSeconds => As(ImpulseUnit.DecinewtonSecond);
+        public QuantityValue DecinewtonSeconds => As(ImpulseUnit.DecinewtonSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ImpulseUnit.KilogramMeterPerSecond"/>
         /// </summary>
-        public Fraction KilogramMetersPerSecond => As(ImpulseUnit.KilogramMeterPerSecond);
+        public QuantityValue KilogramMetersPerSecond => As(ImpulseUnit.KilogramMeterPerSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ImpulseUnit.KilonewtonSecond"/>
         /// </summary>
-        public Fraction KilonewtonSeconds => As(ImpulseUnit.KilonewtonSecond);
+        public QuantityValue KilonewtonSeconds => As(ImpulseUnit.KilonewtonSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ImpulseUnit.MeganewtonSecond"/>
         /// </summary>
-        public Fraction MeganewtonSeconds => As(ImpulseUnit.MeganewtonSecond);
+        public QuantityValue MeganewtonSeconds => As(ImpulseUnit.MeganewtonSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ImpulseUnit.MicronewtonSecond"/>
         /// </summary>
-        public Fraction MicronewtonSeconds => As(ImpulseUnit.MicronewtonSecond);
+        public QuantityValue MicronewtonSeconds => As(ImpulseUnit.MicronewtonSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ImpulseUnit.MillinewtonSecond"/>
         /// </summary>
-        public Fraction MillinewtonSeconds => As(ImpulseUnit.MillinewtonSecond);
+        public QuantityValue MillinewtonSeconds => As(ImpulseUnit.MillinewtonSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ImpulseUnit.NanonewtonSecond"/>
         /// </summary>
-        public Fraction NanonewtonSeconds => As(ImpulseUnit.NanonewtonSecond);
+        public QuantityValue NanonewtonSeconds => As(ImpulseUnit.NanonewtonSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ImpulseUnit.NewtonSecond"/>
         /// </summary>
-        public Fraction NewtonSeconds => As(ImpulseUnit.NewtonSecond);
+        public QuantityValue NewtonSeconds => As(ImpulseUnit.NewtonSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ImpulseUnit.PoundFootPerSecond"/>
         /// </summary>
-        public Fraction PoundFeetPerSecond => As(ImpulseUnit.PoundFootPerSecond);
+        public QuantityValue PoundFeetPerSecond => As(ImpulseUnit.PoundFootPerSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ImpulseUnit.PoundForceSecond"/>
         /// </summary>
-        public Fraction PoundForceSeconds => As(ImpulseUnit.PoundForceSecond);
+        public QuantityValue PoundForceSeconds => As(ImpulseUnit.PoundForceSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ImpulseUnit.SlugFootPerSecond"/>
         /// </summary>
-        public Fraction SlugFeetPerSecond => As(ImpulseUnit.SlugFootPerSecond);
+        public QuantityValue SlugFeetPerSecond => As(ImpulseUnit.SlugFootPerSecond);
 
         #endregion
 
@@ -317,7 +316,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Impulse"/> from <see cref="ImpulseUnit.CentinewtonSecond"/>.
         /// </summary>
-        public static Impulse FromCentinewtonSeconds(Fraction value)
+        public static Impulse FromCentinewtonSeconds(QuantityValue value)
         {
             return new Impulse(value, ImpulseUnit.CentinewtonSecond);
         }
@@ -325,7 +324,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Impulse"/> from <see cref="ImpulseUnit.DecanewtonSecond"/>.
         /// </summary>
-        public static Impulse FromDecanewtonSeconds(Fraction value)
+        public static Impulse FromDecanewtonSeconds(QuantityValue value)
         {
             return new Impulse(value, ImpulseUnit.DecanewtonSecond);
         }
@@ -333,7 +332,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Impulse"/> from <see cref="ImpulseUnit.DecinewtonSecond"/>.
         /// </summary>
-        public static Impulse FromDecinewtonSeconds(Fraction value)
+        public static Impulse FromDecinewtonSeconds(QuantityValue value)
         {
             return new Impulse(value, ImpulseUnit.DecinewtonSecond);
         }
@@ -341,7 +340,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Impulse"/> from <see cref="ImpulseUnit.KilogramMeterPerSecond"/>.
         /// </summary>
-        public static Impulse FromKilogramMetersPerSecond(Fraction value)
+        public static Impulse FromKilogramMetersPerSecond(QuantityValue value)
         {
             return new Impulse(value, ImpulseUnit.KilogramMeterPerSecond);
         }
@@ -349,7 +348,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Impulse"/> from <see cref="ImpulseUnit.KilonewtonSecond"/>.
         /// </summary>
-        public static Impulse FromKilonewtonSeconds(Fraction value)
+        public static Impulse FromKilonewtonSeconds(QuantityValue value)
         {
             return new Impulse(value, ImpulseUnit.KilonewtonSecond);
         }
@@ -357,7 +356,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Impulse"/> from <see cref="ImpulseUnit.MeganewtonSecond"/>.
         /// </summary>
-        public static Impulse FromMeganewtonSeconds(Fraction value)
+        public static Impulse FromMeganewtonSeconds(QuantityValue value)
         {
             return new Impulse(value, ImpulseUnit.MeganewtonSecond);
         }
@@ -365,7 +364,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Impulse"/> from <see cref="ImpulseUnit.MicronewtonSecond"/>.
         /// </summary>
-        public static Impulse FromMicronewtonSeconds(Fraction value)
+        public static Impulse FromMicronewtonSeconds(QuantityValue value)
         {
             return new Impulse(value, ImpulseUnit.MicronewtonSecond);
         }
@@ -373,7 +372,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Impulse"/> from <see cref="ImpulseUnit.MillinewtonSecond"/>.
         /// </summary>
-        public static Impulse FromMillinewtonSeconds(Fraction value)
+        public static Impulse FromMillinewtonSeconds(QuantityValue value)
         {
             return new Impulse(value, ImpulseUnit.MillinewtonSecond);
         }
@@ -381,7 +380,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Impulse"/> from <see cref="ImpulseUnit.NanonewtonSecond"/>.
         /// </summary>
-        public static Impulse FromNanonewtonSeconds(Fraction value)
+        public static Impulse FromNanonewtonSeconds(QuantityValue value)
         {
             return new Impulse(value, ImpulseUnit.NanonewtonSecond);
         }
@@ -389,7 +388,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Impulse"/> from <see cref="ImpulseUnit.NewtonSecond"/>.
         /// </summary>
-        public static Impulse FromNewtonSeconds(Fraction value)
+        public static Impulse FromNewtonSeconds(QuantityValue value)
         {
             return new Impulse(value, ImpulseUnit.NewtonSecond);
         }
@@ -397,7 +396,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Impulse"/> from <see cref="ImpulseUnit.PoundFootPerSecond"/>.
         /// </summary>
-        public static Impulse FromPoundFeetPerSecond(Fraction value)
+        public static Impulse FromPoundFeetPerSecond(QuantityValue value)
         {
             return new Impulse(value, ImpulseUnit.PoundFootPerSecond);
         }
@@ -405,7 +404,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Impulse"/> from <see cref="ImpulseUnit.PoundForceSecond"/>.
         /// </summary>
-        public static Impulse FromPoundForceSeconds(Fraction value)
+        public static Impulse FromPoundForceSeconds(QuantityValue value)
         {
             return new Impulse(value, ImpulseUnit.PoundForceSecond);
         }
@@ -413,7 +412,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Impulse"/> from <see cref="ImpulseUnit.SlugFootPerSecond"/>.
         /// </summary>
-        public static Impulse FromSlugFeetPerSecond(Fraction value)
+        public static Impulse FromSlugFeetPerSecond(QuantityValue value)
         {
             return new Impulse(value, ImpulseUnit.SlugFootPerSecond);
         }
@@ -424,7 +423,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Impulse unit value.</returns>
-        public static Impulse From(Fraction value, ImpulseUnit fromUnit)
+        public static Impulse From(QuantityValue value, ImpulseUnit fromUnit)
         {
             return new Impulse(value, fromUnit);
         }
@@ -580,7 +579,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static Impulse operator -(Impulse right)
         {
-            return new Impulse(right.Value.Invert(), right.Unit);
+            return new Impulse(-right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Impulse"/> from adding two <see cref="Impulse"/>.</summary>
@@ -596,25 +595,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Impulse"/> from multiplying value and <see cref="Impulse"/>.</summary>
-        public static Impulse operator *(Fraction left, Impulse right)
+        public static Impulse operator *(QuantityValue left, Impulse right)
         {
             return new Impulse(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Impulse"/> from multiplying value and <see cref="Impulse"/>.</summary>
-        public static Impulse operator *(Impulse left, Fraction right)
+        public static Impulse operator *(Impulse left, QuantityValue right)
         {
             return new Impulse(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Impulse"/> from dividing <see cref="Impulse"/> by value.</summary>
-        public static Impulse operator /(Impulse left, Fraction right)
+        public static Impulse operator /(Impulse left, QuantityValue right)
         {
             return new Impulse(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Impulse"/> by <see cref="Impulse"/>.</summary>
-        public static Fraction operator /(Impulse left, Impulse right)
+        public static QuantityValue operator /(Impulse left, Impulse right)
         {
             return left.NewtonSeconds / right.NewtonSeconds;
         }
@@ -673,7 +672,7 @@ namespace UnitsNet
         /// <summary>Indicates strict equality of two <see cref="Impulse"/> quantities.</summary>
         public bool Equals(Impulse other)
         {
-            return _value.IsEquivalentTo(other.As(this.Unit));
+            return _value.Equals(other.As(this.Unit));
         }
 
         /// <summary>Compares the current <see cref="Impulse"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
@@ -758,10 +757,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: (Fraction)tolerance,
+                tolerance: (QuantityValue)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -778,7 +777,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(Impulse other, Impulse tolerance)
         {
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -792,7 +791,11 @@ namespace UnitsNet
         public override int GetHashCode()
         {
             var valueInBaseUnit = As(BaseUnit);
+            #if NET7_0_OR_GREATER
+            return HashCode.Combine(Info.Name, valueInBaseUnit);
+            #else
             return new { Info.Name, valueInBaseUnit }.GetHashCode();
+            #endif
         }
 
         #endregion
@@ -803,7 +806,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public Fraction As(ImpulseUnit unit)
+        public QuantityValue As(ImpulseUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -812,7 +815,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public Fraction As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -827,7 +830,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        Fraction IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
             if (!(unit is ImpulseUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ImpulseUnit)} is supported.", nameof(unit));
@@ -902,9 +905,9 @@ namespace UnitsNet
                 (ImpulseUnit.MicronewtonSecond, ImpulseUnit.NewtonSecond) => new Impulse(_value / 1000000, ImpulseUnit.NewtonSecond),
                 (ImpulseUnit.MillinewtonSecond, ImpulseUnit.NewtonSecond) => new Impulse(_value / 1000, ImpulseUnit.NewtonSecond),
                 (ImpulseUnit.NanonewtonSecond, ImpulseUnit.NewtonSecond) => new Impulse(_value / 1000000000, ImpulseUnit.NewtonSecond),
-                (ImpulseUnit.PoundFootPerSecond, ImpulseUnit.NewtonSecond) => new Impulse(_value * new Fraction(1000000000000, 7230657989877, false), ImpulseUnit.NewtonSecond),
-                (ImpulseUnit.PoundForceSecond, ImpulseUnit.NewtonSecond) => new Impulse(_value * new Fraction(10000000000000, 2248089430997, false), ImpulseUnit.NewtonSecond),
-                (ImpulseUnit.SlugFootPerSecond, ImpulseUnit.NewtonSecond) => new Impulse(_value * new Fraction(1000000000000, 224735720691, false), ImpulseUnit.NewtonSecond),
+                (ImpulseUnit.PoundFootPerSecond, ImpulseUnit.NewtonSecond) => new Impulse(_value * new QuantityValue(1000000000000, 7230657989877, false), ImpulseUnit.NewtonSecond),
+                (ImpulseUnit.PoundForceSecond, ImpulseUnit.NewtonSecond) => new Impulse(_value * new QuantityValue(10000000000000, 2248089430997, false), ImpulseUnit.NewtonSecond),
+                (ImpulseUnit.SlugFootPerSecond, ImpulseUnit.NewtonSecond) => new Impulse(_value * new QuantityValue(1000000000000, 224735720691, false), ImpulseUnit.NewtonSecond),
 
                 // BaseUnit -> ImpulseUnit
                 (ImpulseUnit.NewtonSecond, ImpulseUnit.CentinewtonSecond) => new Impulse(_value * 100, ImpulseUnit.CentinewtonSecond),
@@ -916,9 +919,9 @@ namespace UnitsNet
                 (ImpulseUnit.NewtonSecond, ImpulseUnit.MicronewtonSecond) => new Impulse(_value * 1000000, ImpulseUnit.MicronewtonSecond),
                 (ImpulseUnit.NewtonSecond, ImpulseUnit.MillinewtonSecond) => new Impulse(_value * 1000, ImpulseUnit.MillinewtonSecond),
                 (ImpulseUnit.NewtonSecond, ImpulseUnit.NanonewtonSecond) => new Impulse(_value * 1000000000, ImpulseUnit.NanonewtonSecond),
-                (ImpulseUnit.NewtonSecond, ImpulseUnit.PoundFootPerSecond) => new Impulse(_value * new Fraction(7230657989877, 1000000000000, false), ImpulseUnit.PoundFootPerSecond),
-                (ImpulseUnit.NewtonSecond, ImpulseUnit.PoundForceSecond) => new Impulse(_value * new Fraction(2248089430997, 10000000000000, false), ImpulseUnit.PoundForceSecond),
-                (ImpulseUnit.NewtonSecond, ImpulseUnit.SlugFootPerSecond) => new Impulse(_value * new Fraction(224735720691, 1000000000000, false), ImpulseUnit.SlugFootPerSecond),
+                (ImpulseUnit.NewtonSecond, ImpulseUnit.PoundFootPerSecond) => new Impulse(_value * new QuantityValue(7230657989877, 1000000000000, false), ImpulseUnit.PoundFootPerSecond),
+                (ImpulseUnit.NewtonSecond, ImpulseUnit.PoundForceSecond) => new Impulse(_value * new QuantityValue(2248089430997, 10000000000000, false), ImpulseUnit.PoundForceSecond),
+                (ImpulseUnit.NewtonSecond, ImpulseUnit.SlugFootPerSecond) => new Impulse(_value * new QuantityValue(224735720691, 1000000000000, false), ImpulseUnit.SlugFootPerSecond),
 
                 _ => null
             };

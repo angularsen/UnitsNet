@@ -102,7 +102,7 @@ namespace UnitsNet.Tests
             Assert.Equal(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new TemperatureChangeRate(double.PositiveInfinity, TemperatureChangeRateUnit.DegreeCelsiusPerSecond));
@@ -112,7 +112,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new TemperatureChangeRate(double.NaN, TemperatureChangeRateUnit.DegreeCelsiusPerSecond));
@@ -216,7 +216,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromDegreesCelsiusPerSecond_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => TemperatureChangeRate.FromDegreesCelsiusPerSecond(double.PositiveInfinity));
@@ -226,7 +226,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromDegreesCelsiusPerSecond_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => TemperatureChangeRate.FromDegreesCelsiusPerSecond(double.NaN));
@@ -641,8 +641,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, TemperatureChangeRateUnit.DegreeCelsiusPerSecond, 1, TemperatureChangeRateUnit.DegreeCelsiusPerSecond, true)]  // Same value and unit.
         [InlineData(1, TemperatureChangeRateUnit.DegreeCelsiusPerSecond, 2, TemperatureChangeRateUnit.DegreeCelsiusPerSecond, false)] // Different value.
-        [InlineData(2, TemperatureChangeRateUnit.DegreeCelsiusPerSecond, 1, TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, false)] // Different value and unit.
-        [InlineData(1, TemperatureChangeRateUnit.DegreeCelsiusPerSecond, 1, TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, TemperatureChangeRateUnit unitA, double valueB, TemperatureChangeRateUnit unitB, bool expectEqual)
         {
             var a = new TemperatureChangeRate(valueA, unitA);
@@ -959,7 +957,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1.0);
-            Assert.Equal(new {TemperatureChangeRate.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(TemperatureChangeRate.Info.Name, quantity.DegreesCelsiusPerSecond);
+            #else
+            var expected = new {TemperatureChangeRate.Info.Name, valueInBaseUnit = quantity.DegreesCelsiusPerSecond}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

@@ -176,7 +176,7 @@ namespace UnitsNet.Tests
             negativeLength = Length.FromInches(-25.0);
             feetInches = negativeLength.FeetInches;
 
-            Assert.Equal(-2.0, feetInches.Feet);
+            Assert.Equal(-2, feetInches.Feet);
             Assert.Equal(-1.0, feetInches.Inches);
         }
 

@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
     /// </summary>
     public static class NumberToMassFlowExtensions
     {
-        /// <inheritdoc cref="MassFlow.FromCentigramsPerDay(double)" />
+        /// <inheritdoc cref="MassFlow.FromCentigramsPerDay(QuantityValue)" />
         public static MassFlow CentigramsPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
 #endif
             => MassFlow.FromCentigramsPerDay(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlow.FromCentigramsPerSecond(double)" />
+        /// <inheritdoc cref="MassFlow.FromCentigramsPerSecond(QuantityValue)" />
         public static MassFlow CentigramsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
 #endif
             => MassFlow.FromCentigramsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlow.FromDecagramsPerDay(double)" />
+        /// <inheritdoc cref="MassFlow.FromDecagramsPerDay(QuantityValue)" />
         public static MassFlow DecagramsPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
 #endif
             => MassFlow.FromDecagramsPerDay(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlow.FromDecagramsPerSecond(double)" />
+        /// <inheritdoc cref="MassFlow.FromDecagramsPerSecond(QuantityValue)" />
         public static MassFlow DecagramsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
 #endif
             => MassFlow.FromDecagramsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlow.FromDecigramsPerDay(double)" />
+        /// <inheritdoc cref="MassFlow.FromDecigramsPerDay(QuantityValue)" />
         public static MassFlow DecigramsPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
 #endif
             => MassFlow.FromDecigramsPerDay(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlow.FromDecigramsPerSecond(double)" />
+        /// <inheritdoc cref="MassFlow.FromDecigramsPerSecond(QuantityValue)" />
         public static MassFlow DecigramsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
 #endif
             => MassFlow.FromDecigramsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlow.FromGramsPerDay(double)" />
+        /// <inheritdoc cref="MassFlow.FromGramsPerDay(QuantityValue)" />
         public static MassFlow GramsPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
 #endif
             => MassFlow.FromGramsPerDay(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlow.FromGramsPerHour(double)" />
+        /// <inheritdoc cref="MassFlow.FromGramsPerHour(QuantityValue)" />
         public static MassFlow GramsPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
 #endif
             => MassFlow.FromGramsPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlow.FromGramsPerSecond(double)" />
+        /// <inheritdoc cref="MassFlow.FromGramsPerSecond(QuantityValue)" />
         public static MassFlow GramsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -104,7 +104,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
 #endif
             => MassFlow.FromGramsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlow.FromHectogramsPerDay(double)" />
+        /// <inheritdoc cref="MassFlow.FromHectogramsPerDay(QuantityValue)" />
         public static MassFlow HectogramsPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -112,7 +112,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
 #endif
             => MassFlow.FromHectogramsPerDay(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlow.FromHectogramsPerSecond(double)" />
+        /// <inheritdoc cref="MassFlow.FromHectogramsPerSecond(QuantityValue)" />
         public static MassFlow HectogramsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -120,7 +120,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
 #endif
             => MassFlow.FromHectogramsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlow.FromKilogramsPerDay(double)" />
+        /// <inheritdoc cref="MassFlow.FromKilogramsPerDay(QuantityValue)" />
         public static MassFlow KilogramsPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -128,7 +128,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
 #endif
             => MassFlow.FromKilogramsPerDay(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlow.FromKilogramsPerHour(double)" />
+        /// <inheritdoc cref="MassFlow.FromKilogramsPerHour(QuantityValue)" />
         public static MassFlow KilogramsPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -136,7 +136,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
 #endif
             => MassFlow.FromKilogramsPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlow.FromKilogramsPerMinute(double)" />
+        /// <inheritdoc cref="MassFlow.FromKilogramsPerMinute(QuantityValue)" />
         public static MassFlow KilogramsPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -144,7 +144,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
 #endif
             => MassFlow.FromKilogramsPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlow.FromKilogramsPerSecond(double)" />
+        /// <inheritdoc cref="MassFlow.FromKilogramsPerSecond(QuantityValue)" />
         public static MassFlow KilogramsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -152,7 +152,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
 #endif
             => MassFlow.FromKilogramsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlow.FromMegagramsPerDay(double)" />
+        /// <inheritdoc cref="MassFlow.FromMegagramsPerDay(QuantityValue)" />
         public static MassFlow MegagramsPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -160,7 +160,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
 #endif
             => MassFlow.FromMegagramsPerDay(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlow.FromMegapoundsPerDay(double)" />
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerDay(QuantityValue)" />
         public static MassFlow MegapoundsPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -168,7 +168,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
 #endif
             => MassFlow.FromMegapoundsPerDay(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlow.FromMegapoundsPerHour(double)" />
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerHour(QuantityValue)" />
         public static MassFlow MegapoundsPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -176,7 +176,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
 #endif
             => MassFlow.FromMegapoundsPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlow.FromMegapoundsPerMinute(double)" />
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerMinute(QuantityValue)" />
         public static MassFlow MegapoundsPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -184,7 +184,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
 #endif
             => MassFlow.FromMegapoundsPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlow.FromMegapoundsPerSecond(double)" />
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerSecond(QuantityValue)" />
         public static MassFlow MegapoundsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -192,7 +192,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
 #endif
             => MassFlow.FromMegapoundsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlow.FromMicrogramsPerDay(double)" />
+        /// <inheritdoc cref="MassFlow.FromMicrogramsPerDay(QuantityValue)" />
         public static MassFlow MicrogramsPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -200,7 +200,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
 #endif
             => MassFlow.FromMicrogramsPerDay(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlow.FromMicrogramsPerSecond(double)" />
+        /// <inheritdoc cref="MassFlow.FromMicrogramsPerSecond(QuantityValue)" />
         public static MassFlow MicrogramsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -208,7 +208,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
 #endif
             => MassFlow.FromMicrogramsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlow.FromMilligramsPerDay(double)" />
+        /// <inheritdoc cref="MassFlow.FromMilligramsPerDay(QuantityValue)" />
         public static MassFlow MilligramsPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -216,7 +216,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
 #endif
             => MassFlow.FromMilligramsPerDay(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlow.FromMilligramsPerSecond(double)" />
+        /// <inheritdoc cref="MassFlow.FromMilligramsPerSecond(QuantityValue)" />
         public static MassFlow MilligramsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -224,7 +224,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
 #endif
             => MassFlow.FromMilligramsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlow.FromNanogramsPerDay(double)" />
+        /// <inheritdoc cref="MassFlow.FromNanogramsPerDay(QuantityValue)" />
         public static MassFlow NanogramsPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -232,7 +232,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
 #endif
             => MassFlow.FromNanogramsPerDay(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlow.FromNanogramsPerSecond(double)" />
+        /// <inheritdoc cref="MassFlow.FromNanogramsPerSecond(QuantityValue)" />
         public static MassFlow NanogramsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -240,7 +240,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
 #endif
             => MassFlow.FromNanogramsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlow.FromPoundsPerDay(double)" />
+        /// <inheritdoc cref="MassFlow.FromPoundsPerDay(QuantityValue)" />
         public static MassFlow PoundsPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -248,7 +248,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
 #endif
             => MassFlow.FromPoundsPerDay(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlow.FromPoundsPerHour(double)" />
+        /// <inheritdoc cref="MassFlow.FromPoundsPerHour(QuantityValue)" />
         public static MassFlow PoundsPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -256,7 +256,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
 #endif
             => MassFlow.FromPoundsPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlow.FromPoundsPerMinute(double)" />
+        /// <inheritdoc cref="MassFlow.FromPoundsPerMinute(QuantityValue)" />
         public static MassFlow PoundsPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -264,7 +264,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
 #endif
             => MassFlow.FromPoundsPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlow.FromPoundsPerSecond(double)" />
+        /// <inheritdoc cref="MassFlow.FromPoundsPerSecond(QuantityValue)" />
         public static MassFlow PoundsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -272,7 +272,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
 #endif
             => MassFlow.FromPoundsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlow.FromShortTonsPerHour(double)" />
+        /// <inheritdoc cref="MassFlow.FromShortTonsPerHour(QuantityValue)" />
         public static MassFlow ShortTonsPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -280,7 +280,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
 #endif
             => MassFlow.FromShortTonsPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlow.FromTonnesPerDay(double)" />
+        /// <inheritdoc cref="MassFlow.FromTonnesPerDay(QuantityValue)" />
         public static MassFlow TonnesPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -288,7 +288,7 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
 #endif
             => MassFlow.FromTonnesPerDay(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MassFlow.FromTonnesPerHour(double)" />
+        /// <inheritdoc cref="MassFlow.FromTonnesPerHour(QuantityValue)" />
         public static MassFlow TonnesPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

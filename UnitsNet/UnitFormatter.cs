@@ -10,6 +10,7 @@ namespace UnitsNet
     /// <summary>
     ///     Utility class for formatting units and values.
     /// </summary>
+    [Obsolete("Implement as a formatter for the QuantityValue")]
     internal static class UnitFormatter
     {
         /// <summary>

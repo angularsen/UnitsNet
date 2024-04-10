@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
     /// </summary>
     public static class NumberToInformationExtensions
     {
-        /// <inheritdoc cref="Information.FromBits(double)" />
+        /// <inheritdoc cref="Information.FromBits(QuantityValue)" />
         public static Information Bits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
 #endif
             => Information.FromBits(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Information.FromBytes(double)" />
+        /// <inheritdoc cref="Information.FromBytes(QuantityValue)" />
         public static Information Bytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
 #endif
             => Information.FromBytes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Information.FromExabits(double)" />
+        /// <inheritdoc cref="Information.FromExabits(QuantityValue)" />
         public static Information Exabits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
 #endif
             => Information.FromExabits(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Information.FromExabytes(double)" />
+        /// <inheritdoc cref="Information.FromExabytes(QuantityValue)" />
         public static Information Exabytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
 #endif
             => Information.FromExabytes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Information.FromExbibits(double)" />
+        /// <inheritdoc cref="Information.FromExbibits(QuantityValue)" />
         public static Information Exbibits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
 #endif
             => Information.FromExbibits(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Information.FromExbibytes(double)" />
+        /// <inheritdoc cref="Information.FromExbibytes(QuantityValue)" />
         public static Information Exbibytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
 #endif
             => Information.FromExbibytes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Information.FromGibibits(double)" />
+        /// <inheritdoc cref="Information.FromGibibits(QuantityValue)" />
         public static Information Gibibits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
 #endif
             => Information.FromGibibits(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Information.FromGibibytes(double)" />
+        /// <inheritdoc cref="Information.FromGibibytes(QuantityValue)" />
         public static Information Gibibytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
 #endif
             => Information.FromGibibytes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Information.FromGigabits(double)" />
+        /// <inheritdoc cref="Information.FromGigabits(QuantityValue)" />
         public static Information Gigabits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -104,7 +104,7 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
 #endif
             => Information.FromGigabits(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Information.FromGigabytes(double)" />
+        /// <inheritdoc cref="Information.FromGigabytes(QuantityValue)" />
         public static Information Gigabytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -112,7 +112,7 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
 #endif
             => Information.FromGigabytes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Information.FromKibibits(double)" />
+        /// <inheritdoc cref="Information.FromKibibits(QuantityValue)" />
         public static Information Kibibits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -120,7 +120,7 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
 #endif
             => Information.FromKibibits(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Information.FromKibibytes(double)" />
+        /// <inheritdoc cref="Information.FromKibibytes(QuantityValue)" />
         public static Information Kibibytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -128,7 +128,7 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
 #endif
             => Information.FromKibibytes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Information.FromKilobits(double)" />
+        /// <inheritdoc cref="Information.FromKilobits(QuantityValue)" />
         public static Information Kilobits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -136,7 +136,7 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
 #endif
             => Information.FromKilobits(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Information.FromKilobytes(double)" />
+        /// <inheritdoc cref="Information.FromKilobytes(QuantityValue)" />
         public static Information Kilobytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -144,7 +144,7 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
 #endif
             => Information.FromKilobytes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Information.FromMebibits(double)" />
+        /// <inheritdoc cref="Information.FromMebibits(QuantityValue)" />
         public static Information Mebibits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -152,7 +152,7 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
 #endif
             => Information.FromMebibits(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Information.FromMebibytes(double)" />
+        /// <inheritdoc cref="Information.FromMebibytes(QuantityValue)" />
         public static Information Mebibytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -160,7 +160,7 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
 #endif
             => Information.FromMebibytes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Information.FromMegabits(double)" />
+        /// <inheritdoc cref="Information.FromMegabits(QuantityValue)" />
         public static Information Megabits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -168,7 +168,7 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
 #endif
             => Information.FromMegabits(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Information.FromMegabytes(double)" />
+        /// <inheritdoc cref="Information.FromMegabytes(QuantityValue)" />
         public static Information Megabytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -176,7 +176,7 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
 #endif
             => Information.FromMegabytes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Information.FromPebibits(double)" />
+        /// <inheritdoc cref="Information.FromPebibits(QuantityValue)" />
         public static Information Pebibits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -184,7 +184,7 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
 #endif
             => Information.FromPebibits(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Information.FromPebibytes(double)" />
+        /// <inheritdoc cref="Information.FromPebibytes(QuantityValue)" />
         public static Information Pebibytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -192,7 +192,7 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
 #endif
             => Information.FromPebibytes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Information.FromPetabits(double)" />
+        /// <inheritdoc cref="Information.FromPetabits(QuantityValue)" />
         public static Information Petabits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -200,7 +200,7 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
 #endif
             => Information.FromPetabits(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Information.FromPetabytes(double)" />
+        /// <inheritdoc cref="Information.FromPetabytes(QuantityValue)" />
         public static Information Petabytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -208,7 +208,7 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
 #endif
             => Information.FromPetabytes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Information.FromTebibits(double)" />
+        /// <inheritdoc cref="Information.FromTebibits(QuantityValue)" />
         public static Information Tebibits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -216,7 +216,7 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
 #endif
             => Information.FromTebibits(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Information.FromTebibytes(double)" />
+        /// <inheritdoc cref="Information.FromTebibytes(QuantityValue)" />
         public static Information Tebibytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -224,7 +224,7 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
 #endif
             => Information.FromTebibytes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Information.FromTerabits(double)" />
+        /// <inheritdoc cref="Information.FromTerabits(QuantityValue)" />
         public static Information Terabits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -232,7 +232,7 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
 #endif
             => Information.FromTerabits(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Information.FromTerabytes(double)" />
+        /// <inheritdoc cref="Information.FromTerabytes(QuantityValue)" />
         public static Information Terabytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

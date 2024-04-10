@@ -82,7 +82,7 @@ namespace UnitsNet.Tests
             Assert.Equal(RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new RotationalStiffnessPerLength(double.PositiveInfinity, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter));
@@ -92,7 +92,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new RotationalStiffnessPerLength(double.NaN, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter));
@@ -171,7 +171,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromNewtonMetersPerRadianPerMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(double.PositiveInfinity));
@@ -181,7 +181,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromNewtonMetersPerRadianPerMeter_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(double.NaN));
@@ -658,8 +658,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, 1, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, true)]  // Same value and unit.
         [InlineData(1, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, 2, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, false)] // Different value.
-        [InlineData(2, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, 1, RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter, false)] // Different value and unit.
-        [InlineData(1, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, 1, RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, RotationalStiffnessPerLengthUnit unitA, double valueB, RotationalStiffnessPerLengthUnit unitB, bool expectEqual)
         {
             var a = new RotationalStiffnessPerLength(valueA, unitA);
@@ -966,7 +964,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(1.0);
-            Assert.Equal(new {RotationalStiffnessPerLength.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(RotationalStiffnessPerLength.Info.Name, quantity.NewtonMetersPerRadianPerMeter);
+            #else
+            var expected = new {RotationalStiffnessPerLength.Info.Name, valueInBaseUnit = quantity.NewtonMetersPerRadianPerMeter}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

@@ -25,7 +25,6 @@ using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 using System.Numerics;
-using Fractions;
 
 #nullable enable
 
@@ -53,7 +52,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly Fraction _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -86,7 +85,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public SpecificFuelConsumption(Fraction value, SpecificFuelConsumptionUnit unit)
+        public SpecificFuelConsumption(QuantityValue value, SpecificFuelConsumptionUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -100,7 +99,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public SpecificFuelConsumption(Fraction value, UnitSystem unitSystem)
+        public SpecificFuelConsumption(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -151,10 +150,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public Fraction Value => _value;
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
-        Fraction IQuantity.Value => _value;
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -179,22 +178,22 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond"/>
         /// </summary>
-        public Fraction GramsPerKiloNewtonSecond => As(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond);
+        public QuantityValue GramsPerKiloNewtonSecond => As(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour"/>
         /// </summary>
-        public Fraction KilogramsPerKilogramForceHour => As(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour);
+        public QuantityValue KilogramsPerKilogramForceHour => As(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond"/>
         /// </summary>
-        public Fraction KilogramsPerKiloNewtonSecond => As(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond);
+        public QuantityValue KilogramsPerKiloNewtonSecond => As(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour"/>
         /// </summary>
-        public Fraction PoundsMassPerPoundForceHour => As(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour);
+        public QuantityValue PoundsMassPerPoundForceHour => As(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour);
 
         #endregion
 
@@ -248,7 +247,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificFuelConsumption"/> from <see cref="SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond"/>.
         /// </summary>
-        public static SpecificFuelConsumption FromGramsPerKiloNewtonSecond(Fraction value)
+        public static SpecificFuelConsumption FromGramsPerKiloNewtonSecond(QuantityValue value)
         {
             return new SpecificFuelConsumption(value, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond);
         }
@@ -256,7 +255,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificFuelConsumption"/> from <see cref="SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour"/>.
         /// </summary>
-        public static SpecificFuelConsumption FromKilogramsPerKilogramForceHour(Fraction value)
+        public static SpecificFuelConsumption FromKilogramsPerKilogramForceHour(QuantityValue value)
         {
             return new SpecificFuelConsumption(value, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour);
         }
@@ -264,7 +263,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificFuelConsumption"/> from <see cref="SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond"/>.
         /// </summary>
-        public static SpecificFuelConsumption FromKilogramsPerKiloNewtonSecond(Fraction value)
+        public static SpecificFuelConsumption FromKilogramsPerKiloNewtonSecond(QuantityValue value)
         {
             return new SpecificFuelConsumption(value, SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond);
         }
@@ -272,7 +271,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificFuelConsumption"/> from <see cref="SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour"/>.
         /// </summary>
-        public static SpecificFuelConsumption FromPoundsMassPerPoundForceHour(Fraction value)
+        public static SpecificFuelConsumption FromPoundsMassPerPoundForceHour(QuantityValue value)
         {
             return new SpecificFuelConsumption(value, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour);
         }
@@ -283,7 +282,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>SpecificFuelConsumption unit value.</returns>
-        public static SpecificFuelConsumption From(Fraction value, SpecificFuelConsumptionUnit fromUnit)
+        public static SpecificFuelConsumption From(QuantityValue value, SpecificFuelConsumptionUnit fromUnit)
         {
             return new SpecificFuelConsumption(value, fromUnit);
         }
@@ -439,7 +438,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static SpecificFuelConsumption operator -(SpecificFuelConsumption right)
         {
-            return new SpecificFuelConsumption(right.Value.Invert(), right.Unit);
+            return new SpecificFuelConsumption(-right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="SpecificFuelConsumption"/> from adding two <see cref="SpecificFuelConsumption"/>.</summary>
@@ -455,25 +454,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="SpecificFuelConsumption"/> from multiplying value and <see cref="SpecificFuelConsumption"/>.</summary>
-        public static SpecificFuelConsumption operator *(Fraction left, SpecificFuelConsumption right)
+        public static SpecificFuelConsumption operator *(QuantityValue left, SpecificFuelConsumption right)
         {
             return new SpecificFuelConsumption(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="SpecificFuelConsumption"/> from multiplying value and <see cref="SpecificFuelConsumption"/>.</summary>
-        public static SpecificFuelConsumption operator *(SpecificFuelConsumption left, Fraction right)
+        public static SpecificFuelConsumption operator *(SpecificFuelConsumption left, QuantityValue right)
         {
             return new SpecificFuelConsumption(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="SpecificFuelConsumption"/> from dividing <see cref="SpecificFuelConsumption"/> by value.</summary>
-        public static SpecificFuelConsumption operator /(SpecificFuelConsumption left, Fraction right)
+        public static SpecificFuelConsumption operator /(SpecificFuelConsumption left, QuantityValue right)
         {
             return new SpecificFuelConsumption(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="SpecificFuelConsumption"/> by <see cref="SpecificFuelConsumption"/>.</summary>
-        public static Fraction operator /(SpecificFuelConsumption left, SpecificFuelConsumption right)
+        public static QuantityValue operator /(SpecificFuelConsumption left, SpecificFuelConsumption right)
         {
             return left.GramsPerKiloNewtonSecond / right.GramsPerKiloNewtonSecond;
         }
@@ -532,7 +531,7 @@ namespace UnitsNet
         /// <summary>Indicates strict equality of two <see cref="SpecificFuelConsumption"/> quantities.</summary>
         public bool Equals(SpecificFuelConsumption other)
         {
-            return _value.IsEquivalentTo(other.As(this.Unit));
+            return _value.Equals(other.As(this.Unit));
         }
 
         /// <summary>Compares the current <see cref="SpecificFuelConsumption"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
@@ -617,10 +616,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: (Fraction)tolerance,
+                tolerance: (QuantityValue)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -637,7 +636,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(SpecificFuelConsumption other, SpecificFuelConsumption tolerance)
         {
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -651,7 +650,11 @@ namespace UnitsNet
         public override int GetHashCode()
         {
             var valueInBaseUnit = As(BaseUnit);
+            #if NET7_0_OR_GREATER
+            return HashCode.Combine(Info.Name, valueInBaseUnit);
+            #else
             return new { Info.Name, valueInBaseUnit }.GetHashCode();
+            #endif
         }
 
         #endregion
@@ -662,7 +665,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public Fraction As(SpecificFuelConsumptionUnit unit)
+        public QuantityValue As(SpecificFuelConsumptionUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -671,7 +674,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public Fraction As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -686,7 +689,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        Fraction IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
             if (!(unit is SpecificFuelConsumptionUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificFuelConsumptionUnit)} is supported.", nameof(unit));
@@ -752,14 +755,14 @@ namespace UnitsNet
             SpecificFuelConsumption? convertedOrNull = (Unit, unit) switch
             {
                 // SpecificFuelConsumptionUnit -> BaseUnit
-                (SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond) => new SpecificFuelConsumption(_value * new Fraction(2833, 100, false), SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond),
+                (SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond) => new SpecificFuelConsumption(_value * new QuantityValue(2833, 100, false), SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond),
                 (SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond) => new SpecificFuelConsumption(_value * 1000, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond),
-                (SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond) => new SpecificFuelConsumption(_value * new Fraction(2833, 100, false), SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond),
+                (SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond) => new SpecificFuelConsumption(_value * new QuantityValue(2833, 100, false), SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond),
 
                 // BaseUnit -> SpecificFuelConsumptionUnit
-                (SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour) => new SpecificFuelConsumption(_value * new Fraction(100, 2833, false), SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour),
+                (SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour) => new SpecificFuelConsumption(_value * new QuantityValue(100, 2833, false), SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour),
                 (SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond) => new SpecificFuelConsumption(_value / 1000, SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond),
-                (SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour) => new SpecificFuelConsumption(_value * new Fraction(100, 2833, false), SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour),
+                (SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour) => new SpecificFuelConsumption(_value * new QuantityValue(100, 2833, false), SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour),
 
                 _ => null
             };

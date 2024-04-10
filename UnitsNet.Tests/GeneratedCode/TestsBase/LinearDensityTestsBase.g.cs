@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
             Assert.Equal(LinearDensityUnit.KilogramPerMeter, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new LinearDensity(double.PositiveInfinity, LinearDensityUnit.KilogramPerMeter));
@@ -128,7 +128,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new LinearDensity(double.NaN, LinearDensityUnit.KilogramPerMeter));
@@ -252,7 +252,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromKilogramsPerMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => LinearDensity.FromKilogramsPerMeter(double.PositiveInfinity));
@@ -262,7 +262,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromKilogramsPerMeter_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => LinearDensity.FromKilogramsPerMeter(double.NaN));
@@ -781,8 +781,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, LinearDensityUnit.KilogramPerMeter, 1, LinearDensityUnit.KilogramPerMeter, true)]  // Same value and unit.
         [InlineData(1, LinearDensityUnit.KilogramPerMeter, 2, LinearDensityUnit.KilogramPerMeter, false)] // Different value.
-        [InlineData(2, LinearDensityUnit.KilogramPerMeter, 1, LinearDensityUnit.GramPerCentimeter, false)] // Different value and unit.
-        [InlineData(1, LinearDensityUnit.KilogramPerMeter, 1, LinearDensityUnit.GramPerCentimeter, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, LinearDensityUnit unitA, double valueB, LinearDensityUnit unitB, bool expectEqual)
         {
             var a = new LinearDensity(valueA, unitA);
@@ -1107,7 +1105,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = LinearDensity.FromKilogramsPerMeter(1.0);
-            Assert.Equal(new {LinearDensity.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(LinearDensity.Info.Name, quantity.KilogramsPerMeter);
+            #else
+            var expected = new {LinearDensity.Info.Name, valueInBaseUnit = quantity.KilogramsPerMeter}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

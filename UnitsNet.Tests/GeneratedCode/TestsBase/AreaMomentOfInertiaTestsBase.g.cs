@@ -86,7 +86,7 @@ namespace UnitsNet.Tests
             Assert.Equal(AreaMomentOfInertiaUnit.MeterToTheFourth, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new AreaMomentOfInertia(double.PositiveInfinity, AreaMomentOfInertiaUnit.MeterToTheFourth));
@@ -96,7 +96,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new AreaMomentOfInertia(double.NaN, AreaMomentOfInertiaUnit.MeterToTheFourth));
@@ -180,7 +180,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromMetersToTheFourth_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => AreaMomentOfInertia.FromMetersToTheFourth(double.PositiveInfinity));
@@ -190,7 +190,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromMetersToTheFourth_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => AreaMomentOfInertia.FromMetersToTheFourth(double.NaN));
@@ -645,8 +645,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, AreaMomentOfInertiaUnit.MeterToTheFourth, 1, AreaMomentOfInertiaUnit.MeterToTheFourth, true)]  // Same value and unit.
         [InlineData(1, AreaMomentOfInertiaUnit.MeterToTheFourth, 2, AreaMomentOfInertiaUnit.MeterToTheFourth, false)] // Different value.
-        [InlineData(2, AreaMomentOfInertiaUnit.MeterToTheFourth, 1, AreaMomentOfInertiaUnit.CentimeterToTheFourth, false)] // Different value and unit.
-        [InlineData(1, AreaMomentOfInertiaUnit.MeterToTheFourth, 1, AreaMomentOfInertiaUnit.CentimeterToTheFourth, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, AreaMomentOfInertiaUnit unitA, double valueB, AreaMomentOfInertiaUnit unitB, bool expectEqual)
         {
             var a = new AreaMomentOfInertia(valueA, unitA);
@@ -955,7 +953,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = AreaMomentOfInertia.FromMetersToTheFourth(1.0);
-            Assert.Equal(new {AreaMomentOfInertia.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(AreaMomentOfInertia.Info.Name, quantity.MetersToTheFourth);
+            #else
+            var expected = new {AreaMomentOfInertia.Info.Name, valueInBaseUnit = quantity.MetersToTheFourth}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

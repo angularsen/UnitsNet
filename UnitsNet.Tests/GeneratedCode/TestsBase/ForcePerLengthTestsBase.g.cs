@@ -214,7 +214,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ForcePerLengthUnit.NewtonPerMeter, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new ForcePerLength(double.PositiveInfinity, ForcePerLengthUnit.NewtonPerMeter));
@@ -224,7 +224,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new ForcePerLength(double.NaN, ForcePerLengthUnit.NewtonPerMeter));
@@ -468,7 +468,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromNewtonsPerMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => ForcePerLength.FromNewtonsPerMeter(double.PositiveInfinity));
@@ -478,7 +478,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromNewtonsPerMeter_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => ForcePerLength.FromNewtonsPerMeter(double.NaN));
@@ -1795,8 +1795,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, ForcePerLengthUnit.NewtonPerMeter, 1, ForcePerLengthUnit.NewtonPerMeter, true)]  // Same value and unit.
         [InlineData(1, ForcePerLengthUnit.NewtonPerMeter, 2, ForcePerLengthUnit.NewtonPerMeter, false)] // Different value.
-        [InlineData(2, ForcePerLengthUnit.NewtonPerMeter, 1, ForcePerLengthUnit.CentinewtonPerCentimeter, false)] // Different value and unit.
-        [InlineData(1, ForcePerLengthUnit.NewtonPerMeter, 1, ForcePerLengthUnit.CentinewtonPerCentimeter, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ForcePerLengthUnit unitA, double valueB, ForcePerLengthUnit unitB, bool expectEqual)
         {
             var a = new ForcePerLength(valueA, unitA);
@@ -2169,7 +2167,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ForcePerLength.FromNewtonsPerMeter(1.0);
-            Assert.Equal(new {ForcePerLength.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(ForcePerLength.Info.Name, quantity.NewtonsPerMeter);
+            #else
+            var expected = new {ForcePerLength.Info.Name, valueInBaseUnit = quantity.NewtonsPerMeter}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

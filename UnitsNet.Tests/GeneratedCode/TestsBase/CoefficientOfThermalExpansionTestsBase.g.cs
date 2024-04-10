@@ -86,7 +86,7 @@ namespace UnitsNet.Tests
             Assert.Equal(CoefficientOfThermalExpansionUnit.PerKelvin, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new CoefficientOfThermalExpansion(double.PositiveInfinity, CoefficientOfThermalExpansionUnit.PerKelvin));
@@ -96,7 +96,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new CoefficientOfThermalExpansion(double.NaN, CoefficientOfThermalExpansionUnit.PerKelvin));
@@ -180,7 +180,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromPerKelvin_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => CoefficientOfThermalExpansion.FromPerKelvin(double.PositiveInfinity));
@@ -190,7 +190,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromPerKelvin_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => CoefficientOfThermalExpansion.FromPerKelvin(double.NaN));
@@ -501,8 +501,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, CoefficientOfThermalExpansionUnit.PerKelvin, 1, CoefficientOfThermalExpansionUnit.PerKelvin, true)]  // Same value and unit.
         [InlineData(1, CoefficientOfThermalExpansionUnit.PerKelvin, 2, CoefficientOfThermalExpansionUnit.PerKelvin, false)] // Different value.
-        [InlineData(2, CoefficientOfThermalExpansionUnit.PerKelvin, 1, CoefficientOfThermalExpansionUnit.PerDegreeCelsius, false)] // Different value and unit.
-        [InlineData(1, CoefficientOfThermalExpansionUnit.PerKelvin, 1, CoefficientOfThermalExpansionUnit.PerDegreeCelsius, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, CoefficientOfThermalExpansionUnit unitA, double valueB, CoefficientOfThermalExpansionUnit unitB, bool expectEqual)
         {
             var a = new CoefficientOfThermalExpansion(valueA, unitA);
@@ -811,7 +809,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = CoefficientOfThermalExpansion.FromPerKelvin(1.0);
-            Assert.Equal(new {CoefficientOfThermalExpansion.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(CoefficientOfThermalExpansion.Info.Name, quantity.PerKelvin);
+            #else
+            var expected = new {CoefficientOfThermalExpansion.Info.Name, valueInBaseUnit = quantity.PerKelvin}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

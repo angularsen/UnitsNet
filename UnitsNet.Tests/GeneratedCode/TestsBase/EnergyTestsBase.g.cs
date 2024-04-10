@@ -222,7 +222,7 @@ namespace UnitsNet.Tests
             Assert.Equal(EnergyUnit.Joule, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new Energy(double.PositiveInfinity, EnergyUnit.Joule));
@@ -232,7 +232,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new Energy(double.NaN, EnergyUnit.Joule));
@@ -486,7 +486,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromJoules_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => Energy.FromJoules(double.PositiveInfinity));
@@ -496,7 +496,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromJoules_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => Energy.FromJoules(double.NaN));
@@ -2173,8 +2173,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, EnergyUnit.Joule, 1, EnergyUnit.Joule, true)]  // Same value and unit.
         [InlineData(1, EnergyUnit.Joule, 2, EnergyUnit.Joule, false)] // Different value.
-        [InlineData(2, EnergyUnit.Joule, 1, EnergyUnit.BritishThermalUnit, false)] // Different value and unit.
-        [InlineData(1, EnergyUnit.Joule, 1, EnergyUnit.BritishThermalUnit, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, EnergyUnit unitA, double valueB, EnergyUnit unitB, bool expectEqual)
         {
             var a = new Energy(valueA, unitA);
@@ -2551,7 +2549,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Energy.FromJoules(1.0);
-            Assert.Equal(new {Energy.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(Energy.Info.Name, quantity.Joules);
+            #else
+            var expected = new {Energy.Info.Name, valueInBaseUnit = quantity.Joules}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

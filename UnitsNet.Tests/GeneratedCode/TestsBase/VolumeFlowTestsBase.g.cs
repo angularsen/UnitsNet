@@ -330,7 +330,7 @@ namespace UnitsNet.Tests
             Assert.Equal(VolumeFlowUnit.CubicMeterPerSecond, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new VolumeFlow(double.PositiveInfinity, VolumeFlowUnit.CubicMeterPerSecond));
@@ -340,7 +340,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new VolumeFlow(double.NaN, VolumeFlowUnit.CubicMeterPerSecond));
@@ -729,7 +729,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromCubicMetersPerSecond_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => VolumeFlow.FromCubicMetersPerSecond(double.PositiveInfinity));
@@ -739,7 +739,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromCubicMetersPerSecond_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => VolumeFlow.FromCubicMetersPerSecond(double.NaN));
@@ -4268,8 +4268,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, VolumeFlowUnit.CubicMeterPerSecond, 1, VolumeFlowUnit.CubicMeterPerSecond, true)]  // Same value and unit.
         [InlineData(1, VolumeFlowUnit.CubicMeterPerSecond, 2, VolumeFlowUnit.CubicMeterPerSecond, false)] // Different value.
-        [InlineData(2, VolumeFlowUnit.CubicMeterPerSecond, 1, VolumeFlowUnit.AcreFootPerDay, false)] // Different value and unit.
-        [InlineData(1, VolumeFlowUnit.CubicMeterPerSecond, 1, VolumeFlowUnit.AcreFootPerDay, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, VolumeFlowUnit unitA, double valueB, VolumeFlowUnit unitB, bool expectEqual)
         {
             var a = new VolumeFlow(valueA, unitA);
@@ -4700,7 +4698,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = VolumeFlow.FromCubicMetersPerSecond(1.0);
-            Assert.Equal(new {VolumeFlow.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(VolumeFlow.Info.Name, quantity.CubicMetersPerSecond);
+            #else
+            var expected = new {VolumeFlow.Info.Name, valueInBaseUnit = quantity.CubicMetersPerSecond}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

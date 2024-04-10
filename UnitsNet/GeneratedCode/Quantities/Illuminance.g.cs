@@ -25,7 +25,6 @@ using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 using System.Numerics;
-using Fractions;
 
 #nullable enable
 
@@ -53,7 +52,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly Fraction _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -86,7 +85,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Illuminance(Fraction value, IlluminanceUnit unit)
+        public Illuminance(QuantityValue value, IlluminanceUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -100,7 +99,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Illuminance(Fraction value, UnitSystem unitSystem)
+        public Illuminance(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -151,10 +150,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public Fraction Value => _value;
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
-        Fraction IQuantity.Value => _value;
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -179,22 +178,22 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IlluminanceUnit.Kilolux"/>
         /// </summary>
-        public Fraction Kilolux => As(IlluminanceUnit.Kilolux);
+        public QuantityValue Kilolux => As(IlluminanceUnit.Kilolux);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IlluminanceUnit.Lux"/>
         /// </summary>
-        public Fraction Lux => As(IlluminanceUnit.Lux);
+        public QuantityValue Lux => As(IlluminanceUnit.Lux);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IlluminanceUnit.Megalux"/>
         /// </summary>
-        public Fraction Megalux => As(IlluminanceUnit.Megalux);
+        public QuantityValue Megalux => As(IlluminanceUnit.Megalux);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IlluminanceUnit.Millilux"/>
         /// </summary>
-        public Fraction Millilux => As(IlluminanceUnit.Millilux);
+        public QuantityValue Millilux => As(IlluminanceUnit.Millilux);
 
         #endregion
 
@@ -248,7 +247,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Illuminance"/> from <see cref="IlluminanceUnit.Kilolux"/>.
         /// </summary>
-        public static Illuminance FromKilolux(Fraction value)
+        public static Illuminance FromKilolux(QuantityValue value)
         {
             return new Illuminance(value, IlluminanceUnit.Kilolux);
         }
@@ -256,7 +255,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Illuminance"/> from <see cref="IlluminanceUnit.Lux"/>.
         /// </summary>
-        public static Illuminance FromLux(Fraction value)
+        public static Illuminance FromLux(QuantityValue value)
         {
             return new Illuminance(value, IlluminanceUnit.Lux);
         }
@@ -264,7 +263,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Illuminance"/> from <see cref="IlluminanceUnit.Megalux"/>.
         /// </summary>
-        public static Illuminance FromMegalux(Fraction value)
+        public static Illuminance FromMegalux(QuantityValue value)
         {
             return new Illuminance(value, IlluminanceUnit.Megalux);
         }
@@ -272,7 +271,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Illuminance"/> from <see cref="IlluminanceUnit.Millilux"/>.
         /// </summary>
-        public static Illuminance FromMillilux(Fraction value)
+        public static Illuminance FromMillilux(QuantityValue value)
         {
             return new Illuminance(value, IlluminanceUnit.Millilux);
         }
@@ -283,7 +282,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Illuminance unit value.</returns>
-        public static Illuminance From(Fraction value, IlluminanceUnit fromUnit)
+        public static Illuminance From(QuantityValue value, IlluminanceUnit fromUnit)
         {
             return new Illuminance(value, fromUnit);
         }
@@ -439,7 +438,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static Illuminance operator -(Illuminance right)
         {
-            return new Illuminance(right.Value.Invert(), right.Unit);
+            return new Illuminance(-right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Illuminance"/> from adding two <see cref="Illuminance"/>.</summary>
@@ -455,25 +454,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Illuminance"/> from multiplying value and <see cref="Illuminance"/>.</summary>
-        public static Illuminance operator *(Fraction left, Illuminance right)
+        public static Illuminance operator *(QuantityValue left, Illuminance right)
         {
             return new Illuminance(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Illuminance"/> from multiplying value and <see cref="Illuminance"/>.</summary>
-        public static Illuminance operator *(Illuminance left, Fraction right)
+        public static Illuminance operator *(Illuminance left, QuantityValue right)
         {
             return new Illuminance(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Illuminance"/> from dividing <see cref="Illuminance"/> by value.</summary>
-        public static Illuminance operator /(Illuminance left, Fraction right)
+        public static Illuminance operator /(Illuminance left, QuantityValue right)
         {
             return new Illuminance(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Illuminance"/> by <see cref="Illuminance"/>.</summary>
-        public static Fraction operator /(Illuminance left, Illuminance right)
+        public static QuantityValue operator /(Illuminance left, Illuminance right)
         {
             return left.Lux / right.Lux;
         }
@@ -532,7 +531,7 @@ namespace UnitsNet
         /// <summary>Indicates strict equality of two <see cref="Illuminance"/> quantities.</summary>
         public bool Equals(Illuminance other)
         {
-            return _value.IsEquivalentTo(other.As(this.Unit));
+            return _value.Equals(other.As(this.Unit));
         }
 
         /// <summary>Compares the current <see cref="Illuminance"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
@@ -617,10 +616,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: (Fraction)tolerance,
+                tolerance: (QuantityValue)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -637,7 +636,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(Illuminance other, Illuminance tolerance)
         {
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -651,7 +650,11 @@ namespace UnitsNet
         public override int GetHashCode()
         {
             var valueInBaseUnit = As(BaseUnit);
+            #if NET7_0_OR_GREATER
+            return HashCode.Combine(Info.Name, valueInBaseUnit);
+            #else
             return new { Info.Name, valueInBaseUnit }.GetHashCode();
+            #endif
         }
 
         #endregion
@@ -662,7 +665,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public Fraction As(IlluminanceUnit unit)
+        public QuantityValue As(IlluminanceUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -671,7 +674,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public Fraction As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -686,7 +689,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        Fraction IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
             if (!(unit is IlluminanceUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(IlluminanceUnit)} is supported.", nameof(unit));

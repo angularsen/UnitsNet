@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalArea
     /// </summary>
     public static class NumberToReciprocalAreaExtensions
     {
-        /// <inheritdoc cref="ReciprocalArea.FromInverseSquareCentimeters(double)" />
+        /// <inheritdoc cref="ReciprocalArea.FromInverseSquareCentimeters(QuantityValue)" />
         public static ReciprocalArea InverseSquareCentimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalArea
 #endif
             => ReciprocalArea.FromInverseSquareCentimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReciprocalArea.FromInverseSquareDecimeters(double)" />
+        /// <inheritdoc cref="ReciprocalArea.FromInverseSquareDecimeters(QuantityValue)" />
         public static ReciprocalArea InverseSquareDecimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalArea
 #endif
             => ReciprocalArea.FromInverseSquareDecimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReciprocalArea.FromInverseSquareFeet(double)" />
+        /// <inheritdoc cref="ReciprocalArea.FromInverseSquareFeet(QuantityValue)" />
         public static ReciprocalArea InverseSquareFeet<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalArea
 #endif
             => ReciprocalArea.FromInverseSquareFeet(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReciprocalArea.FromInverseSquareInches(double)" />
+        /// <inheritdoc cref="ReciprocalArea.FromInverseSquareInches(QuantityValue)" />
         public static ReciprocalArea InverseSquareInches<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalArea
 #endif
             => ReciprocalArea.FromInverseSquareInches(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReciprocalArea.FromInverseSquareKilometers(double)" />
+        /// <inheritdoc cref="ReciprocalArea.FromInverseSquareKilometers(QuantityValue)" />
         public static ReciprocalArea InverseSquareKilometers<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalArea
 #endif
             => ReciprocalArea.FromInverseSquareKilometers(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReciprocalArea.FromInverseSquareMeters(double)" />
+        /// <inheritdoc cref="ReciprocalArea.FromInverseSquareMeters(QuantityValue)" />
         public static ReciprocalArea InverseSquareMeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalArea
 #endif
             => ReciprocalArea.FromInverseSquareMeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReciprocalArea.FromInverseSquareMicrometers(double)" />
+        /// <inheritdoc cref="ReciprocalArea.FromInverseSquareMicrometers(QuantityValue)" />
         public static ReciprocalArea InverseSquareMicrometers<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalArea
 #endif
             => ReciprocalArea.FromInverseSquareMicrometers(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReciprocalArea.FromInverseSquareMiles(double)" />
+        /// <inheritdoc cref="ReciprocalArea.FromInverseSquareMiles(QuantityValue)" />
         public static ReciprocalArea InverseSquareMiles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalArea
 #endif
             => ReciprocalArea.FromInverseSquareMiles(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReciprocalArea.FromInverseSquareMillimeters(double)" />
+        /// <inheritdoc cref="ReciprocalArea.FromInverseSquareMillimeters(QuantityValue)" />
         public static ReciprocalArea InverseSquareMillimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -104,7 +104,7 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalArea
 #endif
             => ReciprocalArea.FromInverseSquareMillimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReciprocalArea.FromInverseSquareYards(double)" />
+        /// <inheritdoc cref="ReciprocalArea.FromInverseSquareYards(QuantityValue)" />
         public static ReciprocalArea InverseSquareYards<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -112,7 +112,7 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalArea
 #endif
             => ReciprocalArea.FromInverseSquareYards(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReciprocalArea.FromInverseUsSurveySquareFeet(double)" />
+        /// <inheritdoc cref="ReciprocalArea.FromInverseUsSurveySquareFeet(QuantityValue)" />
         public static ReciprocalArea InverseUsSurveySquareFeet<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

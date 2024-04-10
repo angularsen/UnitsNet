@@ -77,8 +77,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void SpecificEnergyTimesBrakeSpecificFuelConsumptionEqualsEnergy()
         {
-            double value = SpecificEnergy.FromJoulesPerKilogram(10.0) * BrakeSpecificFuelConsumption.FromKilogramsPerJoule(20.0);
-            Assert.Equal(200d, value);
+            QuantityValue value = SpecificEnergy.FromJoulesPerKilogram(10.0) * BrakeSpecificFuelConsumption.FromKilogramsPerJoule(20.0);
+            Assert.Equal(200, value);
         }
 
         [Fact]

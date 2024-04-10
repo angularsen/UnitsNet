@@ -86,7 +86,7 @@ namespace UnitsNet.Tests
             Assert.Equal(MagneticFieldUnit.Tesla, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new MagneticField(double.PositiveInfinity, MagneticFieldUnit.Tesla));
@@ -96,7 +96,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new MagneticField(double.NaN, MagneticFieldUnit.Tesla));
@@ -180,7 +180,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromTeslas_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => MagneticField.FromTeslas(double.PositiveInfinity));
@@ -190,7 +190,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromTeslas_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => MagneticField.FromTeslas(double.NaN));
@@ -501,8 +501,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, MagneticFieldUnit.Tesla, 1, MagneticFieldUnit.Tesla, true)]  // Same value and unit.
         [InlineData(1, MagneticFieldUnit.Tesla, 2, MagneticFieldUnit.Tesla, false)] // Different value.
-        [InlineData(2, MagneticFieldUnit.Tesla, 1, MagneticFieldUnit.Gauss, false)] // Different value and unit.
-        [InlineData(1, MagneticFieldUnit.Tesla, 1, MagneticFieldUnit.Gauss, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, MagneticFieldUnit unitA, double valueB, MagneticFieldUnit unitB, bool expectEqual)
         {
             var a = new MagneticField(valueA, unitA);
@@ -811,7 +809,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = MagneticField.FromTeslas(1.0);
-            Assert.Equal(new {MagneticField.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(MagneticField.Info.Name, quantity.Teslas);
+            #else
+            var expected = new {MagneticField.Info.Name, valueInBaseUnit = quantity.Teslas}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

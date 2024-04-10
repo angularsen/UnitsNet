@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToMolarMass
     /// </summary>
     public static class NumberToMolarMassExtensions
     {
-        /// <inheritdoc cref="MolarMass.FromCentigramsPerMole(double)" />
+        /// <inheritdoc cref="MolarMass.FromCentigramsPerMole(QuantityValue)" />
         public static MolarMass CentigramsPerMole<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToMolarMass
 #endif
             => MolarMass.FromCentigramsPerMole(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarMass.FromDecagramsPerMole(double)" />
+        /// <inheritdoc cref="MolarMass.FromDecagramsPerMole(QuantityValue)" />
         public static MolarMass DecagramsPerMole<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToMolarMass
 #endif
             => MolarMass.FromDecagramsPerMole(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarMass.FromDecigramsPerMole(double)" />
+        /// <inheritdoc cref="MolarMass.FromDecigramsPerMole(QuantityValue)" />
         public static MolarMass DecigramsPerMole<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToMolarMass
 #endif
             => MolarMass.FromDecigramsPerMole(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarMass.FromGramsPerMole(double)" />
+        /// <inheritdoc cref="MolarMass.FromGramsPerMole(QuantityValue)" />
         public static MolarMass GramsPerMole<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToMolarMass
 #endif
             => MolarMass.FromGramsPerMole(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarMass.FromHectogramsPerMole(double)" />
+        /// <inheritdoc cref="MolarMass.FromHectogramsPerMole(QuantityValue)" />
         public static MolarMass HectogramsPerMole<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToMolarMass
 #endif
             => MolarMass.FromHectogramsPerMole(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarMass.FromKilogramsPerKilomole(double)" />
+        /// <inheritdoc cref="MolarMass.FromKilogramsPerKilomole(QuantityValue)" />
         public static MolarMass KilogramsPerKilomole<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToMolarMass
 #endif
             => MolarMass.FromKilogramsPerKilomole(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarMass.FromKilogramsPerMole(double)" />
+        /// <inheritdoc cref="MolarMass.FromKilogramsPerMole(QuantityValue)" />
         public static MolarMass KilogramsPerMole<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToMolarMass
 #endif
             => MolarMass.FromKilogramsPerMole(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarMass.FromKilopoundsPerMole(double)" />
+        /// <inheritdoc cref="MolarMass.FromKilopoundsPerMole(QuantityValue)" />
         public static MolarMass KilopoundsPerMole<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToMolarMass
 #endif
             => MolarMass.FromKilopoundsPerMole(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarMass.FromMegapoundsPerMole(double)" />
+        /// <inheritdoc cref="MolarMass.FromMegapoundsPerMole(QuantityValue)" />
         public static MolarMass MegapoundsPerMole<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -104,7 +104,7 @@ namespace UnitsNet.NumberExtensions.NumberToMolarMass
 #endif
             => MolarMass.FromMegapoundsPerMole(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarMass.FromMicrogramsPerMole(double)" />
+        /// <inheritdoc cref="MolarMass.FromMicrogramsPerMole(QuantityValue)" />
         public static MolarMass MicrogramsPerMole<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -112,7 +112,7 @@ namespace UnitsNet.NumberExtensions.NumberToMolarMass
 #endif
             => MolarMass.FromMicrogramsPerMole(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarMass.FromMilligramsPerMole(double)" />
+        /// <inheritdoc cref="MolarMass.FromMilligramsPerMole(QuantityValue)" />
         public static MolarMass MilligramsPerMole<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -120,7 +120,7 @@ namespace UnitsNet.NumberExtensions.NumberToMolarMass
 #endif
             => MolarMass.FromMilligramsPerMole(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarMass.FromNanogramsPerMole(double)" />
+        /// <inheritdoc cref="MolarMass.FromNanogramsPerMole(QuantityValue)" />
         public static MolarMass NanogramsPerMole<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -128,7 +128,7 @@ namespace UnitsNet.NumberExtensions.NumberToMolarMass
 #endif
             => MolarMass.FromNanogramsPerMole(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarMass.FromPoundsPerMole(double)" />
+        /// <inheritdoc cref="MolarMass.FromPoundsPerMole(QuantityValue)" />
         public static MolarMass PoundsPerMole<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

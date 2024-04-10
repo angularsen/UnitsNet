@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrentDensity
     /// </summary>
     public static class NumberToElectricCurrentDensityExtensions
     {
-        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareFoot(double)" />
+        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareFoot(QuantityValue)" />
         public static ElectricCurrentDensity AmperesPerSquareFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrentDensity
 #endif
             => ElectricCurrentDensity.FromAmperesPerSquareFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareInch(double)" />
+        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareInch(QuantityValue)" />
         public static ElectricCurrentDensity AmperesPerSquareInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrentDensity
 #endif
             => ElectricCurrentDensity.FromAmperesPerSquareInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareMeter(double)" />
+        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareMeter(QuantityValue)" />
         public static ElectricCurrentDensity AmperesPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

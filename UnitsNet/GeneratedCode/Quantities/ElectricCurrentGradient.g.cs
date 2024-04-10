@@ -25,7 +25,6 @@ using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 using System.Numerics;
-using Fractions;
 
 #nullable enable
 
@@ -53,7 +52,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly Fraction _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -89,7 +88,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public ElectricCurrentGradient(Fraction value, ElectricCurrentGradientUnit unit)
+        public ElectricCurrentGradient(QuantityValue value, ElectricCurrentGradientUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -103,7 +102,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ElectricCurrentGradient(Fraction value, UnitSystem unitSystem)
+        public ElectricCurrentGradient(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -154,10 +153,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public Fraction Value => _value;
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
-        Fraction IQuantity.Value => _value;
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -182,37 +181,37 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentGradientUnit.AmperePerMicrosecond"/>
         /// </summary>
-        public Fraction AmperesPerMicrosecond => As(ElectricCurrentGradientUnit.AmperePerMicrosecond);
+        public QuantityValue AmperesPerMicrosecond => As(ElectricCurrentGradientUnit.AmperePerMicrosecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentGradientUnit.AmperePerMillisecond"/>
         /// </summary>
-        public Fraction AmperesPerMillisecond => As(ElectricCurrentGradientUnit.AmperePerMillisecond);
+        public QuantityValue AmperesPerMillisecond => As(ElectricCurrentGradientUnit.AmperePerMillisecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentGradientUnit.AmperePerMinute"/>
         /// </summary>
-        public Fraction AmperesPerMinute => As(ElectricCurrentGradientUnit.AmperePerMinute);
+        public QuantityValue AmperesPerMinute => As(ElectricCurrentGradientUnit.AmperePerMinute);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentGradientUnit.AmperePerNanosecond"/>
         /// </summary>
-        public Fraction AmperesPerNanosecond => As(ElectricCurrentGradientUnit.AmperePerNanosecond);
+        public QuantityValue AmperesPerNanosecond => As(ElectricCurrentGradientUnit.AmperePerNanosecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentGradientUnit.AmperePerSecond"/>
         /// </summary>
-        public Fraction AmperesPerSecond => As(ElectricCurrentGradientUnit.AmperePerSecond);
+        public QuantityValue AmperesPerSecond => As(ElectricCurrentGradientUnit.AmperePerSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentGradientUnit.MilliamperePerMinute"/>
         /// </summary>
-        public Fraction MilliamperesPerMinute => As(ElectricCurrentGradientUnit.MilliamperePerMinute);
+        public QuantityValue MilliamperesPerMinute => As(ElectricCurrentGradientUnit.MilliamperePerMinute);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentGradientUnit.MilliamperePerSecond"/>
         /// </summary>
-        public Fraction MilliamperesPerSecond => As(ElectricCurrentGradientUnit.MilliamperePerSecond);
+        public QuantityValue MilliamperesPerSecond => As(ElectricCurrentGradientUnit.MilliamperePerSecond);
 
         #endregion
 
@@ -272,7 +271,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrentGradientUnit.AmperePerMicrosecond"/>.
         /// </summary>
-        public static ElectricCurrentGradient FromAmperesPerMicrosecond(Fraction value)
+        public static ElectricCurrentGradient FromAmperesPerMicrosecond(QuantityValue value)
         {
             return new ElectricCurrentGradient(value, ElectricCurrentGradientUnit.AmperePerMicrosecond);
         }
@@ -280,7 +279,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrentGradientUnit.AmperePerMillisecond"/>.
         /// </summary>
-        public static ElectricCurrentGradient FromAmperesPerMillisecond(Fraction value)
+        public static ElectricCurrentGradient FromAmperesPerMillisecond(QuantityValue value)
         {
             return new ElectricCurrentGradient(value, ElectricCurrentGradientUnit.AmperePerMillisecond);
         }
@@ -288,7 +287,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrentGradientUnit.AmperePerMinute"/>.
         /// </summary>
-        public static ElectricCurrentGradient FromAmperesPerMinute(Fraction value)
+        public static ElectricCurrentGradient FromAmperesPerMinute(QuantityValue value)
         {
             return new ElectricCurrentGradient(value, ElectricCurrentGradientUnit.AmperePerMinute);
         }
@@ -296,7 +295,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrentGradientUnit.AmperePerNanosecond"/>.
         /// </summary>
-        public static ElectricCurrentGradient FromAmperesPerNanosecond(Fraction value)
+        public static ElectricCurrentGradient FromAmperesPerNanosecond(QuantityValue value)
         {
             return new ElectricCurrentGradient(value, ElectricCurrentGradientUnit.AmperePerNanosecond);
         }
@@ -304,7 +303,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrentGradientUnit.AmperePerSecond"/>.
         /// </summary>
-        public static ElectricCurrentGradient FromAmperesPerSecond(Fraction value)
+        public static ElectricCurrentGradient FromAmperesPerSecond(QuantityValue value)
         {
             return new ElectricCurrentGradient(value, ElectricCurrentGradientUnit.AmperePerSecond);
         }
@@ -312,7 +311,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrentGradientUnit.MilliamperePerMinute"/>.
         /// </summary>
-        public static ElectricCurrentGradient FromMilliamperesPerMinute(Fraction value)
+        public static ElectricCurrentGradient FromMilliamperesPerMinute(QuantityValue value)
         {
             return new ElectricCurrentGradient(value, ElectricCurrentGradientUnit.MilliamperePerMinute);
         }
@@ -320,7 +319,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrentGradientUnit.MilliamperePerSecond"/>.
         /// </summary>
-        public static ElectricCurrentGradient FromMilliamperesPerSecond(Fraction value)
+        public static ElectricCurrentGradient FromMilliamperesPerSecond(QuantityValue value)
         {
             return new ElectricCurrentGradient(value, ElectricCurrentGradientUnit.MilliamperePerSecond);
         }
@@ -331,7 +330,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricCurrentGradient unit value.</returns>
-        public static ElectricCurrentGradient From(Fraction value, ElectricCurrentGradientUnit fromUnit)
+        public static ElectricCurrentGradient From(QuantityValue value, ElectricCurrentGradientUnit fromUnit)
         {
             return new ElectricCurrentGradient(value, fromUnit);
         }
@@ -487,7 +486,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static ElectricCurrentGradient operator -(ElectricCurrentGradient right)
         {
-            return new ElectricCurrentGradient(right.Value.Invert(), right.Unit);
+            return new ElectricCurrentGradient(-right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricCurrentGradient"/> from adding two <see cref="ElectricCurrentGradient"/>.</summary>
@@ -503,25 +502,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="ElectricCurrentGradient"/> from multiplying value and <see cref="ElectricCurrentGradient"/>.</summary>
-        public static ElectricCurrentGradient operator *(Fraction left, ElectricCurrentGradient right)
+        public static ElectricCurrentGradient operator *(QuantityValue left, ElectricCurrentGradient right)
         {
             return new ElectricCurrentGradient(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricCurrentGradient"/> from multiplying value and <see cref="ElectricCurrentGradient"/>.</summary>
-        public static ElectricCurrentGradient operator *(ElectricCurrentGradient left, Fraction right)
+        public static ElectricCurrentGradient operator *(ElectricCurrentGradient left, QuantityValue right)
         {
             return new ElectricCurrentGradient(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricCurrentGradient"/> from dividing <see cref="ElectricCurrentGradient"/> by value.</summary>
-        public static ElectricCurrentGradient operator /(ElectricCurrentGradient left, Fraction right)
+        public static ElectricCurrentGradient operator /(ElectricCurrentGradient left, QuantityValue right)
         {
             return new ElectricCurrentGradient(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ElectricCurrentGradient"/> by <see cref="ElectricCurrentGradient"/>.</summary>
-        public static Fraction operator /(ElectricCurrentGradient left, ElectricCurrentGradient right)
+        public static QuantityValue operator /(ElectricCurrentGradient left, ElectricCurrentGradient right)
         {
             return left.AmperesPerSecond / right.AmperesPerSecond;
         }
@@ -590,7 +589,7 @@ namespace UnitsNet
         /// <summary>Indicates strict equality of two <see cref="ElectricCurrentGradient"/> quantities.</summary>
         public bool Equals(ElectricCurrentGradient other)
         {
-            return _value.IsEquivalentTo(other.As(this.Unit));
+            return _value.Equals(other.As(this.Unit));
         }
 
         /// <summary>Compares the current <see cref="ElectricCurrentGradient"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
@@ -675,10 +674,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: (Fraction)tolerance,
+                tolerance: (QuantityValue)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -695,7 +694,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(ElectricCurrentGradient other, ElectricCurrentGradient tolerance)
         {
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -709,7 +708,11 @@ namespace UnitsNet
         public override int GetHashCode()
         {
             var valueInBaseUnit = As(BaseUnit);
+            #if NET7_0_OR_GREATER
+            return HashCode.Combine(Info.Name, valueInBaseUnit);
+            #else
             return new { Info.Name, valueInBaseUnit }.GetHashCode();
+            #endif
         }
 
         #endregion
@@ -720,7 +723,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public Fraction As(ElectricCurrentGradientUnit unit)
+        public QuantityValue As(ElectricCurrentGradientUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -729,7 +732,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public Fraction As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -744,7 +747,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        Fraction IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
             if (!(unit is ElectricCurrentGradientUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricCurrentGradientUnit)} is supported.", nameof(unit));

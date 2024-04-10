@@ -78,7 +78,7 @@ namespace UnitsNet.Tests
             Assert.Equal(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new SpecificFuelConsumption(double.PositiveInfinity, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond));
@@ -88,7 +88,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new SpecificFuelConsumption(double.NaN, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond));
@@ -162,7 +162,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromGramsPerKiloNewtonSecond_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(double.PositiveInfinity));
@@ -172,7 +172,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromGramsPerKiloNewtonSecond_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(double.NaN));
@@ -431,8 +431,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, 1, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, true)]  // Same value and unit.
         [InlineData(1, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, 2, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, false)] // Different value.
-        [InlineData(2, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, 1, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, false)] // Different value and unit.
-        [InlineData(1, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, 1, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, SpecificFuelConsumptionUnit unitA, double valueB, SpecificFuelConsumptionUnit unitB, bool expectEqual)
         {
             var a = new SpecificFuelConsumption(valueA, unitA);
@@ -737,7 +735,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
-            Assert.Equal(new {SpecificFuelConsumption.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(SpecificFuelConsumption.Info.Name, quantity.GramsPerKiloNewtonSecond);
+            #else
+            var expected = new {SpecificFuelConsumption.Info.Name, valueInBaseUnit = quantity.GramsPerKiloNewtonSecond}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

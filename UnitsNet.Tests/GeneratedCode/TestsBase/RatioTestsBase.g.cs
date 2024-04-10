@@ -86,7 +86,7 @@ namespace UnitsNet.Tests
             Assert.Equal(RatioUnit.DecimalFraction, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new Ratio(double.PositiveInfinity, RatioUnit.DecimalFraction));
@@ -96,7 +96,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new Ratio(double.NaN, RatioUnit.DecimalFraction));
@@ -180,7 +180,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromDecimalFractions_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => Ratio.FromDecimalFractions(double.PositiveInfinity));
@@ -190,7 +190,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromDecimalFractions_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => Ratio.FromDecimalFractions(double.NaN));
@@ -501,8 +501,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, RatioUnit.DecimalFraction, 1, RatioUnit.DecimalFraction, true)]  // Same value and unit.
         [InlineData(1, RatioUnit.DecimalFraction, 2, RatioUnit.DecimalFraction, false)] // Different value.
-        [InlineData(2, RatioUnit.DecimalFraction, 1, RatioUnit.PartPerBillion, false)] // Different value and unit.
-        [InlineData(1, RatioUnit.DecimalFraction, 1, RatioUnit.PartPerBillion, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, RatioUnit unitA, double valueB, RatioUnit unitB, bool expectEqual)
         {
             var a = new Ratio(valueA, unitA);
@@ -811,7 +809,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Ratio.FromDecimalFractions(1.0);
-            Assert.Equal(new {Ratio.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(Ratio.Info.Name, quantity.DecimalFractions);
+            #else
+            var expected = new {Ratio.Info.Name, valueInBaseUnit = quantity.DecimalFractions}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

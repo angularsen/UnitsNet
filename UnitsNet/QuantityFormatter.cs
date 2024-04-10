@@ -4,6 +4,7 @@
 using System;
 using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 using UnitsNet.Units;
 
 namespace UnitsNet
@@ -109,10 +110,62 @@ namespace UnitsNet
         public static string Format<TUnitType>(IQuantity<TUnitType> quantity, string? format, IFormatProvider? formatProvider)
             where TUnitType : Enum
         {
+            // formatProvider ??= CultureInfo.CurrentCulture;
+            // return FormatUntrimmed(quantity, format, formatProvider).TrimEnd();
+            
             formatProvider ??= CultureInfo.CurrentCulture;
-            return FormatUntrimmed(quantity, format, formatProvider).TrimEnd();
+
+            if (format is null or "" or "g")
+            {
+                format = "s"; // TODO "s" or "S"?
+            }
+            else if (format is "G")
+            {
+                format = "S";
+            }
+
+            var formatSpecifier = format[0]; // netstandard2.0 nullable quirk
+
+            switch (formatSpecifier)
+            {
+                case 'A' or 'a': 
+                {
+                    if (format.Length == 1) 
+                    {
+                        return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(quantity.Unit, formatProvider);
+                    }
+
+                    // "An": The n-th unit abbreviation for
+                    if (!int.TryParse(format.Substring(1), out var abbreviationIndex))
+                    {
+                        throw new FormatException($"The {format} format string is not supported.");
+                    }
+
+                    var abbreviations = UnitsNetSetup.Default.UnitAbbreviations.GetUnitAbbreviations(quantity.Unit, formatProvider);
+
+                    if (abbreviationIndex >= abbreviations.Length)
+                    {
+                        throw new FormatException($"The {format} format string is invalid because the abbreviation index does not exist.");
+                    }
+
+                    return abbreviations[abbreviationIndex];
+                }
+                case 'V' or 'v':
+                    return quantity.Value.ToString(formatProvider);
+                case 'U' or 'u':
+                    return quantity.Unit.ToString();
+                case 'Q' or 'q':
+                    return quantity.QuantityInfo.Name;
+                default: // case of 'S' or 's' or 'G' or 'g' (and anything else) defaults to "{value:format} {abbreviation}" (trimmed as necessary)
+                {
+                    var valueString = quantity.Value.ToString(format, formatProvider);
+                    var abbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(quantity.Unit, formatProvider);
+                    return string.IsNullOrEmpty(abbreviation) ? valueString : valueString + ' ' + abbreviation;
+                }
+            }
         }
 
+        [Obsolete]
         private static string FormatUntrimmed<TUnitType>(IQuantity<TUnitType> quantity, string? format, IFormatProvider? formatProvider)
             where TUnitType : Enum
         {
@@ -147,7 +200,7 @@ namespace UnitsNet
                         return ToStringWithSignificantDigitsAfterRadix(quantity, formatProvider, 2);
                     case 'A':
                     case 'a':
-                        var abbreviations = UnitAbbreviationsCache.Default.GetUnitAbbreviations(quantity.Unit, formatProvider);
+                        var abbreviations = UnitsNetSetup.Default.UnitAbbreviations.GetUnitAbbreviations(quantity.Unit, formatProvider);
 
                         if (precisionSpecifier >= abbreviations.Length)
                             throw new FormatException($"The {format} format string is invalid because the abbreviation index does not exist.");
@@ -172,17 +225,20 @@ namespace UnitsNet
             else
             {
                 // Anything else is a standard numeric format string with default unit abbreviation postfix.
-
-                var abbreviations = UnitAbbreviationsCache.Default.GetUnitAbbreviations(quantity.Unit, formatProvider);
-                return string.Format(formatProvider, $"{{0:{format}}} {{1}}", quantity.Value, abbreviations.First());
+                var abbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(quantity.Unit, formatProvider);
+                return string.Format(formatProvider, $"{{0:{format}}} {{1}}", quantity.Value, abbreviation);
             }
         }
 
-        private static string ToStringWithSignificantDigitsAfterRadix<TUnitType>(IQuantity<TUnitType> quantity, IFormatProvider formatProvider, int number) where TUnitType : Enum
+        private static string ToStringWithSignificantDigitsAfterRadix<TUnitType>(IQuantity<TUnitType> quantity, IFormatProvider formatProvider, int precisionSpecifier)
+            where TUnitType : Enum
         {
-            string formatForSignificantDigits = UnitFormatter.GetFormat(quantity.Value.ToDouble(), number);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(quantity.Unit, quantity.Value.ToDouble(), formatProvider, Enumerable.Empty<object>());
-            return string.Format(formatProvider, formatForSignificantDigits, formatArgs);
+            // string formatForSignificantDigits = UnitFormatter.GetFormat(quantity.Value.ToDouble(), precisionSpecifier);
+            // object[] formatArgs = UnitFormatter.GetFormatArgs(quantity.Unit, quantity.Value.ToDouble(), formatProvider, Enumerable.Empty<object>());
+            // return string.Format(formatProvider, formatForSignificantDigits, formatArgs);
+            var valueString = quantity.Value.ToString($"g{precisionSpecifier}", formatProvider);
+            var abbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(quantity.Unit, formatProvider);
+            return $"{valueString} {abbreviation}";
         }
     }
 }

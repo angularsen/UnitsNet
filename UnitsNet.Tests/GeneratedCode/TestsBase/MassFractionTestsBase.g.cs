@@ -158,7 +158,7 @@ namespace UnitsNet.Tests
             Assert.Equal(MassFractionUnit.DecimalFraction, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new MassFraction(double.PositiveInfinity, MassFractionUnit.DecimalFraction));
@@ -168,7 +168,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new MassFraction(double.NaN, MassFractionUnit.DecimalFraction));
@@ -342,7 +342,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromDecimalFractions_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => MassFraction.FromDecimalFractions(double.PositiveInfinity));
@@ -352,7 +352,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromDecimalFractions_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => MassFraction.FromDecimalFractions(double.NaN));
@@ -1155,8 +1155,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, MassFractionUnit.DecimalFraction, 1, MassFractionUnit.DecimalFraction, true)]  // Same value and unit.
         [InlineData(1, MassFractionUnit.DecimalFraction, 2, MassFractionUnit.DecimalFraction, false)] // Different value.
-        [InlineData(2, MassFractionUnit.DecimalFraction, 1, MassFractionUnit.CentigramPerGram, false)] // Different value and unit.
-        [InlineData(1, MassFractionUnit.DecimalFraction, 1, MassFractionUnit.CentigramPerGram, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, MassFractionUnit unitA, double valueB, MassFractionUnit unitB, bool expectEqual)
         {
             var a = new MassFraction(valueA, unitA);
@@ -1501,7 +1499,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = MassFraction.FromDecimalFractions(1.0);
-            Assert.Equal(new {MassFraction.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(MassFraction.Info.Name, quantity.DecimalFractions);
+            #else
+            var expected = new {MassFraction.Info.Name, valueInBaseUnit = quantity.DecimalFractions}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

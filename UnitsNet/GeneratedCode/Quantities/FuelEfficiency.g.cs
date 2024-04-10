@@ -25,7 +25,6 @@ using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 using System.Numerics;
-using Fractions;
 
 #nullable enable
 
@@ -53,7 +52,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly Fraction _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -86,7 +85,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public FuelEfficiency(Fraction value, FuelEfficiencyUnit unit)
+        public FuelEfficiency(QuantityValue value, FuelEfficiencyUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -100,7 +99,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public FuelEfficiency(Fraction value, UnitSystem unitSystem)
+        public FuelEfficiency(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -151,10 +150,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public Fraction Value => _value;
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
-        Fraction IQuantity.Value => _value;
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -179,22 +178,22 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FuelEfficiencyUnit.KilometerPerLiter"/>
         /// </summary>
-        public Fraction KilometersPerLiter => As(FuelEfficiencyUnit.KilometerPerLiter);
+        public QuantityValue KilometersPerLiter => As(FuelEfficiencyUnit.KilometerPerLiter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FuelEfficiencyUnit.LiterPer100Kilometers"/>
         /// </summary>
-        public Fraction LitersPer100Kilometers => As(FuelEfficiencyUnit.LiterPer100Kilometers);
+        public QuantityValue LitersPer100Kilometers => As(FuelEfficiencyUnit.LiterPer100Kilometers);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FuelEfficiencyUnit.MilePerUkGallon"/>
         /// </summary>
-        public Fraction MilesPerUkGallon => As(FuelEfficiencyUnit.MilePerUkGallon);
+        public QuantityValue MilesPerUkGallon => As(FuelEfficiencyUnit.MilePerUkGallon);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FuelEfficiencyUnit.MilePerUsGallon"/>
         /// </summary>
-        public Fraction MilesPerUsGallon => As(FuelEfficiencyUnit.MilePerUsGallon);
+        public QuantityValue MilesPerUsGallon => As(FuelEfficiencyUnit.MilePerUsGallon);
 
         #endregion
 
@@ -248,7 +247,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="FuelEfficiency"/> from <see cref="FuelEfficiencyUnit.KilometerPerLiter"/>.
         /// </summary>
-        public static FuelEfficiency FromKilometersPerLiter(Fraction value)
+        public static FuelEfficiency FromKilometersPerLiter(QuantityValue value)
         {
             return new FuelEfficiency(value, FuelEfficiencyUnit.KilometerPerLiter);
         }
@@ -256,7 +255,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="FuelEfficiency"/> from <see cref="FuelEfficiencyUnit.LiterPer100Kilometers"/>.
         /// </summary>
-        public static FuelEfficiency FromLitersPer100Kilometers(Fraction value)
+        public static FuelEfficiency FromLitersPer100Kilometers(QuantityValue value)
         {
             return new FuelEfficiency(value, FuelEfficiencyUnit.LiterPer100Kilometers);
         }
@@ -264,7 +263,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="FuelEfficiency"/> from <see cref="FuelEfficiencyUnit.MilePerUkGallon"/>.
         /// </summary>
-        public static FuelEfficiency FromMilesPerUkGallon(Fraction value)
+        public static FuelEfficiency FromMilesPerUkGallon(QuantityValue value)
         {
             return new FuelEfficiency(value, FuelEfficiencyUnit.MilePerUkGallon);
         }
@@ -272,7 +271,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="FuelEfficiency"/> from <see cref="FuelEfficiencyUnit.MilePerUsGallon"/>.
         /// </summary>
-        public static FuelEfficiency FromMilesPerUsGallon(Fraction value)
+        public static FuelEfficiency FromMilesPerUsGallon(QuantityValue value)
         {
             return new FuelEfficiency(value, FuelEfficiencyUnit.MilePerUsGallon);
         }
@@ -283,7 +282,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>FuelEfficiency unit value.</returns>
-        public static FuelEfficiency From(Fraction value, FuelEfficiencyUnit fromUnit)
+        public static FuelEfficiency From(QuantityValue value, FuelEfficiencyUnit fromUnit)
         {
             return new FuelEfficiency(value, fromUnit);
         }
@@ -439,7 +438,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static FuelEfficiency operator -(FuelEfficiency right)
         {
-            return new FuelEfficiency(right.Value.Invert(), right.Unit);
+            return new FuelEfficiency(-right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="FuelEfficiency"/> from adding two <see cref="FuelEfficiency"/>.</summary>
@@ -455,25 +454,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="FuelEfficiency"/> from multiplying value and <see cref="FuelEfficiency"/>.</summary>
-        public static FuelEfficiency operator *(Fraction left, FuelEfficiency right)
+        public static FuelEfficiency operator *(QuantityValue left, FuelEfficiency right)
         {
             return new FuelEfficiency(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="FuelEfficiency"/> from multiplying value and <see cref="FuelEfficiency"/>.</summary>
-        public static FuelEfficiency operator *(FuelEfficiency left, Fraction right)
+        public static FuelEfficiency operator *(FuelEfficiency left, QuantityValue right)
         {
             return new FuelEfficiency(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="FuelEfficiency"/> from dividing <see cref="FuelEfficiency"/> by value.</summary>
-        public static FuelEfficiency operator /(FuelEfficiency left, Fraction right)
+        public static FuelEfficiency operator /(FuelEfficiency left, QuantityValue right)
         {
             return new FuelEfficiency(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="FuelEfficiency"/> by <see cref="FuelEfficiency"/>.</summary>
-        public static Fraction operator /(FuelEfficiency left, FuelEfficiency right)
+        public static QuantityValue operator /(FuelEfficiency left, FuelEfficiency right)
         {
             return left.LitersPer100Kilometers / right.LitersPer100Kilometers;
         }
@@ -532,7 +531,7 @@ namespace UnitsNet
         /// <summary>Indicates strict equality of two <see cref="FuelEfficiency"/> quantities.</summary>
         public bool Equals(FuelEfficiency other)
         {
-            return _value.IsEquivalentTo(other.As(this.Unit));
+            return _value.Equals(other.As(this.Unit));
         }
 
         /// <summary>Compares the current <see cref="FuelEfficiency"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
@@ -617,10 +616,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: (Fraction)tolerance,
+                tolerance: (QuantityValue)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -637,7 +636,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(FuelEfficiency other, FuelEfficiency tolerance)
         {
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -651,7 +650,11 @@ namespace UnitsNet
         public override int GetHashCode()
         {
             var valueInBaseUnit = As(BaseUnit);
+            #if NET7_0_OR_GREATER
+            return HashCode.Combine(Info.Name, valueInBaseUnit);
+            #else
             return new { Info.Name, valueInBaseUnit }.GetHashCode();
+            #endif
         }
 
         #endregion
@@ -662,7 +665,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public Fraction As(FuelEfficiencyUnit unit)
+        public QuantityValue As(FuelEfficiencyUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -671,7 +674,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public Fraction As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -686,7 +689,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        Fraction IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
             if (!(unit is FuelEfficiencyUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(FuelEfficiencyUnit)} is supported.", nameof(unit));
@@ -752,14 +755,14 @@ namespace UnitsNet
             FuelEfficiency? convertedOrNull = (Unit, unit) switch
             {
                 // FuelEfficiencyUnit -> BaseUnit
-                (FuelEfficiencyUnit.KilometerPerLiter, FuelEfficiencyUnit.LiterPer100Kilometers) => new FuelEfficiency(Fraction.Pow(_value, -1) * 100, FuelEfficiencyUnit.LiterPer100Kilometers),
-                (FuelEfficiencyUnit.MilePerUkGallon, FuelEfficiencyUnit.LiterPer100Kilometers) => new FuelEfficiency(Fraction.Pow(_value, -1) * new Fraction(1148003, 4064, false), FuelEfficiencyUnit.LiterPer100Kilometers),
-                (FuelEfficiencyUnit.MilePerUsGallon, FuelEfficiencyUnit.LiterPer100Kilometers) => new FuelEfficiency(Fraction.Pow(_value, -1) * new Fraction(112903, 480, false), FuelEfficiencyUnit.LiterPer100Kilometers),
+                (FuelEfficiencyUnit.KilometerPerLiter, FuelEfficiencyUnit.LiterPer100Kilometers) => new FuelEfficiency((_value ^ -1) * 100, FuelEfficiencyUnit.LiterPer100Kilometers),
+                (FuelEfficiencyUnit.MilePerUkGallon, FuelEfficiencyUnit.LiterPer100Kilometers) => new FuelEfficiency((_value ^ -1) * new QuantityValue(1148003, 4064, false), FuelEfficiencyUnit.LiterPer100Kilometers),
+                (FuelEfficiencyUnit.MilePerUsGallon, FuelEfficiencyUnit.LiterPer100Kilometers) => new FuelEfficiency((_value ^ -1) * new QuantityValue(112903, 480, false), FuelEfficiencyUnit.LiterPer100Kilometers),
 
                 // BaseUnit -> FuelEfficiencyUnit
-                (FuelEfficiencyUnit.LiterPer100Kilometers, FuelEfficiencyUnit.KilometerPerLiter) => new FuelEfficiency(Fraction.Pow(_value, -1) * 100, FuelEfficiencyUnit.KilometerPerLiter),
-                (FuelEfficiencyUnit.LiterPer100Kilometers, FuelEfficiencyUnit.MilePerUkGallon) => new FuelEfficiency(Fraction.Pow(_value, -1) * new Fraction(1148003, 4064, false), FuelEfficiencyUnit.MilePerUkGallon),
-                (FuelEfficiencyUnit.LiterPer100Kilometers, FuelEfficiencyUnit.MilePerUsGallon) => new FuelEfficiency(Fraction.Pow(_value, -1) * new Fraction(112903, 480, false), FuelEfficiencyUnit.MilePerUsGallon),
+                (FuelEfficiencyUnit.LiterPer100Kilometers, FuelEfficiencyUnit.KilometerPerLiter) => new FuelEfficiency((_value ^ -1) * 100, FuelEfficiencyUnit.KilometerPerLiter),
+                (FuelEfficiencyUnit.LiterPer100Kilometers, FuelEfficiencyUnit.MilePerUkGallon) => new FuelEfficiency((_value ^ -1) * new QuantityValue(1148003, 4064, false), FuelEfficiencyUnit.MilePerUkGallon),
+                (FuelEfficiencyUnit.LiterPer100Kilometers, FuelEfficiencyUnit.MilePerUsGallon) => new FuelEfficiency((_value ^ -1) * new QuantityValue(112903, 480, false), FuelEfficiencyUnit.MilePerUsGallon),
 
                 _ => null
             };

@@ -2,7 +2,6 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
-using Fractions;
 using UnitsNet.Units;
 
 namespace UnitsNet
@@ -25,7 +24,7 @@ namespace UnitsNet
                     "The base-10 logarithm of a number ≤ 0 is undefined. Voltage must be greater than 0 V.");
 
             // E(dBV) = 20*log10(value(V)/reference(V))
-            _value = Fraction.FromDoubleRounded(20 * Math.Log10(voltage.Volts.ToDouble() / 1));
+            _value = QuantityValue.FromDoubleRounded(20 * Math.Log10(voltage.Volts.ToDouble() / 1));
             _unit = AmplitudeRatioUnit.DecibelVolt;
         }
 
@@ -41,7 +40,7 @@ namespace UnitsNet
         public ElectricPotential ToElectricPotential()
         {
             // E(V) = 1V * 10^(E(dBV)/20)
-            return ElectricPotential.FromVolts(Fraction.FromDoubleRounded(Math.Pow(10, DecibelVolts.ToDouble() / 20)));
+            return ElectricPotential.FromVolts(QuantityValue.FromDoubleRounded(Math.Pow(10, DecibelVolts.ToDouble() / 20)));
         }
 
         /// <summary>
@@ -52,7 +51,7 @@ namespace UnitsNet
         public PowerRatio ToPowerRatio( ElectricResistance impedance )
         {
             // P(dBW) = E(dBV) - 10*log10(Z(Ω)/1)
-            return PowerRatio.FromDecibelWatts(DecibelVolts - Fraction.FromDoubleRounded(10 * Math.Log10(impedance.Ohms.ToDouble() / 1)));
+            return PowerRatio.FromDecibelWatts(DecibelVolts - QuantityValue.FromDoubleRounded(10 * Math.Log10(impedance.Ohms.ToDouble() / 1)));
         }
 
         #region Static Methods

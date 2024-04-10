@@ -14,7 +14,7 @@ namespace CodeGen.Helpers.ExpressionAnalyzer;
 
 internal class ExpressionEvaluator // TODO make public (and move out in a separate project)
 {
-    private static readonly Fraction Pi = Fraction.FromDoubleRounded(Math.PI);
+    private static readonly Fraction Pi = FractionExtensions.FromDoubleRounded(Math.PI);
     private readonly IReadOnlyDictionary<string, Fraction> _constantValues;
     private readonly Dictionary<string, CompositeExpression> _expressionsEvaluated = [];
 
@@ -65,21 +65,18 @@ internal class ExpressionEvaluator // TODO make public (and move out in a separa
             {
                 var functionName = match.Groups[1].Value;
                 var functionBodyToParse = match.Groups[2].Value;
+                var evaluationTerm = new ExpressionEvaluationTerm(functionBodyToParse, exponent);
                 if (string.IsNullOrEmpty(functionName)) // standard grouping (technically this is equivalent to f(x) -> x)
                 {
                     // all terms within the group are expanded: extract the simplified expression
-                    CompositeExpression expression = ReplaceTokenizedExpressions(new ExpressionEvaluationTerm(functionBodyToParse, exponent));
+                    CompositeExpression expression = ReplaceTokenizedExpressions(evaluationTerm);
                     return Add(expression);
                 }
 
                 if (_functionEvaluators.TryGetValue(functionName, out IFunctionEvaluator? functionEvaluator))
                 {
-                    // extract the body of the function
-                    ExpressionEvaluationTerm tokenizedExpression = functionEvaluator.GetFunctionBody(functionBodyToParse, exponent); 
-                    // simplify the terms of the expression that are used for the function call
-                    CompositeExpression functionBody = ReplaceTokenizedExpressions(tokenizedExpression);
-                    // return the simplified argument expression to the function evaluator in order to construct/evaluate the composed expression
-                    CompositeExpression expression = functionEvaluator.CreateExpression(Fraction.One, exponent, functionBody);
+                    // resolve the expression using the custom function evaluator
+                    CompositeExpression expression = functionEvaluator.CreateExpression(evaluationTerm, ReplaceTokenizedExpressions);
                     return Add(expression);
                 }
 
@@ -237,7 +234,7 @@ internal class ExpressionEvaluator // TODO make public (and move out in a separa
             }
 
             // constant expression using a non-integer power: there is currently no Fraction.Pow(Fraction, Fraction)
-            expressionTerm = ExpressionTerm.Constant(Fraction.FromDoubleRounded(Math.Pow(constantExpression.ToDouble(), exponent.ToDouble())));
+            expressionTerm = ExpressionTerm.Constant(FractionExtensions.FromDoubleRounded(Math.Pow(constantExpression.ToDouble(), exponent.ToDouble())));
             return true;
         }
 
@@ -294,6 +291,4 @@ internal class ExpressionEvaluator // TODO make public (and move out in a separa
         Multiplication,
         Division
     }
-
-
 }

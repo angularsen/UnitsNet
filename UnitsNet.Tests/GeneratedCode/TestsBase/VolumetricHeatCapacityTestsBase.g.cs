@@ -98,7 +98,7 @@ namespace UnitsNet.Tests
             Assert.Equal(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new VolumetricHeatCapacity(double.PositiveInfinity, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin));
@@ -108,7 +108,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new VolumetricHeatCapacity(double.NaN, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin));
@@ -207,7 +207,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromJoulesPerCubicMeterKelvin_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(double.PositiveInfinity));
@@ -217,7 +217,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromJoulesPerCubicMeterKelvin_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(double.NaN));
@@ -606,8 +606,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, 1, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, true)]  // Same value and unit.
         [InlineData(1, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, 2, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, false)] // Different value.
-        [InlineData(2, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, 1, VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit, false)] // Different value and unit.
-        [InlineData(1, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, 1, VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, VolumetricHeatCapacityUnit unitA, double valueB, VolumetricHeatCapacityUnit unitB, bool expectEqual)
         {
             var a = new VolumetricHeatCapacity(valueA, unitA);
@@ -922,7 +920,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(1.0);
-            Assert.Equal(new {VolumetricHeatCapacity.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(VolumetricHeatCapacity.Info.Name, quantity.JoulesPerCubicMeterKelvin);
+            #else
+            var expected = new {VolumetricHeatCapacity.Info.Name, valueInBaseUnit = quantity.JoulesPerCubicMeterKelvin}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

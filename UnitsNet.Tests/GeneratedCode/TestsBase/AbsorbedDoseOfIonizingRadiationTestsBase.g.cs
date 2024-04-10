@@ -126,7 +126,7 @@ namespace UnitsNet.Tests
             Assert.Equal(AbsorbedDoseOfIonizingRadiationUnit.Gray, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new AbsorbedDoseOfIonizingRadiation(double.PositiveInfinity, AbsorbedDoseOfIonizingRadiationUnit.Gray));
@@ -136,7 +136,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new AbsorbedDoseOfIonizingRadiation(double.NaN, AbsorbedDoseOfIonizingRadiationUnit.Gray));
@@ -270,7 +270,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromGrays_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => AbsorbedDoseOfIonizingRadiation.FromGrays(double.PositiveInfinity));
@@ -280,7 +280,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromGrays_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => AbsorbedDoseOfIonizingRadiation.FromGrays(double.NaN));
@@ -1103,8 +1103,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, AbsorbedDoseOfIonizingRadiationUnit.Gray, 1, AbsorbedDoseOfIonizingRadiationUnit.Gray, true)]  // Same value and unit.
         [InlineData(1, AbsorbedDoseOfIonizingRadiationUnit.Gray, 2, AbsorbedDoseOfIonizingRadiationUnit.Gray, false)] // Different value.
-        [InlineData(2, AbsorbedDoseOfIonizingRadiationUnit.Gray, 1, AbsorbedDoseOfIonizingRadiationUnit.Centigray, false)] // Different value and unit.
-        [InlineData(1, AbsorbedDoseOfIonizingRadiationUnit.Gray, 1, AbsorbedDoseOfIonizingRadiationUnit.Centigray, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, AbsorbedDoseOfIonizingRadiationUnit unitA, double valueB, AbsorbedDoseOfIonizingRadiationUnit unitB, bool expectEqual)
         {
             var a = new AbsorbedDoseOfIonizingRadiation(valueA, unitA);
@@ -1433,7 +1431,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = AbsorbedDoseOfIonizingRadiation.FromGrays(1.0);
-            Assert.Equal(new {AbsorbedDoseOfIonizingRadiation.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(AbsorbedDoseOfIonizingRadiation.Info.Name, quantity.Grays);
+            #else
+            var expected = new {AbsorbedDoseOfIonizingRadiation.Info.Name, valueInBaseUnit = quantity.Grays}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

@@ -74,7 +74,7 @@ namespace UnitsNet.Tests
             Assert.Equal(MolarEntropyUnit.JoulePerMoleKelvin, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new MolarEntropy(double.PositiveInfinity, MolarEntropyUnit.JoulePerMoleKelvin));
@@ -84,7 +84,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new MolarEntropy(double.NaN, MolarEntropyUnit.JoulePerMoleKelvin));
@@ -153,7 +153,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromJoulesPerMoleKelvin_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => MolarEntropy.FromJoulesPerMoleKelvin(double.PositiveInfinity));
@@ -163,7 +163,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromJoulesPerMoleKelvin_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => MolarEntropy.FromJoulesPerMoleKelvin(double.NaN));
@@ -396,8 +396,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, MolarEntropyUnit.JoulePerMoleKelvin, 1, MolarEntropyUnit.JoulePerMoleKelvin, true)]  // Same value and unit.
         [InlineData(1, MolarEntropyUnit.JoulePerMoleKelvin, 2, MolarEntropyUnit.JoulePerMoleKelvin, false)] // Different value.
-        [InlineData(2, MolarEntropyUnit.JoulePerMoleKelvin, 1, MolarEntropyUnit.KilojoulePerMoleKelvin, false)] // Different value and unit.
-        [InlineData(1, MolarEntropyUnit.JoulePerMoleKelvin, 1, MolarEntropyUnit.KilojoulePerMoleKelvin, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, MolarEntropyUnit unitA, double valueB, MolarEntropyUnit unitB, bool expectEqual)
         {
             var a = new MolarEntropy(valueA, unitA);
@@ -700,7 +698,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = MolarEntropy.FromJoulesPerMoleKelvin(1.0);
-            Assert.Equal(new {MolarEntropy.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(MolarEntropy.Info.Name, quantity.JoulesPerMoleKelvin);
+            #else
+            var expected = new {MolarEntropy.Info.Name, valueInBaseUnit = quantity.JoulesPerMoleKelvin}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

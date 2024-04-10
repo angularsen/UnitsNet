@@ -25,7 +25,6 @@ using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 using System.Numerics;
-using Fractions;
 
 #nullable enable
 
@@ -53,7 +52,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly Fraction _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -89,7 +88,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Capacitance(Fraction value, CapacitanceUnit unit)
+        public Capacitance(QuantityValue value, CapacitanceUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -103,7 +102,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Capacitance(Fraction value, UnitSystem unitSystem)
+        public Capacitance(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -154,10 +153,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public Fraction Value => _value;
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
-        Fraction IQuantity.Value => _value;
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -182,37 +181,37 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CapacitanceUnit.Farad"/>
         /// </summary>
-        public Fraction Farads => As(CapacitanceUnit.Farad);
+        public QuantityValue Farads => As(CapacitanceUnit.Farad);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CapacitanceUnit.Kilofarad"/>
         /// </summary>
-        public Fraction Kilofarads => As(CapacitanceUnit.Kilofarad);
+        public QuantityValue Kilofarads => As(CapacitanceUnit.Kilofarad);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CapacitanceUnit.Megafarad"/>
         /// </summary>
-        public Fraction Megafarads => As(CapacitanceUnit.Megafarad);
+        public QuantityValue Megafarads => As(CapacitanceUnit.Megafarad);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CapacitanceUnit.Microfarad"/>
         /// </summary>
-        public Fraction Microfarads => As(CapacitanceUnit.Microfarad);
+        public QuantityValue Microfarads => As(CapacitanceUnit.Microfarad);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CapacitanceUnit.Millifarad"/>
         /// </summary>
-        public Fraction Millifarads => As(CapacitanceUnit.Millifarad);
+        public QuantityValue Millifarads => As(CapacitanceUnit.Millifarad);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CapacitanceUnit.Nanofarad"/>
         /// </summary>
-        public Fraction Nanofarads => As(CapacitanceUnit.Nanofarad);
+        public QuantityValue Nanofarads => As(CapacitanceUnit.Nanofarad);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CapacitanceUnit.Picofarad"/>
         /// </summary>
-        public Fraction Picofarads => As(CapacitanceUnit.Picofarad);
+        public QuantityValue Picofarads => As(CapacitanceUnit.Picofarad);
 
         #endregion
 
@@ -272,7 +271,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Farad"/>.
         /// </summary>
-        public static Capacitance FromFarads(Fraction value)
+        public static Capacitance FromFarads(QuantityValue value)
         {
             return new Capacitance(value, CapacitanceUnit.Farad);
         }
@@ -280,7 +279,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Kilofarad"/>.
         /// </summary>
-        public static Capacitance FromKilofarads(Fraction value)
+        public static Capacitance FromKilofarads(QuantityValue value)
         {
             return new Capacitance(value, CapacitanceUnit.Kilofarad);
         }
@@ -288,7 +287,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Megafarad"/>.
         /// </summary>
-        public static Capacitance FromMegafarads(Fraction value)
+        public static Capacitance FromMegafarads(QuantityValue value)
         {
             return new Capacitance(value, CapacitanceUnit.Megafarad);
         }
@@ -296,7 +295,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Microfarad"/>.
         /// </summary>
-        public static Capacitance FromMicrofarads(Fraction value)
+        public static Capacitance FromMicrofarads(QuantityValue value)
         {
             return new Capacitance(value, CapacitanceUnit.Microfarad);
         }
@@ -304,7 +303,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Millifarad"/>.
         /// </summary>
-        public static Capacitance FromMillifarads(Fraction value)
+        public static Capacitance FromMillifarads(QuantityValue value)
         {
             return new Capacitance(value, CapacitanceUnit.Millifarad);
         }
@@ -312,7 +311,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Nanofarad"/>.
         /// </summary>
-        public static Capacitance FromNanofarads(Fraction value)
+        public static Capacitance FromNanofarads(QuantityValue value)
         {
             return new Capacitance(value, CapacitanceUnit.Nanofarad);
         }
@@ -320,7 +319,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Picofarad"/>.
         /// </summary>
-        public static Capacitance FromPicofarads(Fraction value)
+        public static Capacitance FromPicofarads(QuantityValue value)
         {
             return new Capacitance(value, CapacitanceUnit.Picofarad);
         }
@@ -331,7 +330,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Capacitance unit value.</returns>
-        public static Capacitance From(Fraction value, CapacitanceUnit fromUnit)
+        public static Capacitance From(QuantityValue value, CapacitanceUnit fromUnit)
         {
             return new Capacitance(value, fromUnit);
         }
@@ -487,7 +486,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static Capacitance operator -(Capacitance right)
         {
-            return new Capacitance(right.Value.Invert(), right.Unit);
+            return new Capacitance(-right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Capacitance"/> from adding two <see cref="Capacitance"/>.</summary>
@@ -503,25 +502,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Capacitance"/> from multiplying value and <see cref="Capacitance"/>.</summary>
-        public static Capacitance operator *(Fraction left, Capacitance right)
+        public static Capacitance operator *(QuantityValue left, Capacitance right)
         {
             return new Capacitance(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Capacitance"/> from multiplying value and <see cref="Capacitance"/>.</summary>
-        public static Capacitance operator *(Capacitance left, Fraction right)
+        public static Capacitance operator *(Capacitance left, QuantityValue right)
         {
             return new Capacitance(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Capacitance"/> from dividing <see cref="Capacitance"/> by value.</summary>
-        public static Capacitance operator /(Capacitance left, Fraction right)
+        public static Capacitance operator /(Capacitance left, QuantityValue right)
         {
             return new Capacitance(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Capacitance"/> by <see cref="Capacitance"/>.</summary>
-        public static Fraction operator /(Capacitance left, Capacitance right)
+        public static QuantityValue operator /(Capacitance left, Capacitance right)
         {
             return left.Farads / right.Farads;
         }
@@ -580,7 +579,7 @@ namespace UnitsNet
         /// <summary>Indicates strict equality of two <see cref="Capacitance"/> quantities.</summary>
         public bool Equals(Capacitance other)
         {
-            return _value.IsEquivalentTo(other.As(this.Unit));
+            return _value.Equals(other.As(this.Unit));
         }
 
         /// <summary>Compares the current <see cref="Capacitance"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
@@ -665,10 +664,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: (Fraction)tolerance,
+                tolerance: (QuantityValue)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -685,7 +684,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(Capacitance other, Capacitance tolerance)
         {
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -699,7 +698,11 @@ namespace UnitsNet
         public override int GetHashCode()
         {
             var valueInBaseUnit = As(BaseUnit);
+            #if NET7_0_OR_GREATER
+            return HashCode.Combine(Info.Name, valueInBaseUnit);
+            #else
             return new { Info.Name, valueInBaseUnit }.GetHashCode();
+            #endif
         }
 
         #endregion
@@ -710,7 +713,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public Fraction As(CapacitanceUnit unit)
+        public QuantityValue As(CapacitanceUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -719,7 +722,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public Fraction As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -734,7 +737,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        Fraction IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
             if (!(unit is CapacitanceUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(CapacitanceUnit)} is supported.", nameof(unit));

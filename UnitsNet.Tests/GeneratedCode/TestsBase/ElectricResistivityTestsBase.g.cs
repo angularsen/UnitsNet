@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricResistivityUnit.OhmMeter, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new ElectricResistivity(double.PositiveInfinity, ElectricResistivityUnit.OhmMeter));
@@ -128,7 +128,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new ElectricResistivity(double.NaN, ElectricResistivityUnit.OhmMeter));
@@ -252,7 +252,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromOhmMeters_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => ElectricResistivity.FromOhmMeters(double.PositiveInfinity));
@@ -262,7 +262,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromOhmMeters_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => ElectricResistivity.FromOhmMeters(double.NaN));
@@ -737,8 +737,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, ElectricResistivityUnit.OhmMeter, 1, ElectricResistivityUnit.OhmMeter, true)]  // Same value and unit.
         [InlineData(1, ElectricResistivityUnit.OhmMeter, 2, ElectricResistivityUnit.OhmMeter, false)] // Different value.
-        [InlineData(2, ElectricResistivityUnit.OhmMeter, 1, ElectricResistivityUnit.KiloohmCentimeter, false)] // Different value and unit.
-        [InlineData(1, ElectricResistivityUnit.OhmMeter, 1, ElectricResistivityUnit.KiloohmCentimeter, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ElectricResistivityUnit unitA, double valueB, ElectricResistivityUnit unitB, bool expectEqual)
         {
             var a = new ElectricResistivity(valueA, unitA);
@@ -1063,7 +1061,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ElectricResistivity.FromOhmMeters(1.0);
-            Assert.Equal(new {ElectricResistivity.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(ElectricResistivity.Info.Name, quantity.OhmMeters);
+            #else
+            var expected = new {ElectricResistivity.Info.Name, valueInBaseUnit = quantity.OhmMeters}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

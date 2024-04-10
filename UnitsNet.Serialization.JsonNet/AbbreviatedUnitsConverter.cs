@@ -33,7 +33,7 @@ namespace UnitsNet.Serialization.JsonNet
         private readonly UnitParser _unitParser;
 
         /// <summary>
-        ///     Construct a converter using the default list of quantities (case insensitive) and unit abbreviation provider
+        ///     Construct a converter using the default list of quantities (case-insensitive) and unit abbreviation provider
         /// </summary>
         public AbbreviatedUnitsConverter()
             : this(StringComparer.OrdinalIgnoreCase)
@@ -77,19 +77,55 @@ namespace UnitsNet.Serialization.JsonNet
 
             writer.WriteStartObject();
 
-            // write the 'Value' using the actual type
-            writer.WritePropertyName(ValueProperty);
-            writer.WriteValue((double)quantity.Value);
-
-            //  write the 'Unit' abbreviation
-            writer.WritePropertyName(UnitProperty);
-            writer.WriteValue(unit);
-
-            // write the quantity 'Type'
-            writer.WritePropertyName(TypeProperty);
-            writer.WriteValue(quantityType);
+            WriteValueProperty(writer, quantity);
+            WriteUnitProperty(writer, unit);
+            WriteTypeProperty(writer, quantityType);
 
             writer.WriteEndObject();
+        }
+
+        /// <summary>
+        ///     Writes the 'Value' property using the actual type.
+        /// </summary>
+        /// <param name="writer">The JsonWriter to write to.</param>
+        /// <param name="quantity">The quantity to write.</param>
+        /// <remarks>
+        ///     This method can be overridden to customize the payload type or format. For example, you can use a decimal or
+        ///     Fraction instead of a double.
+        /// </remarks>
+        protected virtual void WriteValueProperty(JsonWriter writer, IQuantity quantity)
+        {
+            writer.WritePropertyName(ValueProperty);
+            // writer.WriteValue((double)quantity.Value);
+            writer.WriteRawValue(quantity.Value.ToString("R"));
+        }
+
+        /// <summary>
+        ///     Writes the 'Unit' property.
+        /// </summary>
+        /// <param name="writer">The JsonWriter to write to.</param>
+        /// <param name="unit">The unit to write.</param>
+        /// <remarks>
+        ///     This method can be overridden to customize the payload type or format.
+        /// </remarks>
+        protected virtual void WriteUnitProperty(JsonWriter writer, string unit)
+        {
+            writer.WritePropertyName(UnitProperty);
+            writer.WriteValue(unit);
+        }
+
+        /// <summary>
+        ///     Writes the 'Type' property.
+        /// </summary>
+        /// <param name="writer">The JsonWriter to write to.</param>
+        /// <param name="quantityType">The quantity type to write.</param>
+        /// <remarks>
+        ///     This method can be overridden to customize the payload type or format.
+        /// </remarks>
+        protected virtual void WriteTypeProperty(JsonWriter writer, string quantityType)
+        {
+            writer.WritePropertyName(TypeProperty);
+            writer.WriteValue(quantityType);
         }
 
         /// <summary>
@@ -164,31 +200,31 @@ namespace UnitsNet.Serialization.JsonNet
                 unit = GetUnitOrDefault(unitAbbreviation, quantityInfo);
             }
 
-            double value;
+            QuantityValue value;
             if (valueToken is null)
             {
                 value = default;
             }
             else
             {
-                value = double.Parse(valueToken, CultureInfo.InvariantCulture);
+                value = QuantityValue.Parse(valueToken, CultureInfo.InvariantCulture);
             }
 
             return Quantity.From(value, unit);
         }
 
         /// <summary>
-        ///     Attempt to find an a unique (non-ambiguous) unit matching the provided abbreviation.
-        ///     <remarks>
-        ///         An exhaustive search using all quantities is very likely to fail with an
-        ///         <exception cref="AmbiguousUnitParseException" />, so make sure you're using the minimum set of supported quantities.
-        ///     </remarks>
+        ///     Attempts to find a unique (non-ambiguous) unit matching the provided abbreviation.
         /// </summary>
-        /// <param name="unitAbbreviation">The unit abbreviation </param>
-        /// <param name="quantityInfo">The quantity type where the resulting unit was found </param>
-        /// <returns>The unit associated with the given <paramref name="unitAbbreviation" /></returns>
-        /// <exception cref="AmbiguousUnitParseException"></exception>
-        /// <exception cref="UnitNotFoundException"></exception>
+        /// <remarks>
+        ///     An exhaustive search using all quantities is very likely to fail with an
+        ///     <see cref="AmbiguousUnitParseException" />, so make sure you're using the minimum set of supported quantities.
+        /// </remarks>
+        /// <param name="unitAbbreviation">The unit abbreviation.</param>
+        /// <param name="quantityInfo">The quantity type where the resulting unit was found.</param>
+        /// <returns>The unit associated with the given <paramref name="unitAbbreviation" />.</returns>
+        /// <exception cref="AmbiguousUnitParseException">Thrown when the abbreviation is ambiguous.</exception>
+        /// <exception cref="UnitNotFoundException">Thrown when the unit is not found.</exception>
         protected virtual Enum FindUnit(string unitAbbreviation, out QuantityInfo quantityInfo)
         {
             if (unitAbbreviation is null) // we could assume string.Empty instead
@@ -198,9 +234,9 @@ namespace UnitsNet.Serialization.JsonNet
 
             Enum? unit = null;
             QuantityInfo? tempQuantityInfo = default;
-            foreach (var targetQuantity in _quantities.Values)
+            foreach (QuantityInfo targetQuantity in _quantities.Values)
             {
-                if (!TryParse(unitAbbreviation, targetQuantity, out var unitMatched))
+                if (!TryParse(unitAbbreviation, targetQuantity, out Enum? unitMatched))
                 {
                     continue;
                 }
@@ -311,7 +347,7 @@ namespace UnitsNet.Serialization.JsonNet
         /// <exception cref="UnitsNetException">Quantity not found exception is thrown if no match found</exception>
         protected QuantityInfo GetQuantityInfo(string quantityName)
         {
-            if (!TryGetQuantity(quantityName, out var quantityInfo))
+            if (!TryGetQuantity(quantityName, out QuantityInfo? quantityInfo))
             {
                 throw new UnitsNetException($"Failed to find the quantity type: {quantityName}.") { Data = { ["type"] = quantityName } };
             }

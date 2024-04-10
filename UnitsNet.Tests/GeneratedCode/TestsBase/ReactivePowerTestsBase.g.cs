@@ -78,7 +78,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ReactivePowerUnit.VoltampereReactive, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new ReactivePower(double.PositiveInfinity, ReactivePowerUnit.VoltampereReactive));
@@ -88,7 +88,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new ReactivePower(double.NaN, ReactivePowerUnit.VoltampereReactive));
@@ -162,7 +162,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromVoltamperesReactive_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => ReactivePower.FromVoltamperesReactive(double.PositiveInfinity));
@@ -172,7 +172,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromVoltamperesReactive_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => ReactivePower.FromVoltamperesReactive(double.NaN));
@@ -431,8 +431,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, ReactivePowerUnit.VoltampereReactive, 1, ReactivePowerUnit.VoltampereReactive, true)]  // Same value and unit.
         [InlineData(1, ReactivePowerUnit.VoltampereReactive, 2, ReactivePowerUnit.VoltampereReactive, false)] // Different value.
-        [InlineData(2, ReactivePowerUnit.VoltampereReactive, 1, ReactivePowerUnit.GigavoltampereReactive, false)] // Different value and unit.
-        [InlineData(1, ReactivePowerUnit.VoltampereReactive, 1, ReactivePowerUnit.GigavoltampereReactive, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ReactivePowerUnit unitA, double valueB, ReactivePowerUnit unitB, bool expectEqual)
         {
             var a = new ReactivePower(valueA, unitA);
@@ -737,7 +735,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ReactivePower.FromVoltamperesReactive(1.0);
-            Assert.Equal(new {ReactivePower.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(ReactivePower.Info.Name, quantity.VoltamperesReactive);
+            #else
+            var expected = new {ReactivePower.Info.Name, valueInBaseUnit = quantity.VoltamperesReactive}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

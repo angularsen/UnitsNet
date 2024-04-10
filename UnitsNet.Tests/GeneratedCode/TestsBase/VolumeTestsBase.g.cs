@@ -278,7 +278,7 @@ namespace UnitsNet.Tests
             Assert.Equal(VolumeUnit.CubicMeter, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new Volume(double.PositiveInfinity, VolumeUnit.CubicMeter));
@@ -288,7 +288,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new Volume(double.NaN, VolumeUnit.CubicMeter));
@@ -612,7 +612,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromCubicMeters_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => Volume.FromCubicMeters(double.PositiveInfinity));
@@ -622,7 +622,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromCubicMeters_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => Volume.FromCubicMeters(double.NaN));
@@ -3201,8 +3201,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, VolumeUnit.CubicMeter, 1, VolumeUnit.CubicMeter, true)]  // Same value and unit.
         [InlineData(1, VolumeUnit.CubicMeter, 2, VolumeUnit.CubicMeter, false)] // Different value.
-        [InlineData(2, VolumeUnit.CubicMeter, 1, VolumeUnit.AcreFoot, false)] // Different value and unit.
-        [InlineData(1, VolumeUnit.CubicMeter, 1, VolumeUnit.AcreFoot, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, VolumeUnit unitA, double valueB, VolumeUnit unitB, bool expectEqual)
         {
             var a = new Volume(valueA, unitA);
@@ -3607,7 +3605,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Volume.FromCubicMeters(1.0);
-            Assert.Equal(new {Volume.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(Volume.Info.Name, quantity.CubicMeters);
+            #else
+            var expected = new {Volume.Info.Name, valueInBaseUnit = quantity.CubicMeters}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

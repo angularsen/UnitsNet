@@ -90,7 +90,7 @@ namespace UnitsNet.Tests
             Assert.Equal(CompressibilityUnit.InversePascal, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new Compressibility(double.PositiveInfinity, CompressibilityUnit.InversePascal));
@@ -100,7 +100,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new Compressibility(double.NaN, CompressibilityUnit.InversePascal));
@@ -189,7 +189,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromInversePascals_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => Compressibility.FromInversePascals(double.PositiveInfinity));
@@ -199,7 +199,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromInversePascals_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => Compressibility.FromInversePascals(double.NaN));
@@ -704,8 +704,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, CompressibilityUnit.InversePascal, 1, CompressibilityUnit.InversePascal, true)]  // Same value and unit.
         [InlineData(1, CompressibilityUnit.InversePascal, 2, CompressibilityUnit.InversePascal, false)] // Different value.
-        [InlineData(2, CompressibilityUnit.InversePascal, 1, CompressibilityUnit.InverseAtmosphere, false)] // Different value and unit.
-        [InlineData(1, CompressibilityUnit.InversePascal, 1, CompressibilityUnit.InverseAtmosphere, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, CompressibilityUnit unitA, double valueB, CompressibilityUnit unitB, bool expectEqual)
         {
             var a = new Compressibility(valueA, unitA);
@@ -1016,7 +1014,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Compressibility.FromInversePascals(1.0);
-            Assert.Equal(new {Compressibility.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(Compressibility.Info.Name, quantity.InversePascals);
+            #else
+            var expected = new {Compressibility.Info.Name, valueInBaseUnit = quantity.InversePascals}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

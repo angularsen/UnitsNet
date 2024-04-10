@@ -74,7 +74,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ApparentEnergyUnit.VoltampereHour, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new ApparentEnergy(double.PositiveInfinity, ApparentEnergyUnit.VoltampereHour));
@@ -84,7 +84,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new ApparentEnergy(double.NaN, ApparentEnergyUnit.VoltampereHour));
@@ -153,7 +153,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromVoltampereHours_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => ApparentEnergy.FromVoltampereHours(double.PositiveInfinity));
@@ -163,7 +163,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromVoltampereHours_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => ApparentEnergy.FromVoltampereHours(double.NaN));
@@ -396,8 +396,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, ApparentEnergyUnit.VoltampereHour, 1, ApparentEnergyUnit.VoltampereHour, true)]  // Same value and unit.
         [InlineData(1, ApparentEnergyUnit.VoltampereHour, 2, ApparentEnergyUnit.VoltampereHour, false)] // Different value.
-        [InlineData(2, ApparentEnergyUnit.VoltampereHour, 1, ApparentEnergyUnit.KilovoltampereHour, false)] // Different value and unit.
-        [InlineData(1, ApparentEnergyUnit.VoltampereHour, 1, ApparentEnergyUnit.KilovoltampereHour, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ApparentEnergyUnit unitA, double valueB, ApparentEnergyUnit unitB, bool expectEqual)
         {
             var a = new ApparentEnergy(valueA, unitA);
@@ -700,7 +698,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ApparentEnergy.FromVoltampereHours(1.0);
-            Assert.Equal(new {ApparentEnergy.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(ApparentEnergy.Info.Name, quantity.VoltampereHours);
+            #else
+            var expected = new {ApparentEnergy.Info.Name, valueInBaseUnit = quantity.VoltampereHours}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

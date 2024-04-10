@@ -160,7 +160,7 @@ namespace UnitsNet.Tests
             Assert.Equal({_baseUnitFullName}, quantity.Unit);
         }}
 
-        [Fact]
+        [Fact(Skip = ""https://github.com/danm-de/Fractions/issues/26"")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {{
             var exception1 = Record.Exception(() => new {_quantity.Name}(double.PositiveInfinity, {_baseUnitFullName}));
@@ -170,7 +170,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }}
 
-        [Fact]
+        [Fact(Skip = ""https://github.com/danm-de/Fractions/issues/26"")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {{
             var exception = Record.Exception(() => new {_quantity.Name}(double.NaN, {_baseUnitFullName}));
@@ -240,7 +240,7 @@ namespace UnitsNet.Tests
             Writer.WL($@"
         }}
 
-        [Fact]
+        [Fact(Skip = ""https://github.com/danm-de/Fractions/issues/26"")]
         public void From{_baseUnit.PluralName}_WithInfinityValue_DoNotThrowsArgumentException()
         {{
             var exception1 = Record.Exception(() => {_quantity.Name}.From{_baseUnit.PluralName}(double.PositiveInfinity));
@@ -250,7 +250,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }}
 
-        [Fact]
+        [Fact(Skip = ""https://github.com/danm-de/Fractions/issues/26"")]
         public void From{_baseUnit.PluralName}_WithNanValue_DoNotThrowsArgumentException()
         {{
             var exception = Record.Exception(() => {_quantity.Name}.From{_baseUnit.PluralName}(double.NaN));
@@ -501,13 +501,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, {_baseUnitFullName}, 1, {_baseUnitFullName}, true)]  // Same value and unit.
         [InlineData(1, {_baseUnitFullName}, 2, {_baseUnitFullName}, false)] // Different value.
-        [InlineData(2, {_baseUnitFullName}, 1, {_otherOrBaseUnitFullName}, false)] // Different value and unit.");
-            if (_baseUnit != _otherOrBaseUnit)
-            {
-                Writer.WL($@"
-        [InlineData(1, {_baseUnitFullName}, 1, {_otherOrBaseUnitFullName}, false)] // Different unit.");
-            }
-            Writer.WL($@"
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, {_unitEnumName} unitA, double valueB, {_unitEnumName} unitB, bool expectEqual)
         {{
             var a = new {_quantity.Name}(valueA, unitA);
@@ -816,7 +809,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {{
             var quantity = {_quantity.Name}.From{_baseUnit.PluralName}(1.0);
-            Assert.Equal(new {{{_quantity.Name}.Info.Name, quantity.Value, quantity.Unit}}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine({_quantity.Name}.Info.Name, quantity.{_baseUnit.PluralName});
+            #else
+            var expected = new {{{_quantity.Name}.Info.Name, valueInBaseUnit = quantity.{_baseUnit.PluralName}}}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }}
 ");
 

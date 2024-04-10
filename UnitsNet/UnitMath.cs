@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Fractions;
 
 namespace UnitsNet
 {
@@ -13,7 +12,7 @@ namespace UnitsNet
         /// <summary>
         ///     Represents the PI constant as a rational fraction.
         /// </summary>
-        public static readonly Fraction PI = Fraction.FromDoubleRounded(Math.PI);
+        public static readonly QuantityValue PI = QuantityValue.FromDoubleRounded(Math.PI);
         
         /// <summary>Returns the absolute value of a <typeparamref name="TQuantity" />.</summary>
         /// <param name="value">
@@ -23,7 +22,7 @@ namespace UnitsNet
         /// <returns>A quantity with a value, such that 0 ≤ value ≤ <see cref="F:System.Double.MaxValue" />.</returns>
         public static TQuantity Abs<TQuantity>(this TQuantity value) where TQuantity : IQuantity
         {
-            return value.Value >= 0 ? value : (TQuantity) Quantity.From(value.Value.Invert(), value.Unit);
+            return value.Value >= 0 ? value : (TQuantity) Quantity.From(-value.Value, value.Unit);
         }
 
         /// <summary>Computes the sum of a sequence of <typeparamref name="TQuantity" /> values.</summary>
@@ -39,7 +38,7 @@ namespace UnitsNet
         public static TQuantity Sum<TQuantity>(this IEnumerable<TQuantity> source, Enum unitType)
             where TQuantity : IQuantity
         {
-            return (TQuantity) Quantity.From(Fraction.FromDoubleRounded(source.Sum(x => x.As(unitType).ToDouble())), unitType); // TODO
+            return (TQuantity) Quantity.From(QuantityValue.FromDoubleRounded(source.Sum(x => x.As(unitType).ToDouble())), unitType); // TODO
         }
 
         /// <summary>
@@ -178,7 +177,7 @@ namespace UnitsNet
         public static TQuantity Average<TQuantity>(this IEnumerable<TQuantity> source, Enum unitType)
             where TQuantity : IQuantity
         {
-            return (TQuantity) Quantity.From(Fraction.FromDoubleRounded(source.Average(x => x.As(unitType).ToDouble())), unitType); // TODO
+            return (TQuantity) Quantity.From(QuantityValue.FromDoubleRounded(source.Average(x => x.As(unitType).ToDouble())), unitType); // TODO
         }
 
         /// <summary>

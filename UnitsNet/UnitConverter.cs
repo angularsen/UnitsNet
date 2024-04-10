@@ -9,7 +9,6 @@ using System.Reflection;
 using System.Linq;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
-using Fractions;
 
 namespace UnitsNet
 {
@@ -279,7 +278,7 @@ namespace UnitsNet
         /// <param name="fromUnitValue">From unit enum value.</param>
         /// <param name="toUnitValue">To unit enum value, must be compatible with <paramref name="fromUnitValue" />.</param>
         /// <returns>The converted value in the new unit representation.</returns>
-        public static Fraction Convert(Fraction fromValue, Enum fromUnitValue, Enum toUnitValue)
+        public static QuantityValue Convert(QuantityValue fromValue, Enum fromUnitValue, Enum toUnitValue)
         {
             return Quantity
                 .From(fromValue, fromUnitValue)
@@ -294,7 +293,7 @@ namespace UnitsNet
         /// <param name="toUnitValue">To unit enum value, must be compatible with <paramref name="fromUnitValue" />.</param>
         /// <param name="convertedValue">The converted value, if successful. Otherwise default.</param>
         /// <returns>True if successful.</returns>
-        public static bool TryConvert(Fraction fromValue, Enum fromUnitValue, Enum toUnitValue, out Fraction convertedValue)
+        public static bool TryConvert(QuantityValue fromValue, Enum fromUnitValue, Enum toUnitValue, out QuantityValue convertedValue)
         {
             convertedValue = 0;
             if (!Quantity.TryFrom(fromValue, fromUnitValue, out IQuantity? fromQuantity))
@@ -331,7 +330,7 @@ namespace UnitsNet
         /// <returns>Output value as the result of converting to <paramref name="toUnit" />.</returns>
         /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
         /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
-        public static Fraction ConvertByName(Fraction fromValue, string quantityName, string fromUnit, string toUnit)
+        public static QuantityValue ConvertByName(QuantityValue fromValue, string quantityName, string fromUnit, string toUnit)
         {
             if (!TryParseUnit(quantityName, toUnit, out Enum? toUnitValue)) // ex: LengthUnit.Centimeter
             {
@@ -359,9 +358,9 @@ namespace UnitsNet
         /// <param name="result">Result if conversion was successful, 0 if not.</param>
         /// <example>bool ok = TryConvertByName(5, "Length", "Meter", "Centimeter", out double centimeters); // 500</example>
         /// <returns>True if conversion was successful.</returns>
-        public static bool TryConvertByName(Fraction inputValue, string quantityName, string fromUnit, string toUnit, out Fraction result)
+        public static bool TryConvertByName(QuantityValue inputValue, string quantityName, string fromUnit, string toUnit, out QuantityValue result)
         {
-            result = Fraction.Zero;
+            result = QuantityValue.Zero;
 
             if (!TryGetUnitType(quantityName, out Type? unitType))
                 return false;
@@ -396,7 +395,7 @@ namespace UnitsNet
         /// <param name="toUnitAbbrev">The abbreviation of the unit in the thread's current culture, such as "m".</param>
         /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
         /// <returns>Output value as the result of converting to <paramref name="toUnitAbbrev" />.</returns>
-        public static Fraction ConvertByAbbreviation(Fraction fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev)
+        public static QuantityValue ConvertByAbbreviation(QuantityValue fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev)
         {
             return ConvertByAbbreviation(fromValue, quantityName, fromUnitAbbrev, toUnitAbbrev, null);
         }
@@ -424,7 +423,7 @@ namespace UnitsNet
         ///     are mapped to the abbreviation.
         /// </exception>
         /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
-        public static Fraction ConvertByAbbreviation(Fraction fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, string? culture)
+        public static QuantityValue ConvertByAbbreviation(QuantityValue fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, string? culture)
         {
             if (!TryGetUnitType(quantityName, out Type? unitType))
                 throw new UnitNotFoundException($"The unit type for the given quantity was not found: {quantityName}");
@@ -456,7 +455,7 @@ namespace UnitsNet
         /// <param name="result">Result if conversion was successful, 0 if not.</param>
         /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
         /// <returns>True if conversion was successful.</returns>
-        public static bool TryConvertByAbbreviation(Fraction fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, out Fraction result)
+        public static bool TryConvertByAbbreviation(QuantityValue fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, out QuantityValue result)
         {
             return TryConvertByAbbreviation(fromValue, quantityName, fromUnitAbbrev, toUnitAbbrev, out result, null);
         }
@@ -480,10 +479,10 @@ namespace UnitsNet
         /// <param name="result">Result if conversion was successful, 0 if not.</param>
         /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
         /// <returns>True if conversion was successful.</returns>
-        public static bool TryConvertByAbbreviation(Fraction fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, out Fraction result,
+        public static bool TryConvertByAbbreviation(QuantityValue fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, out QuantityValue result,
             string? culture)
         {
-            result = Fraction.Zero;
+            result = QuantityValue.Zero;
 
             if (!TryGetUnitType(quantityName, out Type? unitType))
                 return false;

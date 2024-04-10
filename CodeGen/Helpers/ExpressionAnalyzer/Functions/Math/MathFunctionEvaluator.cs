@@ -1,4 +1,5 @@
-﻿using CodeGen.Helpers.ExpressionAnalyzer.Expressions;
+﻿using System;
+using CodeGen.Helpers.ExpressionAnalyzer.Expressions;
 using Fractions;
 
 namespace CodeGen.Helpers.ExpressionAnalyzer.Functions.Math;
@@ -7,26 +8,18 @@ internal abstract class MathFunctionEvaluator : IFunctionEvaluator
 {
     public abstract string FunctionName { get; }
 
-    public ExpressionEvaluationTerm GetFunctionBody(string expressionToParse, Fraction exponent)
+    public CompositeExpression CreateExpression(ExpressionEvaluationTerm expressionToParse, Func<ExpressionEvaluationTerm, CompositeExpression> expressionResolver)
     {
-        return new ExpressionEvaluationTerm(expressionToParse, Fraction.One);
-    }
-
-    public CompositeExpression CreateExpression(Fraction coefficient, Fraction exponent, CompositeExpression functionBody)
-    {
-        ExpressionTerm expression;
+        CompositeExpression functionBody = expressionResolver(expressionToParse with {Exponent = 1});
+        Fraction power = expressionToParse.Exponent;
         if (functionBody.IsConstant) // constant expression (directly evaluate the function)
         {
             var constantTerm = (ExpressionTerm)functionBody;
             Fraction resultingValue = Evaluate(constantTerm.Coefficient);
-            expression = constantTerm with { Coefficient = resultingValue };
+            return ExpressionTerm.Constant(resultingValue.Pow(power));
         }
-        else // we cannot expand a function of x
-        {
-            expression = new ExpressionTerm(coefficient, exponent, new CustomFunction(FunctionName, functionBody));
-        }
-
-        return expression;
+         // we cannot expand a function of x
+        return new ExpressionTerm(1, power, new CustomFunction(FunctionName, functionBody));
     }
 
     public abstract Fraction Evaluate(Fraction value);

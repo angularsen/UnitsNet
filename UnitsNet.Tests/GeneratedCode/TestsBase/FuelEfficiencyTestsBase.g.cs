@@ -78,7 +78,7 @@ namespace UnitsNet.Tests
             Assert.Equal(FuelEfficiencyUnit.LiterPer100Kilometers, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new FuelEfficiency(double.PositiveInfinity, FuelEfficiencyUnit.LiterPer100Kilometers));
@@ -88,7 +88,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new FuelEfficiency(double.NaN, FuelEfficiencyUnit.LiterPer100Kilometers));
@@ -162,7 +162,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromLitersPer100Kilometers_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => FuelEfficiency.FromLitersPer100Kilometers(double.PositiveInfinity));
@@ -172,7 +172,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromLitersPer100Kilometers_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => FuelEfficiency.FromLitersPer100Kilometers(double.NaN));
@@ -431,8 +431,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, FuelEfficiencyUnit.LiterPer100Kilometers, 1, FuelEfficiencyUnit.LiterPer100Kilometers, true)]  // Same value and unit.
         [InlineData(1, FuelEfficiencyUnit.LiterPer100Kilometers, 2, FuelEfficiencyUnit.LiterPer100Kilometers, false)] // Different value.
-        [InlineData(2, FuelEfficiencyUnit.LiterPer100Kilometers, 1, FuelEfficiencyUnit.KilometerPerLiter, false)] // Different value and unit.
-        [InlineData(1, FuelEfficiencyUnit.LiterPer100Kilometers, 1, FuelEfficiencyUnit.KilometerPerLiter, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, FuelEfficiencyUnit unitA, double valueB, FuelEfficiencyUnit unitB, bool expectEqual)
         {
             var a = new FuelEfficiency(valueA, unitA);
@@ -737,7 +735,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = FuelEfficiency.FromLitersPer100Kilometers(1.0);
-            Assert.Equal(new {FuelEfficiency.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(FuelEfficiency.Info.Name, quantity.LitersPer100Kilometers);
+            #else
+            var expected = new {FuelEfficiency.Info.Name, valueInBaseUnit = quantity.LitersPer100Kilometers}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

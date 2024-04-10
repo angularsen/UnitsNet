@@ -167,7 +167,7 @@ namespace UnitsNet.Tests
         [InlineData(1, "Length", "Meter", "UnknownToUnit")]
         public void TryConvertByName_ReturnsFalseForInvalidInput(double inputValue, string quantityTypeName, string fromUnit, string toUnit)
         {
-            Assert.False(UnitConverter.TryConvertByName(inputValue, quantityTypeName, fromUnit, toUnit, out double result));
+            Assert.False(UnitConverter.TryConvertByName(inputValue, quantityTypeName, fromUnit, toUnit, out QuantityValue result));
             Assert.Equal(0, result);
         }
 
@@ -179,7 +179,7 @@ namespace UnitsNet.Tests
         public void TryConvertByName_ReturnsTrueOnSuccessAndOutputsResult(double expectedValue, double inputValue, string quantityTypeName, string fromUnit,
             string toUnit)
         {
-            Assert.True(UnitConverter.TryConvertByName(inputValue, quantityTypeName, fromUnit, toUnit, out double result), "TryConvertByName() return value.");
+            Assert.True(UnitConverter.TryConvertByName(inputValue, quantityTypeName, fromUnit, toUnit, out QuantityValue result), "TryConvertByName() return value.");
             Assert.Equal(expectedValue, result);
         }
 
@@ -214,7 +214,7 @@ namespace UnitsNet.Tests
         [InlineData(1, "Length", "m", "UnknownToUnit", "en-US")]
         public void TryConvertByAbbreviation_ReturnsFalseForInvalidInput(double inputValue, string quantityTypeName, string fromUnit, string toUnit, string culture)
         {
-            Assert.False(UnitConverter.TryConvertByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit, out double result, culture));
+            Assert.False(UnitConverter.TryConvertByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit, out QuantityValue result, culture));
             Assert.Equal(0, result);
         }
 
@@ -225,7 +225,7 @@ namespace UnitsNet.Tests
         [InlineData(1000, 1, "ElectricCurrent", "kA", "A", "en-US")]
         public void TryConvertByAbbreviation_ReturnsTrueOnSuccessAndOutputsResult(double expectedValue, double inputValue, string quantityTypeName, string fromUnit, string toUnit, string culture)
         {
-            Assert.True(UnitConverter.TryConvertByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit, out double result, culture), "TryConvertByAbbreviation() return value.");
+            Assert.True(UnitConverter.TryConvertByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit, out QuantityValue result, culture), "TryConvertByAbbreviation() return value.");
             Assert.Equal(expectedValue, result);
         }
     }

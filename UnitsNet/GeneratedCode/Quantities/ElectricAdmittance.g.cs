@@ -25,7 +25,6 @@ using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 using System.Numerics;
-using Fractions;
 
 #nullable enable
 
@@ -50,7 +49,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly Fraction _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -83,7 +82,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public ElectricAdmittance(Fraction value, ElectricAdmittanceUnit unit)
+        public ElectricAdmittance(QuantityValue value, ElectricAdmittanceUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -97,7 +96,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ElectricAdmittance(Fraction value, UnitSystem unitSystem)
+        public ElectricAdmittance(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -148,10 +147,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public Fraction Value => _value;
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
-        Fraction IQuantity.Value => _value;
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -176,22 +175,22 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Microsiemens"/>
         /// </summary>
-        public Fraction Microsiemens => As(ElectricAdmittanceUnit.Microsiemens);
+        public QuantityValue Microsiemens => As(ElectricAdmittanceUnit.Microsiemens);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Millisiemens"/>
         /// </summary>
-        public Fraction Millisiemens => As(ElectricAdmittanceUnit.Millisiemens);
+        public QuantityValue Millisiemens => As(ElectricAdmittanceUnit.Millisiemens);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Nanosiemens"/>
         /// </summary>
-        public Fraction Nanosiemens => As(ElectricAdmittanceUnit.Nanosiemens);
+        public QuantityValue Nanosiemens => As(ElectricAdmittanceUnit.Nanosiemens);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Siemens"/>
         /// </summary>
-        public Fraction Siemens => As(ElectricAdmittanceUnit.Siemens);
+        public QuantityValue Siemens => As(ElectricAdmittanceUnit.Siemens);
 
         #endregion
 
@@ -245,7 +244,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Microsiemens"/>.
         /// </summary>
-        public static ElectricAdmittance FromMicrosiemens(Fraction value)
+        public static ElectricAdmittance FromMicrosiemens(QuantityValue value)
         {
             return new ElectricAdmittance(value, ElectricAdmittanceUnit.Microsiemens);
         }
@@ -253,7 +252,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Millisiemens"/>.
         /// </summary>
-        public static ElectricAdmittance FromMillisiemens(Fraction value)
+        public static ElectricAdmittance FromMillisiemens(QuantityValue value)
         {
             return new ElectricAdmittance(value, ElectricAdmittanceUnit.Millisiemens);
         }
@@ -261,7 +260,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Nanosiemens"/>.
         /// </summary>
-        public static ElectricAdmittance FromNanosiemens(Fraction value)
+        public static ElectricAdmittance FromNanosiemens(QuantityValue value)
         {
             return new ElectricAdmittance(value, ElectricAdmittanceUnit.Nanosiemens);
         }
@@ -269,7 +268,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Siemens"/>.
         /// </summary>
-        public static ElectricAdmittance FromSiemens(Fraction value)
+        public static ElectricAdmittance FromSiemens(QuantityValue value)
         {
             return new ElectricAdmittance(value, ElectricAdmittanceUnit.Siemens);
         }
@@ -280,7 +279,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricAdmittance unit value.</returns>
-        public static ElectricAdmittance From(Fraction value, ElectricAdmittanceUnit fromUnit)
+        public static ElectricAdmittance From(QuantityValue value, ElectricAdmittanceUnit fromUnit)
         {
             return new ElectricAdmittance(value, fromUnit);
         }
@@ -436,7 +435,7 @@ namespace UnitsNet
         /// <summary>Negate the value.</summary>
         public static ElectricAdmittance operator -(ElectricAdmittance right)
         {
-            return new ElectricAdmittance(right.Value.Invert(), right.Unit);
+            return new ElectricAdmittance(-right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricAdmittance"/> from adding two <see cref="ElectricAdmittance"/>.</summary>
@@ -452,25 +451,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="ElectricAdmittance"/> from multiplying value and <see cref="ElectricAdmittance"/>.</summary>
-        public static ElectricAdmittance operator *(Fraction left, ElectricAdmittance right)
+        public static ElectricAdmittance operator *(QuantityValue left, ElectricAdmittance right)
         {
             return new ElectricAdmittance(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricAdmittance"/> from multiplying value and <see cref="ElectricAdmittance"/>.</summary>
-        public static ElectricAdmittance operator *(ElectricAdmittance left, Fraction right)
+        public static ElectricAdmittance operator *(ElectricAdmittance left, QuantityValue right)
         {
             return new ElectricAdmittance(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricAdmittance"/> from dividing <see cref="ElectricAdmittance"/> by value.</summary>
-        public static ElectricAdmittance operator /(ElectricAdmittance left, Fraction right)
+        public static ElectricAdmittance operator /(ElectricAdmittance left, QuantityValue right)
         {
             return new ElectricAdmittance(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ElectricAdmittance"/> by <see cref="ElectricAdmittance"/>.</summary>
-        public static Fraction operator /(ElectricAdmittance left, ElectricAdmittance right)
+        public static QuantityValue operator /(ElectricAdmittance left, ElectricAdmittance right)
         {
             return left.Siemens / right.Siemens;
         }
@@ -529,7 +528,7 @@ namespace UnitsNet
         /// <summary>Indicates strict equality of two <see cref="ElectricAdmittance"/> quantities.</summary>
         public bool Equals(ElectricAdmittance other)
         {
-            return _value.IsEquivalentTo(other.As(this.Unit));
+            return _value.Equals(other.As(this.Unit));
         }
 
         /// <summary>Compares the current <see cref="ElectricAdmittance"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
@@ -614,10 +613,10 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
 
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
-                tolerance: (Fraction)tolerance,
+                tolerance: (QuantityValue)tolerance,
                 comparisonType: ComparisonType.Absolute);
         }
 
@@ -634,7 +633,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(ElectricAdmittance other, ElectricAdmittance tolerance)
         {
-            return UnitsNet.FractionComparison.Equals(
+            return UnitsNet.QuantityValueComparison.Equals(
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance.As(this.Unit),
@@ -648,7 +647,11 @@ namespace UnitsNet
         public override int GetHashCode()
         {
             var valueInBaseUnit = As(BaseUnit);
+            #if NET7_0_OR_GREATER
+            return HashCode.Combine(Info.Name, valueInBaseUnit);
+            #else
             return new { Info.Name, valueInBaseUnit }.GetHashCode();
+            #endif
         }
 
         #endregion
@@ -659,7 +662,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public Fraction As(ElectricAdmittanceUnit unit)
+        public QuantityValue As(ElectricAdmittanceUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -668,7 +671,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public Fraction As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -683,7 +686,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        Fraction IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
             if (!(unit is ElectricAdmittanceUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricAdmittanceUnit)} is supported.", nameof(unit));

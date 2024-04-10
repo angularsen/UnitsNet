@@ -32,7 +32,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrent
     /// </summary>
     public static class NumberToElectricCurrentExtensions
     {
-        /// <inheritdoc cref="ElectricCurrent.FromAmperes(double)" />
+        /// <inheritdoc cref="ElectricCurrent.FromAmperes(QuantityValue)" />
         public static ElectricCurrent Amperes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrent
 #endif
             => ElectricCurrent.FromAmperes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCurrent.FromCentiamperes(double)" />
+        /// <inheritdoc cref="ElectricCurrent.FromCentiamperes(QuantityValue)" />
         public static ElectricCurrent Centiamperes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -48,7 +48,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrent
 #endif
             => ElectricCurrent.FromCentiamperes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCurrent.FromFemtoamperes(double)" />
+        /// <inheritdoc cref="ElectricCurrent.FromFemtoamperes(QuantityValue)" />
         public static ElectricCurrent Femtoamperes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -56,7 +56,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrent
 #endif
             => ElectricCurrent.FromFemtoamperes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCurrent.FromKiloamperes(double)" />
+        /// <inheritdoc cref="ElectricCurrent.FromKiloamperes(QuantityValue)" />
         public static ElectricCurrent Kiloamperes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -64,7 +64,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrent
 #endif
             => ElectricCurrent.FromKiloamperes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCurrent.FromMegaamperes(double)" />
+        /// <inheritdoc cref="ElectricCurrent.FromMegaamperes(QuantityValue)" />
         public static ElectricCurrent Megaamperes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -72,7 +72,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrent
 #endif
             => ElectricCurrent.FromMegaamperes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCurrent.FromMicroamperes(double)" />
+        /// <inheritdoc cref="ElectricCurrent.FromMicroamperes(QuantityValue)" />
         public static ElectricCurrent Microamperes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -80,7 +80,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrent
 #endif
             => ElectricCurrent.FromMicroamperes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCurrent.FromMilliamperes(double)" />
+        /// <inheritdoc cref="ElectricCurrent.FromMilliamperes(QuantityValue)" />
         public static ElectricCurrent Milliamperes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -88,7 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrent
 #endif
             => ElectricCurrent.FromMilliamperes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCurrent.FromNanoamperes(double)" />
+        /// <inheritdoc cref="ElectricCurrent.FromNanoamperes(QuantityValue)" />
         public static ElectricCurrent Nanoamperes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -96,7 +96,7 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrent
 #endif
             => ElectricCurrent.FromNanoamperes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCurrent.FromPicoamperes(double)" />
+        /// <inheritdoc cref="ElectricCurrent.FromPicoamperes(QuantityValue)" />
         public static ElectricCurrent Picoamperes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER

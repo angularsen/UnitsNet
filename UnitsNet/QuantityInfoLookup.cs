@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using Fractions;
 
 namespace UnitsNet
 {
@@ -104,7 +103,7 @@ namespace UnitsNet
         /// <param name="unit">Unit enum value.</param>
         /// <returns>An <see cref="IQuantity"/> object.</returns>
         /// <exception cref="ArgumentException">Unit value is not a know unit enum type.</exception>
-        public IQuantity From(Fraction value, Enum unit)
+        public IQuantity From(QuantityValue value, Enum unit)
         {
             // TODO Support custom units, currently only hardcoded built-in quantities are supported.
             return Quantity.TryFrom(value, unit, out IQuantity? quantity)
@@ -112,9 +111,9 @@ namespace UnitsNet
                 : throw new UnitNotFoundException($"Unit value {unit} of type {unit.GetType()} is not a known unit enum type. Expected types like UnitsNet.Units.LengthUnit. Did you pass in a custom enum type defined outside the UnitsNet library?");
         }
 
-        /// <inheritdoc cref="Quantity.TryFrom(double,System.Enum,out UnitsNet.IQuantity)"/>
+        /// <inheritdoc cref="Quantity.TryFrom(QuantityValue,System.Enum,out UnitsNet.IQuantity)"/>
         // [Obsolete("Please use the Quantity.TryFrom")] // TODO not sure this if this method is still needed (unless we add back the QuantityValue)
-        public bool TryFrom(Fraction value, Enum unit, [NotNullWhen(true)] out IQuantity? quantity) 
+        public bool TryFrom(QuantityValue value, Enum unit, [NotNullWhen(true)] out IQuantity? quantity) 
         {
             // // Implicit cast to QuantityValue would prevent TryFrom from being called,
             // // so we need to explicitly check this here for double arguments.

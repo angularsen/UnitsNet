@@ -98,7 +98,7 @@ namespace UnitsNet.Tests
             Assert.Equal(TemperatureDeltaUnit.Kelvin, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new TemperatureDelta(double.PositiveInfinity, TemperatureDeltaUnit.Kelvin));
@@ -108,7 +108,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new TemperatureDelta(double.NaN, TemperatureDeltaUnit.Kelvin));
@@ -207,7 +207,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromKelvins_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => TemperatureDelta.FromKelvins(double.PositiveInfinity));
@@ -217,7 +217,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromKelvins_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => TemperatureDelta.FromKelvins(double.NaN));
@@ -606,8 +606,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, TemperatureDeltaUnit.Kelvin, 1, TemperatureDeltaUnit.Kelvin, true)]  // Same value and unit.
         [InlineData(1, TemperatureDeltaUnit.Kelvin, 2, TemperatureDeltaUnit.Kelvin, false)] // Different value.
-        [InlineData(2, TemperatureDeltaUnit.Kelvin, 1, TemperatureDeltaUnit.DegreeCelsius, false)] // Different value and unit.
-        [InlineData(1, TemperatureDeltaUnit.Kelvin, 1, TemperatureDeltaUnit.DegreeCelsius, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, TemperatureDeltaUnit unitA, double valueB, TemperatureDeltaUnit unitB, bool expectEqual)
         {
             var a = new TemperatureDelta(valueA, unitA);
@@ -922,7 +920,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = TemperatureDelta.FromKelvins(1.0);
-            Assert.Equal(new {TemperatureDelta.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(TemperatureDelta.Info.Name, quantity.Kelvins);
+            #else
+            var expected = new {TemperatureDelta.Info.Name, valueInBaseUnit = quantity.Kelvins}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

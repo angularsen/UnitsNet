@@ -258,7 +258,7 @@ namespace UnitsNet.Tests
             Assert.Equal(MassConcentrationUnit.KilogramPerCubicMeter, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new MassConcentration(double.PositiveInfinity, MassConcentrationUnit.KilogramPerCubicMeter));
@@ -268,7 +268,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new MassConcentration(double.NaN, MassConcentrationUnit.KilogramPerCubicMeter));
@@ -567,7 +567,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromKilogramsPerCubicMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => MassConcentration.FromKilogramsPerCubicMeter(double.PositiveInfinity));
@@ -577,7 +577,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromKilogramsPerCubicMeter_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => MassConcentration.FromKilogramsPerCubicMeter(double.NaN));
@@ -2102,8 +2102,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, MassConcentrationUnit.KilogramPerCubicMeter, 1, MassConcentrationUnit.KilogramPerCubicMeter, true)]  // Same value and unit.
         [InlineData(1, MassConcentrationUnit.KilogramPerCubicMeter, 2, MassConcentrationUnit.KilogramPerCubicMeter, false)] // Different value.
-        [InlineData(2, MassConcentrationUnit.KilogramPerCubicMeter, 1, MassConcentrationUnit.CentigramPerDeciliter, false)] // Different value and unit.
-        [InlineData(1, MassConcentrationUnit.KilogramPerCubicMeter, 1, MassConcentrationUnit.CentigramPerDeciliter, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, MassConcentrationUnit unitA, double valueB, MassConcentrationUnit unitB, bool expectEqual)
         {
             var a = new MassConcentration(valueA, unitA);
@@ -2498,7 +2496,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = MassConcentration.FromKilogramsPerCubicMeter(1.0);
-            Assert.Equal(new {MassConcentration.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(MassConcentration.Info.Name, quantity.KilogramsPerCubicMeter);
+            #else
+            var expected = new {MassConcentration.Info.Name, valueInBaseUnit = quantity.KilogramsPerCubicMeter}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

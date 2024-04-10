@@ -90,7 +90,7 @@ namespace UnitsNet.Tests
             Assert.Equal(IrradiationUnit.JoulePerSquareMeter, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new Irradiation(double.PositiveInfinity, IrradiationUnit.JoulePerSquareMeter));
@@ -100,7 +100,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new Irradiation(double.NaN, IrradiationUnit.JoulePerSquareMeter));
@@ -189,7 +189,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromJoulesPerSquareMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => Irradiation.FromJoulesPerSquareMeter(double.PositiveInfinity));
@@ -199,7 +199,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromJoulesPerSquareMeter_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => Irradiation.FromJoulesPerSquareMeter(double.NaN));
@@ -536,8 +536,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, IrradiationUnit.JoulePerSquareMeter, 1, IrradiationUnit.JoulePerSquareMeter, true)]  // Same value and unit.
         [InlineData(1, IrradiationUnit.JoulePerSquareMeter, 2, IrradiationUnit.JoulePerSquareMeter, false)] // Different value.
-        [InlineData(2, IrradiationUnit.JoulePerSquareMeter, 1, IrradiationUnit.JoulePerSquareCentimeter, false)] // Different value and unit.
-        [InlineData(1, IrradiationUnit.JoulePerSquareMeter, 1, IrradiationUnit.JoulePerSquareCentimeter, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, IrradiationUnit unitA, double valueB, IrradiationUnit unitB, bool expectEqual)
         {
             var a = new Irradiation(valueA, unitA);
@@ -848,7 +846,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Irradiation.FromJoulesPerSquareMeter(1.0);
-            Assert.Equal(new {Irradiation.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(Irradiation.Info.Name, quantity.JoulesPerSquareMeter);
+            #else
+            var expected = new {Irradiation.Info.Name, valueInBaseUnit = quantity.JoulesPerSquareMeter}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

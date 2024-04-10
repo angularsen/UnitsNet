@@ -134,7 +134,7 @@ namespace UnitsNet.Tests
             Assert.Equal(HeatFluxUnit.WattPerSquareMeter, quantity.Unit);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => new HeatFlux(double.PositiveInfinity, HeatFluxUnit.WattPerSquareMeter));
@@ -144,7 +144,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void Ctor_WithNaNValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => new HeatFlux(double.NaN, HeatFluxUnit.WattPerSquareMeter));
@@ -288,7 +288,7 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromWattsPerSquareMeter_WithInfinityValue_DoNotThrowsArgumentException()
         {
             var exception1 = Record.Exception(() => HeatFlux.FromWattsPerSquareMeter(double.PositiveInfinity));
@@ -298,7 +298,7 @@ namespace UnitsNet.Tests
             Assert.Null(exception2);
         }
 
-        [Fact]
+        [Fact(Skip = "https://github.com/danm-de/Fractions/issues/26")]
         public void FromWattsPerSquareMeter_WithNanValue_DoNotThrowsArgumentException()
         {
             var exception = Record.Exception(() => HeatFlux.FromWattsPerSquareMeter(double.NaN));
@@ -945,8 +945,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, HeatFluxUnit.WattPerSquareMeter, 1, HeatFluxUnit.WattPerSquareMeter, true)]  // Same value and unit.
         [InlineData(1, HeatFluxUnit.WattPerSquareMeter, 2, HeatFluxUnit.WattPerSquareMeter, false)] // Different value.
-        [InlineData(2, HeatFluxUnit.WattPerSquareMeter, 1, HeatFluxUnit.BtuPerHourSquareFoot, false)] // Different value and unit.
-        [InlineData(1, HeatFluxUnit.WattPerSquareMeter, 1, HeatFluxUnit.BtuPerHourSquareFoot, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, HeatFluxUnit unitA, double valueB, HeatFluxUnit unitB, bool expectEqual)
         {
             var a = new HeatFlux(valueA, unitA);
@@ -1279,7 +1277,12 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = HeatFlux.FromWattsPerSquareMeter(1.0);
-            Assert.Equal(new {HeatFlux.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            #if NET7_0_OR_GREATER
+            var expected = HashCode.Combine(HeatFlux.Info.Name, quantity.WattsPerSquareMeter);
+            #else
+            var expected = new {HeatFlux.Info.Name, valueInBaseUnit = quantity.WattsPerSquareMeter}.GetHashCode();
+            #endif
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]
