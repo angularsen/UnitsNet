@@ -2,7 +2,7 @@
   <!-- NuGet properties -->
   <PropertyGroup>
     <PackageId>UnitsNet</PackageId>
-    <Version>6.0.0-pre002</Version>
+    <Version>6.0.0-pre006</Version>
     <Authors>Andreas Gullberg Larsen</Authors>
     <Title>Units.NET</Title>
     <Description>Get all the common units of measurement and the conversions between them. It is light-weight and thoroughly tested.</Description>
@@ -12,7 +12,7 @@
     <PackageIcon>logo-32.png</PackageIcon>
     <PackageIconUrl>https://raw.githubusercontent.com/angularsen/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/angularsen/UnitsNet</PackageProjectUrl>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageLicenseExpression>MIT-0</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageTags>unit units quantity quantities measurement si metric imperial abbreviation abbreviations convert conversion parse immutable</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -24,7 +24,7 @@
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <RootNamespace>UnitsNet</RootNamespace>
-    <TargetFrameworks>netstandard2.0;net7.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
   </PropertyGroup>
 
   <!-- SourceLink: https://github.com/dotnet/sourcelink -->
@@ -48,18 +48,10 @@
     <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
 
-  <!-- TODO I'm unable to get rid of some CS3003 warning associated with the Fractions package (no idea what's the deal with that) -->
-  <!-- <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'"> -->
-  <!--   <TreatWarningsAsErrors>False</TreatWarningsAsErrors> -->
-  <!-- </PropertyGroup> -->
-  <!-- <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0|AnyCPU'"> -->
-  <!--   <TreatWarningsAsErrors>False</TreatWarningsAsErrors> -->
-  <!-- </PropertyGroup> -->
-
   <!-- NuGet references that work for all TargetFrameworks, both signed and unsigned. -->
   <ItemGroup>
     <PackageReference Include="Fractions" Version="7.4.1" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
   </ItemGroup>
 
   <!-- Link in common unit definition .json files -->

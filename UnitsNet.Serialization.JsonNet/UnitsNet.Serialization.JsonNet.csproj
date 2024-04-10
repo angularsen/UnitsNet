@@ -2,7 +2,7 @@
   <!-- NuGet properties -->
   <PropertyGroup>
     <PackageId>UnitsNet.Serialization.JsonNet</PackageId>
-    <Version>6.0.0-pre002</Version>
+    <Version>6.0.0-pre006</Version>
     <Authors>Andreas Gullberg Larsen</Authors>
     <Title>Units.NET Serialization with Json.NET</Title>
     <Description>A helper library for serializing and deserializing types in Units.NET using Json.NET.</Description>
@@ -12,7 +12,7 @@
     <PackageIcon>logo-32.png</PackageIcon>
     <PackageIconUrl>https://raw.githubusercontent.com/angularsen/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/angularsen/UnitsNet</PackageProjectUrl>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageLicenseExpression>MIT-0</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageTags>unit units measurement json Json.NET Newtonsoft serialize deserialize serialization deserialization</PackageTags>
     <PackageReleaseNotes>Upgrade JSON.NET to 12.0.3. Support arrays.</PackageReleaseNotes>
@@ -48,9 +48,9 @@
 
   <!-- NuGet references that work for both signed and unsigned -->
   <ItemGroup>
-    <PackageReference Include="JetBrains.Annotations" Version="2022.1.0" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <!-- Project references, will also generate the corresponding nuget dependencies -->

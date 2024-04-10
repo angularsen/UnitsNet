@@ -43,7 +43,9 @@ namespace UnitsNet
     public readonly partial struct ReciprocalLength :
         IArithmeticQuantity<ReciprocalLength, ReciprocalLengthUnit>,
 #if NET7_0_OR_GREATER
+        IMultiplyOperators<ReciprocalLength, Volume, Area>,
         IMultiplyOperators<ReciprocalLength, Force, ForcePerLength>,
+        IMultiplyOperators<ReciprocalLength, Area, Length>,
         IDivisionOperators<ReciprocalLength, ReciprocalArea, Length>,
         IMultiplyOperators<ReciprocalLength, ForcePerLength, Pressure>,
         IMultiplyOperators<ReciprocalLength, ReciprocalLength, ReciprocalArea>,
@@ -591,10 +593,22 @@ namespace UnitsNet
             return Length.FromMeters(QuantityValue.Inverse(InverseMeters));
         }
 
+        /// <summary>Get <see cref="Area"/> from <see cref="ReciprocalLength"/> * <see cref="Volume"/>.</summary>
+        public static Area operator *(ReciprocalLength reciprocalLength, Volume volume)
+        {
+            return Area.FromSquareMeters(reciprocalLength.InverseMeters * volume.CubicMeters);
+        }
+
         /// <summary>Get <see cref="ForcePerLength"/> from <see cref="ReciprocalLength"/> * <see cref="Force"/>.</summary>
         public static ForcePerLength operator *(ReciprocalLength reciprocalLength, Force force)
         {
             return ForcePerLength.FromNewtonsPerMeter(reciprocalLength.InverseMeters * force.Newtons);
+        }
+
+        /// <summary>Get <see cref="Length"/> from <see cref="ReciprocalLength"/> * <see cref="Area"/>.</summary>
+        public static Length operator *(ReciprocalLength reciprocalLength, Area area)
+        {
+            return Length.FromMeters(reciprocalLength.InverseMeters * area.SquareMeters);
         }
 
         /// <summary>Get <see cref="Length"/> from <see cref="ReciprocalLength"/> / <see cref="ReciprocalArea"/>.</summary>

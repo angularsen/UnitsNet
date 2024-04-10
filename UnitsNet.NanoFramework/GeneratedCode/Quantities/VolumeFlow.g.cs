@@ -189,6 +189,26 @@ namespace UnitsNet
         public double CubicYardsPerSecond => As(VolumeFlowUnit.CubicYardPerSecond);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.DecaliterPerDay"/>
+        /// </summary>
+        public double DecalitersPerDay => As(VolumeFlowUnit.DecaliterPerDay);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.DecaliterPerHour"/>
+        /// </summary>
+        public double DecalitersPerHour => As(VolumeFlowUnit.DecaliterPerHour);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.DecaliterPerMinute"/>
+        /// </summary>
+        public double DecalitersPerMinute => As(VolumeFlowUnit.DecaliterPerMinute);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.DecaliterPerSecond"/>
+        /// </summary>
+        public double DecalitersPerSecond => As(VolumeFlowUnit.DecaliterPerSecond);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.DeciliterPerDay"/>
         /// </summary>
         public double DecilitersPerDay => As(VolumeFlowUnit.DeciliterPerDay);
@@ -207,6 +227,26 @@ namespace UnitsNet
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.DeciliterPerSecond"/>
         /// </summary>
         public double DecilitersPerSecond => As(VolumeFlowUnit.DeciliterPerSecond);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.HectoliterPerDay"/>
+        /// </summary>
+        public double HectolitersPerDay => As(VolumeFlowUnit.HectoliterPerDay);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.HectoliterPerHour"/>
+        /// </summary>
+        public double HectolitersPerHour => As(VolumeFlowUnit.HectoliterPerHour);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.HectoliterPerMinute"/>
+        /// </summary>
+        public double HectolitersPerMinute => As(VolumeFlowUnit.HectoliterPerMinute);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.HectoliterPerSecond"/>
+        /// </summary>
+        public double HectolitersPerSecond => As(VolumeFlowUnit.HectoliterPerSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.KiloliterPerDay"/>
@@ -528,6 +568,26 @@ namespace UnitsNet
         public static VolumeFlow FromCubicYardsPerSecond(double cubicyardspersecond) => new VolumeFlow(cubicyardspersecond, VolumeFlowUnit.CubicYardPerSecond);
 
         /// <summary>
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.DecaliterPerDay"/>.
+        /// </summary>
+        public static VolumeFlow FromDecalitersPerDay(double decalitersperday) => new VolumeFlow(decalitersperday, VolumeFlowUnit.DecaliterPerDay);
+
+        /// <summary>
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.DecaliterPerHour"/>.
+        /// </summary>
+        public static VolumeFlow FromDecalitersPerHour(double decalitersperhour) => new VolumeFlow(decalitersperhour, VolumeFlowUnit.DecaliterPerHour);
+
+        /// <summary>
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.DecaliterPerMinute"/>.
+        /// </summary>
+        public static VolumeFlow FromDecalitersPerMinute(double decalitersperminute) => new VolumeFlow(decalitersperminute, VolumeFlowUnit.DecaliterPerMinute);
+
+        /// <summary>
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.DecaliterPerSecond"/>.
+        /// </summary>
+        public static VolumeFlow FromDecalitersPerSecond(double decaliterspersecond) => new VolumeFlow(decaliterspersecond, VolumeFlowUnit.DecaliterPerSecond);
+
+        /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.DeciliterPerDay"/>.
         /// </summary>
         public static VolumeFlow FromDecilitersPerDay(double decilitersperday) => new VolumeFlow(decilitersperday, VolumeFlowUnit.DeciliterPerDay);
@@ -546,6 +606,26 @@ namespace UnitsNet
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.DeciliterPerSecond"/>.
         /// </summary>
         public static VolumeFlow FromDecilitersPerSecond(double deciliterspersecond) => new VolumeFlow(deciliterspersecond, VolumeFlowUnit.DeciliterPerSecond);
+
+        /// <summary>
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.HectoliterPerDay"/>.
+        /// </summary>
+        public static VolumeFlow FromHectolitersPerDay(double hectolitersperday) => new VolumeFlow(hectolitersperday, VolumeFlowUnit.HectoliterPerDay);
+
+        /// <summary>
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.HectoliterPerHour"/>.
+        /// </summary>
+        public static VolumeFlow FromHectolitersPerHour(double hectolitersperhour) => new VolumeFlow(hectolitersperhour, VolumeFlowUnit.HectoliterPerHour);
+
+        /// <summary>
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.HectoliterPerMinute"/>.
+        /// </summary>
+        public static VolumeFlow FromHectolitersPerMinute(double hectolitersperminute) => new VolumeFlow(hectolitersperminute, VolumeFlowUnit.HectoliterPerMinute);
+
+        /// <summary>
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.HectoliterPerSecond"/>.
+        /// </summary>
+        public static VolumeFlow FromHectolitersPerSecond(double hectoliterspersecond) => new VolumeFlow(hectoliterspersecond, VolumeFlowUnit.HectoliterPerSecond);
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.KiloliterPerDay"/>.
@@ -814,10 +894,18 @@ namespace UnitsNet
                         VolumeFlowUnit.CubicYardPerHour => _value * 2.1237634944E-4,
                         VolumeFlowUnit.CubicYardPerMinute => _value * 0.0127425809664,
                         VolumeFlowUnit.CubicYardPerSecond => _value * 0.764554857984,
+                        VolumeFlowUnit.DecaliterPerDay => (_value / 86400000) * 1e1d,
+                        VolumeFlowUnit.DecaliterPerHour => (_value / 3600000.000) * 1e1d,
+                        VolumeFlowUnit.DecaliterPerMinute => (_value / 60000.00000) * 1e1d,
+                        VolumeFlowUnit.DecaliterPerSecond => (_value / 1000) * 1e1d,
                         VolumeFlowUnit.DeciliterPerDay => (_value / 86400000) * 1e-1d,
                         VolumeFlowUnit.DeciliterPerHour => (_value / 3600000.000) * 1e-1d,
                         VolumeFlowUnit.DeciliterPerMinute => (_value / 60000.00000) * 1e-1d,
                         VolumeFlowUnit.DeciliterPerSecond => (_value / 1000) * 1e-1d,
+                        VolumeFlowUnit.HectoliterPerDay => (_value / 86400000) * 1e2d,
+                        VolumeFlowUnit.HectoliterPerHour => (_value / 3600000.000) * 1e2d,
+                        VolumeFlowUnit.HectoliterPerMinute => (_value / 60000.00000) * 1e2d,
+                        VolumeFlowUnit.HectoliterPerSecond => (_value / 1000) * 1e2d,
                         VolumeFlowUnit.KiloliterPerDay => (_value / 86400000) * 1e3d,
                         VolumeFlowUnit.KiloliterPerHour => (_value / 3600000.000) * 1e3d,
                         VolumeFlowUnit.KiloliterPerMinute => (_value / 60000.00000) * 1e3d,
@@ -894,10 +982,18 @@ namespace UnitsNet
                         VolumeFlowUnit.CubicYardPerHour => baseUnitValue / 2.1237634944E-4,
                         VolumeFlowUnit.CubicYardPerMinute => baseUnitValue / 0.0127425809664,
                         VolumeFlowUnit.CubicYardPerSecond => baseUnitValue / 0.764554857984,
+                        VolumeFlowUnit.DecaliterPerDay => (baseUnitValue * 86400000) / 1e1d,
+                        VolumeFlowUnit.DecaliterPerHour => (baseUnitValue * 3600000.000) / 1e1d,
+                        VolumeFlowUnit.DecaliterPerMinute => (baseUnitValue * 60000.00000) / 1e1d,
+                        VolumeFlowUnit.DecaliterPerSecond => (baseUnitValue * 1000) / 1e1d,
                         VolumeFlowUnit.DeciliterPerDay => (baseUnitValue * 86400000) / 1e-1d,
                         VolumeFlowUnit.DeciliterPerHour => (baseUnitValue * 3600000.000) / 1e-1d,
                         VolumeFlowUnit.DeciliterPerMinute => (baseUnitValue * 60000.00000) / 1e-1d,
                         VolumeFlowUnit.DeciliterPerSecond => (baseUnitValue * 1000) / 1e-1d,
+                        VolumeFlowUnit.HectoliterPerDay => (baseUnitValue * 86400000) / 1e2d,
+                        VolumeFlowUnit.HectoliterPerHour => (baseUnitValue * 3600000.000) / 1e2d,
+                        VolumeFlowUnit.HectoliterPerMinute => (baseUnitValue * 60000.00000) / 1e2d,
+                        VolumeFlowUnit.HectoliterPerSecond => (baseUnitValue * 1000) / 1e2d,
                         VolumeFlowUnit.KiloliterPerDay => (baseUnitValue * 86400000) / 1e3d,
                         VolumeFlowUnit.KiloliterPerHour => (baseUnitValue * 3600000.000) / 1e3d,
                         VolumeFlowUnit.KiloliterPerMinute => (baseUnitValue * 60000.00000) / 1e3d,

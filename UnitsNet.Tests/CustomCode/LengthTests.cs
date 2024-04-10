@@ -135,6 +135,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void LengthDividedByAreaEqualsReciprocalLength()
+        {
+            ReciprocalLength reciprocalLength = Length.FromMeters(20) / Area.FromSquareMeters(2);
+            Assert.Equal(ReciprocalLength.FromInverseMeters(10), reciprocalLength);
+        }
+
+        [Fact]
+        public void LengthDividedByVolumeEqualsReciprocalArea()
+        {
+            ReciprocalArea reciprocalArea = Length.FromMeters(20) / Volume.FromCubicMeters(2);
+            Assert.Equal(ReciprocalArea.FromInverseSquareMeters(10), reciprocalArea);
+        }
+
+        [Fact]
         public void LengthTimesSpeedEqualsKinematicViscosity()
         {
             KinematicViscosity kinematicViscosity = Length.FromMeters(20) * Speed.FromMetersPerSecond(2);

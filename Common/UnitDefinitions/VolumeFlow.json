@@ -181,7 +181,7 @@
       "PluralName": "LitersPerSecond",
       "FromUnitToBaseFunc": "{x} / 1000",
       "FromBaseToUnitFunc": "{x} * 1000",
-      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo", "Mega" ],
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -198,7 +198,7 @@
       "PluralName": "LitersPerMinute",
       "FromUnitToBaseFunc": "{x} / 60000.00000",
       "FromBaseToUnitFunc": "{x} * 60000.00000",
-      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo", "Mega" ],
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -215,7 +215,7 @@
       "PluralName": "LitersPerHour",
       "FromUnitToBaseFunc": "{x} / 3600000.000",
       "FromBaseToUnitFunc": "{x} * 3600000.000",
-      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo", "Mega" ],
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -232,7 +232,7 @@
       "PluralName": "LitersPerDay",
       "FromUnitToBaseFunc": "{x} / 86400000",
       "FromBaseToUnitFunc": "{x} * 86400000",
-      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo", "Mega" ],
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",

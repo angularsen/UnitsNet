@@ -631,7 +631,9 @@
     "KilojoulePerSquareMeter": 4,
     "KilowattHourPerSquareMeter": 5,
     "MillijoulePerSquareCentimeter": 6,
-    "WattHourPerSquareMeter": 7
+    "WattHourPerSquareMeter": 7,
+    "BtuPerSquareFoot": 15,
+    "KilobtuPerSquareFoot": 9
   },
   "Jerk": {
     "CentimeterPerSecondCubed": 1,
@@ -1676,7 +1678,15 @@
     "MegaliterPerMinute": 64,
     "MegaliterPerSecond": 65,
     "MegaukGallonPerDay": 73,
-    "MegausGallonPerDay": 77
+    "MegausGallonPerDay": 77,
+    "DecaliterPerDay": 71,
+    "DecaliterPerHour": 78,
+    "DecaliterPerMinute": 67,
+    "DecaliterPerSecond": 70,
+    "HectoliterPerDay": 74,
+    "HectoliterPerHour": 72,
+    "HectoliterPerMinute": 75,
+    "HectoliterPerSecond": 69
   },
   "VolumeFlowPerArea": {
     "CubicFootPerMinutePerSquareFoot": 1,
@@ -1835,5 +1845,15 @@
     "Roentgen": 4,
     "Microroentgen": 12,
     "Milliroentgen": 13
+  },
+  "RadiationEquivalentDose": {
+    "Microsievert": 1,
+    "MilliroentgenEquivalentMan": 2,
+    "Millisievert": 7,
+    "Nanosievert": 5,
+    "RoentgenEquivalentMan": 4,
+    "Sievert": 9,
+    "Kilosievert": 3,
+    "Megasievert": 6
   }
 }

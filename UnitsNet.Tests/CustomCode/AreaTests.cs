@@ -46,6 +46,13 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void AreaDividedByVolumeEqualsReciprocalLength()
+        {
+            ReciprocalLength reciprocalLength = Area.FromSquareMeters(50) / Volume.FromCubicMeters(5);
+            Assert.Equal(reciprocalLength, ReciprocalLength.FromInverseMeters(10));
+        }
+
+        [Fact]
         public void AreaTimesMassFluxEqualsMassFlow()
         {
             MassFlow massFlow = Area.FromSquareMeters(20) * MassFlux.FromKilogramsPerSecondPerSquareMeter(2);

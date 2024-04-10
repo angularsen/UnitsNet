@@ -227,7 +227,7 @@ namespace UnitsNet.Tests
             }
             catch (ArgumentException)
             {
-                Assert.True(false, "Special double values (NaN, -Inf, +Inf) must be allowed.");
+                Assert.Fail("Special double values (NaN, -Inf, +Inf) must be allowed.");
             }
         }
 
