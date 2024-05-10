@@ -194,6 +194,12 @@ namespace UnitsNet
         {
             return new Pressure(length.Meters * specificWeight.NewtonsPerCubicMeter, PressureUnit.Pascal);
         }
+
+        /// <summary>Get <see cref="MassDistance"/> from <see cref="Length"/> times <see cref="Mass"/></summary>
+        public static MassDistance operator *(Length length, Mass mass)
+        {
+            return new MassDistance(mass.Kilograms * length.Kilometers, MassDistanceUnit.KilogramKilometer);
+        }
     }
 
     /// <summary>

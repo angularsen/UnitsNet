@@ -100,6 +100,7 @@ namespace UnitsNet.Tests
             Assertion(3, MagnetizationUnit.AmperePerMeter, Quantity.From(3, MagnetizationUnit.AmperePerMeter));
             Assertion(3, MassUnit.Tonne, Quantity.From(3, MassUnit.Tonne));
             Assertion(3, MassConcentrationUnit.TonnePerCubicMillimeter, Quantity.From(3, MassConcentrationUnit.TonnePerCubicMillimeter));
+            Assertion(3, MassDistanceUnit.TonneKilometer, Quantity.From(3, MassDistanceUnit.TonneKilometer));
             Assertion(3, MassFlowUnit.TonnePerHour, Quantity.From(3, MassFlowUnit.TonnePerHour));
             Assertion(3, MassFluxUnit.KilogramPerSecondPerSquareMillimeter, Quantity.From(3, MassFluxUnit.KilogramPerSecondPerSquareMillimeter));
             Assertion(3, MassFractionUnit.Percent, Quantity.From(3, MassFractionUnit.Percent));
@@ -231,6 +232,7 @@ namespace UnitsNet.Tests
             Assertion(Magnetization.Info, Magnetization.Zero);
             Assertion(Mass.Info, Mass.Zero);
             Assertion(MassConcentration.Info, MassConcentration.Zero);
+            Assertion(MassDistance.Info, MassDistance.Zero);
             Assertion(MassFlow.Info, MassFlow.Zero);
             Assertion(MassFlux.Info, MassFlux.Zero);
             Assertion(MassFraction.Info, MassFraction.Zero);
@@ -362,6 +364,7 @@ namespace UnitsNet.Tests
             Assertion(Magnetization.BaseDimensions, Magnetization.Zero);
             Assertion(Mass.BaseDimensions, Mass.Zero);
             Assertion(MassConcentration.BaseDimensions, MassConcentration.Zero);
+            Assertion(MassDistance.BaseDimensions, MassDistance.Zero);
             Assertion(MassFlow.BaseDimensions, MassFlow.Zero);
             Assertion(MassFlux.BaseDimensions, MassFlux.Zero);
             Assertion(MassFraction.BaseDimensions, MassFraction.Zero);

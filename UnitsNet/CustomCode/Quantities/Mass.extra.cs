@@ -111,6 +111,12 @@ namespace UnitsNet
         {
             return Length.FromMeters(mass.Kilograms / linearDensity.KilogramsPerMeter);
         }
+
+        /// <summary>Get <see cref="MassDistance"/> from <see cref="Mass"/> times <see cref="Length"/></summary>
+        public static MassDistance operator *(Mass mass, Length length)
+        {
+            return new MassDistance(mass.Kilograms * length.Kilometers, MassDistanceUnit.KilogramKilometer);
+        }
     }
 
     /// <summary>

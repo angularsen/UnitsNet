@@ -104,6 +104,7 @@ namespace UnitsNet
             { "Magnetization", Magnetization.Info },
             { "Mass", Mass.Info },
             { "MassConcentration", MassConcentration.Info },
+            { "MassDistance", MassDistance.Info },
             { "MassFlow", MassFlow.Info },
             { "MassFlux", MassFlux.Info },
             { "MassFraction", MassFraction.Info },
@@ -240,6 +241,7 @@ namespace UnitsNet
                 "Magnetization" => Magnetization.From(value, Magnetization.BaseUnit),
                 "Mass" => Mass.From(value, Mass.BaseUnit),
                 "MassConcentration" => MassConcentration.From(value, MassConcentration.BaseUnit),
+                "MassDistance" => MassDistance.From(value, MassDistance.BaseUnit),
                 "MassFlow" => MassFlow.From(value, MassFlow.BaseUnit),
                 "MassFlux" => MassFlux.From(value, MassFlux.BaseUnit),
                 "MassFraction" => MassFraction.From(value, MassFraction.BaseUnit),
@@ -379,6 +381,7 @@ namespace UnitsNet
                 MagnetizationUnit magnetizationUnit => Magnetization.From(value, magnetizationUnit),
                 MassUnit massUnit => Mass.From(value, massUnit),
                 MassConcentrationUnit massConcentrationUnit => MassConcentration.From(value, massConcentrationUnit),
+                MassDistanceUnit massDistanceUnit => MassDistance.From(value, massDistanceUnit),
                 MassFlowUnit massFlowUnit => MassFlow.From(value, massFlowUnit),
                 MassFluxUnit massFluxUnit => MassFlux.From(value, massFluxUnit),
                 MassFractionUnit massFractionUnit => MassFraction.From(value, massFractionUnit),
@@ -528,6 +531,7 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(Magnetization) => parser.TryParse<Magnetization, MagnetizationUnit>(quantityString, formatProvider, Magnetization.From, out quantity),
                 Type _ when quantityType == typeof(Mass) => parser.TryParse<Mass, MassUnit>(quantityString, formatProvider, Mass.From, out quantity),
                 Type _ when quantityType == typeof(MassConcentration) => parser.TryParse<MassConcentration, MassConcentrationUnit>(quantityString, formatProvider, MassConcentration.From, out quantity),
+                Type _ when quantityType == typeof(MassDistance) => parser.TryParse<MassDistance, MassDistanceUnit>(quantityString, formatProvider, MassDistance.From, out quantity),
                 Type _ when quantityType == typeof(MassFlow) => parser.TryParse<MassFlow, MassFlowUnit>(quantityString, formatProvider, MassFlow.From, out quantity),
                 Type _ when quantityType == typeof(MassFlux) => parser.TryParse<MassFlux, MassFluxUnit>(quantityString, formatProvider, MassFlux.From, out quantity),
                 Type _ when quantityType == typeof(MassFraction) => parser.TryParse<MassFraction, MassFractionUnit>(quantityString, formatProvider, MassFraction.From, out quantity),
@@ -658,6 +662,7 @@ namespace UnitsNet
             yield return typeof(Magnetization);
             yield return typeof(Mass);
             yield return typeof(MassConcentration);
+            yield return typeof(MassDistance);
             yield return typeof(MassFlow);
             yield return typeof(MassFlux);
             yield return typeof(MassFraction);
