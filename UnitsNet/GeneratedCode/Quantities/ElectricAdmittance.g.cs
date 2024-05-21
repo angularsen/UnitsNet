@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
@@ -36,6 +37,7 @@ namespace UnitsNet
     ///     Electric admittance is a measure of how easily a circuit or device will allow a current to flow. It is defined as the inverse of impedance. The SI unit of admittance is the siemens (symbol S).
     /// </summary>
     [DataContract]
+    [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct ElectricAdmittance :
         IArithmeticQuantity<ElectricAdmittance, ElectricAdmittanceUnit>,
         IComparable,

@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
@@ -39,6 +40,7 @@ namespace UnitsNet
     ///     Heat flux is the flow of energy per unit of area per unit of time
     /// </summary>
     [DataContract]
+    [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct HeatFlux :
         IArithmeticQuantity<HeatFlux, HeatFluxUnit>,
 #if NET7_0_OR_GREATER

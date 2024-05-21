@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
@@ -39,6 +40,7 @@ namespace UnitsNet
     ///     Area is a quantity that expresses the extent of a two-dimensional surface or shape, or planar lamina, in the plane. Area can be understood as the amount of material with a given thickness that would be necessary to fashion a model of the shape, or the amount of paint necessary to cover the surface with a single coat.[1] It is the two-dimensional analog of the length of a curve (a one-dimensional concept) or the volume of a solid (a three-dimensional concept).
     /// </summary>
     [DataContract]
+    [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct Area :
         IArithmeticQuantity<Area, AreaUnit>,
 #if NET7_0_OR_GREATER

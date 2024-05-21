@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
@@ -39,6 +40,7 @@ namespace UnitsNet
     ///     Acceleration, in physics, is the rate at which the velocity of an object changes over time. An object's acceleration is the net result of any and all forces acting on the object, as described by Newton's Second Law. The SI unit for acceleration is the Meter per second squared (m/s²). Accelerations are vector quantities (they have magnitude and direction) and add according to the parallelogram law. As a vector, the calculated net force is equal to the product of the object's mass (a scalar quantity) and the acceleration.
     /// </summary>
     [DataContract]
+    [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct Acceleration :
         IArithmeticQuantity<Acceleration, AccelerationUnit>,
 #if NET7_0_OR_GREATER

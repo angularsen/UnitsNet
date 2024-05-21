@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
@@ -36,6 +37,7 @@ namespace UnitsNet
     ///     Equivalent dose is a dose quantity representing the stochastic health effects of low levels of ionizing radiation on the human body which represents the probability of radiation-induced cancer and genetic damage.
     /// </summary>
     [DataContract]
+    [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct RadiationEquivalentDose :
         IArithmeticQuantity<RadiationEquivalentDose, RadiationEquivalentDoseUnit>,
         IComparable,

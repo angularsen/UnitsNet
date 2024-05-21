@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
@@ -39,6 +40,7 @@ namespace UnitsNet
     ///     Specific entropy is an amount of energy required to raise temperature of a substance by 1 Kelvin per unit mass.
     /// </summary>
     [DataContract]
+    [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct SpecificEntropy :
         IArithmeticQuantity<SpecificEntropy, SpecificEntropyUnit>,
 #if NET7_0_OR_GREATER

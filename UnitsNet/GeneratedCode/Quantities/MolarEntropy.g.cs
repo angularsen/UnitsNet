@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
@@ -36,6 +37,7 @@ namespace UnitsNet
     ///     Molar entropy is amount of energy required to increase temperature of 1 mole substance by 1 Kelvin.
     /// </summary>
     [DataContract]
+    [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct MolarEntropy :
         IArithmeticQuantity<MolarEntropy, MolarEntropyUnit>,
         IComparable,

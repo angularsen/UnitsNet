@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
@@ -42,6 +43,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Specific_energy
     /// </remarks>
     [DataContract]
+    [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct SpecificEnergy :
         IArithmeticQuantity<SpecificEnergy, SpecificEnergyUnit>,
 #if NET7_0_OR_GREATER

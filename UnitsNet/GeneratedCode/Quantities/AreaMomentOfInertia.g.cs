@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
@@ -39,6 +40,7 @@ namespace UnitsNet
     ///     A geometric property of an area that reflects how its points are distributed with regard to an axis.
     /// </summary>
     [DataContract]
+    [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct AreaMomentOfInertia :
         IArithmeticQuantity<AreaMomentOfInertia, AreaMomentOfInertiaUnit>,
 #if NET7_0_OR_GREATER

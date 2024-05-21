@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
@@ -39,6 +40,7 @@ namespace UnitsNet
     ///     https://www.leybold.com/en-in/knowledge/vacuum-fundamentals/leak-detection/definition-and-measurement-of-vacuum-leaks
     /// </remarks>
     [DataContract]
+    [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct LeakRate :
         IArithmeticQuantity<LeakRate, LeakRateUnit>,
         IComparable,
