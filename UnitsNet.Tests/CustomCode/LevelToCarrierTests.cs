@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -41,6 +42,30 @@ namespace UnitsNet.Tests.CustomCode
         {
             LevelToCarrier v = LevelToCarrier.FromDecibelsCarrier(40);
             AssertEx.EqualTolerance(49.5424250944, (LevelToCarrier.FromDecibelsCarrier(50) - v).DecibelsCarrier, DecibelsCarrierTolerance);
+        }
+
+        [Theory]
+        [InlineData(0, 1)]
+        [InlineData(-1, 1)]
+        public void InvalidSignal_ExpectArgumentOutOfRangeException(double signalValue, double referenceValue)
+        {
+            // signal can't be zero or less than zero if reference is positive.
+            var signal = Power.From(signalValue, Units.PowerUnit.Watt);
+            var reference = Power.From(referenceValue, Units.PowerUnit.Watt);
+
+            Assert.Throws<ArgumentOutOfRangeException>(() => new LevelToCarrier(signal, reference));
+        }
+
+        [Theory]
+        [InlineData(1, 0)]
+        [InlineData(10, -1)]
+        public void InvalidReference_ExpectArgumentOutOfRangeException(double signalValue, double referenceValue)
+        {
+            // reference can't be zero or less than zero if quantity is postive.
+            var signal = Power.From(signalValue, Units.PowerUnit.Watt);
+            var reference = Power.From(referenceValue, Units.PowerUnit.Watt);
+
+            Assert.Throws<ArgumentOutOfRangeException>(() => new LevelToCarrier(signal, reference));
         }
     }
 }
