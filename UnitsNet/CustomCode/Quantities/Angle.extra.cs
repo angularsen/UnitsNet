@@ -18,5 +18,15 @@ namespace UnitsNet
         {
             return RotationalSpeed.FromRadiansPerSecond(angle.Radians / duration.Seconds);
         }
+
+        /// <summary>
+        /// Convert an <see cref="Angle"/> to a slope <see cref="Ratio"/>.
+        /// </summary>
+        /// <returns>A <see cref="Ratio"/> representing the slope.</returns>
+        public Ratio ToSlopeRatio()
+        {
+            var slope = Math.Tan(this.Radians);
+            return Ratio.FromDecimalFractions(slope);
+        }
     }
 }
