@@ -16,8 +16,8 @@ namespace UnitsNet;
 /// </remarks>
 internal readonly struct QuantityDisplay(IQuantity quantity)
 {
-    public AbbreviationDisplay Abbreviation => new(quantity);
     public UnitDisplay Unit => new(quantity);
+    public AbbreviationDisplay UnitAbbreviation => new(quantity);
     public ValueDisplay Value => new(quantity);
     public QuantityConvertor ValueConvertor => new(quantity);
 
@@ -98,6 +98,11 @@ internal readonly struct QuantityDisplay(IQuantity quantity)
         public bool IsDecimal => quantity.Value.IsDecimal;
         public double DoubleValue => (double)quantity.Value;
         public decimal DecimalValue => (decimal)quantity.Value;
+
+        public override string ToString()
+        {
+            return IsDecimal ? DecimalValue.ToString(CultureInfo.CurrentCulture) : DoubleValue.ToString(CultureInfo.CurrentCulture);
+        }
     }
 
     [DebuggerDisplay("{QuantityToString}")]
@@ -126,7 +131,7 @@ internal readonly struct QuantityDisplay(IQuantity quantity)
         {
             public Enum Unit => Quantity.Unit;
             public string Abbreviation => UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(Quantity.Unit);
-            public QuantityValue Value => Quantity.Value;
+            public ValueDisplay Value => new(Quantity);
             public IQuantity Quantity { get; } = quantity;
 
             public override string ToString()
