@@ -21,6 +21,12 @@
     <WarningsNotAsErrors>612,618</WarningsNotAsErrors>
   </PropertyGroup>
 
+  <!-- Build symbol package (.snupkg) to distribute the PDB file for debugging, in addition to Source Link per recommendation: https://learn.microsoft.com/en-us/dotnet/standard/library-guidance/sourcelink -->
+  <PropertyGroup>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)/NullableAttributes.cs" />
   </ItemGroup>
