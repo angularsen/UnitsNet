@@ -70,6 +70,19 @@
           "Abbreviations": [ "lb/ft" ]
         }
       ]
+    },
+    {
+      "SingularName": "GramPerFoot",
+      "PluralName": "GramsPerFoot",
+      "FromUnitToBaseFunc": "{x} * 3.28084e-3",
+      "FromBaseToUnitFunc": "{x} / 3.28084e-3",
+      "Prefixes": [ "Micro", "Milli", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g/ft" ]
+        }
+      ]
     }
   ]
 }
