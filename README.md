@@ -27,6 +27,7 @@ No more magic constants found on Stack Overflow, no more second-guessing the uni
 * [Want To Contribute?](#want-to-contribute)
 * [Continuous Integration](#continuous-integration)
 * [Who are Using This?](#who-are-using-this)
+* [Top Usages by GitHub Repos](#top-usages-by-gitHub-repos)
 * [Units.NET on other platforms](#unitsnet-on-other-platforms)
 
 ### Installing via NuGet
@@ -393,7 +394,8 @@ Read the wiki on [Serializing to JSON, XML and more](https://github.com/angulars
 * Build and test pull requests, notifies on success or error
 * Deploy nugets on master branch, if nuspec versions changed
 
-### Who are Using This?
+
+### Who are Using UnitsNet?
 
 It would be awesome to know who are using this library. If you would like your project listed here, [create an issue](https://github.com/angularsen/UnitsNet/issues) or edit the [README.md](https://github.com/angularsen/UnitsNet/edit/master/README.md) and send a pull request. Max logo size is `300x35 pixels` and should be in `.png`, `.gif` or `.jpg` formats.
 
@@ -473,6 +475,24 @@ https://www.saf.guide
 https://github.com/StructuralAnalysisFormat/StructuralAnalysisFormat-SDK
 
 *- Dirk Schuermans, Software Engineer for [SCIA nv](https://www.scia.net)*
+
+### Top Usages by GitHub Repos
+
+Produced with [ghtopdep](https://github.com/github-tooling/ghtopdep).
+
+| Repo                                                            | Stars   |
+|-----------------------------------------------------------------|---------|
+| https://github.com/microsoft/PowerToys                          | 105K    |
+| https://github.com/dotnet/iot                                   | 2.1K    |
+| https://github.com/genielabs/HomeGenie                          | 388     |
+| https://github.com/raspberry-sharp/raspberry-sharp-io           | 340     |
+| https://github.com/nanoframework/nanoFramework.IoT.Device       | 202     |
+| https://github.com/porrey/Virtual-ZPL-Printer                   | 166     |
+| https://github.com/chino-os/chino-os                            | 147     |
+| https://github.com/BriefFiniteElementNet/BriefFiniteElement.Net | 143     |
+| https://github.com/WhiteBlackGoose/UnitsOfMeasure               | 57      |
+| https://github.com/pi-top/pi-top-4-.NET-SDK                     | 48      |
+
 
 ### Units.NET on other platforms
 
