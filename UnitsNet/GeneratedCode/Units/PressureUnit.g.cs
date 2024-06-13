@@ -81,7 +81,7 @@ namespace UnitsNet.Units
         MeterOfHead = 28,
 
         /// <summary>
-        ///     A centimetre of water is defined as the pressure exerted by a column of water of 1 cm in height at 4 °C (temperature of maximum density) at the standard acceleration of gravity, so that 1 cmH2O (4°C) = 999.9720 kg/m3 × 9.80665 m/s2 × 1 cm = 98.063754138 Pa.
+        ///     A centimetre of water is defined as the pressure exerted by a column of water of 1 cm in height at 4 °C (temperature of maximum density) at the standard acceleration of gravity, so that 1 cmH2O (4°C) = 999.9720 kg/m3 × 9.80665 m/s2 × 1 cm = 98.063754138 Pa, but conventionally a nominal maximum water density of 1000 kg/m3 is used, giving 98.0665 Pa.
         /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Centimetre_or_millimetre_of_water</remarks>
         MeterOfWaterColumn = 57,

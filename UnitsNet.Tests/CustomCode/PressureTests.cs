@@ -88,15 +88,15 @@ namespace UnitsNet.Tests
 
         protected override double MillimetersOfMercuryInOnePascal => 7.50061561302643e-3;
 
-        protected override double MetersOfWaterColumnInOnePascal => 0.0001019744765831372;
+        protected override double MetersOfWaterColumnInOnePascal => 1.0197162129779283e-4;
 
-        protected override double CentimetersOfWaterColumnInOnePascal => 0.01019744765831372;
+        protected override double CentimetersOfWaterColumnInOnePascal => 1.0197162129779283e-2;
 
-        protected override double MillimetersOfWaterColumnInOnePascal => 0.1019744765831372;
+        protected override double MillimetersOfWaterColumnInOnePascal => 1.0197162129779283e-1;
 
         protected override double InchesOfMercuryInOnePascal => 2.95299830714159e-4;
 
-        protected override double InchesOfWaterColumnInOnePascal => 0.004014743172564455;
+        protected override double InchesOfWaterColumnInOnePascal => 4.014630786617777e-3;
 
         protected override double DynesPerSquareCentimeterInOnePascal => 1.0e1;
 

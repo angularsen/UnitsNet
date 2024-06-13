@@ -405,10 +405,10 @@
     {
       "SingularName": "MeterOfWaterColumn",
       "PluralName": "MetersOfWaterColumn",
-      "XmlDocSummary": "A centimetre of water is defined as the pressure exerted by a column of water of 1 cm in height at 4 °C (temperature of maximum density) at the standard acceleration of gravity, so that 1 cmH2O (4°C) = 999.9720 kg/m3 × 9.80665 m/s2 × 1 cm = 98.063754138 Pa.",
+      "XmlDocSummary": "A centimetre of water is defined as the pressure exerted by a column of water of 1 cm in height at 4 °C (temperature of maximum density) at the standard acceleration of gravity, so that 1 cmH2O (4°C) = 999.9720 kg/m3 × 9.80665 m/s2 × 1 cm = 98.063754138 Pa, but conventionally a nominal maximum water density of 1000 kg/m3 is used, giving 98.0665 Pa.",
       "XmlDocRemarks": "https://en.wikipedia.org/wiki/Centimetre_or_millimetre_of_water",
-      "FromUnitToBaseFunc": "{x} * 999.9720 * 9.80665",
-      "FromBaseToUnitFunc": "{x} / (999.9720 * 9.80665)",
+      "FromUnitToBaseFunc": "{x} * 9.80665e3",
+      "FromBaseToUnitFunc": "{x} / 9.80665e3",
       "Prefixes": [ "Milli", "Centi" ],
       "Localization": [
         {
@@ -422,8 +422,8 @@
       "PluralName": "InchesOfWaterColumn",
       "XmlDocSummary": "Inches of water is a non-SI unit for pressure. It is defined as the pressure exerted by a column of water of 1 inch in height at defined conditions. At a temperature of 4 °C (39.2 °F) pure water has its highest density (1000 kg/m3). At that temperature and assuming the standard acceleration of gravity, 1 inAq is approximately 249.082 pascals (0.0361263 psi).",
       "XmlDocRemarks": "https://en.wikipedia.org/wiki/Inch_of_water",
-      "FromUnitToBaseFunc": "{x} * 2.54e-2 * 999.9720 * 9.80665",
-      "FromBaseToUnitFunc": "{x} / (2.54e-2 * 999.9720 * 9.80665)",
+      "FromUnitToBaseFunc": "{x} * 2.54e-2 * 9.80665e3",
+      "FromBaseToUnitFunc": "{x} / (2.54e-2 * 9.80665e3)",
       "Localization": [
         {
           "Culture": "en-US",
