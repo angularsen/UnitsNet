@@ -760,11 +760,11 @@ namespace UnitsNet
             {
                 // ElectricSurfaceChargeDensityUnit -> BaseUnit
                 (ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter) => new ElectricSurfaceChargeDensity(_value * 1.0e4, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter),
-                (ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter) => new ElectricSurfaceChargeDensity(_value * 1.5500031000062000e3, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter),
+                (ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter) => new ElectricSurfaceChargeDensity(_value / 0.00064516, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter),
 
                 // BaseUnit -> ElectricSurfaceChargeDensityUnit
                 (ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter) => new ElectricSurfaceChargeDensity(_value / 1.0e4, ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter),
-                (ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch) => new ElectricSurfaceChargeDensity(_value / 1.5500031000062000e3, ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch),
+                (ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch) => new ElectricSurfaceChargeDensity(_value * 0.00064516, ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch),
 
                 _ => null
             };

@@ -31,8 +31,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double BtusPerCubicFootDegreeFahrenheitInOneJoulePerCubicMeterKelvin => 1.491066E-5;
 
-        protected override double CaloriesPerCubicCentimeterDegreeCelsiusInOneJoulePerCubicMeterKelvin => 2.388459E-7;
-        protected override double KilocaloriesPerCubicCentimeterDegreeCelsiusInOneJoulePerCubicMeterKelvin => 2.388459E-10;
+        protected override double CaloriesPerCubicCentimeterDegreeCelsiusInOneJoulePerCubicMeterKelvin => 2.390057361376673E-07;
+        protected override double KilocaloriesPerCubicCentimeterDegreeCelsiusInOneJoulePerCubicMeterKelvin => 2.390057361376673E-10;
 
         protected override double JoulesPerCubicMeterDegreeCelsiusInOneJoulePerCubicMeterKelvin => 1;
         protected override double KilojoulesPerCubicMeterDegreeCelsiusInOneJoulePerCubicMeterKelvin => 1E-3;

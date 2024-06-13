@@ -24,8 +24,8 @@
     {
       "SingularName": "PoundForceFootPerDegreesPerFoot",
       "PluralName": "PoundForceFeetPerDegreesPerFeet",
-      "FromUnitToBaseFunc": "{x} * 254.864324570",
-      "FromBaseToUnitFunc": "{x} / 254.864324570",
+      "FromUnitToBaseFunc": "{x} * (4.4482216152605 * 180 / Math.PI)",
+      "FromBaseToUnitFunc": "{x} / (4.4482216152605 * 180 / Math.PI)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -36,8 +36,8 @@
     {
       "SingularName": "KilopoundForceFootPerDegreesPerFoot",
       "PluralName": "KilopoundForceFeetPerDegreesPerFeet",
-      "FromUnitToBaseFunc": "{x} * 254864.324570",
-      "FromBaseToUnitFunc": "{x} / 254864.324570",
+      "FromUnitToBaseFunc": "{x} * (4.4482216152605e3 * 180 / Math.PI)",
+      "FromBaseToUnitFunc": "{x} / (4.4482216152605e3 * 180 / Math.PI)",
       "Localization": [
         {
           "Culture": "en-US",

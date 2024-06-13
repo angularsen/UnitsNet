@@ -867,20 +867,20 @@ namespace UnitsNet
             Irradiation? convertedOrNull = (Unit, unit) switch
             {
                 // IrradiationUnit -> BaseUnit
-                (IrradiationUnit.BtuPerSquareFoot, IrradiationUnit.JoulePerSquareMeter) => new Irradiation(_value * (52752792631d / 4645152d), IrradiationUnit.JoulePerSquareMeter),
+                (IrradiationUnit.BtuPerSquareFoot, IrradiationUnit.JoulePerSquareMeter) => new Irradiation(_value * 1055.05585262 / 9.290304e-2, IrradiationUnit.JoulePerSquareMeter),
                 (IrradiationUnit.JoulePerSquareCentimeter, IrradiationUnit.JoulePerSquareMeter) => new Irradiation(_value * 1e4, IrradiationUnit.JoulePerSquareMeter),
                 (IrradiationUnit.JoulePerSquareMillimeter, IrradiationUnit.JoulePerSquareMeter) => new Irradiation(_value * 1e6, IrradiationUnit.JoulePerSquareMeter),
-                (IrradiationUnit.KilobtuPerSquareFoot, IrradiationUnit.JoulePerSquareMeter) => new Irradiation((_value * (52752792631d / 4645152d)) * 1e3d, IrradiationUnit.JoulePerSquareMeter),
+                (IrradiationUnit.KilobtuPerSquareFoot, IrradiationUnit.JoulePerSquareMeter) => new Irradiation((_value * 1055.05585262 / 9.290304e-2) * 1e3d, IrradiationUnit.JoulePerSquareMeter),
                 (IrradiationUnit.KilojoulePerSquareMeter, IrradiationUnit.JoulePerSquareMeter) => new Irradiation((_value) * 1e3d, IrradiationUnit.JoulePerSquareMeter),
                 (IrradiationUnit.KilowattHourPerSquareMeter, IrradiationUnit.JoulePerSquareMeter) => new Irradiation((_value * 3600d) * 1e3d, IrradiationUnit.JoulePerSquareMeter),
                 (IrradiationUnit.MillijoulePerSquareCentimeter, IrradiationUnit.JoulePerSquareMeter) => new Irradiation((_value * 1e4) * 1e-3d, IrradiationUnit.JoulePerSquareMeter),
                 (IrradiationUnit.WattHourPerSquareMeter, IrradiationUnit.JoulePerSquareMeter) => new Irradiation(_value * 3600d, IrradiationUnit.JoulePerSquareMeter),
 
                 // BaseUnit -> IrradiationUnit
-                (IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.BtuPerSquareFoot) => new Irradiation(_value / (52752792631d / 4645152d), IrradiationUnit.BtuPerSquareFoot),
+                (IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.BtuPerSquareFoot) => new Irradiation(_value * 9.290304e-2 / 1055.05585262, IrradiationUnit.BtuPerSquareFoot),
                 (IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.JoulePerSquareCentimeter) => new Irradiation(_value / 1e4, IrradiationUnit.JoulePerSquareCentimeter),
                 (IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.JoulePerSquareMillimeter) => new Irradiation(_value / 1e6, IrradiationUnit.JoulePerSquareMillimeter),
-                (IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.KilobtuPerSquareFoot) => new Irradiation((_value / (52752792631d / 4645152d)) / 1e3d, IrradiationUnit.KilobtuPerSquareFoot),
+                (IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.KilobtuPerSquareFoot) => new Irradiation((_value * 9.290304e-2 / 1055.05585262) / 1e3d, IrradiationUnit.KilobtuPerSquareFoot),
                 (IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.KilojoulePerSquareMeter) => new Irradiation((_value) / 1e3d, IrradiationUnit.KilojoulePerSquareMeter),
                 (IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.KilowattHourPerSquareMeter) => new Irradiation((_value / 3600d) / 1e3d, IrradiationUnit.KilowattHourPerSquareMeter),
                 (IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.MillijoulePerSquareCentimeter) => new Irradiation((_value / 1e4) / 1e-3d, IrradiationUnit.MillijoulePerSquareCentimeter),

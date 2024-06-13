@@ -945,9 +945,9 @@ namespace UnitsNet
                 (ImpulseUnit.MicronewtonSecond, ImpulseUnit.NewtonSecond) => new Impulse((_value) * 1e-6d, ImpulseUnit.NewtonSecond),
                 (ImpulseUnit.MillinewtonSecond, ImpulseUnit.NewtonSecond) => new Impulse((_value) * 1e-3d, ImpulseUnit.NewtonSecond),
                 (ImpulseUnit.NanonewtonSecond, ImpulseUnit.NewtonSecond) => new Impulse((_value) * 1e-9d, ImpulseUnit.NewtonSecond),
-                (ImpulseUnit.PoundFootPerSecond, ImpulseUnit.NewtonSecond) => new Impulse(_value / 7.230657989877, ImpulseUnit.NewtonSecond),
-                (ImpulseUnit.PoundForceSecond, ImpulseUnit.NewtonSecond) => new Impulse(_value / 0.2248089430997, ImpulseUnit.NewtonSecond),
-                (ImpulseUnit.SlugFootPerSecond, ImpulseUnit.NewtonSecond) => new Impulse(_value / 0.224735720691, ImpulseUnit.NewtonSecond),
+                (ImpulseUnit.PoundFootPerSecond, ImpulseUnit.NewtonSecond) => new Impulse(_value * (0.45359237 * 0.3048), ImpulseUnit.NewtonSecond),
+                (ImpulseUnit.PoundForceSecond, ImpulseUnit.NewtonSecond) => new Impulse(_value * 4.4482216152605, ImpulseUnit.NewtonSecond),
+                (ImpulseUnit.SlugFootPerSecond, ImpulseUnit.NewtonSecond) => new Impulse(_value * (32.17405 * 0.45359237 * 0.3048), ImpulseUnit.NewtonSecond),
 
                 // BaseUnit -> ImpulseUnit
                 (ImpulseUnit.NewtonSecond, ImpulseUnit.CentinewtonSecond) => new Impulse((_value) / 1e-2d, ImpulseUnit.CentinewtonSecond),
@@ -959,9 +959,9 @@ namespace UnitsNet
                 (ImpulseUnit.NewtonSecond, ImpulseUnit.MicronewtonSecond) => new Impulse((_value) / 1e-6d, ImpulseUnit.MicronewtonSecond),
                 (ImpulseUnit.NewtonSecond, ImpulseUnit.MillinewtonSecond) => new Impulse((_value) / 1e-3d, ImpulseUnit.MillinewtonSecond),
                 (ImpulseUnit.NewtonSecond, ImpulseUnit.NanonewtonSecond) => new Impulse((_value) / 1e-9d, ImpulseUnit.NanonewtonSecond),
-                (ImpulseUnit.NewtonSecond, ImpulseUnit.PoundFootPerSecond) => new Impulse(_value * 7.230657989877, ImpulseUnit.PoundFootPerSecond),
-                (ImpulseUnit.NewtonSecond, ImpulseUnit.PoundForceSecond) => new Impulse(_value * 0.2248089430997, ImpulseUnit.PoundForceSecond),
-                (ImpulseUnit.NewtonSecond, ImpulseUnit.SlugFootPerSecond) => new Impulse(_value * 0.224735720691, ImpulseUnit.SlugFootPerSecond),
+                (ImpulseUnit.NewtonSecond, ImpulseUnit.PoundFootPerSecond) => new Impulse(_value / (0.45359237 * 0.3048), ImpulseUnit.PoundFootPerSecond),
+                (ImpulseUnit.NewtonSecond, ImpulseUnit.PoundForceSecond) => new Impulse(_value / 4.4482216152605, ImpulseUnit.PoundForceSecond),
+                (ImpulseUnit.NewtonSecond, ImpulseUnit.SlugFootPerSecond) => new Impulse(_value / (32.17405 * 0.45359237 * 0.3048), ImpulseUnit.SlugFootPerSecond),
 
                 _ => null
             };

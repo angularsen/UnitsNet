@@ -291,7 +291,7 @@ namespace UnitsNet
                         LuminosityUnit.Nanowatt => (_value) * 1e-9d,
                         LuminosityUnit.Petawatt => (_value) * 1e15d,
                         LuminosityUnit.Picowatt => (_value) * 1e-12d,
-                        LuminosityUnit.SolarLuminosity => _value * 3.846e26,
+                        LuminosityUnit.SolarLuminosity => _value * 3.828e26,
                         LuminosityUnit.Terawatt => (_value) * 1e12d,
                         LuminosityUnit.Watt => _value,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
@@ -318,7 +318,7 @@ namespace UnitsNet
                         LuminosityUnit.Nanowatt => (baseUnitValue) / 1e-9d,
                         LuminosityUnit.Petawatt => (baseUnitValue) / 1e15d,
                         LuminosityUnit.Picowatt => (baseUnitValue) / 1e-12d,
-                        LuminosityUnit.SolarLuminosity => baseUnitValue / 3.846e26,
+                        LuminosityUnit.SolarLuminosity => baseUnitValue / 3.828e26,
                         LuminosityUnit.Terawatt => (baseUnitValue) / 1e12d,
                         LuminosityUnit.Watt => baseUnitValue,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")

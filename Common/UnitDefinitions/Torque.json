@@ -54,8 +54,8 @@
     {
       "SingularName": "PoundalFoot",
       "PluralName": "PoundalFeet",
-      "FromUnitToBaseFunc": "{x} * 4.21401100938048e-2",
-      "FromBaseToUnitFunc": "{x} / 4.21401100938048e-2",
+      "FromUnitToBaseFunc": "{x} * 0.138254954376 * 0.3048",
+      "FromBaseToUnitFunc": "{x} / (0.138254954376 * 0.3048)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -66,8 +66,8 @@
     {
       "SingularName": "PoundForceInch",
       "PluralName": "PoundForceInches",
-      "FromUnitToBaseFunc": "{x} * 1.129848290276167e-1",
-      "FromBaseToUnitFunc": "{x} / 1.129848290276167e-1",
+      "FromUnitToBaseFunc": "{x} * 4.4482216152605 * 2.54e-2",
+      "FromBaseToUnitFunc": "{x} / (4.4482216152605 * 2.54e-2)",
       "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
@@ -80,8 +80,8 @@
     {
       "SingularName": "PoundForceFoot",
       "PluralName": "PoundForceFeet",
-      "FromUnitToBaseFunc": "{x} * 1.3558179483314",
-      "FromBaseToUnitFunc": "{x} / 1.3558179483314",
+      "FromUnitToBaseFunc": "{x} * 4.4482216152605 * 0.3048",
+      "FromBaseToUnitFunc": "{x} / (4.4482216152605 * 0.3048)",
       "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {

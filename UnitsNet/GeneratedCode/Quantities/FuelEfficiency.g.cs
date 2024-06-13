@@ -778,12 +778,12 @@ namespace UnitsNet
             {
                 // FuelEfficiencyUnit -> BaseUnit
                 (FuelEfficiencyUnit.KilometerPerLiter, FuelEfficiencyUnit.LiterPer100Kilometers) => new FuelEfficiency(100 / _value, FuelEfficiencyUnit.LiterPer100Kilometers),
-                (FuelEfficiencyUnit.MilePerUkGallon, FuelEfficiencyUnit.LiterPer100Kilometers) => new FuelEfficiency((100 * 4.54609188) / (1.609344 * _value), FuelEfficiencyUnit.LiterPer100Kilometers),
+                (FuelEfficiencyUnit.MilePerUkGallon, FuelEfficiencyUnit.LiterPer100Kilometers) => new FuelEfficiency((100 * 4.54609) / (1.609344 * _value), FuelEfficiencyUnit.LiterPer100Kilometers),
                 (FuelEfficiencyUnit.MilePerUsGallon, FuelEfficiencyUnit.LiterPer100Kilometers) => new FuelEfficiency((100 * 3.785411784) / (1.609344 * _value), FuelEfficiencyUnit.LiterPer100Kilometers),
 
                 // BaseUnit -> FuelEfficiencyUnit
                 (FuelEfficiencyUnit.LiterPer100Kilometers, FuelEfficiencyUnit.KilometerPerLiter) => new FuelEfficiency(100 / _value, FuelEfficiencyUnit.KilometerPerLiter),
-                (FuelEfficiencyUnit.LiterPer100Kilometers, FuelEfficiencyUnit.MilePerUkGallon) => new FuelEfficiency((100 * 4.54609188) / (1.609344 * _value), FuelEfficiencyUnit.MilePerUkGallon),
+                (FuelEfficiencyUnit.LiterPer100Kilometers, FuelEfficiencyUnit.MilePerUkGallon) => new FuelEfficiency((100 * 4.54609) / (1.609344 * _value), FuelEfficiencyUnit.MilePerUkGallon),
                 (FuelEfficiencyUnit.LiterPer100Kilometers, FuelEfficiencyUnit.MilePerUsGallon) => new FuelEfficiency((100 * 3.785411784) / (1.609344 * _value), FuelEfficiencyUnit.MilePerUsGallon),
 
                 _ => null

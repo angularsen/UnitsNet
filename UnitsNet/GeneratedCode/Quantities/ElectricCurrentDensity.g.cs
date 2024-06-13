@@ -759,12 +759,12 @@ namespace UnitsNet
             ElectricCurrentDensity? convertedOrNull = (Unit, unit) switch
             {
                 // ElectricCurrentDensityUnit -> BaseUnit
-                (ElectricCurrentDensityUnit.AmperePerSquareFoot, ElectricCurrentDensityUnit.AmperePerSquareMeter) => new ElectricCurrentDensity(_value * 1.0763910416709722e1, ElectricCurrentDensityUnit.AmperePerSquareMeter),
-                (ElectricCurrentDensityUnit.AmperePerSquareInch, ElectricCurrentDensityUnit.AmperePerSquareMeter) => new ElectricCurrentDensity(_value * 1.5500031000062000e3, ElectricCurrentDensityUnit.AmperePerSquareMeter),
+                (ElectricCurrentDensityUnit.AmperePerSquareFoot, ElectricCurrentDensityUnit.AmperePerSquareMeter) => new ElectricCurrentDensity(_value / 9.290304e-2, ElectricCurrentDensityUnit.AmperePerSquareMeter),
+                (ElectricCurrentDensityUnit.AmperePerSquareInch, ElectricCurrentDensityUnit.AmperePerSquareMeter) => new ElectricCurrentDensity(_value / 0.00064516, ElectricCurrentDensityUnit.AmperePerSquareMeter),
 
                 // BaseUnit -> ElectricCurrentDensityUnit
-                (ElectricCurrentDensityUnit.AmperePerSquareMeter, ElectricCurrentDensityUnit.AmperePerSquareFoot) => new ElectricCurrentDensity(_value / 1.0763910416709722e1, ElectricCurrentDensityUnit.AmperePerSquareFoot),
-                (ElectricCurrentDensityUnit.AmperePerSquareMeter, ElectricCurrentDensityUnit.AmperePerSquareInch) => new ElectricCurrentDensity(_value / 1.5500031000062000e3, ElectricCurrentDensityUnit.AmperePerSquareInch),
+                (ElectricCurrentDensityUnit.AmperePerSquareMeter, ElectricCurrentDensityUnit.AmperePerSquareFoot) => new ElectricCurrentDensity(_value * 9.290304e-2, ElectricCurrentDensityUnit.AmperePerSquareFoot),
+                (ElectricCurrentDensityUnit.AmperePerSquareMeter, ElectricCurrentDensityUnit.AmperePerSquareInch) => new ElectricCurrentDensity(_value * 0.00064516, ElectricCurrentDensityUnit.AmperePerSquareInch),
 
                 _ => null
             };

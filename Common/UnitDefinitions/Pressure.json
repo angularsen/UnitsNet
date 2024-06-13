@@ -33,6 +33,8 @@
     {
       "SingularName": "Atmosphere",
       "PluralName": "Atmospheres",
+      "XmlDocSummary": "The standard atmosphere (symbol: atm) is a unit of pressure defined as 101325 Pa. It is sometimes used as a reference pressure or standard pressure. It is approximately equal to Earth's average atmospheric pressure at sea level.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Standard_atmosphere_(unit)",
       "FromUnitToBaseFunc": "{x} * 1.01325 * 1e5",
       "FromBaseToUnitFunc": "{x} / (1.01325 * 1e5)",
       "Localization": [
@@ -49,6 +51,8 @@
     {
       "SingularName": "Bar",
       "PluralName": "Bars",
+      "XmlDocSummary": "The bar is a metric unit of pressure defined as 100,000 Pa (100 kPa), though not part of the International System of Units (SI). A pressure of 1 bar is slightly less than the current average atmospheric pressure on Earth at sea level (approximately 1.013 bar).",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Bar_(unit)",
       "FromUnitToBaseFunc": "{x} * 1e5",
       "FromBaseToUnitFunc": "{x} / 1e5",
       "Prefixes": [ "Micro", "Milli", "Centi", "Deci", "Kilo", "Mega" ],
@@ -66,8 +70,8 @@
     {
       "SingularName": "KilogramForcePerSquareMeter",
       "PluralName": "KilogramsForcePerSquareMeter",
-      "FromUnitToBaseFunc": "{x} * 9.80665019960652",
-      "FromBaseToUnitFunc": "{x} * 0.101971619222242",
+      "FromUnitToBaseFunc": "{x} * 9.80665",
+      "FromBaseToUnitFunc": "{x} / 9.80665",
       "Localization": [
         {
           "Culture": "en-US",
@@ -87,6 +91,8 @@
         "M": "Kilogram",
         "T": "Second"
       },
+      "XmlDocSummary": "A kilogram-force per centimetre square (kgf/cm2), often just kilogram per square centimetre (kg/cm2), or kilopond per centimetre square (kp/cm2) is a deprecated unit of pressure using metric units. It is not a part of the International System of Units (SI), the modern metric system. 1 kgf/cm2 equals 98.0665 kPa (kilopascals). It is also known as a technical atmosphere (symbol: at).",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Kilogram-force_per_square_centimetre",
       "FromUnitToBaseFunc": "{x} * 9.80665e4",
       "FromBaseToUnitFunc": "{x} / 9.80665e4",
       "Localization": [
@@ -170,8 +176,10 @@
     {
       "SingularName": "TechnicalAtmosphere",
       "PluralName": "TechnicalAtmospheres",
-      "FromUnitToBaseFunc": "{x} * 9.80680592331 * 1e4",
-      "FromBaseToUnitFunc": "{x} / (9.80680592331 * 1e4)",
+      "XmlDocSummary": "A kilogram-force per centimetre square (kgf/cm2), often just kilogram per square centimetre (kg/cm2), or kilopond per centimetre square (kp/cm2) is a deprecated unit of pressure using metric units. It is not a part of the International System of Units (SI), the modern metric system. 1 kgf/cm2 equals 98.0665 kPa (kilopascals). It is also known as a technical atmosphere (symbol: at).",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Kilogram-force_per_square_centimetre",
+      "FromUnitToBaseFunc": "{x} * 9.80665e4",
+      "FromBaseToUnitFunc": "{x} / 9.80665e4",
       "Localization": [
         {
           "Culture": "en-US",
@@ -186,8 +194,10 @@
     {
       "SingularName": "Torr",
       "PluralName": "Torrs",
-      "FromUnitToBaseFunc": "{x} * 1.3332266752 * 1e2",
-      "FromBaseToUnitFunc": "{x} / (1.3332266752 * 1e2)",
+      "XmlDocSummary": "The torr (symbol: Torr) is a unit of pressure based on an absolute scale, defined as exactly 1/760 of a standard atmosphere (101325 Pa). Thus one torr is exactly 101325/760 pascals (≈ 133.32 Pa).",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Torr",
+      "FromUnitToBaseFunc": "{x} * 101325 / 760",
+      "FromBaseToUnitFunc": "{x} * 760 / 101325",
       "Localization": [
         {
           "Culture": "en-US",
@@ -207,8 +217,8 @@
         "M": "Pound",
         "T": "Second"
       },
-      "FromUnitToBaseFunc": "{x} * 6.894757293168361e3",
-      "FromBaseToUnitFunc": "{x} / 6.894757293168361e3",
+      "FromUnitToBaseFunc": "{x} * 4.4482216152605 / 0.00064516",
+      "FromBaseToUnitFunc": "{x} * 0.00064516 / 4.4482216152605",
       "Prefixes": [ "Kilo" ],
       "Localization": [
         {
@@ -231,8 +241,8 @@
         "M": "Pound",
         "T": "Second"
       },
-      "FromUnitToBaseFunc": "{x} * 6.894757293168361e9",
-      "FromBaseToUnitFunc": "{x} / 6.894757293168361e9",
+      "FromUnitToBaseFunc": "{x} * 4.4482216152605 / (2.54e-5 * 2.54e-5)",
+      "FromBaseToUnitFunc": "{x} * (2.54e-5 * 2.54e-5) / 4.4482216152605",
       "Prefixes": [ "Kilo" ],
       "Localization": [
         {
@@ -250,8 +260,8 @@
         "M": "Pound",
         "T": "Second"
       },
-      "FromUnitToBaseFunc": "{x} * 4.788025898033584e1",
-      "FromBaseToUnitFunc": "{x} / 4.788025898033584e1",
+      "FromUnitToBaseFunc": "{x} * 4.4482216152605 / 9.290304e-2",
+      "FromBaseToUnitFunc": "{x} * 9.290304e-2 / 4.4482216152605",
       "Prefixes": [ "Kilo" ],
       "Localization": [
         {
@@ -339,8 +349,10 @@
     {
       "SingularName": "MillimeterOfMercury",
       "PluralName": "MillimetersOfMercury",
-      "FromUnitToBaseFunc": "{x} / 7.50061561302643e-3",
-      "FromBaseToUnitFunc": "{x} * 7.50061561302643e-3",
+      "XmlDocSummary": "A millimetre of mercury is a manometric unit of pressure, formerly defined as the extra pressure generated by a column of mercury one millimetre high, and currently defined as exactly 133.322387415 pascals.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Millimetre_of_mercury",
+      "FromUnitToBaseFunc": "{x} * 133.322387415",
+      "FromBaseToUnitFunc": "{x} / 133.322387415",
       "Localization": [
         {
           "Culture": "en-US",
@@ -355,8 +367,10 @@
     {
       "SingularName": "InchOfMercury",
       "PluralName": "InchesOfMercury",
-      "FromUnitToBaseFunc": "{x} / 2.95299830714159e-4",
-      "FromBaseToUnitFunc": "{x} * 2.95299830714159e-4",
+      "XmlDocSummary": "Inch of mercury (inHg and ″Hg) is a non-SI unit of measurement for pressure. It is used for barometric pressure in weather reports, refrigeration and aviation in the United States. It is the pressure exerted by a column of mercury 1 inch (25.4 mm) in height at the standard acceleration of gravity.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Inch_of_mercury",
+      "FromUnitToBaseFunc": "{x} * 2.54e1 * 133.322387415",
+      "FromBaseToUnitFunc": "{x} / (2.54e1 * 133.322387415)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -379,8 +393,8 @@
     {
       "SingularName": "PoundPerInchSecondSquared",
       "PluralName": "PoundsPerInchSecondSquared",
-      "FromUnitToBaseFunc": "{x} * 1.785796732283465e1",
-      "FromBaseToUnitFunc": "{x} / 1.785796732283465e1",
+      "FromUnitToBaseFunc": "{x} * (4.4482216152605 / 0.00064516) / 386.0886",
+      "FromBaseToUnitFunc": "{x} * 386.0886 / (4.4482216152605 / 0.00064516)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -391,8 +405,10 @@
     {
       "SingularName": "MeterOfWaterColumn",
       "PluralName": "MetersOfWaterColumn",
-      "FromUnitToBaseFunc": "{x} * 9.806650000000272e3",
-      "FromBaseToUnitFunc": "{x} / 9.806650000000272e3",
+      "XmlDocSummary": "A centimetre of water is defined as the pressure exerted by a column of water of 1 cm in height at 4 °C (temperature of maximum density) at the standard acceleration of gravity, so that 1 cmH2O (4°C) = 999.9720 kg/m3 × 9.80665 m/s2 × 1 cm = 98.063754138 Pa.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Centimetre_or_millimetre_of_water",
+      "FromUnitToBaseFunc": "{x} * 999.9720 * 9.80665",
+      "FromBaseToUnitFunc": "{x} / (999.9720 * 9.80665)",
       "Prefixes": [ "Milli", "Centi" ],
       "Localization": [
         {
@@ -404,8 +420,10 @@
     {
       "SingularName": "InchOfWaterColumn",
       "PluralName": "InchesOfWaterColumn",
-      "FromUnitToBaseFunc": "{x} * 249.08890833333",
-      "FromBaseToUnitFunc": "{x} / 249.08890833333",
+      "XmlDocSummary": "Inches of water is a non-SI unit for pressure. It is defined as the pressure exerted by a column of water of 1 inch in height at defined conditions. At a temperature of 4 °C (39.2 °F) pure water has its highest density (1000 kg/m3). At that temperature and assuming the standard acceleration of gravity, 1 inAq is approximately 249.082 pascals (0.0361263 psi).",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Inch_of_water",
+      "FromUnitToBaseFunc": "{x} * 2.54e-2 * 999.9720 * 9.80665",
+      "FromBaseToUnitFunc": "{x} / (2.54e-2 * 999.9720 * 9.80665)",
       "Localization": [
         {
           "Culture": "en-US",

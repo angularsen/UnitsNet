@@ -292,8 +292,8 @@ namespace UnitsNet
                         LinearDensityUnit.MilligramPerCentimeter => (_value * 1e-1) * 1e-3d,
                         LinearDensityUnit.MilligramPerMeter => (_value * 1e-3) * 1e-3d,
                         LinearDensityUnit.MilligramPerMillimeter => (_value) * 1e-3d,
-                        LinearDensityUnit.PoundPerFoot => _value * 1.48816394,
-                        LinearDensityUnit.PoundPerInch => _value / 5.5997415e-2,
+                        LinearDensityUnit.PoundPerFoot => _value * 0.45359237 / 0.3048,
+                        LinearDensityUnit.PoundPerInch => _value * 0.45359237 / 2.54e-2,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
                     };
                     }
@@ -319,8 +319,8 @@ namespace UnitsNet
                         LinearDensityUnit.MilligramPerCentimeter => (baseUnitValue / 1e-1) / 1e-3d,
                         LinearDensityUnit.MilligramPerMeter => (baseUnitValue / 1e-3) / 1e-3d,
                         LinearDensityUnit.MilligramPerMillimeter => (baseUnitValue) / 1e-3d,
-                        LinearDensityUnit.PoundPerFoot => baseUnitValue / 1.48816394,
-                        LinearDensityUnit.PoundPerInch => baseUnitValue * 5.5997415e-2,
+                        LinearDensityUnit.PoundPerFoot => baseUnitValue * 0.3048 / 0.45359237,
+                        LinearDensityUnit.PoundPerInch => baseUnitValue * 2.54e-2 / 0.45359237,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
                     };
                     }

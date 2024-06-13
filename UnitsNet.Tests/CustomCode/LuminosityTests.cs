@@ -50,7 +50,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double PetawattsInOneWatt => 1e-15;
 
-        protected override double SolarLuminositiesInOneWatt => 2.6001040041601700000000000E-27;
+        protected override double SolarLuminositiesInOneWatt => 2.612330198537095E-27;
 
     }
 }

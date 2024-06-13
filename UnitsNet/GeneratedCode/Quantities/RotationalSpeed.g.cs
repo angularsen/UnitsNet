@@ -946,8 +946,8 @@ namespace UnitsNet
                 (RotationalSpeedUnit.MilliradianPerSecond, RotationalSpeedUnit.RadianPerSecond) => new RotationalSpeed((_value) * 1e-3d, RotationalSpeedUnit.RadianPerSecond),
                 (RotationalSpeedUnit.NanodegreePerSecond, RotationalSpeedUnit.RadianPerSecond) => new RotationalSpeed(((Math.PI / 180) * _value) * 1e-9d, RotationalSpeedUnit.RadianPerSecond),
                 (RotationalSpeedUnit.NanoradianPerSecond, RotationalSpeedUnit.RadianPerSecond) => new RotationalSpeed((_value) * 1e-9d, RotationalSpeedUnit.RadianPerSecond),
-                (RotationalSpeedUnit.RevolutionPerMinute, RotationalSpeedUnit.RadianPerSecond) => new RotationalSpeed((_value * 6.2831853072) / 60, RotationalSpeedUnit.RadianPerSecond),
-                (RotationalSpeedUnit.RevolutionPerSecond, RotationalSpeedUnit.RadianPerSecond) => new RotationalSpeed(_value * 6.2831853072, RotationalSpeedUnit.RadianPerSecond),
+                (RotationalSpeedUnit.RevolutionPerMinute, RotationalSpeedUnit.RadianPerSecond) => new RotationalSpeed((_value * 2 * Math.PI) / 60, RotationalSpeedUnit.RadianPerSecond),
+                (RotationalSpeedUnit.RevolutionPerSecond, RotationalSpeedUnit.RadianPerSecond) => new RotationalSpeed(_value * 2 * Math.PI, RotationalSpeedUnit.RadianPerSecond),
 
                 // BaseUnit -> RotationalSpeedUnit
                 (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.CentiradianPerSecond) => new RotationalSpeed((_value) / 1e-2d, RotationalSpeedUnit.CentiradianPerSecond),
@@ -960,8 +960,8 @@ namespace UnitsNet
                 (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.MilliradianPerSecond) => new RotationalSpeed((_value) / 1e-3d, RotationalSpeedUnit.MilliradianPerSecond),
                 (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.NanodegreePerSecond) => new RotationalSpeed(((180 / Math.PI) * _value) / 1e-9d, RotationalSpeedUnit.NanodegreePerSecond),
                 (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.NanoradianPerSecond) => new RotationalSpeed((_value) / 1e-9d, RotationalSpeedUnit.NanoradianPerSecond),
-                (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.RevolutionPerMinute) => new RotationalSpeed((_value / 6.2831853072) * 60, RotationalSpeedUnit.RevolutionPerMinute),
-                (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.RevolutionPerSecond) => new RotationalSpeed(_value / 6.2831853072, RotationalSpeedUnit.RevolutionPerSecond),
+                (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.RevolutionPerMinute) => new RotationalSpeed((_value / (2 * Math.PI)) * 60, RotationalSpeedUnit.RevolutionPerMinute),
+                (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.RevolutionPerSecond) => new RotationalSpeed(_value / (2 * Math.PI), RotationalSpeedUnit.RevolutionPerSecond),
 
                 _ => null
             };

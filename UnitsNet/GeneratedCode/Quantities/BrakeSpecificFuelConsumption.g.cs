@@ -757,11 +757,11 @@ namespace UnitsNet
             {
                 // BrakeSpecificFuelConsumptionUnit -> BaseUnit
                 (BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule) => new BrakeSpecificFuelConsumption(_value / 3.6e9, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule),
-                (BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule) => new BrakeSpecificFuelConsumption(_value * 1.689659410672e-7, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule),
+                (BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule) => new BrakeSpecificFuelConsumption(_value * (0.45359237 / (76.0402249 * 9.80665))/3600, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule),
 
                 // BaseUnit -> BrakeSpecificFuelConsumptionUnit
                 (BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour) => new BrakeSpecificFuelConsumption(_value * 3.6e9, BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour),
-                (BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour) => new BrakeSpecificFuelConsumption(_value / 1.689659410672e-7, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour),
+                (BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour) => new BrakeSpecificFuelConsumption(_value * 3600 / (0.45359237 / (76.0402249 * 9.80665)), BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour),
 
                 _ => null
             };

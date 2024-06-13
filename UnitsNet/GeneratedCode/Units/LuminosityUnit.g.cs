@@ -36,7 +36,11 @@ namespace UnitsNet.Units
         Nanowatt = 9,
         Petawatt = 10,
         Picowatt = 11,
-        /// <remarks>https://www.britannica.com/science/luminosity</remarks>
+
+        /// <summary>
+        ///     The IAU has defined a nominal solar luminosity of 3.828×10^26 W to promote publication of consistent and comparable values in units of the solar luminosity.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Luminosity#Measurement</remarks>
         SolarLuminosity = 12,
         Terawatt = 13,
         Watt = 14,

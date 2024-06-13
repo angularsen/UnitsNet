@@ -738,10 +738,10 @@ namespace UnitsNet
             VolumeFlowPerArea? convertedOrNull = (Unit, unit) switch
             {
                 // VolumeFlowPerAreaUnit -> BaseUnit
-                (VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter) => new VolumeFlowPerArea(_value / 196.850394, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter),
+                (VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter) => new VolumeFlowPerArea(_value * (0.028316846592 / 60) / 9.290304e-2, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter),
 
                 // BaseUnit -> VolumeFlowPerAreaUnit
-                (VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot) => new VolumeFlowPerArea(_value * 196.850394, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot),
+                (VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot) => new VolumeFlowPerArea(_value * 9.290304e-2 / (0.028316846592 / 60), VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot),
 
                 _ => null
             };

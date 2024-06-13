@@ -777,14 +777,14 @@ namespace UnitsNet
             SpecificFuelConsumption? convertedOrNull = (Unit, unit) switch
             {
                 // SpecificFuelConsumptionUnit -> BaseUnit
-                (SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond) => new SpecificFuelConsumption(_value * 28.33, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond),
+                (SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond) => new SpecificFuelConsumption(_value * 453.59237 / (0.0044482216152605 * 3600), SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond),
                 (SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond) => new SpecificFuelConsumption((_value) * 1e3d, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond),
-                (SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond) => new SpecificFuelConsumption(_value * 28.33, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond),
+                (SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond) => new SpecificFuelConsumption(_value * 453.59237 / (0.0044482216152605 * 3600), SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond),
 
                 // BaseUnit -> SpecificFuelConsumptionUnit
-                (SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour) => new SpecificFuelConsumption(_value / 28.33, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour),
+                (SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour) => new SpecificFuelConsumption(_value * (0.0044482216152605 * 3600) / 453.59237, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour),
                 (SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond) => new SpecificFuelConsumption((_value) / 1e3d, SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond),
-                (SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour) => new SpecificFuelConsumption(_value / 28.33, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour),
+                (SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour) => new SpecificFuelConsumption(_value * (0.0044482216152605 * 3600) / 453.59237, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour),
 
                 _ => null
             };

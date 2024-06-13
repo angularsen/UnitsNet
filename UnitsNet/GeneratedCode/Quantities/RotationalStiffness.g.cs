@@ -1309,7 +1309,7 @@ namespace UnitsNet
                 (RotationalStiffnessUnit.KilonewtonMeterPerRadian, RotationalStiffnessUnit.NewtonMeterPerRadian) => new RotationalStiffness((_value) * 1e3d, RotationalStiffnessUnit.NewtonMeterPerRadian),
                 (RotationalStiffnessUnit.KilonewtonMillimeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian) => new RotationalStiffness((_value * 180 / Math.PI * 0.001) * 1e3d, RotationalStiffnessUnit.NewtonMeterPerRadian),
                 (RotationalStiffnessUnit.KilonewtonMillimeterPerRadian, RotationalStiffnessUnit.NewtonMeterPerRadian) => new RotationalStiffness((_value * 0.001) * 1e3d, RotationalStiffnessUnit.NewtonMeterPerRadian),
-                (RotationalStiffnessUnit.KilopoundForceFootPerDegrees, RotationalStiffnessUnit.NewtonMeterPerRadian) => new RotationalStiffness(_value * 77682.6, RotationalStiffnessUnit.NewtonMeterPerRadian),
+                (RotationalStiffnessUnit.KilopoundForceFootPerDegrees, RotationalStiffnessUnit.NewtonMeterPerRadian) => new RotationalStiffness(_value * (4.4482216152605e3 * 0.3048 * 180 / Math.PI), RotationalStiffnessUnit.NewtonMeterPerRadian),
                 (RotationalStiffnessUnit.MeganewtonMeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian) => new RotationalStiffness((_value * (180 / Math.PI)) * 1e6d, RotationalStiffnessUnit.NewtonMeterPerRadian),
                 (RotationalStiffnessUnit.MeganewtonMeterPerRadian, RotationalStiffnessUnit.NewtonMeterPerRadian) => new RotationalStiffness((_value) * 1e6d, RotationalStiffnessUnit.NewtonMeterPerRadian),
                 (RotationalStiffnessUnit.MeganewtonMillimeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian) => new RotationalStiffness((_value * 180 / Math.PI * 0.001) * 1e6d, RotationalStiffnessUnit.NewtonMeterPerRadian),
@@ -1326,8 +1326,8 @@ namespace UnitsNet
                 (RotationalStiffnessUnit.NewtonMeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian) => new RotationalStiffness(_value * (180 / Math.PI), RotationalStiffnessUnit.NewtonMeterPerRadian),
                 (RotationalStiffnessUnit.NewtonMillimeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian) => new RotationalStiffness(_value * 180 / Math.PI * 0.001, RotationalStiffnessUnit.NewtonMeterPerRadian),
                 (RotationalStiffnessUnit.NewtonMillimeterPerRadian, RotationalStiffnessUnit.NewtonMeterPerRadian) => new RotationalStiffness(_value * 0.001, RotationalStiffnessUnit.NewtonMeterPerRadian),
-                (RotationalStiffnessUnit.PoundForceFeetPerRadian, RotationalStiffnessUnit.NewtonMeterPerRadian) => new RotationalStiffness(_value * 1.3558179483314, RotationalStiffnessUnit.NewtonMeterPerRadian),
-                (RotationalStiffnessUnit.PoundForceFootPerDegrees, RotationalStiffnessUnit.NewtonMeterPerRadian) => new RotationalStiffness(_value * 77.6826, RotationalStiffnessUnit.NewtonMeterPerRadian),
+                (RotationalStiffnessUnit.PoundForceFeetPerRadian, RotationalStiffnessUnit.NewtonMeterPerRadian) => new RotationalStiffness(_value * 4.4482216152605 * 0.3048, RotationalStiffnessUnit.NewtonMeterPerRadian),
+                (RotationalStiffnessUnit.PoundForceFootPerDegrees, RotationalStiffnessUnit.NewtonMeterPerRadian) => new RotationalStiffness(_value * (4.4482216152605 * 0.3048 * 180 / Math.PI), RotationalStiffnessUnit.NewtonMeterPerRadian),
 
                 // BaseUnit -> RotationalStiffnessUnit
                 (RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.CentinewtonMeterPerDegree) => new RotationalStiffness((_value / (180 / Math.PI)) / 1e-2d, RotationalStiffnessUnit.CentinewtonMeterPerDegree),
@@ -1343,7 +1343,7 @@ namespace UnitsNet
                 (RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.KilonewtonMeterPerRadian) => new RotationalStiffness((_value) / 1e3d, RotationalStiffnessUnit.KilonewtonMeterPerRadian),
                 (RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.KilonewtonMillimeterPerDegree) => new RotationalStiffness((_value / 180 * Math.PI * 1000) / 1e3d, RotationalStiffnessUnit.KilonewtonMillimeterPerDegree),
                 (RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.KilonewtonMillimeterPerRadian) => new RotationalStiffness((_value * 1000) / 1e3d, RotationalStiffnessUnit.KilonewtonMillimeterPerRadian),
-                (RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.KilopoundForceFootPerDegrees) => new RotationalStiffness(_value / 77682.6, RotationalStiffnessUnit.KilopoundForceFootPerDegrees),
+                (RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.KilopoundForceFootPerDegrees) => new RotationalStiffness(_value / (4.4482216152605e3 * 0.3048 * 180 / Math.PI), RotationalStiffnessUnit.KilopoundForceFootPerDegrees),
                 (RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.MeganewtonMeterPerDegree) => new RotationalStiffness((_value / (180 / Math.PI)) / 1e6d, RotationalStiffnessUnit.MeganewtonMeterPerDegree),
                 (RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.MeganewtonMeterPerRadian) => new RotationalStiffness((_value) / 1e6d, RotationalStiffnessUnit.MeganewtonMeterPerRadian),
                 (RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.MeganewtonMillimeterPerDegree) => new RotationalStiffness((_value / 180 * Math.PI * 1000) / 1e6d, RotationalStiffnessUnit.MeganewtonMillimeterPerDegree),
@@ -1360,8 +1360,8 @@ namespace UnitsNet
                 (RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.NewtonMeterPerDegree) => new RotationalStiffness(_value / (180 / Math.PI), RotationalStiffnessUnit.NewtonMeterPerDegree),
                 (RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.NewtonMillimeterPerDegree) => new RotationalStiffness(_value / 180 * Math.PI * 1000, RotationalStiffnessUnit.NewtonMillimeterPerDegree),
                 (RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.NewtonMillimeterPerRadian) => new RotationalStiffness(_value * 1000, RotationalStiffnessUnit.NewtonMillimeterPerRadian),
-                (RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.PoundForceFeetPerRadian) => new RotationalStiffness(_value / 1.3558179483314, RotationalStiffnessUnit.PoundForceFeetPerRadian),
-                (RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.PoundForceFootPerDegrees) => new RotationalStiffness(_value / 77.6826, RotationalStiffnessUnit.PoundForceFootPerDegrees),
+                (RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.PoundForceFeetPerRadian) => new RotationalStiffness(_value / (4.4482216152605 * 0.3048), RotationalStiffnessUnit.PoundForceFeetPerRadian),
+                (RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.PoundForceFootPerDegrees) => new RotationalStiffness(_value / (4.4482216152605 * 0.3048 * 180 / Math.PI), RotationalStiffnessUnit.PoundForceFootPerDegrees),
 
                 _ => null
             };

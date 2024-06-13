@@ -864,24 +864,24 @@ namespace UnitsNet
             VolumePerLength? convertedOrNull = (Unit, unit) switch
             {
                 // VolumePerLengthUnit -> BaseUnit
-                (VolumePerLengthUnit.CubicYardPerFoot, VolumePerLengthUnit.CubicMeterPerMeter) => new VolumePerLength(_value * 2.50838208, VolumePerLengthUnit.CubicMeterPerMeter),
-                (VolumePerLengthUnit.CubicYardPerUsSurveyFoot, VolumePerLengthUnit.CubicMeterPerMeter) => new VolumePerLength(_value * 2.50837706323584, VolumePerLengthUnit.CubicMeterPerMeter),
-                (VolumePerLengthUnit.ImperialGallonPerMile, VolumePerLengthUnit.CubicMeterPerMeter) => new VolumePerLength(_value / (1000 * 1609.344 / 4.54609), VolumePerLengthUnit.CubicMeterPerMeter),
+                (VolumePerLengthUnit.CubicYardPerFoot, VolumePerLengthUnit.CubicMeterPerMeter) => new VolumePerLength(_value * 0.764554857984 / 0.3048, VolumePerLengthUnit.CubicMeterPerMeter),
+                (VolumePerLengthUnit.CubicYardPerUsSurveyFoot, VolumePerLengthUnit.CubicMeterPerMeter) => new VolumePerLength(_value * 0.764554857984 * 3937 / 1200, VolumePerLengthUnit.CubicMeterPerMeter),
+                (VolumePerLengthUnit.ImperialGallonPerMile, VolumePerLengthUnit.CubicMeterPerMeter) => new VolumePerLength(_value * 0.00454609 / 1609.344, VolumePerLengthUnit.CubicMeterPerMeter),
                 (VolumePerLengthUnit.LiterPerKilometer, VolumePerLengthUnit.CubicMeterPerMeter) => new VolumePerLength(_value / 1e6, VolumePerLengthUnit.CubicMeterPerMeter),
                 (VolumePerLengthUnit.LiterPerMeter, VolumePerLengthUnit.CubicMeterPerMeter) => new VolumePerLength(_value / 1000, VolumePerLengthUnit.CubicMeterPerMeter),
                 (VolumePerLengthUnit.LiterPerMillimeter, VolumePerLengthUnit.CubicMeterPerMeter) => new VolumePerLength(_value, VolumePerLengthUnit.CubicMeterPerMeter),
-                (VolumePerLengthUnit.OilBarrelPerFoot, VolumePerLengthUnit.CubicMeterPerMeter) => new VolumePerLength(_value / 1.91713408, VolumePerLengthUnit.CubicMeterPerMeter),
-                (VolumePerLengthUnit.UsGallonPerMile, VolumePerLengthUnit.CubicMeterPerMeter) => new VolumePerLength(_value / (1000 * 1609.344 / 3.785411784), VolumePerLengthUnit.CubicMeterPerMeter),
+                (VolumePerLengthUnit.OilBarrelPerFoot, VolumePerLengthUnit.CubicMeterPerMeter) => new VolumePerLength(_value * 0.158987294928 / 0.3048, VolumePerLengthUnit.CubicMeterPerMeter),
+                (VolumePerLengthUnit.UsGallonPerMile, VolumePerLengthUnit.CubicMeterPerMeter) => new VolumePerLength(_value * 0.003785411784 / 1609.344, VolumePerLengthUnit.CubicMeterPerMeter),
 
                 // BaseUnit -> VolumePerLengthUnit
-                (VolumePerLengthUnit.CubicMeterPerMeter, VolumePerLengthUnit.CubicYardPerFoot) => new VolumePerLength(_value / 2.50838208, VolumePerLengthUnit.CubicYardPerFoot),
-                (VolumePerLengthUnit.CubicMeterPerMeter, VolumePerLengthUnit.CubicYardPerUsSurveyFoot) => new VolumePerLength(_value / 2.50837706323584, VolumePerLengthUnit.CubicYardPerUsSurveyFoot),
-                (VolumePerLengthUnit.CubicMeterPerMeter, VolumePerLengthUnit.ImperialGallonPerMile) => new VolumePerLength(_value * (1000 * 1609.344 / 4.54609), VolumePerLengthUnit.ImperialGallonPerMile),
+                (VolumePerLengthUnit.CubicMeterPerMeter, VolumePerLengthUnit.CubicYardPerFoot) => new VolumePerLength(_value * 0.3048 / 0.764554857984, VolumePerLengthUnit.CubicYardPerFoot),
+                (VolumePerLengthUnit.CubicMeterPerMeter, VolumePerLengthUnit.CubicYardPerUsSurveyFoot) => new VolumePerLength(_value * 1200 / (0.764554857984 * 3937), VolumePerLengthUnit.CubicYardPerUsSurveyFoot),
+                (VolumePerLengthUnit.CubicMeterPerMeter, VolumePerLengthUnit.ImperialGallonPerMile) => new VolumePerLength(_value * 1609.344 / 0.00454609, VolumePerLengthUnit.ImperialGallonPerMile),
                 (VolumePerLengthUnit.CubicMeterPerMeter, VolumePerLengthUnit.LiterPerKilometer) => new VolumePerLength(_value * 1e6, VolumePerLengthUnit.LiterPerKilometer),
                 (VolumePerLengthUnit.CubicMeterPerMeter, VolumePerLengthUnit.LiterPerMeter) => new VolumePerLength(_value * 1000, VolumePerLengthUnit.LiterPerMeter),
                 (VolumePerLengthUnit.CubicMeterPerMeter, VolumePerLengthUnit.LiterPerMillimeter) => new VolumePerLength(_value, VolumePerLengthUnit.LiterPerMillimeter),
-                (VolumePerLengthUnit.CubicMeterPerMeter, VolumePerLengthUnit.OilBarrelPerFoot) => new VolumePerLength(_value * 1.91713408, VolumePerLengthUnit.OilBarrelPerFoot),
-                (VolumePerLengthUnit.CubicMeterPerMeter, VolumePerLengthUnit.UsGallonPerMile) => new VolumePerLength(_value * (1000 * 1609.344 / 3.785411784), VolumePerLengthUnit.UsGallonPerMile),
+                (VolumePerLengthUnit.CubicMeterPerMeter, VolumePerLengthUnit.OilBarrelPerFoot) => new VolumePerLength(_value * 0.3048 / 0.158987294928, VolumePerLengthUnit.OilBarrelPerFoot),
+                (VolumePerLengthUnit.CubicMeterPerMeter, VolumePerLengthUnit.UsGallonPerMile) => new VolumePerLength(_value * 1609.344 / 0.003785411784, VolumePerLengthUnit.UsGallonPerMile),
 
                 _ => null
             };

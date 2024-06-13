@@ -903,25 +903,25 @@ namespace UnitsNet
             ElectricCharge? convertedOrNull = (Unit, unit) switch
             {
                 // ElectricChargeUnit -> BaseUnit
-                (ElectricChargeUnit.AmpereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge(_value / 2.77777777777e-4, ElectricChargeUnit.Coulomb),
-                (ElectricChargeUnit.KiloampereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value / 2.77777777777e-4) * 1e3d, ElectricChargeUnit.Coulomb),
+                (ElectricChargeUnit.AmpereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge(_value * 3600, ElectricChargeUnit.Coulomb),
+                (ElectricChargeUnit.KiloampereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value * 3600) * 1e3d, ElectricChargeUnit.Coulomb),
                 (ElectricChargeUnit.Kilocoulomb, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value) * 1e3d, ElectricChargeUnit.Coulomb),
-                (ElectricChargeUnit.MegaampereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value / 2.77777777777e-4) * 1e6d, ElectricChargeUnit.Coulomb),
+                (ElectricChargeUnit.MegaampereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value * 3600) * 1e6d, ElectricChargeUnit.Coulomb),
                 (ElectricChargeUnit.Megacoulomb, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value) * 1e6d, ElectricChargeUnit.Coulomb),
                 (ElectricChargeUnit.Microcoulomb, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value) * 1e-6d, ElectricChargeUnit.Coulomb),
-                (ElectricChargeUnit.MilliampereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value / 2.77777777777e-4) * 1e-3d, ElectricChargeUnit.Coulomb),
+                (ElectricChargeUnit.MilliampereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value * 3600) * 1e-3d, ElectricChargeUnit.Coulomb),
                 (ElectricChargeUnit.Millicoulomb, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value) * 1e-3d, ElectricChargeUnit.Coulomb),
                 (ElectricChargeUnit.Nanocoulomb, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value) * 1e-9d, ElectricChargeUnit.Coulomb),
                 (ElectricChargeUnit.Picocoulomb, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value) * 1e-12d, ElectricChargeUnit.Coulomb),
 
                 // BaseUnit -> ElectricChargeUnit
-                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.AmpereHour) => new ElectricCharge(_value * 2.77777777777e-4, ElectricChargeUnit.AmpereHour),
-                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.KiloampereHour) => new ElectricCharge((_value * 2.77777777777e-4) / 1e3d, ElectricChargeUnit.KiloampereHour),
+                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.AmpereHour) => new ElectricCharge(_value / 3600, ElectricChargeUnit.AmpereHour),
+                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.KiloampereHour) => new ElectricCharge((_value / 3600) / 1e3d, ElectricChargeUnit.KiloampereHour),
                 (ElectricChargeUnit.Coulomb, ElectricChargeUnit.Kilocoulomb) => new ElectricCharge((_value) / 1e3d, ElectricChargeUnit.Kilocoulomb),
-                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.MegaampereHour) => new ElectricCharge((_value * 2.77777777777e-4) / 1e6d, ElectricChargeUnit.MegaampereHour),
+                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.MegaampereHour) => new ElectricCharge((_value / 3600) / 1e6d, ElectricChargeUnit.MegaampereHour),
                 (ElectricChargeUnit.Coulomb, ElectricChargeUnit.Megacoulomb) => new ElectricCharge((_value) / 1e6d, ElectricChargeUnit.Megacoulomb),
                 (ElectricChargeUnit.Coulomb, ElectricChargeUnit.Microcoulomb) => new ElectricCharge((_value) / 1e-6d, ElectricChargeUnit.Microcoulomb),
-                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.MilliampereHour) => new ElectricCharge((_value * 2.77777777777e-4) / 1e-3d, ElectricChargeUnit.MilliampereHour),
+                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.MilliampereHour) => new ElectricCharge((_value / 3600) / 1e-3d, ElectricChargeUnit.MilliampereHour),
                 (ElectricChargeUnit.Coulomb, ElectricChargeUnit.Millicoulomb) => new ElectricCharge((_value) / 1e-3d, ElectricChargeUnit.Millicoulomb),
                 (ElectricChargeUnit.Coulomb, ElectricChargeUnit.Nanocoulomb) => new ElectricCharge((_value) / 1e-9d, ElectricChargeUnit.Nanocoulomb),
                 (ElectricChargeUnit.Coulomb, ElectricChargeUnit.Picocoulomb) => new ElectricCharge((_value) / 1e-12d, ElectricChargeUnit.Picocoulomb),

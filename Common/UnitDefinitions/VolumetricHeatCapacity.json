@@ -39,8 +39,8 @@
     {
       "SingularName": "CaloriePerCubicCentimeterDegreeCelsius",
       "PluralName": "CaloriesPerCubicCentimeterDegreeCelsius",
-      "FromUnitToBaseFunc": "{x} / 2.388459e-7",
-      "FromBaseToUnitFunc": "{x} * 2.388459e-7",
+      "FromUnitToBaseFunc": "{x} * 4.184e6",
+      "FromBaseToUnitFunc": "{x} / 4.184e6",
       "Prefixes": [ "Kilo" ],
       "Localization": [
         {
@@ -52,8 +52,8 @@
     {
       "SingularName": "BtuPerCubicFootDegreeFahrenheit",
       "PluralName": "BtusPerCubicFootDegreeFahrenheit",
-      "FromUnitToBaseFunc": "{x} / 1.4910660e-5",
-      "FromBaseToUnitFunc": "{x} * 1.4910660e-5",
+      "FromUnitToBaseFunc": "{x} * (1055.05585262 / 0.028316846592) * 1.8",
+      "FromBaseToUnitFunc": "{x} / ((1055.05585262 / 0.028316846592) * 1.8)",
       "Localization": [
         {
           "Culture": "en-US",

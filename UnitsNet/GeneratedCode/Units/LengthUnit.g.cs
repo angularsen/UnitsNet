@@ -38,6 +38,11 @@ namespace UnitsNet.Units
         /// <remarks>https://en.wikipedia.org/wiki/Astronomical_unit</remarks>
         AstronomicalUnit = 2,
         Centimeter = 3,
+
+        /// <summary>
+        ///     The chain (abbreviated ch) is a unit of length equal to 66 feet (22 yards), used in both the US customary and Imperial unit systems. It is subdivided into 100 links. There are 10 chains in a furlong, and 80 chains in one statute mile. In metric terms, it is 20.1168 m long.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Chain_(unit)</remarks>
         Chain = 4,
 
         /// <summary>
@@ -47,14 +52,39 @@ namespace UnitsNet.Units
         DataMile = 5,
         Decameter = 6,
         Decimeter = 7,
+
+        /// <summary>
+        ///     The pica is a typographic unit of measure corresponding to approximately 1⁄6 of an inch, or from 1⁄68 to 1⁄73 of a foot. One pica is further divided into 12 points.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Pica_(typography)</remarks>
         DtpPica = 8,
+
+        /// <summary>
+        ///     The desktop publishing point (DTP) is defined as 1⁄72 of an inch (1/72 × 25.4 mm ≈ 0.353 mm) and, as with earlier American point sizes, is considered to be 1⁄12 of a pica.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Point_(typography)</remarks>
         DtpPoint = 9,
         Fathom = 10,
         Femtometer = 48,
+
+        /// <summary>
+        ///     The foot (pl. feet; standard symbol: ft) is a unit of length in the British imperial and United States customary systems of measurement. The prime symbol, ′, is commonly used to represent the foot. In both customary and imperial units, one foot comprises 12 inches, and one yard comprises three feet. Since an international agreement in 1959, the foot is defined as equal to exactly 0.3048 meters.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Foot_(unit)</remarks>
         Foot = 11,
         Gigameter = 44,
+
+        /// <summary>
+        ///     The hand is a non-SI unit of measurement of length standardized to 4 in (101.6 mm). It is used to measure the height of horses in many English-speaking countries, including Australia, Canada, Ireland, the United Kingdom, and the United States. It was originally based on the breadth of a human hand.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Hand_(unit)</remarks>
         Hand = 12,
         Hectometer = 13,
+
+        /// <summary>
+        ///     The inch (symbol: in or ″) is a unit of length in the British Imperial and the United States customary systems of measurement. It is equal to 1/36 yard or 1/12 of a foot. Derived from the Roman uncia ("twelfth"), the word inch is also sometimes used to translate similar units in other measurement systems, usually understood as deriving from the width of the human thumb.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Inch</remarks>
         Inch = 14,
         Kilofoot = 45,
         KilolightYear = 15,
@@ -90,7 +120,17 @@ namespace UnitsNet.Units
         /// <remarks>https://en.wikipedia.org/wiki/Parsec</remarks>
         Parsec = 29,
         Picometer = 43,
+
+        /// <summary>
+        ///     The American pica of 0.16604 inches (~4.217 mm) was established by the United States Type Founders' Association in 1886. In TeX one pica is 400⁄2409 of an inch.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Pica_(typography)</remarks>
         PrinterPica = 30,
+
+        /// <summary>
+        ///     In typography, the point is the smallest unit of measure. It is used for measuring font size, leading, and other items on a printed page. In modern times this size of the point has been approximated as exactly 1⁄72.27 (0.01383700013837) of the inch by Donald Knuth for the default unit of his TeX computer typesetting system and is thus sometimes known as the TeX point.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Point_(typography)</remarks>
         PrinterPoint = 31,
         Shackle = 32,
 
@@ -99,6 +139,11 @@ namespace UnitsNet.Units
         /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Stellar_classification</remarks>
         SolarRadius = 33,
+
+        /// <summary>
+        ///     A twip (abbreviating "twentieth of a point" or "twentieth of an inch point") is a typographical measurement, defined as 1⁄20 of a typographical point. One twip is 1⁄1440 inch, or ~17.64 μm.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Twip</remarks>
         Twip = 34,
 
         /// <summary>

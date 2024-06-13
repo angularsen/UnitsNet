@@ -741,10 +741,10 @@ namespace UnitsNet
             ThermalConductivity? convertedOrNull = (Unit, unit) switch
             {
                 // ThermalConductivityUnit -> BaseUnit
-                (ThermalConductivityUnit.BtuPerHourFootFahrenheit, ThermalConductivityUnit.WattPerMeterKelvin) => new ThermalConductivity(_value * 1.73073467, ThermalConductivityUnit.WattPerMeterKelvin),
+                (ThermalConductivityUnit.BtuPerHourFootFahrenheit, ThermalConductivityUnit.WattPerMeterKelvin) => new ThermalConductivity(_value * ((1055.05585262 / (0.3048 * 3600)) * 1.8), ThermalConductivityUnit.WattPerMeterKelvin),
 
                 // BaseUnit -> ThermalConductivityUnit
-                (ThermalConductivityUnit.WattPerMeterKelvin, ThermalConductivityUnit.BtuPerHourFootFahrenheit) => new ThermalConductivity(_value / 1.73073467, ThermalConductivityUnit.BtuPerHourFootFahrenheit),
+                (ThermalConductivityUnit.WattPerMeterKelvin, ThermalConductivityUnit.BtuPerHourFootFahrenheit) => new ThermalConductivity(_value / ((1055.05585262 / (0.3048 * 3600)) * 1.8), ThermalConductivityUnit.BtuPerHourFootFahrenheit),
 
                 _ => null
             };

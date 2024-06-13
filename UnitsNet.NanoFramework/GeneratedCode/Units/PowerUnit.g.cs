@@ -25,23 +25,48 @@ namespace UnitsNet.Units
 
     public enum PowerUnit
     {
+
+        /// <summary>
+        ///     Boiler horsepower is a boiler's capacity to deliver steam to a steam engine and is not the same unit of power as the 550 ft lb/s definition. One boiler horsepower is equal to the thermal energy rate required to evaporate 34.5 pounds (15.6 kg) of fresh water at 212 °F (100 °C) in one hour.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Horsepower#Boiler_horsepower</remarks>
         BoilerHorsepower = 1,
         BritishThermalUnitPerHour = 2,
         Decawatt = 3,
         Deciwatt = 4,
+
+        /// <summary>
+        ///     Nameplates on electrical motors show their power output, not the power input (the power delivered at the shaft, not the power consumed to drive the motor). This power output is ordinarily stated in watts or kilowatts. In the United States, the power output is stated in horsepower, which for this purpose is defined as exactly 746 W.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Horsepower#Electrical_horsepower</remarks>
         ElectricalHorsepower = 5,
         Femtowatt = 6,
         GigajoulePerHour = 7,
         Gigawatt = 8,
+
+        /// <summary>
+        ///     Hydraulic horsepower can represent the power available within hydraulic machinery, power through the down-hole nozzle of a drilling rig, or can be used to estimate the mechanical power needed to generate a known hydraulic flow rate.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Horsepower#Hydraulic_horsepower</remarks>
         HydraulicHorsepower = 9,
         JoulePerHour = 10,
         KilobritishThermalUnitPerHour = 11,
         KilojoulePerHour = 12,
         Kilowatt = 13,
+
+        /// <summary>
+        ///     Assuming the third CGPM (1901, CR 70) definition of standard gravity, gn = 9.80665 m/s2, is used to define the pound-force as well as the kilogram force, and the international avoirdupois pound (1959), one imperial horsepower is: 76.0402249 × 9.80665 kg⋅m2/s3
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Horsepower#Imperial_horsepower</remarks>
         MechanicalHorsepower = 14,
         MegabritishThermalUnitPerHour = 15,
         MegajoulePerHour = 16,
         Megawatt = 17,
+
+        /// <summary>
+        ///     DIN 66036 defines one metric horsepower as the power to raise a mass of 75 kilograms against the Earth's gravitational force over a distance of one metre in one second:[18] 75 kg × 9.80665 m/s2 × 1 m / 1 s = 75 kgf⋅m/s = 1 PS. This is equivalent to 735.49875 W, or 98.6% of an imperial horsepower.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Horsepower#Metric_horsepower_(PS,_KM,_cv,_hk,_pk,_k,_ks,_ch)</remarks>
         MetricHorsepower = 18,
         Microwatt = 19,
         MillijoulePerHour = 20,

@@ -80,7 +80,7 @@
     {
       "SingularName": "TonnePerHour",
       "PluralName": "TonnesPerHour",
-      "FromUnitToBaseFunc": "1000 * {x} / 3.6",
+      "FromUnitToBaseFunc": "{x} * 1000 / 3.6",
       "FromBaseToUnitFunc": "{x} * 3.6 / 1000",
       "Localization": [
         {
@@ -92,8 +92,8 @@
     {
       "SingularName": "PoundPerDay",
       "PluralName": "PoundsPerDay",
-      "FromUnitToBaseFunc": "{x} / 190.47936",
-      "FromBaseToUnitFunc": "{x} * 190.47936",
+      "FromUnitToBaseFunc": "{x} * 453.59237 / 86400",
+      "FromBaseToUnitFunc": "{x} * 86400 / 453.59237",
       "Prefixes": [ "Mega" ],
       "Localization": [
         {
@@ -105,8 +105,8 @@
     {
       "SingularName": "PoundPerHour",
       "PluralName": "PoundsPerHour",
-      "FromUnitToBaseFunc": "{x} / 7.93664",
-      "FromBaseToUnitFunc": "{x} * 7.93664",
+      "FromUnitToBaseFunc": "{x} * 453.59237 / 3600",
+      "FromBaseToUnitFunc": "{x} * 3600 / 453.59237",
       "Prefixes": [ "Mega" ],
       "Localization": [
         {
@@ -118,8 +118,8 @@
     {
       "SingularName": "PoundPerMinute",
       "PluralName": "PoundsPerMinute",
-      "FromUnitToBaseFunc": "{x} / 0.132277",
-      "FromBaseToUnitFunc": "{x} * 0.132277",
+      "FromUnitToBaseFunc": "{x} * 453.59237 / 60",
+      "FromBaseToUnitFunc": "{x} * 60 / 453.59237",
       "Prefixes": [ "Mega" ],
       "Localization": [
         {
@@ -156,8 +156,8 @@
     {
       "SingularName": "ShortTonPerHour",
       "PluralName": "ShortTonsPerHour",
-      "FromUnitToBaseFunc": "{x} * 251.9957611",
-      "FromBaseToUnitFunc": "{x} / 251.9957611",
+      "FromUnitToBaseFunc": "{x} * 907.18474 / 3.6",
+      "FromBaseToUnitFunc": "{x} * 3.6 / 907.18474",
       "Localization": [
         {
           "Culture": "en-US",

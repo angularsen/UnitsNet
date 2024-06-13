@@ -968,7 +968,7 @@ namespace UnitsNet
                 (LuminosityUnit.Nanowatt, LuminosityUnit.Watt) => new Luminosity((_value) * 1e-9d, LuminosityUnit.Watt),
                 (LuminosityUnit.Petawatt, LuminosityUnit.Watt) => new Luminosity((_value) * 1e15d, LuminosityUnit.Watt),
                 (LuminosityUnit.Picowatt, LuminosityUnit.Watt) => new Luminosity((_value) * 1e-12d, LuminosityUnit.Watt),
-                (LuminosityUnit.SolarLuminosity, LuminosityUnit.Watt) => new Luminosity(_value * 3.846e26, LuminosityUnit.Watt),
+                (LuminosityUnit.SolarLuminosity, LuminosityUnit.Watt) => new Luminosity(_value * 3.828e26, LuminosityUnit.Watt),
                 (LuminosityUnit.Terawatt, LuminosityUnit.Watt) => new Luminosity((_value) * 1e12d, LuminosityUnit.Watt),
 
                 // BaseUnit -> LuminosityUnit
@@ -983,7 +983,7 @@ namespace UnitsNet
                 (LuminosityUnit.Watt, LuminosityUnit.Nanowatt) => new Luminosity((_value) / 1e-9d, LuminosityUnit.Nanowatt),
                 (LuminosityUnit.Watt, LuminosityUnit.Petawatt) => new Luminosity((_value) / 1e15d, LuminosityUnit.Petawatt),
                 (LuminosityUnit.Watt, LuminosityUnit.Picowatt) => new Luminosity((_value) / 1e-12d, LuminosityUnit.Picowatt),
-                (LuminosityUnit.Watt, LuminosityUnit.SolarLuminosity) => new Luminosity(_value / 3.846e26, LuminosityUnit.SolarLuminosity),
+                (LuminosityUnit.Watt, LuminosityUnit.SolarLuminosity) => new Luminosity(_value / 3.828e26, LuminosityUnit.SolarLuminosity),
                 (LuminosityUnit.Watt, LuminosityUnit.Terawatt) => new Luminosity((_value) / 1e12d, LuminosityUnit.Terawatt),
 
                 _ => null

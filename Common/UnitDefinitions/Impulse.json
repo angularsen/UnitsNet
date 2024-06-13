@@ -36,8 +36,8 @@
     {
       "SingularName": "PoundFootPerSecond",
       "PluralName": "PoundFeetPerSecond",
-      "FromUnitToBaseFunc": "{x} / 7.230657989877",
-      "FromBaseToUnitFunc": "{x} * 7.230657989877",
+      "FromUnitToBaseFunc": "{x} * (0.45359237 * 0.3048)",
+      "FromBaseToUnitFunc": "{x} / (0.45359237 * 0.3048)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -48,8 +48,8 @@
     {
       "SingularName": "PoundForceSecond",
       "PluralName": "PoundForceSeconds",
-      "FromUnitToBaseFunc": "{x} / 0.2248089430997",
-      "FromBaseToUnitFunc": "{x} * 0.2248089430997",
+      "FromUnitToBaseFunc": "{x} * 4.4482216152605",
+      "FromBaseToUnitFunc": "{x} / 4.4482216152605",
       "Localization": [
         {
           "Culture": "en-US",
@@ -60,8 +60,8 @@
     {
       "SingularName": "SlugFootPerSecond",
       "PluralName": "SlugFeetPerSecond",
-      "FromUnitToBaseFunc": "{x} / 0.224735720691",
-      "FromBaseToUnitFunc": "{x} * 0.224735720691",
+      "FromUnitToBaseFunc": "{x} * (32.17405 * 0.45359237 * 0.3048)",
+      "FromBaseToUnitFunc": "{x} / (32.17405 * 0.45359237 * 0.3048)",
       "Localization": [
         {
           "Culture": "en-US",

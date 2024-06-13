@@ -885,8 +885,8 @@ namespace UnitsNet
             Luminance? convertedOrNull = (Unit, unit) switch
             {
                 // LuminanceUnit -> BaseUnit
-                (LuminanceUnit.CandelaPerSquareFoot, LuminanceUnit.CandelaPerSquareMeter) => new Luminance(_value* 1.07639e1, LuminanceUnit.CandelaPerSquareMeter),
-                (LuminanceUnit.CandelaPerSquareInch, LuminanceUnit.CandelaPerSquareMeter) => new Luminance(_value* 1.5500031e3, LuminanceUnit.CandelaPerSquareMeter),
+                (LuminanceUnit.CandelaPerSquareFoot, LuminanceUnit.CandelaPerSquareMeter) => new Luminance(_value / 9.290304e-2, LuminanceUnit.CandelaPerSquareMeter),
+                (LuminanceUnit.CandelaPerSquareInch, LuminanceUnit.CandelaPerSquareMeter) => new Luminance(_value / 0.00064516, LuminanceUnit.CandelaPerSquareMeter),
                 (LuminanceUnit.CenticandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter) => new Luminance((_value) * 1e-2d, LuminanceUnit.CandelaPerSquareMeter),
                 (LuminanceUnit.DecicandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter) => new Luminance((_value) * 1e-1d, LuminanceUnit.CandelaPerSquareMeter),
                 (LuminanceUnit.KilocandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter) => new Luminance((_value) * 1e3d, LuminanceUnit.CandelaPerSquareMeter),
@@ -896,8 +896,8 @@ namespace UnitsNet
                 (LuminanceUnit.Nit, LuminanceUnit.CandelaPerSquareMeter) => new Luminance(_value, LuminanceUnit.CandelaPerSquareMeter),
 
                 // BaseUnit -> LuminanceUnit
-                (LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareFoot) => new Luminance(_value/ 1.07639e1, LuminanceUnit.CandelaPerSquareFoot),
-                (LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareInch) => new Luminance(_value/ 1.5500031e3, LuminanceUnit.CandelaPerSquareInch),
+                (LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareFoot) => new Luminance(_value * 9.290304e-2, LuminanceUnit.CandelaPerSquareFoot),
+                (LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareInch) => new Luminance(_value * 0.00064516, LuminanceUnit.CandelaPerSquareInch),
                 (LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.CenticandelaPerSquareMeter) => new Luminance((_value) / 1e-2d, LuminanceUnit.CenticandelaPerSquareMeter),
                 (LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.DecicandelaPerSquareMeter) => new Luminance((_value) / 1e-1d, LuminanceUnit.DecicandelaPerSquareMeter),
                 (LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.KilocandelaPerSquareMeter) => new Luminance((_value) / 1e3d, LuminanceUnit.KilocandelaPerSquareMeter),

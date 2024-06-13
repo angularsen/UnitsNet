@@ -756,11 +756,11 @@ namespace UnitsNet
             SpecificVolume? convertedOrNull = (Unit, unit) switch
             {
                 // SpecificVolumeUnit -> BaseUnit
-                (SpecificVolumeUnit.CubicFootPerPound, SpecificVolumeUnit.CubicMeterPerKilogram) => new SpecificVolume(_value / 16.01846353, SpecificVolumeUnit.CubicMeterPerKilogram),
+                (SpecificVolumeUnit.CubicFootPerPound, SpecificVolumeUnit.CubicMeterPerKilogram) => new SpecificVolume(_value * 0.028316846592 / 0.45359237, SpecificVolumeUnit.CubicMeterPerKilogram),
                 (SpecificVolumeUnit.MillicubicMeterPerKilogram, SpecificVolumeUnit.CubicMeterPerKilogram) => new SpecificVolume((_value) * 1e-3d, SpecificVolumeUnit.CubicMeterPerKilogram),
 
                 // BaseUnit -> SpecificVolumeUnit
-                (SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.CubicFootPerPound) => new SpecificVolume(_value * 16.01846353, SpecificVolumeUnit.CubicFootPerPound),
+                (SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.CubicFootPerPound) => new SpecificVolume(_value * 0.45359237 / 0.028316846592, SpecificVolumeUnit.CubicFootPerPound),
                 (SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.MillicubicMeterPerKilogram) => new SpecificVolume((_value) / 1e-3d, SpecificVolumeUnit.MillicubicMeterPerKilogram),
 
                 _ => null

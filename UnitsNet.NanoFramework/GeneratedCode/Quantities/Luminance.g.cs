@@ -236,8 +236,8 @@ namespace UnitsNet
                 {
                     return Unit switch
                     {
-                        LuminanceUnit.CandelaPerSquareFoot => _value* 1.07639e1,
-                        LuminanceUnit.CandelaPerSquareInch => _value* 1.5500031e3,
+                        LuminanceUnit.CandelaPerSquareFoot => _value / 9.290304e-2,
+                        LuminanceUnit.CandelaPerSquareInch => _value / 0.00064516,
                         LuminanceUnit.CandelaPerSquareMeter => _value,
                         LuminanceUnit.CenticandelaPerSquareMeter => (_value) * 1e-2d,
                         LuminanceUnit.DecicandelaPerSquareMeter => (_value) * 1e-1d,
@@ -259,8 +259,8 @@ namespace UnitsNet
 
                     return unit switch
                     {
-                        LuminanceUnit.CandelaPerSquareFoot => baseUnitValue/ 1.07639e1,
-                        LuminanceUnit.CandelaPerSquareInch => baseUnitValue/ 1.5500031e3,
+                        LuminanceUnit.CandelaPerSquareFoot => baseUnitValue * 9.290304e-2,
+                        LuminanceUnit.CandelaPerSquareInch => baseUnitValue * 0.00064516,
                         LuminanceUnit.CandelaPerSquareMeter => baseUnitValue,
                         LuminanceUnit.CenticandelaPerSquareMeter => (baseUnitValue) / 1e-2d,
                         LuminanceUnit.DecicandelaPerSquareMeter => (baseUnitValue) / 1e-1d,

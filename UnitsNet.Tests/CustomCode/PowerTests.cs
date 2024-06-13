@@ -57,7 +57,7 @@ namespace UnitsNet.Tests
 
         protected override decimal HydraulicHorsepowerInOneWatt => 0.00134102207184949258114167291719m;
 
-        protected override decimal MechanicalHorsepowerInOneWatt => 0.00134103984229371454625916935992m;
+        protected override decimal MechanicalHorsepowerInOneWatt => 0.001341022089714950649192639m;
 
         protected override decimal MetricHorsepowerInOneWatt => 0.00135962161730390432342679032425m;
 
