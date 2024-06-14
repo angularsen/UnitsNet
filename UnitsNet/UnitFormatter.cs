@@ -21,10 +21,10 @@ namespace UnitsNet
         ///     string.
         /// </param>
         /// <returns>A ToString format for the specified value.</returns>
-        public static string GetFormat(double value, int significantDigitsAfterRadix)
+        public static string GetFormat(double value, uint significantDigitsAfterRadix)
         {
             double v = Math.Abs(value);
-            var sigDigitsAfterRadixStr = new string('#', significantDigitsAfterRadix);
+            var sigDigitsAfterRadixStr = new string('#', (int)significantDigitsAfterRadix);
             string format;
 
             if (NearlyEqual(v, 0))
