@@ -465,6 +465,8 @@ namespace UnitsNet.Tests
             var v = ReactivePower.FromVoltamperesReactive(1);
             Assert.True(v.Equals(ReactivePower.FromVoltamperesReactive(1), VoltamperesReactiveTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ReactivePower.Zero, VoltamperesReactiveTolerance, ComparisonType.Relative));
+            Assert.True(ReactivePower.FromVoltamperesReactive(100).Equals(ReactivePower.FromVoltamperesReactive(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(ReactivePower.FromVoltamperesReactive(100).Equals(ReactivePower.FromVoltamperesReactive(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

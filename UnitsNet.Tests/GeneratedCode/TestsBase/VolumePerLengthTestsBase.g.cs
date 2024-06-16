@@ -640,6 +640,8 @@ namespace UnitsNet.Tests
             var v = VolumePerLength.FromCubicMetersPerMeter(1);
             Assert.True(v.Equals(VolumePerLength.FromCubicMetersPerMeter(1), CubicMetersPerMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(VolumePerLength.Zero, CubicMetersPerMeterTolerance, ComparisonType.Relative));
+            Assert.True(VolumePerLength.FromCubicMetersPerMeter(100).Equals(VolumePerLength.FromCubicMetersPerMeter(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(VolumePerLength.FromCubicMetersPerMeter(100).Equals(VolumePerLength.FromCubicMetersPerMeter(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

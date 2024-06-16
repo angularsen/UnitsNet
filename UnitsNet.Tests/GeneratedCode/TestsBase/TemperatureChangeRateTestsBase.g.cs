@@ -675,6 +675,8 @@ namespace UnitsNet.Tests
             var v = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1);
             Assert.True(v.Equals(TemperatureChangeRate.FromDegreesCelsiusPerSecond(1), DegreesCelsiusPerSecondTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(TemperatureChangeRate.Zero, DegreesCelsiusPerSecondTolerance, ComparisonType.Relative));
+            Assert.True(TemperatureChangeRate.FromDegreesCelsiusPerSecond(100).Equals(TemperatureChangeRate.FromDegreesCelsiusPerSecond(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(TemperatureChangeRate.FromDegreesCelsiusPerSecond(100).Equals(TemperatureChangeRate.FromDegreesCelsiusPerSecond(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

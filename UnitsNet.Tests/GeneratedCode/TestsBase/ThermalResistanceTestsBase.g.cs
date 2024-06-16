@@ -535,6 +535,8 @@ namespace UnitsNet.Tests
             var v = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1);
             Assert.True(v.Equals(ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1), SquareMeterKelvinsPerKilowattTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ThermalResistance.Zero, SquareMeterKelvinsPerKilowattTolerance, ComparisonType.Relative));
+            Assert.True(ThermalResistance.FromSquareMeterKelvinsPerKilowatt(100).Equals(ThermalResistance.FromSquareMeterKelvinsPerKilowatt(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(ThermalResistance.FromSquareMeterKelvinsPerKilowatt(100).Equals(ThermalResistance.FromSquareMeterKelvinsPerKilowatt(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

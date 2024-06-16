@@ -443,6 +443,8 @@ namespace UnitsNet.Tests
             var v = Illuminance.FromLux(1);
             Assert.True(v.Equals(Illuminance.FromLux(1), LuxTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Illuminance.Zero, LuxTolerance, ComparisonType.Relative));
+            Assert.True(Illuminance.FromLux(100).Equals(Illuminance.FromLux(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(Illuminance.FromLux(100).Equals(Illuminance.FromLux(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

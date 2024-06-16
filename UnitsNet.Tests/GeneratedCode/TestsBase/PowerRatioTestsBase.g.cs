@@ -423,6 +423,8 @@ namespace UnitsNet.Tests
             var v = PowerRatio.FromDecibelWatts(1);
             Assert.True(v.Equals(PowerRatio.FromDecibelWatts(1), DecibelWattsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(PowerRatio.Zero, DecibelWattsTolerance, ComparisonType.Relative));
+            Assert.True(PowerRatio.FromDecibelWatts(100).Equals(PowerRatio.FromDecibelWatts(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(PowerRatio.FromDecibelWatts(100).Equals(PowerRatio.FromDecibelWatts(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

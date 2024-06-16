@@ -631,6 +631,8 @@ namespace UnitsNet.Tests
             var v = RadiationEquivalentDose.FromSieverts(1);
             Assert.True(v.Equals(RadiationEquivalentDose.FromSieverts(1), SievertsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(RadiationEquivalentDose.Zero, SievertsTolerance, ComparisonType.Relative));
+            Assert.True(RadiationEquivalentDose.FromSieverts(100).Equals(RadiationEquivalentDose.FromSieverts(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(RadiationEquivalentDose.FromSieverts(100).Equals(RadiationEquivalentDose.FromSieverts(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

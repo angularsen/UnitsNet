@@ -359,6 +359,8 @@ namespace UnitsNet.Tests
             var v = Magnetization.FromAmperesPerMeter(1);
             Assert.True(v.Equals(Magnetization.FromAmperesPerMeter(1), AmperesPerMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Magnetization.Zero, AmperesPerMeterTolerance, ComparisonType.Relative));
+            Assert.True(Magnetization.FromAmperesPerMeter(100).Equals(Magnetization.FromAmperesPerMeter(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(Magnetization.FromAmperesPerMeter(100).Equals(Magnetization.FromAmperesPerMeter(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

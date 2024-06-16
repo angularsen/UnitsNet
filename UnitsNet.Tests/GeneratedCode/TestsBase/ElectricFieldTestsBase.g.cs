@@ -359,6 +359,8 @@ namespace UnitsNet.Tests
             var v = ElectricField.FromVoltsPerMeter(1);
             Assert.True(v.Equals(ElectricField.FromVoltsPerMeter(1), VoltsPerMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ElectricField.Zero, VoltsPerMeterTolerance, ComparisonType.Relative));
+            Assert.True(ElectricField.FromVoltsPerMeter(100).Equals(ElectricField.FromVoltsPerMeter(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(ElectricField.FromVoltsPerMeter(100).Equals(ElectricField.FromVoltsPerMeter(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

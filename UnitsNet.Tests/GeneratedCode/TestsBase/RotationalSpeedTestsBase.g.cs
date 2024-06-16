@@ -1212,6 +1212,8 @@ namespace UnitsNet.Tests
             var v = RotationalSpeed.FromRadiansPerSecond(1);
             Assert.True(v.Equals(RotationalSpeed.FromRadiansPerSecond(1), RadiansPerSecondTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(RotationalSpeed.Zero, RadiansPerSecondTolerance, ComparisonType.Relative));
+            Assert.True(RotationalSpeed.FromRadiansPerSecond(100).Equals(RotationalSpeed.FromRadiansPerSecond(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(RotationalSpeed.FromRadiansPerSecond(100).Equals(RotationalSpeed.FromRadiansPerSecond(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

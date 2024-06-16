@@ -946,6 +946,8 @@ namespace UnitsNet.Tests
             var v = ForceChangeRate.FromNewtonsPerSecond(1);
             Assert.True(v.Equals(ForceChangeRate.FromNewtonsPerSecond(1), NewtonsPerSecondTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ForceChangeRate.Zero, NewtonsPerSecondTolerance, ComparisonType.Relative));
+            Assert.True(ForceChangeRate.FromNewtonsPerSecond(100).Equals(ForceChangeRate.FromNewtonsPerSecond(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(ForceChangeRate.FromNewtonsPerSecond(100).Equals(ForceChangeRate.FromNewtonsPerSecond(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

@@ -500,6 +500,8 @@ namespace UnitsNet.Tests
             var v = ElectricConductance.FromSiemens(1);
             Assert.True(v.Equals(ElectricConductance.FromSiemens(1), SiemensTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ElectricConductance.Zero, SiemensTolerance, ComparisonType.Relative));
+            Assert.True(ElectricConductance.FromSiemens(100).Equals(ElectricConductance.FromSiemens(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(ElectricConductance.FromSiemens(100).Equals(ElectricConductance.FromSiemens(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

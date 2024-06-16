@@ -640,6 +640,8 @@ namespace UnitsNet.Tests
             var v = TemperatureDelta.FromKelvins(1);
             Assert.True(v.Equals(TemperatureDelta.FromKelvins(1), KelvinsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(TemperatureDelta.Zero, KelvinsTolerance, ComparisonType.Relative));
+            Assert.True(TemperatureDelta.FromKelvins(100).Equals(TemperatureDelta.FromKelvins(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(TemperatureDelta.FromKelvins(100).Equals(TemperatureDelta.FromKelvins(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

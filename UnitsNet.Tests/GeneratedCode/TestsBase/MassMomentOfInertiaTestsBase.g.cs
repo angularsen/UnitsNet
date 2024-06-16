@@ -1305,6 +1305,8 @@ namespace UnitsNet.Tests
             var v = MassMomentOfInertia.FromKilogramSquareMeters(1);
             Assert.True(v.Equals(MassMomentOfInertia.FromKilogramSquareMeters(1), KilogramSquareMetersTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(MassMomentOfInertia.Zero, KilogramSquareMetersTolerance, ComparisonType.Relative));
+            Assert.True(MassMomentOfInertia.FromKilogramSquareMeters(100).Equals(MassMomentOfInertia.FromKilogramSquareMeters(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(MassMomentOfInertia.FromKilogramSquareMeters(100).Equals(MassMomentOfInertia.FromKilogramSquareMeters(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

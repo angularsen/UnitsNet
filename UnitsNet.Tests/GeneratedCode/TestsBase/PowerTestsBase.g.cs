@@ -1216,6 +1216,8 @@ namespace UnitsNet.Tests
             var v = Power.FromWatts(1);
             Assert.True(v.Equals(Power.FromWatts(1), WattsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Power.Zero, WattsTolerance, ComparisonType.Relative));
+            Assert.True(Power.FromWatts(100).Equals(Power.FromWatts(120), (decimal)0.3m, ComparisonType.Relative));
+            Assert.False(Power.FromWatts(100).Equals(Power.FromWatts(120), (decimal)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

@@ -675,6 +675,8 @@ namespace UnitsNet.Tests
             var v = Luminance.FromCandelasPerSquareMeter(1);
             Assert.True(v.Equals(Luminance.FromCandelasPerSquareMeter(1), CandelasPerSquareMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Luminance.Zero, CandelasPerSquareMeterTolerance, ComparisonType.Relative));
+            Assert.True(Luminance.FromCandelasPerSquareMeter(100).Equals(Luminance.FromCandelasPerSquareMeter(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(Luminance.FromCandelasPerSquareMeter(100).Equals(Luminance.FromCandelasPerSquareMeter(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

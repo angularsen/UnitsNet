@@ -465,6 +465,8 @@ namespace UnitsNet.Tests
             var v = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1);
             Assert.True(v.Equals(SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1), GramsPerKiloNewtonSecondTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(SpecificFuelConsumption.Zero, GramsPerKiloNewtonSecondTolerance, ComparisonType.Relative));
+            Assert.True(SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(100).Equals(SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(100).Equals(SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

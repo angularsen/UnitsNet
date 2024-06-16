@@ -815,6 +815,8 @@ namespace UnitsNet.Tests
             var v = LinearDensity.FromKilogramsPerMeter(1);
             Assert.True(v.Equals(LinearDensity.FromKilogramsPerMeter(1), KilogramsPerMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(LinearDensity.Zero, KilogramsPerMeterTolerance, ComparisonType.Relative));
+            Assert.True(LinearDensity.FromKilogramsPerMeter(100).Equals(LinearDensity.FromKilogramsPerMeter(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(LinearDensity.FromKilogramsPerMeter(100).Equals(LinearDensity.FromKilogramsPerMeter(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

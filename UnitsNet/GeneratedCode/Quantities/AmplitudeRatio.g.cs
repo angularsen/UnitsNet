@@ -645,7 +645,7 @@ namespace UnitsNet
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance,
-                comparisonType: ComparisonType.Absolute);
+                comparisonType: comparisonType);
         }
 
         /// <inheritdoc />

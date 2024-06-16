@@ -359,6 +359,8 @@ namespace UnitsNet.Tests
             var v = RelativeHumidity.FromPercent(1);
             Assert.True(v.Equals(RelativeHumidity.FromPercent(1), PercentTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(RelativeHumidity.Zero, PercentTolerance, ComparisonType.Relative));
+            Assert.True(RelativeHumidity.FromPercent(100).Equals(RelativeHumidity.FromPercent(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(RelativeHumidity.FromPercent(100).Equals(RelativeHumidity.FromPercent(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

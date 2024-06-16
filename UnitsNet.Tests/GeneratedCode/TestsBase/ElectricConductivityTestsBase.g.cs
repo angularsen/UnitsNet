@@ -535,6 +535,8 @@ namespace UnitsNet.Tests
             var v = ElectricConductivity.FromSiemensPerMeter(1);
             Assert.True(v.Equals(ElectricConductivity.FromSiemensPerMeter(1), SiemensPerMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ElectricConductivity.Zero, SiemensPerMeterTolerance, ComparisonType.Relative));
+            Assert.True(ElectricConductivity.FromSiemensPerMeter(100).Equals(ElectricConductivity.FromSiemensPerMeter(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(ElectricConductivity.FromSiemensPerMeter(100).Equals(ElectricConductivity.FromSiemensPerMeter(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]
