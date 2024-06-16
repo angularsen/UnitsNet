@@ -430,6 +430,8 @@ namespace UnitsNet.Tests
             var v = ElectricCurrentDensity.FromAmperesPerSquareMeter(1);
             Assert.True(v.Equals(ElectricCurrentDensity.FromAmperesPerSquareMeter(1), AmperesPerSquareMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ElectricCurrentDensity.Zero, AmperesPerSquareMeterTolerance, ComparisonType.Relative));
+            Assert.True(ElectricCurrentDensity.FromAmperesPerSquareMeter(100).Equals(ElectricCurrentDensity.FromAmperesPerSquareMeter(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(ElectricCurrentDensity.FromAmperesPerSquareMeter(100).Equals(ElectricCurrentDensity.FromAmperesPerSquareMeter(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

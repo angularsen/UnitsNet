@@ -359,6 +359,8 @@ namespace UnitsNet.Tests
             var v = Turbidity.FromNTU(1);
             Assert.True(v.Equals(Turbidity.FromNTU(1), NTUTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Turbidity.Zero, NTUTolerance, ComparisonType.Relative));
+            Assert.True(Turbidity.FromNTU(100).Equals(Turbidity.FromNTU(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(Turbidity.FromNTU(100).Equals(Turbidity.FromNTU(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

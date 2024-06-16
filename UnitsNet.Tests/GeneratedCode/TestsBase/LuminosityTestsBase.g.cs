@@ -771,6 +771,8 @@ namespace UnitsNet.Tests
             var v = Luminosity.FromWatts(1);
             Assert.True(v.Equals(Luminosity.FromWatts(1), WattsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Luminosity.Zero, WattsTolerance, ComparisonType.Relative));
+            Assert.True(Luminosity.FromWatts(100).Equals(Luminosity.FromWatts(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(Luminosity.FromWatts(100).Equals(Luminosity.FromWatts(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

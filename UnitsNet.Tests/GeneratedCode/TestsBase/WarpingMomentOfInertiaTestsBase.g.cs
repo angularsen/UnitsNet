@@ -679,6 +679,8 @@ namespace UnitsNet.Tests
             var v = WarpingMomentOfInertia.FromMetersToTheSixth(1);
             Assert.True(v.Equals(WarpingMomentOfInertia.FromMetersToTheSixth(1), MetersToTheSixthTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(WarpingMomentOfInertia.Zero, MetersToTheSixthTolerance, ComparisonType.Relative));
+            Assert.True(WarpingMomentOfInertia.FromMetersToTheSixth(100).Equals(WarpingMomentOfInertia.FromMetersToTheSixth(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(WarpingMomentOfInertia.FromMetersToTheSixth(100).Equals(WarpingMomentOfInertia.FromMetersToTheSixth(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

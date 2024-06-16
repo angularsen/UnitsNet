@@ -2381,6 +2381,8 @@ namespace UnitsNet.Tests
             var v = Density.FromKilogramsPerCubicMeter(1);
             Assert.True(v.Equals(Density.FromKilogramsPerCubicMeter(1), KilogramsPerCubicMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Density.Zero, KilogramsPerCubicMeterTolerance, ComparisonType.Relative));
+            Assert.True(Density.FromKilogramsPerCubicMeter(100).Equals(Density.FromKilogramsPerCubicMeter(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(Density.FromKilogramsPerCubicMeter(100).Equals(Density.FromKilogramsPerCubicMeter(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

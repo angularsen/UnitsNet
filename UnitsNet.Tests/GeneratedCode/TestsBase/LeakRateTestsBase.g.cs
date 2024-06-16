@@ -430,6 +430,8 @@ namespace UnitsNet.Tests
             var v = LeakRate.FromPascalCubicMetersPerSecond(1);
             Assert.True(v.Equals(LeakRate.FromPascalCubicMetersPerSecond(1), PascalCubicMetersPerSecondTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(LeakRate.Zero, PascalCubicMetersPerSecondTolerance, ComparisonType.Relative));
+            Assert.True(LeakRate.FromPascalCubicMetersPerSecond(100).Equals(LeakRate.FromPascalCubicMetersPerSecond(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(LeakRate.FromPascalCubicMetersPerSecond(100).Equals(LeakRate.FromPascalCubicMetersPerSecond(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

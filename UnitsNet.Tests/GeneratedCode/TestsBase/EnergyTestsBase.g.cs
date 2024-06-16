@@ -2207,6 +2207,8 @@ namespace UnitsNet.Tests
             var v = Energy.FromJoules(1);
             Assert.True(v.Equals(Energy.FromJoules(1), JoulesTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Energy.Zero, JoulesTolerance, ComparisonType.Relative));
+            Assert.True(Energy.FromJoules(100).Equals(Energy.FromJoules(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(Energy.FromJoules(100).Equals(Energy.FromJoules(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

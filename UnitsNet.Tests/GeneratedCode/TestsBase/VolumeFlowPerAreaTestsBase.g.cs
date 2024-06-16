@@ -395,6 +395,8 @@ namespace UnitsNet.Tests
             var v = VolumeFlowPerArea.FromCubicMetersPerSecondPerSquareMeter(1);
             Assert.True(v.Equals(VolumeFlowPerArea.FromCubicMetersPerSecondPerSquareMeter(1), CubicMetersPerSecondPerSquareMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(VolumeFlowPerArea.Zero, CubicMetersPerSecondPerSquareMeterTolerance, ComparisonType.Relative));
+            Assert.True(VolumeFlowPerArea.FromCubicMetersPerSecondPerSquareMeter(100).Equals(VolumeFlowPerArea.FromCubicMetersPerSecondPerSquareMeter(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(VolumeFlowPerArea.FromCubicMetersPerSecondPerSquareMeter(100).Equals(VolumeFlowPerArea.FromCubicMetersPerSecondPerSquareMeter(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

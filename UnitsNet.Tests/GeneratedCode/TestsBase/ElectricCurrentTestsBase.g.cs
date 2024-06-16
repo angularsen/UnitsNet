@@ -618,6 +618,8 @@ namespace UnitsNet.Tests
             var v = ElectricCurrent.FromAmperes(1);
             Assert.True(v.Equals(ElectricCurrent.FromAmperes(1), AmperesTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ElectricCurrent.Zero, AmperesTolerance, ComparisonType.Relative));
+            Assert.True(ElectricCurrent.FromAmperes(100).Equals(ElectricCurrent.FromAmperes(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(ElectricCurrent.FromAmperes(100).Equals(ElectricCurrent.FromAmperes(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

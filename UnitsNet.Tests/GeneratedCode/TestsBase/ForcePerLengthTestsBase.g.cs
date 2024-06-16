@@ -1829,6 +1829,8 @@ namespace UnitsNet.Tests
             var v = ForcePerLength.FromNewtonsPerMeter(1);
             Assert.True(v.Equals(ForcePerLength.FromNewtonsPerMeter(1), NewtonsPerMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ForcePerLength.Zero, NewtonsPerMeterTolerance, ComparisonType.Relative));
+            Assert.True(ForcePerLength.FromNewtonsPerMeter(100).Equals(ForcePerLength.FromNewtonsPerMeter(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(ForcePerLength.FromNewtonsPerMeter(100).Equals(ForcePerLength.FromNewtonsPerMeter(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

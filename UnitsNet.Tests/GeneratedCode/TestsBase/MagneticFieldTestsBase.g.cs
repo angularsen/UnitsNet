@@ -535,6 +535,8 @@ namespace UnitsNet.Tests
             var v = MagneticField.FromTeslas(1);
             Assert.True(v.Equals(MagneticField.FromTeslas(1), TeslasTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(MagneticField.Zero, TeslasTolerance, ComparisonType.Relative));
+            Assert.True(MagneticField.FromTeslas(100).Equals(MagneticField.FromTeslas(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(MagneticField.FromTeslas(100).Equals(MagneticField.FromTeslas(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]
