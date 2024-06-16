@@ -95,13 +95,12 @@ internal readonly struct QuantityDisplay(IQuantity quantity)
     [DebuggerDisplay("{DoubleValue}")]
     internal readonly struct ValueDisplay(IQuantity quantity)
     {
-        public bool IsDecimal => quantity.Value.IsDecimal;
-        public double DoubleValue => (double)quantity.Value;
+        public double DoubleValue => quantity.Value;
         public decimal DecimalValue => (decimal)quantity.Value;
 
         public override string ToString()
         {
-            return IsDecimal ? DecimalValue.ToString(CultureInfo.CurrentCulture) : DoubleValue.ToString(CultureInfo.CurrentCulture);
+            return DoubleValue.ToString(CultureInfo.CurrentCulture);
         }
     }
 
