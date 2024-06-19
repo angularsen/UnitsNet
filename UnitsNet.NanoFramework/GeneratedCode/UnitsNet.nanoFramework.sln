@@ -134,6 +134,8 @@ Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Mass", "Mass\Mass.nfproj", 
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "MassConcentration", "MassConcentration\MassConcentration.nfproj", "{0b1482c2-a3b1-6207-b73f-a07f46718b65}"
 EndProject
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "MassDistance", "MassDistance\MassDistance.nfproj", "{cc19100b-68ff-e4f7-e328-7bf05d167782}"
+EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "MassFlow", "MassFlow\MassFlow.nfproj", "{a0821347-be46-c587-b61d-5152c578048d}"
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "MassFlux", "MassFlux\MassFlux.nfproj", "{15622f39-b4c5-7e66-57bc-31900b6065c8}"
@@ -652,6 +654,12 @@ Global
 {0b1482c2-a3b1-6207-b73f-a07f46718b65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 {0b1482c2-a3b1-6207-b73f-a07f46718b65}.Release|Any CPU.Build.0 = Release|Any CPU
 {0b1482c2-a3b1-6207-b73f-a07f46718b65}.Release|Any CPU.Deploy.0 = Release|Any CPU
+{cc19100b-68ff-e4f7-e328-7bf05d167782}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+{cc19100b-68ff-e4f7-e328-7bf05d167782}.Debug|Any CPU.Build.0 = Debug|Any CPU
+{cc19100b-68ff-e4f7-e328-7bf05d167782}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+{cc19100b-68ff-e4f7-e328-7bf05d167782}.Release|Any CPU.ActiveCfg = Release|Any CPU
+{cc19100b-68ff-e4f7-e328-7bf05d167782}.Release|Any CPU.Build.0 = Release|Any CPU
+{cc19100b-68ff-e4f7-e328-7bf05d167782}.Release|Any CPU.Deploy.0 = Release|Any CPU
 {a0821347-be46-c587-b61d-5152c578048d}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 {a0821347-be46-c587-b61d-5152c578048d}.Debug|Any CPU.Build.0 = Debug|Any CPU
 {a0821347-be46-c587-b61d-5152c578048d}.Debug|Any CPU.Deploy.0 = Debug|Any CPU

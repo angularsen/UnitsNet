@@ -1855,5 +1855,12 @@
     "Sievert": 9,
     "Kilosievert": 3,
     "Megasievert": 6
+  },
+  "MassDistance": {
+    "KilogramKilometre": 6,
+    "ShortTonnMile": 8,
+    "TonneKilometre": 3,
+    "KilogramKilometer": 9,
+    "TonneKilometer": 2
   }
 }

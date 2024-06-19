@@ -1,0 +1,83 @@
+{
+  "Name": "MassDistance",
+  "BaseUnit": "KilogramKilometer",
+  "XmlDocSummary": "Freight is measured in mass-distance. A simple unit of freight is the kilogram-kilometre (kgkm), the service of moving one kilogram of payload a distance of one kilometre.",
+  "BaseDimensions": {
+    "M": 1,
+    "L": -2
+  },
+  "Units": [
+    {
+      "SingularName": "KilogramKilometer",
+      "PluralName": "KilogramKilometers",
+      "BaseUnits": {
+        "M": "Kilogram",
+        "L": "Kilometer"
+      },
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": ["kg⋅km", "kgkm"]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": ["кг⋅км", "кгкм"]
+        },
+        {
+          "Culture": "zh-CN",
+          "Abbreviations": ["公斤·公里", "公斤公里"]
+        }
+      ]
+    },
+    {
+      "SingularName": "TonneKilometer",
+      "PluralName": "TonneKilometers",
+      "BaseUnits": {
+        "M": "Tonne",
+        "L": "Kilometer"
+      },
+      "FromUnitToBaseFunc": "{x} * 1e3",
+      "FromBaseToUnitFunc": "{x} / 1e3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": ["t⋅km", "km⋅t", "tkm", "kmt"]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": ["т⋅км", "км⋅т", "ткм", "кмт"]
+        },
+        {
+          "Culture": "zh-CN",
+          "Abbreviations": ["t·公里", "公里·t", "特公里", "国民党"]
+        }
+      ]
+    },
+    {
+      "SingularName": "ShortTonnMile",
+      "PluralName": "ShortTonMiles",
+      "BaseUnits": {
+        "M": "ShortTon",
+        "L": "Mile"
+      },
+      "FromUnitToBaseFunc": "{x} * 1.46e3",
+      "FromBaseToUnitFunc": "{x} / 1.46e3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": ["t⋅mi", "tmi"]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": ["т⋅ми", "Тми"]
+        },
+        {
+          "Culture": "zh-CN",
+          "Abbreviations": ["t·mi", "特米"]
+        }
+      ]
+    }
+  ]
+}
