@@ -20,8 +20,7 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-
-using System;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -37,5 +36,13 @@ namespace UnitsNet.Tests.CustomCode
         protected override double KilosiemensInOneSiemens => 1E-3;
 
         protected override double NanosiemensInOneSiemens => 1E9;
+
+        [Fact]
+        public void ElectricConductanceDividedByAreaEqualsElectricConductancePerArea()
+        {
+            ElectricConductancePerArea ecpa = ElectricConductance.FromSiemens(40.0) /
+                    Area.FromSquareMeters(4.0);
+            Assert.Equal(ElectricConductancePerArea.FromSiemensPerSquareMeter(10.0), ecpa);
+        }
     }
 }
