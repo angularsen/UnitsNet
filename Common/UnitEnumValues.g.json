@@ -1855,5 +1855,25 @@
     "Sievert": 9,
     "Kilosievert": 3,
     "Megasievert": 6
+  },
+  "ElectricConductancePerArea": {
+    "FemtosiemensPerSquareMeter": 9,
+    "KilosiemensPerSquareMeter": 5,
+    "MegasiemensPerSquareMeter": 1,
+    "MicrosiemensPerSquareCentimeter": 8,
+    "MicrosiemensPerSquareMeter": 6,
+    "MillisiemensPerSquareCentimeter": 4,
+    "MillisiemensPerSquareMeter": 7,
+    "NanosiemensPerSquareMeter": 2,
+    "PicosiemensPerSquareMeter": 10,
+    "SiemensPerSquareCentimeter": 3,
+    "SiemensPerSquareDecimeter": 14,
+    "SiemensPerSquareFoot": 15,
+    "SiemensPerSquareInch": 19,
+    "SiemensPerSquareMeter": 17,
+    "SiemensPerSquareMile": 12,
+    "SiemensPerSquareMillimeter": 20,
+    "SiemensPerSquareYard": 18,
+    "SiemensPerUsSurveySquareFoot": 16
   }
 }

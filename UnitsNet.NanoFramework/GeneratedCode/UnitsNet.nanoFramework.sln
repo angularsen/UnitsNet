@@ -46,6 +46,8 @@ Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricChargeDensity", "El
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricConductance", "ElectricConductance\ElectricConductance.nfproj", "{fcd3dfb2-9ee2-ad22-0e1f-4cddd575792a}"
 EndProject
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricConductancePerArea", "ElectricConductancePerArea\ElectricConductancePerArea.nfproj", "{554f9914-133f-0a1d-e5e0-17c3879852be}"
+EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricConductivity", "ElectricConductivity\ElectricConductivity.nfproj", "{f420eccc-b12d-72e4-2ad2-f93054eeec30}"
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ElectricCurrent", "ElectricCurrent\ElectricCurrent.nfproj", "{55160a70-69b2-4144-b974-b64d78bd50e0}"
@@ -388,6 +390,12 @@ Global
 {fcd3dfb2-9ee2-ad22-0e1f-4cddd575792a}.Release|Any CPU.ActiveCfg = Release|Any CPU
 {fcd3dfb2-9ee2-ad22-0e1f-4cddd575792a}.Release|Any CPU.Build.0 = Release|Any CPU
 {fcd3dfb2-9ee2-ad22-0e1f-4cddd575792a}.Release|Any CPU.Deploy.0 = Release|Any CPU
+{554f9914-133f-0a1d-e5e0-17c3879852be}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+{554f9914-133f-0a1d-e5e0-17c3879852be}.Debug|Any CPU.Build.0 = Debug|Any CPU
+{554f9914-133f-0a1d-e5e0-17c3879852be}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+{554f9914-133f-0a1d-e5e0-17c3879852be}.Release|Any CPU.ActiveCfg = Release|Any CPU
+{554f9914-133f-0a1d-e5e0-17c3879852be}.Release|Any CPU.Build.0 = Release|Any CPU
+{554f9914-133f-0a1d-e5e0-17c3879852be}.Release|Any CPU.Deploy.0 = Release|Any CPU
 {f420eccc-b12d-72e4-2ad2-f93054eeec30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 {f420eccc-b12d-72e4-2ad2-f93054eeec30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 {f420eccc-b12d-72e4-2ad2-f93054eeec30}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
