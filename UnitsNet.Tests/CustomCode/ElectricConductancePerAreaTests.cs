@@ -53,5 +53,13 @@ namespace UnitsNet.Tests.CustomCode
             ElectricConductancePerArea ecpa = ElectricConductancePerArea.FromElectricConductanceByArea(ElectricConductance.FromSiemens(electricConductance), Area.FromSquareMeters(area));
             Assert.Equal(expected, ecpa.SiemensPerSquareMeter);
         }
+
+        [Fact]
+        public void ElectricConductancePerAreaTimesAreaEqualsElectricConductance()
+        {
+            ElectricConductance ec = ElectricConductancePerArea.FromSiemensPerSquareMeter(10.0) * 
+                    Area.FromSquareMeters(3.0);
+            Assert.Equal(ElectricConductance.FromSiemens(30.0), ec);
+        }
     }
 }

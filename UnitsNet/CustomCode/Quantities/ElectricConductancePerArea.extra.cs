@@ -16,5 +16,11 @@ namespace UnitsNet
             double ecpa = ec.Siemens / area.SquareMeters;
             return new ElectricConductancePerArea(ecpa, ElectricConductancePerAreaUnit.SiemensPerSquareMeter);
         }
+
+        /// <summary>Get <see cref="ElectricConductance"/> from <see cref="ElectricConductancePerArea"/> times <see cref="Area"/>.</summary>
+        public static ElectricConductance operator *(ElectricConductancePerArea ecpa, Area area)
+        {
+            return ElectricConductance.FromSiemens(ecpa.SiemensPerSquareMeter * area.SquareMeters);
+        }
     }
 }
