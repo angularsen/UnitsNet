@@ -17,7 +17,8 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
+using UnitsNet.Units;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -42,5 +43,15 @@ namespace UnitsNet.Tests.CustomCode
         protected override double SiemensPerSquareMillimetersInOneSiemensPerSquareMeter => 1E-6;
         protected override double SiemensPerSquareYardsInOneSiemensPerSquareMeter => 0.836127;
         protected override double SiemensPerUsSurveySquareFeetInOneSiemensPerSquareMeter => 0.09290341161;
+
+        [Theory]
+        [InlineData(10.0, 2.5, 4.0)]
+        [InlineData(0.0, 2.5, 0.0)]
+        [InlineData(2.5, 0.0, 0.0)]
+        public void ElectricConductanceByAreaEqualsElectricConductancePerArea(double electricConductance, double area, double expected)
+        {
+            ElectricConductancePerArea ecpa = ElectricConductancePerArea.FromElectricConductanceByArea(ElectricConductance.FromSiemens(electricConductance), Area.FromSquareMeters(area));
+            Assert.Equal(expected, ecpa.SiemensPerSquareMeter);
+        }
     }
 }
