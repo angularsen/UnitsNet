@@ -88,6 +88,11 @@ namespace UnitsNet
         public double GramsPerCentimeter => As(LinearDensityUnit.GramPerCentimeter);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearDensityUnit.GramPerFoot"/>
+        /// </summary>
+        public double GramsPerFoot => As(LinearDensityUnit.GramPerFoot);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearDensityUnit.GramPerMeter"/>
         /// </summary>
         public double GramsPerMeter => As(LinearDensityUnit.GramPerMeter);
@@ -101,6 +106,11 @@ namespace UnitsNet
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearDensityUnit.KilogramPerCentimeter"/>
         /// </summary>
         public double KilogramsPerCentimeter => As(LinearDensityUnit.KilogramPerCentimeter);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearDensityUnit.KilogramPerFoot"/>
+        /// </summary>
+        public double KilogramsPerFoot => As(LinearDensityUnit.KilogramPerFoot);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearDensityUnit.KilogramPerMeter"/>
@@ -118,6 +128,11 @@ namespace UnitsNet
         public double MicrogramsPerCentimeter => As(LinearDensityUnit.MicrogramPerCentimeter);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearDensityUnit.MicrogramPerFoot"/>
+        /// </summary>
+        public double MicrogramsPerFoot => As(LinearDensityUnit.MicrogramPerFoot);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearDensityUnit.MicrogramPerMeter"/>
         /// </summary>
         public double MicrogramsPerMeter => As(LinearDensityUnit.MicrogramPerMeter);
@@ -131,6 +146,11 @@ namespace UnitsNet
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearDensityUnit.MilligramPerCentimeter"/>
         /// </summary>
         public double MilligramsPerCentimeter => As(LinearDensityUnit.MilligramPerCentimeter);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearDensityUnit.MilligramPerFoot"/>
+        /// </summary>
+        public double MilligramsPerFoot => As(LinearDensityUnit.MilligramPerFoot);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearDensityUnit.MilligramPerMeter"/>
@@ -163,6 +183,12 @@ namespace UnitsNet
         public static LinearDensity FromGramsPerCentimeter(double gramspercentimeter) => new LinearDensity(gramspercentimeter, LinearDensityUnit.GramPerCentimeter);
 
         /// <summary>
+        ///     Creates a <see cref="LinearDensity"/> from <see cref="LinearDensityUnit.GramPerFoot"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static LinearDensity FromGramsPerFoot(double gramsperfoot) => new LinearDensity(gramsperfoot, LinearDensityUnit.GramPerFoot);
+
+        /// <summary>
         ///     Creates a <see cref="LinearDensity"/> from <see cref="LinearDensityUnit.GramPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -179,6 +205,12 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LinearDensity FromKilogramsPerCentimeter(double kilogramspercentimeter) => new LinearDensity(kilogramspercentimeter, LinearDensityUnit.KilogramPerCentimeter);
+
+        /// <summary>
+        ///     Creates a <see cref="LinearDensity"/> from <see cref="LinearDensityUnit.KilogramPerFoot"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static LinearDensity FromKilogramsPerFoot(double kilogramsperfoot) => new LinearDensity(kilogramsperfoot, LinearDensityUnit.KilogramPerFoot);
 
         /// <summary>
         ///     Creates a <see cref="LinearDensity"/> from <see cref="LinearDensityUnit.KilogramPerMeter"/>.
@@ -199,6 +231,12 @@ namespace UnitsNet
         public static LinearDensity FromMicrogramsPerCentimeter(double microgramspercentimeter) => new LinearDensity(microgramspercentimeter, LinearDensityUnit.MicrogramPerCentimeter);
 
         /// <summary>
+        ///     Creates a <see cref="LinearDensity"/> from <see cref="LinearDensityUnit.MicrogramPerFoot"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static LinearDensity FromMicrogramsPerFoot(double microgramsperfoot) => new LinearDensity(microgramsperfoot, LinearDensityUnit.MicrogramPerFoot);
+
+        /// <summary>
         ///     Creates a <see cref="LinearDensity"/> from <see cref="LinearDensityUnit.MicrogramPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -215,6 +253,12 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LinearDensity FromMilligramsPerCentimeter(double milligramspercentimeter) => new LinearDensity(milligramspercentimeter, LinearDensityUnit.MilligramPerCentimeter);
+
+        /// <summary>
+        ///     Creates a <see cref="LinearDensity"/> from <see cref="LinearDensityUnit.MilligramPerFoot"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static LinearDensity FromMilligramsPerFoot(double milligramsperfoot) => new LinearDensity(milligramsperfoot, LinearDensityUnit.MilligramPerFoot);
 
         /// <summary>
         ///     Creates a <see cref="LinearDensity"/> from <see cref="LinearDensityUnit.MilligramPerMeter"/>.
@@ -281,15 +325,19 @@ namespace UnitsNet
                     return Unit switch
                     {
                         LinearDensityUnit.GramPerCentimeter => _value * 1e-1,
+                        LinearDensityUnit.GramPerFoot => _value * ( 1e-3 / 0.3048 ),
                         LinearDensityUnit.GramPerMeter => _value * 1e-3,
                         LinearDensityUnit.GramPerMillimeter => _value,
                         LinearDensityUnit.KilogramPerCentimeter => (_value * 1e-1) * 1e3d,
+                        LinearDensityUnit.KilogramPerFoot => (_value * ( 1e-3 / 0.3048 )) * 1e3d,
                         LinearDensityUnit.KilogramPerMeter => (_value * 1e-3) * 1e3d,
                         LinearDensityUnit.KilogramPerMillimeter => (_value) * 1e3d,
                         LinearDensityUnit.MicrogramPerCentimeter => (_value * 1e-1) * 1e-6d,
+                        LinearDensityUnit.MicrogramPerFoot => (_value * ( 1e-3 / 0.3048 )) * 1e-6d,
                         LinearDensityUnit.MicrogramPerMeter => (_value * 1e-3) * 1e-6d,
                         LinearDensityUnit.MicrogramPerMillimeter => (_value) * 1e-6d,
                         LinearDensityUnit.MilligramPerCentimeter => (_value * 1e-1) * 1e-3d,
+                        LinearDensityUnit.MilligramPerFoot => (_value * ( 1e-3 / 0.3048 )) * 1e-3d,
                         LinearDensityUnit.MilligramPerMeter => (_value * 1e-3) * 1e-3d,
                         LinearDensityUnit.MilligramPerMillimeter => (_value) * 1e-3d,
                         LinearDensityUnit.PoundPerFoot => _value * 1.48816394,
@@ -308,15 +356,19 @@ namespace UnitsNet
                     return unit switch
                     {
                         LinearDensityUnit.GramPerCentimeter => baseUnitValue / 1e-1,
+                        LinearDensityUnit.GramPerFoot => baseUnitValue / ( 1e-3 / 0.3048 ),
                         LinearDensityUnit.GramPerMeter => baseUnitValue / 1e-3,
                         LinearDensityUnit.GramPerMillimeter => baseUnitValue,
                         LinearDensityUnit.KilogramPerCentimeter => (baseUnitValue / 1e-1) / 1e3d,
+                        LinearDensityUnit.KilogramPerFoot => (baseUnitValue / ( 1e-3 / 0.3048 )) / 1e3d,
                         LinearDensityUnit.KilogramPerMeter => (baseUnitValue / 1e-3) / 1e3d,
                         LinearDensityUnit.KilogramPerMillimeter => (baseUnitValue) / 1e3d,
                         LinearDensityUnit.MicrogramPerCentimeter => (baseUnitValue / 1e-1) / 1e-6d,
+                        LinearDensityUnit.MicrogramPerFoot => (baseUnitValue / ( 1e-3 / 0.3048 )) / 1e-6d,
                         LinearDensityUnit.MicrogramPerMeter => (baseUnitValue / 1e-3) / 1e-6d,
                         LinearDensityUnit.MicrogramPerMillimeter => (baseUnitValue) / 1e-6d,
                         LinearDensityUnit.MilligramPerCentimeter => (baseUnitValue / 1e-1) / 1e-3d,
+                        LinearDensityUnit.MilligramPerFoot => (baseUnitValue / ( 1e-3 / 0.3048 )) / 1e-3d,
                         LinearDensityUnit.MilligramPerMeter => (baseUnitValue / 1e-3) / 1e-3d,
                         LinearDensityUnit.MilligramPerMillimeter => (baseUnitValue) / 1e-3d,
                         LinearDensityUnit.PoundPerFoot => baseUnitValue / 1.48816394,

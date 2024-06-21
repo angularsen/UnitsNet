@@ -29,6 +29,10 @@ namespace UnitsNet.Tests
             Assert.Equal(LinearDensity.FromGramsPerCentimeter(2), 2.GramsPerCentimeter());
 
         [Fact]
+        public void NumberToGramsPerFootTest() =>
+            Assert.Equal(LinearDensity.FromGramsPerFoot(2), 2.GramsPerFoot());
+
+        [Fact]
         public void NumberToGramsPerMeterTest() =>
             Assert.Equal(LinearDensity.FromGramsPerMeter(2), 2.GramsPerMeter());
 
@@ -39,6 +43,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToKilogramsPerCentimeterTest() =>
             Assert.Equal(LinearDensity.FromKilogramsPerCentimeter(2), 2.KilogramsPerCentimeter());
+
+        [Fact]
+        public void NumberToKilogramsPerFootTest() =>
+            Assert.Equal(LinearDensity.FromKilogramsPerFoot(2), 2.KilogramsPerFoot());
 
         [Fact]
         public void NumberToKilogramsPerMeterTest() =>
@@ -53,6 +61,10 @@ namespace UnitsNet.Tests
             Assert.Equal(LinearDensity.FromMicrogramsPerCentimeter(2), 2.MicrogramsPerCentimeter());
 
         [Fact]
+        public void NumberToMicrogramsPerFootTest() =>
+            Assert.Equal(LinearDensity.FromMicrogramsPerFoot(2), 2.MicrogramsPerFoot());
+
+        [Fact]
         public void NumberToMicrogramsPerMeterTest() =>
             Assert.Equal(LinearDensity.FromMicrogramsPerMeter(2), 2.MicrogramsPerMeter());
 
@@ -63,6 +75,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToMilligramsPerCentimeterTest() =>
             Assert.Equal(LinearDensity.FromMilligramsPerCentimeter(2), 2.MilligramsPerCentimeter());
+
+        [Fact]
+        public void NumberToMilligramsPerFootTest() =>
+            Assert.Equal(LinearDensity.FromMilligramsPerFoot(2), 2.MilligramsPerFoot());
 
         [Fact]
         public void NumberToMilligramsPerMeterTest() =>

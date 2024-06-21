@@ -724,7 +724,11 @@
     "MilligramPerMeter": 11,
     "MilligramPerMillimeter": 12,
     "PoundPerFoot": 13,
-    "PoundPerInch": 14
+    "PoundPerInch": 14,
+    "GramPerFoot": 22,
+    "KilogramPerFoot": 19,
+    "MicrogramPerFoot": 20,
+    "MilligramPerFoot": 18
   },
   "LinearPowerDensity": {
     "GigawattPerCentimeter": 1,
