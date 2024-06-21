@@ -56,6 +56,7 @@ namespace UnitsNet.Tests
             Assertion(3, ElectricChargeUnit.Picocoulomb, Quantity.From(3, ElectricChargeUnit.Picocoulomb));
             Assertion(3, ElectricChargeDensityUnit.CoulombPerCubicMeter, Quantity.From(3, ElectricChargeDensityUnit.CoulombPerCubicMeter));
             Assertion(3, ElectricConductanceUnit.Siemens, Quantity.From(3, ElectricConductanceUnit.Siemens));
+            Assertion(3, ElectricConductancePerAreaUnit.SiemensPerUsSurveySquareFoot, Quantity.From(3, ElectricConductancePerAreaUnit.SiemensPerUsSurveySquareFoot));
             Assertion(3, ElectricConductivityUnit.SiemensPerMeter, Quantity.From(3, ElectricConductivityUnit.SiemensPerMeter));
             Assertion(3, ElectricCurrentUnit.Picoampere, Quantity.From(3, ElectricCurrentUnit.Picoampere));
             Assertion(3, ElectricCurrentDensityUnit.AmperePerSquareMeter, Quantity.From(3, ElectricCurrentDensityUnit.AmperePerSquareMeter));
@@ -187,6 +188,7 @@ namespace UnitsNet.Tests
             Assertion(ElectricCharge.Info, ElectricCharge.Zero);
             Assertion(ElectricChargeDensity.Info, ElectricChargeDensity.Zero);
             Assertion(ElectricConductance.Info, ElectricConductance.Zero);
+            Assertion(ElectricConductancePerArea.Info, ElectricConductancePerArea.Zero);
             Assertion(ElectricConductivity.Info, ElectricConductivity.Zero);
             Assertion(ElectricCurrent.Info, ElectricCurrent.Zero);
             Assertion(ElectricCurrentDensity.Info, ElectricCurrentDensity.Zero);
@@ -318,6 +320,7 @@ namespace UnitsNet.Tests
             Assertion(ElectricCharge.BaseDimensions, ElectricCharge.Zero);
             Assertion(ElectricChargeDensity.BaseDimensions, ElectricChargeDensity.Zero);
             Assertion(ElectricConductance.BaseDimensions, ElectricConductance.Zero);
+            Assertion(ElectricConductancePerArea.BaseDimensions, ElectricConductancePerArea.Zero);
             Assertion(ElectricConductivity.BaseDimensions, ElectricConductivity.Zero);
             Assertion(ElectricCurrent.BaseDimensions, ElectricCurrent.Zero);
             Assertion(ElectricCurrentDensity.BaseDimensions, ElectricCurrentDensity.Zero);

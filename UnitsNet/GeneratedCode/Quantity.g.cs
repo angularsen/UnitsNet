@@ -60,6 +60,7 @@ namespace UnitsNet
             { "ElectricCharge", ElectricCharge.Info },
             { "ElectricChargeDensity", ElectricChargeDensity.Info },
             { "ElectricConductance", ElectricConductance.Info },
+            { "ElectricConductancePerArea", ElectricConductancePerArea.Info },
             { "ElectricConductivity", ElectricConductivity.Info },
             { "ElectricCurrent", ElectricCurrent.Info },
             { "ElectricCurrentDensity", ElectricCurrentDensity.Info },
@@ -196,6 +197,7 @@ namespace UnitsNet
                 "ElectricCharge" => ElectricCharge.From(value, ElectricCharge.BaseUnit),
                 "ElectricChargeDensity" => ElectricChargeDensity.From(value, ElectricChargeDensity.BaseUnit),
                 "ElectricConductance" => ElectricConductance.From(value, ElectricConductance.BaseUnit),
+                "ElectricConductancePerArea" => ElectricConductancePerArea.From(value, ElectricConductancePerArea.BaseUnit),
                 "ElectricConductivity" => ElectricConductivity.From(value, ElectricConductivity.BaseUnit),
                 "ElectricCurrent" => ElectricCurrent.From(value, ElectricCurrent.BaseUnit),
                 "ElectricCurrentDensity" => ElectricCurrentDensity.From(value, ElectricCurrentDensity.BaseUnit),
@@ -335,6 +337,7 @@ namespace UnitsNet
                 ElectricChargeUnit electricChargeUnit => ElectricCharge.From(value, electricChargeUnit),
                 ElectricChargeDensityUnit electricChargeDensityUnit => ElectricChargeDensity.From(value, electricChargeDensityUnit),
                 ElectricConductanceUnit electricConductanceUnit => ElectricConductance.From(value, electricConductanceUnit),
+                ElectricConductancePerAreaUnit electricConductancePerAreaUnit => ElectricConductancePerArea.From(value, electricConductancePerAreaUnit),
                 ElectricConductivityUnit electricConductivityUnit => ElectricConductivity.From(value, electricConductivityUnit),
                 ElectricCurrentUnit electricCurrentUnit => ElectricCurrent.From(value, electricCurrentUnit),
                 ElectricCurrentDensityUnit electricCurrentDensityUnit => ElectricCurrentDensity.From(value, electricCurrentDensityUnit),
@@ -484,6 +487,7 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(ElectricCharge) => parser.TryParse<ElectricCharge, ElectricChargeUnit>(quantityString, formatProvider, ElectricCharge.From, out quantity),
                 Type _ when quantityType == typeof(ElectricChargeDensity) => parser.TryParse<ElectricChargeDensity, ElectricChargeDensityUnit>(quantityString, formatProvider, ElectricChargeDensity.From, out quantity),
                 Type _ when quantityType == typeof(ElectricConductance) => parser.TryParse<ElectricConductance, ElectricConductanceUnit>(quantityString, formatProvider, ElectricConductance.From, out quantity),
+                Type _ when quantityType == typeof(ElectricConductancePerArea) => parser.TryParse<ElectricConductancePerArea, ElectricConductancePerAreaUnit>(quantityString, formatProvider, ElectricConductancePerArea.From, out quantity),
                 Type _ when quantityType == typeof(ElectricConductivity) => parser.TryParse<ElectricConductivity, ElectricConductivityUnit>(quantityString, formatProvider, ElectricConductivity.From, out quantity),
                 Type _ when quantityType == typeof(ElectricCurrent) => parser.TryParse<ElectricCurrent, ElectricCurrentUnit>(quantityString, formatProvider, ElectricCurrent.From, out quantity),
                 Type _ when quantityType == typeof(ElectricCurrentDensity) => parser.TryParse<ElectricCurrentDensity, ElectricCurrentDensityUnit>(quantityString, formatProvider, ElectricCurrentDensity.From, out quantity),
@@ -614,6 +618,7 @@ namespace UnitsNet
             yield return typeof(ElectricCharge);
             yield return typeof(ElectricChargeDensity);
             yield return typeof(ElectricConductance);
+            yield return typeof(ElectricConductancePerArea);
             yield return typeof(ElectricConductivity);
             yield return typeof(ElectricCurrent);
             yield return typeof(ElectricCurrentDensity);

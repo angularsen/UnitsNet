@@ -1,0 +1,131 @@
+{
+    "Name": "ElectricConductancePerArea",
+    "BaseUnit": "SiemensPerSquareMeter",
+    "XmlDocSummary": "The electrical conductance per area of an electrical conductor is a measure of the easeness to pass an electric current through that conductor per unit area.",
+    "XmlDocRemarks": "https://en.wikipedia.org/wiki/Electrical_resistance_and_conductance",
+    "BaseDimensions": {
+      "L": -4,
+      "M": -1,
+      "T": 3,
+      "I": 2
+    },
+    "Units": [
+      {
+        "SingularName": "SiemensPerSquareMeter",
+        "PluralName": "SiemensPerSquareMeter",
+        "BaseUnits": {
+            "L": "Meter",
+            "M": "Kilogram",
+            "T": "Second",
+            "I": "Ampere"
+        },
+        "FromUnitToBaseFunc": "{x}",
+        "FromBaseToUnitFunc": "{x}",
+        "Prefixes": [ "Femto", "Pico","Nano", "Micro", "Milli", "Kilo", "Mega" ],
+        "Localization": [
+          {
+            "Culture": "en-US",
+            "Abbreviations": [ "S/m²" ]
+          }
+        ]
+      },
+      {
+        "SingularName": "SiemensPerSquareDecimeter",
+        "PluralName": "SiemensPerSquareDecimeters",
+        "FromUnitToBaseFunc": "{x} / 1e-2",
+        "FromBaseToUnitFunc": "{x} * 1e-2",
+        "Localization": [
+          {
+            "Culture": "en-US",
+            "Abbreviations": [ "S/dm²" ]
+          }
+        ]
+      },
+      {
+        "SingularName": "SiemensPerSquareCentimeter",
+        "PluralName": "SiemensPerSquareCentimeters",
+        "FromUnitToBaseFunc": "{x} / 1e-4",
+        "FromBaseToUnitFunc": "{x} * 1e-4",
+        "Prefixes": ["Micro", "Milli"],
+        "Localization": [
+          {
+            "Culture": "en-US",
+            "Abbreviations": [ "S/cm²" ]
+          }
+        ]
+      },
+      {
+        "SingularName": "SiemensPerSquareMillimeter",
+        "PluralName": "SiemensPerSquareMillimeters",
+        "FromUnitToBaseFunc": "{x} / 1e-6",
+        "FromBaseToUnitFunc": "{x} * 1e-6",
+        "Localization": [
+          {
+            "Culture": "en-US",
+            "Abbreviations": [ "S/mm²" ]
+          }
+        ]
+      },
+      {
+        "SingularName": "SiemensPerSquareMile",
+        "PluralName": "SiemensPerSquareMiles",
+        "FromUnitToBaseFunc": "{x} / 2.59e6",
+        "FromBaseToUnitFunc": "{x} * 2.59e6",
+        "Localization": [
+          {
+            "Culture": "en-US",
+            "Abbreviations": [ "S/mi²" ]
+          }
+        ]
+      },
+      {
+        "SingularName": "SiemensPerSquareYard",
+        "PluralName": "SiemensPerSquareYards",
+        "FromUnitToBaseFunc": "{x} / 0.836127",
+        "FromBaseToUnitFunc": "{x} * 0.836127",
+        "Localization": [
+          {
+            "Culture": "en-US",
+            "Abbreviations": [ "S/yd²" ]
+          }
+        ]
+      },
+      {
+        "SingularName": "SiemensPerSquareFoot",
+        "PluralName": "SiemensPerSquareFeet",
+        "FromUnitToBaseFunc": "{x} / 0.092903",
+        "FromBaseToUnitFunc": "{x} * 0.092903",
+        "Localization": [
+          {
+            "Culture": "en-US",
+            "Abbreviations": [ "S/ft²" ]
+          }
+        ]
+      },
+      {
+        "SingularName": "SiemensPerUsSurveySquareFoot",
+        "PluralName": "SiemensPerUsSurveySquareFeet",
+        "FromUnitToBaseFunc": "{x} / 0.09290341161",
+        "FromBaseToUnitFunc": "{x} * 0.09290341161",
+        "Localization": [
+          {
+            "Culture": "en-US",
+            "Abbreviations": [ "S/ft² (US)" ]
+          }
+        ]
+      },
+      {
+        "SingularName": "SiemensPerSquareInch",
+        "PluralName": "SiemensPerSquareInches",
+        "FromUnitToBaseFunc": "{x} / 0.00064516",
+        "FromBaseToUnitFunc": "{x} * 0.00064516",
+        "Localization": [
+          {
+            "Culture": "en-US",
+            "Abbreviations": [ "S/in²" ]
+          }
+        ]
+      }
+    ]
+  }
+  
