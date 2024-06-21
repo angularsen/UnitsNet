@@ -898,6 +898,8 @@ namespace UnitsNet.Tests
             var v = AmountOfSubstance.FromMoles(1);
             Assert.True(v.Equals(AmountOfSubstance.FromMoles(1), MolesTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(AmountOfSubstance.Zero, MolesTolerance, ComparisonType.Relative));
+            Assert.True(AmountOfSubstance.FromMoles(100).Equals(AmountOfSubstance.FromMoles(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(AmountOfSubstance.FromMoles(100).Equals(AmountOfSubstance.FromMoles(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

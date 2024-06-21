@@ -4966,6 +4966,8 @@ namespace UnitsNet.Tests
             var v = VolumeFlow.FromCubicMetersPerSecond(1);
             Assert.True(v.Equals(VolumeFlow.FromCubicMetersPerSecond(1), CubicMetersPerSecondTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(VolumeFlow.Zero, CubicMetersPerSecondTolerance, ComparisonType.Relative));
+            Assert.True(VolumeFlow.FromCubicMetersPerSecond(100).Equals(VolumeFlow.FromCubicMetersPerSecond(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(VolumeFlow.FromCubicMetersPerSecond(100).Equals(VolumeFlow.FromCubicMetersPerSecond(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

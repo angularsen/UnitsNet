@@ -640,6 +640,8 @@ namespace UnitsNet.Tests
             var v = StandardVolumeFlow.FromStandardCubicMetersPerSecond(1);
             Assert.True(v.Equals(StandardVolumeFlow.FromStandardCubicMetersPerSecond(1), StandardCubicMetersPerSecondTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(StandardVolumeFlow.Zero, StandardCubicMetersPerSecondTolerance, ComparisonType.Relative));
+            Assert.True(StandardVolumeFlow.FromStandardCubicMetersPerSecond(100).Equals(StandardVolumeFlow.FromStandardCubicMetersPerSecond(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(StandardVolumeFlow.FromStandardCubicMetersPerSecond(100).Equals(StandardVolumeFlow.FromStandardCubicMetersPerSecond(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

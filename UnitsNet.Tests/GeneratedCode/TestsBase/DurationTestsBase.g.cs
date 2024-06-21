@@ -1886,6 +1886,8 @@ namespace UnitsNet.Tests
             var v = Duration.FromSeconds(1);
             Assert.True(v.Equals(Duration.FromSeconds(1), SecondsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Duration.Zero, SecondsTolerance, ComparisonType.Relative));
+            Assert.True(Duration.FromSeconds(100).Equals(Duration.FromSeconds(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(Duration.FromSeconds(100).Equals(Duration.FromSeconds(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

@@ -465,6 +465,8 @@ namespace UnitsNet.Tests
             var v = ElectricAdmittance.FromSiemens(1);
             Assert.True(v.Equals(ElectricAdmittance.FromSiemens(1), SiemensTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ElectricAdmittance.Zero, SiemensTolerance, ComparisonType.Relative));
+            Assert.True(ElectricAdmittance.FromSiemens(100).Equals(ElectricAdmittance.FromSiemens(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(ElectricAdmittance.FromSiemens(100).Equals(ElectricAdmittance.FromSiemens(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
@@ -36,6 +37,7 @@ namespace UnitsNet
     ///     The Electric Potential of a system known to use Alternating Current.
     /// </summary>
     [DataContract]
+    [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct ElectricPotentialAc :
         IArithmeticQuantity<ElectricPotentialAc, ElectricPotentialAcUnit, double>,
         IComparable,
@@ -653,7 +655,7 @@ namespace UnitsNet
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance,
-                comparisonType: ComparisonType.Absolute);
+                comparisonType: comparisonType);
         }
 
         /// <inheritdoc />

@@ -1722,6 +1722,8 @@ namespace UnitsNet.Tests
             var v = MassFlow.FromGramsPerSecond(1);
             Assert.True(v.Equals(MassFlow.FromGramsPerSecond(1), GramsPerSecondTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(MassFlow.Zero, GramsPerSecondTolerance, ComparisonType.Relative));
+            Assert.True(MassFlow.FromGramsPerSecond(100).Equals(MassFlow.FromGramsPerSecond(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(MassFlow.FromGramsPerSecond(100).Equals(MassFlow.FromGramsPerSecond(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

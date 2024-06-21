@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
@@ -36,6 +37,7 @@ namespace UnitsNet
     ///     In geometry, an angle is the figure formed by two rays, called the sides of the angle, sharing a common endpoint, called the vertex of the angle.
     /// </summary>
     [DataContract]
+    [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct Angle :
         IArithmeticQuantity<Angle, AngleUnit, double>,
         IComparable,
@@ -851,7 +853,7 @@ namespace UnitsNet
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance,
-                comparisonType: ComparisonType.Absolute);
+                comparisonType: comparisonType);
         }
 
         /// <inheritdoc />

@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
@@ -36,6 +37,7 @@ namespace UnitsNet
     ///     In chemistry, the molar mass M is a physical property defined as the mass of a given substance (chemical element or chemical compound) divided by the amount of substance.
     /// </summary>
     [DataContract]
+    [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct MolarMass :
         IArithmeticQuantity<MolarMass, MolarMassUnit, double>,
         IComparable,
@@ -797,7 +799,7 @@ namespace UnitsNet
                 referenceValue: this.Value,
                 otherValue: other.As(this.Unit),
                 tolerance: tolerance,
-                comparisonType: ComparisonType.Absolute);
+                comparisonType: comparisonType);
         }
 
         /// <inheritdoc />

@@ -399,6 +399,8 @@ namespace UnitsNet.Tests
             var v = Level.FromDecibels(1);
             Assert.True(v.Equals(Level.FromDecibels(1), DecibelsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Level.Zero, DecibelsTolerance, ComparisonType.Relative));
+            Assert.True(Level.FromDecibels(100).Equals(Level.FromDecibels(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(Level.FromDecibels(100).Equals(Level.FromDecibels(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

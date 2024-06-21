@@ -640,6 +640,8 @@ namespace UnitsNet.Tests
             var v = MolarFlow.FromMolesPerSecond(1);
             Assert.True(v.Equals(MolarFlow.FromMolesPerSecond(1), MolesPerSecondTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(MolarFlow.Zero, MolesPerSecondTolerance, ComparisonType.Relative));
+            Assert.True(MolarFlow.FromMolesPerSecond(100).Equals(MolarFlow.FromMolesPerSecond(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(MolarFlow.FromMolesPerSecond(100).Equals(MolarFlow.FromMolesPerSecond(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

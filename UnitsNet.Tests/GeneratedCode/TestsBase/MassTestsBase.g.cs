@@ -2378,6 +2378,8 @@ namespace UnitsNet.Tests
             var v = Mass.FromKilograms(1);
             Assert.True(v.Equals(Mass.FromKilograms(1), KilogramsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Mass.Zero, KilogramsTolerance, ComparisonType.Relative));
+            Assert.True(Mass.FromKilograms(100).Equals(Mass.FromKilograms(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(Mass.FromKilograms(100).Equals(Mass.FromKilograms(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

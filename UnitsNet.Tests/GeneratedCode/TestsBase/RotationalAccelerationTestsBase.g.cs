@@ -489,6 +489,8 @@ namespace UnitsNet.Tests
             var v = RotationalAcceleration.FromRadiansPerSecondSquared(1);
             Assert.True(v.Equals(RotationalAcceleration.FromRadiansPerSecondSquared(1), RadiansPerSecondSquaredTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(RotationalAcceleration.Zero, RadiansPerSecondSquaredTolerance, ComparisonType.Relative));
+            Assert.True(RotationalAcceleration.FromRadiansPerSecondSquared(100).Equals(RotationalAcceleration.FromRadiansPerSecondSquared(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(RotationalAcceleration.FromRadiansPerSecondSquared(100).Equals(RotationalAcceleration.FromRadiansPerSecondSquared(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

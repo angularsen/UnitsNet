@@ -692,6 +692,8 @@ namespace UnitsNet.Tests
             var v = RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(1);
             Assert.True(v.Equals(RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(1), NewtonMetersPerRadianPerMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(RotationalStiffnessPerLength.Zero, NewtonMetersPerRadianPerMeterTolerance, ComparisonType.Relative));
+            Assert.True(RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(100).Equals(RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(100).Equals(RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

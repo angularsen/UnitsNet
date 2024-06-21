@@ -679,6 +679,8 @@ namespace UnitsNet.Tests
             var v = AreaMomentOfInertia.FromMetersToTheFourth(1);
             Assert.True(v.Equals(AreaMomentOfInertia.FromMetersToTheFourth(1), MetersToTheFourthTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(AreaMomentOfInertia.Zero, MetersToTheFourthTolerance, ComparisonType.Relative));
+            Assert.True(AreaMomentOfInertia.FromMetersToTheFourth(100).Equals(AreaMomentOfInertia.FromMetersToTheFourth(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(AreaMomentOfInertia.FromMetersToTheFourth(100).Equals(AreaMomentOfInertia.FromMetersToTheFourth(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

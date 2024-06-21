@@ -469,6 +469,8 @@ namespace UnitsNet.Tests
             var v = AmplitudeRatio.FromDecibelVolts(1);
             Assert.True(v.Equals(AmplitudeRatio.FromDecibelVolts(1), DecibelVoltsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(AmplitudeRatio.Zero, DecibelVoltsTolerance, ComparisonType.Relative));
+            Assert.True(AmplitudeRatio.FromDecibelVolts(100).Equals(AmplitudeRatio.FromDecibelVolts(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(AmplitudeRatio.FromDecibelVolts(100).Equals(AmplitudeRatio.FromDecibelVolts(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

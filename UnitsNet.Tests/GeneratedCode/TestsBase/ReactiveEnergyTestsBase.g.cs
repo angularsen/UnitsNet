@@ -430,6 +430,8 @@ namespace UnitsNet.Tests
             var v = ReactiveEnergy.FromVoltampereReactiveHours(1);
             Assert.True(v.Equals(ReactiveEnergy.FromVoltampereReactiveHours(1), VoltampereReactiveHoursTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ReactiveEnergy.Zero, VoltampereReactiveHoursTolerance, ComparisonType.Relative));
+            Assert.True(ReactiveEnergy.FromVoltampereReactiveHours(100).Equals(ReactiveEnergy.FromVoltampereReactiveHours(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(ReactiveEnergy.FromVoltampereReactiveHours(100).Equals(ReactiveEnergy.FromVoltampereReactiveHours(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

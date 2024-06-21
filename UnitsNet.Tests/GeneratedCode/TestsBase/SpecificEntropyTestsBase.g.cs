@@ -664,6 +664,8 @@ namespace UnitsNet.Tests
             var v = SpecificEntropy.FromJoulesPerKilogramKelvin(1);
             Assert.True(v.Equals(SpecificEntropy.FromJoulesPerKilogramKelvin(1), JoulesPerKilogramKelvinTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(SpecificEntropy.Zero, JoulesPerKilogramKelvinTolerance, ComparisonType.Relative));
+            Assert.True(SpecificEntropy.FromJoulesPerKilogramKelvin(100).Equals(SpecificEntropy.FromJoulesPerKilogramKelvin(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(SpecificEntropy.FromJoulesPerKilogramKelvin(100).Equals(SpecificEntropy.FromJoulesPerKilogramKelvin(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

@@ -924,6 +924,8 @@ namespace UnitsNet.Tests
             var v = Information.FromBits(1);
             Assert.True(v.Equals(Information.FromBits(1), BitsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Information.Zero, BitsTolerance, ComparisonType.Relative));
+            Assert.True(Information.FromBits(100).Equals(Information.FromBits(120), (decimal)0.3m, ComparisonType.Relative));
+            Assert.False(Information.FromBits(100).Equals(Information.FromBits(120), (decimal)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

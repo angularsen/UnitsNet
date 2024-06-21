@@ -937,6 +937,8 @@ namespace UnitsNet.Tests
             var v = ElectricPotentialChangeRate.FromVoltsPerSeconds(1);
             Assert.True(v.Equals(ElectricPotentialChangeRate.FromVoltsPerSeconds(1), VoltsPerSecondsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ElectricPotentialChangeRate.Zero, VoltsPerSecondsTolerance, ComparisonType.Relative));
+            Assert.True(ElectricPotentialChangeRate.FromVoltsPerSeconds(100).Equals(ElectricPotentialChangeRate.FromVoltsPerSeconds(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(ElectricPotentialChangeRate.FromVoltsPerSeconds(100).Equals(ElectricPotentialChangeRate.FromVoltsPerSeconds(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

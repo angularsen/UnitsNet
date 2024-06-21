@@ -1151,6 +1151,8 @@ namespace UnitsNet.Tests
             var v = Acceleration.FromMetersPerSecondSquared(1);
             Assert.True(v.Equals(Acceleration.FromMetersPerSecondSquared(1), MetersPerSecondSquaredTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Acceleration.Zero, MetersPerSecondSquaredTolerance, ComparisonType.Relative));
+            Assert.True(Acceleration.FromMetersPerSecondSquared(100).Equals(Acceleration.FromMetersPerSecondSquared(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(Acceleration.FromMetersPerSecondSquared(100).Equals(Acceleration.FromMetersPerSecondSquared(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]

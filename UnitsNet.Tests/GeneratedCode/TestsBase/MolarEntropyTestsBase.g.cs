@@ -430,6 +430,8 @@ namespace UnitsNet.Tests
             var v = MolarEntropy.FromJoulesPerMoleKelvin(1);
             Assert.True(v.Equals(MolarEntropy.FromJoulesPerMoleKelvin(1), JoulesPerMoleKelvinTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(MolarEntropy.Zero, JoulesPerMoleKelvinTolerance, ComparisonType.Relative));
+            Assert.True(MolarEntropy.FromJoulesPerMoleKelvin(100).Equals(MolarEntropy.FromJoulesPerMoleKelvin(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(MolarEntropy.FromJoulesPerMoleKelvin(100).Equals(MolarEntropy.FromJoulesPerMoleKelvin(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]
