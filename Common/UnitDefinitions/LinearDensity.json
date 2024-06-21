@@ -74,8 +74,8 @@
     {
       "SingularName": "GramPerFoot",
       "PluralName": "GramsPerFoot",
-      "FromUnitToBaseFunc": "{x} * 3.28084e-3",
-      "FromBaseToUnitFunc": "{x} / 3.28084e-3",
+      "FromUnitToBaseFunc": "{x} * ( 1e-3 / 0.3048 )",
+      "FromBaseToUnitFunc": "{x} / ( 1e-3 / 0.3048 )",
       "Prefixes": [ "Micro", "Milli", "Kilo" ],
       "Localization": [
         {
