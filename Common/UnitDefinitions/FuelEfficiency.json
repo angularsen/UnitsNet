@@ -30,8 +30,8 @@
       {
         "SingularName": "MilePerUkGallon",
         "PluralName": "MilesPerUkGallon",
-        "FromUnitToBaseFunc": "(100 * 4.54609188) / (1.609344 * {x})",
-        "FromBaseToUnitFunc": "(100 * 4.54609188) / (1.609344 * {x})",
+        "FromUnitToBaseFunc": "(100 * 4.54609) / (1.609344 * {x})",
+        "FromBaseToUnitFunc": "(100 * 4.54609) / (1.609344 * {x})",
         "Localization": [{
           "Culture": "en-US",
           "Abbreviations": [

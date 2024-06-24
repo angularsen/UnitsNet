@@ -277,8 +277,8 @@ namespace UnitsNet
                         RotationalSpeedUnit.NanodegreePerSecond => ((3.1415926535897931 / 180) * _value) * 1e-9d,
                         RotationalSpeedUnit.NanoradianPerSecond => (_value) * 1e-9d,
                         RotationalSpeedUnit.RadianPerSecond => _value,
-                        RotationalSpeedUnit.RevolutionPerMinute => (_value * 6.2831853072) / 60,
-                        RotationalSpeedUnit.RevolutionPerSecond => _value * 6.2831853072,
+                        RotationalSpeedUnit.RevolutionPerMinute => (_value * 2 * 3.1415926535897931) / 60,
+                        RotationalSpeedUnit.RevolutionPerSecond => _value * 2 * 3.1415926535897931,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
                     };
                     }
@@ -303,8 +303,8 @@ namespace UnitsNet
                         RotationalSpeedUnit.NanodegreePerSecond => ((180 / 3.1415926535897931) * baseUnitValue) / 1e-9d,
                         RotationalSpeedUnit.NanoradianPerSecond => (baseUnitValue) / 1e-9d,
                         RotationalSpeedUnit.RadianPerSecond => baseUnitValue,
-                        RotationalSpeedUnit.RevolutionPerMinute => (baseUnitValue / 6.2831853072) * 60,
-                        RotationalSpeedUnit.RevolutionPerSecond => baseUnitValue / 6.2831853072,
+                        RotationalSpeedUnit.RevolutionPerMinute => (baseUnitValue / (2 * 3.1415926535897931)) * 60,
+                        RotationalSpeedUnit.RevolutionPerSecond => baseUnitValue / (2 * 3.1415926535897931),
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
                     };
                     }

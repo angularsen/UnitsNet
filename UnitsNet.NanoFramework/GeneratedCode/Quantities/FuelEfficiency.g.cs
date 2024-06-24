@@ -172,7 +172,7 @@ namespace UnitsNet
                     {
                         FuelEfficiencyUnit.KilometerPerLiter => 100 / _value,
                         FuelEfficiencyUnit.LiterPer100Kilometers => _value,
-                        FuelEfficiencyUnit.MilePerUkGallon => (100 * 4.54609188) / (1.609344 * _value),
+                        FuelEfficiencyUnit.MilePerUkGallon => (100 * 4.54609) / (1.609344 * _value),
                         FuelEfficiencyUnit.MilePerUsGallon => (100 * 3.785411784) / (1.609344 * _value),
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
                     };
@@ -189,7 +189,7 @@ namespace UnitsNet
                     {
                         FuelEfficiencyUnit.KilometerPerLiter => 100 / baseUnitValue,
                         FuelEfficiencyUnit.LiterPer100Kilometers => baseUnitValue,
-                        FuelEfficiencyUnit.MilePerUkGallon => (100 * 4.54609188) / (1.609344 * baseUnitValue),
+                        FuelEfficiencyUnit.MilePerUkGallon => (100 * 4.54609) / (1.609344 * baseUnitValue),
                         FuelEfficiencyUnit.MilePerUsGallon => (100 * 3.785411784) / (1.609344 * baseUnitValue),
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
                     };

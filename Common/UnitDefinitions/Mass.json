@@ -36,6 +36,8 @@
       "BaseUnits": {
         "M": "Tonne"
       },
+      "XmlDocSummary": "The tonne is a unit of mass equal to 1,000 kilograms. It is a non-SI unit accepted for use with SI. It is also referred to as a metric ton in the United States to distinguish it from the non-metric units of the short ton (United States customary units) and the long ton (British imperial units). It is equivalent to approximately 2,204.6 pounds, 1.102 short tons, and 0.984 long tons.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Tonne",
       "FromUnitToBaseFunc": "{x} * 1e3",
       "FromBaseToUnitFunc": "{x} / 1e3",
       "Prefixes": [ "Kilo", "Mega" ],
@@ -60,10 +62,10 @@
       "BaseUnits": {
         "M": "ShortTon"
       },
-      "FromUnitToBaseFunc": "{x} * 9.0718474e2",
-      "FromBaseToUnitFunc": "{x} / 9.0718474e2",
       "XmlDocSummary": "The short ton is a unit of mass equal to 2,000 pounds (907.18474 kg), that is most commonly used in the United States – known there simply as the ton.",
       "XmlDocRemarks": "http://en.wikipedia.org/wiki/Short_ton",
+      "FromUnitToBaseFunc": "{x} * 907.18474",
+      "FromBaseToUnitFunc": "{x} / 907.18474",
       "Localization": [
         {
           "Culture": "en-US",
@@ -85,10 +87,10 @@
       "BaseUnits": {
         "M": "LongTon"
       },
-      "FromUnitToBaseFunc": "{x} * 1.0160469088e3",
-      "FromBaseToUnitFunc": "{x} / 1.0160469088e3",
       "XmlDocSummary": "Long ton (weight ton or Imperial ton) is a unit of mass equal to 2,240 pounds (1,016 kg) and is the name for the unit called the \"ton\" in the avoirdupois or Imperial system of measurements that was used in the United Kingdom and several other Commonwealth countries before metrication.",
       "XmlDocRemarks": "http://en.wikipedia.org/wiki/Long_ton",
+      "FromUnitToBaseFunc": "{x} * 1016.0469088",
+      "FromBaseToUnitFunc": "{x} / 1016.0469088",
       "Localization": [
         {
           "Culture": "en-US",
@@ -110,10 +112,10 @@
       "BaseUnits": {
         "M": "Pound"
       },
-      "FromUnitToBaseFunc": "{x} * 0.45359237",
-      "FromBaseToUnitFunc": "{x} / 0.45359237",
       "XmlDocSummary": "The pound or pound-mass (abbreviations: lb, lbm) is a unit of mass used in the imperial, United States customary and other systems of measurement. A number of different definitions have been used, the most common today being the international avoirdupois pound which is legally defined as exactly 0.45359237 kilograms, and which is divided into 16 avoirdupois ounces.",
       "XmlDocRemarks": "https://en.wikipedia.org/wiki/Pound_(mass)",
+      "FromUnitToBaseFunc": "{x} * 0.45359237",
+      "FromBaseToUnitFunc": "{x} / 0.45359237",
       "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
@@ -136,10 +138,10 @@
       "BaseUnits": {
         "M": "Ounce"
       },
-      "FromUnitToBaseFunc": "{x} * 0.028349523125",
-      "FromBaseToUnitFunc": "{x} / 0.028349523125",
       "XmlDocSummary": "The international avoirdupois ounce (abbreviated oz) is defined as exactly 28.349523125 g under the international yard and pound agreement of 1959, signed by the United States and countries of the Commonwealth of Nations. 16 oz make up an avoirdupois pound.",
       "XmlDocRemarks": "https://en.wikipedia.org/wiki/Ounce",
+      "FromUnitToBaseFunc": "{x} * 0.028349523125",
+      "FromBaseToUnitFunc": "{x} / 0.028349523125",
       "Localization": [
         {
           "Culture": "en-US",
@@ -157,10 +159,10 @@
       "BaseUnits": {
         "M": "Slug"
       },
-      "FromUnitToBaseFunc": "{x} / 6.852176556196105e-2",
-      "FromBaseToUnitFunc": "{x} * 6.852176556196105e-2",
       "XmlDocSummary": "The slug (abbreviation slug) is a unit of mass that is accelerated by 1 ft/s² when a force of one pound (lbf) is exerted on it.",
       "XmlDocRemarks": "http://en.wikipedia.org/wiki/Slug_(unit)",
+      "FromUnitToBaseFunc": "{x} * (32.17405 * 0.45359237)",
+      "FromBaseToUnitFunc": "{x} / (32.17405 * 0.45359237)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -174,10 +176,10 @@
       "BaseUnits": {
         "M": "Stone"
       },
-      "FromUnitToBaseFunc": "{x} / 0.1574731728702698",
-      "FromBaseToUnitFunc": "{x} * 0.1574731728702698",
       "XmlDocSummary": "The stone (abbreviation st) is a unit of mass equal to 14 pounds avoirdupois (about 6.35 kilograms) used in Great Britain and Ireland for measuring human body weight.",
       "XmlDocRemarks": "http://en.wikipedia.org/wiki/Stone_(unit)",
+      "FromUnitToBaseFunc": "{x} * 6.35029318",
+      "FromBaseToUnitFunc": "{x} / 6.35029318",
       "Localization": [
         {
           "Culture": "en-US",
@@ -191,10 +193,10 @@
       "BaseUnits": {
         "M": "ShortHundredweight"
       },
-      "FromUnitToBaseFunc": "{x} / 0.022046226218487758",
-      "FromBaseToUnitFunc": "{x} * 0.022046226218487758",
       "XmlDocSummary": "The short hundredweight (abbreviation cwt) is a unit of mass equal to 100 pounds in US and Canada. In British English, the short hundredweight is referred to as the \"cental\".",
       "XmlDocRemarks": "https://en.wikipedia.org/wiki/Hundredweight",
+      "FromUnitToBaseFunc": "{x} * 45.359237",
+      "FromBaseToUnitFunc": "{x} / 45.359237",
       "Localization": [
         {
           "Culture": "en-US",
@@ -208,10 +210,10 @@
       "BaseUnits": {
         "M": "LongHundredweight"
       },
-      "FromUnitToBaseFunc": "{x} / 0.01968413055222121",
-      "FromBaseToUnitFunc": "{x} * 0.01968413055222121",
       "XmlDocSummary": "The long or imperial hundredweight (abbreviation cwt) is a unit of mass equal to 112 pounds in US and Canada.",
       "XmlDocRemarks": "https://en.wikipedia.org/wiki/Hundredweight",
+      "FromUnitToBaseFunc": "{x} * 50.80234544",
+      "FromBaseToUnitFunc": "{x} / 50.80234544",
       "Localization": [
         {
           "Culture": "en-US",
@@ -225,10 +227,10 @@
       "BaseUnits": {
         "M": "Grain"
       },
-      "FromUnitToBaseFunc": "{x} / 15432.358352941431",
-      "FromBaseToUnitFunc": "{x} * 15432.358352941431",
       "XmlDocSummary": "A grain is a unit of measurement of mass, and in the troy weight, avoirdupois, and Apothecaries' system, equal to exactly 64.79891 milligrams.",
       "XmlDocRemarks": "https://en.wikipedia.org/wiki/Grain_(unit)",
+      "FromUnitToBaseFunc": "{x} * 64.79891e-6",
+      "FromBaseToUnitFunc": "{x} / 64.79891e-6",
       "Localization": [
         {
           "Culture": "en-US",
@@ -242,10 +244,10 @@
       "BaseUnits": {
         "M": "SolarMass"
       },
-      "FromUnitToBaseFunc": "{x} * 1.98947e30",
-      "FromBaseToUnitFunc": "{x} / 1.98947e30",
       "XmlDocSummary": "Solar mass is a ratio unit to the mass of the solar system star, the sun.",
       "XmlDocRemarks": "https://en.wikipedia.org/wiki/Solar_mass",
+      "FromUnitToBaseFunc": "{x} * 1.98947e30",
+      "FromBaseToUnitFunc": "{x} / 1.98947e30",
       "Localization": [
         {
           "Culture": "en-US",
@@ -259,10 +261,10 @@
       "BaseUnits": {
         "M": "EarthMass"
       },
-      "FromUnitToBaseFunc": "{x} * 5.9722E+24",
-      "FromBaseToUnitFunc": "{x} / 5.9722E+24",
       "XmlDocSummary": "Earth mass is a ratio unit to the mass of planet Earth.",
       "XmlDocRemarks": "https://en.wikipedia.org/wiki/Earth_mass",
+      "FromUnitToBaseFunc": "{x} * 5.9722E+24",
+      "FromBaseToUnitFunc": "{x} / 5.9722E+24",
       "Localization": [
         {
           "Culture": "en-US",

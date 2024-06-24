@@ -26,11 +26,11 @@
         }
       ]
     },
-	{
+    {
       "SingularName": "CandelaPerSquareFoot",
       "PluralName": "CandelasPerSquareFoot",
-      "FromUnitToBaseFunc": "{x}* 1.07639e1",
-      "FromBaseToUnitFunc": "{x}/ 1.07639e1",
+      "FromUnitToBaseFunc": "{x} / 9.290304e-2",
+      "FromBaseToUnitFunc": "{x} * 9.290304e-2",
       "Localization": [
         {
           "Culture": "en-US",
@@ -38,11 +38,11 @@
         }
       ]
     },
-	{
+    {
       "SingularName": "CandelaPerSquareInch",
       "PluralName": "CandelasPerSquareInch",
-      "FromUnitToBaseFunc": "{x}* 1.5500031e3",
-      "FromBaseToUnitFunc": "{x}/ 1.5500031e3",
+      "FromUnitToBaseFunc": "{x} / 0.00064516",
+      "FromBaseToUnitFunc": "{x} * 0.00064516",
       "Localization": [
         {
           "Culture": "en-US",

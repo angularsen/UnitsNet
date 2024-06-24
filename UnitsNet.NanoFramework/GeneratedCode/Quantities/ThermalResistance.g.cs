@@ -189,8 +189,8 @@ namespace UnitsNet
                 {
                     return Unit switch
                     {
-                        ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu => _value * 176.1121482159839,
-                        ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie => _value * 0.0859779507590433,
+                        ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu => _value * (1000 * 0.3048 * 0.3048 * 3600) / (1055.05585262 * 1.8),
+                        ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie => _value * (0.0001 * 3600) / 4.184,
                         ThermalResistanceUnit.SquareCentimeterKelvinPerWatt => _value * 0.1,
                         ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt => _value * 1000.0,
                         ThermalResistanceUnit.SquareMeterKelvinPerKilowatt => _value,
@@ -208,8 +208,8 @@ namespace UnitsNet
 
                     return unit switch
                     {
-                        ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu => baseUnitValue / 176.1121482159839,
-                        ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie => baseUnitValue / 0.0859779507590433,
+                        ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu => baseUnitValue * (1055.05585262 * 1.8) / (1000 * 0.3048 * 0.3048 * 3600),
+                        ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie => baseUnitValue * 4.184 / (0.0001 * 3600),
                         ThermalResistanceUnit.SquareCentimeterKelvinPerWatt => baseUnitValue / 0.1,
                         ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt => baseUnitValue / 1000.0,
                         ThermalResistanceUnit.SquareMeterKelvinPerKilowatt => baseUnitValue,

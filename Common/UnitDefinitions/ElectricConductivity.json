@@ -31,8 +31,8 @@
     {
       "SingularName": "SiemensPerInch",
       "PluralName": "SiemensPerInch",
-      "FromUnitToBaseFunc": "{x} * 3.937007874015748e1",
-      "FromBaseToUnitFunc": "{x} / 3.937007874015748e1",
+      "FromUnitToBaseFunc": "{x} / 2.54e-2",
+      "FromBaseToUnitFunc": "{x} * 2.54e-2",
       "Localization": [
         {
           "Culture": "en-US",
@@ -43,8 +43,8 @@
     {
       "SingularName": "SiemensPerFoot",
       "PluralName": "SiemensPerFoot",
-      "FromUnitToBaseFunc": "{x} * 3.2808398950131234",
-      "FromBaseToUnitFunc": "{x} / 3.2808398950131234",
+      "FromUnitToBaseFunc": "{x} / 0.3048",
+      "FromBaseToUnitFunc": "{x} * 0.3048",
       "Localization": [
         {
           "Culture": "en-US",

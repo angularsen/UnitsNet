@@ -30,7 +30,17 @@ namespace UnitsNet.Units
         FootPerSecondSquared = 3,
         InchPerSecondSquared = 4,
         KilometerPerSecondSquared = 5,
+
+        /// <summary>
+        ///     The knot (/nɒt/) is a unit of speed equal to one nautical mile per hour, exactly 1.852 km/h (approximately 1.151 mph or 0.514 m/s).
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Knot_(unit)</remarks>
         KnotPerHour = 6,
+
+        /// <summary>
+        ///     The knot (/nɒt/) is a unit of speed equal to one nautical mile per hour, exactly 1.852 km/h (approximately 1.151 mph or 0.514 m/s).
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Knot_(unit)</remarks>
         KnotPerMinute = 7,
         KnotPerSecond = 8,
         MeterPerSecondSquared = 9,
