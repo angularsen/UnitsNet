@@ -112,6 +112,8 @@ Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Length", "Length\Length.nfp
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Level", "Level\Level.nfproj", "{5c300917-a99f-d166-4f56-f0da3c3614bb}"
 EndProject
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "LevelToCarrier", "LevelToCarrier\LevelToCarrier.nfproj", "{0d928a7f-ad44-32e7-0de6-3012af60ac25}"
+EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "LinearDensity", "LinearDensity\LinearDensity.nfproj", "{ab414094-9582-3357-d0e9-20b153a1b54c}"
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "LinearPowerDensity", "LinearPowerDensity\LinearPowerDensity.nfproj", "{8823a9ee-673a-e7d4-3c0a-bae61a262388}"
@@ -586,6 +588,12 @@ Global
 {5c300917-a99f-d166-4f56-f0da3c3614bb}.Release|Any CPU.ActiveCfg = Release|Any CPU
 {5c300917-a99f-d166-4f56-f0da3c3614bb}.Release|Any CPU.Build.0 = Release|Any CPU
 {5c300917-a99f-d166-4f56-f0da3c3614bb}.Release|Any CPU.Deploy.0 = Release|Any CPU
+{0d928a7f-ad44-32e7-0de6-3012af60ac25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+{0d928a7f-ad44-32e7-0de6-3012af60ac25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+{0d928a7f-ad44-32e7-0de6-3012af60ac25}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+{0d928a7f-ad44-32e7-0de6-3012af60ac25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+{0d928a7f-ad44-32e7-0de6-3012af60ac25}.Release|Any CPU.Build.0 = Release|Any CPU
+{0d928a7f-ad44-32e7-0de6-3012af60ac25}.Release|Any CPU.Deploy.0 = Release|Any CPU
 {ab414094-9582-3357-d0e9-20b153a1b54c}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 {ab414094-9582-3357-d0e9-20b153a1b54c}.Debug|Any CPU.Build.0 = Debug|Any CPU
 {ab414094-9582-3357-d0e9-20b153a1b54c}.Debug|Any CPU.Deploy.0 = Debug|Any CPU

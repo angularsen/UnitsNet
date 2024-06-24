@@ -89,6 +89,7 @@ namespace UnitsNet.Tests
             Assertion(3, LeakRateUnit.TorrLiterPerSecond, Quantity.From(3, LeakRateUnit.TorrLiterPerSecond));
             Assertion(3, LengthUnit.Yard, Quantity.From(3, LengthUnit.Yard));
             Assertion(3, LevelUnit.Neper, Quantity.From(3, LevelUnit.Neper));
+            Assertion(3, LevelToCarrierUnit.DecibelCarrier, Quantity.From(3, LevelToCarrierUnit.DecibelCarrier));
             Assertion(3, LinearDensityUnit.PoundPerInch, Quantity.From(3, LinearDensityUnit.PoundPerInch));
             Assertion(3, LinearPowerDensityUnit.WattPerMillimeter, Quantity.From(3, LinearPowerDensityUnit.WattPerMillimeter));
             Assertion(3, LuminanceUnit.Nit, Quantity.From(3, LuminanceUnit.Nit));
@@ -220,6 +221,7 @@ namespace UnitsNet.Tests
             Assertion(LeakRate.Info, LeakRate.Zero);
             Assertion(Length.Info, Length.Zero);
             Assertion(Level.Info, Level.Zero);
+            Assertion(LevelToCarrier.Info, LevelToCarrier.Zero);
             Assertion(LinearDensity.Info, LinearDensity.Zero);
             Assertion(LinearPowerDensity.Info, LinearPowerDensity.Zero);
             Assertion(Luminance.Info, Luminance.Zero);
@@ -351,6 +353,7 @@ namespace UnitsNet.Tests
             Assertion(LeakRate.BaseDimensions, LeakRate.Zero);
             Assertion(Length.BaseDimensions, Length.Zero);
             Assertion(Level.BaseDimensions, Level.Zero);
+            Assertion(LevelToCarrier.BaseDimensions, LevelToCarrier.Zero);
             Assertion(LinearDensity.BaseDimensions, LinearDensity.Zero);
             Assertion(LinearPowerDensity.BaseDimensions, LinearPowerDensity.Zero);
             Assertion(Luminance.BaseDimensions, Luminance.Zero);

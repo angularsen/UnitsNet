@@ -1859,5 +1859,8 @@
     "Sievert": 9,
     "Kilosievert": 3,
     "Megasievert": 6
+  },
+  "LevelToCarrier": {
+    "DecibelCarrier": 4
   }
 }

@@ -1,0 +1,21 @@
+{
+  "Name": "LevelToCarrier",
+  "BaseUnit": "DecibelCarrier",
+  "Logarithmic": "True",
+  "LogarithmicScalingFactor": "1",
+  "XmlDocSummary": "Level is the logarithm of the ratio between the level of the signal and the level carrier or reference signal.",
+  "Units": [
+    {
+      "SingularName": "DecibelCarrier",
+      "PluralName": "DecibelsCarrier",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "dB" ]
+        }
+      ]
+    }
+  ]
+}

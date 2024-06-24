@@ -93,6 +93,7 @@ namespace UnitsNet
             { "LeakRate", LeakRate.Info },
             { "Length", Length.Info },
             { "Level", Level.Info },
+            { "LevelToCarrier", LevelToCarrier.Info },
             { "LinearDensity", LinearDensity.Info },
             { "LinearPowerDensity", LinearPowerDensity.Info },
             { "Luminance", Luminance.Info },
@@ -229,6 +230,7 @@ namespace UnitsNet
                 "LeakRate" => LeakRate.From(value, LeakRate.BaseUnit),
                 "Length" => Length.From(value, Length.BaseUnit),
                 "Level" => Level.From(value, Level.BaseUnit),
+                "LevelToCarrier" => LevelToCarrier.From(value, LevelToCarrier.BaseUnit),
                 "LinearDensity" => LinearDensity.From(value, LinearDensity.BaseUnit),
                 "LinearPowerDensity" => LinearPowerDensity.From(value, LinearPowerDensity.BaseUnit),
                 "Luminance" => Luminance.From(value, Luminance.BaseUnit),
@@ -368,6 +370,7 @@ namespace UnitsNet
                 LeakRateUnit leakRateUnit => LeakRate.From(value, leakRateUnit),
                 LengthUnit lengthUnit => Length.From(value, lengthUnit),
                 LevelUnit levelUnit => Level.From(value, levelUnit),
+                LevelToCarrierUnit levelToCarrierUnit => LevelToCarrier.From(value, levelToCarrierUnit),
                 LinearDensityUnit linearDensityUnit => LinearDensity.From(value, linearDensityUnit),
                 LinearPowerDensityUnit linearPowerDensityUnit => LinearPowerDensity.From(value, linearPowerDensityUnit),
                 LuminanceUnit luminanceUnit => Luminance.From(value, luminanceUnit),
@@ -517,6 +520,7 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(LeakRate) => parser.TryParse<LeakRate, LeakRateUnit>(quantityString, formatProvider, LeakRate.From, out quantity),
                 Type _ when quantityType == typeof(Length) => parser.TryParse<Length, LengthUnit>(quantityString, formatProvider, Length.From, out quantity),
                 Type _ when quantityType == typeof(Level) => parser.TryParse<Level, LevelUnit>(quantityString, formatProvider, Level.From, out quantity),
+                Type _ when quantityType == typeof(LevelToCarrier) => parser.TryParse<LevelToCarrier, LevelToCarrierUnit>(quantityString, formatProvider, LevelToCarrier.From, out quantity),
                 Type _ when quantityType == typeof(LinearDensity) => parser.TryParse<LinearDensity, LinearDensityUnit>(quantityString, formatProvider, LinearDensity.From, out quantity),
                 Type _ when quantityType == typeof(LinearPowerDensity) => parser.TryParse<LinearPowerDensity, LinearPowerDensityUnit>(quantityString, formatProvider, LinearPowerDensity.From, out quantity),
                 Type _ when quantityType == typeof(Luminance) => parser.TryParse<Luminance, LuminanceUnit>(quantityString, formatProvider, Luminance.From, out quantity),
@@ -647,6 +651,7 @@ namespace UnitsNet
             yield return typeof(LeakRate);
             yield return typeof(Length);
             yield return typeof(Level);
+            yield return typeof(LevelToCarrier);
             yield return typeof(LinearDensity);
             yield return typeof(LinearPowerDensity);
             yield return typeof(Luminance);
