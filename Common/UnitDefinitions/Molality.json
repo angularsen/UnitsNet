@@ -12,11 +12,12 @@
       "SingularName": "MolePerKilogram",
       "PluralName": "MolesPerKilogram",
       "BaseUnits": {
-		"N": "Mole",
+        "N": "Mole",
         "M": "Kilogram"
       },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
+      "Prefixes": [ "Milli" ],
       "Localization": [
         {
           "Culture": "en-US",
