@@ -36,3 +36,4 @@ jobs:
         exempt-draft-pr: false
         exempt-milestones: true
         exempt-all-milestones: true
+        operations-per-run: 100 # Default 30, a bit small as we have many stale/pinned issues to re-process
