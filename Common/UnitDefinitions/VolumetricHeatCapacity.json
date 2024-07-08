@@ -19,7 +19,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "J/m³·K" ]
+          "Abbreviations": [ "J/(m³·K)" ]
         }
       ]
     },
@@ -32,7 +32,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "J/m³·°C" ]
+          "Abbreviations": [ "J/(m³·°C)" ]
         }
       ]
     },
@@ -45,7 +45,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "cal/cm³·°C" ]
+          "Abbreviations": [ "cal/(cm³·°C)" ]
         }
       ]
     },
@@ -57,7 +57,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "BTU/ft³·°F" ]
+          "Abbreviations": [ "BTU/(ft³·°F)" ]
         }
       ]
     }

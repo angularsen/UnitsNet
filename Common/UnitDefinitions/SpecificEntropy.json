@@ -55,7 +55,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "BTU/lb·°F", "BTU/lbm·°F" ]
+          "Abbreviations": [ "BTU/(lb·°F)", "BTU/(lbm·°F)" ]
         }
       ]
     }
