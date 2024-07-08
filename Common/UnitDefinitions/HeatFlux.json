@@ -56,7 +56,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "BTU/s·in²" ]
+          "Abbreviations": [ "BTU/(s·in²)" ]
         }
       ]
     },
@@ -68,7 +68,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "BTU/s·ft²" ]
+          "Abbreviations": [ "BTU/(s·ft²)" ]
         }
       ]
     },
@@ -80,7 +80,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "BTU/min·ft²" ]
+          "Abbreviations": [ "BTU/(min·ft²)" ]
         }
       ]
     },
@@ -92,7 +92,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "BTU/h·ft²" ]
+          "Abbreviations": [ "BTU/(h·ft²)" ]
         }
       ]
     },
@@ -105,7 +105,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "cal/s·cm²" ]
+          "Abbreviations": [ "cal/(s·cm²)" ]
         }
       ]
     },
@@ -117,7 +117,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kcal/h·m²" ]
+          "Abbreviations": [ "kcal/(h·m²)" ]
         }
       ]
     },

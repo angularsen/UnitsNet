@@ -349,7 +349,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = DynamicViscosity.Parse("1 lb/ft·s", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = DynamicViscosity.Parse("1 lb/(ft·s)", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.PoundsPerFootSecond, PoundsPerFootSecondTolerance);
                 Assert.Equal(DynamicViscosityUnit.PoundPerFootSecond, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -433,7 +433,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(DynamicViscosity.TryParse("1 lb/ft·s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(DynamicViscosity.TryParse("1 lb/(ft·s)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.PoundsPerFootSecond, PoundsPerFootSecondTolerance);
                 Assert.Equal(DynamicViscosityUnit.PoundPerFootSecond, parsed.Unit);
             }
@@ -517,7 +517,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsedUnit = DynamicViscosity.ParseUnit("lb/ft·s", CultureInfo.GetCultureInfo("en-US"));
+                var parsedUnit = DynamicViscosity.ParseUnit("lb/(ft·s)", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DynamicViscosityUnit.PoundPerFootSecond, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
@@ -588,7 +588,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(DynamicViscosity.TryParseUnit("lb/ft·s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.True(DynamicViscosity.TryParseUnit("lb/(ft·s)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DynamicViscosityUnit.PoundPerFootSecond, parsedUnit);
             }
 
@@ -810,7 +810,7 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 P", new DynamicViscosity(1, DynamicViscosityUnit.Poise).ToString());
                 Assert.Equal("1 lbf·s/ft²", new DynamicViscosity(1, DynamicViscosityUnit.PoundForceSecondPerSquareFoot).ToString());
                 Assert.Equal("1 lbf·s/in²", new DynamicViscosity(1, DynamicViscosityUnit.PoundForceSecondPerSquareInch).ToString());
-                Assert.Equal("1 lb/ft·s", new DynamicViscosity(1, DynamicViscosityUnit.PoundPerFootSecond).ToString());
+                Assert.Equal("1 lb/(ft·s)", new DynamicViscosity(1, DynamicViscosityUnit.PoundPerFootSecond).ToString());
                 Assert.Equal("1 reyn", new DynamicViscosity(1, DynamicViscosityUnit.Reyn).ToString());
             }
             finally
@@ -833,7 +833,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 P", new DynamicViscosity(1, DynamicViscosityUnit.Poise).ToString(swedishCulture));
             Assert.Equal("1 lbf·s/ft²", new DynamicViscosity(1, DynamicViscosityUnit.PoundForceSecondPerSquareFoot).ToString(swedishCulture));
             Assert.Equal("1 lbf·s/in²", new DynamicViscosity(1, DynamicViscosityUnit.PoundForceSecondPerSquareInch).ToString(swedishCulture));
-            Assert.Equal("1 lb/ft·s", new DynamicViscosity(1, DynamicViscosityUnit.PoundPerFootSecond).ToString(swedishCulture));
+            Assert.Equal("1 lb/(ft·s)", new DynamicViscosity(1, DynamicViscosityUnit.PoundPerFootSecond).ToString(swedishCulture));
             Assert.Equal("1 reyn", new DynamicViscosity(1, DynamicViscosityUnit.Reyn).ToString(swedishCulture));
         }
 

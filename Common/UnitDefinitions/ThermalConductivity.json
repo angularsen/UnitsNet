@@ -18,7 +18,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "W/m·K" ]
+          "Abbreviations": [ "W/(m·K)" ]
         }
       ]
     },
@@ -30,7 +30,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "BTU/h·ft·°F" ]
+          "Abbreviations": [ "BTU/(h·ft·°F)" ]
         }
       ]
     }

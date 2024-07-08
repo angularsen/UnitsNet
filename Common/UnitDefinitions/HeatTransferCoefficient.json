@@ -16,7 +16,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "W/m²·K" ]
+          "Abbreviations": [ "W/(m²·K)" ]
         }
       ]
     },
@@ -28,7 +28,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "W/m²·°C" ]
+          "Abbreviations": [ "W/(m²·°C)" ]
         }
       ]
     },
@@ -40,7 +40,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "Btu/h·ft²·°F", "Btu/ft²·h·°F", "Btu/hr·ft²·°F", "Btu/ft²·hr·°F" ]
+          "Abbreviations": [ "Btu/(h·ft²·°F)", "Btu/(ft²·h·°F)", "Btu/(hr·ft²·°F)", "Btu/(ft²·hr·°F)" ]
         }
       ]
     },
@@ -53,7 +53,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kcal/h·m²·°C", "kcal/m²·h·°C", "kcal/hr·m²·°C", "kcal/m²·hr·°C" ]
+          "Abbreviations": [ "kcal/(h·m²·°C)", "kcal/(m²·h·°C)", "kcal/(hr·m²·°C)", "kcal/(m²·hr·°C)" ]
         }
       ]
     }
