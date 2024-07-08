@@ -739,7 +739,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = Density.Parse("1 cg/L", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = Density.Parse("1 cg/l", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.CentigramsPerLiter, CentigramsPerLiterTolerance);
                 Assert.Equal(DensityUnit.CentigramPerLiter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -760,7 +760,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = Density.Parse("1 dg/L", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = Density.Parse("1 dg/l", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.DecigramsPerLiter, DecigramsPerLiterTolerance);
                 Assert.Equal(DensityUnit.DecigramPerLiter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -781,7 +781,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = Density.Parse("1 fg/L", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = Density.Parse("1 fg/l", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.FemtogramsPerLiter, FemtogramsPerLiterTolerance);
                 Assert.Equal(DensityUnit.FemtogramPerLiter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -844,7 +844,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = Density.Parse("1 g/L", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = Density.Parse("1 g/l", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.GramsPerLiter, GramsPerLiterTolerance);
                 Assert.Equal(DensityUnit.GramPerLiter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -935,7 +935,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = Density.Parse("1 µg/L", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = Density.Parse("1 µg/l", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MicrogramsPerLiter, MicrogramsPerLiterTolerance);
                 Assert.Equal(DensityUnit.MicrogramPerLiter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -970,7 +970,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = Density.Parse("1 mg/L", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = Density.Parse("1 mg/l", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MilligramsPerLiter, MilligramsPerLiterTolerance);
                 Assert.Equal(DensityUnit.MilligramPerLiter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -991,7 +991,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = Density.Parse("1 ng/L", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = Density.Parse("1 ng/l", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.NanogramsPerLiter, NanogramsPerLiterTolerance);
                 Assert.Equal(DensityUnit.NanogramPerLiter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1012,7 +1012,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = Density.Parse("1 pg/L", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = Density.Parse("1 pg/l", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.PicogramsPerLiter, PicogramsPerLiterTolerance);
                 Assert.Equal(DensityUnit.PicogramPerLiter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1162,7 +1162,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(Density.TryParse("1 cg/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(Density.TryParse("1 cg/l", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.CentigramsPerLiter, CentigramsPerLiterTolerance);
                 Assert.Equal(DensityUnit.CentigramPerLiter, parsed.Unit);
             }
@@ -1180,7 +1180,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(Density.TryParse("1 dg/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(Density.TryParse("1 dg/l", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.DecigramsPerLiter, DecigramsPerLiterTolerance);
                 Assert.Equal(DensityUnit.DecigramPerLiter, parsed.Unit);
             }
@@ -1198,7 +1198,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(Density.TryParse("1 fg/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(Density.TryParse("1 fg/l", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.FemtogramsPerLiter, FemtogramsPerLiterTolerance);
                 Assert.Equal(DensityUnit.FemtogramPerLiter, parsed.Unit);
             }
@@ -1252,7 +1252,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(Density.TryParse("1 g/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(Density.TryParse("1 g/l", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.GramsPerLiter, GramsPerLiterTolerance);
                 Assert.Equal(DensityUnit.GramPerLiter, parsed.Unit);
             }
@@ -1330,7 +1330,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(Density.TryParse("1 µg/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(Density.TryParse("1 µg/l", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MicrogramsPerLiter, MicrogramsPerLiterTolerance);
                 Assert.Equal(DensityUnit.MicrogramPerLiter, parsed.Unit);
             }
@@ -1360,7 +1360,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(Density.TryParse("1 mg/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(Density.TryParse("1 mg/l", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MilligramsPerLiter, MilligramsPerLiterTolerance);
                 Assert.Equal(DensityUnit.MilligramPerLiter, parsed.Unit);
             }
@@ -1378,7 +1378,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(Density.TryParse("1 ng/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(Density.TryParse("1 ng/l", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.NanogramsPerLiter, NanogramsPerLiterTolerance);
                 Assert.Equal(DensityUnit.NanogramPerLiter, parsed.Unit);
             }
@@ -1396,7 +1396,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(Density.TryParse("1 pg/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(Density.TryParse("1 pg/l", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.PicogramsPerLiter, PicogramsPerLiterTolerance);
                 Assert.Equal(DensityUnit.PicogramPerLiter, parsed.Unit);
             }
@@ -1528,7 +1528,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsedUnit = Density.ParseUnit("cg/L", CultureInfo.GetCultureInfo("en-US"));
+                var parsedUnit = Density.ParseUnit("cg/l", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DensityUnit.CentigramPerLiter, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
@@ -1546,7 +1546,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsedUnit = Density.ParseUnit("dg/L", CultureInfo.GetCultureInfo("en-US"));
+                var parsedUnit = Density.ParseUnit("dg/l", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DensityUnit.DecigramPerLiter, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
@@ -1564,7 +1564,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsedUnit = Density.ParseUnit("fg/L", CultureInfo.GetCultureInfo("en-US"));
+                var parsedUnit = Density.ParseUnit("fg/l", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DensityUnit.FemtogramPerLiter, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
@@ -1618,7 +1618,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsedUnit = Density.ParseUnit("g/L", CultureInfo.GetCultureInfo("en-US"));
+                var parsedUnit = Density.ParseUnit("g/l", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DensityUnit.GramPerLiter, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
@@ -1696,7 +1696,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsedUnit = Density.ParseUnit("µg/L", CultureInfo.GetCultureInfo("en-US"));
+                var parsedUnit = Density.ParseUnit("µg/l", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DensityUnit.MicrogramPerLiter, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
@@ -1726,7 +1726,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsedUnit = Density.ParseUnit("mg/L", CultureInfo.GetCultureInfo("en-US"));
+                var parsedUnit = Density.ParseUnit("mg/l", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DensityUnit.MilligramPerLiter, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
@@ -1744,7 +1744,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsedUnit = Density.ParseUnit("ng/L", CultureInfo.GetCultureInfo("en-US"));
+                var parsedUnit = Density.ParseUnit("ng/l", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DensityUnit.NanogramPerLiter, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
@@ -1762,7 +1762,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsedUnit = Density.ParseUnit("pg/L", CultureInfo.GetCultureInfo("en-US"));
+                var parsedUnit = Density.ParseUnit("pg/l", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DensityUnit.PicogramPerLiter, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
@@ -1891,7 +1891,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(Density.TryParseUnit("cg/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.True(Density.TryParseUnit("cg/l", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DensityUnit.CentigramPerLiter, parsedUnit);
             }
 
@@ -1906,7 +1906,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(Density.TryParseUnit("dg/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.True(Density.TryParseUnit("dg/l", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DensityUnit.DecigramPerLiter, parsedUnit);
             }
 
@@ -1921,7 +1921,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(Density.TryParseUnit("fg/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.True(Density.TryParseUnit("fg/l", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DensityUnit.FemtogramPerLiter, parsedUnit);
             }
 
@@ -1966,7 +1966,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(Density.TryParseUnit("g/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.True(Density.TryParseUnit("g/l", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DensityUnit.GramPerLiter, parsedUnit);
             }
 
@@ -2031,7 +2031,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(Density.TryParseUnit("µg/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.True(Density.TryParseUnit("µg/l", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DensityUnit.MicrogramPerLiter, parsedUnit);
             }
 
@@ -2056,7 +2056,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(Density.TryParseUnit("mg/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.True(Density.TryParseUnit("mg/l", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DensityUnit.MilligramPerLiter, parsedUnit);
             }
 
@@ -2071,7 +2071,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(Density.TryParseUnit("ng/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.True(Density.TryParseUnit("ng/l", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DensityUnit.NanogramPerLiter, parsedUnit);
             }
 
@@ -2086,7 +2086,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(Density.TryParseUnit("pg/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.True(Density.TryParseUnit("pg/l", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DensityUnit.PicogramPerLiter, parsedUnit);
             }
 
@@ -2437,13 +2437,13 @@ namespace UnitsNet.Tests
             Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             try {
                 Assert.Equal("1 cg/dl", new Density(1, DensityUnit.CentigramPerDeciliter).ToString());
-                Assert.Equal("1 cg/L", new Density(1, DensityUnit.CentigramPerLiter).ToString());
+                Assert.Equal("1 cg/l", new Density(1, DensityUnit.CentigramPerLiter).ToString());
                 Assert.Equal("1 cg/ml", new Density(1, DensityUnit.CentigramPerMilliliter).ToString());
                 Assert.Equal("1 dg/dl", new Density(1, DensityUnit.DecigramPerDeciliter).ToString());
-                Assert.Equal("1 dg/L", new Density(1, DensityUnit.DecigramPerLiter).ToString());
+                Assert.Equal("1 dg/l", new Density(1, DensityUnit.DecigramPerLiter).ToString());
                 Assert.Equal("1 dg/ml", new Density(1, DensityUnit.DecigramPerMilliliter).ToString());
                 Assert.Equal("1 fg/dl", new Density(1, DensityUnit.FemtogramPerDeciliter).ToString());
-                Assert.Equal("1 fg/L", new Density(1, DensityUnit.FemtogramPerLiter).ToString());
+                Assert.Equal("1 fg/l", new Density(1, DensityUnit.FemtogramPerLiter).ToString());
                 Assert.Equal("1 fg/ml", new Density(1, DensityUnit.FemtogramPerMilliliter).ToString());
                 Assert.Equal("1 g/cm³", new Density(1, DensityUnit.GramPerCubicCentimeter).ToString());
                 Assert.Equal("1 g/ft³", new Density(1, DensityUnit.GramPerCubicFoot).ToString());
@@ -2451,7 +2451,7 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 g/m³", new Density(1, DensityUnit.GramPerCubicMeter).ToString());
                 Assert.Equal("1 g/mm³", new Density(1, DensityUnit.GramPerCubicMillimeter).ToString());
                 Assert.Equal("1 g/dl", new Density(1, DensityUnit.GramPerDeciliter).ToString());
-                Assert.Equal("1 g/L", new Density(1, DensityUnit.GramPerLiter).ToString());
+                Assert.Equal("1 g/l", new Density(1, DensityUnit.GramPerLiter).ToString());
                 Assert.Equal("1 g/ml", new Density(1, DensityUnit.GramPerMilliliter).ToString());
                 Assert.Equal("1 kg/cm³", new Density(1, DensityUnit.KilogramPerCubicCentimeter).ToString());
                 Assert.Equal("1 kg/m³", new Density(1, DensityUnit.KilogramPerCubicMeter).ToString());
@@ -2462,17 +2462,17 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 kip/yd³", new Density(1, DensityUnit.KilopoundPerCubicYard).ToString());
                 Assert.Equal("1 µg/m³", new Density(1, DensityUnit.MicrogramPerCubicMeter).ToString());
                 Assert.Equal("1 µg/dl", new Density(1, DensityUnit.MicrogramPerDeciliter).ToString());
-                Assert.Equal("1 µg/L", new Density(1, DensityUnit.MicrogramPerLiter).ToString());
+                Assert.Equal("1 µg/l", new Density(1, DensityUnit.MicrogramPerLiter).ToString());
                 Assert.Equal("1 µg/ml", new Density(1, DensityUnit.MicrogramPerMilliliter).ToString());
                 Assert.Equal("1 mg/m³", new Density(1, DensityUnit.MilligramPerCubicMeter).ToString());
                 Assert.Equal("1 mg/dl", new Density(1, DensityUnit.MilligramPerDeciliter).ToString());
-                Assert.Equal("1 mg/L", new Density(1, DensityUnit.MilligramPerLiter).ToString());
+                Assert.Equal("1 mg/l", new Density(1, DensityUnit.MilligramPerLiter).ToString());
                 Assert.Equal("1 mg/ml", new Density(1, DensityUnit.MilligramPerMilliliter).ToString());
                 Assert.Equal("1 ng/dl", new Density(1, DensityUnit.NanogramPerDeciliter).ToString());
-                Assert.Equal("1 ng/L", new Density(1, DensityUnit.NanogramPerLiter).ToString());
+                Assert.Equal("1 ng/l", new Density(1, DensityUnit.NanogramPerLiter).ToString());
                 Assert.Equal("1 ng/ml", new Density(1, DensityUnit.NanogramPerMilliliter).ToString());
                 Assert.Equal("1 pg/dl", new Density(1, DensityUnit.PicogramPerDeciliter).ToString());
-                Assert.Equal("1 pg/L", new Density(1, DensityUnit.PicogramPerLiter).ToString());
+                Assert.Equal("1 pg/l", new Density(1, DensityUnit.PicogramPerLiter).ToString());
                 Assert.Equal("1 pg/ml", new Density(1, DensityUnit.PicogramPerMilliliter).ToString());
                 Assert.Equal("1 lb/cm³", new Density(1, DensityUnit.PoundPerCubicCentimeter).ToString());
                 Assert.Equal("1 lb/ft³", new Density(1, DensityUnit.PoundPerCubicFoot).ToString());
@@ -2506,13 +2506,13 @@ namespace UnitsNet.Tests
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
             Assert.Equal("1 cg/dl", new Density(1, DensityUnit.CentigramPerDeciliter).ToString(swedishCulture));
-            Assert.Equal("1 cg/L", new Density(1, DensityUnit.CentigramPerLiter).ToString(swedishCulture));
+            Assert.Equal("1 cg/l", new Density(1, DensityUnit.CentigramPerLiter).ToString(swedishCulture));
             Assert.Equal("1 cg/ml", new Density(1, DensityUnit.CentigramPerMilliliter).ToString(swedishCulture));
             Assert.Equal("1 dg/dl", new Density(1, DensityUnit.DecigramPerDeciliter).ToString(swedishCulture));
-            Assert.Equal("1 dg/L", new Density(1, DensityUnit.DecigramPerLiter).ToString(swedishCulture));
+            Assert.Equal("1 dg/l", new Density(1, DensityUnit.DecigramPerLiter).ToString(swedishCulture));
             Assert.Equal("1 dg/ml", new Density(1, DensityUnit.DecigramPerMilliliter).ToString(swedishCulture));
             Assert.Equal("1 fg/dl", new Density(1, DensityUnit.FemtogramPerDeciliter).ToString(swedishCulture));
-            Assert.Equal("1 fg/L", new Density(1, DensityUnit.FemtogramPerLiter).ToString(swedishCulture));
+            Assert.Equal("1 fg/l", new Density(1, DensityUnit.FemtogramPerLiter).ToString(swedishCulture));
             Assert.Equal("1 fg/ml", new Density(1, DensityUnit.FemtogramPerMilliliter).ToString(swedishCulture));
             Assert.Equal("1 g/cm³", new Density(1, DensityUnit.GramPerCubicCentimeter).ToString(swedishCulture));
             Assert.Equal("1 g/ft³", new Density(1, DensityUnit.GramPerCubicFoot).ToString(swedishCulture));
@@ -2520,7 +2520,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 g/m³", new Density(1, DensityUnit.GramPerCubicMeter).ToString(swedishCulture));
             Assert.Equal("1 g/mm³", new Density(1, DensityUnit.GramPerCubicMillimeter).ToString(swedishCulture));
             Assert.Equal("1 g/dl", new Density(1, DensityUnit.GramPerDeciliter).ToString(swedishCulture));
-            Assert.Equal("1 g/L", new Density(1, DensityUnit.GramPerLiter).ToString(swedishCulture));
+            Assert.Equal("1 g/l", new Density(1, DensityUnit.GramPerLiter).ToString(swedishCulture));
             Assert.Equal("1 g/ml", new Density(1, DensityUnit.GramPerMilliliter).ToString(swedishCulture));
             Assert.Equal("1 kg/cm³", new Density(1, DensityUnit.KilogramPerCubicCentimeter).ToString(swedishCulture));
             Assert.Equal("1 kg/m³", new Density(1, DensityUnit.KilogramPerCubicMeter).ToString(swedishCulture));
@@ -2531,17 +2531,17 @@ namespace UnitsNet.Tests
             Assert.Equal("1 kip/yd³", new Density(1, DensityUnit.KilopoundPerCubicYard).ToString(swedishCulture));
             Assert.Equal("1 µg/m³", new Density(1, DensityUnit.MicrogramPerCubicMeter).ToString(swedishCulture));
             Assert.Equal("1 µg/dl", new Density(1, DensityUnit.MicrogramPerDeciliter).ToString(swedishCulture));
-            Assert.Equal("1 µg/L", new Density(1, DensityUnit.MicrogramPerLiter).ToString(swedishCulture));
+            Assert.Equal("1 µg/l", new Density(1, DensityUnit.MicrogramPerLiter).ToString(swedishCulture));
             Assert.Equal("1 µg/ml", new Density(1, DensityUnit.MicrogramPerMilliliter).ToString(swedishCulture));
             Assert.Equal("1 mg/m³", new Density(1, DensityUnit.MilligramPerCubicMeter).ToString(swedishCulture));
             Assert.Equal("1 mg/dl", new Density(1, DensityUnit.MilligramPerDeciliter).ToString(swedishCulture));
-            Assert.Equal("1 mg/L", new Density(1, DensityUnit.MilligramPerLiter).ToString(swedishCulture));
+            Assert.Equal("1 mg/l", new Density(1, DensityUnit.MilligramPerLiter).ToString(swedishCulture));
             Assert.Equal("1 mg/ml", new Density(1, DensityUnit.MilligramPerMilliliter).ToString(swedishCulture));
             Assert.Equal("1 ng/dl", new Density(1, DensityUnit.NanogramPerDeciliter).ToString(swedishCulture));
-            Assert.Equal("1 ng/L", new Density(1, DensityUnit.NanogramPerLiter).ToString(swedishCulture));
+            Assert.Equal("1 ng/l", new Density(1, DensityUnit.NanogramPerLiter).ToString(swedishCulture));
             Assert.Equal("1 ng/ml", new Density(1, DensityUnit.NanogramPerMilliliter).ToString(swedishCulture));
             Assert.Equal("1 pg/dl", new Density(1, DensityUnit.PicogramPerDeciliter).ToString(swedishCulture));
-            Assert.Equal("1 pg/L", new Density(1, DensityUnit.PicogramPerLiter).ToString(swedishCulture));
+            Assert.Equal("1 pg/l", new Density(1, DensityUnit.PicogramPerLiter).ToString(swedishCulture));
             Assert.Equal("1 pg/ml", new Density(1, DensityUnit.PicogramPerMilliliter).ToString(swedishCulture));
             Assert.Equal("1 lb/cm³", new Density(1, DensityUnit.PoundPerCubicCentimeter).ToString(swedishCulture));
             Assert.Equal("1 lb/ft³", new Density(1, DensityUnit.PoundPerCubicFoot).ToString(swedishCulture));

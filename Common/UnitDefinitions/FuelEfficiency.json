@@ -11,7 +11,7 @@
         "Localization": [{
           "Culture": "en-US",
           "Abbreviations": [
-            "L/100km"
+            "l/100km"
           ]
         }]
       },
@@ -47,7 +47,7 @@
         "Localization": [{
           "Culture": "en-US",
           "Abbreviations": [
-            "km/L"
+            "km/l"
           ]
         }]
       }
