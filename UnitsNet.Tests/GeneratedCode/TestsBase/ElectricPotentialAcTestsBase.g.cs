@@ -488,6 +488,8 @@ namespace UnitsNet.Tests
             var v = ElectricPotentialAc.FromVoltsAc(1);
             Assert.True(v.Equals(ElectricPotentialAc.FromVoltsAc(1), VoltsAcTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ElectricPotentialAc.Zero, VoltsAcTolerance, ComparisonType.Relative));
+            Assert.True(ElectricPotentialAc.FromVoltsAc(100).Equals(ElectricPotentialAc.FromVoltsAc(120), 0.3, ComparisonType.Relative));
+            Assert.False(ElectricPotentialAc.FromVoltsAc(100).Equals(ElectricPotentialAc.FromVoltsAc(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

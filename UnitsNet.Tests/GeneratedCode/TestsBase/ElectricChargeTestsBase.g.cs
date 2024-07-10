@@ -750,6 +750,8 @@ namespace UnitsNet.Tests
             var v = ElectricCharge.FromCoulombs(1);
             Assert.True(v.Equals(ElectricCharge.FromCoulombs(1), CoulombsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ElectricCharge.Zero, CoulombsTolerance, ComparisonType.Relative));
+            Assert.True(ElectricCharge.FromCoulombs(100).Equals(ElectricCharge.FromCoulombs(120), 0.3, ComparisonType.Relative));
+            Assert.False(ElectricCharge.FromCoulombs(100).Equals(ElectricCharge.FromCoulombs(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

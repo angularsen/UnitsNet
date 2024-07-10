@@ -925,6 +925,8 @@ namespace UnitsNet.Tests
             var v = ReciprocalLength.FromInverseMeters(1);
             Assert.True(v.Equals(ReciprocalLength.FromInverseMeters(1), InverseMetersTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ReciprocalLength.Zero, InverseMetersTolerance, ComparisonType.Relative));
+            Assert.True(ReciprocalLength.FromInverseMeters(100).Equals(ReciprocalLength.FromInverseMeters(120), 0.3, ComparisonType.Relative));
+            Assert.False(ReciprocalLength.FromInverseMeters(100).Equals(ReciprocalLength.FromInverseMeters(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

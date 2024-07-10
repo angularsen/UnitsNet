@@ -1557,6 +1557,8 @@ namespace UnitsNet.Tests
             var v = BitRate.FromBitsPerSecond(1);
             Assert.True(v.Equals(BitRate.FromBitsPerSecond(1), BitsPerSecondTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(BitRate.Zero, BitsPerSecondTolerance, ComparisonType.Relative));
+            Assert.True(BitRate.FromBitsPerSecond(100).Equals(BitRate.FromBitsPerSecond(120), 0.3, ComparisonType.Relative));
+            Assert.False(BitRate.FromBitsPerSecond(100).Equals(BitRate.FromBitsPerSecond(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

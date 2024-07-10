@@ -369,6 +369,8 @@ namespace UnitsNet.Tests
             var v = VitaminA.FromInternationalUnits(1);
             Assert.True(v.Equals(VitaminA.FromInternationalUnits(1), InternationalUnitsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(VitaminA.Zero, InternationalUnitsTolerance, ComparisonType.Relative));
+            Assert.True(VitaminA.FromInternationalUnits(100).Equals(VitaminA.FromInternationalUnits(120), 0.3, ComparisonType.Relative));
+            Assert.False(VitaminA.FromInternationalUnits(100).Equals(VitaminA.FromInternationalUnits(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

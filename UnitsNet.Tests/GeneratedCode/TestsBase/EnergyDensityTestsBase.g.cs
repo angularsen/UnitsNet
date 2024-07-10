@@ -755,6 +755,8 @@ namespace UnitsNet.Tests
             var v = EnergyDensity.FromJoulesPerCubicMeter(1);
             Assert.True(v.Equals(EnergyDensity.FromJoulesPerCubicMeter(1), JoulesPerCubicMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(EnergyDensity.Zero, JoulesPerCubicMeterTolerance, ComparisonType.Relative));
+            Assert.True(EnergyDensity.FromJoulesPerCubicMeter(100).Equals(EnergyDensity.FromJoulesPerCubicMeter(120), 0.3, ComparisonType.Relative));
+            Assert.False(EnergyDensity.FromJoulesPerCubicMeter(100).Equals(EnergyDensity.FromJoulesPerCubicMeter(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

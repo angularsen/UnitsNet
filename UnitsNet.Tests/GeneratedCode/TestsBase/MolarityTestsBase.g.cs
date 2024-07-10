@@ -912,6 +912,8 @@ namespace UnitsNet.Tests
             var v = Molarity.FromMolesPerCubicMeter(1);
             Assert.True(v.Equals(Molarity.FromMolesPerCubicMeter(1), MolesPerCubicMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Molarity.Zero, MolesPerCubicMeterTolerance, ComparisonType.Relative));
+            Assert.True(Molarity.FromMolesPerCubicMeter(100).Equals(Molarity.FromMolesPerCubicMeter(120), 0.3, ComparisonType.Relative));
+            Assert.False(Molarity.FromMolesPerCubicMeter(100).Equals(Molarity.FromMolesPerCubicMeter(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

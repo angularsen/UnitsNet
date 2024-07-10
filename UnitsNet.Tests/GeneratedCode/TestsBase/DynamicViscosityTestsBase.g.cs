@@ -757,6 +757,8 @@ namespace UnitsNet.Tests
             var v = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1);
             Assert.True(v.Equals(DynamicViscosity.FromNewtonSecondsPerMeterSquared(1), NewtonSecondsPerMeterSquaredTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(DynamicViscosity.Zero, NewtonSecondsPerMeterSquaredTolerance, ComparisonType.Relative));
+            Assert.True(DynamicViscosity.FromNewtonSecondsPerMeterSquared(100).Equals(DynamicViscosity.FromNewtonSecondsPerMeterSquared(120), 0.3, ComparisonType.Relative));
+            Assert.False(DynamicViscosity.FromNewtonSecondsPerMeterSquared(100).Equals(DynamicViscosity.FromNewtonSecondsPerMeterSquared(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

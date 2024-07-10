@@ -369,6 +369,8 @@ namespace UnitsNet.Tests
             var v = Permittivity.FromFaradsPerMeter(1);
             Assert.True(v.Equals(Permittivity.FromFaradsPerMeter(1), FaradsPerMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Permittivity.Zero, FaradsPerMeterTolerance, ComparisonType.Relative));
+            Assert.True(Permittivity.FromFaradsPerMeter(100).Equals(Permittivity.FromFaradsPerMeter(120), 0.3, ComparisonType.Relative));
+            Assert.False(Permittivity.FromFaradsPerMeter(100).Equals(Permittivity.FromFaradsPerMeter(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

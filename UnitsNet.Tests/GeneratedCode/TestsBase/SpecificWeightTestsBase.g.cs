@@ -930,6 +930,8 @@ namespace UnitsNet.Tests
             var v = SpecificWeight.FromNewtonsPerCubicMeter(1);
             Assert.True(v.Equals(SpecificWeight.FromNewtonsPerCubicMeter(1), NewtonsPerCubicMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(SpecificWeight.Zero, NewtonsPerCubicMeterTolerance, ComparisonType.Relative));
+            Assert.True(SpecificWeight.FromNewtonsPerCubicMeter(100).Equals(SpecificWeight.FromNewtonsPerCubicMeter(120), 0.3, ComparisonType.Relative));
+            Assert.False(SpecificWeight.FromNewtonsPerCubicMeter(100).Equals(SpecificWeight.FromNewtonsPerCubicMeter(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

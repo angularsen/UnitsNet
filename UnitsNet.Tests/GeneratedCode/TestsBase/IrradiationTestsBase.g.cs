@@ -650,6 +650,8 @@ namespace UnitsNet.Tests
             var v = Irradiation.FromJoulesPerSquareMeter(1);
             Assert.True(v.Equals(Irradiation.FromJoulesPerSquareMeter(1), JoulesPerSquareMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Irradiation.Zero, JoulesPerSquareMeterTolerance, ComparisonType.Relative));
+            Assert.True(Irradiation.FromJoulesPerSquareMeter(100).Equals(Irradiation.FromJoulesPerSquareMeter(120), 0.3, ComparisonType.Relative));
+            Assert.False(Irradiation.FromJoulesPerSquareMeter(100).Equals(Irradiation.FromJoulesPerSquareMeter(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

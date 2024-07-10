@@ -369,6 +369,8 @@ namespace UnitsNet.Tests
             var v = LuminousIntensity.FromCandela(1);
             Assert.True(v.Equals(LuminousIntensity.FromCandela(1), CandelaTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(LuminousIntensity.Zero, CandelaTolerance, ComparisonType.Relative));
+            Assert.True(LuminousIntensity.FromCandela(100).Equals(LuminousIntensity.FromCandela(120), 0.3, ComparisonType.Relative));
+            Assert.False(LuminousIntensity.FromCandela(100).Equals(LuminousIntensity.FromCandela(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

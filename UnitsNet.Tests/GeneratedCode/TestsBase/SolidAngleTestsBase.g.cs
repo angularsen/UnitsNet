@@ -369,6 +369,8 @@ namespace UnitsNet.Tests
             var v = SolidAngle.FromSteradians(1);
             Assert.True(v.Equals(SolidAngle.FromSteradians(1), SteradiansTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(SolidAngle.Zero, SteradiansTolerance, ComparisonType.Relative));
+            Assert.True(SolidAngle.FromSteradians(100).Equals(SolidAngle.FromSteradians(120), 0.3, ComparisonType.Relative));
+            Assert.False(SolidAngle.FromSteradians(100).Equals(SolidAngle.FromSteradians(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

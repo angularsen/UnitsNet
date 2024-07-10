@@ -1142,6 +1142,8 @@ namespace UnitsNet.Tests
             var v = TorquePerLength.FromNewtonMetersPerMeter(1);
             Assert.True(v.Equals(TorquePerLength.FromNewtonMetersPerMeter(1), NewtonMetersPerMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(TorquePerLength.Zero, NewtonMetersPerMeterTolerance, ComparisonType.Relative));
+            Assert.True(TorquePerLength.FromNewtonMetersPerMeter(100).Equals(TorquePerLength.FromNewtonMetersPerMeter(120), 0.3, ComparisonType.Relative));
+            Assert.False(TorquePerLength.FromNewtonMetersPerMeter(100).Equals(TorquePerLength.FromNewtonMetersPerMeter(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

@@ -1078,6 +1078,8 @@ namespace UnitsNet.Tests
             var v = MolarMass.FromKilogramsPerMole(1);
             Assert.True(v.Equals(MolarMass.FromKilogramsPerMole(1), KilogramsPerMoleTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(MolarMass.Zero, KilogramsPerMoleTolerance, ComparisonType.Relative));
+            Assert.True(MolarMass.FromKilogramsPerMole(100).Equals(MolarMass.FromKilogramsPerMole(120), 0.3, ComparisonType.Relative));
+            Assert.False(MolarMass.FromKilogramsPerMole(100).Equals(MolarMass.FromKilogramsPerMole(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

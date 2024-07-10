@@ -545,6 +545,8 @@ namespace UnitsNet.Tests
             var v = Ratio.FromDecimalFractions(1);
             Assert.True(v.Equals(Ratio.FromDecimalFractions(1), DecimalFractionsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Ratio.Zero, DecimalFractionsTolerance, ComparisonType.Relative));
+            Assert.True(Ratio.FromDecimalFractions(100).Equals(Ratio.FromDecimalFractions(120), 0.3, ComparisonType.Relative));
+            Assert.False(Ratio.FromDecimalFractions(100).Equals(Ratio.FromDecimalFractions(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

@@ -510,6 +510,8 @@ namespace UnitsNet.Tests
             var v = PorousMediumPermeability.FromSquareMeters(1);
             Assert.True(v.Equals(PorousMediumPermeability.FromSquareMeters(1), SquareMetersTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(PorousMediumPermeability.Zero, SquareMetersTolerance, ComparisonType.Relative));
+            Assert.True(PorousMediumPermeability.FromSquareMeters(100).Equals(PorousMediumPermeability.FromSquareMeters(120), 0.3, ComparisonType.Relative));
+            Assert.False(PorousMediumPermeability.FromSquareMeters(100).Equals(PorousMediumPermeability.FromSquareMeters(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

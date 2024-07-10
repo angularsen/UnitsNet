@@ -440,6 +440,8 @@ namespace UnitsNet.Tests
             var v = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1);
             Assert.True(v.Equals(BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1), KilogramsPerJouleTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(BrakeSpecificFuelConsumption.Zero, KilogramsPerJouleTolerance, ComparisonType.Relative));
+            Assert.True(BrakeSpecificFuelConsumption.FromKilogramsPerJoule(100).Equals(BrakeSpecificFuelConsumption.FromKilogramsPerJoule(120), 0.3, ComparisonType.Relative));
+            Assert.False(BrakeSpecificFuelConsumption.FromKilogramsPerJoule(100).Equals(BrakeSpecificFuelConsumption.FromKilogramsPerJoule(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

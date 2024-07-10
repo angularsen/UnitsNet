@@ -523,6 +523,8 @@ namespace UnitsNet.Tests
             var v = ApparentPower.FromVoltamperes(1);
             Assert.True(v.Equals(ApparentPower.FromVoltamperes(1), VoltamperesTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ApparentPower.Zero, VoltamperesTolerance, ComparisonType.Relative));
+            Assert.True(ApparentPower.FromVoltamperes(100).Equals(ApparentPower.FromVoltamperes(120), 0.3, ComparisonType.Relative));
+            Assert.False(ApparentPower.FromVoltamperes(100).Equals(ApparentPower.FromVoltamperes(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

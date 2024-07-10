@@ -962,6 +962,8 @@ namespace UnitsNet.Tests
             var v = Frequency.FromHertz(1);
             Assert.True(v.Equals(Frequency.FromHertz(1), HertzTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Frequency.Zero, HertzTolerance, ComparisonType.Relative));
+            Assert.True(Frequency.FromHertz(100).Equals(Frequency.FromHertz(120), 0.3, ComparisonType.Relative));
+            Assert.False(Frequency.FromHertz(100).Equals(Frequency.FromHertz(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

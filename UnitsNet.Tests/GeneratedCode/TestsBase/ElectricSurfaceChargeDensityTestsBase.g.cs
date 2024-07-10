@@ -440,6 +440,8 @@ namespace UnitsNet.Tests
             var v = ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(1);
             Assert.True(v.Equals(ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(1), CoulombsPerSquareMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ElectricSurfaceChargeDensity.Zero, CoulombsPerSquareMeterTolerance, ComparisonType.Relative));
+            Assert.True(ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(100).Equals(ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(120), 0.3, ComparisonType.Relative));
+            Assert.False(ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(100).Equals(ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

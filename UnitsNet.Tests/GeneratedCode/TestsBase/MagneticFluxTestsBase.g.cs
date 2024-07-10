@@ -369,6 +369,8 @@ namespace UnitsNet.Tests
             var v = MagneticFlux.FromWebers(1);
             Assert.True(v.Equals(MagneticFlux.FromWebers(1), WebersTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(MagneticFlux.Zero, WebersTolerance, ComparisonType.Relative));
+            Assert.True(MagneticFlux.FromWebers(100).Equals(MagneticFlux.FromWebers(120), 0.3, ComparisonType.Relative));
+            Assert.False(MagneticFlux.FromWebers(100).Equals(MagneticFlux.FromWebers(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

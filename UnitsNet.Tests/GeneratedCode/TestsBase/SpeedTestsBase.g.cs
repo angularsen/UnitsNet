@@ -2210,6 +2210,8 @@ namespace UnitsNet.Tests
             var v = Speed.FromMetersPerSecond(1);
             Assert.True(v.Equals(Speed.FromMetersPerSecond(1), MetersPerSecondTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Speed.Zero, MetersPerSecondTolerance, ComparisonType.Relative));
+            Assert.True(Speed.FromMetersPerSecond(100).Equals(Speed.FromMetersPerSecond(120), 0.3, ComparisonType.Relative));
+            Assert.False(Speed.FromMetersPerSecond(100).Equals(Speed.FromMetersPerSecond(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

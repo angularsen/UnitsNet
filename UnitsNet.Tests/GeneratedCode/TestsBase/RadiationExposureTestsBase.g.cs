@@ -615,6 +615,8 @@ namespace UnitsNet.Tests
             var v = RadiationExposure.FromCoulombsPerKilogram(1);
             Assert.True(v.Equals(RadiationExposure.FromCoulombsPerKilogram(1), CoulombsPerKilogramTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(RadiationExposure.Zero, CoulombsPerKilogramTolerance, ComparisonType.Relative));
+            Assert.True(RadiationExposure.FromCoulombsPerKilogram(100).Equals(RadiationExposure.FromCoulombsPerKilogram(120), 0.3, ComparisonType.Relative));
+            Assert.False(RadiationExposure.FromCoulombsPerKilogram(100).Equals(RadiationExposure.FromCoulombsPerKilogram(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

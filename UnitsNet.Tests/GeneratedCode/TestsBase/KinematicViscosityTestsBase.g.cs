@@ -842,6 +842,8 @@ namespace UnitsNet.Tests
             var v = KinematicViscosity.FromSquareMetersPerSecond(1);
             Assert.True(v.Equals(KinematicViscosity.FromSquareMetersPerSecond(1), SquareMetersPerSecondTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(KinematicViscosity.Zero, SquareMetersPerSecondTolerance, ComparisonType.Relative));
+            Assert.True(KinematicViscosity.FromSquareMetersPerSecond(100).Equals(KinematicViscosity.FromSquareMetersPerSecond(120), 0.3, ComparisonType.Relative));
+            Assert.False(KinematicViscosity.FromSquareMetersPerSecond(100).Equals(KinematicViscosity.FromSquareMetersPerSecond(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

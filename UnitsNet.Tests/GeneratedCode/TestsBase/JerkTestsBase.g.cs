@@ -984,6 +984,8 @@ namespace UnitsNet.Tests
             var v = Jerk.FromMetersPerSecondCubed(1);
             Assert.True(v.Equals(Jerk.FromMetersPerSecondCubed(1), MetersPerSecondCubedTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Jerk.Zero, MetersPerSecondCubedTolerance, ComparisonType.Relative));
+            Assert.True(Jerk.FromMetersPerSecondCubed(100).Equals(Jerk.FromMetersPerSecondCubed(120), 0.3, ComparisonType.Relative));
+            Assert.False(Jerk.FromMetersPerSecondCubed(100).Equals(Jerk.FromMetersPerSecondCubed(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

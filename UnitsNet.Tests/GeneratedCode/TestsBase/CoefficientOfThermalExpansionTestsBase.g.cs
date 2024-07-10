@@ -545,6 +545,8 @@ namespace UnitsNet.Tests
             var v = CoefficientOfThermalExpansion.FromPerKelvin(1);
             Assert.True(v.Equals(CoefficientOfThermalExpansion.FromPerKelvin(1), PerKelvinTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(CoefficientOfThermalExpansion.Zero, PerKelvinTolerance, ComparisonType.Relative));
+            Assert.True(CoefficientOfThermalExpansion.FromPerKelvin(100).Equals(CoefficientOfThermalExpansion.FromPerKelvin(120), 0.3, ComparisonType.Relative));
+            Assert.False(CoefficientOfThermalExpansion.FromPerKelvin(100).Equals(CoefficientOfThermalExpansion.FromPerKelvin(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

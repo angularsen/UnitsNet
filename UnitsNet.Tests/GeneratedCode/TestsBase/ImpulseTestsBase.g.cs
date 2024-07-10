@@ -768,6 +768,8 @@ namespace UnitsNet.Tests
             var v = Impulse.FromNewtonSeconds(1);
             Assert.True(v.Equals(Impulse.FromNewtonSeconds(1), NewtonSecondsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Impulse.Zero, NewtonSecondsTolerance, ComparisonType.Relative));
+            Assert.True(Impulse.FromNewtonSeconds(100).Equals(Impulse.FromNewtonSeconds(120), 0.3, ComparisonType.Relative));
+            Assert.False(Impulse.FromNewtonSeconds(100).Equals(Impulse.FromNewtonSeconds(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

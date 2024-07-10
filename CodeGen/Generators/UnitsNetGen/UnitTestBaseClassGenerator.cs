@@ -550,6 +550,8 @@ namespace UnitsNet.Tests
             var v = {_quantity.Name}.From{_baseUnit.PluralName}(1);
             Assert.True(v.Equals({_quantity.Name}.From{_baseUnit.PluralName}(1), {_baseUnit.PluralName}Tolerance, ComparisonType.Relative));
             Assert.False(v.Equals({_quantity.Name}.Zero, {_baseUnit.PluralName}Tolerance, ComparisonType.Relative));
+            Assert.True({_quantity.Name}.From{_baseUnit.PluralName}(100).Equals({_quantity.Name}.From{_baseUnit.PluralName}(120), 0.3, ComparisonType.Relative));
+            Assert.False({_quantity.Name}.From{_baseUnit.PluralName}(100).Equals({_quantity.Name}.From{_baseUnit.PluralName}(120), 0.1, ComparisonType.Relative));
         }}
 
         [Fact]

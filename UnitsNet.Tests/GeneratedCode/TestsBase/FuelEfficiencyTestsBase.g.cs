@@ -475,6 +475,8 @@ namespace UnitsNet.Tests
             var v = FuelEfficiency.FromLitersPer100Kilometers(1);
             Assert.True(v.Equals(FuelEfficiency.FromLitersPer100Kilometers(1), LitersPer100KilometersTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(FuelEfficiency.Zero, LitersPer100KilometersTolerance, ComparisonType.Relative));
+            Assert.True(FuelEfficiency.FromLitersPer100Kilometers(100).Equals(FuelEfficiency.FromLitersPer100Kilometers(120), 0.3, ComparisonType.Relative));
+            Assert.False(FuelEfficiency.FromLitersPer100Kilometers(100).Equals(FuelEfficiency.FromLitersPer100Kilometers(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

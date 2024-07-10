@@ -650,6 +650,8 @@ namespace UnitsNet.Tests
             var v = VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(1);
             Assert.True(v.Equals(VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(1), JoulesPerCubicMeterKelvinTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(VolumetricHeatCapacity.Zero, JoulesPerCubicMeterKelvinTolerance, ComparisonType.Relative));
+            Assert.True(VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(100).Equals(VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(120), 0.3, ComparisonType.Relative));
+            Assert.False(VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(100).Equals(VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

@@ -405,6 +405,8 @@ namespace UnitsNet.Tests
             var v = ThermalConductivity.FromWattsPerMeterKelvin(1);
             Assert.True(v.Equals(ThermalConductivity.FromWattsPerMeterKelvin(1), WattsPerMeterKelvinTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ThermalConductivity.Zero, WattsPerMeterKelvinTolerance, ComparisonType.Relative));
+            Assert.True(ThermalConductivity.FromWattsPerMeterKelvin(100).Equals(ThermalConductivity.FromWattsPerMeterKelvin(120), 0.3, ComparisonType.Relative));
+            Assert.False(ThermalConductivity.FromWattsPerMeterKelvin(100).Equals(ThermalConductivity.FromWattsPerMeterKelvin(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

@@ -1451,6 +1451,8 @@ namespace UnitsNet.Tests
             var v = Area.FromSquareMeters(1);
             Assert.True(v.Equals(Area.FromSquareMeters(1), SquareMetersTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Area.Zero, SquareMetersTolerance, ComparisonType.Relative));
+            Assert.True(Area.FromSquareMeters(100).Equals(Area.FromSquareMeters(120), 0.3, ComparisonType.Relative));
+            Assert.False(Area.FromSquareMeters(100).Equals(Area.FromSquareMeters(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

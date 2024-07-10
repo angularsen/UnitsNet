@@ -1423,6 +1423,8 @@ namespace UnitsNet.Tests
             var v = Angle.FromDegrees(1);
             Assert.True(v.Equals(Angle.FromDegrees(1), DegreesTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Angle.Zero, DegreesTolerance, ComparisonType.Relative));
+            Assert.True(Angle.FromDegrees(100).Equals(Angle.FromDegrees(120), 0.3, ComparisonType.Relative));
+            Assert.False(Angle.FromDegrees(100).Equals(Angle.FromDegrees(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

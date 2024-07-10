@@ -369,6 +369,8 @@ namespace UnitsNet.Tests
             var v = ElectricChargeDensity.FromCoulombsPerCubicMeter(1);
             Assert.True(v.Equals(ElectricChargeDensity.FromCoulombsPerCubicMeter(1), CoulombsPerCubicMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ElectricChargeDensity.Zero, CoulombsPerCubicMeterTolerance, ComparisonType.Relative));
+            Assert.True(ElectricChargeDensity.FromCoulombsPerCubicMeter(100).Equals(ElectricChargeDensity.FromCoulombsPerCubicMeter(120), 0.3, ComparisonType.Relative));
+            Assert.False(ElectricChargeDensity.FromCoulombsPerCubicMeter(100).Equals(ElectricChargeDensity.FromCoulombsPerCubicMeter(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

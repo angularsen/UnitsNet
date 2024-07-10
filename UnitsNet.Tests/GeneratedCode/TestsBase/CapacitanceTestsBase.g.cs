@@ -558,6 +558,8 @@ namespace UnitsNet.Tests
             var v = Capacitance.FromFarads(1);
             Assert.True(v.Equals(Capacitance.FromFarads(1), FaradsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Capacitance.Zero, FaradsTolerance, ComparisonType.Relative));
+            Assert.True(Capacitance.FromFarads(100).Equals(Capacitance.FromFarads(120), 0.3, ComparisonType.Relative));
+            Assert.False(Capacitance.FromFarads(100).Equals(Capacitance.FromFarads(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

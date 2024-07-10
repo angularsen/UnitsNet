@@ -580,6 +580,8 @@ namespace UnitsNet.Tests
             var v = ElectricCurrentGradient.FromAmperesPerSecond(1);
             Assert.True(v.Equals(ElectricCurrentGradient.FromAmperesPerSecond(1), AmperesPerSecondTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ElectricCurrentGradient.Zero, AmperesPerSecondTolerance, ComparisonType.Relative));
+            Assert.True(ElectricCurrentGradient.FromAmperesPerSecond(100).Equals(ElectricCurrentGradient.FromAmperesPerSecond(120), 0.3, ComparisonType.Relative));
+            Assert.False(ElectricCurrentGradient.FromAmperesPerSecond(100).Equals(ElectricCurrentGradient.FromAmperesPerSecond(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

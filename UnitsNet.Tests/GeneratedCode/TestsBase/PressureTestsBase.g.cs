@@ -3092,6 +3092,8 @@ namespace UnitsNet.Tests
             var v = Pressure.FromPascals(1);
             Assert.True(v.Equals(Pressure.FromPascals(1), PascalsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Pressure.Zero, PascalsTolerance, ComparisonType.Relative));
+            Assert.True(Pressure.FromPascals(100).Equals(Pressure.FromPascals(120), 0.3, ComparisonType.Relative));
+            Assert.False(Pressure.FromPascals(100).Equals(Pressure.FromPascals(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

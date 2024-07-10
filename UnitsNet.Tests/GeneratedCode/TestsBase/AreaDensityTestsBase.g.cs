@@ -464,6 +464,8 @@ namespace UnitsNet.Tests
             var v = AreaDensity.FromKilogramsPerSquareMeter(1);
             Assert.True(v.Equals(AreaDensity.FromKilogramsPerSquareMeter(1), KilogramsPerSquareMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(AreaDensity.Zero, KilogramsPerSquareMeterTolerance, ComparisonType.Relative));
+            Assert.True(AreaDensity.FromKilogramsPerSquareMeter(100).Equals(AreaDensity.FromKilogramsPerSquareMeter(120), 0.3, ComparisonType.Relative));
+            Assert.False(AreaDensity.FromKilogramsPerSquareMeter(100).Equals(AreaDensity.FromKilogramsPerSquareMeter(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

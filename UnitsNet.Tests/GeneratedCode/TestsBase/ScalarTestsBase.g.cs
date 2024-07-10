@@ -369,6 +369,8 @@ namespace UnitsNet.Tests
             var v = Scalar.FromAmount(1);
             Assert.True(v.Equals(Scalar.FromAmount(1), AmountTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Scalar.Zero, AmountTolerance, ComparisonType.Relative));
+            Assert.True(Scalar.FromAmount(100).Equals(Scalar.FromAmount(120), 0.3, ComparisonType.Relative));
+            Assert.False(Scalar.FromAmount(100).Equals(Scalar.FromAmount(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

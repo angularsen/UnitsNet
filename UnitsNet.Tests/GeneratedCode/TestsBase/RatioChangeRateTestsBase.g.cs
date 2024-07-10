@@ -405,6 +405,8 @@ namespace UnitsNet.Tests
             var v = RatioChangeRate.FromDecimalFractionsPerSecond(1);
             Assert.True(v.Equals(RatioChangeRate.FromDecimalFractionsPerSecond(1), DecimalFractionsPerSecondTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(RatioChangeRate.Zero, DecimalFractionsPerSecondTolerance, ComparisonType.Relative));
+            Assert.True(RatioChangeRate.FromDecimalFractionsPerSecond(100).Equals(RatioChangeRate.FromDecimalFractionsPerSecond(120), 0.3, ComparisonType.Relative));
+            Assert.False(RatioChangeRate.FromDecimalFractionsPerSecond(100).Equals(RatioChangeRate.FromDecimalFractionsPerSecond(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

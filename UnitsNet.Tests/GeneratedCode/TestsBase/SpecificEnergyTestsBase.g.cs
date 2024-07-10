@@ -1385,6 +1385,8 @@ namespace UnitsNet.Tests
             var v = SpecificEnergy.FromJoulesPerKilogram(1);
             Assert.True(v.Equals(SpecificEnergy.FromJoulesPerKilogram(1), JoulesPerKilogramTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(SpecificEnergy.Zero, JoulesPerKilogramTolerance, ComparisonType.Relative));
+            Assert.True(SpecificEnergy.FromJoulesPerKilogram(100).Equals(SpecificEnergy.FromJoulesPerKilogram(120), 0.3, ComparisonType.Relative));
+            Assert.False(SpecificEnergy.FromJoulesPerKilogram(100).Equals(SpecificEnergy.FromJoulesPerKilogram(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

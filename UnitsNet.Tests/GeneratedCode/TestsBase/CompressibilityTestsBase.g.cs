@@ -748,6 +748,8 @@ namespace UnitsNet.Tests
             var v = Compressibility.FromInversePascals(1);
             Assert.True(v.Equals(Compressibility.FromInversePascals(1), InversePascalsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Compressibility.Zero, InversePascalsTolerance, ComparisonType.Relative));
+            Assert.True(Compressibility.FromInversePascals(100).Equals(Compressibility.FromInversePascals(120), 0.3, ComparisonType.Relative));
+            Assert.False(Compressibility.FromInversePascals(100).Equals(Compressibility.FromInversePascals(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

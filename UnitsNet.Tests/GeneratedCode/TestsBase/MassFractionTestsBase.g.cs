@@ -1199,6 +1199,8 @@ namespace UnitsNet.Tests
             var v = MassFraction.FromDecimalFractions(1);
             Assert.True(v.Equals(MassFraction.FromDecimalFractions(1), DecimalFractionsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(MassFraction.Zero, DecimalFractionsTolerance, ComparisonType.Relative));
+            Assert.True(MassFraction.FromDecimalFractions(100).Equals(MassFraction.FromDecimalFractions(120), 0.3, ComparisonType.Relative));
+            Assert.False(MassFraction.FromDecimalFractions(100).Equals(MassFraction.FromDecimalFractions(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

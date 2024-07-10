@@ -440,6 +440,8 @@ namespace UnitsNet.Tests
             var v = ApparentEnergy.FromVoltampereHours(1);
             Assert.True(v.Equals(ApparentEnergy.FromVoltampereHours(1), VoltampereHoursTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ApparentEnergy.Zero, VoltampereHoursTolerance, ComparisonType.Relative));
+            Assert.True(ApparentEnergy.FromVoltampereHours(100).Equals(ApparentEnergy.FromVoltampereHours(120), 0.3, ComparisonType.Relative));
+            Assert.False(ApparentEnergy.FromVoltampereHours(100).Equals(ApparentEnergy.FromVoltampereHours(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

@@ -46,6 +46,11 @@ namespace UnitsNet.Tests.CustomCode
         protected override double KilogramsPerMeterInOneKilogramPerMeter => 1;
         protected override double KilogramsPerMillimeterInOneKilogramPerMeter => 1e-3;
 
+        protected override double MicrogramsPerFootInOneKilogramPerMeter => 3.048e8;
+        protected override double MilligramsPerFootInOneKilogramPerMeter => 3.048e5;
+        protected override double GramsPerFootInOneKilogramPerMeter => 3.048e2;
+        protected override double KilogramsPerFootInOneKilogramPerMeter => 3.048e-1;
+
         protected override double PoundsPerInchInOneKilogramPerMeter => 5.599741459E-02;
 
         protected override double PoundsPerFootInOneKilogramPerMeter => 6.71968975e-1;

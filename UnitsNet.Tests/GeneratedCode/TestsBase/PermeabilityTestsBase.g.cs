@@ -369,6 +369,8 @@ namespace UnitsNet.Tests
             var v = Permeability.FromHenriesPerMeter(1);
             Assert.True(v.Equals(Permeability.FromHenriesPerMeter(1), HenriesPerMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Permeability.Zero, HenriesPerMeterTolerance, ComparisonType.Relative));
+            Assert.True(Permeability.FromHenriesPerMeter(100).Equals(Permeability.FromHenriesPerMeter(120), 0.3, ComparisonType.Relative));
+            Assert.False(Permeability.FromHenriesPerMeter(100).Equals(Permeability.FromHenriesPerMeter(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

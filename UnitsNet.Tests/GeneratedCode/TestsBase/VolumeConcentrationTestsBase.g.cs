@@ -1059,6 +1059,8 @@ namespace UnitsNet.Tests
             var v = VolumeConcentration.FromDecimalFractions(1);
             Assert.True(v.Equals(VolumeConcentration.FromDecimalFractions(1), DecimalFractionsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(VolumeConcentration.Zero, DecimalFractionsTolerance, ComparisonType.Relative));
+            Assert.True(VolumeConcentration.FromDecimalFractions(100).Equals(VolumeConcentration.FromDecimalFractions(120), 0.3, ComparisonType.Relative));
+            Assert.False(VolumeConcentration.FromDecimalFractions(100).Equals(VolumeConcentration.FromDecimalFractions(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

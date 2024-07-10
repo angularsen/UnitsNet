@@ -673,6 +673,8 @@ namespace UnitsNet.Tests
             var v = Temperature.FromKelvins(1);
             Assert.True(v.Equals(Temperature.FromKelvins(1), KelvinsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Temperature.Zero, KelvinsTolerance, ComparisonType.Relative));
+            Assert.True(Temperature.FromKelvins(100).Equals(Temperature.FromKelvins(120), 0.3, ComparisonType.Relative));
+            Assert.False(Temperature.FromKelvins(100).Equals(Temperature.FromKelvins(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

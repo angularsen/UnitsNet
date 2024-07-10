@@ -726,6 +726,8 @@ namespace UnitsNet.Tests
             var v = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1);
             Assert.True(v.Equals(HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1), WattsPerSquareMeterKelvinTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(HeatTransferCoefficient.Zero, WattsPerSquareMeterKelvinTolerance, ComparisonType.Relative));
+            Assert.True(HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(100).Equals(HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(120), 0.3, ComparisonType.Relative));
+            Assert.False(HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(100).Equals(HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

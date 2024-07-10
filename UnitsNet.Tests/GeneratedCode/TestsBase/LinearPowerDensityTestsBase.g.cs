@@ -1100,6 +1100,8 @@ namespace UnitsNet.Tests
             var v = LinearPowerDensity.FromWattsPerMeter(1);
             Assert.True(v.Equals(LinearPowerDensity.FromWattsPerMeter(1), WattsPerMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(LinearPowerDensity.Zero, WattsPerMeterTolerance, ComparisonType.Relative));
+            Assert.True(LinearPowerDensity.FromWattsPerMeter(100).Equals(LinearPowerDensity.FromWattsPerMeter(120), 0.3, ComparisonType.Relative));
+            Assert.False(LinearPowerDensity.FromWattsPerMeter(100).Equals(LinearPowerDensity.FromWattsPerMeter(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

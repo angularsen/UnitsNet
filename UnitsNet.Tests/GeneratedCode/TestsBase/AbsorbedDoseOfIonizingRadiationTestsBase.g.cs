@@ -1147,6 +1147,8 @@ namespace UnitsNet.Tests
             var v = AbsorbedDoseOfIonizingRadiation.FromGrays(1);
             Assert.True(v.Equals(AbsorbedDoseOfIonizingRadiation.FromGrays(1), GraysTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(AbsorbedDoseOfIonizingRadiation.Zero, GraysTolerance, ComparisonType.Relative));
+            Assert.True(AbsorbedDoseOfIonizingRadiation.FromGrays(100).Equals(AbsorbedDoseOfIonizingRadiation.FromGrays(120), 0.3, ComparisonType.Relative));
+            Assert.False(AbsorbedDoseOfIonizingRadiation.FromGrays(100).Equals(AbsorbedDoseOfIonizingRadiation.FromGrays(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

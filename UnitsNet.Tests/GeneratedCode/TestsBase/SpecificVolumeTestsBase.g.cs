@@ -440,6 +440,8 @@ namespace UnitsNet.Tests
             var v = SpecificVolume.FromCubicMetersPerKilogram(1);
             Assert.True(v.Equals(SpecificVolume.FromCubicMetersPerKilogram(1), CubicMetersPerKilogramTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(SpecificVolume.Zero, CubicMetersPerKilogramTolerance, ComparisonType.Relative));
+            Assert.True(SpecificVolume.FromCubicMetersPerKilogram(100).Equals(SpecificVolume.FromCubicMetersPerKilogram(120), 0.3, ComparisonType.Relative));
+            Assert.False(SpecificVolume.FromCubicMetersPerKilogram(100).Equals(SpecificVolume.FromCubicMetersPerKilogram(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

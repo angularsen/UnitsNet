@@ -1870,6 +1870,8 @@ namespace UnitsNet.Tests
             var v = Radioactivity.FromBecquerels(1);
             Assert.True(v.Equals(Radioactivity.FromBecquerels(1), BecquerelsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Radioactivity.Zero, BecquerelsTolerance, ComparisonType.Relative));
+            Assert.True(Radioactivity.FromBecquerels(100).Equals(Radioactivity.FromBecquerels(120), 0.3, ComparisonType.Relative));
+            Assert.False(Radioactivity.FromBecquerels(100).Equals(Radioactivity.FromBecquerels(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

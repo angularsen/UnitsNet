@@ -405,6 +405,8 @@ namespace UnitsNet.Tests
             var v = Molality.FromMolesPerKilogram(1);
             Assert.True(v.Equals(Molality.FromMolesPerKilogram(1), MolesPerKilogramTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Molality.Zero, MolesPerKilogramTolerance, ComparisonType.Relative));
+            Assert.True(Molality.FromMolesPerKilogram(100).Equals(Molality.FromMolesPerKilogram(120), 0.3, ComparisonType.Relative));
+            Assert.False(Molality.FromMolesPerKilogram(100).Equals(Molality.FromMolesPerKilogram(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

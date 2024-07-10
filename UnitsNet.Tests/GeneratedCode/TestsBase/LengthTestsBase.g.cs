@@ -2879,6 +2879,8 @@ namespace UnitsNet.Tests
             var v = Length.FromMeters(1);
             Assert.True(v.Equals(Length.FromMeters(1), MetersTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Length.Zero, MetersTolerance, ComparisonType.Relative));
+            Assert.True(Length.FromMeters(100).Equals(Length.FromMeters(120), 0.3, ComparisonType.Relative));
+            Assert.False(Length.FromMeters(100).Equals(Length.FromMeters(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

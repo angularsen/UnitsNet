@@ -1274,6 +1274,8 @@ namespace UnitsNet.Tests
             var v = Force.FromNewtons(1);
             Assert.True(v.Equals(Force.FromNewtons(1), NewtonsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Force.Zero, NewtonsTolerance, ComparisonType.Relative));
+            Assert.True(Force.FromNewtons(100).Equals(Force.FromNewtons(120), 0.3, ComparisonType.Relative));
+            Assert.False(Force.FromNewtons(100).Equals(Force.FromNewtons(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

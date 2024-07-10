@@ -755,6 +755,8 @@ namespace UnitsNet.Tests
             var v = MassFlux.FromKilogramsPerSecondPerSquareMeter(1);
             Assert.True(v.Equals(MassFlux.FromKilogramsPerSecondPerSquareMeter(1), KilogramsPerSecondPerSquareMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(MassFlux.Zero, KilogramsPerSecondPerSquareMeterTolerance, ComparisonType.Relative));
+            Assert.True(MassFlux.FromKilogramsPerSecondPerSquareMeter(100).Equals(MassFlux.FromKilogramsPerSecondPerSquareMeter(120), 0.3, ComparisonType.Relative));
+            Assert.False(MassFlux.FromKilogramsPerSecondPerSquareMeter(100).Equals(MassFlux.FromKilogramsPerSecondPerSquareMeter(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

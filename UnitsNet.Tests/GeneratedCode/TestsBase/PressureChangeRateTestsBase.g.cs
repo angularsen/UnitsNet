@@ -1685,6 +1685,8 @@ namespace UnitsNet.Tests
             var v = PressureChangeRate.FromPascalsPerSecond(1);
             Assert.True(v.Equals(PressureChangeRate.FromPascalsPerSecond(1), PascalsPerSecondTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(PressureChangeRate.Zero, PascalsPerSecondTolerance, ComparisonType.Relative));
+            Assert.True(PressureChangeRate.FromPascalsPerSecond(100).Equals(PressureChangeRate.FromPascalsPerSecond(120), 0.3, ComparisonType.Relative));
+            Assert.False(PressureChangeRate.FromPascalsPerSecond(100).Equals(PressureChangeRate.FromPascalsPerSecond(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

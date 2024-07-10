@@ -3245,6 +3245,8 @@ namespace UnitsNet.Tests
             var v = Volume.FromCubicMeters(1);
             Assert.True(v.Equals(Volume.FromCubicMeters(1), CubicMetersTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Volume.Zero, CubicMetersTolerance, ComparisonType.Relative));
+            Assert.True(Volume.FromCubicMeters(100).Equals(Volume.FromCubicMeters(120), 0.3, ComparisonType.Relative));
+            Assert.False(Volume.FromCubicMeters(100).Equals(Volume.FromCubicMeters(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

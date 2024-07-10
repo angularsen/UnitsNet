@@ -1787,6 +1787,8 @@ namespace UnitsNet.Tests
             var v = PowerDensity.FromWattsPerCubicMeter(1);
             Assert.True(v.Equals(PowerDensity.FromWattsPerCubicMeter(1), WattsPerCubicMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(PowerDensity.Zero, WattsPerCubicMeterTolerance, ComparisonType.Relative));
+            Assert.True(PowerDensity.FromWattsPerCubicMeter(100).Equals(PowerDensity.FromWattsPerCubicMeter(120), 0.3, ComparisonType.Relative));
+            Assert.False(PowerDensity.FromWattsPerCubicMeter(100).Equals(PowerDensity.FromWattsPerCubicMeter(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

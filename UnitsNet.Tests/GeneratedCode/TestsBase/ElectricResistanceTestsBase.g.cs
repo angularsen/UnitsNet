@@ -558,6 +558,8 @@ namespace UnitsNet.Tests
             var v = ElectricResistance.FromOhms(1);
             Assert.True(v.Equals(ElectricResistance.FromOhms(1), OhmsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ElectricResistance.Zero, OhmsTolerance, ComparisonType.Relative));
+            Assert.True(ElectricResistance.FromOhms(100).Equals(ElectricResistance.FromOhms(120), 0.3, ComparisonType.Relative));
+            Assert.False(ElectricResistance.FromOhms(100).Equals(ElectricResistance.FromOhms(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

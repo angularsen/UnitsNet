@@ -580,6 +580,8 @@ namespace UnitsNet.Tests
             var v = Entropy.FromJoulesPerKelvin(1);
             Assert.True(v.Equals(Entropy.FromJoulesPerKelvin(1), JoulesPerKelvinTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Entropy.Zero, JoulesPerKelvinTolerance, ComparisonType.Relative));
+            Assert.True(Entropy.FromJoulesPerKelvin(100).Equals(Entropy.FromJoulesPerKelvin(120), 0.3, ComparisonType.Relative));
+            Assert.False(Entropy.FromJoulesPerKelvin(100).Equals(Entropy.FromJoulesPerKelvin(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

@@ -510,6 +510,8 @@ namespace UnitsNet.Tests
             var v = ElectricInductance.FromHenries(1);
             Assert.True(v.Equals(ElectricInductance.FromHenries(1), HenriesTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ElectricInductance.Zero, HenriesTolerance, ComparisonType.Relative));
+            Assert.True(ElectricInductance.FromHenries(100).Equals(ElectricInductance.FromHenries(120), 0.3, ComparisonType.Relative));
+            Assert.False(ElectricInductance.FromHenries(100).Equals(ElectricInductance.FromHenries(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

@@ -989,6 +989,8 @@ namespace UnitsNet.Tests
             var v = HeatFlux.FromWattsPerSquareMeter(1);
             Assert.True(v.Equals(HeatFlux.FromWattsPerSquareMeter(1), WattsPerSquareMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(HeatFlux.Zero, WattsPerSquareMeterTolerance, ComparisonType.Relative));
+            Assert.True(HeatFlux.FromWattsPerSquareMeter(100).Equals(HeatFlux.FromWattsPerSquareMeter(120), 0.3, ComparisonType.Relative));
+            Assert.False(HeatFlux.FromWattsPerSquareMeter(100).Equals(HeatFlux.FromWattsPerSquareMeter(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

@@ -2146,6 +2146,8 @@ namespace UnitsNet.Tests
             var v = MassConcentration.FromKilogramsPerCubicMeter(1);
             Assert.True(v.Equals(MassConcentration.FromKilogramsPerCubicMeter(1), KilogramsPerCubicMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(MassConcentration.Zero, KilogramsPerCubicMeterTolerance, ComparisonType.Relative));
+            Assert.True(MassConcentration.FromKilogramsPerCubicMeter(100).Equals(MassConcentration.FromKilogramsPerCubicMeter(120), 0.3, ComparisonType.Relative));
+            Assert.False(MassConcentration.FromKilogramsPerCubicMeter(100).Equals(MassConcentration.FromKilogramsPerCubicMeter(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

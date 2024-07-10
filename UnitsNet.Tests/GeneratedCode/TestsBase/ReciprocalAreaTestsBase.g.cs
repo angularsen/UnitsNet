@@ -720,6 +720,8 @@ namespace UnitsNet.Tests
             var v = ReciprocalArea.FromInverseSquareMeters(1);
             Assert.True(v.Equals(ReciprocalArea.FromInverseSquareMeters(1), InverseSquareMetersTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ReciprocalArea.Zero, InverseSquareMetersTolerance, ComparisonType.Relative));
+            Assert.True(ReciprocalArea.FromInverseSquareMeters(100).Equals(ReciprocalArea.FromInverseSquareMeters(120), 0.3, ComparisonType.Relative));
+            Assert.False(ReciprocalArea.FromInverseSquareMeters(100).Equals(ReciprocalArea.FromInverseSquareMeters(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

@@ -781,6 +781,8 @@ namespace UnitsNet.Tests
             var v = Irradiance.FromWattsPerSquareMeter(1);
             Assert.True(v.Equals(Irradiance.FromWattsPerSquareMeter(1), WattsPerSquareMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Irradiance.Zero, WattsPerSquareMeterTolerance, ComparisonType.Relative));
+            Assert.True(Irradiance.FromWattsPerSquareMeter(100).Equals(Irradiance.FromWattsPerSquareMeter(120), 0.3, ComparisonType.Relative));
+            Assert.False(Irradiance.FromWattsPerSquareMeter(100).Equals(Irradiance.FromWattsPerSquareMeter(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]

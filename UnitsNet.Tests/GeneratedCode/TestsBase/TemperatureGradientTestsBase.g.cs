@@ -475,6 +475,8 @@ namespace UnitsNet.Tests
             var v = TemperatureGradient.FromKelvinsPerMeter(1);
             Assert.True(v.Equals(TemperatureGradient.FromKelvinsPerMeter(1), KelvinsPerMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(TemperatureGradient.Zero, KelvinsPerMeterTolerance, ComparisonType.Relative));
+            Assert.True(TemperatureGradient.FromKelvinsPerMeter(100).Equals(TemperatureGradient.FromKelvinsPerMeter(120), 0.3, ComparisonType.Relative));
+            Assert.False(TemperatureGradient.FromKelvinsPerMeter(100).Equals(TemperatureGradient.FromKelvinsPerMeter(120), 0.1, ComparisonType.Relative));
         }
 
         [Fact]
