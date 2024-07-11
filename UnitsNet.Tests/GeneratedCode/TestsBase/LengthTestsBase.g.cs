@@ -1142,6 +1142,13 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = Length.Parse("1 nmi", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.NauticalMiles, NauticalMilesTolerance);
+                Assert.Equal(LengthUnit.NauticalMile, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = Length.Parse("1 мил", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.NauticalMiles, NauticalMilesTolerance);
                 Assert.Equal(LengthUnit.NauticalMile, parsed.Unit);
@@ -1644,6 +1651,12 @@ namespace UnitsNet.Tests
                 Assert.True(Length.TryParse("1 нм", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Nanometers, NanometersTolerance);
                 Assert.Equal(LengthUnit.Nanometer, parsed.Unit);
+            }
+
+            {
+                Assert.True(Length.TryParse("1 nmi", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.NauticalMiles, NauticalMilesTolerance);
+                Assert.Equal(LengthUnit.NauticalMile, parsed.Unit);
             }
 
             {
@@ -2199,6 +2212,12 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsedUnit = Length.ParseUnit("nmi", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.NauticalMile, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsedUnit = Length.ParseUnit("мил", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(LengthUnit.NauticalMile, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -2620,6 +2639,11 @@ namespace UnitsNet.Tests
             {
                 Assert.True(Length.TryParseUnit("нм", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(LengthUnit.Nanometer, parsedUnit);
+            }
+
+            {
+                Assert.True(Length.TryParseUnit("nmi", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LengthUnit.NauticalMile, parsedUnit);
             }
 
             {
