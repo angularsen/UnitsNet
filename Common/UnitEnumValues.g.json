@@ -1859,5 +1859,11 @@
     "Sievert": 9,
     "Kilosievert": 3,
     "Megasievert": 6
+  },
+  "NumberConcentration": {
+    "InverseCubicCentimeter": 9,
+    "InverseCubicMeter": 2,
+    "InverseCubicMicrometer": 10,
+    "InverseCubicMillimeter": 4
   }
 }

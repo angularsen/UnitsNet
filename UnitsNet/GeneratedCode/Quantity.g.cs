@@ -114,6 +114,7 @@ namespace UnitsNet
             { "MolarFlow", MolarFlow.Info },
             { "Molarity", Molarity.Info },
             { "MolarMass", MolarMass.Info },
+            { "NumberConcentration", NumberConcentration.Info },
             { "Permeability", Permeability.Info },
             { "Permittivity", Permittivity.Info },
             { "PorousMediumPermeability", PorousMediumPermeability.Info },
@@ -250,6 +251,7 @@ namespace UnitsNet
                 "MolarFlow" => MolarFlow.From(value, MolarFlow.BaseUnit),
                 "Molarity" => Molarity.From(value, Molarity.BaseUnit),
                 "MolarMass" => MolarMass.From(value, MolarMass.BaseUnit),
+                "NumberConcentration" => NumberConcentration.From(value, NumberConcentration.BaseUnit),
                 "Permeability" => Permeability.From(value, Permeability.BaseUnit),
                 "Permittivity" => Permittivity.From(value, Permittivity.BaseUnit),
                 "PorousMediumPermeability" => PorousMediumPermeability.From(value, PorousMediumPermeability.BaseUnit),
@@ -389,6 +391,7 @@ namespace UnitsNet
                 MolarFlowUnit molarFlowUnit => MolarFlow.From(value, molarFlowUnit),
                 MolarityUnit molarityUnit => Molarity.From(value, molarityUnit),
                 MolarMassUnit molarMassUnit => MolarMass.From(value, molarMassUnit),
+                NumberConcentrationUnit numberConcentrationUnit => NumberConcentration.From(value, numberConcentrationUnit),
                 PermeabilityUnit permeabilityUnit => Permeability.From(value, permeabilityUnit),
                 PermittivityUnit permittivityUnit => Permittivity.From(value, permittivityUnit),
                 PorousMediumPermeabilityUnit porousMediumPermeabilityUnit => PorousMediumPermeability.From(value, porousMediumPermeabilityUnit),
@@ -538,6 +541,7 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(MolarFlow) => parser.TryParse<MolarFlow, MolarFlowUnit>(quantityString, formatProvider, MolarFlow.From, out quantity),
                 Type _ when quantityType == typeof(Molarity) => parser.TryParse<Molarity, MolarityUnit>(quantityString, formatProvider, Molarity.From, out quantity),
                 Type _ when quantityType == typeof(MolarMass) => parser.TryParse<MolarMass, MolarMassUnit>(quantityString, formatProvider, MolarMass.From, out quantity),
+                Type _ when quantityType == typeof(NumberConcentration) => parser.TryParse<NumberConcentration, NumberConcentrationUnit>(quantityString, formatProvider, NumberConcentration.From, out quantity),
                 Type _ when quantityType == typeof(Permeability) => parser.TryParse<Permeability, PermeabilityUnit>(quantityString, formatProvider, Permeability.From, out quantity),
                 Type _ when quantityType == typeof(Permittivity) => parser.TryParse<Permittivity, PermittivityUnit>(quantityString, formatProvider, Permittivity.From, out quantity),
                 Type _ when quantityType == typeof(PorousMediumPermeability) => parser.TryParse<PorousMediumPermeability, PorousMediumPermeabilityUnit>(quantityString, formatProvider, PorousMediumPermeability.From, out quantity),
@@ -668,6 +672,7 @@ namespace UnitsNet
             yield return typeof(MolarFlow);
             yield return typeof(Molarity);
             yield return typeof(MolarMass);
+            yield return typeof(NumberConcentration);
             yield return typeof(Permeability);
             yield return typeof(Permittivity);
             yield return typeof(PorousMediumPermeability);
