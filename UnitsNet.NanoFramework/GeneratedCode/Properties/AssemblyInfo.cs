@@ -47,8 +47,8 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("5.53.0")]
-[assembly: AssemblyFileVersion("5.53.0")]
+[assembly: AssemblyVersion("5.54.0")]
+[assembly: AssemblyFileVersion("5.54.0")]
 
 //////////////////////////////////////////////////
 // This assembly doens't require native support //
