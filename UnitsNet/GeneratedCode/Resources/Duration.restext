@@ -7,5 +7,6 @@ Minutes=m,min,minute,minutes
 Months30=mo,month,months
 Nanoseconds=ns,nsec,nsecs,nsecond,nseconds
 Seconds=s,sec,secs,second,seconds
+Sols=sol
 Weeks=wk,week,weeks
 Years365=yr,year,years

@@ -34,6 +34,7 @@ namespace UnitsNet.Units
         Month30 = 7,
         Nanosecond = 8,
         Second = 9,
+        Sol = 15,
         Week = 10,
         Year365 = 11,
     }

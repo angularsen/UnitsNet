@@ -240,7 +240,8 @@
     "Nanosecond": 8,
     "Second": 9,
     "Week": 10,
-    "Year365": 11
+    "Year365": 11,
+    "Sol": 15
   },
   "DynamicViscosity": {
     "Centipoise": 1,

@@ -33,6 +33,8 @@ namespace UnitsNet.Tests
 
         protected override double JulianYearsInOneSecond => 3.16880878140289e-08;
 
+        protected override double SolsInOneSecond => 1.1264432554210082e-5;
+
         [Fact]
         public static void ToTimeSpanShouldThrowExceptionOnValuesLargerThanTimeSpanMax()
         {
