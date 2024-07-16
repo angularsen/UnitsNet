@@ -70,6 +70,7 @@ namespace UnitsNet
             Info = new QuantityInfo<MolalityUnit>("Molality",
                 new UnitInfo<MolalityUnit>[]
                 {
+                    new UnitInfo<MolalityUnit>(MolalityUnit.MillimolePerKilogram, "MillimolesPerKilogram", BaseUnits.Undefined, "Molality"),
                     new UnitInfo<MolalityUnit>(MolalityUnit.MolePerGram, "MolesPerGram", new BaseUnits(mass: MassUnit.Gram, amount: AmountOfSubstanceUnit.Mole), "Molality"),
                     new UnitInfo<MolalityUnit>(MolalityUnit.MolePerKilogram, "MolesPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, amount: AmountOfSubstanceUnit.Mole), "Molality"),
                 },
@@ -176,6 +177,11 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolalityUnit.MillimolePerKilogram"/>
+        /// </summary>
+        public double MillimolesPerKilogram => As(MolalityUnit.MillimolePerKilogram);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolalityUnit.MolePerGram"/>
         /// </summary>
         public double MolesPerGram => As(MolalityUnit.MolePerGram);
@@ -196,12 +202,14 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: MolalityUnit -> BaseUnit
+            unitConverter.SetConversionFunction<Molality>(MolalityUnit.MillimolePerKilogram, MolalityUnit.MolePerKilogram, quantity => quantity.ToUnit(MolalityUnit.MolePerKilogram));
             unitConverter.SetConversionFunction<Molality>(MolalityUnit.MolePerGram, MolalityUnit.MolePerKilogram, quantity => quantity.ToUnit(MolalityUnit.MolePerKilogram));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Molality>(MolalityUnit.MolePerKilogram, MolalityUnit.MolePerKilogram, quantity => quantity);
 
             // Register in unit converter: BaseUnit -> MolalityUnit
+            unitConverter.SetConversionFunction<Molality>(MolalityUnit.MolePerKilogram, MolalityUnit.MillimolePerKilogram, quantity => quantity.ToUnit(MolalityUnit.MillimolePerKilogram));
             unitConverter.SetConversionFunction<Molality>(MolalityUnit.MolePerKilogram, MolalityUnit.MolePerGram, quantity => quantity.ToUnit(MolalityUnit.MolePerGram));
         }
 
@@ -229,6 +237,16 @@ namespace UnitsNet
         #endregion
 
         #region Static Factory Methods
+
+        /// <summary>
+        ///     Creates a <see cref="Molality"/> from <see cref="MolalityUnit.MillimolePerKilogram"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Molality FromMillimolesPerKilogram(QuantityValue millimolesperkilogram)
+        {
+            double value = (double) millimolesperkilogram;
+            return new Molality(value, MolalityUnit.MillimolePerKilogram);
+        }
 
         /// <summary>
         ///     Creates a <see cref="Molality"/> from <see cref="MolalityUnit.MolePerGram"/>.
@@ -743,9 +761,11 @@ namespace UnitsNet
             Molality? convertedOrNull = (Unit, unit) switch
             {
                 // MolalityUnit -> BaseUnit
+                (MolalityUnit.MillimolePerKilogram, MolalityUnit.MolePerKilogram) => new Molality((_value) * 1e-3d, MolalityUnit.MolePerKilogram),
                 (MolalityUnit.MolePerGram, MolalityUnit.MolePerKilogram) => new Molality(_value / 1e-3, MolalityUnit.MolePerKilogram),
 
                 // BaseUnit -> MolalityUnit
+                (MolalityUnit.MolePerKilogram, MolalityUnit.MillimolePerKilogram) => new Molality((_value) / 1e-3d, MolalityUnit.MillimolePerKilogram),
                 (MolalityUnit.MolePerKilogram, MolalityUnit.MolePerGram) => new Molality(_value * 1e-3, MolalityUnit.MolePerGram),
 
                 _ => null

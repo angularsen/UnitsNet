@@ -83,6 +83,11 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolalityUnit.MillimolePerKilogram"/>
+        /// </summary>
+        public double MillimolesPerKilogram => As(MolalityUnit.MillimolePerKilogram);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolalityUnit.MolePerGram"/>
         /// </summary>
         public double MolesPerGram => As(MolalityUnit.MolePerGram);
@@ -95,6 +100,12 @@ namespace UnitsNet
         #endregion
 
         #region Static Factory Methods
+
+        /// <summary>
+        ///     Creates a <see cref="Molality"/> from <see cref="MolalityUnit.MillimolePerKilogram"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Molality FromMillimolesPerKilogram(double millimolesperkilogram) => new Molality(millimolesperkilogram, MolalityUnit.MillimolePerKilogram);
 
         /// <summary>
         ///     Creates a <see cref="Molality"/> from <see cref="MolalityUnit.MolePerGram"/>.
@@ -148,6 +159,7 @@ namespace UnitsNet
                 {
                     return Unit switch
                     {
+                        MolalityUnit.MillimolePerKilogram => (_value) * 1e-3d,
                         MolalityUnit.MolePerGram => _value / 1e-3,
                         MolalityUnit.MolePerKilogram => _value,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
@@ -163,6 +175,7 @@ namespace UnitsNet
 
                     return unit switch
                     {
+                        MolalityUnit.MillimolePerKilogram => (baseUnitValue) / 1e-3d,
                         MolalityUnit.MolePerGram => baseUnitValue * 1e-3,
                         MolalityUnit.MolePerKilogram => baseUnitValue,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
