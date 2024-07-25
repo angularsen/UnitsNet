@@ -25,6 +25,10 @@ namespace UnitsNet.Tests
     public class NumberToMolalityExtensionsTests
     {
         [Fact]
+        public void NumberToMillimolesPerKilogramTest() =>
+            Assert.Equal(Molality.FromMillimolesPerKilogram(2), 2.MillimolesPerKilogram());
+
+        [Fact]
         public void NumberToMolesPerGramTest() =>
             Assert.Equal(Molality.FromMolesPerGram(2), 2.MolesPerGram());
 

@@ -1807,7 +1807,8 @@
   },
   "Molality": {
     "MolePerGram": 4,
-    "MolePerKilogram": 1
+    "MolePerKilogram": 1,
+    "MillimolePerKilogram": 2
   },
   "Radioactivity": {
     "Becquerel": 7,
