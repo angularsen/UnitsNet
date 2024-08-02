@@ -928,7 +928,7 @@ namespace UnitsNet
                 (DurationUnit.Minute, DurationUnit.Second) => new Duration(_value * 60, DurationUnit.Second),
                 (DurationUnit.Month30, DurationUnit.Second) => new Duration(_value * 30 * 24 * 3600, DurationUnit.Second),
                 (DurationUnit.Nanosecond, DurationUnit.Second) => new Duration((_value) * 1e-9d, DurationUnit.Second),
-                (DurationUnit.Sol, DurationUnit.Second) => new Duration(_value * 88775, DurationUnit.Second),
+                (DurationUnit.Sol, DurationUnit.Second) => new Duration(_value * 88775.244, DurationUnit.Second),
                 (DurationUnit.Week, DurationUnit.Second) => new Duration(_value * 7 * 24 * 3600, DurationUnit.Second),
                 (DurationUnit.Year365, DurationUnit.Second) => new Duration(_value * 365 * 24 * 3600, DurationUnit.Second),
 
@@ -941,7 +941,7 @@ namespace UnitsNet
                 (DurationUnit.Second, DurationUnit.Minute) => new Duration(_value / 60, DurationUnit.Minute),
                 (DurationUnit.Second, DurationUnit.Month30) => new Duration(_value / (30 * 24 * 3600), DurationUnit.Month30),
                 (DurationUnit.Second, DurationUnit.Nanosecond) => new Duration((_value) / 1e-9d, DurationUnit.Nanosecond),
-                (DurationUnit.Second, DurationUnit.Sol) => new Duration(_value / 88775, DurationUnit.Sol),
+                (DurationUnit.Second, DurationUnit.Sol) => new Duration(_value / 88775.244, DurationUnit.Sol),
                 (DurationUnit.Second, DurationUnit.Week) => new Duration(_value / (7 * 24 * 3600), DurationUnit.Week),
                 (DurationUnit.Second, DurationUnit.Year365) => new Duration(_value / (365 * 24 * 3600), DurationUnit.Year365),
 

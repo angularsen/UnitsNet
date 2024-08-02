@@ -161,8 +161,8 @@
       "BaseUnits": {
         "T": "Sol"
       },
-      "FromUnitToBaseFunc": "{x} * 88775",
-      "FromBaseToUnitFunc": "{x} / 88775",
+      "FromUnitToBaseFunc": "{x} * 88775.244",
+      "FromBaseToUnitFunc": "{x} / 88775.244",
       "Localization": [
         {
           "Culture": "en-US",
