@@ -47,6 +47,7 @@ namespace UnitsNet.Tests
         protected abstract double Months30InOneSecond { get; }
         protected abstract double NanosecondsInOneSecond { get; }
         protected abstract double SecondsInOneSecond { get; }
+        protected abstract double SolsInOneSecond { get; }
         protected abstract double WeeksInOneSecond { get; }
         protected abstract double Years365InOneSecond { get; }
 
@@ -60,6 +61,7 @@ namespace UnitsNet.Tests
         protected virtual double Months30Tolerance { get { return 1e-5; } }
         protected virtual double NanosecondsTolerance { get { return 1e-5; } }
         protected virtual double SecondsTolerance { get { return 1e-5; } }
+        protected virtual double SolsTolerance { get { return 1e-5; } }
         protected virtual double WeeksTolerance { get { return 1e-5; } }
         protected virtual double Years365Tolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
@@ -77,6 +79,7 @@ namespace UnitsNet.Tests
                 DurationUnit.Month30 => (Months30InOneSecond, Months30Tolerance),
                 DurationUnit.Nanosecond => (NanosecondsInOneSecond, NanosecondsTolerance),
                 DurationUnit.Second => (SecondsInOneSecond, SecondsTolerance),
+                DurationUnit.Sol => (SolsInOneSecond, SolsTolerance),
                 DurationUnit.Week => (WeeksInOneSecond, WeeksTolerance),
                 DurationUnit.Year365 => (Years365InOneSecond, Years365Tolerance),
                 _ => throw new NotSupportedException()
@@ -94,6 +97,7 @@ namespace UnitsNet.Tests
             new object[] { DurationUnit.Month30 },
             new object[] { DurationUnit.Nanosecond },
             new object[] { DurationUnit.Second },
+            new object[] { DurationUnit.Sol },
             new object[] { DurationUnit.Week },
             new object[] { DurationUnit.Year365 },
         };
@@ -167,6 +171,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(Months30InOneSecond, second.Months30, Months30Tolerance);
             AssertEx.EqualTolerance(NanosecondsInOneSecond, second.Nanoseconds, NanosecondsTolerance);
             AssertEx.EqualTolerance(SecondsInOneSecond, second.Seconds, SecondsTolerance);
+            AssertEx.EqualTolerance(SolsInOneSecond, second.Sols, SolsTolerance);
             AssertEx.EqualTolerance(WeeksInOneSecond, second.Weeks, WeeksTolerance);
             AssertEx.EqualTolerance(Years365InOneSecond, second.Years365, Years365Tolerance);
         }
@@ -210,13 +215,17 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity08.Seconds, SecondsTolerance);
             Assert.Equal(DurationUnit.Second, quantity08.Unit);
 
-            var quantity09 = Duration.From(1, DurationUnit.Week);
-            AssertEx.EqualTolerance(1, quantity09.Weeks, WeeksTolerance);
-            Assert.Equal(DurationUnit.Week, quantity09.Unit);
+            var quantity09 = Duration.From(1, DurationUnit.Sol);
+            AssertEx.EqualTolerance(1, quantity09.Sols, SolsTolerance);
+            Assert.Equal(DurationUnit.Sol, quantity09.Unit);
 
-            var quantity10 = Duration.From(1, DurationUnit.Year365);
-            AssertEx.EqualTolerance(1, quantity10.Years365, Years365Tolerance);
-            Assert.Equal(DurationUnit.Year365, quantity10.Unit);
+            var quantity10 = Duration.From(1, DurationUnit.Week);
+            AssertEx.EqualTolerance(1, quantity10.Weeks, WeeksTolerance);
+            Assert.Equal(DurationUnit.Week, quantity10.Unit);
+
+            var quantity11 = Duration.From(1, DurationUnit.Year365);
+            AssertEx.EqualTolerance(1, quantity11.Years365, Years365Tolerance);
+            Assert.Equal(DurationUnit.Year365, quantity11.Unit);
 
         }
 
@@ -246,6 +255,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(Months30InOneSecond, second.As(DurationUnit.Month30), Months30Tolerance);
             AssertEx.EqualTolerance(NanosecondsInOneSecond, second.As(DurationUnit.Nanosecond), NanosecondsTolerance);
             AssertEx.EqualTolerance(SecondsInOneSecond, second.As(DurationUnit.Second), SecondsTolerance);
+            AssertEx.EqualTolerance(SolsInOneSecond, second.As(DurationUnit.Sol), SolsTolerance);
             AssertEx.EqualTolerance(WeeksInOneSecond, second.As(DurationUnit.Week), WeeksTolerance);
             AssertEx.EqualTolerance(Years365InOneSecond, second.As(DurationUnit.Year365), Years365Tolerance);
         }
@@ -636,6 +646,13 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = Duration.Parse("1 sol", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Sols, SolsTolerance);
+                Assert.Equal(DurationUnit.Sol, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = Duration.Parse("1 wk", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Weeks, WeeksTolerance);
                 Assert.Equal(DurationUnit.Week, parsed.Unit);
@@ -1008,6 +1025,12 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(Duration.TryParse("1 sol", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Sols, SolsTolerance);
+                Assert.Equal(DurationUnit.Sol, parsed.Unit);
+            }
+
+            {
                 Assert.True(Duration.TryParse("1 wk", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Weeks, WeeksTolerance);
                 Assert.Equal(DurationUnit.Week, parsed.Unit);
@@ -1374,6 +1397,12 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsedUnit = Duration.ParseUnit("sol", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DurationUnit.Sol, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsedUnit = Duration.ParseUnit("wk", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Week, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1686,6 +1715,11 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(Duration.TryParseUnit("sol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DurationUnit.Sol, parsedUnit);
+            }
+
+            {
                 Assert.True(Duration.TryParseUnit("wk", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Week, parsedUnit);
             }
@@ -1782,6 +1816,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Duration.FromMonths30(second.Months30).Seconds, Months30Tolerance);
             AssertEx.EqualTolerance(1, Duration.FromNanoseconds(second.Nanoseconds).Seconds, NanosecondsTolerance);
             AssertEx.EqualTolerance(1, Duration.FromSeconds(second.Seconds).Seconds, SecondsTolerance);
+            AssertEx.EqualTolerance(1, Duration.FromSols(second.Sols).Seconds, SolsTolerance);
             AssertEx.EqualTolerance(1, Duration.FromWeeks(second.Weeks).Seconds, WeeksTolerance);
             AssertEx.EqualTolerance(1, Duration.FromYears365(second.Years365).Seconds, Years365Tolerance);
         }
@@ -1942,6 +1977,7 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 mo", new Duration(1, DurationUnit.Month30).ToString());
                 Assert.Equal("1 ns", new Duration(1, DurationUnit.Nanosecond).ToString());
                 Assert.Equal("1 s", new Duration(1, DurationUnit.Second).ToString());
+                Assert.Equal("1 sol", new Duration(1, DurationUnit.Sol).ToString());
                 Assert.Equal("1 wk", new Duration(1, DurationUnit.Week).ToString());
                 Assert.Equal("1 yr", new Duration(1, DurationUnit.Year365).ToString());
             }
@@ -1966,6 +2002,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 mo", new Duration(1, DurationUnit.Month30).ToString(swedishCulture));
             Assert.Equal("1 ns", new Duration(1, DurationUnit.Nanosecond).ToString(swedishCulture));
             Assert.Equal("1 s", new Duration(1, DurationUnit.Second).ToString(swedishCulture));
+            Assert.Equal("1 sol", new Duration(1, DurationUnit.Sol).ToString(swedishCulture));
             Assert.Equal("1 wk", new Duration(1, DurationUnit.Week).ToString(swedishCulture));
             Assert.Equal("1 yr", new Duration(1, DurationUnit.Year365).ToString(swedishCulture));
         }

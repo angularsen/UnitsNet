@@ -154,6 +154,21 @@
           "Abbreviations": [ "jyr", "jyear", "jyears" ]
         }
       ]
+    },
+    {
+      "SingularName": "Sol",
+      "PluralName": "Sols",
+      "BaseUnits": {
+        "T": "Sol"
+      },
+      "FromUnitToBaseFunc": "{x} * 88775.244",
+      "FromBaseToUnitFunc": "{x} / 88775.244",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "sol" ]
+        }
+      ]
     }
   ]
 }
