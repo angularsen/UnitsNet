@@ -240,7 +240,8 @@
     "Nanosecond": 8,
     "Second": 9,
     "Week": 10,
-    "Year365": 11
+    "Year365": 11,
+    "Sol": 15
   },
   "DynamicViscosity": {
     "Centipoise": 1,
@@ -1807,7 +1808,8 @@
   },
   "Molality": {
     "MolePerGram": 4,
-    "MolePerKilogram": 1
+    "MolePerKilogram": 1,
+    "MillimolePerKilogram": 2
   },
   "Radioactivity": {
     "Becquerel": 7,

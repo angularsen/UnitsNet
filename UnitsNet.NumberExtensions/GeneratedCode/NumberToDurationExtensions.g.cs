@@ -104,6 +104,14 @@ namespace UnitsNet.NumberExtensions.NumberToDuration
 #endif
             => Duration.FromSeconds(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Duration.FromSols(double)" />
+        public static Duration Sols<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Duration.FromSols(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Duration.FromWeeks(double)" />
         public static Duration Weeks<T>(this T value)
             where T : notnull

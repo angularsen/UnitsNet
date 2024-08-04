@@ -61,6 +61,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Duration.FromSeconds(2), 2.Seconds());
 
         [Fact]
+        public void NumberToSolsTest() =>
+            Assert.Equal(Duration.FromSols(2), 2.Sols());
+
+        [Fact]
         public void NumberToWeeksTest() =>
             Assert.Equal(Duration.FromWeeks(2), 2.Weeks());
 

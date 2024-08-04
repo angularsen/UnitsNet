@@ -32,6 +32,14 @@ namespace UnitsNet.NumberExtensions.NumberToMolality
     /// </summary>
     public static class NumberToMolalityExtensions
     {
+        /// <inheritdoc cref="Molality.FromMillimolesPerKilogram(double)" />
+        public static Molality MillimolesPerKilogram<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Molality.FromMillimolesPerKilogram(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Molality.FromMolesPerGram(double)" />
         public static Molality MolesPerGram<T>(this T value)
             where T : notnull

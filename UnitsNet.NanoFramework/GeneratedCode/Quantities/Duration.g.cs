@@ -124,6 +124,11 @@ namespace UnitsNet
         public double Seconds => As(DurationUnit.Second);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Sol"/>
+        /// </summary>
+        public double Sols => As(DurationUnit.Sol);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Week"/>
         /// </summary>
         public double Weeks => As(DurationUnit.Week);
@@ -181,6 +186,11 @@ namespace UnitsNet
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Second"/>.
         /// </summary>
         public static Duration FromSeconds(double seconds) => new Duration(seconds, DurationUnit.Second);
+
+        /// <summary>
+        ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Sol"/>.
+        /// </summary>
+        public static Duration FromSols(double sols) => new Duration(sols, DurationUnit.Sol);
 
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Week"/>.
@@ -241,6 +251,7 @@ namespace UnitsNet
                         DurationUnit.Month30 => _value * 30 * 24 * 3600,
                         DurationUnit.Nanosecond => (_value) * 1e-9d,
                         DurationUnit.Second => _value,
+                        DurationUnit.Sol => _value * 88775.244,
                         DurationUnit.Week => _value * 7 * 24 * 3600,
                         DurationUnit.Year365 => _value * 365 * 24 * 3600,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
@@ -265,6 +276,7 @@ namespace UnitsNet
                         DurationUnit.Month30 => baseUnitValue / (30 * 24 * 3600),
                         DurationUnit.Nanosecond => (baseUnitValue) / 1e-9d,
                         DurationUnit.Second => baseUnitValue,
+                        DurationUnit.Sol => baseUnitValue / 88775.244,
                         DurationUnit.Week => baseUnitValue / (7 * 24 * 3600),
                         DurationUnit.Year365 => baseUnitValue / (365 * 24 * 3600),
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")

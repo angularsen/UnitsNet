@@ -25,6 +25,7 @@ namespace UnitsNet.Units
 
     public enum MolalityUnit
     {
+        MillimolePerKilogram = 2,
         MolePerGram = 4,
         MolePerKilogram = 1,
     }
