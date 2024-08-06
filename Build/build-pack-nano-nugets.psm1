@@ -20,6 +20,8 @@ function Invoke-Build-NanoNugets {
   & $nuget pack "$root\UnitsNet.NanoFramework\GeneratedCode\Power\UnitsNet.NanoFramework.Power.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
   & $nuget pack "$root\UnitsNet.NanoFramework\GeneratedCode\Density\UnitsNet.NanoFramework.Density.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
   & $nuget pack "$root\UnitsNet.NanoFramework\GeneratedCode\Mass\UnitsNet.NanoFramework.Mass.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
+  & $nuget pack "$root\UnitsNet.NanoFramework\GeneratedCode\Speed\UnitsNet.NanoFramework.Speed.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
+  & $nuget pack "$root\UnitsNet.NanoFramework\GeneratedCode\Acceleration\UnitsNet.NanoFramework.Acceleration.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
 
 }
 
