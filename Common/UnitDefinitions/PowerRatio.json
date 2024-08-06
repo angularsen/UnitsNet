@@ -3,7 +3,7 @@
   "BaseUnit": "DecibelWatt",
   "Logarithmic": "True",
   "LogarithmicScalingFactor": "1",
-  "XmlDoc": "The strength of a signal expressed in decibels (dB) relative to one watt.",
+  "XmlDocSummary": "The strength of a signal expressed in decibels (dB) relative to one watt.",
   "Units": [
     {
       "SingularName": "DecibelWatt",

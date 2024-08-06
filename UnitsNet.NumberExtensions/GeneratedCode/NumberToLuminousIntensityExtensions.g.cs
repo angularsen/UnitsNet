@@ -19,6 +19,10 @@
 
 using System;
 
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
+
 #nullable enable
 
 namespace UnitsNet.NumberExtensions.NumberToLuminousIntensity
@@ -29,8 +33,12 @@ namespace UnitsNet.NumberExtensions.NumberToLuminousIntensity
     public static class NumberToLuminousIntensityExtensions
     {
         /// <inheritdoc cref="LuminousIntensity.FromCandela(UnitsNet.QuantityValue)" />
-        public static LuminousIntensity Candela<T>(this T value) =>
-            LuminousIntensity.FromCandela(Convert.ToDouble(value));
+        public static LuminousIntensity Candela<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => LuminousIntensity.FromCandela(Convert.ToDouble(value));
 
     }
 }

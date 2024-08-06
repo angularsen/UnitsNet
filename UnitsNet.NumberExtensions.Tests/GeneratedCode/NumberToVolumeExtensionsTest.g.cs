@@ -133,6 +133,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Volume.FromImperialPints(2), 2.ImperialPints());
 
         [Fact]
+        public void NumberToImperialQuartsTest() =>
+            Assert.Equal(Volume.FromImperialQuarts(2), 2.ImperialQuarts());
+
+        [Fact]
         public void NumberToKilocubicFeetTest() =>
             Assert.Equal(Volume.FromKilocubicFeet(2), 2.KilocubicFeet());
 
@@ -187,6 +191,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToMillilitersTest() =>
             Assert.Equal(Volume.FromMilliliters(2), 2.Milliliters());
+
+        [Fact]
+        public void NumberToNanolitersTest() =>
+            Assert.Equal(Volume.FromNanoliters(2), 2.Nanoliters());
 
         [Fact]
         public void NumberToOilBarrelsTest() =>

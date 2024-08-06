@@ -64,12 +64,12 @@ namespace UnitsNet
         public static DurationUnit BaseUnit { get; } = DurationUnit.Second;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Duration.
         /// </summary>
         public static Duration MaxValue { get; } = new Duration(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Duration.
         /// </summary>
         public static Duration MinValue { get; } = new Duration(double.MinValue, BaseUnit);
 
@@ -123,6 +123,11 @@ namespace UnitsNet
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Second"/>
         /// </summary>
         public double Seconds => As(DurationUnit.Second);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Sol"/>
+        /// </summary>
+        public double Sols => As(DurationUnit.Sol);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Week"/>
@@ -193,6 +198,12 @@ namespace UnitsNet
         public static Duration FromSeconds(double seconds) => new Duration(seconds, DurationUnit.Second);
 
         /// <summary>
+        ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Sol"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Duration FromSols(double sols) => new Duration(sols, DurationUnit.Sol);
+
+        /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Week"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -217,73 +228,75 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(DurationUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(DurationUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public Duration ToUnit(DurationUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new Duration(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public Duration ToUnit(DurationUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new Duration(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                DurationUnit.Day => _value * 24 * 3600,
-                DurationUnit.Hour => _value * 3600,
-                DurationUnit.JulianYear => _value * 365.25 * 24 * 3600,
-                DurationUnit.Microsecond => (_value) * 1e-6d,
-                DurationUnit.Millisecond => (_value) * 1e-3d,
-                DurationUnit.Minute => _value * 60,
-                DurationUnit.Month30 => _value * 30 * 24 * 3600,
-                DurationUnit.Nanosecond => (_value) * 1e-9d,
-                DurationUnit.Second => _value,
-                DurationUnit.Week => _value * 7 * 24 * 3600,
-                DurationUnit.Year365 => _value * 365 * 24 * 3600,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        DurationUnit.Day => _value * 24 * 3600,
+                        DurationUnit.Hour => _value * 3600,
+                        DurationUnit.JulianYear => _value * 365.25 * 24 * 3600,
+                        DurationUnit.Microsecond => (_value) * 1e-6d,
+                        DurationUnit.Millisecond => (_value) * 1e-3d,
+                        DurationUnit.Minute => _value * 60,
+                        DurationUnit.Month30 => _value * 30 * 24 * 3600,
+                        DurationUnit.Nanosecond => (_value) * 1e-9d,
+                        DurationUnit.Second => _value,
+                        DurationUnit.Sol => _value * 88775.244,
+                        DurationUnit.Week => _value * 7 * 24 * 3600,
+                        DurationUnit.Year365 => _value * 365 * 24 * 3600,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(DurationUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(DurationUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                DurationUnit.Day => baseUnitValue / (24 * 3600),
-                DurationUnit.Hour => baseUnitValue / 3600,
-                DurationUnit.JulianYear => baseUnitValue / (365.25 * 24 * 3600),
-                DurationUnit.Microsecond => (baseUnitValue) / 1e-6d,
-                DurationUnit.Millisecond => (baseUnitValue) / 1e-3d,
-                DurationUnit.Minute => baseUnitValue / 60,
-                DurationUnit.Month30 => baseUnitValue / (30 * 24 * 3600),
-                DurationUnit.Nanosecond => (baseUnitValue) / 1e-9d,
-                DurationUnit.Second => baseUnitValue,
-                DurationUnit.Week => baseUnitValue / (7 * 24 * 3600),
-                DurationUnit.Year365 => baseUnitValue / (365 * 24 * 3600),
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        DurationUnit.Day => baseUnitValue / (24 * 3600),
+                        DurationUnit.Hour => baseUnitValue / 3600,
+                        DurationUnit.JulianYear => baseUnitValue / (365.25 * 24 * 3600),
+                        DurationUnit.Microsecond => (baseUnitValue) / 1e-6d,
+                        DurationUnit.Millisecond => (baseUnitValue) / 1e-3d,
+                        DurationUnit.Minute => baseUnitValue / 60,
+                        DurationUnit.Month30 => baseUnitValue / (30 * 24 * 3600),
+                        DurationUnit.Nanosecond => (baseUnitValue) / 1e-9d,
+                        DurationUnit.Second => baseUnitValue,
+                        DurationUnit.Sol => baseUnitValue / 88775.244,
+                        DurationUnit.Week => baseUnitValue / (7 * 24 * 3600),
+                        DurationUnit.Year365 => baseUnitValue / (365 * 24 * 3600),
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

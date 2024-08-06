@@ -25,8 +25,7 @@ namespace UnitsNet.Units
 
     public enum RelativeHumidityUnit
     {
-        Undefined = 0,
-        Percent,
+        Percent = 1,
     }
 
     #pragma warning restore 1591

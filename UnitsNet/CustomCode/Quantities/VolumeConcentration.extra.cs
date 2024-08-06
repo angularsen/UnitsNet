@@ -46,7 +46,6 @@ namespace UnitsNet
             return molarity * componentMolarMass / componentDensity;
         }
 
-
         #endregion
 
         #region Operators
@@ -56,13 +55,13 @@ namespace UnitsNet
         {
             return MassConcentration.FromKilogramsPerCubicMeter(volumeConcentration.DecimalFractions * componentDensity.KilogramsPerCubicMeter);
         }
-        
+
         /// <summary>Get <see cref="MassConcentration" /> from <see cref="VolumeConcentration" /> times the component <see cref="Density" />.</summary>
         public static MassConcentration operator *(Density componentDensity, VolumeConcentration volumeConcentration)
         {
             return MassConcentration.FromKilogramsPerCubicMeter(volumeConcentration.DecimalFractions * componentDensity.KilogramsPerCubicMeter);
         }
-        
+
         #endregion
 
     }

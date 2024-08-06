@@ -62,17 +62,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of MassFraction, which is Second. All conversions go via this value.
         /// </summary>
         public static MassFractionUnit BaseUnit { get; } = MassFractionUnit.DecimalFraction;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of MassFraction.
         /// </summary>
         public static MassFraction MaxValue { get; } = new MassFraction(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of MassFraction.
         /// </summary>
         public static MassFraction MinValue { get; } = new MassFraction(double.MinValue, BaseUnit);
 
@@ -363,99 +363,99 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(MassFractionUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(MassFractionUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public MassFraction ToUnit(MassFractionUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new MassFraction(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this MassFraction to another MassFraction with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A MassFraction with the specified unit.</returns>
+                public MassFraction ToUnit(MassFractionUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new MassFraction(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                MassFractionUnit.CentigramPerGram => (_value) * 1e-2d,
-                MassFractionUnit.CentigramPerKilogram => (_value / 1e3) * 1e-2d,
-                MassFractionUnit.DecagramPerGram => (_value) * 1e1d,
-                MassFractionUnit.DecagramPerKilogram => (_value / 1e3) * 1e1d,
-                MassFractionUnit.DecigramPerGram => (_value) * 1e-1d,
-                MassFractionUnit.DecigramPerKilogram => (_value / 1e3) * 1e-1d,
-                MassFractionUnit.DecimalFraction => _value,
-                MassFractionUnit.GramPerGram => _value,
-                MassFractionUnit.GramPerKilogram => _value / 1e3,
-                MassFractionUnit.HectogramPerGram => (_value) * 1e2d,
-                MassFractionUnit.HectogramPerKilogram => (_value / 1e3) * 1e2d,
-                MassFractionUnit.KilogramPerGram => (_value) * 1e3d,
-                MassFractionUnit.KilogramPerKilogram => (_value / 1e3) * 1e3d,
-                MassFractionUnit.MicrogramPerGram => (_value) * 1e-6d,
-                MassFractionUnit.MicrogramPerKilogram => (_value / 1e3) * 1e-6d,
-                MassFractionUnit.MilligramPerGram => (_value) * 1e-3d,
-                MassFractionUnit.MilligramPerKilogram => (_value / 1e3) * 1e-3d,
-                MassFractionUnit.NanogramPerGram => (_value) * 1e-9d,
-                MassFractionUnit.NanogramPerKilogram => (_value / 1e3) * 1e-9d,
-                MassFractionUnit.PartPerBillion => _value / 1e9,
-                MassFractionUnit.PartPerMillion => _value / 1e6,
-                MassFractionUnit.PartPerThousand => _value / 1e3,
-                MassFractionUnit.PartPerTrillion => _value / 1e12,
-                MassFractionUnit.Percent => _value / 1e2,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        MassFractionUnit.CentigramPerGram => (_value) * 1e-2d,
+                        MassFractionUnit.CentigramPerKilogram => (_value / 1e3) * 1e-2d,
+                        MassFractionUnit.DecagramPerGram => (_value) * 1e1d,
+                        MassFractionUnit.DecagramPerKilogram => (_value / 1e3) * 1e1d,
+                        MassFractionUnit.DecigramPerGram => (_value) * 1e-1d,
+                        MassFractionUnit.DecigramPerKilogram => (_value / 1e3) * 1e-1d,
+                        MassFractionUnit.DecimalFraction => _value,
+                        MassFractionUnit.GramPerGram => _value,
+                        MassFractionUnit.GramPerKilogram => _value / 1e3,
+                        MassFractionUnit.HectogramPerGram => (_value) * 1e2d,
+                        MassFractionUnit.HectogramPerKilogram => (_value / 1e3) * 1e2d,
+                        MassFractionUnit.KilogramPerGram => (_value) * 1e3d,
+                        MassFractionUnit.KilogramPerKilogram => (_value / 1e3) * 1e3d,
+                        MassFractionUnit.MicrogramPerGram => (_value) * 1e-6d,
+                        MassFractionUnit.MicrogramPerKilogram => (_value / 1e3) * 1e-6d,
+                        MassFractionUnit.MilligramPerGram => (_value) * 1e-3d,
+                        MassFractionUnit.MilligramPerKilogram => (_value / 1e3) * 1e-3d,
+                        MassFractionUnit.NanogramPerGram => (_value) * 1e-9d,
+                        MassFractionUnit.NanogramPerKilogram => (_value / 1e3) * 1e-9d,
+                        MassFractionUnit.PartPerBillion => _value / 1e9,
+                        MassFractionUnit.PartPerMillion => _value / 1e6,
+                        MassFractionUnit.PartPerThousand => _value / 1e3,
+                        MassFractionUnit.PartPerTrillion => _value / 1e12,
+                        MassFractionUnit.Percent => _value / 1e2,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(MassFractionUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(MassFractionUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                MassFractionUnit.CentigramPerGram => (baseUnitValue) / 1e-2d,
-                MassFractionUnit.CentigramPerKilogram => (baseUnitValue * 1e3) / 1e-2d,
-                MassFractionUnit.DecagramPerGram => (baseUnitValue) / 1e1d,
-                MassFractionUnit.DecagramPerKilogram => (baseUnitValue * 1e3) / 1e1d,
-                MassFractionUnit.DecigramPerGram => (baseUnitValue) / 1e-1d,
-                MassFractionUnit.DecigramPerKilogram => (baseUnitValue * 1e3) / 1e-1d,
-                MassFractionUnit.DecimalFraction => baseUnitValue,
-                MassFractionUnit.GramPerGram => baseUnitValue,
-                MassFractionUnit.GramPerKilogram => baseUnitValue * 1e3,
-                MassFractionUnit.HectogramPerGram => (baseUnitValue) / 1e2d,
-                MassFractionUnit.HectogramPerKilogram => (baseUnitValue * 1e3) / 1e2d,
-                MassFractionUnit.KilogramPerGram => (baseUnitValue) / 1e3d,
-                MassFractionUnit.KilogramPerKilogram => (baseUnitValue * 1e3) / 1e3d,
-                MassFractionUnit.MicrogramPerGram => (baseUnitValue) / 1e-6d,
-                MassFractionUnit.MicrogramPerKilogram => (baseUnitValue * 1e3) / 1e-6d,
-                MassFractionUnit.MilligramPerGram => (baseUnitValue) / 1e-3d,
-                MassFractionUnit.MilligramPerKilogram => (baseUnitValue * 1e3) / 1e-3d,
-                MassFractionUnit.NanogramPerGram => (baseUnitValue) / 1e-9d,
-                MassFractionUnit.NanogramPerKilogram => (baseUnitValue * 1e3) / 1e-9d,
-                MassFractionUnit.PartPerBillion => baseUnitValue * 1e9,
-                MassFractionUnit.PartPerMillion => baseUnitValue * 1e6,
-                MassFractionUnit.PartPerThousand => baseUnitValue * 1e3,
-                MassFractionUnit.PartPerTrillion => baseUnitValue * 1e12,
-                MassFractionUnit.Percent => baseUnitValue * 1e2,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        MassFractionUnit.CentigramPerGram => (baseUnitValue) / 1e-2d,
+                        MassFractionUnit.CentigramPerKilogram => (baseUnitValue * 1e3) / 1e-2d,
+                        MassFractionUnit.DecagramPerGram => (baseUnitValue) / 1e1d,
+                        MassFractionUnit.DecagramPerKilogram => (baseUnitValue * 1e3) / 1e1d,
+                        MassFractionUnit.DecigramPerGram => (baseUnitValue) / 1e-1d,
+                        MassFractionUnit.DecigramPerKilogram => (baseUnitValue * 1e3) / 1e-1d,
+                        MassFractionUnit.DecimalFraction => baseUnitValue,
+                        MassFractionUnit.GramPerGram => baseUnitValue,
+                        MassFractionUnit.GramPerKilogram => baseUnitValue * 1e3,
+                        MassFractionUnit.HectogramPerGram => (baseUnitValue) / 1e2d,
+                        MassFractionUnit.HectogramPerKilogram => (baseUnitValue * 1e3) / 1e2d,
+                        MassFractionUnit.KilogramPerGram => (baseUnitValue) / 1e3d,
+                        MassFractionUnit.KilogramPerKilogram => (baseUnitValue * 1e3) / 1e3d,
+                        MassFractionUnit.MicrogramPerGram => (baseUnitValue) / 1e-6d,
+                        MassFractionUnit.MicrogramPerKilogram => (baseUnitValue * 1e3) / 1e-6d,
+                        MassFractionUnit.MilligramPerGram => (baseUnitValue) / 1e-3d,
+                        MassFractionUnit.MilligramPerKilogram => (baseUnitValue * 1e3) / 1e-3d,
+                        MassFractionUnit.NanogramPerGram => (baseUnitValue) / 1e-9d,
+                        MassFractionUnit.NanogramPerKilogram => (baseUnitValue * 1e3) / 1e-9d,
+                        MassFractionUnit.PartPerBillion => baseUnitValue * 1e9,
+                        MassFractionUnit.PartPerMillion => baseUnitValue * 1e6,
+                        MassFractionUnit.PartPerThousand => baseUnitValue * 1e3,
+                        MassFractionUnit.PartPerTrillion => baseUnitValue * 1e12,
+                        MassFractionUnit.Percent => baseUnitValue * 1e2,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

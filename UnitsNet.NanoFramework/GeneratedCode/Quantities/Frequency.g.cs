@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of Frequency, which is Second. All conversions go via this value.
         /// </summary>
         public static FrequencyUnit BaseUnit { get; } = FrequencyUnit.Hertz;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Frequency.
         /// </summary>
         public static Frequency MaxValue { get; } = new Frequency(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Frequency.
         /// </summary>
         public static Frequency MinValue { get; } = new Frequency(double.MinValue, BaseUnit);
 
@@ -118,6 +118,16 @@ namespace UnitsNet
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FrequencyUnit.Megahertz"/>
         /// </summary>
         public double Megahertz => As(FrequencyUnit.Megahertz);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FrequencyUnit.Microhertz"/>
+        /// </summary>
+        public double Microhertz => As(FrequencyUnit.Microhertz);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FrequencyUnit.Millihertz"/>
+        /// </summary>
+        public double Millihertz => As(FrequencyUnit.Millihertz);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FrequencyUnit.PerSecond"/>
@@ -187,6 +197,18 @@ namespace UnitsNet
         public static Frequency FromMegahertz(double megahertz) => new Frequency(megahertz, FrequencyUnit.Megahertz);
 
         /// <summary>
+        ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.Microhertz"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Frequency FromMicrohertz(double microhertz) => new Frequency(microhertz, FrequencyUnit.Microhertz);
+
+        /// <summary>
+        ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.Millihertz"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Frequency FromMillihertz(double millihertz) => new Frequency(millihertz, FrequencyUnit.Millihertz);
+
+        /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.PerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -217,73 +239,77 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(FrequencyUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(FrequencyUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public Frequency ToUnit(FrequencyUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new Frequency(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Frequency to another Frequency with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Frequency with the specified unit.</returns>
+                public Frequency ToUnit(FrequencyUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new Frequency(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                FrequencyUnit.BeatPerMinute => _value / 60,
-                FrequencyUnit.BUnit => Math.Sqrt(_value * 1e3),
-                FrequencyUnit.CyclePerHour => _value / 3600,
-                FrequencyUnit.CyclePerMinute => _value / 60,
-                FrequencyUnit.Gigahertz => (_value) * 1e9d,
-                FrequencyUnit.Hertz => _value,
-                FrequencyUnit.Kilohertz => (_value) * 1e3d,
-                FrequencyUnit.Megahertz => (_value) * 1e6d,
-                FrequencyUnit.PerSecond => _value,
-                FrequencyUnit.RadianPerSecond => _value / 6.2831853072,
-                FrequencyUnit.Terahertz => (_value) * 1e12d,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        FrequencyUnit.BeatPerMinute => _value / 60,
+                        FrequencyUnit.BUnit => Math.Sqrt(_value * 1e3),
+                        FrequencyUnit.CyclePerHour => _value / 3600,
+                        FrequencyUnit.CyclePerMinute => _value / 60,
+                        FrequencyUnit.Gigahertz => (_value) * 1e9d,
+                        FrequencyUnit.Hertz => _value,
+                        FrequencyUnit.Kilohertz => (_value) * 1e3d,
+                        FrequencyUnit.Megahertz => (_value) * 1e6d,
+                        FrequencyUnit.Microhertz => (_value) * 1e-6d,
+                        FrequencyUnit.Millihertz => (_value) * 1e-3d,
+                        FrequencyUnit.PerSecond => _value,
+                        FrequencyUnit.RadianPerSecond => _value / 6.2831853072,
+                        FrequencyUnit.Terahertz => (_value) * 1e12d,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(FrequencyUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(FrequencyUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                FrequencyUnit.BeatPerMinute => baseUnitValue * 60,
-                FrequencyUnit.BUnit => baseUnitValue * baseUnitValue * 1e-3,
-                FrequencyUnit.CyclePerHour => baseUnitValue * 3600,
-                FrequencyUnit.CyclePerMinute => baseUnitValue * 60,
-                FrequencyUnit.Gigahertz => (baseUnitValue) / 1e9d,
-                FrequencyUnit.Hertz => baseUnitValue,
-                FrequencyUnit.Kilohertz => (baseUnitValue) / 1e3d,
-                FrequencyUnit.Megahertz => (baseUnitValue) / 1e6d,
-                FrequencyUnit.PerSecond => baseUnitValue,
-                FrequencyUnit.RadianPerSecond => baseUnitValue * 6.2831853072,
-                FrequencyUnit.Terahertz => (baseUnitValue) / 1e12d,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        FrequencyUnit.BeatPerMinute => baseUnitValue * 60,
+                        FrequencyUnit.BUnit => baseUnitValue * baseUnitValue * 1e-3,
+                        FrequencyUnit.CyclePerHour => baseUnitValue * 3600,
+                        FrequencyUnit.CyclePerMinute => baseUnitValue * 60,
+                        FrequencyUnit.Gigahertz => (baseUnitValue) / 1e9d,
+                        FrequencyUnit.Hertz => baseUnitValue,
+                        FrequencyUnit.Kilohertz => (baseUnitValue) / 1e3d,
+                        FrequencyUnit.Megahertz => (baseUnitValue) / 1e6d,
+                        FrequencyUnit.Microhertz => (baseUnitValue) / 1e-6d,
+                        FrequencyUnit.Millihertz => (baseUnitValue) / 1e-3d,
+                        FrequencyUnit.PerSecond => baseUnitValue,
+                        FrequencyUnit.RadianPerSecond => baseUnitValue * 6.2831853072,
+                        FrequencyUnit.Terahertz => (baseUnitValue) / 1e12d,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

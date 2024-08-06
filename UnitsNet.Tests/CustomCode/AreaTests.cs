@@ -4,7 +4,7 @@
 using UnitsNet.Units;
 using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     public class AreaTests : AreaTestsBase
     {
@@ -46,17 +46,24 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Fact]
+        public void AreaDividedByVolumeEqualsReciprocalLength()
+        {
+            ReciprocalLength reciprocalLength = Area.FromSquareMeters(50) / Volume.FromCubicMeters(5);
+            Assert.Equal(reciprocalLength, ReciprocalLength.FromInverseMeters(10));
+        }
+
+        [Fact]
         public void AreaTimesMassFluxEqualsMassFlow()
         {
             MassFlow massFlow = Area.FromSquareMeters(20) * MassFlux.FromKilogramsPerSecondPerSquareMeter(2);
-            Assert.Equal(massFlow, MassFlow.FromKilogramsPerSecond(40));
+            Assert.Equal(40, massFlow.KilogramsPerSecond);
         }
 
         [Fact]
         public void AreaTimesDensityEqualsLinearDensity()
         {
             LinearDensity linearDensity = Area.FromSquareCentimeters(2) * Density.FromGramsPerCubicCentimeter(10);
-            Assert.Equal(LinearDensity.FromGramsPerCentimeter(20), linearDensity);
+            Assert.Equal(20, linearDensity.GramsPerCentimeter);
         }
 
         [Theory]

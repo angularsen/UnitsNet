@@ -31,6 +31,12 @@ namespace UnitsNet
             return Acceleration.FromMetersPerSecondSquared(speed.MetersPerSecond / duration.Seconds);
         }
 
+        /// <summary>Get <see cref="Duration"/> from <see cref="Speed"/> divided by <see cref="Acceleration"/>.</summary>
+        public static Duration operator /(Speed speed, Acceleration acceleration)
+        {
+            return Duration.FromSeconds(speed.MetersPerSecond / acceleration.MetersPerSecondSquared);
+        }
+
         /// <summary>Get <see cref="Length"/> from <see cref="Speed"/> times <see cref="Duration"/>.</summary>
         public static Length operator *(Speed speed, Duration duration)
         {

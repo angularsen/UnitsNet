@@ -1,0 +1,39 @@
+# This workflow warns and then closes issues and PRs that have had no activity for a specified amount of time.
+#
+# You can adjust the behavior by modifying this file.
+# For more information, see:
+# https://github.com/actions/stale
+name: Mark stale issues and pull requests
+
+on:
+  workflow_dispatch:
+  schedule:
+  - cron: '0 2 * * *' # Runs every day at 02:00 UTC 
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+
+    steps:
+    - uses: actions/stale@v5
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        stale-issue-message: 'This issue is stale because it has been open 30 days with no activity. Remove stale label or comment or this will be closed in 7 days.'
+        stale-pr-message: 'This PR is stale because it has been open 60 days with no activity. Remove stale label or comment or this will be closed in 7 days.'
+        stale-issue-label: 'no-issue-activity'
+        stale-pr-label: 'no-pr-activity'
+        close-issue-message: 'This issue was automatically closed due to inactivity.'
+        close-pr-message: 'This PR was automatically closed due to inactivity.'
+        days-before-issue-stale: 30
+        days-before-pr-stale: 60
+        days-before-issue-close: 7
+        days-before-pr-close: 7
+        exempt-issue-labels: 'pinned'
+        exempt-pr-labels: 'pinned'
+        exempt-draft-pr: false
+        exempt-milestones: true
+        exempt-all-milestones: true
+        operations-per-run: 100 # Default 30, a bit small as we have many stale/pinned issues to re-process

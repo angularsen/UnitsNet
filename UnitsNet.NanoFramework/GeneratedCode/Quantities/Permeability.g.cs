@@ -62,17 +62,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of Permeability, which is Second. All conversions go via this value.
         /// </summary>
         public static PermeabilityUnit BaseUnit { get; } = PermeabilityUnit.HenryPerMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Permeability.
         /// </summary>
         public static Permeability MaxValue { get; } = new Permeability(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Permeability.
         /// </summary>
         public static Permeability MinValue { get; } = new Permeability(double.MinValue, BaseUnit);
 
@@ -110,53 +110,53 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(PermeabilityUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(PermeabilityUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public Permeability ToUnit(PermeabilityUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new Permeability(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Permeability to another Permeability with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Permeability with the specified unit.</returns>
+                public Permeability ToUnit(PermeabilityUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new Permeability(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                PermeabilityUnit.HenryPerMeter => _value,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        PermeabilityUnit.HenryPerMeter => _value,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(PermeabilityUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(PermeabilityUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                PermeabilityUnit.HenryPerMeter => baseUnitValue,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        PermeabilityUnit.HenryPerMeter => baseUnitValue,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

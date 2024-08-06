@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using CodeGen.Generators.NanoFrameworkGen;
 using CodeGen.Helpers;
+using CodeGen.Helpers.UnitEnumValueAllocation;
 using CodeGen.JsonTypes;
 using NuGet.Common;
 using Serilog;
@@ -40,7 +41,8 @@ namespace CodeGen.Generators
         /// </summary>
         /// <param name="rootDir">The root directory</param>
         /// <param name="quantities">The quantities to create</param>
-        public static void Generate(string rootDir, Quantity[] quantities)
+        /// <param name="quantityNameToUnitEnumValues"></param>
+        public static void Generate(string rootDir, Quantity[] quantities, QuantityNameToUnitEnumValues quantityNameToUnitEnumValues)
         {
             // get latest version of .NET nanoFramework mscorlib
             ILogger logger = NullLogger.Instance;
@@ -62,10 +64,10 @@ namespace CodeGen.Generators
 
             var lengthNuspecFile = Path.Combine(outputDir, "Length", "UnitsNet.NanoFramework.Length.nuspec");
             var projectVersion = ParseVersion(File.ReadAllText(lengthNuspecFile),
-                new Regex(@"<version>(?<version>[\d\.]+)</version>", RegexOptions.IgnoreCase),
+                new Regex(@"<version>(?<version>[\d.]+)(?<suffix>-[a-z\d]+)?<\/version>", RegexOptions.IgnoreCase),
                 "projectVersion");
 
-            foreach (var quantity in quantities)
+            foreach (Quantity quantity in quantities)
             {
                 var projectPath = Path.Combine(outputDir, quantity.Name);
                 Directory.CreateDirectory(projectPath);
@@ -82,23 +84,24 @@ namespace CodeGen.Generators
                     versions.MscorlibNugetVersion,
                     versions.MathNugetVersion);
 
-                GenerateUnitType(quantity, Path.Combine(outputUnits, $"{quantity.Name}Unit.g.cs"));
+                UnitEnumNameToValue unitEnumValues = quantityNameToUnitEnumValues[quantity.Name];
+
+                GenerateUnitType(quantity, Path.Combine(outputUnits, $"{quantity.Name}Unit.g.cs"), unitEnumValues);
                 GenerateQuantity(quantity, Path.Combine(outputQuantities, $"{quantity.Name}.g.cs"));
                 GenerateProject(quantity, Path.Combine(projectPath, $"{quantity.Name}.nfproj"), versions);
 
                 // Convert decimal based units to floats; decimals are not supported by nanoFramework
-                if (quantity.BaseType == "decimal")
+                if (quantity.ValueType == "decimal")
                 {
                     var replacements = new Dictionary<string, string>
                     {
-                        //{ "(\\)sdecimal(\\s)", "$1float$2" }
                         { "(\\d)m", "$1d" },
                         { "(\\d)M", "$1d" },
                         { " decimal ", " double " },
                         { "(decimal ", "(double " }
                     };
-                    new FileInfo($"{outputDir}\\Units\\{quantity.Name}Unit.g.cs").EditFile(replacements);
-                    new FileInfo($"{outputDir}\\Quantities\\{quantity.Name}.g.cs").EditFile(replacements);
+                    new FileInfo(Path.Combine(outputDir, "Units", $"{quantity.Name}Unit.g.cs")).EditFile(replacements);
+                    new FileInfo(Path.Combine(outputDir, "Quantities", $"{quantity.Name}.g.cs")).EditFile(replacements);
                 }
 
                 Log.Information("✅ {Quantity} (nanoFramework)", quantity.Name);
@@ -115,26 +118,26 @@ namespace CodeGen.Generators
         }
 
         /// <summary>
-        /// Updates existing nanoFramework projects and nuspecs with the latest versions.
+        /// Updates existing nanoFramework projects and nuspec files with the latest versions.
         /// </summary>
         /// <param name="rootDir">The root directory</param>
-        /// <param name="quantities">The quantities to update nuspecs</param>
+        /// <param name="quantities">The quantities to update nuspec files</param>
         public static bool UpdateNanoFrameworkDependencies(
             string rootDir,
             Quantity[] quantities)
         {
             // working path
-            string path = Path.Combine(rootDir, "UnitsNet.NanoFramework\\GeneratedCode");
+            var path = Path.Combine(rootDir, "UnitsNet.NanoFramework\\GeneratedCode");
 
             Log.Information("");
             Log.Information("Restoring .NET nanoFramework projects");
 
             // run nuget CLI
-            var nugetCLI = new Process
+            using var nugetRestore = new Process
             {
                 StartInfo = new ProcessStartInfo
                 {
-                    FileName = Path.Combine(rootDir, "Tools/nuget.exe"),
+                    FileName = Path.Combine(rootDir, ".tools/nuget.exe"),
                     Arguments = $"restore {path}\\UnitsNet.nanoFramework.sln",
                     UseShellExecute = false,
                     CreateNoWindow = true,
@@ -143,7 +146,7 @@ namespace CodeGen.Generators
             };
 
             // start nuget CLI and wait for exit
-            if (!nugetCLI.Start())
+            if (!nugetRestore.Start())
             {
                 Log.Information("");
                 Log.Information("Failed to start nuget CLI to restore .NET nanoFramework projects");
@@ -152,7 +155,7 @@ namespace CodeGen.Generators
             else
             {
                 // wait for exit, within 2 minutes
-                if (!nugetCLI.WaitForExit((int)TimeSpan.FromMinutes(2).TotalMilliseconds))
+                if (!nugetRestore.WaitForExit((int)TimeSpan.FromMinutes(2).TotalMilliseconds))
                 {
                     Log.Information("");
                     Log.Information("Failed to complete execution of nuget CLI to restore .NET nanoFramework projects");
@@ -160,7 +163,7 @@ namespace CodeGen.Generators
                 }
                 else
                 {
-                    if (nugetCLI.ExitCode == 0)
+                    if (nugetRestore.ExitCode == 0)
                     {
                         Log.Information("Done!");
                         Log.Information("");
@@ -168,9 +171,9 @@ namespace CodeGen.Generators
                     else
                     {
                         Log.Information("");
-                        Log.Information($"nuget CLI executed with {nugetCLI.ExitCode} exit code");
+                        Log.Information("nuget CLI executed with {ExitCode} exit code", nugetRestore.ExitCode);
 
-                        Log.Information(nugetCLI.StandardError.ReadToEnd());
+                        Log.Information("{StandardError}", nugetRestore.StandardError.ReadToEnd());
 
                         return false;
                     }
@@ -181,11 +184,11 @@ namespace CodeGen.Generators
             Log.Information("Updating .NET nanoFramework references using nuget CLI");
 
             // run nuget CLI to perform update
-            nugetCLI = new Process
+            using var nugetUpdate = new Process
             {
                 StartInfo = new ProcessStartInfo
                 {
-                    FileName = Path.Combine(rootDir, "Tools/nuget.exe"),
+                    FileName = Path.Combine(rootDir, ".tools/NuGet.exe"),
                     Arguments = $"update {path}\\UnitsNet.nanoFramework.sln -PreRelease",
                     UseShellExecute = false,
                     CreateNoWindow = true,
@@ -194,7 +197,7 @@ namespace CodeGen.Generators
             };
 
             // start nuget CLI and wait for exit
-            if (!nugetCLI.Start())
+            if (!nugetUpdate.Start())
             {
                 Log.Information("");
                 Log.Information("Failed to start nuget CLI to update .NET nanoFramework projects");
@@ -203,7 +206,7 @@ namespace CodeGen.Generators
             else
             {
                 // wait for exit, within 2 minutes
-                if (!nugetCLI.WaitForExit((int)TimeSpan.FromMinutes(2).TotalMilliseconds))
+                if (!nugetUpdate.WaitForExit((int)TimeSpan.FromMinutes(2).TotalMilliseconds))
                 {
                     Log.Information("");
                     Log.Information("Failed to complete execution of nuget CLI to update .NET nanoFramework projects");
@@ -211,7 +214,7 @@ namespace CodeGen.Generators
                 }
                 else
                 {
-                    if (nugetCLI.ExitCode == 0)
+                    if (nugetUpdate.ExitCode == 0)
                     {
                         Log.Information("Done!");
                         Log.Information("");
@@ -219,7 +222,7 @@ namespace CodeGen.Generators
                         Log.Information("Updating .NET nanoFramework nuspec files");
                         Log.Information("");
 
-                        foreach (var quantity in quantities)
+                        foreach (Quantity quantity in quantities)
                         {
                             var projectPath = Path.Combine(path, quantity.Name);
 
@@ -250,9 +253,9 @@ namespace CodeGen.Generators
                     else
                     {
                         Log.Information("");
-                        Log.Information($"nuget CLI executed with {nugetCLI.ExitCode} exit code");
+                        Log.Information("nuget CLI executed with {ExitCode} exit code", nugetUpdate.ExitCode);
 
-                        Log.Information(nugetCLI.StandardError.ReadToEnd());
+                        Log.Information("{StandardError}", nugetUpdate.StandardError.ReadToEnd());
 
                         return false;
                     }
@@ -268,7 +271,7 @@ namespace CodeGen.Generators
         private static NanoFrameworkVersions ParseCurrentNanoFrameworkVersions(string rootDir)
         {
             // Angle has both mscorlib and System.Math dependency
-            string generatedCodePath = Path.Combine(rootDir, "UnitsNet.NanoFramework\\GeneratedCode");
+            var generatedCodePath = Path.Combine(rootDir, "UnitsNet.NanoFramework", "GeneratedCode");
             var angleProjectFile = Path.Combine(generatedCodePath, "Angle", "Angle.nfproj");
             var projectFileContent = File.ReadAllText(angleProjectFile);
 
@@ -301,7 +304,7 @@ namespace CodeGen.Generators
             string descriptiveName,
             bool throwOnFailure = true)
         {
-            var match = versionRegex.Match(projectFileContent);
+            Match match = versionRegex.Match(projectFileContent);
 
             if (!match.Success && throwOnFailure)
             {
@@ -317,8 +320,7 @@ namespace CodeGen.Generators
             string mscorlibNuGetVersion,
             string mathNuGetVersion)
         {
-            string filePath = Path.Combine(projectPath, "packages.config");
-
+            var filePath = Path.Combine(projectPath, "packages.config");
             var content = GeneratePackageConfigFile(quantityName, mscorlibNuGetVersion, mathNuGetVersion);
 
             File.WriteAllText(filePath, content);
@@ -330,7 +332,7 @@ namespace CodeGen.Generators
             string mscorlibNuGetVersion,
             string mathNuGetVersion)
         {
-            string filePath = Path.Combine(projectPath, $"UnitsNet.NanoFramework.{quantity.Name}.nuspec");
+            var filePath = Path.Combine(projectPath, $"UnitsNet.NanoFramework.{quantity.Name}.nuspec");
 
             var content = new NuspecGenerator(
                 quantity,
@@ -347,9 +349,9 @@ namespace CodeGen.Generators
             Log.Information("✅ AssemblyInfo.cs (nanoFramework)");
         }
 
-        private static void GenerateUnitType(Quantity quantity, string filePath)
+        private static void GenerateUnitType(Quantity quantity, string filePath, UnitEnumNameToValue unitEnumValues)
         {
-            var content = new UnitTypeGenerator(quantity).Generate();
+            var content = new UnitTypeGenerator(quantity, unitEnumValues).Generate();
             File.WriteAllText(filePath, content);
         }
 
@@ -392,8 +394,7 @@ namespace CodeGen.Generators
 <packages>
   <package id=""nanoFramework.CoreLibrary"" version=""{mscorlibNuGetVersion}"" targetFramework=""netnanoframework10"" />");
 
-
-            if (NanoFrameworkGenerator.ProjectsRequiringMath.Contains(quantityName))
+            if (ProjectsRequiringMath.Contains(quantityName))
             {
                 writer.WL($@"
   <package id=""nanoFramework.System.Math"" version=""{mathNuGetVersion}"" targetFramework=""netnanoframework10"" />");

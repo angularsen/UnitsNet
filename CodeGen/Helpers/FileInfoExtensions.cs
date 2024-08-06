@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace CodeGen.Helpers
 {
@@ -17,11 +15,10 @@ namespace CodeGen.Helpers
             Dictionary<string, string> replacements)
         {
             var tempFilename = $"{sourceFile.FullName}.edited";
-            using (var input = sourceFile.OpenText())
+            using (StreamReader input = sourceFile.OpenText())
             using (var output = new StreamWriter(tempFilename))
             {
-                string line;
-                while (null != (line = input.ReadLine()))
+                while (input.ReadLine() is { } line)
                 {
                     // Replacing longer matches first is a safeguard heuristic.
                     // It ensures we don't accidentally replace "List<int>"

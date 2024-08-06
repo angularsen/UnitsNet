@@ -1,6 +1,8 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using System;
+
 namespace UnitsNet
 {
     public partial struct Pressure
@@ -39,6 +41,18 @@ namespace UnitsNet
         public static Force operator /(Pressure pressure, ReciprocalArea reciprocalArea)
         {
             return new Force(pressure.Pascals / reciprocalArea.InverseSquareMeters, UnitsNet.Units.ForceUnit.Newton);
+        }
+
+        /// <summary>Get <see cref="PressureChangeRate"/> from <see cref="Pressure"/> divided by <see cref="TimeSpan"/> </summary>
+        public static PressureChangeRate operator /(Pressure pressure, TimeSpan timeSpan)
+        {
+            return new PressureChangeRate(pressure.Pascals / timeSpan.TotalSeconds , UnitsNet.Units.PressureChangeRateUnit.PascalPerSecond);
+        }
+
+        /// <summary>Get <see cref="PressureChangeRate"/> from <see cref="Pressure"/> divided by <see cref="Duration"/> </summary>
+        public static PressureChangeRate operator /(Pressure pressure, Duration duration)
+        {
+            return new PressureChangeRate(pressure.Pascals / duration.Seconds, UnitsNet.Units.PressureChangeRateUnit.PascalPerSecond);
         }
     }
 }

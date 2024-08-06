@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "jetbrains.dotcover.globaltool": {
+      "version": "2022.2.3",
+      "commands": [
+        "dotnet-dotcover"
+      ]
+    },
+    "timeitsharp": {
+      "version": "0.0.8",
+      "commands": [
+        "dotnet-timeit"
+      ]
+    }
+  }
+}

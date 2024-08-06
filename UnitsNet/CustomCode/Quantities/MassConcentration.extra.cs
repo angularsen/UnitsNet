@@ -1,8 +1,6 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using UnitsNet.Units;
-
 namespace UnitsNet
 {
     public partial struct MassConcentration
@@ -26,7 +24,6 @@ namespace UnitsNet
             return this / componentDensity;
         }
 
-
         #region Static Methods
 
         /// <summary>
@@ -48,7 +45,7 @@ namespace UnitsNet
         #endregion
 
         #region Operators
-        
+
         /// <summary>Get <see cref="Mass" /> from <see cref="MassConcentration" /> times <see cref="Volume" />.</summary>
         public static Mass operator *(MassConcentration density, Volume volume)
         {
@@ -60,7 +57,7 @@ namespace UnitsNet
         {
             return Mass.FromKilograms(density.KilogramsPerCubicMeter * volume.CubicMeters);
         }
-        
+
         /// <summary>Get <see cref="Molarity" /> from <see cref="MassConcentration" /> divided by the component's <see cref="MolarMass" />.</summary>
         public static Molarity operator /(MassConcentration massConcentration, MolarMass componentMass)
         {

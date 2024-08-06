@@ -32,15 +32,17 @@ namespace UnitsNet.Tests.CustomCode
 
         #region Unit Conversion Coefficients
 
-        protected override double CentimolesPerLiterInOneMolesPerCubicMeter => 1e-1;
-        protected override double DecimolesPerLiterInOneMolesPerCubicMeter => 1e-2;
-        protected override double FemtomolesPerLiterInOneMolesPerCubicMeter => 1e12;
-        protected override double MolesPerLiterInOneMolesPerCubicMeter => 1e-3;
-        protected override double MillimolesPerLiterInOneMolesPerCubicMeter => 1;
-        protected override double MolesPerCubicMeterInOneMolesPerCubicMeter => 1;
-        protected override double MicromolesPerLiterInOneMolesPerCubicMeter => 1e3;
-        protected override double NanomolesPerLiterInOneMolesPerCubicMeter => 1e6;
-        protected override double PicomolesPerLiterInOneMolesPerCubicMeter => 1e9;
+        protected override double CentimolesPerLiterInOneMolePerCubicMeter => 1e-1;
+        protected override double DecimolesPerLiterInOneMolePerCubicMeter => 1e-2;
+        protected override double FemtomolesPerLiterInOneMolePerCubicMeter => 1e12;
+        protected override double MolesPerLiterInOneMolePerCubicMeter => 1e-3;
+        protected override double MillimolesPerLiterInOneMolePerCubicMeter => 1;
+        protected override double MolesPerCubicMeterInOneMolePerCubicMeter => 1;
+        protected override double MicromolesPerLiterInOneMolePerCubicMeter => 1e3;
+        protected override double NanomolesPerLiterInOneMolePerCubicMeter => 1e6;
+        protected override double PicomolesPerLiterInOneMolePerCubicMeter => 1e9;
+        protected override double KilomolesPerCubicMeterInOneMolePerCubicMeter => 1e-3;
+        protected override double PoundMolesPerCubicFootInOneMolePerCubicMeter => 6.242796e-5;
 
         #endregion
 

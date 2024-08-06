@@ -1,7 +1,7 @@
 {
   "Name": "Duration",
   "BaseUnit": "Second",
-  "XmlDoc": "Time is a dimension in which events can be ordered from the past through the present into the future, and also the measure of durations of events and the intervals between them.",
+  "XmlDocSummary": "Time is a dimension in which events can be ordered from the past through the present into the future, and also the measure of durations of events and the intervals between them.",
   "BaseDimensions": {
     "T": 1
   },
@@ -152,6 +152,21 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "jyr", "jyear", "jyears" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Sol",
+      "PluralName": "Sols",
+      "BaseUnits": {
+        "T": "Sol"
+      },
+      "FromUnitToBaseFunc": "{x} * 88775.244",
+      "FromBaseToUnitFunc": "{x} / 88775.244",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "sol" ]
         }
       ]
     }

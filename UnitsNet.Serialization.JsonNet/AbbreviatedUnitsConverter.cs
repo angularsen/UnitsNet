@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using Newtonsoft.Json;
 using UnitsNet.Units;
@@ -24,10 +25,10 @@ namespace UnitsNet.Serialization.JsonNet
     {
         private const string ValueProperty = "Value";
         private const string UnitProperty = "Unit";
-        private const string TypeProperty = "Type"; 
+        private const string TypeProperty = "Type";
 
         private readonly UnitAbbreviationsCache _abbreviations;
-        private readonly IEqualityComparer<string> _propertyComparer;
+        private readonly IEqualityComparer<string?> _propertyComparer;
         private readonly IDictionary<string, QuantityInfo> _quantities;
         private readonly UnitParser _unitParser;
 
@@ -43,8 +44,8 @@ namespace UnitsNet.Serialization.JsonNet
         ///     Construct a converter using the default list of quantities and unit abbreviation provider
         /// </summary>
         /// <param name="comparer">The comparer used to compare the property/quantity names (e.g. StringComparer.OrdinalIgnoreCase) </param>
-        public AbbreviatedUnitsConverter(IEqualityComparer<string> comparer)
-            : this(new Dictionary<string, QuantityInfo>(Quantity.ByName, comparer), UnitAbbreviationsCache.Default, comparer)
+        public AbbreviatedUnitsConverter(IEqualityComparer<string?> comparer)
+            : this(new Dictionary<string, QuantityInfo>(Quantity.ByName, comparer), UnitsNetSetup.Default.UnitAbbreviations, comparer)
         {
         }
 
@@ -54,7 +55,7 @@ namespace UnitsNet.Serialization.JsonNet
         /// <param name="quantities">The dictionary of quantity names</param>
         /// <param name="abbreviations">The unit abbreviations used for the serialization </param>
         /// <param name="propertyComparer">The comparer used to compare the property names (e.g. StringComparer.OrdinalIgnoreCase) </param>
-        public AbbreviatedUnitsConverter(IDictionary<string, QuantityInfo> quantities, UnitAbbreviationsCache abbreviations, IEqualityComparer<string> propertyComparer)
+        public AbbreviatedUnitsConverter(IDictionary<string, QuantityInfo> quantities, UnitAbbreviationsCache abbreviations, IEqualityComparer<string?> propertyComparer)
         {
             _quantities = quantities;
             _abbreviations = abbreviations;
@@ -63,7 +64,7 @@ namespace UnitsNet.Serialization.JsonNet
         }
 
         /// <inheritdoc />
-        public override void WriteJson(JsonWriter writer, IQuantity quantity, JsonSerializer serializer)
+        public override void WriteJson(JsonWriter writer, IQuantity? quantity, JsonSerializer serializer)
         {
             if (quantity is null)
             {
@@ -78,14 +79,14 @@ namespace UnitsNet.Serialization.JsonNet
 
             // write the 'Value' using the actual type
             writer.WritePropertyName(ValueProperty);
-            if (quantity is IDecimalQuantity decimalQuantity)
+            if (quantity is IValueQuantity<decimal> decimalQuantity)
             {
                 // cannot use `writer.WriteValue(decimalQuantity.Value)`: there is a hidden EnsureDecimalPlace(..) method call inside it that converts '123' to '123.0'
                 writer.WriteRawValue(decimalQuantity.Value.ToString(CultureInfo.InvariantCulture));
             }
             else
             {
-                writer.WriteValue(quantity.Value);
+                writer.WriteValue((double)quantity.Value);
             }
 
             //  write the 'Unit' abbreviation
@@ -110,17 +111,16 @@ namespace UnitsNet.Serialization.JsonNet
         }
 
         /// <inheritdoc />
-        public override IQuantity ReadJson(JsonReader reader, Type objectType, IQuantity existingValue, bool hasExistingValue, JsonSerializer serializer)
+        public override IQuantity? ReadJson(JsonReader reader, Type objectType, IQuantity? existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
-            QuantityInfo quantityInfo;
+            QuantityInfo? quantityInfo;
             if (reader.TokenType == JsonToken.Null)
             {
-                // return null;
                 return TryGetQuantity(objectType.Name, out quantityInfo) ? quantityInfo.Zero : default;
             }
 
-            string valueToken = null;
-            string unitAbbreviation = null, quantityName = null;
+            string? valueToken = null;
+            string? unitAbbreviation = null, quantityName = null;
             if (reader.TokenType == JsonToken.StartObject)
             {
                 while (reader.Read() && reader.TokenType != JsonToken.EndObject)
@@ -148,6 +148,7 @@ namespace UnitsNet.Serialization.JsonNet
                 }
             }
 
+
             Enum unit;
             if (quantityName is null)
             {
@@ -155,10 +156,14 @@ namespace UnitsNet.Serialization.JsonNet
                 {
                     unit = GetUnitOrDefault(unitAbbreviation, quantityInfo);
                 }
-                else // the objectType doesn't match any concrete quantity type (likely it is an IQuantity)
+                else if (unitAbbreviation != null) // the objectType doesn't match any concrete quantity type (likely it is an IQuantity)
                 {
                     // failing back to an exhaustive search (it is possible that this converter was created with a short-list of non-ambiguous quantities
                     unit = FindUnit(unitAbbreviation, out quantityInfo);
+                }
+                else
+                {
+                    throw new FormatException("No unit abbreviation found in JSON.");
                 }
             }
             else
@@ -172,7 +177,7 @@ namespace UnitsNet.Serialization.JsonNet
             {
                 value = default;
             }
-            else if (quantityInfo.Zero is IDecimalQuantity)
+            else if (quantityInfo.Zero is IValueQuantity<decimal>)
             {
                 value = decimal.Parse(valueToken, CultureInfo.InvariantCulture);
             }
@@ -183,7 +188,7 @@ namespace UnitsNet.Serialization.JsonNet
 
             return Quantity.From(value, unit);
         }
-        
+
         /// <summary>
         ///     Attempt to find an a unique (non-ambiguous) unit matching the provided abbreviation.
         ///     <remarks>
@@ -203,8 +208,8 @@ namespace UnitsNet.Serialization.JsonNet
                 throw new UnitNotFoundException("The unit abbreviation and quantity type cannot both be null");
             }
 
-            Enum unit = null;
-            quantityInfo = default;
+            Enum? unit = null;
+            QuantityInfo? tempQuantityInfo = default;
             foreach (var targetQuantity in _quantities.Values)
             {
                 if (!TryParse(unitAbbreviation, targetQuantity, out var unitMatched))
@@ -213,20 +218,21 @@ namespace UnitsNet.Serialization.JsonNet
                 }
 
                 if (unit != null &&
-                    !(targetQuantity == quantityInfo && Equals(unit, unitMatched))) // it is possible to have "synonyms": e.g. "Mass" and "Weight"
+                    !(targetQuantity == tempQuantityInfo && Equals(unit, unitMatched))) // it is possible to have "synonyms": e.g. "Mass" and "Weight"
                 {
                     throw new AmbiguousUnitParseException($"Multiple quantities found matching the provided abbreviation: {unit}, {unitMatched}");
                 }
 
-                quantityInfo = targetQuantity;
+                tempQuantityInfo = targetQuantity;
                 unit = unitMatched;
             }
 
-            if (unit is null)
+            if (unit is null || tempQuantityInfo is null)
             {
                 throw new UnitNotFoundException($"No quantity found with abbreviation [{unitAbbreviation}].");
             }
 
+            quantityInfo = tempQuantityInfo;
             return unit;
         }
 
@@ -254,7 +260,7 @@ namespace UnitsNet.Serialization.JsonNet
         /// <returns>Unit enum value, such as <see cref="MassUnit.Kilogram" />.</returns>
         /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
         /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
-        protected virtual Enum GetUnitOrDefault(string unitAbbreviation, QuantityInfo quantityInfo)
+        protected virtual Enum GetUnitOrDefault(string? unitAbbreviation, QuantityInfo quantityInfo)
         {
             return unitAbbreviation == null
                 ? quantityInfo.BaseUnitInfo.Value
@@ -269,7 +275,7 @@ namespace UnitsNet.Serialization.JsonNet
         /// <returns>Unit enum value, such as <see cref="MassUnit.Kilogram" />.</returns>
         /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
         /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
-        protected Enum Parse(string unitAbbreviation, QuantityInfo quantityInfo)
+        protected Enum Parse(string? unitAbbreviation, QuantityInfo quantityInfo)
         {
             return _unitParser.Parse(unitAbbreviation, quantityInfo.UnitType, CultureInfo.InvariantCulture);
         }
@@ -283,7 +289,7 @@ namespace UnitsNet.Serialization.JsonNet
         /// <returns>True if successful.</returns>
         /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
         /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
-        protected bool TryParse(string unitAbbreviation, QuantityInfo quantityInfo, out Enum unit)
+        protected bool TryParse(string? unitAbbreviation, QuantityInfo quantityInfo, [NotNullWhen(true)] out Enum? unit)
         {
             return _unitParser.TryParse(unitAbbreviation, quantityInfo.UnitType, CultureInfo.InvariantCulture, out unit);
         }
@@ -299,7 +305,7 @@ namespace UnitsNet.Serialization.JsonNet
         ///     <value>false</value>
         ///     otherwise
         /// </returns>
-        protected bool TryGetQuantity(string quantityName, out QuantityInfo quantityInfo)
+        protected bool TryGetQuantity(string quantityName, [NotNullWhen(true)] out QuantityInfo? quantityInfo)
         {
             return _quantities.TryGetValue(quantityName, out quantityInfo);
         }

@@ -38,13 +38,17 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class ElectricConductanceTestsBase : QuantityTestsBase
     {
+        protected abstract double KilosiemensInOneSiemens { get; }
         protected abstract double MicrosiemensInOneSiemens { get; }
         protected abstract double MillisiemensInOneSiemens { get; }
+        protected abstract double NanosiemensInOneSiemens { get; }
         protected abstract double SiemensInOneSiemens { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
+        protected virtual double KilosiemensTolerance { get { return 1e-5; } }
         protected virtual double MicrosiemensTolerance { get { return 1e-5; } }
         protected virtual double MillisiemensTolerance { get { return 1e-5; } }
+        protected virtual double NanosiemensTolerance { get { return 1e-5; } }
         protected virtual double SiemensTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
@@ -52,8 +56,10 @@ namespace UnitsNet.Tests
         {
             return unit switch
             {
+                ElectricConductanceUnit.Kilosiemens => (KilosiemensInOneSiemens, KilosiemensTolerance),
                 ElectricConductanceUnit.Microsiemens => (MicrosiemensInOneSiemens, MicrosiemensTolerance),
                 ElectricConductanceUnit.Millisiemens => (MillisiemensInOneSiemens, MillisiemensTolerance),
+                ElectricConductanceUnit.Nanosiemens => (NanosiemensInOneSiemens, NanosiemensTolerance),
                 ElectricConductanceUnit.Siemens => (SiemensInOneSiemens, SiemensTolerance),
                 _ => throw new NotSupportedException()
             };
@@ -61,16 +67,12 @@ namespace UnitsNet.Tests
 
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
+            new object[] { ElectricConductanceUnit.Kilosiemens },
             new object[] { ElectricConductanceUnit.Microsiemens },
             new object[] { ElectricConductanceUnit.Millisiemens },
+            new object[] { ElectricConductanceUnit.Nanosiemens },
             new object[] { ElectricConductanceUnit.Siemens },
         };
-
-        [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new ElectricConductance((double)0.0, ElectricConductanceUnit.Undefined));
-        }
 
         [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
@@ -79,7 +81,6 @@ namespace UnitsNet.Tests
             Assert.Equal(0, quantity.Value);
             Assert.Equal(ElectricConductanceUnit.Siemens, quantity.Unit);
         }
-
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
@@ -124,39 +125,44 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ElectricConductance.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricConductance", quantityInfo.Name);
-            Assert.Equal(QuantityType.ElectricConductance, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<ElectricConductanceUnit>().Except(new[] {ElectricConductanceUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<ElectricConductanceUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
-
-            // Obsolete members
-            Assert.Equal(units, quantityInfo.Units);
-            Assert.Equal(unitNames, quantityInfo.UnitNames);
         }
 
         [Fact]
         public void SiemensToElectricConductanceUnits()
         {
             ElectricConductance siemens = ElectricConductance.FromSiemens(1);
+            AssertEx.EqualTolerance(KilosiemensInOneSiemens, siemens.Kilosiemens, KilosiemensTolerance);
             AssertEx.EqualTolerance(MicrosiemensInOneSiemens, siemens.Microsiemens, MicrosiemensTolerance);
             AssertEx.EqualTolerance(MillisiemensInOneSiemens, siemens.Millisiemens, MillisiemensTolerance);
+            AssertEx.EqualTolerance(NanosiemensInOneSiemens, siemens.Nanosiemens, NanosiemensTolerance);
             AssertEx.EqualTolerance(SiemensInOneSiemens, siemens.Siemens, SiemensTolerance);
         }
 
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ElectricConductance.From(1, ElectricConductanceUnit.Microsiemens);
-            AssertEx.EqualTolerance(1, quantity00.Microsiemens, MicrosiemensTolerance);
-            Assert.Equal(ElectricConductanceUnit.Microsiemens, quantity00.Unit);
+            var quantity00 = ElectricConductance.From(1, ElectricConductanceUnit.Kilosiemens);
+            AssertEx.EqualTolerance(1, quantity00.Kilosiemens, KilosiemensTolerance);
+            Assert.Equal(ElectricConductanceUnit.Kilosiemens, quantity00.Unit);
 
-            var quantity01 = ElectricConductance.From(1, ElectricConductanceUnit.Millisiemens);
-            AssertEx.EqualTolerance(1, quantity01.Millisiemens, MillisiemensTolerance);
-            Assert.Equal(ElectricConductanceUnit.Millisiemens, quantity01.Unit);
+            var quantity01 = ElectricConductance.From(1, ElectricConductanceUnit.Microsiemens);
+            AssertEx.EqualTolerance(1, quantity01.Microsiemens, MicrosiemensTolerance);
+            Assert.Equal(ElectricConductanceUnit.Microsiemens, quantity01.Unit);
 
-            var quantity02 = ElectricConductance.From(1, ElectricConductanceUnit.Siemens);
-            AssertEx.EqualTolerance(1, quantity02.Siemens, SiemensTolerance);
-            Assert.Equal(ElectricConductanceUnit.Siemens, quantity02.Unit);
+            var quantity02 = ElectricConductance.From(1, ElectricConductanceUnit.Millisiemens);
+            AssertEx.EqualTolerance(1, quantity02.Millisiemens, MillisiemensTolerance);
+            Assert.Equal(ElectricConductanceUnit.Millisiemens, quantity02.Unit);
+
+            var quantity03 = ElectricConductance.From(1, ElectricConductanceUnit.Nanosiemens);
+            AssertEx.EqualTolerance(1, quantity03.Nanosiemens, NanosiemensTolerance);
+            Assert.Equal(ElectricConductanceUnit.Nanosiemens, quantity03.Unit);
+
+            var quantity04 = ElectricConductance.From(1, ElectricConductanceUnit.Siemens);
+            AssertEx.EqualTolerance(1, quantity04.Siemens, SiemensTolerance);
+            Assert.Equal(ElectricConductanceUnit.Siemens, quantity04.Unit);
 
         }
 
@@ -177,8 +183,10 @@ namespace UnitsNet.Tests
         public void As()
         {
             var siemens = ElectricConductance.FromSiemens(1);
+            AssertEx.EqualTolerance(KilosiemensInOneSiemens, siemens.As(ElectricConductanceUnit.Kilosiemens), KilosiemensTolerance);
             AssertEx.EqualTolerance(MicrosiemensInOneSiemens, siemens.As(ElectricConductanceUnit.Microsiemens), MicrosiemensTolerance);
             AssertEx.EqualTolerance(MillisiemensInOneSiemens, siemens.As(ElectricConductanceUnit.Millisiemens), MillisiemensTolerance);
+            AssertEx.EqualTolerance(NanosiemensInOneSiemens, siemens.As(ElectricConductanceUnit.Nanosiemens), NanosiemensTolerance);
             AssertEx.EqualTolerance(SiemensInOneSiemens, siemens.As(ElectricConductanceUnit.Siemens), SiemensTolerance);
         }
 
@@ -190,7 +198,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else
@@ -202,6 +210,13 @@ namespace UnitsNet.Tests
         [Fact]
         public void Parse()
         {
+            try
+            {
+                var parsed = ElectricConductance.Parse("1 kS", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Kilosiemens, KilosiemensTolerance);
+                Assert.Equal(ElectricConductanceUnit.Kilosiemens, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
             try
             {
                 var parsed = ElectricConductance.Parse("1 µS", CultureInfo.GetCultureInfo("en-US"));
@@ -218,6 +233,13 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = ElectricConductance.Parse("1 nS", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Nanosiemens, NanosiemensTolerance);
+                Assert.Equal(ElectricConductanceUnit.Nanosiemens, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = ElectricConductance.Parse("1 S", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Siemens, SiemensTolerance);
                 Assert.Equal(ElectricConductanceUnit.Siemens, parsed.Unit);
@@ -229,6 +251,12 @@ namespace UnitsNet.Tests
         public void TryParse()
         {
             {
+                Assert.True(ElectricConductance.TryParse("1 kS", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kilosiemens, KilosiemensTolerance);
+                Assert.Equal(ElectricConductanceUnit.Kilosiemens, parsed.Unit);
+            }
+
+            {
                 Assert.True(ElectricConductance.TryParse("1 µS", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Microsiemens, MicrosiemensTolerance);
                 Assert.Equal(ElectricConductanceUnit.Microsiemens, parsed.Unit);
@@ -238,6 +266,12 @@ namespace UnitsNet.Tests
                 Assert.True(ElectricConductance.TryParse("1 mS", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Millisiemens, MillisiemensTolerance);
                 Assert.Equal(ElectricConductanceUnit.Millisiemens, parsed.Unit);
+            }
+
+            {
+                Assert.True(ElectricConductance.TryParse("1 nS", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Nanosiemens, NanosiemensTolerance);
+                Assert.Equal(ElectricConductanceUnit.Nanosiemens, parsed.Unit);
             }
 
             {
@@ -253,6 +287,12 @@ namespace UnitsNet.Tests
         {
             try
             {
+                var parsedUnit = ElectricConductance.ParseUnit("kS", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricConductanceUnit.Kilosiemens, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsedUnit = ElectricConductance.ParseUnit("µS", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ElectricConductanceUnit.Microsiemens, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -261,6 +301,12 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = ElectricConductance.ParseUnit("mS", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ElectricConductanceUnit.Millisiemens, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricConductance.ParseUnit("nS", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricConductanceUnit.Nanosiemens, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
@@ -275,6 +321,11 @@ namespace UnitsNet.Tests
         public void TryParseUnit()
         {
             {
+                Assert.True(ElectricConductance.TryParseUnit("kS", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricConductanceUnit.Kilosiemens, parsedUnit);
+            }
+
+            {
                 Assert.True(ElectricConductance.TryParseUnit("µS", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ElectricConductanceUnit.Microsiemens, parsedUnit);
             }
@@ -282,6 +333,11 @@ namespace UnitsNet.Tests
             {
                 Assert.True(ElectricConductance.TryParseUnit("mS", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ElectricConductanceUnit.Millisiemens, parsedUnit);
+            }
+
+            {
+                Assert.True(ElectricConductance.TryParseUnit("nS", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricConductanceUnit.Nanosiemens, parsedUnit);
             }
 
             {
@@ -299,7 +355,7 @@ namespace UnitsNet.Tests
             var converted = inBaseUnits.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
         }
 
@@ -316,14 +372,19 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricConductanceUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = ElectricConductance.Units.FirstOrDefault(u => u != ElectricConductance.BaseUnit && u != ElectricConductanceUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if (fromUnit == ElectricConductanceUnit.Undefined)
-                fromUnit = ElectricConductance.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = ElectricConductance.Units.First(u => u != ElectricConductance.BaseUnit);
 
             var quantity = ElectricConductance.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(ElectricConductanceUnit unit)
+        {
+            var quantity = default(ElectricConductance);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }
@@ -332,8 +393,10 @@ namespace UnitsNet.Tests
         public void ConversionRoundTrip()
         {
             ElectricConductance siemens = ElectricConductance.FromSiemens(1);
+            AssertEx.EqualTolerance(1, ElectricConductance.FromKilosiemens(siemens.Kilosiemens).Siemens, KilosiemensTolerance);
             AssertEx.EqualTolerance(1, ElectricConductance.FromMicrosiemens(siemens.Microsiemens).Siemens, MicrosiemensTolerance);
             AssertEx.EqualTolerance(1, ElectricConductance.FromMillisiemens(siemens.Millisiemens).Siemens, MillisiemensTolerance);
+            AssertEx.EqualTolerance(1, ElectricConductance.FromNanosiemens(siemens.Nanosiemens).Siemens, NanosiemensTolerance);
             AssertEx.EqualTolerance(1, ElectricConductance.FromSiemens(siemens.Siemens).Siemens, SiemensTolerance);
         }
 
@@ -390,47 +453,45 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => siemens.CompareTo(null));
         }
 
-        [Fact]
-        public void EqualityOperators()
+        [Theory]
+        [InlineData(1, ElectricConductanceUnit.Siemens, 1, ElectricConductanceUnit.Siemens, true)]  // Same value and unit.
+        [InlineData(1, ElectricConductanceUnit.Siemens, 2, ElectricConductanceUnit.Siemens, false)] // Different value.
+        [InlineData(2, ElectricConductanceUnit.Siemens, 1, ElectricConductanceUnit.Kilosiemens, false)] // Different value and unit.
+        [InlineData(1, ElectricConductanceUnit.Siemens, 1, ElectricConductanceUnit.Kilosiemens, false)] // Different unit.
+        public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ElectricConductanceUnit unitA, double valueB, ElectricConductanceUnit unitB, bool expectEqual)
         {
-            var a = ElectricConductance.FromSiemens(1);
-            var b = ElectricConductance.FromSiemens(2);
+            var a = new ElectricConductance(valueA, unitA);
+            var b = new ElectricConductance(valueB, unitB);
 
-#pragma warning disable CS8073
-// ReSharper disable EqualExpressionComparison
+            // Operator overloads.
+            Assert.Equal(expectEqual, a == b);
+            Assert.Equal(expectEqual, b == a);
+            Assert.Equal(!expectEqual, a != b);
+            Assert.Equal(!expectEqual, b != a);
 
-            Assert.True(a == a);
-            Assert.False(a != a);
+            // IEquatable<T>
+            Assert.Equal(expectEqual, a.Equals(b));
+            Assert.Equal(expectEqual, b.Equals(a));
 
-            Assert.True(a != b);
-            Assert.False(a == b);
+            // IEquatable
+            Assert.Equal(expectEqual, a.Equals((object)b));
+            Assert.Equal(expectEqual, b.Equals((object)a));
+        }
 
+        [Fact]
+        public void Equals_Null_ReturnsFalse()
+        {
+            var a = ElectricConductance.Zero;
+
+            Assert.False(a.Equals((object)null));
+
+            // "The result of the expression is always 'false'..."
+            #pragma warning disable CS8073
             Assert.False(a == null);
             Assert.False(null == a);
-
-// ReSharper restore EqualExpressionComparison
-#pragma warning restore CS8073
-        }
-
-        [Fact]
-        public void Equals_SameType_IsImplemented()
-        {
-            var a = ElectricConductance.FromSiemens(1);
-            var b = ElectricConductance.FromSiemens(2);
-
-            Assert.True(a.Equals(a));
-            Assert.False(a.Equals(b));
-        }
-
-        [Fact]
-        public void Equals_QuantityAsObject_IsImplemented()
-        {
-            object a = ElectricConductance.FromSiemens(1);
-            object b = ElectricConductance.FromSiemens(2);
-
-            Assert.True(a.Equals(a));
-            Assert.False(a.Equals(b));
-            Assert.False(a.Equals((object)null));
+            Assert.True(a != null);
+            Assert.True(null != a);
+            #pragma warning restore CS8073
         }
 
         [Fact]
@@ -439,6 +500,8 @@ namespace UnitsNet.Tests
             var v = ElectricConductance.FromSiemens(1);
             Assert.True(v.Equals(ElectricConductance.FromSiemens(1), SiemensTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(ElectricConductance.Zero, SiemensTolerance, ComparisonType.Relative));
+            Assert.True(ElectricConductance.FromSiemens(100).Equals(ElectricConductance.FromSiemens(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(ElectricConductance.FromSiemens(100).Equals(ElectricConductance.FromSiemens(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]
@@ -463,20 +526,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(ElectricConductanceUnit.Undefined, ElectricConductance.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(ElectricConductanceUnit)).Cast<ElectricConductanceUnit>();
-            foreach(var unit in units)
+            foreach (var unit in units)
             {
-                if (unit == ElectricConductanceUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }
@@ -490,16 +544,18 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentUICulture;
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            var prevCulture = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             try {
+                Assert.Equal("1 kS", new ElectricConductance(1, ElectricConductanceUnit.Kilosiemens).ToString());
                 Assert.Equal("1 µS", new ElectricConductance(1, ElectricConductanceUnit.Microsiemens).ToString());
                 Assert.Equal("1 mS", new ElectricConductance(1, ElectricConductanceUnit.Millisiemens).ToString());
+                Assert.Equal("1 nS", new ElectricConductance(1, ElectricConductanceUnit.Nanosiemens).ToString());
                 Assert.Equal("1 S", new ElectricConductance(1, ElectricConductanceUnit.Siemens).ToString());
             }
             finally
             {
-                Thread.CurrentThread.CurrentUICulture = prevCulture;
+                Thread.CurrentThread.CurrentCulture = prevCulture;
             }
         }
 
@@ -509,18 +565,20 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
+            Assert.Equal("1 kS", new ElectricConductance(1, ElectricConductanceUnit.Kilosiemens).ToString(swedishCulture));
             Assert.Equal("1 µS", new ElectricConductance(1, ElectricConductanceUnit.Microsiemens).ToString(swedishCulture));
             Assert.Equal("1 mS", new ElectricConductance(1, ElectricConductanceUnit.Millisiemens).ToString(swedishCulture));
+            Assert.Equal("1 nS", new ElectricConductance(1, ElectricConductanceUnit.Nanosiemens).ToString(swedishCulture));
             Assert.Equal("1 S", new ElectricConductance(1, ElectricConductanceUnit.Siemens).ToString(swedishCulture));
         }
 
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentUICulture;
+            var oldCulture = CultureInfo.CurrentCulture;
             try
             {
-                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
                 Assert.Equal("0.1 S", new ElectricConductance(0.123456, ElectricConductanceUnit.Siemens).ToString("s1"));
                 Assert.Equal("0.12 S", new ElectricConductance(0.123456, ElectricConductanceUnit.Siemens).ToString("s2"));
                 Assert.Equal("0.123 S", new ElectricConductance(0.123456, ElectricConductanceUnit.Siemens).ToString("s3"));
@@ -528,7 +586,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                CultureInfo.CurrentUICulture = oldCulture;
+                CultureInfo.CurrentCulture = oldCulture;
             }
         }
 
@@ -542,28 +600,27 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 S", new ElectricConductance(0.123456, ElectricConductanceUnit.Siemens).ToString("s4", culture));
         }
 
-
-        [Fact]
-        public void ToString_NullFormat_ThrowsArgumentNullException()
+        [Theory]
+        [InlineData(null)]
+        [InlineData("en-US")]
+        public void ToString_NullFormat_DefaultsToGeneralFormat(string cultureName)
         {
             var quantity = ElectricConductance.FromSiemens(1.0);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, null, null));
+            CultureInfo formatProvider = cultureName == null
+                ? null
+                : CultureInfo.GetCultureInfo(cultureName);
+
+            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
         }
 
-        [Fact]
-        public void ToString_NullArgs_ThrowsArgumentNullException()
+        [Theory]
+        [InlineData(null)]
+        [InlineData("g")]
+        public void ToString_NullProvider_EqualsCurrentCulture(string format)
         {
             var quantity = ElectricConductance.FromSiemens(1.0);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, "g", null));
+            Assert.Equal(quantity.ToString(format, CultureInfo.CurrentCulture), quantity.ToString(format, null));
         }
-
-        [Fact]
-        public void ToString_NullProvider_EqualsCurrentUICulture()
-        {
-            var quantity = ElectricConductance.FromSiemens(1.0);
-            Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
-        }
-
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()
@@ -682,13 +739,6 @@ namespace UnitsNet.Tests
         {
             var quantity = ElectricConductance.FromSiemens(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(ElectricConductanceUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = ElectricConductance.FromSiemens(1.0);
-            Assert.Equal(QuantityType.ElectricConductance, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

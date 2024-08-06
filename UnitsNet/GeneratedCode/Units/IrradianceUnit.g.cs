@@ -25,21 +25,20 @@ namespace UnitsNet.Units
 
     public enum IrradianceUnit
     {
-        Undefined = 0,
-        KilowattPerSquareCentimeter,
-        KilowattPerSquareMeter,
-        MegawattPerSquareCentimeter,
-        MegawattPerSquareMeter,
-        MicrowattPerSquareCentimeter,
-        MicrowattPerSquareMeter,
-        MilliwattPerSquareCentimeter,
-        MilliwattPerSquareMeter,
-        NanowattPerSquareCentimeter,
-        NanowattPerSquareMeter,
-        PicowattPerSquareCentimeter,
-        PicowattPerSquareMeter,
-        WattPerSquareCentimeter,
-        WattPerSquareMeter,
+        KilowattPerSquareCentimeter = 1,
+        KilowattPerSquareMeter = 2,
+        MegawattPerSquareCentimeter = 3,
+        MegawattPerSquareMeter = 4,
+        MicrowattPerSquareCentimeter = 5,
+        MicrowattPerSquareMeter = 6,
+        MilliwattPerSquareCentimeter = 7,
+        MilliwattPerSquareMeter = 8,
+        NanowattPerSquareCentimeter = 9,
+        NanowattPerSquareMeter = 10,
+        PicowattPerSquareCentimeter = 11,
+        PicowattPerSquareMeter = 12,
+        WattPerSquareCentimeter = 13,
+        WattPerSquareMeter = 14,
     }
 
     #pragma warning restore 1591

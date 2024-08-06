@@ -25,16 +25,15 @@ namespace UnitsNet.Units
 
     public enum VolumetricHeatCapacityUnit
     {
-        Undefined = 0,
-        BtuPerCubicFootDegreeFahrenheit,
-        CaloriePerCubicCentimeterDegreeCelsius,
-        JoulePerCubicMeterDegreeCelsius,
-        JoulePerCubicMeterKelvin,
-        KilocaloriePerCubicCentimeterDegreeCelsius,
-        KilojoulePerCubicMeterDegreeCelsius,
-        KilojoulePerCubicMeterKelvin,
-        MegajoulePerCubicMeterDegreeCelsius,
-        MegajoulePerCubicMeterKelvin,
+        BtuPerCubicFootDegreeFahrenheit = 1,
+        CaloriePerCubicCentimeterDegreeCelsius = 2,
+        JoulePerCubicMeterDegreeCelsius = 3,
+        JoulePerCubicMeterKelvin = 4,
+        KilocaloriePerCubicCentimeterDegreeCelsius = 5,
+        KilojoulePerCubicMeterDegreeCelsius = 6,
+        KilojoulePerCubicMeterKelvin = 7,
+        MegajoulePerCubicMeterDegreeCelsius = 8,
+        MegajoulePerCubicMeterKelvin = 9,
     }
 
     #pragma warning restore 1591

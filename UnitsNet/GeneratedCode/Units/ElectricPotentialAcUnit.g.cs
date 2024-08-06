@@ -25,12 +25,11 @@ namespace UnitsNet.Units
 
     public enum ElectricPotentialAcUnit
     {
-        Undefined = 0,
-        KilovoltAc,
-        MegavoltAc,
-        MicrovoltAc,
-        MillivoltAc,
-        VoltAc,
+        KilovoltAc = 1,
+        MegavoltAc = 2,
+        MicrovoltAc = 3,
+        MillivoltAc = 4,
+        VoltAc = 5,
     }
 
     #pragma warning restore 1591

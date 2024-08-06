@@ -1,11 +1,12 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using Xunit;
-using UnitsNet.Units;
 using System;
+using System.Globalization;
+using UnitsNet.Units;
+using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     // Avoid accessing static prop DefaultToString in parallel from multiple tests:
     // UnitSystemTests.DefaultToStringFormatting()
@@ -20,7 +21,8 @@ namespace UnitsNet.Tests.CustomCode
         protected override double DtpPicasInOneMeter => 236.22047244;
         protected override double DtpPointsInOneMeter => 2834.6456693;
 
-        protected override double FeetInOneMeter => 3.28084;
+        protected override double FemtometersInOneMeter => 1E+15;
+        protected override double FeetInOneMeter => 3.28083989501;
 
         protected override double HectometersInOneMeter => 1E-2;
 
@@ -49,6 +51,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double FathomsInOneMeter => 0.546806649;
 
+        protected override double PicometersInOneMeter => 1E+12;
         protected override double PrinterPicasInOneMeter => 237.10630158;
         protected override double PrinterPointsInOneMeter => 2845.2755906;
 
@@ -63,6 +66,8 @@ namespace UnitsNet.Tests.CustomCode
         protected override double KilolightYearsInOneMeter => 1.0570008340247000000000000E-19;
 
         protected override double KiloparsecsInOneMeter => 3.2407790389471100000000000E-20;
+
+        protected override double KiloyardsInOneMeter => 1.0936132983E-3;
 
         protected override double LightYearsInOneMeter => 1.0570008340247000000000000E-16;
 
@@ -81,6 +86,11 @@ namespace UnitsNet.Tests.CustomCode
         protected override double AngstromsInOneMeter => 1e10;
 
         protected override double DataMilesInOneMeter => 0.000546807;
+
+        protected override double MegametersInOneMeter => 1e-6;
+        protected override double GigametersInOneMeter => 1e-9;
+
+        protected override double KilofeetInOneMeter => 3.28083989501e-3;
 
         [ Fact]
         public void AreaTimesLengthEqualsVolume()
@@ -125,6 +135,20 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Fact]
+        public void LengthDividedByAreaEqualsReciprocalLength()
+        {
+            ReciprocalLength reciprocalLength = Length.FromMeters(20) / Area.FromSquareMeters(2);
+            Assert.Equal(ReciprocalLength.FromInverseMeters(10), reciprocalLength);
+        }
+
+        [Fact]
+        public void LengthDividedByVolumeEqualsReciprocalArea()
+        {
+            ReciprocalArea reciprocalArea = Length.FromMeters(20) / Volume.FromCubicMeters(2);
+            Assert.Equal(ReciprocalArea.FromInverseSquareMeters(10), reciprocalArea);
+        }
+
+        [Fact]
         public void LengthTimesSpeedEqualsKinematicViscosity()
         {
             KinematicViscosity kinematicViscosity = Length.FromMeters(20) * Speed.FromMetersPerSecond(2);
@@ -142,7 +166,7 @@ namespace UnitsNet.Tests.CustomCode
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnitWhichIsMeter()
         {
             var meter = Length.FromMeters(5);
-            string meterString = meter.ToString();
+            string meterString = meter.ToString(CultureInfo.InvariantCulture);
             Assert.Equal("5 m", meterString);
         }
 
@@ -150,20 +174,8 @@ namespace UnitsNet.Tests.CustomCode
         public void ToStringReturnsCorrectNumberAndUnitWithCentimeterAsDefualtUnit()
         {
             var value = Length.From(2, LengthUnit.Centimeter);
-            string valueString = value.ToString();
+            string valueString = value.ToString(CultureInfo.InvariantCulture);
             Assert.Equal("2 cm", valueString);
-        }
-
-        [Fact]
-        public void MaxValueIsCorrectForUnitWithBaseTypeDouble()
-        {
-            Assert.Equal(double.MaxValue, Length.MaxValue.Meters);
-        }
-
-        [Fact]
-        public void MinValueIsCorrectForUnitWithBaseTypeDouble()
-        {
-            Assert.Equal(double.MinValue, Length.MinValue.Meters);
         }
 
         [Fact]
@@ -185,7 +197,7 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void Constructor_UnitSystemNull_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new Length(1.0, (UnitSystem)null));
+            Assert.Throws<ArgumentNullException>(() => new Length(1.0, unitSystem: null!));
         }
 
         [Fact]
@@ -228,10 +240,36 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData(2.0, 0.5)]
         public static void InverseReturnsReciprocalLength(double value, double expected)
         {
-            var length = new Length(value, Units.LengthUnit.Meter);
+            var length = new Length(value, LengthUnit.Meter);
             var inverseLength = length.Inverse();
 
             Assert.Equal(expected, inverseLength.InverseMeters);
+        }
+
+        [Theory]
+        [InlineData(3, 2.563, 16, "3' - 2 9/16\"")]
+        [InlineData(3, 2.563, 32, "3' - 2 9/16\"")]
+        [InlineData(3, 2, 16, "3' - 2\"")]
+        [InlineData(3, 2.5, 1, "3' - 2\"")]
+        [InlineData(0, 2, 32, "2\"")]
+        [InlineData(3, 2.6, 1, "3' - 3\"")]
+        [InlineData(3, 2.6, 2, "3' - 2 1/2\"")]
+        [InlineData(3, 2.6, 4, "3' - 2 1/2\"")]
+        [InlineData(3, 2.6, 8, "3' - 2 5/8\"")]
+        [InlineData(3, 2.6, 16, "3' - 2 5/8\"")]
+        [InlineData(3, 2.6, 32, "3' - 2 19/32\"")]
+        [InlineData(3, 2.6, 128, "3' - 2 77/128\"")]
+        public static void ToArchitecturalString_ReturnsFormatted(double ft, double inch, int fractionDenominator, string expected)
+        {
+            var length = Length.FromFeetInches(ft, inch);
+
+            Assert.Equal(expected, length.FeetInches.ToArchitecturalString(fractionDenominator));
+        }
+
+        [Fact]
+        public static void ToArchitecturalString_DenomLessThan1_ThrowsArgumentOutOfRangeException()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => Length.FromFeetInches(1, 2).FeetInches.ToArchitecturalString(0));
         }
     }
 }

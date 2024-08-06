@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of TemperatureChangeRate, which is Second. All conversions go via this value.
         /// </summary>
         public static TemperatureChangeRateUnit BaseUnit { get; } = TemperatureChangeRateUnit.DegreeCelsiusPerSecond;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of TemperatureChangeRate.
         /// </summary>
         public static TemperatureChangeRate MaxValue { get; } = new TemperatureChangeRate(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of TemperatureChangeRate.
         /// </summary>
         public static TemperatureChangeRate MinValue { get; } = new TemperatureChangeRate(double.MinValue, BaseUnit);
 
@@ -206,71 +206,71 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(TemperatureChangeRateUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(TemperatureChangeRateUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public TemperatureChangeRate ToUnit(TemperatureChangeRateUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new TemperatureChangeRate(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this TemperatureChangeRate to another TemperatureChangeRate with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A TemperatureChangeRate with the specified unit.</returns>
+                public TemperatureChangeRate ToUnit(TemperatureChangeRateUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new TemperatureChangeRate(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond => (_value) * 1e-2d,
-                TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond => (_value) * 1e1d,
-                TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond => (_value) * 1e-1d,
-                TemperatureChangeRateUnit.DegreeCelsiusPerMinute => _value / 60,
-                TemperatureChangeRateUnit.DegreeCelsiusPerSecond => _value,
-                TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond => (_value) * 1e2d,
-                TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond => (_value) * 1e3d,
-                TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond => (_value) * 1e-6d,
-                TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond => (_value) * 1e-3d,
-                TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond => (_value) * 1e-9d,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond => (_value) * 1e-2d,
+                        TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond => (_value) * 1e1d,
+                        TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond => (_value) * 1e-1d,
+                        TemperatureChangeRateUnit.DegreeCelsiusPerMinute => _value / 60,
+                        TemperatureChangeRateUnit.DegreeCelsiusPerSecond => _value,
+                        TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond => (_value) * 1e2d,
+                        TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond => (_value) * 1e3d,
+                        TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond => (_value) * 1e-6d,
+                        TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond => (_value) * 1e-3d,
+                        TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond => (_value) * 1e-9d,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(TemperatureChangeRateUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(TemperatureChangeRateUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond => (baseUnitValue) / 1e-2d,
-                TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond => (baseUnitValue) / 1e1d,
-                TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond => (baseUnitValue) / 1e-1d,
-                TemperatureChangeRateUnit.DegreeCelsiusPerMinute => baseUnitValue * 60,
-                TemperatureChangeRateUnit.DegreeCelsiusPerSecond => baseUnitValue,
-                TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond => (baseUnitValue) / 1e2d,
-                TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond => (baseUnitValue) / 1e3d,
-                TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond => (baseUnitValue) / 1e-6d,
-                TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond => (baseUnitValue) / 1e-3d,
-                TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond => (baseUnitValue) / 1e-9d,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond => (baseUnitValue) / 1e-2d,
+                        TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond => (baseUnitValue) / 1e1d,
+                        TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond => (baseUnitValue) / 1e-1d,
+                        TemperatureChangeRateUnit.DegreeCelsiusPerMinute => baseUnitValue * 60,
+                        TemperatureChangeRateUnit.DegreeCelsiusPerSecond => baseUnitValue,
+                        TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond => (baseUnitValue) / 1e2d,
+                        TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond => (baseUnitValue) / 1e3d,
+                        TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond => (baseUnitValue) / 1e-6d,
+                        TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond => (baseUnitValue) / 1e-3d,
+                        TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond => (baseUnitValue) / 1e-9d,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

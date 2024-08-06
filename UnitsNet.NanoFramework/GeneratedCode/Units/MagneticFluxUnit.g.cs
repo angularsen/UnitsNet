@@ -25,8 +25,7 @@ namespace UnitsNet.Units
 
     public enum MagneticFluxUnit
     {
-        Undefined = 0,
-        Weber,
+        Weber = 1,
     }
 
     #pragma warning restore 1591

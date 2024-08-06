@@ -1,6 +1,7 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using System.Globalization;
 using UnitsNet.Tests.CustomQuantities;
 using UnitsNet.Units;
 using Xunit;
@@ -112,8 +113,8 @@ namespace UnitsNet.Tests
         {
             // Intentionally don't map conversion Some->Some, it is not necessary
             var unitConverter = new UnitConverter();
-            unitConverter.SetConversionFunction<HowMuch>(HowMuchUnit.Some, HowMuchUnit.ATon, x => new HowMuch(x.Value * 2, HowMuchUnit.ATon));
-            unitConverter.SetConversionFunction<HowMuch>(HowMuchUnit.Some, HowMuchUnit.AShitTon, x => new HowMuch(x.Value * 10, HowMuchUnit.AShitTon));
+            unitConverter.SetConversionFunction<HowMuch>(HowMuchUnit.Some, HowMuchUnit.ATon, x => new HowMuch((double)x.Value * 2, HowMuchUnit.ATon));
+            unitConverter.SetConversionFunction<HowMuch>(HowMuchUnit.Some, HowMuchUnit.AShitTon, x => new HowMuch((double)x.Value * 10, HowMuchUnit.AShitTon));
 
             var foundConversionFunction = unitConverter.GetConversionFunction<HowMuch>(fromUnit, toUnit);
             var converted = foundConversionFunction(new HowMuch(fromValue, fromUnit));
@@ -208,24 +209,23 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData(1, "UnknownQuantity", "m", "cm")]
-        [InlineData(1, "Length", "UnknownFromUnit", "cm")]
-        [InlineData(1, "Length", "m", "UnknownToUnit")]
-        public void TryConvertByAbbreviation_ReturnsFalseForInvalidInput(double inputValue, string quantityTypeName, string fromUnit, string toUnit)
+        [InlineData(1, "UnknownQuantity", "m", "cm", "en-US")]
+        [InlineData(1, "Length", "UnknownFromUnit", "cm", "en-US")]
+        [InlineData(1, "Length", "m", "UnknownToUnit", "en-US")]
+        public void TryConvertByAbbreviation_ReturnsFalseForInvalidInput(double inputValue, string quantityTypeName, string fromUnit, string toUnit, string culture)
         {
-            Assert.False(UnitConverter.TryConvertByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit, out double result));
+            Assert.False(UnitConverter.TryConvertByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit, out double result, culture));
             Assert.Equal(0, result);
         }
 
         [Theory]
-        [InlineData(0, 0, "Length", "m", "cm")]
-        [InlineData(100, 1, "Length", "m", "cm")]
-        [InlineData(1, 1000, "Mass", "g", "kg")]
-        [InlineData(1000, 1, "ElectricCurrent", "kA", "A")]
-        public void TryConvertByAbbreviation_ReturnsTrueOnSuccessAndOutputsResult(double expectedValue, double inputValue, string quantityTypeName, string fromUnit,
-            string toUnit)
+        [InlineData(0, 0, "Length", "m", "cm", "en-US")]
+        [InlineData(100, 1, "Length", "m", "cm", "en-US")]
+        [InlineData(1, 1000, "Mass", "g", "kg", "en-US")]
+        [InlineData(1000, 1, "ElectricCurrent", "kA", "A", "en-US")]
+        public void TryConvertByAbbreviation_ReturnsTrueOnSuccessAndOutputsResult(double expectedValue, double inputValue, string quantityTypeName, string fromUnit, string toUnit, string culture)
         {
-            Assert.True(UnitConverter.TryConvertByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit, out double result), "TryConvertByAbbreviation() return value.");
+            Assert.True(UnitConverter.TryConvertByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit, out double result, culture), "TryConvertByAbbreviation() return value.");
             Assert.Equal(expectedValue, result);
         }
     }

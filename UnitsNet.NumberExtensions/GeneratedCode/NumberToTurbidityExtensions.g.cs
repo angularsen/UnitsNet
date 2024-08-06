@@ -19,6 +19,10 @@
 
 using System;
 
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
+
 #nullable enable
 
 namespace UnitsNet.NumberExtensions.NumberToTurbidity
@@ -29,8 +33,12 @@ namespace UnitsNet.NumberExtensions.NumberToTurbidity
     public static class NumberToTurbidityExtensions
     {
         /// <inheritdoc cref="Turbidity.FromNTU(UnitsNet.QuantityValue)" />
-        public static Turbidity NTU<T>(this T value) =>
-            Turbidity.FromNTU(Convert.ToDouble(value));
+        public static Turbidity NTU<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Turbidity.FromNTU(Convert.ToDouble(value));
 
     }
 }

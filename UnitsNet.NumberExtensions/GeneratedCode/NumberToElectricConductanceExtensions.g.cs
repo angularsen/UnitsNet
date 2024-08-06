@@ -19,6 +19,10 @@
 
 using System;
 
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
+
 #nullable enable
 
 namespace UnitsNet.NumberExtensions.NumberToElectricConductance
@@ -28,17 +32,45 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductance
     /// </summary>
     public static class NumberToElectricConductanceExtensions
     {
+        /// <inheritdoc cref="ElectricConductance.FromKilosiemens(UnitsNet.QuantityValue)" />
+        public static ElectricConductance Kilosiemens<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricConductance.FromKilosiemens(Convert.ToDouble(value));
+
         /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(UnitsNet.QuantityValue)" />
-        public static ElectricConductance Microsiemens<T>(this T value) =>
-            ElectricConductance.FromMicrosiemens(Convert.ToDouble(value));
+        public static ElectricConductance Microsiemens<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricConductance.FromMicrosiemens(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricConductance.FromMillisiemens(UnitsNet.QuantityValue)" />
-        public static ElectricConductance Millisiemens<T>(this T value) =>
-            ElectricConductance.FromMillisiemens(Convert.ToDouble(value));
+        public static ElectricConductance Millisiemens<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricConductance.FromMillisiemens(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricConductance.FromNanosiemens(UnitsNet.QuantityValue)" />
+        public static ElectricConductance Nanosiemens<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricConductance.FromNanosiemens(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricConductance.FromSiemens(UnitsNet.QuantityValue)" />
-        public static ElectricConductance Siemens<T>(this T value) =>
-            ElectricConductance.FromSiemens(Convert.ToDouble(value));
+        public static ElectricConductance Siemens<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricConductance.FromSiemens(Convert.ToDouble(value));
 
     }
 }

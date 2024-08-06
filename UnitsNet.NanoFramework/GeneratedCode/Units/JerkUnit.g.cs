@@ -25,18 +25,17 @@ namespace UnitsNet.Units
 
     public enum JerkUnit
     {
-        Undefined = 0,
-        CentimeterPerSecondCubed,
-        DecimeterPerSecondCubed,
-        FootPerSecondCubed,
-        InchPerSecondCubed,
-        KilometerPerSecondCubed,
-        MeterPerSecondCubed,
-        MicrometerPerSecondCubed,
-        MillimeterPerSecondCubed,
-        MillistandardGravitiesPerSecond,
-        NanometerPerSecondCubed,
-        StandardGravitiesPerSecond,
+        CentimeterPerSecondCubed = 1,
+        DecimeterPerSecondCubed = 2,
+        FootPerSecondCubed = 3,
+        InchPerSecondCubed = 4,
+        KilometerPerSecondCubed = 5,
+        MeterPerSecondCubed = 6,
+        MicrometerPerSecondCubed = 7,
+        MillimeterPerSecondCubed = 8,
+        MillistandardGravitiesPerSecond = 9,
+        NanometerPerSecondCubed = 10,
+        StandardGravitiesPerSecond = 11,
     }
 
     #pragma warning restore 1591

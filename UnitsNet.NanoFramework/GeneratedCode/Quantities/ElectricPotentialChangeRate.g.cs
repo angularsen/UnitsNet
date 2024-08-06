@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of ElectricPotentialChangeRate, which is Second. All conversions go via this value.
         /// </summary>
         public static ElectricPotentialChangeRateUnit BaseUnit { get; } = ElectricPotentialChangeRateUnit.VoltPerSecond;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of ElectricPotentialChangeRate.
         /// </summary>
         public static ElectricPotentialChangeRate MaxValue { get; } = new ElectricPotentialChangeRate(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of ElectricPotentialChangeRate.
         /// </summary>
         public static ElectricPotentialChangeRate MinValue { get; } = new ElectricPotentialChangeRate(double.MinValue, BaseUnit);
 
@@ -316,91 +316,91 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(ElectricPotentialChangeRateUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(ElectricPotentialChangeRateUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public ElectricPotentialChangeRate ToUnit(ElectricPotentialChangeRateUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new ElectricPotentialChangeRate(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this ElectricPotentialChangeRate to another ElectricPotentialChangeRate with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A ElectricPotentialChangeRate with the specified unit.</returns>
+                public ElectricPotentialChangeRate ToUnit(ElectricPotentialChangeRateUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new ElectricPotentialChangeRate(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                ElectricPotentialChangeRateUnit.KilovoltPerHour => (_value / 3600) * 1e3d,
-                ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond => (_value * 1E6) * 1e3d,
-                ElectricPotentialChangeRateUnit.KilovoltPerMinute => (_value / 60) * 1e3d,
-                ElectricPotentialChangeRateUnit.KilovoltPerSecond => (_value) * 1e3d,
-                ElectricPotentialChangeRateUnit.MegavoltPerHour => (_value / 3600) * 1e6d,
-                ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond => (_value * 1E6) * 1e6d,
-                ElectricPotentialChangeRateUnit.MegavoltPerMinute => (_value / 60) * 1e6d,
-                ElectricPotentialChangeRateUnit.MegavoltPerSecond => (_value) * 1e6d,
-                ElectricPotentialChangeRateUnit.MicrovoltPerHour => (_value / 3600) * 1e-6d,
-                ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond => (_value * 1E6) * 1e-6d,
-                ElectricPotentialChangeRateUnit.MicrovoltPerMinute => (_value / 60) * 1e-6d,
-                ElectricPotentialChangeRateUnit.MicrovoltPerSecond => (_value) * 1e-6d,
-                ElectricPotentialChangeRateUnit.MillivoltPerHour => (_value / 3600) * 1e-3d,
-                ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond => (_value * 1E6) * 1e-3d,
-                ElectricPotentialChangeRateUnit.MillivoltPerMinute => (_value / 60) * 1e-3d,
-                ElectricPotentialChangeRateUnit.MillivoltPerSecond => (_value) * 1e-3d,
-                ElectricPotentialChangeRateUnit.VoltPerHour => _value / 3600,
-                ElectricPotentialChangeRateUnit.VoltPerMicrosecond => _value * 1E6,
-                ElectricPotentialChangeRateUnit.VoltPerMinute => _value / 60,
-                ElectricPotentialChangeRateUnit.VoltPerSecond => _value,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        ElectricPotentialChangeRateUnit.KilovoltPerHour => (_value / 3600) * 1e3d,
+                        ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond => (_value * 1E6) * 1e3d,
+                        ElectricPotentialChangeRateUnit.KilovoltPerMinute => (_value / 60) * 1e3d,
+                        ElectricPotentialChangeRateUnit.KilovoltPerSecond => (_value) * 1e3d,
+                        ElectricPotentialChangeRateUnit.MegavoltPerHour => (_value / 3600) * 1e6d,
+                        ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond => (_value * 1E6) * 1e6d,
+                        ElectricPotentialChangeRateUnit.MegavoltPerMinute => (_value / 60) * 1e6d,
+                        ElectricPotentialChangeRateUnit.MegavoltPerSecond => (_value) * 1e6d,
+                        ElectricPotentialChangeRateUnit.MicrovoltPerHour => (_value / 3600) * 1e-6d,
+                        ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond => (_value * 1E6) * 1e-6d,
+                        ElectricPotentialChangeRateUnit.MicrovoltPerMinute => (_value / 60) * 1e-6d,
+                        ElectricPotentialChangeRateUnit.MicrovoltPerSecond => (_value) * 1e-6d,
+                        ElectricPotentialChangeRateUnit.MillivoltPerHour => (_value / 3600) * 1e-3d,
+                        ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond => (_value * 1E6) * 1e-3d,
+                        ElectricPotentialChangeRateUnit.MillivoltPerMinute => (_value / 60) * 1e-3d,
+                        ElectricPotentialChangeRateUnit.MillivoltPerSecond => (_value) * 1e-3d,
+                        ElectricPotentialChangeRateUnit.VoltPerHour => _value / 3600,
+                        ElectricPotentialChangeRateUnit.VoltPerMicrosecond => _value * 1E6,
+                        ElectricPotentialChangeRateUnit.VoltPerMinute => _value / 60,
+                        ElectricPotentialChangeRateUnit.VoltPerSecond => _value,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(ElectricPotentialChangeRateUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(ElectricPotentialChangeRateUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                ElectricPotentialChangeRateUnit.KilovoltPerHour => (baseUnitValue * 3600) / 1e3d,
-                ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond => (baseUnitValue / 1E6) / 1e3d,
-                ElectricPotentialChangeRateUnit.KilovoltPerMinute => (baseUnitValue * 60) / 1e3d,
-                ElectricPotentialChangeRateUnit.KilovoltPerSecond => (baseUnitValue) / 1e3d,
-                ElectricPotentialChangeRateUnit.MegavoltPerHour => (baseUnitValue * 3600) / 1e6d,
-                ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond => (baseUnitValue / 1E6) / 1e6d,
-                ElectricPotentialChangeRateUnit.MegavoltPerMinute => (baseUnitValue * 60) / 1e6d,
-                ElectricPotentialChangeRateUnit.MegavoltPerSecond => (baseUnitValue) / 1e6d,
-                ElectricPotentialChangeRateUnit.MicrovoltPerHour => (baseUnitValue * 3600) / 1e-6d,
-                ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond => (baseUnitValue / 1E6) / 1e-6d,
-                ElectricPotentialChangeRateUnit.MicrovoltPerMinute => (baseUnitValue * 60) / 1e-6d,
-                ElectricPotentialChangeRateUnit.MicrovoltPerSecond => (baseUnitValue) / 1e-6d,
-                ElectricPotentialChangeRateUnit.MillivoltPerHour => (baseUnitValue * 3600) / 1e-3d,
-                ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond => (baseUnitValue / 1E6) / 1e-3d,
-                ElectricPotentialChangeRateUnit.MillivoltPerMinute => (baseUnitValue * 60) / 1e-3d,
-                ElectricPotentialChangeRateUnit.MillivoltPerSecond => (baseUnitValue) / 1e-3d,
-                ElectricPotentialChangeRateUnit.VoltPerHour => baseUnitValue * 3600,
-                ElectricPotentialChangeRateUnit.VoltPerMicrosecond => baseUnitValue / 1E6,
-                ElectricPotentialChangeRateUnit.VoltPerMinute => baseUnitValue * 60,
-                ElectricPotentialChangeRateUnit.VoltPerSecond => baseUnitValue,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        ElectricPotentialChangeRateUnit.KilovoltPerHour => (baseUnitValue * 3600) / 1e3d,
+                        ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond => (baseUnitValue / 1E6) / 1e3d,
+                        ElectricPotentialChangeRateUnit.KilovoltPerMinute => (baseUnitValue * 60) / 1e3d,
+                        ElectricPotentialChangeRateUnit.KilovoltPerSecond => (baseUnitValue) / 1e3d,
+                        ElectricPotentialChangeRateUnit.MegavoltPerHour => (baseUnitValue * 3600) / 1e6d,
+                        ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond => (baseUnitValue / 1E6) / 1e6d,
+                        ElectricPotentialChangeRateUnit.MegavoltPerMinute => (baseUnitValue * 60) / 1e6d,
+                        ElectricPotentialChangeRateUnit.MegavoltPerSecond => (baseUnitValue) / 1e6d,
+                        ElectricPotentialChangeRateUnit.MicrovoltPerHour => (baseUnitValue * 3600) / 1e-6d,
+                        ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond => (baseUnitValue / 1E6) / 1e-6d,
+                        ElectricPotentialChangeRateUnit.MicrovoltPerMinute => (baseUnitValue * 60) / 1e-6d,
+                        ElectricPotentialChangeRateUnit.MicrovoltPerSecond => (baseUnitValue) / 1e-6d,
+                        ElectricPotentialChangeRateUnit.MillivoltPerHour => (baseUnitValue * 3600) / 1e-3d,
+                        ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond => (baseUnitValue / 1E6) / 1e-3d,
+                        ElectricPotentialChangeRateUnit.MillivoltPerMinute => (baseUnitValue * 60) / 1e-3d,
+                        ElectricPotentialChangeRateUnit.MillivoltPerSecond => (baseUnitValue) / 1e-3d,
+                        ElectricPotentialChangeRateUnit.VoltPerHour => baseUnitValue * 3600,
+                        ElectricPotentialChangeRateUnit.VoltPerMicrosecond => baseUnitValue / 1E6,
+                        ElectricPotentialChangeRateUnit.VoltPerMinute => baseUnitValue * 60,
+                        ElectricPotentialChangeRateUnit.VoltPerSecond => baseUnitValue,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

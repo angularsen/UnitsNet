@@ -25,17 +25,16 @@ namespace UnitsNet.Units
 
     public enum TemperatureChangeRateUnit
     {
-        Undefined = 0,
-        CentidegreeCelsiusPerSecond,
-        DecadegreeCelsiusPerSecond,
-        DecidegreeCelsiusPerSecond,
-        DegreeCelsiusPerMinute,
-        DegreeCelsiusPerSecond,
-        HectodegreeCelsiusPerSecond,
-        KilodegreeCelsiusPerSecond,
-        MicrodegreeCelsiusPerSecond,
-        MillidegreeCelsiusPerSecond,
-        NanodegreeCelsiusPerSecond,
+        CentidegreeCelsiusPerSecond = 1,
+        DecadegreeCelsiusPerSecond = 2,
+        DecidegreeCelsiusPerSecond = 3,
+        DegreeCelsiusPerMinute = 4,
+        DegreeCelsiusPerSecond = 5,
+        HectodegreeCelsiusPerSecond = 6,
+        KilodegreeCelsiusPerSecond = 7,
+        MicrodegreeCelsiusPerSecond = 8,
+        MillidegreeCelsiusPerSecond = 9,
+        NanodegreeCelsiusPerSecond = 10,
     }
 
     #pragma warning restore 1591

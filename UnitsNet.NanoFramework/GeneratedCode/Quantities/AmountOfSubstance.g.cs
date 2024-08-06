@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of AmountOfSubstance, which is Second. All conversions go via this value.
         /// </summary>
         public static AmountOfSubstanceUnit BaseUnit { get; } = AmountOfSubstanceUnit.Mole;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of AmountOfSubstance.
         /// </summary>
         public static AmountOfSubstance MaxValue { get; } = new AmountOfSubstance(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of AmountOfSubstance.
         /// </summary>
         public static AmountOfSubstance MinValue { get; } = new AmountOfSubstance(double.MinValue, BaseUnit);
 
@@ -98,6 +98,11 @@ namespace UnitsNet
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.DecipoundMole"/>
         /// </summary>
         public double DecipoundMoles => As(AmountOfSubstanceUnit.DecipoundMole);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Femtomole"/>
+        /// </summary>
+        public double Femtomoles => As(AmountOfSubstanceUnit.Femtomole);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Kilomole"/>
@@ -150,6 +155,11 @@ namespace UnitsNet
         public double NanopoundMoles => As(AmountOfSubstanceUnit.NanopoundMole);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Picomole"/>
+        /// </summary>
+        public double Picomoles => As(AmountOfSubstanceUnit.Picomole);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.PoundMole"/>
         /// </summary>
         public double PoundMoles => As(AmountOfSubstanceUnit.PoundMole);
@@ -181,6 +191,12 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AmountOfSubstance FromDecipoundMoles(double decipoundmoles) => new AmountOfSubstance(decipoundmoles, AmountOfSubstanceUnit.DecipoundMole);
+
+        /// <summary>
+        ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Femtomole"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static AmountOfSubstance FromFemtomoles(double femtomoles) => new AmountOfSubstance(femtomoles, AmountOfSubstanceUnit.Femtomole);
 
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Kilomole"/>.
@@ -243,6 +259,12 @@ namespace UnitsNet
         public static AmountOfSubstance FromNanopoundMoles(double nanopoundmoles) => new AmountOfSubstance(nanopoundmoles, AmountOfSubstanceUnit.NanopoundMole);
 
         /// <summary>
+        ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Picomole"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static AmountOfSubstance FromPicomoles(double picomoles) => new AmountOfSubstance(picomoles, AmountOfSubstanceUnit.Picomole);
+
+        /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.PoundMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -261,81 +283,85 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(AmountOfSubstanceUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(AmountOfSubstanceUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public AmountOfSubstance ToUnit(AmountOfSubstanceUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new AmountOfSubstance(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this AmountOfSubstance to another AmountOfSubstance with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A AmountOfSubstance with the specified unit.</returns>
+                public AmountOfSubstance ToUnit(AmountOfSubstanceUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new AmountOfSubstance(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                AmountOfSubstanceUnit.Centimole => (_value) * 1e-2d,
-                AmountOfSubstanceUnit.CentipoundMole => (_value * 453.59237) * 1e-2d,
-                AmountOfSubstanceUnit.Decimole => (_value) * 1e-1d,
-                AmountOfSubstanceUnit.DecipoundMole => (_value * 453.59237) * 1e-1d,
-                AmountOfSubstanceUnit.Kilomole => (_value) * 1e3d,
-                AmountOfSubstanceUnit.KilopoundMole => (_value * 453.59237) * 1e3d,
-                AmountOfSubstanceUnit.Megamole => (_value) * 1e6d,
-                AmountOfSubstanceUnit.Micromole => (_value) * 1e-6d,
-                AmountOfSubstanceUnit.MicropoundMole => (_value * 453.59237) * 1e-6d,
-                AmountOfSubstanceUnit.Millimole => (_value) * 1e-3d,
-                AmountOfSubstanceUnit.MillipoundMole => (_value * 453.59237) * 1e-3d,
-                AmountOfSubstanceUnit.Mole => _value,
-                AmountOfSubstanceUnit.Nanomole => (_value) * 1e-9d,
-                AmountOfSubstanceUnit.NanopoundMole => (_value * 453.59237) * 1e-9d,
-                AmountOfSubstanceUnit.PoundMole => _value * 453.59237,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        AmountOfSubstanceUnit.Centimole => (_value) * 1e-2d,
+                        AmountOfSubstanceUnit.CentipoundMole => (_value * 453.59237) * 1e-2d,
+                        AmountOfSubstanceUnit.Decimole => (_value) * 1e-1d,
+                        AmountOfSubstanceUnit.DecipoundMole => (_value * 453.59237) * 1e-1d,
+                        AmountOfSubstanceUnit.Femtomole => (_value) * 1e-15d,
+                        AmountOfSubstanceUnit.Kilomole => (_value) * 1e3d,
+                        AmountOfSubstanceUnit.KilopoundMole => (_value * 453.59237) * 1e3d,
+                        AmountOfSubstanceUnit.Megamole => (_value) * 1e6d,
+                        AmountOfSubstanceUnit.Micromole => (_value) * 1e-6d,
+                        AmountOfSubstanceUnit.MicropoundMole => (_value * 453.59237) * 1e-6d,
+                        AmountOfSubstanceUnit.Millimole => (_value) * 1e-3d,
+                        AmountOfSubstanceUnit.MillipoundMole => (_value * 453.59237) * 1e-3d,
+                        AmountOfSubstanceUnit.Mole => _value,
+                        AmountOfSubstanceUnit.Nanomole => (_value) * 1e-9d,
+                        AmountOfSubstanceUnit.NanopoundMole => (_value * 453.59237) * 1e-9d,
+                        AmountOfSubstanceUnit.Picomole => (_value) * 1e-12d,
+                        AmountOfSubstanceUnit.PoundMole => _value * 453.59237,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(AmountOfSubstanceUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(AmountOfSubstanceUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                AmountOfSubstanceUnit.Centimole => (baseUnitValue) / 1e-2d,
-                AmountOfSubstanceUnit.CentipoundMole => (baseUnitValue / 453.59237) / 1e-2d,
-                AmountOfSubstanceUnit.Decimole => (baseUnitValue) / 1e-1d,
-                AmountOfSubstanceUnit.DecipoundMole => (baseUnitValue / 453.59237) / 1e-1d,
-                AmountOfSubstanceUnit.Kilomole => (baseUnitValue) / 1e3d,
-                AmountOfSubstanceUnit.KilopoundMole => (baseUnitValue / 453.59237) / 1e3d,
-                AmountOfSubstanceUnit.Megamole => (baseUnitValue) / 1e6d,
-                AmountOfSubstanceUnit.Micromole => (baseUnitValue) / 1e-6d,
-                AmountOfSubstanceUnit.MicropoundMole => (baseUnitValue / 453.59237) / 1e-6d,
-                AmountOfSubstanceUnit.Millimole => (baseUnitValue) / 1e-3d,
-                AmountOfSubstanceUnit.MillipoundMole => (baseUnitValue / 453.59237) / 1e-3d,
-                AmountOfSubstanceUnit.Mole => baseUnitValue,
-                AmountOfSubstanceUnit.Nanomole => (baseUnitValue) / 1e-9d,
-                AmountOfSubstanceUnit.NanopoundMole => (baseUnitValue / 453.59237) / 1e-9d,
-                AmountOfSubstanceUnit.PoundMole => baseUnitValue / 453.59237,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        AmountOfSubstanceUnit.Centimole => (baseUnitValue) / 1e-2d,
+                        AmountOfSubstanceUnit.CentipoundMole => (baseUnitValue / 453.59237) / 1e-2d,
+                        AmountOfSubstanceUnit.Decimole => (baseUnitValue) / 1e-1d,
+                        AmountOfSubstanceUnit.DecipoundMole => (baseUnitValue / 453.59237) / 1e-1d,
+                        AmountOfSubstanceUnit.Femtomole => (baseUnitValue) / 1e-15d,
+                        AmountOfSubstanceUnit.Kilomole => (baseUnitValue) / 1e3d,
+                        AmountOfSubstanceUnit.KilopoundMole => (baseUnitValue / 453.59237) / 1e3d,
+                        AmountOfSubstanceUnit.Megamole => (baseUnitValue) / 1e6d,
+                        AmountOfSubstanceUnit.Micromole => (baseUnitValue) / 1e-6d,
+                        AmountOfSubstanceUnit.MicropoundMole => (baseUnitValue / 453.59237) / 1e-6d,
+                        AmountOfSubstanceUnit.Millimole => (baseUnitValue) / 1e-3d,
+                        AmountOfSubstanceUnit.MillipoundMole => (baseUnitValue / 453.59237) / 1e-3d,
+                        AmountOfSubstanceUnit.Mole => baseUnitValue,
+                        AmountOfSubstanceUnit.Nanomole => (baseUnitValue) / 1e-9d,
+                        AmountOfSubstanceUnit.NanopoundMole => (baseUnitValue / 453.59237) / 1e-9d,
+                        AmountOfSubstanceUnit.Picomole => (baseUnitValue) / 1e-12d,
+                        AmountOfSubstanceUnit.PoundMole => baseUnitValue / 453.59237,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

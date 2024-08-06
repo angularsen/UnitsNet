@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of MassFlux, which is Second. All conversions go via this value.
         /// </summary>
         public static MassFluxUnit BaseUnit { get; } = MassFluxUnit.KilogramPerSecondPerSquareMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of MassFlux.
         /// </summary>
         public static MassFlux MaxValue { get; } = new MassFlux(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of MassFlux.
         /// </summary>
         public static MassFlux MinValue { get; } = new MassFlux(double.MinValue, BaseUnit);
 
@@ -228,75 +228,75 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(MassFluxUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(MassFluxUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public MassFlux ToUnit(MassFluxUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new MassFlux(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this MassFlux to another MassFlux with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A MassFlux with the specified unit.</returns>
+                public MassFlux ToUnit(MassFluxUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new MassFlux(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                MassFluxUnit.GramPerHourPerSquareCentimeter => _value / 3.6e2,
-                MassFluxUnit.GramPerHourPerSquareMeter => _value / 3.6e6,
-                MassFluxUnit.GramPerHourPerSquareMillimeter => _value / 3.6e0,
-                MassFluxUnit.GramPerSecondPerSquareCentimeter => _value / 1e-1,
-                MassFluxUnit.GramPerSecondPerSquareMeter => _value / 1e3,
-                MassFluxUnit.GramPerSecondPerSquareMillimeter => _value / 1e-3,
-                MassFluxUnit.KilogramPerHourPerSquareCentimeter => (_value / 3.6e2) * 1e3d,
-                MassFluxUnit.KilogramPerHourPerSquareMeter => (_value / 3.6e6) * 1e3d,
-                MassFluxUnit.KilogramPerHourPerSquareMillimeter => (_value / 3.6e0) * 1e3d,
-                MassFluxUnit.KilogramPerSecondPerSquareCentimeter => (_value / 1e-1) * 1e3d,
-                MassFluxUnit.KilogramPerSecondPerSquareMeter => (_value / 1e3) * 1e3d,
-                MassFluxUnit.KilogramPerSecondPerSquareMillimeter => (_value / 1e-3) * 1e3d,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        MassFluxUnit.GramPerHourPerSquareCentimeter => _value / 3.6e2,
+                        MassFluxUnit.GramPerHourPerSquareMeter => _value / 3.6e6,
+                        MassFluxUnit.GramPerHourPerSquareMillimeter => _value / 3.6e0,
+                        MassFluxUnit.GramPerSecondPerSquareCentimeter => _value / 1e-1,
+                        MassFluxUnit.GramPerSecondPerSquareMeter => _value / 1e3,
+                        MassFluxUnit.GramPerSecondPerSquareMillimeter => _value / 1e-3,
+                        MassFluxUnit.KilogramPerHourPerSquareCentimeter => (_value / 3.6e2) * 1e3d,
+                        MassFluxUnit.KilogramPerHourPerSquareMeter => (_value / 3.6e6) * 1e3d,
+                        MassFluxUnit.KilogramPerHourPerSquareMillimeter => (_value / 3.6e0) * 1e3d,
+                        MassFluxUnit.KilogramPerSecondPerSquareCentimeter => (_value / 1e-1) * 1e3d,
+                        MassFluxUnit.KilogramPerSecondPerSquareMeter => (_value / 1e3) * 1e3d,
+                        MassFluxUnit.KilogramPerSecondPerSquareMillimeter => (_value / 1e-3) * 1e3d,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(MassFluxUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(MassFluxUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                MassFluxUnit.GramPerHourPerSquareCentimeter => baseUnitValue * 3.6e2,
-                MassFluxUnit.GramPerHourPerSquareMeter => baseUnitValue * 3.6e6,
-                MassFluxUnit.GramPerHourPerSquareMillimeter => baseUnitValue * 3.6e0,
-                MassFluxUnit.GramPerSecondPerSquareCentimeter => baseUnitValue * 1e-1,
-                MassFluxUnit.GramPerSecondPerSquareMeter => baseUnitValue * 1e3,
-                MassFluxUnit.GramPerSecondPerSquareMillimeter => baseUnitValue * 1e-3,
-                MassFluxUnit.KilogramPerHourPerSquareCentimeter => (baseUnitValue * 3.6e2) / 1e3d,
-                MassFluxUnit.KilogramPerHourPerSquareMeter => (baseUnitValue * 3.6e6) / 1e3d,
-                MassFluxUnit.KilogramPerHourPerSquareMillimeter => (baseUnitValue * 3.6e0) / 1e3d,
-                MassFluxUnit.KilogramPerSecondPerSquareCentimeter => (baseUnitValue * 1e-1) / 1e3d,
-                MassFluxUnit.KilogramPerSecondPerSquareMeter => (baseUnitValue * 1e3) / 1e3d,
-                MassFluxUnit.KilogramPerSecondPerSquareMillimeter => (baseUnitValue * 1e-3) / 1e3d,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        MassFluxUnit.GramPerHourPerSquareCentimeter => baseUnitValue * 3.6e2,
+                        MassFluxUnit.GramPerHourPerSquareMeter => baseUnitValue * 3.6e6,
+                        MassFluxUnit.GramPerHourPerSquareMillimeter => baseUnitValue * 3.6e0,
+                        MassFluxUnit.GramPerSecondPerSquareCentimeter => baseUnitValue * 1e-1,
+                        MassFluxUnit.GramPerSecondPerSquareMeter => baseUnitValue * 1e3,
+                        MassFluxUnit.GramPerSecondPerSquareMillimeter => baseUnitValue * 1e-3,
+                        MassFluxUnit.KilogramPerHourPerSquareCentimeter => (baseUnitValue * 3.6e2) / 1e3d,
+                        MassFluxUnit.KilogramPerHourPerSquareMeter => (baseUnitValue * 3.6e6) / 1e3d,
+                        MassFluxUnit.KilogramPerHourPerSquareMillimeter => (baseUnitValue * 3.6e0) / 1e3d,
+                        MassFluxUnit.KilogramPerSecondPerSquareCentimeter => (baseUnitValue * 1e-1) / 1e3d,
+                        MassFluxUnit.KilogramPerSecondPerSquareMeter => (baseUnitValue * 1e3) / 1e3d,
+                        MassFluxUnit.KilogramPerSecondPerSquareMillimeter => (baseUnitValue * 1e-3) / 1e3d,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

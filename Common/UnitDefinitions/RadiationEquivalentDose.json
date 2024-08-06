@@ -1,0 +1,48 @@
+﻿{
+  "Name": "RadiationEquivalentDose",
+  "BaseUnit": "Sievert",
+  "XmlDocSummary": "Equivalent dose is a dose quantity representing the stochastic health effects of low levels of ionizing radiation on the human body which represents the probability of radiation-induced cancer and genetic damage.",
+  "XmlDocsRemarks": "https://en.wikipedia.org/wiki/Equivalent_dose",
+  "BaseDimensions": {
+    "L": 2,
+    "T": -2
+  },
+  "Units": [
+    {
+      "SingularName": "Sievert",
+      "PluralName": "Sieverts",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "BaseUnits": {
+        "L": "Meter",
+        "T": "Second"
+      },
+      "Prefixes": [ "Nano", "Micro", "Milli" ],
+      "XmlDocSummary": "The sievert is a unit in the International System of Units (SI) intended to represent the stochastic health risk of ionizing radiation, which is defined as the probability of causing radiation-induced cancer and genetic damage.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Sievert",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Sv" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "Зв" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "RoentgenEquivalentMan",
+      "PluralName": "RoentgensEquivalentMan",
+      "FromUnitToBaseFunc": "{x} / 100",
+      "FromBaseToUnitFunc": "{x} * 100",
+      "Prefixes": [ "Milli" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "rem" ]
+        }
+      ]
+    }
+  ]
+}

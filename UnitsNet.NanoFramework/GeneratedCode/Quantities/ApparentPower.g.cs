@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of ApparentPower, which is Second. All conversions go via this value.
         /// </summary>
         public static ApparentPowerUnit BaseUnit { get; } = ApparentPowerUnit.Voltampere;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of ApparentPower.
         /// </summary>
         public static ApparentPower MaxValue { get; } = new ApparentPower(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of ApparentPower.
         /// </summary>
         public static ApparentPower MinValue { get; } = new ApparentPower(double.MinValue, BaseUnit);
 
@@ -93,6 +93,16 @@ namespace UnitsNet
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ApparentPowerUnit.Megavoltampere"/>
         /// </summary>
         public double Megavoltamperes => As(ApparentPowerUnit.Megavoltampere);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ApparentPowerUnit.Microvoltampere"/>
+        /// </summary>
+        public double Microvoltamperes => As(ApparentPowerUnit.Microvoltampere);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ApparentPowerUnit.Millivoltampere"/>
+        /// </summary>
+        public double Millivoltamperes => As(ApparentPowerUnit.Millivoltampere);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ApparentPowerUnit.Voltampere"/>
@@ -122,6 +132,18 @@ namespace UnitsNet
         public static ApparentPower FromMegavoltamperes(double megavoltamperes) => new ApparentPower(megavoltamperes, ApparentPowerUnit.Megavoltampere);
 
         /// <summary>
+        ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Microvoltampere"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ApparentPower FromMicrovoltamperes(double microvoltamperes) => new ApparentPower(microvoltamperes, ApparentPowerUnit.Microvoltampere);
+
+        /// <summary>
+        ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Millivoltampere"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ApparentPower FromMillivoltamperes(double millivoltamperes) => new ApparentPower(millivoltamperes, ApparentPowerUnit.Millivoltampere);
+
+        /// <summary>
         ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Voltampere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -140,59 +162,63 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(ApparentPowerUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(ApparentPowerUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public ApparentPower ToUnit(ApparentPowerUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new ApparentPower(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this ApparentPower to another ApparentPower with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A ApparentPower with the specified unit.</returns>
+                public ApparentPower ToUnit(ApparentPowerUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new ApparentPower(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                ApparentPowerUnit.Gigavoltampere => (_value) * 1e9d,
-                ApparentPowerUnit.Kilovoltampere => (_value) * 1e3d,
-                ApparentPowerUnit.Megavoltampere => (_value) * 1e6d,
-                ApparentPowerUnit.Voltampere => _value,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        ApparentPowerUnit.Gigavoltampere => (_value) * 1e9d,
+                        ApparentPowerUnit.Kilovoltampere => (_value) * 1e3d,
+                        ApparentPowerUnit.Megavoltampere => (_value) * 1e6d,
+                        ApparentPowerUnit.Microvoltampere => (_value) * 1e-6d,
+                        ApparentPowerUnit.Millivoltampere => (_value) * 1e-3d,
+                        ApparentPowerUnit.Voltampere => _value,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(ApparentPowerUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(ApparentPowerUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                ApparentPowerUnit.Gigavoltampere => (baseUnitValue) / 1e9d,
-                ApparentPowerUnit.Kilovoltampere => (baseUnitValue) / 1e3d,
-                ApparentPowerUnit.Megavoltampere => (baseUnitValue) / 1e6d,
-                ApparentPowerUnit.Voltampere => baseUnitValue,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        ApparentPowerUnit.Gigavoltampere => (baseUnitValue) / 1e9d,
+                        ApparentPowerUnit.Kilovoltampere => (baseUnitValue) / 1e3d,
+                        ApparentPowerUnit.Megavoltampere => (baseUnitValue) / 1e6d,
+                        ApparentPowerUnit.Microvoltampere => (baseUnitValue) / 1e-6d,
+                        ApparentPowerUnit.Millivoltampere => (baseUnitValue) / 1e-3d,
+                        ApparentPowerUnit.Voltampere => baseUnitValue,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

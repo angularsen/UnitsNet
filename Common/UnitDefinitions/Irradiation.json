@@ -1,7 +1,7 @@
 {
   "Name": "Irradiation",
   "BaseUnit": "JoulePerSquareMeter",
-  "XmlDoc": "Irradiation is the process by which an object is exposed to radiation. The exposure can originate from various sources, including natural sources.",
+  "XmlDocSummary": "Irradiation is the process by which an object is exposed to radiation. The exposure can originate from various sources, including natural sources.",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Irradiation",
   "BaseDimensions": {
     "M": 1,
@@ -56,6 +56,19 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "Wh/m²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "BtuPerSquareFoot",
+      "PluralName": "BtusPerSquareFoot",
+      "FromUnitToBaseFunc": "{x} * (52752792631d / 4645152d)",
+      "FromBaseToUnitFunc": "{x} / (52752792631d / 4645152d)",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Btu/ft²" ]
         }
       ]
     }

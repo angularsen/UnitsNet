@@ -25,8 +25,7 @@ namespace UnitsNet.Units
 
     public enum ScalarUnit
     {
-        Undefined = 0,
-        Amount,
+        Amount = 1,
     }
 
     #pragma warning restore 1591

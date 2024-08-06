@@ -25,22 +25,21 @@ namespace UnitsNet.Units
 
     public enum LuminosityUnit
     {
-        Undefined = 0,
-        Decawatt,
-        Deciwatt,
-        Femtowatt,
-        Gigawatt,
-        Kilowatt,
-        Megawatt,
-        Microwatt,
-        Milliwatt,
-        Nanowatt,
-        Petawatt,
-        Picowatt,
+        Decawatt = 1,
+        Deciwatt = 2,
+        Femtowatt = 3,
+        Gigawatt = 4,
+        Kilowatt = 5,
+        Megawatt = 6,
+        Microwatt = 7,
+        Milliwatt = 8,
+        Nanowatt = 9,
+        Petawatt = 10,
+        Picowatt = 11,
         /// <remarks>https://www.britannica.com/science/luminosity</remarks>
-        SolarLuminosity,
-        Terawatt,
-        Watt,
+        SolarLuminosity = 12,
+        Terawatt = 13,
+        Watt = 14,
     }
 
     #pragma warning restore 1591

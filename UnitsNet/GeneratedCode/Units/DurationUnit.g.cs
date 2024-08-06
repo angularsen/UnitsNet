@@ -25,18 +25,18 @@ namespace UnitsNet.Units
 
     public enum DurationUnit
     {
-        Undefined = 0,
-        Day,
-        Hour,
-        JulianYear,
-        Microsecond,
-        Millisecond,
-        Minute,
-        Month30,
-        Nanosecond,
-        Second,
-        Week,
-        Year365,
+        Day = 1,
+        Hour = 2,
+        JulianYear = 3,
+        Microsecond = 4,
+        Millisecond = 5,
+        Minute = 6,
+        Month30 = 7,
+        Nanosecond = 8,
+        Second = 9,
+        Sol = 15,
+        Week = 10,
+        Year365 = 11,
     }
 
     #pragma warning restore 1591

@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using Newtonsoft.Json;
 using UnitsNet.Serialization.JsonNet.Tests.Infrastructure;
@@ -12,7 +13,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 {
     public sealed class UnitsNetIComparableJsonConverterTest
     {
-        private UnitsNetIComparableJsonConverter _sut;
+        private readonly UnitsNetIComparableJsonConverter _sut;
 
         public UnitsNetIComparableJsonConverterTest()
         {
@@ -26,6 +27,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
+        [SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
         public void UnitsNetIComparableJsonConverter_WriteJson_throws_NotImplementedException()
         {
             Assert.Throws<NotImplementedException>(() => _sut.WriteJson(null, null, null));
@@ -117,7 +119,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
             Assert.NotNull(result);
             Assert.IsType<Power>(result);
-            Assert.Equal(120D, ((Power)result).Watts);
+            Assert.Equal(120M, ((Power)result).Watts);
         }
     }
 }

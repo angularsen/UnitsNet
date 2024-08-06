@@ -10,9 +10,9 @@ namespace UnitsNet
     public partial struct AmountOfSubstance
     {
         /// <summary>
-        ///     The Avogadro constant is the number of constituent particles, usually molecules, 
-        ///     atoms or ions that are contained in the amount of substance given by one mole. It is the proportionality factor that relates 
-        ///     the molar mass of a substance to the mass of a sample, is designated with the symbol NA or L[1], and has the value 
+        ///     The Avogadro constant is the number of constituent particles, usually molecules,
+        ///     atoms or ions that are contained in the amount of substance given by one mole. It is the proportionality factor that relates
+        ///     the molar mass of a substance to the mass of a sample, is designated with the symbol NA or L[1], and has the value
         ///     6.02214076e23 mol−1 in the International System of Units (SI).
         /// </summary>
         /// <remarks>
@@ -30,17 +30,16 @@ namespace UnitsNet
         /// <returns>The number of particles (atoms or molecules) in this amount of substance.</returns>
         public double NumberOfParticles()
         {
-            var moles = GetValueAs(AmountOfSubstanceUnit.Mole);
-            return AvogadroConstant * moles;
+            var moles = ToUnit(AmountOfSubstanceUnit.Mole);
+            return AvogadroConstant * moles.Value;
         }
-
 
         /// <summary>Get <see cref="AmountOfSubstance" /> from <see cref="Mass" /> and a given <see cref="MolarMass" />.</summary>
         public static AmountOfSubstance FromMass(Mass mass, MolarMass molarMass)
         {
             return mass / molarMass;
         }
-        
+
         /// <summary>Get <see cref="Mass" /> from <see cref="AmountOfSubstance" /> for a given <see cref="MolarMass" />.</summary>
         public static Mass operator *(AmountOfSubstance amountOfSubstance, MolarMass molarMass)
         {

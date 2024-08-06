@@ -62,17 +62,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of KinematicViscosity, which is Second. All conversions go via this value.
         /// </summary>
         public static KinematicViscosityUnit BaseUnit { get; } = KinematicViscosityUnit.SquareMeterPerSecond;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of KinematicViscosity.
         /// </summary>
         public static KinematicViscosity MaxValue { get; } = new KinematicViscosity(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of KinematicViscosity.
         /// </summary>
         public static KinematicViscosity MinValue { get; } = new KinematicViscosity(double.MinValue, BaseUnit);
 
@@ -198,69 +198,69 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(KinematicViscosityUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(KinematicViscosityUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public KinematicViscosity ToUnit(KinematicViscosityUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new KinematicViscosity(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this KinematicViscosity to another KinematicViscosity with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A KinematicViscosity with the specified unit.</returns>
+                public KinematicViscosity ToUnit(KinematicViscosityUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new KinematicViscosity(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                KinematicViscosityUnit.Centistokes => (_value / 1e4) * 1e-2d,
-                KinematicViscosityUnit.Decistokes => (_value / 1e4) * 1e-1d,
-                KinematicViscosityUnit.Kilostokes => (_value / 1e4) * 1e3d,
-                KinematicViscosityUnit.Microstokes => (_value / 1e4) * 1e-6d,
-                KinematicViscosityUnit.Millistokes => (_value / 1e4) * 1e-3d,
-                KinematicViscosityUnit.Nanostokes => (_value / 1e4) * 1e-9d,
-                KinematicViscosityUnit.SquareFootPerSecond => _value / 10.7639,
-                KinematicViscosityUnit.SquareMeterPerSecond => _value,
-                KinematicViscosityUnit.Stokes => _value / 1e4,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        KinematicViscosityUnit.Centistokes => (_value / 1e4) * 1e-2d,
+                        KinematicViscosityUnit.Decistokes => (_value / 1e4) * 1e-1d,
+                        KinematicViscosityUnit.Kilostokes => (_value / 1e4) * 1e3d,
+                        KinematicViscosityUnit.Microstokes => (_value / 1e4) * 1e-6d,
+                        KinematicViscosityUnit.Millistokes => (_value / 1e4) * 1e-3d,
+                        KinematicViscosityUnit.Nanostokes => (_value / 1e4) * 1e-9d,
+                        KinematicViscosityUnit.SquareFootPerSecond => _value / 10.7639,
+                        KinematicViscosityUnit.SquareMeterPerSecond => _value,
+                        KinematicViscosityUnit.Stokes => _value / 1e4,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(KinematicViscosityUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(KinematicViscosityUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                KinematicViscosityUnit.Centistokes => (baseUnitValue * 1e4) / 1e-2d,
-                KinematicViscosityUnit.Decistokes => (baseUnitValue * 1e4) / 1e-1d,
-                KinematicViscosityUnit.Kilostokes => (baseUnitValue * 1e4) / 1e3d,
-                KinematicViscosityUnit.Microstokes => (baseUnitValue * 1e4) / 1e-6d,
-                KinematicViscosityUnit.Millistokes => (baseUnitValue * 1e4) / 1e-3d,
-                KinematicViscosityUnit.Nanostokes => (baseUnitValue * 1e4) / 1e-9d,
-                KinematicViscosityUnit.SquareFootPerSecond => baseUnitValue * 10.7639,
-                KinematicViscosityUnit.SquareMeterPerSecond => baseUnitValue,
-                KinematicViscosityUnit.Stokes => baseUnitValue * 1e4,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        KinematicViscosityUnit.Centistokes => (baseUnitValue * 1e4) / 1e-2d,
+                        KinematicViscosityUnit.Decistokes => (baseUnitValue * 1e4) / 1e-1d,
+                        KinematicViscosityUnit.Kilostokes => (baseUnitValue * 1e4) / 1e3d,
+                        KinematicViscosityUnit.Microstokes => (baseUnitValue * 1e4) / 1e-6d,
+                        KinematicViscosityUnit.Millistokes => (baseUnitValue * 1e4) / 1e-3d,
+                        KinematicViscosityUnit.Nanostokes => (baseUnitValue * 1e4) / 1e-9d,
+                        KinematicViscosityUnit.SquareFootPerSecond => baseUnitValue * 10.7639,
+                        KinematicViscosityUnit.SquareMeterPerSecond => baseUnitValue,
+                        KinematicViscosityUnit.Stokes => baseUnitValue * 1e4,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

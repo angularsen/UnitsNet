@@ -42,6 +42,12 @@ namespace UnitsNet
             return Length.FromMeters(area.SquareMeters / length.Meters);
         }
 
+        /// <summary>Get <see cref="ReciprocalLength"/> from <see cref="Area"/> divided by <see cref="Volume"/>.</summary>
+        public static ReciprocalLength operator /(Area area, Volume volume)
+        {
+            return ReciprocalLength.FromInverseMeters(area.SquareMeters / volume.CubicMeters);
+        }
+
         /// <summary>Get <see cref="MassFlow"/> from <see cref="Area"/> times <see cref="MassFlux"/>.</summary>
         public static MassFlow operator *(Area area, MassFlux massFlux)
         {

@@ -25,11 +25,13 @@ namespace UnitsNet.Units
 
     public enum ElectricCurrentGradientUnit
     {
-        Undefined = 0,
-        AmperePerMicrosecond,
-        AmperePerMillisecond,
-        AmperePerNanosecond,
-        AmperePerSecond,
+        AmperePerMicrosecond = 1,
+        AmperePerMillisecond = 2,
+        AmperePerMinute = 11,
+        AmperePerNanosecond = 3,
+        AmperePerSecond = 4,
+        MilliamperePerMinute = 6,
+        MilliamperePerSecond = 14,
     }
 
     #pragma warning restore 1591

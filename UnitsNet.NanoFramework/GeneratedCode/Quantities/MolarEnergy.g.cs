@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of MolarEnergy, which is Second. All conversions go via this value.
         /// </summary>
         public static MolarEnergyUnit BaseUnit { get; } = MolarEnergyUnit.JoulePerMole;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of MolarEnergy.
         /// </summary>
         public static MolarEnergy MaxValue { get; } = new MolarEnergy(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of MolarEnergy.
         /// </summary>
         public static MolarEnergy MinValue { get; } = new MolarEnergy(double.MinValue, BaseUnit);
 
@@ -129,57 +129,57 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(MolarEnergyUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(MolarEnergyUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public MolarEnergy ToUnit(MolarEnergyUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new MolarEnergy(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this MolarEnergy to another MolarEnergy with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A MolarEnergy with the specified unit.</returns>
+                public MolarEnergy ToUnit(MolarEnergyUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new MolarEnergy(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                MolarEnergyUnit.JoulePerMole => _value,
-                MolarEnergyUnit.KilojoulePerMole => (_value) * 1e3d,
-                MolarEnergyUnit.MegajoulePerMole => (_value) * 1e6d,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        MolarEnergyUnit.JoulePerMole => _value,
+                        MolarEnergyUnit.KilojoulePerMole => (_value) * 1e3d,
+                        MolarEnergyUnit.MegajoulePerMole => (_value) * 1e6d,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(MolarEnergyUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(MolarEnergyUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                MolarEnergyUnit.JoulePerMole => baseUnitValue,
-                MolarEnergyUnit.KilojoulePerMole => (baseUnitValue) / 1e3d,
-                MolarEnergyUnit.MegajoulePerMole => (baseUnitValue) / 1e6d,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        MolarEnergyUnit.JoulePerMole => baseUnitValue,
+                        MolarEnergyUnit.KilojoulePerMole => (baseUnitValue) / 1e3d,
+                        MolarEnergyUnit.MegajoulePerMole => (baseUnitValue) / 1e6d,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

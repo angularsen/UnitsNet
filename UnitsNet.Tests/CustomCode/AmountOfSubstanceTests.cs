@@ -45,6 +45,8 @@ namespace UnitsNet.Tests.CustomCode
         protected override double NanopoundMolesInOneMole => 0.002204622621848776 * 1e9;
         protected override double PoundMolesInOneMole => 0.002204622621848776;
         protected override double MegamolesInOneMole => 1e-6;
+        protected override double PicomolesInOneMole => 1e12;
+        protected override double FemtomolesInOneMole => 1e15;
 
         [Fact]
         public void NumberOfParticlesInOneMoleEqualsAvogadroConstant()
@@ -83,7 +85,7 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData(5, MassUnit.Gram,
                     KnownQuantities.MolarMassHClInGramsPerMole, MolarMassUnit.GramPerMole,
                     1.2, VolumeUnit.Liter,
-                    0.1142805, MolarityUnit.MolesPerLiter)]     // molarity(HCl) = 5g / (1.2L * 36.46) = 0.114 mol/l = 0.114 M
+                    0.1142805, MolarityUnit.MolePerLiter)]     // molarity(HCl) = 5g / (1.2L * 36.46) = 0.114 mol/l = 0.114 M
         public void MolarityFromComponentMassAndSolutionVolume(
             double componentMassValue, MassUnit componentMassUnit,
             double componentMolarMassValue, MolarMassUnit componentMolarMassUnit,
@@ -103,7 +105,7 @@ namespace UnitsNet.Tests.CustomCode
         [Theory]
         [InlineData(5, MassUnit.Gram,
                     KnownQuantities.MolarMassHClInGramsPerMole, MolarMassUnit.GramPerMole,
-                    0.1142805, MolarityUnit.MolesPerLiter,
+                    0.1142805, MolarityUnit.MolePerLiter,
                     1.2, VolumeUnit.Liter)]     // 1.2 L of solution required for obtaining 0.1142805 Moles/L from 5g HCl
         public void VolumeSolutionFromComponentMassAndDesiredConcentration(
             double componentMassValue, MassUnit componentMassUnit,

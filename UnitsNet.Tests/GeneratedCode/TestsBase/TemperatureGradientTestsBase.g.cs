@@ -71,19 +71,12 @@ namespace UnitsNet.Tests
         };
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new TemperatureGradient((double)0.0, TemperatureGradientUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new TemperatureGradient();
             Assert.Equal(0, quantity.Value);
             Assert.Equal(TemperatureGradientUnit.KelvinPerMeter, quantity.Unit);
         }
-
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
@@ -128,14 +121,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(TemperatureGradient.Zero, quantityInfo.Zero);
             Assert.Equal("TemperatureGradient", quantityInfo.Name);
-            Assert.Equal(QuantityType.TemperatureGradient, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<TemperatureGradientUnit>().Except(new[] {TemperatureGradientUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<TemperatureGradientUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
-
-            // Obsolete members
-            Assert.Equal(units, quantityInfo.Units);
-            Assert.Equal(unitNames, quantityInfo.UnitNames);
         }
 
         [Fact]
@@ -200,7 +188,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else
@@ -333,7 +321,7 @@ namespace UnitsNet.Tests
             var converted = inBaseUnits.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
         }
 
@@ -350,14 +338,19 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(TemperatureGradientUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = TemperatureGradient.Units.FirstOrDefault(u => u != TemperatureGradient.BaseUnit && u != TemperatureGradientUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if (fromUnit == TemperatureGradientUnit.Undefined)
-                fromUnit = TemperatureGradient.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = TemperatureGradient.Units.First(u => u != TemperatureGradient.BaseUnit);
 
             var quantity = TemperatureGradient.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(TemperatureGradientUnit unit)
+        {
+            var quantity = default(TemperatureGradient);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }
@@ -425,47 +418,45 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => kelvinpermeter.CompareTo(null));
         }
 
-        [Fact]
-        public void EqualityOperators()
+        [Theory]
+        [InlineData(1, TemperatureGradientUnit.KelvinPerMeter, 1, TemperatureGradientUnit.KelvinPerMeter, true)]  // Same value and unit.
+        [InlineData(1, TemperatureGradientUnit.KelvinPerMeter, 2, TemperatureGradientUnit.KelvinPerMeter, false)] // Different value.
+        [InlineData(2, TemperatureGradientUnit.KelvinPerMeter, 1, TemperatureGradientUnit.DegreeCelsiusPerKilometer, false)] // Different value and unit.
+        [InlineData(1, TemperatureGradientUnit.KelvinPerMeter, 1, TemperatureGradientUnit.DegreeCelsiusPerKilometer, false)] // Different unit.
+        public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, TemperatureGradientUnit unitA, double valueB, TemperatureGradientUnit unitB, bool expectEqual)
         {
-            var a = TemperatureGradient.FromKelvinsPerMeter(1);
-            var b = TemperatureGradient.FromKelvinsPerMeter(2);
+            var a = new TemperatureGradient(valueA, unitA);
+            var b = new TemperatureGradient(valueB, unitB);
 
-#pragma warning disable CS8073
-// ReSharper disable EqualExpressionComparison
+            // Operator overloads.
+            Assert.Equal(expectEqual, a == b);
+            Assert.Equal(expectEqual, b == a);
+            Assert.Equal(!expectEqual, a != b);
+            Assert.Equal(!expectEqual, b != a);
 
-            Assert.True(a == a);
-            Assert.False(a != a);
+            // IEquatable<T>
+            Assert.Equal(expectEqual, a.Equals(b));
+            Assert.Equal(expectEqual, b.Equals(a));
 
-            Assert.True(a != b);
-            Assert.False(a == b);
+            // IEquatable
+            Assert.Equal(expectEqual, a.Equals((object)b));
+            Assert.Equal(expectEqual, b.Equals((object)a));
+        }
 
+        [Fact]
+        public void Equals_Null_ReturnsFalse()
+        {
+            var a = TemperatureGradient.Zero;
+
+            Assert.False(a.Equals((object)null));
+
+            // "The result of the expression is always 'false'..."
+            #pragma warning disable CS8073
             Assert.False(a == null);
             Assert.False(null == a);
-
-// ReSharper restore EqualExpressionComparison
-#pragma warning restore CS8073
-        }
-
-        [Fact]
-        public void Equals_SameType_IsImplemented()
-        {
-            var a = TemperatureGradient.FromKelvinsPerMeter(1);
-            var b = TemperatureGradient.FromKelvinsPerMeter(2);
-
-            Assert.True(a.Equals(a));
-            Assert.False(a.Equals(b));
-        }
-
-        [Fact]
-        public void Equals_QuantityAsObject_IsImplemented()
-        {
-            object a = TemperatureGradient.FromKelvinsPerMeter(1);
-            object b = TemperatureGradient.FromKelvinsPerMeter(2);
-
-            Assert.True(a.Equals(a));
-            Assert.False(a.Equals(b));
-            Assert.False(a.Equals((object)null));
+            Assert.True(a != null);
+            Assert.True(null != a);
+            #pragma warning restore CS8073
         }
 
         [Fact]
@@ -474,6 +465,8 @@ namespace UnitsNet.Tests
             var v = TemperatureGradient.FromKelvinsPerMeter(1);
             Assert.True(v.Equals(TemperatureGradient.FromKelvinsPerMeter(1), KelvinsPerMeterTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(TemperatureGradient.Zero, KelvinsPerMeterTolerance, ComparisonType.Relative));
+            Assert.True(TemperatureGradient.FromKelvinsPerMeter(100).Equals(TemperatureGradient.FromKelvinsPerMeter(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(TemperatureGradient.FromKelvinsPerMeter(100).Equals(TemperatureGradient.FromKelvinsPerMeter(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]
@@ -498,20 +491,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(TemperatureGradientUnit.Undefined, TemperatureGradient.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(TemperatureGradientUnit)).Cast<TemperatureGradientUnit>();
-            foreach(var unit in units)
+            foreach (var unit in units)
             {
-                if (unit == TemperatureGradientUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }
@@ -525,8 +509,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentUICulture;
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            var prevCulture = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             try {
                 Assert.Equal("1 ∆°C/km", new TemperatureGradient(1, TemperatureGradientUnit.DegreeCelsiusPerKilometer).ToString());
                 Assert.Equal("1 ∆°C/m", new TemperatureGradient(1, TemperatureGradientUnit.DegreeCelsiusPerMeter).ToString());
@@ -535,7 +519,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                Thread.CurrentThread.CurrentUICulture = prevCulture;
+                Thread.CurrentThread.CurrentCulture = prevCulture;
             }
         }
 
@@ -554,10 +538,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentUICulture;
+            var oldCulture = CultureInfo.CurrentCulture;
             try
             {
-                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
                 Assert.Equal("0.1 ∆°K/m", new TemperatureGradient(0.123456, TemperatureGradientUnit.KelvinPerMeter).ToString("s1"));
                 Assert.Equal("0.12 ∆°K/m", new TemperatureGradient(0.123456, TemperatureGradientUnit.KelvinPerMeter).ToString("s2"));
                 Assert.Equal("0.123 ∆°K/m", new TemperatureGradient(0.123456, TemperatureGradientUnit.KelvinPerMeter).ToString("s3"));
@@ -565,7 +549,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                CultureInfo.CurrentUICulture = oldCulture;
+                CultureInfo.CurrentCulture = oldCulture;
             }
         }
 
@@ -579,28 +563,27 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 ∆°K/m", new TemperatureGradient(0.123456, TemperatureGradientUnit.KelvinPerMeter).ToString("s4", culture));
         }
 
-
-        [Fact]
-        public void ToString_NullFormat_ThrowsArgumentNullException()
+        [Theory]
+        [InlineData(null)]
+        [InlineData("en-US")]
+        public void ToString_NullFormat_DefaultsToGeneralFormat(string cultureName)
         {
             var quantity = TemperatureGradient.FromKelvinsPerMeter(1.0);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, null, null));
+            CultureInfo formatProvider = cultureName == null
+                ? null
+                : CultureInfo.GetCultureInfo(cultureName);
+
+            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
         }
 
-        [Fact]
-        public void ToString_NullArgs_ThrowsArgumentNullException()
+        [Theory]
+        [InlineData(null)]
+        [InlineData("g")]
+        public void ToString_NullProvider_EqualsCurrentCulture(string format)
         {
             var quantity = TemperatureGradient.FromKelvinsPerMeter(1.0);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, "g", null));
+            Assert.Equal(quantity.ToString(format, CultureInfo.CurrentCulture), quantity.ToString(format, null));
         }
-
-        [Fact]
-        public void ToString_NullProvider_EqualsCurrentUICulture()
-        {
-            var quantity = TemperatureGradient.FromKelvinsPerMeter(1.0);
-            Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
-        }
-
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()
@@ -719,13 +702,6 @@ namespace UnitsNet.Tests
         {
             var quantity = TemperatureGradient.FromKelvinsPerMeter(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(TemperatureGradientUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = TemperatureGradient.FromKelvinsPerMeter(1.0);
-            Assert.Equal(QuantityType.TemperatureGradient, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

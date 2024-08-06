@@ -25,16 +25,15 @@ namespace UnitsNet.Units
 
     public enum SpecificEntropyUnit
     {
-        Undefined = 0,
-        BtuPerPoundFahrenheit,
-        CaloriePerGramKelvin,
-        JoulePerKilogramDegreeCelsius,
-        JoulePerKilogramKelvin,
-        KilocaloriePerGramKelvin,
-        KilojoulePerKilogramDegreeCelsius,
-        KilojoulePerKilogramKelvin,
-        MegajoulePerKilogramDegreeCelsius,
-        MegajoulePerKilogramKelvin,
+        BtuPerPoundFahrenheit = 1,
+        CaloriePerGramKelvin = 2,
+        JoulePerKilogramDegreeCelsius = 3,
+        JoulePerKilogramKelvin = 4,
+        KilocaloriePerGramKelvin = 5,
+        KilojoulePerKilogramDegreeCelsius = 6,
+        KilojoulePerKilogramKelvin = 7,
+        MegajoulePerKilogramDegreeCelsius = 8,
+        MegajoulePerKilogramKelvin = 9,
     }
 
     #pragma warning restore 1591

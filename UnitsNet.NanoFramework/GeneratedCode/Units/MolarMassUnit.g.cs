@@ -25,19 +25,19 @@ namespace UnitsNet.Units
 
     public enum MolarMassUnit
     {
-        Undefined = 0,
-        CentigramPerMole,
-        DecagramPerMole,
-        DecigramPerMole,
-        GramPerMole,
-        HectogramPerMole,
-        KilogramPerMole,
-        KilopoundPerMole,
-        MegapoundPerMole,
-        MicrogramPerMole,
-        MilligramPerMole,
-        NanogramPerMole,
-        PoundPerMole,
+        CentigramPerMole = 1,
+        DecagramPerMole = 2,
+        DecigramPerMole = 3,
+        GramPerMole = 4,
+        HectogramPerMole = 5,
+        KilogramPerKilomole = 15,
+        KilogramPerMole = 6,
+        KilopoundPerMole = 7,
+        MegapoundPerMole = 8,
+        MicrogramPerMole = 9,
+        MilligramPerMole = 10,
+        NanogramPerMole = 11,
+        PoundPerMole = 12,
     }
 
     #pragma warning restore 1591

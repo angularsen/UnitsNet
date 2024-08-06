@@ -25,8 +25,7 @@ namespace UnitsNet.Units
 
     public enum SolidAngleUnit
     {
-        Undefined = 0,
-        Steradian,
+        Steradian = 1,
     }
 
     #pragma warning restore 1591

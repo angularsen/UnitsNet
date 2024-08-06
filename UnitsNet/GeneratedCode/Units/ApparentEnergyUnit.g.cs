@@ -25,10 +25,9 @@ namespace UnitsNet.Units
 
     public enum ApparentEnergyUnit
     {
-        Undefined = 0,
-        KilovoltampereHour,
-        MegavoltampereHour,
-        VoltampereHour,
+        KilovoltampereHour = 1,
+        MegavoltampereHour = 2,
+        VoltampereHour = 3,
     }
 
     #pragma warning restore 1591

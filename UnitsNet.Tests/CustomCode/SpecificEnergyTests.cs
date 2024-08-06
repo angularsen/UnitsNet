@@ -3,7 +3,7 @@
 
 using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     public class SpecificEnergyTests : SpecificEnergyTestsBase
     {
@@ -11,6 +11,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double JoulesPerKilogramInOneJoulePerKilogram => 1e0;
         protected override double KilojoulesPerKilogramInOneJoulePerKilogram => 1e-3;
         protected override double MegajoulesPerKilogramInOneJoulePerKilogram => 1e-6;
+        protected override double MegaJoulesPerTonneInOneJoulePerKilogram => 1e-3;
 
         protected override double BtuPerPoundInOneJoulePerKilogram => 4.299226e-4;
 
@@ -45,7 +46,6 @@ namespace UnitsNet.Tests.CustomCode
         protected override double GigawattDaysPerTonneInOneJoulePerKilogram => 1.15740741E-11;
         protected override double TerawattDaysPerTonneInOneJoulePerKilogram => 1.15740741E-14;
 
-
         [Fact]
         public void MassTimesSpecificEnergyEqualsEnergy()
         {
@@ -71,7 +71,7 @@ namespace UnitsNet.Tests.CustomCode
         public void SpecificEnergyTimesMassFlowEqualsPower()
         {
             Power power = SpecificEnergy.FromJoulesPerKilogram(10.0) * MassFlow.FromKilogramsPerSecond(20.0);
-            Assert.Equal(200d, power.Watts);
+            Assert.Equal(200m, power.Watts);
         }
 
         [Fact]
@@ -79,6 +79,13 @@ namespace UnitsNet.Tests.CustomCode
         {
             double value = SpecificEnergy.FromJoulesPerKilogram(10.0) * BrakeSpecificFuelConsumption.FromKilogramsPerJoule(20.0);
             Assert.Equal(200d, value);
+        }
+
+        [Fact]
+        public void SpecificEnergyDividedByTemperatureDeltaEqualsSpecificEntropy()
+        {
+            SpecificEntropy specificEntropy = SpecificEnergy.FromJoulesPerKilogram(4) / TemperatureDelta.FromKelvins(0.5);
+            Assert.Equal(SpecificEntropy.FromJoulesPerKilogramKelvin(8), specificEntropy);
         }
     }
 }

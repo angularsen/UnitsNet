@@ -46,6 +46,11 @@ namespace UnitsNet.Tests.CustomCode
         protected override double KilogramsPerMeterInOneKilogramPerMeter => 1;
         protected override double KilogramsPerMillimeterInOneKilogramPerMeter => 1e-3;
 
+        protected override double MicrogramsPerFootInOneKilogramPerMeter => 3.048e8;
+        protected override double MilligramsPerFootInOneKilogramPerMeter => 3.048e5;
+        protected override double GramsPerFootInOneKilogramPerMeter => 3.048e2;
+        protected override double KilogramsPerFootInOneKilogramPerMeter => 3.048e-1;
+
         protected override double PoundsPerInchInOneKilogramPerMeter => 5.599741459E-02;
 
         protected override double PoundsPerFootInOneKilogramPerMeter => 6.71968975e-1;
@@ -54,14 +59,21 @@ namespace UnitsNet.Tests.CustomCode
         public void LinearDensityDividedByAreaEqualsDensity()
         {
             Density density = LinearDensity.FromGramsPerCentimeter(10) / Area.FromSquareCentimeters(2);
-            Assert.Equal(Density.FromGramsPerCubicCentimeter(5), density);
+            Assert.Equal(5, density.GramsPerCubicCentimeter);
         }
 
         [Fact]
         public void LinearDensityDividedByDensityEqualsArea()
         {
             Area area = LinearDensity.FromGramsPerCentimeter(10) / Density.FromGramsPerCubicCentimeter(2);
-            Assert.Equal(Area.FromSquareCentimeters(5), area);
+            Assert.Equal(5, area.SquareCentimeters);
+        }
+
+        [Fact]
+        public void LinearDensityTimesLengthEqualsMass()
+        {
+            Mass mass = LinearDensity.FromGramsPerCentimeter(10) * Length.FromCentimeters(2);
+            Assert.Equal(20, mass.Grams);
         }
     }
 }

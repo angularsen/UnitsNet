@@ -18,7 +18,7 @@ namespace UnitsNet.Tests
         public static void CreatingQuantityWithDecimalBackingFieldFromDecimalReturnsCorrectValue()
         {
             Power power = Power.FromWatts(1m);
-            Assert.Equal(1.0, power.Watts);
+            Assert.Equal(1.0m, power.Watts);
         }
     }
 }

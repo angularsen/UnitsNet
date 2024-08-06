@@ -1,7 +1,7 @@
 {
   "Name": "VolumetricHeatCapacity",
   "BaseUnit": "JoulePerCubicMeterKelvin",
-  "XmlDoc": "The volumetric heat capacity is the amount of energy that must be added, in the form of heat, to one unit of volume of the material in order to cause an increase of one unit in its temperature.",
+  "XmlDocSummary": "The volumetric heat capacity is the amount of energy that must be added, in the form of heat, to one unit of volume of the material in order to cause an increase of one unit in its temperature.",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Volumetric_heat_capacity",
   "BaseDimensions": {
     "M": 1,

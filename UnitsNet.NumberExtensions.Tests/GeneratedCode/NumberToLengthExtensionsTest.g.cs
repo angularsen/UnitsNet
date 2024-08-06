@@ -65,8 +65,16 @@ namespace UnitsNet.Tests
             Assert.Equal(Length.FromFathoms(2), 2.Fathoms());
 
         [Fact]
+        public void NumberToFemtometersTest() =>
+            Assert.Equal(Length.FromFemtometers(2), 2.Femtometers());
+
+        [Fact]
         public void NumberToFeetTest() =>
             Assert.Equal(Length.FromFeet(2), 2.Feet());
+
+        [Fact]
+        public void NumberToGigametersTest() =>
+            Assert.Equal(Length.FromGigameters(2), 2.Gigameters());
 
         [Fact]
         public void NumberToHandsTest() =>
@@ -81,6 +89,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Length.FromInches(2), 2.Inches());
 
         [Fact]
+        public void NumberToKilofeetTest() =>
+            Assert.Equal(Length.FromKilofeet(2), 2.Kilofeet());
+
+        [Fact]
         public void NumberToKilolightYearsTest() =>
             Assert.Equal(Length.FromKilolightYears(2), 2.KilolightYears());
 
@@ -93,12 +105,20 @@ namespace UnitsNet.Tests
             Assert.Equal(Length.FromKiloparsecs(2), 2.Kiloparsecs());
 
         [Fact]
+        public void NumberToKiloyardsTest() =>
+            Assert.Equal(Length.FromKiloyards(2), 2.Kiloyards());
+
+        [Fact]
         public void NumberToLightYearsTest() =>
             Assert.Equal(Length.FromLightYears(2), 2.LightYears());
 
         [Fact]
         public void NumberToMegalightYearsTest() =>
             Assert.Equal(Length.FromMegalightYears(2), 2.MegalightYears());
+
+        [Fact]
+        public void NumberToMegametersTest() =>
+            Assert.Equal(Length.FromMegameters(2), 2.Megameters());
 
         [Fact]
         public void NumberToMegaparsecsTest() =>
@@ -139,6 +159,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToParsecsTest() =>
             Assert.Equal(Length.FromParsecs(2), 2.Parsecs());
+
+        [Fact]
+        public void NumberToPicometersTest() =>
+            Assert.Equal(Length.FromPicometers(2), 2.Picometers());
 
         [Fact]
         public void NumberToPrinterPicasTest() =>

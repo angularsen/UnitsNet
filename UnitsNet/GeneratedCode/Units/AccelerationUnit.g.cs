@@ -25,21 +25,20 @@ namespace UnitsNet.Units
 
     public enum AccelerationUnit
     {
-        Undefined = 0,
-        CentimeterPerSecondSquared,
-        DecimeterPerSecondSquared,
-        FootPerSecondSquared,
-        InchPerSecondSquared,
-        KilometerPerSecondSquared,
-        KnotPerHour,
-        KnotPerMinute,
-        KnotPerSecond,
-        MeterPerSecondSquared,
-        MicrometerPerSecondSquared,
-        MillimeterPerSecondSquared,
-        MillistandardGravity,
-        NanometerPerSecondSquared,
-        StandardGravity,
+        CentimeterPerSecondSquared = 1,
+        DecimeterPerSecondSquared = 2,
+        FootPerSecondSquared = 3,
+        InchPerSecondSquared = 4,
+        KilometerPerSecondSquared = 5,
+        KnotPerHour = 6,
+        KnotPerMinute = 7,
+        KnotPerSecond = 8,
+        MeterPerSecondSquared = 9,
+        MicrometerPerSecondSquared = 10,
+        MillimeterPerSecondSquared = 11,
+        MillistandardGravity = 12,
+        NanometerPerSecondSquared = 13,
+        StandardGravity = 14,
     }
 
     #pragma warning restore 1591

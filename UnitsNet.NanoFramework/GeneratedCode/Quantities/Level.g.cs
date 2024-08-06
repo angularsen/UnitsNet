@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of Level, which is Second. All conversions go via this value.
         /// </summary>
         public static LevelUnit BaseUnit { get; } = LevelUnit.Decibel;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of Level.
         /// </summary>
         public static Level MaxValue { get; } = new Level(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of Level.
         /// </summary>
         public static Level MinValue { get; } = new Level(double.MinValue, BaseUnit);
 
@@ -118,55 +118,55 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(LevelUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(LevelUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public Level ToUnit(LevelUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new Level(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Level to another Level with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Level with the specified unit.</returns>
+                public Level ToUnit(LevelUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new Level(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                LevelUnit.Decibel => _value,
-                LevelUnit.Neper => (1 / 0.115129254) * _value,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        LevelUnit.Decibel => _value,
+                        LevelUnit.Neper => (1 / 0.115129254) * _value,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(LevelUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(LevelUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                LevelUnit.Decibel => baseUnitValue,
-                LevelUnit.Neper => 0.115129254 * baseUnitValue,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        LevelUnit.Decibel => baseUnitValue,
+                        LevelUnit.Neper => 0.115129254 * baseUnitValue,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of VolumeFlow, which is Second. All conversions go via this value.
         /// </summary>
         public static VolumeFlowUnit BaseUnit { get; } = VolumeFlowUnit.CubicMeterPerSecond;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of VolumeFlow.
         /// </summary>
         public static VolumeFlow MaxValue { get; } = new VolumeFlow(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of VolumeFlow.
         /// </summary>
         public static VolumeFlow MinValue { get; } = new VolumeFlow(double.MinValue, BaseUnit);
 
@@ -190,6 +190,26 @@ namespace UnitsNet
         public double CubicYardsPerSecond => As(VolumeFlowUnit.CubicYardPerSecond);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.DecaliterPerDay"/>
+        /// </summary>
+        public double DecalitersPerDay => As(VolumeFlowUnit.DecaliterPerDay);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.DecaliterPerHour"/>
+        /// </summary>
+        public double DecalitersPerHour => As(VolumeFlowUnit.DecaliterPerHour);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.DecaliterPerMinute"/>
+        /// </summary>
+        public double DecalitersPerMinute => As(VolumeFlowUnit.DecaliterPerMinute);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.DecaliterPerSecond"/>
+        /// </summary>
+        public double DecalitersPerSecond => As(VolumeFlowUnit.DecaliterPerSecond);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.DeciliterPerDay"/>
         /// </summary>
         public double DecilitersPerDay => As(VolumeFlowUnit.DeciliterPerDay);
@@ -208,6 +228,26 @@ namespace UnitsNet
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.DeciliterPerSecond"/>
         /// </summary>
         public double DecilitersPerSecond => As(VolumeFlowUnit.DeciliterPerSecond);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.HectoliterPerDay"/>
+        /// </summary>
+        public double HectolitersPerDay => As(VolumeFlowUnit.HectoliterPerDay);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.HectoliterPerHour"/>
+        /// </summary>
+        public double HectolitersPerHour => As(VolumeFlowUnit.HectoliterPerHour);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.HectoliterPerMinute"/>
+        /// </summary>
+        public double HectolitersPerMinute => As(VolumeFlowUnit.HectoliterPerMinute);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.HectoliterPerSecond"/>
+        /// </summary>
+        public double HectolitersPerSecond => As(VolumeFlowUnit.HectoliterPerSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.KiloliterPerDay"/>
@@ -260,9 +300,34 @@ namespace UnitsNet
         public double MegalitersPerDay => As(VolumeFlowUnit.MegaliterPerDay);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.MegaliterPerHour"/>
+        /// </summary>
+        public double MegalitersPerHour => As(VolumeFlowUnit.MegaliterPerHour);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.MegaliterPerMinute"/>
+        /// </summary>
+        public double MegalitersPerMinute => As(VolumeFlowUnit.MegaliterPerMinute);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.MegaliterPerSecond"/>
+        /// </summary>
+        public double MegalitersPerSecond => As(VolumeFlowUnit.MegaliterPerSecond);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.MegaukGallonPerDay"/>
+        /// </summary>
+        public double MegaukGallonsPerDay => As(VolumeFlowUnit.MegaukGallonPerDay);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.MegaukGallonPerSecond"/>
         /// </summary>
         public double MegaukGallonsPerSecond => As(VolumeFlowUnit.MegaukGallonPerSecond);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.MegausGallonPerDay"/>
+        /// </summary>
+        public double MegausGallonsPerDay => As(VolumeFlowUnit.MegausGallonPerDay);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.MicroliterPerDay"/>
@@ -305,9 +370,9 @@ namespace UnitsNet
         public double MillilitersPerSecond => As(VolumeFlowUnit.MilliliterPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.MillionUsGallonsPerDay"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.MillionUsGallonPerDay"/>
         /// </summary>
-        public double MillionUsGallonsPerDay => As(VolumeFlowUnit.MillionUsGallonsPerDay);
+        public double MillionUsGallonsPerDay => As(VolumeFlowUnit.MillionUsGallonPerDay);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.NanoliterPerDay"/>
@@ -526,6 +591,30 @@ namespace UnitsNet
         public static VolumeFlow FromCubicYardsPerSecond(double cubicyardspersecond) => new VolumeFlow(cubicyardspersecond, VolumeFlowUnit.CubicYardPerSecond);
 
         /// <summary>
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.DecaliterPerDay"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumeFlow FromDecalitersPerDay(double decalitersperday) => new VolumeFlow(decalitersperday, VolumeFlowUnit.DecaliterPerDay);
+
+        /// <summary>
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.DecaliterPerHour"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumeFlow FromDecalitersPerHour(double decalitersperhour) => new VolumeFlow(decalitersperhour, VolumeFlowUnit.DecaliterPerHour);
+
+        /// <summary>
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.DecaliterPerMinute"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumeFlow FromDecalitersPerMinute(double decalitersperminute) => new VolumeFlow(decalitersperminute, VolumeFlowUnit.DecaliterPerMinute);
+
+        /// <summary>
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.DecaliterPerSecond"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumeFlow FromDecalitersPerSecond(double decaliterspersecond) => new VolumeFlow(decaliterspersecond, VolumeFlowUnit.DecaliterPerSecond);
+
+        /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.DeciliterPerDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -548,6 +637,30 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeFlow FromDecilitersPerSecond(double deciliterspersecond) => new VolumeFlow(deciliterspersecond, VolumeFlowUnit.DeciliterPerSecond);
+
+        /// <summary>
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.HectoliterPerDay"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumeFlow FromHectolitersPerDay(double hectolitersperday) => new VolumeFlow(hectolitersperday, VolumeFlowUnit.HectoliterPerDay);
+
+        /// <summary>
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.HectoliterPerHour"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumeFlow FromHectolitersPerHour(double hectolitersperhour) => new VolumeFlow(hectolitersperhour, VolumeFlowUnit.HectoliterPerHour);
+
+        /// <summary>
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.HectoliterPerMinute"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumeFlow FromHectolitersPerMinute(double hectolitersperminute) => new VolumeFlow(hectolitersperminute, VolumeFlowUnit.HectoliterPerMinute);
+
+        /// <summary>
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.HectoliterPerSecond"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumeFlow FromHectolitersPerSecond(double hectoliterspersecond) => new VolumeFlow(hectoliterspersecond, VolumeFlowUnit.HectoliterPerSecond);
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.KiloliterPerDay"/>.
@@ -610,10 +723,40 @@ namespace UnitsNet
         public static VolumeFlow FromMegalitersPerDay(double megalitersperday) => new VolumeFlow(megalitersperday, VolumeFlowUnit.MegaliterPerDay);
 
         /// <summary>
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MegaliterPerHour"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumeFlow FromMegalitersPerHour(double megalitersperhour) => new VolumeFlow(megalitersperhour, VolumeFlowUnit.MegaliterPerHour);
+
+        /// <summary>
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MegaliterPerMinute"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumeFlow FromMegalitersPerMinute(double megalitersperminute) => new VolumeFlow(megalitersperminute, VolumeFlowUnit.MegaliterPerMinute);
+
+        /// <summary>
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MegaliterPerSecond"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumeFlow FromMegalitersPerSecond(double megaliterspersecond) => new VolumeFlow(megaliterspersecond, VolumeFlowUnit.MegaliterPerSecond);
+
+        /// <summary>
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MegaukGallonPerDay"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumeFlow FromMegaukGallonsPerDay(double megaukgallonsperday) => new VolumeFlow(megaukgallonsperday, VolumeFlowUnit.MegaukGallonPerDay);
+
+        /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MegaukGallonPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeFlow FromMegaukGallonsPerSecond(double megaukgallonspersecond) => new VolumeFlow(megaukgallonspersecond, VolumeFlowUnit.MegaukGallonPerSecond);
+
+        /// <summary>
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MegausGallonPerDay"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumeFlow FromMegausGallonsPerDay(double megausgallonsperday) => new VolumeFlow(megausgallonsperday, VolumeFlowUnit.MegausGallonPerDay);
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MicroliterPerDay"/>.
@@ -664,10 +807,10 @@ namespace UnitsNet
         public static VolumeFlow FromMillilitersPerSecond(double milliliterspersecond) => new VolumeFlow(milliliterspersecond, VolumeFlowUnit.MilliliterPerSecond);
 
         /// <summary>
-        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MillionUsGallonsPerDay"/>.
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.MillionUsGallonPerDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static VolumeFlow FromMillionUsGallonsPerDay(double millionusgallonsperday) => new VolumeFlow(millionusgallonsperday, VolumeFlowUnit.MillionUsGallonsPerDay);
+        public static VolumeFlow FromMillionUsGallonsPerDay(double millionusgallonsperday) => new VolumeFlow(millionusgallonsperday, VolumeFlowUnit.MillionUsGallonPerDay);
 
         /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.NanoliterPerDay"/>.
@@ -778,175 +921,201 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(VolumeFlowUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(VolumeFlowUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public VolumeFlow ToUnit(VolumeFlowUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new VolumeFlow(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this VolumeFlow to another VolumeFlow with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A VolumeFlow with the specified unit.</returns>
+                public VolumeFlow ToUnit(VolumeFlowUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new VolumeFlow(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                VolumeFlowUnit.AcreFootPerDay => _value / 70.0457,
-                VolumeFlowUnit.AcreFootPerHour => _value / 2.91857,
-                VolumeFlowUnit.AcreFootPerMinute => _value / 0.0486427916,
-                VolumeFlowUnit.AcreFootPerSecond => _value / 0.000810713194,
-                VolumeFlowUnit.CentiliterPerDay => (_value / 86400000) * 1e-2d,
-                VolumeFlowUnit.CentiliterPerHour => (_value / 3600000.000) * 1e-2d,
-                VolumeFlowUnit.CentiliterPerMinute => (_value / 60000.00000) * 1e-2d,
-                VolumeFlowUnit.CentiliterPerSecond => (_value / 1000) * 1e-2d,
-                VolumeFlowUnit.CubicCentimeterPerMinute => _value * 1.6666666666667e-8,
-                VolumeFlowUnit.CubicDecimeterPerMinute => _value / 60000.00000,
-                VolumeFlowUnit.CubicFootPerHour => _value * 7.8657907199999087346816086183876e-6,
-                VolumeFlowUnit.CubicFootPerMinute => _value / 2118.88000326,
-                VolumeFlowUnit.CubicFootPerSecond => _value / 35.314666721,
-                VolumeFlowUnit.CubicMeterPerDay => _value / 86400,
-                VolumeFlowUnit.CubicMeterPerHour => _value / 3600,
-                VolumeFlowUnit.CubicMeterPerMinute => _value / 60,
-                VolumeFlowUnit.CubicMeterPerSecond => _value,
-                VolumeFlowUnit.CubicMillimeterPerSecond => _value * 1e-9,
-                VolumeFlowUnit.CubicYardPerDay => _value / 113007,
-                VolumeFlowUnit.CubicYardPerHour => _value * 2.1237634944E-4,
-                VolumeFlowUnit.CubicYardPerMinute => _value * 0.0127425809664,
-                VolumeFlowUnit.CubicYardPerSecond => _value * 0.764554857984,
-                VolumeFlowUnit.DeciliterPerDay => (_value / 86400000) * 1e-1d,
-                VolumeFlowUnit.DeciliterPerHour => (_value / 3600000.000) * 1e-1d,
-                VolumeFlowUnit.DeciliterPerMinute => (_value / 60000.00000) * 1e-1d,
-                VolumeFlowUnit.DeciliterPerSecond => (_value / 1000) * 1e-1d,
-                VolumeFlowUnit.KiloliterPerDay => (_value / 86400000) * 1e3d,
-                VolumeFlowUnit.KiloliterPerHour => (_value / 3600000.000) * 1e3d,
-                VolumeFlowUnit.KiloliterPerMinute => (_value / 60000.00000) * 1e3d,
-                VolumeFlowUnit.KiloliterPerSecond => (_value / 1000) * 1e3d,
-                VolumeFlowUnit.KilousGallonPerMinute => _value / 15.850323141489,
-                VolumeFlowUnit.LiterPerDay => _value / 86400000,
-                VolumeFlowUnit.LiterPerHour => _value / 3600000.000,
-                VolumeFlowUnit.LiterPerMinute => _value / 60000.00000,
-                VolumeFlowUnit.LiterPerSecond => _value / 1000,
-                VolumeFlowUnit.MegaliterPerDay => (_value / 86400000) * 1e6d,
-                VolumeFlowUnit.MegaukGallonPerSecond => (_value / 219.969) * 1e6d,
-                VolumeFlowUnit.MicroliterPerDay => (_value / 86400000) * 1e-6d,
-                VolumeFlowUnit.MicroliterPerHour => (_value / 3600000.000) * 1e-6d,
-                VolumeFlowUnit.MicroliterPerMinute => (_value / 60000.00000) * 1e-6d,
-                VolumeFlowUnit.MicroliterPerSecond => (_value / 1000) * 1e-6d,
-                VolumeFlowUnit.MilliliterPerDay => (_value / 86400000) * 1e-3d,
-                VolumeFlowUnit.MilliliterPerHour => (_value / 3600000.000) * 1e-3d,
-                VolumeFlowUnit.MilliliterPerMinute => (_value / 60000.00000) * 1e-3d,
-                VolumeFlowUnit.MilliliterPerSecond => (_value / 1000) * 1e-3d,
-                VolumeFlowUnit.MillionUsGallonsPerDay => _value / 22.824465227,
-                VolumeFlowUnit.NanoliterPerDay => (_value / 86400000) * 1e-9d,
-                VolumeFlowUnit.NanoliterPerHour => (_value / 3600000.000) * 1e-9d,
-                VolumeFlowUnit.NanoliterPerMinute => (_value / 60000.00000) * 1e-9d,
-                VolumeFlowUnit.NanoliterPerSecond => (_value / 1000) * 1e-9d,
-                VolumeFlowUnit.OilBarrelPerDay => _value * 1.8401307283333333333333333333333e-6,
-                VolumeFlowUnit.OilBarrelPerHour => _value * 4.41631375e-5,
-                VolumeFlowUnit.OilBarrelPerMinute => _value * 2.64978825e-3,
-                VolumeFlowUnit.OilBarrelPerSecond => _value / 6.28981,
-                VolumeFlowUnit.UkGallonPerDay => _value / 19005304,
-                VolumeFlowUnit.UkGallonPerHour => _value / 791887.667,
-                VolumeFlowUnit.UkGallonPerMinute => _value / 13198.2,
-                VolumeFlowUnit.UkGallonPerSecond => _value / 219.969,
-                VolumeFlowUnit.UsGallonPerDay => _value / 22824465.227,
-                VolumeFlowUnit.UsGallonPerHour => _value / 951019.38848933424,
-                VolumeFlowUnit.UsGallonPerMinute => _value / 15850.323141489,
-                VolumeFlowUnit.UsGallonPerSecond => _value / 264.1720523581484,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        VolumeFlowUnit.AcreFootPerDay => _value / 70.0457,
+                        VolumeFlowUnit.AcreFootPerHour => _value / 2.91857,
+                        VolumeFlowUnit.AcreFootPerMinute => _value / 0.0486427916,
+                        VolumeFlowUnit.AcreFootPerSecond => _value / 0.000810713194,
+                        VolumeFlowUnit.CentiliterPerDay => (_value / 86400000) * 1e-2d,
+                        VolumeFlowUnit.CentiliterPerHour => (_value / 3600000.000) * 1e-2d,
+                        VolumeFlowUnit.CentiliterPerMinute => (_value / 60000.00000) * 1e-2d,
+                        VolumeFlowUnit.CentiliterPerSecond => (_value / 1000) * 1e-2d,
+                        VolumeFlowUnit.CubicCentimeterPerMinute => _value * 1.6666666666667e-8,
+                        VolumeFlowUnit.CubicDecimeterPerMinute => _value / 60000.00000,
+                        VolumeFlowUnit.CubicFootPerHour => _value * 7.8657907199999087346816086183876e-6,
+                        VolumeFlowUnit.CubicFootPerMinute => _value / 2118.88000326,
+                        VolumeFlowUnit.CubicFootPerSecond => _value / 35.314666721,
+                        VolumeFlowUnit.CubicMeterPerDay => _value / 86400,
+                        VolumeFlowUnit.CubicMeterPerHour => _value / 3600,
+                        VolumeFlowUnit.CubicMeterPerMinute => _value / 60,
+                        VolumeFlowUnit.CubicMeterPerSecond => _value,
+                        VolumeFlowUnit.CubicMillimeterPerSecond => _value * 1e-9,
+                        VolumeFlowUnit.CubicYardPerDay => _value / 113007,
+                        VolumeFlowUnit.CubicYardPerHour => _value * 2.1237634944E-4,
+                        VolumeFlowUnit.CubicYardPerMinute => _value * 0.0127425809664,
+                        VolumeFlowUnit.CubicYardPerSecond => _value * 0.764554857984,
+                        VolumeFlowUnit.DecaliterPerDay => (_value / 86400000) * 1e1d,
+                        VolumeFlowUnit.DecaliterPerHour => (_value / 3600000.000) * 1e1d,
+                        VolumeFlowUnit.DecaliterPerMinute => (_value / 60000.00000) * 1e1d,
+                        VolumeFlowUnit.DecaliterPerSecond => (_value / 1000) * 1e1d,
+                        VolumeFlowUnit.DeciliterPerDay => (_value / 86400000) * 1e-1d,
+                        VolumeFlowUnit.DeciliterPerHour => (_value / 3600000.000) * 1e-1d,
+                        VolumeFlowUnit.DeciliterPerMinute => (_value / 60000.00000) * 1e-1d,
+                        VolumeFlowUnit.DeciliterPerSecond => (_value / 1000) * 1e-1d,
+                        VolumeFlowUnit.HectoliterPerDay => (_value / 86400000) * 1e2d,
+                        VolumeFlowUnit.HectoliterPerHour => (_value / 3600000.000) * 1e2d,
+                        VolumeFlowUnit.HectoliterPerMinute => (_value / 60000.00000) * 1e2d,
+                        VolumeFlowUnit.HectoliterPerSecond => (_value / 1000) * 1e2d,
+                        VolumeFlowUnit.KiloliterPerDay => (_value / 86400000) * 1e3d,
+                        VolumeFlowUnit.KiloliterPerHour => (_value / 3600000.000) * 1e3d,
+                        VolumeFlowUnit.KiloliterPerMinute => (_value / 60000.00000) * 1e3d,
+                        VolumeFlowUnit.KiloliterPerSecond => (_value / 1000) * 1e3d,
+                        VolumeFlowUnit.KilousGallonPerMinute => _value / 15.850323141489,
+                        VolumeFlowUnit.LiterPerDay => _value / 86400000,
+                        VolumeFlowUnit.LiterPerHour => _value / 3600000.000,
+                        VolumeFlowUnit.LiterPerMinute => _value / 60000.00000,
+                        VolumeFlowUnit.LiterPerSecond => _value / 1000,
+                        VolumeFlowUnit.MegaliterPerDay => (_value / 86400000) * 1e6d,
+                        VolumeFlowUnit.MegaliterPerHour => (_value / 3600000.000) * 1e6d,
+                        VolumeFlowUnit.MegaliterPerMinute => (_value / 60000.00000) * 1e6d,
+                        VolumeFlowUnit.MegaliterPerSecond => (_value / 1000) * 1e6d,
+                        VolumeFlowUnit.MegaukGallonPerDay => (_value / 19005304) * 1e6d,
+                        VolumeFlowUnit.MegaukGallonPerSecond => (_value / 219.969) * 1e6d,
+                        VolumeFlowUnit.MegausGallonPerDay => (_value / 22824465.227) * 1e6d,
+                        VolumeFlowUnit.MicroliterPerDay => (_value / 86400000) * 1e-6d,
+                        VolumeFlowUnit.MicroliterPerHour => (_value / 3600000.000) * 1e-6d,
+                        VolumeFlowUnit.MicroliterPerMinute => (_value / 60000.00000) * 1e-6d,
+                        VolumeFlowUnit.MicroliterPerSecond => (_value / 1000) * 1e-6d,
+                        VolumeFlowUnit.MilliliterPerDay => (_value / 86400000) * 1e-3d,
+                        VolumeFlowUnit.MilliliterPerHour => (_value / 3600000.000) * 1e-3d,
+                        VolumeFlowUnit.MilliliterPerMinute => (_value / 60000.00000) * 1e-3d,
+                        VolumeFlowUnit.MilliliterPerSecond => (_value / 1000) * 1e-3d,
+                        VolumeFlowUnit.MillionUsGallonPerDay => _value / 22.824465227,
+                        VolumeFlowUnit.NanoliterPerDay => (_value / 86400000) * 1e-9d,
+                        VolumeFlowUnit.NanoliterPerHour => (_value / 3600000.000) * 1e-9d,
+                        VolumeFlowUnit.NanoliterPerMinute => (_value / 60000.00000) * 1e-9d,
+                        VolumeFlowUnit.NanoliterPerSecond => (_value / 1000) * 1e-9d,
+                        VolumeFlowUnit.OilBarrelPerDay => _value * 1.8401307283333333333333333333333e-6,
+                        VolumeFlowUnit.OilBarrelPerHour => _value * 4.41631375e-5,
+                        VolumeFlowUnit.OilBarrelPerMinute => _value * 2.64978825e-3,
+                        VolumeFlowUnit.OilBarrelPerSecond => _value / 6.28981,
+                        VolumeFlowUnit.UkGallonPerDay => _value / 19005304,
+                        VolumeFlowUnit.UkGallonPerHour => _value / 791887.667,
+                        VolumeFlowUnit.UkGallonPerMinute => _value / 13198.2,
+                        VolumeFlowUnit.UkGallonPerSecond => _value / 219.969,
+                        VolumeFlowUnit.UsGallonPerDay => _value / 22824465.227,
+                        VolumeFlowUnit.UsGallonPerHour => _value / 951019.38848933424,
+                        VolumeFlowUnit.UsGallonPerMinute => _value / 15850.323141489,
+                        VolumeFlowUnit.UsGallonPerSecond => _value / 264.1720523581484,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(VolumeFlowUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(VolumeFlowUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                VolumeFlowUnit.AcreFootPerDay => baseUnitValue * 70.0457,
-                VolumeFlowUnit.AcreFootPerHour => baseUnitValue * 2.91857,
-                VolumeFlowUnit.AcreFootPerMinute => baseUnitValue * 0.0486427916,
-                VolumeFlowUnit.AcreFootPerSecond => baseUnitValue * 0.000810713194,
-                VolumeFlowUnit.CentiliterPerDay => (baseUnitValue * 86400000) / 1e-2d,
-                VolumeFlowUnit.CentiliterPerHour => (baseUnitValue * 3600000.000) / 1e-2d,
-                VolumeFlowUnit.CentiliterPerMinute => (baseUnitValue * 60000.00000) / 1e-2d,
-                VolumeFlowUnit.CentiliterPerSecond => (baseUnitValue * 1000) / 1e-2d,
-                VolumeFlowUnit.CubicCentimeterPerMinute => baseUnitValue / 1.6666666666667e-8,
-                VolumeFlowUnit.CubicDecimeterPerMinute => baseUnitValue * 60000.00000,
-                VolumeFlowUnit.CubicFootPerHour => baseUnitValue / 7.8657907199999087346816086183876e-6,
-                VolumeFlowUnit.CubicFootPerMinute => baseUnitValue * 2118.88000326,
-                VolumeFlowUnit.CubicFootPerSecond => baseUnitValue * 35.314666721,
-                VolumeFlowUnit.CubicMeterPerDay => baseUnitValue * 86400,
-                VolumeFlowUnit.CubicMeterPerHour => baseUnitValue * 3600,
-                VolumeFlowUnit.CubicMeterPerMinute => baseUnitValue * 60,
-                VolumeFlowUnit.CubicMeterPerSecond => baseUnitValue,
-                VolumeFlowUnit.CubicMillimeterPerSecond => baseUnitValue / 1e-9,
-                VolumeFlowUnit.CubicYardPerDay => baseUnitValue * 113007,
-                VolumeFlowUnit.CubicYardPerHour => baseUnitValue / 2.1237634944E-4,
-                VolumeFlowUnit.CubicYardPerMinute => baseUnitValue / 0.0127425809664,
-                VolumeFlowUnit.CubicYardPerSecond => baseUnitValue / 0.764554857984,
-                VolumeFlowUnit.DeciliterPerDay => (baseUnitValue * 86400000) / 1e-1d,
-                VolumeFlowUnit.DeciliterPerHour => (baseUnitValue * 3600000.000) / 1e-1d,
-                VolumeFlowUnit.DeciliterPerMinute => (baseUnitValue * 60000.00000) / 1e-1d,
-                VolumeFlowUnit.DeciliterPerSecond => (baseUnitValue * 1000) / 1e-1d,
-                VolumeFlowUnit.KiloliterPerDay => (baseUnitValue * 86400000) / 1e3d,
-                VolumeFlowUnit.KiloliterPerHour => (baseUnitValue * 3600000.000) / 1e3d,
-                VolumeFlowUnit.KiloliterPerMinute => (baseUnitValue * 60000.00000) / 1e3d,
-                VolumeFlowUnit.KiloliterPerSecond => (baseUnitValue * 1000) / 1e3d,
-                VolumeFlowUnit.KilousGallonPerMinute => baseUnitValue * 15.850323141489,
-                VolumeFlowUnit.LiterPerDay => baseUnitValue * 86400000,
-                VolumeFlowUnit.LiterPerHour => baseUnitValue * 3600000.000,
-                VolumeFlowUnit.LiterPerMinute => baseUnitValue * 60000.00000,
-                VolumeFlowUnit.LiterPerSecond => baseUnitValue * 1000,
-                VolumeFlowUnit.MegaliterPerDay => (baseUnitValue * 86400000) / 1e6d,
-                VolumeFlowUnit.MegaukGallonPerSecond => (baseUnitValue * 219.969) / 1e6d,
-                VolumeFlowUnit.MicroliterPerDay => (baseUnitValue * 86400000) / 1e-6d,
-                VolumeFlowUnit.MicroliterPerHour => (baseUnitValue * 3600000.000) / 1e-6d,
-                VolumeFlowUnit.MicroliterPerMinute => (baseUnitValue * 60000.00000) / 1e-6d,
-                VolumeFlowUnit.MicroliterPerSecond => (baseUnitValue * 1000) / 1e-6d,
-                VolumeFlowUnit.MilliliterPerDay => (baseUnitValue * 86400000) / 1e-3d,
-                VolumeFlowUnit.MilliliterPerHour => (baseUnitValue * 3600000.000) / 1e-3d,
-                VolumeFlowUnit.MilliliterPerMinute => (baseUnitValue * 60000.00000) / 1e-3d,
-                VolumeFlowUnit.MilliliterPerSecond => (baseUnitValue * 1000) / 1e-3d,
-                VolumeFlowUnit.MillionUsGallonsPerDay => baseUnitValue * 22.824465227,
-                VolumeFlowUnit.NanoliterPerDay => (baseUnitValue * 86400000) / 1e-9d,
-                VolumeFlowUnit.NanoliterPerHour => (baseUnitValue * 3600000.000) / 1e-9d,
-                VolumeFlowUnit.NanoliterPerMinute => (baseUnitValue * 60000.00000) / 1e-9d,
-                VolumeFlowUnit.NanoliterPerSecond => (baseUnitValue * 1000) / 1e-9d,
-                VolumeFlowUnit.OilBarrelPerDay => baseUnitValue / 1.8401307283333333333333333333333e-6,
-                VolumeFlowUnit.OilBarrelPerHour => baseUnitValue / 4.41631375e-5,
-                VolumeFlowUnit.OilBarrelPerMinute => baseUnitValue / 2.64978825e-3,
-                VolumeFlowUnit.OilBarrelPerSecond => baseUnitValue * 6.28981,
-                VolumeFlowUnit.UkGallonPerDay => baseUnitValue * 19005304,
-                VolumeFlowUnit.UkGallonPerHour => baseUnitValue * 791887.667,
-                VolumeFlowUnit.UkGallonPerMinute => baseUnitValue * 13198.2,
-                VolumeFlowUnit.UkGallonPerSecond => baseUnitValue * 219.969,
-                VolumeFlowUnit.UsGallonPerDay => baseUnitValue * 22824465.227,
-                VolumeFlowUnit.UsGallonPerHour => baseUnitValue * 951019.38848933424,
-                VolumeFlowUnit.UsGallonPerMinute => baseUnitValue * 15850.323141489,
-                VolumeFlowUnit.UsGallonPerSecond => baseUnitValue * 264.1720523581484,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        VolumeFlowUnit.AcreFootPerDay => baseUnitValue * 70.0457,
+                        VolumeFlowUnit.AcreFootPerHour => baseUnitValue * 2.91857,
+                        VolumeFlowUnit.AcreFootPerMinute => baseUnitValue * 0.0486427916,
+                        VolumeFlowUnit.AcreFootPerSecond => baseUnitValue * 0.000810713194,
+                        VolumeFlowUnit.CentiliterPerDay => (baseUnitValue * 86400000) / 1e-2d,
+                        VolumeFlowUnit.CentiliterPerHour => (baseUnitValue * 3600000.000) / 1e-2d,
+                        VolumeFlowUnit.CentiliterPerMinute => (baseUnitValue * 60000.00000) / 1e-2d,
+                        VolumeFlowUnit.CentiliterPerSecond => (baseUnitValue * 1000) / 1e-2d,
+                        VolumeFlowUnit.CubicCentimeterPerMinute => baseUnitValue / 1.6666666666667e-8,
+                        VolumeFlowUnit.CubicDecimeterPerMinute => baseUnitValue * 60000.00000,
+                        VolumeFlowUnit.CubicFootPerHour => baseUnitValue / 7.8657907199999087346816086183876e-6,
+                        VolumeFlowUnit.CubicFootPerMinute => baseUnitValue * 2118.88000326,
+                        VolumeFlowUnit.CubicFootPerSecond => baseUnitValue * 35.314666721,
+                        VolumeFlowUnit.CubicMeterPerDay => baseUnitValue * 86400,
+                        VolumeFlowUnit.CubicMeterPerHour => baseUnitValue * 3600,
+                        VolumeFlowUnit.CubicMeterPerMinute => baseUnitValue * 60,
+                        VolumeFlowUnit.CubicMeterPerSecond => baseUnitValue,
+                        VolumeFlowUnit.CubicMillimeterPerSecond => baseUnitValue / 1e-9,
+                        VolumeFlowUnit.CubicYardPerDay => baseUnitValue * 113007,
+                        VolumeFlowUnit.CubicYardPerHour => baseUnitValue / 2.1237634944E-4,
+                        VolumeFlowUnit.CubicYardPerMinute => baseUnitValue / 0.0127425809664,
+                        VolumeFlowUnit.CubicYardPerSecond => baseUnitValue / 0.764554857984,
+                        VolumeFlowUnit.DecaliterPerDay => (baseUnitValue * 86400000) / 1e1d,
+                        VolumeFlowUnit.DecaliterPerHour => (baseUnitValue * 3600000.000) / 1e1d,
+                        VolumeFlowUnit.DecaliterPerMinute => (baseUnitValue * 60000.00000) / 1e1d,
+                        VolumeFlowUnit.DecaliterPerSecond => (baseUnitValue * 1000) / 1e1d,
+                        VolumeFlowUnit.DeciliterPerDay => (baseUnitValue * 86400000) / 1e-1d,
+                        VolumeFlowUnit.DeciliterPerHour => (baseUnitValue * 3600000.000) / 1e-1d,
+                        VolumeFlowUnit.DeciliterPerMinute => (baseUnitValue * 60000.00000) / 1e-1d,
+                        VolumeFlowUnit.DeciliterPerSecond => (baseUnitValue * 1000) / 1e-1d,
+                        VolumeFlowUnit.HectoliterPerDay => (baseUnitValue * 86400000) / 1e2d,
+                        VolumeFlowUnit.HectoliterPerHour => (baseUnitValue * 3600000.000) / 1e2d,
+                        VolumeFlowUnit.HectoliterPerMinute => (baseUnitValue * 60000.00000) / 1e2d,
+                        VolumeFlowUnit.HectoliterPerSecond => (baseUnitValue * 1000) / 1e2d,
+                        VolumeFlowUnit.KiloliterPerDay => (baseUnitValue * 86400000) / 1e3d,
+                        VolumeFlowUnit.KiloliterPerHour => (baseUnitValue * 3600000.000) / 1e3d,
+                        VolumeFlowUnit.KiloliterPerMinute => (baseUnitValue * 60000.00000) / 1e3d,
+                        VolumeFlowUnit.KiloliterPerSecond => (baseUnitValue * 1000) / 1e3d,
+                        VolumeFlowUnit.KilousGallonPerMinute => baseUnitValue * 15.850323141489,
+                        VolumeFlowUnit.LiterPerDay => baseUnitValue * 86400000,
+                        VolumeFlowUnit.LiterPerHour => baseUnitValue * 3600000.000,
+                        VolumeFlowUnit.LiterPerMinute => baseUnitValue * 60000.00000,
+                        VolumeFlowUnit.LiterPerSecond => baseUnitValue * 1000,
+                        VolumeFlowUnit.MegaliterPerDay => (baseUnitValue * 86400000) / 1e6d,
+                        VolumeFlowUnit.MegaliterPerHour => (baseUnitValue * 3600000.000) / 1e6d,
+                        VolumeFlowUnit.MegaliterPerMinute => (baseUnitValue * 60000.00000) / 1e6d,
+                        VolumeFlowUnit.MegaliterPerSecond => (baseUnitValue * 1000) / 1e6d,
+                        VolumeFlowUnit.MegaukGallonPerDay => (baseUnitValue * 19005304) / 1e6d,
+                        VolumeFlowUnit.MegaukGallonPerSecond => (baseUnitValue * 219.969) / 1e6d,
+                        VolumeFlowUnit.MegausGallonPerDay => (baseUnitValue * 22824465.227) / 1e6d,
+                        VolumeFlowUnit.MicroliterPerDay => (baseUnitValue * 86400000) / 1e-6d,
+                        VolumeFlowUnit.MicroliterPerHour => (baseUnitValue * 3600000.000) / 1e-6d,
+                        VolumeFlowUnit.MicroliterPerMinute => (baseUnitValue * 60000.00000) / 1e-6d,
+                        VolumeFlowUnit.MicroliterPerSecond => (baseUnitValue * 1000) / 1e-6d,
+                        VolumeFlowUnit.MilliliterPerDay => (baseUnitValue * 86400000) / 1e-3d,
+                        VolumeFlowUnit.MilliliterPerHour => (baseUnitValue * 3600000.000) / 1e-3d,
+                        VolumeFlowUnit.MilliliterPerMinute => (baseUnitValue * 60000.00000) / 1e-3d,
+                        VolumeFlowUnit.MilliliterPerSecond => (baseUnitValue * 1000) / 1e-3d,
+                        VolumeFlowUnit.MillionUsGallonPerDay => baseUnitValue * 22.824465227,
+                        VolumeFlowUnit.NanoliterPerDay => (baseUnitValue * 86400000) / 1e-9d,
+                        VolumeFlowUnit.NanoliterPerHour => (baseUnitValue * 3600000.000) / 1e-9d,
+                        VolumeFlowUnit.NanoliterPerMinute => (baseUnitValue * 60000.00000) / 1e-9d,
+                        VolumeFlowUnit.NanoliterPerSecond => (baseUnitValue * 1000) / 1e-9d,
+                        VolumeFlowUnit.OilBarrelPerDay => baseUnitValue / 1.8401307283333333333333333333333e-6,
+                        VolumeFlowUnit.OilBarrelPerHour => baseUnitValue / 4.41631375e-5,
+                        VolumeFlowUnit.OilBarrelPerMinute => baseUnitValue / 2.64978825e-3,
+                        VolumeFlowUnit.OilBarrelPerSecond => baseUnitValue * 6.28981,
+                        VolumeFlowUnit.UkGallonPerDay => baseUnitValue * 19005304,
+                        VolumeFlowUnit.UkGallonPerHour => baseUnitValue * 791887.667,
+                        VolumeFlowUnit.UkGallonPerMinute => baseUnitValue * 13198.2,
+                        VolumeFlowUnit.UkGallonPerSecond => baseUnitValue * 219.969,
+                        VolumeFlowUnit.UsGallonPerDay => baseUnitValue * 22824465.227,
+                        VolumeFlowUnit.UsGallonPerHour => baseUnitValue * 951019.38848933424,
+                        VolumeFlowUnit.UsGallonPerMinute => baseUnitValue * 15850.323141489,
+                        VolumeFlowUnit.UsGallonPerSecond => baseUnitValue * 264.1720523581484,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

@@ -19,17 +19,17 @@ namespace CodeGen.Generators.NanoFrameworkGen
             _mathNuGetVersion = mathNuGetVersion;
         }
 
-        public override string Generate()
+        public string Generate()
         {
             Writer.WL($@"<?xml version=""1.0"" encoding=""utf-8""?>
 <package xmlns=""http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd"">
   <metadata>
     <id>UnitsNet.nanoFramework.{_quantity.Name}</id>
-    <version>4.132.0</version>
+    <version>5.55.0</version>
     <title>Units.NET {_quantity.Name} - nanoFramework</title>
-    <authors>Andreas Gullberg Larsen,nanoFramework project contributors</authors>
+    <authors>Andreas Gullberg Larsen,nanoframework</authors>
     <owners>UnitsNet</owners>
-    <license type=""expression"">MIT</license>
+    <license type=""expression"">MIT-0</license>
     <projectUrl>https://github.com/angularsen/UnitsNet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Adds {_quantity.Name} units for Units.NET on .NET nanoFramework. For .NET or .NET Core, use UnitsNet instead.</description>
@@ -38,7 +38,7 @@ namespace CodeGen.Generators.NanoFrameworkGen
     </releaseNotes>
     <copyright>Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).</copyright>
     <language>en-US</language>
-    <tags>nanoframework unit units measurement si metric imperial abbreviation abbreviations convert conversion parse c# .net immutable uwp uap winrt win10 windows runtime component {_quantity.Name.ToLower()}</tags>
+    <tags>nanoframework {_quantity.Name.ToLower()} unit units quantity quantities measurement si metric imperial abbreviation abbreviations convert conversion parse immutable</tags>
     <dependencies>
       <dependency id=""nanoFramework.CoreLibrary"" version=""{_mscorlibNuGetVersion}"" />");
 

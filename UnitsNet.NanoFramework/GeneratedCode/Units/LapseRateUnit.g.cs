@@ -25,8 +25,7 @@ namespace UnitsNet.Units
 
     public enum LapseRateUnit
     {
-        Undefined = 0,
-        DegreeCelsiusPerKilometer,
+        DegreeCelsiusPerKilometer = 1,
     }
 
     #pragma warning restore 1591

@@ -1,9 +1,11 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using CodeGen.Generators.UnitsNetGen;
+using CodeGen.Helpers.UnitEnumValueAllocation;
 using CodeGen.JsonTypes;
 using Serilog;
 
@@ -31,7 +33,8 @@ namespace CodeGen.Generators
         /// </summary>
         /// <param name="rootDir">Path to repository root directory.</param>
         /// <param name="quantities">The parsed quantities.</param>
-        public static void Generate(string rootDir, Quantity[] quantities)
+        /// <param name="quantityNameToUnitEnumValues">Allocated unit enum values for generating unit enum types.</param>
+        public static void Generate(string rootDir, Quantity[] quantities, QuantityNameToUnitEnumValues quantityNameToUnitEnumValues)
         {
             var outputDir = $"{rootDir}/UnitsNet/GeneratedCode";
             var extensionsOutputDir = $"{rootDir}/UnitsNet.NumberExtensions/GeneratedCode";
@@ -49,8 +52,10 @@ namespace CodeGen.Generators
 
             foreach (var quantity in quantities)
             {
+                UnitEnumNameToValue unitEnumValues = quantityNameToUnitEnumValues[quantity.Name];
+
                 GenerateQuantity(quantity, $"{outputDir}/Quantities/{quantity.Name}.g.cs");
-                GenerateUnitType(quantity, $"{outputDir}/Units/{quantity.Name}Unit.g.cs");
+                GenerateUnitType(quantity, $"{outputDir}/Units/{quantity.Name}Unit.g.cs", unitEnumValues);
                 GenerateNumberToExtensions(quantity, $"{extensionsOutputDir}/NumberTo{quantity.Name}Extensions.g.cs");
                 GenerateNumberToExtensionsTestClass(quantity, $"{extensionsTestOutputDir}/NumberTo{quantity.Name}ExtensionsTest.g.cs");
 
@@ -66,8 +71,8 @@ namespace CodeGen.Generators
 
             Log.Information("");
             GenerateIQuantityTests(quantities, $"{testProjectDir}/GeneratedCode/IQuantityTests.g.cs");
-            GenerateQuantityType(quantities, $"{outputDir}/QuantityType.g.cs");
             GenerateStaticQuantity(quantities, $"{outputDir}/Quantity.g.cs");
+            GenerateResourceFiles(quantities, $"{outputDir}/Resources");
 
             var unitCount = quantities.SelectMany(q => q.Units).Count();
             Log.Information("");
@@ -102,9 +107,9 @@ namespace CodeGen.Generators
             File.WriteAllText(filePath, content);
         }
 
-        private static void GenerateUnitType(Quantity quantity, string filePath)
+        private static void GenerateUnitType(Quantity quantity, string filePath, UnitEnumNameToValue unitEnumValues)
         {
-            var content = new UnitTypeGenerator(quantity).Generate();
+            var content = new UnitTypeGenerator(quantity, unitEnumValues).Generate();
             File.WriteAllText(filePath, content);
         }
 
@@ -121,18 +126,60 @@ namespace CodeGen.Generators
             Log.Information("✅ IQuantityTests.g.cs");
         }
 
-        private static void GenerateQuantityType(Quantity[] quantities, string filePath)
-        {
-            var content = new QuantityTypeGenerator(quantities).Generate();
-            File.WriteAllText(filePath, content);
-            Log.Information("✅ QuantityType.g.cs");
-        }
-
         private static void GenerateStaticQuantity(Quantity[] quantities, string filePath)
         {
             var content = new StaticQuantityGenerator(quantities).Generate();
             File.WriteAllText(filePath, content);
             Log.Information("✅ Quantity.g.cs");
+        }
+
+        private static void GenerateResourceFiles(Quantity[] quantities, string resourcesDirectory)
+        {
+            foreach(var quantity in quantities)
+            {
+                var cultures = new HashSet<string>();
+
+                foreach(Unit unit in quantity.Units)
+                {
+                    foreach(Localization localization in unit.Localization)
+                    {
+                        cultures.Add(localization.Culture);
+                    }
+                }
+
+                foreach(var culture in cultures)
+                {
+                    var fileName = culture.Equals("en-US", System.StringComparison.InvariantCultureIgnoreCase) ?
+                        $"{resourcesDirectory}/{quantity.Name}.restext" :
+                        $"{resourcesDirectory}/{quantity.Name}.{culture}.restext";
+
+                    using var writer = File.CreateText(fileName);
+
+                    foreach(Unit unit in quantity.Units)
+                    {
+                        foreach(Localization localization in unit.Localization)
+                        {
+                            if(localization.Culture == culture)
+                            {
+                                if(localization.Abbreviations.Any())
+                                {
+                                    writer.Write($"{unit.PluralName}=");
+
+                                    for(int i = 0; i < localization.Abbreviations.Length; i++)
+                                    {
+                                        writer.Write($"{localization.Abbreviations[i]}");
+
+                                        if(i != localization.Abbreviations.Length - 1)
+                                            writer.Write(",");
+                                    }
+
+                                    writer.WriteLine();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

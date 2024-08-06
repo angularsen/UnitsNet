@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of ForcePerLength, which is Second. All conversions go via this value.
         /// </summary>
         public static ForcePerLengthUnit BaseUnit { get; } = ForcePerLengthUnit.NewtonPerMeter;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of ForcePerLength.
         /// </summary>
         public static ForcePerLength MaxValue { get; } = new ForcePerLength(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of ForcePerLength.
         /// </summary>
         public static ForcePerLength MinValue { get; } = new ForcePerLength(double.MinValue, BaseUnit);
 
@@ -514,127 +514,127 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(ForcePerLengthUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(ForcePerLengthUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public ForcePerLength ToUnit(ForcePerLengthUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new ForcePerLength(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this ForcePerLength to another ForcePerLength with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A ForcePerLength with the specified unit.</returns>
+                public ForcePerLength ToUnit(ForcePerLengthUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new ForcePerLength(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                ForcePerLengthUnit.CentinewtonPerCentimeter => (_value * 1e2) * 1e-2d,
-                ForcePerLengthUnit.CentinewtonPerMeter => (_value) * 1e-2d,
-                ForcePerLengthUnit.CentinewtonPerMillimeter => (_value * 1e3) * 1e-2d,
-                ForcePerLengthUnit.DecanewtonPerCentimeter => (_value * 1e2) * 1e1d,
-                ForcePerLengthUnit.DecanewtonPerMeter => (_value) * 1e1d,
-                ForcePerLengthUnit.DecanewtonPerMillimeter => (_value * 1e3) * 1e1d,
-                ForcePerLengthUnit.DecinewtonPerCentimeter => (_value * 1e2) * 1e-1d,
-                ForcePerLengthUnit.DecinewtonPerMeter => (_value) * 1e-1d,
-                ForcePerLengthUnit.DecinewtonPerMillimeter => (_value * 1e3) * 1e-1d,
-                ForcePerLengthUnit.KilogramForcePerCentimeter => _value * 980.665002864,
-                ForcePerLengthUnit.KilogramForcePerMeter => _value * 9.80665002864,
-                ForcePerLengthUnit.KilogramForcePerMillimeter => _value * 9.80665002864e3,
-                ForcePerLengthUnit.KilonewtonPerCentimeter => (_value * 1e2) * 1e3d,
-                ForcePerLengthUnit.KilonewtonPerMeter => (_value) * 1e3d,
-                ForcePerLengthUnit.KilonewtonPerMillimeter => (_value * 1e3) * 1e3d,
-                ForcePerLengthUnit.KilopoundForcePerFoot => _value * 14593.90292,
-                ForcePerLengthUnit.KilopoundForcePerInch => _value * 1.75126835e5,
-                ForcePerLengthUnit.MeganewtonPerCentimeter => (_value * 1e2) * 1e6d,
-                ForcePerLengthUnit.MeganewtonPerMeter => (_value) * 1e6d,
-                ForcePerLengthUnit.MeganewtonPerMillimeter => (_value * 1e3) * 1e6d,
-                ForcePerLengthUnit.MicronewtonPerCentimeter => (_value * 1e2) * 1e-6d,
-                ForcePerLengthUnit.MicronewtonPerMeter => (_value) * 1e-6d,
-                ForcePerLengthUnit.MicronewtonPerMillimeter => (_value * 1e3) * 1e-6d,
-                ForcePerLengthUnit.MillinewtonPerCentimeter => (_value * 1e2) * 1e-3d,
-                ForcePerLengthUnit.MillinewtonPerMeter => (_value) * 1e-3d,
-                ForcePerLengthUnit.MillinewtonPerMillimeter => (_value * 1e3) * 1e-3d,
-                ForcePerLengthUnit.NanonewtonPerCentimeter => (_value * 1e2) * 1e-9d,
-                ForcePerLengthUnit.NanonewtonPerMeter => (_value) * 1e-9d,
-                ForcePerLengthUnit.NanonewtonPerMillimeter => (_value * 1e3) * 1e-9d,
-                ForcePerLengthUnit.NewtonPerCentimeter => _value * 1e2,
-                ForcePerLengthUnit.NewtonPerMeter => _value,
-                ForcePerLengthUnit.NewtonPerMillimeter => _value * 1e3,
-                ForcePerLengthUnit.PoundForcePerFoot => _value * 14.59390292,
-                ForcePerLengthUnit.PoundForcePerInch => _value * 1.75126835e2,
-                ForcePerLengthUnit.PoundForcePerYard => _value * 4.864634307,
-                ForcePerLengthUnit.TonneForcePerCentimeter => _value * 9.80665002864e5,
-                ForcePerLengthUnit.TonneForcePerMeter => _value * 9.80665002864e3,
-                ForcePerLengthUnit.TonneForcePerMillimeter => _value * 9.80665002864e6,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        ForcePerLengthUnit.CentinewtonPerCentimeter => (_value * 1e2) * 1e-2d,
+                        ForcePerLengthUnit.CentinewtonPerMeter => (_value) * 1e-2d,
+                        ForcePerLengthUnit.CentinewtonPerMillimeter => (_value * 1e3) * 1e-2d,
+                        ForcePerLengthUnit.DecanewtonPerCentimeter => (_value * 1e2) * 1e1d,
+                        ForcePerLengthUnit.DecanewtonPerMeter => (_value) * 1e1d,
+                        ForcePerLengthUnit.DecanewtonPerMillimeter => (_value * 1e3) * 1e1d,
+                        ForcePerLengthUnit.DecinewtonPerCentimeter => (_value * 1e2) * 1e-1d,
+                        ForcePerLengthUnit.DecinewtonPerMeter => (_value) * 1e-1d,
+                        ForcePerLengthUnit.DecinewtonPerMillimeter => (_value * 1e3) * 1e-1d,
+                        ForcePerLengthUnit.KilogramForcePerCentimeter => _value * 980.665002864,
+                        ForcePerLengthUnit.KilogramForcePerMeter => _value * 9.80665002864,
+                        ForcePerLengthUnit.KilogramForcePerMillimeter => _value * 9.80665002864e3,
+                        ForcePerLengthUnit.KilonewtonPerCentimeter => (_value * 1e2) * 1e3d,
+                        ForcePerLengthUnit.KilonewtonPerMeter => (_value) * 1e3d,
+                        ForcePerLengthUnit.KilonewtonPerMillimeter => (_value * 1e3) * 1e3d,
+                        ForcePerLengthUnit.KilopoundForcePerFoot => _value * 14593.90292,
+                        ForcePerLengthUnit.KilopoundForcePerInch => _value * 1.75126835e5,
+                        ForcePerLengthUnit.MeganewtonPerCentimeter => (_value * 1e2) * 1e6d,
+                        ForcePerLengthUnit.MeganewtonPerMeter => (_value) * 1e6d,
+                        ForcePerLengthUnit.MeganewtonPerMillimeter => (_value * 1e3) * 1e6d,
+                        ForcePerLengthUnit.MicronewtonPerCentimeter => (_value * 1e2) * 1e-6d,
+                        ForcePerLengthUnit.MicronewtonPerMeter => (_value) * 1e-6d,
+                        ForcePerLengthUnit.MicronewtonPerMillimeter => (_value * 1e3) * 1e-6d,
+                        ForcePerLengthUnit.MillinewtonPerCentimeter => (_value * 1e2) * 1e-3d,
+                        ForcePerLengthUnit.MillinewtonPerMeter => (_value) * 1e-3d,
+                        ForcePerLengthUnit.MillinewtonPerMillimeter => (_value * 1e3) * 1e-3d,
+                        ForcePerLengthUnit.NanonewtonPerCentimeter => (_value * 1e2) * 1e-9d,
+                        ForcePerLengthUnit.NanonewtonPerMeter => (_value) * 1e-9d,
+                        ForcePerLengthUnit.NanonewtonPerMillimeter => (_value * 1e3) * 1e-9d,
+                        ForcePerLengthUnit.NewtonPerCentimeter => _value * 1e2,
+                        ForcePerLengthUnit.NewtonPerMeter => _value,
+                        ForcePerLengthUnit.NewtonPerMillimeter => _value * 1e3,
+                        ForcePerLengthUnit.PoundForcePerFoot => _value * 14.59390292,
+                        ForcePerLengthUnit.PoundForcePerInch => _value * 1.75126835e2,
+                        ForcePerLengthUnit.PoundForcePerYard => _value * 4.864634307,
+                        ForcePerLengthUnit.TonneForcePerCentimeter => _value * 9.80665002864e5,
+                        ForcePerLengthUnit.TonneForcePerMeter => _value * 9.80665002864e3,
+                        ForcePerLengthUnit.TonneForcePerMillimeter => _value * 9.80665002864e6,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(ForcePerLengthUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(ForcePerLengthUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                ForcePerLengthUnit.CentinewtonPerCentimeter => (baseUnitValue / 1e2) / 1e-2d,
-                ForcePerLengthUnit.CentinewtonPerMeter => (baseUnitValue) / 1e-2d,
-                ForcePerLengthUnit.CentinewtonPerMillimeter => (baseUnitValue / 1e3) / 1e-2d,
-                ForcePerLengthUnit.DecanewtonPerCentimeter => (baseUnitValue / 1e2) / 1e1d,
-                ForcePerLengthUnit.DecanewtonPerMeter => (baseUnitValue) / 1e1d,
-                ForcePerLengthUnit.DecanewtonPerMillimeter => (baseUnitValue / 1e3) / 1e1d,
-                ForcePerLengthUnit.DecinewtonPerCentimeter => (baseUnitValue / 1e2) / 1e-1d,
-                ForcePerLengthUnit.DecinewtonPerMeter => (baseUnitValue) / 1e-1d,
-                ForcePerLengthUnit.DecinewtonPerMillimeter => (baseUnitValue / 1e3) / 1e-1d,
-                ForcePerLengthUnit.KilogramForcePerCentimeter => baseUnitValue / 980.665002864,
-                ForcePerLengthUnit.KilogramForcePerMeter => baseUnitValue / 9.80665002864,
-                ForcePerLengthUnit.KilogramForcePerMillimeter => baseUnitValue / 9.80665002864e3,
-                ForcePerLengthUnit.KilonewtonPerCentimeter => (baseUnitValue / 1e2) / 1e3d,
-                ForcePerLengthUnit.KilonewtonPerMeter => (baseUnitValue) / 1e3d,
-                ForcePerLengthUnit.KilonewtonPerMillimeter => (baseUnitValue / 1e3) / 1e3d,
-                ForcePerLengthUnit.KilopoundForcePerFoot => baseUnitValue / 14593.90292,
-                ForcePerLengthUnit.KilopoundForcePerInch => baseUnitValue / 1.75126835e5,
-                ForcePerLengthUnit.MeganewtonPerCentimeter => (baseUnitValue / 1e2) / 1e6d,
-                ForcePerLengthUnit.MeganewtonPerMeter => (baseUnitValue) / 1e6d,
-                ForcePerLengthUnit.MeganewtonPerMillimeter => (baseUnitValue / 1e3) / 1e6d,
-                ForcePerLengthUnit.MicronewtonPerCentimeter => (baseUnitValue / 1e2) / 1e-6d,
-                ForcePerLengthUnit.MicronewtonPerMeter => (baseUnitValue) / 1e-6d,
-                ForcePerLengthUnit.MicronewtonPerMillimeter => (baseUnitValue / 1e3) / 1e-6d,
-                ForcePerLengthUnit.MillinewtonPerCentimeter => (baseUnitValue / 1e2) / 1e-3d,
-                ForcePerLengthUnit.MillinewtonPerMeter => (baseUnitValue) / 1e-3d,
-                ForcePerLengthUnit.MillinewtonPerMillimeter => (baseUnitValue / 1e3) / 1e-3d,
-                ForcePerLengthUnit.NanonewtonPerCentimeter => (baseUnitValue / 1e2) / 1e-9d,
-                ForcePerLengthUnit.NanonewtonPerMeter => (baseUnitValue) / 1e-9d,
-                ForcePerLengthUnit.NanonewtonPerMillimeter => (baseUnitValue / 1e3) / 1e-9d,
-                ForcePerLengthUnit.NewtonPerCentimeter => baseUnitValue / 1e2,
-                ForcePerLengthUnit.NewtonPerMeter => baseUnitValue,
-                ForcePerLengthUnit.NewtonPerMillimeter => baseUnitValue / 1e3,
-                ForcePerLengthUnit.PoundForcePerFoot => baseUnitValue / 14.59390292,
-                ForcePerLengthUnit.PoundForcePerInch => baseUnitValue / 1.75126835e2,
-                ForcePerLengthUnit.PoundForcePerYard => baseUnitValue / 4.864634307,
-                ForcePerLengthUnit.TonneForcePerCentimeter => baseUnitValue / 9.80665002864e5,
-                ForcePerLengthUnit.TonneForcePerMeter => baseUnitValue / 9.80665002864e3,
-                ForcePerLengthUnit.TonneForcePerMillimeter => baseUnitValue / 9.80665002864e6,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        ForcePerLengthUnit.CentinewtonPerCentimeter => (baseUnitValue / 1e2) / 1e-2d,
+                        ForcePerLengthUnit.CentinewtonPerMeter => (baseUnitValue) / 1e-2d,
+                        ForcePerLengthUnit.CentinewtonPerMillimeter => (baseUnitValue / 1e3) / 1e-2d,
+                        ForcePerLengthUnit.DecanewtonPerCentimeter => (baseUnitValue / 1e2) / 1e1d,
+                        ForcePerLengthUnit.DecanewtonPerMeter => (baseUnitValue) / 1e1d,
+                        ForcePerLengthUnit.DecanewtonPerMillimeter => (baseUnitValue / 1e3) / 1e1d,
+                        ForcePerLengthUnit.DecinewtonPerCentimeter => (baseUnitValue / 1e2) / 1e-1d,
+                        ForcePerLengthUnit.DecinewtonPerMeter => (baseUnitValue) / 1e-1d,
+                        ForcePerLengthUnit.DecinewtonPerMillimeter => (baseUnitValue / 1e3) / 1e-1d,
+                        ForcePerLengthUnit.KilogramForcePerCentimeter => baseUnitValue / 980.665002864,
+                        ForcePerLengthUnit.KilogramForcePerMeter => baseUnitValue / 9.80665002864,
+                        ForcePerLengthUnit.KilogramForcePerMillimeter => baseUnitValue / 9.80665002864e3,
+                        ForcePerLengthUnit.KilonewtonPerCentimeter => (baseUnitValue / 1e2) / 1e3d,
+                        ForcePerLengthUnit.KilonewtonPerMeter => (baseUnitValue) / 1e3d,
+                        ForcePerLengthUnit.KilonewtonPerMillimeter => (baseUnitValue / 1e3) / 1e3d,
+                        ForcePerLengthUnit.KilopoundForcePerFoot => baseUnitValue / 14593.90292,
+                        ForcePerLengthUnit.KilopoundForcePerInch => baseUnitValue / 1.75126835e5,
+                        ForcePerLengthUnit.MeganewtonPerCentimeter => (baseUnitValue / 1e2) / 1e6d,
+                        ForcePerLengthUnit.MeganewtonPerMeter => (baseUnitValue) / 1e6d,
+                        ForcePerLengthUnit.MeganewtonPerMillimeter => (baseUnitValue / 1e3) / 1e6d,
+                        ForcePerLengthUnit.MicronewtonPerCentimeter => (baseUnitValue / 1e2) / 1e-6d,
+                        ForcePerLengthUnit.MicronewtonPerMeter => (baseUnitValue) / 1e-6d,
+                        ForcePerLengthUnit.MicronewtonPerMillimeter => (baseUnitValue / 1e3) / 1e-6d,
+                        ForcePerLengthUnit.MillinewtonPerCentimeter => (baseUnitValue / 1e2) / 1e-3d,
+                        ForcePerLengthUnit.MillinewtonPerMeter => (baseUnitValue) / 1e-3d,
+                        ForcePerLengthUnit.MillinewtonPerMillimeter => (baseUnitValue / 1e3) / 1e-3d,
+                        ForcePerLengthUnit.NanonewtonPerCentimeter => (baseUnitValue / 1e2) / 1e-9d,
+                        ForcePerLengthUnit.NanonewtonPerMeter => (baseUnitValue) / 1e-9d,
+                        ForcePerLengthUnit.NanonewtonPerMillimeter => (baseUnitValue / 1e3) / 1e-9d,
+                        ForcePerLengthUnit.NewtonPerCentimeter => baseUnitValue / 1e2,
+                        ForcePerLengthUnit.NewtonPerMeter => baseUnitValue,
+                        ForcePerLengthUnit.NewtonPerMillimeter => baseUnitValue / 1e3,
+                        ForcePerLengthUnit.PoundForcePerFoot => baseUnitValue / 14.59390292,
+                        ForcePerLengthUnit.PoundForcePerInch => baseUnitValue / 1.75126835e2,
+                        ForcePerLengthUnit.PoundForcePerYard => baseUnitValue / 4.864634307,
+                        ForcePerLengthUnit.TonneForcePerCentimeter => baseUnitValue / 9.80665002864e5,
+                        ForcePerLengthUnit.TonneForcePerMeter => baseUnitValue / 9.80665002864e3,
+                        ForcePerLengthUnit.TonneForcePerMillimeter => baseUnitValue / 9.80665002864e6,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

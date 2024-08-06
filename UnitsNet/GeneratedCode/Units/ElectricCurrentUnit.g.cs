@@ -25,15 +25,15 @@ namespace UnitsNet.Units
 
     public enum ElectricCurrentUnit
     {
-        Undefined = 0,
-        Ampere,
-        Centiampere,
-        Kiloampere,
-        Megaampere,
-        Microampere,
-        Milliampere,
-        Nanoampere,
-        Picoampere,
+        Ampere = 1,
+        Centiampere = 2,
+        Femtoampere = 9,
+        Kiloampere = 3,
+        Megaampere = 4,
+        Microampere = 5,
+        Milliampere = 6,
+        Nanoampere = 7,
+        Picoampere = 8,
     }
 
     #pragma warning restore 1591

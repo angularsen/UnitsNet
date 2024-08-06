@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using Newtonsoft.Json.Linq;
 
 namespace CodeGen.JsonTypes
@@ -18,10 +19,10 @@ namespace CodeGen.JsonTypes
         /// <param name="unitAbbreviations">The configured unit abbreviations. Null if not configured.</param>
         /// <returns>True if configured, otherwise false.</returns>
         /// <exception cref="NotSupportedException">Unit abbreviations must be a string or an array of strings.</exception>
-        public bool TryGetAbbreviationsForPrefix(Prefix prefix, out string[] unitAbbreviations)
+        public bool TryGetAbbreviationsForPrefix(Prefix prefix, [NotNullWhen(true)] out string[]? unitAbbreviations)
         {
             if (AbbreviationsForPrefixes == null ||
-                !AbbreviationsForPrefixes.TryGetValue(prefix.ToString(), out var value))
+                !AbbreviationsForPrefixes.TryGetValue(prefix.ToString(), out JToken? value))
             {
                 unitAbbreviations = default;
                 return false;
@@ -31,12 +32,12 @@ namespace CodeGen.JsonTypes
             {
                 case JTokenType.String:
                 {
-                    unitAbbreviations = new[] {value.ToObject<string>()};
+                    unitAbbreviations = new[] { value.ToObject<string>()! };
                     return true;
                 }
                 case JTokenType.Array:
                 {
-                    unitAbbreviations = value.ToObject<string[]>();
+                    unitAbbreviations = value.ToObject<string[]>()!;
                     return true;
                 }
                 default:
@@ -65,12 +66,12 @@ namespace CodeGen.JsonTypes
         ///     The unit abbreviation value can either be a string or an array of strings. Typically the number of abbreviations
         ///     for a prefix matches that of "Abbreviations" array, but this is not required.
         /// </remarks>
-        public JObject AbbreviationsForPrefixes;
+        public JObject? AbbreviationsForPrefixes;
 
         /// <summary>
         ///     The name of the culture this is a localization for.
         /// </summary>
-        public string Culture;
+        public string Culture = null!;
 
         // 0649 Field is never assigned to
 #pragma warning restore 0649

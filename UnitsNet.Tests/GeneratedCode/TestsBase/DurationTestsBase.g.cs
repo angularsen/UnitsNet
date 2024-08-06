@@ -47,6 +47,7 @@ namespace UnitsNet.Tests
         protected abstract double Months30InOneSecond { get; }
         protected abstract double NanosecondsInOneSecond { get; }
         protected abstract double SecondsInOneSecond { get; }
+        protected abstract double SolsInOneSecond { get; }
         protected abstract double WeeksInOneSecond { get; }
         protected abstract double Years365InOneSecond { get; }
 
@@ -60,6 +61,7 @@ namespace UnitsNet.Tests
         protected virtual double Months30Tolerance { get { return 1e-5; } }
         protected virtual double NanosecondsTolerance { get { return 1e-5; } }
         protected virtual double SecondsTolerance { get { return 1e-5; } }
+        protected virtual double SolsTolerance { get { return 1e-5; } }
         protected virtual double WeeksTolerance { get { return 1e-5; } }
         protected virtual double Years365Tolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
@@ -77,6 +79,7 @@ namespace UnitsNet.Tests
                 DurationUnit.Month30 => (Months30InOneSecond, Months30Tolerance),
                 DurationUnit.Nanosecond => (NanosecondsInOneSecond, NanosecondsTolerance),
                 DurationUnit.Second => (SecondsInOneSecond, SecondsTolerance),
+                DurationUnit.Sol => (SolsInOneSecond, SolsTolerance),
                 DurationUnit.Week => (WeeksInOneSecond, WeeksTolerance),
                 DurationUnit.Year365 => (Years365InOneSecond, Years365Tolerance),
                 _ => throw new NotSupportedException()
@@ -94,15 +97,10 @@ namespace UnitsNet.Tests
             new object[] { DurationUnit.Month30 },
             new object[] { DurationUnit.Nanosecond },
             new object[] { DurationUnit.Second },
+            new object[] { DurationUnit.Sol },
             new object[] { DurationUnit.Week },
             new object[] { DurationUnit.Year365 },
         };
-
-        [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new Duration((double)0.0, DurationUnit.Undefined));
-        }
 
         [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
@@ -111,7 +109,6 @@ namespace UnitsNet.Tests
             Assert.Equal(0, quantity.Value);
             Assert.Equal(DurationUnit.Second, quantity.Unit);
         }
-
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
@@ -156,14 +153,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Duration.Zero, quantityInfo.Zero);
             Assert.Equal("Duration", quantityInfo.Name);
-            Assert.Equal(QuantityType.Duration, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<DurationUnit>().Except(new[] {DurationUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<DurationUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
-
-            // Obsolete members
-            Assert.Equal(units, quantityInfo.Units);
-            Assert.Equal(unitNames, quantityInfo.UnitNames);
         }
 
         [Fact]
@@ -179,6 +171,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(Months30InOneSecond, second.Months30, Months30Tolerance);
             AssertEx.EqualTolerance(NanosecondsInOneSecond, second.Nanoseconds, NanosecondsTolerance);
             AssertEx.EqualTolerance(SecondsInOneSecond, second.Seconds, SecondsTolerance);
+            AssertEx.EqualTolerance(SolsInOneSecond, second.Sols, SolsTolerance);
             AssertEx.EqualTolerance(WeeksInOneSecond, second.Weeks, WeeksTolerance);
             AssertEx.EqualTolerance(Years365InOneSecond, second.Years365, Years365Tolerance);
         }
@@ -222,13 +215,17 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity08.Seconds, SecondsTolerance);
             Assert.Equal(DurationUnit.Second, quantity08.Unit);
 
-            var quantity09 = Duration.From(1, DurationUnit.Week);
-            AssertEx.EqualTolerance(1, quantity09.Weeks, WeeksTolerance);
-            Assert.Equal(DurationUnit.Week, quantity09.Unit);
+            var quantity09 = Duration.From(1, DurationUnit.Sol);
+            AssertEx.EqualTolerance(1, quantity09.Sols, SolsTolerance);
+            Assert.Equal(DurationUnit.Sol, quantity09.Unit);
 
-            var quantity10 = Duration.From(1, DurationUnit.Year365);
-            AssertEx.EqualTolerance(1, quantity10.Years365, Years365Tolerance);
-            Assert.Equal(DurationUnit.Year365, quantity10.Unit);
+            var quantity10 = Duration.From(1, DurationUnit.Week);
+            AssertEx.EqualTolerance(1, quantity10.Weeks, WeeksTolerance);
+            Assert.Equal(DurationUnit.Week, quantity10.Unit);
+
+            var quantity11 = Duration.From(1, DurationUnit.Year365);
+            AssertEx.EqualTolerance(1, quantity11.Years365, Years365Tolerance);
+            Assert.Equal(DurationUnit.Year365, quantity11.Unit);
 
         }
 
@@ -258,6 +255,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(Months30InOneSecond, second.As(DurationUnit.Month30), Months30Tolerance);
             AssertEx.EqualTolerance(NanosecondsInOneSecond, second.As(DurationUnit.Nanosecond), NanosecondsTolerance);
             AssertEx.EqualTolerance(SecondsInOneSecond, second.As(DurationUnit.Second), SecondsTolerance);
+            AssertEx.EqualTolerance(SolsInOneSecond, second.As(DurationUnit.Sol), SolsTolerance);
             AssertEx.EqualTolerance(WeeksInOneSecond, second.As(DurationUnit.Week), WeeksTolerance);
             AssertEx.EqualTolerance(Years365InOneSecond, second.As(DurationUnit.Year365), Years365Tolerance);
         }
@@ -270,7 +268,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else
@@ -648,6 +646,13 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = Duration.Parse("1 sol", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Sols, SolsTolerance);
+                Assert.Equal(DurationUnit.Sol, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = Duration.Parse("1 wk", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Weeks, WeeksTolerance);
                 Assert.Equal(DurationUnit.Week, parsed.Unit);
@@ -1020,6 +1025,12 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(Duration.TryParse("1 sol", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Sols, SolsTolerance);
+                Assert.Equal(DurationUnit.Sol, parsed.Unit);
+            }
+
+            {
                 Assert.True(Duration.TryParse("1 wk", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Weeks, WeeksTolerance);
                 Assert.Equal(DurationUnit.Week, parsed.Unit);
@@ -1386,6 +1397,12 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsedUnit = Duration.ParseUnit("sol", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DurationUnit.Sol, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsedUnit = Duration.ParseUnit("wk", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Week, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1698,6 +1715,11 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(Duration.TryParseUnit("sol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DurationUnit.Sol, parsedUnit);
+            }
+
+            {
                 Assert.True(Duration.TryParseUnit("wk", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Week, parsedUnit);
             }
@@ -1747,7 +1769,7 @@ namespace UnitsNet.Tests
             var converted = inBaseUnits.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
         }
 
@@ -1764,14 +1786,19 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(DurationUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = Duration.Units.FirstOrDefault(u => u != Duration.BaseUnit && u != DurationUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if (fromUnit == DurationUnit.Undefined)
-                fromUnit = Duration.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = Duration.Units.First(u => u != Duration.BaseUnit);
 
             var quantity = Duration.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(DurationUnit unit)
+        {
+            var quantity = default(Duration);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }
@@ -1789,6 +1816,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Duration.FromMonths30(second.Months30).Seconds, Months30Tolerance);
             AssertEx.EqualTolerance(1, Duration.FromNanoseconds(second.Nanoseconds).Seconds, NanosecondsTolerance);
             AssertEx.EqualTolerance(1, Duration.FromSeconds(second.Seconds).Seconds, SecondsTolerance);
+            AssertEx.EqualTolerance(1, Duration.FromSols(second.Sols).Seconds, SolsTolerance);
             AssertEx.EqualTolerance(1, Duration.FromWeeks(second.Weeks).Seconds, WeeksTolerance);
             AssertEx.EqualTolerance(1, Duration.FromYears365(second.Years365).Seconds, Years365Tolerance);
         }
@@ -1846,47 +1874,45 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => second.CompareTo(null));
         }
 
-        [Fact]
-        public void EqualityOperators()
+        [Theory]
+        [InlineData(1, DurationUnit.Second, 1, DurationUnit.Second, true)]  // Same value and unit.
+        [InlineData(1, DurationUnit.Second, 2, DurationUnit.Second, false)] // Different value.
+        [InlineData(2, DurationUnit.Second, 1, DurationUnit.Day, false)] // Different value and unit.
+        [InlineData(1, DurationUnit.Second, 1, DurationUnit.Day, false)] // Different unit.
+        public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, DurationUnit unitA, double valueB, DurationUnit unitB, bool expectEqual)
         {
-            var a = Duration.FromSeconds(1);
-            var b = Duration.FromSeconds(2);
+            var a = new Duration(valueA, unitA);
+            var b = new Duration(valueB, unitB);
 
-#pragma warning disable CS8073
-// ReSharper disable EqualExpressionComparison
+            // Operator overloads.
+            Assert.Equal(expectEqual, a == b);
+            Assert.Equal(expectEqual, b == a);
+            Assert.Equal(!expectEqual, a != b);
+            Assert.Equal(!expectEqual, b != a);
 
-            Assert.True(a == a);
-            Assert.False(a != a);
+            // IEquatable<T>
+            Assert.Equal(expectEqual, a.Equals(b));
+            Assert.Equal(expectEqual, b.Equals(a));
 
-            Assert.True(a != b);
-            Assert.False(a == b);
+            // IEquatable
+            Assert.Equal(expectEqual, a.Equals((object)b));
+            Assert.Equal(expectEqual, b.Equals((object)a));
+        }
 
+        [Fact]
+        public void Equals_Null_ReturnsFalse()
+        {
+            var a = Duration.Zero;
+
+            Assert.False(a.Equals((object)null));
+
+            // "The result of the expression is always 'false'..."
+            #pragma warning disable CS8073
             Assert.False(a == null);
             Assert.False(null == a);
-
-// ReSharper restore EqualExpressionComparison
-#pragma warning restore CS8073
-        }
-
-        [Fact]
-        public void Equals_SameType_IsImplemented()
-        {
-            var a = Duration.FromSeconds(1);
-            var b = Duration.FromSeconds(2);
-
-            Assert.True(a.Equals(a));
-            Assert.False(a.Equals(b));
-        }
-
-        [Fact]
-        public void Equals_QuantityAsObject_IsImplemented()
-        {
-            object a = Duration.FromSeconds(1);
-            object b = Duration.FromSeconds(2);
-
-            Assert.True(a.Equals(a));
-            Assert.False(a.Equals(b));
-            Assert.False(a.Equals((object)null));
+            Assert.True(a != null);
+            Assert.True(null != a);
+            #pragma warning restore CS8073
         }
 
         [Fact]
@@ -1895,6 +1921,8 @@ namespace UnitsNet.Tests
             var v = Duration.FromSeconds(1);
             Assert.True(v.Equals(Duration.FromSeconds(1), SecondsTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Duration.Zero, SecondsTolerance, ComparisonType.Relative));
+            Assert.True(Duration.FromSeconds(100).Equals(Duration.FromSeconds(120), (double)0.3m, ComparisonType.Relative));
+            Assert.False(Duration.FromSeconds(100).Equals(Duration.FromSeconds(120), (double)0.1m, ComparisonType.Relative));
         }
 
         [Fact]
@@ -1919,20 +1947,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(DurationUnit.Undefined, Duration.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(DurationUnit)).Cast<DurationUnit>();
-            foreach(var unit in units)
+            foreach (var unit in units)
             {
-                if (unit == DurationUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }
@@ -1946,8 +1965,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentUICulture;
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            var prevCulture = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             try {
                 Assert.Equal("1 d", new Duration(1, DurationUnit.Day).ToString());
                 Assert.Equal("1 h", new Duration(1, DurationUnit.Hour).ToString());
@@ -1958,12 +1977,13 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 mo", new Duration(1, DurationUnit.Month30).ToString());
                 Assert.Equal("1 ns", new Duration(1, DurationUnit.Nanosecond).ToString());
                 Assert.Equal("1 s", new Duration(1, DurationUnit.Second).ToString());
+                Assert.Equal("1 sol", new Duration(1, DurationUnit.Sol).ToString());
                 Assert.Equal("1 wk", new Duration(1, DurationUnit.Week).ToString());
                 Assert.Equal("1 yr", new Duration(1, DurationUnit.Year365).ToString());
             }
             finally
             {
-                Thread.CurrentThread.CurrentUICulture = prevCulture;
+                Thread.CurrentThread.CurrentCulture = prevCulture;
             }
         }
 
@@ -1982,6 +2002,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 mo", new Duration(1, DurationUnit.Month30).ToString(swedishCulture));
             Assert.Equal("1 ns", new Duration(1, DurationUnit.Nanosecond).ToString(swedishCulture));
             Assert.Equal("1 s", new Duration(1, DurationUnit.Second).ToString(swedishCulture));
+            Assert.Equal("1 sol", new Duration(1, DurationUnit.Sol).ToString(swedishCulture));
             Assert.Equal("1 wk", new Duration(1, DurationUnit.Week).ToString(swedishCulture));
             Assert.Equal("1 yr", new Duration(1, DurationUnit.Year365).ToString(swedishCulture));
         }
@@ -1989,10 +2010,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentUICulture;
+            var oldCulture = CultureInfo.CurrentCulture;
             try
             {
-                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
                 Assert.Equal("0.1 s", new Duration(0.123456, DurationUnit.Second).ToString("s1"));
                 Assert.Equal("0.12 s", new Duration(0.123456, DurationUnit.Second).ToString("s2"));
                 Assert.Equal("0.123 s", new Duration(0.123456, DurationUnit.Second).ToString("s3"));
@@ -2000,7 +2021,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                CultureInfo.CurrentUICulture = oldCulture;
+                CultureInfo.CurrentCulture = oldCulture;
             }
         }
 
@@ -2014,28 +2035,27 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 s", new Duration(0.123456, DurationUnit.Second).ToString("s4", culture));
         }
 
-
-        [Fact]
-        public void ToString_NullFormat_ThrowsArgumentNullException()
+        [Theory]
+        [InlineData(null)]
+        [InlineData("en-US")]
+        public void ToString_NullFormat_DefaultsToGeneralFormat(string cultureName)
         {
             var quantity = Duration.FromSeconds(1.0);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, null, null));
+            CultureInfo formatProvider = cultureName == null
+                ? null
+                : CultureInfo.GetCultureInfo(cultureName);
+
+            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
         }
 
-        [Fact]
-        public void ToString_NullArgs_ThrowsArgumentNullException()
+        [Theory]
+        [InlineData(null)]
+        [InlineData("g")]
+        public void ToString_NullProvider_EqualsCurrentCulture(string format)
         {
             var quantity = Duration.FromSeconds(1.0);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, "g", null));
+            Assert.Equal(quantity.ToString(format, CultureInfo.CurrentCulture), quantity.ToString(format, null));
         }
-
-        [Fact]
-        public void ToString_NullProvider_EqualsCurrentUICulture()
-        {
-            var quantity = Duration.FromSeconds(1.0);
-            Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
-        }
-
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()
@@ -2154,13 +2174,6 @@ namespace UnitsNet.Tests
         {
             var quantity = Duration.FromSeconds(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(DurationUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = Duration.FromSeconds(1.0);
-            Assert.Equal(QuantityType.Duration, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

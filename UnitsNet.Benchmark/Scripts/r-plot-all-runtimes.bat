@@ -5,7 +5,7 @@ SET exportdir="%projectdir%\Artifacts\Benchmark"
 :: this fails on the build server (also tested with the nightly benchmark.net package: 0.12.1.1533): possibly related to https://github.com/dotnet/BenchmarkDotNet/issues/1487
 dotnet run --project "%projectdir%\UnitsNet.Benchmark" -c Release ^
 --framework net5.0 ^
---runtimes net472 net48 netcoreapp2.1 netcoreapp3.1 netcoreapp50 ^
+--runtimes net472 net48 netcoreapp2.1 netcoreapp3.1 net6.0 ^
 --artifacts=%exportdir% ^
 --exporters rplot ^
 --filter * ^

@@ -59,17 +59,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of RatioChangeRate, which is Second. All conversions go via this value.
         /// </summary>
         public static RatioChangeRateUnit BaseUnit { get; } = RatioChangeRateUnit.DecimalFractionPerSecond;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of RatioChangeRate.
         /// </summary>
         public static RatioChangeRate MaxValue { get; } = new RatioChangeRate(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of RatioChangeRate.
         /// </summary>
         public static RatioChangeRate MinValue { get; } = new RatioChangeRate(double.MinValue, BaseUnit);
 
@@ -118,55 +118,55 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(RatioChangeRateUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(RatioChangeRateUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public RatioChangeRate ToUnit(RatioChangeRateUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new RatioChangeRate(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this RatioChangeRate to another RatioChangeRate with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A RatioChangeRate with the specified unit.</returns>
+                public RatioChangeRate ToUnit(RatioChangeRateUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new RatioChangeRate(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                RatioChangeRateUnit.DecimalFractionPerSecond => _value,
-                RatioChangeRateUnit.PercentPerSecond => _value / 1e2,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        RatioChangeRateUnit.DecimalFractionPerSecond => _value,
+                        RatioChangeRateUnit.PercentPerSecond => _value / 1e2,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(RatioChangeRateUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(RatioChangeRateUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                RatioChangeRateUnit.DecimalFractionPerSecond => baseUnitValue,
-                RatioChangeRateUnit.PercentPerSecond => baseUnitValue * 1e2,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        RatioChangeRateUnit.DecimalFractionPerSecond => baseUnitValue,
+                        RatioChangeRateUnit.PercentPerSecond => baseUnitValue * 1e2,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

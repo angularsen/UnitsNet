@@ -62,17 +62,17 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     The base unit of Duration, which is Second. All conversions go via this value.
+        ///     The base unit of FuelEfficiency, which is Second. All conversions go via this value.
         /// </summary>
         public static FuelEfficiencyUnit BaseUnit { get; } = FuelEfficiencyUnit.LiterPer100Kilometers;
 
         /// <summary>
-        /// Represents the largest possible value of Duration
+        /// Represents the largest possible value of FuelEfficiency.
         /// </summary>
         public static FuelEfficiency MaxValue { get; } = new FuelEfficiency(double.MaxValue, BaseUnit);
 
         /// <summary>
-        /// Represents the smallest possible value of Duration
+        /// Represents the smallest possible value of FuelEfficiency.
         /// </summary>
         public static FuelEfficiency MinValue { get; } = new FuelEfficiency(double.MinValue, BaseUnit);
 
@@ -143,59 +143,59 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(FuelEfficiencyUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(FuelEfficiencyUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public FuelEfficiency ToUnit(FuelEfficiencyUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new FuelEfficiency(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this FuelEfficiency to another FuelEfficiency with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A FuelEfficiency with the specified unit.</returns>
+                public FuelEfficiency ToUnit(FuelEfficiencyUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new FuelEfficiency(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                FuelEfficiencyUnit.KilometerPerLiter => 100 / _value,
-                FuelEfficiencyUnit.LiterPer100Kilometers => _value,
-                FuelEfficiencyUnit.MilePerUkGallon => (100 * 4.54609188) / (1.609344 * _value),
-                FuelEfficiencyUnit.MilePerUsGallon => (100 * 3.785411784) / (1.609344 * _value),
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        FuelEfficiencyUnit.KilometerPerLiter => 100 / _value,
+                        FuelEfficiencyUnit.LiterPer100Kilometers => _value,
+                        FuelEfficiencyUnit.MilePerUkGallon => (100 * 4.54609188) / (1.609344 * _value),
+                        FuelEfficiencyUnit.MilePerUsGallon => (100 * 3.785411784) / (1.609344 * _value),
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(FuelEfficiencyUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(FuelEfficiencyUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                FuelEfficiencyUnit.KilometerPerLiter => 100 / baseUnitValue,
-                FuelEfficiencyUnit.LiterPer100Kilometers => baseUnitValue,
-                FuelEfficiencyUnit.MilePerUkGallon => (100 * 4.54609188) / (1.609344 * baseUnitValue),
-                FuelEfficiencyUnit.MilePerUsGallon => (100 * 3.785411784) / (1.609344 * baseUnitValue),
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        FuelEfficiencyUnit.KilometerPerLiter => 100 / baseUnitValue,
+                        FuelEfficiencyUnit.LiterPer100Kilometers => baseUnitValue,
+                        FuelEfficiencyUnit.MilePerUkGallon => (100 * 4.54609188) / (1.609344 * baseUnitValue),
+                        FuelEfficiencyUnit.MilePerUsGallon => (100 * 3.785411784) / (1.609344 * baseUnitValue),
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 
