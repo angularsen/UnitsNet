@@ -33,11 +33,11 @@ namespace UnitsNet.Tests.CustomCode
         protected override double BtusPerMinuteSquareFootInOneWattPerSquareMeter => 5.28330551e-3;
         protected override double BtusPerSecondSquareFootInOneWattPerSquareMeter => 8.80550918e-5;
         protected override double BtusPerSecondSquareInchInOneWattPerSquareMeter => 6.11493693e-7;
-        protected override double CaloriesPerSecondSquareCentimeterInOneWattPerSquareMeter => 2.388458966e-5;
+        protected override double CaloriesPerSecondSquareCentimeterInOneWattPerSquareMeter => 2.390057361376673e-05;
         protected override double CentiwattsPerSquareMeterInOneWattPerSquareMeter => 1e2;
         protected override double DeciwattsPerSquareMeterInOneWattPerSquareMeter => 1e1;
-        protected override double KilocaloriesPerSecondSquareCentimeterInOneWattPerSquareMeter => 2.388458966e-8;
-        protected override double KilocaloriesPerHourSquareMeterInOneWattPerSquareMeter => 8.59845227859e-1;
+        protected override double KilocaloriesPerSecondSquareCentimeterInOneWattPerSquareMeter => 2.390057361376673e-8;
+        protected override double KilocaloriesPerHourSquareMeterInOneWattPerSquareMeter => 0.8604206500956023;
         protected override double KilowattsPerSquareMeterInOneWattPerSquareMeter => 1e-3;
         protected override double MicrowattsPerSquareMeterInOneWattPerSquareMeter => 1e6;
         protected override double MilliwattsPerSquareMeterInOneWattPerSquareMeter => 1e3;

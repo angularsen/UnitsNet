@@ -70,8 +70,8 @@
     {
       "SingularName": "CubicFootPerSecond",
       "PluralName": "CubicFeetPerSecond",
-      "FromUnitToBaseFunc": "{x} / 35.314666721",
-      "FromBaseToUnitFunc": "{x} * 35.314666721",
+      "FromUnitToBaseFunc": "{x} * 0.028316846592",
+      "FromBaseToUnitFunc": "{x} / 0.028316846592",
       "Localization": [
         {
           "Culture": "en-US",
@@ -82,8 +82,8 @@
     {
       "SingularName": "CubicFootPerMinute",
       "PluralName": "CubicFeetPerMinute",
-      "FromUnitToBaseFunc": "{x} / 2118.88000326",
-      "FromBaseToUnitFunc": "{x} * 2118.88000326",
+      "FromUnitToBaseFunc": "{x} * 0.028316846592 / 60",
+      "FromBaseToUnitFunc": "{x} / (0.028316846592 / 60)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -94,8 +94,8 @@
     {
       "SingularName": "CubicFootPerHour",
       "PluralName": "CubicFeetPerHour",
-      "FromUnitToBaseFunc": "{x} * 7.8657907199999087346816086183876e-6",
-      "FromBaseToUnitFunc": "{x} / 7.8657907199999087346816086183876e-6",
+      "FromUnitToBaseFunc": "{x} * 0.028316846592 / 3600",
+      "FromBaseToUnitFunc": "{x} / (0.028316846592 / 3600)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -118,8 +118,8 @@
     {
       "SingularName": "CubicYardPerMinute",
       "PluralName": "CubicYardsPerMinute",
-      "FromUnitToBaseFunc": "{x} * 0.0127425809664",
-      "FromBaseToUnitFunc": "{x} / 0.0127425809664",
+      "FromUnitToBaseFunc": "{x} * 0.764554857984 / 60",
+      "FromBaseToUnitFunc": "{x} / (0.764554857984 / 60)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -130,8 +130,8 @@
     {
       "SingularName": "CubicYardPerHour",
       "PluralName": "CubicYardsPerHour",
-      "FromUnitToBaseFunc": "{x} * 2.1237634944E-4",
-      "FromBaseToUnitFunc": "{x} / 2.1237634944E-4",
+      "FromUnitToBaseFunc": "{x} * 0.764554857984 / 3600",
+      "FromBaseToUnitFunc": "{x} / (0.764554857984 / 3600)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -142,8 +142,8 @@
     {
       "SingularName": "CubicYardPerDay",
       "PluralName": "CubicYardsPerDay",
-      "FromUnitToBaseFunc": "{x} / 113007",
-      "FromBaseToUnitFunc": "{x} * 113007",
+      "FromUnitToBaseFunc": "{x} * 0.764554857984 / 86400",
+      "FromBaseToUnitFunc": "{x} / (0.764554857984 / 86400)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -154,8 +154,8 @@
     {
       "SingularName": "MillionUsGallonPerDay",
       "PluralName": "MillionUsGallonsPerDay",
-      "FromUnitToBaseFunc": "{x} / 22.824465227",
-      "FromBaseToUnitFunc": "{x} * 22.824465227",
+      "FromUnitToBaseFunc": "{x} * 1e6 * 0.003785411784 / 86400",
+      "FromBaseToUnitFunc": "{x} / (1e6 * 0.003785411784 / 86400)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -166,8 +166,8 @@
     {
       "SingularName": "UsGallonPerDay",
       "PluralName": "UsGallonsPerDay",
-      "FromUnitToBaseFunc": "{x} / 22824465.227",
-      "FromBaseToUnitFunc": "{x} * 22824465.227",
+      "FromUnitToBaseFunc": "{x} * 0.003785411784 / 86400",
+      "FromBaseToUnitFunc": "{x} / (0.003785411784 / 86400)",
       "Prefixes": [ "Mega" ],
       "Localization": [
         {
@@ -196,8 +196,8 @@
     {
       "SingularName": "LiterPerMinute",
       "PluralName": "LitersPerMinute",
-      "FromUnitToBaseFunc": "{x} / 60000.00000",
-      "FromBaseToUnitFunc": "{x} * 60000.00000",
+      "FromUnitToBaseFunc": "{x} / (1000 * 60)",
+      "FromBaseToUnitFunc": "{x} * (1000 * 60)",
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo", "Mega" ],
       "Localization": [
         {
@@ -213,8 +213,8 @@
     {
       "SingularName": "LiterPerHour",
       "PluralName": "LitersPerHour",
-      "FromUnitToBaseFunc": "{x} / 3600000.000",
-      "FromBaseToUnitFunc": "{x} * 3600000.000",
+      "FromUnitToBaseFunc": "{x} / (1000 * 3600)",
+      "FromBaseToUnitFunc": "{x} * (1000 * 3600)",
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo", "Mega" ],
       "Localization": [
         {
@@ -230,8 +230,8 @@
     {
       "SingularName": "LiterPerDay",
       "PluralName": "LitersPerDay",
-      "FromUnitToBaseFunc": "{x} / 86400000",
-      "FromBaseToUnitFunc": "{x} * 86400000",
+      "FromUnitToBaseFunc": "{x} / (1000 * 86400)",
+      "FromBaseToUnitFunc": "{x} * (1000 * 86400)",
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo", "Mega" ],
       "Localization": [
         {
@@ -243,8 +243,8 @@
     {
       "SingularName": "UsGallonPerSecond",
       "PluralName": "UsGallonsPerSecond",
-      "FromUnitToBaseFunc": "{x} / 264.1720523581484",
-      "FromBaseToUnitFunc": "{x} * 264.1720523581484",
+      "FromUnitToBaseFunc": "{x} * 0.003785411784",
+      "FromBaseToUnitFunc": "{x} / 0.003785411784",
       "Localization": [
         {
           "Culture": "en-US",
@@ -255,8 +255,8 @@
     {
       "SingularName": "UsGallonPerMinute",
       "PluralName": "UsGallonsPerMinute",
-      "FromUnitToBaseFunc": "{x} / 15850.323141489",
-      "FromBaseToUnitFunc": "{x} * 15850.323141489",
+      "FromUnitToBaseFunc": "{x} * 0.003785411784 / 60",
+      "FromBaseToUnitFunc": "{x} / (0.003785411784 / 60)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -267,8 +267,8 @@
     {
       "SingularName": "UkGallonPerDay",
       "PluralName": "UkGallonsPerDay",
-      "FromUnitToBaseFunc": "{x} / 19005304",
-      "FromBaseToUnitFunc": "{x} * 19005304",
+      "FromUnitToBaseFunc": "{x} * 0.00454609 / 86400",
+      "FromBaseToUnitFunc": "{x} / (0.00454609 / 86400)",
       "Prefixes": [ "Mega" ],
       "Localization": [
         {
@@ -280,8 +280,8 @@
     {
       "SingularName": "UkGallonPerHour",
       "PluralName": "UkGallonsPerHour",
-      "FromUnitToBaseFunc": "{x} / 791887.667",
-      "FromBaseToUnitFunc": "{x} * 791887.667",
+      "FromUnitToBaseFunc": "{x} * 0.00454609 / 3600",
+      "FromBaseToUnitFunc": "{x} / (0.00454609 / 3600)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -292,8 +292,8 @@
     {
       "SingularName": "UkGallonPerMinute",
       "PluralName": "UkGallonsPerMinute",
-      "FromUnitToBaseFunc": "{x} / 13198.2",
-      "FromBaseToUnitFunc": "{x} * 13198.2",
+      "FromUnitToBaseFunc": "{x} * 0.00454609 / 60",
+      "FromBaseToUnitFunc": "{x} / (0.00454609 / 60)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -304,8 +304,8 @@
     {
       "SingularName": "UkGallonPerSecond",
       "PluralName": "UkGallonsPerSecond",
-      "FromUnitToBaseFunc": "{x} / 219.969",
-      "FromBaseToUnitFunc": "{x} * 219.969",
+      "FromUnitToBaseFunc": "{x} * 0.00454609",
+      "FromBaseToUnitFunc": "{x} / 0.00454609",
       "Prefixes": [ "Mega" ],
       "Localization": [
         {
@@ -317,8 +317,8 @@
     {
       "SingularName": "KilousGallonPerMinute",
       "PluralName": "KilousGallonsPerMinute",
-      "FromUnitToBaseFunc": "{x} / 15.850323141489",
-      "FromBaseToUnitFunc": "{x} * 15.850323141489",
+      "FromUnitToBaseFunc": "{x} * 1000 * 0.003785411784 / 60",
+      "FromBaseToUnitFunc": "{x} / (1000 * 0.003785411784 / 60)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -329,8 +329,8 @@
     {
       "SingularName": "UsGallonPerHour",
       "PluralName": "UsGallonsPerHour",
-      "FromUnitToBaseFunc": "{x} / 951019.38848933424",
-      "FromBaseToUnitFunc": "{x} * 951019.38848933424",
+      "FromUnitToBaseFunc": "{x} * 0.003785411784 / 3600",
+      "FromBaseToUnitFunc": "{x} / (0.003785411784 / 3600)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -357,8 +357,8 @@
     {
       "SingularName": "OilBarrelPerDay",
       "PluralName": "OilBarrelsPerDay",
-      "FromUnitToBaseFunc": "{x} * 1.8401307283333333333333333333333e-6",
-      "FromBaseToUnitFunc": "{x} / 1.8401307283333333333333333333333e-6",
+      "FromUnitToBaseFunc": "{x} * 0.158987294928 / 86400",
+      "FromBaseToUnitFunc": "{x} / (0.158987294928 / 86400)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -369,8 +369,8 @@
     {
       "SingularName": "OilBarrelPerMinute",
       "PluralName": "OilBarrelsPerMinute",
-      "FromUnitToBaseFunc": "{x} * 2.64978825e-3",
-      "FromBaseToUnitFunc": "{x} / 2.64978825e-3",
+      "FromUnitToBaseFunc": "{x} * 0.158987294928 / 60",
+      "FromBaseToUnitFunc": "{x} / (0.158987294928 / 60)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -381,8 +381,8 @@
     {
       "SingularName": "OilBarrelPerHour",
       "PluralName": "OilBarrelsPerHour",
-      "FromUnitToBaseFunc": "{x} * 4.41631375e-5",
-      "FromBaseToUnitFunc": "{x} / 4.41631375e-5",
+      "FromUnitToBaseFunc": "{x} * 0.158987294928 / 3600",
+      "FromBaseToUnitFunc": "{x} / (0.158987294928 / 3600)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -393,8 +393,8 @@
     {
       "SingularName": "OilBarrelPerSecond",
       "PluralName": "OilBarrelsPerSecond",
-      "FromUnitToBaseFunc": "{x} / 6.28981",
-      "FromBaseToUnitFunc": "{x} * 6.28981",
+      "FromUnitToBaseFunc": "{x} * 0.158987294928",
+      "FromBaseToUnitFunc": "{x} / 0.158987294928",
       "Localization": [
         {
           "Culture": "en-US",
@@ -421,8 +421,8 @@
     {
       "SingularName": "AcreFootPerSecond",
       "PluralName": "AcreFeetPerSecond",
-      "FromUnitToBaseFunc": "{x} / 0.000810713194",
-      "FromBaseToUnitFunc": "{x} * 0.000810713194",
+      "FromUnitToBaseFunc": "{x} * 1233.48183754752",
+      "FromBaseToUnitFunc": "{x} / 1233.48183754752",
       "Localization": [
         {
           "Culture": "en-US",
@@ -433,8 +433,8 @@
     {
       "SingularName": "AcreFootPerMinute",
       "PluralName": "AcreFeetPerMinute",
-      "FromUnitToBaseFunc": "{x} / 0.0486427916",
-      "FromBaseToUnitFunc": "{x} * 0.0486427916",
+      "FromUnitToBaseFunc": "{x} * 1233.48183754752 / 60",
+      "FromBaseToUnitFunc": "{x} / (1233.48183754752 / 60)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -445,8 +445,8 @@
     {
       "SingularName": "AcreFootPerHour",
       "PluralName": "AcreFeetPerHour",
-      "FromUnitToBaseFunc": "{x} / 2.91857",
-      "FromBaseToUnitFunc": "{x} * 2.91857",
+      "FromUnitToBaseFunc": "{x} * 1233.48183754752 / 3600",
+      "FromBaseToUnitFunc": "{x} / (1233.48183754752 / 3600)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -457,8 +457,8 @@
     {
       "SingularName": "AcreFootPerDay",
       "PluralName": "AcreFeetPerDay",
-      "FromUnitToBaseFunc": "{x} / 70.0457",
-      "FromBaseToUnitFunc": "{x} * 70.0457",
+      "FromUnitToBaseFunc": "{x} * 1233.48183754752 / 86400",
+      "FromBaseToUnitFunc": "{x} / (1233.48183754752 / 86400)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -469,8 +469,8 @@
     {
       "SingularName": "CubicCentimeterPerMinute",
       "PluralName": "CubicCentimetersPerMinute",
-      "FromUnitToBaseFunc": "{x} * 1.6666666666667e-8",
-      "FromBaseToUnitFunc": "{x} / 1.6666666666667e-8",
+      "FromUnitToBaseFunc": "{x} * 1e-6 / 60",
+      "FromBaseToUnitFunc": "{x} / (1e-6 / 60)",
       "Localization": [
         {
           "Culture": "en-US",

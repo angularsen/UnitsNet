@@ -31,8 +31,8 @@
         "T": "Minute"
 
       },
-      "FromUnitToBaseFunc": "{x} / 196.850394",
-      "FromBaseToUnitFunc": "{x} * 196.850394",
+      "FromUnitToBaseFunc": "{x} * (0.028316846592 / 60) / 9.290304e-2",
+      "FromBaseToUnitFunc": "{x} * 9.290304e-2 / (0.028316846592 / 60)",
       "Localization": [
         {
           "Culture": "en-US",

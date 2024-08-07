@@ -30,8 +30,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double KilogramsPerKiloNewtonSecondInOneGramPerKiloNewtonSecond => 1e-3;
 
-        protected override double PoundsMassPerPoundForceHourInOneGramPerKiloNewtonSecond => 0.03529827;
+        protected override double PoundsMassPerPoundForceHourInOneGramPerKiloNewtonSecond => 0.03530394;
 
-        protected override double KilogramsPerKilogramForceHourInOneGramPerKiloNewtonSecond => 0.03529827;        
+        protected override double KilogramsPerKilogramForceHourInOneGramPerKiloNewtonSecond => 0.03530394;        
     }
 }

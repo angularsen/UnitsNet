@@ -456,7 +456,7 @@ namespace UnitsNet
                 {
                     return Unit switch
                     {
-                        SpecificEnergyUnit.BtuPerPound => _value * 2326.000075362,
+                        SpecificEnergyUnit.BtuPerPound => _value * 1055.05585262 / 0.45359237,
                         SpecificEnergyUnit.CaloriePerGram => _value * 4.184e3,
                         SpecificEnergyUnit.GigawattDayPerKilogram => (_value * (24 * 3.6e3)) * 1e9d,
                         SpecificEnergyUnit.GigawattDayPerShortTon => (_value * ((24 * 3.6e3) / 9.0718474e2)) * 1e9d,
@@ -499,7 +499,7 @@ namespace UnitsNet
 
                     return unit switch
                     {
-                        SpecificEnergyUnit.BtuPerPound => baseUnitValue / 2326.000075362,
+                        SpecificEnergyUnit.BtuPerPound => baseUnitValue * 0.45359237 / 1055.05585262,
                         SpecificEnergyUnit.CaloriePerGram => baseUnitValue / 4.184e3,
                         SpecificEnergyUnit.GigawattDayPerKilogram => (baseUnitValue / (24 * 3.6e3)) / 1e9d,
                         SpecificEnergyUnit.GigawattDayPerShortTon => (baseUnitValue / ((24 * 3.6e3) / 9.0718474e2)) / 1e9d,

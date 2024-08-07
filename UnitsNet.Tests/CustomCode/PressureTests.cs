@@ -55,7 +55,7 @@ namespace UnitsNet.Tests
 
         protected override double PoundsForcePerSquareMilInOnePascal => 1.450377377302092e-10;
 
-        protected override double TechnicalAtmospheresInOnePascal => 1.0197 * 1E-5;
+        protected override double TechnicalAtmospheresInOnePascal => 1.019716212977928E-05;
 
         protected override double TonnesForcePerSquareCentimeterInOnePascal => 1.019716212977928e-8;
 

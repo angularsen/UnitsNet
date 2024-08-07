@@ -34,8 +34,8 @@
     {
       "SingularName": "PoundPerMechanicalHorsepowerHour",
       "PluralName": "PoundsPerMechanicalHorsepowerHour",
-      "FromUnitToBaseFunc": "{x} * 1.689659410672e-7",
-      "FromBaseToUnitFunc": "{x} / 1.689659410672e-7",
+      "FromUnitToBaseFunc": "{x} * (0.45359237 / (76.0402249 * 9.80665))/3600",
+      "FromBaseToUnitFunc": "{x} * 3600 / (0.45359237 / (76.0402249 * 9.80665))",
       "XmlDocSummary": "The pound per horse power hour uses mechanical horse power and the imperial pound",
       "Localization": [
         {

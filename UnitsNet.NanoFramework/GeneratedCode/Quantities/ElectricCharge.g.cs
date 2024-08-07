@@ -247,14 +247,14 @@ namespace UnitsNet
                 {
                     return Unit switch
                     {
-                        ElectricChargeUnit.AmpereHour => _value / 2.77777777777e-4,
+                        ElectricChargeUnit.AmpereHour => _value * 3600,
                         ElectricChargeUnit.Coulomb => _value,
-                        ElectricChargeUnit.KiloampereHour => (_value / 2.77777777777e-4) * 1e3d,
+                        ElectricChargeUnit.KiloampereHour => (_value * 3600) * 1e3d,
                         ElectricChargeUnit.Kilocoulomb => (_value) * 1e3d,
-                        ElectricChargeUnit.MegaampereHour => (_value / 2.77777777777e-4) * 1e6d,
+                        ElectricChargeUnit.MegaampereHour => (_value * 3600) * 1e6d,
                         ElectricChargeUnit.Megacoulomb => (_value) * 1e6d,
                         ElectricChargeUnit.Microcoulomb => (_value) * 1e-6d,
-                        ElectricChargeUnit.MilliampereHour => (_value / 2.77777777777e-4) * 1e-3d,
+                        ElectricChargeUnit.MilliampereHour => (_value * 3600) * 1e-3d,
                         ElectricChargeUnit.Millicoulomb => (_value) * 1e-3d,
                         ElectricChargeUnit.Nanocoulomb => (_value) * 1e-9d,
                         ElectricChargeUnit.Picocoulomb => (_value) * 1e-12d,
@@ -271,14 +271,14 @@ namespace UnitsNet
 
                     return unit switch
                     {
-                        ElectricChargeUnit.AmpereHour => baseUnitValue * 2.77777777777e-4,
+                        ElectricChargeUnit.AmpereHour => baseUnitValue / 3600,
                         ElectricChargeUnit.Coulomb => baseUnitValue,
-                        ElectricChargeUnit.KiloampereHour => (baseUnitValue * 2.77777777777e-4) / 1e3d,
+                        ElectricChargeUnit.KiloampereHour => (baseUnitValue / 3600) / 1e3d,
                         ElectricChargeUnit.Kilocoulomb => (baseUnitValue) / 1e3d,
-                        ElectricChargeUnit.MegaampereHour => (baseUnitValue * 2.77777777777e-4) / 1e6d,
+                        ElectricChargeUnit.MegaampereHour => (baseUnitValue / 3600) / 1e6d,
                         ElectricChargeUnit.Megacoulomb => (baseUnitValue) / 1e6d,
                         ElectricChargeUnit.Microcoulomb => (baseUnitValue) / 1e-6d,
-                        ElectricChargeUnit.MilliampereHour => (baseUnitValue * 2.77777777777e-4) / 1e-3d,
+                        ElectricChargeUnit.MilliampereHour => (baseUnitValue / 3600) / 1e-3d,
                         ElectricChargeUnit.Millicoulomb => (baseUnitValue) / 1e-3d,
                         ElectricChargeUnit.Nanocoulomb => (baseUnitValue) / 1e-9d,
                         ElectricChargeUnit.Picocoulomb => (baseUnitValue) / 1e-12d,

@@ -294,15 +294,15 @@ namespace UnitsNet
                         ForceChangeRateUnit.DecinewtonPerSecond => (_value) * 1e-1d,
                         ForceChangeRateUnit.KilonewtonPerMinute => (_value / 60) * 1e3d,
                         ForceChangeRateUnit.KilonewtonPerSecond => (_value) * 1e3d,
-                        ForceChangeRateUnit.KilopoundForcePerMinute => (_value * 4.4482216152605095551842641431421 / 60) * 1e3d,
-                        ForceChangeRateUnit.KilopoundForcePerSecond => (_value * 4.4482216152605095551842641431421) * 1e3d,
+                        ForceChangeRateUnit.KilopoundForcePerMinute => (_value * 4.4482216152605 / 60) * 1e3d,
+                        ForceChangeRateUnit.KilopoundForcePerSecond => (_value * 4.4482216152605) * 1e3d,
                         ForceChangeRateUnit.MicronewtonPerSecond => (_value) * 1e-6d,
                         ForceChangeRateUnit.MillinewtonPerSecond => (_value) * 1e-3d,
                         ForceChangeRateUnit.NanonewtonPerSecond => (_value) * 1e-9d,
                         ForceChangeRateUnit.NewtonPerMinute => _value / 60,
                         ForceChangeRateUnit.NewtonPerSecond => _value,
-                        ForceChangeRateUnit.PoundForcePerMinute => _value * 4.4482216152605095551842641431421 / 60,
-                        ForceChangeRateUnit.PoundForcePerSecond => _value * 4.4482216152605095551842641431421,
+                        ForceChangeRateUnit.PoundForcePerMinute => _value * 4.4482216152605 / 60,
+                        ForceChangeRateUnit.PoundForcePerSecond => _value * 4.4482216152605,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
                     };
                     }
@@ -322,15 +322,15 @@ namespace UnitsNet
                         ForceChangeRateUnit.DecinewtonPerSecond => (baseUnitValue) / 1e-1d,
                         ForceChangeRateUnit.KilonewtonPerMinute => (baseUnitValue * 60) / 1e3d,
                         ForceChangeRateUnit.KilonewtonPerSecond => (baseUnitValue) / 1e3d,
-                        ForceChangeRateUnit.KilopoundForcePerMinute => (baseUnitValue / 4.4482216152605095551842641431421 * 60) / 1e3d,
-                        ForceChangeRateUnit.KilopoundForcePerSecond => (baseUnitValue / 4.4482216152605095551842641431421) / 1e3d,
+                        ForceChangeRateUnit.KilopoundForcePerMinute => (baseUnitValue / 4.4482216152605 * 60) / 1e3d,
+                        ForceChangeRateUnit.KilopoundForcePerSecond => (baseUnitValue / 4.4482216152605) / 1e3d,
                         ForceChangeRateUnit.MicronewtonPerSecond => (baseUnitValue) / 1e-6d,
                         ForceChangeRateUnit.MillinewtonPerSecond => (baseUnitValue) / 1e-3d,
                         ForceChangeRateUnit.NanonewtonPerSecond => (baseUnitValue) / 1e-9d,
                         ForceChangeRateUnit.NewtonPerMinute => baseUnitValue * 60,
                         ForceChangeRateUnit.NewtonPerSecond => baseUnitValue,
-                        ForceChangeRateUnit.PoundForcePerMinute => baseUnitValue / 4.4482216152605095551842641431421 * 60,
-                        ForceChangeRateUnit.PoundForcePerSecond => baseUnitValue / 4.4482216152605095551842641431421,
+                        ForceChangeRateUnit.PoundForcePerMinute => baseUnitValue / 4.4482216152605 * 60,
+                        ForceChangeRateUnit.PoundForcePerSecond => baseUnitValue / 4.4482216152605,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
                     };
                     }
