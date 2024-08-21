@@ -1066,7 +1066,8 @@
     "Petawatt": 23,
     "Picowatt": 24,
     "Terawatt": 25,
-    "Watt": 26
+    "Watt": 26,
+    "TonOfRefrigeration": 29
   },
   "PowerDensity": {
     "DecawattPerCubicFoot": 1,

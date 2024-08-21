@@ -112,6 +112,19 @@
           "Abbreviations": [ "J/h" ]
         }
       ]
+    },
+    {
+      "SingularName": "TonOfRefrigeration",
+      "PluralName": "TonsOfRefrigeration",
+      "FromUnitToBaseFunc": "{x} * 3516.8528420667m",
+      "FromBaseToUnitFunc": "{x} / 3516.8528420667m",
+      "Prefixes": [ ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "TR" ]
+        }
+      ]
     }
   ]
 }
