@@ -204,6 +204,11 @@ namespace UnitsNet
         public double Terawatts => As(PowerUnit.Terawatt);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.TonOfRefrigeration"/>
+        /// </summary>
+        public double TonsOfRefrigeration => As(PowerUnit.TonOfRefrigeration);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.Watt"/>
         /// </summary>
         public double Watts => As(PowerUnit.Watt);
@@ -338,6 +343,11 @@ namespace UnitsNet
         public static Power FromTerawatts(double terawatts) => new Power(terawatts, PowerUnit.Terawatt);
 
         /// <summary>
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.TonOfRefrigeration"/>.
+        /// </summary>
+        public static Power FromTonsOfRefrigeration(double tonsofrefrigeration) => new Power(tonsofrefrigeration, PowerUnit.TonOfRefrigeration);
+
+        /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Watt"/>.
         /// </summary>
         public static Power FromWatts(double watts) => new Power(watts, PowerUnit.Watt);
@@ -407,6 +417,7 @@ namespace UnitsNet
                         PowerUnit.Petawatt => (_value) * 1e15d,
                         PowerUnit.Picowatt => (_value) * 1e-12d,
                         PowerUnit.Terawatt => (_value) * 1e12d,
+                        PowerUnit.TonOfRefrigeration => _value * 3516.853m,
                         PowerUnit.Watt => _value,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
                     };
@@ -446,6 +457,7 @@ namespace UnitsNet
                         PowerUnit.Petawatt => (baseUnitValue) / 1e15d,
                         PowerUnit.Picowatt => (baseUnitValue) / 1e-12d,
                         PowerUnit.Terawatt => (baseUnitValue) / 1e12d,
+                        PowerUnit.TonOfRefrigeration => baseUnitValue / 3516.853m,
                         PowerUnit.Watt => baseUnitValue,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
                     };

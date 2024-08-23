@@ -232,6 +232,14 @@ namespace UnitsNet.NumberExtensions.NumberToPower
 #endif
             => Power.FromTerawatts(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Power.FromTonsOfRefrigeration(double)" />
+        public static Power TonsOfRefrigeration<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => Power.FromTonsOfRefrigeration(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Power.FromWatts(double)" />
         public static Power Watts<T>(this T value)
             where T : notnull

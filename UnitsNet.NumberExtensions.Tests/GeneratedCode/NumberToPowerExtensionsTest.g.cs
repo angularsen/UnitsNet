@@ -125,6 +125,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Power.FromTerawatts(2), 2.Terawatts());
 
         [Fact]
+        public void NumberToTonsOfRefrigerationTest() =>
+            Assert.Equal(Power.FromTonsOfRefrigeration(2), 2.TonsOfRefrigeration());
+
+        [Fact]
         public void NumberToWattsTest() =>
             Assert.Equal(Power.FromWatts(2), 2.Watts());
 

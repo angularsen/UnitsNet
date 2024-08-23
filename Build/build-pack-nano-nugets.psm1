@@ -21,6 +21,7 @@ function Invoke-BuildNanoNugets {
   & $nuget pack "$root\UnitsNet.NanoFramework\GeneratedCode\Power\UnitsNet.NanoFramework.Power.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
   & $nuget pack "$root\UnitsNet.NanoFramework\GeneratedCode\Density\UnitsNet.NanoFramework.Density.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
   & $nuget pack "$root\UnitsNet.NanoFramework\GeneratedCode\Mass\UnitsNet.NanoFramework.Mass.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
+  & $nuget pack "$root\UnitsNet.NanoFramework\GeneratedCode\Speed\UnitsNet.NanoFramework.Speed.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
   & $nuget pack "$root\UnitsNet.NanoFramework\GeneratedCode\MassConcentration\UnitsNet.NanoFramework.MassConcentration.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
   & $nuget pack "$root\UnitsNet.NanoFramework\GeneratedCode\Angle\UnitsNet.NanoFramework.Angle.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
   & $nuget pack "$root\UnitsNet.NanoFramework\GeneratedCode\MagneticField\UnitsNet.NanoFramework.MagneticField.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
