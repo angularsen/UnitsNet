@@ -93,6 +93,7 @@ namespace UnitsNet
                     new UnitInfo<PowerUnit>(PowerUnit.Petawatt, "Petawatts", BaseUnits.Undefined, "Power"),
                     new UnitInfo<PowerUnit>(PowerUnit.Picowatt, "Picowatts", BaseUnits.Undefined, "Power"),
                     new UnitInfo<PowerUnit>(PowerUnit.Terawatt, "Terawatts", BaseUnits.Undefined, "Power"),
+                    new UnitInfo<PowerUnit>(PowerUnit.TonOfRefrigeration, "TonsOfRefrigeration", BaseUnits.Undefined, "Power"),
                     new UnitInfo<PowerUnit>(PowerUnit.Watt, "Watts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Power"),
                 },
                 BaseUnit, Zero, BaseDimensions);
@@ -323,6 +324,11 @@ namespace UnitsNet
         public decimal Terawatts => As(PowerUnit.Terawatt);
 
         /// <summary>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="PowerUnit.TonOfRefrigeration"/>
+        /// </summary>
+        public decimal TonsOfRefrigeration => As(PowerUnit.TonOfRefrigeration);
+
+        /// <summary>
         ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="PowerUnit.Watt"/>
         /// </summary>
         public decimal Watts => As(PowerUnit.Watt);
@@ -363,6 +369,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Power>(PowerUnit.Petawatt, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Picowatt, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Terawatt, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.TonOfRefrigeration, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Watt, quantity => quantity);
@@ -393,6 +400,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Petawatt, quantity => quantity.ToUnit(PowerUnit.Petawatt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Picowatt, quantity => quantity.ToUnit(PowerUnit.Picowatt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Terawatt, quantity => quantity.ToUnit(PowerUnit.Terawatt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.TonOfRefrigeration, quantity => quantity.ToUnit(PowerUnit.TonOfRefrigeration));
         }
 
         /// <summary>
@@ -668,6 +676,16 @@ namespace UnitsNet
         {
             decimal value = (decimal) terawatts;
             return new Power(value, PowerUnit.Terawatt);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.TonOfRefrigeration"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Power FromTonsOfRefrigeration(QuantityValue tonsofrefrigeration)
+        {
+            decimal value = (decimal) tonsofrefrigeration;
+            return new Power(value, PowerUnit.TonOfRefrigeration);
         }
 
         /// <summary>
@@ -1209,6 +1227,7 @@ namespace UnitsNet
                 (PowerUnit.Petawatt, PowerUnit.Watt) => new Power((_value) * 1e15m, PowerUnit.Watt),
                 (PowerUnit.Picowatt, PowerUnit.Watt) => new Power((_value) * 1e-12m, PowerUnit.Watt),
                 (PowerUnit.Terawatt, PowerUnit.Watt) => new Power((_value) * 1e12m, PowerUnit.Watt),
+                (PowerUnit.TonOfRefrigeration, PowerUnit.Watt) => new Power(_value * 3516.853m, PowerUnit.Watt),
 
                 // BaseUnit -> PowerUnit
                 (PowerUnit.Watt, PowerUnit.BoilerHorsepower) => new Power(_value / 9812.5m, PowerUnit.BoilerHorsepower),
@@ -1236,6 +1255,7 @@ namespace UnitsNet
                 (PowerUnit.Watt, PowerUnit.Petawatt) => new Power((_value) / 1e15m, PowerUnit.Petawatt),
                 (PowerUnit.Watt, PowerUnit.Picowatt) => new Power((_value) / 1e-12m, PowerUnit.Picowatt),
                 (PowerUnit.Watt, PowerUnit.Terawatt) => new Power((_value) / 1e12m, PowerUnit.Terawatt),
+                (PowerUnit.Watt, PowerUnit.TonOfRefrigeration) => new Power(_value / 3516.853m, PowerUnit.TonOfRefrigeration),
 
                 _ => null
             };

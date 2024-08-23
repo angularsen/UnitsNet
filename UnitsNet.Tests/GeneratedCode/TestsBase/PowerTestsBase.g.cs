@@ -63,6 +63,7 @@ namespace UnitsNet.Tests
         protected abstract decimal PetawattsInOneWatt { get; }
         protected abstract decimal PicowattsInOneWatt { get; }
         protected abstract decimal TerawattsInOneWatt { get; }
+        protected abstract decimal TonsOfRefrigerationInOneWatt { get; }
         protected abstract decimal WattsInOneWatt { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
@@ -91,6 +92,7 @@ namespace UnitsNet.Tests
         protected virtual decimal PetawattsTolerance { get { return 1e-9m; } }
         protected virtual decimal PicowattsTolerance { get { return 1e-9m; } }
         protected virtual decimal TerawattsTolerance { get { return 1e-9m; } }
+        protected virtual decimal TonsOfRefrigerationTolerance { get { return 1e-9m; } }
         protected virtual decimal WattsTolerance { get { return 1e-9m; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
@@ -123,6 +125,7 @@ namespace UnitsNet.Tests
                 PowerUnit.Petawatt => (PetawattsInOneWatt, PetawattsTolerance),
                 PowerUnit.Picowatt => (PicowattsInOneWatt, PicowattsTolerance),
                 PowerUnit.Terawatt => (TerawattsInOneWatt, TerawattsTolerance),
+                PowerUnit.TonOfRefrigeration => (TonsOfRefrigerationInOneWatt, TonsOfRefrigerationTolerance),
                 PowerUnit.Watt => (WattsInOneWatt, WattsTolerance),
                 _ => throw new NotSupportedException()
             };
@@ -155,6 +158,7 @@ namespace UnitsNet.Tests
             new object[] { PowerUnit.Petawatt },
             new object[] { PowerUnit.Picowatt },
             new object[] { PowerUnit.Terawatt },
+            new object[] { PowerUnit.TonOfRefrigeration },
             new object[] { PowerUnit.Watt },
         };
 
@@ -231,6 +235,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(PetawattsInOneWatt, watt.Petawatts, PetawattsTolerance);
             AssertEx.EqualTolerance(PicowattsInOneWatt, watt.Picowatts, PicowattsTolerance);
             AssertEx.EqualTolerance(TerawattsInOneWatt, watt.Terawatts, TerawattsTolerance);
+            AssertEx.EqualTolerance(TonsOfRefrigerationInOneWatt, watt.TonsOfRefrigeration, TonsOfRefrigerationTolerance);
             AssertEx.EqualTolerance(WattsInOneWatt, watt.Watts, WattsTolerance);
         }
 
@@ -337,9 +342,13 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity24.Terawatts, TerawattsTolerance);
             Assert.Equal(PowerUnit.Terawatt, quantity24.Unit);
 
-            var quantity25 = Power.From(1, PowerUnit.Watt);
-            AssertEx.EqualTolerance(1, quantity25.Watts, WattsTolerance);
-            Assert.Equal(PowerUnit.Watt, quantity25.Unit);
+            var quantity25 = Power.From(1, PowerUnit.TonOfRefrigeration);
+            AssertEx.EqualTolerance(1, quantity25.TonsOfRefrigeration, TonsOfRefrigerationTolerance);
+            Assert.Equal(PowerUnit.TonOfRefrigeration, quantity25.Unit);
+
+            var quantity26 = Power.From(1, PowerUnit.Watt);
+            AssertEx.EqualTolerance(1, quantity26.Watts, WattsTolerance);
+            Assert.Equal(PowerUnit.Watt, quantity26.Unit);
 
         }
 
@@ -372,6 +381,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(PetawattsInOneWatt, watt.As(PowerUnit.Petawatt), PetawattsTolerance);
             AssertEx.EqualTolerance(PicowattsInOneWatt, watt.As(PowerUnit.Picowatt), PicowattsTolerance);
             AssertEx.EqualTolerance(TerawattsInOneWatt, watt.As(PowerUnit.Terawatt), TerawattsTolerance);
+            AssertEx.EqualTolerance(TonsOfRefrigerationInOneWatt, watt.As(PowerUnit.TonOfRefrigeration), TonsOfRefrigerationTolerance);
             AssertEx.EqualTolerance(WattsInOneWatt, watt.As(PowerUnit.Watt), WattsTolerance);
         }
 
@@ -593,6 +603,13 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = Power.Parse("1 TR", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.TonsOfRefrigeration, TonsOfRefrigerationTolerance);
+                Assert.Equal(PowerUnit.TonOfRefrigeration, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = Power.Parse("1 W", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Watts, WattsTolerance);
                 Assert.Equal(PowerUnit.Watt, parsed.Unit);
@@ -733,6 +750,12 @@ namespace UnitsNet.Tests
                 Assert.True(Power.TryParse("1 TW", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Terawatts, TerawattsTolerance);
                 Assert.Equal(PowerUnit.Terawatt, parsed.Unit);
+            }
+
+            {
+                Assert.True(Power.TryParse("1 TR", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.TonsOfRefrigeration, TonsOfRefrigerationTolerance);
+                Assert.Equal(PowerUnit.TonOfRefrigeration, parsed.Unit);
             }
 
             {
@@ -916,6 +939,12 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsedUnit = Power.ParseUnit("TR", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PowerUnit.TonOfRefrigeration, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsedUnit = Power.ParseUnit("W", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(PowerUnit.Watt, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1036,6 +1065,11 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(Power.TryParseUnit("TR", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PowerUnit.TonOfRefrigeration, parsedUnit);
+            }
+
+            {
                 Assert.True(Power.TryParseUnit("W", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(PowerUnit.Watt, parsedUnit);
             }
@@ -1113,6 +1147,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Power.FromPetawatts(watt.Petawatts).Watts, PetawattsTolerance);
             AssertEx.EqualTolerance(1, Power.FromPicowatts(watt.Picowatts).Watts, PicowattsTolerance);
             AssertEx.EqualTolerance(1, Power.FromTerawatts(watt.Terawatts).Watts, TerawattsTolerance);
+            AssertEx.EqualTolerance(1, Power.FromTonsOfRefrigeration(watt.TonsOfRefrigeration).Watts, TonsOfRefrigerationTolerance);
             AssertEx.EqualTolerance(1, Power.FromWatts(watt.Watts).Watts, WattsTolerance);
         }
 
@@ -1288,6 +1323,7 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 PW", new Power(1, PowerUnit.Petawatt).ToString());
                 Assert.Equal("1 pW", new Power(1, PowerUnit.Picowatt).ToString());
                 Assert.Equal("1 TW", new Power(1, PowerUnit.Terawatt).ToString());
+                Assert.Equal("1 TR", new Power(1, PowerUnit.TonOfRefrigeration).ToString());
                 Assert.Equal("1 W", new Power(1, PowerUnit.Watt).ToString());
             }
             finally
@@ -1327,6 +1363,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 PW", new Power(1, PowerUnit.Petawatt).ToString(swedishCulture));
             Assert.Equal("1 pW", new Power(1, PowerUnit.Picowatt).ToString(swedishCulture));
             Assert.Equal("1 TW", new Power(1, PowerUnit.Terawatt).ToString(swedishCulture));
+            Assert.Equal("1 TR", new Power(1, PowerUnit.TonOfRefrigeration).ToString(swedishCulture));
             Assert.Equal("1 W", new Power(1, PowerUnit.Watt).ToString(swedishCulture));
         }
 
