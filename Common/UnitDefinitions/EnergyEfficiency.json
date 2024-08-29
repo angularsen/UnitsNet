@@ -1,0 +1,42 @@
+{
+  "Name": "EnergyEfficiency",
+  "BaseUnit": "WattHourPerKilometer",
+  "XmlDocSummary": "",
+  "BaseDimensions": {
+    "Wh/km": 1
+  },
+  "Units": [
+    {
+      "SingularName": "WattHourPerKilometer",
+      "PluralName": "WattHoursPerKilometer",
+      "BaseUnits": {
+        "Wh/km": "WattHourPerKilometer"
+      },
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Prefixes": [ "Femto", "Pico", "Nano", "Micro", "Milli", "Kilo", "Mega", "Giga" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Wh/km" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "WattHourPerMeter",
+      "PluralName": "WattHoursPerMeter",
+      "BaseUnits": {
+        "Wh/km": "WattHourPerMeter"
+      },
+      "FromUnitToBaseFunc": "{x} / 1e3",
+      "FromBaseToUnitFunc": "{x} * 1e3",
+      "Prefixes": [ "Femto", "Pico", "Nano", "Micro", "Milli", "Kilo", "Mega", "Giga" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Wh/m" ]
+        }
+      ]
+    }
+  ]
+}

@@ -75,6 +75,7 @@ namespace UnitsNet
             { "ElectricSurfaceChargeDensity", ElectricSurfaceChargeDensity.Info },
             { "Energy", Energy.Info },
             { "EnergyDensity", EnergyDensity.Info },
+            { "EnergyEfficiency", EnergyEfficiency.Info },
             { "Entropy", Entropy.Info },
             { "Force", Force.Info },
             { "ForceChangeRate", ForceChangeRate.Info },
@@ -211,6 +212,7 @@ namespace UnitsNet
                 "ElectricSurfaceChargeDensity" => ElectricSurfaceChargeDensity.From(value, ElectricSurfaceChargeDensity.BaseUnit),
                 "Energy" => Energy.From(value, Energy.BaseUnit),
                 "EnergyDensity" => EnergyDensity.From(value, EnergyDensity.BaseUnit),
+                "EnergyEfficiency" => EnergyEfficiency.From(value, EnergyEfficiency.BaseUnit),
                 "Entropy" => Entropy.From(value, Entropy.BaseUnit),
                 "Force" => Force.From(value, Force.BaseUnit),
                 "ForceChangeRate" => ForceChangeRate.From(value, ForceChangeRate.BaseUnit),
@@ -350,6 +352,7 @@ namespace UnitsNet
                 ElectricSurfaceChargeDensityUnit electricSurfaceChargeDensityUnit => ElectricSurfaceChargeDensity.From(value, electricSurfaceChargeDensityUnit),
                 EnergyUnit energyUnit => Energy.From(value, energyUnit),
                 EnergyDensityUnit energyDensityUnit => EnergyDensity.From(value, energyDensityUnit),
+                EnergyEfficiencyUnit energyEfficiencyUnit => EnergyEfficiency.From(value, energyEfficiencyUnit),
                 EntropyUnit entropyUnit => Entropy.From(value, entropyUnit),
                 ForceUnit forceUnit => Force.From(value, forceUnit),
                 ForceChangeRateUnit forceChangeRateUnit => ForceChangeRate.From(value, forceChangeRateUnit),
@@ -499,6 +502,7 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(ElectricSurfaceChargeDensity) => parser.TryParse<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensityUnit>(quantityString, formatProvider, ElectricSurfaceChargeDensity.From, out quantity),
                 Type _ when quantityType == typeof(Energy) => parser.TryParse<Energy, EnergyUnit>(quantityString, formatProvider, Energy.From, out quantity),
                 Type _ when quantityType == typeof(EnergyDensity) => parser.TryParse<EnergyDensity, EnergyDensityUnit>(quantityString, formatProvider, EnergyDensity.From, out quantity),
+                Type _ when quantityType == typeof(EnergyEfficiency) => parser.TryParse<EnergyEfficiency, EnergyEfficiencyUnit>(quantityString, formatProvider, EnergyEfficiency.From, out quantity),
                 Type _ when quantityType == typeof(Entropy) => parser.TryParse<Entropy, EntropyUnit>(quantityString, formatProvider, Entropy.From, out quantity),
                 Type _ when quantityType == typeof(Force) => parser.TryParse<Force, ForceUnit>(quantityString, formatProvider, Force.From, out quantity),
                 Type _ when quantityType == typeof(ForceChangeRate) => parser.TryParse<ForceChangeRate, ForceChangeRateUnit>(quantityString, formatProvider, ForceChangeRate.From, out quantity),
@@ -629,6 +633,7 @@ namespace UnitsNet
             yield return typeof(ElectricSurfaceChargeDensity);
             yield return typeof(Energy);
             yield return typeof(EnergyDensity);
+            yield return typeof(EnergyEfficiency);
             yield return typeof(Entropy);
             yield return typeof(Force);
             yield return typeof(ForceChangeRate);

@@ -71,6 +71,7 @@ namespace UnitsNet.Tests
             Assertion(3, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, Quantity.From(3, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter));
             Assertion(3, EnergyUnit.WattHour, Quantity.From(3, EnergyUnit.WattHour));
             Assertion(3, EnergyDensityUnit.WattHourPerCubicMeter, Quantity.From(3, EnergyDensityUnit.WattHourPerCubicMeter));
+            Assertion(3, EnergyEfficiencyUnit.WattHourPerMeter, Quantity.From(3, EnergyEfficiencyUnit.WattHourPerMeter));
             Assertion(3, EntropyUnit.MegajoulePerKelvin, Quantity.From(3, EntropyUnit.MegajoulePerKelvin));
             Assertion(3, ForceUnit.TonneForce, Quantity.From(3, ForceUnit.TonneForce));
             Assertion(3, ForceChangeRateUnit.PoundForcePerSecond, Quantity.From(3, ForceChangeRateUnit.PoundForcePerSecond));
@@ -202,6 +203,7 @@ namespace UnitsNet.Tests
             Assertion(ElectricSurfaceChargeDensity.Info, ElectricSurfaceChargeDensity.Zero);
             Assertion(Energy.Info, Energy.Zero);
             Assertion(EnergyDensity.Info, EnergyDensity.Zero);
+            Assertion(EnergyEfficiency.Info, EnergyEfficiency.Zero);
             Assertion(Entropy.Info, Entropy.Zero);
             Assertion(Force.Info, Force.Zero);
             Assertion(ForceChangeRate.Info, ForceChangeRate.Zero);
@@ -333,6 +335,7 @@ namespace UnitsNet.Tests
             Assertion(ElectricSurfaceChargeDensity.BaseDimensions, ElectricSurfaceChargeDensity.Zero);
             Assertion(Energy.BaseDimensions, Energy.Zero);
             Assertion(EnergyDensity.BaseDimensions, EnergyDensity.Zero);
+            Assertion(EnergyEfficiency.BaseDimensions, EnergyEfficiency.Zero);
             Assertion(Entropy.BaseDimensions, Entropy.Zero);
             Assertion(Force.BaseDimensions, Force.Zero);
             Assertion(ForceChangeRate.BaseDimensions, ForceChangeRate.Zero);
