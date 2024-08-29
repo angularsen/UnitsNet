@@ -168,9 +168,9 @@ namespace UnitsNet
                     return Unit switch
                     {
                         EnergyEfficiencyUnit.KilowattHourPerKilometer => (_value) * 1e3d,
-                        EnergyEfficiencyUnit.KilowattHourPerMeter => (_value / 1e3) * 1e3d,
+                        EnergyEfficiencyUnit.KilowattHourPerMeter => (_value * 1e3) * 1e3d,
                         EnergyEfficiencyUnit.WattHourPerKilometer => _value,
-                        EnergyEfficiencyUnit.WattHourPerMeter => _value / 1e3,
+                        EnergyEfficiencyUnit.WattHourPerMeter => _value * 1e3,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
                     };
                     }
@@ -185,9 +185,9 @@ namespace UnitsNet
                     return unit switch
                     {
                         EnergyEfficiencyUnit.KilowattHourPerKilometer => (baseUnitValue) / 1e3d,
-                        EnergyEfficiencyUnit.KilowattHourPerMeter => (baseUnitValue * 1e3) / 1e3d,
+                        EnergyEfficiencyUnit.KilowattHourPerMeter => (baseUnitValue / 1e3) / 1e3d,
                         EnergyEfficiencyUnit.WattHourPerKilometer => baseUnitValue,
-                        EnergyEfficiencyUnit.WattHourPerMeter => baseUnitValue * 1e3,
+                        EnergyEfficiencyUnit.WattHourPerMeter => baseUnitValue / 1e3,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
                     };
                     }

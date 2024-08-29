@@ -777,13 +777,13 @@ namespace UnitsNet
             {
                 // EnergyEfficiencyUnit -> BaseUnit
                 (EnergyEfficiencyUnit.KilowattHourPerKilometer, EnergyEfficiencyUnit.WattHourPerKilometer) => new EnergyEfficiency((_value) * 1e3d, EnergyEfficiencyUnit.WattHourPerKilometer),
-                (EnergyEfficiencyUnit.KilowattHourPerMeter, EnergyEfficiencyUnit.WattHourPerKilometer) => new EnergyEfficiency((_value / 1e3) * 1e3d, EnergyEfficiencyUnit.WattHourPerKilometer),
-                (EnergyEfficiencyUnit.WattHourPerMeter, EnergyEfficiencyUnit.WattHourPerKilometer) => new EnergyEfficiency(_value / 1e3, EnergyEfficiencyUnit.WattHourPerKilometer),
+                (EnergyEfficiencyUnit.KilowattHourPerMeter, EnergyEfficiencyUnit.WattHourPerKilometer) => new EnergyEfficiency((_value * 1e3) * 1e3d, EnergyEfficiencyUnit.WattHourPerKilometer),
+                (EnergyEfficiencyUnit.WattHourPerMeter, EnergyEfficiencyUnit.WattHourPerKilometer) => new EnergyEfficiency(_value * 1e3, EnergyEfficiencyUnit.WattHourPerKilometer),
 
                 // BaseUnit -> EnergyEfficiencyUnit
                 (EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.KilowattHourPerKilometer) => new EnergyEfficiency((_value) / 1e3d, EnergyEfficiencyUnit.KilowattHourPerKilometer),
-                (EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.KilowattHourPerMeter) => new EnergyEfficiency((_value * 1e3) / 1e3d, EnergyEfficiencyUnit.KilowattHourPerMeter),
-                (EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.WattHourPerMeter) => new EnergyEfficiency(_value * 1e3, EnergyEfficiencyUnit.WattHourPerMeter),
+                (EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.KilowattHourPerMeter) => new EnergyEfficiency((_value / 1e3) / 1e3d, EnergyEfficiencyUnit.KilowattHourPerMeter),
+                (EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.WattHourPerMeter) => new EnergyEfficiency(_value / 1e3, EnergyEfficiencyUnit.WattHourPerMeter),
 
                 _ => null
             };
