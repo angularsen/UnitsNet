@@ -38,42 +38,14 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class EnergyEfficiencyTestsBase : QuantityTestsBase
     {
-        protected abstract double FemtowattHoursPerKilometerInOneWattHourPerKilometer { get; }
-        protected abstract double FemtowattHoursPerMeterInOneWattHourPerKilometer { get; }
-        protected abstract double GigawattHoursPerKilometerInOneWattHourPerKilometer { get; }
-        protected abstract double GigawattHoursPerMeterInOneWattHourPerKilometer { get; }
         protected abstract double KilowattHoursPerKilometerInOneWattHourPerKilometer { get; }
         protected abstract double KilowattHoursPerMeterInOneWattHourPerKilometer { get; }
-        protected abstract double MegawattHoursPerKilometerInOneWattHourPerKilometer { get; }
-        protected abstract double MegawattHoursPerMeterInOneWattHourPerKilometer { get; }
-        protected abstract double MicrowattHoursPerKilometerInOneWattHourPerKilometer { get; }
-        protected abstract double MicrowattHoursPerMeterInOneWattHourPerKilometer { get; }
-        protected abstract double MilliwattHoursPerKilometerInOneWattHourPerKilometer { get; }
-        protected abstract double MilliwattHoursPerMeterInOneWattHourPerKilometer { get; }
-        protected abstract double NanowattHoursPerKilometerInOneWattHourPerKilometer { get; }
-        protected abstract double NanowattHoursPerMeterInOneWattHourPerKilometer { get; }
-        protected abstract double PicowattHoursPerKilometerInOneWattHourPerKilometer { get; }
-        protected abstract double PicowattHoursPerMeterInOneWattHourPerKilometer { get; }
         protected abstract double WattHoursPerKilometerInOneWattHourPerKilometer { get; }
         protected abstract double WattHoursPerMeterInOneWattHourPerKilometer { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double FemtowattHoursPerKilometerTolerance { get { return 1e-5; } }
-        protected virtual double FemtowattHoursPerMeterTolerance { get { return 1e-5; } }
-        protected virtual double GigawattHoursPerKilometerTolerance { get { return 1e-5; } }
-        protected virtual double GigawattHoursPerMeterTolerance { get { return 1e-5; } }
         protected virtual double KilowattHoursPerKilometerTolerance { get { return 1e-5; } }
         protected virtual double KilowattHoursPerMeterTolerance { get { return 1e-5; } }
-        protected virtual double MegawattHoursPerKilometerTolerance { get { return 1e-5; } }
-        protected virtual double MegawattHoursPerMeterTolerance { get { return 1e-5; } }
-        protected virtual double MicrowattHoursPerKilometerTolerance { get { return 1e-5; } }
-        protected virtual double MicrowattHoursPerMeterTolerance { get { return 1e-5; } }
-        protected virtual double MilliwattHoursPerKilometerTolerance { get { return 1e-5; } }
-        protected virtual double MilliwattHoursPerMeterTolerance { get { return 1e-5; } }
-        protected virtual double NanowattHoursPerKilometerTolerance { get { return 1e-5; } }
-        protected virtual double NanowattHoursPerMeterTolerance { get { return 1e-5; } }
-        protected virtual double PicowattHoursPerKilometerTolerance { get { return 1e-5; } }
-        protected virtual double PicowattHoursPerMeterTolerance { get { return 1e-5; } }
         protected virtual double WattHoursPerKilometerTolerance { get { return 1e-5; } }
         protected virtual double WattHoursPerMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
@@ -82,22 +54,8 @@ namespace UnitsNet.Tests
         {
             return unit switch
             {
-                EnergyEfficiencyUnit.FemtowattHourPerKilometer => (FemtowattHoursPerKilometerInOneWattHourPerKilometer, FemtowattHoursPerKilometerTolerance),
-                EnergyEfficiencyUnit.FemtowattHourPerMeter => (FemtowattHoursPerMeterInOneWattHourPerKilometer, FemtowattHoursPerMeterTolerance),
-                EnergyEfficiencyUnit.GigawattHourPerKilometer => (GigawattHoursPerKilometerInOneWattHourPerKilometer, GigawattHoursPerKilometerTolerance),
-                EnergyEfficiencyUnit.GigawattHourPerMeter => (GigawattHoursPerMeterInOneWattHourPerKilometer, GigawattHoursPerMeterTolerance),
                 EnergyEfficiencyUnit.KilowattHourPerKilometer => (KilowattHoursPerKilometerInOneWattHourPerKilometer, KilowattHoursPerKilometerTolerance),
                 EnergyEfficiencyUnit.KilowattHourPerMeter => (KilowattHoursPerMeterInOneWattHourPerKilometer, KilowattHoursPerMeterTolerance),
-                EnergyEfficiencyUnit.MegawattHourPerKilometer => (MegawattHoursPerKilometerInOneWattHourPerKilometer, MegawattHoursPerKilometerTolerance),
-                EnergyEfficiencyUnit.MegawattHourPerMeter => (MegawattHoursPerMeterInOneWattHourPerKilometer, MegawattHoursPerMeterTolerance),
-                EnergyEfficiencyUnit.MicrowattHourPerKilometer => (MicrowattHoursPerKilometerInOneWattHourPerKilometer, MicrowattHoursPerKilometerTolerance),
-                EnergyEfficiencyUnit.MicrowattHourPerMeter => (MicrowattHoursPerMeterInOneWattHourPerKilometer, MicrowattHoursPerMeterTolerance),
-                EnergyEfficiencyUnit.MilliwattHourPerKilometer => (MilliwattHoursPerKilometerInOneWattHourPerKilometer, MilliwattHoursPerKilometerTolerance),
-                EnergyEfficiencyUnit.MilliwattHourPerMeter => (MilliwattHoursPerMeterInOneWattHourPerKilometer, MilliwattHoursPerMeterTolerance),
-                EnergyEfficiencyUnit.NanowattHourPerKilometer => (NanowattHoursPerKilometerInOneWattHourPerKilometer, NanowattHoursPerKilometerTolerance),
-                EnergyEfficiencyUnit.NanowattHourPerMeter => (NanowattHoursPerMeterInOneWattHourPerKilometer, NanowattHoursPerMeterTolerance),
-                EnergyEfficiencyUnit.PicowattHourPerKilometer => (PicowattHoursPerKilometerInOneWattHourPerKilometer, PicowattHoursPerKilometerTolerance),
-                EnergyEfficiencyUnit.PicowattHourPerMeter => (PicowattHoursPerMeterInOneWattHourPerKilometer, PicowattHoursPerMeterTolerance),
                 EnergyEfficiencyUnit.WattHourPerKilometer => (WattHoursPerKilometerInOneWattHourPerKilometer, WattHoursPerKilometerTolerance),
                 EnergyEfficiencyUnit.WattHourPerMeter => (WattHoursPerMeterInOneWattHourPerKilometer, WattHoursPerMeterTolerance),
                 _ => throw new NotSupportedException()
@@ -106,22 +64,8 @@ namespace UnitsNet.Tests
 
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
-            new object[] { EnergyEfficiencyUnit.FemtowattHourPerKilometer },
-            new object[] { EnergyEfficiencyUnit.FemtowattHourPerMeter },
-            new object[] { EnergyEfficiencyUnit.GigawattHourPerKilometer },
-            new object[] { EnergyEfficiencyUnit.GigawattHourPerMeter },
             new object[] { EnergyEfficiencyUnit.KilowattHourPerKilometer },
             new object[] { EnergyEfficiencyUnit.KilowattHourPerMeter },
-            new object[] { EnergyEfficiencyUnit.MegawattHourPerKilometer },
-            new object[] { EnergyEfficiencyUnit.MegawattHourPerMeter },
-            new object[] { EnergyEfficiencyUnit.MicrowattHourPerKilometer },
-            new object[] { EnergyEfficiencyUnit.MicrowattHourPerMeter },
-            new object[] { EnergyEfficiencyUnit.MilliwattHourPerKilometer },
-            new object[] { EnergyEfficiencyUnit.MilliwattHourPerMeter },
-            new object[] { EnergyEfficiencyUnit.NanowattHourPerKilometer },
-            new object[] { EnergyEfficiencyUnit.NanowattHourPerMeter },
-            new object[] { EnergyEfficiencyUnit.PicowattHourPerKilometer },
-            new object[] { EnergyEfficiencyUnit.PicowattHourPerMeter },
             new object[] { EnergyEfficiencyUnit.WattHourPerKilometer },
             new object[] { EnergyEfficiencyUnit.WattHourPerMeter },
         };
@@ -186,22 +130,8 @@ namespace UnitsNet.Tests
         public void WattHourPerKilometerToEnergyEfficiencyUnits()
         {
             EnergyEfficiency watthourperkilometer = EnergyEfficiency.FromWattHoursPerKilometer(1);
-            AssertEx.EqualTolerance(FemtowattHoursPerKilometerInOneWattHourPerKilometer, watthourperkilometer.FemtowattHoursPerKilometer, FemtowattHoursPerKilometerTolerance);
-            AssertEx.EqualTolerance(FemtowattHoursPerMeterInOneWattHourPerKilometer, watthourperkilometer.FemtowattHoursPerMeter, FemtowattHoursPerMeterTolerance);
-            AssertEx.EqualTolerance(GigawattHoursPerKilometerInOneWattHourPerKilometer, watthourperkilometer.GigawattHoursPerKilometer, GigawattHoursPerKilometerTolerance);
-            AssertEx.EqualTolerance(GigawattHoursPerMeterInOneWattHourPerKilometer, watthourperkilometer.GigawattHoursPerMeter, GigawattHoursPerMeterTolerance);
             AssertEx.EqualTolerance(KilowattHoursPerKilometerInOneWattHourPerKilometer, watthourperkilometer.KilowattHoursPerKilometer, KilowattHoursPerKilometerTolerance);
             AssertEx.EqualTolerance(KilowattHoursPerMeterInOneWattHourPerKilometer, watthourperkilometer.KilowattHoursPerMeter, KilowattHoursPerMeterTolerance);
-            AssertEx.EqualTolerance(MegawattHoursPerKilometerInOneWattHourPerKilometer, watthourperkilometer.MegawattHoursPerKilometer, MegawattHoursPerKilometerTolerance);
-            AssertEx.EqualTolerance(MegawattHoursPerMeterInOneWattHourPerKilometer, watthourperkilometer.MegawattHoursPerMeter, MegawattHoursPerMeterTolerance);
-            AssertEx.EqualTolerance(MicrowattHoursPerKilometerInOneWattHourPerKilometer, watthourperkilometer.MicrowattHoursPerKilometer, MicrowattHoursPerKilometerTolerance);
-            AssertEx.EqualTolerance(MicrowattHoursPerMeterInOneWattHourPerKilometer, watthourperkilometer.MicrowattHoursPerMeter, MicrowattHoursPerMeterTolerance);
-            AssertEx.EqualTolerance(MilliwattHoursPerKilometerInOneWattHourPerKilometer, watthourperkilometer.MilliwattHoursPerKilometer, MilliwattHoursPerKilometerTolerance);
-            AssertEx.EqualTolerance(MilliwattHoursPerMeterInOneWattHourPerKilometer, watthourperkilometer.MilliwattHoursPerMeter, MilliwattHoursPerMeterTolerance);
-            AssertEx.EqualTolerance(NanowattHoursPerKilometerInOneWattHourPerKilometer, watthourperkilometer.NanowattHoursPerKilometer, NanowattHoursPerKilometerTolerance);
-            AssertEx.EqualTolerance(NanowattHoursPerMeterInOneWattHourPerKilometer, watthourperkilometer.NanowattHoursPerMeter, NanowattHoursPerMeterTolerance);
-            AssertEx.EqualTolerance(PicowattHoursPerKilometerInOneWattHourPerKilometer, watthourperkilometer.PicowattHoursPerKilometer, PicowattHoursPerKilometerTolerance);
-            AssertEx.EqualTolerance(PicowattHoursPerMeterInOneWattHourPerKilometer, watthourperkilometer.PicowattHoursPerMeter, PicowattHoursPerMeterTolerance);
             AssertEx.EqualTolerance(WattHoursPerKilometerInOneWattHourPerKilometer, watthourperkilometer.WattHoursPerKilometer, WattHoursPerKilometerTolerance);
             AssertEx.EqualTolerance(WattHoursPerMeterInOneWattHourPerKilometer, watthourperkilometer.WattHoursPerMeter, WattHoursPerMeterTolerance);
         }
@@ -209,77 +139,21 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = EnergyEfficiency.From(1, EnergyEfficiencyUnit.FemtowattHourPerKilometer);
-            AssertEx.EqualTolerance(1, quantity00.FemtowattHoursPerKilometer, FemtowattHoursPerKilometerTolerance);
-            Assert.Equal(EnergyEfficiencyUnit.FemtowattHourPerKilometer, quantity00.Unit);
+            var quantity00 = EnergyEfficiency.From(1, EnergyEfficiencyUnit.KilowattHourPerKilometer);
+            AssertEx.EqualTolerance(1, quantity00.KilowattHoursPerKilometer, KilowattHoursPerKilometerTolerance);
+            Assert.Equal(EnergyEfficiencyUnit.KilowattHourPerKilometer, quantity00.Unit);
 
-            var quantity01 = EnergyEfficiency.From(1, EnergyEfficiencyUnit.FemtowattHourPerMeter);
-            AssertEx.EqualTolerance(1, quantity01.FemtowattHoursPerMeter, FemtowattHoursPerMeterTolerance);
-            Assert.Equal(EnergyEfficiencyUnit.FemtowattHourPerMeter, quantity01.Unit);
+            var quantity01 = EnergyEfficiency.From(1, EnergyEfficiencyUnit.KilowattHourPerMeter);
+            AssertEx.EqualTolerance(1, quantity01.KilowattHoursPerMeter, KilowattHoursPerMeterTolerance);
+            Assert.Equal(EnergyEfficiencyUnit.KilowattHourPerMeter, quantity01.Unit);
 
-            var quantity02 = EnergyEfficiency.From(1, EnergyEfficiencyUnit.GigawattHourPerKilometer);
-            AssertEx.EqualTolerance(1, quantity02.GigawattHoursPerKilometer, GigawattHoursPerKilometerTolerance);
-            Assert.Equal(EnergyEfficiencyUnit.GigawattHourPerKilometer, quantity02.Unit);
+            var quantity02 = EnergyEfficiency.From(1, EnergyEfficiencyUnit.WattHourPerKilometer);
+            AssertEx.EqualTolerance(1, quantity02.WattHoursPerKilometer, WattHoursPerKilometerTolerance);
+            Assert.Equal(EnergyEfficiencyUnit.WattHourPerKilometer, quantity02.Unit);
 
-            var quantity03 = EnergyEfficiency.From(1, EnergyEfficiencyUnit.GigawattHourPerMeter);
-            AssertEx.EqualTolerance(1, quantity03.GigawattHoursPerMeter, GigawattHoursPerMeterTolerance);
-            Assert.Equal(EnergyEfficiencyUnit.GigawattHourPerMeter, quantity03.Unit);
-
-            var quantity04 = EnergyEfficiency.From(1, EnergyEfficiencyUnit.KilowattHourPerKilometer);
-            AssertEx.EqualTolerance(1, quantity04.KilowattHoursPerKilometer, KilowattHoursPerKilometerTolerance);
-            Assert.Equal(EnergyEfficiencyUnit.KilowattHourPerKilometer, quantity04.Unit);
-
-            var quantity05 = EnergyEfficiency.From(1, EnergyEfficiencyUnit.KilowattHourPerMeter);
-            AssertEx.EqualTolerance(1, quantity05.KilowattHoursPerMeter, KilowattHoursPerMeterTolerance);
-            Assert.Equal(EnergyEfficiencyUnit.KilowattHourPerMeter, quantity05.Unit);
-
-            var quantity06 = EnergyEfficiency.From(1, EnergyEfficiencyUnit.MegawattHourPerKilometer);
-            AssertEx.EqualTolerance(1, quantity06.MegawattHoursPerKilometer, MegawattHoursPerKilometerTolerance);
-            Assert.Equal(EnergyEfficiencyUnit.MegawattHourPerKilometer, quantity06.Unit);
-
-            var quantity07 = EnergyEfficiency.From(1, EnergyEfficiencyUnit.MegawattHourPerMeter);
-            AssertEx.EqualTolerance(1, quantity07.MegawattHoursPerMeter, MegawattHoursPerMeterTolerance);
-            Assert.Equal(EnergyEfficiencyUnit.MegawattHourPerMeter, quantity07.Unit);
-
-            var quantity08 = EnergyEfficiency.From(1, EnergyEfficiencyUnit.MicrowattHourPerKilometer);
-            AssertEx.EqualTolerance(1, quantity08.MicrowattHoursPerKilometer, MicrowattHoursPerKilometerTolerance);
-            Assert.Equal(EnergyEfficiencyUnit.MicrowattHourPerKilometer, quantity08.Unit);
-
-            var quantity09 = EnergyEfficiency.From(1, EnergyEfficiencyUnit.MicrowattHourPerMeter);
-            AssertEx.EqualTolerance(1, quantity09.MicrowattHoursPerMeter, MicrowattHoursPerMeterTolerance);
-            Assert.Equal(EnergyEfficiencyUnit.MicrowattHourPerMeter, quantity09.Unit);
-
-            var quantity10 = EnergyEfficiency.From(1, EnergyEfficiencyUnit.MilliwattHourPerKilometer);
-            AssertEx.EqualTolerance(1, quantity10.MilliwattHoursPerKilometer, MilliwattHoursPerKilometerTolerance);
-            Assert.Equal(EnergyEfficiencyUnit.MilliwattHourPerKilometer, quantity10.Unit);
-
-            var quantity11 = EnergyEfficiency.From(1, EnergyEfficiencyUnit.MilliwattHourPerMeter);
-            AssertEx.EqualTolerance(1, quantity11.MilliwattHoursPerMeter, MilliwattHoursPerMeterTolerance);
-            Assert.Equal(EnergyEfficiencyUnit.MilliwattHourPerMeter, quantity11.Unit);
-
-            var quantity12 = EnergyEfficiency.From(1, EnergyEfficiencyUnit.NanowattHourPerKilometer);
-            AssertEx.EqualTolerance(1, quantity12.NanowattHoursPerKilometer, NanowattHoursPerKilometerTolerance);
-            Assert.Equal(EnergyEfficiencyUnit.NanowattHourPerKilometer, quantity12.Unit);
-
-            var quantity13 = EnergyEfficiency.From(1, EnergyEfficiencyUnit.NanowattHourPerMeter);
-            AssertEx.EqualTolerance(1, quantity13.NanowattHoursPerMeter, NanowattHoursPerMeterTolerance);
-            Assert.Equal(EnergyEfficiencyUnit.NanowattHourPerMeter, quantity13.Unit);
-
-            var quantity14 = EnergyEfficiency.From(1, EnergyEfficiencyUnit.PicowattHourPerKilometer);
-            AssertEx.EqualTolerance(1, quantity14.PicowattHoursPerKilometer, PicowattHoursPerKilometerTolerance);
-            Assert.Equal(EnergyEfficiencyUnit.PicowattHourPerKilometer, quantity14.Unit);
-
-            var quantity15 = EnergyEfficiency.From(1, EnergyEfficiencyUnit.PicowattHourPerMeter);
-            AssertEx.EqualTolerance(1, quantity15.PicowattHoursPerMeter, PicowattHoursPerMeterTolerance);
-            Assert.Equal(EnergyEfficiencyUnit.PicowattHourPerMeter, quantity15.Unit);
-
-            var quantity16 = EnergyEfficiency.From(1, EnergyEfficiencyUnit.WattHourPerKilometer);
-            AssertEx.EqualTolerance(1, quantity16.WattHoursPerKilometer, WattHoursPerKilometerTolerance);
-            Assert.Equal(EnergyEfficiencyUnit.WattHourPerKilometer, quantity16.Unit);
-
-            var quantity17 = EnergyEfficiency.From(1, EnergyEfficiencyUnit.WattHourPerMeter);
-            AssertEx.EqualTolerance(1, quantity17.WattHoursPerMeter, WattHoursPerMeterTolerance);
-            Assert.Equal(EnergyEfficiencyUnit.WattHourPerMeter, quantity17.Unit);
+            var quantity03 = EnergyEfficiency.From(1, EnergyEfficiencyUnit.WattHourPerMeter);
+            AssertEx.EqualTolerance(1, quantity03.WattHoursPerMeter, WattHoursPerMeterTolerance);
+            Assert.Equal(EnergyEfficiencyUnit.WattHourPerMeter, quantity03.Unit);
 
         }
 
@@ -300,22 +174,8 @@ namespace UnitsNet.Tests
         public void As()
         {
             var watthourperkilometer = EnergyEfficiency.FromWattHoursPerKilometer(1);
-            AssertEx.EqualTolerance(FemtowattHoursPerKilometerInOneWattHourPerKilometer, watthourperkilometer.As(EnergyEfficiencyUnit.FemtowattHourPerKilometer), FemtowattHoursPerKilometerTolerance);
-            AssertEx.EqualTolerance(FemtowattHoursPerMeterInOneWattHourPerKilometer, watthourperkilometer.As(EnergyEfficiencyUnit.FemtowattHourPerMeter), FemtowattHoursPerMeterTolerance);
-            AssertEx.EqualTolerance(GigawattHoursPerKilometerInOneWattHourPerKilometer, watthourperkilometer.As(EnergyEfficiencyUnit.GigawattHourPerKilometer), GigawattHoursPerKilometerTolerance);
-            AssertEx.EqualTolerance(GigawattHoursPerMeterInOneWattHourPerKilometer, watthourperkilometer.As(EnergyEfficiencyUnit.GigawattHourPerMeter), GigawattHoursPerMeterTolerance);
             AssertEx.EqualTolerance(KilowattHoursPerKilometerInOneWattHourPerKilometer, watthourperkilometer.As(EnergyEfficiencyUnit.KilowattHourPerKilometer), KilowattHoursPerKilometerTolerance);
             AssertEx.EqualTolerance(KilowattHoursPerMeterInOneWattHourPerKilometer, watthourperkilometer.As(EnergyEfficiencyUnit.KilowattHourPerMeter), KilowattHoursPerMeterTolerance);
-            AssertEx.EqualTolerance(MegawattHoursPerKilometerInOneWattHourPerKilometer, watthourperkilometer.As(EnergyEfficiencyUnit.MegawattHourPerKilometer), MegawattHoursPerKilometerTolerance);
-            AssertEx.EqualTolerance(MegawattHoursPerMeterInOneWattHourPerKilometer, watthourperkilometer.As(EnergyEfficiencyUnit.MegawattHourPerMeter), MegawattHoursPerMeterTolerance);
-            AssertEx.EqualTolerance(MicrowattHoursPerKilometerInOneWattHourPerKilometer, watthourperkilometer.As(EnergyEfficiencyUnit.MicrowattHourPerKilometer), MicrowattHoursPerKilometerTolerance);
-            AssertEx.EqualTolerance(MicrowattHoursPerMeterInOneWattHourPerKilometer, watthourperkilometer.As(EnergyEfficiencyUnit.MicrowattHourPerMeter), MicrowattHoursPerMeterTolerance);
-            AssertEx.EqualTolerance(MilliwattHoursPerKilometerInOneWattHourPerKilometer, watthourperkilometer.As(EnergyEfficiencyUnit.MilliwattHourPerKilometer), MilliwattHoursPerKilometerTolerance);
-            AssertEx.EqualTolerance(MilliwattHoursPerMeterInOneWattHourPerKilometer, watthourperkilometer.As(EnergyEfficiencyUnit.MilliwattHourPerMeter), MilliwattHoursPerMeterTolerance);
-            AssertEx.EqualTolerance(NanowattHoursPerKilometerInOneWattHourPerKilometer, watthourperkilometer.As(EnergyEfficiencyUnit.NanowattHourPerKilometer), NanowattHoursPerKilometerTolerance);
-            AssertEx.EqualTolerance(NanowattHoursPerMeterInOneWattHourPerKilometer, watthourperkilometer.As(EnergyEfficiencyUnit.NanowattHourPerMeter), NanowattHoursPerMeterTolerance);
-            AssertEx.EqualTolerance(PicowattHoursPerKilometerInOneWattHourPerKilometer, watthourperkilometer.As(EnergyEfficiencyUnit.PicowattHourPerKilometer), PicowattHoursPerKilometerTolerance);
-            AssertEx.EqualTolerance(PicowattHoursPerMeterInOneWattHourPerKilometer, watthourperkilometer.As(EnergyEfficiencyUnit.PicowattHourPerMeter), PicowattHoursPerMeterTolerance);
             AssertEx.EqualTolerance(WattHoursPerKilometerInOneWattHourPerKilometer, watthourperkilometer.As(EnergyEfficiencyUnit.WattHourPerKilometer), WattHoursPerKilometerTolerance);
             AssertEx.EqualTolerance(WattHoursPerMeterInOneWattHourPerKilometer, watthourperkilometer.As(EnergyEfficiencyUnit.WattHourPerMeter), WattHoursPerMeterTolerance);
         }
@@ -342,34 +202,6 @@ namespace UnitsNet.Tests
         {
             try
             {
-                var parsed = EnergyEfficiency.Parse("1 fWh/km", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.FemtowattHoursPerKilometer, FemtowattHoursPerKilometerTolerance);
-                Assert.Equal(EnergyEfficiencyUnit.FemtowattHourPerKilometer, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = EnergyEfficiency.Parse("1 fWh/m", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.FemtowattHoursPerMeter, FemtowattHoursPerMeterTolerance);
-                Assert.Equal(EnergyEfficiencyUnit.FemtowattHourPerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = EnergyEfficiency.Parse("1 GWh/km", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.GigawattHoursPerKilometer, GigawattHoursPerKilometerTolerance);
-                Assert.Equal(EnergyEfficiencyUnit.GigawattHourPerKilometer, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = EnergyEfficiency.Parse("1 GWh/m", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.GigawattHoursPerMeter, GigawattHoursPerMeterTolerance);
-                Assert.Equal(EnergyEfficiencyUnit.GigawattHourPerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
                 var parsed = EnergyEfficiency.Parse("1 kWh/km", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.KilowattHoursPerKilometer, KilowattHoursPerKilometerTolerance);
                 Assert.Equal(EnergyEfficiencyUnit.KilowattHourPerKilometer, parsed.Unit);
@@ -380,76 +212,6 @@ namespace UnitsNet.Tests
                 var parsed = EnergyEfficiency.Parse("1 kWh/m", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.KilowattHoursPerMeter, KilowattHoursPerMeterTolerance);
                 Assert.Equal(EnergyEfficiencyUnit.KilowattHourPerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = EnergyEfficiency.Parse("1 MWh/km", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MegawattHoursPerKilometer, MegawattHoursPerKilometerTolerance);
-                Assert.Equal(EnergyEfficiencyUnit.MegawattHourPerKilometer, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = EnergyEfficiency.Parse("1 MWh/m", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MegawattHoursPerMeter, MegawattHoursPerMeterTolerance);
-                Assert.Equal(EnergyEfficiencyUnit.MegawattHourPerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = EnergyEfficiency.Parse("1 µWh/km", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MicrowattHoursPerKilometer, MicrowattHoursPerKilometerTolerance);
-                Assert.Equal(EnergyEfficiencyUnit.MicrowattHourPerKilometer, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = EnergyEfficiency.Parse("1 µWh/m", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MicrowattHoursPerMeter, MicrowattHoursPerMeterTolerance);
-                Assert.Equal(EnergyEfficiencyUnit.MicrowattHourPerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = EnergyEfficiency.Parse("1 mWh/km", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MilliwattHoursPerKilometer, MilliwattHoursPerKilometerTolerance);
-                Assert.Equal(EnergyEfficiencyUnit.MilliwattHourPerKilometer, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = EnergyEfficiency.Parse("1 mWh/m", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MilliwattHoursPerMeter, MilliwattHoursPerMeterTolerance);
-                Assert.Equal(EnergyEfficiencyUnit.MilliwattHourPerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = EnergyEfficiency.Parse("1 nWh/km", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.NanowattHoursPerKilometer, NanowattHoursPerKilometerTolerance);
-                Assert.Equal(EnergyEfficiencyUnit.NanowattHourPerKilometer, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = EnergyEfficiency.Parse("1 nWh/m", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.NanowattHoursPerMeter, NanowattHoursPerMeterTolerance);
-                Assert.Equal(EnergyEfficiencyUnit.NanowattHourPerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = EnergyEfficiency.Parse("1 pWh/km", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PicowattHoursPerKilometer, PicowattHoursPerKilometerTolerance);
-                Assert.Equal(EnergyEfficiencyUnit.PicowattHourPerKilometer, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = EnergyEfficiency.Parse("1 pWh/m", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PicowattHoursPerMeter, PicowattHoursPerMeterTolerance);
-                Assert.Equal(EnergyEfficiencyUnit.PicowattHourPerMeter, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
@@ -472,30 +234,6 @@ namespace UnitsNet.Tests
         public void TryParse()
         {
             {
-                Assert.True(EnergyEfficiency.TryParse("1 fWh/km", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.FemtowattHoursPerKilometer, FemtowattHoursPerKilometerTolerance);
-                Assert.Equal(EnergyEfficiencyUnit.FemtowattHourPerKilometer, parsed.Unit);
-            }
-
-            {
-                Assert.True(EnergyEfficiency.TryParse("1 fWh/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.FemtowattHoursPerMeter, FemtowattHoursPerMeterTolerance);
-                Assert.Equal(EnergyEfficiencyUnit.FemtowattHourPerMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(EnergyEfficiency.TryParse("1 GWh/km", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.GigawattHoursPerKilometer, GigawattHoursPerKilometerTolerance);
-                Assert.Equal(EnergyEfficiencyUnit.GigawattHourPerKilometer, parsed.Unit);
-            }
-
-            {
-                Assert.True(EnergyEfficiency.TryParse("1 GWh/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.GigawattHoursPerMeter, GigawattHoursPerMeterTolerance);
-                Assert.Equal(EnergyEfficiencyUnit.GigawattHourPerMeter, parsed.Unit);
-            }
-
-            {
                 Assert.True(EnergyEfficiency.TryParse("1 kWh/km", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KilowattHoursPerKilometer, KilowattHoursPerKilometerTolerance);
                 Assert.Equal(EnergyEfficiencyUnit.KilowattHourPerKilometer, parsed.Unit);
@@ -505,42 +243,6 @@ namespace UnitsNet.Tests
                 Assert.True(EnergyEfficiency.TryParse("1 kWh/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KilowattHoursPerMeter, KilowattHoursPerMeterTolerance);
                 Assert.Equal(EnergyEfficiencyUnit.KilowattHourPerMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(EnergyEfficiency.TryParse("1 µWh/km", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicrowattHoursPerKilometer, MicrowattHoursPerKilometerTolerance);
-                Assert.Equal(EnergyEfficiencyUnit.MicrowattHourPerKilometer, parsed.Unit);
-            }
-
-            {
-                Assert.True(EnergyEfficiency.TryParse("1 µWh/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicrowattHoursPerMeter, MicrowattHoursPerMeterTolerance);
-                Assert.Equal(EnergyEfficiencyUnit.MicrowattHourPerMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(EnergyEfficiency.TryParse("1 nWh/km", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.NanowattHoursPerKilometer, NanowattHoursPerKilometerTolerance);
-                Assert.Equal(EnergyEfficiencyUnit.NanowattHourPerKilometer, parsed.Unit);
-            }
-
-            {
-                Assert.True(EnergyEfficiency.TryParse("1 nWh/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.NanowattHoursPerMeter, NanowattHoursPerMeterTolerance);
-                Assert.Equal(EnergyEfficiencyUnit.NanowattHourPerMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(EnergyEfficiency.TryParse("1 pWh/km", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PicowattHoursPerKilometer, PicowattHoursPerKilometerTolerance);
-                Assert.Equal(EnergyEfficiencyUnit.PicowattHourPerKilometer, parsed.Unit);
-            }
-
-            {
-                Assert.True(EnergyEfficiency.TryParse("1 pWh/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PicowattHoursPerMeter, PicowattHoursPerMeterTolerance);
-                Assert.Equal(EnergyEfficiencyUnit.PicowattHourPerMeter, parsed.Unit);
             }
 
             {
@@ -562,30 +264,6 @@ namespace UnitsNet.Tests
         {
             try
             {
-                var parsedUnit = EnergyEfficiency.ParseUnit("fWh/km", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyEfficiencyUnit.FemtowattHourPerKilometer, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = EnergyEfficiency.ParseUnit("fWh/m", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyEfficiencyUnit.FemtowattHourPerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = EnergyEfficiency.ParseUnit("GWh/km", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyEfficiencyUnit.GigawattHourPerKilometer, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = EnergyEfficiency.ParseUnit("GWh/m", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyEfficiencyUnit.GigawattHourPerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
                 var parsedUnit = EnergyEfficiency.ParseUnit("kWh/km", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(EnergyEfficiencyUnit.KilowattHourPerKilometer, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -594,66 +272,6 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = EnergyEfficiency.ParseUnit("kWh/m", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(EnergyEfficiencyUnit.KilowattHourPerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = EnergyEfficiency.ParseUnit("MWh/km", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyEfficiencyUnit.MegawattHourPerKilometer, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = EnergyEfficiency.ParseUnit("MWh/m", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyEfficiencyUnit.MegawattHourPerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = EnergyEfficiency.ParseUnit("µWh/km", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyEfficiencyUnit.MicrowattHourPerKilometer, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = EnergyEfficiency.ParseUnit("µWh/m", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyEfficiencyUnit.MicrowattHourPerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = EnergyEfficiency.ParseUnit("mWh/km", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyEfficiencyUnit.MilliwattHourPerKilometer, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = EnergyEfficiency.ParseUnit("mWh/m", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyEfficiencyUnit.MilliwattHourPerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = EnergyEfficiency.ParseUnit("nWh/km", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyEfficiencyUnit.NanowattHourPerKilometer, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = EnergyEfficiency.ParseUnit("nWh/m", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyEfficiencyUnit.NanowattHourPerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = EnergyEfficiency.ParseUnit("pWh/km", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyEfficiencyUnit.PicowattHourPerKilometer, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = EnergyEfficiency.ParseUnit("pWh/m", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(EnergyEfficiencyUnit.PicowattHourPerMeter, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
@@ -674,26 +292,6 @@ namespace UnitsNet.Tests
         public void TryParseUnit()
         {
             {
-                Assert.True(EnergyEfficiency.TryParseUnit("fWh/km", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyEfficiencyUnit.FemtowattHourPerKilometer, parsedUnit);
-            }
-
-            {
-                Assert.True(EnergyEfficiency.TryParseUnit("fWh/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyEfficiencyUnit.FemtowattHourPerMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(EnergyEfficiency.TryParseUnit("GWh/km", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyEfficiencyUnit.GigawattHourPerKilometer, parsedUnit);
-            }
-
-            {
-                Assert.True(EnergyEfficiency.TryParseUnit("GWh/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyEfficiencyUnit.GigawattHourPerMeter, parsedUnit);
-            }
-
-            {
                 Assert.True(EnergyEfficiency.TryParseUnit("kWh/km", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(EnergyEfficiencyUnit.KilowattHourPerKilometer, parsedUnit);
             }
@@ -701,36 +299,6 @@ namespace UnitsNet.Tests
             {
                 Assert.True(EnergyEfficiency.TryParseUnit("kWh/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(EnergyEfficiencyUnit.KilowattHourPerMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(EnergyEfficiency.TryParseUnit("µWh/km", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyEfficiencyUnit.MicrowattHourPerKilometer, parsedUnit);
-            }
-
-            {
-                Assert.True(EnergyEfficiency.TryParseUnit("µWh/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyEfficiencyUnit.MicrowattHourPerMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(EnergyEfficiency.TryParseUnit("nWh/km", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyEfficiencyUnit.NanowattHourPerKilometer, parsedUnit);
-            }
-
-            {
-                Assert.True(EnergyEfficiency.TryParseUnit("nWh/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyEfficiencyUnit.NanowattHourPerMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(EnergyEfficiency.TryParseUnit("pWh/km", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyEfficiencyUnit.PicowattHourPerKilometer, parsedUnit);
-            }
-
-            {
-                Assert.True(EnergyEfficiency.TryParseUnit("pWh/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(EnergyEfficiencyUnit.PicowattHourPerMeter, parsedUnit);
             }
 
             {
@@ -791,22 +359,8 @@ namespace UnitsNet.Tests
         public void ConversionRoundTrip()
         {
             EnergyEfficiency watthourperkilometer = EnergyEfficiency.FromWattHoursPerKilometer(1);
-            AssertEx.EqualTolerance(1, EnergyEfficiency.FromFemtowattHoursPerKilometer(watthourperkilometer.FemtowattHoursPerKilometer).WattHoursPerKilometer, FemtowattHoursPerKilometerTolerance);
-            AssertEx.EqualTolerance(1, EnergyEfficiency.FromFemtowattHoursPerMeter(watthourperkilometer.FemtowattHoursPerMeter).WattHoursPerKilometer, FemtowattHoursPerMeterTolerance);
-            AssertEx.EqualTolerance(1, EnergyEfficiency.FromGigawattHoursPerKilometer(watthourperkilometer.GigawattHoursPerKilometer).WattHoursPerKilometer, GigawattHoursPerKilometerTolerance);
-            AssertEx.EqualTolerance(1, EnergyEfficiency.FromGigawattHoursPerMeter(watthourperkilometer.GigawattHoursPerMeter).WattHoursPerKilometer, GigawattHoursPerMeterTolerance);
             AssertEx.EqualTolerance(1, EnergyEfficiency.FromKilowattHoursPerKilometer(watthourperkilometer.KilowattHoursPerKilometer).WattHoursPerKilometer, KilowattHoursPerKilometerTolerance);
             AssertEx.EqualTolerance(1, EnergyEfficiency.FromKilowattHoursPerMeter(watthourperkilometer.KilowattHoursPerMeter).WattHoursPerKilometer, KilowattHoursPerMeterTolerance);
-            AssertEx.EqualTolerance(1, EnergyEfficiency.FromMegawattHoursPerKilometer(watthourperkilometer.MegawattHoursPerKilometer).WattHoursPerKilometer, MegawattHoursPerKilometerTolerance);
-            AssertEx.EqualTolerance(1, EnergyEfficiency.FromMegawattHoursPerMeter(watthourperkilometer.MegawattHoursPerMeter).WattHoursPerKilometer, MegawattHoursPerMeterTolerance);
-            AssertEx.EqualTolerance(1, EnergyEfficiency.FromMicrowattHoursPerKilometer(watthourperkilometer.MicrowattHoursPerKilometer).WattHoursPerKilometer, MicrowattHoursPerKilometerTolerance);
-            AssertEx.EqualTolerance(1, EnergyEfficiency.FromMicrowattHoursPerMeter(watthourperkilometer.MicrowattHoursPerMeter).WattHoursPerKilometer, MicrowattHoursPerMeterTolerance);
-            AssertEx.EqualTolerance(1, EnergyEfficiency.FromMilliwattHoursPerKilometer(watthourperkilometer.MilliwattHoursPerKilometer).WattHoursPerKilometer, MilliwattHoursPerKilometerTolerance);
-            AssertEx.EqualTolerance(1, EnergyEfficiency.FromMilliwattHoursPerMeter(watthourperkilometer.MilliwattHoursPerMeter).WattHoursPerKilometer, MilliwattHoursPerMeterTolerance);
-            AssertEx.EqualTolerance(1, EnergyEfficiency.FromNanowattHoursPerKilometer(watthourperkilometer.NanowattHoursPerKilometer).WattHoursPerKilometer, NanowattHoursPerKilometerTolerance);
-            AssertEx.EqualTolerance(1, EnergyEfficiency.FromNanowattHoursPerMeter(watthourperkilometer.NanowattHoursPerMeter).WattHoursPerKilometer, NanowattHoursPerMeterTolerance);
-            AssertEx.EqualTolerance(1, EnergyEfficiency.FromPicowattHoursPerKilometer(watthourperkilometer.PicowattHoursPerKilometer).WattHoursPerKilometer, PicowattHoursPerKilometerTolerance);
-            AssertEx.EqualTolerance(1, EnergyEfficiency.FromPicowattHoursPerMeter(watthourperkilometer.PicowattHoursPerMeter).WattHoursPerKilometer, PicowattHoursPerMeterTolerance);
             AssertEx.EqualTolerance(1, EnergyEfficiency.FromWattHoursPerKilometer(watthourperkilometer.WattHoursPerKilometer).WattHoursPerKilometer, WattHoursPerKilometerTolerance);
             AssertEx.EqualTolerance(1, EnergyEfficiency.FromWattHoursPerMeter(watthourperkilometer.WattHoursPerMeter).WattHoursPerKilometer, WattHoursPerMeterTolerance);
         }
@@ -867,8 +421,8 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, EnergyEfficiencyUnit.WattHourPerKilometer, 1, EnergyEfficiencyUnit.WattHourPerKilometer, true)]  // Same value and unit.
         [InlineData(1, EnergyEfficiencyUnit.WattHourPerKilometer, 2, EnergyEfficiencyUnit.WattHourPerKilometer, false)] // Different value.
-        [InlineData(2, EnergyEfficiencyUnit.WattHourPerKilometer, 1, EnergyEfficiencyUnit.FemtowattHourPerKilometer, false)] // Different value and unit.
-        [InlineData(1, EnergyEfficiencyUnit.WattHourPerKilometer, 1, EnergyEfficiencyUnit.FemtowattHourPerKilometer, false)] // Different unit.
+        [InlineData(2, EnergyEfficiencyUnit.WattHourPerKilometer, 1, EnergyEfficiencyUnit.KilowattHourPerKilometer, false)] // Different value and unit.
+        [InlineData(1, EnergyEfficiencyUnit.WattHourPerKilometer, 1, EnergyEfficiencyUnit.KilowattHourPerKilometer, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, EnergyEfficiencyUnit unitA, double valueB, EnergyEfficiencyUnit unitB, bool expectEqual)
         {
             var a = new EnergyEfficiency(valueA, unitA);
@@ -958,22 +512,8 @@ namespace UnitsNet.Tests
             var prevCulture = Thread.CurrentThread.CurrentCulture;
             Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             try {
-                Assert.Equal("1 fWh/km", new EnergyEfficiency(1, EnergyEfficiencyUnit.FemtowattHourPerKilometer).ToString());
-                Assert.Equal("1 fWh/m", new EnergyEfficiency(1, EnergyEfficiencyUnit.FemtowattHourPerMeter).ToString());
-                Assert.Equal("1 GWh/km", new EnergyEfficiency(1, EnergyEfficiencyUnit.GigawattHourPerKilometer).ToString());
-                Assert.Equal("1 GWh/m", new EnergyEfficiency(1, EnergyEfficiencyUnit.GigawattHourPerMeter).ToString());
                 Assert.Equal("1 kWh/km", new EnergyEfficiency(1, EnergyEfficiencyUnit.KilowattHourPerKilometer).ToString());
                 Assert.Equal("1 kWh/m", new EnergyEfficiency(1, EnergyEfficiencyUnit.KilowattHourPerMeter).ToString());
-                Assert.Equal("1 MWh/km", new EnergyEfficiency(1, EnergyEfficiencyUnit.MegawattHourPerKilometer).ToString());
-                Assert.Equal("1 MWh/m", new EnergyEfficiency(1, EnergyEfficiencyUnit.MegawattHourPerMeter).ToString());
-                Assert.Equal("1 µWh/km", new EnergyEfficiency(1, EnergyEfficiencyUnit.MicrowattHourPerKilometer).ToString());
-                Assert.Equal("1 µWh/m", new EnergyEfficiency(1, EnergyEfficiencyUnit.MicrowattHourPerMeter).ToString());
-                Assert.Equal("1 mWh/km", new EnergyEfficiency(1, EnergyEfficiencyUnit.MilliwattHourPerKilometer).ToString());
-                Assert.Equal("1 mWh/m", new EnergyEfficiency(1, EnergyEfficiencyUnit.MilliwattHourPerMeter).ToString());
-                Assert.Equal("1 nWh/km", new EnergyEfficiency(1, EnergyEfficiencyUnit.NanowattHourPerKilometer).ToString());
-                Assert.Equal("1 nWh/m", new EnergyEfficiency(1, EnergyEfficiencyUnit.NanowattHourPerMeter).ToString());
-                Assert.Equal("1 pWh/km", new EnergyEfficiency(1, EnergyEfficiencyUnit.PicowattHourPerKilometer).ToString());
-                Assert.Equal("1 pWh/m", new EnergyEfficiency(1, EnergyEfficiencyUnit.PicowattHourPerMeter).ToString());
                 Assert.Equal("1 Wh/km", new EnergyEfficiency(1, EnergyEfficiencyUnit.WattHourPerKilometer).ToString());
                 Assert.Equal("1 Wh/m", new EnergyEfficiency(1, EnergyEfficiencyUnit.WattHourPerMeter).ToString());
             }
@@ -989,22 +529,8 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 fWh/km", new EnergyEfficiency(1, EnergyEfficiencyUnit.FemtowattHourPerKilometer).ToString(swedishCulture));
-            Assert.Equal("1 fWh/m", new EnergyEfficiency(1, EnergyEfficiencyUnit.FemtowattHourPerMeter).ToString(swedishCulture));
-            Assert.Equal("1 GWh/km", new EnergyEfficiency(1, EnergyEfficiencyUnit.GigawattHourPerKilometer).ToString(swedishCulture));
-            Assert.Equal("1 GWh/m", new EnergyEfficiency(1, EnergyEfficiencyUnit.GigawattHourPerMeter).ToString(swedishCulture));
             Assert.Equal("1 kWh/km", new EnergyEfficiency(1, EnergyEfficiencyUnit.KilowattHourPerKilometer).ToString(swedishCulture));
             Assert.Equal("1 kWh/m", new EnergyEfficiency(1, EnergyEfficiencyUnit.KilowattHourPerMeter).ToString(swedishCulture));
-            Assert.Equal("1 MWh/km", new EnergyEfficiency(1, EnergyEfficiencyUnit.MegawattHourPerKilometer).ToString(swedishCulture));
-            Assert.Equal("1 MWh/m", new EnergyEfficiency(1, EnergyEfficiencyUnit.MegawattHourPerMeter).ToString(swedishCulture));
-            Assert.Equal("1 µWh/km", new EnergyEfficiency(1, EnergyEfficiencyUnit.MicrowattHourPerKilometer).ToString(swedishCulture));
-            Assert.Equal("1 µWh/m", new EnergyEfficiency(1, EnergyEfficiencyUnit.MicrowattHourPerMeter).ToString(swedishCulture));
-            Assert.Equal("1 mWh/km", new EnergyEfficiency(1, EnergyEfficiencyUnit.MilliwattHourPerKilometer).ToString(swedishCulture));
-            Assert.Equal("1 mWh/m", new EnergyEfficiency(1, EnergyEfficiencyUnit.MilliwattHourPerMeter).ToString(swedishCulture));
-            Assert.Equal("1 nWh/km", new EnergyEfficiency(1, EnergyEfficiencyUnit.NanowattHourPerKilometer).ToString(swedishCulture));
-            Assert.Equal("1 nWh/m", new EnergyEfficiency(1, EnergyEfficiencyUnit.NanowattHourPerMeter).ToString(swedishCulture));
-            Assert.Equal("1 pWh/km", new EnergyEfficiency(1, EnergyEfficiencyUnit.PicowattHourPerKilometer).ToString(swedishCulture));
-            Assert.Equal("1 pWh/m", new EnergyEfficiency(1, EnergyEfficiencyUnit.PicowattHourPerMeter).ToString(swedishCulture));
             Assert.Equal("1 Wh/km", new EnergyEfficiency(1, EnergyEfficiencyUnit.WattHourPerKilometer).ToString(swedishCulture));
             Assert.Equal("1 Wh/m", new EnergyEfficiency(1, EnergyEfficiencyUnit.WattHourPerMeter).ToString(swedishCulture));
         }

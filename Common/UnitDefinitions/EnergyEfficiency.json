@@ -14,7 +14,7 @@
       },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
-      "Prefixes": [ "Femto", "Pico", "Nano", "Micro", "Milli", "Kilo", "Mega", "Giga" ],
+      "Prefixes": ["Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -26,11 +26,11 @@
       "SingularName": "WattHourPerMeter",
       "PluralName": "WattHoursPerMeter",
       "BaseUnits": {
-        "Wh/km": "WattHourPerMeter"
+        "Wh/m": "WattHourPerMeter"
       },
       "FromUnitToBaseFunc": "{x} / 1e3",
       "FromBaseToUnitFunc": "{x} * 1e3",
-      "Prefixes": [ "Femto", "Pico", "Nano", "Micro", "Milli", "Kilo", "Mega", "Giga" ],
+      "Prefixes": ["Kilo"],
       "Localization": [
         {
           "Culture": "en-US",

@@ -25,68 +25,12 @@ namespace UnitsNet.Tests
     public class NumberToEnergyEfficiencyExtensionsTests
     {
         [Fact]
-        public void NumberToFemtowattHoursPerKilometerTest() =>
-            Assert.Equal(EnergyEfficiency.FromFemtowattHoursPerKilometer(2), 2.FemtowattHoursPerKilometer());
-
-        [Fact]
-        public void NumberToFemtowattHoursPerMeterTest() =>
-            Assert.Equal(EnergyEfficiency.FromFemtowattHoursPerMeter(2), 2.FemtowattHoursPerMeter());
-
-        [Fact]
-        public void NumberToGigawattHoursPerKilometerTest() =>
-            Assert.Equal(EnergyEfficiency.FromGigawattHoursPerKilometer(2), 2.GigawattHoursPerKilometer());
-
-        [Fact]
-        public void NumberToGigawattHoursPerMeterTest() =>
-            Assert.Equal(EnergyEfficiency.FromGigawattHoursPerMeter(2), 2.GigawattHoursPerMeter());
-
-        [Fact]
         public void NumberToKilowattHoursPerKilometerTest() =>
             Assert.Equal(EnergyEfficiency.FromKilowattHoursPerKilometer(2), 2.KilowattHoursPerKilometer());
 
         [Fact]
         public void NumberToKilowattHoursPerMeterTest() =>
             Assert.Equal(EnergyEfficiency.FromKilowattHoursPerMeter(2), 2.KilowattHoursPerMeter());
-
-        [Fact]
-        public void NumberToMegawattHoursPerKilometerTest() =>
-            Assert.Equal(EnergyEfficiency.FromMegawattHoursPerKilometer(2), 2.MegawattHoursPerKilometer());
-
-        [Fact]
-        public void NumberToMegawattHoursPerMeterTest() =>
-            Assert.Equal(EnergyEfficiency.FromMegawattHoursPerMeter(2), 2.MegawattHoursPerMeter());
-
-        [Fact]
-        public void NumberToMicrowattHoursPerKilometerTest() =>
-            Assert.Equal(EnergyEfficiency.FromMicrowattHoursPerKilometer(2), 2.MicrowattHoursPerKilometer());
-
-        [Fact]
-        public void NumberToMicrowattHoursPerMeterTest() =>
-            Assert.Equal(EnergyEfficiency.FromMicrowattHoursPerMeter(2), 2.MicrowattHoursPerMeter());
-
-        [Fact]
-        public void NumberToMilliwattHoursPerKilometerTest() =>
-            Assert.Equal(EnergyEfficiency.FromMilliwattHoursPerKilometer(2), 2.MilliwattHoursPerKilometer());
-
-        [Fact]
-        public void NumberToMilliwattHoursPerMeterTest() =>
-            Assert.Equal(EnergyEfficiency.FromMilliwattHoursPerMeter(2), 2.MilliwattHoursPerMeter());
-
-        [Fact]
-        public void NumberToNanowattHoursPerKilometerTest() =>
-            Assert.Equal(EnergyEfficiency.FromNanowattHoursPerKilometer(2), 2.NanowattHoursPerKilometer());
-
-        [Fact]
-        public void NumberToNanowattHoursPerMeterTest() =>
-            Assert.Equal(EnergyEfficiency.FromNanowattHoursPerMeter(2), 2.NanowattHoursPerMeter());
-
-        [Fact]
-        public void NumberToPicowattHoursPerKilometerTest() =>
-            Assert.Equal(EnergyEfficiency.FromPicowattHoursPerKilometer(2), 2.PicowattHoursPerKilometer());
-
-        [Fact]
-        public void NumberToPicowattHoursPerMeterTest() =>
-            Assert.Equal(EnergyEfficiency.FromPicowattHoursPerMeter(2), 2.PicowattHoursPerMeter());
 
         [Fact]
         public void NumberToWattHoursPerKilometerTest() =>

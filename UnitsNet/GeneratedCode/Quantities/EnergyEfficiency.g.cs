@@ -67,22 +67,8 @@ namespace UnitsNet
             Info = new QuantityInfo<EnergyEfficiencyUnit>("EnergyEfficiency",
                 new UnitInfo<EnergyEfficiencyUnit>[]
                 {
-                    new UnitInfo<EnergyEfficiencyUnit>(EnergyEfficiencyUnit.FemtowattHourPerKilometer, "FemtowattHoursPerKilometer", BaseUnits.Undefined, "EnergyEfficiency"),
-                    new UnitInfo<EnergyEfficiencyUnit>(EnergyEfficiencyUnit.FemtowattHourPerMeter, "FemtowattHoursPerMeter", BaseUnits.Undefined, "EnergyEfficiency"),
-                    new UnitInfo<EnergyEfficiencyUnit>(EnergyEfficiencyUnit.GigawattHourPerKilometer, "GigawattHoursPerKilometer", BaseUnits.Undefined, "EnergyEfficiency"),
-                    new UnitInfo<EnergyEfficiencyUnit>(EnergyEfficiencyUnit.GigawattHourPerMeter, "GigawattHoursPerMeter", BaseUnits.Undefined, "EnergyEfficiency"),
                     new UnitInfo<EnergyEfficiencyUnit>(EnergyEfficiencyUnit.KilowattHourPerKilometer, "KilowattHoursPerKilometer", BaseUnits.Undefined, "EnergyEfficiency"),
                     new UnitInfo<EnergyEfficiencyUnit>(EnergyEfficiencyUnit.KilowattHourPerMeter, "KilowattHoursPerMeter", BaseUnits.Undefined, "EnergyEfficiency"),
-                    new UnitInfo<EnergyEfficiencyUnit>(EnergyEfficiencyUnit.MegawattHourPerKilometer, "MegawattHoursPerKilometer", BaseUnits.Undefined, "EnergyEfficiency"),
-                    new UnitInfo<EnergyEfficiencyUnit>(EnergyEfficiencyUnit.MegawattHourPerMeter, "MegawattHoursPerMeter", BaseUnits.Undefined, "EnergyEfficiency"),
-                    new UnitInfo<EnergyEfficiencyUnit>(EnergyEfficiencyUnit.MicrowattHourPerKilometer, "MicrowattHoursPerKilometer", BaseUnits.Undefined, "EnergyEfficiency"),
-                    new UnitInfo<EnergyEfficiencyUnit>(EnergyEfficiencyUnit.MicrowattHourPerMeter, "MicrowattHoursPerMeter", BaseUnits.Undefined, "EnergyEfficiency"),
-                    new UnitInfo<EnergyEfficiencyUnit>(EnergyEfficiencyUnit.MilliwattHourPerKilometer, "MilliwattHoursPerKilometer", BaseUnits.Undefined, "EnergyEfficiency"),
-                    new UnitInfo<EnergyEfficiencyUnit>(EnergyEfficiencyUnit.MilliwattHourPerMeter, "MilliwattHoursPerMeter", BaseUnits.Undefined, "EnergyEfficiency"),
-                    new UnitInfo<EnergyEfficiencyUnit>(EnergyEfficiencyUnit.NanowattHourPerKilometer, "NanowattHoursPerKilometer", BaseUnits.Undefined, "EnergyEfficiency"),
-                    new UnitInfo<EnergyEfficiencyUnit>(EnergyEfficiencyUnit.NanowattHourPerMeter, "NanowattHoursPerMeter", BaseUnits.Undefined, "EnergyEfficiency"),
-                    new UnitInfo<EnergyEfficiencyUnit>(EnergyEfficiencyUnit.PicowattHourPerKilometer, "PicowattHoursPerKilometer", BaseUnits.Undefined, "EnergyEfficiency"),
-                    new UnitInfo<EnergyEfficiencyUnit>(EnergyEfficiencyUnit.PicowattHourPerMeter, "PicowattHoursPerMeter", BaseUnits.Undefined, "EnergyEfficiency"),
                     new UnitInfo<EnergyEfficiencyUnit>(EnergyEfficiencyUnit.WattHourPerKilometer, "WattHoursPerKilometer", new BaseUnits(), "EnergyEfficiency"),
                     new UnitInfo<EnergyEfficiencyUnit>(EnergyEfficiencyUnit.WattHourPerMeter, "WattHoursPerMeter", new BaseUnits(), "EnergyEfficiency"),
                 },
@@ -189,26 +175,6 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyEfficiencyUnit.FemtowattHourPerKilometer"/>
-        /// </summary>
-        public double FemtowattHoursPerKilometer => As(EnergyEfficiencyUnit.FemtowattHourPerKilometer);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyEfficiencyUnit.FemtowattHourPerMeter"/>
-        /// </summary>
-        public double FemtowattHoursPerMeter => As(EnergyEfficiencyUnit.FemtowattHourPerMeter);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyEfficiencyUnit.GigawattHourPerKilometer"/>
-        /// </summary>
-        public double GigawattHoursPerKilometer => As(EnergyEfficiencyUnit.GigawattHourPerKilometer);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyEfficiencyUnit.GigawattHourPerMeter"/>
-        /// </summary>
-        public double GigawattHoursPerMeter => As(EnergyEfficiencyUnit.GigawattHourPerMeter);
-
-        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyEfficiencyUnit.KilowattHourPerKilometer"/>
         /// </summary>
         public double KilowattHoursPerKilometer => As(EnergyEfficiencyUnit.KilowattHourPerKilometer);
@@ -217,56 +183,6 @@ namespace UnitsNet
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyEfficiencyUnit.KilowattHourPerMeter"/>
         /// </summary>
         public double KilowattHoursPerMeter => As(EnergyEfficiencyUnit.KilowattHourPerMeter);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyEfficiencyUnit.MegawattHourPerKilometer"/>
-        /// </summary>
-        public double MegawattHoursPerKilometer => As(EnergyEfficiencyUnit.MegawattHourPerKilometer);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyEfficiencyUnit.MegawattHourPerMeter"/>
-        /// </summary>
-        public double MegawattHoursPerMeter => As(EnergyEfficiencyUnit.MegawattHourPerMeter);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyEfficiencyUnit.MicrowattHourPerKilometer"/>
-        /// </summary>
-        public double MicrowattHoursPerKilometer => As(EnergyEfficiencyUnit.MicrowattHourPerKilometer);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyEfficiencyUnit.MicrowattHourPerMeter"/>
-        /// </summary>
-        public double MicrowattHoursPerMeter => As(EnergyEfficiencyUnit.MicrowattHourPerMeter);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyEfficiencyUnit.MilliwattHourPerKilometer"/>
-        /// </summary>
-        public double MilliwattHoursPerKilometer => As(EnergyEfficiencyUnit.MilliwattHourPerKilometer);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyEfficiencyUnit.MilliwattHourPerMeter"/>
-        /// </summary>
-        public double MilliwattHoursPerMeter => As(EnergyEfficiencyUnit.MilliwattHourPerMeter);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyEfficiencyUnit.NanowattHourPerKilometer"/>
-        /// </summary>
-        public double NanowattHoursPerKilometer => As(EnergyEfficiencyUnit.NanowattHourPerKilometer);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyEfficiencyUnit.NanowattHourPerMeter"/>
-        /// </summary>
-        public double NanowattHoursPerMeter => As(EnergyEfficiencyUnit.NanowattHourPerMeter);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyEfficiencyUnit.PicowattHourPerKilometer"/>
-        /// </summary>
-        public double PicowattHoursPerKilometer => As(EnergyEfficiencyUnit.PicowattHourPerKilometer);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyEfficiencyUnit.PicowattHourPerMeter"/>
-        /// </summary>
-        public double PicowattHoursPerMeter => As(EnergyEfficiencyUnit.PicowattHourPerMeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyEfficiencyUnit.WattHourPerKilometer"/>
@@ -289,44 +205,16 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: EnergyEfficiencyUnit -> BaseUnit
-            unitConverter.SetConversionFunction<EnergyEfficiency>(EnergyEfficiencyUnit.FemtowattHourPerKilometer, EnergyEfficiencyUnit.WattHourPerKilometer, quantity => quantity.ToUnit(EnergyEfficiencyUnit.WattHourPerKilometer));
-            unitConverter.SetConversionFunction<EnergyEfficiency>(EnergyEfficiencyUnit.FemtowattHourPerMeter, EnergyEfficiencyUnit.WattHourPerKilometer, quantity => quantity.ToUnit(EnergyEfficiencyUnit.WattHourPerKilometer));
-            unitConverter.SetConversionFunction<EnergyEfficiency>(EnergyEfficiencyUnit.GigawattHourPerKilometer, EnergyEfficiencyUnit.WattHourPerKilometer, quantity => quantity.ToUnit(EnergyEfficiencyUnit.WattHourPerKilometer));
-            unitConverter.SetConversionFunction<EnergyEfficiency>(EnergyEfficiencyUnit.GigawattHourPerMeter, EnergyEfficiencyUnit.WattHourPerKilometer, quantity => quantity.ToUnit(EnergyEfficiencyUnit.WattHourPerKilometer));
             unitConverter.SetConversionFunction<EnergyEfficiency>(EnergyEfficiencyUnit.KilowattHourPerKilometer, EnergyEfficiencyUnit.WattHourPerKilometer, quantity => quantity.ToUnit(EnergyEfficiencyUnit.WattHourPerKilometer));
             unitConverter.SetConversionFunction<EnergyEfficiency>(EnergyEfficiencyUnit.KilowattHourPerMeter, EnergyEfficiencyUnit.WattHourPerKilometer, quantity => quantity.ToUnit(EnergyEfficiencyUnit.WattHourPerKilometer));
-            unitConverter.SetConversionFunction<EnergyEfficiency>(EnergyEfficiencyUnit.MegawattHourPerKilometer, EnergyEfficiencyUnit.WattHourPerKilometer, quantity => quantity.ToUnit(EnergyEfficiencyUnit.WattHourPerKilometer));
-            unitConverter.SetConversionFunction<EnergyEfficiency>(EnergyEfficiencyUnit.MegawattHourPerMeter, EnergyEfficiencyUnit.WattHourPerKilometer, quantity => quantity.ToUnit(EnergyEfficiencyUnit.WattHourPerKilometer));
-            unitConverter.SetConversionFunction<EnergyEfficiency>(EnergyEfficiencyUnit.MicrowattHourPerKilometer, EnergyEfficiencyUnit.WattHourPerKilometer, quantity => quantity.ToUnit(EnergyEfficiencyUnit.WattHourPerKilometer));
-            unitConverter.SetConversionFunction<EnergyEfficiency>(EnergyEfficiencyUnit.MicrowattHourPerMeter, EnergyEfficiencyUnit.WattHourPerKilometer, quantity => quantity.ToUnit(EnergyEfficiencyUnit.WattHourPerKilometer));
-            unitConverter.SetConversionFunction<EnergyEfficiency>(EnergyEfficiencyUnit.MilliwattHourPerKilometer, EnergyEfficiencyUnit.WattHourPerKilometer, quantity => quantity.ToUnit(EnergyEfficiencyUnit.WattHourPerKilometer));
-            unitConverter.SetConversionFunction<EnergyEfficiency>(EnergyEfficiencyUnit.MilliwattHourPerMeter, EnergyEfficiencyUnit.WattHourPerKilometer, quantity => quantity.ToUnit(EnergyEfficiencyUnit.WattHourPerKilometer));
-            unitConverter.SetConversionFunction<EnergyEfficiency>(EnergyEfficiencyUnit.NanowattHourPerKilometer, EnergyEfficiencyUnit.WattHourPerKilometer, quantity => quantity.ToUnit(EnergyEfficiencyUnit.WattHourPerKilometer));
-            unitConverter.SetConversionFunction<EnergyEfficiency>(EnergyEfficiencyUnit.NanowattHourPerMeter, EnergyEfficiencyUnit.WattHourPerKilometer, quantity => quantity.ToUnit(EnergyEfficiencyUnit.WattHourPerKilometer));
-            unitConverter.SetConversionFunction<EnergyEfficiency>(EnergyEfficiencyUnit.PicowattHourPerKilometer, EnergyEfficiencyUnit.WattHourPerKilometer, quantity => quantity.ToUnit(EnergyEfficiencyUnit.WattHourPerKilometer));
-            unitConverter.SetConversionFunction<EnergyEfficiency>(EnergyEfficiencyUnit.PicowattHourPerMeter, EnergyEfficiencyUnit.WattHourPerKilometer, quantity => quantity.ToUnit(EnergyEfficiencyUnit.WattHourPerKilometer));
             unitConverter.SetConversionFunction<EnergyEfficiency>(EnergyEfficiencyUnit.WattHourPerMeter, EnergyEfficiencyUnit.WattHourPerKilometer, quantity => quantity.ToUnit(EnergyEfficiencyUnit.WattHourPerKilometer));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<EnergyEfficiency>(EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.WattHourPerKilometer, quantity => quantity);
 
             // Register in unit converter: BaseUnit -> EnergyEfficiencyUnit
-            unitConverter.SetConversionFunction<EnergyEfficiency>(EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.FemtowattHourPerKilometer, quantity => quantity.ToUnit(EnergyEfficiencyUnit.FemtowattHourPerKilometer));
-            unitConverter.SetConversionFunction<EnergyEfficiency>(EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.FemtowattHourPerMeter, quantity => quantity.ToUnit(EnergyEfficiencyUnit.FemtowattHourPerMeter));
-            unitConverter.SetConversionFunction<EnergyEfficiency>(EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.GigawattHourPerKilometer, quantity => quantity.ToUnit(EnergyEfficiencyUnit.GigawattHourPerKilometer));
-            unitConverter.SetConversionFunction<EnergyEfficiency>(EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.GigawattHourPerMeter, quantity => quantity.ToUnit(EnergyEfficiencyUnit.GigawattHourPerMeter));
             unitConverter.SetConversionFunction<EnergyEfficiency>(EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.KilowattHourPerKilometer, quantity => quantity.ToUnit(EnergyEfficiencyUnit.KilowattHourPerKilometer));
             unitConverter.SetConversionFunction<EnergyEfficiency>(EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.KilowattHourPerMeter, quantity => quantity.ToUnit(EnergyEfficiencyUnit.KilowattHourPerMeter));
-            unitConverter.SetConversionFunction<EnergyEfficiency>(EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.MegawattHourPerKilometer, quantity => quantity.ToUnit(EnergyEfficiencyUnit.MegawattHourPerKilometer));
-            unitConverter.SetConversionFunction<EnergyEfficiency>(EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.MegawattHourPerMeter, quantity => quantity.ToUnit(EnergyEfficiencyUnit.MegawattHourPerMeter));
-            unitConverter.SetConversionFunction<EnergyEfficiency>(EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.MicrowattHourPerKilometer, quantity => quantity.ToUnit(EnergyEfficiencyUnit.MicrowattHourPerKilometer));
-            unitConverter.SetConversionFunction<EnergyEfficiency>(EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.MicrowattHourPerMeter, quantity => quantity.ToUnit(EnergyEfficiencyUnit.MicrowattHourPerMeter));
-            unitConverter.SetConversionFunction<EnergyEfficiency>(EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.MilliwattHourPerKilometer, quantity => quantity.ToUnit(EnergyEfficiencyUnit.MilliwattHourPerKilometer));
-            unitConverter.SetConversionFunction<EnergyEfficiency>(EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.MilliwattHourPerMeter, quantity => quantity.ToUnit(EnergyEfficiencyUnit.MilliwattHourPerMeter));
-            unitConverter.SetConversionFunction<EnergyEfficiency>(EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.NanowattHourPerKilometer, quantity => quantity.ToUnit(EnergyEfficiencyUnit.NanowattHourPerKilometer));
-            unitConverter.SetConversionFunction<EnergyEfficiency>(EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.NanowattHourPerMeter, quantity => quantity.ToUnit(EnergyEfficiencyUnit.NanowattHourPerMeter));
-            unitConverter.SetConversionFunction<EnergyEfficiency>(EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.PicowattHourPerKilometer, quantity => quantity.ToUnit(EnergyEfficiencyUnit.PicowattHourPerKilometer));
-            unitConverter.SetConversionFunction<EnergyEfficiency>(EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.PicowattHourPerMeter, quantity => quantity.ToUnit(EnergyEfficiencyUnit.PicowattHourPerMeter));
             unitConverter.SetConversionFunction<EnergyEfficiency>(EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.WattHourPerMeter, quantity => quantity.ToUnit(EnergyEfficiencyUnit.WattHourPerMeter));
         }
 
@@ -356,46 +244,6 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Creates a <see cref="EnergyEfficiency"/> from <see cref="EnergyEfficiencyUnit.FemtowattHourPerKilometer"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static EnergyEfficiency FromFemtowattHoursPerKilometer(QuantityValue femtowatthoursperkilometer)
-        {
-            double value = (double) femtowatthoursperkilometer;
-            return new EnergyEfficiency(value, EnergyEfficiencyUnit.FemtowattHourPerKilometer);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="EnergyEfficiency"/> from <see cref="EnergyEfficiencyUnit.FemtowattHourPerMeter"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static EnergyEfficiency FromFemtowattHoursPerMeter(QuantityValue femtowatthourspermeter)
-        {
-            double value = (double) femtowatthourspermeter;
-            return new EnergyEfficiency(value, EnergyEfficiencyUnit.FemtowattHourPerMeter);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="EnergyEfficiency"/> from <see cref="EnergyEfficiencyUnit.GigawattHourPerKilometer"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static EnergyEfficiency FromGigawattHoursPerKilometer(QuantityValue gigawatthoursperkilometer)
-        {
-            double value = (double) gigawatthoursperkilometer;
-            return new EnergyEfficiency(value, EnergyEfficiencyUnit.GigawattHourPerKilometer);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="EnergyEfficiency"/> from <see cref="EnergyEfficiencyUnit.GigawattHourPerMeter"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static EnergyEfficiency FromGigawattHoursPerMeter(QuantityValue gigawatthourspermeter)
-        {
-            double value = (double) gigawatthourspermeter;
-            return new EnergyEfficiency(value, EnergyEfficiencyUnit.GigawattHourPerMeter);
-        }
-
-        /// <summary>
         ///     Creates a <see cref="EnergyEfficiency"/> from <see cref="EnergyEfficiencyUnit.KilowattHourPerKilometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -413,106 +261,6 @@ namespace UnitsNet
         {
             double value = (double) kilowatthourspermeter;
             return new EnergyEfficiency(value, EnergyEfficiencyUnit.KilowattHourPerMeter);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="EnergyEfficiency"/> from <see cref="EnergyEfficiencyUnit.MegawattHourPerKilometer"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static EnergyEfficiency FromMegawattHoursPerKilometer(QuantityValue megawatthoursperkilometer)
-        {
-            double value = (double) megawatthoursperkilometer;
-            return new EnergyEfficiency(value, EnergyEfficiencyUnit.MegawattHourPerKilometer);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="EnergyEfficiency"/> from <see cref="EnergyEfficiencyUnit.MegawattHourPerMeter"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static EnergyEfficiency FromMegawattHoursPerMeter(QuantityValue megawatthourspermeter)
-        {
-            double value = (double) megawatthourspermeter;
-            return new EnergyEfficiency(value, EnergyEfficiencyUnit.MegawattHourPerMeter);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="EnergyEfficiency"/> from <see cref="EnergyEfficiencyUnit.MicrowattHourPerKilometer"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static EnergyEfficiency FromMicrowattHoursPerKilometer(QuantityValue microwatthoursperkilometer)
-        {
-            double value = (double) microwatthoursperkilometer;
-            return new EnergyEfficiency(value, EnergyEfficiencyUnit.MicrowattHourPerKilometer);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="EnergyEfficiency"/> from <see cref="EnergyEfficiencyUnit.MicrowattHourPerMeter"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static EnergyEfficiency FromMicrowattHoursPerMeter(QuantityValue microwatthourspermeter)
-        {
-            double value = (double) microwatthourspermeter;
-            return new EnergyEfficiency(value, EnergyEfficiencyUnit.MicrowattHourPerMeter);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="EnergyEfficiency"/> from <see cref="EnergyEfficiencyUnit.MilliwattHourPerKilometer"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static EnergyEfficiency FromMilliwattHoursPerKilometer(QuantityValue milliwatthoursperkilometer)
-        {
-            double value = (double) milliwatthoursperkilometer;
-            return new EnergyEfficiency(value, EnergyEfficiencyUnit.MilliwattHourPerKilometer);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="EnergyEfficiency"/> from <see cref="EnergyEfficiencyUnit.MilliwattHourPerMeter"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static EnergyEfficiency FromMilliwattHoursPerMeter(QuantityValue milliwatthourspermeter)
-        {
-            double value = (double) milliwatthourspermeter;
-            return new EnergyEfficiency(value, EnergyEfficiencyUnit.MilliwattHourPerMeter);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="EnergyEfficiency"/> from <see cref="EnergyEfficiencyUnit.NanowattHourPerKilometer"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static EnergyEfficiency FromNanowattHoursPerKilometer(QuantityValue nanowatthoursperkilometer)
-        {
-            double value = (double) nanowatthoursperkilometer;
-            return new EnergyEfficiency(value, EnergyEfficiencyUnit.NanowattHourPerKilometer);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="EnergyEfficiency"/> from <see cref="EnergyEfficiencyUnit.NanowattHourPerMeter"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static EnergyEfficiency FromNanowattHoursPerMeter(QuantityValue nanowatthourspermeter)
-        {
-            double value = (double) nanowatthourspermeter;
-            return new EnergyEfficiency(value, EnergyEfficiencyUnit.NanowattHourPerMeter);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="EnergyEfficiency"/> from <see cref="EnergyEfficiencyUnit.PicowattHourPerKilometer"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static EnergyEfficiency FromPicowattHoursPerKilometer(QuantityValue picowatthoursperkilometer)
-        {
-            double value = (double) picowatthoursperkilometer;
-            return new EnergyEfficiency(value, EnergyEfficiencyUnit.PicowattHourPerKilometer);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="EnergyEfficiency"/> from <see cref="EnergyEfficiencyUnit.PicowattHourPerMeter"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static EnergyEfficiency FromPicowattHoursPerMeter(QuantityValue picowatthourspermeter)
-        {
-            double value = (double) picowatthourspermeter;
-            return new EnergyEfficiency(value, EnergyEfficiencyUnit.PicowattHourPerMeter);
         }
 
         /// <summary>
@@ -1028,41 +776,13 @@ namespace UnitsNet
             EnergyEfficiency? convertedOrNull = (Unit, unit) switch
             {
                 // EnergyEfficiencyUnit -> BaseUnit
-                (EnergyEfficiencyUnit.FemtowattHourPerKilometer, EnergyEfficiencyUnit.WattHourPerKilometer) => new EnergyEfficiency((_value) * 1e-15d, EnergyEfficiencyUnit.WattHourPerKilometer),
-                (EnergyEfficiencyUnit.FemtowattHourPerMeter, EnergyEfficiencyUnit.WattHourPerKilometer) => new EnergyEfficiency((_value / 1e3) * 1e-15d, EnergyEfficiencyUnit.WattHourPerKilometer),
-                (EnergyEfficiencyUnit.GigawattHourPerKilometer, EnergyEfficiencyUnit.WattHourPerKilometer) => new EnergyEfficiency((_value) * 1e9d, EnergyEfficiencyUnit.WattHourPerKilometer),
-                (EnergyEfficiencyUnit.GigawattHourPerMeter, EnergyEfficiencyUnit.WattHourPerKilometer) => new EnergyEfficiency((_value / 1e3) * 1e9d, EnergyEfficiencyUnit.WattHourPerKilometer),
                 (EnergyEfficiencyUnit.KilowattHourPerKilometer, EnergyEfficiencyUnit.WattHourPerKilometer) => new EnergyEfficiency((_value) * 1e3d, EnergyEfficiencyUnit.WattHourPerKilometer),
                 (EnergyEfficiencyUnit.KilowattHourPerMeter, EnergyEfficiencyUnit.WattHourPerKilometer) => new EnergyEfficiency((_value / 1e3) * 1e3d, EnergyEfficiencyUnit.WattHourPerKilometer),
-                (EnergyEfficiencyUnit.MegawattHourPerKilometer, EnergyEfficiencyUnit.WattHourPerKilometer) => new EnergyEfficiency((_value) * 1e6d, EnergyEfficiencyUnit.WattHourPerKilometer),
-                (EnergyEfficiencyUnit.MegawattHourPerMeter, EnergyEfficiencyUnit.WattHourPerKilometer) => new EnergyEfficiency((_value / 1e3) * 1e6d, EnergyEfficiencyUnit.WattHourPerKilometer),
-                (EnergyEfficiencyUnit.MicrowattHourPerKilometer, EnergyEfficiencyUnit.WattHourPerKilometer) => new EnergyEfficiency((_value) * 1e-6d, EnergyEfficiencyUnit.WattHourPerKilometer),
-                (EnergyEfficiencyUnit.MicrowattHourPerMeter, EnergyEfficiencyUnit.WattHourPerKilometer) => new EnergyEfficiency((_value / 1e3) * 1e-6d, EnergyEfficiencyUnit.WattHourPerKilometer),
-                (EnergyEfficiencyUnit.MilliwattHourPerKilometer, EnergyEfficiencyUnit.WattHourPerKilometer) => new EnergyEfficiency((_value) * 1e-3d, EnergyEfficiencyUnit.WattHourPerKilometer),
-                (EnergyEfficiencyUnit.MilliwattHourPerMeter, EnergyEfficiencyUnit.WattHourPerKilometer) => new EnergyEfficiency((_value / 1e3) * 1e-3d, EnergyEfficiencyUnit.WattHourPerKilometer),
-                (EnergyEfficiencyUnit.NanowattHourPerKilometer, EnergyEfficiencyUnit.WattHourPerKilometer) => new EnergyEfficiency((_value) * 1e-9d, EnergyEfficiencyUnit.WattHourPerKilometer),
-                (EnergyEfficiencyUnit.NanowattHourPerMeter, EnergyEfficiencyUnit.WattHourPerKilometer) => new EnergyEfficiency((_value / 1e3) * 1e-9d, EnergyEfficiencyUnit.WattHourPerKilometer),
-                (EnergyEfficiencyUnit.PicowattHourPerKilometer, EnergyEfficiencyUnit.WattHourPerKilometer) => new EnergyEfficiency((_value) * 1e-12d, EnergyEfficiencyUnit.WattHourPerKilometer),
-                (EnergyEfficiencyUnit.PicowattHourPerMeter, EnergyEfficiencyUnit.WattHourPerKilometer) => new EnergyEfficiency((_value / 1e3) * 1e-12d, EnergyEfficiencyUnit.WattHourPerKilometer),
                 (EnergyEfficiencyUnit.WattHourPerMeter, EnergyEfficiencyUnit.WattHourPerKilometer) => new EnergyEfficiency(_value / 1e3, EnergyEfficiencyUnit.WattHourPerKilometer),
 
                 // BaseUnit -> EnergyEfficiencyUnit
-                (EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.FemtowattHourPerKilometer) => new EnergyEfficiency((_value) / 1e-15d, EnergyEfficiencyUnit.FemtowattHourPerKilometer),
-                (EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.FemtowattHourPerMeter) => new EnergyEfficiency((_value * 1e3) / 1e-15d, EnergyEfficiencyUnit.FemtowattHourPerMeter),
-                (EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.GigawattHourPerKilometer) => new EnergyEfficiency((_value) / 1e9d, EnergyEfficiencyUnit.GigawattHourPerKilometer),
-                (EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.GigawattHourPerMeter) => new EnergyEfficiency((_value * 1e3) / 1e9d, EnergyEfficiencyUnit.GigawattHourPerMeter),
                 (EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.KilowattHourPerKilometer) => new EnergyEfficiency((_value) / 1e3d, EnergyEfficiencyUnit.KilowattHourPerKilometer),
                 (EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.KilowattHourPerMeter) => new EnergyEfficiency((_value * 1e3) / 1e3d, EnergyEfficiencyUnit.KilowattHourPerMeter),
-                (EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.MegawattHourPerKilometer) => new EnergyEfficiency((_value) / 1e6d, EnergyEfficiencyUnit.MegawattHourPerKilometer),
-                (EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.MegawattHourPerMeter) => new EnergyEfficiency((_value * 1e3) / 1e6d, EnergyEfficiencyUnit.MegawattHourPerMeter),
-                (EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.MicrowattHourPerKilometer) => new EnergyEfficiency((_value) / 1e-6d, EnergyEfficiencyUnit.MicrowattHourPerKilometer),
-                (EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.MicrowattHourPerMeter) => new EnergyEfficiency((_value * 1e3) / 1e-6d, EnergyEfficiencyUnit.MicrowattHourPerMeter),
-                (EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.MilliwattHourPerKilometer) => new EnergyEfficiency((_value) / 1e-3d, EnergyEfficiencyUnit.MilliwattHourPerKilometer),
-                (EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.MilliwattHourPerMeter) => new EnergyEfficiency((_value * 1e3) / 1e-3d, EnergyEfficiencyUnit.MilliwattHourPerMeter),
-                (EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.NanowattHourPerKilometer) => new EnergyEfficiency((_value) / 1e-9d, EnergyEfficiencyUnit.NanowattHourPerKilometer),
-                (EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.NanowattHourPerMeter) => new EnergyEfficiency((_value * 1e3) / 1e-9d, EnergyEfficiencyUnit.NanowattHourPerMeter),
-                (EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.PicowattHourPerKilometer) => new EnergyEfficiency((_value) / 1e-12d, EnergyEfficiencyUnit.PicowattHourPerKilometer),
-                (EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.PicowattHourPerMeter) => new EnergyEfficiency((_value * 1e3) / 1e-12d, EnergyEfficiencyUnit.PicowattHourPerMeter),
                 (EnergyEfficiencyUnit.WattHourPerKilometer, EnergyEfficiencyUnit.WattHourPerMeter) => new EnergyEfficiency(_value * 1e3, EnergyEfficiencyUnit.WattHourPerMeter),
 
                 _ => null

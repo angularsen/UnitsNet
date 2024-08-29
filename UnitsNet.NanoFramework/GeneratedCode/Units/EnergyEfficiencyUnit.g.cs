@@ -25,22 +25,8 @@ namespace UnitsNet.Units
 
     public enum EnergyEfficiencyUnit
     {
-        FemtowattHourPerKilometer = 7,
-        FemtowattHourPerMeter = 9,
-        GigawattHourPerKilometer = 10,
-        GigawattHourPerMeter = 2,
         KilowattHourPerKilometer = 5,
         KilowattHourPerMeter = 3,
-        MegawattHourPerKilometer = 1,
-        MegawattHourPerMeter = 6,
-        MicrowattHourPerKilometer = 4,
-        MicrowattHourPerMeter = 8,
-        MilliwattHourPerKilometer = 12,
-        MilliwattHourPerMeter = 15,
-        NanowattHourPerKilometer = 11,
-        NanowattHourPerMeter = 16,
-        PicowattHourPerKilometer = 14,
-        PicowattHourPerMeter = 19,
         WattHourPerKilometer = 13,
         WattHourPerMeter = 20,
     }

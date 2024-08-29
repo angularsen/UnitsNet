@@ -23,6 +23,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class EnergyEfficiencyTests : EnergyEfficiencyTestsBase
     {
+        protected override bool SupportsSIUnitSystem => true;
         protected override double FemtowattHoursPerKilometerInOneWattHourPerKilometer => 1e15;
         protected override double FemtowattHoursPerMeterInOneWattHourPerKilometer  => 1e12;
         protected override double GigawattHoursPerKilometerInOneWattHourPerKilometer  => 1e-9;
