@@ -26,7 +26,7 @@ namespace UnitsNet.Tests
 
         protected override double DeciwattsInOneWatt => 1e1;
 
-        protected override decimal TonsOfRefrigerationInOneWatt => 2.8434512332474516279184828026648e-4m;
+        protected override double TonsOfRefrigerationInOneWatt => 2.8434512332474516279184828026648e-4;
 
         protected override double WattsInOneWatt => 1;
 

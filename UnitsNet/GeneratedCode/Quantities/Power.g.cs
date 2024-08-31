@@ -1258,7 +1258,7 @@ namespace UnitsNet
                 (PowerUnit.Petawatt, PowerUnit.Watt) => new Power((_value) * 1e15d, PowerUnit.Watt),
                 (PowerUnit.Picowatt, PowerUnit.Watt) => new Power((_value) * 1e-12d, PowerUnit.Watt),
                 (PowerUnit.Terawatt, PowerUnit.Watt) => new Power((_value) * 1e12d, PowerUnit.Watt),
-                (PowerUnit.TonOfRefrigeration, PowerUnit.Watt) => new Power(_value * 3516.853m, PowerUnit.Watt),
+                (PowerUnit.TonOfRefrigeration, PowerUnit.Watt) => new Power(_value * 3516.853, PowerUnit.Watt),
 
                 // BaseUnit -> PowerUnit
                 (PowerUnit.Watt, PowerUnit.BoilerHorsepower) => new Power(_value / 9812.5, PowerUnit.BoilerHorsepower),
@@ -1286,7 +1286,7 @@ namespace UnitsNet
                 (PowerUnit.Watt, PowerUnit.Petawatt) => new Power((_value) / 1e15d, PowerUnit.Petawatt),
                 (PowerUnit.Watt, PowerUnit.Picowatt) => new Power((_value) / 1e-12d, PowerUnit.Picowatt),
                 (PowerUnit.Watt, PowerUnit.Terawatt) => new Power((_value) / 1e12d, PowerUnit.Terawatt),
-                (PowerUnit.Watt, PowerUnit.TonOfRefrigeration) => new Power(_value / 3516.853m, PowerUnit.TonOfRefrigeration),
+                (PowerUnit.Watt, PowerUnit.TonOfRefrigeration) => new Power(_value / 3516.853, PowerUnit.TonOfRefrigeration),
 
                 _ => null
             };

@@ -115,8 +115,8 @@
     {
       "SingularName": "TonOfRefrigeration",
       "PluralName": "TonsOfRefrigeration",
-      "FromUnitToBaseFunc": "{x} * 3516.853m",
-      "FromBaseToUnitFunc": "{x} / 3516.853m",
+      "FromUnitToBaseFunc": "{x} * 3516.853",
+      "FromBaseToUnitFunc": "{x} / 3516.853",
       "Prefixes": [ ],
       "Localization": [
         {

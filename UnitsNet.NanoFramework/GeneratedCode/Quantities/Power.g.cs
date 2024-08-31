@@ -417,7 +417,7 @@ namespace UnitsNet
                         PowerUnit.Petawatt => (_value) * 1e15d,
                         PowerUnit.Picowatt => (_value) * 1e-12d,
                         PowerUnit.Terawatt => (_value) * 1e12d,
-                        PowerUnit.TonOfRefrigeration => _value * 3516.853m,
+                        PowerUnit.TonOfRefrigeration => _value * 3516.853,
                         PowerUnit.Watt => _value,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
                     };
@@ -457,7 +457,7 @@ namespace UnitsNet
                         PowerUnit.Petawatt => (baseUnitValue) / 1e15d,
                         PowerUnit.Picowatt => (baseUnitValue) / 1e-12d,
                         PowerUnit.Terawatt => (baseUnitValue) / 1e12d,
-                        PowerUnit.TonOfRefrigeration => baseUnitValue / 3516.853m,
+                        PowerUnit.TonOfRefrigeration => baseUnitValue / 3516.853,
                         PowerUnit.Watt => baseUnitValue,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
                     };
