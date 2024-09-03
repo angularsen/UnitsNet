@@ -98,7 +98,7 @@ jobs:
 
       # The benchmark results are downloaded into a 'runtime' folder.
       - name: Download Artifacts
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4.1.7
         with:
           name: ${{ github.event.inputs.benchmark-name }} (${{ github.event.inputs.runtimes }})
           path: results
