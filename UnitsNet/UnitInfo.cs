@@ -23,11 +23,12 @@ namespace UnitsNet
         /// <param name="value">The enum value for this class, for example <see cref="LengthUnit.Meter"/>.</param>
         /// <param name="pluralName">The plural name of the unit, such as "Centimeters".</param>
         /// <param name="baseUnits">The <see cref="BaseUnits"/> for this unit.</param>
+        [Obsolete("Use the constructor that also takes a quantityName parameter.")]
         public UnitInfo(Enum value, string pluralName, BaseUnits baseUnits)
         {
             Value = value ?? throw new ArgumentNullException(nameof(value));
             Name = value.ToString();
-            PluralName = pluralName;
+            PluralName = pluralName ?? throw new ArgumentNullException(nameof(pluralName));
             BaseUnits = baseUnits ?? throw new ArgumentNullException(nameof(baseUnits));
         }
 
@@ -38,10 +39,13 @@ namespace UnitsNet
         /// <param name="pluralName">The plural name of the unit, such as "Centimeters".</param>
         /// <param name="baseUnits">The <see cref="BaseUnits"/> for this unit.</param>
         /// <param name="quantityName">The quantity name that this unit is for.</param>
-        internal UnitInfo(Enum value, string pluralName, BaseUnits baseUnits, string quantityName) :
-            this(value, pluralName, baseUnits)
+        public UnitInfo(Enum value, string pluralName, BaseUnits baseUnits, string quantityName)
         {
-            QuantityName = quantityName;
+            Value = value ?? throw new ArgumentNullException(nameof(value));
+            Name = value.ToString();
+            PluralName = pluralName ?? throw new ArgumentNullException(nameof(pluralName));
+            BaseUnits = baseUnits ?? throw new ArgumentNullException(nameof(baseUnits));
+            QuantityName = quantityName ?? throw new ArgumentNullException(nameof(quantityName));
         }
 
         /// <summary>
@@ -81,6 +85,7 @@ namespace UnitsNet
         where TUnit : Enum
     {
         /// <inheritdoc />
+        [Obsolete("Use the constructor that also takes a quantityName parameter.")]
         public UnitInfo(TUnit value, string pluralName, BaseUnits baseUnits) :
             base(value, pluralName, baseUnits)
         {
@@ -88,7 +93,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        internal UnitInfo(TUnit value, string pluralName, BaseUnits baseUnits, string quantityName) :
+        public UnitInfo(TUnit value, string pluralName, BaseUnits baseUnits, string quantityName) :
             base(value, pluralName, baseUnits, quantityName)
         {
             Value = value;
