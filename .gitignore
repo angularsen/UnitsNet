@@ -259,3 +259,6 @@ Artifacts
 # Build server tooling
 /secure-file
 /.tools/
+
+# Mac files
+**/.DS_Store
