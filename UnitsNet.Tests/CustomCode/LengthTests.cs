@@ -77,7 +77,7 @@ namespace UnitsNet.Tests
 
         protected override double ParsecsInOneMeter => 3.2407790389471100000000000E-17;
 
-        protected override double SolarRadiusesInOneMeter => 1.43779384911791000E-09;
+        protected override double SolarRadiusesInOneMeter => 1.4374011786689664E-09;
 
         protected override double ChainsInOneMeter => 0.0497096953789867;
 
