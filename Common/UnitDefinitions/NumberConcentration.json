@@ -1,0 +1,59 @@
+{
+  "Name": "NumberConcentration",
+  "BaseUnit": "InverseCubicMeter",
+  "XmlDocSummary": "The number concentration of a substance is the amount of substance in a given volume. It is a measure of the concentration of a substance in a given volume.",
+  "BaseDimensions": {
+    "N": 1,
+    "L": -3
+  },
+  "Units": [
+    {
+      "SingularName": "InverseCubicMeter",
+      "PluralName": "InverseCubicMeters",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "1/m³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "InverseCubicCentimeter",
+      "PluralName": "InverseCubicCentimeters",
+      "FromUnitToBaseFunc": "{x} / 1e-4",
+      "FromBaseToUnitFunc": "{x} * 1e-4",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "1/cm³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "InverseCubicMillimeter",
+      "PluralName": "InverseCubicMillimeters",
+      "FromUnitToBaseFunc": "{x} / 1e-6",
+      "FromBaseToUnitFunc": "{x} * 1e-6",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "1/mm³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "InverseCubicMicrometer",
+      "PluralName": "InverseCubicMicrometers",
+      "FromUnitToBaseFunc": "{x} / 1e-12",
+      "FromBaseToUnitFunc": "{x} * 1e-12",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "1/µm³" ]
+        }
+      ]
+    }
+  ]
+}
