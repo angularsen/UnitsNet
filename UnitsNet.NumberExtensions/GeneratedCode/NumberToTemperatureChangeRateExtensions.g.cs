@@ -72,6 +72,14 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureChangeRate
 #endif
             => TemperatureChangeRate.FromDegreesCelsiusPerSecond(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="TemperatureChangeRate.FromDegreesKelvinPerMinute(UnitsNet.QuantityValue)" />
+        public static TemperatureChangeRate DegreesKelvinPerMinute<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => TemperatureChangeRate.FromDegreesKelvinPerMinute(Convert.ToDouble(value));
+
         /// <inheritdoc cref="TemperatureChangeRate.FromHectodegreesCelsiusPerSecond(UnitsNet.QuantityValue)" />
         public static TemperatureChangeRate HectodegreesCelsiusPerSecond<T>(this T value)
             where T : notnull

@@ -1451,7 +1451,8 @@
     "KilodegreeCelsiusPerSecond": 7,
     "MicrodegreeCelsiusPerSecond": 8,
     "MillidegreeCelsiusPerSecond": 9,
-    "NanodegreeCelsiusPerSecond": 10
+    "NanodegreeCelsiusPerSecond": 10,
+    "DegreeKelvinPerMinute": 20
   },
   "TemperatureDelta": {
     "DegreeCelsius": 1,

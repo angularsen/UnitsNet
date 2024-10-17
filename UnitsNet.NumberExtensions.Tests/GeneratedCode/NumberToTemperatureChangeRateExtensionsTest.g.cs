@@ -45,6 +45,10 @@ namespace UnitsNet.Tests
             Assert.Equal(TemperatureChangeRate.FromDegreesCelsiusPerSecond(2), 2.DegreesCelsiusPerSecond());
 
         [Fact]
+        public void NumberToDegreesKelvinPerMinuteTest() =>
+            Assert.Equal(TemperatureChangeRate.FromDegreesKelvinPerMinute(2), 2.DegreesKelvinPerMinute());
+
+        [Fact]
         public void NumberToHectodegreesCelsiusPerSecondTest() =>
             Assert.Equal(TemperatureChangeRate.FromHectodegreesCelsiusPerSecond(2), 2.HectodegreesCelsiusPerSecond());
 

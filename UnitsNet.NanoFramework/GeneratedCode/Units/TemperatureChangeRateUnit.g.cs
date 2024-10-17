@@ -30,6 +30,7 @@ namespace UnitsNet.Units
         DecidegreeCelsiusPerSecond = 3,
         DegreeCelsiusPerMinute = 4,
         DegreeCelsiusPerSecond = 5,
+        DegreeKelvinPerMinute = 20,
         HectodegreeCelsiusPerSecond = 6,
         KilodegreeCelsiusPerSecond = 7,
         MicrodegreeCelsiusPerSecond = 8,
