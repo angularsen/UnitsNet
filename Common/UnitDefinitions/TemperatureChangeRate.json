@@ -31,6 +31,19 @@
           "Abbreviations": [ "°C/min" ]
         }
       ]
+    },
+    {
+      "SingularName": "DegreeKelvinPerMinute",
+      "PluralName": "DegreesKelvinPerMinute",
+      "FromUnitToBaseFunc": "({x} / 60) - 273.15",
+      "FromBaseToUnitFunc": "({x} + 273.15) * 60",
+      "Prefixes": [],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "K/min" ]
+        }
+      ]
     }
   ]
 }
