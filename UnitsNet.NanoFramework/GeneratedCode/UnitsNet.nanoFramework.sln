@@ -76,6 +76,8 @@ Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Energy", "Energy\Energy.nfp
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "EnergyDensity", "EnergyDensity\EnergyDensity.nfproj", "{c5025916-5039-97c2-b450-af1420f5fb08}"
 EndProject
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "EnergyEfficiency", "EnergyEfficiency\EnergyEfficiency.nfproj", "{31f3d11e-76d2-1914-ebad-28e0cb77326b}"
+EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Entropy", "Entropy\Entropy.nfproj", "{816884bb-a5f6-5c07-967b-bb8f21d724b7}"
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Force", "Force\Force.nfproj", "{5517dacf-b1ff-6515-e5b6-b5081f92f407}"
@@ -478,6 +480,12 @@ Global
 {c5025916-5039-97c2-b450-af1420f5fb08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 {c5025916-5039-97c2-b450-af1420f5fb08}.Release|Any CPU.Build.0 = Release|Any CPU
 {c5025916-5039-97c2-b450-af1420f5fb08}.Release|Any CPU.Deploy.0 = Release|Any CPU
+{31f3d11e-76d2-1914-ebad-28e0cb77326b}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+{31f3d11e-76d2-1914-ebad-28e0cb77326b}.Debug|Any CPU.Build.0 = Debug|Any CPU
+{31f3d11e-76d2-1914-ebad-28e0cb77326b}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+{31f3d11e-76d2-1914-ebad-28e0cb77326b}.Release|Any CPU.ActiveCfg = Release|Any CPU
+{31f3d11e-76d2-1914-ebad-28e0cb77326b}.Release|Any CPU.Build.0 = Release|Any CPU
+{31f3d11e-76d2-1914-ebad-28e0cb77326b}.Release|Any CPU.Deploy.0 = Release|Any CPU
 {816884bb-a5f6-5c07-967b-bb8f21d724b7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 {816884bb-a5f6-5c07-967b-bb8f21d724b7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 {816884bb-a5f6-5c07-967b-bb8f21d724b7}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
