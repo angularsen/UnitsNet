@@ -31,22 +31,7 @@ namespace UnitsNet
         public bool IsBaseQuantity()
         {
             var dimensionsArray = new[] { Length, Mass, Time, Current, Temperature, Amount, LuminousIntensity };
-            bool onlyOneEqualsOne = false;
-            foreach (var dimension in dimensionsArray)
-            {
-                if (1 == dimension)
-                {
-                    if (onlyOneEqualsOne)
-                    {
-                        return false;
-                    }
-                    onlyOneEqualsOne = true;
-                }
-                else if (0 != dimension)
-                {
-                    return false;
-                }
-            }
+            bool onlyOneEqualsOne = dimensionsArray.Select(dimension => dimension is 0 or 1 ? dimension : 2).Sum() == 1;
             return onlyOneEqualsOne;
         }
 
