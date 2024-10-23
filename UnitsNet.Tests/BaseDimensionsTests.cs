@@ -37,6 +37,12 @@ namespace UnitsNet.Tests
             Assert.False(derivedDimensions.IsBaseQuantity());
         }
 
+        [Fact]
+        public void IsBaseQuantityImplementedReallyProperly()
+        {
+            Assert.False(Acceleration.BaseDimensions.IsBaseQuantity());
+        }
+
         [Theory]
         [InlineData(2, 0, 0, 0, 0, 0, 0)]
         [InlineData(0, 2, 0, 0, 0, 0, 0)]
