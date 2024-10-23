@@ -182,13 +182,11 @@ namespace UnitsNet
 
         private static void AppendDimensionString(StringBuilder sb, string name, int value)
         {
-            var absoluteValue = Math.Abs(value);
-
-            if(absoluteValue > 0)
+            if (0 != value)
             {
                 sb.AppendFormat("[{0}]", name);
 
-                if(absoluteValue > 1)
+                if (1 != value)
                     sb.AppendFormat("^{0}", value);
             }
         }
