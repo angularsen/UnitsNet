@@ -695,7 +695,13 @@ namespace UnitsNet.Tests
         [Fact]
         public void CheckToStringUsingMolarEntropy()
         {
-            Assert.Equal("[Length]^2[Mass][Time]^-2[Temperature][Amount]", MolarEntropy.BaseDimensions.ToString());
+            Assert.Equal("[Length]^2[Mass][Time]^-2[Temperature]^-1[Amount]^-1", MolarEntropy.BaseDimensions.ToString());
+        }
+
+        [Fact]
+        public void CheckToStringUsingSpeed()
+        {
+            Assert.Equal("[Length][Time]^-1", Speed.BaseDimensions.ToString());
         }
 
         [Fact]
