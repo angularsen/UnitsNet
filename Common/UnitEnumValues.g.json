@@ -1452,7 +1452,13 @@
     "MicrodegreeCelsiusPerSecond": 8,
     "MillidegreeCelsiusPerSecond": 9,
     "NanodegreeCelsiusPerSecond": 10,
-    "DegreeKelvinPerMinute": 20
+    "DegreeKelvinPerMinute": 20,
+    "DegreeCelsiusPerHour": 18,
+    "DegreeFahrenheitPerHour": 11,
+    "DegreeFahrenheitPerMinute": 16,
+    "DegreeFahrenheitPerSecond": 19,
+    "DegreeKelvinPerHour": 12,
+    "DegreeKelvinPerSecond": 15
   },
   "TemperatureDelta": {
     "DegreeCelsius": 1,

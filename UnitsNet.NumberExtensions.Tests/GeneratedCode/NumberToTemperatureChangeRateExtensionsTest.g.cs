@@ -37,6 +37,10 @@ namespace UnitsNet.Tests
             Assert.Equal(TemperatureChangeRate.FromDecidegreesCelsiusPerSecond(2), 2.DecidegreesCelsiusPerSecond());
 
         [Fact]
+        public void NumberToDegreesCelsiusPerHourTest() =>
+            Assert.Equal(TemperatureChangeRate.FromDegreesCelsiusPerHour(2), 2.DegreesCelsiusPerHour());
+
+        [Fact]
         public void NumberToDegreesCelsiusPerMinuteTest() =>
             Assert.Equal(TemperatureChangeRate.FromDegreesCelsiusPerMinute(2), 2.DegreesCelsiusPerMinute());
 
@@ -45,8 +49,28 @@ namespace UnitsNet.Tests
             Assert.Equal(TemperatureChangeRate.FromDegreesCelsiusPerSecond(2), 2.DegreesCelsiusPerSecond());
 
         [Fact]
+        public void NumberToDegreesFahrenheitPerHourTest() =>
+            Assert.Equal(TemperatureChangeRate.FromDegreesFahrenheitPerHour(2), 2.DegreesFahrenheitPerHour());
+
+        [Fact]
+        public void NumberToDegreesFahrenheitPerMinuteTest() =>
+            Assert.Equal(TemperatureChangeRate.FromDegreesFahrenheitPerMinute(2), 2.DegreesFahrenheitPerMinute());
+
+        [Fact]
+        public void NumberToDegreesFahrenheitPerSecondTest() =>
+            Assert.Equal(TemperatureChangeRate.FromDegreesFahrenheitPerSecond(2), 2.DegreesFahrenheitPerSecond());
+
+        [Fact]
+        public void NumberToDegreesKelvinPerHourTest() =>
+            Assert.Equal(TemperatureChangeRate.FromDegreesKelvinPerHour(2), 2.DegreesKelvinPerHour());
+
+        [Fact]
         public void NumberToDegreesKelvinPerMinuteTest() =>
             Assert.Equal(TemperatureChangeRate.FromDegreesKelvinPerMinute(2), 2.DegreesKelvinPerMinute());
+
+        [Fact]
+        public void NumberToDegreesKelvinPerSecondTest() =>
+            Assert.Equal(TemperatureChangeRate.FromDegreesKelvinPerSecond(2), 2.DegreesKelvinPerSecond());
 
         [Fact]
         public void NumberToHectodegreesCelsiusPerSecondTest() =>
