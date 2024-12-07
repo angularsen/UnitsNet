@@ -498,7 +498,8 @@ Produced with [ghtopdep](https://github.com/github-tooling/ghtopdep).
 
 Get the same strongly typed units on other platforms, based on the same [unit definitions](/Common/UnitDefinitions).
 
-| Language                   | Name        | Package                                          | Repository                                           | Maintainers  |
-|----------------------------|-------------|--------------------------------------------------|------------------------------------------------------|--------------|
-| JavaScript /<br>TypeScript | unitsnet-js | [npm](https://www.npmjs.com/package/unitsnet-js) | [github](https://github.com/haimkastner/unitsnet-js) | @haimkastner |
-| Python                     | unitsnet-py | [pypi](https://pypi.org/project/unitsnet-py)     | [github](https://github.com/haimkastner/unitsnet-py) | @haimkastner |
+| Language                   | Name        | Package                                                             | Repository                                           | Maintainers  |
+|----------------------------|-------------|---------------------------------------------------------------------|------------------------------------------------------|--------------|
+| JavaScript /<br>TypeScript | unitsnet-js | [npm](https://www.npmjs.com/package/unitsnet-js)                    | [github](https://github.com/haimkastner/unitsnet-js) | @haimkastner |
+| Python                     | unitsnet-py | [pypi](https://pypi.org/project/unitsnet-py)                        | [github](https://github.com/haimkastner/unitsnet-py) | @haimkastner |
+| Golang                     | unitsnet-go | [pkg.go.dev](https://pkg.go.dev/github.com/haimkastner/unitsnet-go) | [github](https://github.com/haimkastner/unitsnet-go) | @haimkastner |
