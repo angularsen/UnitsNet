@@ -29,6 +29,7 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Capacitance
     /// </remarks>
+    [Obsolete("This class is obsolete. Please use ElectricCapacitance instead")]
     public struct  Capacitance
     {
         /// <summary>

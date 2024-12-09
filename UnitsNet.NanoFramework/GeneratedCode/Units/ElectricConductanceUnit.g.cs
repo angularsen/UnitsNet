@@ -25,9 +25,14 @@ namespace UnitsNet.Units
 
     public enum ElectricConductanceUnit
     {
+        Kilomho = 15,
         Kilosiemens = 6,
+        Mho = 12,
+        Micromho = 5,
         Microsiemens = 1,
+        Millimho = 9,
         Millisiemens = 2,
+        Nanomho = 14,
         Nanosiemens = 10,
         Siemens = 3,
     }

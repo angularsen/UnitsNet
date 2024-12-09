@@ -24,7 +24,7 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///     The electrical conductance of an electrical conductor is a measure of the easeness to pass an electric current through that conductor.
+    ///     The electrical conductance of an object is a measure of the ease with which an electric current passes. Its reciprocal quantity is electrical resistance.
     /// </summary>
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Electrical_resistance_and_conductance
@@ -83,9 +83,24 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Kilomho"/>
+        /// </summary>
+        public double Kilomhos => As(ElectricConductanceUnit.Kilomho);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Kilosiemens"/>
         /// </summary>
         public double Kilosiemens => As(ElectricConductanceUnit.Kilosiemens);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Mho"/>
+        /// </summary>
+        public double Mhos => As(ElectricConductanceUnit.Mho);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Micromho"/>
+        /// </summary>
+        public double Micromhos => As(ElectricConductanceUnit.Micromho);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Microsiemens"/>
@@ -93,9 +108,19 @@ namespace UnitsNet
         public double Microsiemens => As(ElectricConductanceUnit.Microsiemens);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Millimho"/>
+        /// </summary>
+        public double Millimhos => As(ElectricConductanceUnit.Millimho);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Millisiemens"/>
         /// </summary>
         public double Millisiemens => As(ElectricConductanceUnit.Millisiemens);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Nanomho"/>
+        /// </summary>
+        public double Nanomhos => As(ElectricConductanceUnit.Nanomho);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Nanosiemens"/>
@@ -112,10 +137,28 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
+        ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Kilomho"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricConductance FromKilomhos(double kilomhos) => new ElectricConductance(kilomhos, ElectricConductanceUnit.Kilomho);
+
+        /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Kilosiemens"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductance FromKilosiemens(double kilosiemens) => new ElectricConductance(kilosiemens, ElectricConductanceUnit.Kilosiemens);
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Mho"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricConductance FromMhos(double mhos) => new ElectricConductance(mhos, ElectricConductanceUnit.Mho);
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Micromho"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricConductance FromMicromhos(double micromhos) => new ElectricConductance(micromhos, ElectricConductanceUnit.Micromho);
 
         /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Microsiemens"/>.
@@ -124,10 +167,22 @@ namespace UnitsNet
         public static ElectricConductance FromMicrosiemens(double microsiemens) => new ElectricConductance(microsiemens, ElectricConductanceUnit.Microsiemens);
 
         /// <summary>
+        ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Millimho"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricConductance FromMillimhos(double millimhos) => new ElectricConductance(millimhos, ElectricConductanceUnit.Millimho);
+
+        /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Millisiemens"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductance FromMillisiemens(double millisiemens) => new ElectricConductance(millisiemens, ElectricConductanceUnit.Millisiemens);
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Nanomho"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricConductance FromNanomhos(double nanomhos) => new ElectricConductance(nanomhos, ElectricConductanceUnit.Nanomho);
 
         /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Nanosiemens"/>.
@@ -181,9 +236,14 @@ namespace UnitsNet
                 {
                     return Unit switch
                     {
+                        ElectricConductanceUnit.Kilomho => (_value) * 1e3d,
                         ElectricConductanceUnit.Kilosiemens => (_value) * 1e3d,
+                        ElectricConductanceUnit.Mho => _value,
+                        ElectricConductanceUnit.Micromho => (_value) * 1e-6d,
                         ElectricConductanceUnit.Microsiemens => (_value) * 1e-6d,
+                        ElectricConductanceUnit.Millimho => (_value) * 1e-3d,
                         ElectricConductanceUnit.Millisiemens => (_value) * 1e-3d,
+                        ElectricConductanceUnit.Nanomho => (_value) * 1e-9d,
                         ElectricConductanceUnit.Nanosiemens => (_value) * 1e-9d,
                         ElectricConductanceUnit.Siemens => _value,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
@@ -199,9 +259,14 @@ namespace UnitsNet
 
                     return unit switch
                     {
+                        ElectricConductanceUnit.Kilomho => (baseUnitValue) / 1e3d,
                         ElectricConductanceUnit.Kilosiemens => (baseUnitValue) / 1e3d,
+                        ElectricConductanceUnit.Mho => baseUnitValue,
+                        ElectricConductanceUnit.Micromho => (baseUnitValue) / 1e-6d,
                         ElectricConductanceUnit.Microsiemens => (baseUnitValue) / 1e-6d,
+                        ElectricConductanceUnit.Millimho => (baseUnitValue) / 1e-3d,
                         ElectricConductanceUnit.Millisiemens => (baseUnitValue) / 1e-3d,
+                        ElectricConductanceUnit.Nanomho => (baseUnitValue) / 1e-9d,
                         ElectricConductanceUnit.Nanosiemens => (baseUnitValue) / 1e-9d,
                         ElectricConductanceUnit.Siemens => baseUnitValue,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")

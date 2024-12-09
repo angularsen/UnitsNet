@@ -26,6 +26,10 @@ namespace UnitsNet
     /// <summary>
     ///     Electric admittance is a measure of how easily a circuit or device will allow a current to flow. It is defined as the inverse of impedance. The SI unit of admittance is the siemens (symbol S).
     /// </summary>
+    /// <remarks>
+    ///     https://en.wikipedia.org/wiki/Admittance
+    /// </remarks>
+    [Obsolete("Admittance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricConductance or ElectricSusceptance instead")]
     public struct  ElectricAdmittance
     {
         /// <summary>
@@ -80,14 +84,39 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Kilomho"/>
+        /// </summary>
+        public double Kilomhos => As(ElectricAdmittanceUnit.Kilomho);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Mho"/>
+        /// </summary>
+        public double Mhos => As(ElectricAdmittanceUnit.Mho);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Micromho"/>
+        /// </summary>
+        public double Micromhos => As(ElectricAdmittanceUnit.Micromho);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Microsiemens"/>
         /// </summary>
         public double Microsiemens => As(ElectricAdmittanceUnit.Microsiemens);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Millimho"/>
+        /// </summary>
+        public double Millimhos => As(ElectricAdmittanceUnit.Millimho);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Millisiemens"/>
         /// </summary>
         public double Millisiemens => As(ElectricAdmittanceUnit.Millisiemens);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Nanomho"/>
+        /// </summary>
+        public double Nanomhos => As(ElectricAdmittanceUnit.Nanomho);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Nanosiemens"/>
@@ -104,16 +133,46 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
+        ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Kilomho"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricAdmittance FromKilomhos(double kilomhos) => new ElectricAdmittance(kilomhos, ElectricAdmittanceUnit.Kilomho);
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Mho"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricAdmittance FromMhos(double mhos) => new ElectricAdmittance(mhos, ElectricAdmittanceUnit.Mho);
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Micromho"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricAdmittance FromMicromhos(double micromhos) => new ElectricAdmittance(micromhos, ElectricAdmittanceUnit.Micromho);
+
+        /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Microsiemens"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricAdmittance FromMicrosiemens(double microsiemens) => new ElectricAdmittance(microsiemens, ElectricAdmittanceUnit.Microsiemens);
 
         /// <summary>
+        ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Millimho"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricAdmittance FromMillimhos(double millimhos) => new ElectricAdmittance(millimhos, ElectricAdmittanceUnit.Millimho);
+
+        /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Millisiemens"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricAdmittance FromMillisiemens(double millisiemens) => new ElectricAdmittance(millisiemens, ElectricAdmittanceUnit.Millisiemens);
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Nanomho"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricAdmittance FromNanomhos(double nanomhos) => new ElectricAdmittance(nanomhos, ElectricAdmittanceUnit.Nanomho);
 
         /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Nanosiemens"/>.
@@ -167,8 +226,13 @@ namespace UnitsNet
                 {
                     return Unit switch
                     {
+                        ElectricAdmittanceUnit.Kilomho => (_value) * 1e3d,
+                        ElectricAdmittanceUnit.Mho => _value,
+                        ElectricAdmittanceUnit.Micromho => (_value) * 1e-6d,
                         ElectricAdmittanceUnit.Microsiemens => (_value) * 1e-6d,
+                        ElectricAdmittanceUnit.Millimho => (_value) * 1e-3d,
                         ElectricAdmittanceUnit.Millisiemens => (_value) * 1e-3d,
+                        ElectricAdmittanceUnit.Nanomho => (_value) * 1e-9d,
                         ElectricAdmittanceUnit.Nanosiemens => (_value) * 1e-9d,
                         ElectricAdmittanceUnit.Siemens => _value,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
@@ -184,8 +248,13 @@ namespace UnitsNet
 
                     return unit switch
                     {
+                        ElectricAdmittanceUnit.Kilomho => (baseUnitValue) / 1e3d,
+                        ElectricAdmittanceUnit.Mho => baseUnitValue,
+                        ElectricAdmittanceUnit.Micromho => (baseUnitValue) / 1e-6d,
                         ElectricAdmittanceUnit.Microsiemens => (baseUnitValue) / 1e-6d,
+                        ElectricAdmittanceUnit.Millimho => (baseUnitValue) / 1e-3d,
                         ElectricAdmittanceUnit.Millisiemens => (baseUnitValue) / 1e-3d,
+                        ElectricAdmittanceUnit.Nanomho => (baseUnitValue) / 1e-9d,
                         ElectricAdmittanceUnit.Nanosiemens => (baseUnitValue) / 1e-9d,
                         ElectricAdmittanceUnit.Siemens => baseUnitValue,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")

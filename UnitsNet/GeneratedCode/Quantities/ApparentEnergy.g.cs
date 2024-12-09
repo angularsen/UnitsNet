@@ -36,6 +36,7 @@ namespace UnitsNet
     /// <summary>
     ///     A unit for expressing the integral of apparent power over time, equal to the product of 1 volt-ampere and 1 hour, or to 3600 joules.
     /// </summary>
+    [Obsolete("This class is obsolete. Please use ElectricApparentEnergy instead")]
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct ApparentEnergy :

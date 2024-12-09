@@ -34,8 +34,11 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///     The electrical resistance of an electrical conductor is the opposition to the passage of an electric current through that conductor.
+    ///     The electrical resistance of an object is a measure of its opposition to the flow of electric current. Its reciprocal quantity is electrical conductance.
     /// </summary>
+    /// <remarks>
+    ///     https://en.wikipedia.org/wiki/Electrical_resistance_and_conductance
+    /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct ElectricResistance :

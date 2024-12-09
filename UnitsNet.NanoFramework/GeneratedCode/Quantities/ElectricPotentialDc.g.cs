@@ -24,8 +24,9 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///     The Electric Potential of a system known to use Direct Current.
+    ///     If you want to map more parameters into the ElectricPotential class (volts RMS, phase angle, etc.), just use a named tuple.
     /// </summary>
+    [Obsolete("This class is redundant. Please use ElectricPotential instead.")]
     public struct  ElectricPotentialDc
     {
         /// <summary>

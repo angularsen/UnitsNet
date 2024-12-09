@@ -36,6 +36,7 @@ namespace UnitsNet
     /// <summary>
     ///     The Volt-ampere reactive hour (expressed as varh) is the reactive power of one Volt-ampere reactive produced in one hour.
     /// </summary>
+    [Obsolete("This class is obsolete. Please use ElectricReactiveEnergy instead")]
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct ReactiveEnergy :
