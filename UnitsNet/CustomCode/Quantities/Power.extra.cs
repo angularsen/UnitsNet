@@ -101,7 +101,7 @@ namespace UnitsNet
         }
 
         /// <summary>Calculate <see cref="ElectricPotential"/> from <see cref="Power"/> divided by <see cref="ElectricCurrent"/>.</summary>
-        /// <remarks>Electric power is defined as P = U * I, so I = P / U.</remarks>
+        /// <remarks>Electric power is defined as P = U * I, so U = P / I.</remarks>
         public static ElectricPotential operator /(Power power, ElectricCurrent current)
         {
             return ElectricPotential.FromVolts((double)power.Watts / current.Amperes);

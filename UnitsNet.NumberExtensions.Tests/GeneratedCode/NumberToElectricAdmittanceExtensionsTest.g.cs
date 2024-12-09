@@ -25,12 +25,32 @@ namespace UnitsNet.Tests
     public class NumberToElectricAdmittanceExtensionsTests
     {
         [Fact]
+        public void NumberToKilomhosTest() =>
+            Assert.Equal(ElectricAdmittance.FromKilomhos(2), 2.Kilomhos());
+
+        [Fact]
+        public void NumberToMhosTest() =>
+            Assert.Equal(ElectricAdmittance.FromMhos(2), 2.Mhos());
+
+        [Fact]
+        public void NumberToMicromhosTest() =>
+            Assert.Equal(ElectricAdmittance.FromMicromhos(2), 2.Micromhos());
+
+        [Fact]
         public void NumberToMicrosiemensTest() =>
             Assert.Equal(ElectricAdmittance.FromMicrosiemens(2), 2.Microsiemens());
 
         [Fact]
+        public void NumberToMillimhosTest() =>
+            Assert.Equal(ElectricAdmittance.FromMillimhos(2), 2.Millimhos());
+
+        [Fact]
         public void NumberToMillisiemensTest() =>
             Assert.Equal(ElectricAdmittance.FromMillisiemens(2), 2.Millisiemens());
+
+        [Fact]
+        public void NumberToNanomhosTest() =>
+            Assert.Equal(ElectricAdmittance.FromNanomhos(2), 2.Nanomhos());
 
         [Fact]
         public void NumberToNanosiemensTest() =>

@@ -1,0 +1,40 @@
+{
+  "Name": "ElectricSusceptance",
+  "BaseUnit": "Siemens",
+  "XmlDocSummary": "Electrical susceptance is the imaginary part of admittance, where the real part is conductance. Its reciprocal quantity is electrical reactance.",
+  "XmlDocRemarks": "https://en.wikipedia.org/wiki/Susceptance",
+  "BaseDimensions": {
+    "L": -2,
+    "M": -1,
+    "T": 3,
+    "I": 2
+  },
+  "Units": [
+    {
+      "SingularName": "Siemens",
+      "PluralName": "Siemens",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "S" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Mho",
+      "PluralName": "Mhos",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "℧" ]
+        }
+      ]
+    }
+  ]
+}
