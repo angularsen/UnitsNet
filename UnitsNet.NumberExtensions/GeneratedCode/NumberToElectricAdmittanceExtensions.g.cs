@@ -32,6 +32,30 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
     /// </summary>
     public static class NumberToElectricAdmittanceExtensions
     {
+        /// <inheritdoc cref="ElectricAdmittance.FromKilomhos(UnitsNet.QuantityValue)" />
+        public static ElectricAdmittance Kilomhos<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricAdmittance.FromKilomhos(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricAdmittance.FromMhos(UnitsNet.QuantityValue)" />
+        public static ElectricAdmittance Mhos<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricAdmittance.FromMhos(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricAdmittance.FromMicromhos(UnitsNet.QuantityValue)" />
+        public static ElectricAdmittance Micromhos<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricAdmittance.FromMicromhos(Convert.ToDouble(value));
+
         /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance Microsiemens<T>(this T value)
             where T : notnull
@@ -40,6 +64,14 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
 #endif
             => ElectricAdmittance.FromMicrosiemens(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="ElectricAdmittance.FromMillimhos(UnitsNet.QuantityValue)" />
+        public static ElectricAdmittance Millimhos<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricAdmittance.FromMillimhos(Convert.ToDouble(value));
+
         /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance Millisiemens<T>(this T value)
             where T : notnull
@@ -47,6 +79,14 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
             , INumber<T>
 #endif
             => ElectricAdmittance.FromMillisiemens(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricAdmittance.FromNanomhos(UnitsNet.QuantityValue)" />
+        public static ElectricAdmittance Nanomhos<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricAdmittance.FromNanomhos(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance Nanosiemens<T>(this T value)

@@ -36,6 +36,7 @@ namespace UnitsNet
     /// <summary>
     ///     Volt-ampere reactive (var) is a unit by which reactive power is expressed in an AC electric power system. Reactive power exists in an AC circuit when the current and voltage are not in phase.
     /// </summary>
+    [Obsolete("This class is obsolete. Please use ElectricReactivePower instead")]
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct ReactivePower :

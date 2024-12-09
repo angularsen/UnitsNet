@@ -39,6 +39,7 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Capacitance
     /// </remarks>
+    [Obsolete("This class is obsolete. Please use ElectricCapacitance instead")]
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct Capacitance :

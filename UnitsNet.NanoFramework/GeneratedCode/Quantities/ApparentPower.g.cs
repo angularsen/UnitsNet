@@ -26,6 +26,7 @@ namespace UnitsNet
     /// <summary>
     ///     Power engineers measure apparent power as the magnitude of the vector sum of active and reactive power. Apparent power is the product of the root-mean-square of voltage and current.
     /// </summary>
+    [Obsolete("This class is obsolete. Please use ElectricApparentPower instead")]
     public struct  ApparentPower
     {
         /// <summary>
