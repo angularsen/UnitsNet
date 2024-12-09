@@ -1,8 +1,8 @@
 {
-  "Name": "ElectricResistance",
+  "Name": "ElectricReactance",
   "BaseUnit": "Ohm",
-  "XmlDocSummary": "The electrical resistance of an object is a measure of its opposition to the flow of electric current. Its reciprocal quantity is electrical conductance.",
-  "XmlDocRemarks": "https://en.wikipedia.org/wiki/Electrical_resistance_and_conductance",
+  "XmlDocSummary": "In electrical circuits, reactance is the opposition presented to alternating current by inductance and capacitance. Along with resistance, it is one of two elements of impedance. Its reciprocal quantity is electrical susceptance.",
+  "XmlDocRemarks": "https://en.wikipedia.org/wiki/Electrical_reactance",
   "BaseDimensions": {
     "L": 2,
     "M": 1,
