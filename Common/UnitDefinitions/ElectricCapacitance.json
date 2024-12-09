@@ -1,9 +1,8 @@
 {
-  "Name": "Capacitance",
+  "Name": "ElectricCapacitance",
   "BaseUnit": "Farad",
-  "XmlDocSummary": "Capacitance is the ability of a body to store an electric charge.",
+  "XmlDocSummary": "Capacitance is the capacity of a material object or device to store electric charge.",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Capacitance",
-  "ObsoleteText": "This class is obsolete. Please use ElectricCapacitance instead",
   "BaseDimensions": {
     "L": -2,
     "M": -1,

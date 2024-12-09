@@ -1,8 +1,8 @@
 {
-  "Name": "ApparentPower",
+  "Name": "ElectricApparentPower",
   "BaseUnit": "Voltampere",
-  "XmlDocSummary": "Power engineers measure apparent power as the magnitude of the vector sum of active and reactive power. Apparent power is the product of the root-mean-square of voltage and current.",
-  "ObsoleteText": "This class is obsolete. Please use ElectricApparentPower instead",
+  "XmlDocSummary": "Power engineers measure apparent power as the magnitude of the vector sum of active and reactive power. It is the product of the root mean square voltage (in volts) and the root mean square current (in amperes).",
+  "XmlDocRemarks": "https://en.wikipedia.org/wiki/AC_power#Active,_reactive,_apparent,_and_complex_power_in_sinusoidal_steady-state",
   "BaseDimensions": {
     "L": 2,
     "M": 1,

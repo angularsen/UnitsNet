@@ -1,7 +1,8 @@
 {
   "Name": "ElectricPotentialAc",
   "BaseUnit": "VoltAc",
-  "XmlDocSummary": "The Electric Potential of a system known to use Alternating Current.",
+  "XmlDocSummary": "If you want to map more parameters into the ElectricPotential class (volts RMS, phase angle, etc.), just use a named tuple.",
+  "ObsoleteText": "This class is redundant. Please use ElectricPotential instead.",
   "Units": [
     {
       "SingularName": "VoltAc",
