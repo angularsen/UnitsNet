@@ -1,7 +1,9 @@
-// Licensed under MIT No Attribution, see LICENSE file at the root.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using System.Globalization;
 using UnitsNet.Tests.CustomQuantities;
+using UnitsNet.Units;
 using Xunit;
 
 namespace UnitsNet.Tests
@@ -87,5 +89,24 @@ namespace UnitsNet.Tests
             Assert.Equal(1, q.Value);
         }
 
+        [Fact]
+        public void TryParse_NullString_Returns_False()
+        {
+            QuantityParser quantityParser = UnitsNetSetup.Default.QuantityParser;
+
+            var success = quantityParser.TryParse<Mass, MassUnit>(null, null, Mass.From, out Mass _);
+
+            Assert.False(success);
+        }
+
+        [Fact]
+        public void TryParse_WithInvalidValue_Returns_False()
+        {
+            QuantityParser quantityParser = UnitsNetSetup.Default.QuantityParser;
+
+            var success = quantityParser.TryParse<Mass, MassUnit>("XX kg", CultureInfo.InvariantCulture, Mass.From, out Mass _);
+
+            Assert.False(success);
+        }
     }
 }

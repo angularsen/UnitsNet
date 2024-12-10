@@ -517,7 +517,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse(""5.5 m"", CultureInfo.GetCultureInfo(""en-US""));
         /// </example>
-        public static bool TryParse(string? str, out {_quantity.Name} result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out {_quantity.Name} result)
         {{
             return TryParse(str, null, out result);
         }}
@@ -532,7 +532,7 @@ namespace UnitsNet
         ///     Length.Parse(""5.5 m"", CultureInfo.GetCultureInfo(""en-US""));
         /// </example>
         /// <param name=""provider"">Format to use when parsing number and unit. Defaults to <see cref=""CultureInfo.CurrentCulture"" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out {_quantity.Name} result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out {_quantity.Name} result)
         {{
             return QuantityParser.Default.TryParse<{_quantity.Name}, {_unitEnumName}>(
                 str,
@@ -571,7 +571,7 @@ namespace UnitsNet
         }}
 
         /// <inheritdoc cref=""TryParseUnit(string,IFormatProvider,out UnitsNet.Units.{_unitEnumName})""/>
-        public static bool TryParseUnit(string str, out {_unitEnumName} unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out {_unitEnumName} unit)
         {{
             return TryParseUnit(str, null, out unit);
         }}
@@ -586,7 +586,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit(""m"", CultureInfo.GetCultureInfo(""en-US""));
         /// </example>
         /// <param name=""provider"">Format to use when parsing number and unit. Defaults to <see cref=""CultureInfo.CurrentCulture"" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out {_unitEnumName} unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out {_unitEnumName} unit)
         {{
             return UnitParser.Default.TryParse<{_unitEnumName}>(str, provider, out unit);
         }}

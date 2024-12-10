@@ -323,7 +323,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out PowerRatio result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out PowerRatio result)
         {
             return TryParse(str, null, out result);
         }
@@ -338,7 +338,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out PowerRatio result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out PowerRatio result)
         {
             return QuantityParser.Default.TryParse<PowerRatio, PowerRatioUnit>(
                 str,
@@ -377,7 +377,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.PowerRatioUnit)"/>
-        public static bool TryParseUnit(string str, out PowerRatioUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out PowerRatioUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -392,7 +392,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out PowerRatioUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out PowerRatioUnit unit)
         {
             return UnitParser.Default.TryParse<PowerRatioUnit>(str, provider, out unit);
         }

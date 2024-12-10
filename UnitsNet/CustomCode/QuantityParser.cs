@@ -133,7 +133,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentNullException">The string was null.</exception>
         /// <exception cref="FormatException">Failed to parse quantity.</exception>
         [SuppressMessage("ReSharper", "UseStringInterpolation")]
-        public bool TryParse<TQuantity, TUnitType>(string str,
+        public bool TryParse<TQuantity, TUnitType>(string? str,
             IFormatProvider? formatProvider,
             QuantityFromDelegate<TQuantity, TUnitType> fromDelegate,
             out IQuantity? result)
