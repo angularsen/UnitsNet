@@ -627,7 +627,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out TorquePerLength result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out TorquePerLength result)
         {
             return TryParse(str, null, out result);
         }
@@ -642,7 +642,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out TorquePerLength result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out TorquePerLength result)
         {
             return QuantityParser.Default.TryParse<TorquePerLength, TorquePerLengthUnit>(
                 str,
@@ -681,7 +681,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.TorquePerLengthUnit)"/>
-        public static bool TryParseUnit(string str, out TorquePerLengthUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out TorquePerLengthUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -696,7 +696,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out TorquePerLengthUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out TorquePerLengthUnit unit)
         {
             return UnitParser.Default.TryParse<TorquePerLengthUnit>(str, provider, out unit);
         }

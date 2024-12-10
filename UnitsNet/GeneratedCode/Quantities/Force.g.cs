@@ -548,7 +548,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out Force result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out Force result)
         {
             return TryParse(str, null, out result);
         }
@@ -563,7 +563,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out Force result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out Force result)
         {
             return QuantityParser.Default.TryParse<Force, ForceUnit>(
                 str,
@@ -602,7 +602,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.ForceUnit)"/>
-        public static bool TryParseUnit(string str, out ForceUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out ForceUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -617,7 +617,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out ForceUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out ForceUnit unit)
         {
             return UnitParser.Default.TryParse<ForceUnit>(str, provider, out unit);
         }

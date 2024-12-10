@@ -419,7 +419,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out RadiationExposure result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out RadiationExposure result)
         {
             return TryParse(str, null, out result);
         }
@@ -434,7 +434,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out RadiationExposure result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out RadiationExposure result)
         {
             return QuantityParser.Default.TryParse<RadiationExposure, RadiationExposureUnit>(
                 str,
@@ -473,7 +473,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.RadiationExposureUnit)"/>
-        public static bool TryParseUnit(string str, out RadiationExposureUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out RadiationExposureUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -488,7 +488,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out RadiationExposureUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out RadiationExposureUnit unit)
         {
             return UnitParser.Default.TryParse<RadiationExposureUnit>(str, provider, out unit);
         }
