@@ -46,14 +46,6 @@ namespace UnitsNet
             Temperature = temperature;
             Amount = amount;
             LuminousIntensity = luminousIntensity;
-
-            IsFullyDefined = Length is not null &&
-                             Mass is not null &&
-                             Time is not null &&
-                             Current is not null &&
-                             Temperature is not null &&
-                             Amount is not null &&
-                             LuminousIntensity is not null;
         }
 
         /// <inheritdoc />
@@ -71,6 +63,9 @@ namespace UnitsNet
         {
             if (other is null)
                 return false;
+
+            if (ReferenceEquals(this, other))
+                return true;
 
             return Length == other.Length &&
                 Mass == other.Mass &&
@@ -108,7 +103,11 @@ namespace UnitsNet
         /// <inheritdoc />
         public override int GetHashCode()
         {
+#if NET 
+            return HashCode.Combine(Length, Mass, Time, Current, Temperature, Amount, LuminousIntensity);
+#else
             return new {Length, Mass, Time, Current, Temperature, Amount, LuminousIntensity}.GetHashCode();
+#endif
         }
 
         /// <summary>
@@ -198,8 +197,19 @@ namespace UnitsNet
         public LuminousIntensityUnit? LuminousIntensity{ get; }
 
         /// <summary>
-        /// Gets whether or not all of the base units are defined.
+        ///     Gets a value indicating whether all base units are defined.
         /// </summary>
-        public bool IsFullyDefined { get; }
+        /// <remarks>
+        ///     This property returns <c>true</c> if all seven base units 
+        ///     (Length, Mass, Time, Current, Temperature, Amount, and LuminousIntensity) 
+        ///     are non-null; otherwise, it returns <c>false</c>.
+        /// </remarks>
+        public bool IsFullyDefined => Length is not null &&
+                                      Mass is not null &&
+                                      Time is not null &&
+                                      Current is not null &&
+                                      Temperature is not null &&
+                                      Amount is not null &&
+                                      LuminousIntensity is not null;
     }
 }
