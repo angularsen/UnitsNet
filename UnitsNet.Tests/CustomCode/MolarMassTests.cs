@@ -43,5 +43,26 @@ namespace UnitsNet.Tests.CustomCode
         protected override double NanogramsPerMoleInOneKilogramPerMole => 1e12;
         protected override double PoundsPerMoleInOneKilogramPerMole => 2.2046226218487757;
         protected override double KilogramsPerKilomoleInOneKilogramPerMole => 1e3;
+
+        [Fact]
+        public void MolarMassTimesAmountOfSubstanceEqualsMass()
+        {
+            Mass mass = MolarMass.FromKilogramsPerMole(2) * AmountOfSubstance.FromMoles(5);
+            Assert.Equal(Mass.FromKilograms(10), mass);
+        }
+
+        [Fact]
+        public void MolarMassTimesMolarityEqualsMassConcentration()
+        {
+            MassConcentration massConcentration = MolarMass.FromKilogramsPerMole(2) * Molarity.FromMolesPerCubicMeter(5);
+            Assert.Equal(MassConcentration.FromKilogramsPerCubicMeter(10), massConcentration);
+        }
+
+        [Fact]
+        public void MolarMassTimesMolarFlowEqualsMassFlow()
+        {
+            MassFlow massFlow = MolarMass.FromKilogramsPerMole(2) * MolarFlow.FromMolesPerSecond(5);
+            Assert.Equal(MassFlow.FromKilogramsPerSecond(10), massFlow);
+        }
     }
 }

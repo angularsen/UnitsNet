@@ -22,9 +22,6 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
-using System.Numerics;
-#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -43,10 +40,6 @@ namespace UnitsNet
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct Ratio :
         IArithmeticQuantity<Ratio, RatioUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<Ratio, ReciprocalArea, Area>,
-        IDivisionOperators<Ratio, Area, ReciprocalArea>,
-#endif
         IComparable,
         IComparable<Ratio>,
         IConvertible,
@@ -512,22 +505,6 @@ namespace UnitsNet
         public static double operator /(Ratio left, Ratio right)
         {
             return left.DecimalFractions / right.DecimalFractions;
-        }
-
-        #endregion
-
-        #region Relational Operators
-
-        /// <summary>Get <see cref="Area"/> from <see cref="Ratio"/> / <see cref="ReciprocalArea"/>.</summary>
-        public static Area operator /(Ratio ratio, ReciprocalArea reciprocalArea)
-        {
-            return Area.FromSquareMeters(ratio.DecimalFractions / reciprocalArea.InverseSquareMeters);
-        }
-
-        /// <summary>Get <see cref="ReciprocalArea"/> from <see cref="Ratio"/> / <see cref="Area"/>.</summary>
-        public static ReciprocalArea operator /(Ratio ratio, Area area)
-        {
-            return ReciprocalArea.FromInverseSquareMeters(ratio.DecimalFractions / area.SquareMeters);
         }
 
         #endregion

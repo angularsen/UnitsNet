@@ -145,5 +145,61 @@ namespace UnitsNet.Tests
             Ratio ratio = Area.FromSquareMeters(0.5) * ReciprocalArea.FromInverseSquareMeters(10);
             Assert.Equal(5.0, ratio.Value);
         }
+
+        [Fact]
+        public void AreaTimesIlluminanceEqualsLuminousFlux()
+        {
+            LuminousFlux luminousFlux = Area.FromSquareMeters(5) * Illuminance.FromLux(10);
+            Assert.Equal(LuminousFlux.FromLumens(50), luminousFlux);
+        }
+
+        [Fact]
+        public void AreaTimesLuminanceEqualsLuminousIntensity()
+        {
+            LuminousIntensity luminousIntensity = Area.FromSquareMeters(5) * Luminance.FromCandelasPerSquareMeter(10);
+            Assert.Equal(LuminousIntensity.FromCandela(50), luminousIntensity);
+        }
+
+        [Fact]
+        public void AreaTimesSpecificWeightEqualsForcePerLength()
+        {
+            ForcePerLength forcePerLength = Area.FromSquareMeters(20) * SpecificWeight.FromNewtonsPerCubicMeter(2000);
+            Assert.Equal(ForcePerLength.FromNewtonsPerMeter(40000), forcePerLength);
+        }
+
+        [Fact]
+        public void AreaTimesReciprocalLengthEqualsLength()
+        {
+            Length length = Area.FromSquareMeters(20) * ReciprocalLength.FromInverseMeters(5);
+            Assert.Equal(Length.FromMeters(100), length);
+        }
+
+        [Fact]
+        public void AreaTimesAreaDensityEqualsMass()
+        {
+            Mass mass = Area.FromSquareMeters(2) * AreaDensity.FromKilogramsPerSquareMeter(10);
+            Assert.Equal(Mass.FromKilograms(20), mass);
+        }
+
+        [Fact]
+        public void AreaTimesHeatFluxEqualsPower()
+        {
+            Power power = Area.FromSquareMeters(2) * HeatFlux.FromWattsPerSquareMeter(10);
+            Assert.Equal(Power.FromWatts(20), power);
+        }
+
+        [Fact]
+        public void AreaTimesForcePerLengthEqualsEqualsTorque()
+        {
+            Torque torque = Area.FromSquareMeters(2) * ForcePerLength.FromNewtonsPerMeter(10);
+            Assert.Equal(Torque.FromNewtonMeters(20), torque);
+        }
+
+        [Fact]
+        public void AreaDividedByReciprocalLengthEqualsVolume()
+        {
+            Volume volume = Area.FromSquareMeters(20) / ReciprocalLength.FromInverseMeters(5);
+            Assert.Equal(Volume.FromCubicMeters(4), volume);
+        }
     }
 }

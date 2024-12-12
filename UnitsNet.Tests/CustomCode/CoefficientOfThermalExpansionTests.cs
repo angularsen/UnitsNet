@@ -44,21 +44,23 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void CoefficientOfThermalExpansionTimesTemperatureDelta()
         {
-            double temperatureDeltaDegC = 2.0;
-            double ctePerDegC = 0.001;
-            CoefficientOfThermalExpansion cte = CoefficientOfThermalExpansion.FromPerDegreeCelsius(ctePerDegC);
-            TemperatureDelta dT = TemperatureDelta.FromDegreesCelsius(temperatureDeltaDegC);
-            AssertEx.EqualTolerance(cte * dT, ctePerDegC * temperatureDeltaDegC, 1e-10);
+            CoefficientOfThermalExpansion cte = CoefficientOfThermalExpansion.FromPerDegreeCelsius(2);
+            TemperatureDelta dT = TemperatureDelta.FromDegreesCelsius(0.001);
+
+            Ratio expansionRatio = cte * dT;
+
+            Assert.Equal(Ratio.FromDecimalFractions(0.002), expansionRatio);
         }
 
         [Fact]
         public void TemperatureDeltaTimesCoefficientOfThermalExpansion()
         {
-            double temperatureDeltaDegC = 2.0;
-            double ctePerDegC = 0.001;
-            CoefficientOfThermalExpansion cte = CoefficientOfThermalExpansion.FromPerDegreeCelsius(ctePerDegC);
-            TemperatureDelta dT = TemperatureDelta.FromDegreesCelsius(temperatureDeltaDegC);
-            AssertEx.EqualTolerance(dT * cte, temperatureDeltaDegC * ctePerDegC, 1e-10);
+            CoefficientOfThermalExpansion cte = CoefficientOfThermalExpansion.FromPerDegreeCelsius(2);
+            TemperatureDelta dT = TemperatureDelta.FromDegreesCelsius(0.001);
+
+            Ratio expansionRatio = dT * cte;
+
+            Assert.Equal(Ratio.FromDecimalFractions(0.002), expansionRatio);
         }
     }
 }

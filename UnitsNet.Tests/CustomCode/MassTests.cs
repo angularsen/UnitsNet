@@ -164,5 +164,69 @@ namespace UnitsNet.Tests
 
             AssertEx.EqualTolerance(expectedAmountOfSubstanceValue, amountOfSubstance.As(expectedAmountOfSubstanceUnit), tolerence);
         }
+
+        [Theory]
+        [InlineData(10, MassUnit.Kilogram,
+            5, SpecificVolumeUnit.CubicMeterPerKilogram,
+            50, VolumeUnit.CubicMeter)]
+        public void Multiplying_Mass_By_SpecificVolume_ReturnsVolume(double massValue, MassUnit massUnit, double specificVolumeValue,
+            SpecificVolumeUnit specificVolumeUnit, double expectedVolumeValue, VolumeUnit expectedVolumeUnit)
+        {
+            var mass = new Mass(massValue, massUnit);
+            var specificVolume = new SpecificVolume(specificVolumeValue, specificVolumeUnit);
+            var expectedVolume = new Volume(expectedVolumeValue, expectedVolumeUnit);
+
+            Volume volume = mass * specificVolume;
+
+            Assert.Equal(expectedVolume, volume);
+        }
+        
+        [Theory]
+        [InlineData(10, MassUnit.Kilogram,
+            5, MassFlowUnit.KilogramPerSecond,
+            2, DurationUnit.Second)]
+        public void Dividing_Mass_By_MassFlow_ReturnsDuration(double massValue, MassUnit massUnit, double massFlowValue,
+            MassFlowUnit massFlowUnit, double expectedDurationValue, DurationUnit expectedDurationUnit)
+        {
+            var mass = new Mass(massValue, massUnit);
+            var massFlow = new MassFlow(massFlowValue, massFlowUnit);
+            var expectedDuration = new Duration(expectedDurationValue, expectedDurationUnit);
+
+            Duration duration = mass / massFlow;
+
+            Assert.Equal(expectedDuration, duration);
+        }
+        
+        [Theory]
+        [InlineData(10, MassUnit.Kilogram,
+            5, AmountOfSubstanceUnit.Mole,
+            2, MolarMassUnit.KilogramPerMole)]
+        public void Dividing_Mass_By_AmountOfSubstance_ReturnsMolarMass(double massValue, MassUnit massUnit, double amountOfSubstanceValue,
+            AmountOfSubstanceUnit amountOfSubstanceUnit, double expectedMolarMassValue, MolarMassUnit expectedMolarMassUnit)
+        {
+            var mass = new Mass(massValue, massUnit);
+            var amountOfSubstance = new AmountOfSubstance(amountOfSubstanceValue, amountOfSubstanceUnit);
+            var expectedMolarMass = new MolarMass(expectedMolarMassValue, expectedMolarMassUnit);
+
+            MolarMass molarMass = mass / amountOfSubstance;
+
+            Assert.Equal(expectedMolarMass, molarMass);
+        }
+        
+        [Theory]
+        [InlineData(10, MassUnit.Kilogram,
+            5, DensityUnit.KilogramPerCubicMeter,
+            2, VolumeUnit.CubicMeter)]
+        public void Dividing_Mass_By_Density_ReturnsVolume(double massValue, MassUnit massUnit, double densityValue,
+            DensityUnit densityUnit, double expectedVolumeValue, VolumeUnit expectedVolumeUnit)
+        {
+            var mass = new Mass(massValue, massUnit);
+            var density = new Density(densityValue, densityUnit);
+            var expectedVolume = new Volume(expectedVolumeValue, expectedVolumeUnit);
+            
+            Volume volume = mass / density;
+
+            Assert.Equal(expectedVolume, volume);
+        }
     }
 }
