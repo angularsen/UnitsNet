@@ -47,12 +47,5 @@ namespace UnitsNet.Tests.CustomCode
             Ratio expansionRatio = CoefficientOfThermalExpansion.FromPerDegreeCelsius(2) * TemperatureDelta.FromDegreesCelsius(0.001);
             Assert.Equal(Ratio.FromDecimalFractions(0.002), expansionRatio);
         }
-
-        [Fact]
-        public void TemperatureDeltaTimesCoefficientOfThermalExpansion()
-        {
-            Ratio expansionRatio = CoefficientOfThermalExpansion.FromPerDegreeCelsius(2) * TemperatureDelta.FromDegreesCelsius(0.001);
-            Assert.Equal(Ratio.FromDecimalFractions(0.002), expansionRatio);
-        }
     }
 }
