@@ -44,7 +44,7 @@ namespace UnitsNet
     public readonly partial struct CoefficientOfThermalExpansion :
         IArithmeticQuantity<CoefficientOfThermalExpansion, CoefficientOfThermalExpansionUnit>,
 #if NET7_0_OR_GREATER
-        IMultiplyOperators<CoefficientOfThermalExpansion, TemperatureDelta, double>,
+        IMultiplyOperators<CoefficientOfThermalExpansion, TemperatureDelta, Ratio>,
 #endif
         IComparable,
         IComparable<CoefficientOfThermalExpansion>,
@@ -517,16 +517,10 @@ namespace UnitsNet
 
         #region Relational Operators
 
-        /// <summary>Get <see cref="TemperatureDelta"/> from <see cref="double"/> / <see cref="CoefficientOfThermalExpansion"/>.</summary>
-        public static TemperatureDelta operator /(double value, CoefficientOfThermalExpansion coefficientOfThermalExpansion)
+        /// <summary>Get <see cref="Ratio"/> from <see cref="CoefficientOfThermalExpansion"/> * <see cref="TemperatureDelta"/>.</summary>
+        public static Ratio operator *(CoefficientOfThermalExpansion coefficientOfThermalExpansion, TemperatureDelta temperatureDelta)
         {
-            return TemperatureDelta.FromKelvins(value / coefficientOfThermalExpansion.PerKelvin);
-        }
-
-        /// <summary>Get <see cref="double"/> from <see cref="CoefficientOfThermalExpansion"/> * <see cref="TemperatureDelta"/>.</summary>
-        public static double operator *(CoefficientOfThermalExpansion coefficientOfThermalExpansion, TemperatureDelta temperatureDelta)
-        {
-            return coefficientOfThermalExpansion.PerKelvin * temperatureDelta.Kelvins;
+            return Ratio.FromDecimalFractions(coefficientOfThermalExpansion.PerKelvin * temperatureDelta.Kelvins);
         }
 
         #endregion

@@ -1,4 +1,4 @@
-// Licensed under MIT No Attribution, see LICENSE file at the root.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
@@ -190,6 +190,34 @@ namespace UnitsNet.Tests
         {
             Mass m = Energy.FromJoules(24) / SpecificEnergy.FromJoulesPerKilogram(8);
             Assert.Equal(Mass.FromKilograms(3), m);
+        }
+
+        [Fact]
+        public void EnergyDividedByMolarEnergyEqualsAmountOfSubstance()
+        {
+            AmountOfSubstance m = Energy.FromJoules(24) / MolarEnergy.FromJoulesPerMole(8);
+            Assert.Equal(AmountOfSubstance.FromMoles(3), m);
+        }
+
+        [Fact]
+        public void EnergyDividedByAmountOfSubstanceEqualsMolarEnergy()
+        {
+            MolarEnergy m = Energy.FromJoules(24) / AmountOfSubstance.FromMoles(8);
+            Assert.Equal(MolarEnergy.FromJoulesPerMole(3), m);
+        }
+
+        [Fact]
+        public void EnergyDividedByVolumeEqualsEnergyDensity()
+        {
+            EnergyDensity m = Energy.FromJoules(24) / Volume.FromCubicMeters(8);
+            Assert.Equal(EnergyDensity.FromJoulesPerCubicMeter(3), m);
+        }
+
+        [Fact]
+        public void EnergyDividedByEnergyDensityEqualsVolume()
+        {
+            Volume m = Energy.FromJoules(24) / EnergyDensity.FromJoulesPerCubicMeter(8);
+            Assert.Equal(Volume.FromCubicMeters(3), m);
         }
     }
 }

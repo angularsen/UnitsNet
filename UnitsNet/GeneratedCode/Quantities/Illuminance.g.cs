@@ -22,6 +22,9 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -43,6 +46,9 @@ namespace UnitsNet
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct Illuminance :
         IArithmeticQuantity<Illuminance, IlluminanceUnit>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<Illuminance, Area, LuminousFlux>,
+#endif
         IComparable,
         IComparable<Illuminance>,
         IConvertible,
@@ -476,6 +482,16 @@ namespace UnitsNet
         public static double operator /(Illuminance left, Illuminance right)
         {
             return left.Lux / right.Lux;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="LuminousFlux"/> from <see cref="Illuminance"/> * <see cref="Area"/>.</summary>
+        public static LuminousFlux operator *(Illuminance illuminance, Area area)
+        {
+            return LuminousFlux.FromLumens(illuminance.Lux * area.SquareMeters);
         }
 
         #endregion

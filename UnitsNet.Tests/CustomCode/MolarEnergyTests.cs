@@ -22,6 +22,8 @@
 
 
 using System;
+using UnitsNet.Units;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -31,5 +33,21 @@ namespace UnitsNet.Tests.CustomCode
         protected override double JoulesPerMoleInOneJoulePerMole => 1e0;
         protected override double KilojoulesPerMoleInOneJoulePerMole => 1e-3;
         protected override double MegajoulesPerMoleInOneJoulePerMole => 1e-6;
+
+        [Theory]
+        [InlineData(10, MolarEnergyUnit.JoulePerMole,
+            5, AmountOfSubstanceUnit.Mole,
+            50, EnergyUnit.Joule)]
+        public void Multiplying_AmountOfSubstance_With_MolarEnergy_ReturnsEnergy(double molarEnergyValue, MolarEnergyUnit molarEnergyUnit,
+            double amountOfSubstanceValue, AmountOfSubstanceUnit amountOfSubstanceUnit, double expectedEnergyValue, EnergyUnit expectedEnergyUnit)
+        {
+            var molarEnergy = new MolarEnergy(molarEnergyValue, molarEnergyUnit);
+            var amountOfSubstance = new AmountOfSubstance(amountOfSubstanceValue, amountOfSubstanceUnit);
+            var expectedEnergy = new Energy(expectedEnergyValue, expectedEnergyUnit);
+
+            var energy = molarEnergy * amountOfSubstance;
+
+            Assert.Equal(expectedEnergy, energy);
+        }
     }
 }

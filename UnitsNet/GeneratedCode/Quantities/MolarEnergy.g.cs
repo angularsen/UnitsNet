@@ -22,6 +22,9 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -40,6 +43,9 @@ namespace UnitsNet
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct MolarEnergy :
         IArithmeticQuantity<MolarEnergy, MolarEnergyUnit>,
+#if NET7_0_OR_GREATER
+        IMultiplyOperators<MolarEnergy, AmountOfSubstance, Energy>,
+#endif
         IComparable,
         IComparable<MolarEnergy>,
         IConvertible,
@@ -457,6 +463,16 @@ namespace UnitsNet
         public static double operator /(MolarEnergy left, MolarEnergy right)
         {
             return left.JoulesPerMole / right.JoulesPerMole;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Energy"/> from <see cref="MolarEnergy"/> * <see cref="AmountOfSubstance"/>.</summary>
+        public static Energy operator *(MolarEnergy molarEnergy, AmountOfSubstance amountOfSubstance)
+        {
+            return Energy.FromJoules(molarEnergy.JoulesPerMole * amountOfSubstance.Moles);
         }
 
         #endregion

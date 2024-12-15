@@ -571,7 +571,7 @@ namespace UnitsNet
         /// <summary>Get <see cref="AmountOfSubstance"/> from <see cref="MolarFlow"/> * <see cref="Duration"/>.</summary>
         public static AmountOfSubstance operator *(MolarFlow molarFlow, Duration duration)
         {
-            return AmountOfSubstance.FromKilomoles(molarFlow.KilomolesPerSecond * duration.Seconds);
+            return AmountOfSubstance.FromMoles(molarFlow.MolesPerSecond * duration.Seconds);
         }
 
         /// <summary>Get <see cref="MassFlow"/> from <see cref="MolarFlow"/> * <see cref="MolarMass"/>.</summary>

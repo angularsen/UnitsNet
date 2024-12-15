@@ -44,12 +44,14 @@ namespace UnitsNet
     public readonly partial struct Energy :
         IArithmeticQuantity<Energy, EnergyUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<Energy, MolarEnergy, AmountOfSubstance>,
         IDivisionOperators<Energy, Power, Duration>,
         IDivisionOperators<Energy, ElectricPotential, ElectricCharge>,
         IDivisionOperators<Energy, ElectricCharge, ElectricPotential>,
         IDivisionOperators<Energy, Volume, EnergyDensity>,
         IDivisionOperators<Energy, TemperatureDelta, Entropy>,
         IDivisionOperators<Energy, SpecificEnergy, Mass>,
+        IDivisionOperators<Energy, AmountOfSubstance, MolarEnergy>,
         IMultiplyOperators<Energy, Frequency, Power>,
         IDivisionOperators<Energy, Duration, Power>,
         IDivisionOperators<Energy, Mass, SpecificEnergy>,
@@ -1071,6 +1073,12 @@ namespace UnitsNet
 
         #region Relational Operators
 
+        /// <summary>Get <see cref="AmountOfSubstance"/> from <see cref="Energy"/> / <see cref="MolarEnergy"/>.</summary>
+        public static AmountOfSubstance operator /(Energy energy, MolarEnergy molarEnergy)
+        {
+            return AmountOfSubstance.FromMoles(energy.Joules / molarEnergy.JoulesPerMole);
+        }
+
         /// <summary>Get <see cref="Duration"/> from <see cref="Energy"/> / <see cref="Power"/>.</summary>
         public static Duration operator /(Energy energy, Power power)
         {
@@ -1105,6 +1113,12 @@ namespace UnitsNet
         public static Mass operator /(Energy energy, SpecificEnergy specificEnergy)
         {
             return Mass.FromKilograms(energy.Joules / specificEnergy.JoulesPerKilogram);
+        }
+
+        /// <summary>Get <see cref="MolarEnergy"/> from <see cref="Energy"/> / <see cref="AmountOfSubstance"/>.</summary>
+        public static MolarEnergy operator /(Energy energy, AmountOfSubstance amountOfSubstance)
+        {
+            return MolarEnergy.FromJoulesPerMole(energy.Joules / amountOfSubstance.Moles);
         }
 
         /// <summary>Get <see cref="Power"/> from <see cref="Energy"/> * <see cref="Frequency"/>.</summary>

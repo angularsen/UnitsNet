@@ -871,7 +871,7 @@ namespace UnitsNet
         /// <summary>Get <see cref="AmountOfSubstance"/> from <see cref="Mass"/> / <see cref="MolarMass"/>.</summary>
         public static AmountOfSubstance operator /(Mass mass, MolarMass molarMass)
         {
-            return AmountOfSubstance.FromMoles(mass.Grams / molarMass.GramsPerMole);
+            return AmountOfSubstance.FromMoles(mass.Kilograms / molarMass.KilogramsPerMole);
         }
 
         /// <summary>Get <see cref="Area"/> from <see cref="Mass"/> / <see cref="AreaDensity"/>.</summary>
@@ -949,7 +949,7 @@ namespace UnitsNet
         /// <summary>Get <see cref="MolarMass"/> from <see cref="Mass"/> / <see cref="AmountOfSubstance"/>.</summary>
         public static MolarMass operator /(Mass mass, AmountOfSubstance amountOfSubstance)
         {
-            return MolarMass.FromGramsPerMole(mass.Grams / amountOfSubstance.Moles);
+            return MolarMass.FromKilogramsPerMole(mass.Kilograms / amountOfSubstance.Moles);
         }
 
         /// <summary>Get <see cref="Volume"/> from <see cref="Mass"/> * <see cref="SpecificVolume"/>.</summary>

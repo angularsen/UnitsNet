@@ -22,6 +22,9 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
@@ -43,6 +46,10 @@ namespace UnitsNet
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct LuminousFlux :
         IArithmeticQuantity<LuminousFlux, LuminousFluxUnit>,
+#if NET7_0_OR_GREATER
+        IDivisionOperators<LuminousFlux, Illuminance, Area>,
+        IDivisionOperators<LuminousFlux, Area, Illuminance>,
+#endif
         IComparable,
         IComparable<LuminousFlux>,
         IConvertible,
@@ -428,6 +435,22 @@ namespace UnitsNet
         public static double operator /(LuminousFlux left, LuminousFlux right)
         {
             return left.Lumens / right.Lumens;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Area"/> from <see cref="LuminousFlux"/> / <see cref="Illuminance"/>.</summary>
+        public static Area operator /(LuminousFlux luminousFlux, Illuminance illuminance)
+        {
+            return Area.FromSquareMeters(luminousFlux.Lumens / illuminance.Lux);
+        }
+
+        /// <summary>Get <see cref="Illuminance"/> from <see cref="LuminousFlux"/> / <see cref="Area"/>.</summary>
+        public static Illuminance operator /(LuminousFlux luminousFlux, Area area)
+        {
+            return Illuminance.FromLux(luminousFlux.Lumens / area.SquareMeters);
         }
 
         #endregion

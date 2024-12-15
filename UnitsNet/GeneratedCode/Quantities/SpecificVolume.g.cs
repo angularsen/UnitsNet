@@ -45,7 +45,6 @@ namespace UnitsNet
         IArithmeticQuantity<SpecificVolume, SpecificVolumeUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<SpecificVolume, Mass, Volume>,
-        IMultiplyOperators<SpecificVolume, Density, double>,
 #endif
         IComparable,
         IComparable<SpecificVolume>,
@@ -470,22 +469,17 @@ namespace UnitsNet
 
         #region Relational Operators
 
-        /// <summary>Get <see cref="Density"/> from <see cref="double"/> / <see cref="SpecificVolume"/>.</summary>
-        public static Density operator /(double value, SpecificVolume specificVolume)
+        /// <summary>Calculates the inverse of this quantity.</summary>
+        /// <returns>The corresponding inverse quantity, <see cref="Density"/>.</returns>
+        public Density Inverse()
         {
-            return Density.FromKilogramsPerCubicMeter(value / specificVolume.CubicMetersPerKilogram);
+            return CubicMetersPerKilogram == 0.0 ? Density.Zero : Density.FromKilogramsPerCubicMeter(1 / CubicMetersPerKilogram);
         }
 
         /// <summary>Get <see cref="Volume"/> from <see cref="SpecificVolume"/> * <see cref="Mass"/>.</summary>
         public static Volume operator *(SpecificVolume specificVolume, Mass mass)
         {
             return Volume.FromCubicMeters(specificVolume.CubicMetersPerKilogram * mass.Kilograms);
-        }
-
-        /// <summary>Get <see cref="double"/> from <see cref="SpecificVolume"/> * <see cref="Density"/>.</summary>
-        public static double operator *(SpecificVolume specificVolume, Density density)
-        {
-            return specificVolume.CubicMetersPerKilogram * density.KilogramsPerCubicMeter;
         }
 
         #endregion

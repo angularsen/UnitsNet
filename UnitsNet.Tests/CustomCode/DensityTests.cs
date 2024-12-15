@@ -162,5 +162,19 @@ namespace UnitsNet.Tests
             LinearDensity linearDensity = Density.FromGramsPerCubicCentimeter(10) * Area.FromSquareCentimeters(2);
             Assert.Equal(20, linearDensity.GramsPerCentimeter);
         }
+
+        [Fact]
+        public static void DensityTimesVolumeConcentrationEqualsMassConcentration()
+        {
+            MassConcentration massConcentration = Density.FromKilogramsPerCubicMeter(20) * VolumeConcentration.FromPercent(50);
+            Assert.Equal(massConcentration, MassConcentration.FromKilogramsPerCubicMeter(10));
+        }
+
+        [Fact]
+        public static void InverseDensityEqualsSpecificVolume()
+        {
+            SpecificVolume specificVolume = Density.FromKilogramsPerCubicMeter(4).Inverse();
+            Assert.Equal(specificVolume, SpecificVolume.FromCubicMetersPerKilogram(0.25));
+        }
     }
 }

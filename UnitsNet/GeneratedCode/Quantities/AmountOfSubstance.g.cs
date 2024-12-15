@@ -45,6 +45,7 @@ namespace UnitsNet
         IArithmeticQuantity<AmountOfSubstance, AmountOfSubstanceUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<AmountOfSubstance, MolarFlow, Duration>,
+        IMultiplyOperators<AmountOfSubstance, MolarEnergy, Energy>,
         IMultiplyOperators<AmountOfSubstance, MolarMass, Mass>,
         IDivisionOperators<AmountOfSubstance, Duration, MolarFlow>,
         IDivisionOperators<AmountOfSubstance, Volume, Molarity>,
@@ -700,19 +701,25 @@ namespace UnitsNet
         /// <summary>Get <see cref="Duration"/> from <see cref="AmountOfSubstance"/> / <see cref="MolarFlow"/>.</summary>
         public static Duration operator /(AmountOfSubstance amountOfSubstance, MolarFlow molarFlow)
         {
-            return Duration.FromSeconds(amountOfSubstance.Kilomoles / molarFlow.KilomolesPerSecond);
+            return Duration.FromSeconds(amountOfSubstance.Moles / molarFlow.MolesPerSecond);
+        }
+
+        /// <summary>Get <see cref="Energy"/> from <see cref="AmountOfSubstance"/> * <see cref="MolarEnergy"/>.</summary>
+        public static Energy operator *(AmountOfSubstance amountOfSubstance, MolarEnergy molarEnergy)
+        {
+            return Energy.FromJoules(amountOfSubstance.Moles * molarEnergy.JoulesPerMole);
         }
 
         /// <summary>Get <see cref="Mass"/> from <see cref="AmountOfSubstance"/> * <see cref="MolarMass"/>.</summary>
         public static Mass operator *(AmountOfSubstance amountOfSubstance, MolarMass molarMass)
         {
-            return Mass.FromGrams(amountOfSubstance.Moles * molarMass.GramsPerMole);
+            return Mass.FromKilograms(amountOfSubstance.Moles * molarMass.KilogramsPerMole);
         }
 
         /// <summary>Get <see cref="MolarFlow"/> from <see cref="AmountOfSubstance"/> / <see cref="Duration"/>.</summary>
         public static MolarFlow operator /(AmountOfSubstance amountOfSubstance, Duration duration)
         {
-            return MolarFlow.FromKilomolesPerSecond(amountOfSubstance.Kilomoles / duration.Seconds);
+            return MolarFlow.FromMolesPerSecond(amountOfSubstance.Moles / duration.Seconds);
         }
 
         /// <summary>Get <see cref="Molarity"/> from <see cref="AmountOfSubstance"/> / <see cref="Volume"/>.</summary>
