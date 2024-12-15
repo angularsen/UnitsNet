@@ -135,52 +135,25 @@ namespace UnitsNet.Tests.CustomCode
             Assert.Equal(expectedAmountOfSubstance, amountOfSubstance);
         }
 
-        [Theory]
-        [InlineData(5, AmountOfSubstanceUnit.Mole,
-            10, MolarEnergyUnit.JoulePerMole,
-            50, EnergyUnit.Joule)]
-        public void Multiplying_AmountOfSubstance_By_MolarEnergy_ReturnsEnergy(double amountOfSubstanceValue, AmountOfSubstanceUnit amountOfSubstanceUnit,
-            double molarEnergyValue, MolarEnergyUnit molarEnergyUnit, double expectedEnergyValue, EnergyUnit expectedEnergyUnit)
+        [Fact]
+        public void Multiplying_AmountOfSubstance_By_MolarEnergy_ReturnsEnergy()
         {
-            var amountOfSubstance = new AmountOfSubstance(amountOfSubstanceValue, amountOfSubstanceUnit);
-            var molarEnergy = new MolarEnergy(molarEnergyValue, molarEnergyUnit);
-            var expectedEnergy = new Energy(expectedEnergyValue, expectedEnergyUnit);
-
-            var energy = amountOfSubstance * molarEnergy;
-
-            Assert.Equal(expectedEnergy, energy);
+            Energy energy = AmountOfSubstance.FromMoles(5) * MolarEnergy.FromJoulesPerMole(10);
+            Assert.Equal(Energy.FromJoules(50), energy);
         }
 
-        [Theory]
-        [InlineData(5, AmountOfSubstanceUnit.Mole,
-            10, MolarFlowUnit.MolePerMinute,
-            30, DurationUnit.Second)]
-        public void Dividing_AmountOfSubstance_By_MolarFlow_Returns_Duration(double amountOfSubstanceValue, AmountOfSubstanceUnit amountOfSubstanceUnit,
-            double molarFlowValue, MolarFlowUnit molarFlowUnit, double expectedDurationValue, DurationUnit expecteDurationUnit)
+        [Fact]
+        public void Dividing_AmountOfSubstance_By_MolarFlow_Returns_Duration()
         {
-            var amountOfSubstance = new AmountOfSubstance(amountOfSubstanceValue, amountOfSubstanceUnit);
-            var molarFlow = new MolarFlow(molarFlowValue, molarFlowUnit);
-            var expectedDuration = new Duration(expectedDurationValue, expecteDurationUnit);
-
-            var duration = amountOfSubstance / molarFlow;
-
-            Assert.Equal(expectedDuration, duration);
+            var duration = AmountOfSubstance.FromMoles(10) / MolarFlow.FromMolesPerSecond(2);
+            Assert.Equal(Duration.FromSeconds(5), duration);
         }
 
-        [Theory]
-        [InlineData(5, AmountOfSubstanceUnit.Mole,
-            30, DurationUnit.Second,
-            10, MolarFlowUnit.MolePerMinute)]
-        public void Dividing_AmountOfSubstance_By_Duration_Returns_MolarFlow(double amountOfSubstanceValue, AmountOfSubstanceUnit amountOfSubstanceUnit,
-            double durationValue, DurationUnit durationUnit, double expectedMolarFlowValue, MolarFlowUnit expectedMolarFlowUnit)
+        [Fact]
+        public void Dividing_AmountOfSubstance_By_Duration_Returns_MolarFlow()
         {
-            var amountOfSubstance = new AmountOfSubstance(amountOfSubstanceValue, amountOfSubstanceUnit);
-            var duration = new Duration(durationValue, durationUnit);
-            var expectedMolarFlow = new MolarFlow(expectedMolarFlowValue, expectedMolarFlowUnit);
-
-            var molarFlow = amountOfSubstance / duration;
-
-            Assert.Equal(expectedMolarFlow.MolesPerHour, molarFlow.MolesPerHour, MolesTolerance);
+            MolarFlow molarFlow = AmountOfSubstance.FromMoles(10) / Duration.FromSeconds(5);
+            Assert.Equal(MolarFlow.FromMolesPerSecond(2), molarFlow);
         }
     }
 }

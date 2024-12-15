@@ -701,7 +701,7 @@ namespace UnitsNet
         /// <summary>Get <see cref="Duration"/> from <see cref="AmountOfSubstance"/> / <see cref="MolarFlow"/>.</summary>
         public static Duration operator /(AmountOfSubstance amountOfSubstance, MolarFlow molarFlow)
         {
-            return Duration.FromSeconds(amountOfSubstance.Kilomoles / molarFlow.KilomolesPerSecond);
+            return Duration.FromSeconds(amountOfSubstance.Moles / molarFlow.MolesPerSecond);
         }
 
         /// <summary>Get <see cref="Energy"/> from <see cref="AmountOfSubstance"/> * <see cref="MolarEnergy"/>.</summary>
@@ -719,7 +719,7 @@ namespace UnitsNet
         /// <summary>Get <see cref="MolarFlow"/> from <see cref="AmountOfSubstance"/> / <see cref="Duration"/>.</summary>
         public static MolarFlow operator /(AmountOfSubstance amountOfSubstance, Duration duration)
         {
-            return MolarFlow.FromKilomolesPerSecond(amountOfSubstance.Kilomoles / duration.Seconds);
+            return MolarFlow.FromMolesPerSecond(amountOfSubstance.Moles / duration.Seconds);
         }
 
         /// <summary>Get <see cref="Molarity"/> from <see cref="AmountOfSubstance"/> / <see cref="Volume"/>.</summary>

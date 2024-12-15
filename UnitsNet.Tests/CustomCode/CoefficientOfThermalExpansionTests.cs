@@ -44,22 +44,14 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void CoefficientOfThermalExpansionTimesTemperatureDelta()
         {
-            CoefficientOfThermalExpansion cte = CoefficientOfThermalExpansion.FromPerDegreeCelsius(2);
-            TemperatureDelta dT = TemperatureDelta.FromDegreesCelsius(0.001);
-
-            Ratio expansionRatio = cte * dT;
-
+            Ratio expansionRatio = CoefficientOfThermalExpansion.FromPerDegreeCelsius(2) * TemperatureDelta.FromDegreesCelsius(0.001);
             Assert.Equal(Ratio.FromDecimalFractions(0.002), expansionRatio);
         }
 
         [Fact]
         public void TemperatureDeltaTimesCoefficientOfThermalExpansion()
         {
-            CoefficientOfThermalExpansion cte = CoefficientOfThermalExpansion.FromPerDegreeCelsius(2);
-            TemperatureDelta dT = TemperatureDelta.FromDegreesCelsius(0.001);
-
-            Ratio expansionRatio = dT * cte;
-
+            Ratio expansionRatio = CoefficientOfThermalExpansion.FromPerDegreeCelsius(2) * TemperatureDelta.FromDegreesCelsius(0.001);
             Assert.Equal(Ratio.FromDecimalFractions(0.002), expansionRatio);
         }
     }

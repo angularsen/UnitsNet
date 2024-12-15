@@ -4,7 +4,7 @@
   "1 = ElectricResistivity.OhmMeter * ElectricConductivity.SiemensPerMeter",
   "1 = Length.Meter * ReciprocalLength.InverseMeter",
   "Acceleration.MeterPerSecondSquared = Jerk.MeterPerSecondCubed * Duration.Second",
-  "AmountOfSubstance.Kilomole = MolarFlow.KilomolePerSecond * Duration.Second",
+  "AmountOfSubstance.Mole = MolarFlow.MolePerSecond * Duration.Second",
   "AmountOfSubstance.Mole = Molarity.MolePerCubicMeter * Volume.CubicMeter",
   "Angle.Radian = RotationalSpeed.RadianPerSecond * Duration.Second",
   "Area.SquareMeter = KinematicViscosity.SquareMeterPerSecond * Duration.Second -- NoInferredDivision",
