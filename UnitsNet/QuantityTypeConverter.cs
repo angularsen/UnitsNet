@@ -67,7 +67,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unitType">The unit the quantity should be displayed in</param>
         /// <param name="format">Formatting string <see cref="IQuantity.ToString(System.IFormatProvider)"/> </param>
-        public DisplayAsUnitAttribute(object? unitType, string format = "") : base(unitType)
+        public DisplayAsUnitAttribute(object? unitType, string format = "G") : base(unitType)
         {
             Format = format;
         }

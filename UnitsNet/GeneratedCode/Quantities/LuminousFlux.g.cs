@@ -317,7 +317,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out LuminousFlux result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out LuminousFlux result)
         {
             return TryParse(str, null, out result);
         }
@@ -332,7 +332,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out LuminousFlux result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out LuminousFlux result)
         {
             return QuantityParser.Default.TryParse<LuminousFlux, LuminousFluxUnit>(
                 str,
@@ -371,7 +371,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.LuminousFluxUnit)"/>
-        public static bool TryParseUnit(string str, out LuminousFluxUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out LuminousFluxUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -386,7 +386,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out LuminousFluxUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out LuminousFluxUnit unit)
         {
             return UnitParser.Default.TryParse<LuminousFluxUnit>(str, provider, out unit);
         }
@@ -795,7 +795,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString("g");
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -805,7 +805,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -816,7 +816,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format)
         {
-            return ToString(format, CultureInfo.CurrentCulture);
+            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
@@ -897,7 +897,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(null, provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)

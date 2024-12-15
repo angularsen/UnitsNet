@@ -263,7 +263,7 @@ namespace UnitsNet.Serialization.JsonNet
         /// <returns>Unit enum value, such as <see cref="MassUnit.Kilogram" />.</returns>
         /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
         /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
-        protected Enum Parse(string? unitAbbreviation, QuantityInfo quantityInfo)
+        protected Enum Parse(string unitAbbreviation, QuantityInfo quantityInfo)
         {
             return _unitParser.Parse(unitAbbreviation, quantityInfo.UnitType, CultureInfo.InvariantCulture);
         }
