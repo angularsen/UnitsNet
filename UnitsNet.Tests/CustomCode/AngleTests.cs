@@ -9,38 +9,21 @@ namespace UnitsNet.Tests
     public class AngleTests : AngleTestsBase
     {
         protected override bool SupportsSIUnitSystem => false;
-
-        protected override double DegreesInOneDegree => 1;
-
-        protected override double GradiansInOneDegree => 400 / 360.0;
-
-        protected override double ArcminutesInOneDegree => 60.0;
-
-        protected override double RadiansInOneDegree => Math.PI / 2 / 90;
-
-        protected override double MillidegreesInOneDegree => 1E3;
-
-        protected override double MicrodegreesInOneDegree => 1E6;
-
-        protected override double NanodegreesInOneDegree => 1E9;
-
-        protected override double NanoradiansInOneDegree => Math.PI / 2 / 90 * 1E9;
-
-        protected override double MicroradiansInOneDegree => Math.PI / 2 / 90 * 1E6;
-
-        protected override double MilliradiansInOneDegree => Math.PI / 2 / 90 * 1E3;
-
-        protected override double CentiradiansInOneDegree => Math.PI / 2 / 90 * 1E2;
-
-        protected override double DeciradiansInOneDegree => Math.PI / 2 / 90 * 1E1;
-
-        protected override double ArcsecondsInOneDegree => 3600.0;
-
-        protected override double RevolutionsInOneDegree => 2.777777777777777e-3;
-
-        protected override double TiltInOneDegree => 0.01745240643728351281941897851632;
-
-        protected override double NatoMilsInOneDegree => 17.777777777777777777777777777778;
+        protected override double RadiansInOneRadian => 1;
+        protected override double DeciradiansInOneRadian => 1E1;
+        protected override double CentiradiansInOneRadian => 1E2;
+        protected override double MilliradiansInOneRadian  => 1E3;
+        protected override double MicroradiansInOneRadian  => 1E6;
+        protected override double NanoradiansInOneRadian  => 1E9;
+        protected override double DegreesInOneRadian => 180 / Math.PI;
+        protected override double MillidegreesInOneRadian => 1E3 * 180 / Math.PI;
+        protected override double MicrodegreesInOneRadian => 1E6 * 180 / Math.PI;
+        protected override double NanodegreesInOneRadian => 1E9 * 180 / Math.PI;
+        protected override double ArcminutesInOneRadian => 180 * 60 / Math.PI;
+        protected override double ArcsecondsInOneRadian => 180 * 3600 / Math.PI;
+        protected override double GradiansInOneRadian => 200 / Math.PI;
+        protected override double NatoMilsInOneRadian => 6400 / (2 * Math.PI);
+        protected override double RevolutionsInOneRadian => 1 / (2 * Math.PI);
 
         [Fact]
         public void AngleDividedByDurationEqualsRotationalSpeed()

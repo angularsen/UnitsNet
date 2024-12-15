@@ -152,13 +152,5 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
 #endif
             => Angle.FromRevolutions(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Angle.FromTilt(double)" />
-        public static Angle Tilt<T>(this T value)
-            where T : notnull
-#if NET7_0_OR_GREATER
-            , INumber<T>
-#endif
-            => Angle.FromTilt(Convert.ToDouble(value));
-
     }
 }

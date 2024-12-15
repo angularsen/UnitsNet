@@ -38,7 +38,7 @@ namespace UnitsNet.Tests
             Assertion(3, AccelerationUnit.StandardGravity, Quantity.From(3, AccelerationUnit.StandardGravity));
             Assertion(3, AmountOfSubstanceUnit.PoundMole, Quantity.From(3, AmountOfSubstanceUnit.PoundMole));
             Assertion(3, AmplitudeRatioUnit.DecibelVolt, Quantity.From(3, AmplitudeRatioUnit.DecibelVolt));
-            Assertion(3, AngleUnit.Tilt, Quantity.From(3, AngleUnit.Tilt));
+            Assertion(3, AngleUnit.Revolution, Quantity.From(3, AngleUnit.Revolution));
             Assertion(3, ApparentEnergyUnit.VoltampereHour, Quantity.From(3, ApparentEnergyUnit.VoltampereHour));
             Assertion(3, ApparentPowerUnit.Voltampere, Quantity.From(3, ApparentPowerUnit.Voltampere));
             Assertion(3, AreaUnit.UsSurveySquareFoot, Quantity.From(3, AreaUnit.UsSurveySquareFoot));
