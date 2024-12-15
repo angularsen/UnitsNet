@@ -78,7 +78,7 @@ namespace UnitsNet.Tests
         [InlineData("ar-EG")]
         [InlineData("en-GB")]
         [InlineData("es-MX")]
-        public void ToString_WithSignificantDigitsFormat_DecimalSeparator_ForCulture(string cultureName)
+        public void ToString_SFormat_DecimalSeparator_ForCulture(string cultureName)
         {
             CultureInfo culture = GetCulture(cultureName);
             string ds = culture.NumberFormat.NumberDecimalSeparator;
@@ -117,7 +117,7 @@ namespace UnitsNet.Tests
         [InlineData("es-AR")]
         [InlineData("es-ES")]
         [InlineData("it-IT")]
-        public void ToString_WithSignificantDigitsFormat_UsesGroupingSeparator_ForCulture(string cultureName)
+        public void ToString_SFormat_UsesGroupingSeparator_ForCulture(string cultureName)
         {
             CultureInfo culture = GetCulture(cultureName);
             string gs = culture.NumberFormat.NumberGroupSeparator;
