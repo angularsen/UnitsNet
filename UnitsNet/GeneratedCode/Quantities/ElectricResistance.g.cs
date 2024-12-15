@@ -34,8 +34,11 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///     The electrical resistance of an electrical conductor is the opposition to the passage of an electric current through that conductor.
+    ///     The electrical resistance of an object is a measure of its opposition to the flow of electric current. Along with reactance, it is one of two elements of impedance. Its reciprocal quantity is electrical conductance.
     /// </summary>
+    /// <remarks>
+    ///     https://en.wikipedia.org/wiki/Electrical_resistance_and_conductance
+    /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct ElectricResistance :
@@ -72,6 +75,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Megaohm, "Megaohms", BaseUnits.Undefined, "ElectricResistance"),
                     new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Microohm, "Microohms", BaseUnits.Undefined, "ElectricResistance"),
                     new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Milliohm, "Milliohms", BaseUnits.Undefined, "ElectricResistance"),
+                    new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Nanoohm, "Nanoohms", BaseUnits.Undefined, "ElectricResistance"),
                     new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Ohm, "Ohms", BaseUnits.Undefined, "ElectricResistance"),
                     new UnitInfo<ElectricResistanceUnit>(ElectricResistanceUnit.Teraohm, "Teraohms", BaseUnits.Undefined, "ElectricResistance"),
                 },
@@ -203,6 +207,11 @@ namespace UnitsNet
         public double Milliohms => As(ElectricResistanceUnit.Milliohm);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistanceUnit.Nanoohm"/>
+        /// </summary>
+        public double Nanoohms => As(ElectricResistanceUnit.Nanoohm);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistanceUnit.Ohm"/>
         /// </summary>
         public double Ohms => As(ElectricResistanceUnit.Ohm);
@@ -228,6 +237,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistanceUnit.Megaohm, ElectricResistanceUnit.Ohm, quantity => quantity.ToUnit(ElectricResistanceUnit.Ohm));
             unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistanceUnit.Microohm, ElectricResistanceUnit.Ohm, quantity => quantity.ToUnit(ElectricResistanceUnit.Ohm));
             unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistanceUnit.Milliohm, ElectricResistanceUnit.Ohm, quantity => quantity.ToUnit(ElectricResistanceUnit.Ohm));
+            unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistanceUnit.Nanoohm, ElectricResistanceUnit.Ohm, quantity => quantity.ToUnit(ElectricResistanceUnit.Ohm));
             unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistanceUnit.Teraohm, ElectricResistanceUnit.Ohm, quantity => quantity.ToUnit(ElectricResistanceUnit.Ohm));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
@@ -239,6 +249,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistanceUnit.Ohm, ElectricResistanceUnit.Megaohm, quantity => quantity.ToUnit(ElectricResistanceUnit.Megaohm));
             unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistanceUnit.Ohm, ElectricResistanceUnit.Microohm, quantity => quantity.ToUnit(ElectricResistanceUnit.Microohm));
             unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistanceUnit.Ohm, ElectricResistanceUnit.Milliohm, quantity => quantity.ToUnit(ElectricResistanceUnit.Milliohm));
+            unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistanceUnit.Ohm, ElectricResistanceUnit.Nanoohm, quantity => quantity.ToUnit(ElectricResistanceUnit.Nanoohm));
             unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistanceUnit.Ohm, ElectricResistanceUnit.Teraohm, quantity => quantity.ToUnit(ElectricResistanceUnit.Teraohm));
         }
 
@@ -315,6 +326,16 @@ namespace UnitsNet
         {
             double value = (double) milliohms;
             return new ElectricResistance(value, ElectricResistanceUnit.Milliohm);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Nanoohm"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricResistance FromNanoohms(QuantityValue nanoohms)
+        {
+            double value = (double) nanoohms;
+            return new ElectricResistance(value, ElectricResistanceUnit.Nanoohm);
         }
 
         /// <summary>
@@ -835,6 +856,7 @@ namespace UnitsNet
                 (ElectricResistanceUnit.Megaohm, ElectricResistanceUnit.Ohm) => new ElectricResistance((_value) * 1e6d, ElectricResistanceUnit.Ohm),
                 (ElectricResistanceUnit.Microohm, ElectricResistanceUnit.Ohm) => new ElectricResistance((_value) * 1e-6d, ElectricResistanceUnit.Ohm),
                 (ElectricResistanceUnit.Milliohm, ElectricResistanceUnit.Ohm) => new ElectricResistance((_value) * 1e-3d, ElectricResistanceUnit.Ohm),
+                (ElectricResistanceUnit.Nanoohm, ElectricResistanceUnit.Ohm) => new ElectricResistance((_value) * 1e-9d, ElectricResistanceUnit.Ohm),
                 (ElectricResistanceUnit.Teraohm, ElectricResistanceUnit.Ohm) => new ElectricResistance((_value) * 1e12d, ElectricResistanceUnit.Ohm),
 
                 // BaseUnit -> ElectricResistanceUnit
@@ -843,6 +865,7 @@ namespace UnitsNet
                 (ElectricResistanceUnit.Ohm, ElectricResistanceUnit.Megaohm) => new ElectricResistance((_value) / 1e6d, ElectricResistanceUnit.Megaohm),
                 (ElectricResistanceUnit.Ohm, ElectricResistanceUnit.Microohm) => new ElectricResistance((_value) / 1e-6d, ElectricResistanceUnit.Microohm),
                 (ElectricResistanceUnit.Ohm, ElectricResistanceUnit.Milliohm) => new ElectricResistance((_value) / 1e-3d, ElectricResistanceUnit.Milliohm),
+                (ElectricResistanceUnit.Ohm, ElectricResistanceUnit.Nanoohm) => new ElectricResistance((_value) / 1e-9d, ElectricResistanceUnit.Nanoohm),
                 (ElectricResistanceUnit.Ohm, ElectricResistanceUnit.Teraohm) => new ElectricResistance((_value) / 1e12d, ElectricResistanceUnit.Teraohm),
 
                 _ => null
