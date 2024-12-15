@@ -355,7 +355,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out ElectricAdmittance result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out ElectricAdmittance result)
         {
             return TryParse(str, null, out result);
         }
@@ -370,7 +370,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out ElectricAdmittance result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out ElectricAdmittance result)
         {
             return QuantityParser.Default.TryParse<ElectricAdmittance, ElectricAdmittanceUnit>(
                 str,
@@ -409,7 +409,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.ElectricAdmittanceUnit)"/>
-        public static bool TryParseUnit(string str, out ElectricAdmittanceUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out ElectricAdmittanceUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -424,7 +424,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out ElectricAdmittanceUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out ElectricAdmittanceUnit unit)
         {
             return UnitParser.Default.TryParse<ElectricAdmittanceUnit>(str, provider, out unit);
         }

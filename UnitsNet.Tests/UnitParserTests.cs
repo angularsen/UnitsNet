@@ -137,5 +137,20 @@ namespace UnitsNet.Tests
 
             Assert.Equal(HowMuchUnit.Some, parsedUnit);
         }
+        
+        [Fact]
+        public void TryParse_WithNullAbbreviation_ReturnsFalse()
+        {
+            UnitParser unitParser = UnitsNetSetup.Default.UnitParser;
+            Assert.Multiple(() =>
+            {
+                var success = unitParser.TryParse(null, out LengthUnit unit);
+                Assert.False(success);
+            }, () =>
+            {
+                var success = unitParser.TryParse(null, typeof(LengthUnit), out Enum? _);
+                Assert.False(success);
+            });
+        }
     }
 }

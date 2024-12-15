@@ -100,7 +100,7 @@ namespace UnitsNet
         /// <param name=""quantityString"">Quantity string representation, such as ""1.5 kg"". Must be compatible with given quantity type.</param>
         /// <param name=""quantity"">The resulting quantity if successful, otherwise <c>default</c>.</param>
         /// <returns>The parsed quantity.</returns>
-        public static bool TryParse(IFormatProvider? formatProvider, Type quantityType, string quantityString, [NotNullWhen(true)] out IQuantity? quantity)
+        public static bool TryParse(IFormatProvider? formatProvider, Type quantityType, [NotNullWhen(true)] string? quantityString, [NotNullWhen(true)] out IQuantity? quantity)
         {
             quantity = default(IQuantity);
 

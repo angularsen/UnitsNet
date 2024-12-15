@@ -438,7 +438,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out Irradiation result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out Irradiation result)
         {
             return TryParse(str, null, out result);
         }
@@ -453,7 +453,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out Irradiation result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out Irradiation result)
         {
             return QuantityParser.Default.TryParse<Irradiation, IrradiationUnit>(
                 str,
@@ -492,7 +492,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.IrradiationUnit)"/>
-        public static bool TryParseUnit(string str, out IrradiationUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out IrradiationUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -507,7 +507,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out IrradiationUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out IrradiationUnit unit)
         {
             return UnitParser.Default.TryParse<IrradiationUnit>(str, provider, out unit);
         }

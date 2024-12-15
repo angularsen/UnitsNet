@@ -442,7 +442,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse(string? str, out SpecificEntropy result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out SpecificEntropy result)
         {
             return TryParse(str, null, out result);
         }
@@ -457,7 +457,7 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse(string? str, IFormatProvider? provider, out SpecificEntropy result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out SpecificEntropy result)
         {
             return QuantityParser.Default.TryParse<SpecificEntropy, SpecificEntropyUnit>(
                 str,
@@ -496,7 +496,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.SpecificEntropyUnit)"/>
-        public static bool TryParseUnit(string str, out SpecificEntropyUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out SpecificEntropyUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -511,7 +511,7 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, IFormatProvider? provider, out SpecificEntropyUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out SpecificEntropyUnit unit)
         {
             return UnitParser.Default.TryParse<SpecificEntropyUnit>(str, provider, out unit);
         }
