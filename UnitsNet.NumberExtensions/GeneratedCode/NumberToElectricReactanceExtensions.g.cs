@@ -72,6 +72,14 @@ namespace UnitsNet.NumberExtensions.NumberToElectricReactance
 #endif
             => ElectricReactance.FromMilliohms(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="ElectricReactance.FromNanoohms(UnitsNet.QuantityValue)" />
+        public static ElectricReactance Nanoohms<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricReactance.FromNanoohms(Convert.ToDouble(value));
+
         /// <inheritdoc cref="ElectricReactance.FromOhms(UnitsNet.QuantityValue)" />
         public static ElectricReactance Ohms<T>(this T value)
             where T : notnull

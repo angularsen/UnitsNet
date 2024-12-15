@@ -25,8 +25,12 @@ namespace UnitsNet.Units
 
     public enum ElectricSusceptanceUnit
     {
+        Gigamho = 16,
+        Gigasiemens = 15,
         Kilomho = 8,
         Kilosiemens = 4,
+        Megamho = 12,
+        Megasiemens = 19,
         Mho = 7,
         Micromho = 9,
         Microsiemens = 10,
@@ -35,6 +39,8 @@ namespace UnitsNet.Units
         Nanomho = 5,
         Nanosiemens = 1,
         Siemens = 2,
+        Teramho = 20,
+        Terasiemens = 14,
     }
 
     #pragma warning restore 1591

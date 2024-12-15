@@ -28,14 +28,28 @@ namespace UnitsNet.Tests.CustomCode
     public class ElectricConductanceTests : ElectricConductanceTestsBase
     {
         protected override bool SupportsSIUnitSystem => false;
-        protected override double SiemensInOneSiemens => 1;
-
-        protected override double MillisiemensInOneSiemens => 1E3;
+        protected override double NanosiemensInOneSiemens => 1E9;
+        protected override double NanomhosInOneSiemens => 1E9;
 
         protected override double MicrosiemensInOneSiemens => 1E6;
+        protected override double MicromhosInOneSiemens => 1E6;
+
+        protected override double MillisiemensInOneSiemens => 1E3;
+        protected override double MillimhosInOneSiemens => 1E3;
+
+        protected override double SiemensInOneSiemens => 1;
+        protected override double MhosInOneSiemens => 1;
 
         protected override double KilosiemensInOneSiemens => 1E-3;
+        protected override double KilomhosInOneSiemens => 1E-3;
 
-        protected override double NanosiemensInOneSiemens => 1E9;
+        protected override double MegasiemensInOneSiemens => 1E-6;
+        protected override double MegamhosInOneSiemens => 1E-6;
+
+        protected override double GigasiemensInOneSiemens => 1E-9;
+        protected override double GigamhosInOneSiemens => 1E-9;
+
+        protected override double TerasiemensInOneSiemens => 1E-12;
+        protected override double TeramhosInOneSiemens => 1E-12;
     }
 }

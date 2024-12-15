@@ -264,7 +264,14 @@
     "Mho": 7,
     "Micromho": 12,
     "Millimho": 5,
-    "Nanomho": 6
+    "Nanomho": 6,
+    "Gigamho": 16,
+    "Gigasiemens": 19,
+    "Kilosiemens": 14,
+    "Megamho": 10,
+    "Megasiemens": 13,
+    "Teramho": 15,
+    "Terasiemens": 9
   },
   "ElectricCharge": {
     "AmpereHour": 1,
@@ -292,7 +299,13 @@
     "Mho": 12,
     "Micromho": 5,
     "Millimho": 9,
-    "Nanomho": 14
+    "Nanomho": 14,
+    "Gigamho": 7,
+    "Gigasiemens": 18,
+    "Megamho": 8,
+    "Megasiemens": 17,
+    "Teramho": 19,
+    "Terasiemens": 16
   },
   "ElectricConductivity": {
     "SiemensPerFoot": 1,
@@ -388,7 +401,8 @@
     "Microohm": 4,
     "Milliohm": 5,
     "Ohm": 6,
-    "Teraohm": 12
+    "Teraohm": 12,
+    "Nanoohm": 11
   },
   "ElectricResistivity": {
     "KiloohmCentimeter": 1,
@@ -1909,7 +1923,8 @@
     "Microohm": 9,
     "Milliohm": 4,
     "Ohm": 6,
-    "Teraohm": 2
+    "Teraohm": 2,
+    "Nanoohm": 13
   },
   "ElectricReactiveEnergy": {
     "KilovoltampereReactiveHour": 10,
@@ -1932,6 +1947,22 @@
     "Millisiemens": 6,
     "Nanomho": 5,
     "Nanosiemens": 1,
-    "Siemens": 2
+    "Siemens": 2,
+    "Gigamho": 16,
+    "Gigasiemens": 15,
+    "Megamho": 12,
+    "Megasiemens": 19,
+    "Teramho": 20,
+    "Terasiemens": 14
+  },
+  "ElectricImpedance": {
+    "Gigaohm": 4,
+    "Kiloohm": 3,
+    "Megaohm": 10,
+    "Microohm": 8,
+    "Milliohm": 9,
+    "Nanoohm": 7,
+    "Ohm": 6,
+    "Teraohm": 5
   }
 }

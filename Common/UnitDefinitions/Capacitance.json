@@ -2,8 +2,8 @@
   "Name": "Capacitance",
   "BaseUnit": "Farad",
   "XmlDocSummary": "Capacitance is the ability of a body to store an electric charge.",
-  "XmlDocRemarks": "https://en.wikipedia.org/wiki/Capacitance",
-  "ObsoleteText": "This class is obsolete. Please use ElectricCapacitance instead",
+  "XmlDocRemarks": "<see cref=\"Capacitance\" /> has been renamed to <see cref=\"ElectricCapacitance\" />, and will be removed in a later major version.",
+  "ObsoleteText": "Capacitance has been renamed to ElectricCapacitance, and will be removed in a later major version.",
   "BaseDimensions": {
     "L": -2,
     "M": -1,

@@ -32,6 +32,22 @@ namespace UnitsNet.NumberExtensions.NumberToElectricSusceptance
     /// </summary>
     public static class NumberToElectricSusceptanceExtensions
     {
+        /// <inheritdoc cref="ElectricSusceptance.FromGigamhos(UnitsNet.QuantityValue)" />
+        public static ElectricSusceptance Gigamhos<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricSusceptance.FromGigamhos(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricSusceptance.FromGigasiemens(UnitsNet.QuantityValue)" />
+        public static ElectricSusceptance Gigasiemens<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricSusceptance.FromGigasiemens(Convert.ToDouble(value));
+
         /// <inheritdoc cref="ElectricSusceptance.FromKilomhos(UnitsNet.QuantityValue)" />
         public static ElectricSusceptance Kilomhos<T>(this T value)
             where T : notnull
@@ -47,6 +63,22 @@ namespace UnitsNet.NumberExtensions.NumberToElectricSusceptance
             , INumber<T>
 #endif
             => ElectricSusceptance.FromKilosiemens(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricSusceptance.FromMegamhos(UnitsNet.QuantityValue)" />
+        public static ElectricSusceptance Megamhos<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricSusceptance.FromMegamhos(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricSusceptance.FromMegasiemens(UnitsNet.QuantityValue)" />
+        public static ElectricSusceptance Megasiemens<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricSusceptance.FromMegasiemens(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricSusceptance.FromMhos(UnitsNet.QuantityValue)" />
         public static ElectricSusceptance Mhos<T>(this T value)
@@ -111,6 +143,22 @@ namespace UnitsNet.NumberExtensions.NumberToElectricSusceptance
             , INumber<T>
 #endif
             => ElectricSusceptance.FromSiemens(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricSusceptance.FromTeramhos(UnitsNet.QuantityValue)" />
+        public static ElectricSusceptance Teramhos<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricSusceptance.FromTeramhos(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricSusceptance.FromTerasiemens(UnitsNet.QuantityValue)" />
+        public static ElectricSusceptance Terasiemens<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricSusceptance.FromTerasiemens(Convert.ToDouble(value));
 
     }
 }

@@ -37,7 +37,7 @@ namespace UnitsNet
     ///     In classical electromagnetism, the electric potential (a scalar quantity denoted by Φ, ΦE or V and also called the electric field potential or the electrostatic potential) at a point is the amount of electric potential energy that a unitary point charge would have when located at that point.
     /// </summary>
     /// <remarks>
-    ///     https://en.wikipedia.org/wiki/Electric_potential
+    ///     If you want to map more parameters into the <see cref="ElectricPotential" /> class (volts RMS, phase angle, etc.), create your own wrapper type such as a record or named tuple.
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]

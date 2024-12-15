@@ -30,6 +30,7 @@ namespace UnitsNet.Units
         Megaohm = 1,
         Microohm = 9,
         Milliohm = 4,
+        Nanoohm = 13,
         Ohm = 6,
         Teraohm = 2,
     }

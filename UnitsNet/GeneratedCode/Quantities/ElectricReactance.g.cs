@@ -34,7 +34,7 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///     In electrical circuits, reactance is the opposition presented to alternating current by inductance and capacitance. Along with resistance, it is one of two elements of impedance. Its reciprocal quantity is electrical susceptance.
+    ///     In electrical circuits, reactance is the opposition presented to alternating current by inductance and capacitance. Along with resistance, it is one of two elements of impedance.
     /// </summary>
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Electrical_reactance
@@ -75,6 +75,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricReactanceUnit>(ElectricReactanceUnit.Megaohm, "Megaohms", BaseUnits.Undefined, "ElectricReactance"),
                     new UnitInfo<ElectricReactanceUnit>(ElectricReactanceUnit.Microohm, "Microohms", BaseUnits.Undefined, "ElectricReactance"),
                     new UnitInfo<ElectricReactanceUnit>(ElectricReactanceUnit.Milliohm, "Milliohms", BaseUnits.Undefined, "ElectricReactance"),
+                    new UnitInfo<ElectricReactanceUnit>(ElectricReactanceUnit.Nanoohm, "Nanoohms", BaseUnits.Undefined, "ElectricReactance"),
                     new UnitInfo<ElectricReactanceUnit>(ElectricReactanceUnit.Ohm, "Ohms", BaseUnits.Undefined, "ElectricReactance"),
                     new UnitInfo<ElectricReactanceUnit>(ElectricReactanceUnit.Teraohm, "Teraohms", BaseUnits.Undefined, "ElectricReactance"),
                 },
@@ -206,6 +207,11 @@ namespace UnitsNet
         public double Milliohms => As(ElectricReactanceUnit.Milliohm);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricReactanceUnit.Nanoohm"/>
+        /// </summary>
+        public double Nanoohms => As(ElectricReactanceUnit.Nanoohm);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricReactanceUnit.Ohm"/>
         /// </summary>
         public double Ohms => As(ElectricReactanceUnit.Ohm);
@@ -231,6 +237,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricReactance>(ElectricReactanceUnit.Megaohm, ElectricReactanceUnit.Ohm, quantity => quantity.ToUnit(ElectricReactanceUnit.Ohm));
             unitConverter.SetConversionFunction<ElectricReactance>(ElectricReactanceUnit.Microohm, ElectricReactanceUnit.Ohm, quantity => quantity.ToUnit(ElectricReactanceUnit.Ohm));
             unitConverter.SetConversionFunction<ElectricReactance>(ElectricReactanceUnit.Milliohm, ElectricReactanceUnit.Ohm, quantity => quantity.ToUnit(ElectricReactanceUnit.Ohm));
+            unitConverter.SetConversionFunction<ElectricReactance>(ElectricReactanceUnit.Nanoohm, ElectricReactanceUnit.Ohm, quantity => quantity.ToUnit(ElectricReactanceUnit.Ohm));
             unitConverter.SetConversionFunction<ElectricReactance>(ElectricReactanceUnit.Teraohm, ElectricReactanceUnit.Ohm, quantity => quantity.ToUnit(ElectricReactanceUnit.Ohm));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
@@ -242,6 +249,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricReactance>(ElectricReactanceUnit.Ohm, ElectricReactanceUnit.Megaohm, quantity => quantity.ToUnit(ElectricReactanceUnit.Megaohm));
             unitConverter.SetConversionFunction<ElectricReactance>(ElectricReactanceUnit.Ohm, ElectricReactanceUnit.Microohm, quantity => quantity.ToUnit(ElectricReactanceUnit.Microohm));
             unitConverter.SetConversionFunction<ElectricReactance>(ElectricReactanceUnit.Ohm, ElectricReactanceUnit.Milliohm, quantity => quantity.ToUnit(ElectricReactanceUnit.Milliohm));
+            unitConverter.SetConversionFunction<ElectricReactance>(ElectricReactanceUnit.Ohm, ElectricReactanceUnit.Nanoohm, quantity => quantity.ToUnit(ElectricReactanceUnit.Nanoohm));
             unitConverter.SetConversionFunction<ElectricReactance>(ElectricReactanceUnit.Ohm, ElectricReactanceUnit.Teraohm, quantity => quantity.ToUnit(ElectricReactanceUnit.Teraohm));
         }
 
@@ -318,6 +326,16 @@ namespace UnitsNet
         {
             double value = (double) milliohms;
             return new ElectricReactance(value, ElectricReactanceUnit.Milliohm);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricReactance"/> from <see cref="ElectricReactanceUnit.Nanoohm"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricReactance FromNanoohms(QuantityValue nanoohms)
+        {
+            double value = (double) nanoohms;
+            return new ElectricReactance(value, ElectricReactanceUnit.Nanoohm);
         }
 
         /// <summary>
@@ -838,6 +856,7 @@ namespace UnitsNet
                 (ElectricReactanceUnit.Megaohm, ElectricReactanceUnit.Ohm) => new ElectricReactance((_value) * 1e6d, ElectricReactanceUnit.Ohm),
                 (ElectricReactanceUnit.Microohm, ElectricReactanceUnit.Ohm) => new ElectricReactance((_value) * 1e-6d, ElectricReactanceUnit.Ohm),
                 (ElectricReactanceUnit.Milliohm, ElectricReactanceUnit.Ohm) => new ElectricReactance((_value) * 1e-3d, ElectricReactanceUnit.Ohm),
+                (ElectricReactanceUnit.Nanoohm, ElectricReactanceUnit.Ohm) => new ElectricReactance((_value) * 1e-9d, ElectricReactanceUnit.Ohm),
                 (ElectricReactanceUnit.Teraohm, ElectricReactanceUnit.Ohm) => new ElectricReactance((_value) * 1e12d, ElectricReactanceUnit.Ohm),
 
                 // BaseUnit -> ElectricReactanceUnit
@@ -846,6 +865,7 @@ namespace UnitsNet
                 (ElectricReactanceUnit.Ohm, ElectricReactanceUnit.Megaohm) => new ElectricReactance((_value) / 1e6d, ElectricReactanceUnit.Megaohm),
                 (ElectricReactanceUnit.Ohm, ElectricReactanceUnit.Microohm) => new ElectricReactance((_value) / 1e-6d, ElectricReactanceUnit.Microohm),
                 (ElectricReactanceUnit.Ohm, ElectricReactanceUnit.Milliohm) => new ElectricReactance((_value) / 1e-3d, ElectricReactanceUnit.Milliohm),
+                (ElectricReactanceUnit.Ohm, ElectricReactanceUnit.Nanoohm) => new ElectricReactance((_value) / 1e-9d, ElectricReactanceUnit.Nanoohm),
                 (ElectricReactanceUnit.Ohm, ElectricReactanceUnit.Teraohm) => new ElectricReactance((_value) / 1e12d, ElectricReactanceUnit.Teraohm),
 
                 _ => null

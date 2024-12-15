@@ -32,6 +32,22 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductance
     /// </summary>
     public static class NumberToElectricConductanceExtensions
     {
+        /// <inheritdoc cref="ElectricConductance.FromGigamhos(UnitsNet.QuantityValue)" />
+        public static ElectricConductance Gigamhos<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricConductance.FromGigamhos(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricConductance.FromGigasiemens(UnitsNet.QuantityValue)" />
+        public static ElectricConductance Gigasiemens<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricConductance.FromGigasiemens(Convert.ToDouble(value));
+
         /// <inheritdoc cref="ElectricConductance.FromKilomhos(UnitsNet.QuantityValue)" />
         public static ElectricConductance Kilomhos<T>(this T value)
             where T : notnull
@@ -47,6 +63,22 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductance
             , INumber<T>
 #endif
             => ElectricConductance.FromKilosiemens(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricConductance.FromMegamhos(UnitsNet.QuantityValue)" />
+        public static ElectricConductance Megamhos<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricConductance.FromMegamhos(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricConductance.FromMegasiemens(UnitsNet.QuantityValue)" />
+        public static ElectricConductance Megasiemens<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricConductance.FromMegasiemens(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricConductance.FromMhos(UnitsNet.QuantityValue)" />
         public static ElectricConductance Mhos<T>(this T value)
@@ -111,6 +143,22 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductance
             , INumber<T>
 #endif
             => ElectricConductance.FromSiemens(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricConductance.FromTeramhos(UnitsNet.QuantityValue)" />
+        public static ElectricConductance Teramhos<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricConductance.FromTeramhos(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricConductance.FromTerasiemens(UnitsNet.QuantityValue)" />
+        public static ElectricConductance Terasiemens<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricConductance.FromTerasiemens(Convert.ToDouble(value));
 
     }
 }

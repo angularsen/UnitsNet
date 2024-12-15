@@ -1,8 +1,9 @@
 {
   "Name": "ElectricPotentialDc",
   "BaseUnit": "VoltDc",
-  "XmlDocSummary": "If you want to map more parameters into the ElectricPotential class (volts RMS, phase angle, etc.), just use a named tuple.",
-  "ObsoleteText": "This class is redundant. Please use ElectricPotential instead.",
+  "XmlDocSummary": "The Electric Potential of a system known to use Direct Current.",
+  "XmlDocRemarks": "<see cref=\"ElectricPotentialDc\" /> has been merged into <see cref=\"ElectricPotential\" />, and will be removed in a later major version. If you want to map more parameters into the <see cref=\"ElectricPotential\" /> class (volts RMS, phase angle, etc.), create your own wrapper type such as a record or named tuple.",
+  "ObsoleteText": "ElectricPotentialDc has been merged into ElectricPotential, and will be removed in a later major version. If you want to map more parameters into the ElectricPotential class (volts RMS, phase angle, etc.), create your own wrapper type such as a record or named tuple.",
   "Units": [
     {
       "SingularName": "VoltDc",

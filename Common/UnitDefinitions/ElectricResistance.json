@@ -1,7 +1,7 @@
 {
   "Name": "ElectricResistance",
   "BaseUnit": "Ohm",
-  "XmlDocSummary": "The electrical resistance of an object is a measure of its opposition to the flow of electric current. Its reciprocal quantity is electrical conductance.",
+  "XmlDocSummary": "The electrical resistance of an object is a measure of its opposition to the flow of electric current. Along with reactance, it is one of two elements of impedance. Its reciprocal quantity is electrical conductance.",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Electrical_resistance_and_conductance",
   "BaseDimensions": {
     "L": 2,
@@ -15,7 +15,7 @@
       "PluralName": "Ohms",
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
-      "Prefixes": [ "Micro", "Milli", "Kilo", "Mega", "Giga", "Tera" ],
+      "Prefixes": [ "Nano", "Micro", "Milli", "Kilo", "Mega", "Giga", "Tera" ],
       "Localization": [
         {
           "Culture": "en-US",

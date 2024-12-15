@@ -68,6 +68,7 @@ namespace UnitsNet
             { "ElectricCurrentDensity", ElectricCurrentDensity.Info },
             { "ElectricCurrentGradient", ElectricCurrentGradient.Info },
             { "ElectricField", ElectricField.Info },
+            { "ElectricImpedance", ElectricImpedance.Info },
             { "ElectricInductance", ElectricInductance.Info },
             { "ElectricPotential", ElectricPotential.Info },
             { "ElectricPotentialAc", ElectricPotentialAc.Info },
@@ -211,6 +212,7 @@ namespace UnitsNet
                 "ElectricCurrentDensity" => ElectricCurrentDensity.From(value, ElectricCurrentDensity.BaseUnit),
                 "ElectricCurrentGradient" => ElectricCurrentGradient.From(value, ElectricCurrentGradient.BaseUnit),
                 "ElectricField" => ElectricField.From(value, ElectricField.BaseUnit),
+                "ElectricImpedance" => ElectricImpedance.From(value, ElectricImpedance.BaseUnit),
                 "ElectricInductance" => ElectricInductance.From(value, ElectricInductance.BaseUnit),
                 "ElectricPotential" => ElectricPotential.From(value, ElectricPotential.BaseUnit),
                 "ElectricPotentialAc" => ElectricPotentialAc.From(value, ElectricPotentialAc.BaseUnit),
@@ -357,6 +359,7 @@ namespace UnitsNet
                 ElectricCurrentDensityUnit electricCurrentDensityUnit => ElectricCurrentDensity.From(value, electricCurrentDensityUnit),
                 ElectricCurrentGradientUnit electricCurrentGradientUnit => ElectricCurrentGradient.From(value, electricCurrentGradientUnit),
                 ElectricFieldUnit electricFieldUnit => ElectricField.From(value, electricFieldUnit),
+                ElectricImpedanceUnit electricImpedanceUnit => ElectricImpedance.From(value, electricImpedanceUnit),
                 ElectricInductanceUnit electricInductanceUnit => ElectricInductance.From(value, electricInductanceUnit),
                 ElectricPotentialUnit electricPotentialUnit => ElectricPotential.From(value, electricPotentialUnit),
                 ElectricPotentialAcUnit electricPotentialAcUnit => ElectricPotentialAc.From(value, electricPotentialAcUnit),
@@ -513,6 +516,7 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(ElectricCurrentDensity) => parser.TryParse<ElectricCurrentDensity, ElectricCurrentDensityUnit>(quantityString, formatProvider, ElectricCurrentDensity.From, out quantity),
                 Type _ when quantityType == typeof(ElectricCurrentGradient) => parser.TryParse<ElectricCurrentGradient, ElectricCurrentGradientUnit>(quantityString, formatProvider, ElectricCurrentGradient.From, out quantity),
                 Type _ when quantityType == typeof(ElectricField) => parser.TryParse<ElectricField, ElectricFieldUnit>(quantityString, formatProvider, ElectricField.From, out quantity),
+                Type _ when quantityType == typeof(ElectricImpedance) => parser.TryParse<ElectricImpedance, ElectricImpedanceUnit>(quantityString, formatProvider, ElectricImpedance.From, out quantity),
                 Type _ when quantityType == typeof(ElectricInductance) => parser.TryParse<ElectricInductance, ElectricInductanceUnit>(quantityString, formatProvider, ElectricInductance.From, out quantity),
                 Type _ when quantityType == typeof(ElectricPotential) => parser.TryParse<ElectricPotential, ElectricPotentialUnit>(quantityString, formatProvider, ElectricPotential.From, out quantity),
                 Type _ when quantityType == typeof(ElectricPotentialAc) => parser.TryParse<ElectricPotentialAc, ElectricPotentialAcUnit>(quantityString, formatProvider, ElectricPotentialAc.From, out quantity),
@@ -650,6 +654,7 @@ namespace UnitsNet
             yield return typeof(ElectricCurrentDensity);
             yield return typeof(ElectricCurrentGradient);
             yield return typeof(ElectricField);
+            yield return typeof(ElectricImpedance);
             yield return typeof(ElectricInductance);
             yield return typeof(ElectricPotential);
             yield return typeof(ElectricPotentialAc);

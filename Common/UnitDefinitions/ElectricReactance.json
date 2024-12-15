@@ -1,7 +1,7 @@
 {
   "Name": "ElectricReactance",
   "BaseUnit": "Ohm",
-  "XmlDocSummary": "In electrical circuits, reactance is the opposition presented to alternating current by inductance and capacitance. Along with resistance, it is one of two elements of impedance. Its reciprocal quantity is electrical susceptance.",
+  "XmlDocSummary": "In electrical circuits, reactance is the opposition presented to alternating current by inductance and capacitance. Along with resistance, it is one of two elements of impedance.",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Electrical_reactance",
   "BaseDimensions": {
     "L": 2,
@@ -15,7 +15,7 @@
       "PluralName": "Ohms",
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
-      "Prefixes": [ "Micro", "Milli", "Kilo", "Mega", "Giga", "Tera" ],
+      "Prefixes": [ "Nano", "Micro", "Milli", "Kilo", "Mega", "Giga", "Tera" ],
       "Localization": [
         {
           "Culture": "en-US",

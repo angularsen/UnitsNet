@@ -34,10 +34,10 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///     Electrical susceptance is the imaginary part of admittance, where the real part is conductance. Its reciprocal quantity is electrical reactance.
+    ///     Electrical susceptance is the imaginary part of admittance, where the real part is conductance.
     /// </summary>
     /// <remarks>
-    ///     https://en.wikipedia.org/wiki/Susceptance
+    ///     https://en.wikipedia.org/wiki/Electrical_susceptance
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
@@ -70,8 +70,12 @@ namespace UnitsNet
             Info = new QuantityInfo<ElectricSusceptanceUnit>("ElectricSusceptance",
                 new UnitInfo<ElectricSusceptanceUnit>[]
                 {
+                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Gigamho, "Gigamhos", BaseUnits.Undefined, "ElectricSusceptance"),
+                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Gigasiemens, "Gigasiemens", BaseUnits.Undefined, "ElectricSusceptance"),
                     new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Kilomho, "Kilomhos", BaseUnits.Undefined, "ElectricSusceptance"),
                     new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Kilosiemens, "Kilosiemens", BaseUnits.Undefined, "ElectricSusceptance"),
+                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Megamho, "Megamhos", BaseUnits.Undefined, "ElectricSusceptance"),
+                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Megasiemens, "Megasiemens", BaseUnits.Undefined, "ElectricSusceptance"),
                     new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Mho, "Mhos", BaseUnits.Undefined, "ElectricSusceptance"),
                     new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Micromho, "Micromhos", BaseUnits.Undefined, "ElectricSusceptance"),
                     new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Microsiemens, "Microsiemens", BaseUnits.Undefined, "ElectricSusceptance"),
@@ -80,6 +84,8 @@ namespace UnitsNet
                     new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Nanomho, "Nanomhos", BaseUnits.Undefined, "ElectricSusceptance"),
                     new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Nanosiemens, "Nanosiemens", BaseUnits.Undefined, "ElectricSusceptance"),
                     new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Siemens, "Siemens", BaseUnits.Undefined, "ElectricSusceptance"),
+                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Teramho, "Teramhos", BaseUnits.Undefined, "ElectricSusceptance"),
+                    new UnitInfo<ElectricSusceptanceUnit>(ElectricSusceptanceUnit.Terasiemens, "Terasiemens", BaseUnits.Undefined, "ElectricSusceptance"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -184,6 +190,16 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Gigamho"/>
+        /// </summary>
+        public double Gigamhos => As(ElectricSusceptanceUnit.Gigamho);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Gigasiemens"/>
+        /// </summary>
+        public double Gigasiemens => As(ElectricSusceptanceUnit.Gigasiemens);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Kilomho"/>
         /// </summary>
         public double Kilomhos => As(ElectricSusceptanceUnit.Kilomho);
@@ -192,6 +208,16 @@ namespace UnitsNet
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Kilosiemens"/>
         /// </summary>
         public double Kilosiemens => As(ElectricSusceptanceUnit.Kilosiemens);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Megamho"/>
+        /// </summary>
+        public double Megamhos => As(ElectricSusceptanceUnit.Megamho);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Megasiemens"/>
+        /// </summary>
+        public double Megasiemens => As(ElectricSusceptanceUnit.Megasiemens);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Mho"/>
@@ -233,6 +259,16 @@ namespace UnitsNet
         /// </summary>
         public double Siemens => As(ElectricSusceptanceUnit.Siemens);
 
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Teramho"/>
+        /// </summary>
+        public double Teramhos => As(ElectricSusceptanceUnit.Teramho);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Terasiemens"/>
+        /// </summary>
+        public double Terasiemens => As(ElectricSusceptanceUnit.Terasiemens);
+
         #endregion
 
         #region Static Methods
@@ -244,8 +280,12 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: ElectricSusceptanceUnit -> BaseUnit
+            unitConverter.SetConversionFunction<ElectricSusceptance>(ElectricSusceptanceUnit.Gigamho, ElectricSusceptanceUnit.Siemens, quantity => quantity.ToUnit(ElectricSusceptanceUnit.Siemens));
+            unitConverter.SetConversionFunction<ElectricSusceptance>(ElectricSusceptanceUnit.Gigasiemens, ElectricSusceptanceUnit.Siemens, quantity => quantity.ToUnit(ElectricSusceptanceUnit.Siemens));
             unitConverter.SetConversionFunction<ElectricSusceptance>(ElectricSusceptanceUnit.Kilomho, ElectricSusceptanceUnit.Siemens, quantity => quantity.ToUnit(ElectricSusceptanceUnit.Siemens));
             unitConverter.SetConversionFunction<ElectricSusceptance>(ElectricSusceptanceUnit.Kilosiemens, ElectricSusceptanceUnit.Siemens, quantity => quantity.ToUnit(ElectricSusceptanceUnit.Siemens));
+            unitConverter.SetConversionFunction<ElectricSusceptance>(ElectricSusceptanceUnit.Megamho, ElectricSusceptanceUnit.Siemens, quantity => quantity.ToUnit(ElectricSusceptanceUnit.Siemens));
+            unitConverter.SetConversionFunction<ElectricSusceptance>(ElectricSusceptanceUnit.Megasiemens, ElectricSusceptanceUnit.Siemens, quantity => quantity.ToUnit(ElectricSusceptanceUnit.Siemens));
             unitConverter.SetConversionFunction<ElectricSusceptance>(ElectricSusceptanceUnit.Mho, ElectricSusceptanceUnit.Siemens, quantity => quantity.ToUnit(ElectricSusceptanceUnit.Siemens));
             unitConverter.SetConversionFunction<ElectricSusceptance>(ElectricSusceptanceUnit.Micromho, ElectricSusceptanceUnit.Siemens, quantity => quantity.ToUnit(ElectricSusceptanceUnit.Siemens));
             unitConverter.SetConversionFunction<ElectricSusceptance>(ElectricSusceptanceUnit.Microsiemens, ElectricSusceptanceUnit.Siemens, quantity => quantity.ToUnit(ElectricSusceptanceUnit.Siemens));
@@ -253,13 +293,19 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricSusceptance>(ElectricSusceptanceUnit.Millisiemens, ElectricSusceptanceUnit.Siemens, quantity => quantity.ToUnit(ElectricSusceptanceUnit.Siemens));
             unitConverter.SetConversionFunction<ElectricSusceptance>(ElectricSusceptanceUnit.Nanomho, ElectricSusceptanceUnit.Siemens, quantity => quantity.ToUnit(ElectricSusceptanceUnit.Siemens));
             unitConverter.SetConversionFunction<ElectricSusceptance>(ElectricSusceptanceUnit.Nanosiemens, ElectricSusceptanceUnit.Siemens, quantity => quantity.ToUnit(ElectricSusceptanceUnit.Siemens));
+            unitConverter.SetConversionFunction<ElectricSusceptance>(ElectricSusceptanceUnit.Teramho, ElectricSusceptanceUnit.Siemens, quantity => quantity.ToUnit(ElectricSusceptanceUnit.Siemens));
+            unitConverter.SetConversionFunction<ElectricSusceptance>(ElectricSusceptanceUnit.Terasiemens, ElectricSusceptanceUnit.Siemens, quantity => quantity.ToUnit(ElectricSusceptanceUnit.Siemens));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ElectricSusceptance>(ElectricSusceptanceUnit.Siemens, ElectricSusceptanceUnit.Siemens, quantity => quantity);
 
             // Register in unit converter: BaseUnit -> ElectricSusceptanceUnit
+            unitConverter.SetConversionFunction<ElectricSusceptance>(ElectricSusceptanceUnit.Siemens, ElectricSusceptanceUnit.Gigamho, quantity => quantity.ToUnit(ElectricSusceptanceUnit.Gigamho));
+            unitConverter.SetConversionFunction<ElectricSusceptance>(ElectricSusceptanceUnit.Siemens, ElectricSusceptanceUnit.Gigasiemens, quantity => quantity.ToUnit(ElectricSusceptanceUnit.Gigasiemens));
             unitConverter.SetConversionFunction<ElectricSusceptance>(ElectricSusceptanceUnit.Siemens, ElectricSusceptanceUnit.Kilomho, quantity => quantity.ToUnit(ElectricSusceptanceUnit.Kilomho));
             unitConverter.SetConversionFunction<ElectricSusceptance>(ElectricSusceptanceUnit.Siemens, ElectricSusceptanceUnit.Kilosiemens, quantity => quantity.ToUnit(ElectricSusceptanceUnit.Kilosiemens));
+            unitConverter.SetConversionFunction<ElectricSusceptance>(ElectricSusceptanceUnit.Siemens, ElectricSusceptanceUnit.Megamho, quantity => quantity.ToUnit(ElectricSusceptanceUnit.Megamho));
+            unitConverter.SetConversionFunction<ElectricSusceptance>(ElectricSusceptanceUnit.Siemens, ElectricSusceptanceUnit.Megasiemens, quantity => quantity.ToUnit(ElectricSusceptanceUnit.Megasiemens));
             unitConverter.SetConversionFunction<ElectricSusceptance>(ElectricSusceptanceUnit.Siemens, ElectricSusceptanceUnit.Mho, quantity => quantity.ToUnit(ElectricSusceptanceUnit.Mho));
             unitConverter.SetConversionFunction<ElectricSusceptance>(ElectricSusceptanceUnit.Siemens, ElectricSusceptanceUnit.Micromho, quantity => quantity.ToUnit(ElectricSusceptanceUnit.Micromho));
             unitConverter.SetConversionFunction<ElectricSusceptance>(ElectricSusceptanceUnit.Siemens, ElectricSusceptanceUnit.Microsiemens, quantity => quantity.ToUnit(ElectricSusceptanceUnit.Microsiemens));
@@ -267,6 +313,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricSusceptance>(ElectricSusceptanceUnit.Siemens, ElectricSusceptanceUnit.Millisiemens, quantity => quantity.ToUnit(ElectricSusceptanceUnit.Millisiemens));
             unitConverter.SetConversionFunction<ElectricSusceptance>(ElectricSusceptanceUnit.Siemens, ElectricSusceptanceUnit.Nanomho, quantity => quantity.ToUnit(ElectricSusceptanceUnit.Nanomho));
             unitConverter.SetConversionFunction<ElectricSusceptance>(ElectricSusceptanceUnit.Siemens, ElectricSusceptanceUnit.Nanosiemens, quantity => quantity.ToUnit(ElectricSusceptanceUnit.Nanosiemens));
+            unitConverter.SetConversionFunction<ElectricSusceptance>(ElectricSusceptanceUnit.Siemens, ElectricSusceptanceUnit.Teramho, quantity => quantity.ToUnit(ElectricSusceptanceUnit.Teramho));
+            unitConverter.SetConversionFunction<ElectricSusceptance>(ElectricSusceptanceUnit.Siemens, ElectricSusceptanceUnit.Terasiemens, quantity => quantity.ToUnit(ElectricSusceptanceUnit.Terasiemens));
         }
 
         /// <summary>
@@ -295,6 +343,26 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
+        ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Gigamho"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricSusceptance FromGigamhos(QuantityValue gigamhos)
+        {
+            double value = (double) gigamhos;
+            return new ElectricSusceptance(value, ElectricSusceptanceUnit.Gigamho);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Gigasiemens"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricSusceptance FromGigasiemens(QuantityValue gigasiemens)
+        {
+            double value = (double) gigasiemens;
+            return new ElectricSusceptance(value, ElectricSusceptanceUnit.Gigasiemens);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Kilomho"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -312,6 +380,26 @@ namespace UnitsNet
         {
             double value = (double) kilosiemens;
             return new ElectricSusceptance(value, ElectricSusceptanceUnit.Kilosiemens);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Megamho"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricSusceptance FromMegamhos(QuantityValue megamhos)
+        {
+            double value = (double) megamhos;
+            return new ElectricSusceptance(value, ElectricSusceptanceUnit.Megamho);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Megasiemens"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricSusceptance FromMegasiemens(QuantityValue megasiemens)
+        {
+            double value = (double) megasiemens;
+            return new ElectricSusceptance(value, ElectricSusceptanceUnit.Megasiemens);
         }
 
         /// <summary>
@@ -392,6 +480,26 @@ namespace UnitsNet
         {
             double value = (double) siemens;
             return new ElectricSusceptance(value, ElectricSusceptanceUnit.Siemens);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Teramho"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricSusceptance FromTeramhos(QuantityValue teramhos)
+        {
+            double value = (double) teramhos;
+            return new ElectricSusceptance(value, ElectricSusceptanceUnit.Teramho);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Terasiemens"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricSusceptance FromTerasiemens(QuantityValue terasiemens)
+        {
+            double value = (double) terasiemens;
+            return new ElectricSusceptance(value, ElectricSusceptanceUnit.Terasiemens);
         }
 
         /// <summary>
@@ -887,8 +995,12 @@ namespace UnitsNet
             ElectricSusceptance? convertedOrNull = (Unit, unit) switch
             {
                 // ElectricSusceptanceUnit -> BaseUnit
+                (ElectricSusceptanceUnit.Gigamho, ElectricSusceptanceUnit.Siemens) => new ElectricSusceptance((_value) * 1e9d, ElectricSusceptanceUnit.Siemens),
+                (ElectricSusceptanceUnit.Gigasiemens, ElectricSusceptanceUnit.Siemens) => new ElectricSusceptance((_value) * 1e9d, ElectricSusceptanceUnit.Siemens),
                 (ElectricSusceptanceUnit.Kilomho, ElectricSusceptanceUnit.Siemens) => new ElectricSusceptance((_value) * 1e3d, ElectricSusceptanceUnit.Siemens),
                 (ElectricSusceptanceUnit.Kilosiemens, ElectricSusceptanceUnit.Siemens) => new ElectricSusceptance((_value) * 1e3d, ElectricSusceptanceUnit.Siemens),
+                (ElectricSusceptanceUnit.Megamho, ElectricSusceptanceUnit.Siemens) => new ElectricSusceptance((_value) * 1e6d, ElectricSusceptanceUnit.Siemens),
+                (ElectricSusceptanceUnit.Megasiemens, ElectricSusceptanceUnit.Siemens) => new ElectricSusceptance((_value) * 1e6d, ElectricSusceptanceUnit.Siemens),
                 (ElectricSusceptanceUnit.Mho, ElectricSusceptanceUnit.Siemens) => new ElectricSusceptance(_value, ElectricSusceptanceUnit.Siemens),
                 (ElectricSusceptanceUnit.Micromho, ElectricSusceptanceUnit.Siemens) => new ElectricSusceptance((_value) * 1e-6d, ElectricSusceptanceUnit.Siemens),
                 (ElectricSusceptanceUnit.Microsiemens, ElectricSusceptanceUnit.Siemens) => new ElectricSusceptance((_value) * 1e-6d, ElectricSusceptanceUnit.Siemens),
@@ -896,10 +1008,16 @@ namespace UnitsNet
                 (ElectricSusceptanceUnit.Millisiemens, ElectricSusceptanceUnit.Siemens) => new ElectricSusceptance((_value) * 1e-3d, ElectricSusceptanceUnit.Siemens),
                 (ElectricSusceptanceUnit.Nanomho, ElectricSusceptanceUnit.Siemens) => new ElectricSusceptance((_value) * 1e-9d, ElectricSusceptanceUnit.Siemens),
                 (ElectricSusceptanceUnit.Nanosiemens, ElectricSusceptanceUnit.Siemens) => new ElectricSusceptance((_value) * 1e-9d, ElectricSusceptanceUnit.Siemens),
+                (ElectricSusceptanceUnit.Teramho, ElectricSusceptanceUnit.Siemens) => new ElectricSusceptance((_value) * 1e12d, ElectricSusceptanceUnit.Siemens),
+                (ElectricSusceptanceUnit.Terasiemens, ElectricSusceptanceUnit.Siemens) => new ElectricSusceptance((_value) * 1e12d, ElectricSusceptanceUnit.Siemens),
 
                 // BaseUnit -> ElectricSusceptanceUnit
+                (ElectricSusceptanceUnit.Siemens, ElectricSusceptanceUnit.Gigamho) => new ElectricSusceptance((_value) / 1e9d, ElectricSusceptanceUnit.Gigamho),
+                (ElectricSusceptanceUnit.Siemens, ElectricSusceptanceUnit.Gigasiemens) => new ElectricSusceptance((_value) / 1e9d, ElectricSusceptanceUnit.Gigasiemens),
                 (ElectricSusceptanceUnit.Siemens, ElectricSusceptanceUnit.Kilomho) => new ElectricSusceptance((_value) / 1e3d, ElectricSusceptanceUnit.Kilomho),
                 (ElectricSusceptanceUnit.Siemens, ElectricSusceptanceUnit.Kilosiemens) => new ElectricSusceptance((_value) / 1e3d, ElectricSusceptanceUnit.Kilosiemens),
+                (ElectricSusceptanceUnit.Siemens, ElectricSusceptanceUnit.Megamho) => new ElectricSusceptance((_value) / 1e6d, ElectricSusceptanceUnit.Megamho),
+                (ElectricSusceptanceUnit.Siemens, ElectricSusceptanceUnit.Megasiemens) => new ElectricSusceptance((_value) / 1e6d, ElectricSusceptanceUnit.Megasiemens),
                 (ElectricSusceptanceUnit.Siemens, ElectricSusceptanceUnit.Mho) => new ElectricSusceptance(_value, ElectricSusceptanceUnit.Mho),
                 (ElectricSusceptanceUnit.Siemens, ElectricSusceptanceUnit.Micromho) => new ElectricSusceptance((_value) / 1e-6d, ElectricSusceptanceUnit.Micromho),
                 (ElectricSusceptanceUnit.Siemens, ElectricSusceptanceUnit.Microsiemens) => new ElectricSusceptance((_value) / 1e-6d, ElectricSusceptanceUnit.Microsiemens),
@@ -907,6 +1025,8 @@ namespace UnitsNet
                 (ElectricSusceptanceUnit.Siemens, ElectricSusceptanceUnit.Millisiemens) => new ElectricSusceptance((_value) / 1e-3d, ElectricSusceptanceUnit.Millisiemens),
                 (ElectricSusceptanceUnit.Siemens, ElectricSusceptanceUnit.Nanomho) => new ElectricSusceptance((_value) / 1e-9d, ElectricSusceptanceUnit.Nanomho),
                 (ElectricSusceptanceUnit.Siemens, ElectricSusceptanceUnit.Nanosiemens) => new ElectricSusceptance((_value) / 1e-9d, ElectricSusceptanceUnit.Nanosiemens),
+                (ElectricSusceptanceUnit.Siemens, ElectricSusceptanceUnit.Teramho) => new ElectricSusceptance((_value) / 1e12d, ElectricSusceptanceUnit.Teramho),
+                (ElectricSusceptanceUnit.Siemens, ElectricSusceptanceUnit.Terasiemens) => new ElectricSusceptance((_value) / 1e12d, ElectricSusceptanceUnit.Terasiemens),
 
                 _ => null
             };

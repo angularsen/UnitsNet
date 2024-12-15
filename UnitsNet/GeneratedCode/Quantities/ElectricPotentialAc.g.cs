@@ -34,9 +34,12 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///     If you want to map more parameters into the ElectricPotential class (volts RMS, phase angle, etc.), just use a named tuple.
+    ///     The Electric Potential of a system known to use Alternating Current.
     /// </summary>
-    [Obsolete("This class is redundant. Please use ElectricPotential instead.")]
+    /// <remarks>
+    ///     <see cref="ElectricPotentialAc" /> has been merged into <see cref="ElectricPotential" />, and will be removed in a later major version. If you want to map more parameters into the <see cref="ElectricPotential" /> class (volts RMS, phase angle, etc.), create your own wrapper type such as a record or named tuple.
+    /// </remarks>
+    [Obsolete("ElectricPotentialAc has been merged into ElectricPotential, and will be removed in a later major version. If you want to map more parameters into the ElectricPotential class (volts RMS, phase angle, etc.), create your own wrapper type such as a record or named tuple.")]
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct ElectricPotentialAc :

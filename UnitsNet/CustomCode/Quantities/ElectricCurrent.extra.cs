@@ -21,13 +21,6 @@ namespace UnitsNet
             return Power.FromWatts(potential.Volts * current.Amperes);
         }
 
-        /// <summary>Calculate <see cref="ElectricApparentPower"/> from <see cref="ElectricPotential"/> multiplied by <see cref="ElectricCurrent"/>.</summary>
-        /// <remarks>Electric apparent power is defined as S = voltage RMS * current RMS.</remarks>
-        public static ElectricApparentPower operator *(ElectricPotential potential, ElectricCurrent current)
-        {
-            return ElectricApparentPower.FromVoltamperes(potential.Volts * current.Amperes);
-        }
-
         /// <summary>Calculate <see cref="ElectricCharge"/> from <see cref="ElectricCurrent"/> multiplied by <see cref="Duration"/>.</summary>
         public static ElectricCharge operator *(ElectricCurrent current, Duration time)
         {

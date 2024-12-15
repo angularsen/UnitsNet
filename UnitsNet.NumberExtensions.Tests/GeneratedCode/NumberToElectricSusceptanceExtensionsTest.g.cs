@@ -25,12 +25,28 @@ namespace UnitsNet.Tests
     public class NumberToElectricSusceptanceExtensionsTests
     {
         [Fact]
+        public void NumberToGigamhosTest() =>
+            Assert.Equal(ElectricSusceptance.FromGigamhos(2), 2.Gigamhos());
+
+        [Fact]
+        public void NumberToGigasiemensTest() =>
+            Assert.Equal(ElectricSusceptance.FromGigasiemens(2), 2.Gigasiemens());
+
+        [Fact]
         public void NumberToKilomhosTest() =>
             Assert.Equal(ElectricSusceptance.FromKilomhos(2), 2.Kilomhos());
 
         [Fact]
         public void NumberToKilosiemensTest() =>
             Assert.Equal(ElectricSusceptance.FromKilosiemens(2), 2.Kilosiemens());
+
+        [Fact]
+        public void NumberToMegamhosTest() =>
+            Assert.Equal(ElectricSusceptance.FromMegamhos(2), 2.Megamhos());
+
+        [Fact]
+        public void NumberToMegasiemensTest() =>
+            Assert.Equal(ElectricSusceptance.FromMegasiemens(2), 2.Megasiemens());
 
         [Fact]
         public void NumberToMhosTest() =>
@@ -63,6 +79,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToSiemensTest() =>
             Assert.Equal(ElectricSusceptance.FromSiemens(2), 2.Siemens());
+
+        [Fact]
+        public void NumberToTeramhosTest() =>
+            Assert.Equal(ElectricSusceptance.FromTeramhos(2), 2.Teramhos());
+
+        [Fact]
+        public void NumberToTerasiemensTest() =>
+            Assert.Equal(ElectricSusceptance.FromTerasiemens(2), 2.Terasiemens());
 
     }
 }

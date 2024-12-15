@@ -25,8 +25,28 @@ namespace UnitsNet.Tests
     public class NumberToElectricAdmittanceExtensionsTests
     {
         [Fact]
+        public void NumberToGigamhosTest() =>
+            Assert.Equal(ElectricAdmittance.FromGigamhos(2), 2.Gigamhos());
+
+        [Fact]
+        public void NumberToGigasiemensTest() =>
+            Assert.Equal(ElectricAdmittance.FromGigasiemens(2), 2.Gigasiemens());
+
+        [Fact]
         public void NumberToKilomhosTest() =>
             Assert.Equal(ElectricAdmittance.FromKilomhos(2), 2.Kilomhos());
+
+        [Fact]
+        public void NumberToKilosiemensTest() =>
+            Assert.Equal(ElectricAdmittance.FromKilosiemens(2), 2.Kilosiemens());
+
+        [Fact]
+        public void NumberToMegamhosTest() =>
+            Assert.Equal(ElectricAdmittance.FromMegamhos(2), 2.Megamhos());
+
+        [Fact]
+        public void NumberToMegasiemensTest() =>
+            Assert.Equal(ElectricAdmittance.FromMegasiemens(2), 2.Megasiemens());
 
         [Fact]
         public void NumberToMhosTest() =>
@@ -59,6 +79,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToSiemensTest() =>
             Assert.Equal(ElectricAdmittance.FromSiemens(2), 2.Siemens());
+
+        [Fact]
+        public void NumberToTeramhosTest() =>
+            Assert.Equal(ElectricAdmittance.FromTeramhos(2), 2.Teramhos());
+
+        [Fact]
+        public void NumberToTerasiemensTest() =>
+            Assert.Equal(ElectricAdmittance.FromTerasiemens(2), 2.Terasiemens());
 
     }
 }

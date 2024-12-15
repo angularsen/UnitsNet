@@ -24,7 +24,7 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///     In electrical circuits, reactance is the opposition presented to alternating current by inductance and capacitance. Along with resistance, it is one of two elements of impedance. Its reciprocal quantity is electrical susceptance.
+    ///     In electrical circuits, reactance is the opposition presented to alternating current by inductance and capacitance. Along with resistance, it is one of two elements of impedance.
     /// </summary>
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Electrical_reactance
@@ -108,6 +108,11 @@ namespace UnitsNet
         public double Milliohms => As(ElectricReactanceUnit.Milliohm);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricReactanceUnit.Nanoohm"/>
+        /// </summary>
+        public double Nanoohms => As(ElectricReactanceUnit.Nanoohm);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricReactanceUnit.Ohm"/>
         /// </summary>
         public double Ohms => As(ElectricReactanceUnit.Ohm);
@@ -150,6 +155,12 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricReactance FromMilliohms(double milliohms) => new ElectricReactance(milliohms, ElectricReactanceUnit.Milliohm);
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricReactance"/> from <see cref="ElectricReactanceUnit.Nanoohm"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricReactance FromNanoohms(double nanoohms) => new ElectricReactance(nanoohms, ElectricReactanceUnit.Nanoohm);
 
         /// <summary>
         ///     Creates a <see cref="ElectricReactance"/> from <see cref="ElectricReactanceUnit.Ohm"/>.
@@ -208,6 +219,7 @@ namespace UnitsNet
                         ElectricReactanceUnit.Megaohm => (_value) * 1e6d,
                         ElectricReactanceUnit.Microohm => (_value) * 1e-6d,
                         ElectricReactanceUnit.Milliohm => (_value) * 1e-3d,
+                        ElectricReactanceUnit.Nanoohm => (_value) * 1e-9d,
                         ElectricReactanceUnit.Ohm => _value,
                         ElectricReactanceUnit.Teraohm => (_value) * 1e12d,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
@@ -228,6 +240,7 @@ namespace UnitsNet
                         ElectricReactanceUnit.Megaohm => (baseUnitValue) / 1e6d,
                         ElectricReactanceUnit.Microohm => (baseUnitValue) / 1e-6d,
                         ElectricReactanceUnit.Milliohm => (baseUnitValue) / 1e-3d,
+                        ElectricReactanceUnit.Nanoohm => (baseUnitValue) / 1e-9d,
                         ElectricReactanceUnit.Ohm => baseUnitValue,
                         ElectricReactanceUnit.Teraohm => (baseUnitValue) / 1e12d,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
