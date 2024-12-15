@@ -98,7 +98,7 @@ namespace UnitsNet.Tests
         [InlineData("es-AR")]
         [InlineData("es-ES")]
         [InlineData("it-IT")]
-        public void ToString_FormatsWithoutGroupingSeparator(string cultureName)
+        public void ToString_WithCultureWithoutGroupingSeparator(string cultureName)
         {
             CultureInfo culture = GetCulture(cultureName);
             Assert.Equal("1111 m", Length.FromMeters(1111).ToString(culture));
@@ -142,7 +142,7 @@ namespace UnitsNet.Tests
         {
             CultureInfo culture = GetCulture(cultureName);
             string gs = culture.NumberFormat.NumberGroupSeparator;
-            
+
             // Feet/Inch and Stone/Pound combinations are only used (customarily) in the US, UK and maybe Ireland - all English speaking countries.
             // FeetInches returns a whole number of feet, with the remainder expressed (rounded) in inches. Same for StonePounds.
             Assert.Equal($"3{gs}333 st 7 lb", Mass.FromStonePounds(3333, 7).StonePounds.ToString(culture));
@@ -165,12 +165,12 @@ namespace UnitsNet.Tests
         {
             CultureInfo culture = GetCulture(cultureName);
             string gs = culture.NumberFormat.NumberGroupSeparator;
-            
+
             // Feet/Inch and Stone/Pound combinations are only used (customarily) in the US, UK and maybe Ireland - all English speaking countries.
             // FeetInches returns a whole number of feet, with the remainder expressed (rounded) in inches. Same for StonePounds.
             Assert.Equal($"3{gs}333 st 7 lb", Mass.FromStonePounds(3333, 7).StonePounds.ToString(culture));
         }
-        
+
         // Due to rounding, the values will result in the same string representation regardless of the number of significant digits (up to a certain point)
         [Theory]
         [InlineData(-0.819999999999, "S", "-0.819999999999 m")]
@@ -186,7 +186,7 @@ namespace UnitsNet.Tests
         [InlineData(0.00299999999, "s4", "0.003 m")]
         [InlineData(0.0003000001, "s2", "3e-04 m")]
         [InlineData(0.0003000001, "s4", "3e-04 m")]
-        public void SignificantDigitsAfterRadixFormat_RoundingSpecifier(double value,
+        public void ToString_SFormat_RoundsToSignificantDigitsAfterRadix(double value,
             string significantDigitsAfterRadixFormatString, string expected)
         {
             string actual = Length.FromMeters(value).ToString(significantDigitsAfterRadixFormatString, AmericanCulture);
@@ -199,7 +199,7 @@ namespace UnitsNet.Tests
         [InlineData(1.23e-120, "1.23e-120 m")]
         [InlineData(0.0000111, "1.11e-05 m")]
         [InlineData(1.99e-4, "1.99e-04 m")]
-        public void SignificantDigitsAfterRadixFormat_ScientificNotationLowerInterval(double value, string expected)
+        public void ToString_SFormat_BelowMilli_UsesScientificNotation(double value, string expected)
         {
             string actual = Length.FromMeters(value).ToString("s2", AmericanCulture);
             Assert.Equal(expected, actual);
@@ -210,7 +210,7 @@ namespace UnitsNet.Tests
         [InlineData(1e-3, "0.001 m")]
         [InlineData(1.1, "1.1 m")]
         [InlineData(999.99, "999.99 m")]
-        public void SignificantDigitsAfterRadixFormat_FixedPointNotationIntervalFormatting(double value, string expected)
+        public void ToString_SFormat_BetweenMilliAndKilo_UsesFixedPointFormat(double value, string expected)
         {
             string actual = Length.FromMeters(value).ToString("s2",AmericanCulture);
             Assert.Equal(expected, actual);
@@ -222,7 +222,7 @@ namespace UnitsNet.Tests
         [InlineData(11000, "11,000 m")]
         [InlineData(111000, "111,000 m")]
         [InlineData(999999.99, "999,999.99 m")]
-        public void SignificantDigitsAfterRadixFormat_FixedPointNotationWithDigitGroupingIntervalFormatting(double value, string expected)
+        public void ToString_SFormat_From1e3To1e5_UsesFixedPointFormatWithDigitGrouping(double value, string expected)
         {
             string actual = Length.FromMeters(value).ToString("s2",AmericanCulture);
             Assert.Equal(expected, actual);
@@ -233,7 +233,7 @@ namespace UnitsNet.Tests
         [InlineData(1e6, "1e+06 m")]
         [InlineData(11100000, "1.11e+07 m")]
         [InlineData(double.MaxValue, "1.8e+308 m")]
-        public void SignificantDigitsAfterRadixFormat_ScientificNotationUpperIntervalFormatting(double value, string expected)
+        public void ToString_SFormat_Above1e6_UsesScientificNotation(double value, string expected)
         {
             string actual = Length.FromMeters(value).ToString("s2",AmericanCulture);
             Assert.Equal(expected, actual);
