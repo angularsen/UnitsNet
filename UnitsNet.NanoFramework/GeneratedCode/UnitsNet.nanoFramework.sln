@@ -230,8 +230,6 @@ Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "ThermalResistance", "Therma
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Torque", "Torque\Torque.nfproj", "{3b6bbc8a-1b22-deff-2980-53b77b6f3e5f}"
 EndProject
-Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "TorquePerLength", "TorquePerLength\TorquePerLength.nfproj", "{c27e1919-64f1-ce81-c6d9-b46ced745a12}"
-EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Turbidity", "Turbidity\Turbidity.nfproj", "{05ac8aed-49a4-5c9f-d8c2-8d2debf64791}"
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "VitaminA", "VitaminA\VitaminA.nfproj", "{c00185af-8735-7674-5fa6-232424b04161}"
@@ -940,12 +938,6 @@ Global
 {3b6bbc8a-1b22-deff-2980-53b77b6f3e5f}.Release|Any CPU.ActiveCfg = Release|Any CPU
 {3b6bbc8a-1b22-deff-2980-53b77b6f3e5f}.Release|Any CPU.Build.0 = Release|Any CPU
 {3b6bbc8a-1b22-deff-2980-53b77b6f3e5f}.Release|Any CPU.Deploy.0 = Release|Any CPU
-{c27e1919-64f1-ce81-c6d9-b46ced745a12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-{c27e1919-64f1-ce81-c6d9-b46ced745a12}.Debug|Any CPU.Build.0 = Debug|Any CPU
-{c27e1919-64f1-ce81-c6d9-b46ced745a12}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-{c27e1919-64f1-ce81-c6d9-b46ced745a12}.Release|Any CPU.ActiveCfg = Release|Any CPU
-{c27e1919-64f1-ce81-c6d9-b46ced745a12}.Release|Any CPU.Build.0 = Release|Any CPU
-{c27e1919-64f1-ce81-c6d9-b46ced745a12}.Release|Any CPU.Deploy.0 = Release|Any CPU
 {05ac8aed-49a4-5c9f-d8c2-8d2debf64791}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 {05ac8aed-49a4-5c9f-d8c2-8d2debf64791}.Debug|Any CPU.Build.0 = Debug|Any CPU
 {05ac8aed-49a4-5c9f-d8c2-8d2debf64791}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
