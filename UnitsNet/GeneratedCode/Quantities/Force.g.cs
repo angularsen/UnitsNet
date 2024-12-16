@@ -22,12 +22,11 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
+using System.Runtime.Serialization;
+using UnitsNet.Units;
+#if NET
 using System.Numerics;
 #endif
-using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 
 #nullable enable
 
@@ -56,6 +55,10 @@ namespace UnitsNet
         IMultiplyOperators<Force, ReciprocalArea, Pressure>,
         IDivisionOperators<Force, Area, Pressure>,
         IMultiplyOperators<Force, Length, Torque>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<Force, Force, bool>,
+        IParsable<Force>,
 #endif
         IComparable,
         IComparable<Force>,

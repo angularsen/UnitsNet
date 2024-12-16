@@ -22,12 +22,11 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
+using System.Runtime.Serialization;
+using UnitsNet.Units;
+#if NET
 using System.Numerics;
 #endif
-using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 
 #nullable enable
 
@@ -45,6 +44,10 @@ namespace UnitsNet
         IArithmeticQuantity<PressureChangeRate, PressureChangeRateUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<PressureChangeRate, Duration, Pressure>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<PressureChangeRate, PressureChangeRate, bool>,
+        IParsable<PressureChangeRate>,
 #endif
         IComparable,
         IComparable<PressureChangeRate>,

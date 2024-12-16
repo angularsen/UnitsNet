@@ -23,8 +23,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+#if NET
+using System.Numerics;
+#endif
 
 #nullable enable
 
@@ -40,6 +42,10 @@ namespace UnitsNet
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct VolumePerLength :
         IArithmeticQuantity<VolumePerLength, VolumePerLengthUnit>,
+#if NET7_0_OR_GREATER
+        IComparisonOperators<VolumePerLength, VolumePerLength, bool>,
+        IParsable<VolumePerLength>,
+#endif
         IComparable,
         IComparable<VolumePerLength>,
         IConvertible,

@@ -22,12 +22,11 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
+using System.Runtime.Serialization;
+using UnitsNet.Units;
+#if NET
 using System.Numerics;
 #endif
-using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 
 #nullable enable
 
@@ -48,6 +47,10 @@ namespace UnitsNet
         IArithmeticQuantity<Illuminance, IlluminanceUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<Illuminance, Area, LuminousFlux>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<Illuminance, Illuminance, bool>,
+        IParsable<Illuminance>,
 #endif
         IComparable,
         IComparable<Illuminance>,

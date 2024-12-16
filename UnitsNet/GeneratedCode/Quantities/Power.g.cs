@@ -22,12 +22,11 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
+using System.Runtime.Serialization;
+using UnitsNet.Units;
+#if NET
 using System.Numerics;
 #endif
-using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 
 #nullable enable
 
@@ -58,6 +57,10 @@ namespace UnitsNet
         IDivisionOperators<Power, MassFlow, SpecificEnergy>,
         IDivisionOperators<Power, Force, Speed>,
         IDivisionOperators<Power, RotationalSpeed, Torque>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<Power, Power, bool>,
+        IParsable<Power>,
 #endif
         IComparable,
         IComparable<Power>,

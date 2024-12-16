@@ -23,8 +23,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+#if NET
+using System.Numerics;
+#endif
 
 #nullable enable
 
@@ -43,6 +45,10 @@ namespace UnitsNet
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct SolidAngle :
         IArithmeticQuantity<SolidAngle, SolidAngleUnit>,
+#if NET7_0_OR_GREATER
+        IComparisonOperators<SolidAngle, SolidAngle, bool>,
+        IParsable<SolidAngle>,
+#endif
         IComparable,
         IComparable<SolidAngle>,
         IConvertible,

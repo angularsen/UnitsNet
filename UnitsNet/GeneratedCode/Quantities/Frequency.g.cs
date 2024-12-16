@@ -22,12 +22,11 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
+using System.Runtime.Serialization;
+using UnitsNet.Units;
+#if NET
 using System.Numerics;
 #endif
-using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 
 #nullable enable
 
@@ -45,6 +44,10 @@ namespace UnitsNet
         IArithmeticQuantity<Frequency, FrequencyUnit>,
 #if NET7_0_OR_GREATER
         IMultiplyOperators<Frequency, Energy, Power>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<Frequency, Frequency, bool>,
+        IParsable<Frequency>,
 #endif
         IComparable,
         IComparable<Frequency>,

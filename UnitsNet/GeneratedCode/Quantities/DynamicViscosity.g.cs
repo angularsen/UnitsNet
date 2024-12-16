@@ -22,12 +22,11 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
+using System.Runtime.Serialization;
+using UnitsNet.Units;
+#if NET
 using System.Numerics;
 #endif
-using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 
 #nullable enable
 
@@ -49,6 +48,10 @@ namespace UnitsNet
 #if NET7_0_OR_GREATER
         IDivisionOperators<DynamicViscosity, KinematicViscosity, Density>,
         IDivisionOperators<DynamicViscosity, Density, KinematicViscosity>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<DynamicViscosity, DynamicViscosity, bool>,
+        IParsable<DynamicViscosity>,
 #endif
         IComparable,
         IComparable<DynamicViscosity>,

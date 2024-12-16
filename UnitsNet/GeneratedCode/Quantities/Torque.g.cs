@@ -22,12 +22,11 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
+using System.Runtime.Serialization;
+using UnitsNet.Units;
+#if NET
 using System.Numerics;
 #endif
-using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 
 #nullable enable
 
@@ -51,6 +50,10 @@ namespace UnitsNet
         IDivisionOperators<Torque, Force, Length>,
         IMultiplyOperators<Torque, RotationalSpeed, Power>,
         IDivisionOperators<Torque, Angle, RotationalStiffness>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<Torque, Torque, bool>,
+        IParsable<Torque>,
 #endif
         IComparable,
         IComparable<Torque>,

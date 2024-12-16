@@ -22,12 +22,11 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
+using System.Runtime.Serialization;
+using UnitsNet.Units;
+#if NET
 using System.Numerics;
 #endif
-using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 
 #nullable enable
 
@@ -46,6 +45,10 @@ namespace UnitsNet
 #if NET7_0_OR_GREATER
         IMultiplyOperators<BrakeSpecificFuelConsumption, Power, MassFlow>,
         IMultiplyOperators<BrakeSpecificFuelConsumption, SpecificEnergy, double>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<BrakeSpecificFuelConsumption, BrakeSpecificFuelConsumption, bool>,
+        IParsable<BrakeSpecificFuelConsumption>,
 #endif
         IComparable,
         IComparable<BrakeSpecificFuelConsumption>,
