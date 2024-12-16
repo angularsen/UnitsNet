@@ -23,14 +23,14 @@ namespace UnitsNet.Units
     // Disable missing XML comment warnings for the generated unit enums.
     #pragma warning disable 1591
 
-    public enum ThermalResistanceUnit
+    public enum ThermalInsulanceUnit
     {
-        HourSquareFeetDegreeFahrenheitPerBtu = 1,
-        SquareCentimeterHourDegreeCelsiusPerKilocalorie = 2,
-        SquareCentimeterKelvinPerWatt = 3,
-        SquareMeterDegreeCelsiusPerWatt = 4,
+        HourSquareFeetDegreeFahrenheitPerBtu = 2,
+        SquareCentimeterHourDegreeCelsiusPerKilocalorie = 6,
+        SquareCentimeterKelvinPerWatt = 7,
+        SquareMeterDegreeCelsiusPerWatt = 3,
         SquareMeterKelvinPerKilowatt = 5,
-        SquareMeterKelvinPerWatt = 6,
+        SquareMeterKelvinPerWatt = 4,
     }
 
     #pragma warning restore 1591

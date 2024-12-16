@@ -1862,5 +1862,13 @@
     "Sievert": 9,
     "Kilosievert": 3,
     "Megasievert": 6
+  },
+  "ThermalInsulance": {
+    "HourSquareFeetDegreeFahrenheitPerBtu": 2,
+    "SquareCentimeterHourDegreeCelsiusPerKilocalorie": 6,
+    "SquareCentimeterKelvinPerWatt": 7,
+    "SquareMeterDegreeCelsiusPerWatt": 3,
+    "SquareMeterKelvinPerKilowatt": 5,
+    "SquareMeterKelvinPerWatt": 4
   }
 }

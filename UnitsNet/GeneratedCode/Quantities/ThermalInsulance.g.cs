@@ -36,20 +36,20 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///     Heat Transfer Coefficient or Thermal conductivity - indicates a materials ability to conduct heat.
+    ///     Thermal insulance (R-value) is a measure of a material's resistance to the heat current. It quantifies how effectively a material can resist the transfer of heat through conduction, convection, and radiation. It has the units square metre kelvins per watt (m2⋅K/W) in SI units or square foot degree Fahrenheit–hours per British thermal unit (ft2⋅°F⋅h/Btu) in imperial units. The higher the thermal insulance, the better a material insulates against heat transfer. It is commonly used in construction to assess the insulation properties of materials such as walls, roofs, and insulation products.
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct ThermalResistance :
-        IArithmeticQuantity<ThermalResistance, ThermalResistanceUnit>,
+    public readonly partial struct ThermalInsulance :
+        IArithmeticQuantity<ThermalInsulance, ThermalInsulanceUnit>,
 #if NET7_0_OR_GREATER
-        IComparisonOperators<ThermalResistance, ThermalResistance, bool>,
-        IParsable<ThermalResistance>,
+        IComparisonOperators<ThermalInsulance, ThermalInsulance, bool>,
+        IParsable<ThermalInsulance>,
 #endif
         IComparable,
-        IComparable<ThermalResistance>,
+        IComparable<ThermalInsulance>,
         IConvertible,
-        IEquatable<ThermalResistance>,
+        IEquatable<ThermalInsulance>,
         IFormattable
     {
         /// <summary>
@@ -62,23 +62,23 @@ namespace UnitsNet
         ///     The unit this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Unit", Order = 2)]
-        private readonly ThermalResistanceUnit? _unit;
+        private readonly ThermalInsulanceUnit? _unit;
 
-        static ThermalResistance()
+        static ThermalInsulance()
         {
             BaseDimensions = new BaseDimensions(0, -1, 3, 0, 1, 0, 0);
-            BaseUnit = ThermalResistanceUnit.SquareMeterKelvinPerKilowatt;
-            Units = Enum.GetValues(typeof(ThermalResistanceUnit)).Cast<ThermalResistanceUnit>().ToArray();
-            Zero = new ThermalResistance(0, BaseUnit);
-            Info = new QuantityInfo<ThermalResistanceUnit>("ThermalResistance",
-                new UnitInfo<ThermalResistanceUnit>[]
+            BaseUnit = ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt;
+            Units = Enum.GetValues(typeof(ThermalInsulanceUnit)).Cast<ThermalInsulanceUnit>().ToArray();
+            Zero = new ThermalInsulance(0, BaseUnit);
+            Info = new QuantityInfo<ThermalInsulanceUnit>("ThermalInsulance",
+                new UnitInfo<ThermalInsulanceUnit>[]
                 {
-                    new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, "HourSquareFeetDegreesFahrenheitPerBtu", BaseUnits.Undefined, "ThermalResistance"),
-                    new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, "SquareCentimeterHourDegreesCelsiusPerKilocalorie", BaseUnits.Undefined, "ThermalResistance"),
-                    new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.SquareCentimeterKelvinPerWatt, "SquareCentimeterKelvinsPerWatt", BaseUnits.Undefined, "ThermalResistance"),
-                    new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt, "SquareMeterDegreesCelsiusPerWatt", BaseUnits.Undefined, "ThermalResistance"),
-                    new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, "SquareMeterKelvinsPerKilowatt", BaseUnits.Undefined, "ThermalResistance"),
-                    new UnitInfo<ThermalResistanceUnit>(ThermalResistanceUnit.SquareMeterKelvinPerWatt, "SquareMeterKelvinsPerWatt", BaseUnits.Undefined, "ThermalResistance"),
+                    new UnitInfo<ThermalInsulanceUnit>(ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, "HourSquareFeetDegreesFahrenheitPerBtu", BaseUnits.Undefined, "ThermalInsulance"),
+                    new UnitInfo<ThermalInsulanceUnit>(ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, "SquareCentimeterHourDegreesCelsiusPerKilocalorie", BaseUnits.Undefined, "ThermalInsulance"),
+                    new UnitInfo<ThermalInsulanceUnit>(ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt, "SquareCentimeterKelvinsPerWatt", BaseUnits.Undefined, "ThermalInsulance"),
+                    new UnitInfo<ThermalInsulanceUnit>(ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt, "SquareMeterDegreesCelsiusPerWatt", BaseUnits.Undefined, "ThermalInsulance"),
+                    new UnitInfo<ThermalInsulanceUnit>(ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, "SquareMeterKelvinsPerKilowatt", BaseUnits.Undefined, "ThermalInsulance"),
+                    new UnitInfo<ThermalInsulanceUnit>(ThermalInsulanceUnit.SquareMeterKelvinPerWatt, "SquareMeterKelvinsPerWatt", BaseUnits.Undefined, "ThermalInsulance"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -91,7 +91,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public ThermalResistance(double value, ThermalResistanceUnit unit)
+        public ThermalInsulance(double value, ThermalInsulanceUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -105,7 +105,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ThermalResistance(double value, UnitSystem unitSystem)
+        public ThermalInsulance(double value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
@@ -119,12 +119,12 @@ namespace UnitsNet
         #region Static Properties
 
         /// <summary>
-        ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="ThermalResistance" /> instances.
+        ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="ThermalInsulance" /> instances.
         /// </summary>
         public static UnitConverter DefaultConversionFunctions { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ThermalResistanceUnit> Info { get; }
+        public static QuantityInfo<ThermalInsulanceUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -132,22 +132,22 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of ThermalResistance, which is SquareMeterKelvinPerKilowatt. All conversions go via this value.
+        ///     The base unit of ThermalInsulance, which is SquareMeterKelvinPerKilowatt. All conversions go via this value.
         /// </summary>
-        public static ThermalResistanceUnit BaseUnit { get; }
+        public static ThermalInsulanceUnit BaseUnit { get; }
 
         /// <summary>
-        ///     All units of measurement for the ThermalResistance quantity.
+        ///     All units of measurement for the ThermalInsulance quantity.
         /// </summary>
-        public static ThermalResistanceUnit[] Units { get; }
+        public static ThermalInsulanceUnit[] Units { get; }
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit SquareMeterKelvinPerKilowatt.
         /// </summary>
-        public static ThermalResistance Zero { get; }
+        public static ThermalInsulance Zero { get; }
 
         /// <inheritdoc cref="Zero"/>
-        public static ThermalResistance AdditiveIdentity => Zero;
+        public static ThermalInsulance AdditiveIdentity => Zero;
 
         #endregion
 
@@ -164,10 +164,10 @@ namespace UnitsNet
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
-        public ThermalResistanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+        public ThermalInsulanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <inheritdoc />
-        public QuantityInfo<ThermalResistanceUnit> QuantityInfo => Info;
+        public QuantityInfo<ThermalInsulanceUnit> QuantityInfo => Info;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
@@ -175,41 +175,41 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public BaseDimensions Dimensions => ThermalResistance.BaseDimensions;
+        public BaseDimensions Dimensions => ThermalInsulance.BaseDimensions;
 
         #endregion
 
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu"/>
         /// </summary>
-        public double HourSquareFeetDegreesFahrenheitPerBtu => As(ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu);
+        public double HourSquareFeetDegreesFahrenheitPerBtu => As(ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie"/>
         /// </summary>
-        public double SquareCentimeterHourDegreesCelsiusPerKilocalorie => As(ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie);
+        public double SquareCentimeterHourDegreesCelsiusPerKilocalorie => As(ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalResistanceUnit.SquareCentimeterKelvinPerWatt"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt"/>
         /// </summary>
-        public double SquareCentimeterKelvinsPerWatt => As(ThermalResistanceUnit.SquareCentimeterKelvinPerWatt);
+        public double SquareCentimeterKelvinsPerWatt => As(ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt"/>
         /// </summary>
-        public double SquareMeterDegreesCelsiusPerWatt => As(ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt);
+        public double SquareMeterDegreesCelsiusPerWatt => As(ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalResistanceUnit.SquareMeterKelvinPerKilowatt"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt"/>
         /// </summary>
-        public double SquareMeterKelvinsPerKilowatt => As(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt);
+        public double SquareMeterKelvinsPerKilowatt => As(ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalResistanceUnit.SquareMeterKelvinPerWatt"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalInsulanceUnit.SquareMeterKelvinPerWatt"/>
         /// </summary>
-        public double SquareMeterKelvinsPerWatt => As(ThermalResistanceUnit.SquareMeterKelvinPerWatt);
+        public double SquareMeterKelvinsPerWatt => As(ThermalInsulanceUnit.SquareMeterKelvinPerWatt);
 
         #endregion
 
@@ -221,22 +221,22 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: ThermalResistanceUnit -> BaseUnit
-            unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, quantity => quantity.ToUnit(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt));
-            unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, quantity => quantity.ToUnit(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt));
-            unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareCentimeterKelvinPerWatt, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, quantity => quantity.ToUnit(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt));
-            unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, quantity => quantity.ToUnit(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt));
-            unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerWatt, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, quantity => quantity.ToUnit(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt));
+            // Register in unit converter: ThermalInsulanceUnit -> BaseUnit
+            unitConverter.SetConversionFunction<ThermalInsulance>(ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, quantity => quantity.ToUnit(ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt));
+            unitConverter.SetConversionFunction<ThermalInsulance>(ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, quantity => quantity.ToUnit(ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt));
+            unitConverter.SetConversionFunction<ThermalInsulance>(ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, quantity => quantity.ToUnit(ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt));
+            unitConverter.SetConversionFunction<ThermalInsulance>(ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, quantity => quantity.ToUnit(ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt));
+            unitConverter.SetConversionFunction<ThermalInsulance>(ThermalInsulanceUnit.SquareMeterKelvinPerWatt, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, quantity => quantity.ToUnit(ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
-            unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, quantity => quantity);
+            unitConverter.SetConversionFunction<ThermalInsulance>(ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, quantity => quantity);
 
-            // Register in unit converter: BaseUnit -> ThermalResistanceUnit
-            unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, quantity => quantity.ToUnit(ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu));
-            unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, quantity => quantity.ToUnit(ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie));
-            unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareCentimeterKelvinPerWatt, quantity => quantity.ToUnit(ThermalResistanceUnit.SquareCentimeterKelvinPerWatt));
-            unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt, quantity => quantity.ToUnit(ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt));
-            unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareMeterKelvinPerWatt, quantity => quantity.ToUnit(ThermalResistanceUnit.SquareMeterKelvinPerWatt));
+            // Register in unit converter: BaseUnit -> ThermalInsulanceUnit
+            unitConverter.SetConversionFunction<ThermalInsulance>(ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, quantity => quantity.ToUnit(ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu));
+            unitConverter.SetConversionFunction<ThermalInsulance>(ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, quantity => quantity.ToUnit(ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie));
+            unitConverter.SetConversionFunction<ThermalInsulance>(ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt, quantity => quantity.ToUnit(ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt));
+            unitConverter.SetConversionFunction<ThermalInsulance>(ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt, quantity => quantity.ToUnit(ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt));
+            unitConverter.SetConversionFunction<ThermalInsulance>(ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, ThermalInsulanceUnit.SquareMeterKelvinPerWatt, quantity => quantity.ToUnit(ThermalInsulanceUnit.SquareMeterKelvinPerWatt));
         }
 
         /// <summary>
@@ -244,7 +244,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        public static string GetAbbreviation(ThermalResistanceUnit unit)
+        public static string GetAbbreviation(ThermalInsulanceUnit unit)
         {
             return GetAbbreviation(unit, null);
         }
@@ -255,7 +255,7 @@ namespace UnitsNet
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static string GetAbbreviation(ThermalResistanceUnit unit, IFormatProvider? provider)
+        public static string GetAbbreviation(ThermalInsulanceUnit unit, IFormatProvider? provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
@@ -265,62 +265,62 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Creates a <see cref="ThermalResistance"/> from <see cref="ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu"/>.
+        ///     Creates a <see cref="ThermalInsulance"/> from <see cref="ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu"/>.
         /// </summary>
-        public static ThermalResistance FromHourSquareFeetDegreesFahrenheitPerBtu(double value)
+        public static ThermalInsulance FromHourSquareFeetDegreesFahrenheitPerBtu(double value)
         {
-            return new ThermalResistance(value, ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu);
+            return new ThermalInsulance(value, ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu);
         }
 
         /// <summary>
-        ///     Creates a <see cref="ThermalResistance"/> from <see cref="ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie"/>.
+        ///     Creates a <see cref="ThermalInsulance"/> from <see cref="ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie"/>.
         /// </summary>
-        public static ThermalResistance FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(double value)
+        public static ThermalInsulance FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(double value)
         {
-            return new ThermalResistance(value, ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie);
+            return new ThermalInsulance(value, ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie);
         }
 
         /// <summary>
-        ///     Creates a <see cref="ThermalResistance"/> from <see cref="ThermalResistanceUnit.SquareCentimeterKelvinPerWatt"/>.
+        ///     Creates a <see cref="ThermalInsulance"/> from <see cref="ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt"/>.
         /// </summary>
-        public static ThermalResistance FromSquareCentimeterKelvinsPerWatt(double value)
+        public static ThermalInsulance FromSquareCentimeterKelvinsPerWatt(double value)
         {
-            return new ThermalResistance(value, ThermalResistanceUnit.SquareCentimeterKelvinPerWatt);
+            return new ThermalInsulance(value, ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt);
         }
 
         /// <summary>
-        ///     Creates a <see cref="ThermalResistance"/> from <see cref="ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt"/>.
+        ///     Creates a <see cref="ThermalInsulance"/> from <see cref="ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt"/>.
         /// </summary>
-        public static ThermalResistance FromSquareMeterDegreesCelsiusPerWatt(double value)
+        public static ThermalInsulance FromSquareMeterDegreesCelsiusPerWatt(double value)
         {
-            return new ThermalResistance(value, ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt);
+            return new ThermalInsulance(value, ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt);
         }
 
         /// <summary>
-        ///     Creates a <see cref="ThermalResistance"/> from <see cref="ThermalResistanceUnit.SquareMeterKelvinPerKilowatt"/>.
+        ///     Creates a <see cref="ThermalInsulance"/> from <see cref="ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt"/>.
         /// </summary>
-        public static ThermalResistance FromSquareMeterKelvinsPerKilowatt(double value)
+        public static ThermalInsulance FromSquareMeterKelvinsPerKilowatt(double value)
         {
-            return new ThermalResistance(value, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt);
+            return new ThermalInsulance(value, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt);
         }
 
         /// <summary>
-        ///     Creates a <see cref="ThermalResistance"/> from <see cref="ThermalResistanceUnit.SquareMeterKelvinPerWatt"/>.
+        ///     Creates a <see cref="ThermalInsulance"/> from <see cref="ThermalInsulanceUnit.SquareMeterKelvinPerWatt"/>.
         /// </summary>
-        public static ThermalResistance FromSquareMeterKelvinsPerWatt(double value)
+        public static ThermalInsulance FromSquareMeterKelvinsPerWatt(double value)
         {
-            return new ThermalResistance(value, ThermalResistanceUnit.SquareMeterKelvinPerWatt);
+            return new ThermalInsulance(value, ThermalInsulanceUnit.SquareMeterKelvinPerWatt);
         }
 
         /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ThermalResistanceUnit" /> to <see cref="ThermalResistance" />.
+        ///     Dynamically convert from value and unit enum <see cref="ThermalInsulanceUnit" /> to <see cref="ThermalInsulance" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ThermalResistance unit value.</returns>
-        public static ThermalResistance From(double value, ThermalResistanceUnit fromUnit)
+        /// <returns>ThermalInsulance unit value.</returns>
+        public static ThermalInsulance From(double value, ThermalInsulanceUnit fromUnit)
         {
-            return new ThermalResistance(value, fromUnit);
+            return new ThermalInsulance(value, fromUnit);
         }
 
         #endregion
@@ -349,7 +349,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static ThermalResistance Parse(string str)
+        public static ThermalInsulance Parse(string str)
         {
             return Parse(str, null);
         }
@@ -377,9 +377,9 @@ namespace UnitsNet
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static ThermalResistance Parse(string str, IFormatProvider? provider)
+        public static ThermalInsulance Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<ThermalResistance, ThermalResistanceUnit>(
+            return QuantityParser.Default.Parse<ThermalInsulance, ThermalInsulanceUnit>(
                 str,
                 provider,
                 From);
@@ -393,7 +393,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([NotNullWhen(true)]string? str, out ThermalResistance result)
+        public static bool TryParse([NotNullWhen(true)]string? str, out ThermalInsulance result)
         {
             return TryParse(str, null, out result);
         }
@@ -408,9 +408,9 @@ namespace UnitsNet
         ///     Length.Parse("5.5 m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out ThermalResistance result)
+        public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out ThermalInsulance result)
         {
-            return QuantityParser.Default.TryParse<ThermalResistance, ThermalResistanceUnit>(
+            return QuantityParser.Default.TryParse<ThermalInsulance, ThermalInsulanceUnit>(
                 str,
                 provider,
                 From,
@@ -426,7 +426,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static ThermalResistanceUnit ParseUnit(string str)
+        public static ThermalInsulanceUnit ParseUnit(string str)
         {
             return ParseUnit(str, null);
         }
@@ -441,13 +441,13 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static ThermalResistanceUnit ParseUnit(string str, IFormatProvider? provider)
+        public static ThermalInsulanceUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<ThermalResistanceUnit>(str, provider);
+            return UnitParser.Default.Parse<ThermalInsulanceUnit>(str, provider);
         }
 
-        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.ThermalResistanceUnit)"/>
-        public static bool TryParseUnit([NotNullWhen(true)]string? str, out ThermalResistanceUnit unit)
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.ThermalInsulanceUnit)"/>
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, out ThermalInsulanceUnit unit)
         {
             return TryParseUnit(str, null, out unit);
         }
@@ -462,9 +462,9 @@ namespace UnitsNet
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out ThermalResistanceUnit unit)
+        public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out ThermalInsulanceUnit unit)
         {
-            return UnitParser.Default.TryParse<ThermalResistanceUnit>(str, provider, out unit);
+            return UnitParser.Default.TryParse<ThermalInsulanceUnit>(str, provider, out unit);
         }
 
         #endregion
@@ -472,43 +472,43 @@ namespace UnitsNet
         #region Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static ThermalResistance operator -(ThermalResistance right)
+        public static ThermalInsulance operator -(ThermalInsulance right)
         {
-            return new ThermalResistance(-right.Value, right.Unit);
+            return new ThermalInsulance(-right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="ThermalResistance"/> from adding two <see cref="ThermalResistance"/>.</summary>
-        public static ThermalResistance operator +(ThermalResistance left, ThermalResistance right)
+        /// <summary>Get <see cref="ThermalInsulance"/> from adding two <see cref="ThermalInsulance"/>.</summary>
+        public static ThermalInsulance operator +(ThermalInsulance left, ThermalInsulance right)
         {
-            return new ThermalResistance(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
+            return new ThermalInsulance(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
-        /// <summary>Get <see cref="ThermalResistance"/> from subtracting two <see cref="ThermalResistance"/>.</summary>
-        public static ThermalResistance operator -(ThermalResistance left, ThermalResistance right)
+        /// <summary>Get <see cref="ThermalInsulance"/> from subtracting two <see cref="ThermalInsulance"/>.</summary>
+        public static ThermalInsulance operator -(ThermalInsulance left, ThermalInsulance right)
         {
-            return new ThermalResistance(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
+            return new ThermalInsulance(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
-        /// <summary>Get <see cref="ThermalResistance"/> from multiplying value and <see cref="ThermalResistance"/>.</summary>
-        public static ThermalResistance operator *(double left, ThermalResistance right)
+        /// <summary>Get <see cref="ThermalInsulance"/> from multiplying value and <see cref="ThermalInsulance"/>.</summary>
+        public static ThermalInsulance operator *(double left, ThermalInsulance right)
         {
-            return new ThermalResistance(left * right.Value, right.Unit);
+            return new ThermalInsulance(left * right.Value, right.Unit);
         }
 
-        /// <summary>Get <see cref="ThermalResistance"/> from multiplying value and <see cref="ThermalResistance"/>.</summary>
-        public static ThermalResistance operator *(ThermalResistance left, double right)
+        /// <summary>Get <see cref="ThermalInsulance"/> from multiplying value and <see cref="ThermalInsulance"/>.</summary>
+        public static ThermalInsulance operator *(ThermalInsulance left, double right)
         {
-            return new ThermalResistance(left.Value * right, left.Unit);
+            return new ThermalInsulance(left.Value * right, left.Unit);
         }
 
-        /// <summary>Get <see cref="ThermalResistance"/> from dividing <see cref="ThermalResistance"/> by value.</summary>
-        public static ThermalResistance operator /(ThermalResistance left, double right)
+        /// <summary>Get <see cref="ThermalInsulance"/> from dividing <see cref="ThermalInsulance"/> by value.</summary>
+        public static ThermalInsulance operator /(ThermalInsulance left, double right)
         {
-            return new ThermalResistance(left.Value / right, left.Unit);
+            return new ThermalInsulance(left.Value / right, left.Unit);
         }
 
-        /// <summary>Get ratio value from dividing <see cref="ThermalResistance"/> by <see cref="ThermalResistance"/>.</summary>
-        public static double operator /(ThermalResistance left, ThermalResistance right)
+        /// <summary>Get ratio value from dividing <see cref="ThermalInsulance"/> by <see cref="ThermalInsulance"/>.</summary>
+        public static double operator /(ThermalInsulance left, ThermalInsulance right)
         {
             return left.SquareMeterKelvinsPerKilowatt / right.SquareMeterKelvinsPerKilowatt;
         }
@@ -518,25 +518,25 @@ namespace UnitsNet
         #region Equality / IComparable
 
         /// <summary>Returns true if less or equal to.</summary>
-        public static bool operator <=(ThermalResistance left, ThermalResistance right)
+        public static bool operator <=(ThermalInsulance left, ThermalInsulance right)
         {
             return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
-        public static bool operator >=(ThermalResistance left, ThermalResistance right)
+        public static bool operator >=(ThermalInsulance left, ThermalInsulance right)
         {
             return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
-        public static bool operator <(ThermalResistance left, ThermalResistance right)
+        public static bool operator <(ThermalInsulance left, ThermalInsulance right)
         {
             return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
-        public static bool operator >(ThermalResistance left, ThermalResistance right)
+        public static bool operator >(ThermalInsulance left, ThermalInsulance right)
         {
             return left.Value > right.ToUnit(left.Unit).Value;
         }
@@ -545,42 +545,42 @@ namespace UnitsNet
         // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
         #pragma warning disable CS0809
 
-        /// <summary>Indicates strict equality of two <see cref="ThermalResistance"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(ThermalResistance other, ThermalResistance tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
-        public static bool operator ==(ThermalResistance left, ThermalResistance right)
+        /// <summary>Indicates strict equality of two <see cref="ThermalInsulance"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(ThermalInsulance other, ThermalInsulance tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        public static bool operator ==(ThermalInsulance left, ThermalInsulance right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="ThermalResistance"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(ThermalResistance other, ThermalResistance tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
-        public static bool operator !=(ThermalResistance left, ThermalResistance right)
+        /// <summary>Indicates strict inequality of two <see cref="ThermalInsulance"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(ThermalInsulance other, ThermalInsulance tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        public static bool operator !=(ThermalInsulance left, ThermalInsulance right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="ThermalResistance"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(ThermalResistance other, ThermalResistance tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="ThermalInsulance"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
+        [Obsolete("Use Equals(ThermalInsulance other, ThermalInsulance tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
         public override bool Equals(object? obj)
         {
-            if (obj is null || !(obj is ThermalResistance otherQuantity))
+            if (obj is null || !(obj is ThermalInsulance otherQuantity))
                 return false;
 
             return Equals(otherQuantity);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="ThermalResistance"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(ThermalResistance other, ThermalResistance tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
-        public bool Equals(ThermalResistance other)
+        /// <summary>Indicates strict equality of two <see cref="ThermalInsulance"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
+        [Obsolete("Use Equals(ThermalInsulance other, ThermalInsulance tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        public bool Equals(ThermalInsulance other)
         {
             return new { Value, Unit }.Equals(new { other.Value, other.Unit });
         }
 
         #pragma warning restore CS0809
 
-        /// <summary>Compares the current <see cref="ThermalResistance"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <summary>Compares the current <see cref="ThermalInsulance"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">
         ///    <paramref name="obj" /> is not the same type as this instance.
@@ -596,12 +596,12 @@ namespace UnitsNet
         public int CompareTo(object? obj)
         {
             if (obj is null) throw new ArgumentNullException(nameof(obj));
-            if (!(obj is ThermalResistance otherQuantity)) throw new ArgumentException("Expected type ThermalResistance.", nameof(obj));
+            if (!(obj is ThermalInsulance otherQuantity)) throw new ArgumentException("Expected type ThermalInsulance.", nameof(obj));
 
             return CompareTo(otherQuantity);
         }
 
-        /// <summary>Compares the current <see cref="ThermalResistance"/> with another <see cref="ThermalResistance"/> and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <summary>Compares the current <see cref="ThermalInsulance"/> with another <see cref="ThermalInsulance"/> and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
         /// <param name="other">A quantity to compare with this instance.</param>
         /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
         ///     <list type="table">
@@ -611,14 +611,14 @@ namespace UnitsNet
         ///         <item><term> Greater than zero</term><description> This instance follows <paramref name="other" /> in the sort order.</description></item>
         ///     </list>
         /// </returns>
-        public int CompareTo(ThermalResistance other)
+        public int CompareTo(ThermalInsulance other)
         {
             return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
         ///     <para>
-        ///     Compare equality to another ThermalResistance within the given absolute or relative tolerance.
+        ///     Compare equality to another ThermalInsulance within the given absolute or relative tolerance.
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
@@ -656,8 +656,8 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        [Obsolete("Use Equals(ThermalResistance other, ThermalResistance tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
-        public bool Equals(ThermalResistance other, double tolerance, ComparisonType comparisonType)
+        [Obsolete("Use Equals(ThermalInsulance other, ThermalInsulance tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        public bool Equals(ThermalInsulance other, double tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
@@ -672,15 +672,15 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(IQuantity? other, IQuantity tolerance)
         {
-            return other is ThermalResistance otherTyped
-                   && (tolerance is ThermalResistance toleranceTyped
+            return other is ThermalInsulance otherTyped
+                   && (tolerance is ThermalInsulance toleranceTyped
                        ? true
-                       : throw new ArgumentException($"Tolerance quantity ({tolerance.QuantityInfo.Name}) did not match the other quantities of type 'ThermalResistance'.", nameof(tolerance)))
+                       : throw new ArgumentException($"Tolerance quantity ({tolerance.QuantityInfo.Name}) did not match the other quantities of type 'ThermalInsulance'.", nameof(tolerance)))
                    && Equals(otherTyped, toleranceTyped);
         }
 
         /// <inheritdoc />
-        public bool Equals(ThermalResistance other, ThermalResistance tolerance)
+        public bool Equals(ThermalInsulance other, ThermalInsulance tolerance)
         {
             return UnitsNet.Comparison.Equals(
                 referenceValue: this.Value,
@@ -692,7 +692,7 @@ namespace UnitsNet
         /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
-        /// <returns>A hash code for the current ThermalResistance.</returns>
+        /// <returns>A hash code for the current ThermalInsulance.</returns>
         public override int GetHashCode()
         {
             return new { Info.Name, Value, Unit }.GetHashCode();
@@ -706,7 +706,7 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(ThermalResistanceUnit unit)
+        public double As(ThermalInsulanceUnit unit)
         {
             if (Unit == unit)
                 return Value;
@@ -732,39 +732,39 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if (!(unit is ThermalResistanceUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ThermalResistanceUnit)} is supported.", nameof(unit));
+            if (!(unit is ThermalInsulanceUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ThermalInsulanceUnit)} is supported.", nameof(unit));
 
             return As(typedUnit);
         }
 
         /// <summary>
-        ///     Converts this ThermalResistance to another ThermalResistance with the unit representation <paramref name="unit" />.
+        ///     Converts this ThermalInsulance to another ThermalInsulance with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>
-        /// <returns>A ThermalResistance with the specified unit.</returns>
-        public ThermalResistance ToUnit(ThermalResistanceUnit unit)
+        /// <returns>A ThermalInsulance with the specified unit.</returns>
+        public ThermalInsulance ToUnit(ThermalInsulanceUnit unit)
         {
             return ToUnit(unit, DefaultConversionFunctions);
         }
 
         /// <summary>
-        ///     Converts this <see cref="ThermalResistance"/> to another <see cref="ThermalResistance"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="ThermalInsulance"/> to another <see cref="ThermalInsulance"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
-        /// <returns>A ThermalResistance with the specified unit.</returns>
-        public ThermalResistance ToUnit(ThermalResistanceUnit unit, UnitConverter unitConverter)
+        /// <returns>A ThermalInsulance with the specified unit.</returns>
+        public ThermalInsulance ToUnit(ThermalInsulanceUnit unit, UnitConverter unitConverter)
         {
             if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
             }
-            else if (unitConverter.TryGetConversionFunction((typeof(ThermalResistance), Unit, typeof(ThermalResistance), unit), out var conversionFunction))
+            else if (unitConverter.TryGetConversionFunction((typeof(ThermalInsulance), Unit, typeof(ThermalInsulance), unit), out var conversionFunction))
             {
                 // See if the unit converter has an extensibility conversion registered.
-                return (ThermalResistance)conversionFunction(this);
+                return (ThermalInsulance)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
@@ -780,12 +780,12 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Attempts to convert this <see cref="ThermalResistance"/> to another <see cref="ThermalResistance"/> with the unit representation <paramref name="unit" />.
+        ///     Attempts to convert this <see cref="ThermalInsulance"/> to another <see cref="ThermalInsulance"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>
-        /// <param name="converted">The converted <see cref="ThermalResistance"/> in <paramref name="unit"/>, if successful.</param>
+        /// <param name="converted">The converted <see cref="ThermalInsulance"/> in <paramref name="unit"/>, if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
-        private bool TryToUnit(ThermalResistanceUnit unit, [NotNullWhen(true)] out ThermalResistance? converted)
+        private bool TryToUnit(ThermalInsulanceUnit unit, [NotNullWhen(true)] out ThermalInsulance? converted)
         {
             if (Unit == unit)
             {
@@ -793,21 +793,21 @@ namespace UnitsNet
                 return true;
             }
 
-            ThermalResistance? convertedOrNull = (Unit, unit) switch
+            ThermalInsulance? convertedOrNull = (Unit, unit) switch
             {
-                // ThermalResistanceUnit -> BaseUnit
-                (ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt) => new ThermalResistance(_value * 176.1121482159839, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt),
-                (ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt) => new ThermalResistance(_value * 0.0859779507590433, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt),
-                (ThermalResistanceUnit.SquareCentimeterKelvinPerWatt, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt) => new ThermalResistance(_value * 0.1, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt),
-                (ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt) => new ThermalResistance(_value * 1000.0, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt),
-                (ThermalResistanceUnit.SquareMeterKelvinPerWatt, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt) => new ThermalResistance(_value * 1000, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt),
+                // ThermalInsulanceUnit -> BaseUnit
+                (ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt) => new ThermalInsulance(_value * 176.1121482159839, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt),
+                (ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt) => new ThermalInsulance(_value * 0.0859779507590433, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt),
+                (ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt) => new ThermalInsulance(_value * 0.1, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt),
+                (ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt) => new ThermalInsulance(_value * 1000.0, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt),
+                (ThermalInsulanceUnit.SquareMeterKelvinPerWatt, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt) => new ThermalInsulance(_value * 1000, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt),
 
-                // BaseUnit -> ThermalResistanceUnit
-                (ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu) => new ThermalResistance(_value / 176.1121482159839, ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu),
-                (ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie) => new ThermalResistance(_value / 0.0859779507590433, ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie),
-                (ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareCentimeterKelvinPerWatt) => new ThermalResistance(_value / 0.1, ThermalResistanceUnit.SquareCentimeterKelvinPerWatt),
-                (ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt) => new ThermalResistance(_value / 1000.0, ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt),
-                (ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareMeterKelvinPerWatt) => new ThermalResistance(_value / 1000, ThermalResistanceUnit.SquareMeterKelvinPerWatt),
+                // BaseUnit -> ThermalInsulanceUnit
+                (ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu) => new ThermalInsulance(_value / 176.1121482159839, ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu),
+                (ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie) => new ThermalInsulance(_value / 0.0859779507590433, ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie),
+                (ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt) => new ThermalInsulance(_value / 0.1, ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt),
+                (ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt) => new ThermalInsulance(_value / 1000.0, ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt),
+                (ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, ThermalInsulanceUnit.SquareMeterKelvinPerWatt) => new ThermalInsulance(_value / 1000, ThermalInsulanceUnit.SquareMeterKelvinPerWatt),
 
                 _ => null
             };
@@ -825,14 +825,14 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if (!(unit is ThermalResistanceUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ThermalResistanceUnit)} is supported.", nameof(unit));
+            if (!(unit is ThermalInsulanceUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ThermalInsulanceUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public ThermalResistance ToUnit(UnitSystem unitSystem)
+        public ThermalInsulance ToUnit(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -850,10 +850,10 @@ namespace UnitsNet
         IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         /// <inheritdoc />
-        IQuantity<ThermalResistanceUnit> IQuantity<ThermalResistanceUnit>.ToUnit(ThermalResistanceUnit unit) => ToUnit(unit);
+        IQuantity<ThermalInsulanceUnit> IQuantity<ThermalInsulanceUnit>.ToUnit(ThermalInsulanceUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<ThermalResistanceUnit> IQuantity<ThermalResistanceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity<ThermalInsulanceUnit> IQuantity<ThermalInsulanceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
 
@@ -898,7 +898,7 @@ namespace UnitsNet
         /// <returns>The string representation.</returns>
         public string ToString(string? format, IFormatProvider? provider)
         {
-            return QuantityFormatter.Format<ThermalResistanceUnit>(this, format, provider);
+            return QuantityFormatter.Format<ThermalInsulanceUnit>(this, format, provider);
         }
 
         #endregion
@@ -912,7 +912,7 @@ namespace UnitsNet
 
         bool IConvertible.ToBoolean(IFormatProvider? provider)
         {
-            throw new InvalidCastException($"Converting {typeof(ThermalResistance)} to bool is not supported.");
+            throw new InvalidCastException($"Converting {typeof(ThermalInsulance)} to bool is not supported.");
         }
 
         byte IConvertible.ToByte(IFormatProvider? provider)
@@ -922,12 +922,12 @@ namespace UnitsNet
 
         char IConvertible.ToChar(IFormatProvider? provider)
         {
-            throw new InvalidCastException($"Converting {typeof(ThermalResistance)} to char is not supported.");
+            throw new InvalidCastException($"Converting {typeof(ThermalInsulance)} to char is not supported.");
         }
 
         DateTime IConvertible.ToDateTime(IFormatProvider? provider)
         {
-            throw new InvalidCastException($"Converting {typeof(ThermalResistance)} to DateTime is not supported.");
+            throw new InvalidCastException($"Converting {typeof(ThermalInsulance)} to DateTime is not supported.");
         }
 
         decimal IConvertible.ToDecimal(IFormatProvider? provider)
@@ -972,16 +972,16 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)
         {
-            if (conversionType == typeof(ThermalResistance))
+            if (conversionType == typeof(ThermalInsulance))
                 return this;
-            else if (conversionType == typeof(ThermalResistanceUnit))
+            else if (conversionType == typeof(ThermalInsulanceUnit))
                 return Unit;
             else if (conversionType == typeof(QuantityInfo))
-                return ThermalResistance.Info;
+                return ThermalInsulance.Info;
             else if (conversionType == typeof(BaseDimensions))
-                return ThermalResistance.BaseDimensions;
+                return ThermalInsulance.BaseDimensions;
             else
-                throw new InvalidCastException($"Converting {typeof(ThermalResistance)} to {conversionType} is not supported.");
+                throw new InvalidCastException($"Converting {typeof(ThermalInsulance)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider? provider)
