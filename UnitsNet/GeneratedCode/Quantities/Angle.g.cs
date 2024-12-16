@@ -22,12 +22,11 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
+using System.Runtime.Serialization;
+using UnitsNet.Units;
+#if NET
 using System.Numerics;
 #endif
-using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 
 #nullable enable
 
@@ -47,6 +46,10 @@ namespace UnitsNet
         IDivisionOperators<Angle, RotationalSpeed, Duration>,
         IDivisionOperators<Angle, Duration, RotationalSpeed>,
         IMultiplyOperators<Angle, RotationalStiffness, Torque>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<Angle, Angle, bool>,
+        IParsable<Angle>,
 #endif
         IComparable,
         IComparable<Angle>,

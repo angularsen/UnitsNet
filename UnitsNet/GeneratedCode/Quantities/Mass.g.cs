@@ -22,12 +22,11 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
+using System.Runtime.Serialization;
+using UnitsNet.Units;
+#if NET
 using System.Numerics;
 #endif
-using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 
 #nullable enable
 
@@ -60,6 +59,10 @@ namespace UnitsNet
         IDivisionOperators<Mass, AmountOfSubstance, MolarMass>,
         IMultiplyOperators<Mass, SpecificVolume, Volume>,
         IDivisionOperators<Mass, Density, Volume>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<Mass, Mass, bool>,
+        IParsable<Mass>,
 #endif
         IComparable,
         IComparable<Mass>,

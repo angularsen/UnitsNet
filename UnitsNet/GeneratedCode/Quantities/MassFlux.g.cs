@@ -22,12 +22,11 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
+using System.Runtime.Serialization;
+using UnitsNet.Units;
+#if NET
 using System.Numerics;
 #endif
-using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 
 #nullable enable
 
@@ -47,6 +46,10 @@ namespace UnitsNet
         IDivisionOperators<MassFlux, Speed, Density>,
         IMultiplyOperators<MassFlux, Area, MassFlow>,
         IDivisionOperators<MassFlux, Density, Speed>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<MassFlux, MassFlux, bool>,
+        IParsable<MassFlux>,
 #endif
         IComparable,
         IComparable<MassFlux>,

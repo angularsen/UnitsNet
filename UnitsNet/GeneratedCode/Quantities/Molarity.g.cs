@@ -22,12 +22,11 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-#if NET7_0_OR_GREATER
+using System.Runtime.Serialization;
+using UnitsNet.Units;
+#if NET
 using System.Numerics;
 #endif
-using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
 
 #nullable enable
 
@@ -52,6 +51,10 @@ namespace UnitsNet
         IMultiplyOperators<Molarity, VolumeFlow, MolarFlow>,
         IMultiplyOperators<Molarity, VolumeConcentration, Molarity>,
         IDivisionOperators<Molarity, VolumeConcentration, Molarity>,
+#endif
+#if NET7_0_OR_GREATER
+        IComparisonOperators<Molarity, Molarity, bool>,
+        IParsable<Molarity>,
 #endif
         IComparable,
         IComparable<Molarity>,

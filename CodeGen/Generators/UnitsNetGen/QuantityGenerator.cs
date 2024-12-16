@@ -38,14 +38,12 @@ using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;");
-            if (_quantity.Relations.Any(r => r.Operator is "*" or "/"))
-                Writer.WL(@"#if NET7_0_OR_GREATER
-using System.Numerics;
-#endif");
-            Writer.WL(@"using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
+using System.Linq;
+using System.Runtime.Serialization;
 using UnitsNet.Units;
+#if NET
+using System.Numerics;
+#endif
 
 #nullable enable
 
@@ -101,6 +99,10 @@ namespace UnitsNet
             }
 
             Writer.WL(@$"
+#if NET7_0_OR_GREATER
+        IComparisonOperators<{_quantity.Name}, {_quantity.Name}, bool>,
+        IParsable<{_quantity.Name}>,
+#endif
         IComparable,
         IComparable<{_quantity.Name}>,
         IConvertible,

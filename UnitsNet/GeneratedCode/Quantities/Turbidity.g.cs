@@ -23,8 +23,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+#if NET
+using System.Numerics;
+#endif
 
 #nullable enable
 
@@ -43,6 +45,10 @@ namespace UnitsNet
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct Turbidity :
         IArithmeticQuantity<Turbidity, TurbidityUnit>,
+#if NET7_0_OR_GREATER
+        IComparisonOperators<Turbidity, Turbidity, bool>,
+        IParsable<Turbidity>,
+#endif
         IComparable,
         IComparable<Turbidity>,
         IConvertible,

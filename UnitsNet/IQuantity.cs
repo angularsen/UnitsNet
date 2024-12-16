@@ -143,19 +143,11 @@ namespace UnitsNet
     }
 
     /// <summary>
-    ///     An <see cref="IQuantity{TUnitType}"/> that (in .NET 7+) implements generic math interfaces for equality, comparison and parsing.
+    ///     An <see cref="IQuantity{TUnitType}"/> that supports generic equality comparison with tolerance.
     /// </summary>
     /// <typeparam name="TSelf">The type itself, for the CRT pattern.</typeparam>
     /// <typeparam name="TUnitType">The underlying unit enum type.</typeparam>
-#if NET7_0_OR_GREATER
-    public interface IQuantity<TSelf, TUnitType>
-        : IQuantity<TUnitType>
-        , IComparisonOperators<TSelf, TSelf, bool>
-        , IParsable<TSelf>
-#else
-    public interface IQuantity<in TSelf, TUnitType>
-        : IQuantity<TUnitType>
-#endif
+    public interface IQuantity<in TSelf, TUnitType> : IQuantity<TUnitType>
         where TSelf : IQuantity<TSelf, TUnitType>
         where TUnitType : Enum
     {
