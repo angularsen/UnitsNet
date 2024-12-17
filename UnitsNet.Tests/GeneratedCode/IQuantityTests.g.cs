@@ -146,7 +146,7 @@ namespace UnitsNet.Tests
             Assertion(3, TemperatureDeltaUnit.MillidegreeCelsius, Quantity.From(3, TemperatureDeltaUnit.MillidegreeCelsius));
             Assertion(3, TemperatureGradientUnit.KelvinPerMeter, Quantity.From(3, TemperatureGradientUnit.KelvinPerMeter));
             Assertion(3, ThermalConductivityUnit.WattPerMeterKelvin, Quantity.From(3, ThermalConductivityUnit.WattPerMeterKelvin));
-            Assertion(3, ThermalResistanceUnit.SquareMeterKelvinPerWatt, Quantity.From(3, ThermalResistanceUnit.SquareMeterKelvinPerWatt));
+            Assertion(3, ThermalInsulanceUnit.SquareMeterKelvinPerWatt, Quantity.From(3, ThermalInsulanceUnit.SquareMeterKelvinPerWatt));
             Assertion(3, TorqueUnit.TonneForceMillimeter, Quantity.From(3, TorqueUnit.TonneForceMillimeter));
             Assertion(3, TurbidityUnit.NTU, Quantity.From(3, TurbidityUnit.NTU));
             Assertion(3, VitaminAUnit.InternationalUnit, Quantity.From(3, VitaminAUnit.InternationalUnit));
@@ -276,7 +276,7 @@ namespace UnitsNet.Tests
             Assertion(TemperatureDelta.Info, TemperatureDelta.Zero);
             Assertion(TemperatureGradient.Info, TemperatureGradient.Zero);
             Assertion(ThermalConductivity.Info, ThermalConductivity.Zero);
-            Assertion(ThermalResistance.Info, ThermalResistance.Zero);
+            Assertion(ThermalInsulance.Info, ThermalInsulance.Zero);
             Assertion(Torque.Info, Torque.Zero);
             Assertion(Turbidity.Info, Turbidity.Zero);
             Assertion(VitaminA.Info, VitaminA.Zero);
@@ -406,7 +406,7 @@ namespace UnitsNet.Tests
             Assertion(TemperatureDelta.BaseDimensions, TemperatureDelta.Zero);
             Assertion(TemperatureGradient.BaseDimensions, TemperatureGradient.Zero);
             Assertion(ThermalConductivity.BaseDimensions, ThermalConductivity.Zero);
-            Assertion(ThermalResistance.BaseDimensions, ThermalResistance.Zero);
+            Assertion(ThermalInsulance.BaseDimensions, ThermalInsulance.Zero);
             Assertion(Torque.BaseDimensions, Torque.Zero);
             Assertion(Turbidity.BaseDimensions, Turbidity.Zero);
             Assertion(VitaminA.BaseDimensions, VitaminA.Zero);

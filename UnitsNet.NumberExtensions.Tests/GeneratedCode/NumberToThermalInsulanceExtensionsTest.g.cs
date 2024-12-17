@@ -17,36 +17,36 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using UnitsNet.NumberExtensions.NumberToThermalResistance;
+using UnitsNet.NumberExtensions.NumberToThermalInsulance;
 using Xunit;
 
 namespace UnitsNet.Tests
 {
-    public class NumberToThermalResistanceExtensionsTests
+    public class NumberToThermalInsulanceExtensionsTests
     {
         [Fact]
         public void NumberToHourSquareFeetDegreesFahrenheitPerBtuTest() =>
-            Assert.Equal(ThermalResistance.FromHourSquareFeetDegreesFahrenheitPerBtu(2), 2.HourSquareFeetDegreesFahrenheitPerBtu());
+            Assert.Equal(ThermalInsulance.FromHourSquareFeetDegreesFahrenheitPerBtu(2), 2.HourSquareFeetDegreesFahrenheitPerBtu());
 
         [Fact]
         public void NumberToSquareCentimeterHourDegreesCelsiusPerKilocalorieTest() =>
-            Assert.Equal(ThermalResistance.FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(2), 2.SquareCentimeterHourDegreesCelsiusPerKilocalorie());
+            Assert.Equal(ThermalInsulance.FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(2), 2.SquareCentimeterHourDegreesCelsiusPerKilocalorie());
 
         [Fact]
         public void NumberToSquareCentimeterKelvinsPerWattTest() =>
-            Assert.Equal(ThermalResistance.FromSquareCentimeterKelvinsPerWatt(2), 2.SquareCentimeterKelvinsPerWatt());
+            Assert.Equal(ThermalInsulance.FromSquareCentimeterKelvinsPerWatt(2), 2.SquareCentimeterKelvinsPerWatt());
 
         [Fact]
         public void NumberToSquareMeterDegreesCelsiusPerWattTest() =>
-            Assert.Equal(ThermalResistance.FromSquareMeterDegreesCelsiusPerWatt(2), 2.SquareMeterDegreesCelsiusPerWatt());
+            Assert.Equal(ThermalInsulance.FromSquareMeterDegreesCelsiusPerWatt(2), 2.SquareMeterDegreesCelsiusPerWatt());
 
         [Fact]
         public void NumberToSquareMeterKelvinsPerKilowattTest() =>
-            Assert.Equal(ThermalResistance.FromSquareMeterKelvinsPerKilowatt(2), 2.SquareMeterKelvinsPerKilowatt());
+            Assert.Equal(ThermalInsulance.FromSquareMeterKelvinsPerKilowatt(2), 2.SquareMeterKelvinsPerKilowatt());
 
         [Fact]
         public void NumberToSquareMeterKelvinsPerWattTest() =>
-            Assert.Equal(ThermalResistance.FromSquareMeterKelvinsPerWatt(2), 2.SquareMeterKelvinsPerWatt());
+            Assert.Equal(ThermalInsulance.FromSquareMeterKelvinsPerWatt(2), 2.SquareMeterKelvinsPerWatt());
 
     }
 }
