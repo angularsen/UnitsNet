@@ -271,12 +271,12 @@ namespace UnitsNet
         {
             var enumValues = Enum.GetValues(unitEnumType).Cast<Enum>();
             var all = GetStringUnitPairs(enumValues, formatProvider);
-            return all.Select(pair => pair.Item1).ToList();
+            return all.Select(pair => pair.Item2).ToList();
         }
 
-        internal List<(string Abbreviation, Enum Unit)> GetStringUnitPairs(IEnumerable<Enum> enumValues, IFormatProvider? formatProvider = null)
+        internal List<(Enum Unit, string Abbreviation)> GetStringUnitPairs(IEnumerable<Enum> enumValues, IFormatProvider? formatProvider = null)
         {
-            var ret = new List<(string, Enum)>();
+            var ret = new List<(Enum, string)>();
             formatProvider ??= CultureInfo.CurrentCulture;
 
             foreach(var enumValue in enumValues)
@@ -285,7 +285,7 @@ namespace UnitsNet
                 {
                     foreach(var abbrev in abbreviations)
                     {
-                        ret.Add((abbrev, enumValue));
+                        ret.Add((enumValue, abbrev));
                     }
                 }
             }
