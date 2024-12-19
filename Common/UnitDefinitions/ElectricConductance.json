@@ -1,7 +1,7 @@
 {
   "Name": "ElectricConductance",
   "BaseUnit": "Siemens",
-  "XmlDocSummary": "The electrical conductance of an electrical conductor is a measure of the easeness to pass an electric current through that conductor.",
+  "XmlDocSummary": "The electrical conductance of an object is a measure of the ease with which an electric current passes. Along with susceptance, it is one of two elements of admittance. Its reciprocal quantity is electrical resistance.",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Electrical_resistance_and_conductance",
   "BaseDimensions": {
     "L": -2,
@@ -15,11 +15,24 @@
       "PluralName": "Siemens",
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
-      "Prefixes": [ "Nano", "Micro", "Milli", "Kilo" ],
+      "Prefixes": [ "Nano", "Micro", "Milli", "Kilo", "Mega", "Giga", "Tera" ],
       "Localization": [
         {
           "Culture": "en-US",
           "Abbreviations": [ "S" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Mho",
+      "PluralName": "Mhos",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Kilo", "Mega", "Giga", "Tera" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "℧" ]
         }
       ]
     }

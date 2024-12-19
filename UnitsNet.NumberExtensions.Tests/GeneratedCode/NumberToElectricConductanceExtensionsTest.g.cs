@@ -25,16 +25,52 @@ namespace UnitsNet.Tests
     public class NumberToElectricConductanceExtensionsTests
     {
         [Fact]
+        public void NumberToGigamhosTest() =>
+            Assert.Equal(ElectricConductance.FromGigamhos(2), 2.Gigamhos());
+
+        [Fact]
+        public void NumberToGigasiemensTest() =>
+            Assert.Equal(ElectricConductance.FromGigasiemens(2), 2.Gigasiemens());
+
+        [Fact]
+        public void NumberToKilomhosTest() =>
+            Assert.Equal(ElectricConductance.FromKilomhos(2), 2.Kilomhos());
+
+        [Fact]
         public void NumberToKilosiemensTest() =>
             Assert.Equal(ElectricConductance.FromKilosiemens(2), 2.Kilosiemens());
+
+        [Fact]
+        public void NumberToMegamhosTest() =>
+            Assert.Equal(ElectricConductance.FromMegamhos(2), 2.Megamhos());
+
+        [Fact]
+        public void NumberToMegasiemensTest() =>
+            Assert.Equal(ElectricConductance.FromMegasiemens(2), 2.Megasiemens());
+
+        [Fact]
+        public void NumberToMhosTest() =>
+            Assert.Equal(ElectricConductance.FromMhos(2), 2.Mhos());
+
+        [Fact]
+        public void NumberToMicromhosTest() =>
+            Assert.Equal(ElectricConductance.FromMicromhos(2), 2.Micromhos());
 
         [Fact]
         public void NumberToMicrosiemensTest() =>
             Assert.Equal(ElectricConductance.FromMicrosiemens(2), 2.Microsiemens());
 
         [Fact]
+        public void NumberToMillimhosTest() =>
+            Assert.Equal(ElectricConductance.FromMillimhos(2), 2.Millimhos());
+
+        [Fact]
         public void NumberToMillisiemensTest() =>
             Assert.Equal(ElectricConductance.FromMillisiemens(2), 2.Millisiemens());
+
+        [Fact]
+        public void NumberToNanomhosTest() =>
+            Assert.Equal(ElectricConductance.FromNanomhos(2), 2.Nanomhos());
 
         [Fact]
         public void NumberToNanosiemensTest() =>
@@ -43,6 +79,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToSiemensTest() =>
             Assert.Equal(ElectricConductance.FromSiemens(2), 2.Siemens());
+
+        [Fact]
+        public void NumberToTeramhosTest() =>
+            Assert.Equal(ElectricConductance.FromTeramhos(2), 2.Teramhos());
+
+        [Fact]
+        public void NumberToTerasiemensTest() =>
+            Assert.Equal(ElectricConductance.FromTerasiemens(2), 2.Terasiemens());
 
     }
 }

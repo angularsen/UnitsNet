@@ -45,6 +45,10 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricResistance.FromMilliohms(2), 2.Milliohms());
 
         [Fact]
+        public void NumberToNanoohmsTest() =>
+            Assert.Equal(ElectricResistance.FromNanoohms(2), 2.Nanoohms());
+
+        [Fact]
         public void NumberToOhmsTest() =>
             Assert.Equal(ElectricResistance.FromOhms(2), 2.Ohms());
 
