@@ -200,25 +200,38 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("IU", VitaminAUnit.InternationalUnit)]
+        public void ParseUnit(string abbreviation, VitaminAUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = VitaminA.ParseUnit("IU", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VitaminAUnit.InternationalUnit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            VitaminAUnit parsedUnit = VitaminA.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "IU", VitaminAUnit.InternationalUnit)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, VitaminAUnit expectedUnit)
         {
-            {
-                Assert.True(VitaminA.TryParseUnit("IU", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VitaminAUnit.InternationalUnit, parsedUnit);
-            }
+            VitaminAUnit parsedUnit = VitaminA.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("IU", VitaminAUnit.InternationalUnit)]
+        public void TryParseUnit(string abbreviation, VitaminAUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(VitaminA.TryParseUnit(abbreviation, out VitaminAUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "IU", VitaminAUnit.InternationalUnit)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, VitaminAUnit expectedUnit)
+        {
+            Assert.True(VitaminA.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out VitaminAUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

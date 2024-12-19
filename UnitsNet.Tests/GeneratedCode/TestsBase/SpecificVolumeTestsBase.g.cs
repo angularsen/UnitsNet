@@ -246,47 +246,46 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("ft³/lb", SpecificVolumeUnit.CubicFootPerPound)]
+        [InlineData("m³/kg", SpecificVolumeUnit.CubicMeterPerKilogram)]
+        [InlineData("mm³/kg", SpecificVolumeUnit.MillicubicMeterPerKilogram)]
+        public void ParseUnit(string abbreviation, SpecificVolumeUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = SpecificVolume.ParseUnit("ft³/lb", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(SpecificVolumeUnit.CubicFootPerPound, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = SpecificVolume.ParseUnit("m³/kg", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(SpecificVolumeUnit.CubicMeterPerKilogram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = SpecificVolume.ParseUnit("mm³/kg", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(SpecificVolumeUnit.MillicubicMeterPerKilogram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            SpecificVolumeUnit parsedUnit = SpecificVolume.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "ft³/lb", SpecificVolumeUnit.CubicFootPerPound)]
+        [InlineData("en-US", "m³/kg", SpecificVolumeUnit.CubicMeterPerKilogram)]
+        [InlineData("en-US", "mm³/kg", SpecificVolumeUnit.MillicubicMeterPerKilogram)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, SpecificVolumeUnit expectedUnit)
         {
-            {
-                Assert.True(SpecificVolume.TryParseUnit("ft³/lb", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(SpecificVolumeUnit.CubicFootPerPound, parsedUnit);
-            }
+            SpecificVolumeUnit parsedUnit = SpecificVolume.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(SpecificVolume.TryParseUnit("m³/kg", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(SpecificVolumeUnit.CubicMeterPerKilogram, parsedUnit);
-            }
+        [Theory]
+        [InlineData("ft³/lb", SpecificVolumeUnit.CubicFootPerPound)]
+        [InlineData("m³/kg", SpecificVolumeUnit.CubicMeterPerKilogram)]
+        [InlineData("mm³/kg", SpecificVolumeUnit.MillicubicMeterPerKilogram)]
+        public void TryParseUnit(string abbreviation, SpecificVolumeUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(SpecificVolume.TryParseUnit(abbreviation, out SpecificVolumeUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(SpecificVolume.TryParseUnit("mm³/kg", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(SpecificVolumeUnit.MillicubicMeterPerKilogram, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "ft³/lb", SpecificVolumeUnit.CubicFootPerPound)]
+        [InlineData("en-US", "m³/kg", SpecificVolumeUnit.CubicMeterPerKilogram)]
+        [InlineData("en-US", "mm³/kg", SpecificVolumeUnit.MillicubicMeterPerKilogram)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, SpecificVolumeUnit expectedUnit)
+        {
+            Assert.True(SpecificVolume.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out SpecificVolumeUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

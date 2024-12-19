@@ -430,135 +430,78 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("cm⁻²", ReciprocalAreaUnit.InverseSquareCentimeter)]
+        [InlineData("dm⁻²", ReciprocalAreaUnit.InverseSquareDecimeter)]
+        [InlineData("ft⁻²", ReciprocalAreaUnit.InverseSquareFoot)]
+        [InlineData("in⁻²", ReciprocalAreaUnit.InverseSquareInch)]
+        [InlineData("km⁻²", ReciprocalAreaUnit.InverseSquareKilometer)]
+        [InlineData("m⁻²", ReciprocalAreaUnit.InverseSquareMeter)]
+        [InlineData("µm⁻²", ReciprocalAreaUnit.InverseSquareMicrometer)]
+        [InlineData("mi⁻²", ReciprocalAreaUnit.InverseSquareMile)]
+        [InlineData("mm⁻²", ReciprocalAreaUnit.InverseSquareMillimeter)]
+        [InlineData("yd⁻²", ReciprocalAreaUnit.InverseSquareYard)]
+        [InlineData("ft⁻² (US)", ReciprocalAreaUnit.InverseUsSurveySquareFoot)]
+        public void ParseUnit(string abbreviation, ReciprocalAreaUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = ReciprocalArea.ParseUnit("cm⁻²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ReciprocalArea.ParseUnit("dm⁻²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareDecimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ReciprocalArea.ParseUnit("ft⁻²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ReciprocalArea.ParseUnit("in⁻²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareInch, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ReciprocalArea.ParseUnit("km⁻²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareKilometer, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ReciprocalArea.ParseUnit("m⁻²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ReciprocalArea.ParseUnit("µm⁻²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareMicrometer, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ReciprocalArea.ParseUnit("mi⁻²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareMile, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ReciprocalArea.ParseUnit("mm⁻²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareMillimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ReciprocalArea.ParseUnit("yd⁻²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareYard, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ReciprocalArea.ParseUnit("ft⁻² (US)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ReciprocalAreaUnit.InverseUsSurveySquareFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            ReciprocalAreaUnit parsedUnit = ReciprocalArea.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "cm⁻²", ReciprocalAreaUnit.InverseSquareCentimeter)]
+        [InlineData("en-US", "dm⁻²", ReciprocalAreaUnit.InverseSquareDecimeter)]
+        [InlineData("en-US", "ft⁻²", ReciprocalAreaUnit.InverseSquareFoot)]
+        [InlineData("en-US", "in⁻²", ReciprocalAreaUnit.InverseSquareInch)]
+        [InlineData("en-US", "km⁻²", ReciprocalAreaUnit.InverseSquareKilometer)]
+        [InlineData("en-US", "m⁻²", ReciprocalAreaUnit.InverseSquareMeter)]
+        [InlineData("en-US", "µm⁻²", ReciprocalAreaUnit.InverseSquareMicrometer)]
+        [InlineData("en-US", "mi⁻²", ReciprocalAreaUnit.InverseSquareMile)]
+        [InlineData("en-US", "mm⁻²", ReciprocalAreaUnit.InverseSquareMillimeter)]
+        [InlineData("en-US", "yd⁻²", ReciprocalAreaUnit.InverseSquareYard)]
+        [InlineData("en-US", "ft⁻² (US)", ReciprocalAreaUnit.InverseUsSurveySquareFoot)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, ReciprocalAreaUnit expectedUnit)
         {
-            {
-                Assert.True(ReciprocalArea.TryParseUnit("cm⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareCentimeter, parsedUnit);
-            }
+            ReciprocalAreaUnit parsedUnit = ReciprocalArea.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ReciprocalArea.TryParseUnit("dm⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareDecimeter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("cm⁻²", ReciprocalAreaUnit.InverseSquareCentimeter)]
+        [InlineData("dm⁻²", ReciprocalAreaUnit.InverseSquareDecimeter)]
+        [InlineData("ft⁻²", ReciprocalAreaUnit.InverseSquareFoot)]
+        [InlineData("in⁻²", ReciprocalAreaUnit.InverseSquareInch)]
+        [InlineData("km⁻²", ReciprocalAreaUnit.InverseSquareKilometer)]
+        [InlineData("m⁻²", ReciprocalAreaUnit.InverseSquareMeter)]
+        [InlineData("µm⁻²", ReciprocalAreaUnit.InverseSquareMicrometer)]
+        [InlineData("mi⁻²", ReciprocalAreaUnit.InverseSquareMile)]
+        [InlineData("mm⁻²", ReciprocalAreaUnit.InverseSquareMillimeter)]
+        [InlineData("yd⁻²", ReciprocalAreaUnit.InverseSquareYard)]
+        [InlineData("ft⁻² (US)", ReciprocalAreaUnit.InverseUsSurveySquareFoot)]
+        public void TryParseUnit(string abbreviation, ReciprocalAreaUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(ReciprocalArea.TryParseUnit(abbreviation, out ReciprocalAreaUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ReciprocalArea.TryParseUnit("ft⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareFoot, parsedUnit);
-            }
-
-            {
-                Assert.True(ReciprocalArea.TryParseUnit("in⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareInch, parsedUnit);
-            }
-
-            {
-                Assert.True(ReciprocalArea.TryParseUnit("km⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareKilometer, parsedUnit);
-            }
-
-            {
-                Assert.True(ReciprocalArea.TryParseUnit("m⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(ReciprocalArea.TryParseUnit("µm⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareMicrometer, parsedUnit);
-            }
-
-            {
-                Assert.True(ReciprocalArea.TryParseUnit("mi⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareMile, parsedUnit);
-            }
-
-            {
-                Assert.True(ReciprocalArea.TryParseUnit("mm⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareMillimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(ReciprocalArea.TryParseUnit("yd⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareYard, parsedUnit);
-            }
-
-            {
-                Assert.True(ReciprocalArea.TryParseUnit("ft⁻² (US)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ReciprocalAreaUnit.InverseUsSurveySquareFoot, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "cm⁻²", ReciprocalAreaUnit.InverseSquareCentimeter)]
+        [InlineData("en-US", "dm⁻²", ReciprocalAreaUnit.InverseSquareDecimeter)]
+        [InlineData("en-US", "ft⁻²", ReciprocalAreaUnit.InverseSquareFoot)]
+        [InlineData("en-US", "in⁻²", ReciprocalAreaUnit.InverseSquareInch)]
+        [InlineData("en-US", "km⁻²", ReciprocalAreaUnit.InverseSquareKilometer)]
+        [InlineData("en-US", "m⁻²", ReciprocalAreaUnit.InverseSquareMeter)]
+        [InlineData("en-US", "µm⁻²", ReciprocalAreaUnit.InverseSquareMicrometer)]
+        [InlineData("en-US", "mi⁻²", ReciprocalAreaUnit.InverseSquareMile)]
+        [InlineData("en-US", "mm⁻²", ReciprocalAreaUnit.InverseSquareMillimeter)]
+        [InlineData("en-US", "yd⁻²", ReciprocalAreaUnit.InverseSquareYard)]
+        [InlineData("en-US", "ft⁻² (US)", ReciprocalAreaUnit.InverseUsSurveySquareFoot)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, ReciprocalAreaUnit expectedUnit)
+        {
+            Assert.True(ReciprocalArea.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ReciprocalAreaUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

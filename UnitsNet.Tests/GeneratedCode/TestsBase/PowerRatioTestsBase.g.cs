@@ -236,47 +236,46 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("dBmW", PowerRatioUnit.DecibelMilliwatt)]
+        [InlineData("dBm", PowerRatioUnit.DecibelMilliwatt)]
+        [InlineData("dBW", PowerRatioUnit.DecibelWatt)]
+        public void ParseUnit(string abbreviation, PowerRatioUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = PowerRatio.ParseUnit("dBmW", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(PowerRatioUnit.DecibelMilliwatt, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = PowerRatio.ParseUnit("dBm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(PowerRatioUnit.DecibelMilliwatt, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = PowerRatio.ParseUnit("dBW", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(PowerRatioUnit.DecibelWatt, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            PowerRatioUnit parsedUnit = PowerRatio.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "dBmW", PowerRatioUnit.DecibelMilliwatt)]
+        [InlineData("en-US", "dBm", PowerRatioUnit.DecibelMilliwatt)]
+        [InlineData("en-US", "dBW", PowerRatioUnit.DecibelWatt)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, PowerRatioUnit expectedUnit)
         {
-            {
-                Assert.True(PowerRatio.TryParseUnit("dBmW", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(PowerRatioUnit.DecibelMilliwatt, parsedUnit);
-            }
+            PowerRatioUnit parsedUnit = PowerRatio.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(PowerRatio.TryParseUnit("dBm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(PowerRatioUnit.DecibelMilliwatt, parsedUnit);
-            }
+        [Theory]
+        [InlineData("dBmW", PowerRatioUnit.DecibelMilliwatt)]
+        [InlineData("dBm", PowerRatioUnit.DecibelMilliwatt)]
+        [InlineData("dBW", PowerRatioUnit.DecibelWatt)]
+        public void TryParseUnit(string abbreviation, PowerRatioUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(PowerRatio.TryParseUnit(abbreviation, out PowerRatioUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(PowerRatio.TryParseUnit("dBW", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(PowerRatioUnit.DecibelWatt, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "dBmW", PowerRatioUnit.DecibelMilliwatt)]
+        [InlineData("en-US", "dBm", PowerRatioUnit.DecibelMilliwatt)]
+        [InlineData("en-US", "dBW", PowerRatioUnit.DecibelWatt)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, PowerRatioUnit expectedUnit)
+        {
+            Assert.True(PowerRatio.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out PowerRatioUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

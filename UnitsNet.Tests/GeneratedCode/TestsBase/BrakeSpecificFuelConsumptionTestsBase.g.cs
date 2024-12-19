@@ -246,47 +246,46 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("g/kWh", BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour)]
+        [InlineData("kg/J", BrakeSpecificFuelConsumptionUnit.KilogramPerJoule)]
+        [InlineData("lb/hph", BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour)]
+        public void ParseUnit(string abbreviation, BrakeSpecificFuelConsumptionUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = BrakeSpecificFuelConsumption.ParseUnit("g/kWh", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BrakeSpecificFuelConsumption.ParseUnit("kg/J", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BrakeSpecificFuelConsumption.ParseUnit("lb/hph", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            BrakeSpecificFuelConsumptionUnit parsedUnit = BrakeSpecificFuelConsumption.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "g/kWh", BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour)]
+        [InlineData("en-US", "kg/J", BrakeSpecificFuelConsumptionUnit.KilogramPerJoule)]
+        [InlineData("en-US", "lb/hph", BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, BrakeSpecificFuelConsumptionUnit expectedUnit)
         {
-            {
-                Assert.True(BrakeSpecificFuelConsumption.TryParseUnit("g/kWh", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, parsedUnit);
-            }
+            BrakeSpecificFuelConsumptionUnit parsedUnit = BrakeSpecificFuelConsumption.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(BrakeSpecificFuelConsumption.TryParseUnit("kg/J", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, parsedUnit);
-            }
+        [Theory]
+        [InlineData("g/kWh", BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour)]
+        [InlineData("kg/J", BrakeSpecificFuelConsumptionUnit.KilogramPerJoule)]
+        [InlineData("lb/hph", BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour)]
+        public void TryParseUnit(string abbreviation, BrakeSpecificFuelConsumptionUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(BrakeSpecificFuelConsumption.TryParseUnit(abbreviation, out BrakeSpecificFuelConsumptionUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(BrakeSpecificFuelConsumption.TryParseUnit("lb/hph", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "g/kWh", BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour)]
+        [InlineData("en-US", "kg/J", BrakeSpecificFuelConsumptionUnit.KilogramPerJoule)]
+        [InlineData("en-US", "lb/hph", BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, BrakeSpecificFuelConsumptionUnit expectedUnit)
+        {
+            Assert.True(BrakeSpecificFuelConsumption.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out BrakeSpecificFuelConsumptionUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

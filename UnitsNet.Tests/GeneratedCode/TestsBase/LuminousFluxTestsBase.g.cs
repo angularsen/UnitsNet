@@ -200,25 +200,38 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("lm", LuminousFluxUnit.Lumen)]
+        public void ParseUnit(string abbreviation, LuminousFluxUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = LuminousFlux.ParseUnit("lm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LuminousFluxUnit.Lumen, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            LuminousFluxUnit parsedUnit = LuminousFlux.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "lm", LuminousFluxUnit.Lumen)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, LuminousFluxUnit expectedUnit)
         {
-            {
-                Assert.True(LuminousFlux.TryParseUnit("lm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LuminousFluxUnit.Lumen, parsedUnit);
-            }
+            LuminousFluxUnit parsedUnit = LuminousFlux.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("lm", LuminousFluxUnit.Lumen)]
+        public void TryParseUnit(string abbreviation, LuminousFluxUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(LuminousFlux.TryParseUnit(abbreviation, out LuminousFluxUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "lm", LuminousFluxUnit.Lumen)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, LuminousFluxUnit expectedUnit)
+        {
+            Assert.True(LuminousFlux.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out LuminousFluxUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

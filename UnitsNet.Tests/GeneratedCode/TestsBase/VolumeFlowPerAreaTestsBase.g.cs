@@ -223,36 +223,42 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("CFM/ft²", VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot)]
+        [InlineData("m³/(s·m²)", VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter)]
+        public void ParseUnit(string abbreviation, VolumeFlowPerAreaUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = VolumeFlowPerArea.ParseUnit("CFM/ft²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = VolumeFlowPerArea.ParseUnit("m³/(s·m²)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            VolumeFlowPerAreaUnit parsedUnit = VolumeFlowPerArea.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "CFM/ft²", VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot)]
+        [InlineData("en-US", "m³/(s·m²)", VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, VolumeFlowPerAreaUnit expectedUnit)
         {
-            {
-                Assert.True(VolumeFlowPerArea.TryParseUnit("CFM/ft²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, parsedUnit);
-            }
+            VolumeFlowPerAreaUnit parsedUnit = VolumeFlowPerArea.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(VolumeFlowPerArea.TryParseUnit("m³/(s·m²)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("CFM/ft²", VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot)]
+        [InlineData("m³/(s·m²)", VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter)]
+        public void TryParseUnit(string abbreviation, VolumeFlowPerAreaUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(VolumeFlowPerArea.TryParseUnit(abbreviation, out VolumeFlowPerAreaUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("en-US", "CFM/ft²", VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot)]
+        [InlineData("en-US", "m³/(s·m²)", VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, VolumeFlowPerAreaUnit expectedUnit)
+        {
+            Assert.True(VolumeFlowPerArea.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out VolumeFlowPerAreaUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

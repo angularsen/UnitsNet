@@ -246,47 +246,46 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("mmol/kg", MolalityUnit.MillimolePerKilogram)]
+        [InlineData("mol/g", MolalityUnit.MolePerGram)]
+        [InlineData("mol/kg", MolalityUnit.MolePerKilogram)]
+        public void ParseUnit(string abbreviation, MolalityUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = Molality.ParseUnit("mmol/kg", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MolalityUnit.MillimolePerKilogram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Molality.ParseUnit("mol/g", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MolalityUnit.MolePerGram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Molality.ParseUnit("mol/kg", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MolalityUnit.MolePerKilogram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            MolalityUnit parsedUnit = Molality.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "mmol/kg", MolalityUnit.MillimolePerKilogram)]
+        [InlineData("en-US", "mol/g", MolalityUnit.MolePerGram)]
+        [InlineData("en-US", "mol/kg", MolalityUnit.MolePerKilogram)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, MolalityUnit expectedUnit)
         {
-            {
-                Assert.True(Molality.TryParseUnit("mmol/kg", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MolalityUnit.MillimolePerKilogram, parsedUnit);
-            }
+            MolalityUnit parsedUnit = Molality.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Molality.TryParseUnit("mol/g", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MolalityUnit.MolePerGram, parsedUnit);
-            }
+        [Theory]
+        [InlineData("mmol/kg", MolalityUnit.MillimolePerKilogram)]
+        [InlineData("mol/g", MolalityUnit.MolePerGram)]
+        [InlineData("mol/kg", MolalityUnit.MolePerKilogram)]
+        public void TryParseUnit(string abbreviation, MolalityUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(Molality.TryParseUnit(abbreviation, out MolalityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Molality.TryParseUnit("mol/kg", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MolalityUnit.MolePerKilogram, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "mmol/kg", MolalityUnit.MillimolePerKilogram)]
+        [InlineData("en-US", "mol/g", MolalityUnit.MolePerGram)]
+        [InlineData("en-US", "mol/kg", MolalityUnit.MolePerKilogram)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, MolalityUnit expectedUnit)
+        {
+            Assert.True(Molality.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out MolalityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

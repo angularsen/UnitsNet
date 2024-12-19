@@ -315,80 +315,58 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("G", MagneticFieldUnit.Gauss)]
+        [InlineData("µT", MagneticFieldUnit.Microtesla)]
+        [InlineData("mG", MagneticFieldUnit.Milligauss)]
+        [InlineData("mT", MagneticFieldUnit.Millitesla)]
+        [InlineData("nT", MagneticFieldUnit.Nanotesla)]
+        [InlineData("T", MagneticFieldUnit.Tesla)]
+        public void ParseUnit(string abbreviation, MagneticFieldUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = MagneticField.ParseUnit("G", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MagneticFieldUnit.Gauss, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MagneticField.ParseUnit("µT", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MagneticFieldUnit.Microtesla, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MagneticField.ParseUnit("mG", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MagneticFieldUnit.Milligauss, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MagneticField.ParseUnit("mT", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MagneticFieldUnit.Millitesla, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MagneticField.ParseUnit("nT", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MagneticFieldUnit.Nanotesla, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MagneticField.ParseUnit("T", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MagneticFieldUnit.Tesla, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            MagneticFieldUnit parsedUnit = MagneticField.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "G", MagneticFieldUnit.Gauss)]
+        [InlineData("en-US", "µT", MagneticFieldUnit.Microtesla)]
+        [InlineData("en-US", "mG", MagneticFieldUnit.Milligauss)]
+        [InlineData("en-US", "mT", MagneticFieldUnit.Millitesla)]
+        [InlineData("en-US", "nT", MagneticFieldUnit.Nanotesla)]
+        [InlineData("en-US", "T", MagneticFieldUnit.Tesla)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, MagneticFieldUnit expectedUnit)
         {
-            {
-                Assert.True(MagneticField.TryParseUnit("G", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MagneticFieldUnit.Gauss, parsedUnit);
-            }
+            MagneticFieldUnit parsedUnit = MagneticField.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(MagneticField.TryParseUnit("µT", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MagneticFieldUnit.Microtesla, parsedUnit);
-            }
+        [Theory]
+        [InlineData("G", MagneticFieldUnit.Gauss)]
+        [InlineData("µT", MagneticFieldUnit.Microtesla)]
+        [InlineData("mG", MagneticFieldUnit.Milligauss)]
+        [InlineData("mT", MagneticFieldUnit.Millitesla)]
+        [InlineData("nT", MagneticFieldUnit.Nanotesla)]
+        [InlineData("T", MagneticFieldUnit.Tesla)]
+        public void TryParseUnit(string abbreviation, MagneticFieldUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(MagneticField.TryParseUnit(abbreviation, out MagneticFieldUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(MagneticField.TryParseUnit("mG", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MagneticFieldUnit.Milligauss, parsedUnit);
-            }
-
-            {
-                Assert.True(MagneticField.TryParseUnit("mT", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MagneticFieldUnit.Millitesla, parsedUnit);
-            }
-
-            {
-                Assert.True(MagneticField.TryParseUnit("nT", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MagneticFieldUnit.Nanotesla, parsedUnit);
-            }
-
-            {
-                Assert.True(MagneticField.TryParseUnit("T", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MagneticFieldUnit.Tesla, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "G", MagneticFieldUnit.Gauss)]
+        [InlineData("en-US", "µT", MagneticFieldUnit.Microtesla)]
+        [InlineData("en-US", "mG", MagneticFieldUnit.Milligauss)]
+        [InlineData("en-US", "mT", MagneticFieldUnit.Millitesla)]
+        [InlineData("en-US", "nT", MagneticFieldUnit.Nanotesla)]
+        [InlineData("en-US", "T", MagneticFieldUnit.Tesla)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, MagneticFieldUnit expectedUnit)
+        {
+            Assert.True(MagneticField.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out MagneticFieldUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

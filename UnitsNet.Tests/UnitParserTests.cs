@@ -58,6 +58,12 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Parse_NullAbbreviation_Throws_ArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => UnitsNetSetup.Default.UnitParser.Parse(null!, typeof(LengthUnit)));
+        }
+
+        [Fact]
         public void Parse_UnknownAbbreviationThrowsUnitNotFoundException()
         {
             Assert.Throws<UnitNotFoundException>(() => UnitParser.Default.Parse<AreaUnit>("nonexistingunit"));
@@ -95,7 +101,7 @@ namespace UnitsNet.Tests
         [InlineData("kg·s⁻¹·m⁻² ", typeof(MassFluxUnit), MassFluxUnit.KilogramPerSecondPerSquareMeter)]
         [InlineData("k g · s ⁻ ¹ · m ⁻ ² ", typeof(MassFluxUnit), MassFluxUnit.KilogramPerSecondPerSquareMeter)]
         [InlineData("   k   g   ·   s   ⁻   ¹   ·   m   ⁻   ²   ", typeof(MassFluxUnit), MassFluxUnit.KilogramPerSecondPerSquareMeter)]
-        public void Parse_CanParseWithWithspacesInUnit(string unitAbbreviation, Type unitType, Enum resultUnitType)
+        public void Parse_CanParseWithWhitespacesInUnit(string unitAbbreviation, Type unitType, Enum resultUnitType)
         {
             Assert.Equal(resultUnitType, UnitParser.Default.Parse(unitAbbreviation, unitType));
         }
@@ -121,6 +127,7 @@ namespace UnitsNet.Tests
         [InlineData("г", "ru-RU", MassUnit.Gram)]
         [InlineData("kg", "en-US", MassUnit.Kilogram)]
         [InlineData("кг", "ru-RU", MassUnit.Kilogram)]
+        [InlineData("kg", "ru-RU", MassUnit.Kilogram)] // should work with the "FallbackCulture"
         public void ParseMassUnit_GivenCulture(string str, string cultureName, Enum expectedUnit)
         {
             Assert.Equal(expectedUnit, UnitParser.Default.Parse<MassUnit>(str, CultureInfo.GetCultureInfo(cultureName)));
@@ -151,6 +158,38 @@ namespace UnitsNet.Tests
                 var success = unitParser.TryParse(null, typeof(LengthUnit), out Enum? _);
                 Assert.False(success);
             });
+        }
+
+        [Fact]
+        public void TryParse_UnknownAbbreviation_ReturnsFalse()
+        {
+            Assert.False(UnitsNetSetup.Default.UnitParser.TryParse("nonexistingunit", out AreaUnit _));
+        }
+
+        [Fact]
+        public void TryParse_WithAmbiguousUnits_ReturnsFalse()
+        {
+            UnitParser unitParser = UnitsNetSetup.Default.UnitParser;
+            Assert.False(unitParser.TryParse("pt", CultureInfo.InvariantCulture, out LengthUnit _));
+        }
+
+        [Theory]
+        [InlineData("ng", "en-US", MassUnit.Nanogram)]
+        [InlineData("нг", "ru-RU", MassUnit.Nanogram)]
+        [InlineData("g", "en-US", MassUnit.Gram)]
+        [InlineData("г", "ru-RU", MassUnit.Gram)]
+        [InlineData("kg", "en-US", MassUnit.Kilogram)]
+        [InlineData("кг", "ru-RU", MassUnit.Kilogram)]
+        [InlineData("kg", "ru-RU", MassUnit.Kilogram)] // should work with the "FallbackCulture"
+        public void TryParseMassUnit_GivenCulture(string str, string cultureName, Enum expectedUnit)
+        {
+            var formatProvider = CultureInfo.GetCultureInfo(cultureName);
+            UnitParser unitParser = UnitsNetSetup.Default.UnitParser;
+
+            var success = unitParser.TryParse(str, formatProvider, out MassUnit unitParsed);
+
+            Assert.True(success);
+            Assert.Equal(expectedUnit, unitParsed);
         }
     }
 }

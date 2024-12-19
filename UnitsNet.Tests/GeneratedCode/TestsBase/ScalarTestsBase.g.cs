@@ -200,25 +200,38 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("", ScalarUnit.Amount)]
+        public void ParseUnit(string abbreviation, ScalarUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = Scalar.ParseUnit("", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ScalarUnit.Amount, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            ScalarUnit parsedUnit = Scalar.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "", ScalarUnit.Amount)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, ScalarUnit expectedUnit)
         {
-            {
-                Assert.True(Scalar.TryParseUnit("", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ScalarUnit.Amount, parsedUnit);
-            }
+            ScalarUnit parsedUnit = Scalar.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("", ScalarUnit.Amount)]
+        public void TryParseUnit(string abbreviation, ScalarUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(Scalar.TryParseUnit(abbreviation, out ScalarUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "", ScalarUnit.Amount)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, ScalarUnit expectedUnit)
+        {
+            Assert.True(Scalar.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ScalarUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

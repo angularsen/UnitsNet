@@ -292,69 +292,54 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("kS", ElectricConductanceUnit.Kilosiemens)]
+        [InlineData("µS", ElectricConductanceUnit.Microsiemens)]
+        [InlineData("mS", ElectricConductanceUnit.Millisiemens)]
+        [InlineData("nS", ElectricConductanceUnit.Nanosiemens)]
+        [InlineData("S", ElectricConductanceUnit.Siemens)]
+        public void ParseUnit(string abbreviation, ElectricConductanceUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = ElectricConductance.ParseUnit("kS", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricConductanceUnit.Kilosiemens, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricConductance.ParseUnit("µS", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricConductanceUnit.Microsiemens, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricConductance.ParseUnit("mS", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricConductanceUnit.Millisiemens, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricConductance.ParseUnit("nS", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricConductanceUnit.Nanosiemens, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricConductance.ParseUnit("S", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricConductanceUnit.Siemens, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            ElectricConductanceUnit parsedUnit = ElectricConductance.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "kS", ElectricConductanceUnit.Kilosiemens)]
+        [InlineData("en-US", "µS", ElectricConductanceUnit.Microsiemens)]
+        [InlineData("en-US", "mS", ElectricConductanceUnit.Millisiemens)]
+        [InlineData("en-US", "nS", ElectricConductanceUnit.Nanosiemens)]
+        [InlineData("en-US", "S", ElectricConductanceUnit.Siemens)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, ElectricConductanceUnit expectedUnit)
         {
-            {
-                Assert.True(ElectricConductance.TryParseUnit("kS", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricConductanceUnit.Kilosiemens, parsedUnit);
-            }
+            ElectricConductanceUnit parsedUnit = ElectricConductance.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ElectricConductance.TryParseUnit("µS", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricConductanceUnit.Microsiemens, parsedUnit);
-            }
+        [Theory]
+        [InlineData("kS", ElectricConductanceUnit.Kilosiemens)]
+        [InlineData("µS", ElectricConductanceUnit.Microsiemens)]
+        [InlineData("mS", ElectricConductanceUnit.Millisiemens)]
+        [InlineData("nS", ElectricConductanceUnit.Nanosiemens)]
+        [InlineData("S", ElectricConductanceUnit.Siemens)]
+        public void TryParseUnit(string abbreviation, ElectricConductanceUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(ElectricConductance.TryParseUnit(abbreviation, out ElectricConductanceUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ElectricConductance.TryParseUnit("mS", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricConductanceUnit.Millisiemens, parsedUnit);
-            }
-
-            {
-                Assert.True(ElectricConductance.TryParseUnit("nS", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricConductanceUnit.Nanosiemens, parsedUnit);
-            }
-
-            {
-                Assert.True(ElectricConductance.TryParseUnit("S", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricConductanceUnit.Siemens, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "kS", ElectricConductanceUnit.Kilosiemens)]
+        [InlineData("en-US", "µS", ElectricConductanceUnit.Microsiemens)]
+        [InlineData("en-US", "mS", ElectricConductanceUnit.Millisiemens)]
+        [InlineData("en-US", "nS", ElectricConductanceUnit.Nanosiemens)]
+        [InlineData("en-US", "S", ElectricConductanceUnit.Siemens)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, ElectricConductanceUnit expectedUnit)
+        {
+            Assert.True(ElectricConductance.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ElectricConductanceUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

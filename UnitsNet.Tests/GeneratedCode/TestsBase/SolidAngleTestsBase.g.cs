@@ -200,25 +200,38 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("sr", SolidAngleUnit.Steradian)]
+        public void ParseUnit(string abbreviation, SolidAngleUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = SolidAngle.ParseUnit("sr", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(SolidAngleUnit.Steradian, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            SolidAngleUnit parsedUnit = SolidAngle.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "sr", SolidAngleUnit.Steradian)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, SolidAngleUnit expectedUnit)
         {
-            {
-                Assert.True(SolidAngle.TryParseUnit("sr", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(SolidAngleUnit.Steradian, parsedUnit);
-            }
+            SolidAngleUnit parsedUnit = SolidAngle.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("sr", SolidAngleUnit.Steradian)]
+        public void TryParseUnit(string abbreviation, SolidAngleUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(SolidAngle.TryParseUnit(abbreviation, out SolidAngleUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "sr", SolidAngleUnit.Steradian)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, SolidAngleUnit expectedUnit)
+        {
+            Assert.True(SolidAngle.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out SolidAngleUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

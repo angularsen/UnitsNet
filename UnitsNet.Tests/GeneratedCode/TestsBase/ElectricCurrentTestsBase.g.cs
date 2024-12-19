@@ -372,103 +372,70 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("A", ElectricCurrentUnit.Ampere)]
+        [InlineData("cA", ElectricCurrentUnit.Centiampere)]
+        [InlineData("fA", ElectricCurrentUnit.Femtoampere)]
+        [InlineData("kA", ElectricCurrentUnit.Kiloampere)]
+        [InlineData("MA", ElectricCurrentUnit.Megaampere)]
+        [InlineData("µA", ElectricCurrentUnit.Microampere)]
+        [InlineData("mA", ElectricCurrentUnit.Milliampere)]
+        [InlineData("nA", ElectricCurrentUnit.Nanoampere)]
+        [InlineData("pA", ElectricCurrentUnit.Picoampere)]
+        public void ParseUnit(string abbreviation, ElectricCurrentUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = ElectricCurrent.ParseUnit("A", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricCurrentUnit.Ampere, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricCurrent.ParseUnit("cA", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricCurrentUnit.Centiampere, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricCurrent.ParseUnit("fA", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricCurrentUnit.Femtoampere, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricCurrent.ParseUnit("kA", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricCurrentUnit.Kiloampere, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricCurrent.ParseUnit("MA", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricCurrentUnit.Megaampere, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricCurrent.ParseUnit("µA", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricCurrentUnit.Microampere, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricCurrent.ParseUnit("mA", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricCurrentUnit.Milliampere, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricCurrent.ParseUnit("nA", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricCurrentUnit.Nanoampere, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricCurrent.ParseUnit("pA", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricCurrentUnit.Picoampere, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            ElectricCurrentUnit parsedUnit = ElectricCurrent.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "A", ElectricCurrentUnit.Ampere)]
+        [InlineData("en-US", "cA", ElectricCurrentUnit.Centiampere)]
+        [InlineData("en-US", "fA", ElectricCurrentUnit.Femtoampere)]
+        [InlineData("en-US", "kA", ElectricCurrentUnit.Kiloampere)]
+        [InlineData("en-US", "MA", ElectricCurrentUnit.Megaampere)]
+        [InlineData("en-US", "µA", ElectricCurrentUnit.Microampere)]
+        [InlineData("en-US", "mA", ElectricCurrentUnit.Milliampere)]
+        [InlineData("en-US", "nA", ElectricCurrentUnit.Nanoampere)]
+        [InlineData("en-US", "pA", ElectricCurrentUnit.Picoampere)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, ElectricCurrentUnit expectedUnit)
         {
-            {
-                Assert.True(ElectricCurrent.TryParseUnit("A", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricCurrentUnit.Ampere, parsedUnit);
-            }
+            ElectricCurrentUnit parsedUnit = ElectricCurrent.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ElectricCurrent.TryParseUnit("cA", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricCurrentUnit.Centiampere, parsedUnit);
-            }
+        [Theory]
+        [InlineData("A", ElectricCurrentUnit.Ampere)]
+        [InlineData("cA", ElectricCurrentUnit.Centiampere)]
+        [InlineData("fA", ElectricCurrentUnit.Femtoampere)]
+        [InlineData("kA", ElectricCurrentUnit.Kiloampere)]
+        [InlineData("MA", ElectricCurrentUnit.Megaampere)]
+        [InlineData("µA", ElectricCurrentUnit.Microampere)]
+        [InlineData("mA", ElectricCurrentUnit.Milliampere)]
+        [InlineData("nA", ElectricCurrentUnit.Nanoampere)]
+        [InlineData("pA", ElectricCurrentUnit.Picoampere)]
+        public void TryParseUnit(string abbreviation, ElectricCurrentUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(ElectricCurrent.TryParseUnit(abbreviation, out ElectricCurrentUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ElectricCurrent.TryParseUnit("fA", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricCurrentUnit.Femtoampere, parsedUnit);
-            }
-
-            {
-                Assert.True(ElectricCurrent.TryParseUnit("kA", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricCurrentUnit.Kiloampere, parsedUnit);
-            }
-
-            {
-                Assert.True(ElectricCurrent.TryParseUnit("µA", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricCurrentUnit.Microampere, parsedUnit);
-            }
-
-            {
-                Assert.True(ElectricCurrent.TryParseUnit("nA", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricCurrentUnit.Nanoampere, parsedUnit);
-            }
-
-            {
-                Assert.True(ElectricCurrent.TryParseUnit("pA", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricCurrentUnit.Picoampere, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "A", ElectricCurrentUnit.Ampere)]
+        [InlineData("en-US", "cA", ElectricCurrentUnit.Centiampere)]
+        [InlineData("en-US", "fA", ElectricCurrentUnit.Femtoampere)]
+        [InlineData("en-US", "kA", ElectricCurrentUnit.Kiloampere)]
+        [InlineData("en-US", "MA", ElectricCurrentUnit.Megaampere)]
+        [InlineData("en-US", "µA", ElectricCurrentUnit.Microampere)]
+        [InlineData("en-US", "mA", ElectricCurrentUnit.Milliampere)]
+        [InlineData("en-US", "nA", ElectricCurrentUnit.Nanoampere)]
+        [InlineData("en-US", "pA", ElectricCurrentUnit.Picoampere)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, ElectricCurrentUnit expectedUnit)
+        {
+            Assert.True(ElectricCurrent.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ElectricCurrentUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

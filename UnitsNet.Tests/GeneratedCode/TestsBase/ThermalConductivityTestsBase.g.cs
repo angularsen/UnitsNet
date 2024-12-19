@@ -223,36 +223,42 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("BTU/(h·ft·°F)", ThermalConductivityUnit.BtuPerHourFootFahrenheit)]
+        [InlineData("W/(m·K)", ThermalConductivityUnit.WattPerMeterKelvin)]
+        public void ParseUnit(string abbreviation, ThermalConductivityUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = ThermalConductivity.ParseUnit("BTU/(h·ft·°F)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ThermalConductivityUnit.BtuPerHourFootFahrenheit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ThermalConductivity.ParseUnit("W/(m·K)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ThermalConductivityUnit.WattPerMeterKelvin, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            ThermalConductivityUnit parsedUnit = ThermalConductivity.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "BTU/(h·ft·°F)", ThermalConductivityUnit.BtuPerHourFootFahrenheit)]
+        [InlineData("en-US", "W/(m·K)", ThermalConductivityUnit.WattPerMeterKelvin)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, ThermalConductivityUnit expectedUnit)
         {
-            {
-                Assert.True(ThermalConductivity.TryParseUnit("BTU/(h·ft·°F)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ThermalConductivityUnit.BtuPerHourFootFahrenheit, parsedUnit);
-            }
+            ThermalConductivityUnit parsedUnit = ThermalConductivity.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ThermalConductivity.TryParseUnit("W/(m·K)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ThermalConductivityUnit.WattPerMeterKelvin, parsedUnit);
-            }
+        [Theory]
+        [InlineData("BTU/(h·ft·°F)", ThermalConductivityUnit.BtuPerHourFootFahrenheit)]
+        [InlineData("W/(m·K)", ThermalConductivityUnit.WattPerMeterKelvin)]
+        public void TryParseUnit(string abbreviation, ThermalConductivityUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(ThermalConductivity.TryParseUnit(abbreviation, out ThermalConductivityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("en-US", "BTU/(h·ft·°F)", ThermalConductivityUnit.BtuPerHourFootFahrenheit)]
+        [InlineData("en-US", "W/(m·K)", ThermalConductivityUnit.WattPerMeterKelvin)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, ThermalConductivityUnit expectedUnit)
+        {
+            Assert.True(ThermalConductivity.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ThermalConductivityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

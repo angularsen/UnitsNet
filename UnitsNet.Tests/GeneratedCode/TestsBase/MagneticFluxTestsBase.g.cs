@@ -200,25 +200,38 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("Wb", MagneticFluxUnit.Weber)]
+        public void ParseUnit(string abbreviation, MagneticFluxUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = MagneticFlux.ParseUnit("Wb", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MagneticFluxUnit.Weber, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            MagneticFluxUnit parsedUnit = MagneticFlux.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "Wb", MagneticFluxUnit.Weber)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, MagneticFluxUnit expectedUnit)
         {
-            {
-                Assert.True(MagneticFlux.TryParseUnit("Wb", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MagneticFluxUnit.Weber, parsedUnit);
-            }
+            MagneticFluxUnit parsedUnit = MagneticFlux.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("Wb", MagneticFluxUnit.Weber)]
+        public void TryParseUnit(string abbreviation, MagneticFluxUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(MagneticFlux.TryParseUnit(abbreviation, out MagneticFluxUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "Wb", MagneticFluxUnit.Weber)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, MagneticFluxUnit expectedUnit)
+        {
+            Assert.True(MagneticFlux.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out MagneticFluxUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

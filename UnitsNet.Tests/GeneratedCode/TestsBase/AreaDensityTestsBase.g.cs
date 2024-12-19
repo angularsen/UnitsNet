@@ -259,58 +259,50 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("g/m²", AreaDensityUnit.GramPerSquareMeter)]
+        [InlineData("gsm", AreaDensityUnit.GramPerSquareMeter)]
+        [InlineData("kg/m²", AreaDensityUnit.KilogramPerSquareMeter)]
+        [InlineData("mg/m²", AreaDensityUnit.MilligramPerSquareMeter)]
+        public void ParseUnit(string abbreviation, AreaDensityUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = AreaDensity.ParseUnit("g/m²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(AreaDensityUnit.GramPerSquareMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AreaDensity.ParseUnit("gsm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(AreaDensityUnit.GramPerSquareMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AreaDensity.ParseUnit("kg/m²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(AreaDensityUnit.KilogramPerSquareMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AreaDensity.ParseUnit("mg/m²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(AreaDensityUnit.MilligramPerSquareMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            AreaDensityUnit parsedUnit = AreaDensity.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "g/m²", AreaDensityUnit.GramPerSquareMeter)]
+        [InlineData("en-US", "gsm", AreaDensityUnit.GramPerSquareMeter)]
+        [InlineData("en-US", "kg/m²", AreaDensityUnit.KilogramPerSquareMeter)]
+        [InlineData("en-US", "mg/m²", AreaDensityUnit.MilligramPerSquareMeter)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, AreaDensityUnit expectedUnit)
         {
-            {
-                Assert.True(AreaDensity.TryParseUnit("g/m²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(AreaDensityUnit.GramPerSquareMeter, parsedUnit);
-            }
+            AreaDensityUnit parsedUnit = AreaDensity.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(AreaDensity.TryParseUnit("gsm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(AreaDensityUnit.GramPerSquareMeter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("g/m²", AreaDensityUnit.GramPerSquareMeter)]
+        [InlineData("gsm", AreaDensityUnit.GramPerSquareMeter)]
+        [InlineData("kg/m²", AreaDensityUnit.KilogramPerSquareMeter)]
+        [InlineData("mg/m²", AreaDensityUnit.MilligramPerSquareMeter)]
+        public void TryParseUnit(string abbreviation, AreaDensityUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(AreaDensity.TryParseUnit(abbreviation, out AreaDensityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(AreaDensity.TryParseUnit("kg/m²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(AreaDensityUnit.KilogramPerSquareMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(AreaDensity.TryParseUnit("mg/m²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(AreaDensityUnit.MilligramPerSquareMeter, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "g/m²", AreaDensityUnit.GramPerSquareMeter)]
+        [InlineData("en-US", "gsm", AreaDensityUnit.GramPerSquareMeter)]
+        [InlineData("en-US", "kg/m²", AreaDensityUnit.KilogramPerSquareMeter)]
+        [InlineData("en-US", "mg/m²", AreaDensityUnit.MilligramPerSquareMeter)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, AreaDensityUnit expectedUnit)
+        {
+            Assert.True(AreaDensity.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out AreaDensityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

@@ -200,25 +200,38 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("C/m³", ElectricChargeDensityUnit.CoulombPerCubicMeter)]
+        public void ParseUnit(string abbreviation, ElectricChargeDensityUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = ElectricChargeDensity.ParseUnit("C/m³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricChargeDensityUnit.CoulombPerCubicMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            ElectricChargeDensityUnit parsedUnit = ElectricChargeDensity.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "C/m³", ElectricChargeDensityUnit.CoulombPerCubicMeter)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, ElectricChargeDensityUnit expectedUnit)
         {
-            {
-                Assert.True(ElectricChargeDensity.TryParseUnit("C/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricChargeDensityUnit.CoulombPerCubicMeter, parsedUnit);
-            }
+            ElectricChargeDensityUnit parsedUnit = ElectricChargeDensity.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("C/m³", ElectricChargeDensityUnit.CoulombPerCubicMeter)]
+        public void TryParseUnit(string abbreviation, ElectricChargeDensityUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(ElectricChargeDensity.TryParseUnit(abbreviation, out ElectricChargeDensityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "C/m³", ElectricChargeDensityUnit.CoulombPerCubicMeter)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, ElectricChargeDensityUnit expectedUnit)
+        {
+            Assert.True(ElectricChargeDensity.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ElectricChargeDensityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
