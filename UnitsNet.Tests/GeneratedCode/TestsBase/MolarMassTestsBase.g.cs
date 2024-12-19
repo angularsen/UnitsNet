@@ -632,289 +632,110 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("cg/mol", MolarMassUnit.CentigramPerMole)]
+        [InlineData("dag/mol", MolarMassUnit.DecagramPerMole)]
+        [InlineData("dg/mol", MolarMassUnit.DecigramPerMole)]
+        [InlineData("g/mol", MolarMassUnit.GramPerMole)]
+        [InlineData("hg/mol", MolarMassUnit.HectogramPerMole)]
+        [InlineData("kg/kmol", MolarMassUnit.KilogramPerKilomole)]
+        [InlineData("kg/mol", MolarMassUnit.KilogramPerMole)]
+        [InlineData("klb/mol", MolarMassUnit.KilopoundPerMole)]
+        [InlineData("Mlb/mol", MolarMassUnit.MegapoundPerMole)]
+        [InlineData("µg/mol", MolarMassUnit.MicrogramPerMole)]
+        [InlineData("mg/mol", MolarMassUnit.MilligramPerMole)]
+        [InlineData("ng/mol", MolarMassUnit.NanogramPerMole)]
+        [InlineData("lb/mol", MolarMassUnit.PoundPerMole)]
+        public void ParseUnit(string abbreviation, MolarMassUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = MolarMass.ParseUnit("cg/mol", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MolarMassUnit.CentigramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MolarMass.ParseUnit("сг/моль", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(MolarMassUnit.CentigramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MolarMass.ParseUnit("dag/mol", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MolarMassUnit.DecagramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MolarMass.ParseUnit("даг/моль", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(MolarMassUnit.DecagramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MolarMass.ParseUnit("dg/mol", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MolarMassUnit.DecigramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MolarMass.ParseUnit("дг/моль", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(MolarMassUnit.DecigramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MolarMass.ParseUnit("g/mol", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MolarMassUnit.GramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MolarMass.ParseUnit("г/моль", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(MolarMassUnit.GramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MolarMass.ParseUnit("hg/mol", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MolarMassUnit.HectogramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MolarMass.ParseUnit("гг/моль", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(MolarMassUnit.HectogramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MolarMass.ParseUnit("kg/kmol", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MolarMassUnit.KilogramPerKilomole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MolarMass.ParseUnit("kg/mol", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MolarMassUnit.KilogramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MolarMass.ParseUnit("кг/моль", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(MolarMassUnit.KilogramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MolarMass.ParseUnit("klb/mol", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MolarMassUnit.KilopoundPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MolarMass.ParseUnit("кфунт/моль", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(MolarMassUnit.KilopoundPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MolarMass.ParseUnit("Mlb/mol", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MolarMassUnit.MegapoundPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MolarMass.ParseUnit("Мфунт/моль", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(MolarMassUnit.MegapoundPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MolarMass.ParseUnit("µg/mol", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MolarMassUnit.MicrogramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MolarMass.ParseUnit("мкг/моль", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(MolarMassUnit.MicrogramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MolarMass.ParseUnit("mg/mol", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MolarMassUnit.MilligramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MolarMass.ParseUnit("мг/моль", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(MolarMassUnit.MilligramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MolarMass.ParseUnit("ng/mol", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MolarMassUnit.NanogramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MolarMass.ParseUnit("нг/моль", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(MolarMassUnit.NanogramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MolarMass.ParseUnit("lb/mol", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MolarMassUnit.PoundPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MolarMass.ParseUnit("фунт/моль", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(MolarMassUnit.PoundPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            MolarMassUnit parsedUnit = MolarMass.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "cg/mol", MolarMassUnit.CentigramPerMole)]
+        [InlineData("en-US", "dag/mol", MolarMassUnit.DecagramPerMole)]
+        [InlineData("en-US", "dg/mol", MolarMassUnit.DecigramPerMole)]
+        [InlineData("en-US", "g/mol", MolarMassUnit.GramPerMole)]
+        [InlineData("en-US", "hg/mol", MolarMassUnit.HectogramPerMole)]
+        [InlineData("en-US", "kg/kmol", MolarMassUnit.KilogramPerKilomole)]
+        [InlineData("en-US", "kg/mol", MolarMassUnit.KilogramPerMole)]
+        [InlineData("en-US", "klb/mol", MolarMassUnit.KilopoundPerMole)]
+        [InlineData("en-US", "Mlb/mol", MolarMassUnit.MegapoundPerMole)]
+        [InlineData("en-US", "µg/mol", MolarMassUnit.MicrogramPerMole)]
+        [InlineData("en-US", "mg/mol", MolarMassUnit.MilligramPerMole)]
+        [InlineData("en-US", "ng/mol", MolarMassUnit.NanogramPerMole)]
+        [InlineData("en-US", "lb/mol", MolarMassUnit.PoundPerMole)]
+        [InlineData("ru-RU", "сг/моль", MolarMassUnit.CentigramPerMole)]
+        [InlineData("ru-RU", "даг/моль", MolarMassUnit.DecagramPerMole)]
+        [InlineData("ru-RU", "дг/моль", MolarMassUnit.DecigramPerMole)]
+        [InlineData("ru-RU", "г/моль", MolarMassUnit.GramPerMole)]
+        [InlineData("ru-RU", "гг/моль", MolarMassUnit.HectogramPerMole)]
+        [InlineData("ru-RU", "кг/моль", MolarMassUnit.KilogramPerMole)]
+        [InlineData("ru-RU", "кфунт/моль", MolarMassUnit.KilopoundPerMole)]
+        [InlineData("ru-RU", "Мфунт/моль", MolarMassUnit.MegapoundPerMole)]
+        [InlineData("ru-RU", "мкг/моль", MolarMassUnit.MicrogramPerMole)]
+        [InlineData("ru-RU", "мг/моль", MolarMassUnit.MilligramPerMole)]
+        [InlineData("ru-RU", "нг/моль", MolarMassUnit.NanogramPerMole)]
+        [InlineData("ru-RU", "фунт/моль", MolarMassUnit.PoundPerMole)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, MolarMassUnit expectedUnit)
         {
-            {
-                Assert.True(MolarMass.TryParseUnit("cg/mol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MolarMassUnit.CentigramPerMole, parsedUnit);
-            }
+            MolarMassUnit parsedUnit = MolarMass.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(MolarMass.TryParseUnit("сг/моль", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(MolarMassUnit.CentigramPerMole, parsedUnit);
-            }
+        [Theory]
+        [InlineData("cg/mol", MolarMassUnit.CentigramPerMole)]
+        [InlineData("dag/mol", MolarMassUnit.DecagramPerMole)]
+        [InlineData("dg/mol", MolarMassUnit.DecigramPerMole)]
+        [InlineData("g/mol", MolarMassUnit.GramPerMole)]
+        [InlineData("hg/mol", MolarMassUnit.HectogramPerMole)]
+        [InlineData("kg/kmol", MolarMassUnit.KilogramPerKilomole)]
+        [InlineData("kg/mol", MolarMassUnit.KilogramPerMole)]
+        [InlineData("klb/mol", MolarMassUnit.KilopoundPerMole)]
+        [InlineData("Mlb/mol", MolarMassUnit.MegapoundPerMole)]
+        [InlineData("µg/mol", MolarMassUnit.MicrogramPerMole)]
+        [InlineData("mg/mol", MolarMassUnit.MilligramPerMole)]
+        [InlineData("ng/mol", MolarMassUnit.NanogramPerMole)]
+        [InlineData("lb/mol", MolarMassUnit.PoundPerMole)]
+        public void TryParseUnit(string abbreviation, MolarMassUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(MolarMass.TryParseUnit(abbreviation, out MolarMassUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(MolarMass.TryParseUnit("dag/mol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MolarMassUnit.DecagramPerMole, parsedUnit);
-            }
-
-            {
-                Assert.True(MolarMass.TryParseUnit("даг/моль", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(MolarMassUnit.DecagramPerMole, parsedUnit);
-            }
-
-            {
-                Assert.True(MolarMass.TryParseUnit("dg/mol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MolarMassUnit.DecigramPerMole, parsedUnit);
-            }
-
-            {
-                Assert.True(MolarMass.TryParseUnit("дг/моль", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(MolarMassUnit.DecigramPerMole, parsedUnit);
-            }
-
-            {
-                Assert.True(MolarMass.TryParseUnit("g/mol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MolarMassUnit.GramPerMole, parsedUnit);
-            }
-
-            {
-                Assert.True(MolarMass.TryParseUnit("г/моль", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(MolarMassUnit.GramPerMole, parsedUnit);
-            }
-
-            {
-                Assert.True(MolarMass.TryParseUnit("hg/mol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MolarMassUnit.HectogramPerMole, parsedUnit);
-            }
-
-            {
-                Assert.True(MolarMass.TryParseUnit("гг/моль", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(MolarMassUnit.HectogramPerMole, parsedUnit);
-            }
-
-            {
-                Assert.True(MolarMass.TryParseUnit("kg/kmol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MolarMassUnit.KilogramPerKilomole, parsedUnit);
-            }
-
-            {
-                Assert.True(MolarMass.TryParseUnit("kg/mol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MolarMassUnit.KilogramPerMole, parsedUnit);
-            }
-
-            {
-                Assert.True(MolarMass.TryParseUnit("кг/моль", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(MolarMassUnit.KilogramPerMole, parsedUnit);
-            }
-
-            {
-                Assert.True(MolarMass.TryParseUnit("klb/mol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MolarMassUnit.KilopoundPerMole, parsedUnit);
-            }
-
-            {
-                Assert.True(MolarMass.TryParseUnit("кфунт/моль", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(MolarMassUnit.KilopoundPerMole, parsedUnit);
-            }
-
-            {
-                Assert.True(MolarMass.TryParseUnit("Mlb/mol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MolarMassUnit.MegapoundPerMole, parsedUnit);
-            }
-
-            {
-                Assert.True(MolarMass.TryParseUnit("Мфунт/моль", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(MolarMassUnit.MegapoundPerMole, parsedUnit);
-            }
-
-            {
-                Assert.True(MolarMass.TryParseUnit("µg/mol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MolarMassUnit.MicrogramPerMole, parsedUnit);
-            }
-
-            {
-                Assert.True(MolarMass.TryParseUnit("мкг/моль", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(MolarMassUnit.MicrogramPerMole, parsedUnit);
-            }
-
-            {
-                Assert.True(MolarMass.TryParseUnit("mg/mol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MolarMassUnit.MilligramPerMole, parsedUnit);
-            }
-
-            {
-                Assert.True(MolarMass.TryParseUnit("мг/моль", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(MolarMassUnit.MilligramPerMole, parsedUnit);
-            }
-
-            {
-                Assert.True(MolarMass.TryParseUnit("ng/mol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MolarMassUnit.NanogramPerMole, parsedUnit);
-            }
-
-            {
-                Assert.True(MolarMass.TryParseUnit("нг/моль", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(MolarMassUnit.NanogramPerMole, parsedUnit);
-            }
-
-            {
-                Assert.True(MolarMass.TryParseUnit("lb/mol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MolarMassUnit.PoundPerMole, parsedUnit);
-            }
-
-            {
-                Assert.True(MolarMass.TryParseUnit("фунт/моль", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(MolarMassUnit.PoundPerMole, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "cg/mol", MolarMassUnit.CentigramPerMole)]
+        [InlineData("en-US", "dag/mol", MolarMassUnit.DecagramPerMole)]
+        [InlineData("en-US", "dg/mol", MolarMassUnit.DecigramPerMole)]
+        [InlineData("en-US", "g/mol", MolarMassUnit.GramPerMole)]
+        [InlineData("en-US", "hg/mol", MolarMassUnit.HectogramPerMole)]
+        [InlineData("en-US", "kg/kmol", MolarMassUnit.KilogramPerKilomole)]
+        [InlineData("en-US", "kg/mol", MolarMassUnit.KilogramPerMole)]
+        [InlineData("en-US", "klb/mol", MolarMassUnit.KilopoundPerMole)]
+        [InlineData("en-US", "Mlb/mol", MolarMassUnit.MegapoundPerMole)]
+        [InlineData("en-US", "µg/mol", MolarMassUnit.MicrogramPerMole)]
+        [InlineData("en-US", "mg/mol", MolarMassUnit.MilligramPerMole)]
+        [InlineData("en-US", "ng/mol", MolarMassUnit.NanogramPerMole)]
+        [InlineData("en-US", "lb/mol", MolarMassUnit.PoundPerMole)]
+        [InlineData("ru-RU", "сг/моль", MolarMassUnit.CentigramPerMole)]
+        [InlineData("ru-RU", "даг/моль", MolarMassUnit.DecagramPerMole)]
+        [InlineData("ru-RU", "дг/моль", MolarMassUnit.DecigramPerMole)]
+        [InlineData("ru-RU", "г/моль", MolarMassUnit.GramPerMole)]
+        [InlineData("ru-RU", "гг/моль", MolarMassUnit.HectogramPerMole)]
+        [InlineData("ru-RU", "кг/моль", MolarMassUnit.KilogramPerMole)]
+        [InlineData("ru-RU", "кфунт/моль", MolarMassUnit.KilopoundPerMole)]
+        [InlineData("ru-RU", "Мфунт/моль", MolarMassUnit.MegapoundPerMole)]
+        [InlineData("ru-RU", "мкг/моль", MolarMassUnit.MicrogramPerMole)]
+        [InlineData("ru-RU", "мг/моль", MolarMassUnit.MilligramPerMole)]
+        [InlineData("ru-RU", "нг/моль", MolarMassUnit.NanogramPerMole)]
+        [InlineData("ru-RU", "фунт/моль", MolarMassUnit.PoundPerMole)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, MolarMassUnit expectedUnit)
+        {
+            Assert.True(MolarMass.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out MolarMassUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

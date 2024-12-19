@@ -200,25 +200,38 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("H/m", PermeabilityUnit.HenryPerMeter)]
+        public void ParseUnit(string abbreviation, PermeabilityUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = Permeability.ParseUnit("H/m", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(PermeabilityUnit.HenryPerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            PermeabilityUnit parsedUnit = Permeability.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "H/m", PermeabilityUnit.HenryPerMeter)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, PermeabilityUnit expectedUnit)
         {
-            {
-                Assert.True(Permeability.TryParseUnit("H/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(PermeabilityUnit.HenryPerMeter, parsedUnit);
-            }
+            PermeabilityUnit parsedUnit = Permeability.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("H/m", PermeabilityUnit.HenryPerMeter)]
+        public void TryParseUnit(string abbreviation, PermeabilityUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(Permeability.TryParseUnit(abbreviation, out PermeabilityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "H/m", PermeabilityUnit.HenryPerMeter)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, PermeabilityUnit expectedUnit)
+        {
+            Assert.True(Permeability.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out PermeabilityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

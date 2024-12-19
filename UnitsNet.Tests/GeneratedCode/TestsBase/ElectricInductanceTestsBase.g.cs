@@ -292,69 +292,54 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("H", ElectricInductanceUnit.Henry)]
+        [InlineData("µH", ElectricInductanceUnit.Microhenry)]
+        [InlineData("mH", ElectricInductanceUnit.Millihenry)]
+        [InlineData("nH", ElectricInductanceUnit.Nanohenry)]
+        [InlineData("pH", ElectricInductanceUnit.Picohenry)]
+        public void ParseUnit(string abbreviation, ElectricInductanceUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = ElectricInductance.ParseUnit("H", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricInductanceUnit.Henry, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricInductance.ParseUnit("µH", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricInductanceUnit.Microhenry, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricInductance.ParseUnit("mH", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricInductanceUnit.Millihenry, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricInductance.ParseUnit("nH", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricInductanceUnit.Nanohenry, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricInductance.ParseUnit("pH", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricInductanceUnit.Picohenry, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            ElectricInductanceUnit parsedUnit = ElectricInductance.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "H", ElectricInductanceUnit.Henry)]
+        [InlineData("en-US", "µH", ElectricInductanceUnit.Microhenry)]
+        [InlineData("en-US", "mH", ElectricInductanceUnit.Millihenry)]
+        [InlineData("en-US", "nH", ElectricInductanceUnit.Nanohenry)]
+        [InlineData("en-US", "pH", ElectricInductanceUnit.Picohenry)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, ElectricInductanceUnit expectedUnit)
         {
-            {
-                Assert.True(ElectricInductance.TryParseUnit("H", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricInductanceUnit.Henry, parsedUnit);
-            }
+            ElectricInductanceUnit parsedUnit = ElectricInductance.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ElectricInductance.TryParseUnit("µH", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricInductanceUnit.Microhenry, parsedUnit);
-            }
+        [Theory]
+        [InlineData("H", ElectricInductanceUnit.Henry)]
+        [InlineData("µH", ElectricInductanceUnit.Microhenry)]
+        [InlineData("mH", ElectricInductanceUnit.Millihenry)]
+        [InlineData("nH", ElectricInductanceUnit.Nanohenry)]
+        [InlineData("pH", ElectricInductanceUnit.Picohenry)]
+        public void TryParseUnit(string abbreviation, ElectricInductanceUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(ElectricInductance.TryParseUnit(abbreviation, out ElectricInductanceUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ElectricInductance.TryParseUnit("mH", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricInductanceUnit.Millihenry, parsedUnit);
-            }
-
-            {
-                Assert.True(ElectricInductance.TryParseUnit("nH", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricInductanceUnit.Nanohenry, parsedUnit);
-            }
-
-            {
-                Assert.True(ElectricInductance.TryParseUnit("pH", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricInductanceUnit.Picohenry, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "H", ElectricInductanceUnit.Henry)]
+        [InlineData("en-US", "µH", ElectricInductanceUnit.Microhenry)]
+        [InlineData("en-US", "mH", ElectricInductanceUnit.Millihenry)]
+        [InlineData("en-US", "nH", ElectricInductanceUnit.Nanohenry)]
+        [InlineData("en-US", "pH", ElectricInductanceUnit.Picohenry)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, ElectricInductanceUnit expectedUnit)
+        {
+            Assert.True(ElectricInductance.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ElectricInductanceUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

@@ -315,80 +315,58 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("°C⁻¹", CoefficientOfThermalExpansionUnit.PerDegreeCelsius)]
+        [InlineData("°F⁻¹", CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit)]
+        [InlineData("K⁻¹", CoefficientOfThermalExpansionUnit.PerKelvin)]
+        [InlineData("ppm/°C", CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius)]
+        [InlineData("ppm/°F", CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit)]
+        [InlineData("ppm/K", CoefficientOfThermalExpansionUnit.PpmPerKelvin)]
+        public void ParseUnit(string abbreviation, CoefficientOfThermalExpansionUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = CoefficientOfThermalExpansion.ParseUnit("°C⁻¹", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(CoefficientOfThermalExpansionUnit.PerDegreeCelsius, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = CoefficientOfThermalExpansion.ParseUnit("°F⁻¹", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = CoefficientOfThermalExpansion.ParseUnit("K⁻¹", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(CoefficientOfThermalExpansionUnit.PerKelvin, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = CoefficientOfThermalExpansion.ParseUnit("ppm/°C", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = CoefficientOfThermalExpansion.ParseUnit("ppm/°F", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = CoefficientOfThermalExpansion.ParseUnit("ppm/K", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(CoefficientOfThermalExpansionUnit.PpmPerKelvin, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            CoefficientOfThermalExpansionUnit parsedUnit = CoefficientOfThermalExpansion.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "°C⁻¹", CoefficientOfThermalExpansionUnit.PerDegreeCelsius)]
+        [InlineData("en-US", "°F⁻¹", CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit)]
+        [InlineData("en-US", "K⁻¹", CoefficientOfThermalExpansionUnit.PerKelvin)]
+        [InlineData("en-US", "ppm/°C", CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius)]
+        [InlineData("en-US", "ppm/°F", CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit)]
+        [InlineData("en-US", "ppm/K", CoefficientOfThermalExpansionUnit.PpmPerKelvin)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, CoefficientOfThermalExpansionUnit expectedUnit)
         {
-            {
-                Assert.True(CoefficientOfThermalExpansion.TryParseUnit("°C⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(CoefficientOfThermalExpansionUnit.PerDegreeCelsius, parsedUnit);
-            }
+            CoefficientOfThermalExpansionUnit parsedUnit = CoefficientOfThermalExpansion.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(CoefficientOfThermalExpansion.TryParseUnit("°F⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit, parsedUnit);
-            }
+        [Theory]
+        [InlineData("°C⁻¹", CoefficientOfThermalExpansionUnit.PerDegreeCelsius)]
+        [InlineData("°F⁻¹", CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit)]
+        [InlineData("K⁻¹", CoefficientOfThermalExpansionUnit.PerKelvin)]
+        [InlineData("ppm/°C", CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius)]
+        [InlineData("ppm/°F", CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit)]
+        [InlineData("ppm/K", CoefficientOfThermalExpansionUnit.PpmPerKelvin)]
+        public void TryParseUnit(string abbreviation, CoefficientOfThermalExpansionUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(CoefficientOfThermalExpansion.TryParseUnit(abbreviation, out CoefficientOfThermalExpansionUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(CoefficientOfThermalExpansion.TryParseUnit("K⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(CoefficientOfThermalExpansionUnit.PerKelvin, parsedUnit);
-            }
-
-            {
-                Assert.True(CoefficientOfThermalExpansion.TryParseUnit("ppm/°C", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius, parsedUnit);
-            }
-
-            {
-                Assert.True(CoefficientOfThermalExpansion.TryParseUnit("ppm/°F", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit, parsedUnit);
-            }
-
-            {
-                Assert.True(CoefficientOfThermalExpansion.TryParseUnit("ppm/K", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(CoefficientOfThermalExpansionUnit.PpmPerKelvin, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "°C⁻¹", CoefficientOfThermalExpansionUnit.PerDegreeCelsius)]
+        [InlineData("en-US", "°F⁻¹", CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit)]
+        [InlineData("en-US", "K⁻¹", CoefficientOfThermalExpansionUnit.PerKelvin)]
+        [InlineData("en-US", "ppm/°C", CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius)]
+        [InlineData("en-US", "ppm/°F", CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit)]
+        [InlineData("en-US", "ppm/K", CoefficientOfThermalExpansionUnit.PpmPerKelvin)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, CoefficientOfThermalExpansionUnit expectedUnit)
+        {
+            Assert.True(CoefficientOfThermalExpansion.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out CoefficientOfThermalExpansionUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

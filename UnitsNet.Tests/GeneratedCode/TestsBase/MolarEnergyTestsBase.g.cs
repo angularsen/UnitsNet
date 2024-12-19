@@ -246,47 +246,46 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("J/mol", MolarEnergyUnit.JoulePerMole)]
+        [InlineData("kJ/mol", MolarEnergyUnit.KilojoulePerMole)]
+        [InlineData("MJ/mol", MolarEnergyUnit.MegajoulePerMole)]
+        public void ParseUnit(string abbreviation, MolarEnergyUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = MolarEnergy.ParseUnit("J/mol", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MolarEnergyUnit.JoulePerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MolarEnergy.ParseUnit("kJ/mol", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MolarEnergyUnit.KilojoulePerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MolarEnergy.ParseUnit("MJ/mol", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MolarEnergyUnit.MegajoulePerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            MolarEnergyUnit parsedUnit = MolarEnergy.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "J/mol", MolarEnergyUnit.JoulePerMole)]
+        [InlineData("en-US", "kJ/mol", MolarEnergyUnit.KilojoulePerMole)]
+        [InlineData("en-US", "MJ/mol", MolarEnergyUnit.MegajoulePerMole)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, MolarEnergyUnit expectedUnit)
         {
-            {
-                Assert.True(MolarEnergy.TryParseUnit("J/mol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MolarEnergyUnit.JoulePerMole, parsedUnit);
-            }
+            MolarEnergyUnit parsedUnit = MolarEnergy.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(MolarEnergy.TryParseUnit("kJ/mol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MolarEnergyUnit.KilojoulePerMole, parsedUnit);
-            }
+        [Theory]
+        [InlineData("J/mol", MolarEnergyUnit.JoulePerMole)]
+        [InlineData("kJ/mol", MolarEnergyUnit.KilojoulePerMole)]
+        [InlineData("MJ/mol", MolarEnergyUnit.MegajoulePerMole)]
+        public void TryParseUnit(string abbreviation, MolarEnergyUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(MolarEnergy.TryParseUnit(abbreviation, out MolarEnergyUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(MolarEnergy.TryParseUnit("MJ/mol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MolarEnergyUnit.MegajoulePerMole, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "J/mol", MolarEnergyUnit.JoulePerMole)]
+        [InlineData("en-US", "kJ/mol", MolarEnergyUnit.KilojoulePerMole)]
+        [InlineData("en-US", "MJ/mol", MolarEnergyUnit.MegajoulePerMole)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, MolarEnergyUnit expectedUnit)
+        {
+            Assert.True(MolarEnergy.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out MolarEnergyUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

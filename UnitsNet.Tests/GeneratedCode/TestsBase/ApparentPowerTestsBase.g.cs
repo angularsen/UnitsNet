@@ -303,70 +303,58 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("GVA", ApparentPowerUnit.Gigavoltampere)]
+        [InlineData("kVA", ApparentPowerUnit.Kilovoltampere)]
+        [InlineData("MVA", ApparentPowerUnit.Megavoltampere)]
+        [InlineData("µVA", ApparentPowerUnit.Microvoltampere)]
+        [InlineData("mVA", ApparentPowerUnit.Millivoltampere)]
+        [InlineData("VA", ApparentPowerUnit.Voltampere)]
+        public void ParseUnit(string abbreviation, ApparentPowerUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = ApparentPower.ParseUnit("GVA", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ApparentPowerUnit.Gigavoltampere, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ApparentPower.ParseUnit("kVA", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ApparentPowerUnit.Kilovoltampere, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ApparentPower.ParseUnit("MVA", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ApparentPowerUnit.Megavoltampere, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ApparentPower.ParseUnit("µVA", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ApparentPowerUnit.Microvoltampere, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ApparentPower.ParseUnit("mVA", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ApparentPowerUnit.Millivoltampere, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ApparentPower.ParseUnit("VA", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ApparentPowerUnit.Voltampere, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            ApparentPowerUnit parsedUnit = ApparentPower.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "GVA", ApparentPowerUnit.Gigavoltampere)]
+        [InlineData("en-US", "kVA", ApparentPowerUnit.Kilovoltampere)]
+        [InlineData("en-US", "MVA", ApparentPowerUnit.Megavoltampere)]
+        [InlineData("en-US", "µVA", ApparentPowerUnit.Microvoltampere)]
+        [InlineData("en-US", "mVA", ApparentPowerUnit.Millivoltampere)]
+        [InlineData("en-US", "VA", ApparentPowerUnit.Voltampere)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, ApparentPowerUnit expectedUnit)
         {
-            {
-                Assert.True(ApparentPower.TryParseUnit("GVA", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ApparentPowerUnit.Gigavoltampere, parsedUnit);
-            }
+            ApparentPowerUnit parsedUnit = ApparentPower.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ApparentPower.TryParseUnit("kVA", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ApparentPowerUnit.Kilovoltampere, parsedUnit);
-            }
+        [Theory]
+        [InlineData("GVA", ApparentPowerUnit.Gigavoltampere)]
+        [InlineData("kVA", ApparentPowerUnit.Kilovoltampere)]
+        [InlineData("MVA", ApparentPowerUnit.Megavoltampere)]
+        [InlineData("µVA", ApparentPowerUnit.Microvoltampere)]
+        [InlineData("mVA", ApparentPowerUnit.Millivoltampere)]
+        [InlineData("VA", ApparentPowerUnit.Voltampere)]
+        public void TryParseUnit(string abbreviation, ApparentPowerUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(ApparentPower.TryParseUnit(abbreviation, out ApparentPowerUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ApparentPower.TryParseUnit("µVA", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ApparentPowerUnit.Microvoltampere, parsedUnit);
-            }
-
-            {
-                Assert.True(ApparentPower.TryParseUnit("VA", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ApparentPowerUnit.Voltampere, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "GVA", ApparentPowerUnit.Gigavoltampere)]
+        [InlineData("en-US", "kVA", ApparentPowerUnit.Kilovoltampere)]
+        [InlineData("en-US", "MVA", ApparentPowerUnit.Megavoltampere)]
+        [InlineData("en-US", "µVA", ApparentPowerUnit.Microvoltampere)]
+        [InlineData("en-US", "mVA", ApparentPowerUnit.Millivoltampere)]
+        [InlineData("en-US", "VA", ApparentPowerUnit.Voltampere)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, ApparentPowerUnit expectedUnit)
+        {
+            Assert.True(ApparentPower.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ApparentPowerUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

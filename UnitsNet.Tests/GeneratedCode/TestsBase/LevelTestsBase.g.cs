@@ -223,36 +223,42 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("dB", LevelUnit.Decibel)]
+        [InlineData("Np", LevelUnit.Neper)]
+        public void ParseUnit(string abbreviation, LevelUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = Level.ParseUnit("dB", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LevelUnit.Decibel, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Level.ParseUnit("Np", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LevelUnit.Neper, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            LevelUnit parsedUnit = Level.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "dB", LevelUnit.Decibel)]
+        [InlineData("en-US", "Np", LevelUnit.Neper)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, LevelUnit expectedUnit)
         {
-            {
-                Assert.True(Level.TryParseUnit("dB", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LevelUnit.Decibel, parsedUnit);
-            }
+            LevelUnit parsedUnit = Level.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Level.TryParseUnit("Np", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LevelUnit.Neper, parsedUnit);
-            }
+        [Theory]
+        [InlineData("dB", LevelUnit.Decibel)]
+        [InlineData("Np", LevelUnit.Neper)]
+        public void TryParseUnit(string abbreviation, LevelUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(Level.TryParseUnit(abbreviation, out LevelUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("en-US", "dB", LevelUnit.Decibel)]
+        [InlineData("en-US", "Np", LevelUnit.Neper)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, LevelUnit expectedUnit)
+        {
+            Assert.True(Level.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out LevelUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

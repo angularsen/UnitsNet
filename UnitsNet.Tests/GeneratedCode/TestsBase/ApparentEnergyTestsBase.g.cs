@@ -246,47 +246,46 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("kVAh", ApparentEnergyUnit.KilovoltampereHour)]
+        [InlineData("MVAh", ApparentEnergyUnit.MegavoltampereHour)]
+        [InlineData("VAh", ApparentEnergyUnit.VoltampereHour)]
+        public void ParseUnit(string abbreviation, ApparentEnergyUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = ApparentEnergy.ParseUnit("kVAh", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ApparentEnergyUnit.KilovoltampereHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ApparentEnergy.ParseUnit("MVAh", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ApparentEnergyUnit.MegavoltampereHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ApparentEnergy.ParseUnit("VAh", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ApparentEnergyUnit.VoltampereHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            ApparentEnergyUnit parsedUnit = ApparentEnergy.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "kVAh", ApparentEnergyUnit.KilovoltampereHour)]
+        [InlineData("en-US", "MVAh", ApparentEnergyUnit.MegavoltampereHour)]
+        [InlineData("en-US", "VAh", ApparentEnergyUnit.VoltampereHour)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, ApparentEnergyUnit expectedUnit)
         {
-            {
-                Assert.True(ApparentEnergy.TryParseUnit("kVAh", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ApparentEnergyUnit.KilovoltampereHour, parsedUnit);
-            }
+            ApparentEnergyUnit parsedUnit = ApparentEnergy.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ApparentEnergy.TryParseUnit("MVAh", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ApparentEnergyUnit.MegavoltampereHour, parsedUnit);
-            }
+        [Theory]
+        [InlineData("kVAh", ApparentEnergyUnit.KilovoltampereHour)]
+        [InlineData("MVAh", ApparentEnergyUnit.MegavoltampereHour)]
+        [InlineData("VAh", ApparentEnergyUnit.VoltampereHour)]
+        public void TryParseUnit(string abbreviation, ApparentEnergyUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(ApparentEnergy.TryParseUnit(abbreviation, out ApparentEnergyUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ApparentEnergy.TryParseUnit("VAh", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ApparentEnergyUnit.VoltampereHour, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "kVAh", ApparentEnergyUnit.KilovoltampereHour)]
+        [InlineData("en-US", "MVAh", ApparentEnergyUnit.MegavoltampereHour)]
+        [InlineData("en-US", "VAh", ApparentEnergyUnit.VoltampereHour)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, ApparentEnergyUnit expectedUnit)
+        {
+            Assert.True(ApparentEnergy.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ApparentEnergyUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

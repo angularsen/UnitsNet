@@ -710,355 +710,134 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("crad/s", RotationalSpeedUnit.CentiradianPerSecond)]
+        [InlineData("drad/s", RotationalSpeedUnit.DeciradianPerSecond)]
+        [InlineData("°/min", RotationalSpeedUnit.DegreePerMinute)]
+        [InlineData("deg/min", RotationalSpeedUnit.DegreePerMinute)]
+        [InlineData("°/s", RotationalSpeedUnit.DegreePerSecond)]
+        [InlineData("deg/s", RotationalSpeedUnit.DegreePerSecond)]
+        [InlineData("µ°/s", RotationalSpeedUnit.MicrodegreePerSecond)]
+        [InlineData("µdeg/s", RotationalSpeedUnit.MicrodegreePerSecond)]
+        [InlineData("µrad/s", RotationalSpeedUnit.MicroradianPerSecond)]
+        [InlineData("m°/s", RotationalSpeedUnit.MillidegreePerSecond)]
+        [InlineData("mdeg/s", RotationalSpeedUnit.MillidegreePerSecond)]
+        [InlineData("mrad/s", RotationalSpeedUnit.MilliradianPerSecond)]
+        [InlineData("n°/s", RotationalSpeedUnit.NanodegreePerSecond)]
+        [InlineData("ndeg/s", RotationalSpeedUnit.NanodegreePerSecond)]
+        [InlineData("nrad/s", RotationalSpeedUnit.NanoradianPerSecond)]
+        [InlineData("rad/s", RotationalSpeedUnit.RadianPerSecond)]
+        [InlineData("rpm", RotationalSpeedUnit.RevolutionPerMinute)]
+        [InlineData("r/min", RotationalSpeedUnit.RevolutionPerMinute)]
+        [InlineData("r/s", RotationalSpeedUnit.RevolutionPerSecond)]
+        public void ParseUnit(string abbreviation, RotationalSpeedUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = RotationalSpeed.ParseUnit("crad/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RotationalSpeedUnit.CentiradianPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalSpeed.ParseUnit("срад/с", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(RotationalSpeedUnit.CentiradianPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalSpeed.ParseUnit("drad/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RotationalSpeedUnit.DeciradianPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalSpeed.ParseUnit("драд/с", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(RotationalSpeedUnit.DeciradianPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalSpeed.ParseUnit("°/min", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RotationalSpeedUnit.DegreePerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalSpeed.ParseUnit("deg/min", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RotationalSpeedUnit.DegreePerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalSpeed.ParseUnit("°/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RotationalSpeedUnit.DegreePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalSpeed.ParseUnit("deg/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RotationalSpeedUnit.DegreePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalSpeed.ParseUnit("°/с", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(RotationalSpeedUnit.DegreePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalSpeed.ParseUnit("µ°/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RotationalSpeedUnit.MicrodegreePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalSpeed.ParseUnit("µdeg/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RotationalSpeedUnit.MicrodegreePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalSpeed.ParseUnit("мк°/с", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(RotationalSpeedUnit.MicrodegreePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalSpeed.ParseUnit("µrad/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RotationalSpeedUnit.MicroradianPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalSpeed.ParseUnit("мкрад/с", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(RotationalSpeedUnit.MicroradianPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalSpeed.ParseUnit("m°/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RotationalSpeedUnit.MillidegreePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalSpeed.ParseUnit("mdeg/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RotationalSpeedUnit.MillidegreePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalSpeed.ParseUnit("м°/с", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(RotationalSpeedUnit.MillidegreePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalSpeed.ParseUnit("mrad/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RotationalSpeedUnit.MilliradianPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalSpeed.ParseUnit("мрад/с", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(RotationalSpeedUnit.MilliradianPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalSpeed.ParseUnit("n°/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RotationalSpeedUnit.NanodegreePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalSpeed.ParseUnit("ndeg/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RotationalSpeedUnit.NanodegreePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalSpeed.ParseUnit("н°/с", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(RotationalSpeedUnit.NanodegreePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalSpeed.ParseUnit("nrad/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RotationalSpeedUnit.NanoradianPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalSpeed.ParseUnit("нрад/с", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(RotationalSpeedUnit.NanoradianPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalSpeed.ParseUnit("rad/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RotationalSpeedUnit.RadianPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalSpeed.ParseUnit("рад/с", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(RotationalSpeedUnit.RadianPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalSpeed.ParseUnit("rpm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RotationalSpeedUnit.RevolutionPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalSpeed.ParseUnit("r/min", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RotationalSpeedUnit.RevolutionPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalSpeed.ParseUnit("об/мин", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(RotationalSpeedUnit.RevolutionPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalSpeed.ParseUnit("r/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RotationalSpeedUnit.RevolutionPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalSpeed.ParseUnit("об/с", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(RotationalSpeedUnit.RevolutionPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            RotationalSpeedUnit parsedUnit = RotationalSpeed.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "crad/s", RotationalSpeedUnit.CentiradianPerSecond)]
+        [InlineData("en-US", "drad/s", RotationalSpeedUnit.DeciradianPerSecond)]
+        [InlineData("en-US", "°/min", RotationalSpeedUnit.DegreePerMinute)]
+        [InlineData("en-US", "deg/min", RotationalSpeedUnit.DegreePerMinute)]
+        [InlineData("en-US", "°/s", RotationalSpeedUnit.DegreePerSecond)]
+        [InlineData("en-US", "deg/s", RotationalSpeedUnit.DegreePerSecond)]
+        [InlineData("en-US", "µ°/s", RotationalSpeedUnit.MicrodegreePerSecond)]
+        [InlineData("en-US", "µdeg/s", RotationalSpeedUnit.MicrodegreePerSecond)]
+        [InlineData("en-US", "µrad/s", RotationalSpeedUnit.MicroradianPerSecond)]
+        [InlineData("en-US", "m°/s", RotationalSpeedUnit.MillidegreePerSecond)]
+        [InlineData("en-US", "mdeg/s", RotationalSpeedUnit.MillidegreePerSecond)]
+        [InlineData("en-US", "mrad/s", RotationalSpeedUnit.MilliradianPerSecond)]
+        [InlineData("en-US", "n°/s", RotationalSpeedUnit.NanodegreePerSecond)]
+        [InlineData("en-US", "ndeg/s", RotationalSpeedUnit.NanodegreePerSecond)]
+        [InlineData("en-US", "nrad/s", RotationalSpeedUnit.NanoradianPerSecond)]
+        [InlineData("en-US", "rad/s", RotationalSpeedUnit.RadianPerSecond)]
+        [InlineData("en-US", "rpm", RotationalSpeedUnit.RevolutionPerMinute)]
+        [InlineData("en-US", "r/min", RotationalSpeedUnit.RevolutionPerMinute)]
+        [InlineData("en-US", "r/s", RotationalSpeedUnit.RevolutionPerSecond)]
+        [InlineData("ru-RU", "срад/с", RotationalSpeedUnit.CentiradianPerSecond)]
+        [InlineData("ru-RU", "драд/с", RotationalSpeedUnit.DeciradianPerSecond)]
+        [InlineData("ru-RU", "°/с", RotationalSpeedUnit.DegreePerSecond)]
+        [InlineData("ru-RU", "мк°/с", RotationalSpeedUnit.MicrodegreePerSecond)]
+        [InlineData("ru-RU", "мкрад/с", RotationalSpeedUnit.MicroradianPerSecond)]
+        [InlineData("ru-RU", "м°/с", RotationalSpeedUnit.MillidegreePerSecond)]
+        [InlineData("ru-RU", "мрад/с", RotationalSpeedUnit.MilliradianPerSecond)]
+        [InlineData("ru-RU", "н°/с", RotationalSpeedUnit.NanodegreePerSecond)]
+        [InlineData("ru-RU", "нрад/с", RotationalSpeedUnit.NanoradianPerSecond)]
+        [InlineData("ru-RU", "рад/с", RotationalSpeedUnit.RadianPerSecond)]
+        [InlineData("ru-RU", "об/мин", RotationalSpeedUnit.RevolutionPerMinute)]
+        [InlineData("ru-RU", "об/с", RotationalSpeedUnit.RevolutionPerSecond)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, RotationalSpeedUnit expectedUnit)
         {
-            {
-                Assert.True(RotationalSpeed.TryParseUnit("crad/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RotationalSpeedUnit.CentiradianPerSecond, parsedUnit);
-            }
+            RotationalSpeedUnit parsedUnit = RotationalSpeed.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(RotationalSpeed.TryParseUnit("срад/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(RotationalSpeedUnit.CentiradianPerSecond, parsedUnit);
-            }
+        [Theory]
+        [InlineData("crad/s", RotationalSpeedUnit.CentiradianPerSecond)]
+        [InlineData("drad/s", RotationalSpeedUnit.DeciradianPerSecond)]
+        [InlineData("°/min", RotationalSpeedUnit.DegreePerMinute)]
+        [InlineData("deg/min", RotationalSpeedUnit.DegreePerMinute)]
+        [InlineData("°/s", RotationalSpeedUnit.DegreePerSecond)]
+        [InlineData("deg/s", RotationalSpeedUnit.DegreePerSecond)]
+        [InlineData("µ°/s", RotationalSpeedUnit.MicrodegreePerSecond)]
+        [InlineData("µdeg/s", RotationalSpeedUnit.MicrodegreePerSecond)]
+        [InlineData("µrad/s", RotationalSpeedUnit.MicroradianPerSecond)]
+        [InlineData("m°/s", RotationalSpeedUnit.MillidegreePerSecond)]
+        [InlineData("mdeg/s", RotationalSpeedUnit.MillidegreePerSecond)]
+        [InlineData("mrad/s", RotationalSpeedUnit.MilliradianPerSecond)]
+        [InlineData("n°/s", RotationalSpeedUnit.NanodegreePerSecond)]
+        [InlineData("ndeg/s", RotationalSpeedUnit.NanodegreePerSecond)]
+        [InlineData("nrad/s", RotationalSpeedUnit.NanoradianPerSecond)]
+        [InlineData("rad/s", RotationalSpeedUnit.RadianPerSecond)]
+        [InlineData("rpm", RotationalSpeedUnit.RevolutionPerMinute)]
+        [InlineData("r/min", RotationalSpeedUnit.RevolutionPerMinute)]
+        [InlineData("r/s", RotationalSpeedUnit.RevolutionPerSecond)]
+        public void TryParseUnit(string abbreviation, RotationalSpeedUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(RotationalSpeed.TryParseUnit(abbreviation, out RotationalSpeedUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(RotationalSpeed.TryParseUnit("drad/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RotationalSpeedUnit.DeciradianPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParseUnit("драд/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(RotationalSpeedUnit.DeciradianPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParseUnit("°/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RotationalSpeedUnit.DegreePerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParseUnit("deg/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RotationalSpeedUnit.DegreePerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParseUnit("°/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RotationalSpeedUnit.DegreePerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParseUnit("deg/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RotationalSpeedUnit.DegreePerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParseUnit("°/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(RotationalSpeedUnit.DegreePerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParseUnit("µ°/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RotationalSpeedUnit.MicrodegreePerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParseUnit("µdeg/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RotationalSpeedUnit.MicrodegreePerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParseUnit("мк°/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(RotationalSpeedUnit.MicrodegreePerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParseUnit("µrad/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RotationalSpeedUnit.MicroradianPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParseUnit("мкрад/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(RotationalSpeedUnit.MicroradianPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParseUnit("m°/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RotationalSpeedUnit.MillidegreePerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParseUnit("mdeg/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RotationalSpeedUnit.MillidegreePerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParseUnit("м°/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(RotationalSpeedUnit.MillidegreePerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParseUnit("mrad/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RotationalSpeedUnit.MilliradianPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParseUnit("мрад/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(RotationalSpeedUnit.MilliradianPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParseUnit("n°/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RotationalSpeedUnit.NanodegreePerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParseUnit("ndeg/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RotationalSpeedUnit.NanodegreePerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParseUnit("н°/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(RotationalSpeedUnit.NanodegreePerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParseUnit("nrad/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RotationalSpeedUnit.NanoradianPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParseUnit("нрад/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(RotationalSpeedUnit.NanoradianPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParseUnit("rad/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RotationalSpeedUnit.RadianPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParseUnit("рад/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(RotationalSpeedUnit.RadianPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParseUnit("rpm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RotationalSpeedUnit.RevolutionPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParseUnit("r/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RotationalSpeedUnit.RevolutionPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParseUnit("об/мин", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(RotationalSpeedUnit.RevolutionPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParseUnit("r/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RotationalSpeedUnit.RevolutionPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParseUnit("об/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(RotationalSpeedUnit.RevolutionPerSecond, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "crad/s", RotationalSpeedUnit.CentiradianPerSecond)]
+        [InlineData("en-US", "drad/s", RotationalSpeedUnit.DeciradianPerSecond)]
+        [InlineData("en-US", "°/min", RotationalSpeedUnit.DegreePerMinute)]
+        [InlineData("en-US", "deg/min", RotationalSpeedUnit.DegreePerMinute)]
+        [InlineData("en-US", "°/s", RotationalSpeedUnit.DegreePerSecond)]
+        [InlineData("en-US", "deg/s", RotationalSpeedUnit.DegreePerSecond)]
+        [InlineData("en-US", "µ°/s", RotationalSpeedUnit.MicrodegreePerSecond)]
+        [InlineData("en-US", "µdeg/s", RotationalSpeedUnit.MicrodegreePerSecond)]
+        [InlineData("en-US", "µrad/s", RotationalSpeedUnit.MicroradianPerSecond)]
+        [InlineData("en-US", "m°/s", RotationalSpeedUnit.MillidegreePerSecond)]
+        [InlineData("en-US", "mdeg/s", RotationalSpeedUnit.MillidegreePerSecond)]
+        [InlineData("en-US", "mrad/s", RotationalSpeedUnit.MilliradianPerSecond)]
+        [InlineData("en-US", "n°/s", RotationalSpeedUnit.NanodegreePerSecond)]
+        [InlineData("en-US", "ndeg/s", RotationalSpeedUnit.NanodegreePerSecond)]
+        [InlineData("en-US", "nrad/s", RotationalSpeedUnit.NanoradianPerSecond)]
+        [InlineData("en-US", "rad/s", RotationalSpeedUnit.RadianPerSecond)]
+        [InlineData("en-US", "rpm", RotationalSpeedUnit.RevolutionPerMinute)]
+        [InlineData("en-US", "r/min", RotationalSpeedUnit.RevolutionPerMinute)]
+        [InlineData("en-US", "r/s", RotationalSpeedUnit.RevolutionPerSecond)]
+        [InlineData("ru-RU", "срад/с", RotationalSpeedUnit.CentiradianPerSecond)]
+        [InlineData("ru-RU", "драд/с", RotationalSpeedUnit.DeciradianPerSecond)]
+        [InlineData("ru-RU", "°/с", RotationalSpeedUnit.DegreePerSecond)]
+        [InlineData("ru-RU", "мк°/с", RotationalSpeedUnit.MicrodegreePerSecond)]
+        [InlineData("ru-RU", "мкрад/с", RotationalSpeedUnit.MicroradianPerSecond)]
+        [InlineData("ru-RU", "м°/с", RotationalSpeedUnit.MillidegreePerSecond)]
+        [InlineData("ru-RU", "мрад/с", RotationalSpeedUnit.MilliradianPerSecond)]
+        [InlineData("ru-RU", "н°/с", RotationalSpeedUnit.NanodegreePerSecond)]
+        [InlineData("ru-RU", "нрад/с", RotationalSpeedUnit.NanoradianPerSecond)]
+        [InlineData("ru-RU", "рад/с", RotationalSpeedUnit.RadianPerSecond)]
+        [InlineData("ru-RU", "об/мин", RotationalSpeedUnit.RevolutionPerMinute)]
+        [InlineData("ru-RU", "об/с", RotationalSpeedUnit.RevolutionPerSecond)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, RotationalSpeedUnit expectedUnit)
+        {
+            Assert.True(RotationalSpeed.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out RotationalSpeedUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

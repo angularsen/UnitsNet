@@ -246,47 +246,46 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("mbar·l/s", LeakRateUnit.MillibarLiterPerSecond)]
+        [InlineData("Pa·m³/s", LeakRateUnit.PascalCubicMeterPerSecond)]
+        [InlineData("Torr·l/s", LeakRateUnit.TorrLiterPerSecond)]
+        public void ParseUnit(string abbreviation, LeakRateUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = LeakRate.ParseUnit("mbar·l/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LeakRateUnit.MillibarLiterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = LeakRate.ParseUnit("Pa·m³/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LeakRateUnit.PascalCubicMeterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = LeakRate.ParseUnit("Torr·l/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LeakRateUnit.TorrLiterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            LeakRateUnit parsedUnit = LeakRate.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "mbar·l/s", LeakRateUnit.MillibarLiterPerSecond)]
+        [InlineData("en-US", "Pa·m³/s", LeakRateUnit.PascalCubicMeterPerSecond)]
+        [InlineData("en-US", "Torr·l/s", LeakRateUnit.TorrLiterPerSecond)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, LeakRateUnit expectedUnit)
         {
-            {
-                Assert.True(LeakRate.TryParseUnit("mbar·l/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LeakRateUnit.MillibarLiterPerSecond, parsedUnit);
-            }
+            LeakRateUnit parsedUnit = LeakRate.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(LeakRate.TryParseUnit("Pa·m³/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LeakRateUnit.PascalCubicMeterPerSecond, parsedUnit);
-            }
+        [Theory]
+        [InlineData("mbar·l/s", LeakRateUnit.MillibarLiterPerSecond)]
+        [InlineData("Pa·m³/s", LeakRateUnit.PascalCubicMeterPerSecond)]
+        [InlineData("Torr·l/s", LeakRateUnit.TorrLiterPerSecond)]
+        public void TryParseUnit(string abbreviation, LeakRateUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(LeakRate.TryParseUnit(abbreviation, out LeakRateUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(LeakRate.TryParseUnit("Torr·l/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LeakRateUnit.TorrLiterPerSecond, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "mbar·l/s", LeakRateUnit.MillibarLiterPerSecond)]
+        [InlineData("en-US", "Pa·m³/s", LeakRateUnit.PascalCubicMeterPerSecond)]
+        [InlineData("en-US", "Torr·l/s", LeakRateUnit.TorrLiterPerSecond)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, LeakRateUnit expectedUnit)
+        {
+            Assert.True(LeakRate.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out LeakRateUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

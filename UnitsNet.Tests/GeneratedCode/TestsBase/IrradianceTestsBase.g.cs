@@ -475,148 +475,90 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("kW/cm²", IrradianceUnit.KilowattPerSquareCentimeter)]
+        [InlineData("kW/m²", IrradianceUnit.KilowattPerSquareMeter)]
+        [InlineData("MW/cm²", IrradianceUnit.MegawattPerSquareCentimeter)]
+        [InlineData("MW/m²", IrradianceUnit.MegawattPerSquareMeter)]
+        [InlineData("µW/cm²", IrradianceUnit.MicrowattPerSquareCentimeter)]
+        [InlineData("µW/m²", IrradianceUnit.MicrowattPerSquareMeter)]
+        [InlineData("mW/cm²", IrradianceUnit.MilliwattPerSquareCentimeter)]
+        [InlineData("mW/m²", IrradianceUnit.MilliwattPerSquareMeter)]
+        [InlineData("nW/cm²", IrradianceUnit.NanowattPerSquareCentimeter)]
+        [InlineData("nW/m²", IrradianceUnit.NanowattPerSquareMeter)]
+        [InlineData("pW/cm²", IrradianceUnit.PicowattPerSquareCentimeter)]
+        [InlineData("pW/m²", IrradianceUnit.PicowattPerSquareMeter)]
+        [InlineData("W/cm²", IrradianceUnit.WattPerSquareCentimeter)]
+        [InlineData("W/m²", IrradianceUnit.WattPerSquareMeter)]
+        public void ParseUnit(string abbreviation, IrradianceUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = Irradiance.ParseUnit("kW/cm²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(IrradianceUnit.KilowattPerSquareCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Irradiance.ParseUnit("kW/m²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(IrradianceUnit.KilowattPerSquareMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Irradiance.ParseUnit("MW/cm²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(IrradianceUnit.MegawattPerSquareCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Irradiance.ParseUnit("MW/m²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(IrradianceUnit.MegawattPerSquareMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Irradiance.ParseUnit("µW/cm²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(IrradianceUnit.MicrowattPerSquareCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Irradiance.ParseUnit("µW/m²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(IrradianceUnit.MicrowattPerSquareMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Irradiance.ParseUnit("mW/cm²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(IrradianceUnit.MilliwattPerSquareCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Irradiance.ParseUnit("mW/m²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(IrradianceUnit.MilliwattPerSquareMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Irradiance.ParseUnit("nW/cm²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(IrradianceUnit.NanowattPerSquareCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Irradiance.ParseUnit("nW/m²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(IrradianceUnit.NanowattPerSquareMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Irradiance.ParseUnit("pW/cm²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(IrradianceUnit.PicowattPerSquareCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Irradiance.ParseUnit("pW/m²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(IrradianceUnit.PicowattPerSquareMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Irradiance.ParseUnit("W/cm²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(IrradianceUnit.WattPerSquareCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Irradiance.ParseUnit("W/m²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(IrradianceUnit.WattPerSquareMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            IrradianceUnit parsedUnit = Irradiance.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "kW/cm²", IrradianceUnit.KilowattPerSquareCentimeter)]
+        [InlineData("en-US", "kW/m²", IrradianceUnit.KilowattPerSquareMeter)]
+        [InlineData("en-US", "MW/cm²", IrradianceUnit.MegawattPerSquareCentimeter)]
+        [InlineData("en-US", "MW/m²", IrradianceUnit.MegawattPerSquareMeter)]
+        [InlineData("en-US", "µW/cm²", IrradianceUnit.MicrowattPerSquareCentimeter)]
+        [InlineData("en-US", "µW/m²", IrradianceUnit.MicrowattPerSquareMeter)]
+        [InlineData("en-US", "mW/cm²", IrradianceUnit.MilliwattPerSquareCentimeter)]
+        [InlineData("en-US", "mW/m²", IrradianceUnit.MilliwattPerSquareMeter)]
+        [InlineData("en-US", "nW/cm²", IrradianceUnit.NanowattPerSquareCentimeter)]
+        [InlineData("en-US", "nW/m²", IrradianceUnit.NanowattPerSquareMeter)]
+        [InlineData("en-US", "pW/cm²", IrradianceUnit.PicowattPerSquareCentimeter)]
+        [InlineData("en-US", "pW/m²", IrradianceUnit.PicowattPerSquareMeter)]
+        [InlineData("en-US", "W/cm²", IrradianceUnit.WattPerSquareCentimeter)]
+        [InlineData("en-US", "W/m²", IrradianceUnit.WattPerSquareMeter)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, IrradianceUnit expectedUnit)
         {
-            {
-                Assert.True(Irradiance.TryParseUnit("kW/cm²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(IrradianceUnit.KilowattPerSquareCentimeter, parsedUnit);
-            }
+            IrradianceUnit parsedUnit = Irradiance.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Irradiance.TryParseUnit("kW/m²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(IrradianceUnit.KilowattPerSquareMeter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("kW/cm²", IrradianceUnit.KilowattPerSquareCentimeter)]
+        [InlineData("kW/m²", IrradianceUnit.KilowattPerSquareMeter)]
+        [InlineData("MW/cm²", IrradianceUnit.MegawattPerSquareCentimeter)]
+        [InlineData("MW/m²", IrradianceUnit.MegawattPerSquareMeter)]
+        [InlineData("µW/cm²", IrradianceUnit.MicrowattPerSquareCentimeter)]
+        [InlineData("µW/m²", IrradianceUnit.MicrowattPerSquareMeter)]
+        [InlineData("mW/cm²", IrradianceUnit.MilliwattPerSquareCentimeter)]
+        [InlineData("mW/m²", IrradianceUnit.MilliwattPerSquareMeter)]
+        [InlineData("nW/cm²", IrradianceUnit.NanowattPerSquareCentimeter)]
+        [InlineData("nW/m²", IrradianceUnit.NanowattPerSquareMeter)]
+        [InlineData("pW/cm²", IrradianceUnit.PicowattPerSquareCentimeter)]
+        [InlineData("pW/m²", IrradianceUnit.PicowattPerSquareMeter)]
+        [InlineData("W/cm²", IrradianceUnit.WattPerSquareCentimeter)]
+        [InlineData("W/m²", IrradianceUnit.WattPerSquareMeter)]
+        public void TryParseUnit(string abbreviation, IrradianceUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(Irradiance.TryParseUnit(abbreviation, out IrradianceUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Irradiance.TryParseUnit("µW/cm²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(IrradianceUnit.MicrowattPerSquareCentimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(Irradiance.TryParseUnit("µW/m²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(IrradianceUnit.MicrowattPerSquareMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(Irradiance.TryParseUnit("nW/cm²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(IrradianceUnit.NanowattPerSquareCentimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(Irradiance.TryParseUnit("nW/m²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(IrradianceUnit.NanowattPerSquareMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(Irradiance.TryParseUnit("pW/cm²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(IrradianceUnit.PicowattPerSquareCentimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(Irradiance.TryParseUnit("pW/m²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(IrradianceUnit.PicowattPerSquareMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(Irradiance.TryParseUnit("W/cm²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(IrradianceUnit.WattPerSquareCentimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(Irradiance.TryParseUnit("W/m²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(IrradianceUnit.WattPerSquareMeter, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "kW/cm²", IrradianceUnit.KilowattPerSquareCentimeter)]
+        [InlineData("en-US", "kW/m²", IrradianceUnit.KilowattPerSquareMeter)]
+        [InlineData("en-US", "MW/cm²", IrradianceUnit.MegawattPerSquareCentimeter)]
+        [InlineData("en-US", "MW/m²", IrradianceUnit.MegawattPerSquareMeter)]
+        [InlineData("en-US", "µW/cm²", IrradianceUnit.MicrowattPerSquareCentimeter)]
+        [InlineData("en-US", "µW/m²", IrradianceUnit.MicrowattPerSquareMeter)]
+        [InlineData("en-US", "mW/cm²", IrradianceUnit.MilliwattPerSquareCentimeter)]
+        [InlineData("en-US", "mW/m²", IrradianceUnit.MilliwattPerSquareMeter)]
+        [InlineData("en-US", "nW/cm²", IrradianceUnit.NanowattPerSquareCentimeter)]
+        [InlineData("en-US", "nW/m²", IrradianceUnit.NanowattPerSquareMeter)]
+        [InlineData("en-US", "pW/cm²", IrradianceUnit.PicowattPerSquareCentimeter)]
+        [InlineData("en-US", "pW/m²", IrradianceUnit.PicowattPerSquareMeter)]
+        [InlineData("en-US", "W/cm²", IrradianceUnit.WattPerSquareCentimeter)]
+        [InlineData("en-US", "W/m²", IrradianceUnit.WattPerSquareMeter)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, IrradianceUnit expectedUnit)
+        {
+            Assert.True(Irradiance.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out IrradianceUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

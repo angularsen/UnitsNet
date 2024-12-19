@@ -591,212 +591,106 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("g/cm", LinearDensityUnit.GramPerCentimeter)]
+        [InlineData("g/ft", LinearDensityUnit.GramPerFoot)]
+        [InlineData("g/m", LinearDensityUnit.GramPerMeter)]
+        [InlineData("g/mm", LinearDensityUnit.GramPerMillimeter)]
+        [InlineData("kg/cm", LinearDensityUnit.KilogramPerCentimeter)]
+        [InlineData("kg/ft", LinearDensityUnit.KilogramPerFoot)]
+        [InlineData("kg/m", LinearDensityUnit.KilogramPerMeter)]
+        [InlineData("kg/mm", LinearDensityUnit.KilogramPerMillimeter)]
+        [InlineData("µg/cm", LinearDensityUnit.MicrogramPerCentimeter)]
+        [InlineData("µg/ft", LinearDensityUnit.MicrogramPerFoot)]
+        [InlineData("µg/m", LinearDensityUnit.MicrogramPerMeter)]
+        [InlineData("µg/mm", LinearDensityUnit.MicrogramPerMillimeter)]
+        [InlineData("mg/cm", LinearDensityUnit.MilligramPerCentimeter)]
+        [InlineData("mg/ft", LinearDensityUnit.MilligramPerFoot)]
+        [InlineData("mg/m", LinearDensityUnit.MilligramPerMeter)]
+        [InlineData("mg/mm", LinearDensityUnit.MilligramPerMillimeter)]
+        [InlineData("lb/ft", LinearDensityUnit.PoundPerFoot)]
+        [InlineData("lb/in", LinearDensityUnit.PoundPerInch)]
+        public void ParseUnit(string abbreviation, LinearDensityUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = LinearDensity.ParseUnit("g/cm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LinearDensityUnit.GramPerCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = LinearDensity.ParseUnit("g/ft", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LinearDensityUnit.GramPerFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = LinearDensity.ParseUnit("g/m", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LinearDensityUnit.GramPerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = LinearDensity.ParseUnit("g/mm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LinearDensityUnit.GramPerMillimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = LinearDensity.ParseUnit("kg/cm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LinearDensityUnit.KilogramPerCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = LinearDensity.ParseUnit("kg/ft", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LinearDensityUnit.KilogramPerFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = LinearDensity.ParseUnit("kg/m", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LinearDensityUnit.KilogramPerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = LinearDensity.ParseUnit("kg/mm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LinearDensityUnit.KilogramPerMillimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = LinearDensity.ParseUnit("µg/cm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LinearDensityUnit.MicrogramPerCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = LinearDensity.ParseUnit("µg/ft", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LinearDensityUnit.MicrogramPerFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = LinearDensity.ParseUnit("µg/m", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LinearDensityUnit.MicrogramPerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = LinearDensity.ParseUnit("µg/mm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LinearDensityUnit.MicrogramPerMillimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = LinearDensity.ParseUnit("mg/cm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LinearDensityUnit.MilligramPerCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = LinearDensity.ParseUnit("mg/ft", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LinearDensityUnit.MilligramPerFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = LinearDensity.ParseUnit("mg/m", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LinearDensityUnit.MilligramPerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = LinearDensity.ParseUnit("mg/mm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LinearDensityUnit.MilligramPerMillimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = LinearDensity.ParseUnit("lb/ft", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LinearDensityUnit.PoundPerFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = LinearDensity.ParseUnit("lb/in", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LinearDensityUnit.PoundPerInch, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            LinearDensityUnit parsedUnit = LinearDensity.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "g/cm", LinearDensityUnit.GramPerCentimeter)]
+        [InlineData("en-US", "g/ft", LinearDensityUnit.GramPerFoot)]
+        [InlineData("en-US", "g/m", LinearDensityUnit.GramPerMeter)]
+        [InlineData("en-US", "g/mm", LinearDensityUnit.GramPerMillimeter)]
+        [InlineData("en-US", "kg/cm", LinearDensityUnit.KilogramPerCentimeter)]
+        [InlineData("en-US", "kg/ft", LinearDensityUnit.KilogramPerFoot)]
+        [InlineData("en-US", "kg/m", LinearDensityUnit.KilogramPerMeter)]
+        [InlineData("en-US", "kg/mm", LinearDensityUnit.KilogramPerMillimeter)]
+        [InlineData("en-US", "µg/cm", LinearDensityUnit.MicrogramPerCentimeter)]
+        [InlineData("en-US", "µg/ft", LinearDensityUnit.MicrogramPerFoot)]
+        [InlineData("en-US", "µg/m", LinearDensityUnit.MicrogramPerMeter)]
+        [InlineData("en-US", "µg/mm", LinearDensityUnit.MicrogramPerMillimeter)]
+        [InlineData("en-US", "mg/cm", LinearDensityUnit.MilligramPerCentimeter)]
+        [InlineData("en-US", "mg/ft", LinearDensityUnit.MilligramPerFoot)]
+        [InlineData("en-US", "mg/m", LinearDensityUnit.MilligramPerMeter)]
+        [InlineData("en-US", "mg/mm", LinearDensityUnit.MilligramPerMillimeter)]
+        [InlineData("en-US", "lb/ft", LinearDensityUnit.PoundPerFoot)]
+        [InlineData("en-US", "lb/in", LinearDensityUnit.PoundPerInch)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, LinearDensityUnit expectedUnit)
         {
-            {
-                Assert.True(LinearDensity.TryParseUnit("g/cm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LinearDensityUnit.GramPerCentimeter, parsedUnit);
-            }
+            LinearDensityUnit parsedUnit = LinearDensity.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(LinearDensity.TryParseUnit("g/ft", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LinearDensityUnit.GramPerFoot, parsedUnit);
-            }
+        [Theory]
+        [InlineData("g/cm", LinearDensityUnit.GramPerCentimeter)]
+        [InlineData("g/ft", LinearDensityUnit.GramPerFoot)]
+        [InlineData("g/m", LinearDensityUnit.GramPerMeter)]
+        [InlineData("g/mm", LinearDensityUnit.GramPerMillimeter)]
+        [InlineData("kg/cm", LinearDensityUnit.KilogramPerCentimeter)]
+        [InlineData("kg/ft", LinearDensityUnit.KilogramPerFoot)]
+        [InlineData("kg/m", LinearDensityUnit.KilogramPerMeter)]
+        [InlineData("kg/mm", LinearDensityUnit.KilogramPerMillimeter)]
+        [InlineData("µg/cm", LinearDensityUnit.MicrogramPerCentimeter)]
+        [InlineData("µg/ft", LinearDensityUnit.MicrogramPerFoot)]
+        [InlineData("µg/m", LinearDensityUnit.MicrogramPerMeter)]
+        [InlineData("µg/mm", LinearDensityUnit.MicrogramPerMillimeter)]
+        [InlineData("mg/cm", LinearDensityUnit.MilligramPerCentimeter)]
+        [InlineData("mg/ft", LinearDensityUnit.MilligramPerFoot)]
+        [InlineData("mg/m", LinearDensityUnit.MilligramPerMeter)]
+        [InlineData("mg/mm", LinearDensityUnit.MilligramPerMillimeter)]
+        [InlineData("lb/ft", LinearDensityUnit.PoundPerFoot)]
+        [InlineData("lb/in", LinearDensityUnit.PoundPerInch)]
+        public void TryParseUnit(string abbreviation, LinearDensityUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(LinearDensity.TryParseUnit(abbreviation, out LinearDensityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(LinearDensity.TryParseUnit("g/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LinearDensityUnit.GramPerMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(LinearDensity.TryParseUnit("g/mm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LinearDensityUnit.GramPerMillimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(LinearDensity.TryParseUnit("kg/cm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LinearDensityUnit.KilogramPerCentimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(LinearDensity.TryParseUnit("kg/ft", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LinearDensityUnit.KilogramPerFoot, parsedUnit);
-            }
-
-            {
-                Assert.True(LinearDensity.TryParseUnit("kg/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LinearDensityUnit.KilogramPerMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(LinearDensity.TryParseUnit("kg/mm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LinearDensityUnit.KilogramPerMillimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(LinearDensity.TryParseUnit("µg/cm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LinearDensityUnit.MicrogramPerCentimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(LinearDensity.TryParseUnit("µg/ft", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LinearDensityUnit.MicrogramPerFoot, parsedUnit);
-            }
-
-            {
-                Assert.True(LinearDensity.TryParseUnit("µg/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LinearDensityUnit.MicrogramPerMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(LinearDensity.TryParseUnit("µg/mm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LinearDensityUnit.MicrogramPerMillimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(LinearDensity.TryParseUnit("mg/cm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LinearDensityUnit.MilligramPerCentimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(LinearDensity.TryParseUnit("mg/ft", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LinearDensityUnit.MilligramPerFoot, parsedUnit);
-            }
-
-            {
-                Assert.True(LinearDensity.TryParseUnit("mg/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LinearDensityUnit.MilligramPerMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(LinearDensity.TryParseUnit("mg/mm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LinearDensityUnit.MilligramPerMillimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(LinearDensity.TryParseUnit("lb/ft", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LinearDensityUnit.PoundPerFoot, parsedUnit);
-            }
-
-            {
-                Assert.True(LinearDensity.TryParseUnit("lb/in", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LinearDensityUnit.PoundPerInch, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "g/cm", LinearDensityUnit.GramPerCentimeter)]
+        [InlineData("en-US", "g/ft", LinearDensityUnit.GramPerFoot)]
+        [InlineData("en-US", "g/m", LinearDensityUnit.GramPerMeter)]
+        [InlineData("en-US", "g/mm", LinearDensityUnit.GramPerMillimeter)]
+        [InlineData("en-US", "kg/cm", LinearDensityUnit.KilogramPerCentimeter)]
+        [InlineData("en-US", "kg/ft", LinearDensityUnit.KilogramPerFoot)]
+        [InlineData("en-US", "kg/m", LinearDensityUnit.KilogramPerMeter)]
+        [InlineData("en-US", "kg/mm", LinearDensityUnit.KilogramPerMillimeter)]
+        [InlineData("en-US", "µg/cm", LinearDensityUnit.MicrogramPerCentimeter)]
+        [InlineData("en-US", "µg/ft", LinearDensityUnit.MicrogramPerFoot)]
+        [InlineData("en-US", "µg/m", LinearDensityUnit.MicrogramPerMeter)]
+        [InlineData("en-US", "µg/mm", LinearDensityUnit.MicrogramPerMillimeter)]
+        [InlineData("en-US", "mg/cm", LinearDensityUnit.MilligramPerCentimeter)]
+        [InlineData("en-US", "mg/ft", LinearDensityUnit.MilligramPerFoot)]
+        [InlineData("en-US", "mg/m", LinearDensityUnit.MilligramPerMeter)]
+        [InlineData("en-US", "mg/mm", LinearDensityUnit.MilligramPerMillimeter)]
+        [InlineData("en-US", "lb/ft", LinearDensityUnit.PoundPerFoot)]
+        [InlineData("en-US", "lb/in", LinearDensityUnit.PoundPerInch)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, LinearDensityUnit expectedUnit)
+        {
+            Assert.True(LinearDensity.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out LinearDensityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

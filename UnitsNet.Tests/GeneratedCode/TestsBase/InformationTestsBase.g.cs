@@ -619,170 +619,138 @@ namespace UnitsNet.Tests
         {
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("b", InformationUnit.Bit)]
+        [InlineData("B", InformationUnit.Byte)]
+        [InlineData("Eb", InformationUnit.Exabit)]
+        [InlineData("EB", InformationUnit.Exabyte)]
+        [InlineData("Eib", InformationUnit.Exbibit)]
+        [InlineData("EiB", InformationUnit.Exbibyte)]
+        [InlineData("Gib", InformationUnit.Gibibit)]
+        [InlineData("GiB", InformationUnit.Gibibyte)]
+        [InlineData("Gb", InformationUnit.Gigabit)]
+        [InlineData("GB", InformationUnit.Gigabyte)]
+        [InlineData("Kib", InformationUnit.Kibibit)]
+        [InlineData("KiB", InformationUnit.Kibibyte)]
+        [InlineData("kb", InformationUnit.Kilobit)]
+        [InlineData("kB", InformationUnit.Kilobyte)]
+        [InlineData("Mib", InformationUnit.Mebibit)]
+        [InlineData("MiB", InformationUnit.Mebibyte)]
+        [InlineData("Mb", InformationUnit.Megabit)]
+        [InlineData("MB", InformationUnit.Megabyte)]
+        [InlineData("Pib", InformationUnit.Pebibit)]
+        [InlineData("PiB", InformationUnit.Pebibyte)]
+        [InlineData("Pb", InformationUnit.Petabit)]
+        [InlineData("PB", InformationUnit.Petabyte)]
+        [InlineData("Tib", InformationUnit.Tebibit)]
+        [InlineData("TiB", InformationUnit.Tebibyte)]
+        [InlineData("Tb", InformationUnit.Terabit)]
+        [InlineData("TB", InformationUnit.Terabyte)]
+        public void ParseUnit(string abbreviation, InformationUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = Information.ParseUnit("b", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Bit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("B", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Byte, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("Eb", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Exabit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("EB", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Exabyte, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("Eib", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Exbibit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("EiB", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Exbibyte, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("Gib", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Gibibit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("GiB", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Gibibyte, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("Gb", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Gigabit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("GB", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Gigabyte, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("Kib", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Kibibit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("KiB", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Kibibyte, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("kb", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Kilobit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("kB", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Kilobyte, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("Mib", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Mebibit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("MiB", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Mebibyte, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("Mb", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Megabit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("MB", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Megabyte, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("Pib", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Pebibit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("PiB", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Pebibyte, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("Pb", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Petabit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("PB", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Petabyte, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("Tib", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Tebibit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("TiB", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Tebibyte, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("Tb", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Terabit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Information.ParseUnit("TB", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(InformationUnit.Terabyte, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            InformationUnit parsedUnit = Information.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "b", InformationUnit.Bit)]
+        [InlineData("en-US", "B", InformationUnit.Byte)]
+        [InlineData("en-US", "Eb", InformationUnit.Exabit)]
+        [InlineData("en-US", "EB", InformationUnit.Exabyte)]
+        [InlineData("en-US", "Eib", InformationUnit.Exbibit)]
+        [InlineData("en-US", "EiB", InformationUnit.Exbibyte)]
+        [InlineData("en-US", "Gib", InformationUnit.Gibibit)]
+        [InlineData("en-US", "GiB", InformationUnit.Gibibyte)]
+        [InlineData("en-US", "Gb", InformationUnit.Gigabit)]
+        [InlineData("en-US", "GB", InformationUnit.Gigabyte)]
+        [InlineData("en-US", "Kib", InformationUnit.Kibibit)]
+        [InlineData("en-US", "KiB", InformationUnit.Kibibyte)]
+        [InlineData("en-US", "kb", InformationUnit.Kilobit)]
+        [InlineData("en-US", "kB", InformationUnit.Kilobyte)]
+        [InlineData("en-US", "Mib", InformationUnit.Mebibit)]
+        [InlineData("en-US", "MiB", InformationUnit.Mebibyte)]
+        [InlineData("en-US", "Mb", InformationUnit.Megabit)]
+        [InlineData("en-US", "MB", InformationUnit.Megabyte)]
+        [InlineData("en-US", "Pib", InformationUnit.Pebibit)]
+        [InlineData("en-US", "PiB", InformationUnit.Pebibyte)]
+        [InlineData("en-US", "Pb", InformationUnit.Petabit)]
+        [InlineData("en-US", "PB", InformationUnit.Petabyte)]
+        [InlineData("en-US", "Tib", InformationUnit.Tebibit)]
+        [InlineData("en-US", "TiB", InformationUnit.Tebibyte)]
+        [InlineData("en-US", "Tb", InformationUnit.Terabit)]
+        [InlineData("en-US", "TB", InformationUnit.Terabyte)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, InformationUnit expectedUnit)
         {
+            InformationUnit parsedUnit = Information.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("b", InformationUnit.Bit)]
+        [InlineData("B", InformationUnit.Byte)]
+        [InlineData("Eb", InformationUnit.Exabit)]
+        [InlineData("EB", InformationUnit.Exabyte)]
+        [InlineData("Eib", InformationUnit.Exbibit)]
+        [InlineData("EiB", InformationUnit.Exbibyte)]
+        [InlineData("Gib", InformationUnit.Gibibit)]
+        [InlineData("GiB", InformationUnit.Gibibyte)]
+        [InlineData("Gb", InformationUnit.Gigabit)]
+        [InlineData("GB", InformationUnit.Gigabyte)]
+        [InlineData("Kib", InformationUnit.Kibibit)]
+        [InlineData("KiB", InformationUnit.Kibibyte)]
+        [InlineData("kb", InformationUnit.Kilobit)]
+        [InlineData("kB", InformationUnit.Kilobyte)]
+        [InlineData("Mib", InformationUnit.Mebibit)]
+        [InlineData("MiB", InformationUnit.Mebibyte)]
+        [InlineData("Mb", InformationUnit.Megabit)]
+        [InlineData("MB", InformationUnit.Megabyte)]
+        [InlineData("Pib", InformationUnit.Pebibit)]
+        [InlineData("PiB", InformationUnit.Pebibyte)]
+        [InlineData("Pb", InformationUnit.Petabit)]
+        [InlineData("PB", InformationUnit.Petabyte)]
+        [InlineData("Tib", InformationUnit.Tebibit)]
+        [InlineData("TiB", InformationUnit.Tebibyte)]
+        [InlineData("Tb", InformationUnit.Terabit)]
+        [InlineData("TB", InformationUnit.Terabyte)]
+        public void TryParseUnit(string abbreviation, InformationUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(Information.TryParseUnit(abbreviation, out InformationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "b", InformationUnit.Bit)]
+        [InlineData("en-US", "B", InformationUnit.Byte)]
+        [InlineData("en-US", "Eb", InformationUnit.Exabit)]
+        [InlineData("en-US", "EB", InformationUnit.Exabyte)]
+        [InlineData("en-US", "Eib", InformationUnit.Exbibit)]
+        [InlineData("en-US", "EiB", InformationUnit.Exbibyte)]
+        [InlineData("en-US", "Gib", InformationUnit.Gibibit)]
+        [InlineData("en-US", "GiB", InformationUnit.Gibibyte)]
+        [InlineData("en-US", "Gb", InformationUnit.Gigabit)]
+        [InlineData("en-US", "GB", InformationUnit.Gigabyte)]
+        [InlineData("en-US", "Kib", InformationUnit.Kibibit)]
+        [InlineData("en-US", "KiB", InformationUnit.Kibibyte)]
+        [InlineData("en-US", "kb", InformationUnit.Kilobit)]
+        [InlineData("en-US", "kB", InformationUnit.Kilobyte)]
+        [InlineData("en-US", "Mib", InformationUnit.Mebibit)]
+        [InlineData("en-US", "MiB", InformationUnit.Mebibyte)]
+        [InlineData("en-US", "Mb", InformationUnit.Megabit)]
+        [InlineData("en-US", "MB", InformationUnit.Megabyte)]
+        [InlineData("en-US", "Pib", InformationUnit.Pebibit)]
+        [InlineData("en-US", "PiB", InformationUnit.Pebibyte)]
+        [InlineData("en-US", "Pb", InformationUnit.Petabit)]
+        [InlineData("en-US", "PB", InformationUnit.Petabyte)]
+        [InlineData("en-US", "Tib", InformationUnit.Tebibit)]
+        [InlineData("en-US", "TiB", InformationUnit.Tebibyte)]
+        [InlineData("en-US", "Tb", InformationUnit.Terabit)]
+        [InlineData("en-US", "TB", InformationUnit.Terabyte)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, InformationUnit expectedUnit)
+        {
+            Assert.True(Information.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out InformationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

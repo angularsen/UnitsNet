@@ -246,47 +246,46 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("J/(mol*K)", MolarEntropyUnit.JoulePerMoleKelvin)]
+        [InlineData("kJ/(mol*K)", MolarEntropyUnit.KilojoulePerMoleKelvin)]
+        [InlineData("MJ/(mol*K)", MolarEntropyUnit.MegajoulePerMoleKelvin)]
+        public void ParseUnit(string abbreviation, MolarEntropyUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = MolarEntropy.ParseUnit("J/(mol*K)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MolarEntropyUnit.JoulePerMoleKelvin, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MolarEntropy.ParseUnit("kJ/(mol*K)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MolarEntropyUnit.KilojoulePerMoleKelvin, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MolarEntropy.ParseUnit("MJ/(mol*K)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MolarEntropyUnit.MegajoulePerMoleKelvin, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            MolarEntropyUnit parsedUnit = MolarEntropy.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "J/(mol*K)", MolarEntropyUnit.JoulePerMoleKelvin)]
+        [InlineData("en-US", "kJ/(mol*K)", MolarEntropyUnit.KilojoulePerMoleKelvin)]
+        [InlineData("en-US", "MJ/(mol*K)", MolarEntropyUnit.MegajoulePerMoleKelvin)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, MolarEntropyUnit expectedUnit)
         {
-            {
-                Assert.True(MolarEntropy.TryParseUnit("J/(mol*K)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MolarEntropyUnit.JoulePerMoleKelvin, parsedUnit);
-            }
+            MolarEntropyUnit parsedUnit = MolarEntropy.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(MolarEntropy.TryParseUnit("kJ/(mol*K)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MolarEntropyUnit.KilojoulePerMoleKelvin, parsedUnit);
-            }
+        [Theory]
+        [InlineData("J/(mol*K)", MolarEntropyUnit.JoulePerMoleKelvin)]
+        [InlineData("kJ/(mol*K)", MolarEntropyUnit.KilojoulePerMoleKelvin)]
+        [InlineData("MJ/(mol*K)", MolarEntropyUnit.MegajoulePerMoleKelvin)]
+        public void TryParseUnit(string abbreviation, MolarEntropyUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(MolarEntropy.TryParseUnit(abbreviation, out MolarEntropyUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(MolarEntropy.TryParseUnit("MJ/(mol*K)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MolarEntropyUnit.MegajoulePerMoleKelvin, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "J/(mol*K)", MolarEntropyUnit.JoulePerMoleKelvin)]
+        [InlineData("en-US", "kJ/(mol*K)", MolarEntropyUnit.KilojoulePerMoleKelvin)]
+        [InlineData("en-US", "MJ/(mol*K)", MolarEntropyUnit.MegajoulePerMoleKelvin)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, MolarEntropyUnit expectedUnit)
+        {
+            Assert.True(MolarEntropy.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out MolarEntropyUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

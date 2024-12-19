@@ -200,25 +200,38 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("A/m", MagnetizationUnit.AmperePerMeter)]
+        public void ParseUnit(string abbreviation, MagnetizationUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = Magnetization.ParseUnit("A/m", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MagnetizationUnit.AmperePerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            MagnetizationUnit parsedUnit = Magnetization.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "A/m", MagnetizationUnit.AmperePerMeter)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, MagnetizationUnit expectedUnit)
         {
-            {
-                Assert.True(Magnetization.TryParseUnit("A/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MagnetizationUnit.AmperePerMeter, parsedUnit);
-            }
+            MagnetizationUnit parsedUnit = Magnetization.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("A/m", MagnetizationUnit.AmperePerMeter)]
+        public void TryParseUnit(string abbreviation, MagnetizationUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(Magnetization.TryParseUnit(abbreviation, out MagnetizationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "A/m", MagnetizationUnit.AmperePerMeter)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, MagnetizationUnit expectedUnit)
+        {
+            Assert.True(Magnetization.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out MagnetizationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

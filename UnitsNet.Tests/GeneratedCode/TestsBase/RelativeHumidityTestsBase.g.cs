@@ -200,25 +200,38 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("%RH", RelativeHumidityUnit.Percent)]
+        public void ParseUnit(string abbreviation, RelativeHumidityUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = RelativeHumidity.ParseUnit("%RH", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RelativeHumidityUnit.Percent, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            RelativeHumidityUnit parsedUnit = RelativeHumidity.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "%RH", RelativeHumidityUnit.Percent)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, RelativeHumidityUnit expectedUnit)
         {
-            {
-                Assert.True(RelativeHumidity.TryParseUnit("%RH", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RelativeHumidityUnit.Percent, parsedUnit);
-            }
+            RelativeHumidityUnit parsedUnit = RelativeHumidity.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("%RH", RelativeHumidityUnit.Percent)]
+        public void TryParseUnit(string abbreviation, RelativeHumidityUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(RelativeHumidity.TryParseUnit(abbreviation, out RelativeHumidityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "%RH", RelativeHumidityUnit.Percent)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, RelativeHumidityUnit expectedUnit)
+        {
+            Assert.True(RelativeHumidity.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out RelativeHumidityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

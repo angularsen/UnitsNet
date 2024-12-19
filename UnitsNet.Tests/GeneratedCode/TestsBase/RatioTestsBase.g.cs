@@ -315,80 +315,58 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("", RatioUnit.DecimalFraction)]
+        [InlineData("ppb", RatioUnit.PartPerBillion)]
+        [InlineData("ppm", RatioUnit.PartPerMillion)]
+        [InlineData("‰", RatioUnit.PartPerThousand)]
+        [InlineData("ppt", RatioUnit.PartPerTrillion)]
+        [InlineData("%", RatioUnit.Percent)]
+        public void ParseUnit(string abbreviation, RatioUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = Ratio.ParseUnit("", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RatioUnit.DecimalFraction, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Ratio.ParseUnit("ppb", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RatioUnit.PartPerBillion, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Ratio.ParseUnit("ppm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RatioUnit.PartPerMillion, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Ratio.ParseUnit("‰", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RatioUnit.PartPerThousand, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Ratio.ParseUnit("ppt", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RatioUnit.PartPerTrillion, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Ratio.ParseUnit("%", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RatioUnit.Percent, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            RatioUnit parsedUnit = Ratio.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "", RatioUnit.DecimalFraction)]
+        [InlineData("en-US", "ppb", RatioUnit.PartPerBillion)]
+        [InlineData("en-US", "ppm", RatioUnit.PartPerMillion)]
+        [InlineData("en-US", "‰", RatioUnit.PartPerThousand)]
+        [InlineData("en-US", "ppt", RatioUnit.PartPerTrillion)]
+        [InlineData("en-US", "%", RatioUnit.Percent)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, RatioUnit expectedUnit)
         {
-            {
-                Assert.True(Ratio.TryParseUnit("", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RatioUnit.DecimalFraction, parsedUnit);
-            }
+            RatioUnit parsedUnit = Ratio.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Ratio.TryParseUnit("ppb", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RatioUnit.PartPerBillion, parsedUnit);
-            }
+        [Theory]
+        [InlineData("", RatioUnit.DecimalFraction)]
+        [InlineData("ppb", RatioUnit.PartPerBillion)]
+        [InlineData("ppm", RatioUnit.PartPerMillion)]
+        [InlineData("‰", RatioUnit.PartPerThousand)]
+        [InlineData("ppt", RatioUnit.PartPerTrillion)]
+        [InlineData("%", RatioUnit.Percent)]
+        public void TryParseUnit(string abbreviation, RatioUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(Ratio.TryParseUnit(abbreviation, out RatioUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Ratio.TryParseUnit("ppm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RatioUnit.PartPerMillion, parsedUnit);
-            }
-
-            {
-                Assert.True(Ratio.TryParseUnit("‰", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RatioUnit.PartPerThousand, parsedUnit);
-            }
-
-            {
-                Assert.True(Ratio.TryParseUnit("ppt", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RatioUnit.PartPerTrillion, parsedUnit);
-            }
-
-            {
-                Assert.True(Ratio.TryParseUnit("%", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RatioUnit.Percent, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "", RatioUnit.DecimalFraction)]
+        [InlineData("en-US", "ppb", RatioUnit.PartPerBillion)]
+        [InlineData("en-US", "ppm", RatioUnit.PartPerMillion)]
+        [InlineData("en-US", "‰", RatioUnit.PartPerThousand)]
+        [InlineData("en-US", "ppt", RatioUnit.PartPerTrillion)]
+        [InlineData("en-US", "%", RatioUnit.Percent)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, RatioUnit expectedUnit)
+        {
+            Assert.True(Ratio.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out RatioUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

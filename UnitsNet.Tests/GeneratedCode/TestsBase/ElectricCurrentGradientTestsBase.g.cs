@@ -338,91 +338,62 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("A/μs", ElectricCurrentGradientUnit.AmperePerMicrosecond)]
+        [InlineData("A/ms", ElectricCurrentGradientUnit.AmperePerMillisecond)]
+        [InlineData("A/min", ElectricCurrentGradientUnit.AmperePerMinute)]
+        [InlineData("A/ns", ElectricCurrentGradientUnit.AmperePerNanosecond)]
+        [InlineData("A/s", ElectricCurrentGradientUnit.AmperePerSecond)]
+        [InlineData("mA/min", ElectricCurrentGradientUnit.MilliamperePerMinute)]
+        [InlineData("mA/s", ElectricCurrentGradientUnit.MilliamperePerSecond)]
+        public void ParseUnit(string abbreviation, ElectricCurrentGradientUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = ElectricCurrentGradient.ParseUnit("A/μs", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricCurrentGradientUnit.AmperePerMicrosecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricCurrentGradient.ParseUnit("A/ms", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricCurrentGradientUnit.AmperePerMillisecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricCurrentGradient.ParseUnit("A/min", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricCurrentGradientUnit.AmperePerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricCurrentGradient.ParseUnit("A/ns", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricCurrentGradientUnit.AmperePerNanosecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricCurrentGradient.ParseUnit("A/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricCurrentGradientUnit.AmperePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricCurrentGradient.ParseUnit("mA/min", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricCurrentGradientUnit.MilliamperePerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricCurrentGradient.ParseUnit("mA/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricCurrentGradientUnit.MilliamperePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            ElectricCurrentGradientUnit parsedUnit = ElectricCurrentGradient.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "A/μs", ElectricCurrentGradientUnit.AmperePerMicrosecond)]
+        [InlineData("en-US", "A/ms", ElectricCurrentGradientUnit.AmperePerMillisecond)]
+        [InlineData("en-US", "A/min", ElectricCurrentGradientUnit.AmperePerMinute)]
+        [InlineData("en-US", "A/ns", ElectricCurrentGradientUnit.AmperePerNanosecond)]
+        [InlineData("en-US", "A/s", ElectricCurrentGradientUnit.AmperePerSecond)]
+        [InlineData("en-US", "mA/min", ElectricCurrentGradientUnit.MilliamperePerMinute)]
+        [InlineData("en-US", "mA/s", ElectricCurrentGradientUnit.MilliamperePerSecond)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, ElectricCurrentGradientUnit expectedUnit)
         {
-            {
-                Assert.True(ElectricCurrentGradient.TryParseUnit("A/μs", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricCurrentGradientUnit.AmperePerMicrosecond, parsedUnit);
-            }
+            ElectricCurrentGradientUnit parsedUnit = ElectricCurrentGradient.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ElectricCurrentGradient.TryParseUnit("A/ms", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricCurrentGradientUnit.AmperePerMillisecond, parsedUnit);
-            }
+        [Theory]
+        [InlineData("A/μs", ElectricCurrentGradientUnit.AmperePerMicrosecond)]
+        [InlineData("A/ms", ElectricCurrentGradientUnit.AmperePerMillisecond)]
+        [InlineData("A/min", ElectricCurrentGradientUnit.AmperePerMinute)]
+        [InlineData("A/ns", ElectricCurrentGradientUnit.AmperePerNanosecond)]
+        [InlineData("A/s", ElectricCurrentGradientUnit.AmperePerSecond)]
+        [InlineData("mA/min", ElectricCurrentGradientUnit.MilliamperePerMinute)]
+        [InlineData("mA/s", ElectricCurrentGradientUnit.MilliamperePerSecond)]
+        public void TryParseUnit(string abbreviation, ElectricCurrentGradientUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(ElectricCurrentGradient.TryParseUnit(abbreviation, out ElectricCurrentGradientUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ElectricCurrentGradient.TryParseUnit("A/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricCurrentGradientUnit.AmperePerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(ElectricCurrentGradient.TryParseUnit("A/ns", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricCurrentGradientUnit.AmperePerNanosecond, parsedUnit);
-            }
-
-            {
-                Assert.True(ElectricCurrentGradient.TryParseUnit("A/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricCurrentGradientUnit.AmperePerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(ElectricCurrentGradient.TryParseUnit("mA/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricCurrentGradientUnit.MilliamperePerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(ElectricCurrentGradient.TryParseUnit("mA/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricCurrentGradientUnit.MilliamperePerSecond, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "A/μs", ElectricCurrentGradientUnit.AmperePerMicrosecond)]
+        [InlineData("en-US", "A/ms", ElectricCurrentGradientUnit.AmperePerMillisecond)]
+        [InlineData("en-US", "A/min", ElectricCurrentGradientUnit.AmperePerMinute)]
+        [InlineData("en-US", "A/ns", ElectricCurrentGradientUnit.AmperePerNanosecond)]
+        [InlineData("en-US", "A/s", ElectricCurrentGradientUnit.AmperePerSecond)]
+        [InlineData("en-US", "mA/min", ElectricCurrentGradientUnit.MilliamperePerMinute)]
+        [InlineData("en-US", "mA/s", ElectricCurrentGradientUnit.MilliamperePerSecond)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, ElectricCurrentGradientUnit expectedUnit)
+        {
+            Assert.True(ElectricCurrentGradient.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ElectricCurrentGradientUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

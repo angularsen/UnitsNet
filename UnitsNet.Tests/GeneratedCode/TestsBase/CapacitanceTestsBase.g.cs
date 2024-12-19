@@ -326,81 +326,62 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("F", CapacitanceUnit.Farad)]
+        [InlineData("kF", CapacitanceUnit.Kilofarad)]
+        [InlineData("MF", CapacitanceUnit.Megafarad)]
+        [InlineData("µF", CapacitanceUnit.Microfarad)]
+        [InlineData("mF", CapacitanceUnit.Millifarad)]
+        [InlineData("nF", CapacitanceUnit.Nanofarad)]
+        [InlineData("pF", CapacitanceUnit.Picofarad)]
+        public void ParseUnit(string abbreviation, CapacitanceUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = Capacitance.ParseUnit("F", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(CapacitanceUnit.Farad, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Capacitance.ParseUnit("kF", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(CapacitanceUnit.Kilofarad, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Capacitance.ParseUnit("MF", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(CapacitanceUnit.Megafarad, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Capacitance.ParseUnit("µF", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(CapacitanceUnit.Microfarad, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Capacitance.ParseUnit("mF", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(CapacitanceUnit.Millifarad, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Capacitance.ParseUnit("nF", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(CapacitanceUnit.Nanofarad, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Capacitance.ParseUnit("pF", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(CapacitanceUnit.Picofarad, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            CapacitanceUnit parsedUnit = Capacitance.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "F", CapacitanceUnit.Farad)]
+        [InlineData("en-US", "kF", CapacitanceUnit.Kilofarad)]
+        [InlineData("en-US", "MF", CapacitanceUnit.Megafarad)]
+        [InlineData("en-US", "µF", CapacitanceUnit.Microfarad)]
+        [InlineData("en-US", "mF", CapacitanceUnit.Millifarad)]
+        [InlineData("en-US", "nF", CapacitanceUnit.Nanofarad)]
+        [InlineData("en-US", "pF", CapacitanceUnit.Picofarad)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, CapacitanceUnit expectedUnit)
         {
-            {
-                Assert.True(Capacitance.TryParseUnit("F", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(CapacitanceUnit.Farad, parsedUnit);
-            }
+            CapacitanceUnit parsedUnit = Capacitance.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Capacitance.TryParseUnit("kF", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(CapacitanceUnit.Kilofarad, parsedUnit);
-            }
+        [Theory]
+        [InlineData("F", CapacitanceUnit.Farad)]
+        [InlineData("kF", CapacitanceUnit.Kilofarad)]
+        [InlineData("MF", CapacitanceUnit.Megafarad)]
+        [InlineData("µF", CapacitanceUnit.Microfarad)]
+        [InlineData("mF", CapacitanceUnit.Millifarad)]
+        [InlineData("nF", CapacitanceUnit.Nanofarad)]
+        [InlineData("pF", CapacitanceUnit.Picofarad)]
+        public void TryParseUnit(string abbreviation, CapacitanceUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(Capacitance.TryParseUnit(abbreviation, out CapacitanceUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Capacitance.TryParseUnit("µF", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(CapacitanceUnit.Microfarad, parsedUnit);
-            }
-
-            {
-                Assert.True(Capacitance.TryParseUnit("nF", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(CapacitanceUnit.Nanofarad, parsedUnit);
-            }
-
-            {
-                Assert.True(Capacitance.TryParseUnit("pF", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(CapacitanceUnit.Picofarad, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "F", CapacitanceUnit.Farad)]
+        [InlineData("en-US", "kF", CapacitanceUnit.Kilofarad)]
+        [InlineData("en-US", "MF", CapacitanceUnit.Megafarad)]
+        [InlineData("en-US", "µF", CapacitanceUnit.Microfarad)]
+        [InlineData("en-US", "mF", CapacitanceUnit.Millifarad)]
+        [InlineData("en-US", "nF", CapacitanceUnit.Nanofarad)]
+        [InlineData("en-US", "pF", CapacitanceUnit.Picofarad)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, CapacitanceUnit expectedUnit)
+        {
+            Assert.True(Capacitance.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out CapacitanceUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

@@ -326,81 +326,62 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("GΩ", ElectricResistanceUnit.Gigaohm)]
+        [InlineData("kΩ", ElectricResistanceUnit.Kiloohm)]
+        [InlineData("MΩ", ElectricResistanceUnit.Megaohm)]
+        [InlineData("µΩ", ElectricResistanceUnit.Microohm)]
+        [InlineData("mΩ", ElectricResistanceUnit.Milliohm)]
+        [InlineData("Ω", ElectricResistanceUnit.Ohm)]
+        [InlineData("TΩ", ElectricResistanceUnit.Teraohm)]
+        public void ParseUnit(string abbreviation, ElectricResistanceUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = ElectricResistance.ParseUnit("GΩ", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricResistanceUnit.Gigaohm, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricResistance.ParseUnit("kΩ", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricResistanceUnit.Kiloohm, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricResistance.ParseUnit("MΩ", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricResistanceUnit.Megaohm, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricResistance.ParseUnit("µΩ", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricResistanceUnit.Microohm, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricResistance.ParseUnit("mΩ", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricResistanceUnit.Milliohm, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricResistance.ParseUnit("Ω", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricResistanceUnit.Ohm, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricResistance.ParseUnit("TΩ", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricResistanceUnit.Teraohm, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            ElectricResistanceUnit parsedUnit = ElectricResistance.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "GΩ", ElectricResistanceUnit.Gigaohm)]
+        [InlineData("en-US", "kΩ", ElectricResistanceUnit.Kiloohm)]
+        [InlineData("en-US", "MΩ", ElectricResistanceUnit.Megaohm)]
+        [InlineData("en-US", "µΩ", ElectricResistanceUnit.Microohm)]
+        [InlineData("en-US", "mΩ", ElectricResistanceUnit.Milliohm)]
+        [InlineData("en-US", "Ω", ElectricResistanceUnit.Ohm)]
+        [InlineData("en-US", "TΩ", ElectricResistanceUnit.Teraohm)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, ElectricResistanceUnit expectedUnit)
         {
-            {
-                Assert.True(ElectricResistance.TryParseUnit("GΩ", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricResistanceUnit.Gigaohm, parsedUnit);
-            }
+            ElectricResistanceUnit parsedUnit = ElectricResistance.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ElectricResistance.TryParseUnit("kΩ", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricResistanceUnit.Kiloohm, parsedUnit);
-            }
+        [Theory]
+        [InlineData("GΩ", ElectricResistanceUnit.Gigaohm)]
+        [InlineData("kΩ", ElectricResistanceUnit.Kiloohm)]
+        [InlineData("MΩ", ElectricResistanceUnit.Megaohm)]
+        [InlineData("µΩ", ElectricResistanceUnit.Microohm)]
+        [InlineData("mΩ", ElectricResistanceUnit.Milliohm)]
+        [InlineData("Ω", ElectricResistanceUnit.Ohm)]
+        [InlineData("TΩ", ElectricResistanceUnit.Teraohm)]
+        public void TryParseUnit(string abbreviation, ElectricResistanceUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(ElectricResistance.TryParseUnit(abbreviation, out ElectricResistanceUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ElectricResistance.TryParseUnit("µΩ", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricResistanceUnit.Microohm, parsedUnit);
-            }
-
-            {
-                Assert.True(ElectricResistance.TryParseUnit("Ω", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricResistanceUnit.Ohm, parsedUnit);
-            }
-
-            {
-                Assert.True(ElectricResistance.TryParseUnit("TΩ", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricResistanceUnit.Teraohm, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "GΩ", ElectricResistanceUnit.Gigaohm)]
+        [InlineData("en-US", "kΩ", ElectricResistanceUnit.Kiloohm)]
+        [InlineData("en-US", "MΩ", ElectricResistanceUnit.Megaohm)]
+        [InlineData("en-US", "µΩ", ElectricResistanceUnit.Microohm)]
+        [InlineData("en-US", "mΩ", ElectricResistanceUnit.Milliohm)]
+        [InlineData("en-US", "Ω", ElectricResistanceUnit.Ohm)]
+        [InlineData("en-US", "TΩ", ElectricResistanceUnit.Teraohm)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, ElectricResistanceUnit expectedUnit)
+        {
+            Assert.True(ElectricResistance.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ElectricResistanceUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

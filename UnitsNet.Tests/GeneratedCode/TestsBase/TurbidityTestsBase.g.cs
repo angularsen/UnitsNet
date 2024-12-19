@@ -200,25 +200,38 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("NTU", TurbidityUnit.NTU)]
+        public void ParseUnit(string abbreviation, TurbidityUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = Turbidity.ParseUnit("NTU", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(TurbidityUnit.NTU, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            TurbidityUnit parsedUnit = Turbidity.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "NTU", TurbidityUnit.NTU)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, TurbidityUnit expectedUnit)
         {
-            {
-                Assert.True(Turbidity.TryParseUnit("NTU", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(TurbidityUnit.NTU, parsedUnit);
-            }
+            TurbidityUnit parsedUnit = Turbidity.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("NTU", TurbidityUnit.NTU)]
+        public void TryParseUnit(string abbreviation, TurbidityUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(Turbidity.TryParseUnit(abbreviation, out TurbidityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "NTU", TurbidityUnit.NTU)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, TurbidityUnit expectedUnit)
+        {
+            Assert.True(Turbidity.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out TurbidityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

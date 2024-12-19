@@ -200,25 +200,38 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("F/m", PermittivityUnit.FaradPerMeter)]
+        public void ParseUnit(string abbreviation, PermittivityUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = Permittivity.ParseUnit("F/m", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(PermittivityUnit.FaradPerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            PermittivityUnit parsedUnit = Permittivity.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "F/m", PermittivityUnit.FaradPerMeter)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, PermittivityUnit expectedUnit)
         {
-            {
-                Assert.True(Permittivity.TryParseUnit("F/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(PermittivityUnit.FaradPerMeter, parsedUnit);
-            }
+            PermittivityUnit parsedUnit = Permittivity.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("F/m", PermittivityUnit.FaradPerMeter)]
+        public void TryParseUnit(string abbreviation, PermittivityUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(Permittivity.TryParseUnit(abbreviation, out PermittivityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "F/m", PermittivityUnit.FaradPerMeter)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, PermittivityUnit expectedUnit)
+        {
+            Assert.True(Permittivity.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out PermittivityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

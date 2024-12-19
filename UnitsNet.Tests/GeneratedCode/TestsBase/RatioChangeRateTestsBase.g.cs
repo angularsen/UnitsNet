@@ -223,36 +223,42 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("/s", RatioChangeRateUnit.DecimalFractionPerSecond)]
+        [InlineData("%/s", RatioChangeRateUnit.PercentPerSecond)]
+        public void ParseUnit(string abbreviation, RatioChangeRateUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = RatioChangeRate.ParseUnit("/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RatioChangeRateUnit.DecimalFractionPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RatioChangeRate.ParseUnit("%/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RatioChangeRateUnit.PercentPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            RatioChangeRateUnit parsedUnit = RatioChangeRate.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "/s", RatioChangeRateUnit.DecimalFractionPerSecond)]
+        [InlineData("en-US", "%/s", RatioChangeRateUnit.PercentPerSecond)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, RatioChangeRateUnit expectedUnit)
         {
-            {
-                Assert.True(RatioChangeRate.TryParseUnit("/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RatioChangeRateUnit.DecimalFractionPerSecond, parsedUnit);
-            }
+            RatioChangeRateUnit parsedUnit = RatioChangeRate.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(RatioChangeRate.TryParseUnit("%/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RatioChangeRateUnit.PercentPerSecond, parsedUnit);
-            }
+        [Theory]
+        [InlineData("/s", RatioChangeRateUnit.DecimalFractionPerSecond)]
+        [InlineData("%/s", RatioChangeRateUnit.PercentPerSecond)]
+        public void TryParseUnit(string abbreviation, RatioChangeRateUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(RatioChangeRate.TryParseUnit(abbreviation, out RatioChangeRateUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("en-US", "/s", RatioChangeRateUnit.DecimalFractionPerSecond)]
+        [InlineData("en-US", "%/s", RatioChangeRateUnit.PercentPerSecond)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, RatioChangeRateUnit expectedUnit)
+        {
+            Assert.True(RatioChangeRate.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out RatioChangeRateUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

@@ -1067,488 +1067,206 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("cg/d", MassFlowUnit.CentigramPerDay)]
+        [InlineData("cg/s", MassFlowUnit.CentigramPerSecond)]
+        [InlineData("cg/S", MassFlowUnit.CentigramPerSecond)]
+        [InlineData("dag/d", MassFlowUnit.DecagramPerDay)]
+        [InlineData("dag/s", MassFlowUnit.DecagramPerSecond)]
+        [InlineData("dag/S", MassFlowUnit.DecagramPerSecond)]
+        [InlineData("dg/d", MassFlowUnit.DecigramPerDay)]
+        [InlineData("dg/s", MassFlowUnit.DecigramPerSecond)]
+        [InlineData("dg/S", MassFlowUnit.DecigramPerSecond)]
+        [InlineData("g/d", MassFlowUnit.GramPerDay)]
+        [InlineData("g/h", MassFlowUnit.GramPerHour)]
+        [InlineData("g/s", MassFlowUnit.GramPerSecond)]
+        [InlineData("g/S", MassFlowUnit.GramPerSecond)]
+        [InlineData("hg/d", MassFlowUnit.HectogramPerDay)]
+        [InlineData("hg/s", MassFlowUnit.HectogramPerSecond)]
+        [InlineData("hg/S", MassFlowUnit.HectogramPerSecond)]
+        [InlineData("kg/d", MassFlowUnit.KilogramPerDay)]
+        [InlineData("kg/h", MassFlowUnit.KilogramPerHour)]
+        [InlineData("kg/min", MassFlowUnit.KilogramPerMinute)]
+        [InlineData("kg/s", MassFlowUnit.KilogramPerSecond)]
+        [InlineData("kg/S", MassFlowUnit.KilogramPerSecond)]
+        [InlineData("Mg/d", MassFlowUnit.MegagramPerDay)]
+        [InlineData("Mlb/d", MassFlowUnit.MegapoundPerDay)]
+        [InlineData("Mlb/h", MassFlowUnit.MegapoundPerHour)]
+        [InlineData("Mlb/min", MassFlowUnit.MegapoundPerMinute)]
+        [InlineData("Mlb/s", MassFlowUnit.MegapoundPerSecond)]
+        [InlineData("µg/d", MassFlowUnit.MicrogramPerDay)]
+        [InlineData("µg/s", MassFlowUnit.MicrogramPerSecond)]
+        [InlineData("µg/S", MassFlowUnit.MicrogramPerSecond)]
+        [InlineData("mg/d", MassFlowUnit.MilligramPerDay)]
+        [InlineData("mg/s", MassFlowUnit.MilligramPerSecond)]
+        [InlineData("mg/S", MassFlowUnit.MilligramPerSecond)]
+        [InlineData("ng/d", MassFlowUnit.NanogramPerDay)]
+        [InlineData("ng/s", MassFlowUnit.NanogramPerSecond)]
+        [InlineData("ng/S", MassFlowUnit.NanogramPerSecond)]
+        [InlineData("lb/d", MassFlowUnit.PoundPerDay)]
+        [InlineData("lb/h", MassFlowUnit.PoundPerHour)]
+        [InlineData("lb/min", MassFlowUnit.PoundPerMinute)]
+        [InlineData("lb/s", MassFlowUnit.PoundPerSecond)]
+        [InlineData("short tn/h", MassFlowUnit.ShortTonPerHour)]
+        [InlineData("t/d", MassFlowUnit.TonnePerDay)]
+        [InlineData("t/h", MassFlowUnit.TonnePerHour)]
+        public void ParseUnit(string abbreviation, MassFlowUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("cg/d", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.CentigramPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("cg/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.CentigramPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("cg/S", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.CentigramPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("dag/d", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.DecagramPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("dag/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.DecagramPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("dag/S", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.DecagramPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("dg/d", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.DecigramPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("dg/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.DecigramPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("dg/S", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.DecigramPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("g/d", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.GramPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("g/h", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.GramPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("g/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.GramPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("g/S", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.GramPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("hg/d", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.HectogramPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("hg/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.HectogramPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("hg/S", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.HectogramPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("kg/d", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.KilogramPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("kg/h", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.KilogramPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("кг/ч", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(MassFlowUnit.KilogramPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("kg/min", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.KilogramPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("кг/мин", CultureInfo.GetCultureInfo("ru-RU"));
-                Assert.Equal(MassFlowUnit.KilogramPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("kg/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.KilogramPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("kg/S", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.KilogramPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("Mg/d", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.MegagramPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("Mlb/d", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.MegapoundPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("Mlb/h", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.MegapoundPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("Mlb/min", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.MegapoundPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("Mlb/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.MegapoundPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("µg/d", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.MicrogramPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("µg/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.MicrogramPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("µg/S", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.MicrogramPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("mg/d", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.MilligramPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("mg/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.MilligramPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("mg/S", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.MilligramPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("ng/d", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.NanogramPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("ng/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.NanogramPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("ng/S", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.NanogramPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("lb/d", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.PoundPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("lb/h", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.PoundPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("lb/min", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.PoundPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("lb/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.PoundPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("short tn/h", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.ShortTonPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("t/d", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.TonnePerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlow.ParseUnit("t/h", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFlowUnit.TonnePerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            MassFlowUnit parsedUnit = MassFlow.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "cg/d", MassFlowUnit.CentigramPerDay)]
+        [InlineData("en-US", "cg/s", MassFlowUnit.CentigramPerSecond)]
+        [InlineData("en-US", "cg/S", MassFlowUnit.CentigramPerSecond)]
+        [InlineData("en-US", "dag/d", MassFlowUnit.DecagramPerDay)]
+        [InlineData("en-US", "dag/s", MassFlowUnit.DecagramPerSecond)]
+        [InlineData("en-US", "dag/S", MassFlowUnit.DecagramPerSecond)]
+        [InlineData("en-US", "dg/d", MassFlowUnit.DecigramPerDay)]
+        [InlineData("en-US", "dg/s", MassFlowUnit.DecigramPerSecond)]
+        [InlineData("en-US", "dg/S", MassFlowUnit.DecigramPerSecond)]
+        [InlineData("en-US", "g/d", MassFlowUnit.GramPerDay)]
+        [InlineData("en-US", "g/h", MassFlowUnit.GramPerHour)]
+        [InlineData("en-US", "g/s", MassFlowUnit.GramPerSecond)]
+        [InlineData("en-US", "g/S", MassFlowUnit.GramPerSecond)]
+        [InlineData("en-US", "hg/d", MassFlowUnit.HectogramPerDay)]
+        [InlineData("en-US", "hg/s", MassFlowUnit.HectogramPerSecond)]
+        [InlineData("en-US", "hg/S", MassFlowUnit.HectogramPerSecond)]
+        [InlineData("en-US", "kg/d", MassFlowUnit.KilogramPerDay)]
+        [InlineData("en-US", "kg/h", MassFlowUnit.KilogramPerHour)]
+        [InlineData("en-US", "kg/min", MassFlowUnit.KilogramPerMinute)]
+        [InlineData("en-US", "kg/s", MassFlowUnit.KilogramPerSecond)]
+        [InlineData("en-US", "kg/S", MassFlowUnit.KilogramPerSecond)]
+        [InlineData("en-US", "Mg/d", MassFlowUnit.MegagramPerDay)]
+        [InlineData("en-US", "Mlb/d", MassFlowUnit.MegapoundPerDay)]
+        [InlineData("en-US", "Mlb/h", MassFlowUnit.MegapoundPerHour)]
+        [InlineData("en-US", "Mlb/min", MassFlowUnit.MegapoundPerMinute)]
+        [InlineData("en-US", "Mlb/s", MassFlowUnit.MegapoundPerSecond)]
+        [InlineData("en-US", "µg/d", MassFlowUnit.MicrogramPerDay)]
+        [InlineData("en-US", "µg/s", MassFlowUnit.MicrogramPerSecond)]
+        [InlineData("en-US", "µg/S", MassFlowUnit.MicrogramPerSecond)]
+        [InlineData("en-US", "mg/d", MassFlowUnit.MilligramPerDay)]
+        [InlineData("en-US", "mg/s", MassFlowUnit.MilligramPerSecond)]
+        [InlineData("en-US", "mg/S", MassFlowUnit.MilligramPerSecond)]
+        [InlineData("en-US", "ng/d", MassFlowUnit.NanogramPerDay)]
+        [InlineData("en-US", "ng/s", MassFlowUnit.NanogramPerSecond)]
+        [InlineData("en-US", "ng/S", MassFlowUnit.NanogramPerSecond)]
+        [InlineData("en-US", "lb/d", MassFlowUnit.PoundPerDay)]
+        [InlineData("en-US", "lb/h", MassFlowUnit.PoundPerHour)]
+        [InlineData("en-US", "lb/min", MassFlowUnit.PoundPerMinute)]
+        [InlineData("en-US", "lb/s", MassFlowUnit.PoundPerSecond)]
+        [InlineData("en-US", "short tn/h", MassFlowUnit.ShortTonPerHour)]
+        [InlineData("en-US", "t/d", MassFlowUnit.TonnePerDay)]
+        [InlineData("en-US", "t/h", MassFlowUnit.TonnePerHour)]
+        [InlineData("ru-RU", "кг/ч", MassFlowUnit.KilogramPerHour)]
+        [InlineData("ru-RU", "кг/мин", MassFlowUnit.KilogramPerMinute)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, MassFlowUnit expectedUnit)
         {
-            {
-                Assert.True(MassFlow.TryParseUnit("cg/d", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.CentigramPerDay, parsedUnit);
-            }
+            MassFlowUnit parsedUnit = MassFlow.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(MassFlow.TryParseUnit("cg/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.CentigramPerSecond, parsedUnit);
-            }
+        [Theory]
+        [InlineData("cg/d", MassFlowUnit.CentigramPerDay)]
+        [InlineData("cg/s", MassFlowUnit.CentigramPerSecond)]
+        [InlineData("cg/S", MassFlowUnit.CentigramPerSecond)]
+        [InlineData("dag/d", MassFlowUnit.DecagramPerDay)]
+        [InlineData("dag/s", MassFlowUnit.DecagramPerSecond)]
+        [InlineData("dag/S", MassFlowUnit.DecagramPerSecond)]
+        [InlineData("dg/d", MassFlowUnit.DecigramPerDay)]
+        [InlineData("dg/s", MassFlowUnit.DecigramPerSecond)]
+        [InlineData("dg/S", MassFlowUnit.DecigramPerSecond)]
+        [InlineData("g/d", MassFlowUnit.GramPerDay)]
+        [InlineData("g/h", MassFlowUnit.GramPerHour)]
+        [InlineData("g/s", MassFlowUnit.GramPerSecond)]
+        [InlineData("g/S", MassFlowUnit.GramPerSecond)]
+        [InlineData("hg/d", MassFlowUnit.HectogramPerDay)]
+        [InlineData("hg/s", MassFlowUnit.HectogramPerSecond)]
+        [InlineData("hg/S", MassFlowUnit.HectogramPerSecond)]
+        [InlineData("kg/d", MassFlowUnit.KilogramPerDay)]
+        [InlineData("kg/h", MassFlowUnit.KilogramPerHour)]
+        [InlineData("kg/min", MassFlowUnit.KilogramPerMinute)]
+        [InlineData("kg/s", MassFlowUnit.KilogramPerSecond)]
+        [InlineData("kg/S", MassFlowUnit.KilogramPerSecond)]
+        [InlineData("Mg/d", MassFlowUnit.MegagramPerDay)]
+        [InlineData("Mlb/d", MassFlowUnit.MegapoundPerDay)]
+        [InlineData("Mlb/h", MassFlowUnit.MegapoundPerHour)]
+        [InlineData("Mlb/min", MassFlowUnit.MegapoundPerMinute)]
+        [InlineData("Mlb/s", MassFlowUnit.MegapoundPerSecond)]
+        [InlineData("µg/d", MassFlowUnit.MicrogramPerDay)]
+        [InlineData("µg/s", MassFlowUnit.MicrogramPerSecond)]
+        [InlineData("µg/S", MassFlowUnit.MicrogramPerSecond)]
+        [InlineData("mg/d", MassFlowUnit.MilligramPerDay)]
+        [InlineData("mg/s", MassFlowUnit.MilligramPerSecond)]
+        [InlineData("mg/S", MassFlowUnit.MilligramPerSecond)]
+        [InlineData("ng/d", MassFlowUnit.NanogramPerDay)]
+        [InlineData("ng/s", MassFlowUnit.NanogramPerSecond)]
+        [InlineData("ng/S", MassFlowUnit.NanogramPerSecond)]
+        [InlineData("lb/d", MassFlowUnit.PoundPerDay)]
+        [InlineData("lb/h", MassFlowUnit.PoundPerHour)]
+        [InlineData("lb/min", MassFlowUnit.PoundPerMinute)]
+        [InlineData("lb/s", MassFlowUnit.PoundPerSecond)]
+        [InlineData("short tn/h", MassFlowUnit.ShortTonPerHour)]
+        [InlineData("t/d", MassFlowUnit.TonnePerDay)]
+        [InlineData("t/h", MassFlowUnit.TonnePerHour)]
+        public void TryParseUnit(string abbreviation, MassFlowUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(MassFlow.TryParseUnit(abbreviation, out MassFlowUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(MassFlow.TryParseUnit("cg/S", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.CentigramPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("dag/d", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.DecagramPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("dag/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.DecagramPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("dag/S", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.DecagramPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("dg/d", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.DecigramPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("dg/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.DecigramPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("dg/S", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.DecigramPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("g/d", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.GramPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("g/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.GramPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("g/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.GramPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("g/S", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.GramPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("hg/d", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.HectogramPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("hg/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.HectogramPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("hg/S", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.HectogramPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("kg/d", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.KilogramPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("kg/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.KilogramPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("кг/ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.KilogramPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("kg/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.KilogramPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("кг/мин", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.KilogramPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("kg/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.KilogramPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("kg/S", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.KilogramPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("Mlb/d", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.MegapoundPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("Mlb/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.MegapoundPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("Mlb/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.MegapoundPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("Mlb/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.MegapoundPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("µg/d", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.MicrogramPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("µg/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.MicrogramPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("µg/S", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.MicrogramPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("mg/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.MilligramPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("mg/S", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.MilligramPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("ng/d", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.NanogramPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("ng/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.NanogramPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("ng/S", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.NanogramPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("lb/d", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.PoundPerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("lb/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.PoundPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("lb/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.PoundPerMinute, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("lb/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.PoundPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("short tn/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.ShortTonPerHour, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("t/d", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.TonnePerDay, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlow.TryParseUnit("t/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFlowUnit.TonnePerHour, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "cg/d", MassFlowUnit.CentigramPerDay)]
+        [InlineData("en-US", "cg/s", MassFlowUnit.CentigramPerSecond)]
+        [InlineData("en-US", "cg/S", MassFlowUnit.CentigramPerSecond)]
+        [InlineData("en-US", "dag/d", MassFlowUnit.DecagramPerDay)]
+        [InlineData("en-US", "dag/s", MassFlowUnit.DecagramPerSecond)]
+        [InlineData("en-US", "dag/S", MassFlowUnit.DecagramPerSecond)]
+        [InlineData("en-US", "dg/d", MassFlowUnit.DecigramPerDay)]
+        [InlineData("en-US", "dg/s", MassFlowUnit.DecigramPerSecond)]
+        [InlineData("en-US", "dg/S", MassFlowUnit.DecigramPerSecond)]
+        [InlineData("en-US", "g/d", MassFlowUnit.GramPerDay)]
+        [InlineData("en-US", "g/h", MassFlowUnit.GramPerHour)]
+        [InlineData("en-US", "g/s", MassFlowUnit.GramPerSecond)]
+        [InlineData("en-US", "g/S", MassFlowUnit.GramPerSecond)]
+        [InlineData("en-US", "hg/d", MassFlowUnit.HectogramPerDay)]
+        [InlineData("en-US", "hg/s", MassFlowUnit.HectogramPerSecond)]
+        [InlineData("en-US", "hg/S", MassFlowUnit.HectogramPerSecond)]
+        [InlineData("en-US", "kg/d", MassFlowUnit.KilogramPerDay)]
+        [InlineData("en-US", "kg/h", MassFlowUnit.KilogramPerHour)]
+        [InlineData("en-US", "kg/min", MassFlowUnit.KilogramPerMinute)]
+        [InlineData("en-US", "kg/s", MassFlowUnit.KilogramPerSecond)]
+        [InlineData("en-US", "kg/S", MassFlowUnit.KilogramPerSecond)]
+        [InlineData("en-US", "Mg/d", MassFlowUnit.MegagramPerDay)]
+        [InlineData("en-US", "Mlb/d", MassFlowUnit.MegapoundPerDay)]
+        [InlineData("en-US", "Mlb/h", MassFlowUnit.MegapoundPerHour)]
+        [InlineData("en-US", "Mlb/min", MassFlowUnit.MegapoundPerMinute)]
+        [InlineData("en-US", "Mlb/s", MassFlowUnit.MegapoundPerSecond)]
+        [InlineData("en-US", "µg/d", MassFlowUnit.MicrogramPerDay)]
+        [InlineData("en-US", "µg/s", MassFlowUnit.MicrogramPerSecond)]
+        [InlineData("en-US", "µg/S", MassFlowUnit.MicrogramPerSecond)]
+        [InlineData("en-US", "mg/d", MassFlowUnit.MilligramPerDay)]
+        [InlineData("en-US", "mg/s", MassFlowUnit.MilligramPerSecond)]
+        [InlineData("en-US", "mg/S", MassFlowUnit.MilligramPerSecond)]
+        [InlineData("en-US", "ng/d", MassFlowUnit.NanogramPerDay)]
+        [InlineData("en-US", "ng/s", MassFlowUnit.NanogramPerSecond)]
+        [InlineData("en-US", "ng/S", MassFlowUnit.NanogramPerSecond)]
+        [InlineData("en-US", "lb/d", MassFlowUnit.PoundPerDay)]
+        [InlineData("en-US", "lb/h", MassFlowUnit.PoundPerHour)]
+        [InlineData("en-US", "lb/min", MassFlowUnit.PoundPerMinute)]
+        [InlineData("en-US", "lb/s", MassFlowUnit.PoundPerSecond)]
+        [InlineData("en-US", "short tn/h", MassFlowUnit.ShortTonPerHour)]
+        [InlineData("en-US", "t/d", MassFlowUnit.TonnePerDay)]
+        [InlineData("en-US", "t/h", MassFlowUnit.TonnePerHour)]
+        [InlineData("ru-RU", "кг/ч", MassFlowUnit.KilogramPerHour)]
+        [InlineData("ru-RU", "кг/мин", MassFlowUnit.KilogramPerMinute)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, MassFlowUnit expectedUnit)
+        {
+            Assert.True(MassFlow.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out MassFlowUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

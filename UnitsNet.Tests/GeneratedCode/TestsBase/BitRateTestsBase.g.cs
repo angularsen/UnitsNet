@@ -944,443 +944,190 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("bit/s", BitRateUnit.BitPerSecond)]
+        [InlineData("bps", BitRateUnit.BitPerSecond)]
+        [InlineData("B/s", BitRateUnit.BytePerSecond)]
+        [InlineData("Ebit/s", BitRateUnit.ExabitPerSecond)]
+        [InlineData("Ebps", BitRateUnit.ExabitPerSecond)]
+        [InlineData("EB/s", BitRateUnit.ExabytePerSecond)]
+        [InlineData("Eibit/s", BitRateUnit.ExbibitPerSecond)]
+        [InlineData("Eibps", BitRateUnit.ExbibitPerSecond)]
+        [InlineData("EiB/s", BitRateUnit.ExbibytePerSecond)]
+        [InlineData("Gibit/s", BitRateUnit.GibibitPerSecond)]
+        [InlineData("Gibps", BitRateUnit.GibibitPerSecond)]
+        [InlineData("GiB/s", BitRateUnit.GibibytePerSecond)]
+        [InlineData("Gbit/s", BitRateUnit.GigabitPerSecond)]
+        [InlineData("Gbps", BitRateUnit.GigabitPerSecond)]
+        [InlineData("GB/s", BitRateUnit.GigabytePerSecond)]
+        [InlineData("Kibit/s", BitRateUnit.KibibitPerSecond)]
+        [InlineData("Kibps", BitRateUnit.KibibitPerSecond)]
+        [InlineData("KiB/s", BitRateUnit.KibibytePerSecond)]
+        [InlineData("kbit/s", BitRateUnit.KilobitPerSecond)]
+        [InlineData("kbps", BitRateUnit.KilobitPerSecond)]
+        [InlineData("kB/s", BitRateUnit.KilobytePerSecond)]
+        [InlineData("Mibit/s", BitRateUnit.MebibitPerSecond)]
+        [InlineData("Mibps", BitRateUnit.MebibitPerSecond)]
+        [InlineData("MiB/s", BitRateUnit.MebibytePerSecond)]
+        [InlineData("Mbit/s", BitRateUnit.MegabitPerSecond)]
+        [InlineData("Mbps", BitRateUnit.MegabitPerSecond)]
+        [InlineData("MB/s", BitRateUnit.MegabytePerSecond)]
+        [InlineData("Pibit/s", BitRateUnit.PebibitPerSecond)]
+        [InlineData("Pibps", BitRateUnit.PebibitPerSecond)]
+        [InlineData("PiB/s", BitRateUnit.PebibytePerSecond)]
+        [InlineData("Pbit/s", BitRateUnit.PetabitPerSecond)]
+        [InlineData("Pbps", BitRateUnit.PetabitPerSecond)]
+        [InlineData("PB/s", BitRateUnit.PetabytePerSecond)]
+        [InlineData("Tibit/s", BitRateUnit.TebibitPerSecond)]
+        [InlineData("Tibps", BitRateUnit.TebibitPerSecond)]
+        [InlineData("TiB/s", BitRateUnit.TebibytePerSecond)]
+        [InlineData("Tbit/s", BitRateUnit.TerabitPerSecond)]
+        [InlineData("Tbps", BitRateUnit.TerabitPerSecond)]
+        [InlineData("TB/s", BitRateUnit.TerabytePerSecond)]
+        public void ParseUnit(string abbreviation, BitRateUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("bit/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.BitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("bps", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.BitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("B/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.BytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("Ebit/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.ExabitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("Ebps", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.ExabitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("EB/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.ExabytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("Eibit/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.ExbibitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("Eibps", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.ExbibitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("EiB/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.ExbibytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("Gibit/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.GibibitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("Gibps", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.GibibitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("GiB/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.GibibytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("Gbit/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.GigabitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("Gbps", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.GigabitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("GB/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.GigabytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("Kibit/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.KibibitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("Kibps", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.KibibitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("KiB/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.KibibytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("kbit/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.KilobitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("kbps", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.KilobitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("kB/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.KilobytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("Mibit/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.MebibitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("Mibps", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.MebibitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("MiB/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.MebibytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("Mbit/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.MegabitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("Mbps", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.MegabitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("MB/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.MegabytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("Pibit/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.PebibitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("Pibps", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.PebibitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("PiB/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.PebibytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("Pbit/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.PetabitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("Pbps", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.PetabitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("PB/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.PetabytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("Tibit/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.TebibitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("Tibps", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.TebibitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("TiB/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.TebibytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("Tbit/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.TerabitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("Tbps", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.TerabitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = BitRate.ParseUnit("TB/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(BitRateUnit.TerabytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            BitRateUnit parsedUnit = BitRate.ParseUnit(abbreviation); 
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("en-US", "bit/s", BitRateUnit.BitPerSecond)]
+        [InlineData("en-US", "bps", BitRateUnit.BitPerSecond)]
+        [InlineData("en-US", "B/s", BitRateUnit.BytePerSecond)]
+        [InlineData("en-US", "Ebit/s", BitRateUnit.ExabitPerSecond)]
+        [InlineData("en-US", "Ebps", BitRateUnit.ExabitPerSecond)]
+        [InlineData("en-US", "EB/s", BitRateUnit.ExabytePerSecond)]
+        [InlineData("en-US", "Eibit/s", BitRateUnit.ExbibitPerSecond)]
+        [InlineData("en-US", "Eibps", BitRateUnit.ExbibitPerSecond)]
+        [InlineData("en-US", "EiB/s", BitRateUnit.ExbibytePerSecond)]
+        [InlineData("en-US", "Gibit/s", BitRateUnit.GibibitPerSecond)]
+        [InlineData("en-US", "Gibps", BitRateUnit.GibibitPerSecond)]
+        [InlineData("en-US", "GiB/s", BitRateUnit.GibibytePerSecond)]
+        [InlineData("en-US", "Gbit/s", BitRateUnit.GigabitPerSecond)]
+        [InlineData("en-US", "Gbps", BitRateUnit.GigabitPerSecond)]
+        [InlineData("en-US", "GB/s", BitRateUnit.GigabytePerSecond)]
+        [InlineData("en-US", "Kibit/s", BitRateUnit.KibibitPerSecond)]
+        [InlineData("en-US", "Kibps", BitRateUnit.KibibitPerSecond)]
+        [InlineData("en-US", "KiB/s", BitRateUnit.KibibytePerSecond)]
+        [InlineData("en-US", "kbit/s", BitRateUnit.KilobitPerSecond)]
+        [InlineData("en-US", "kbps", BitRateUnit.KilobitPerSecond)]
+        [InlineData("en-US", "kB/s", BitRateUnit.KilobytePerSecond)]
+        [InlineData("en-US", "Mibit/s", BitRateUnit.MebibitPerSecond)]
+        [InlineData("en-US", "Mibps", BitRateUnit.MebibitPerSecond)]
+        [InlineData("en-US", "MiB/s", BitRateUnit.MebibytePerSecond)]
+        [InlineData("en-US", "Mbit/s", BitRateUnit.MegabitPerSecond)]
+        [InlineData("en-US", "Mbps", BitRateUnit.MegabitPerSecond)]
+        [InlineData("en-US", "MB/s", BitRateUnit.MegabytePerSecond)]
+        [InlineData("en-US", "Pibit/s", BitRateUnit.PebibitPerSecond)]
+        [InlineData("en-US", "Pibps", BitRateUnit.PebibitPerSecond)]
+        [InlineData("en-US", "PiB/s", BitRateUnit.PebibytePerSecond)]
+        [InlineData("en-US", "Pbit/s", BitRateUnit.PetabitPerSecond)]
+        [InlineData("en-US", "Pbps", BitRateUnit.PetabitPerSecond)]
+        [InlineData("en-US", "PB/s", BitRateUnit.PetabytePerSecond)]
+        [InlineData("en-US", "Tibit/s", BitRateUnit.TebibitPerSecond)]
+        [InlineData("en-US", "Tibps", BitRateUnit.TebibitPerSecond)]
+        [InlineData("en-US", "TiB/s", BitRateUnit.TebibytePerSecond)]
+        [InlineData("en-US", "Tbit/s", BitRateUnit.TerabitPerSecond)]
+        [InlineData("en-US", "Tbps", BitRateUnit.TerabitPerSecond)]
+        [InlineData("en-US", "TB/s", BitRateUnit.TerabytePerSecond)]
+        public void ParseUnitWithCulture(string culture, string abbreviation, BitRateUnit expectedUnit)
         {
-            {
-                Assert.True(BitRate.TryParseUnit("bit/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.BitPerSecond, parsedUnit);
-            }
+            BitRateUnit parsedUnit = BitRate.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(BitRate.TryParseUnit("bps", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.BitPerSecond, parsedUnit);
-            }
+        [Theory]
+        [InlineData("bit/s", BitRateUnit.BitPerSecond)]
+        [InlineData("bps", BitRateUnit.BitPerSecond)]
+        [InlineData("B/s", BitRateUnit.BytePerSecond)]
+        [InlineData("Ebit/s", BitRateUnit.ExabitPerSecond)]
+        [InlineData("Ebps", BitRateUnit.ExabitPerSecond)]
+        [InlineData("EB/s", BitRateUnit.ExabytePerSecond)]
+        [InlineData("Eibit/s", BitRateUnit.ExbibitPerSecond)]
+        [InlineData("Eibps", BitRateUnit.ExbibitPerSecond)]
+        [InlineData("EiB/s", BitRateUnit.ExbibytePerSecond)]
+        [InlineData("Gibit/s", BitRateUnit.GibibitPerSecond)]
+        [InlineData("Gibps", BitRateUnit.GibibitPerSecond)]
+        [InlineData("GiB/s", BitRateUnit.GibibytePerSecond)]
+        [InlineData("Gbit/s", BitRateUnit.GigabitPerSecond)]
+        [InlineData("Gbps", BitRateUnit.GigabitPerSecond)]
+        [InlineData("GB/s", BitRateUnit.GigabytePerSecond)]
+        [InlineData("Kibit/s", BitRateUnit.KibibitPerSecond)]
+        [InlineData("Kibps", BitRateUnit.KibibitPerSecond)]
+        [InlineData("KiB/s", BitRateUnit.KibibytePerSecond)]
+        [InlineData("kbit/s", BitRateUnit.KilobitPerSecond)]
+        [InlineData("kbps", BitRateUnit.KilobitPerSecond)]
+        [InlineData("kB/s", BitRateUnit.KilobytePerSecond)]
+        [InlineData("Mibit/s", BitRateUnit.MebibitPerSecond)]
+        [InlineData("Mibps", BitRateUnit.MebibitPerSecond)]
+        [InlineData("MiB/s", BitRateUnit.MebibytePerSecond)]
+        [InlineData("Mbit/s", BitRateUnit.MegabitPerSecond)]
+        [InlineData("Mbps", BitRateUnit.MegabitPerSecond)]
+        [InlineData("MB/s", BitRateUnit.MegabytePerSecond)]
+        [InlineData("Pibit/s", BitRateUnit.PebibitPerSecond)]
+        [InlineData("Pibps", BitRateUnit.PebibitPerSecond)]
+        [InlineData("PiB/s", BitRateUnit.PebibytePerSecond)]
+        [InlineData("Pbit/s", BitRateUnit.PetabitPerSecond)]
+        [InlineData("Pbps", BitRateUnit.PetabitPerSecond)]
+        [InlineData("PB/s", BitRateUnit.PetabytePerSecond)]
+        [InlineData("Tibit/s", BitRateUnit.TebibitPerSecond)]
+        [InlineData("Tibps", BitRateUnit.TebibitPerSecond)]
+        [InlineData("TiB/s", BitRateUnit.TebibytePerSecond)]
+        [InlineData("Tbit/s", BitRateUnit.TerabitPerSecond)]
+        [InlineData("Tbps", BitRateUnit.TerabitPerSecond)]
+        [InlineData("TB/s", BitRateUnit.TerabytePerSecond)]
+        public void TryParseUnit(string abbreviation, BitRateUnit expectedUnit)
+        {
+            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            Assert.True(BitRate.TryParseUnit(abbreviation, out BitRateUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(BitRate.TryParseUnit("B/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.BytePerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(BitRate.TryParseUnit("Ebit/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.ExabitPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(BitRate.TryParseUnit("Ebps", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.ExabitPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(BitRate.TryParseUnit("EB/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.ExabytePerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(BitRate.TryParseUnit("Eibit/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.ExbibitPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(BitRate.TryParseUnit("Eibps", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.ExbibitPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(BitRate.TryParseUnit("EiB/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.ExbibytePerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(BitRate.TryParseUnit("Gibit/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.GibibitPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(BitRate.TryParseUnit("Gibps", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.GibibitPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(BitRate.TryParseUnit("GiB/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.GibibytePerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(BitRate.TryParseUnit("Gbit/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.GigabitPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(BitRate.TryParseUnit("Gbps", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.GigabitPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(BitRate.TryParseUnit("GB/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.GigabytePerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(BitRate.TryParseUnit("Kibit/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.KibibitPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(BitRate.TryParseUnit("Kibps", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.KibibitPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(BitRate.TryParseUnit("KiB/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.KibibytePerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(BitRate.TryParseUnit("kbit/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.KilobitPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(BitRate.TryParseUnit("kbps", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.KilobitPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(BitRate.TryParseUnit("kB/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.KilobytePerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(BitRate.TryParseUnit("Mibit/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.MebibitPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(BitRate.TryParseUnit("Mibps", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.MebibitPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(BitRate.TryParseUnit("MiB/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.MebibytePerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(BitRate.TryParseUnit("Mbit/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.MegabitPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(BitRate.TryParseUnit("Mbps", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.MegabitPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(BitRate.TryParseUnit("MB/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.MegabytePerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(BitRate.TryParseUnit("Pibit/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.PebibitPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(BitRate.TryParseUnit("Pibps", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.PebibitPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(BitRate.TryParseUnit("PiB/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.PebibytePerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(BitRate.TryParseUnit("Pbit/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.PetabitPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(BitRate.TryParseUnit("Pbps", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.PetabitPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(BitRate.TryParseUnit("PB/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.PetabytePerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(BitRate.TryParseUnit("Tibit/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.TebibitPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(BitRate.TryParseUnit("Tibps", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.TebibitPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(BitRate.TryParseUnit("TiB/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.TebibytePerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(BitRate.TryParseUnit("Tbit/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.TerabitPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(BitRate.TryParseUnit("Tbps", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.TerabitPerSecond, parsedUnit);
-            }
-
-            {
-                Assert.True(BitRate.TryParseUnit("TB/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(BitRateUnit.TerabytePerSecond, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "bit/s", BitRateUnit.BitPerSecond)]
+        [InlineData("en-US", "bps", BitRateUnit.BitPerSecond)]
+        [InlineData("en-US", "B/s", BitRateUnit.BytePerSecond)]
+        [InlineData("en-US", "Ebit/s", BitRateUnit.ExabitPerSecond)]
+        [InlineData("en-US", "Ebps", BitRateUnit.ExabitPerSecond)]
+        [InlineData("en-US", "EB/s", BitRateUnit.ExabytePerSecond)]
+        [InlineData("en-US", "Eibit/s", BitRateUnit.ExbibitPerSecond)]
+        [InlineData("en-US", "Eibps", BitRateUnit.ExbibitPerSecond)]
+        [InlineData("en-US", "EiB/s", BitRateUnit.ExbibytePerSecond)]
+        [InlineData("en-US", "Gibit/s", BitRateUnit.GibibitPerSecond)]
+        [InlineData("en-US", "Gibps", BitRateUnit.GibibitPerSecond)]
+        [InlineData("en-US", "GiB/s", BitRateUnit.GibibytePerSecond)]
+        [InlineData("en-US", "Gbit/s", BitRateUnit.GigabitPerSecond)]
+        [InlineData("en-US", "Gbps", BitRateUnit.GigabitPerSecond)]
+        [InlineData("en-US", "GB/s", BitRateUnit.GigabytePerSecond)]
+        [InlineData("en-US", "Kibit/s", BitRateUnit.KibibitPerSecond)]
+        [InlineData("en-US", "Kibps", BitRateUnit.KibibitPerSecond)]
+        [InlineData("en-US", "KiB/s", BitRateUnit.KibibytePerSecond)]
+        [InlineData("en-US", "kbit/s", BitRateUnit.KilobitPerSecond)]
+        [InlineData("en-US", "kbps", BitRateUnit.KilobitPerSecond)]
+        [InlineData("en-US", "kB/s", BitRateUnit.KilobytePerSecond)]
+        [InlineData("en-US", "Mibit/s", BitRateUnit.MebibitPerSecond)]
+        [InlineData("en-US", "Mibps", BitRateUnit.MebibitPerSecond)]
+        [InlineData("en-US", "MiB/s", BitRateUnit.MebibytePerSecond)]
+        [InlineData("en-US", "Mbit/s", BitRateUnit.MegabitPerSecond)]
+        [InlineData("en-US", "Mbps", BitRateUnit.MegabitPerSecond)]
+        [InlineData("en-US", "MB/s", BitRateUnit.MegabytePerSecond)]
+        [InlineData("en-US", "Pibit/s", BitRateUnit.PebibitPerSecond)]
+        [InlineData("en-US", "Pibps", BitRateUnit.PebibitPerSecond)]
+        [InlineData("en-US", "PiB/s", BitRateUnit.PebibytePerSecond)]
+        [InlineData("en-US", "Pbit/s", BitRateUnit.PetabitPerSecond)]
+        [InlineData("en-US", "Pbps", BitRateUnit.PetabitPerSecond)]
+        [InlineData("en-US", "PB/s", BitRateUnit.PetabytePerSecond)]
+        [InlineData("en-US", "Tibit/s", BitRateUnit.TebibitPerSecond)]
+        [InlineData("en-US", "Tibps", BitRateUnit.TebibitPerSecond)]
+        [InlineData("en-US", "TiB/s", BitRateUnit.TebibytePerSecond)]
+        [InlineData("en-US", "Tbit/s", BitRateUnit.TerabitPerSecond)]
+        [InlineData("en-US", "Tbps", BitRateUnit.TerabitPerSecond)]
+        [InlineData("en-US", "TB/s", BitRateUnit.TerabytePerSecond)]
+        public void TryParseUnitWithCulture(string culture, string abbreviation, BitRateUnit expectedUnit)
+        {
+            Assert.True(BitRate.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out BitRateUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
