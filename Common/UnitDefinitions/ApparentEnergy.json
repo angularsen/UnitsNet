@@ -2,6 +2,8 @@
   "Name": "ApparentEnergy",
   "BaseUnit": "VoltampereHour",
   "XmlDocSummary": "A unit for expressing the integral of apparent power over time, equal to the product of 1 volt-ampere and 1 hour, or to 3600 joules.",
+  "XmlDocRemarks": "<see cref=\"ApparentEnergy\" /> has been renamed to <see cref=\"ElectricApparentEnergy\" />, and will be removed in a later major version.",
+  "ObsoleteText": "ApparentEnergy has been renamed to ElectricApparentEnergy, and will be removed in a later major version.",
   "BaseDimensions": {
     "L": 2,
     "M": 1,

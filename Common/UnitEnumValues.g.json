@@ -259,7 +259,19 @@
     "Microsiemens": 1,
     "Millisiemens": 2,
     "Nanosiemens": 3,
-    "Siemens": 4
+    "Siemens": 4,
+    "Gigamho": 7,
+    "Gigasiemens": 14,
+    "Kilomho": 11,
+    "Kilosiemens": 9,
+    "Megamho": 8,
+    "Megasiemens": 6,
+    "Mho": 13,
+    "Micromho": 5,
+    "Millimho": 10,
+    "Nanomho": 12,
+    "Teramho": 19,
+    "Terasiemens": 16
   },
   "ElectricCharge": {
     "AmpereHour": 1,
@@ -282,7 +294,18 @@
     "Millisiemens": 2,
     "Siemens": 3,
     "Kilosiemens": 6,
-    "Nanosiemens": 10
+    "Nanosiemens": 10,
+    "Gigamho": 15,
+    "Gigasiemens": 5,
+    "Kilomho": 7,
+    "Megamho": 13,
+    "Megasiemens": 12,
+    "Mho": 9,
+    "Micromho": 11,
+    "Millimho": 8,
+    "Nanomho": 4,
+    "Teramho": 14,
+    "Terasiemens": 17
   },
   "ElectricConductivity": {
     "SiemensPerFoot": 1,
@@ -378,7 +401,8 @@
     "Microohm": 4,
     "Milliohm": 5,
     "Ohm": 6,
-    "Teraohm": 12
+    "Teraohm": 12,
+    "Nanoohm": 14
   },
   "ElectricResistivity": {
     "KiloohmCentimeter": 1,
@@ -1870,5 +1894,76 @@
     "SquareMeterDegreeCelsiusPerWatt": 3,
     "SquareMeterKelvinPerKilowatt": 5,
     "SquareMeterKelvinPerWatt": 4
+  },
+  "ElectricApparentEnergy": {
+    "KilovoltampereHour": 1,
+    "MegavoltampereHour": 2,
+    "VoltampereHour": 3
+  },
+  "ElectricApparentPower": {
+    "Gigavoltampere": 9,
+    "Kilovoltampere": 3,
+    "Megavoltampere": 8,
+    "Microvoltampere": 5,
+    "Millivoltampere": 7,
+    "Voltampere": 1
+  },
+  "ElectricCapacitance": {
+    "Farad": 5,
+    "Kilofarad": 7,
+    "Megafarad": 4,
+    "Microfarad": 6,
+    "Millifarad": 10,
+    "Nanofarad": 9,
+    "Picofarad": 8
+  },
+  "ElectricImpedance": {
+    "Gigaohm": 10,
+    "Kiloohm": 6,
+    "Megaohm": 7,
+    "Microohm": 2,
+    "Milliohm": 1,
+    "Nanoohm": 4,
+    "Ohm": 9,
+    "Teraohm": 8
+  },
+  "ElectricReactance": {
+    "Gigaohm": 3,
+    "Kiloohm": 8,
+    "Megaohm": 10,
+    "Microohm": 7,
+    "Milliohm": 4,
+    "Nanoohm": 2,
+    "Ohm": 1,
+    "Teraohm": 5
+  },
+  "ElectricReactiveEnergy": {
+    "KilovoltampereReactiveHour": 9,
+    "MegavoltampereReactiveHour": 7,
+    "VoltampereReactiveHour": 6
+  },
+  "ElectricReactivePower": {
+    "GigavoltampereReactive": 3,
+    "KilovoltampereReactive": 8,
+    "MegavoltampereReactive": 5,
+    "VoltampereReactive": 2
+  },
+  "ElectricSusceptance": {
+    "Gigamho": 4,
+    "Gigasiemens": 5,
+    "Kilomho": 8,
+    "Kilosiemens": 9,
+    "Megamho": 10,
+    "Megasiemens": 6,
+    "Mho": 2,
+    "Micromho": 3,
+    "Microsiemens": 1,
+    "Millimho": 7,
+    "Millisiemens": 16,
+    "Nanomho": 13,
+    "Nanosiemens": 20,
+    "Siemens": 15,
+    "Teramho": 18,
+    "Terasiemens": 17
   }
 }

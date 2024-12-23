@@ -32,6 +32,70 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
     /// </summary>
     public static class NumberToElectricAdmittanceExtensions
     {
+        /// <inheritdoc cref="ElectricAdmittance.FromGigamhos(double)" />
+        public static ElectricAdmittance Gigamhos<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricAdmittance.FromGigamhos(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricAdmittance.FromGigasiemens(double)" />
+        public static ElectricAdmittance Gigasiemens<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricAdmittance.FromGigasiemens(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricAdmittance.FromKilomhos(double)" />
+        public static ElectricAdmittance Kilomhos<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricAdmittance.FromKilomhos(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricAdmittance.FromKilosiemens(double)" />
+        public static ElectricAdmittance Kilosiemens<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricAdmittance.FromKilosiemens(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricAdmittance.FromMegamhos(double)" />
+        public static ElectricAdmittance Megamhos<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricAdmittance.FromMegamhos(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricAdmittance.FromMegasiemens(double)" />
+        public static ElectricAdmittance Megasiemens<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricAdmittance.FromMegasiemens(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricAdmittance.FromMhos(double)" />
+        public static ElectricAdmittance Mhos<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricAdmittance.FromMhos(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricAdmittance.FromMicromhos(double)" />
+        public static ElectricAdmittance Micromhos<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricAdmittance.FromMicromhos(Convert.ToDouble(value));
+
         /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(double)" />
         public static ElectricAdmittance Microsiemens<T>(this T value)
             where T : notnull
@@ -40,6 +104,14 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
 #endif
             => ElectricAdmittance.FromMicrosiemens(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="ElectricAdmittance.FromMillimhos(double)" />
+        public static ElectricAdmittance Millimhos<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricAdmittance.FromMillimhos(Convert.ToDouble(value));
+
         /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(double)" />
         public static ElectricAdmittance Millisiemens<T>(this T value)
             where T : notnull
@@ -47,6 +119,14 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
             , INumber<T>
 #endif
             => ElectricAdmittance.FromMillisiemens(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricAdmittance.FromNanomhos(double)" />
+        public static ElectricAdmittance Nanomhos<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricAdmittance.FromNanomhos(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(double)" />
         public static ElectricAdmittance Nanosiemens<T>(this T value)
@@ -63,6 +143,22 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
             , INumber<T>
 #endif
             => ElectricAdmittance.FromSiemens(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricAdmittance.FromTeramhos(double)" />
+        public static ElectricAdmittance Teramhos<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricAdmittance.FromTeramhos(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricAdmittance.FromTerasiemens(double)" />
+        public static ElectricAdmittance Terasiemens<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => ElectricAdmittance.FromTerasiemens(Convert.ToDouble(value));
 
     }
 }

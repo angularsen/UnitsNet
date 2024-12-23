@@ -25,10 +25,22 @@ namespace UnitsNet.Units
 
     public enum ElectricAdmittanceUnit
     {
+        Gigamho = 7,
+        Gigasiemens = 14,
+        Kilomho = 11,
+        Kilosiemens = 9,
+        Megamho = 8,
+        Megasiemens = 6,
+        Mho = 13,
+        Micromho = 5,
         Microsiemens = 1,
+        Millimho = 10,
         Millisiemens = 2,
+        Nanomho = 12,
         Nanosiemens = 3,
         Siemens = 4,
+        Teramho = 19,
+        Terasiemens = 16,
     }
 
     #pragma warning restore 1591
