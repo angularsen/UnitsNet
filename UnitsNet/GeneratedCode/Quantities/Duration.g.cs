@@ -54,6 +54,7 @@ namespace UnitsNet
         IMultiplyOperators<Duration, Speed, Length>,
         IMultiplyOperators<Duration, MassFlow, Mass>,
         IMultiplyOperators<Duration, PressureChangeRate, Pressure>,
+        IMultiplyOperators<Duration, RadiationEquivalentDoseRate, RadiationEquivalentDose>,
         IMultiplyOperators<Duration, Acceleration, Speed>,
         IMultiplyOperators<Duration, TemperatureChangeRate, TemperatureDelta>,
         IMultiplyOperators<Duration, VolumeFlow, Volume>,
@@ -693,6 +694,12 @@ namespace UnitsNet
         public static Pressure operator *(Duration duration, PressureChangeRate pressureChangeRate)
         {
             return Pressure.FromPascals(duration.Seconds * pressureChangeRate.PascalsPerSecond);
+        }
+
+        /// <summary>Get <see cref="RadiationEquivalentDose"/> from <see cref="Duration"/> * <see cref="RadiationEquivalentDoseRate"/>.</summary>
+        public static RadiationEquivalentDose operator *(Duration duration, RadiationEquivalentDoseRate radiationEquivalentDoseRate)
+        {
+            return RadiationEquivalentDose.FromSieverts(duration.Hours * radiationEquivalentDoseRate.SievertsPerHour);
         }
 
         /// <summary>Get <see cref="Speed"/> from <see cref="Duration"/> * <see cref="Acceleration"/>.</summary>

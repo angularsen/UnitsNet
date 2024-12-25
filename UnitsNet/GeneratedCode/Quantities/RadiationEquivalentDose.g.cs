@@ -43,6 +43,10 @@ namespace UnitsNet
     public readonly partial struct RadiationEquivalentDose :
         IArithmeticQuantity<RadiationEquivalentDose, RadiationEquivalentDoseUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<RadiationEquivalentDose, RadiationEquivalentDoseRate, Duration>,
+        IDivisionOperators<RadiationEquivalentDose, Duration, RadiationEquivalentDoseRate>,
+#endif
+#if NET7_0_OR_GREATER
         IComparisonOperators<RadiationEquivalentDose, RadiationEquivalentDose, bool>,
         IParsable<RadiationEquivalentDose>,
 #endif
@@ -511,6 +515,22 @@ namespace UnitsNet
         public static double operator /(RadiationEquivalentDose left, RadiationEquivalentDose right)
         {
             return left.Sieverts / right.Sieverts;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Duration"/> from <see cref="RadiationEquivalentDose"/> / <see cref="RadiationEquivalentDoseRate"/>.</summary>
+        public static Duration operator /(RadiationEquivalentDose radiationEquivalentDose, RadiationEquivalentDoseRate radiationEquivalentDoseRate)
+        {
+            return Duration.FromHours(radiationEquivalentDose.Sieverts / radiationEquivalentDoseRate.SievertsPerHour);
+        }
+
+        /// <summary>Get <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDose"/> / <see cref="Duration"/>.</summary>
+        public static RadiationEquivalentDoseRate operator /(RadiationEquivalentDose radiationEquivalentDose, Duration duration)
+        {
+            return RadiationEquivalentDoseRate.FromSievertsPerHour(radiationEquivalentDose.Sieverts / duration.Hours);
         }
 
         #endregion

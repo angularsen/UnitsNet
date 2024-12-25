@@ -63,6 +63,7 @@
   "Pressure.NewtonPerSquareMeter = ForcePerLength.NewtonPerMeter * ReciprocalLength.InverseMeter",
   "Pressure.Pascal = PressureChangeRate.PascalPerSecond * Duration.Second",
   "Pressure.Pascal = SpecificWeight.NewtonPerCubicMeter * Length.Meter",
+  "RadiationEquivalentDose.Sievert = RadiationEquivalentDoseRate.SievertPerHour * Duration.Hour",
   "Ratio.DecimalFraction = Area.SquareMeter * ReciprocalArea.InverseSquareMeter -- NoInferredDivision",
   "Ratio.DecimalFraction = TemperatureDelta.Kelvin * CoefficientOfThermalExpansion.PerKelvin -- NoInferredDivision",
   "ReciprocalArea.InverseSquareMeter = ReciprocalLength.InverseMeter * ReciprocalLength.InverseMeter",
