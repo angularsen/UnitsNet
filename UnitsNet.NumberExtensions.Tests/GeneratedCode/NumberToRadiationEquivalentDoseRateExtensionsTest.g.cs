@@ -29,6 +29,10 @@ namespace UnitsNet.Tests
             Assert.Equal(RadiationEquivalentDoseRate.FromMicrosievertsPerHour(2), 2.MicrosievertsPerHour());
 
         [Fact]
+        public void NumberToMicrosievertsPerSecondTest() =>
+            Assert.Equal(RadiationEquivalentDoseRate.FromMicrosievertsPerSecond(2), 2.MicrosievertsPerSecond());
+
+        [Fact]
         public void NumberToMilliroentgensEquivalentManPerHourTest() =>
             Assert.Equal(RadiationEquivalentDoseRate.FromMilliroentgensEquivalentManPerHour(2), 2.MilliroentgensEquivalentManPerHour());
 
@@ -37,8 +41,16 @@ namespace UnitsNet.Tests
             Assert.Equal(RadiationEquivalentDoseRate.FromMillisievertsPerHour(2), 2.MillisievertsPerHour());
 
         [Fact]
+        public void NumberToMillisievertsPerSecondTest() =>
+            Assert.Equal(RadiationEquivalentDoseRate.FromMillisievertsPerSecond(2), 2.MillisievertsPerSecond());
+
+        [Fact]
         public void NumberToNanosievertsPerHourTest() =>
             Assert.Equal(RadiationEquivalentDoseRate.FromNanosievertsPerHour(2), 2.NanosievertsPerHour());
+
+        [Fact]
+        public void NumberToNanosievertsPerSecondTest() =>
+            Assert.Equal(RadiationEquivalentDoseRate.FromNanosievertsPerSecond(2), 2.NanosievertsPerSecond());
 
         [Fact]
         public void NumberToRoentgensEquivalentManPerHourTest() =>

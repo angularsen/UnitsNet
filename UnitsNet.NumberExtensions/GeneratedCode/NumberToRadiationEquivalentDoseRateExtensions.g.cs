@@ -40,6 +40,14 @@ namespace UnitsNet.NumberExtensions.NumberToRadiationEquivalentDoseRate
 #endif
             => RadiationEquivalentDoseRate.FromMicrosievertsPerHour(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="RadiationEquivalentDoseRate.FromMicrosievertsPerSecond(UnitsNet.QuantityValue)" />
+        public static RadiationEquivalentDoseRate MicrosievertsPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => RadiationEquivalentDoseRate.FromMicrosievertsPerSecond(Convert.ToDouble(value));
+
         /// <inheritdoc cref="RadiationEquivalentDoseRate.FromMilliroentgensEquivalentManPerHour(UnitsNet.QuantityValue)" />
         public static RadiationEquivalentDoseRate MilliroentgensEquivalentManPerHour<T>(this T value)
             where T : notnull
@@ -56,6 +64,14 @@ namespace UnitsNet.NumberExtensions.NumberToRadiationEquivalentDoseRate
 #endif
             => RadiationEquivalentDoseRate.FromMillisievertsPerHour(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="RadiationEquivalentDoseRate.FromMillisievertsPerSecond(UnitsNet.QuantityValue)" />
+        public static RadiationEquivalentDoseRate MillisievertsPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => RadiationEquivalentDoseRate.FromMillisievertsPerSecond(Convert.ToDouble(value));
+
         /// <inheritdoc cref="RadiationEquivalentDoseRate.FromNanosievertsPerHour(UnitsNet.QuantityValue)" />
         public static RadiationEquivalentDoseRate NanosievertsPerHour<T>(this T value)
             where T : notnull
@@ -63,6 +79,14 @@ namespace UnitsNet.NumberExtensions.NumberToRadiationEquivalentDoseRate
             , INumber<T>
 #endif
             => RadiationEquivalentDoseRate.FromNanosievertsPerHour(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="RadiationEquivalentDoseRate.FromNanosievertsPerSecond(UnitsNet.QuantityValue)" />
+        public static RadiationEquivalentDoseRate NanosievertsPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => RadiationEquivalentDoseRate.FromNanosievertsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="RadiationEquivalentDoseRate.FromRoentgensEquivalentManPerHour(UnitsNet.QuantityValue)" />
         public static RadiationEquivalentDoseRate RoentgensEquivalentManPerHour<T>(this T value)

@@ -1877,6 +1877,9 @@
     "NanosievertPerHour": 2,
     "RoentgenEquivalentManPerHour": 5,
     "SievertPerHour": 6,
-    "SievertPerSecond": 16
+    "SievertPerSecond": 16,
+    "MicrosievertPerSecond": 17,
+    "MillisievertPerSecond": 14,
+    "NanosievertPerSecond": 9
   }
 }

@@ -30,7 +30,7 @@
       "PluralName": "SievertsPerSecond",
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
-      "Prefixes": [],
+      "Prefixes": [ "Nano", "Micro", "Milli" ],
       "Localization": [
         {
           "Culture": "en-US",

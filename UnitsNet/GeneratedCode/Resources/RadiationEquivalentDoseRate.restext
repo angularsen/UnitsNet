@@ -1,7 +1,10 @@
 MicrosievertsPerHour=µSv/h
+MicrosievertsPerSecond=µSv/s
 MilliroentgensEquivalentManPerHour=mrem/h
 MillisievertsPerHour=mSv/h
+MillisievertsPerSecond=mSv/s
 NanosievertsPerHour=nSv/h
+NanosievertsPerSecond=nSv/s
 RoentgensEquivalentManPerHour=rem/h
 SievertsPerHour=Sv/h
 SievertsPerSecond=Sv/s
