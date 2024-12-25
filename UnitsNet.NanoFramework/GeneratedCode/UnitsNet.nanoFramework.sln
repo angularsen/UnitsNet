@@ -172,6 +172,8 @@ Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "PressureChangeRate", "Press
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "RadiationEquivalentDose", "RadiationEquivalentDose\RadiationEquivalentDose.nfproj", "{dcdccf04-c930-b455-77a4-d9d4a7df8723}"
 EndProject
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "RadiationEquivalentDoseRate", "RadiationEquivalentDoseRate\RadiationEquivalentDoseRate.nfproj", "{8eec9904-f4bb-c601-86ac-80fb153599f9}"
+EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "RadiationExposure", "RadiationExposure\RadiationExposure.nfproj", "{69b383c7-828a-1857-cbe2-f11b9ba77320}"
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Radioactivity", "Radioactivity\Radioactivity.nfproj", "{abf4b42f-e999-2a78-403f-fb09524f186a}"
@@ -764,6 +766,12 @@ Global
 {dcdccf04-c930-b455-77a4-d9d4a7df8723}.Release|Any CPU.ActiveCfg = Release|Any CPU
 {dcdccf04-c930-b455-77a4-d9d4a7df8723}.Release|Any CPU.Build.0 = Release|Any CPU
 {dcdccf04-c930-b455-77a4-d9d4a7df8723}.Release|Any CPU.Deploy.0 = Release|Any CPU
+{8eec9904-f4bb-c601-86ac-80fb153599f9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+{8eec9904-f4bb-c601-86ac-80fb153599f9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+{8eec9904-f4bb-c601-86ac-80fb153599f9}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+{8eec9904-f4bb-c601-86ac-80fb153599f9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+{8eec9904-f4bb-c601-86ac-80fb153599f9}.Release|Any CPU.Build.0 = Release|Any CPU
+{8eec9904-f4bb-c601-86ac-80fb153599f9}.Release|Any CPU.Deploy.0 = Release|Any CPU
 {69b383c7-828a-1857-cbe2-f11b9ba77320}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 {69b383c7-828a-1857-cbe2-f11b9ba77320}.Debug|Any CPU.Build.0 = Debug|Any CPU
 {69b383c7-828a-1857-cbe2-f11b9ba77320}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
