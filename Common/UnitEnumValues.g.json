@@ -1863,6 +1863,14 @@
     "Kilosievert": 3,
     "Megasievert": 6
   },
+  "RadiationEquivalentDoseRate": {
+    "MicrosievertPerHour": 1,
+    "MilliroentgenEquivalentManPerHour": 4,
+    "MillisievertPerHour": 3,
+    "NanosievertPerHour": 2,
+    "RoentgenEquivalentManPerHour": 5,
+    "SievertPerHour": 6
+  },
   "ThermalInsulance": {
     "HourSquareFeetDegreeFahrenheitPerBtu": 2,
     "SquareCentimeterHourDegreeCelsiusPerKilocalorie": 6,

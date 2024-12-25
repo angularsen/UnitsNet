@@ -123,6 +123,7 @@ namespace UnitsNet
             { "Pressure", Pressure.Info },
             { "PressureChangeRate", PressureChangeRate.Info },
             { "RadiationEquivalentDose", RadiationEquivalentDose.Info },
+            { "RadiationEquivalentDoseRate", RadiationEquivalentDoseRate.Info },
             { "RadiationExposure", RadiationExposure.Info },
             { "Radioactivity", Radioactivity.Info },
             { "Ratio", Ratio.Info },
@@ -258,6 +259,7 @@ namespace UnitsNet
                 "Pressure" => Pressure.From(value, Pressure.BaseUnit),
                 "PressureChangeRate" => PressureChangeRate.From(value, PressureChangeRate.BaseUnit),
                 "RadiationEquivalentDose" => RadiationEquivalentDose.From(value, RadiationEquivalentDose.BaseUnit),
+                "RadiationEquivalentDoseRate" => RadiationEquivalentDoseRate.From(value, RadiationEquivalentDoseRate.BaseUnit),
                 "RadiationExposure" => RadiationExposure.From(value, RadiationExposure.BaseUnit),
                 "Radioactivity" => Radioactivity.From(value, Radioactivity.BaseUnit),
                 "Ratio" => Ratio.From(value, Ratio.BaseUnit),
@@ -396,6 +398,7 @@ namespace UnitsNet
                 PressureUnit pressureUnit => Pressure.From(value, pressureUnit),
                 PressureChangeRateUnit pressureChangeRateUnit => PressureChangeRate.From(value, pressureChangeRateUnit),
                 RadiationEquivalentDoseUnit radiationEquivalentDoseUnit => RadiationEquivalentDose.From(value, radiationEquivalentDoseUnit),
+                RadiationEquivalentDoseRateUnit radiationEquivalentDoseRateUnit => RadiationEquivalentDoseRate.From(value, radiationEquivalentDoseRateUnit),
                 RadiationExposureUnit radiationExposureUnit => RadiationExposure.From(value, radiationExposureUnit),
                 RadioactivityUnit radioactivityUnit => Radioactivity.From(value, radioactivityUnit),
                 RatioUnit ratioUnit => Ratio.From(value, ratioUnit),
@@ -544,6 +547,7 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(Pressure) => parser.TryParse<Pressure, PressureUnit>(quantityString, formatProvider, Pressure.From, out quantity),
                 Type _ when quantityType == typeof(PressureChangeRate) => parser.TryParse<PressureChangeRate, PressureChangeRateUnit>(quantityString, formatProvider, PressureChangeRate.From, out quantity),
                 Type _ when quantityType == typeof(RadiationEquivalentDose) => parser.TryParse<RadiationEquivalentDose, RadiationEquivalentDoseUnit>(quantityString, formatProvider, RadiationEquivalentDose.From, out quantity),
+                Type _ when quantityType == typeof(RadiationEquivalentDoseRate) => parser.TryParse<RadiationEquivalentDoseRate, RadiationEquivalentDoseRateUnit>(quantityString, formatProvider, RadiationEquivalentDoseRate.From, out quantity),
                 Type _ when quantityType == typeof(RadiationExposure) => parser.TryParse<RadiationExposure, RadiationExposureUnit>(quantityString, formatProvider, RadiationExposure.From, out quantity),
                 Type _ when quantityType == typeof(Radioactivity) => parser.TryParse<Radioactivity, RadioactivityUnit>(quantityString, formatProvider, Radioactivity.From, out quantity),
                 Type _ when quantityType == typeof(Ratio) => parser.TryParse<Ratio, RatioUnit>(quantityString, formatProvider, Ratio.From, out quantity),
@@ -673,6 +677,7 @@ namespace UnitsNet
             yield return typeof(Pressure);
             yield return typeof(PressureChangeRate);
             yield return typeof(RadiationEquivalentDose);
+            yield return typeof(RadiationEquivalentDoseRate);
             yield return typeof(RadiationExposure);
             yield return typeof(Radioactivity);
             yield return typeof(Ratio);
