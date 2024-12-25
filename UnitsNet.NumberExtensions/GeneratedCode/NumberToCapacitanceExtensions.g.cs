@@ -30,9 +30,11 @@ namespace UnitsNet.NumberExtensions.NumberToCapacitance
     /// <summary>
     /// A number to Capacitance Extensions
     /// </summary>
+    [Obsolete("Capacitance has been renamed to ElectricCapacitance, and will be removed in a later major version.")]
     public static class NumberToCapacitanceExtensions
     {
         /// <inheritdoc cref="Capacitance.FromFarads(UnitsNet.QuantityValue)" />
+        [Obsolete("Capacitance has been renamed to ElectricCapacitance, and will be removed in a later major version.")]
         public static Capacitance Farads<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -41,6 +43,7 @@ namespace UnitsNet.NumberExtensions.NumberToCapacitance
             => Capacitance.FromFarads(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Capacitance.FromKilofarads(UnitsNet.QuantityValue)" />
+        [Obsolete("Capacitance has been renamed to ElectricCapacitance, and will be removed in a later major version.")]
         public static Capacitance Kilofarads<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -49,6 +52,7 @@ namespace UnitsNet.NumberExtensions.NumberToCapacitance
             => Capacitance.FromKilofarads(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Capacitance.FromMegafarads(UnitsNet.QuantityValue)" />
+        [Obsolete("Capacitance has been renamed to ElectricCapacitance, and will be removed in a later major version.")]
         public static Capacitance Megafarads<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -57,6 +61,7 @@ namespace UnitsNet.NumberExtensions.NumberToCapacitance
             => Capacitance.FromMegafarads(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Capacitance.FromMicrofarads(UnitsNet.QuantityValue)" />
+        [Obsolete("Capacitance has been renamed to ElectricCapacitance, and will be removed in a later major version.")]
         public static Capacitance Microfarads<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -65,6 +70,7 @@ namespace UnitsNet.NumberExtensions.NumberToCapacitance
             => Capacitance.FromMicrofarads(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Capacitance.FromMillifarads(UnitsNet.QuantityValue)" />
+        [Obsolete("Capacitance has been renamed to ElectricCapacitance, and will be removed in a later major version.")]
         public static Capacitance Millifarads<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -73,6 +79,7 @@ namespace UnitsNet.NumberExtensions.NumberToCapacitance
             => Capacitance.FromMillifarads(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Capacitance.FromNanofarads(UnitsNet.QuantityValue)" />
+        [Obsolete("Capacitance has been renamed to ElectricCapacitance, and will be removed in a later major version.")]
         public static Capacitance Nanofarads<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
@@ -81,6 +88,7 @@ namespace UnitsNet.NumberExtensions.NumberToCapacitance
             => Capacitance.FromNanofarads(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Capacitance.FromPicofarads(UnitsNet.QuantityValue)" />
+        [Obsolete("Capacitance has been renamed to ElectricCapacitance, and will be removed in a later major version.")]
         public static Capacitance Picofarads<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
