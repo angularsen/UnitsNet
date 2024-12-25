@@ -1,6 +1,6 @@
 {
   "Name": "RadiationEquivalentDoseRate",
-  "BaseUnit": "SievertPerHour",
+  "BaseUnit": "SievertPerSecond",
   "XmlDocSummary": "A dose rate is quantity of radiation absorbed or delivered per unit time.",
   "XmlDocsRemarks": "https://en.wikipedia.org/wiki/Dose_rate",
   "BaseDimensions": {
@@ -11,8 +11,8 @@
     {
       "SingularName": "SievertPerHour",
       "PluralName": "SievertsPerHour",
-      "FromUnitToBaseFunc": "{x}",
-      "FromBaseToUnitFunc": "{x}",
+      "FromUnitToBaseFunc": "{x}/3600",
+      "FromBaseToUnitFunc": "{x}*3600",
       "Prefixes": [ "Nano", "Micro", "Milli" ],
       "Localization": [
         {
@@ -26,10 +26,27 @@
       ]
     },
     {
+      "SingularName": "SievertPerSecond",
+      "PluralName": "SievertsPerSecond",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Prefixes": [ "Nano", "Micro", "Milli" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Sv/s" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "Зв/с" ]
+        }
+      ]
+    },
+    {
       "SingularName": "RoentgenEquivalentManPerHour",
       "PluralName": "RoentgensEquivalentManPerHour",
-      "FromUnitToBaseFunc": "{x} / 100",
-      "FromBaseToUnitFunc": "{x} * 100",
+      "FromUnitToBaseFunc": "{x} / 100 / 3600",
+      "FromBaseToUnitFunc": "{x} * 100 * 3600",
       "Prefixes": [ "Milli" ],
       "Localization": [
         {

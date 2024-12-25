@@ -61,7 +61,7 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of RadiationEquivalentDoseRate, which is Second. All conversions go via this value.
         /// </summary>
-        public static RadiationEquivalentDoseRateUnit BaseUnit { get; } = RadiationEquivalentDoseRateUnit.SievertPerHour;
+        public static RadiationEquivalentDoseRateUnit BaseUnit { get; } = RadiationEquivalentDoseRateUnit.SievertPerSecond;
 
         /// <summary>
         /// Represents the largest possible value of RadiationEquivalentDoseRate.
@@ -85,6 +85,11 @@ namespace UnitsNet
         public double MicrosievertsPerHour => As(RadiationEquivalentDoseRateUnit.MicrosievertPerHour);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationEquivalentDoseRateUnit.MicrosievertPerSecond"/>
+        /// </summary>
+        public double MicrosievertsPerSecond => As(RadiationEquivalentDoseRateUnit.MicrosievertPerSecond);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationEquivalentDoseRateUnit.MilliroentgenEquivalentManPerHour"/>
         /// </summary>
         public double MilliroentgensEquivalentManPerHour => As(RadiationEquivalentDoseRateUnit.MilliroentgenEquivalentManPerHour);
@@ -95,9 +100,19 @@ namespace UnitsNet
         public double MillisievertsPerHour => As(RadiationEquivalentDoseRateUnit.MillisievertPerHour);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationEquivalentDoseRateUnit.MillisievertPerSecond"/>
+        /// </summary>
+        public double MillisievertsPerSecond => As(RadiationEquivalentDoseRateUnit.MillisievertPerSecond);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationEquivalentDoseRateUnit.NanosievertPerHour"/>
         /// </summary>
         public double NanosievertsPerHour => As(RadiationEquivalentDoseRateUnit.NanosievertPerHour);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationEquivalentDoseRateUnit.NanosievertPerSecond"/>
+        /// </summary>
+        public double NanosievertsPerSecond => As(RadiationEquivalentDoseRateUnit.NanosievertPerSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationEquivalentDoseRateUnit.RoentgenEquivalentManPerHour"/>
@@ -109,6 +124,11 @@ namespace UnitsNet
         /// </summary>
         public double SievertsPerHour => As(RadiationEquivalentDoseRateUnit.SievertPerHour);
 
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationEquivalentDoseRateUnit.SievertPerSecond"/>
+        /// </summary>
+        public double SievertsPerSecond => As(RadiationEquivalentDoseRateUnit.SievertPerSecond);
+
         #endregion
 
         #region Static Factory Methods
@@ -118,6 +138,12 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RadiationEquivalentDoseRate FromMicrosievertsPerHour(double microsievertsperhour) => new RadiationEquivalentDoseRate(microsievertsperhour, RadiationEquivalentDoseRateUnit.MicrosievertPerHour);
+
+        /// <summary>
+        ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.MicrosievertPerSecond"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static RadiationEquivalentDoseRate FromMicrosievertsPerSecond(double microsievertspersecond) => new RadiationEquivalentDoseRate(microsievertspersecond, RadiationEquivalentDoseRateUnit.MicrosievertPerSecond);
 
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.MilliroentgenEquivalentManPerHour"/>.
@@ -132,10 +158,22 @@ namespace UnitsNet
         public static RadiationEquivalentDoseRate FromMillisievertsPerHour(double millisievertsperhour) => new RadiationEquivalentDoseRate(millisievertsperhour, RadiationEquivalentDoseRateUnit.MillisievertPerHour);
 
         /// <summary>
+        ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.MillisievertPerSecond"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static RadiationEquivalentDoseRate FromMillisievertsPerSecond(double millisievertspersecond) => new RadiationEquivalentDoseRate(millisievertspersecond, RadiationEquivalentDoseRateUnit.MillisievertPerSecond);
+
+        /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.NanosievertPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RadiationEquivalentDoseRate FromNanosievertsPerHour(double nanosievertsperhour) => new RadiationEquivalentDoseRate(nanosievertsperhour, RadiationEquivalentDoseRateUnit.NanosievertPerHour);
+
+        /// <summary>
+        ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.NanosievertPerSecond"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static RadiationEquivalentDoseRate FromNanosievertsPerSecond(double nanosievertspersecond) => new RadiationEquivalentDoseRate(nanosievertspersecond, RadiationEquivalentDoseRateUnit.NanosievertPerSecond);
 
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.RoentgenEquivalentManPerHour"/>.
@@ -148,6 +186,12 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RadiationEquivalentDoseRate FromSievertsPerHour(double sievertsperhour) => new RadiationEquivalentDoseRate(sievertsperhour, RadiationEquivalentDoseRateUnit.SievertPerHour);
+
+        /// <summary>
+        ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.SievertPerSecond"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static RadiationEquivalentDoseRate FromSievertsPerSecond(double sievertspersecond) => new RadiationEquivalentDoseRate(sievertspersecond, RadiationEquivalentDoseRateUnit.SievertPerSecond);
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="RadiationEquivalentDoseRateUnit" /> to <see cref="RadiationEquivalentDoseRate" />.
@@ -189,12 +233,16 @@ namespace UnitsNet
                 {
                     return Unit switch
                     {
-                        RadiationEquivalentDoseRateUnit.MicrosievertPerHour => (_value) * 1e-6d,
-                        RadiationEquivalentDoseRateUnit.MilliroentgenEquivalentManPerHour => (_value / 100) * 1e-3d,
-                        RadiationEquivalentDoseRateUnit.MillisievertPerHour => (_value) * 1e-3d,
-                        RadiationEquivalentDoseRateUnit.NanosievertPerHour => (_value) * 1e-9d,
-                        RadiationEquivalentDoseRateUnit.RoentgenEquivalentManPerHour => _value / 100,
-                        RadiationEquivalentDoseRateUnit.SievertPerHour => _value,
+                        RadiationEquivalentDoseRateUnit.MicrosievertPerHour => (_value/3600) * 1e-6d,
+                        RadiationEquivalentDoseRateUnit.MicrosievertPerSecond => (_value) * 1e-6d,
+                        RadiationEquivalentDoseRateUnit.MilliroentgenEquivalentManPerHour => (_value / 100 / 3600) * 1e-3d,
+                        RadiationEquivalentDoseRateUnit.MillisievertPerHour => (_value/3600) * 1e-3d,
+                        RadiationEquivalentDoseRateUnit.MillisievertPerSecond => (_value) * 1e-3d,
+                        RadiationEquivalentDoseRateUnit.NanosievertPerHour => (_value/3600) * 1e-9d,
+                        RadiationEquivalentDoseRateUnit.NanosievertPerSecond => (_value) * 1e-9d,
+                        RadiationEquivalentDoseRateUnit.RoentgenEquivalentManPerHour => _value / 100 / 3600,
+                        RadiationEquivalentDoseRateUnit.SievertPerHour => _value/3600,
+                        RadiationEquivalentDoseRateUnit.SievertPerSecond => _value,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
                     };
                     }
@@ -208,12 +256,16 @@ namespace UnitsNet
 
                     return unit switch
                     {
-                        RadiationEquivalentDoseRateUnit.MicrosievertPerHour => (baseUnitValue) / 1e-6d,
-                        RadiationEquivalentDoseRateUnit.MilliroentgenEquivalentManPerHour => (baseUnitValue * 100) / 1e-3d,
-                        RadiationEquivalentDoseRateUnit.MillisievertPerHour => (baseUnitValue) / 1e-3d,
-                        RadiationEquivalentDoseRateUnit.NanosievertPerHour => (baseUnitValue) / 1e-9d,
-                        RadiationEquivalentDoseRateUnit.RoentgenEquivalentManPerHour => baseUnitValue * 100,
-                        RadiationEquivalentDoseRateUnit.SievertPerHour => baseUnitValue,
+                        RadiationEquivalentDoseRateUnit.MicrosievertPerHour => (baseUnitValue*3600) / 1e-6d,
+                        RadiationEquivalentDoseRateUnit.MicrosievertPerSecond => (baseUnitValue) / 1e-6d,
+                        RadiationEquivalentDoseRateUnit.MilliroentgenEquivalentManPerHour => (baseUnitValue * 100 * 3600) / 1e-3d,
+                        RadiationEquivalentDoseRateUnit.MillisievertPerHour => (baseUnitValue*3600) / 1e-3d,
+                        RadiationEquivalentDoseRateUnit.MillisievertPerSecond => (baseUnitValue) / 1e-3d,
+                        RadiationEquivalentDoseRateUnit.NanosievertPerHour => (baseUnitValue*3600) / 1e-9d,
+                        RadiationEquivalentDoseRateUnit.NanosievertPerSecond => (baseUnitValue) / 1e-9d,
+                        RadiationEquivalentDoseRateUnit.RoentgenEquivalentManPerHour => baseUnitValue * 100 * 3600,
+                        RadiationEquivalentDoseRateUnit.SievertPerHour => baseUnitValue*3600,
+                        RadiationEquivalentDoseRateUnit.SievertPerSecond => baseUnitValue,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
                     };
                     }

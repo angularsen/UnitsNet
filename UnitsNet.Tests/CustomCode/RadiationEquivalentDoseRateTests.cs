@@ -10,12 +10,16 @@ namespace UnitsNet.Tests.CustomCode
     {
         // Override properties in base class here
         protected override bool SupportsSIUnitSystem => false;
-        protected override double SievertsPerHourInOneSievertPerHour => 1;
-        protected override double MillisievertsPerHourInOneSievertPerHour => 1e+3;
-        protected override double MicrosievertsPerHourInOneSievertPerHour => 1e+6;
-        protected override double NanosievertsPerHourInOneSievertPerHour => 1e+9;
-        protected override double RoentgensEquivalentManPerHourInOneSievertPerHour => 100;
-        protected override double MilliroentgensEquivalentManPerHourInOneSievertPerHour => 1e+5;
+        protected override double SievertsPerSecondInOneSievertPerSecond => 1;
+        protected override double MillisievertsPerSecondInOneSievertPerSecond => 1e+3;
+        protected override double MicrosievertsPerSecondInOneSievertPerSecond => 1e+6;
+        protected override double NanosievertsPerSecondInOneSievertPerSecond => 1e+9;
+        protected override double SievertsPerHourInOneSievertPerSecond => 3600;
+        protected override double MillisievertsPerHourInOneSievertPerSecond => 3.6e+6;
+        protected override double MicrosievertsPerHourInOneSievertPerSecond => 3.6e+9;
+        protected override double NanosievertsPerHourInOneSievertPerSecond => 3.6e+12;
+        protected override double RoentgensEquivalentManPerHourInOneSievertPerSecond => 3.6e+5;
+        protected override double MilliroentgensEquivalentManPerHourInOneSievertPerSecond => 3.6e+8;
 
         [Fact]
         public void RadiationEquivalentDoseRateTimesTimeSpanEqualsRadiationEquivalentDose()
