@@ -26,11 +26,15 @@ namespace UnitsNet.Units
     public enum RadiationEquivalentDoseRateUnit
     {
         MicrosievertPerHour = 1,
+        MicrosievertPerSecond = 17,
         MilliroentgenEquivalentManPerHour = 4,
         MillisievertPerHour = 3,
+        MillisievertPerSecond = 14,
         NanosievertPerHour = 2,
+        NanosievertPerSecond = 9,
         RoentgenEquivalentManPerHour = 5,
         SievertPerHour = 6,
+        SievertPerSecond = 16,
     }
 
     #pragma warning restore 1591
