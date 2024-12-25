@@ -80,5 +80,13 @@ namespace UnitsNet.NumberExtensions.NumberToRadiationEquivalentDoseRate
 #endif
             => RadiationEquivalentDoseRate.FromSievertsPerHour(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="RadiationEquivalentDoseRate.FromSievertsPerSecond(UnitsNet.QuantityValue)" />
+        public static RadiationEquivalentDoseRate SievertsPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+#endif
+            => RadiationEquivalentDoseRate.FromSievertsPerSecond(Convert.ToDouble(value));
+
     }
 }

@@ -48,5 +48,9 @@ namespace UnitsNet.Tests
         public void NumberToSievertsPerHourTest() =>
             Assert.Equal(RadiationEquivalentDoseRate.FromSievertsPerHour(2), 2.SievertsPerHour());
 
+        [Fact]
+        public void NumberToSievertsPerSecondTest() =>
+            Assert.Equal(RadiationEquivalentDoseRate.FromSievertsPerSecond(2), 2.SievertsPerSecond());
+
     }
 }

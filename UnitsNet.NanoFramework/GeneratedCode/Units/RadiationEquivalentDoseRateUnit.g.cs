@@ -31,6 +31,7 @@ namespace UnitsNet.Units
         NanosievertPerHour = 2,
         RoentgenEquivalentManPerHour = 5,
         SievertPerHour = 6,
+        SievertPerSecond = 16,
     }
 
     #pragma warning restore 1591
