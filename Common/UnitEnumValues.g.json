@@ -1881,5 +1881,27 @@
     "MicrosievertPerSecond": 17,
     "MillisievertPerSecond": 14,
     "NanosievertPerSecond": 9
+  },
+  "DoseAreaProduct": {
+    "CentigraySquareCentimeter": 6,
+    "CentigraySquareDecimeter": 3,
+    "CentigraySquareMeter": 7,
+    "CentigraySquareMillimeter": 2,
+    "DecigraySquareCentimeter": 9,
+    "DecigraySquareDecimeter": 1,
+    "DecigraySquareMeter": 4,
+    "DecigraySquareMillimeter": 8,
+    "GraySquareCentimeter": 10,
+    "GraySquareDecimeter": 5,
+    "GraySquareMeter": 19,
+    "GraySquareMillimeter": 16,
+    "MicrograySquareCentimeter": 13,
+    "MicrograySquareDecimeter": 20,
+    "MicrograySquareMeter": 15,
+    "MicrograySquareMillimeter": 18,
+    "MilligraySquareCentimeter": 14,
+    "MilligraySquareDecimeter": 17,
+    "MilligraySquareMeter": 11,
+    "MilligraySquareMillimeter": 12
   }
 }

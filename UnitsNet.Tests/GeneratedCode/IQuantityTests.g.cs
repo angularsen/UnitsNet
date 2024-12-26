@@ -50,6 +50,7 @@ namespace UnitsNet.Tests
             Assertion(3, CoefficientOfThermalExpansionUnit.PpmPerKelvin, Quantity.From(3, CoefficientOfThermalExpansionUnit.PpmPerKelvin));
             Assertion(3, CompressibilityUnit.InversePoundForcePerSquareInch, Quantity.From(3, CompressibilityUnit.InversePoundForcePerSquareInch));
             Assertion(3, DensityUnit.TonnePerCubicMillimeter, Quantity.From(3, DensityUnit.TonnePerCubicMillimeter));
+            Assertion(3, DoseAreaProductUnit.MilligraySquareMillimeter, Quantity.From(3, DoseAreaProductUnit.MilligraySquareMillimeter));
             Assertion(3, DurationUnit.Year365, Quantity.From(3, DurationUnit.Year365));
             Assertion(3, DynamicViscosityUnit.Reyn, Quantity.From(3, DynamicViscosityUnit.Reyn));
             Assertion(3, ElectricAdmittanceUnit.Siemens, Quantity.From(3, ElectricAdmittanceUnit.Siemens));
@@ -182,6 +183,7 @@ namespace UnitsNet.Tests
             Assertion(CoefficientOfThermalExpansion.Info, CoefficientOfThermalExpansion.Zero);
             Assertion(Compressibility.Info, Compressibility.Zero);
             Assertion(Density.Info, Density.Zero);
+            Assertion(DoseAreaProduct.Info, DoseAreaProduct.Zero);
             Assertion(Duration.Info, Duration.Zero);
             Assertion(DynamicViscosity.Info, DynamicViscosity.Zero);
             Assertion(ElectricAdmittance.Info, ElectricAdmittance.Zero);
@@ -314,6 +316,7 @@ namespace UnitsNet.Tests
             Assertion(CoefficientOfThermalExpansion.BaseDimensions, CoefficientOfThermalExpansion.Zero);
             Assertion(Compressibility.BaseDimensions, Compressibility.Zero);
             Assertion(Density.BaseDimensions, Density.Zero);
+            Assertion(DoseAreaProduct.BaseDimensions, DoseAreaProduct.Zero);
             Assertion(Duration.BaseDimensions, Duration.Zero);
             Assertion(DynamicViscosity.BaseDimensions, DynamicViscosity.Zero);
             Assertion(ElectricAdmittance.BaseDimensions, ElectricAdmittance.Zero);
