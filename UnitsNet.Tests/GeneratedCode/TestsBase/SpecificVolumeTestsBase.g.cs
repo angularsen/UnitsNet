@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -246,47 +247,94 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("ft³/lb", SpecificVolumeUnit.CubicFootPerPound)]
+        [InlineData("m³/kg", SpecificVolumeUnit.CubicMeterPerKilogram)]
+        [InlineData("mm³/kg", SpecificVolumeUnit.MillicubicMeterPerKilogram)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, SpecificVolumeUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = SpecificVolume.ParseUnit("ft³/lb", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(SpecificVolumeUnit.CubicFootPerPound, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = SpecificVolume.ParseUnit("m³/kg", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(SpecificVolumeUnit.CubicMeterPerKilogram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = SpecificVolume.ParseUnit("mm³/kg", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(SpecificVolumeUnit.MillicubicMeterPerKilogram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            SpecificVolumeUnit parsedUnit = SpecificVolume.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("ft³/lb", SpecificVolumeUnit.CubicFootPerPound)]
+        [InlineData("m³/kg", SpecificVolumeUnit.CubicMeterPerKilogram)]
+        [InlineData("mm³/kg", SpecificVolumeUnit.MillicubicMeterPerKilogram)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, SpecificVolumeUnit expectedUnit)
         {
-            {
-                Assert.True(SpecificVolume.TryParseUnit("ft³/lb", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(SpecificVolumeUnit.CubicFootPerPound, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            SpecificVolumeUnit parsedUnit = SpecificVolume.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(SpecificVolume.TryParseUnit("m³/kg", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(SpecificVolumeUnit.CubicMeterPerKilogram, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "ft³/lb", SpecificVolumeUnit.CubicFootPerPound)]
+        [InlineData("en-US", "m³/kg", SpecificVolumeUnit.CubicMeterPerKilogram)]
+        [InlineData("en-US", "mm³/kg", SpecificVolumeUnit.MillicubicMeterPerKilogram)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, SpecificVolumeUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            SpecificVolumeUnit parsedUnit = SpecificVolume.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(SpecificVolume.TryParseUnit("mm³/kg", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(SpecificVolumeUnit.MillicubicMeterPerKilogram, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "ft³/lb", SpecificVolumeUnit.CubicFootPerPound)]
+        [InlineData("en-US", "m³/kg", SpecificVolumeUnit.CubicMeterPerKilogram)]
+        [InlineData("en-US", "mm³/kg", SpecificVolumeUnit.MillicubicMeterPerKilogram)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, SpecificVolumeUnit expectedUnit)
+        {
+            SpecificVolumeUnit parsedUnit = SpecificVolume.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("ft³/lb", SpecificVolumeUnit.CubicFootPerPound)]
+        [InlineData("m³/kg", SpecificVolumeUnit.CubicMeterPerKilogram)]
+        [InlineData("mm³/kg", SpecificVolumeUnit.MillicubicMeterPerKilogram)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, SpecificVolumeUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(SpecificVolume.TryParseUnit(abbreviation, out SpecificVolumeUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("ft³/lb", SpecificVolumeUnit.CubicFootPerPound)]
+        [InlineData("m³/kg", SpecificVolumeUnit.CubicMeterPerKilogram)]
+        [InlineData("mm³/kg", SpecificVolumeUnit.MillicubicMeterPerKilogram)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, SpecificVolumeUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(SpecificVolume.TryParseUnit(abbreviation, out SpecificVolumeUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "ft³/lb", SpecificVolumeUnit.CubicFootPerPound)]
+        [InlineData("en-US", "m³/kg", SpecificVolumeUnit.CubicMeterPerKilogram)]
+        [InlineData("en-US", "mm³/kg", SpecificVolumeUnit.MillicubicMeterPerKilogram)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, SpecificVolumeUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(SpecificVolume.TryParseUnit(abbreviation, out SpecificVolumeUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "ft³/lb", SpecificVolumeUnit.CubicFootPerPound)]
+        [InlineData("en-US", "m³/kg", SpecificVolumeUnit.CubicMeterPerKilogram)]
+        [InlineData("en-US", "mm³/kg", SpecificVolumeUnit.MillicubicMeterPerKilogram)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, SpecificVolumeUnit expectedUnit)
+        {
+            Assert.True(SpecificVolume.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out SpecificVolumeUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

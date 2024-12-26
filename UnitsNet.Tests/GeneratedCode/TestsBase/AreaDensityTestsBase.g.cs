@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -259,58 +260,102 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("g/m²", AreaDensityUnit.GramPerSquareMeter)]
+        [InlineData("gsm", AreaDensityUnit.GramPerSquareMeter)]
+        [InlineData("kg/m²", AreaDensityUnit.KilogramPerSquareMeter)]
+        [InlineData("mg/m²", AreaDensityUnit.MilligramPerSquareMeter)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, AreaDensityUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = AreaDensity.ParseUnit("g/m²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(AreaDensityUnit.GramPerSquareMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AreaDensity.ParseUnit("gsm", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(AreaDensityUnit.GramPerSquareMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AreaDensity.ParseUnit("kg/m²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(AreaDensityUnit.KilogramPerSquareMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AreaDensity.ParseUnit("mg/m²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(AreaDensityUnit.MilligramPerSquareMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            AreaDensityUnit parsedUnit = AreaDensity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("g/m²", AreaDensityUnit.GramPerSquareMeter)]
+        [InlineData("gsm", AreaDensityUnit.GramPerSquareMeter)]
+        [InlineData("kg/m²", AreaDensityUnit.KilogramPerSquareMeter)]
+        [InlineData("mg/m²", AreaDensityUnit.MilligramPerSquareMeter)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, AreaDensityUnit expectedUnit)
         {
-            {
-                Assert.True(AreaDensity.TryParseUnit("g/m²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(AreaDensityUnit.GramPerSquareMeter, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            AreaDensityUnit parsedUnit = AreaDensity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(AreaDensity.TryParseUnit("gsm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(AreaDensityUnit.GramPerSquareMeter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "g/m²", AreaDensityUnit.GramPerSquareMeter)]
+        [InlineData("en-US", "gsm", AreaDensityUnit.GramPerSquareMeter)]
+        [InlineData("en-US", "kg/m²", AreaDensityUnit.KilogramPerSquareMeter)]
+        [InlineData("en-US", "mg/m²", AreaDensityUnit.MilligramPerSquareMeter)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, AreaDensityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            AreaDensityUnit parsedUnit = AreaDensity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(AreaDensity.TryParseUnit("kg/m²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(AreaDensityUnit.KilogramPerSquareMeter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "g/m²", AreaDensityUnit.GramPerSquareMeter)]
+        [InlineData("en-US", "gsm", AreaDensityUnit.GramPerSquareMeter)]
+        [InlineData("en-US", "kg/m²", AreaDensityUnit.KilogramPerSquareMeter)]
+        [InlineData("en-US", "mg/m²", AreaDensityUnit.MilligramPerSquareMeter)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, AreaDensityUnit expectedUnit)
+        {
+            AreaDensityUnit parsedUnit = AreaDensity.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(AreaDensity.TryParseUnit("mg/m²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(AreaDensityUnit.MilligramPerSquareMeter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("g/m²", AreaDensityUnit.GramPerSquareMeter)]
+        [InlineData("gsm", AreaDensityUnit.GramPerSquareMeter)]
+        [InlineData("kg/m²", AreaDensityUnit.KilogramPerSquareMeter)]
+        [InlineData("mg/m²", AreaDensityUnit.MilligramPerSquareMeter)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, AreaDensityUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(AreaDensity.TryParseUnit(abbreviation, out AreaDensityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("g/m²", AreaDensityUnit.GramPerSquareMeter)]
+        [InlineData("gsm", AreaDensityUnit.GramPerSquareMeter)]
+        [InlineData("kg/m²", AreaDensityUnit.KilogramPerSquareMeter)]
+        [InlineData("mg/m²", AreaDensityUnit.MilligramPerSquareMeter)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, AreaDensityUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(AreaDensity.TryParseUnit(abbreviation, out AreaDensityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "g/m²", AreaDensityUnit.GramPerSquareMeter)]
+        [InlineData("en-US", "gsm", AreaDensityUnit.GramPerSquareMeter)]
+        [InlineData("en-US", "kg/m²", AreaDensityUnit.KilogramPerSquareMeter)]
+        [InlineData("en-US", "mg/m²", AreaDensityUnit.MilligramPerSquareMeter)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, AreaDensityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(AreaDensity.TryParseUnit(abbreviation, out AreaDensityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "g/m²", AreaDensityUnit.GramPerSquareMeter)]
+        [InlineData("en-US", "gsm", AreaDensityUnit.GramPerSquareMeter)]
+        [InlineData("en-US", "kg/m²", AreaDensityUnit.KilogramPerSquareMeter)]
+        [InlineData("en-US", "mg/m²", AreaDensityUnit.MilligramPerSquareMeter)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, AreaDensityUnit expectedUnit)
+        {
+            Assert.True(AreaDensity.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out AreaDensityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

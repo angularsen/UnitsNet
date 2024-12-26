@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -409,168 +410,182 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("Btu/(h·ft²·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("Btu/(ft²·h·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("Btu/(hr·ft²·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("Btu/(ft²·hr·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("kcal/(h·m²·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("kcal/(m²·h·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("kcal/(hr·m²·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("kcal/(m²·hr·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("kkcal/(h·m²·°C)", HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("kkcal/(m²·h·°C)", HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("kkcal/(hr·m²·°C)", HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("kkcal/(m²·hr·°C)", HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("W/(m²·°C)", HeatTransferCoefficientUnit.WattPerSquareMeterCelsius)]
+        [InlineData("W/(m²·K)", HeatTransferCoefficientUnit.WattPerSquareMeterKelvin)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, HeatTransferCoefficientUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = HeatTransferCoefficient.ParseUnit("Btu/(h·ft²·°F)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = HeatTransferCoefficient.ParseUnit("Btu/(ft²·h·°F)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = HeatTransferCoefficient.ParseUnit("Btu/(hr·ft²·°F)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = HeatTransferCoefficient.ParseUnit("Btu/(ft²·hr·°F)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = HeatTransferCoefficient.ParseUnit("kcal/(h·m²·°C)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = HeatTransferCoefficient.ParseUnit("kcal/(m²·h·°C)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = HeatTransferCoefficient.ParseUnit("kcal/(hr·m²·°C)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = HeatTransferCoefficient.ParseUnit("kcal/(m²·hr·°C)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = HeatTransferCoefficient.ParseUnit("kkcal/(h·m²·°C)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = HeatTransferCoefficient.ParseUnit("kkcal/(m²·h·°C)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = HeatTransferCoefficient.ParseUnit("kkcal/(hr·m²·°C)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = HeatTransferCoefficient.ParseUnit("kkcal/(m²·hr·°C)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = HeatTransferCoefficient.ParseUnit("W/(m²·°C)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = HeatTransferCoefficient.ParseUnit("W/(m²·K)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            HeatTransferCoefficientUnit parsedUnit = HeatTransferCoefficient.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("Btu/(h·ft²·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("Btu/(ft²·h·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("Btu/(hr·ft²·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("Btu/(ft²·hr·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("kcal/(h·m²·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("kcal/(m²·h·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("kcal/(hr·m²·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("kcal/(m²·hr·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("kkcal/(h·m²·°C)", HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("kkcal/(m²·h·°C)", HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("kkcal/(hr·m²·°C)", HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("kkcal/(m²·hr·°C)", HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("W/(m²·°C)", HeatTransferCoefficientUnit.WattPerSquareMeterCelsius)]
+        [InlineData("W/(m²·K)", HeatTransferCoefficientUnit.WattPerSquareMeterKelvin)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, HeatTransferCoefficientUnit expectedUnit)
         {
-            {
-                Assert.True(HeatTransferCoefficient.TryParseUnit("Btu/(h·ft²·°F)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            HeatTransferCoefficientUnit parsedUnit = HeatTransferCoefficient.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(HeatTransferCoefficient.TryParseUnit("Btu/(ft²·h·°F)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "Btu/(h·ft²·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("en-US", "Btu/(ft²·h·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("en-US", "Btu/(hr·ft²·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("en-US", "Btu/(ft²·hr·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("en-US", "kcal/(h·m²·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("en-US", "kcal/(m²·h·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("en-US", "kcal/(hr·m²·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("en-US", "kcal/(m²·hr·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("en-US", "kkcal/(h·m²·°C)", HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("en-US", "kkcal/(m²·h·°C)", HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("en-US", "kkcal/(hr·m²·°C)", HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("en-US", "kkcal/(m²·hr·°C)", HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("en-US", "W/(m²·°C)", HeatTransferCoefficientUnit.WattPerSquareMeterCelsius)]
+        [InlineData("en-US", "W/(m²·K)", HeatTransferCoefficientUnit.WattPerSquareMeterKelvin)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, HeatTransferCoefficientUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            HeatTransferCoefficientUnit parsedUnit = HeatTransferCoefficient.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(HeatTransferCoefficient.TryParseUnit("Btu/(hr·ft²·°F)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "Btu/(h·ft²·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("en-US", "Btu/(ft²·h·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("en-US", "Btu/(hr·ft²·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("en-US", "Btu/(ft²·hr·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("en-US", "kcal/(h·m²·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("en-US", "kcal/(m²·h·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("en-US", "kcal/(hr·m²·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("en-US", "kcal/(m²·hr·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("en-US", "kkcal/(h·m²·°C)", HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("en-US", "kkcal/(m²·h·°C)", HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("en-US", "kkcal/(hr·m²·°C)", HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("en-US", "kkcal/(m²·hr·°C)", HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("en-US", "W/(m²·°C)", HeatTransferCoefficientUnit.WattPerSquareMeterCelsius)]
+        [InlineData("en-US", "W/(m²·K)", HeatTransferCoefficientUnit.WattPerSquareMeterKelvin)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, HeatTransferCoefficientUnit expectedUnit)
+        {
+            HeatTransferCoefficientUnit parsedUnit = HeatTransferCoefficient.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(HeatTransferCoefficient.TryParseUnit("Btu/(ft²·hr·°F)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit, parsedUnit);
-            }
+        [Theory]
+        [InlineData("Btu/(h·ft²·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("Btu/(ft²·h·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("Btu/(hr·ft²·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("Btu/(ft²·hr·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("kcal/(h·m²·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("kcal/(m²·h·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("kcal/(hr·m²·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("kcal/(m²·hr·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("kkcal/(h·m²·°C)", HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("kkcal/(m²·h·°C)", HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("kkcal/(hr·m²·°C)", HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("kkcal/(m²·hr·°C)", HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("W/(m²·°C)", HeatTransferCoefficientUnit.WattPerSquareMeterCelsius)]
+        [InlineData("W/(m²·K)", HeatTransferCoefficientUnit.WattPerSquareMeterKelvin)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, HeatTransferCoefficientUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(HeatTransferCoefficient.TryParseUnit(abbreviation, out HeatTransferCoefficientUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(HeatTransferCoefficient.TryParseUnit("kcal/(h·m²·°C)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius, parsedUnit);
-            }
+        [Theory]
+        [InlineData("Btu/(h·ft²·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("Btu/(ft²·h·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("Btu/(hr·ft²·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("Btu/(ft²·hr·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("kcal/(h·m²·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("kcal/(m²·h·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("kcal/(hr·m²·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("kcal/(m²·hr·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("kkcal/(h·m²·°C)", HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("kkcal/(m²·h·°C)", HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("kkcal/(hr·m²·°C)", HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("kkcal/(m²·hr·°C)", HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("W/(m²·°C)", HeatTransferCoefficientUnit.WattPerSquareMeterCelsius)]
+        [InlineData("W/(m²·K)", HeatTransferCoefficientUnit.WattPerSquareMeterKelvin)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, HeatTransferCoefficientUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(HeatTransferCoefficient.TryParseUnit(abbreviation, out HeatTransferCoefficientUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(HeatTransferCoefficient.TryParseUnit("kcal/(m²·h·°C)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "Btu/(h·ft²·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("en-US", "Btu/(ft²·h·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("en-US", "Btu/(hr·ft²·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("en-US", "Btu/(ft²·hr·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("en-US", "kcal/(h·m²·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("en-US", "kcal/(m²·h·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("en-US", "kcal/(hr·m²·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("en-US", "kcal/(m²·hr·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("en-US", "kkcal/(h·m²·°C)", HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("en-US", "kkcal/(m²·h·°C)", HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("en-US", "kkcal/(hr·m²·°C)", HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("en-US", "kkcal/(m²·hr·°C)", HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("en-US", "W/(m²·°C)", HeatTransferCoefficientUnit.WattPerSquareMeterCelsius)]
+        [InlineData("en-US", "W/(m²·K)", HeatTransferCoefficientUnit.WattPerSquareMeterKelvin)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, HeatTransferCoefficientUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(HeatTransferCoefficient.TryParseUnit(abbreviation, out HeatTransferCoefficientUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(HeatTransferCoefficient.TryParseUnit("kcal/(hr·m²·°C)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius, parsedUnit);
-            }
-
-            {
-                Assert.True(HeatTransferCoefficient.TryParseUnit("kcal/(m²·hr·°C)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius, parsedUnit);
-            }
-
-            {
-                Assert.True(HeatTransferCoefficient.TryParseUnit("kkcal/(h·m²·°C)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius, parsedUnit);
-            }
-
-            {
-                Assert.True(HeatTransferCoefficient.TryParseUnit("kkcal/(m²·h·°C)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius, parsedUnit);
-            }
-
-            {
-                Assert.True(HeatTransferCoefficient.TryParseUnit("kkcal/(hr·m²·°C)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius, parsedUnit);
-            }
-
-            {
-                Assert.True(HeatTransferCoefficient.TryParseUnit("kkcal/(m²·hr·°C)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius, parsedUnit);
-            }
-
-            {
-                Assert.True(HeatTransferCoefficient.TryParseUnit("W/(m²·°C)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, parsedUnit);
-            }
-
-            {
-                Assert.True(HeatTransferCoefficient.TryParseUnit("W/(m²·K)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "Btu/(h·ft²·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("en-US", "Btu/(ft²·h·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("en-US", "Btu/(hr·ft²·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("en-US", "Btu/(ft²·hr·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("en-US", "kcal/(h·m²·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("en-US", "kcal/(m²·h·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("en-US", "kcal/(hr·m²·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("en-US", "kcal/(m²·hr·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("en-US", "kkcal/(h·m²·°C)", HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("en-US", "kkcal/(m²·h·°C)", HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("en-US", "kkcal/(hr·m²·°C)", HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("en-US", "kkcal/(m²·hr·°C)", HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius)]
+        [InlineData("en-US", "W/(m²·°C)", HeatTransferCoefficientUnit.WattPerSquareMeterCelsius)]
+        [InlineData("en-US", "W/(m²·K)", HeatTransferCoefficientUnit.WattPerSquareMeterKelvin)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, HeatTransferCoefficientUnit expectedUnit)
+        {
+            Assert.True(HeatTransferCoefficient.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out HeatTransferCoefficientUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

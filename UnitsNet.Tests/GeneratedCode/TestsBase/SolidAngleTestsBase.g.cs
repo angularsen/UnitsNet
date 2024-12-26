@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -200,25 +201,78 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("sr", SolidAngleUnit.Steradian)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, SolidAngleUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = SolidAngle.ParseUnit("sr", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(SolidAngleUnit.Steradian, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            SolidAngleUnit parsedUnit = SolidAngle.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("sr", SolidAngleUnit.Steradian)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, SolidAngleUnit expectedUnit)
         {
-            {
-                Assert.True(SolidAngle.TryParseUnit("sr", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(SolidAngleUnit.Steradian, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            SolidAngleUnit parsedUnit = SolidAngle.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("en-US", "sr", SolidAngleUnit.Steradian)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, SolidAngleUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            SolidAngleUnit parsedUnit = SolidAngle.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "sr", SolidAngleUnit.Steradian)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, SolidAngleUnit expectedUnit)
+        {
+            SolidAngleUnit parsedUnit = SolidAngle.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("sr", SolidAngleUnit.Steradian)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, SolidAngleUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(SolidAngle.TryParseUnit(abbreviation, out SolidAngleUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("sr", SolidAngleUnit.Steradian)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, SolidAngleUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(SolidAngle.TryParseUnit(abbreviation, out SolidAngleUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "sr", SolidAngleUnit.Steradian)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, SolidAngleUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(SolidAngle.TryParseUnit(abbreviation, out SolidAngleUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "sr", SolidAngleUnit.Steradian)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, SolidAngleUnit expectedUnit)
+        {
+            Assert.True(SolidAngle.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out SolidAngleUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

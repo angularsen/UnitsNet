@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -223,36 +224,86 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("/s", RatioChangeRateUnit.DecimalFractionPerSecond)]
+        [InlineData("%/s", RatioChangeRateUnit.PercentPerSecond)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, RatioChangeRateUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = RatioChangeRate.ParseUnit("/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RatioChangeRateUnit.DecimalFractionPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RatioChangeRate.ParseUnit("%/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RatioChangeRateUnit.PercentPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            RatioChangeRateUnit parsedUnit = RatioChangeRate.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("/s", RatioChangeRateUnit.DecimalFractionPerSecond)]
+        [InlineData("%/s", RatioChangeRateUnit.PercentPerSecond)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, RatioChangeRateUnit expectedUnit)
         {
-            {
-                Assert.True(RatioChangeRate.TryParseUnit("/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RatioChangeRateUnit.DecimalFractionPerSecond, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            RatioChangeRateUnit parsedUnit = RatioChangeRate.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(RatioChangeRate.TryParseUnit("%/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RatioChangeRateUnit.PercentPerSecond, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "/s", RatioChangeRateUnit.DecimalFractionPerSecond)]
+        [InlineData("en-US", "%/s", RatioChangeRateUnit.PercentPerSecond)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, RatioChangeRateUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            RatioChangeRateUnit parsedUnit = RatioChangeRate.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("en-US", "/s", RatioChangeRateUnit.DecimalFractionPerSecond)]
+        [InlineData("en-US", "%/s", RatioChangeRateUnit.PercentPerSecond)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, RatioChangeRateUnit expectedUnit)
+        {
+            RatioChangeRateUnit parsedUnit = RatioChangeRate.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("/s", RatioChangeRateUnit.DecimalFractionPerSecond)]
+        [InlineData("%/s", RatioChangeRateUnit.PercentPerSecond)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, RatioChangeRateUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(RatioChangeRate.TryParseUnit(abbreviation, out RatioChangeRateUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("/s", RatioChangeRateUnit.DecimalFractionPerSecond)]
+        [InlineData("%/s", RatioChangeRateUnit.PercentPerSecond)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, RatioChangeRateUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(RatioChangeRate.TryParseUnit(abbreviation, out RatioChangeRateUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "/s", RatioChangeRateUnit.DecimalFractionPerSecond)]
+        [InlineData("en-US", "%/s", RatioChangeRateUnit.PercentPerSecond)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, RatioChangeRateUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(RatioChangeRate.TryParseUnit(abbreviation, out RatioChangeRateUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "/s", RatioChangeRateUnit.DecimalFractionPerSecond)]
+        [InlineData("en-US", "%/s", RatioChangeRateUnit.PercentPerSecond)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, RatioChangeRateUnit expectedUnit)
+        {
+            Assert.True(RatioChangeRate.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out RatioChangeRateUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

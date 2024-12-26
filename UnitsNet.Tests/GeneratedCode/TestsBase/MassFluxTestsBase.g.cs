@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -453,146 +454,166 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("g·h⁻¹·cm⁻²", MassFluxUnit.GramPerHourPerSquareCentimeter)]
+        [InlineData("g·h⁻¹·m⁻²", MassFluxUnit.GramPerHourPerSquareMeter)]
+        [InlineData("g·h⁻¹·mm⁻²", MassFluxUnit.GramPerHourPerSquareMillimeter)]
+        [InlineData("g·s⁻¹·cm⁻²", MassFluxUnit.GramPerSecondPerSquareCentimeter)]
+        [InlineData("g·s⁻¹·m⁻²", MassFluxUnit.GramPerSecondPerSquareMeter)]
+        [InlineData("g·s⁻¹·mm⁻²", MassFluxUnit.GramPerSecondPerSquareMillimeter)]
+        [InlineData("kg·h⁻¹·cm⁻²", MassFluxUnit.KilogramPerHourPerSquareCentimeter)]
+        [InlineData("kg·h⁻¹·m⁻²", MassFluxUnit.KilogramPerHourPerSquareMeter)]
+        [InlineData("kg·h⁻¹·mm⁻²", MassFluxUnit.KilogramPerHourPerSquareMillimeter)]
+        [InlineData("kg·s⁻¹·cm⁻²", MassFluxUnit.KilogramPerSecondPerSquareCentimeter)]
+        [InlineData("kg·s⁻¹·m⁻²", MassFluxUnit.KilogramPerSecondPerSquareMeter)]
+        [InlineData("kg·s⁻¹·mm⁻²", MassFluxUnit.KilogramPerSecondPerSquareMillimeter)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, MassFluxUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = MassFlux.ParseUnit("g·h⁻¹·cm⁻²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFluxUnit.GramPerHourPerSquareCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlux.ParseUnit("g·h⁻¹·m⁻²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFluxUnit.GramPerHourPerSquareMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlux.ParseUnit("g·h⁻¹·mm⁻²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFluxUnit.GramPerHourPerSquareMillimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlux.ParseUnit("g·s⁻¹·cm⁻²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFluxUnit.GramPerSecondPerSquareCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlux.ParseUnit("g·s⁻¹·m⁻²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFluxUnit.GramPerSecondPerSquareMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlux.ParseUnit("g·s⁻¹·mm⁻²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFluxUnit.GramPerSecondPerSquareMillimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlux.ParseUnit("kg·h⁻¹·cm⁻²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFluxUnit.KilogramPerHourPerSquareCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlux.ParseUnit("kg·h⁻¹·m⁻²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFluxUnit.KilogramPerHourPerSquareMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlux.ParseUnit("kg·h⁻¹·mm⁻²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFluxUnit.KilogramPerHourPerSquareMillimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlux.ParseUnit("kg·s⁻¹·cm⁻²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFluxUnit.KilogramPerSecondPerSquareCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlux.ParseUnit("kg·s⁻¹·m⁻²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFluxUnit.KilogramPerSecondPerSquareMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MassFlux.ParseUnit("kg·s⁻¹·mm⁻²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MassFluxUnit.KilogramPerSecondPerSquareMillimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            MassFluxUnit parsedUnit = MassFlux.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("g·h⁻¹·cm⁻²", MassFluxUnit.GramPerHourPerSquareCentimeter)]
+        [InlineData("g·h⁻¹·m⁻²", MassFluxUnit.GramPerHourPerSquareMeter)]
+        [InlineData("g·h⁻¹·mm⁻²", MassFluxUnit.GramPerHourPerSquareMillimeter)]
+        [InlineData("g·s⁻¹·cm⁻²", MassFluxUnit.GramPerSecondPerSquareCentimeter)]
+        [InlineData("g·s⁻¹·m⁻²", MassFluxUnit.GramPerSecondPerSquareMeter)]
+        [InlineData("g·s⁻¹·mm⁻²", MassFluxUnit.GramPerSecondPerSquareMillimeter)]
+        [InlineData("kg·h⁻¹·cm⁻²", MassFluxUnit.KilogramPerHourPerSquareCentimeter)]
+        [InlineData("kg·h⁻¹·m⁻²", MassFluxUnit.KilogramPerHourPerSquareMeter)]
+        [InlineData("kg·h⁻¹·mm⁻²", MassFluxUnit.KilogramPerHourPerSquareMillimeter)]
+        [InlineData("kg·s⁻¹·cm⁻²", MassFluxUnit.KilogramPerSecondPerSquareCentimeter)]
+        [InlineData("kg·s⁻¹·m⁻²", MassFluxUnit.KilogramPerSecondPerSquareMeter)]
+        [InlineData("kg·s⁻¹·mm⁻²", MassFluxUnit.KilogramPerSecondPerSquareMillimeter)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, MassFluxUnit expectedUnit)
         {
-            {
-                Assert.True(MassFlux.TryParseUnit("g·h⁻¹·cm⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFluxUnit.GramPerHourPerSquareCentimeter, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            MassFluxUnit parsedUnit = MassFlux.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(MassFlux.TryParseUnit("g·h⁻¹·m⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFluxUnit.GramPerHourPerSquareMeter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "g·h⁻¹·cm⁻²", MassFluxUnit.GramPerHourPerSquareCentimeter)]
+        [InlineData("en-US", "g·h⁻¹·m⁻²", MassFluxUnit.GramPerHourPerSquareMeter)]
+        [InlineData("en-US", "g·h⁻¹·mm⁻²", MassFluxUnit.GramPerHourPerSquareMillimeter)]
+        [InlineData("en-US", "g·s⁻¹·cm⁻²", MassFluxUnit.GramPerSecondPerSquareCentimeter)]
+        [InlineData("en-US", "g·s⁻¹·m⁻²", MassFluxUnit.GramPerSecondPerSquareMeter)]
+        [InlineData("en-US", "g·s⁻¹·mm⁻²", MassFluxUnit.GramPerSecondPerSquareMillimeter)]
+        [InlineData("en-US", "kg·h⁻¹·cm⁻²", MassFluxUnit.KilogramPerHourPerSquareCentimeter)]
+        [InlineData("en-US", "kg·h⁻¹·m⁻²", MassFluxUnit.KilogramPerHourPerSquareMeter)]
+        [InlineData("en-US", "kg·h⁻¹·mm⁻²", MassFluxUnit.KilogramPerHourPerSquareMillimeter)]
+        [InlineData("en-US", "kg·s⁻¹·cm⁻²", MassFluxUnit.KilogramPerSecondPerSquareCentimeter)]
+        [InlineData("en-US", "kg·s⁻¹·m⁻²", MassFluxUnit.KilogramPerSecondPerSquareMeter)]
+        [InlineData("en-US", "kg·s⁻¹·mm⁻²", MassFluxUnit.KilogramPerSecondPerSquareMillimeter)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, MassFluxUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            MassFluxUnit parsedUnit = MassFlux.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(MassFlux.TryParseUnit("g·h⁻¹·mm⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFluxUnit.GramPerHourPerSquareMillimeter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "g·h⁻¹·cm⁻²", MassFluxUnit.GramPerHourPerSquareCentimeter)]
+        [InlineData("en-US", "g·h⁻¹·m⁻²", MassFluxUnit.GramPerHourPerSquareMeter)]
+        [InlineData("en-US", "g·h⁻¹·mm⁻²", MassFluxUnit.GramPerHourPerSquareMillimeter)]
+        [InlineData("en-US", "g·s⁻¹·cm⁻²", MassFluxUnit.GramPerSecondPerSquareCentimeter)]
+        [InlineData("en-US", "g·s⁻¹·m⁻²", MassFluxUnit.GramPerSecondPerSquareMeter)]
+        [InlineData("en-US", "g·s⁻¹·mm⁻²", MassFluxUnit.GramPerSecondPerSquareMillimeter)]
+        [InlineData("en-US", "kg·h⁻¹·cm⁻²", MassFluxUnit.KilogramPerHourPerSquareCentimeter)]
+        [InlineData("en-US", "kg·h⁻¹·m⁻²", MassFluxUnit.KilogramPerHourPerSquareMeter)]
+        [InlineData("en-US", "kg·h⁻¹·mm⁻²", MassFluxUnit.KilogramPerHourPerSquareMillimeter)]
+        [InlineData("en-US", "kg·s⁻¹·cm⁻²", MassFluxUnit.KilogramPerSecondPerSquareCentimeter)]
+        [InlineData("en-US", "kg·s⁻¹·m⁻²", MassFluxUnit.KilogramPerSecondPerSquareMeter)]
+        [InlineData("en-US", "kg·s⁻¹·mm⁻²", MassFluxUnit.KilogramPerSecondPerSquareMillimeter)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, MassFluxUnit expectedUnit)
+        {
+            MassFluxUnit parsedUnit = MassFlux.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(MassFlux.TryParseUnit("g·s⁻¹·cm⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFluxUnit.GramPerSecondPerSquareCentimeter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("g·h⁻¹·cm⁻²", MassFluxUnit.GramPerHourPerSquareCentimeter)]
+        [InlineData("g·h⁻¹·m⁻²", MassFluxUnit.GramPerHourPerSquareMeter)]
+        [InlineData("g·h⁻¹·mm⁻²", MassFluxUnit.GramPerHourPerSquareMillimeter)]
+        [InlineData("g·s⁻¹·cm⁻²", MassFluxUnit.GramPerSecondPerSquareCentimeter)]
+        [InlineData("g·s⁻¹·m⁻²", MassFluxUnit.GramPerSecondPerSquareMeter)]
+        [InlineData("g·s⁻¹·mm⁻²", MassFluxUnit.GramPerSecondPerSquareMillimeter)]
+        [InlineData("kg·h⁻¹·cm⁻²", MassFluxUnit.KilogramPerHourPerSquareCentimeter)]
+        [InlineData("kg·h⁻¹·m⁻²", MassFluxUnit.KilogramPerHourPerSquareMeter)]
+        [InlineData("kg·h⁻¹·mm⁻²", MassFluxUnit.KilogramPerHourPerSquareMillimeter)]
+        [InlineData("kg·s⁻¹·cm⁻²", MassFluxUnit.KilogramPerSecondPerSquareCentimeter)]
+        [InlineData("kg·s⁻¹·m⁻²", MassFluxUnit.KilogramPerSecondPerSquareMeter)]
+        [InlineData("kg·s⁻¹·mm⁻²", MassFluxUnit.KilogramPerSecondPerSquareMillimeter)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, MassFluxUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(MassFlux.TryParseUnit(abbreviation, out MassFluxUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(MassFlux.TryParseUnit("g·s⁻¹·m⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFluxUnit.GramPerSecondPerSquareMeter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("g·h⁻¹·cm⁻²", MassFluxUnit.GramPerHourPerSquareCentimeter)]
+        [InlineData("g·h⁻¹·m⁻²", MassFluxUnit.GramPerHourPerSquareMeter)]
+        [InlineData("g·h⁻¹·mm⁻²", MassFluxUnit.GramPerHourPerSquareMillimeter)]
+        [InlineData("g·s⁻¹·cm⁻²", MassFluxUnit.GramPerSecondPerSquareCentimeter)]
+        [InlineData("g·s⁻¹·m⁻²", MassFluxUnit.GramPerSecondPerSquareMeter)]
+        [InlineData("g·s⁻¹·mm⁻²", MassFluxUnit.GramPerSecondPerSquareMillimeter)]
+        [InlineData("kg·h⁻¹·cm⁻²", MassFluxUnit.KilogramPerHourPerSquareCentimeter)]
+        [InlineData("kg·h⁻¹·m⁻²", MassFluxUnit.KilogramPerHourPerSquareMeter)]
+        [InlineData("kg·h⁻¹·mm⁻²", MassFluxUnit.KilogramPerHourPerSquareMillimeter)]
+        [InlineData("kg·s⁻¹·cm⁻²", MassFluxUnit.KilogramPerSecondPerSquareCentimeter)]
+        [InlineData("kg·s⁻¹·m⁻²", MassFluxUnit.KilogramPerSecondPerSquareMeter)]
+        [InlineData("kg·s⁻¹·mm⁻²", MassFluxUnit.KilogramPerSecondPerSquareMillimeter)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, MassFluxUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(MassFlux.TryParseUnit(abbreviation, out MassFluxUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(MassFlux.TryParseUnit("g·s⁻¹·mm⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFluxUnit.GramPerSecondPerSquareMillimeter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "g·h⁻¹·cm⁻²", MassFluxUnit.GramPerHourPerSquareCentimeter)]
+        [InlineData("en-US", "g·h⁻¹·m⁻²", MassFluxUnit.GramPerHourPerSquareMeter)]
+        [InlineData("en-US", "g·h⁻¹·mm⁻²", MassFluxUnit.GramPerHourPerSquareMillimeter)]
+        [InlineData("en-US", "g·s⁻¹·cm⁻²", MassFluxUnit.GramPerSecondPerSquareCentimeter)]
+        [InlineData("en-US", "g·s⁻¹·m⁻²", MassFluxUnit.GramPerSecondPerSquareMeter)]
+        [InlineData("en-US", "g·s⁻¹·mm⁻²", MassFluxUnit.GramPerSecondPerSquareMillimeter)]
+        [InlineData("en-US", "kg·h⁻¹·cm⁻²", MassFluxUnit.KilogramPerHourPerSquareCentimeter)]
+        [InlineData("en-US", "kg·h⁻¹·m⁻²", MassFluxUnit.KilogramPerHourPerSquareMeter)]
+        [InlineData("en-US", "kg·h⁻¹·mm⁻²", MassFluxUnit.KilogramPerHourPerSquareMillimeter)]
+        [InlineData("en-US", "kg·s⁻¹·cm⁻²", MassFluxUnit.KilogramPerSecondPerSquareCentimeter)]
+        [InlineData("en-US", "kg·s⁻¹·m⁻²", MassFluxUnit.KilogramPerSecondPerSquareMeter)]
+        [InlineData("en-US", "kg·s⁻¹·mm⁻²", MassFluxUnit.KilogramPerSecondPerSquareMillimeter)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, MassFluxUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(MassFlux.TryParseUnit(abbreviation, out MassFluxUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(MassFlux.TryParseUnit("kg·h⁻¹·cm⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFluxUnit.KilogramPerHourPerSquareCentimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlux.TryParseUnit("kg·h⁻¹·m⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFluxUnit.KilogramPerHourPerSquareMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlux.TryParseUnit("kg·h⁻¹·mm⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFluxUnit.KilogramPerHourPerSquareMillimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlux.TryParseUnit("kg·s⁻¹·cm⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFluxUnit.KilogramPerSecondPerSquareCentimeter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlux.TryParseUnit("kg·s⁻¹·m⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFluxUnit.KilogramPerSecondPerSquareMeter, parsedUnit);
-            }
-
-            {
-                Assert.True(MassFlux.TryParseUnit("kg·s⁻¹·mm⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassFluxUnit.KilogramPerSecondPerSquareMillimeter, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "g·h⁻¹·cm⁻²", MassFluxUnit.GramPerHourPerSquareCentimeter)]
+        [InlineData("en-US", "g·h⁻¹·m⁻²", MassFluxUnit.GramPerHourPerSquareMeter)]
+        [InlineData("en-US", "g·h⁻¹·mm⁻²", MassFluxUnit.GramPerHourPerSquareMillimeter)]
+        [InlineData("en-US", "g·s⁻¹·cm⁻²", MassFluxUnit.GramPerSecondPerSquareCentimeter)]
+        [InlineData("en-US", "g·s⁻¹·m⁻²", MassFluxUnit.GramPerSecondPerSquareMeter)]
+        [InlineData("en-US", "g·s⁻¹·mm⁻²", MassFluxUnit.GramPerSecondPerSquareMillimeter)]
+        [InlineData("en-US", "kg·h⁻¹·cm⁻²", MassFluxUnit.KilogramPerHourPerSquareCentimeter)]
+        [InlineData("en-US", "kg·h⁻¹·m⁻²", MassFluxUnit.KilogramPerHourPerSquareMeter)]
+        [InlineData("en-US", "kg·h⁻¹·mm⁻²", MassFluxUnit.KilogramPerHourPerSquareMillimeter)]
+        [InlineData("en-US", "kg·s⁻¹·cm⁻²", MassFluxUnit.KilogramPerSecondPerSquareCentimeter)]
+        [InlineData("en-US", "kg·s⁻¹·m⁻²", MassFluxUnit.KilogramPerSecondPerSquareMeter)]
+        [InlineData("en-US", "kg·s⁻¹·mm⁻²", MassFluxUnit.KilogramPerSecondPerSquareMillimeter)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, MassFluxUnit expectedUnit)
+        {
+            Assert.True(MassFlux.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out MassFluxUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

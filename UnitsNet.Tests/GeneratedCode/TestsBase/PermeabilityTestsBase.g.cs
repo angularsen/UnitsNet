@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -200,25 +201,78 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("H/m", PermeabilityUnit.HenryPerMeter)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, PermeabilityUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = Permeability.ParseUnit("H/m", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(PermeabilityUnit.HenryPerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            PermeabilityUnit parsedUnit = Permeability.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("H/m", PermeabilityUnit.HenryPerMeter)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, PermeabilityUnit expectedUnit)
         {
-            {
-                Assert.True(Permeability.TryParseUnit("H/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(PermeabilityUnit.HenryPerMeter, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            PermeabilityUnit parsedUnit = Permeability.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("en-US", "H/m", PermeabilityUnit.HenryPerMeter)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, PermeabilityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            PermeabilityUnit parsedUnit = Permeability.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "H/m", PermeabilityUnit.HenryPerMeter)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, PermeabilityUnit expectedUnit)
+        {
+            PermeabilityUnit parsedUnit = Permeability.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("H/m", PermeabilityUnit.HenryPerMeter)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, PermeabilityUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(Permeability.TryParseUnit(abbreviation, out PermeabilityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("H/m", PermeabilityUnit.HenryPerMeter)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, PermeabilityUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(Permeability.TryParseUnit(abbreviation, out PermeabilityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "H/m", PermeabilityUnit.HenryPerMeter)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, PermeabilityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(Permeability.TryParseUnit(abbreviation, out PermeabilityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "H/m", PermeabilityUnit.HenryPerMeter)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, PermeabilityUnit expectedUnit)
+        {
+            Assert.True(Permeability.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out PermeabilityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

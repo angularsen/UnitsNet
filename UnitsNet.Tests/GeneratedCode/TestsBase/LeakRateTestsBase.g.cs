@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -246,47 +247,94 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("mbar·l/s", LeakRateUnit.MillibarLiterPerSecond)]
+        [InlineData("Pa·m³/s", LeakRateUnit.PascalCubicMeterPerSecond)]
+        [InlineData("Torr·l/s", LeakRateUnit.TorrLiterPerSecond)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, LeakRateUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = LeakRate.ParseUnit("mbar·l/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LeakRateUnit.MillibarLiterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = LeakRate.ParseUnit("Pa·m³/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LeakRateUnit.PascalCubicMeterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = LeakRate.ParseUnit("Torr·l/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LeakRateUnit.TorrLiterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            LeakRateUnit parsedUnit = LeakRate.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("mbar·l/s", LeakRateUnit.MillibarLiterPerSecond)]
+        [InlineData("Pa·m³/s", LeakRateUnit.PascalCubicMeterPerSecond)]
+        [InlineData("Torr·l/s", LeakRateUnit.TorrLiterPerSecond)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, LeakRateUnit expectedUnit)
         {
-            {
-                Assert.True(LeakRate.TryParseUnit("mbar·l/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LeakRateUnit.MillibarLiterPerSecond, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            LeakRateUnit parsedUnit = LeakRate.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(LeakRate.TryParseUnit("Pa·m³/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LeakRateUnit.PascalCubicMeterPerSecond, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "mbar·l/s", LeakRateUnit.MillibarLiterPerSecond)]
+        [InlineData("en-US", "Pa·m³/s", LeakRateUnit.PascalCubicMeterPerSecond)]
+        [InlineData("en-US", "Torr·l/s", LeakRateUnit.TorrLiterPerSecond)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, LeakRateUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            LeakRateUnit parsedUnit = LeakRate.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(LeakRate.TryParseUnit("Torr·l/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LeakRateUnit.TorrLiterPerSecond, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "mbar·l/s", LeakRateUnit.MillibarLiterPerSecond)]
+        [InlineData("en-US", "Pa·m³/s", LeakRateUnit.PascalCubicMeterPerSecond)]
+        [InlineData("en-US", "Torr·l/s", LeakRateUnit.TorrLiterPerSecond)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, LeakRateUnit expectedUnit)
+        {
+            LeakRateUnit parsedUnit = LeakRate.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("mbar·l/s", LeakRateUnit.MillibarLiterPerSecond)]
+        [InlineData("Pa·m³/s", LeakRateUnit.PascalCubicMeterPerSecond)]
+        [InlineData("Torr·l/s", LeakRateUnit.TorrLiterPerSecond)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, LeakRateUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(LeakRate.TryParseUnit(abbreviation, out LeakRateUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("mbar·l/s", LeakRateUnit.MillibarLiterPerSecond)]
+        [InlineData("Pa·m³/s", LeakRateUnit.PascalCubicMeterPerSecond)]
+        [InlineData("Torr·l/s", LeakRateUnit.TorrLiterPerSecond)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, LeakRateUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(LeakRate.TryParseUnit(abbreviation, out LeakRateUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "mbar·l/s", LeakRateUnit.MillibarLiterPerSecond)]
+        [InlineData("en-US", "Pa·m³/s", LeakRateUnit.PascalCubicMeterPerSecond)]
+        [InlineData("en-US", "Torr·l/s", LeakRateUnit.TorrLiterPerSecond)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, LeakRateUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(LeakRate.TryParseUnit(abbreviation, out LeakRateUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "mbar·l/s", LeakRateUnit.MillibarLiterPerSecond)]
+        [InlineData("en-US", "Pa·m³/s", LeakRateUnit.PascalCubicMeterPerSecond)]
+        [InlineData("en-US", "Torr·l/s", LeakRateUnit.TorrLiterPerSecond)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, LeakRateUnit expectedUnit)
+        {
+            Assert.True(LeakRate.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out LeakRateUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

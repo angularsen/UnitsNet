@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -269,58 +270,102 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("Gvar", ReactivePowerUnit.GigavoltampereReactive)]
+        [InlineData("kvar", ReactivePowerUnit.KilovoltampereReactive)]
+        [InlineData("Mvar", ReactivePowerUnit.MegavoltampereReactive)]
+        [InlineData("var", ReactivePowerUnit.VoltampereReactive)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ReactivePowerUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = ReactivePower.ParseUnit("Gvar", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ReactivePowerUnit.GigavoltampereReactive, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ReactivePower.ParseUnit("kvar", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ReactivePowerUnit.KilovoltampereReactive, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ReactivePower.ParseUnit("Mvar", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ReactivePowerUnit.MegavoltampereReactive, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ReactivePower.ParseUnit("var", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ReactivePowerUnit.VoltampereReactive, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            ReactivePowerUnit parsedUnit = ReactivePower.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("Gvar", ReactivePowerUnit.GigavoltampereReactive)]
+        [InlineData("kvar", ReactivePowerUnit.KilovoltampereReactive)]
+        [InlineData("Mvar", ReactivePowerUnit.MegavoltampereReactive)]
+        [InlineData("var", ReactivePowerUnit.VoltampereReactive)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ReactivePowerUnit expectedUnit)
         {
-            {
-                Assert.True(ReactivePower.TryParseUnit("Gvar", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ReactivePowerUnit.GigavoltampereReactive, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            ReactivePowerUnit parsedUnit = ReactivePower.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ReactivePower.TryParseUnit("kvar", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ReactivePowerUnit.KilovoltampereReactive, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "Gvar", ReactivePowerUnit.GigavoltampereReactive)]
+        [InlineData("en-US", "kvar", ReactivePowerUnit.KilovoltampereReactive)]
+        [InlineData("en-US", "Mvar", ReactivePowerUnit.MegavoltampereReactive)]
+        [InlineData("en-US", "var", ReactivePowerUnit.VoltampereReactive)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, ReactivePowerUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            ReactivePowerUnit parsedUnit = ReactivePower.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ReactivePower.TryParseUnit("Mvar", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ReactivePowerUnit.MegavoltampereReactive, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "Gvar", ReactivePowerUnit.GigavoltampereReactive)]
+        [InlineData("en-US", "kvar", ReactivePowerUnit.KilovoltampereReactive)]
+        [InlineData("en-US", "Mvar", ReactivePowerUnit.MegavoltampereReactive)]
+        [InlineData("en-US", "var", ReactivePowerUnit.VoltampereReactive)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, ReactivePowerUnit expectedUnit)
+        {
+            ReactivePowerUnit parsedUnit = ReactivePower.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ReactivePower.TryParseUnit("var", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ReactivePowerUnit.VoltampereReactive, parsedUnit);
-            }
+        [Theory]
+        [InlineData("Gvar", ReactivePowerUnit.GigavoltampereReactive)]
+        [InlineData("kvar", ReactivePowerUnit.KilovoltampereReactive)]
+        [InlineData("Mvar", ReactivePowerUnit.MegavoltampereReactive)]
+        [InlineData("var", ReactivePowerUnit.VoltampereReactive)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ReactivePowerUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(ReactivePower.TryParseUnit(abbreviation, out ReactivePowerUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("Gvar", ReactivePowerUnit.GigavoltampereReactive)]
+        [InlineData("kvar", ReactivePowerUnit.KilovoltampereReactive)]
+        [InlineData("Mvar", ReactivePowerUnit.MegavoltampereReactive)]
+        [InlineData("var", ReactivePowerUnit.VoltampereReactive)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ReactivePowerUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(ReactivePower.TryParseUnit(abbreviation, out ReactivePowerUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "Gvar", ReactivePowerUnit.GigavoltampereReactive)]
+        [InlineData("en-US", "kvar", ReactivePowerUnit.KilovoltampereReactive)]
+        [InlineData("en-US", "Mvar", ReactivePowerUnit.MegavoltampereReactive)]
+        [InlineData("en-US", "var", ReactivePowerUnit.VoltampereReactive)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, ReactivePowerUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(ReactivePower.TryParseUnit(abbreviation, out ReactivePowerUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "Gvar", ReactivePowerUnit.GigavoltampereReactive)]
+        [InlineData("en-US", "kvar", ReactivePowerUnit.KilovoltampereReactive)]
+        [InlineData("en-US", "Mvar", ReactivePowerUnit.MegavoltampereReactive)]
+        [InlineData("en-US", "var", ReactivePowerUnit.VoltampereReactive)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, ReactivePowerUnit expectedUnit)
+        {
+            Assert.True(ReactivePower.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ReactivePowerUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

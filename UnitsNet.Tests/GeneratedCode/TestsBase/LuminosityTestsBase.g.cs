@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -475,148 +476,182 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("daW", LuminosityUnit.Decawatt)]
+        [InlineData("dW", LuminosityUnit.Deciwatt)]
+        [InlineData("fW", LuminosityUnit.Femtowatt)]
+        [InlineData("GW", LuminosityUnit.Gigawatt)]
+        [InlineData("kW", LuminosityUnit.Kilowatt)]
+        [InlineData("MW", LuminosityUnit.Megawatt)]
+        [InlineData("µW", LuminosityUnit.Microwatt)]
+        [InlineData("mW", LuminosityUnit.Milliwatt)]
+        [InlineData("nW", LuminosityUnit.Nanowatt)]
+        [InlineData("PW", LuminosityUnit.Petawatt)]
+        [InlineData("pW", LuminosityUnit.Picowatt)]
+        [InlineData("L⊙", LuminosityUnit.SolarLuminosity)]
+        [InlineData("TW", LuminosityUnit.Terawatt)]
+        [InlineData("W", LuminosityUnit.Watt)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, LuminosityUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = Luminosity.ParseUnit("daW", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LuminosityUnit.Decawatt, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Luminosity.ParseUnit("dW", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LuminosityUnit.Deciwatt, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Luminosity.ParseUnit("fW", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LuminosityUnit.Femtowatt, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Luminosity.ParseUnit("GW", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LuminosityUnit.Gigawatt, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Luminosity.ParseUnit("kW", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LuminosityUnit.Kilowatt, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Luminosity.ParseUnit("MW", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LuminosityUnit.Megawatt, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Luminosity.ParseUnit("µW", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LuminosityUnit.Microwatt, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Luminosity.ParseUnit("mW", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LuminosityUnit.Milliwatt, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Luminosity.ParseUnit("nW", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LuminosityUnit.Nanowatt, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Luminosity.ParseUnit("PW", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LuminosityUnit.Petawatt, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Luminosity.ParseUnit("pW", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LuminosityUnit.Picowatt, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Luminosity.ParseUnit("L⊙", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LuminosityUnit.SolarLuminosity, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Luminosity.ParseUnit("TW", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LuminosityUnit.Terawatt, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = Luminosity.ParseUnit("W", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(LuminosityUnit.Watt, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            LuminosityUnit parsedUnit = Luminosity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("daW", LuminosityUnit.Decawatt)]
+        [InlineData("dW", LuminosityUnit.Deciwatt)]
+        [InlineData("fW", LuminosityUnit.Femtowatt)]
+        [InlineData("GW", LuminosityUnit.Gigawatt)]
+        [InlineData("kW", LuminosityUnit.Kilowatt)]
+        [InlineData("MW", LuminosityUnit.Megawatt)]
+        [InlineData("µW", LuminosityUnit.Microwatt)]
+        [InlineData("mW", LuminosityUnit.Milliwatt)]
+        [InlineData("nW", LuminosityUnit.Nanowatt)]
+        [InlineData("PW", LuminosityUnit.Petawatt)]
+        [InlineData("pW", LuminosityUnit.Picowatt)]
+        [InlineData("L⊙", LuminosityUnit.SolarLuminosity)]
+        [InlineData("TW", LuminosityUnit.Terawatt)]
+        [InlineData("W", LuminosityUnit.Watt)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, LuminosityUnit expectedUnit)
         {
-            {
-                Assert.True(Luminosity.TryParseUnit("daW", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LuminosityUnit.Decawatt, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            LuminosityUnit parsedUnit = Luminosity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Luminosity.TryParseUnit("dW", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LuminosityUnit.Deciwatt, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "daW", LuminosityUnit.Decawatt)]
+        [InlineData("en-US", "dW", LuminosityUnit.Deciwatt)]
+        [InlineData("en-US", "fW", LuminosityUnit.Femtowatt)]
+        [InlineData("en-US", "GW", LuminosityUnit.Gigawatt)]
+        [InlineData("en-US", "kW", LuminosityUnit.Kilowatt)]
+        [InlineData("en-US", "MW", LuminosityUnit.Megawatt)]
+        [InlineData("en-US", "µW", LuminosityUnit.Microwatt)]
+        [InlineData("en-US", "mW", LuminosityUnit.Milliwatt)]
+        [InlineData("en-US", "nW", LuminosityUnit.Nanowatt)]
+        [InlineData("en-US", "PW", LuminosityUnit.Petawatt)]
+        [InlineData("en-US", "pW", LuminosityUnit.Picowatt)]
+        [InlineData("en-US", "L⊙", LuminosityUnit.SolarLuminosity)]
+        [InlineData("en-US", "TW", LuminosityUnit.Terawatt)]
+        [InlineData("en-US", "W", LuminosityUnit.Watt)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, LuminosityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            LuminosityUnit parsedUnit = Luminosity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Luminosity.TryParseUnit("fW", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LuminosityUnit.Femtowatt, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "daW", LuminosityUnit.Decawatt)]
+        [InlineData("en-US", "dW", LuminosityUnit.Deciwatt)]
+        [InlineData("en-US", "fW", LuminosityUnit.Femtowatt)]
+        [InlineData("en-US", "GW", LuminosityUnit.Gigawatt)]
+        [InlineData("en-US", "kW", LuminosityUnit.Kilowatt)]
+        [InlineData("en-US", "MW", LuminosityUnit.Megawatt)]
+        [InlineData("en-US", "µW", LuminosityUnit.Microwatt)]
+        [InlineData("en-US", "mW", LuminosityUnit.Milliwatt)]
+        [InlineData("en-US", "nW", LuminosityUnit.Nanowatt)]
+        [InlineData("en-US", "PW", LuminosityUnit.Petawatt)]
+        [InlineData("en-US", "pW", LuminosityUnit.Picowatt)]
+        [InlineData("en-US", "L⊙", LuminosityUnit.SolarLuminosity)]
+        [InlineData("en-US", "TW", LuminosityUnit.Terawatt)]
+        [InlineData("en-US", "W", LuminosityUnit.Watt)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, LuminosityUnit expectedUnit)
+        {
+            LuminosityUnit parsedUnit = Luminosity.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Luminosity.TryParseUnit("GW", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LuminosityUnit.Gigawatt, parsedUnit);
-            }
+        [Theory]
+        [InlineData("daW", LuminosityUnit.Decawatt)]
+        [InlineData("dW", LuminosityUnit.Deciwatt)]
+        [InlineData("fW", LuminosityUnit.Femtowatt)]
+        [InlineData("GW", LuminosityUnit.Gigawatt)]
+        [InlineData("kW", LuminosityUnit.Kilowatt)]
+        [InlineData("MW", LuminosityUnit.Megawatt)]
+        [InlineData("µW", LuminosityUnit.Microwatt)]
+        [InlineData("mW", LuminosityUnit.Milliwatt)]
+        [InlineData("nW", LuminosityUnit.Nanowatt)]
+        [InlineData("PW", LuminosityUnit.Petawatt)]
+        [InlineData("pW", LuminosityUnit.Picowatt)]
+        [InlineData("L⊙", LuminosityUnit.SolarLuminosity)]
+        [InlineData("TW", LuminosityUnit.Terawatt)]
+        [InlineData("W", LuminosityUnit.Watt)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, LuminosityUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(Luminosity.TryParseUnit(abbreviation, out LuminosityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Luminosity.TryParseUnit("kW", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LuminosityUnit.Kilowatt, parsedUnit);
-            }
+        [Theory]
+        [InlineData("daW", LuminosityUnit.Decawatt)]
+        [InlineData("dW", LuminosityUnit.Deciwatt)]
+        [InlineData("fW", LuminosityUnit.Femtowatt)]
+        [InlineData("GW", LuminosityUnit.Gigawatt)]
+        [InlineData("kW", LuminosityUnit.Kilowatt)]
+        [InlineData("MW", LuminosityUnit.Megawatt)]
+        [InlineData("µW", LuminosityUnit.Microwatt)]
+        [InlineData("mW", LuminosityUnit.Milliwatt)]
+        [InlineData("nW", LuminosityUnit.Nanowatt)]
+        [InlineData("PW", LuminosityUnit.Petawatt)]
+        [InlineData("pW", LuminosityUnit.Picowatt)]
+        [InlineData("L⊙", LuminosityUnit.SolarLuminosity)]
+        [InlineData("TW", LuminosityUnit.Terawatt)]
+        [InlineData("W", LuminosityUnit.Watt)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, LuminosityUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(Luminosity.TryParseUnit(abbreviation, out LuminosityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Luminosity.TryParseUnit("µW", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LuminosityUnit.Microwatt, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "daW", LuminosityUnit.Decawatt)]
+        [InlineData("en-US", "dW", LuminosityUnit.Deciwatt)]
+        [InlineData("en-US", "fW", LuminosityUnit.Femtowatt)]
+        [InlineData("en-US", "GW", LuminosityUnit.Gigawatt)]
+        [InlineData("en-US", "kW", LuminosityUnit.Kilowatt)]
+        [InlineData("en-US", "MW", LuminosityUnit.Megawatt)]
+        [InlineData("en-US", "µW", LuminosityUnit.Microwatt)]
+        [InlineData("en-US", "mW", LuminosityUnit.Milliwatt)]
+        [InlineData("en-US", "nW", LuminosityUnit.Nanowatt)]
+        [InlineData("en-US", "PW", LuminosityUnit.Petawatt)]
+        [InlineData("en-US", "pW", LuminosityUnit.Picowatt)]
+        [InlineData("en-US", "L⊙", LuminosityUnit.SolarLuminosity)]
+        [InlineData("en-US", "TW", LuminosityUnit.Terawatt)]
+        [InlineData("en-US", "W", LuminosityUnit.Watt)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, LuminosityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(Luminosity.TryParseUnit(abbreviation, out LuminosityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(Luminosity.TryParseUnit("nW", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LuminosityUnit.Nanowatt, parsedUnit);
-            }
-
-            {
-                Assert.True(Luminosity.TryParseUnit("L⊙", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LuminosityUnit.SolarLuminosity, parsedUnit);
-            }
-
-            {
-                Assert.True(Luminosity.TryParseUnit("TW", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LuminosityUnit.Terawatt, parsedUnit);
-            }
-
-            {
-                Assert.True(Luminosity.TryParseUnit("W", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LuminosityUnit.Watt, parsedUnit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "daW", LuminosityUnit.Decawatt)]
+        [InlineData("en-US", "dW", LuminosityUnit.Deciwatt)]
+        [InlineData("en-US", "fW", LuminosityUnit.Femtowatt)]
+        [InlineData("en-US", "GW", LuminosityUnit.Gigawatt)]
+        [InlineData("en-US", "kW", LuminosityUnit.Kilowatt)]
+        [InlineData("en-US", "MW", LuminosityUnit.Megawatt)]
+        [InlineData("en-US", "µW", LuminosityUnit.Microwatt)]
+        [InlineData("en-US", "mW", LuminosityUnit.Milliwatt)]
+        [InlineData("en-US", "nW", LuminosityUnit.Nanowatt)]
+        [InlineData("en-US", "PW", LuminosityUnit.Petawatt)]
+        [InlineData("en-US", "pW", LuminosityUnit.Picowatt)]
+        [InlineData("en-US", "L⊙", LuminosityUnit.SolarLuminosity)]
+        [InlineData("en-US", "TW", LuminosityUnit.Terawatt)]
+        [InlineData("en-US", "W", LuminosityUnit.Watt)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, LuminosityUnit expectedUnit)
+        {
+            Assert.True(Luminosity.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out LuminosityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

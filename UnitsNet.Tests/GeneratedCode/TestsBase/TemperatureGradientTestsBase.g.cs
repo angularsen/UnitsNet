@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -269,58 +270,102 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("∆°C/km", TemperatureGradientUnit.DegreeCelsiusPerKilometer)]
+        [InlineData("∆°C/m", TemperatureGradientUnit.DegreeCelsiusPerMeter)]
+        [InlineData("∆°F/ft", TemperatureGradientUnit.DegreeFahrenheitPerFoot)]
+        [InlineData("∆°K/m", TemperatureGradientUnit.KelvinPerMeter)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, TemperatureGradientUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = TemperatureGradient.ParseUnit("∆°C/km", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerKilometer, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = TemperatureGradient.ParseUnit("∆°C/m", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = TemperatureGradient.ParseUnit("∆°F/ft", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(TemperatureGradientUnit.DegreeFahrenheitPerFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = TemperatureGradient.ParseUnit("∆°K/m", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(TemperatureGradientUnit.KelvinPerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            TemperatureGradientUnit parsedUnit = TemperatureGradient.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("∆°C/km", TemperatureGradientUnit.DegreeCelsiusPerKilometer)]
+        [InlineData("∆°C/m", TemperatureGradientUnit.DegreeCelsiusPerMeter)]
+        [InlineData("∆°F/ft", TemperatureGradientUnit.DegreeFahrenheitPerFoot)]
+        [InlineData("∆°K/m", TemperatureGradientUnit.KelvinPerMeter)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, TemperatureGradientUnit expectedUnit)
         {
-            {
-                Assert.True(TemperatureGradient.TryParseUnit("∆°C/km", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerKilometer, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            TemperatureGradientUnit parsedUnit = TemperatureGradient.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(TemperatureGradient.TryParseUnit("∆°C/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerMeter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "∆°C/km", TemperatureGradientUnit.DegreeCelsiusPerKilometer)]
+        [InlineData("en-US", "∆°C/m", TemperatureGradientUnit.DegreeCelsiusPerMeter)]
+        [InlineData("en-US", "∆°F/ft", TemperatureGradientUnit.DegreeFahrenheitPerFoot)]
+        [InlineData("en-US", "∆°K/m", TemperatureGradientUnit.KelvinPerMeter)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, TemperatureGradientUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            TemperatureGradientUnit parsedUnit = TemperatureGradient.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(TemperatureGradient.TryParseUnit("∆°F/ft", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(TemperatureGradientUnit.DegreeFahrenheitPerFoot, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "∆°C/km", TemperatureGradientUnit.DegreeCelsiusPerKilometer)]
+        [InlineData("en-US", "∆°C/m", TemperatureGradientUnit.DegreeCelsiusPerMeter)]
+        [InlineData("en-US", "∆°F/ft", TemperatureGradientUnit.DegreeFahrenheitPerFoot)]
+        [InlineData("en-US", "∆°K/m", TemperatureGradientUnit.KelvinPerMeter)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, TemperatureGradientUnit expectedUnit)
+        {
+            TemperatureGradientUnit parsedUnit = TemperatureGradient.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(TemperatureGradient.TryParseUnit("∆°K/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(TemperatureGradientUnit.KelvinPerMeter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("∆°C/km", TemperatureGradientUnit.DegreeCelsiusPerKilometer)]
+        [InlineData("∆°C/m", TemperatureGradientUnit.DegreeCelsiusPerMeter)]
+        [InlineData("∆°F/ft", TemperatureGradientUnit.DegreeFahrenheitPerFoot)]
+        [InlineData("∆°K/m", TemperatureGradientUnit.KelvinPerMeter)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, TemperatureGradientUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(TemperatureGradient.TryParseUnit(abbreviation, out TemperatureGradientUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("∆°C/km", TemperatureGradientUnit.DegreeCelsiusPerKilometer)]
+        [InlineData("∆°C/m", TemperatureGradientUnit.DegreeCelsiusPerMeter)]
+        [InlineData("∆°F/ft", TemperatureGradientUnit.DegreeFahrenheitPerFoot)]
+        [InlineData("∆°K/m", TemperatureGradientUnit.KelvinPerMeter)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, TemperatureGradientUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(TemperatureGradient.TryParseUnit(abbreviation, out TemperatureGradientUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "∆°C/km", TemperatureGradientUnit.DegreeCelsiusPerKilometer)]
+        [InlineData("en-US", "∆°C/m", TemperatureGradientUnit.DegreeCelsiusPerMeter)]
+        [InlineData("en-US", "∆°F/ft", TemperatureGradientUnit.DegreeFahrenheitPerFoot)]
+        [InlineData("en-US", "∆°K/m", TemperatureGradientUnit.KelvinPerMeter)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, TemperatureGradientUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(TemperatureGradient.TryParseUnit(abbreviation, out TemperatureGradientUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "∆°C/km", TemperatureGradientUnit.DegreeCelsiusPerKilometer)]
+        [InlineData("en-US", "∆°C/m", TemperatureGradientUnit.DegreeCelsiusPerMeter)]
+        [InlineData("en-US", "∆°F/ft", TemperatureGradientUnit.DegreeFahrenheitPerFoot)]
+        [InlineData("en-US", "∆°K/m", TemperatureGradientUnit.KelvinPerMeter)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, TemperatureGradientUnit expectedUnit)
+        {
+            Assert.True(TemperatureGradient.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out TemperatureGradientUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

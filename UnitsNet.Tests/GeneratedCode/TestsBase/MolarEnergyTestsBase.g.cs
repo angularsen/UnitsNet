@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -246,47 +247,94 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("J/mol", MolarEnergyUnit.JoulePerMole)]
+        [InlineData("kJ/mol", MolarEnergyUnit.KilojoulePerMole)]
+        [InlineData("MJ/mol", MolarEnergyUnit.MegajoulePerMole)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, MolarEnergyUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = MolarEnergy.ParseUnit("J/mol", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MolarEnergyUnit.JoulePerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MolarEnergy.ParseUnit("kJ/mol", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MolarEnergyUnit.KilojoulePerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = MolarEnergy.ParseUnit("MJ/mol", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MolarEnergyUnit.MegajoulePerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            MolarEnergyUnit parsedUnit = MolarEnergy.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("J/mol", MolarEnergyUnit.JoulePerMole)]
+        [InlineData("kJ/mol", MolarEnergyUnit.KilojoulePerMole)]
+        [InlineData("MJ/mol", MolarEnergyUnit.MegajoulePerMole)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, MolarEnergyUnit expectedUnit)
         {
-            {
-                Assert.True(MolarEnergy.TryParseUnit("J/mol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MolarEnergyUnit.JoulePerMole, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            MolarEnergyUnit parsedUnit = MolarEnergy.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(MolarEnergy.TryParseUnit("kJ/mol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MolarEnergyUnit.KilojoulePerMole, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "J/mol", MolarEnergyUnit.JoulePerMole)]
+        [InlineData("en-US", "kJ/mol", MolarEnergyUnit.KilojoulePerMole)]
+        [InlineData("en-US", "MJ/mol", MolarEnergyUnit.MegajoulePerMole)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, MolarEnergyUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            MolarEnergyUnit parsedUnit = MolarEnergy.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(MolarEnergy.TryParseUnit("MJ/mol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MolarEnergyUnit.MegajoulePerMole, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "J/mol", MolarEnergyUnit.JoulePerMole)]
+        [InlineData("en-US", "kJ/mol", MolarEnergyUnit.KilojoulePerMole)]
+        [InlineData("en-US", "MJ/mol", MolarEnergyUnit.MegajoulePerMole)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, MolarEnergyUnit expectedUnit)
+        {
+            MolarEnergyUnit parsedUnit = MolarEnergy.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("J/mol", MolarEnergyUnit.JoulePerMole)]
+        [InlineData("kJ/mol", MolarEnergyUnit.KilojoulePerMole)]
+        [InlineData("MJ/mol", MolarEnergyUnit.MegajoulePerMole)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, MolarEnergyUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(MolarEnergy.TryParseUnit(abbreviation, out MolarEnergyUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("J/mol", MolarEnergyUnit.JoulePerMole)]
+        [InlineData("kJ/mol", MolarEnergyUnit.KilojoulePerMole)]
+        [InlineData("MJ/mol", MolarEnergyUnit.MegajoulePerMole)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, MolarEnergyUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(MolarEnergy.TryParseUnit(abbreviation, out MolarEnergyUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "J/mol", MolarEnergyUnit.JoulePerMole)]
+        [InlineData("en-US", "kJ/mol", MolarEnergyUnit.KilojoulePerMole)]
+        [InlineData("en-US", "MJ/mol", MolarEnergyUnit.MegajoulePerMole)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, MolarEnergyUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(MolarEnergy.TryParseUnit(abbreviation, out MolarEnergyUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "J/mol", MolarEnergyUnit.JoulePerMole)]
+        [InlineData("en-US", "kJ/mol", MolarEnergyUnit.KilojoulePerMole)]
+        [InlineData("en-US", "MJ/mol", MolarEnergyUnit.MegajoulePerMole)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, MolarEnergyUnit expectedUnit)
+        {
+            Assert.True(MolarEnergy.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out MolarEnergyUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

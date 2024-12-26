@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -200,25 +201,78 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("F/m", PermittivityUnit.FaradPerMeter)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, PermittivityUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = Permittivity.ParseUnit("F/m", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(PermittivityUnit.FaradPerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            PermittivityUnit parsedUnit = Permittivity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("F/m", PermittivityUnit.FaradPerMeter)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, PermittivityUnit expectedUnit)
         {
-            {
-                Assert.True(Permittivity.TryParseUnit("F/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(PermittivityUnit.FaradPerMeter, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            PermittivityUnit parsedUnit = Permittivity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("en-US", "F/m", PermittivityUnit.FaradPerMeter)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, PermittivityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            PermittivityUnit parsedUnit = Permittivity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "F/m", PermittivityUnit.FaradPerMeter)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, PermittivityUnit expectedUnit)
+        {
+            PermittivityUnit parsedUnit = Permittivity.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("F/m", PermittivityUnit.FaradPerMeter)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, PermittivityUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(Permittivity.TryParseUnit(abbreviation, out PermittivityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("F/m", PermittivityUnit.FaradPerMeter)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, PermittivityUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(Permittivity.TryParseUnit(abbreviation, out PermittivityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "F/m", PermittivityUnit.FaradPerMeter)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, PermittivityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(Permittivity.TryParseUnit(abbreviation, out PermittivityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "F/m", PermittivityUnit.FaradPerMeter)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, PermittivityUnit expectedUnit)
+        {
+            Assert.True(Permittivity.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out PermittivityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

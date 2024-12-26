@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -269,58 +270,102 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("dBµV", AmplitudeRatioUnit.DecibelMicrovolt)]
+        [InlineData("dBmV", AmplitudeRatioUnit.DecibelMillivolt)]
+        [InlineData("dBu", AmplitudeRatioUnit.DecibelUnloaded)]
+        [InlineData("dBV", AmplitudeRatioUnit.DecibelVolt)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, AmplitudeRatioUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = AmplitudeRatio.ParseUnit("dBµV", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(AmplitudeRatioUnit.DecibelMicrovolt, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AmplitudeRatio.ParseUnit("dBmV", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(AmplitudeRatioUnit.DecibelMillivolt, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AmplitudeRatio.ParseUnit("dBu", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(AmplitudeRatioUnit.DecibelUnloaded, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = AmplitudeRatio.ParseUnit("dBV", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(AmplitudeRatioUnit.DecibelVolt, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            AmplitudeRatioUnit parsedUnit = AmplitudeRatio.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("dBµV", AmplitudeRatioUnit.DecibelMicrovolt)]
+        [InlineData("dBmV", AmplitudeRatioUnit.DecibelMillivolt)]
+        [InlineData("dBu", AmplitudeRatioUnit.DecibelUnloaded)]
+        [InlineData("dBV", AmplitudeRatioUnit.DecibelVolt)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, AmplitudeRatioUnit expectedUnit)
         {
-            {
-                Assert.True(AmplitudeRatio.TryParseUnit("dBµV", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(AmplitudeRatioUnit.DecibelMicrovolt, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            AmplitudeRatioUnit parsedUnit = AmplitudeRatio.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(AmplitudeRatio.TryParseUnit("dBmV", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(AmplitudeRatioUnit.DecibelMillivolt, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "dBµV", AmplitudeRatioUnit.DecibelMicrovolt)]
+        [InlineData("en-US", "dBmV", AmplitudeRatioUnit.DecibelMillivolt)]
+        [InlineData("en-US", "dBu", AmplitudeRatioUnit.DecibelUnloaded)]
+        [InlineData("en-US", "dBV", AmplitudeRatioUnit.DecibelVolt)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, AmplitudeRatioUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            AmplitudeRatioUnit parsedUnit = AmplitudeRatio.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(AmplitudeRatio.TryParseUnit("dBu", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(AmplitudeRatioUnit.DecibelUnloaded, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "dBµV", AmplitudeRatioUnit.DecibelMicrovolt)]
+        [InlineData("en-US", "dBmV", AmplitudeRatioUnit.DecibelMillivolt)]
+        [InlineData("en-US", "dBu", AmplitudeRatioUnit.DecibelUnloaded)]
+        [InlineData("en-US", "dBV", AmplitudeRatioUnit.DecibelVolt)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, AmplitudeRatioUnit expectedUnit)
+        {
+            AmplitudeRatioUnit parsedUnit = AmplitudeRatio.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(AmplitudeRatio.TryParseUnit("dBV", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(AmplitudeRatioUnit.DecibelVolt, parsedUnit);
-            }
+        [Theory]
+        [InlineData("dBµV", AmplitudeRatioUnit.DecibelMicrovolt)]
+        [InlineData("dBmV", AmplitudeRatioUnit.DecibelMillivolt)]
+        [InlineData("dBu", AmplitudeRatioUnit.DecibelUnloaded)]
+        [InlineData("dBV", AmplitudeRatioUnit.DecibelVolt)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, AmplitudeRatioUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(AmplitudeRatio.TryParseUnit(abbreviation, out AmplitudeRatioUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("dBµV", AmplitudeRatioUnit.DecibelMicrovolt)]
+        [InlineData("dBmV", AmplitudeRatioUnit.DecibelMillivolt)]
+        [InlineData("dBu", AmplitudeRatioUnit.DecibelUnloaded)]
+        [InlineData("dBV", AmplitudeRatioUnit.DecibelVolt)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, AmplitudeRatioUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(AmplitudeRatio.TryParseUnit(abbreviation, out AmplitudeRatioUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "dBµV", AmplitudeRatioUnit.DecibelMicrovolt)]
+        [InlineData("en-US", "dBmV", AmplitudeRatioUnit.DecibelMillivolt)]
+        [InlineData("en-US", "dBu", AmplitudeRatioUnit.DecibelUnloaded)]
+        [InlineData("en-US", "dBV", AmplitudeRatioUnit.DecibelVolt)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, AmplitudeRatioUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(AmplitudeRatio.TryParseUnit(abbreviation, out AmplitudeRatioUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "dBµV", AmplitudeRatioUnit.DecibelMicrovolt)]
+        [InlineData("en-US", "dBmV", AmplitudeRatioUnit.DecibelMillivolt)]
+        [InlineData("en-US", "dBu", AmplitudeRatioUnit.DecibelUnloaded)]
+        [InlineData("en-US", "dBV", AmplitudeRatioUnit.DecibelVolt)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, AmplitudeRatioUnit expectedUnit)
+        {
+            Assert.True(AmplitudeRatio.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out AmplitudeRatioUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

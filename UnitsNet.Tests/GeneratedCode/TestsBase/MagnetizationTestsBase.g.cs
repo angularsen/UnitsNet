@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -200,25 +201,78 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("A/m", MagnetizationUnit.AmperePerMeter)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, MagnetizationUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = Magnetization.ParseUnit("A/m", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MagnetizationUnit.AmperePerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            MagnetizationUnit parsedUnit = Magnetization.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("A/m", MagnetizationUnit.AmperePerMeter)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, MagnetizationUnit expectedUnit)
         {
-            {
-                Assert.True(Magnetization.TryParseUnit("A/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MagnetizationUnit.AmperePerMeter, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            MagnetizationUnit parsedUnit = Magnetization.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("en-US", "A/m", MagnetizationUnit.AmperePerMeter)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, MagnetizationUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            MagnetizationUnit parsedUnit = Magnetization.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "A/m", MagnetizationUnit.AmperePerMeter)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, MagnetizationUnit expectedUnit)
+        {
+            MagnetizationUnit parsedUnit = Magnetization.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("A/m", MagnetizationUnit.AmperePerMeter)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, MagnetizationUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(Magnetization.TryParseUnit(abbreviation, out MagnetizationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("A/m", MagnetizationUnit.AmperePerMeter)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, MagnetizationUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(Magnetization.TryParseUnit(abbreviation, out MagnetizationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "A/m", MagnetizationUnit.AmperePerMeter)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, MagnetizationUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(Magnetization.TryParseUnit(abbreviation, out MagnetizationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "A/m", MagnetizationUnit.AmperePerMeter)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, MagnetizationUnit expectedUnit)
+        {
+            Assert.True(Magnetization.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out MagnetizationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

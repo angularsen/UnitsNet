@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -282,69 +283,110 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("°/s²", RotationalAccelerationUnit.DegreePerSecondSquared)]
+        [InlineData("deg/s²", RotationalAccelerationUnit.DegreePerSecondSquared)]
+        [InlineData("rad/s²", RotationalAccelerationUnit.RadianPerSecondSquared)]
+        [InlineData("rpm/s", RotationalAccelerationUnit.RevolutionPerMinutePerSecond)]
+        [InlineData("r/s²", RotationalAccelerationUnit.RevolutionPerSecondSquared)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, RotationalAccelerationUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = RotationalAcceleration.ParseUnit("°/s²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RotationalAccelerationUnit.DegreePerSecondSquared, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalAcceleration.ParseUnit("deg/s²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RotationalAccelerationUnit.DegreePerSecondSquared, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalAcceleration.ParseUnit("rad/s²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RotationalAccelerationUnit.RadianPerSecondSquared, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalAcceleration.ParseUnit("rpm/s", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RotationalAccelerationUnit.RevolutionPerMinutePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = RotationalAcceleration.ParseUnit("r/s²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(RotationalAccelerationUnit.RevolutionPerSecondSquared, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            RotationalAccelerationUnit parsedUnit = RotationalAcceleration.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("°/s²", RotationalAccelerationUnit.DegreePerSecondSquared)]
+        [InlineData("deg/s²", RotationalAccelerationUnit.DegreePerSecondSquared)]
+        [InlineData("rad/s²", RotationalAccelerationUnit.RadianPerSecondSquared)]
+        [InlineData("rpm/s", RotationalAccelerationUnit.RevolutionPerMinutePerSecond)]
+        [InlineData("r/s²", RotationalAccelerationUnit.RevolutionPerSecondSquared)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, RotationalAccelerationUnit expectedUnit)
         {
-            {
-                Assert.True(RotationalAcceleration.TryParseUnit("°/s²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RotationalAccelerationUnit.DegreePerSecondSquared, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            RotationalAccelerationUnit parsedUnit = RotationalAcceleration.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(RotationalAcceleration.TryParseUnit("deg/s²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RotationalAccelerationUnit.DegreePerSecondSquared, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "°/s²", RotationalAccelerationUnit.DegreePerSecondSquared)]
+        [InlineData("en-US", "deg/s²", RotationalAccelerationUnit.DegreePerSecondSquared)]
+        [InlineData("en-US", "rad/s²", RotationalAccelerationUnit.RadianPerSecondSquared)]
+        [InlineData("en-US", "rpm/s", RotationalAccelerationUnit.RevolutionPerMinutePerSecond)]
+        [InlineData("en-US", "r/s²", RotationalAccelerationUnit.RevolutionPerSecondSquared)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, RotationalAccelerationUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            RotationalAccelerationUnit parsedUnit = RotationalAcceleration.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(RotationalAcceleration.TryParseUnit("rad/s²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RotationalAccelerationUnit.RadianPerSecondSquared, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "°/s²", RotationalAccelerationUnit.DegreePerSecondSquared)]
+        [InlineData("en-US", "deg/s²", RotationalAccelerationUnit.DegreePerSecondSquared)]
+        [InlineData("en-US", "rad/s²", RotationalAccelerationUnit.RadianPerSecondSquared)]
+        [InlineData("en-US", "rpm/s", RotationalAccelerationUnit.RevolutionPerMinutePerSecond)]
+        [InlineData("en-US", "r/s²", RotationalAccelerationUnit.RevolutionPerSecondSquared)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, RotationalAccelerationUnit expectedUnit)
+        {
+            RotationalAccelerationUnit parsedUnit = RotationalAcceleration.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(RotationalAcceleration.TryParseUnit("rpm/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RotationalAccelerationUnit.RevolutionPerMinutePerSecond, parsedUnit);
-            }
+        [Theory]
+        [InlineData("°/s²", RotationalAccelerationUnit.DegreePerSecondSquared)]
+        [InlineData("deg/s²", RotationalAccelerationUnit.DegreePerSecondSquared)]
+        [InlineData("rad/s²", RotationalAccelerationUnit.RadianPerSecondSquared)]
+        [InlineData("rpm/s", RotationalAccelerationUnit.RevolutionPerMinutePerSecond)]
+        [InlineData("r/s²", RotationalAccelerationUnit.RevolutionPerSecondSquared)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, RotationalAccelerationUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(RotationalAcceleration.TryParseUnit(abbreviation, out RotationalAccelerationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(RotationalAcceleration.TryParseUnit("r/s²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(RotationalAccelerationUnit.RevolutionPerSecondSquared, parsedUnit);
-            }
+        [Theory]
+        [InlineData("°/s²", RotationalAccelerationUnit.DegreePerSecondSquared)]
+        [InlineData("deg/s²", RotationalAccelerationUnit.DegreePerSecondSquared)]
+        [InlineData("rad/s²", RotationalAccelerationUnit.RadianPerSecondSquared)]
+        [InlineData("rpm/s", RotationalAccelerationUnit.RevolutionPerMinutePerSecond)]
+        [InlineData("r/s²", RotationalAccelerationUnit.RevolutionPerSecondSquared)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, RotationalAccelerationUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(RotationalAcceleration.TryParseUnit(abbreviation, out RotationalAccelerationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("en-US", "°/s²", RotationalAccelerationUnit.DegreePerSecondSquared)]
+        [InlineData("en-US", "deg/s²", RotationalAccelerationUnit.DegreePerSecondSquared)]
+        [InlineData("en-US", "rad/s²", RotationalAccelerationUnit.RadianPerSecondSquared)]
+        [InlineData("en-US", "rpm/s", RotationalAccelerationUnit.RevolutionPerMinutePerSecond)]
+        [InlineData("en-US", "r/s²", RotationalAccelerationUnit.RevolutionPerSecondSquared)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, RotationalAccelerationUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(RotationalAcceleration.TryParseUnit(abbreviation, out RotationalAccelerationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "°/s²", RotationalAccelerationUnit.DegreePerSecondSquared)]
+        [InlineData("en-US", "deg/s²", RotationalAccelerationUnit.DegreePerSecondSquared)]
+        [InlineData("en-US", "rad/s²", RotationalAccelerationUnit.RadianPerSecondSquared)]
+        [InlineData("en-US", "rpm/s", RotationalAccelerationUnit.RevolutionPerMinutePerSecond)]
+        [InlineData("en-US", "r/s²", RotationalAccelerationUnit.RevolutionPerSecondSquared)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, RotationalAccelerationUnit expectedUnit)
+        {
+            Assert.True(RotationalAcceleration.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out RotationalAccelerationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

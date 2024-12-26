@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -200,25 +201,78 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("IU", VitaminAUnit.InternationalUnit)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, VitaminAUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = VitaminA.ParseUnit("IU", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VitaminAUnit.InternationalUnit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            VitaminAUnit parsedUnit = VitaminA.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("IU", VitaminAUnit.InternationalUnit)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, VitaminAUnit expectedUnit)
         {
-            {
-                Assert.True(VitaminA.TryParseUnit("IU", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VitaminAUnit.InternationalUnit, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            VitaminAUnit parsedUnit = VitaminA.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("en-US", "IU", VitaminAUnit.InternationalUnit)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, VitaminAUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            VitaminAUnit parsedUnit = VitaminA.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "IU", VitaminAUnit.InternationalUnit)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, VitaminAUnit expectedUnit)
+        {
+            VitaminAUnit parsedUnit = VitaminA.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("IU", VitaminAUnit.InternationalUnit)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, VitaminAUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(VitaminA.TryParseUnit(abbreviation, out VitaminAUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("IU", VitaminAUnit.InternationalUnit)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, VitaminAUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(VitaminA.TryParseUnit(abbreviation, out VitaminAUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "IU", VitaminAUnit.InternationalUnit)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, VitaminAUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(VitaminA.TryParseUnit(abbreviation, out VitaminAUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "IU", VitaminAUnit.InternationalUnit)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, VitaminAUnit expectedUnit)
+        {
+            Assert.True(VitaminA.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out VitaminAUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

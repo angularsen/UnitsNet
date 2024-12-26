@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -246,47 +247,94 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("kVAh", ApparentEnergyUnit.KilovoltampereHour)]
+        [InlineData("MVAh", ApparentEnergyUnit.MegavoltampereHour)]
+        [InlineData("VAh", ApparentEnergyUnit.VoltampereHour)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ApparentEnergyUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = ApparentEnergy.ParseUnit("kVAh", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ApparentEnergyUnit.KilovoltampereHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ApparentEnergy.ParseUnit("MVAh", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ApparentEnergyUnit.MegavoltampereHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ApparentEnergy.ParseUnit("VAh", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ApparentEnergyUnit.VoltampereHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            ApparentEnergyUnit parsedUnit = ApparentEnergy.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("kVAh", ApparentEnergyUnit.KilovoltampereHour)]
+        [InlineData("MVAh", ApparentEnergyUnit.MegavoltampereHour)]
+        [InlineData("VAh", ApparentEnergyUnit.VoltampereHour)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ApparentEnergyUnit expectedUnit)
         {
-            {
-                Assert.True(ApparentEnergy.TryParseUnit("kVAh", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ApparentEnergyUnit.KilovoltampereHour, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            ApparentEnergyUnit parsedUnit = ApparentEnergy.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ApparentEnergy.TryParseUnit("MVAh", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ApparentEnergyUnit.MegavoltampereHour, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "kVAh", ApparentEnergyUnit.KilovoltampereHour)]
+        [InlineData("en-US", "MVAh", ApparentEnergyUnit.MegavoltampereHour)]
+        [InlineData("en-US", "VAh", ApparentEnergyUnit.VoltampereHour)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, ApparentEnergyUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            ApparentEnergyUnit parsedUnit = ApparentEnergy.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ApparentEnergy.TryParseUnit("VAh", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ApparentEnergyUnit.VoltampereHour, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "kVAh", ApparentEnergyUnit.KilovoltampereHour)]
+        [InlineData("en-US", "MVAh", ApparentEnergyUnit.MegavoltampereHour)]
+        [InlineData("en-US", "VAh", ApparentEnergyUnit.VoltampereHour)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, ApparentEnergyUnit expectedUnit)
+        {
+            ApparentEnergyUnit parsedUnit = ApparentEnergy.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("kVAh", ApparentEnergyUnit.KilovoltampereHour)]
+        [InlineData("MVAh", ApparentEnergyUnit.MegavoltampereHour)]
+        [InlineData("VAh", ApparentEnergyUnit.VoltampereHour)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ApparentEnergyUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(ApparentEnergy.TryParseUnit(abbreviation, out ApparentEnergyUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("kVAh", ApparentEnergyUnit.KilovoltampereHour)]
+        [InlineData("MVAh", ApparentEnergyUnit.MegavoltampereHour)]
+        [InlineData("VAh", ApparentEnergyUnit.VoltampereHour)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ApparentEnergyUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(ApparentEnergy.TryParseUnit(abbreviation, out ApparentEnergyUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "kVAh", ApparentEnergyUnit.KilovoltampereHour)]
+        [InlineData("en-US", "MVAh", ApparentEnergyUnit.MegavoltampereHour)]
+        [InlineData("en-US", "VAh", ApparentEnergyUnit.VoltampereHour)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, ApparentEnergyUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(ApparentEnergy.TryParseUnit(abbreviation, out ApparentEnergyUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "kVAh", ApparentEnergyUnit.KilovoltampereHour)]
+        [InlineData("en-US", "MVAh", ApparentEnergyUnit.MegavoltampereHour)]
+        [InlineData("en-US", "VAh", ApparentEnergyUnit.VoltampereHour)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, ApparentEnergyUnit expectedUnit)
+        {
+            Assert.True(ApparentEnergy.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ApparentEnergyUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

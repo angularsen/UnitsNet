@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -269,58 +270,102 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("g/(kN�s)", SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond)]
+        [InlineData("kg/(kgf�h)", SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour)]
+        [InlineData("kg/(kN�s)", SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond)]
+        [InlineData("lb/(lbf·h)", SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, SpecificFuelConsumptionUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = SpecificFuelConsumption.ParseUnit("g/(kN�s)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = SpecificFuelConsumption.ParseUnit("kg/(kgf�h)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = SpecificFuelConsumption.ParseUnit("kg/(kN�s)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = SpecificFuelConsumption.ParseUnit("lb/(lbf·h)", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            SpecificFuelConsumptionUnit parsedUnit = SpecificFuelConsumption.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("g/(kN�s)", SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond)]
+        [InlineData("kg/(kgf�h)", SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour)]
+        [InlineData("kg/(kN�s)", SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond)]
+        [InlineData("lb/(lbf·h)", SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, SpecificFuelConsumptionUnit expectedUnit)
         {
-            {
-                Assert.True(SpecificFuelConsumption.TryParseUnit("g/(kN�s)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            SpecificFuelConsumptionUnit parsedUnit = SpecificFuelConsumption.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(SpecificFuelConsumption.TryParseUnit("kg/(kgf�h)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "g/(kN�s)", SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond)]
+        [InlineData("en-US", "kg/(kgf�h)", SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour)]
+        [InlineData("en-US", "kg/(kN�s)", SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond)]
+        [InlineData("en-US", "lb/(lbf·h)", SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, SpecificFuelConsumptionUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            SpecificFuelConsumptionUnit parsedUnit = SpecificFuelConsumption.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(SpecificFuelConsumption.TryParseUnit("kg/(kN�s)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "g/(kN�s)", SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond)]
+        [InlineData("en-US", "kg/(kgf�h)", SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour)]
+        [InlineData("en-US", "kg/(kN�s)", SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond)]
+        [InlineData("en-US", "lb/(lbf·h)", SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, SpecificFuelConsumptionUnit expectedUnit)
+        {
+            SpecificFuelConsumptionUnit parsedUnit = SpecificFuelConsumption.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(SpecificFuelConsumption.TryParseUnit("lb/(lbf·h)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, parsedUnit);
-            }
+        [Theory]
+        [InlineData("g/(kN�s)", SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond)]
+        [InlineData("kg/(kgf�h)", SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour)]
+        [InlineData("kg/(kN�s)", SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond)]
+        [InlineData("lb/(lbf·h)", SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, SpecificFuelConsumptionUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(SpecificFuelConsumption.TryParseUnit(abbreviation, out SpecificFuelConsumptionUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("g/(kN�s)", SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond)]
+        [InlineData("kg/(kgf�h)", SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour)]
+        [InlineData("kg/(kN�s)", SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond)]
+        [InlineData("lb/(lbf·h)", SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, SpecificFuelConsumptionUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(SpecificFuelConsumption.TryParseUnit(abbreviation, out SpecificFuelConsumptionUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "g/(kN�s)", SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond)]
+        [InlineData("en-US", "kg/(kgf�h)", SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour)]
+        [InlineData("en-US", "kg/(kN�s)", SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond)]
+        [InlineData("en-US", "lb/(lbf·h)", SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, SpecificFuelConsumptionUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(SpecificFuelConsumption.TryParseUnit(abbreviation, out SpecificFuelConsumptionUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "g/(kN�s)", SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond)]
+        [InlineData("en-US", "kg/(kgf�h)", SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour)]
+        [InlineData("en-US", "kg/(kN�s)", SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond)]
+        [InlineData("en-US", "lb/(lbf·h)", SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, SpecificFuelConsumptionUnit expectedUnit)
+        {
+            Assert.True(SpecificFuelConsumption.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out SpecificFuelConsumptionUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

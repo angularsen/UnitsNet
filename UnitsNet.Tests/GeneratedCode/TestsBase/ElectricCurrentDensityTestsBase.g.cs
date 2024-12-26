@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -246,47 +247,94 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("A/ft²", ElectricCurrentDensityUnit.AmperePerSquareFoot)]
+        [InlineData("A/in²", ElectricCurrentDensityUnit.AmperePerSquareInch)]
+        [InlineData("A/m²", ElectricCurrentDensityUnit.AmperePerSquareMeter)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ElectricCurrentDensityUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = ElectricCurrentDensity.ParseUnit("A/ft²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricCurrentDensityUnit.AmperePerSquareFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricCurrentDensity.ParseUnit("A/in²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricCurrentDensityUnit.AmperePerSquareInch, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsedUnit = ElectricCurrentDensity.ParseUnit("A/m²", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricCurrentDensityUnit.AmperePerSquareMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            ElectricCurrentDensityUnit parsedUnit = ElectricCurrentDensity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("A/ft²", ElectricCurrentDensityUnit.AmperePerSquareFoot)]
+        [InlineData("A/in²", ElectricCurrentDensityUnit.AmperePerSquareInch)]
+        [InlineData("A/m²", ElectricCurrentDensityUnit.AmperePerSquareMeter)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ElectricCurrentDensityUnit expectedUnit)
         {
-            {
-                Assert.True(ElectricCurrentDensity.TryParseUnit("A/ft²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricCurrentDensityUnit.AmperePerSquareFoot, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            ElectricCurrentDensityUnit parsedUnit = ElectricCurrentDensity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ElectricCurrentDensity.TryParseUnit("A/in²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricCurrentDensityUnit.AmperePerSquareInch, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "A/ft²", ElectricCurrentDensityUnit.AmperePerSquareFoot)]
+        [InlineData("en-US", "A/in²", ElectricCurrentDensityUnit.AmperePerSquareInch)]
+        [InlineData("en-US", "A/m²", ElectricCurrentDensityUnit.AmperePerSquareMeter)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, ElectricCurrentDensityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            ElectricCurrentDensityUnit parsedUnit = ElectricCurrentDensity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
-            {
-                Assert.True(ElectricCurrentDensity.TryParseUnit("A/m²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricCurrentDensityUnit.AmperePerSquareMeter, parsedUnit);
-            }
+        [Theory]
+        [InlineData("en-US", "A/ft²", ElectricCurrentDensityUnit.AmperePerSquareFoot)]
+        [InlineData("en-US", "A/in²", ElectricCurrentDensityUnit.AmperePerSquareInch)]
+        [InlineData("en-US", "A/m²", ElectricCurrentDensityUnit.AmperePerSquareMeter)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, ElectricCurrentDensityUnit expectedUnit)
+        {
+            ElectricCurrentDensityUnit parsedUnit = ElectricCurrentDensity.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("A/ft²", ElectricCurrentDensityUnit.AmperePerSquareFoot)]
+        [InlineData("A/in²", ElectricCurrentDensityUnit.AmperePerSquareInch)]
+        [InlineData("A/m²", ElectricCurrentDensityUnit.AmperePerSquareMeter)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ElectricCurrentDensityUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(ElectricCurrentDensity.TryParseUnit(abbreviation, out ElectricCurrentDensityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("A/ft²", ElectricCurrentDensityUnit.AmperePerSquareFoot)]
+        [InlineData("A/in²", ElectricCurrentDensityUnit.AmperePerSquareInch)]
+        [InlineData("A/m²", ElectricCurrentDensityUnit.AmperePerSquareMeter)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ElectricCurrentDensityUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(ElectricCurrentDensity.TryParseUnit(abbreviation, out ElectricCurrentDensityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "A/ft²", ElectricCurrentDensityUnit.AmperePerSquareFoot)]
+        [InlineData("en-US", "A/in²", ElectricCurrentDensityUnit.AmperePerSquareInch)]
+        [InlineData("en-US", "A/m²", ElectricCurrentDensityUnit.AmperePerSquareMeter)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, ElectricCurrentDensityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(ElectricCurrentDensity.TryParseUnit(abbreviation, out ElectricCurrentDensityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "A/ft²", ElectricCurrentDensityUnit.AmperePerSquareFoot)]
+        [InlineData("en-US", "A/in²", ElectricCurrentDensityUnit.AmperePerSquareInch)]
+        [InlineData("en-US", "A/m²", ElectricCurrentDensityUnit.AmperePerSquareMeter)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, ElectricCurrentDensityUnit expectedUnit)
+        {
+            Assert.True(ElectricCurrentDensity.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ElectricCurrentDensityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

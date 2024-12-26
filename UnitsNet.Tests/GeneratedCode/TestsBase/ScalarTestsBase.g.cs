@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -200,25 +201,78 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("", ScalarUnit.Amount)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ScalarUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = Scalar.ParseUnit("", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ScalarUnit.Amount, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            ScalarUnit parsedUnit = Scalar.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("", ScalarUnit.Amount)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ScalarUnit expectedUnit)
         {
-            {
-                Assert.True(Scalar.TryParseUnit("", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ScalarUnit.Amount, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            ScalarUnit parsedUnit = Scalar.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("en-US", "", ScalarUnit.Amount)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, ScalarUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            ScalarUnit parsedUnit = Scalar.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "", ScalarUnit.Amount)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, ScalarUnit expectedUnit)
+        {
+            ScalarUnit parsedUnit = Scalar.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("", ScalarUnit.Amount)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ScalarUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(Scalar.TryParseUnit(abbreviation, out ScalarUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("", ScalarUnit.Amount)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ScalarUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(Scalar.TryParseUnit(abbreviation, out ScalarUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "", ScalarUnit.Amount)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, ScalarUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(Scalar.TryParseUnit(abbreviation, out ScalarUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "", ScalarUnit.Amount)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, ScalarUnit expectedUnit)
+        {
+            Assert.True(Scalar.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ScalarUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

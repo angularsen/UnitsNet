@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -200,25 +201,78 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("C/m³", ElectricChargeDensityUnit.CoulombPerCubicMeter)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ElectricChargeDensityUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = ElectricChargeDensity.ParseUnit("C/m³", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(ElectricChargeDensityUnit.CoulombPerCubicMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            ElectricChargeDensityUnit parsedUnit = ElectricChargeDensity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("C/m³", ElectricChargeDensityUnit.CoulombPerCubicMeter)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ElectricChargeDensityUnit expectedUnit)
         {
-            {
-                Assert.True(ElectricChargeDensity.TryParseUnit("C/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(ElectricChargeDensityUnit.CoulombPerCubicMeter, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            ElectricChargeDensityUnit parsedUnit = ElectricChargeDensity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("en-US", "C/m³", ElectricChargeDensityUnit.CoulombPerCubicMeter)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, ElectricChargeDensityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            ElectricChargeDensityUnit parsedUnit = ElectricChargeDensity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "C/m³", ElectricChargeDensityUnit.CoulombPerCubicMeter)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, ElectricChargeDensityUnit expectedUnit)
+        {
+            ElectricChargeDensityUnit parsedUnit = ElectricChargeDensity.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("C/m³", ElectricChargeDensityUnit.CoulombPerCubicMeter)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ElectricChargeDensityUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(ElectricChargeDensity.TryParseUnit(abbreviation, out ElectricChargeDensityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("C/m³", ElectricChargeDensityUnit.CoulombPerCubicMeter)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ElectricChargeDensityUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(ElectricChargeDensity.TryParseUnit(abbreviation, out ElectricChargeDensityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "C/m³", ElectricChargeDensityUnit.CoulombPerCubicMeter)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, ElectricChargeDensityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(ElectricChargeDensity.TryParseUnit(abbreviation, out ElectricChargeDensityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "C/m³", ElectricChargeDensityUnit.CoulombPerCubicMeter)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, ElectricChargeDensityUnit expectedUnit)
+        {
+            Assert.True(ElectricChargeDensity.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ElectricChargeDensityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]

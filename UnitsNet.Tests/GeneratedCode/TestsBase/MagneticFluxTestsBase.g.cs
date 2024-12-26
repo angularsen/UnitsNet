@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -200,25 +201,78 @@ namespace UnitsNet.Tests
 
         }
 
-        [Fact]
-        public void ParseUnit()
+        [Theory]
+        [InlineData("Wb", MagneticFluxUnit.Weber)]
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, MagneticFluxUnit expectedUnit)
         {
-            try
-            {
-                var parsedUnit = MagneticFlux.ParseUnit("Wb", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(MagneticFluxUnit.Weber, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            MagneticFluxUnit parsedUnit = MagneticFlux.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
-        [Fact]
-        public void TryParseUnit()
+        [Theory]
+        [InlineData("Wb", MagneticFluxUnit.Weber)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, MagneticFluxUnit expectedUnit)
         {
-            {
-                Assert.True(MagneticFlux.TryParseUnit("Wb", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MagneticFluxUnit.Weber, parsedUnit);
-            }
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            MagneticFluxUnit parsedUnit = MagneticFlux.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
 
+        [Theory]
+        [InlineData("en-US", "Wb", MagneticFluxUnit.Weber)]
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, MagneticFluxUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            MagneticFluxUnit parsedUnit = MagneticFlux.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "Wb", MagneticFluxUnit.Weber)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, MagneticFluxUnit expectedUnit)
+        {
+            MagneticFluxUnit parsedUnit = MagneticFlux.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("Wb", MagneticFluxUnit.Weber)]
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, MagneticFluxUnit expectedUnit)
+        {
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(MagneticFlux.TryParseUnit(abbreviation, out MagneticFluxUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("Wb", MagneticFluxUnit.Weber)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, MagneticFluxUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            Assert.True(MagneticFlux.TryParseUnit(abbreviation, out MagneticFluxUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "Wb", MagneticFluxUnit.Weber)]
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, MagneticFluxUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(MagneticFlux.TryParseUnit(abbreviation, out MagneticFluxUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "Wb", MagneticFluxUnit.Weber)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, MagneticFluxUnit expectedUnit)
+        {
+            Assert.True(MagneticFlux.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out MagneticFluxUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
