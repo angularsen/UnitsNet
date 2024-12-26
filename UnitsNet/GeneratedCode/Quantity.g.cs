@@ -54,7 +54,6 @@ namespace UnitsNet
             { "CoefficientOfThermalExpansion", CoefficientOfThermalExpansion.Info },
             { "Compressibility", Compressibility.Info },
             { "Density", Density.Info },
-            { "DoseAreaProduct", DoseAreaProduct.Info },
             { "Duration", Duration.Info },
             { "DynamicViscosity", DynamicViscosity.Info },
             { "ElectricAdmittance", ElectricAdmittance.Info },
@@ -192,7 +191,6 @@ namespace UnitsNet
                 "CoefficientOfThermalExpansion" => CoefficientOfThermalExpansion.From(value, CoefficientOfThermalExpansion.BaseUnit),
                 "Compressibility" => Compressibility.From(value, Compressibility.BaseUnit),
                 "Density" => Density.From(value, Density.BaseUnit),
-                "DoseAreaProduct" => DoseAreaProduct.From(value, DoseAreaProduct.BaseUnit),
                 "Duration" => Duration.From(value, Duration.BaseUnit),
                 "DynamicViscosity" => DynamicViscosity.From(value, DynamicViscosity.BaseUnit),
                 "ElectricAdmittance" => ElectricAdmittance.From(value, ElectricAdmittance.BaseUnit),
@@ -333,7 +331,6 @@ namespace UnitsNet
                 CoefficientOfThermalExpansionUnit coefficientOfThermalExpansionUnit => CoefficientOfThermalExpansion.From(value, coefficientOfThermalExpansionUnit),
                 CompressibilityUnit compressibilityUnit => Compressibility.From(value, compressibilityUnit),
                 DensityUnit densityUnit => Density.From(value, densityUnit),
-                DoseAreaProductUnit doseAreaProductUnit => DoseAreaProduct.From(value, doseAreaProductUnit),
                 DurationUnit durationUnit => Duration.From(value, durationUnit),
                 DynamicViscosityUnit dynamicViscosityUnit => DynamicViscosity.From(value, dynamicViscosityUnit),
                 ElectricAdmittanceUnit electricAdmittanceUnit => ElectricAdmittance.From(value, electricAdmittanceUnit),
@@ -484,7 +481,6 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(CoefficientOfThermalExpansion) => parser.TryParse<CoefficientOfThermalExpansion, CoefficientOfThermalExpansionUnit>(quantityString, formatProvider, CoefficientOfThermalExpansion.From, out quantity),
                 Type _ when quantityType == typeof(Compressibility) => parser.TryParse<Compressibility, CompressibilityUnit>(quantityString, formatProvider, Compressibility.From, out quantity),
                 Type _ when quantityType == typeof(Density) => parser.TryParse<Density, DensityUnit>(quantityString, formatProvider, Density.From, out quantity),
-                Type _ when quantityType == typeof(DoseAreaProduct) => parser.TryParse<DoseAreaProduct, DoseAreaProductUnit>(quantityString, formatProvider, DoseAreaProduct.From, out quantity),
                 Type _ when quantityType == typeof(Duration) => parser.TryParse<Duration, DurationUnit>(quantityString, formatProvider, Duration.From, out quantity),
                 Type _ when quantityType == typeof(DynamicViscosity) => parser.TryParse<DynamicViscosity, DynamicViscosityUnit>(quantityString, formatProvider, DynamicViscosity.From, out quantity),
                 Type _ when quantityType == typeof(ElectricAdmittance) => parser.TryParse<ElectricAdmittance, ElectricAdmittanceUnit>(quantityString, formatProvider, ElectricAdmittance.From, out quantity),
@@ -616,7 +612,6 @@ namespace UnitsNet
             yield return typeof(CoefficientOfThermalExpansion);
             yield return typeof(Compressibility);
             yield return typeof(Density);
-            yield return typeof(DoseAreaProduct);
             yield return typeof(Duration);
             yield return typeof(DynamicViscosity);
             yield return typeof(ElectricAdmittance);
