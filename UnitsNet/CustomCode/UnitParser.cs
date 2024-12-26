@@ -46,7 +46,7 @@ namespace UnitsNet
         /// <typeparam name="TUnitType"></typeparam>
         /// <returns></returns>
         public TUnitType Parse<TUnitType>(string unitAbbreviation, IFormatProvider? formatProvider = null)
-            where TUnitType : Enum
+            where TUnitType : struct, Enum
         {
             return (TUnitType)Parse(unitAbbreviation, typeof(TUnitType), formatProvider);
         }
@@ -205,7 +205,7 @@ namespace UnitsNet
             {
                 return false;
             }
-        
+
             unit = matches[0].Unit;
             return true;
         }

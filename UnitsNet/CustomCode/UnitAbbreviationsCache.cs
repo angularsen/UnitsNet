@@ -88,7 +88,7 @@ namespace UnitsNet
         /// <param name="unit">The unit enum value.</param>
         /// <param name="abbreviations">Unit abbreviations to add.</param>
         /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
-        public void MapUnitToAbbreviation<TUnitType>(TUnitType unit, params string[] abbreviations) where TUnitType : Enum
+        public void MapUnitToAbbreviation<TUnitType>(TUnitType unit, params string[] abbreviations) where TUnitType : struct, Enum
         {
             PerformAbbreviationMapping(unit, CultureInfo.CurrentCulture, false, abbreviations);
         }
@@ -101,7 +101,7 @@ namespace UnitsNet
         /// <param name="unit">The unit enum value.</param>
         /// <param name="abbreviation">Unit abbreviations to add as default.</param>
         /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
-        public void MapUnitToDefaultAbbreviation<TUnitType>(TUnitType unit, string abbreviation) where TUnitType : Enum
+        public void MapUnitToDefaultAbbreviation<TUnitType>(TUnitType unit, string abbreviation) where TUnitType : struct, Enum
         {
             PerformAbbreviationMapping(unit, CultureInfo.CurrentCulture, true, abbreviation);
         }
@@ -115,7 +115,7 @@ namespace UnitsNet
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <param name="abbreviations">Unit abbreviations to add.</param>
         /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
-        public void MapUnitToAbbreviation<TUnitType>(TUnitType unit, IFormatProvider? formatProvider, params string[] abbreviations) where TUnitType : Enum
+        public void MapUnitToAbbreviation<TUnitType>(TUnitType unit, IFormatProvider? formatProvider, params string[] abbreviations) where TUnitType : struct, Enum
         {
             PerformAbbreviationMapping(unit, formatProvider, false, abbreviations);
         }
@@ -129,7 +129,7 @@ namespace UnitsNet
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <param name="abbreviation">Unit abbreviation to add as default.</param>
         /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
-        public void MapUnitToDefaultAbbreviation<TUnitType>(TUnitType unit, IFormatProvider? formatProvider, string abbreviation) where TUnitType : Enum
+        public void MapUnitToDefaultAbbreviation<TUnitType>(TUnitType unit, IFormatProvider? formatProvider, string abbreviation) where TUnitType : struct, Enum
         {
             PerformAbbreviationMapping(unit, formatProvider, true, abbreviation);
         }
@@ -183,7 +183,7 @@ namespace UnitsNet
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
         /// <returns>The default unit abbreviation string.</returns>
-        public string GetDefaultAbbreviation<TUnitType>(TUnitType unit, IFormatProvider? formatProvider = null) where TUnitType : Enum
+        public string GetDefaultAbbreviation<TUnitType>(TUnitType unit, IFormatProvider? formatProvider = null) where TUnitType : struct, Enum
         {
             Type unitType = typeof(TUnitType);
 
@@ -215,7 +215,7 @@ namespace UnitsNet
         /// <param name="unit">Enum value for unit.</param>
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <returns>Unit abbreviations associated with unit.</returns>
-        public string[] GetUnitAbbreviations<TUnitType>(TUnitType unit, IFormatProvider? formatProvider = null) where TUnitType : Enum
+        public string[] GetUnitAbbreviations<TUnitType>(TUnitType unit, IFormatProvider? formatProvider = null) where TUnitType : struct, Enum
         {
             return GetUnitAbbreviations(typeof(TUnitType), Convert.ToInt32(unit), formatProvider);
         }
