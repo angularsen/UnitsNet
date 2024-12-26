@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -250,10 +251,23 @@ namespace UnitsNet.Tests
         [InlineData("mmol/kg", MolalityUnit.MillimolePerKilogram)]
         [InlineData("mol/g", MolalityUnit.MolePerGram)]
         [InlineData("mol/kg", MolalityUnit.MolePerKilogram)]
-        public void ParseUnit(string abbreviation, MolalityUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, MolalityUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            MolalityUnit parsedUnit = Molality.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            MolalityUnit parsedUnit = Molality.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("mmol/kg", MolalityUnit.MillimolePerKilogram)]
+        [InlineData("mol/g", MolalityUnit.MolePerGram)]
+        [InlineData("mol/kg", MolalityUnit.MolePerKilogram)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, MolalityUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            MolalityUnit parsedUnit = Molality.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -261,7 +275,18 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "mmol/kg", MolalityUnit.MillimolePerKilogram)]
         [InlineData("en-US", "mol/g", MolalityUnit.MolePerGram)]
         [InlineData("en-US", "mol/kg", MolalityUnit.MolePerKilogram)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, MolalityUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, MolalityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            MolalityUnit parsedUnit = Molality.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "mmol/kg", MolalityUnit.MillimolePerKilogram)]
+        [InlineData("en-US", "mol/g", MolalityUnit.MolePerGram)]
+        [InlineData("en-US", "mol/kg", MolalityUnit.MolePerKilogram)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, MolalityUnit expectedUnit)
         {
             MolalityUnit parsedUnit = Molality.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -271,9 +296,22 @@ namespace UnitsNet.Tests
         [InlineData("mmol/kg", MolalityUnit.MillimolePerKilogram)]
         [InlineData("mol/g", MolalityUnit.MolePerGram)]
         [InlineData("mol/kg", MolalityUnit.MolePerKilogram)]
-        public void TryParseUnit(string abbreviation, MolalityUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, MolalityUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(Molality.TryParseUnit(abbreviation, out MolalityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("mmol/kg", MolalityUnit.MillimolePerKilogram)]
+        [InlineData("mol/g", MolalityUnit.MolePerGram)]
+        [InlineData("mol/kg", MolalityUnit.MolePerKilogram)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, MolalityUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(Molality.TryParseUnit(abbreviation, out MolalityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -282,7 +320,18 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "mmol/kg", MolalityUnit.MillimolePerKilogram)]
         [InlineData("en-US", "mol/g", MolalityUnit.MolePerGram)]
         [InlineData("en-US", "mol/kg", MolalityUnit.MolePerKilogram)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, MolalityUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, MolalityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(Molality.TryParseUnit(abbreviation, out MolalityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "mmol/kg", MolalityUnit.MillimolePerKilogram)]
+        [InlineData("en-US", "mol/g", MolalityUnit.MolePerGram)]
+        [InlineData("en-US", "mol/kg", MolalityUnit.MolePerKilogram)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, MolalityUnit expectedUnit)
         {
             Assert.True(Molality.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out MolalityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

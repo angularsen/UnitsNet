@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -346,10 +347,27 @@ namespace UnitsNet.Tests
         [InlineData("A/s", ElectricCurrentGradientUnit.AmperePerSecond)]
         [InlineData("mA/min", ElectricCurrentGradientUnit.MilliamperePerMinute)]
         [InlineData("mA/s", ElectricCurrentGradientUnit.MilliamperePerSecond)]
-        public void ParseUnit(string abbreviation, ElectricCurrentGradientUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ElectricCurrentGradientUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            ElectricCurrentGradientUnit parsedUnit = ElectricCurrentGradient.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            ElectricCurrentGradientUnit parsedUnit = ElectricCurrentGradient.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("A/μs", ElectricCurrentGradientUnit.AmperePerMicrosecond)]
+        [InlineData("A/ms", ElectricCurrentGradientUnit.AmperePerMillisecond)]
+        [InlineData("A/min", ElectricCurrentGradientUnit.AmperePerMinute)]
+        [InlineData("A/ns", ElectricCurrentGradientUnit.AmperePerNanosecond)]
+        [InlineData("A/s", ElectricCurrentGradientUnit.AmperePerSecond)]
+        [InlineData("mA/min", ElectricCurrentGradientUnit.MilliamperePerMinute)]
+        [InlineData("mA/s", ElectricCurrentGradientUnit.MilliamperePerSecond)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ElectricCurrentGradientUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            ElectricCurrentGradientUnit parsedUnit = ElectricCurrentGradient.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -361,7 +379,22 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "A/s", ElectricCurrentGradientUnit.AmperePerSecond)]
         [InlineData("en-US", "mA/min", ElectricCurrentGradientUnit.MilliamperePerMinute)]
         [InlineData("en-US", "mA/s", ElectricCurrentGradientUnit.MilliamperePerSecond)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, ElectricCurrentGradientUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, ElectricCurrentGradientUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            ElectricCurrentGradientUnit parsedUnit = ElectricCurrentGradient.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "A/μs", ElectricCurrentGradientUnit.AmperePerMicrosecond)]
+        [InlineData("en-US", "A/ms", ElectricCurrentGradientUnit.AmperePerMillisecond)]
+        [InlineData("en-US", "A/min", ElectricCurrentGradientUnit.AmperePerMinute)]
+        [InlineData("en-US", "A/ns", ElectricCurrentGradientUnit.AmperePerNanosecond)]
+        [InlineData("en-US", "A/s", ElectricCurrentGradientUnit.AmperePerSecond)]
+        [InlineData("en-US", "mA/min", ElectricCurrentGradientUnit.MilliamperePerMinute)]
+        [InlineData("en-US", "mA/s", ElectricCurrentGradientUnit.MilliamperePerSecond)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, ElectricCurrentGradientUnit expectedUnit)
         {
             ElectricCurrentGradientUnit parsedUnit = ElectricCurrentGradient.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -375,9 +408,26 @@ namespace UnitsNet.Tests
         [InlineData("A/s", ElectricCurrentGradientUnit.AmperePerSecond)]
         [InlineData("mA/min", ElectricCurrentGradientUnit.MilliamperePerMinute)]
         [InlineData("mA/s", ElectricCurrentGradientUnit.MilliamperePerSecond)]
-        public void TryParseUnit(string abbreviation, ElectricCurrentGradientUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ElectricCurrentGradientUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(ElectricCurrentGradient.TryParseUnit(abbreviation, out ElectricCurrentGradientUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("A/μs", ElectricCurrentGradientUnit.AmperePerMicrosecond)]
+        [InlineData("A/ms", ElectricCurrentGradientUnit.AmperePerMillisecond)]
+        [InlineData("A/min", ElectricCurrentGradientUnit.AmperePerMinute)]
+        [InlineData("A/ns", ElectricCurrentGradientUnit.AmperePerNanosecond)]
+        [InlineData("A/s", ElectricCurrentGradientUnit.AmperePerSecond)]
+        [InlineData("mA/min", ElectricCurrentGradientUnit.MilliamperePerMinute)]
+        [InlineData("mA/s", ElectricCurrentGradientUnit.MilliamperePerSecond)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ElectricCurrentGradientUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(ElectricCurrentGradient.TryParseUnit(abbreviation, out ElectricCurrentGradientUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -390,7 +440,22 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "A/s", ElectricCurrentGradientUnit.AmperePerSecond)]
         [InlineData("en-US", "mA/min", ElectricCurrentGradientUnit.MilliamperePerMinute)]
         [InlineData("en-US", "mA/s", ElectricCurrentGradientUnit.MilliamperePerSecond)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, ElectricCurrentGradientUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, ElectricCurrentGradientUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(ElectricCurrentGradient.TryParseUnit(abbreviation, out ElectricCurrentGradientUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "A/μs", ElectricCurrentGradientUnit.AmperePerMicrosecond)]
+        [InlineData("en-US", "A/ms", ElectricCurrentGradientUnit.AmperePerMillisecond)]
+        [InlineData("en-US", "A/min", ElectricCurrentGradientUnit.AmperePerMinute)]
+        [InlineData("en-US", "A/ns", ElectricCurrentGradientUnit.AmperePerNanosecond)]
+        [InlineData("en-US", "A/s", ElectricCurrentGradientUnit.AmperePerSecond)]
+        [InlineData("en-US", "mA/min", ElectricCurrentGradientUnit.MilliamperePerMinute)]
+        [InlineData("en-US", "mA/s", ElectricCurrentGradientUnit.MilliamperePerSecond)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, ElectricCurrentGradientUnit expectedUnit)
         {
             Assert.True(ElectricCurrentGradient.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ElectricCurrentGradientUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

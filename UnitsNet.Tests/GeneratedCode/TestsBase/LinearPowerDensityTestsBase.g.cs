@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -718,10 +719,45 @@ namespace UnitsNet.Tests
         [InlineData("W/in", LinearPowerDensityUnit.WattPerInch)]
         [InlineData("W/m", LinearPowerDensityUnit.WattPerMeter)]
         [InlineData("W/mm", LinearPowerDensityUnit.WattPerMillimeter)]
-        public void ParseUnit(string abbreviation, LinearPowerDensityUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, LinearPowerDensityUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            LinearPowerDensityUnit parsedUnit = LinearPowerDensity.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            LinearPowerDensityUnit parsedUnit = LinearPowerDensity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("GW/cm", LinearPowerDensityUnit.GigawattPerCentimeter)]
+        [InlineData("GW/ft", LinearPowerDensityUnit.GigawattPerFoot)]
+        [InlineData("GW/in", LinearPowerDensityUnit.GigawattPerInch)]
+        [InlineData("GW/m", LinearPowerDensityUnit.GigawattPerMeter)]
+        [InlineData("GW/mm", LinearPowerDensityUnit.GigawattPerMillimeter)]
+        [InlineData("kW/cm", LinearPowerDensityUnit.KilowattPerCentimeter)]
+        [InlineData("kW/ft", LinearPowerDensityUnit.KilowattPerFoot)]
+        [InlineData("kW/in", LinearPowerDensityUnit.KilowattPerInch)]
+        [InlineData("kW/m", LinearPowerDensityUnit.KilowattPerMeter)]
+        [InlineData("kW/mm", LinearPowerDensityUnit.KilowattPerMillimeter)]
+        [InlineData("MW/cm", LinearPowerDensityUnit.MegawattPerCentimeter)]
+        [InlineData("MW/ft", LinearPowerDensityUnit.MegawattPerFoot)]
+        [InlineData("MW/in", LinearPowerDensityUnit.MegawattPerInch)]
+        [InlineData("MW/m", LinearPowerDensityUnit.MegawattPerMeter)]
+        [InlineData("MW/mm", LinearPowerDensityUnit.MegawattPerMillimeter)]
+        [InlineData("mW/cm", LinearPowerDensityUnit.MilliwattPerCentimeter)]
+        [InlineData("mW/ft", LinearPowerDensityUnit.MilliwattPerFoot)]
+        [InlineData("mW/in", LinearPowerDensityUnit.MilliwattPerInch)]
+        [InlineData("mW/m", LinearPowerDensityUnit.MilliwattPerMeter)]
+        [InlineData("mW/mm", LinearPowerDensityUnit.MilliwattPerMillimeter)]
+        [InlineData("W/cm", LinearPowerDensityUnit.WattPerCentimeter)]
+        [InlineData("W/ft", LinearPowerDensityUnit.WattPerFoot)]
+        [InlineData("W/in", LinearPowerDensityUnit.WattPerInch)]
+        [InlineData("W/m", LinearPowerDensityUnit.WattPerMeter)]
+        [InlineData("W/mm", LinearPowerDensityUnit.WattPerMillimeter)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, LinearPowerDensityUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            LinearPowerDensityUnit parsedUnit = LinearPowerDensity.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -751,7 +787,40 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "W/in", LinearPowerDensityUnit.WattPerInch)]
         [InlineData("en-US", "W/m", LinearPowerDensityUnit.WattPerMeter)]
         [InlineData("en-US", "W/mm", LinearPowerDensityUnit.WattPerMillimeter)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, LinearPowerDensityUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, LinearPowerDensityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            LinearPowerDensityUnit parsedUnit = LinearPowerDensity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "GW/cm", LinearPowerDensityUnit.GigawattPerCentimeter)]
+        [InlineData("en-US", "GW/ft", LinearPowerDensityUnit.GigawattPerFoot)]
+        [InlineData("en-US", "GW/in", LinearPowerDensityUnit.GigawattPerInch)]
+        [InlineData("en-US", "GW/m", LinearPowerDensityUnit.GigawattPerMeter)]
+        [InlineData("en-US", "GW/mm", LinearPowerDensityUnit.GigawattPerMillimeter)]
+        [InlineData("en-US", "kW/cm", LinearPowerDensityUnit.KilowattPerCentimeter)]
+        [InlineData("en-US", "kW/ft", LinearPowerDensityUnit.KilowattPerFoot)]
+        [InlineData("en-US", "kW/in", LinearPowerDensityUnit.KilowattPerInch)]
+        [InlineData("en-US", "kW/m", LinearPowerDensityUnit.KilowattPerMeter)]
+        [InlineData("en-US", "kW/mm", LinearPowerDensityUnit.KilowattPerMillimeter)]
+        [InlineData("en-US", "MW/cm", LinearPowerDensityUnit.MegawattPerCentimeter)]
+        [InlineData("en-US", "MW/ft", LinearPowerDensityUnit.MegawattPerFoot)]
+        [InlineData("en-US", "MW/in", LinearPowerDensityUnit.MegawattPerInch)]
+        [InlineData("en-US", "MW/m", LinearPowerDensityUnit.MegawattPerMeter)]
+        [InlineData("en-US", "MW/mm", LinearPowerDensityUnit.MegawattPerMillimeter)]
+        [InlineData("en-US", "mW/cm", LinearPowerDensityUnit.MilliwattPerCentimeter)]
+        [InlineData("en-US", "mW/ft", LinearPowerDensityUnit.MilliwattPerFoot)]
+        [InlineData("en-US", "mW/in", LinearPowerDensityUnit.MilliwattPerInch)]
+        [InlineData("en-US", "mW/m", LinearPowerDensityUnit.MilliwattPerMeter)]
+        [InlineData("en-US", "mW/mm", LinearPowerDensityUnit.MilliwattPerMillimeter)]
+        [InlineData("en-US", "W/cm", LinearPowerDensityUnit.WattPerCentimeter)]
+        [InlineData("en-US", "W/ft", LinearPowerDensityUnit.WattPerFoot)]
+        [InlineData("en-US", "W/in", LinearPowerDensityUnit.WattPerInch)]
+        [InlineData("en-US", "W/m", LinearPowerDensityUnit.WattPerMeter)]
+        [InlineData("en-US", "W/mm", LinearPowerDensityUnit.WattPerMillimeter)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, LinearPowerDensityUnit expectedUnit)
         {
             LinearPowerDensityUnit parsedUnit = LinearPowerDensity.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -783,9 +852,44 @@ namespace UnitsNet.Tests
         [InlineData("W/in", LinearPowerDensityUnit.WattPerInch)]
         [InlineData("W/m", LinearPowerDensityUnit.WattPerMeter)]
         [InlineData("W/mm", LinearPowerDensityUnit.WattPerMillimeter)]
-        public void TryParseUnit(string abbreviation, LinearPowerDensityUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, LinearPowerDensityUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(LinearPowerDensity.TryParseUnit(abbreviation, out LinearPowerDensityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("GW/cm", LinearPowerDensityUnit.GigawattPerCentimeter)]
+        [InlineData("GW/ft", LinearPowerDensityUnit.GigawattPerFoot)]
+        [InlineData("GW/in", LinearPowerDensityUnit.GigawattPerInch)]
+        [InlineData("GW/m", LinearPowerDensityUnit.GigawattPerMeter)]
+        [InlineData("GW/mm", LinearPowerDensityUnit.GigawattPerMillimeter)]
+        [InlineData("kW/cm", LinearPowerDensityUnit.KilowattPerCentimeter)]
+        [InlineData("kW/ft", LinearPowerDensityUnit.KilowattPerFoot)]
+        [InlineData("kW/in", LinearPowerDensityUnit.KilowattPerInch)]
+        [InlineData("kW/m", LinearPowerDensityUnit.KilowattPerMeter)]
+        [InlineData("kW/mm", LinearPowerDensityUnit.KilowattPerMillimeter)]
+        [InlineData("MW/cm", LinearPowerDensityUnit.MegawattPerCentimeter)]
+        [InlineData("MW/ft", LinearPowerDensityUnit.MegawattPerFoot)]
+        [InlineData("MW/in", LinearPowerDensityUnit.MegawattPerInch)]
+        [InlineData("MW/m", LinearPowerDensityUnit.MegawattPerMeter)]
+        [InlineData("MW/mm", LinearPowerDensityUnit.MegawattPerMillimeter)]
+        [InlineData("mW/cm", LinearPowerDensityUnit.MilliwattPerCentimeter)]
+        [InlineData("mW/ft", LinearPowerDensityUnit.MilliwattPerFoot)]
+        [InlineData("mW/in", LinearPowerDensityUnit.MilliwattPerInch)]
+        [InlineData("mW/m", LinearPowerDensityUnit.MilliwattPerMeter)]
+        [InlineData("mW/mm", LinearPowerDensityUnit.MilliwattPerMillimeter)]
+        [InlineData("W/cm", LinearPowerDensityUnit.WattPerCentimeter)]
+        [InlineData("W/ft", LinearPowerDensityUnit.WattPerFoot)]
+        [InlineData("W/in", LinearPowerDensityUnit.WattPerInch)]
+        [InlineData("W/m", LinearPowerDensityUnit.WattPerMeter)]
+        [InlineData("W/mm", LinearPowerDensityUnit.WattPerMillimeter)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, LinearPowerDensityUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(LinearPowerDensity.TryParseUnit(abbreviation, out LinearPowerDensityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -816,7 +920,40 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "W/in", LinearPowerDensityUnit.WattPerInch)]
         [InlineData("en-US", "W/m", LinearPowerDensityUnit.WattPerMeter)]
         [InlineData("en-US", "W/mm", LinearPowerDensityUnit.WattPerMillimeter)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, LinearPowerDensityUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, LinearPowerDensityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(LinearPowerDensity.TryParseUnit(abbreviation, out LinearPowerDensityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "GW/cm", LinearPowerDensityUnit.GigawattPerCentimeter)]
+        [InlineData("en-US", "GW/ft", LinearPowerDensityUnit.GigawattPerFoot)]
+        [InlineData("en-US", "GW/in", LinearPowerDensityUnit.GigawattPerInch)]
+        [InlineData("en-US", "GW/m", LinearPowerDensityUnit.GigawattPerMeter)]
+        [InlineData("en-US", "GW/mm", LinearPowerDensityUnit.GigawattPerMillimeter)]
+        [InlineData("en-US", "kW/cm", LinearPowerDensityUnit.KilowattPerCentimeter)]
+        [InlineData("en-US", "kW/ft", LinearPowerDensityUnit.KilowattPerFoot)]
+        [InlineData("en-US", "kW/in", LinearPowerDensityUnit.KilowattPerInch)]
+        [InlineData("en-US", "kW/m", LinearPowerDensityUnit.KilowattPerMeter)]
+        [InlineData("en-US", "kW/mm", LinearPowerDensityUnit.KilowattPerMillimeter)]
+        [InlineData("en-US", "MW/cm", LinearPowerDensityUnit.MegawattPerCentimeter)]
+        [InlineData("en-US", "MW/ft", LinearPowerDensityUnit.MegawattPerFoot)]
+        [InlineData("en-US", "MW/in", LinearPowerDensityUnit.MegawattPerInch)]
+        [InlineData("en-US", "MW/m", LinearPowerDensityUnit.MegawattPerMeter)]
+        [InlineData("en-US", "MW/mm", LinearPowerDensityUnit.MegawattPerMillimeter)]
+        [InlineData("en-US", "mW/cm", LinearPowerDensityUnit.MilliwattPerCentimeter)]
+        [InlineData("en-US", "mW/ft", LinearPowerDensityUnit.MilliwattPerFoot)]
+        [InlineData("en-US", "mW/in", LinearPowerDensityUnit.MilliwattPerInch)]
+        [InlineData("en-US", "mW/m", LinearPowerDensityUnit.MilliwattPerMeter)]
+        [InlineData("en-US", "mW/mm", LinearPowerDensityUnit.MilliwattPerMillimeter)]
+        [InlineData("en-US", "W/cm", LinearPowerDensityUnit.WattPerCentimeter)]
+        [InlineData("en-US", "W/ft", LinearPowerDensityUnit.WattPerFoot)]
+        [InlineData("en-US", "W/in", LinearPowerDensityUnit.WattPerInch)]
+        [InlineData("en-US", "W/m", LinearPowerDensityUnit.WattPerMeter)]
+        [InlineData("en-US", "W/mm", LinearPowerDensityUnit.WattPerMillimeter)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, LinearPowerDensityUnit expectedUnit)
         {
             Assert.True(LinearPowerDensity.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out LinearPowerDensityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

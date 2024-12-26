@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -418,10 +419,30 @@ namespace UnitsNet.Tests
         [InlineData("µ°C/s", TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond)]
         [InlineData("m°C/s", TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond)]
         [InlineData("n°C/s", TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond)]
-        public void ParseUnit(string abbreviation, TemperatureChangeRateUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, TemperatureChangeRateUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            TemperatureChangeRateUnit parsedUnit = TemperatureChangeRate.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            TemperatureChangeRateUnit parsedUnit = TemperatureChangeRate.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("c°C/s", TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond)]
+        [InlineData("da°C/s", TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond)]
+        [InlineData("d°C/s", TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond)]
+        [InlineData("°C/min", TemperatureChangeRateUnit.DegreeCelsiusPerMinute)]
+        [InlineData("°C/s", TemperatureChangeRateUnit.DegreeCelsiusPerSecond)]
+        [InlineData("h°C/s", TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond)]
+        [InlineData("k°C/s", TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond)]
+        [InlineData("µ°C/s", TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond)]
+        [InlineData("m°C/s", TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond)]
+        [InlineData("n°C/s", TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, TemperatureChangeRateUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            TemperatureChangeRateUnit parsedUnit = TemperatureChangeRate.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -436,7 +457,25 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "µ°C/s", TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond)]
         [InlineData("en-US", "m°C/s", TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond)]
         [InlineData("en-US", "n°C/s", TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, TemperatureChangeRateUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, TemperatureChangeRateUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            TemperatureChangeRateUnit parsedUnit = TemperatureChangeRate.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "c°C/s", TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond)]
+        [InlineData("en-US", "da°C/s", TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond)]
+        [InlineData("en-US", "d°C/s", TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond)]
+        [InlineData("en-US", "°C/min", TemperatureChangeRateUnit.DegreeCelsiusPerMinute)]
+        [InlineData("en-US", "°C/s", TemperatureChangeRateUnit.DegreeCelsiusPerSecond)]
+        [InlineData("en-US", "h°C/s", TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond)]
+        [InlineData("en-US", "k°C/s", TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond)]
+        [InlineData("en-US", "µ°C/s", TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond)]
+        [InlineData("en-US", "m°C/s", TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond)]
+        [InlineData("en-US", "n°C/s", TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, TemperatureChangeRateUnit expectedUnit)
         {
             TemperatureChangeRateUnit parsedUnit = TemperatureChangeRate.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -453,9 +492,29 @@ namespace UnitsNet.Tests
         [InlineData("µ°C/s", TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond)]
         [InlineData("m°C/s", TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond)]
         [InlineData("n°C/s", TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond)]
-        public void TryParseUnit(string abbreviation, TemperatureChangeRateUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, TemperatureChangeRateUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(TemperatureChangeRate.TryParseUnit(abbreviation, out TemperatureChangeRateUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("c°C/s", TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond)]
+        [InlineData("da°C/s", TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond)]
+        [InlineData("d°C/s", TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond)]
+        [InlineData("°C/min", TemperatureChangeRateUnit.DegreeCelsiusPerMinute)]
+        [InlineData("°C/s", TemperatureChangeRateUnit.DegreeCelsiusPerSecond)]
+        [InlineData("h°C/s", TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond)]
+        [InlineData("k°C/s", TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond)]
+        [InlineData("µ°C/s", TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond)]
+        [InlineData("m°C/s", TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond)]
+        [InlineData("n°C/s", TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, TemperatureChangeRateUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(TemperatureChangeRate.TryParseUnit(abbreviation, out TemperatureChangeRateUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -471,7 +530,25 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "µ°C/s", TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond)]
         [InlineData("en-US", "m°C/s", TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond)]
         [InlineData("en-US", "n°C/s", TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, TemperatureChangeRateUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, TemperatureChangeRateUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(TemperatureChangeRate.TryParseUnit(abbreviation, out TemperatureChangeRateUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "c°C/s", TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond)]
+        [InlineData("en-US", "da°C/s", TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond)]
+        [InlineData("en-US", "d°C/s", TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond)]
+        [InlineData("en-US", "°C/min", TemperatureChangeRateUnit.DegreeCelsiusPerMinute)]
+        [InlineData("en-US", "°C/s", TemperatureChangeRateUnit.DegreeCelsiusPerSecond)]
+        [InlineData("en-US", "h°C/s", TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond)]
+        [InlineData("en-US", "k°C/s", TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond)]
+        [InlineData("en-US", "µ°C/s", TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond)]
+        [InlineData("en-US", "m°C/s", TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond)]
+        [InlineData("en-US", "n°C/s", TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, TemperatureChangeRateUnit expectedUnit)
         {
             Assert.True(TemperatureChangeRate.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out TemperatureChangeRateUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

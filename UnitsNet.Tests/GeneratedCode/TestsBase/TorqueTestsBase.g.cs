@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -817,10 +818,45 @@ namespace UnitsNet.Tests
         [InlineData("tf·cm", TorqueUnit.TonneForceCentimeter)]
         [InlineData("tf·m", TorqueUnit.TonneForceMeter)]
         [InlineData("tf·mm", TorqueUnit.TonneForceMillimeter)]
-        public void ParseUnit(string abbreviation, TorqueUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, TorqueUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            TorqueUnit parsedUnit = Torque.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            TorqueUnit parsedUnit = Torque.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("gf·cm", TorqueUnit.GramForceCentimeter)]
+        [InlineData("gf·m", TorqueUnit.GramForceMeter)]
+        [InlineData("gf·mm", TorqueUnit.GramForceMillimeter)]
+        [InlineData("kgf·cm", TorqueUnit.KilogramForceCentimeter)]
+        [InlineData("kgf·m", TorqueUnit.KilogramForceMeter)]
+        [InlineData("kgf·mm", TorqueUnit.KilogramForceMillimeter)]
+        [InlineData("kN·cm", TorqueUnit.KilonewtonCentimeter)]
+        [InlineData("kN·m", TorqueUnit.KilonewtonMeter)]
+        [InlineData("kN·mm", TorqueUnit.KilonewtonMillimeter)]
+        [InlineData("kipf·ft", TorqueUnit.KilopoundForceFoot)]
+        [InlineData("kipf·in", TorqueUnit.KilopoundForceInch)]
+        [InlineData("MN·cm", TorqueUnit.MeganewtonCentimeter)]
+        [InlineData("MN·m", TorqueUnit.MeganewtonMeter)]
+        [InlineData("MN·mm", TorqueUnit.MeganewtonMillimeter)]
+        [InlineData("Mlbf·ft", TorqueUnit.MegapoundForceFoot)]
+        [InlineData("Mlbf·in", TorqueUnit.MegapoundForceInch)]
+        [InlineData("N·cm", TorqueUnit.NewtonCentimeter)]
+        [InlineData("N·m", TorqueUnit.NewtonMeter)]
+        [InlineData("N·mm", TorqueUnit.NewtonMillimeter)]
+        [InlineData("pdl·ft", TorqueUnit.PoundalFoot)]
+        [InlineData("lbf·ft", TorqueUnit.PoundForceFoot)]
+        [InlineData("lbf·in", TorqueUnit.PoundForceInch)]
+        [InlineData("tf·cm", TorqueUnit.TonneForceCentimeter)]
+        [InlineData("tf·m", TorqueUnit.TonneForceMeter)]
+        [InlineData("tf·mm", TorqueUnit.TonneForceMillimeter)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, TorqueUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            TorqueUnit parsedUnit = Torque.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -853,7 +889,43 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "кН·м", TorqueUnit.KilonewtonMeter)]
         [InlineData("ru-RU", "МН·м", TorqueUnit.MeganewtonMeter)]
         [InlineData("ru-RU", "Н·м", TorqueUnit.NewtonMeter)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, TorqueUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, TorqueUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            TorqueUnit parsedUnit = Torque.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "gf·cm", TorqueUnit.GramForceCentimeter)]
+        [InlineData("en-US", "gf·m", TorqueUnit.GramForceMeter)]
+        [InlineData("en-US", "gf·mm", TorqueUnit.GramForceMillimeter)]
+        [InlineData("en-US", "kgf·cm", TorqueUnit.KilogramForceCentimeter)]
+        [InlineData("en-US", "kgf·m", TorqueUnit.KilogramForceMeter)]
+        [InlineData("en-US", "kgf·mm", TorqueUnit.KilogramForceMillimeter)]
+        [InlineData("en-US", "kN·cm", TorqueUnit.KilonewtonCentimeter)]
+        [InlineData("en-US", "kN·m", TorqueUnit.KilonewtonMeter)]
+        [InlineData("en-US", "kN·mm", TorqueUnit.KilonewtonMillimeter)]
+        [InlineData("en-US", "kipf·ft", TorqueUnit.KilopoundForceFoot)]
+        [InlineData("en-US", "kipf·in", TorqueUnit.KilopoundForceInch)]
+        [InlineData("en-US", "MN·cm", TorqueUnit.MeganewtonCentimeter)]
+        [InlineData("en-US", "MN·m", TorqueUnit.MeganewtonMeter)]
+        [InlineData("en-US", "MN·mm", TorqueUnit.MeganewtonMillimeter)]
+        [InlineData("en-US", "Mlbf·ft", TorqueUnit.MegapoundForceFoot)]
+        [InlineData("en-US", "Mlbf·in", TorqueUnit.MegapoundForceInch)]
+        [InlineData("en-US", "N·cm", TorqueUnit.NewtonCentimeter)]
+        [InlineData("en-US", "N·m", TorqueUnit.NewtonMeter)]
+        [InlineData("en-US", "N·mm", TorqueUnit.NewtonMillimeter)]
+        [InlineData("en-US", "pdl·ft", TorqueUnit.PoundalFoot)]
+        [InlineData("en-US", "lbf·ft", TorqueUnit.PoundForceFoot)]
+        [InlineData("en-US", "lbf·in", TorqueUnit.PoundForceInch)]
+        [InlineData("en-US", "tf·cm", TorqueUnit.TonneForceCentimeter)]
+        [InlineData("en-US", "tf·m", TorqueUnit.TonneForceMeter)]
+        [InlineData("en-US", "tf·mm", TorqueUnit.TonneForceMillimeter)]
+        [InlineData("ru-RU", "кН·м", TorqueUnit.KilonewtonMeter)]
+        [InlineData("ru-RU", "МН·м", TorqueUnit.MeganewtonMeter)]
+        [InlineData("ru-RU", "Н·м", TorqueUnit.NewtonMeter)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, TorqueUnit expectedUnit)
         {
             TorqueUnit parsedUnit = Torque.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -885,9 +957,44 @@ namespace UnitsNet.Tests
         [InlineData("tf·cm", TorqueUnit.TonneForceCentimeter)]
         [InlineData("tf·m", TorqueUnit.TonneForceMeter)]
         [InlineData("tf·mm", TorqueUnit.TonneForceMillimeter)]
-        public void TryParseUnit(string abbreviation, TorqueUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, TorqueUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(Torque.TryParseUnit(abbreviation, out TorqueUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("gf·cm", TorqueUnit.GramForceCentimeter)]
+        [InlineData("gf·m", TorqueUnit.GramForceMeter)]
+        [InlineData("gf·mm", TorqueUnit.GramForceMillimeter)]
+        [InlineData("kgf·cm", TorqueUnit.KilogramForceCentimeter)]
+        [InlineData("kgf·m", TorqueUnit.KilogramForceMeter)]
+        [InlineData("kgf·mm", TorqueUnit.KilogramForceMillimeter)]
+        [InlineData("kN·cm", TorqueUnit.KilonewtonCentimeter)]
+        [InlineData("kN·m", TorqueUnit.KilonewtonMeter)]
+        [InlineData("kN·mm", TorqueUnit.KilonewtonMillimeter)]
+        [InlineData("kipf·ft", TorqueUnit.KilopoundForceFoot)]
+        [InlineData("kipf·in", TorqueUnit.KilopoundForceInch)]
+        [InlineData("MN·cm", TorqueUnit.MeganewtonCentimeter)]
+        [InlineData("MN·m", TorqueUnit.MeganewtonMeter)]
+        [InlineData("MN·mm", TorqueUnit.MeganewtonMillimeter)]
+        [InlineData("Mlbf·ft", TorqueUnit.MegapoundForceFoot)]
+        [InlineData("Mlbf·in", TorqueUnit.MegapoundForceInch)]
+        [InlineData("N·cm", TorqueUnit.NewtonCentimeter)]
+        [InlineData("N·m", TorqueUnit.NewtonMeter)]
+        [InlineData("N·mm", TorqueUnit.NewtonMillimeter)]
+        [InlineData("pdl·ft", TorqueUnit.PoundalFoot)]
+        [InlineData("lbf·ft", TorqueUnit.PoundForceFoot)]
+        [InlineData("lbf·in", TorqueUnit.PoundForceInch)]
+        [InlineData("tf·cm", TorqueUnit.TonneForceCentimeter)]
+        [InlineData("tf·m", TorqueUnit.TonneForceMeter)]
+        [InlineData("tf·mm", TorqueUnit.TonneForceMillimeter)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, TorqueUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(Torque.TryParseUnit(abbreviation, out TorqueUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -921,7 +1028,43 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "кН·м", TorqueUnit.KilonewtonMeter)]
         [InlineData("ru-RU", "МН·м", TorqueUnit.MeganewtonMeter)]
         [InlineData("ru-RU", "Н·м", TorqueUnit.NewtonMeter)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, TorqueUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, TorqueUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(Torque.TryParseUnit(abbreviation, out TorqueUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "gf·cm", TorqueUnit.GramForceCentimeter)]
+        [InlineData("en-US", "gf·m", TorqueUnit.GramForceMeter)]
+        [InlineData("en-US", "gf·mm", TorqueUnit.GramForceMillimeter)]
+        [InlineData("en-US", "kgf·cm", TorqueUnit.KilogramForceCentimeter)]
+        [InlineData("en-US", "kgf·m", TorqueUnit.KilogramForceMeter)]
+        [InlineData("en-US", "kgf·mm", TorqueUnit.KilogramForceMillimeter)]
+        [InlineData("en-US", "kN·cm", TorqueUnit.KilonewtonCentimeter)]
+        [InlineData("en-US", "kN·m", TorqueUnit.KilonewtonMeter)]
+        [InlineData("en-US", "kN·mm", TorqueUnit.KilonewtonMillimeter)]
+        [InlineData("en-US", "kipf·ft", TorqueUnit.KilopoundForceFoot)]
+        [InlineData("en-US", "kipf·in", TorqueUnit.KilopoundForceInch)]
+        [InlineData("en-US", "MN·cm", TorqueUnit.MeganewtonCentimeter)]
+        [InlineData("en-US", "MN·m", TorqueUnit.MeganewtonMeter)]
+        [InlineData("en-US", "MN·mm", TorqueUnit.MeganewtonMillimeter)]
+        [InlineData("en-US", "Mlbf·ft", TorqueUnit.MegapoundForceFoot)]
+        [InlineData("en-US", "Mlbf·in", TorqueUnit.MegapoundForceInch)]
+        [InlineData("en-US", "N·cm", TorqueUnit.NewtonCentimeter)]
+        [InlineData("en-US", "N·m", TorqueUnit.NewtonMeter)]
+        [InlineData("en-US", "N·mm", TorqueUnit.NewtonMillimeter)]
+        [InlineData("en-US", "pdl·ft", TorqueUnit.PoundalFoot)]
+        [InlineData("en-US", "lbf·ft", TorqueUnit.PoundForceFoot)]
+        [InlineData("en-US", "lbf·in", TorqueUnit.PoundForceInch)]
+        [InlineData("en-US", "tf·cm", TorqueUnit.TonneForceCentimeter)]
+        [InlineData("en-US", "tf·m", TorqueUnit.TonneForceMeter)]
+        [InlineData("en-US", "tf·mm", TorqueUnit.TonneForceMillimeter)]
+        [InlineData("ru-RU", "кН·м", TorqueUnit.KilonewtonMeter)]
+        [InlineData("ru-RU", "МН·м", TorqueUnit.MeganewtonMeter)]
+        [InlineData("ru-RU", "Н·м", TorqueUnit.NewtonMeter)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, TorqueUnit expectedUnit)
         {
             Assert.True(Torque.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out TorqueUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

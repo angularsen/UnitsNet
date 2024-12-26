@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -646,10 +647,46 @@ namespace UnitsNet.Tests
         [InlineData("TiB", InformationUnit.Tebibyte)]
         [InlineData("Tb", InformationUnit.Terabit)]
         [InlineData("TB", InformationUnit.Terabyte)]
-        public void ParseUnit(string abbreviation, InformationUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, InformationUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            InformationUnit parsedUnit = Information.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            InformationUnit parsedUnit = Information.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("b", InformationUnit.Bit)]
+        [InlineData("B", InformationUnit.Byte)]
+        [InlineData("Eb", InformationUnit.Exabit)]
+        [InlineData("EB", InformationUnit.Exabyte)]
+        [InlineData("Eib", InformationUnit.Exbibit)]
+        [InlineData("EiB", InformationUnit.Exbibyte)]
+        [InlineData("Gib", InformationUnit.Gibibit)]
+        [InlineData("GiB", InformationUnit.Gibibyte)]
+        [InlineData("Gb", InformationUnit.Gigabit)]
+        [InlineData("GB", InformationUnit.Gigabyte)]
+        [InlineData("Kib", InformationUnit.Kibibit)]
+        [InlineData("KiB", InformationUnit.Kibibyte)]
+        [InlineData("kb", InformationUnit.Kilobit)]
+        [InlineData("kB", InformationUnit.Kilobyte)]
+        [InlineData("Mib", InformationUnit.Mebibit)]
+        [InlineData("MiB", InformationUnit.Mebibyte)]
+        [InlineData("Mb", InformationUnit.Megabit)]
+        [InlineData("MB", InformationUnit.Megabyte)]
+        [InlineData("Pib", InformationUnit.Pebibit)]
+        [InlineData("PiB", InformationUnit.Pebibyte)]
+        [InlineData("Pb", InformationUnit.Petabit)]
+        [InlineData("PB", InformationUnit.Petabyte)]
+        [InlineData("Tib", InformationUnit.Tebibit)]
+        [InlineData("TiB", InformationUnit.Tebibyte)]
+        [InlineData("Tb", InformationUnit.Terabit)]
+        [InlineData("TB", InformationUnit.Terabyte)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, InformationUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            InformationUnit parsedUnit = Information.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -680,7 +717,41 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "TiB", InformationUnit.Tebibyte)]
         [InlineData("en-US", "Tb", InformationUnit.Terabit)]
         [InlineData("en-US", "TB", InformationUnit.Terabyte)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, InformationUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, InformationUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            InformationUnit parsedUnit = Information.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "b", InformationUnit.Bit)]
+        [InlineData("en-US", "B", InformationUnit.Byte)]
+        [InlineData("en-US", "Eb", InformationUnit.Exabit)]
+        [InlineData("en-US", "EB", InformationUnit.Exabyte)]
+        [InlineData("en-US", "Eib", InformationUnit.Exbibit)]
+        [InlineData("en-US", "EiB", InformationUnit.Exbibyte)]
+        [InlineData("en-US", "Gib", InformationUnit.Gibibit)]
+        [InlineData("en-US", "GiB", InformationUnit.Gibibyte)]
+        [InlineData("en-US", "Gb", InformationUnit.Gigabit)]
+        [InlineData("en-US", "GB", InformationUnit.Gigabyte)]
+        [InlineData("en-US", "Kib", InformationUnit.Kibibit)]
+        [InlineData("en-US", "KiB", InformationUnit.Kibibyte)]
+        [InlineData("en-US", "kb", InformationUnit.Kilobit)]
+        [InlineData("en-US", "kB", InformationUnit.Kilobyte)]
+        [InlineData("en-US", "Mib", InformationUnit.Mebibit)]
+        [InlineData("en-US", "MiB", InformationUnit.Mebibyte)]
+        [InlineData("en-US", "Mb", InformationUnit.Megabit)]
+        [InlineData("en-US", "MB", InformationUnit.Megabyte)]
+        [InlineData("en-US", "Pib", InformationUnit.Pebibit)]
+        [InlineData("en-US", "PiB", InformationUnit.Pebibyte)]
+        [InlineData("en-US", "Pb", InformationUnit.Petabit)]
+        [InlineData("en-US", "PB", InformationUnit.Petabyte)]
+        [InlineData("en-US", "Tib", InformationUnit.Tebibit)]
+        [InlineData("en-US", "TiB", InformationUnit.Tebibyte)]
+        [InlineData("en-US", "Tb", InformationUnit.Terabit)]
+        [InlineData("en-US", "TB", InformationUnit.Terabyte)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, InformationUnit expectedUnit)
         {
             InformationUnit parsedUnit = Information.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -713,9 +784,45 @@ namespace UnitsNet.Tests
         [InlineData("TiB", InformationUnit.Tebibyte)]
         [InlineData("Tb", InformationUnit.Terabit)]
         [InlineData("TB", InformationUnit.Terabyte)]
-        public void TryParseUnit(string abbreviation, InformationUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, InformationUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(Information.TryParseUnit(abbreviation, out InformationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("b", InformationUnit.Bit)]
+        [InlineData("B", InformationUnit.Byte)]
+        [InlineData("Eb", InformationUnit.Exabit)]
+        [InlineData("EB", InformationUnit.Exabyte)]
+        [InlineData("Eib", InformationUnit.Exbibit)]
+        [InlineData("EiB", InformationUnit.Exbibyte)]
+        [InlineData("Gib", InformationUnit.Gibibit)]
+        [InlineData("GiB", InformationUnit.Gibibyte)]
+        [InlineData("Gb", InformationUnit.Gigabit)]
+        [InlineData("GB", InformationUnit.Gigabyte)]
+        [InlineData("Kib", InformationUnit.Kibibit)]
+        [InlineData("KiB", InformationUnit.Kibibyte)]
+        [InlineData("kb", InformationUnit.Kilobit)]
+        [InlineData("kB", InformationUnit.Kilobyte)]
+        [InlineData("Mib", InformationUnit.Mebibit)]
+        [InlineData("MiB", InformationUnit.Mebibyte)]
+        [InlineData("Mb", InformationUnit.Megabit)]
+        [InlineData("MB", InformationUnit.Megabyte)]
+        [InlineData("Pib", InformationUnit.Pebibit)]
+        [InlineData("PiB", InformationUnit.Pebibyte)]
+        [InlineData("Pb", InformationUnit.Petabit)]
+        [InlineData("PB", InformationUnit.Petabyte)]
+        [InlineData("Tib", InformationUnit.Tebibit)]
+        [InlineData("TiB", InformationUnit.Tebibyte)]
+        [InlineData("Tb", InformationUnit.Terabit)]
+        [InlineData("TB", InformationUnit.Terabyte)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, InformationUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(Information.TryParseUnit(abbreviation, out InformationUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -747,7 +854,41 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "TiB", InformationUnit.Tebibyte)]
         [InlineData("en-US", "Tb", InformationUnit.Terabit)]
         [InlineData("en-US", "TB", InformationUnit.Terabyte)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, InformationUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, InformationUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(Information.TryParseUnit(abbreviation, out InformationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "b", InformationUnit.Bit)]
+        [InlineData("en-US", "B", InformationUnit.Byte)]
+        [InlineData("en-US", "Eb", InformationUnit.Exabit)]
+        [InlineData("en-US", "EB", InformationUnit.Exabyte)]
+        [InlineData("en-US", "Eib", InformationUnit.Exbibit)]
+        [InlineData("en-US", "EiB", InformationUnit.Exbibyte)]
+        [InlineData("en-US", "Gib", InformationUnit.Gibibit)]
+        [InlineData("en-US", "GiB", InformationUnit.Gibibyte)]
+        [InlineData("en-US", "Gb", InformationUnit.Gigabit)]
+        [InlineData("en-US", "GB", InformationUnit.Gigabyte)]
+        [InlineData("en-US", "Kib", InformationUnit.Kibibit)]
+        [InlineData("en-US", "KiB", InformationUnit.Kibibyte)]
+        [InlineData("en-US", "kb", InformationUnit.Kilobit)]
+        [InlineData("en-US", "kB", InformationUnit.Kilobyte)]
+        [InlineData("en-US", "Mib", InformationUnit.Mebibit)]
+        [InlineData("en-US", "MiB", InformationUnit.Mebibyte)]
+        [InlineData("en-US", "Mb", InformationUnit.Megabit)]
+        [InlineData("en-US", "MB", InformationUnit.Megabyte)]
+        [InlineData("en-US", "Pib", InformationUnit.Pebibit)]
+        [InlineData("en-US", "PiB", InformationUnit.Pebibyte)]
+        [InlineData("en-US", "Pb", InformationUnit.Petabit)]
+        [InlineData("en-US", "PB", InformationUnit.Petabyte)]
+        [InlineData("en-US", "Tib", InformationUnit.Tebibit)]
+        [InlineData("en-US", "TiB", InformationUnit.Tebibyte)]
+        [InlineData("en-US", "Tb", InformationUnit.Terabit)]
+        [InlineData("en-US", "TB", InformationUnit.Terabyte)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, InformationUnit expectedUnit)
         {
             Assert.True(Information.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out InformationUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

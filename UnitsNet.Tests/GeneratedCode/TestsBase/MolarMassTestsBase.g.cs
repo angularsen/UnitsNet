@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -646,10 +647,33 @@ namespace UnitsNet.Tests
         [InlineData("mg/mol", MolarMassUnit.MilligramPerMole)]
         [InlineData("ng/mol", MolarMassUnit.NanogramPerMole)]
         [InlineData("lb/mol", MolarMassUnit.PoundPerMole)]
-        public void ParseUnit(string abbreviation, MolarMassUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, MolarMassUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            MolarMassUnit parsedUnit = MolarMass.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            MolarMassUnit parsedUnit = MolarMass.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("cg/mol", MolarMassUnit.CentigramPerMole)]
+        [InlineData("dag/mol", MolarMassUnit.DecagramPerMole)]
+        [InlineData("dg/mol", MolarMassUnit.DecigramPerMole)]
+        [InlineData("g/mol", MolarMassUnit.GramPerMole)]
+        [InlineData("hg/mol", MolarMassUnit.HectogramPerMole)]
+        [InlineData("kg/kmol", MolarMassUnit.KilogramPerKilomole)]
+        [InlineData("kg/mol", MolarMassUnit.KilogramPerMole)]
+        [InlineData("klb/mol", MolarMassUnit.KilopoundPerMole)]
+        [InlineData("Mlb/mol", MolarMassUnit.MegapoundPerMole)]
+        [InlineData("µg/mol", MolarMassUnit.MicrogramPerMole)]
+        [InlineData("mg/mol", MolarMassUnit.MilligramPerMole)]
+        [InlineData("ng/mol", MolarMassUnit.NanogramPerMole)]
+        [InlineData("lb/mol", MolarMassUnit.PoundPerMole)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, MolarMassUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            MolarMassUnit parsedUnit = MolarMass.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -679,7 +703,40 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "мг/моль", MolarMassUnit.MilligramPerMole)]
         [InlineData("ru-RU", "нг/моль", MolarMassUnit.NanogramPerMole)]
         [InlineData("ru-RU", "фунт/моль", MolarMassUnit.PoundPerMole)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, MolarMassUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, MolarMassUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            MolarMassUnit parsedUnit = MolarMass.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "cg/mol", MolarMassUnit.CentigramPerMole)]
+        [InlineData("en-US", "dag/mol", MolarMassUnit.DecagramPerMole)]
+        [InlineData("en-US", "dg/mol", MolarMassUnit.DecigramPerMole)]
+        [InlineData("en-US", "g/mol", MolarMassUnit.GramPerMole)]
+        [InlineData("en-US", "hg/mol", MolarMassUnit.HectogramPerMole)]
+        [InlineData("en-US", "kg/kmol", MolarMassUnit.KilogramPerKilomole)]
+        [InlineData("en-US", "kg/mol", MolarMassUnit.KilogramPerMole)]
+        [InlineData("en-US", "klb/mol", MolarMassUnit.KilopoundPerMole)]
+        [InlineData("en-US", "Mlb/mol", MolarMassUnit.MegapoundPerMole)]
+        [InlineData("en-US", "µg/mol", MolarMassUnit.MicrogramPerMole)]
+        [InlineData("en-US", "mg/mol", MolarMassUnit.MilligramPerMole)]
+        [InlineData("en-US", "ng/mol", MolarMassUnit.NanogramPerMole)]
+        [InlineData("en-US", "lb/mol", MolarMassUnit.PoundPerMole)]
+        [InlineData("ru-RU", "сг/моль", MolarMassUnit.CentigramPerMole)]
+        [InlineData("ru-RU", "даг/моль", MolarMassUnit.DecagramPerMole)]
+        [InlineData("ru-RU", "дг/моль", MolarMassUnit.DecigramPerMole)]
+        [InlineData("ru-RU", "г/моль", MolarMassUnit.GramPerMole)]
+        [InlineData("ru-RU", "гг/моль", MolarMassUnit.HectogramPerMole)]
+        [InlineData("ru-RU", "кг/моль", MolarMassUnit.KilogramPerMole)]
+        [InlineData("ru-RU", "кфунт/моль", MolarMassUnit.KilopoundPerMole)]
+        [InlineData("ru-RU", "Мфунт/моль", MolarMassUnit.MegapoundPerMole)]
+        [InlineData("ru-RU", "мкг/моль", MolarMassUnit.MicrogramPerMole)]
+        [InlineData("ru-RU", "мг/моль", MolarMassUnit.MilligramPerMole)]
+        [InlineData("ru-RU", "нг/моль", MolarMassUnit.NanogramPerMole)]
+        [InlineData("ru-RU", "фунт/моль", MolarMassUnit.PoundPerMole)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, MolarMassUnit expectedUnit)
         {
             MolarMassUnit parsedUnit = MolarMass.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -699,9 +756,32 @@ namespace UnitsNet.Tests
         [InlineData("mg/mol", MolarMassUnit.MilligramPerMole)]
         [InlineData("ng/mol", MolarMassUnit.NanogramPerMole)]
         [InlineData("lb/mol", MolarMassUnit.PoundPerMole)]
-        public void TryParseUnit(string abbreviation, MolarMassUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, MolarMassUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(MolarMass.TryParseUnit(abbreviation, out MolarMassUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("cg/mol", MolarMassUnit.CentigramPerMole)]
+        [InlineData("dag/mol", MolarMassUnit.DecagramPerMole)]
+        [InlineData("dg/mol", MolarMassUnit.DecigramPerMole)]
+        [InlineData("g/mol", MolarMassUnit.GramPerMole)]
+        [InlineData("hg/mol", MolarMassUnit.HectogramPerMole)]
+        [InlineData("kg/kmol", MolarMassUnit.KilogramPerKilomole)]
+        [InlineData("kg/mol", MolarMassUnit.KilogramPerMole)]
+        [InlineData("klb/mol", MolarMassUnit.KilopoundPerMole)]
+        [InlineData("Mlb/mol", MolarMassUnit.MegapoundPerMole)]
+        [InlineData("µg/mol", MolarMassUnit.MicrogramPerMole)]
+        [InlineData("mg/mol", MolarMassUnit.MilligramPerMole)]
+        [InlineData("ng/mol", MolarMassUnit.NanogramPerMole)]
+        [InlineData("lb/mol", MolarMassUnit.PoundPerMole)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, MolarMassUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(MolarMass.TryParseUnit(abbreviation, out MolarMassUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -732,7 +812,40 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "мг/моль", MolarMassUnit.MilligramPerMole)]
         [InlineData("ru-RU", "нг/моль", MolarMassUnit.NanogramPerMole)]
         [InlineData("ru-RU", "фунт/моль", MolarMassUnit.PoundPerMole)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, MolarMassUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, MolarMassUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(MolarMass.TryParseUnit(abbreviation, out MolarMassUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "cg/mol", MolarMassUnit.CentigramPerMole)]
+        [InlineData("en-US", "dag/mol", MolarMassUnit.DecagramPerMole)]
+        [InlineData("en-US", "dg/mol", MolarMassUnit.DecigramPerMole)]
+        [InlineData("en-US", "g/mol", MolarMassUnit.GramPerMole)]
+        [InlineData("en-US", "hg/mol", MolarMassUnit.HectogramPerMole)]
+        [InlineData("en-US", "kg/kmol", MolarMassUnit.KilogramPerKilomole)]
+        [InlineData("en-US", "kg/mol", MolarMassUnit.KilogramPerMole)]
+        [InlineData("en-US", "klb/mol", MolarMassUnit.KilopoundPerMole)]
+        [InlineData("en-US", "Mlb/mol", MolarMassUnit.MegapoundPerMole)]
+        [InlineData("en-US", "µg/mol", MolarMassUnit.MicrogramPerMole)]
+        [InlineData("en-US", "mg/mol", MolarMassUnit.MilligramPerMole)]
+        [InlineData("en-US", "ng/mol", MolarMassUnit.NanogramPerMole)]
+        [InlineData("en-US", "lb/mol", MolarMassUnit.PoundPerMole)]
+        [InlineData("ru-RU", "сг/моль", MolarMassUnit.CentigramPerMole)]
+        [InlineData("ru-RU", "даг/моль", MolarMassUnit.DecagramPerMole)]
+        [InlineData("ru-RU", "дг/моль", MolarMassUnit.DecigramPerMole)]
+        [InlineData("ru-RU", "г/моль", MolarMassUnit.GramPerMole)]
+        [InlineData("ru-RU", "гг/моль", MolarMassUnit.HectogramPerMole)]
+        [InlineData("ru-RU", "кг/моль", MolarMassUnit.KilogramPerMole)]
+        [InlineData("ru-RU", "кфунт/моль", MolarMassUnit.KilopoundPerMole)]
+        [InlineData("ru-RU", "Мфунт/моль", MolarMassUnit.MegapoundPerMole)]
+        [InlineData("ru-RU", "мкг/моль", MolarMassUnit.MicrogramPerMole)]
+        [InlineData("ru-RU", "мг/моль", MolarMassUnit.MilligramPerMole)]
+        [InlineData("ru-RU", "нг/моль", MolarMassUnit.NanogramPerMole)]
+        [InlineData("ru-RU", "фунт/моль", MolarMassUnit.PoundPerMole)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, MolarMassUnit expectedUnit)
         {
             Assert.True(MolarMass.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out MolarMassUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

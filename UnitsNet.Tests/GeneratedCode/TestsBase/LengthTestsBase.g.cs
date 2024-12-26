@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -1786,10 +1787,68 @@ namespace UnitsNet.Tests
         [InlineData("twip", LengthUnit.Twip)]
         [InlineData("ftUS", LengthUnit.UsSurveyFoot)]
         [InlineData("yd", LengthUnit.Yard)]
-        public void ParseUnit(string abbreviation, LengthUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, LengthUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            LengthUnit parsedUnit = Length.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            LengthUnit parsedUnit = Length.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("Å", LengthUnit.Angstrom)]
+        [InlineData("A", LengthUnit.Angstrom)]
+        [InlineData("au", LengthUnit.AstronomicalUnit)]
+        [InlineData("ua", LengthUnit.AstronomicalUnit)]
+        [InlineData("cm", LengthUnit.Centimeter)]
+        [InlineData("ch", LengthUnit.Chain)]
+        [InlineData("DM", LengthUnit.DataMile)]
+        [InlineData("dam", LengthUnit.Decameter)]
+        [InlineData("dm", LengthUnit.Decimeter)]
+        [InlineData("fathom", LengthUnit.Fathom)]
+        [InlineData("fm", LengthUnit.Femtometer)]
+        [InlineData("ft", LengthUnit.Foot)]
+        [InlineData("'", LengthUnit.Foot)]
+        [InlineData("′", LengthUnit.Foot)]
+        [InlineData("Gm", LengthUnit.Gigameter)]
+        [InlineData("h", LengthUnit.Hand)]
+        [InlineData("hh", LengthUnit.Hand)]
+        [InlineData("hm", LengthUnit.Hectometer)]
+        [InlineData("in", LengthUnit.Inch)]
+        [InlineData("\"", LengthUnit.Inch)]
+        [InlineData("″", LengthUnit.Inch)]
+        [InlineData("kft", LengthUnit.Kilofoot)]
+        [InlineData("k'", LengthUnit.Kilofoot)]
+        [InlineData("k′", LengthUnit.Kilofoot)]
+        [InlineData("kly", LengthUnit.KilolightYear)]
+        [InlineData("km", LengthUnit.Kilometer)]
+        [InlineData("kpc", LengthUnit.Kiloparsec)]
+        [InlineData("kyd", LengthUnit.Kiloyard)]
+        [InlineData("ly", LengthUnit.LightYear)]
+        [InlineData("Mly", LengthUnit.MegalightYear)]
+        [InlineData("Mm", LengthUnit.Megameter)]
+        [InlineData("Mpc", LengthUnit.Megaparsec)]
+        [InlineData("m", LengthUnit.Meter)]
+        [InlineData("µin", LengthUnit.Microinch)]
+        [InlineData("µm", LengthUnit.Micrometer)]
+        [InlineData("mil", LengthUnit.Mil)]
+        [InlineData("mi", LengthUnit.Mile)]
+        [InlineData("mm", LengthUnit.Millimeter)]
+        [InlineData("nm", LengthUnit.Nanometer)]
+        [InlineData("NM", LengthUnit.NauticalMile)]
+        [InlineData("nmi", LengthUnit.NauticalMile)]
+        [InlineData("pc", LengthUnit.Parsec)]
+        [InlineData("pm", LengthUnit.Picometer)]
+        [InlineData("shackle", LengthUnit.Shackle)]
+        [InlineData("R⊙", LengthUnit.SolarRadius)]
+        [InlineData("twip", LengthUnit.Twip)]
+        [InlineData("ftUS", LengthUnit.UsSurveyFoot)]
+        [InlineData("yd", LengthUnit.Yard)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, LengthUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            LengthUnit parsedUnit = Length.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -1882,7 +1941,103 @@ namespace UnitsNet.Tests
         [InlineData("zh-CN", "毫米", LengthUnit.Millimeter)]
         [InlineData("zh-CN", "皮米", LengthUnit.Picometer)]
         [InlineData("zh-CN", "码", LengthUnit.Yard)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, LengthUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, LengthUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            LengthUnit parsedUnit = Length.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "Å", LengthUnit.Angstrom)]
+        [InlineData("en-US", "A", LengthUnit.Angstrom)]
+        [InlineData("en-US", "au", LengthUnit.AstronomicalUnit)]
+        [InlineData("en-US", "ua", LengthUnit.AstronomicalUnit)]
+        [InlineData("en-US", "cm", LengthUnit.Centimeter)]
+        [InlineData("en-US", "ch", LengthUnit.Chain)]
+        [InlineData("en-US", "DM", LengthUnit.DataMile)]
+        [InlineData("en-US", "dam", LengthUnit.Decameter)]
+        [InlineData("en-US", "dm", LengthUnit.Decimeter)]
+        [InlineData("en-US", "fathom", LengthUnit.Fathom)]
+        [InlineData("en-US", "fm", LengthUnit.Femtometer)]
+        [InlineData("en-US", "ft", LengthUnit.Foot)]
+        [InlineData("en-US", "'", LengthUnit.Foot)]
+        [InlineData("en-US", "′", LengthUnit.Foot)]
+        [InlineData("en-US", "Gm", LengthUnit.Gigameter)]
+        [InlineData("en-US", "h", LengthUnit.Hand)]
+        [InlineData("en-US", "hh", LengthUnit.Hand)]
+        [InlineData("en-US", "hm", LengthUnit.Hectometer)]
+        [InlineData("en-US", "in", LengthUnit.Inch)]
+        [InlineData("en-US", "\"", LengthUnit.Inch)]
+        [InlineData("en-US", "″", LengthUnit.Inch)]
+        [InlineData("en-US", "kft", LengthUnit.Kilofoot)]
+        [InlineData("en-US", "k'", LengthUnit.Kilofoot)]
+        [InlineData("en-US", "k′", LengthUnit.Kilofoot)]
+        [InlineData("en-US", "kly", LengthUnit.KilolightYear)]
+        [InlineData("en-US", "km", LengthUnit.Kilometer)]
+        [InlineData("en-US", "kpc", LengthUnit.Kiloparsec)]
+        [InlineData("en-US", "kyd", LengthUnit.Kiloyard)]
+        [InlineData("en-US", "ly", LengthUnit.LightYear)]
+        [InlineData("en-US", "Mly", LengthUnit.MegalightYear)]
+        [InlineData("en-US", "Mm", LengthUnit.Megameter)]
+        [InlineData("en-US", "Mpc", LengthUnit.Megaparsec)]
+        [InlineData("en-US", "m", LengthUnit.Meter)]
+        [InlineData("en-US", "µin", LengthUnit.Microinch)]
+        [InlineData("en-US", "µm", LengthUnit.Micrometer)]
+        [InlineData("en-US", "mil", LengthUnit.Mil)]
+        [InlineData("en-US", "mi", LengthUnit.Mile)]
+        [InlineData("en-US", "mm", LengthUnit.Millimeter)]
+        [InlineData("en-US", "nm", LengthUnit.Nanometer)]
+        [InlineData("en-US", "NM", LengthUnit.NauticalMile)]
+        [InlineData("en-US", "nmi", LengthUnit.NauticalMile)]
+        [InlineData("en-US", "pc", LengthUnit.Parsec)]
+        [InlineData("en-US", "pm", LengthUnit.Picometer)]
+        [InlineData("en-US", "shackle", LengthUnit.Shackle)]
+        [InlineData("en-US", "R⊙", LengthUnit.SolarRadius)]
+        [InlineData("en-US", "twip", LengthUnit.Twip)]
+        [InlineData("en-US", "ftUS", LengthUnit.UsSurveyFoot)]
+        [InlineData("en-US", "yd", LengthUnit.Yard)]
+        [InlineData("ru-RU", "см", LengthUnit.Centimeter)]
+        [InlineData("ru-RU", "дам", LengthUnit.Decameter)]
+        [InlineData("ru-RU", "дм", LengthUnit.Decimeter)]
+        [InlineData("ru-RU", "фм", LengthUnit.Femtometer)]
+        [InlineData("ru-RU", "фут", LengthUnit.Foot)]
+        [InlineData("ru-RU", "Гм", LengthUnit.Gigameter)]
+        [InlineData("ru-RU", "гм", LengthUnit.Hectometer)]
+        [InlineData("ru-RU", "дюйм", LengthUnit.Inch)]
+        [InlineData("ru-RU", "кфут", LengthUnit.Kilofoot)]
+        [InlineData("ru-RU", "км", LengthUnit.Kilometer)]
+        [InlineData("ru-RU", "кярд", LengthUnit.Kiloyard)]
+        [InlineData("ru-RU", "Мм", LengthUnit.Megameter)]
+        [InlineData("ru-RU", "м", LengthUnit.Meter)]
+        [InlineData("ru-RU", "микродюйм", LengthUnit.Microinch)]
+        [InlineData("ru-RU", "мкм", LengthUnit.Micrometer)]
+        [InlineData("ru-RU", "миля", LengthUnit.Mile)]
+        [InlineData("ru-RU", "мм", LengthUnit.Millimeter)]
+        [InlineData("ru-RU", "нм", LengthUnit.Nanometer)]
+        [InlineData("ru-RU", "пм", LengthUnit.Picometer)]
+        [InlineData("ru-RU", "ярд", LengthUnit.Yard)]
+        [InlineData("zh-CN", "厘米", LengthUnit.Centimeter)]
+        [InlineData("zh-CN", "十米", LengthUnit.Decameter)]
+        [InlineData("zh-CN", "分米", LengthUnit.Decimeter)]
+        [InlineData("zh-CN", "飞米", LengthUnit.Femtometer)]
+        [InlineData("zh-CN", "英尺", LengthUnit.Foot)]
+        [InlineData("zh-CN", "吉米", LengthUnit.Gigameter)]
+        [InlineData("zh-CN", "百米", LengthUnit.Hectometer)]
+        [InlineData("zh-CN", "英寸", LengthUnit.Inch)]
+        [InlineData("zh-CN", "千英尺", LengthUnit.Kilofoot)]
+        [InlineData("zh-CN", "千米", LengthUnit.Kilometer)]
+        [InlineData("zh-CN", "千码", LengthUnit.Kiloyard)]
+        [InlineData("zh-CN", "兆米", LengthUnit.Megameter)]
+        [InlineData("zh-CN", "米", LengthUnit.Meter)]
+        [InlineData("zh-CN", "微英寸", LengthUnit.Microinch)]
+        [InlineData("zh-CN", "微米", LengthUnit.Micrometer)]
+        [InlineData("zh-CN", "密耳", LengthUnit.Mil)]
+        [InlineData("zh-CN", "英里", LengthUnit.Mile)]
+        [InlineData("zh-CN", "毫米", LengthUnit.Millimeter)]
+        [InlineData("zh-CN", "皮米", LengthUnit.Picometer)]
+        [InlineData("zh-CN", "码", LengthUnit.Yard)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, LengthUnit expectedUnit)
         {
             LengthUnit parsedUnit = Length.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -1947,9 +2102,67 @@ namespace UnitsNet.Tests
         [InlineData("twip", LengthUnit.Twip)]
         [InlineData("ftUS", LengthUnit.UsSurveyFoot)]
         [InlineData("yd", LengthUnit.Yard)]
-        public void TryParseUnit(string abbreviation, LengthUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, LengthUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(Length.TryParseUnit(abbreviation, out LengthUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("Å", LengthUnit.Angstrom)]
+        [InlineData("A", LengthUnit.Angstrom)]
+        [InlineData("au", LengthUnit.AstronomicalUnit)]
+        [InlineData("ua", LengthUnit.AstronomicalUnit)]
+        [InlineData("cm", LengthUnit.Centimeter)]
+        [InlineData("ch", LengthUnit.Chain)]
+        [InlineData("DM", LengthUnit.DataMile)]
+        [InlineData("dam", LengthUnit.Decameter)]
+        [InlineData("dm", LengthUnit.Decimeter)]
+        [InlineData("fathom", LengthUnit.Fathom)]
+        [InlineData("fm", LengthUnit.Femtometer)]
+        [InlineData("ft", LengthUnit.Foot)]
+        [InlineData("'", LengthUnit.Foot)]
+        [InlineData("′", LengthUnit.Foot)]
+        [InlineData("Gm", LengthUnit.Gigameter)]
+        [InlineData("h", LengthUnit.Hand)]
+        [InlineData("hh", LengthUnit.Hand)]
+        [InlineData("hm", LengthUnit.Hectometer)]
+        [InlineData("in", LengthUnit.Inch)]
+        [InlineData("\"", LengthUnit.Inch)]
+        [InlineData("″", LengthUnit.Inch)]
+        [InlineData("kft", LengthUnit.Kilofoot)]
+        [InlineData("k'", LengthUnit.Kilofoot)]
+        [InlineData("k′", LengthUnit.Kilofoot)]
+        [InlineData("kly", LengthUnit.KilolightYear)]
+        [InlineData("km", LengthUnit.Kilometer)]
+        [InlineData("kpc", LengthUnit.Kiloparsec)]
+        [InlineData("kyd", LengthUnit.Kiloyard)]
+        [InlineData("ly", LengthUnit.LightYear)]
+        [InlineData("Mly", LengthUnit.MegalightYear)]
+        [InlineData("Mm", LengthUnit.Megameter)]
+        [InlineData("Mpc", LengthUnit.Megaparsec)]
+        [InlineData("m", LengthUnit.Meter)]
+        [InlineData("µin", LengthUnit.Microinch)]
+        [InlineData("µm", LengthUnit.Micrometer)]
+        [InlineData("mil", LengthUnit.Mil)]
+        [InlineData("mi", LengthUnit.Mile)]
+        [InlineData("mm", LengthUnit.Millimeter)]
+        [InlineData("nm", LengthUnit.Nanometer)]
+        [InlineData("NM", LengthUnit.NauticalMile)]
+        [InlineData("nmi", LengthUnit.NauticalMile)]
+        [InlineData("pc", LengthUnit.Parsec)]
+        [InlineData("pm", LengthUnit.Picometer)]
+        [InlineData("shackle", LengthUnit.Shackle)]
+        [InlineData("R⊙", LengthUnit.SolarRadius)]
+        [InlineData("twip", LengthUnit.Twip)]
+        [InlineData("ftUS", LengthUnit.UsSurveyFoot)]
+        [InlineData("yd", LengthUnit.Yard)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, LengthUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(Length.TryParseUnit(abbreviation, out LengthUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -2043,7 +2256,103 @@ namespace UnitsNet.Tests
         [InlineData("zh-CN", "毫米", LengthUnit.Millimeter)]
         [InlineData("zh-CN", "皮米", LengthUnit.Picometer)]
         [InlineData("zh-CN", "码", LengthUnit.Yard)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, LengthUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, LengthUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(Length.TryParseUnit(abbreviation, out LengthUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "Å", LengthUnit.Angstrom)]
+        [InlineData("en-US", "A", LengthUnit.Angstrom)]
+        [InlineData("en-US", "au", LengthUnit.AstronomicalUnit)]
+        [InlineData("en-US", "ua", LengthUnit.AstronomicalUnit)]
+        [InlineData("en-US", "cm", LengthUnit.Centimeter)]
+        [InlineData("en-US", "ch", LengthUnit.Chain)]
+        [InlineData("en-US", "DM", LengthUnit.DataMile)]
+        [InlineData("en-US", "dam", LengthUnit.Decameter)]
+        [InlineData("en-US", "dm", LengthUnit.Decimeter)]
+        [InlineData("en-US", "fathom", LengthUnit.Fathom)]
+        [InlineData("en-US", "fm", LengthUnit.Femtometer)]
+        [InlineData("en-US", "ft", LengthUnit.Foot)]
+        [InlineData("en-US", "'", LengthUnit.Foot)]
+        [InlineData("en-US", "′", LengthUnit.Foot)]
+        [InlineData("en-US", "Gm", LengthUnit.Gigameter)]
+        [InlineData("en-US", "h", LengthUnit.Hand)]
+        [InlineData("en-US", "hh", LengthUnit.Hand)]
+        [InlineData("en-US", "hm", LengthUnit.Hectometer)]
+        [InlineData("en-US", "in", LengthUnit.Inch)]
+        [InlineData("en-US", "\"", LengthUnit.Inch)]
+        [InlineData("en-US", "″", LengthUnit.Inch)]
+        [InlineData("en-US", "kft", LengthUnit.Kilofoot)]
+        [InlineData("en-US", "k'", LengthUnit.Kilofoot)]
+        [InlineData("en-US", "k′", LengthUnit.Kilofoot)]
+        [InlineData("en-US", "kly", LengthUnit.KilolightYear)]
+        [InlineData("en-US", "km", LengthUnit.Kilometer)]
+        [InlineData("en-US", "kpc", LengthUnit.Kiloparsec)]
+        [InlineData("en-US", "kyd", LengthUnit.Kiloyard)]
+        [InlineData("en-US", "ly", LengthUnit.LightYear)]
+        [InlineData("en-US", "Mly", LengthUnit.MegalightYear)]
+        [InlineData("en-US", "Mm", LengthUnit.Megameter)]
+        [InlineData("en-US", "Mpc", LengthUnit.Megaparsec)]
+        [InlineData("en-US", "m", LengthUnit.Meter)]
+        [InlineData("en-US", "µin", LengthUnit.Microinch)]
+        [InlineData("en-US", "µm", LengthUnit.Micrometer)]
+        [InlineData("en-US", "mil", LengthUnit.Mil)]
+        [InlineData("en-US", "mi", LengthUnit.Mile)]
+        [InlineData("en-US", "mm", LengthUnit.Millimeter)]
+        [InlineData("en-US", "nm", LengthUnit.Nanometer)]
+        [InlineData("en-US", "NM", LengthUnit.NauticalMile)]
+        [InlineData("en-US", "nmi", LengthUnit.NauticalMile)]
+        [InlineData("en-US", "pc", LengthUnit.Parsec)]
+        [InlineData("en-US", "pm", LengthUnit.Picometer)]
+        [InlineData("en-US", "shackle", LengthUnit.Shackle)]
+        [InlineData("en-US", "R⊙", LengthUnit.SolarRadius)]
+        [InlineData("en-US", "twip", LengthUnit.Twip)]
+        [InlineData("en-US", "ftUS", LengthUnit.UsSurveyFoot)]
+        [InlineData("en-US", "yd", LengthUnit.Yard)]
+        [InlineData("ru-RU", "см", LengthUnit.Centimeter)]
+        [InlineData("ru-RU", "дам", LengthUnit.Decameter)]
+        [InlineData("ru-RU", "дм", LengthUnit.Decimeter)]
+        [InlineData("ru-RU", "фм", LengthUnit.Femtometer)]
+        [InlineData("ru-RU", "фут", LengthUnit.Foot)]
+        [InlineData("ru-RU", "Гм", LengthUnit.Gigameter)]
+        [InlineData("ru-RU", "гм", LengthUnit.Hectometer)]
+        [InlineData("ru-RU", "дюйм", LengthUnit.Inch)]
+        [InlineData("ru-RU", "кфут", LengthUnit.Kilofoot)]
+        [InlineData("ru-RU", "км", LengthUnit.Kilometer)]
+        [InlineData("ru-RU", "кярд", LengthUnit.Kiloyard)]
+        [InlineData("ru-RU", "Мм", LengthUnit.Megameter)]
+        [InlineData("ru-RU", "м", LengthUnit.Meter)]
+        [InlineData("ru-RU", "микродюйм", LengthUnit.Microinch)]
+        [InlineData("ru-RU", "мкм", LengthUnit.Micrometer)]
+        [InlineData("ru-RU", "миля", LengthUnit.Mile)]
+        [InlineData("ru-RU", "мм", LengthUnit.Millimeter)]
+        [InlineData("ru-RU", "нм", LengthUnit.Nanometer)]
+        [InlineData("ru-RU", "пм", LengthUnit.Picometer)]
+        [InlineData("ru-RU", "ярд", LengthUnit.Yard)]
+        [InlineData("zh-CN", "厘米", LengthUnit.Centimeter)]
+        [InlineData("zh-CN", "十米", LengthUnit.Decameter)]
+        [InlineData("zh-CN", "分米", LengthUnit.Decimeter)]
+        [InlineData("zh-CN", "飞米", LengthUnit.Femtometer)]
+        [InlineData("zh-CN", "英尺", LengthUnit.Foot)]
+        [InlineData("zh-CN", "吉米", LengthUnit.Gigameter)]
+        [InlineData("zh-CN", "百米", LengthUnit.Hectometer)]
+        [InlineData("zh-CN", "英寸", LengthUnit.Inch)]
+        [InlineData("zh-CN", "千英尺", LengthUnit.Kilofoot)]
+        [InlineData("zh-CN", "千米", LengthUnit.Kilometer)]
+        [InlineData("zh-CN", "千码", LengthUnit.Kiloyard)]
+        [InlineData("zh-CN", "兆米", LengthUnit.Megameter)]
+        [InlineData("zh-CN", "米", LengthUnit.Meter)]
+        [InlineData("zh-CN", "微英寸", LengthUnit.Microinch)]
+        [InlineData("zh-CN", "微米", LengthUnit.Micrometer)]
+        [InlineData("zh-CN", "密耳", LengthUnit.Mil)]
+        [InlineData("zh-CN", "英里", LengthUnit.Mile)]
+        [InlineData("zh-CN", "毫米", LengthUnit.Millimeter)]
+        [InlineData("zh-CN", "皮米", LengthUnit.Picometer)]
+        [InlineData("zh-CN", "码", LengthUnit.Yard)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, LengthUnit expectedUnit)
         {
             Assert.True(Length.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out LengthUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

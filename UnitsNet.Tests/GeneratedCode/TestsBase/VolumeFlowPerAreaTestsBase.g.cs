@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -226,17 +227,39 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData("CFM/ft²", VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot)]
         [InlineData("m³/(s·m²)", VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter)]
-        public void ParseUnit(string abbreviation, VolumeFlowPerAreaUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, VolumeFlowPerAreaUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            VolumeFlowPerAreaUnit parsedUnit = VolumeFlowPerArea.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            VolumeFlowPerAreaUnit parsedUnit = VolumeFlowPerArea.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("CFM/ft²", VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot)]
+        [InlineData("m³/(s·m²)", VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, VolumeFlowPerAreaUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            VolumeFlowPerAreaUnit parsedUnit = VolumeFlowPerArea.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
         [InlineData("en-US", "CFM/ft²", VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot)]
         [InlineData("en-US", "m³/(s·m²)", VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, VolumeFlowPerAreaUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, VolumeFlowPerAreaUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            VolumeFlowPerAreaUnit parsedUnit = VolumeFlowPerArea.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "CFM/ft²", VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot)]
+        [InlineData("en-US", "m³/(s·m²)", VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, VolumeFlowPerAreaUnit expectedUnit)
         {
             VolumeFlowPerAreaUnit parsedUnit = VolumeFlowPerArea.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -245,9 +268,21 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData("CFM/ft²", VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot)]
         [InlineData("m³/(s·m²)", VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter)]
-        public void TryParseUnit(string abbreviation, VolumeFlowPerAreaUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, VolumeFlowPerAreaUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(VolumeFlowPerArea.TryParseUnit(abbreviation, out VolumeFlowPerAreaUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("CFM/ft²", VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot)]
+        [InlineData("m³/(s·m²)", VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, VolumeFlowPerAreaUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(VolumeFlowPerArea.TryParseUnit(abbreviation, out VolumeFlowPerAreaUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -255,7 +290,17 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData("en-US", "CFM/ft²", VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot)]
         [InlineData("en-US", "m³/(s·m²)", VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, VolumeFlowPerAreaUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, VolumeFlowPerAreaUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(VolumeFlowPerArea.TryParseUnit(abbreviation, out VolumeFlowPerAreaUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "CFM/ft²", VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot)]
+        [InlineData("en-US", "m³/(s·m²)", VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, VolumeFlowPerAreaUnit expectedUnit)
         {
             Assert.True(VolumeFlowPerArea.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out VolumeFlowPerAreaUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

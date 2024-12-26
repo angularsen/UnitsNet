@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -394,10 +395,29 @@ namespace UnitsNet.Tests
         [InlineData("kWh/m²", IrradiationUnit.KilowattHourPerSquareMeter)]
         [InlineData("mJ/cm²", IrradiationUnit.MillijoulePerSquareCentimeter)]
         [InlineData("Wh/m²", IrradiationUnit.WattHourPerSquareMeter)]
-        public void ParseUnit(string abbreviation, IrradiationUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, IrradiationUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            IrradiationUnit parsedUnit = Irradiation.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            IrradiationUnit parsedUnit = Irradiation.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("Btu/ft²", IrradiationUnit.BtuPerSquareFoot)]
+        [InlineData("J/cm²", IrradiationUnit.JoulePerSquareCentimeter)]
+        [InlineData("J/m²", IrradiationUnit.JoulePerSquareMeter)]
+        [InlineData("J/mm²", IrradiationUnit.JoulePerSquareMillimeter)]
+        [InlineData("kBtu/ft²", IrradiationUnit.KilobtuPerSquareFoot)]
+        [InlineData("kJ/m²", IrradiationUnit.KilojoulePerSquareMeter)]
+        [InlineData("kWh/m²", IrradiationUnit.KilowattHourPerSquareMeter)]
+        [InlineData("mJ/cm²", IrradiationUnit.MillijoulePerSquareCentimeter)]
+        [InlineData("Wh/m²", IrradiationUnit.WattHourPerSquareMeter)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, IrradiationUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            IrradiationUnit parsedUnit = Irradiation.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -411,7 +431,24 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "kWh/m²", IrradiationUnit.KilowattHourPerSquareMeter)]
         [InlineData("en-US", "mJ/cm²", IrradiationUnit.MillijoulePerSquareCentimeter)]
         [InlineData("en-US", "Wh/m²", IrradiationUnit.WattHourPerSquareMeter)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, IrradiationUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, IrradiationUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            IrradiationUnit parsedUnit = Irradiation.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "Btu/ft²", IrradiationUnit.BtuPerSquareFoot)]
+        [InlineData("en-US", "J/cm²", IrradiationUnit.JoulePerSquareCentimeter)]
+        [InlineData("en-US", "J/m²", IrradiationUnit.JoulePerSquareMeter)]
+        [InlineData("en-US", "J/mm²", IrradiationUnit.JoulePerSquareMillimeter)]
+        [InlineData("en-US", "kBtu/ft²", IrradiationUnit.KilobtuPerSquareFoot)]
+        [InlineData("en-US", "kJ/m²", IrradiationUnit.KilojoulePerSquareMeter)]
+        [InlineData("en-US", "kWh/m²", IrradiationUnit.KilowattHourPerSquareMeter)]
+        [InlineData("en-US", "mJ/cm²", IrradiationUnit.MillijoulePerSquareCentimeter)]
+        [InlineData("en-US", "Wh/m²", IrradiationUnit.WattHourPerSquareMeter)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, IrradiationUnit expectedUnit)
         {
             IrradiationUnit parsedUnit = Irradiation.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -427,9 +464,28 @@ namespace UnitsNet.Tests
         [InlineData("kWh/m²", IrradiationUnit.KilowattHourPerSquareMeter)]
         [InlineData("mJ/cm²", IrradiationUnit.MillijoulePerSquareCentimeter)]
         [InlineData("Wh/m²", IrradiationUnit.WattHourPerSquareMeter)]
-        public void TryParseUnit(string abbreviation, IrradiationUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, IrradiationUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(Irradiation.TryParseUnit(abbreviation, out IrradiationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("Btu/ft²", IrradiationUnit.BtuPerSquareFoot)]
+        [InlineData("J/cm²", IrradiationUnit.JoulePerSquareCentimeter)]
+        [InlineData("J/m²", IrradiationUnit.JoulePerSquareMeter)]
+        [InlineData("J/mm²", IrradiationUnit.JoulePerSquareMillimeter)]
+        [InlineData("kBtu/ft²", IrradiationUnit.KilobtuPerSquareFoot)]
+        [InlineData("kJ/m²", IrradiationUnit.KilojoulePerSquareMeter)]
+        [InlineData("kWh/m²", IrradiationUnit.KilowattHourPerSquareMeter)]
+        [InlineData("mJ/cm²", IrradiationUnit.MillijoulePerSquareCentimeter)]
+        [InlineData("Wh/m²", IrradiationUnit.WattHourPerSquareMeter)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, IrradiationUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(Irradiation.TryParseUnit(abbreviation, out IrradiationUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -444,7 +500,24 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "kWh/m²", IrradiationUnit.KilowattHourPerSquareMeter)]
         [InlineData("en-US", "mJ/cm²", IrradiationUnit.MillijoulePerSquareCentimeter)]
         [InlineData("en-US", "Wh/m²", IrradiationUnit.WattHourPerSquareMeter)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, IrradiationUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, IrradiationUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(Irradiation.TryParseUnit(abbreviation, out IrradiationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "Btu/ft²", IrradiationUnit.BtuPerSquareFoot)]
+        [InlineData("en-US", "J/cm²", IrradiationUnit.JoulePerSquareCentimeter)]
+        [InlineData("en-US", "J/m²", IrradiationUnit.JoulePerSquareMeter)]
+        [InlineData("en-US", "J/mm²", IrradiationUnit.JoulePerSquareMillimeter)]
+        [InlineData("en-US", "kBtu/ft²", IrradiationUnit.KilobtuPerSquareFoot)]
+        [InlineData("en-US", "kJ/m²", IrradiationUnit.KilojoulePerSquareMeter)]
+        [InlineData("en-US", "kWh/m²", IrradiationUnit.KilowattHourPerSquareMeter)]
+        [InlineData("en-US", "mJ/cm²", IrradiationUnit.MillijoulePerSquareCentimeter)]
+        [InlineData("en-US", "Wh/m²", IrradiationUnit.WattHourPerSquareMeter)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, IrradiationUnit expectedUnit)
         {
             Assert.True(Irradiation.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out IrradiationUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

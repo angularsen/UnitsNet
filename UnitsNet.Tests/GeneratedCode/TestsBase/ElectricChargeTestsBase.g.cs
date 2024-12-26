@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -462,10 +463,35 @@ namespace UnitsNet.Tests
         [InlineData("mC", ElectricChargeUnit.Millicoulomb)]
         [InlineData("nC", ElectricChargeUnit.Nanocoulomb)]
         [InlineData("pC", ElectricChargeUnit.Picocoulomb)]
-        public void ParseUnit(string abbreviation, ElectricChargeUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ElectricChargeUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            ElectricChargeUnit parsedUnit = ElectricCharge.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            ElectricChargeUnit parsedUnit = ElectricCharge.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("A-h", ElectricChargeUnit.AmpereHour)]
+        [InlineData("Ah", ElectricChargeUnit.AmpereHour)]
+        [InlineData("C", ElectricChargeUnit.Coulomb)]
+        [InlineData("kA-h", ElectricChargeUnit.KiloampereHour)]
+        [InlineData("kAh", ElectricChargeUnit.KiloampereHour)]
+        [InlineData("kC", ElectricChargeUnit.Kilocoulomb)]
+        [InlineData("MA-h", ElectricChargeUnit.MegaampereHour)]
+        [InlineData("MAh", ElectricChargeUnit.MegaampereHour)]
+        [InlineData("MC", ElectricChargeUnit.Megacoulomb)]
+        [InlineData("µC", ElectricChargeUnit.Microcoulomb)]
+        [InlineData("mA-h", ElectricChargeUnit.MilliampereHour)]
+        [InlineData("mAh", ElectricChargeUnit.MilliampereHour)]
+        [InlineData("mC", ElectricChargeUnit.Millicoulomb)]
+        [InlineData("nC", ElectricChargeUnit.Nanocoulomb)]
+        [InlineData("pC", ElectricChargeUnit.Picocoulomb)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ElectricChargeUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            ElectricChargeUnit parsedUnit = ElectricCharge.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -485,7 +511,30 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "mC", ElectricChargeUnit.Millicoulomb)]
         [InlineData("en-US", "nC", ElectricChargeUnit.Nanocoulomb)]
         [InlineData("en-US", "pC", ElectricChargeUnit.Picocoulomb)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, ElectricChargeUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, ElectricChargeUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            ElectricChargeUnit parsedUnit = ElectricCharge.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "A-h", ElectricChargeUnit.AmpereHour)]
+        [InlineData("en-US", "Ah", ElectricChargeUnit.AmpereHour)]
+        [InlineData("en-US", "C", ElectricChargeUnit.Coulomb)]
+        [InlineData("en-US", "kA-h", ElectricChargeUnit.KiloampereHour)]
+        [InlineData("en-US", "kAh", ElectricChargeUnit.KiloampereHour)]
+        [InlineData("en-US", "kC", ElectricChargeUnit.Kilocoulomb)]
+        [InlineData("en-US", "MA-h", ElectricChargeUnit.MegaampereHour)]
+        [InlineData("en-US", "MAh", ElectricChargeUnit.MegaampereHour)]
+        [InlineData("en-US", "MC", ElectricChargeUnit.Megacoulomb)]
+        [InlineData("en-US", "µC", ElectricChargeUnit.Microcoulomb)]
+        [InlineData("en-US", "mA-h", ElectricChargeUnit.MilliampereHour)]
+        [InlineData("en-US", "mAh", ElectricChargeUnit.MilliampereHour)]
+        [InlineData("en-US", "mC", ElectricChargeUnit.Millicoulomb)]
+        [InlineData("en-US", "nC", ElectricChargeUnit.Nanocoulomb)]
+        [InlineData("en-US", "pC", ElectricChargeUnit.Picocoulomb)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, ElectricChargeUnit expectedUnit)
         {
             ElectricChargeUnit parsedUnit = ElectricCharge.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -507,9 +556,34 @@ namespace UnitsNet.Tests
         [InlineData("mC", ElectricChargeUnit.Millicoulomb)]
         [InlineData("nC", ElectricChargeUnit.Nanocoulomb)]
         [InlineData("pC", ElectricChargeUnit.Picocoulomb)]
-        public void TryParseUnit(string abbreviation, ElectricChargeUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ElectricChargeUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(ElectricCharge.TryParseUnit(abbreviation, out ElectricChargeUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("A-h", ElectricChargeUnit.AmpereHour)]
+        [InlineData("Ah", ElectricChargeUnit.AmpereHour)]
+        [InlineData("C", ElectricChargeUnit.Coulomb)]
+        [InlineData("kA-h", ElectricChargeUnit.KiloampereHour)]
+        [InlineData("kAh", ElectricChargeUnit.KiloampereHour)]
+        [InlineData("kC", ElectricChargeUnit.Kilocoulomb)]
+        [InlineData("MA-h", ElectricChargeUnit.MegaampereHour)]
+        [InlineData("MAh", ElectricChargeUnit.MegaampereHour)]
+        [InlineData("MC", ElectricChargeUnit.Megacoulomb)]
+        [InlineData("µC", ElectricChargeUnit.Microcoulomb)]
+        [InlineData("mA-h", ElectricChargeUnit.MilliampereHour)]
+        [InlineData("mAh", ElectricChargeUnit.MilliampereHour)]
+        [InlineData("mC", ElectricChargeUnit.Millicoulomb)]
+        [InlineData("nC", ElectricChargeUnit.Nanocoulomb)]
+        [InlineData("pC", ElectricChargeUnit.Picocoulomb)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ElectricChargeUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(ElectricCharge.TryParseUnit(abbreviation, out ElectricChargeUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -530,7 +604,30 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "mC", ElectricChargeUnit.Millicoulomb)]
         [InlineData("en-US", "nC", ElectricChargeUnit.Nanocoulomb)]
         [InlineData("en-US", "pC", ElectricChargeUnit.Picocoulomb)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, ElectricChargeUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, ElectricChargeUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(ElectricCharge.TryParseUnit(abbreviation, out ElectricChargeUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "A-h", ElectricChargeUnit.AmpereHour)]
+        [InlineData("en-US", "Ah", ElectricChargeUnit.AmpereHour)]
+        [InlineData("en-US", "C", ElectricChargeUnit.Coulomb)]
+        [InlineData("en-US", "kA-h", ElectricChargeUnit.KiloampereHour)]
+        [InlineData("en-US", "kAh", ElectricChargeUnit.KiloampereHour)]
+        [InlineData("en-US", "kC", ElectricChargeUnit.Kilocoulomb)]
+        [InlineData("en-US", "MA-h", ElectricChargeUnit.MegaampereHour)]
+        [InlineData("en-US", "MAh", ElectricChargeUnit.MegaampereHour)]
+        [InlineData("en-US", "MC", ElectricChargeUnit.Megacoulomb)]
+        [InlineData("en-US", "µC", ElectricChargeUnit.Microcoulomb)]
+        [InlineData("en-US", "mA-h", ElectricChargeUnit.MilliampereHour)]
+        [InlineData("en-US", "mAh", ElectricChargeUnit.MilliampereHour)]
+        [InlineData("en-US", "mC", ElectricChargeUnit.Millicoulomb)]
+        [InlineData("en-US", "nC", ElectricChargeUnit.Nanocoulomb)]
+        [InlineData("en-US", "pC", ElectricChargeUnit.Picocoulomb)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, ElectricChargeUnit expectedUnit)
         {
             Assert.True(ElectricCharge.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ElectricChargeUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

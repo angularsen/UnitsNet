@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -202,16 +203,36 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("%RH", RelativeHumidityUnit.Percent)]
-        public void ParseUnit(string abbreviation, RelativeHumidityUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, RelativeHumidityUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            RelativeHumidityUnit parsedUnit = RelativeHumidity.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            RelativeHumidityUnit parsedUnit = RelativeHumidity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("%RH", RelativeHumidityUnit.Percent)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, RelativeHumidityUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            RelativeHumidityUnit parsedUnit = RelativeHumidity.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
         [InlineData("en-US", "%RH", RelativeHumidityUnit.Percent)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, RelativeHumidityUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, RelativeHumidityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            RelativeHumidityUnit parsedUnit = RelativeHumidity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "%RH", RelativeHumidityUnit.Percent)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, RelativeHumidityUnit expectedUnit)
         {
             RelativeHumidityUnit parsedUnit = RelativeHumidity.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -219,16 +240,36 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("%RH", RelativeHumidityUnit.Percent)]
-        public void TryParseUnit(string abbreviation, RelativeHumidityUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, RelativeHumidityUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(RelativeHumidity.TryParseUnit(abbreviation, out RelativeHumidityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("%RH", RelativeHumidityUnit.Percent)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, RelativeHumidityUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(RelativeHumidity.TryParseUnit(abbreviation, out RelativeHumidityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
         [InlineData("en-US", "%RH", RelativeHumidityUnit.Percent)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, RelativeHumidityUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, RelativeHumidityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(RelativeHumidity.TryParseUnit(abbreviation, out RelativeHumidityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "%RH", RelativeHumidityUnit.Percent)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, RelativeHumidityUnit expectedUnit)
         {
             Assert.True(RelativeHumidity.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out RelativeHumidityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

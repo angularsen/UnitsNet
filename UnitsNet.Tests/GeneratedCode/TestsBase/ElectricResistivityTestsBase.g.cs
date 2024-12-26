@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -490,10 +491,34 @@ namespace UnitsNet.Tests
         [InlineData("Ω·m", ElectricResistivityUnit.OhmMeter)]
         [InlineData("pΩ·cm", ElectricResistivityUnit.PicoohmCentimeter)]
         [InlineData("pΩ·m", ElectricResistivityUnit.PicoohmMeter)]
-        public void ParseUnit(string abbreviation, ElectricResistivityUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ElectricResistivityUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            ElectricResistivityUnit parsedUnit = ElectricResistivity.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            ElectricResistivityUnit parsedUnit = ElectricResistivity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("kΩ·cm", ElectricResistivityUnit.KiloohmCentimeter)]
+        [InlineData("kΩ·m", ElectricResistivityUnit.KiloohmMeter)]
+        [InlineData("MΩ·cm", ElectricResistivityUnit.MegaohmCentimeter)]
+        [InlineData("MΩ·m", ElectricResistivityUnit.MegaohmMeter)]
+        [InlineData("µΩ·cm", ElectricResistivityUnit.MicroohmCentimeter)]
+        [InlineData("µΩ·m", ElectricResistivityUnit.MicroohmMeter)]
+        [InlineData("mΩ·cm", ElectricResistivityUnit.MilliohmCentimeter)]
+        [InlineData("mΩ·m", ElectricResistivityUnit.MilliohmMeter)]
+        [InlineData("nΩ·cm", ElectricResistivityUnit.NanoohmCentimeter)]
+        [InlineData("nΩ·m", ElectricResistivityUnit.NanoohmMeter)]
+        [InlineData("Ω·cm", ElectricResistivityUnit.OhmCentimeter)]
+        [InlineData("Ω·m", ElectricResistivityUnit.OhmMeter)]
+        [InlineData("pΩ·cm", ElectricResistivityUnit.PicoohmCentimeter)]
+        [InlineData("pΩ·m", ElectricResistivityUnit.PicoohmMeter)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ElectricResistivityUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            ElectricResistivityUnit parsedUnit = ElectricResistivity.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -512,7 +537,29 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "Ω·m", ElectricResistivityUnit.OhmMeter)]
         [InlineData("en-US", "pΩ·cm", ElectricResistivityUnit.PicoohmCentimeter)]
         [InlineData("en-US", "pΩ·m", ElectricResistivityUnit.PicoohmMeter)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, ElectricResistivityUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, ElectricResistivityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            ElectricResistivityUnit parsedUnit = ElectricResistivity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "kΩ·cm", ElectricResistivityUnit.KiloohmCentimeter)]
+        [InlineData("en-US", "kΩ·m", ElectricResistivityUnit.KiloohmMeter)]
+        [InlineData("en-US", "MΩ·cm", ElectricResistivityUnit.MegaohmCentimeter)]
+        [InlineData("en-US", "MΩ·m", ElectricResistivityUnit.MegaohmMeter)]
+        [InlineData("en-US", "µΩ·cm", ElectricResistivityUnit.MicroohmCentimeter)]
+        [InlineData("en-US", "µΩ·m", ElectricResistivityUnit.MicroohmMeter)]
+        [InlineData("en-US", "mΩ·cm", ElectricResistivityUnit.MilliohmCentimeter)]
+        [InlineData("en-US", "mΩ·m", ElectricResistivityUnit.MilliohmMeter)]
+        [InlineData("en-US", "nΩ·cm", ElectricResistivityUnit.NanoohmCentimeter)]
+        [InlineData("en-US", "nΩ·m", ElectricResistivityUnit.NanoohmMeter)]
+        [InlineData("en-US", "Ω·cm", ElectricResistivityUnit.OhmCentimeter)]
+        [InlineData("en-US", "Ω·m", ElectricResistivityUnit.OhmMeter)]
+        [InlineData("en-US", "pΩ·cm", ElectricResistivityUnit.PicoohmCentimeter)]
+        [InlineData("en-US", "pΩ·m", ElectricResistivityUnit.PicoohmMeter)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, ElectricResistivityUnit expectedUnit)
         {
             ElectricResistivityUnit parsedUnit = ElectricResistivity.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -533,9 +580,33 @@ namespace UnitsNet.Tests
         [InlineData("Ω·m", ElectricResistivityUnit.OhmMeter)]
         [InlineData("pΩ·cm", ElectricResistivityUnit.PicoohmCentimeter)]
         [InlineData("pΩ·m", ElectricResistivityUnit.PicoohmMeter)]
-        public void TryParseUnit(string abbreviation, ElectricResistivityUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ElectricResistivityUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(ElectricResistivity.TryParseUnit(abbreviation, out ElectricResistivityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("kΩ·cm", ElectricResistivityUnit.KiloohmCentimeter)]
+        [InlineData("kΩ·m", ElectricResistivityUnit.KiloohmMeter)]
+        [InlineData("MΩ·cm", ElectricResistivityUnit.MegaohmCentimeter)]
+        [InlineData("MΩ·m", ElectricResistivityUnit.MegaohmMeter)]
+        [InlineData("µΩ·cm", ElectricResistivityUnit.MicroohmCentimeter)]
+        [InlineData("µΩ·m", ElectricResistivityUnit.MicroohmMeter)]
+        [InlineData("mΩ·cm", ElectricResistivityUnit.MilliohmCentimeter)]
+        [InlineData("mΩ·m", ElectricResistivityUnit.MilliohmMeter)]
+        [InlineData("nΩ·cm", ElectricResistivityUnit.NanoohmCentimeter)]
+        [InlineData("nΩ·m", ElectricResistivityUnit.NanoohmMeter)]
+        [InlineData("Ω·cm", ElectricResistivityUnit.OhmCentimeter)]
+        [InlineData("Ω·m", ElectricResistivityUnit.OhmMeter)]
+        [InlineData("pΩ·cm", ElectricResistivityUnit.PicoohmCentimeter)]
+        [InlineData("pΩ·m", ElectricResistivityUnit.PicoohmMeter)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ElectricResistivityUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(ElectricResistivity.TryParseUnit(abbreviation, out ElectricResistivityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -555,7 +626,29 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "Ω·m", ElectricResistivityUnit.OhmMeter)]
         [InlineData("en-US", "pΩ·cm", ElectricResistivityUnit.PicoohmCentimeter)]
         [InlineData("en-US", "pΩ·m", ElectricResistivityUnit.PicoohmMeter)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, ElectricResistivityUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, ElectricResistivityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(ElectricResistivity.TryParseUnit(abbreviation, out ElectricResistivityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "kΩ·cm", ElectricResistivityUnit.KiloohmCentimeter)]
+        [InlineData("en-US", "kΩ·m", ElectricResistivityUnit.KiloohmMeter)]
+        [InlineData("en-US", "MΩ·cm", ElectricResistivityUnit.MegaohmCentimeter)]
+        [InlineData("en-US", "MΩ·m", ElectricResistivityUnit.MegaohmMeter)]
+        [InlineData("en-US", "µΩ·cm", ElectricResistivityUnit.MicroohmCentimeter)]
+        [InlineData("en-US", "µΩ·m", ElectricResistivityUnit.MicroohmMeter)]
+        [InlineData("en-US", "mΩ·cm", ElectricResistivityUnit.MilliohmCentimeter)]
+        [InlineData("en-US", "mΩ·m", ElectricResistivityUnit.MilliohmMeter)]
+        [InlineData("en-US", "nΩ·cm", ElectricResistivityUnit.NanoohmCentimeter)]
+        [InlineData("en-US", "nΩ·m", ElectricResistivityUnit.NanoohmMeter)]
+        [InlineData("en-US", "Ω·cm", ElectricResistivityUnit.OhmCentimeter)]
+        [InlineData("en-US", "Ω·m", ElectricResistivityUnit.OhmMeter)]
+        [InlineData("en-US", "pΩ·cm", ElectricResistivityUnit.PicoohmCentimeter)]
+        [InlineData("en-US", "pΩ·m", ElectricResistivityUnit.PicoohmMeter)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, ElectricResistivityUnit expectedUnit)
         {
             Assert.True(ElectricResistivity.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ElectricResistivityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -226,17 +227,39 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData("BTU/(h·ft·°F)", ThermalConductivityUnit.BtuPerHourFootFahrenheit)]
         [InlineData("W/(m·K)", ThermalConductivityUnit.WattPerMeterKelvin)]
-        public void ParseUnit(string abbreviation, ThermalConductivityUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ThermalConductivityUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            ThermalConductivityUnit parsedUnit = ThermalConductivity.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            ThermalConductivityUnit parsedUnit = ThermalConductivity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("BTU/(h·ft·°F)", ThermalConductivityUnit.BtuPerHourFootFahrenheit)]
+        [InlineData("W/(m·K)", ThermalConductivityUnit.WattPerMeterKelvin)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ThermalConductivityUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            ThermalConductivityUnit parsedUnit = ThermalConductivity.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
         [InlineData("en-US", "BTU/(h·ft·°F)", ThermalConductivityUnit.BtuPerHourFootFahrenheit)]
         [InlineData("en-US", "W/(m·K)", ThermalConductivityUnit.WattPerMeterKelvin)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, ThermalConductivityUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, ThermalConductivityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            ThermalConductivityUnit parsedUnit = ThermalConductivity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "BTU/(h·ft·°F)", ThermalConductivityUnit.BtuPerHourFootFahrenheit)]
+        [InlineData("en-US", "W/(m·K)", ThermalConductivityUnit.WattPerMeterKelvin)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, ThermalConductivityUnit expectedUnit)
         {
             ThermalConductivityUnit parsedUnit = ThermalConductivity.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -245,9 +268,21 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData("BTU/(h·ft·°F)", ThermalConductivityUnit.BtuPerHourFootFahrenheit)]
         [InlineData("W/(m·K)", ThermalConductivityUnit.WattPerMeterKelvin)]
-        public void TryParseUnit(string abbreviation, ThermalConductivityUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ThermalConductivityUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(ThermalConductivity.TryParseUnit(abbreviation, out ThermalConductivityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("BTU/(h·ft·°F)", ThermalConductivityUnit.BtuPerHourFootFahrenheit)]
+        [InlineData("W/(m·K)", ThermalConductivityUnit.WattPerMeterKelvin)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ThermalConductivityUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(ThermalConductivity.TryParseUnit(abbreviation, out ThermalConductivityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -255,7 +290,17 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData("en-US", "BTU/(h·ft·°F)", ThermalConductivityUnit.BtuPerHourFootFahrenheit)]
         [InlineData("en-US", "W/(m·K)", ThermalConductivityUnit.WattPerMeterKelvin)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, ThermalConductivityUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, ThermalConductivityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(ThermalConductivity.TryParseUnit(abbreviation, out ThermalConductivityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "BTU/(h·ft·°F)", ThermalConductivityUnit.BtuPerHourFootFahrenheit)]
+        [InlineData("en-US", "W/(m·K)", ThermalConductivityUnit.WattPerMeterKelvin)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, ThermalConductivityUnit expectedUnit)
         {
             Assert.True(ThermalConductivity.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ThermalConductivityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

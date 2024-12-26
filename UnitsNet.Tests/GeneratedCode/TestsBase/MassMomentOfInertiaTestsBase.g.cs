@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -850,10 +851,48 @@ namespace UnitsNet.Tests
         [InlineData("t·dm²", MassMomentOfInertiaUnit.TonneSquareDecimeter)]
         [InlineData("t·m²", MassMomentOfInertiaUnit.TonneSquareMeter)]
         [InlineData("t·mm²", MassMomentOfInertiaUnit.TonneSquareMilimeter)]
-        public void ParseUnit(string abbreviation, MassMomentOfInertiaUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, MassMomentOfInertiaUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            MassMomentOfInertiaUnit parsedUnit = MassMomentOfInertia.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            MassMomentOfInertiaUnit parsedUnit = MassMomentOfInertia.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("g·cm²", MassMomentOfInertiaUnit.GramSquareCentimeter)]
+        [InlineData("g·dm²", MassMomentOfInertiaUnit.GramSquareDecimeter)]
+        [InlineData("g·m²", MassMomentOfInertiaUnit.GramSquareMeter)]
+        [InlineData("g·mm²", MassMomentOfInertiaUnit.GramSquareMillimeter)]
+        [InlineData("kg·cm²", MassMomentOfInertiaUnit.KilogramSquareCentimeter)]
+        [InlineData("kg·dm²", MassMomentOfInertiaUnit.KilogramSquareDecimeter)]
+        [InlineData("kg·m²", MassMomentOfInertiaUnit.KilogramSquareMeter)]
+        [InlineData("kg·mm²", MassMomentOfInertiaUnit.KilogramSquareMillimeter)]
+        [InlineData("kt·cm²", MassMomentOfInertiaUnit.KilotonneSquareCentimeter)]
+        [InlineData("kt·dm²", MassMomentOfInertiaUnit.KilotonneSquareDecimeter)]
+        [InlineData("kt·m²", MassMomentOfInertiaUnit.KilotonneSquareMeter)]
+        [InlineData("kt·mm²", MassMomentOfInertiaUnit.KilotonneSquareMilimeter)]
+        [InlineData("Mt·cm²", MassMomentOfInertiaUnit.MegatonneSquareCentimeter)]
+        [InlineData("Mt·dm²", MassMomentOfInertiaUnit.MegatonneSquareDecimeter)]
+        [InlineData("Mt·m²", MassMomentOfInertiaUnit.MegatonneSquareMeter)]
+        [InlineData("Mt·mm²", MassMomentOfInertiaUnit.MegatonneSquareMilimeter)]
+        [InlineData("mg·cm²", MassMomentOfInertiaUnit.MilligramSquareCentimeter)]
+        [InlineData("mg·dm²", MassMomentOfInertiaUnit.MilligramSquareDecimeter)]
+        [InlineData("mg·m²", MassMomentOfInertiaUnit.MilligramSquareMeter)]
+        [InlineData("mg·mm²", MassMomentOfInertiaUnit.MilligramSquareMillimeter)]
+        [InlineData("lb·ft²", MassMomentOfInertiaUnit.PoundSquareFoot)]
+        [InlineData("lb·in²", MassMomentOfInertiaUnit.PoundSquareInch)]
+        [InlineData("slug·ft²", MassMomentOfInertiaUnit.SlugSquareFoot)]
+        [InlineData("slug·in²", MassMomentOfInertiaUnit.SlugSquareInch)]
+        [InlineData("t·cm²", MassMomentOfInertiaUnit.TonneSquareCentimeter)]
+        [InlineData("t·dm²", MassMomentOfInertiaUnit.TonneSquareDecimeter)]
+        [InlineData("t·m²", MassMomentOfInertiaUnit.TonneSquareMeter)]
+        [InlineData("t·mm²", MassMomentOfInertiaUnit.TonneSquareMilimeter)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, MassMomentOfInertiaUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            MassMomentOfInertiaUnit parsedUnit = MassMomentOfInertia.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -886,7 +925,43 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "t·dm²", MassMomentOfInertiaUnit.TonneSquareDecimeter)]
         [InlineData("en-US", "t·m²", MassMomentOfInertiaUnit.TonneSquareMeter)]
         [InlineData("en-US", "t·mm²", MassMomentOfInertiaUnit.TonneSquareMilimeter)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, MassMomentOfInertiaUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, MassMomentOfInertiaUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            MassMomentOfInertiaUnit parsedUnit = MassMomentOfInertia.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "g·cm²", MassMomentOfInertiaUnit.GramSquareCentimeter)]
+        [InlineData("en-US", "g·dm²", MassMomentOfInertiaUnit.GramSquareDecimeter)]
+        [InlineData("en-US", "g·m²", MassMomentOfInertiaUnit.GramSquareMeter)]
+        [InlineData("en-US", "g·mm²", MassMomentOfInertiaUnit.GramSquareMillimeter)]
+        [InlineData("en-US", "kg·cm²", MassMomentOfInertiaUnit.KilogramSquareCentimeter)]
+        [InlineData("en-US", "kg·dm²", MassMomentOfInertiaUnit.KilogramSquareDecimeter)]
+        [InlineData("en-US", "kg·m²", MassMomentOfInertiaUnit.KilogramSquareMeter)]
+        [InlineData("en-US", "kg·mm²", MassMomentOfInertiaUnit.KilogramSquareMillimeter)]
+        [InlineData("en-US", "kt·cm²", MassMomentOfInertiaUnit.KilotonneSquareCentimeter)]
+        [InlineData("en-US", "kt·dm²", MassMomentOfInertiaUnit.KilotonneSquareDecimeter)]
+        [InlineData("en-US", "kt·m²", MassMomentOfInertiaUnit.KilotonneSquareMeter)]
+        [InlineData("en-US", "kt·mm²", MassMomentOfInertiaUnit.KilotonneSquareMilimeter)]
+        [InlineData("en-US", "Mt·cm²", MassMomentOfInertiaUnit.MegatonneSquareCentimeter)]
+        [InlineData("en-US", "Mt·dm²", MassMomentOfInertiaUnit.MegatonneSquareDecimeter)]
+        [InlineData("en-US", "Mt·m²", MassMomentOfInertiaUnit.MegatonneSquareMeter)]
+        [InlineData("en-US", "Mt·mm²", MassMomentOfInertiaUnit.MegatonneSquareMilimeter)]
+        [InlineData("en-US", "mg·cm²", MassMomentOfInertiaUnit.MilligramSquareCentimeter)]
+        [InlineData("en-US", "mg·dm²", MassMomentOfInertiaUnit.MilligramSquareDecimeter)]
+        [InlineData("en-US", "mg·m²", MassMomentOfInertiaUnit.MilligramSquareMeter)]
+        [InlineData("en-US", "mg·mm²", MassMomentOfInertiaUnit.MilligramSquareMillimeter)]
+        [InlineData("en-US", "lb·ft²", MassMomentOfInertiaUnit.PoundSquareFoot)]
+        [InlineData("en-US", "lb·in²", MassMomentOfInertiaUnit.PoundSquareInch)]
+        [InlineData("en-US", "slug·ft²", MassMomentOfInertiaUnit.SlugSquareFoot)]
+        [InlineData("en-US", "slug·in²", MassMomentOfInertiaUnit.SlugSquareInch)]
+        [InlineData("en-US", "t·cm²", MassMomentOfInertiaUnit.TonneSquareCentimeter)]
+        [InlineData("en-US", "t·dm²", MassMomentOfInertiaUnit.TonneSquareDecimeter)]
+        [InlineData("en-US", "t·m²", MassMomentOfInertiaUnit.TonneSquareMeter)]
+        [InlineData("en-US", "t·mm²", MassMomentOfInertiaUnit.TonneSquareMilimeter)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, MassMomentOfInertiaUnit expectedUnit)
         {
             MassMomentOfInertiaUnit parsedUnit = MassMomentOfInertia.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -921,9 +996,47 @@ namespace UnitsNet.Tests
         [InlineData("t·dm²", MassMomentOfInertiaUnit.TonneSquareDecimeter)]
         [InlineData("t·m²", MassMomentOfInertiaUnit.TonneSquareMeter)]
         [InlineData("t·mm²", MassMomentOfInertiaUnit.TonneSquareMilimeter)]
-        public void TryParseUnit(string abbreviation, MassMomentOfInertiaUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, MassMomentOfInertiaUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(MassMomentOfInertia.TryParseUnit(abbreviation, out MassMomentOfInertiaUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("g·cm²", MassMomentOfInertiaUnit.GramSquareCentimeter)]
+        [InlineData("g·dm²", MassMomentOfInertiaUnit.GramSquareDecimeter)]
+        [InlineData("g·m²", MassMomentOfInertiaUnit.GramSquareMeter)]
+        [InlineData("g·mm²", MassMomentOfInertiaUnit.GramSquareMillimeter)]
+        [InlineData("kg·cm²", MassMomentOfInertiaUnit.KilogramSquareCentimeter)]
+        [InlineData("kg·dm²", MassMomentOfInertiaUnit.KilogramSquareDecimeter)]
+        [InlineData("kg·m²", MassMomentOfInertiaUnit.KilogramSquareMeter)]
+        [InlineData("kg·mm²", MassMomentOfInertiaUnit.KilogramSquareMillimeter)]
+        [InlineData("kt·cm²", MassMomentOfInertiaUnit.KilotonneSquareCentimeter)]
+        [InlineData("kt·dm²", MassMomentOfInertiaUnit.KilotonneSquareDecimeter)]
+        [InlineData("kt·m²", MassMomentOfInertiaUnit.KilotonneSquareMeter)]
+        [InlineData("kt·mm²", MassMomentOfInertiaUnit.KilotonneSquareMilimeter)]
+        [InlineData("Mt·cm²", MassMomentOfInertiaUnit.MegatonneSquareCentimeter)]
+        [InlineData("Mt·dm²", MassMomentOfInertiaUnit.MegatonneSquareDecimeter)]
+        [InlineData("Mt·m²", MassMomentOfInertiaUnit.MegatonneSquareMeter)]
+        [InlineData("Mt·mm²", MassMomentOfInertiaUnit.MegatonneSquareMilimeter)]
+        [InlineData("mg·cm²", MassMomentOfInertiaUnit.MilligramSquareCentimeter)]
+        [InlineData("mg·dm²", MassMomentOfInertiaUnit.MilligramSquareDecimeter)]
+        [InlineData("mg·m²", MassMomentOfInertiaUnit.MilligramSquareMeter)]
+        [InlineData("mg·mm²", MassMomentOfInertiaUnit.MilligramSquareMillimeter)]
+        [InlineData("lb·ft²", MassMomentOfInertiaUnit.PoundSquareFoot)]
+        [InlineData("lb·in²", MassMomentOfInertiaUnit.PoundSquareInch)]
+        [InlineData("slug·ft²", MassMomentOfInertiaUnit.SlugSquareFoot)]
+        [InlineData("slug·in²", MassMomentOfInertiaUnit.SlugSquareInch)]
+        [InlineData("t·cm²", MassMomentOfInertiaUnit.TonneSquareCentimeter)]
+        [InlineData("t·dm²", MassMomentOfInertiaUnit.TonneSquareDecimeter)]
+        [InlineData("t·m²", MassMomentOfInertiaUnit.TonneSquareMeter)]
+        [InlineData("t·mm²", MassMomentOfInertiaUnit.TonneSquareMilimeter)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, MassMomentOfInertiaUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(MassMomentOfInertia.TryParseUnit(abbreviation, out MassMomentOfInertiaUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -957,7 +1070,43 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "t·dm²", MassMomentOfInertiaUnit.TonneSquareDecimeter)]
         [InlineData("en-US", "t·m²", MassMomentOfInertiaUnit.TonneSquareMeter)]
         [InlineData("en-US", "t·mm²", MassMomentOfInertiaUnit.TonneSquareMilimeter)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, MassMomentOfInertiaUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, MassMomentOfInertiaUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(MassMomentOfInertia.TryParseUnit(abbreviation, out MassMomentOfInertiaUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "g·cm²", MassMomentOfInertiaUnit.GramSquareCentimeter)]
+        [InlineData("en-US", "g·dm²", MassMomentOfInertiaUnit.GramSquareDecimeter)]
+        [InlineData("en-US", "g·m²", MassMomentOfInertiaUnit.GramSquareMeter)]
+        [InlineData("en-US", "g·mm²", MassMomentOfInertiaUnit.GramSquareMillimeter)]
+        [InlineData("en-US", "kg·cm²", MassMomentOfInertiaUnit.KilogramSquareCentimeter)]
+        [InlineData("en-US", "kg·dm²", MassMomentOfInertiaUnit.KilogramSquareDecimeter)]
+        [InlineData("en-US", "kg·m²", MassMomentOfInertiaUnit.KilogramSquareMeter)]
+        [InlineData("en-US", "kg·mm²", MassMomentOfInertiaUnit.KilogramSquareMillimeter)]
+        [InlineData("en-US", "kt·cm²", MassMomentOfInertiaUnit.KilotonneSquareCentimeter)]
+        [InlineData("en-US", "kt·dm²", MassMomentOfInertiaUnit.KilotonneSquareDecimeter)]
+        [InlineData("en-US", "kt·m²", MassMomentOfInertiaUnit.KilotonneSquareMeter)]
+        [InlineData("en-US", "kt·mm²", MassMomentOfInertiaUnit.KilotonneSquareMilimeter)]
+        [InlineData("en-US", "Mt·cm²", MassMomentOfInertiaUnit.MegatonneSquareCentimeter)]
+        [InlineData("en-US", "Mt·dm²", MassMomentOfInertiaUnit.MegatonneSquareDecimeter)]
+        [InlineData("en-US", "Mt·m²", MassMomentOfInertiaUnit.MegatonneSquareMeter)]
+        [InlineData("en-US", "Mt·mm²", MassMomentOfInertiaUnit.MegatonneSquareMilimeter)]
+        [InlineData("en-US", "mg·cm²", MassMomentOfInertiaUnit.MilligramSquareCentimeter)]
+        [InlineData("en-US", "mg·dm²", MassMomentOfInertiaUnit.MilligramSquareDecimeter)]
+        [InlineData("en-US", "mg·m²", MassMomentOfInertiaUnit.MilligramSquareMeter)]
+        [InlineData("en-US", "mg·mm²", MassMomentOfInertiaUnit.MilligramSquareMillimeter)]
+        [InlineData("en-US", "lb·ft²", MassMomentOfInertiaUnit.PoundSquareFoot)]
+        [InlineData("en-US", "lb·in²", MassMomentOfInertiaUnit.PoundSquareInch)]
+        [InlineData("en-US", "slug·ft²", MassMomentOfInertiaUnit.SlugSquareFoot)]
+        [InlineData("en-US", "slug·in²", MassMomentOfInertiaUnit.SlugSquareInch)]
+        [InlineData("en-US", "t·cm²", MassMomentOfInertiaUnit.TonneSquareCentimeter)]
+        [InlineData("en-US", "t·dm²", MassMomentOfInertiaUnit.TonneSquareDecimeter)]
+        [InlineData("en-US", "t·m²", MassMomentOfInertiaUnit.TonneSquareMeter)]
+        [InlineData("en-US", "t·mm²", MassMomentOfInertiaUnit.TonneSquareMilimeter)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, MassMomentOfInertiaUnit expectedUnit)
         {
             Assert.True(MassMomentOfInertia.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out MassMomentOfInertiaUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

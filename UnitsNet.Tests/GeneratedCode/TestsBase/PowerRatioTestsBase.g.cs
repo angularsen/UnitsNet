@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -240,10 +241,23 @@ namespace UnitsNet.Tests
         [InlineData("dBmW", PowerRatioUnit.DecibelMilliwatt)]
         [InlineData("dBm", PowerRatioUnit.DecibelMilliwatt)]
         [InlineData("dBW", PowerRatioUnit.DecibelWatt)]
-        public void ParseUnit(string abbreviation, PowerRatioUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, PowerRatioUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            PowerRatioUnit parsedUnit = PowerRatio.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            PowerRatioUnit parsedUnit = PowerRatio.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("dBmW", PowerRatioUnit.DecibelMilliwatt)]
+        [InlineData("dBm", PowerRatioUnit.DecibelMilliwatt)]
+        [InlineData("dBW", PowerRatioUnit.DecibelWatt)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, PowerRatioUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            PowerRatioUnit parsedUnit = PowerRatio.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -251,7 +265,18 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "dBmW", PowerRatioUnit.DecibelMilliwatt)]
         [InlineData("en-US", "dBm", PowerRatioUnit.DecibelMilliwatt)]
         [InlineData("en-US", "dBW", PowerRatioUnit.DecibelWatt)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, PowerRatioUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, PowerRatioUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            PowerRatioUnit parsedUnit = PowerRatio.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "dBmW", PowerRatioUnit.DecibelMilliwatt)]
+        [InlineData("en-US", "dBm", PowerRatioUnit.DecibelMilliwatt)]
+        [InlineData("en-US", "dBW", PowerRatioUnit.DecibelWatt)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, PowerRatioUnit expectedUnit)
         {
             PowerRatioUnit parsedUnit = PowerRatio.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -261,9 +286,22 @@ namespace UnitsNet.Tests
         [InlineData("dBmW", PowerRatioUnit.DecibelMilliwatt)]
         [InlineData("dBm", PowerRatioUnit.DecibelMilliwatt)]
         [InlineData("dBW", PowerRatioUnit.DecibelWatt)]
-        public void TryParseUnit(string abbreviation, PowerRatioUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, PowerRatioUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(PowerRatio.TryParseUnit(abbreviation, out PowerRatioUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("dBmW", PowerRatioUnit.DecibelMilliwatt)]
+        [InlineData("dBm", PowerRatioUnit.DecibelMilliwatt)]
+        [InlineData("dBW", PowerRatioUnit.DecibelWatt)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, PowerRatioUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(PowerRatio.TryParseUnit(abbreviation, out PowerRatioUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -272,7 +310,18 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "dBmW", PowerRatioUnit.DecibelMilliwatt)]
         [InlineData("en-US", "dBm", PowerRatioUnit.DecibelMilliwatt)]
         [InlineData("en-US", "dBW", PowerRatioUnit.DecibelWatt)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, PowerRatioUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, PowerRatioUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(PowerRatio.TryParseUnit(abbreviation, out PowerRatioUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "dBmW", PowerRatioUnit.DecibelMilliwatt)]
+        [InlineData("en-US", "dBm", PowerRatioUnit.DecibelMilliwatt)]
+        [InlineData("en-US", "dBW", PowerRatioUnit.DecibelWatt)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, PowerRatioUnit expectedUnit)
         {
             Assert.True(PowerRatio.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out PowerRatioUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

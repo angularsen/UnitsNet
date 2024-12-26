@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -696,10 +697,34 @@ namespace UnitsNet.Tests
         [InlineData("mg", AccelerationUnit.MillistandardGravity)]
         [InlineData("nm/s²", AccelerationUnit.NanometerPerSecondSquared)]
         [InlineData("g", AccelerationUnit.StandardGravity)]
-        public void ParseUnit(string abbreviation, AccelerationUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, AccelerationUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            AccelerationUnit parsedUnit = Acceleration.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            AccelerationUnit parsedUnit = Acceleration.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("cm/s²", AccelerationUnit.CentimeterPerSecondSquared)]
+        [InlineData("dm/s²", AccelerationUnit.DecimeterPerSecondSquared)]
+        [InlineData("ft/s²", AccelerationUnit.FootPerSecondSquared)]
+        [InlineData("in/s²", AccelerationUnit.InchPerSecondSquared)]
+        [InlineData("km/s²", AccelerationUnit.KilometerPerSecondSquared)]
+        [InlineData("kn/h", AccelerationUnit.KnotPerHour)]
+        [InlineData("kn/min", AccelerationUnit.KnotPerMinute)]
+        [InlineData("kn/s", AccelerationUnit.KnotPerSecond)]
+        [InlineData("m/s²", AccelerationUnit.MeterPerSecondSquared)]
+        [InlineData("µm/s²", AccelerationUnit.MicrometerPerSecondSquared)]
+        [InlineData("mm/s²", AccelerationUnit.MillimeterPerSecondSquared)]
+        [InlineData("mg", AccelerationUnit.MillistandardGravity)]
+        [InlineData("nm/s²", AccelerationUnit.NanometerPerSecondSquared)]
+        [InlineData("g", AccelerationUnit.StandardGravity)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, AccelerationUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            AccelerationUnit parsedUnit = Acceleration.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -732,7 +757,43 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "мg", AccelerationUnit.MillistandardGravity)]
         [InlineData("ru-RU", "нм/с²", AccelerationUnit.NanometerPerSecondSquared)]
         [InlineData("ru-RU", "g", AccelerationUnit.StandardGravity)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, AccelerationUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, AccelerationUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            AccelerationUnit parsedUnit = Acceleration.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "cm/s²", AccelerationUnit.CentimeterPerSecondSquared)]
+        [InlineData("en-US", "dm/s²", AccelerationUnit.DecimeterPerSecondSquared)]
+        [InlineData("en-US", "ft/s²", AccelerationUnit.FootPerSecondSquared)]
+        [InlineData("en-US", "in/s²", AccelerationUnit.InchPerSecondSquared)]
+        [InlineData("en-US", "km/s²", AccelerationUnit.KilometerPerSecondSquared)]
+        [InlineData("en-US", "kn/h", AccelerationUnit.KnotPerHour)]
+        [InlineData("en-US", "kn/min", AccelerationUnit.KnotPerMinute)]
+        [InlineData("en-US", "kn/s", AccelerationUnit.KnotPerSecond)]
+        [InlineData("en-US", "m/s²", AccelerationUnit.MeterPerSecondSquared)]
+        [InlineData("en-US", "µm/s²", AccelerationUnit.MicrometerPerSecondSquared)]
+        [InlineData("en-US", "mm/s²", AccelerationUnit.MillimeterPerSecondSquared)]
+        [InlineData("en-US", "mg", AccelerationUnit.MillistandardGravity)]
+        [InlineData("en-US", "nm/s²", AccelerationUnit.NanometerPerSecondSquared)]
+        [InlineData("en-US", "g", AccelerationUnit.StandardGravity)]
+        [InlineData("ru-RU", "см/с²", AccelerationUnit.CentimeterPerSecondSquared)]
+        [InlineData("ru-RU", "дм/с²", AccelerationUnit.DecimeterPerSecondSquared)]
+        [InlineData("ru-RU", "фут/с²", AccelerationUnit.FootPerSecondSquared)]
+        [InlineData("ru-RU", "дюйм/с²", AccelerationUnit.InchPerSecondSquared)]
+        [InlineData("ru-RU", "км/с²", AccelerationUnit.KilometerPerSecondSquared)]
+        [InlineData("ru-RU", "узел/час", AccelerationUnit.KnotPerHour)]
+        [InlineData("ru-RU", "узел/мин", AccelerationUnit.KnotPerMinute)]
+        [InlineData("ru-RU", "узел/с", AccelerationUnit.KnotPerSecond)]
+        [InlineData("ru-RU", "м/с²", AccelerationUnit.MeterPerSecondSquared)]
+        [InlineData("ru-RU", "мкм/с²", AccelerationUnit.MicrometerPerSecondSquared)]
+        [InlineData("ru-RU", "мм/с²", AccelerationUnit.MillimeterPerSecondSquared)]
+        [InlineData("ru-RU", "мg", AccelerationUnit.MillistandardGravity)]
+        [InlineData("ru-RU", "нм/с²", AccelerationUnit.NanometerPerSecondSquared)]
+        [InlineData("ru-RU", "g", AccelerationUnit.StandardGravity)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, AccelerationUnit expectedUnit)
         {
             AccelerationUnit parsedUnit = Acceleration.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -753,9 +814,33 @@ namespace UnitsNet.Tests
         [InlineData("mg", AccelerationUnit.MillistandardGravity)]
         [InlineData("nm/s²", AccelerationUnit.NanometerPerSecondSquared)]
         [InlineData("g", AccelerationUnit.StandardGravity)]
-        public void TryParseUnit(string abbreviation, AccelerationUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, AccelerationUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(Acceleration.TryParseUnit(abbreviation, out AccelerationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("cm/s²", AccelerationUnit.CentimeterPerSecondSquared)]
+        [InlineData("dm/s²", AccelerationUnit.DecimeterPerSecondSquared)]
+        [InlineData("ft/s²", AccelerationUnit.FootPerSecondSquared)]
+        [InlineData("in/s²", AccelerationUnit.InchPerSecondSquared)]
+        [InlineData("km/s²", AccelerationUnit.KilometerPerSecondSquared)]
+        [InlineData("kn/h", AccelerationUnit.KnotPerHour)]
+        [InlineData("kn/min", AccelerationUnit.KnotPerMinute)]
+        [InlineData("kn/s", AccelerationUnit.KnotPerSecond)]
+        [InlineData("m/s²", AccelerationUnit.MeterPerSecondSquared)]
+        [InlineData("µm/s²", AccelerationUnit.MicrometerPerSecondSquared)]
+        [InlineData("mm/s²", AccelerationUnit.MillimeterPerSecondSquared)]
+        [InlineData("mg", AccelerationUnit.MillistandardGravity)]
+        [InlineData("nm/s²", AccelerationUnit.NanometerPerSecondSquared)]
+        [InlineData("g", AccelerationUnit.StandardGravity)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, AccelerationUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(Acceleration.TryParseUnit(abbreviation, out AccelerationUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -789,7 +874,43 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "мg", AccelerationUnit.MillistandardGravity)]
         [InlineData("ru-RU", "нм/с²", AccelerationUnit.NanometerPerSecondSquared)]
         [InlineData("ru-RU", "g", AccelerationUnit.StandardGravity)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, AccelerationUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, AccelerationUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(Acceleration.TryParseUnit(abbreviation, out AccelerationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "cm/s²", AccelerationUnit.CentimeterPerSecondSquared)]
+        [InlineData("en-US", "dm/s²", AccelerationUnit.DecimeterPerSecondSquared)]
+        [InlineData("en-US", "ft/s²", AccelerationUnit.FootPerSecondSquared)]
+        [InlineData("en-US", "in/s²", AccelerationUnit.InchPerSecondSquared)]
+        [InlineData("en-US", "km/s²", AccelerationUnit.KilometerPerSecondSquared)]
+        [InlineData("en-US", "kn/h", AccelerationUnit.KnotPerHour)]
+        [InlineData("en-US", "kn/min", AccelerationUnit.KnotPerMinute)]
+        [InlineData("en-US", "kn/s", AccelerationUnit.KnotPerSecond)]
+        [InlineData("en-US", "m/s²", AccelerationUnit.MeterPerSecondSquared)]
+        [InlineData("en-US", "µm/s²", AccelerationUnit.MicrometerPerSecondSquared)]
+        [InlineData("en-US", "mm/s²", AccelerationUnit.MillimeterPerSecondSquared)]
+        [InlineData("en-US", "mg", AccelerationUnit.MillistandardGravity)]
+        [InlineData("en-US", "nm/s²", AccelerationUnit.NanometerPerSecondSquared)]
+        [InlineData("en-US", "g", AccelerationUnit.StandardGravity)]
+        [InlineData("ru-RU", "см/с²", AccelerationUnit.CentimeterPerSecondSquared)]
+        [InlineData("ru-RU", "дм/с²", AccelerationUnit.DecimeterPerSecondSquared)]
+        [InlineData("ru-RU", "фут/с²", AccelerationUnit.FootPerSecondSquared)]
+        [InlineData("ru-RU", "дюйм/с²", AccelerationUnit.InchPerSecondSquared)]
+        [InlineData("ru-RU", "км/с²", AccelerationUnit.KilometerPerSecondSquared)]
+        [InlineData("ru-RU", "узел/час", AccelerationUnit.KnotPerHour)]
+        [InlineData("ru-RU", "узел/мин", AccelerationUnit.KnotPerMinute)]
+        [InlineData("ru-RU", "узел/с", AccelerationUnit.KnotPerSecond)]
+        [InlineData("ru-RU", "м/с²", AccelerationUnit.MeterPerSecondSquared)]
+        [InlineData("ru-RU", "мкм/с²", AccelerationUnit.MicrometerPerSecondSquared)]
+        [InlineData("ru-RU", "мм/с²", AccelerationUnit.MillimeterPerSecondSquared)]
+        [InlineData("ru-RU", "мg", AccelerationUnit.MillistandardGravity)]
+        [InlineData("ru-RU", "нм/с²", AccelerationUnit.NanometerPerSecondSquared)]
+        [InlineData("ru-RU", "g", AccelerationUnit.StandardGravity)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, AccelerationUnit expectedUnit)
         {
             Assert.True(Acceleration.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out AccelerationUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

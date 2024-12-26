@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -1574,10 +1575,76 @@ namespace UnitsNet.Tests
         [InlineData("t/in³", DensityUnit.TonnePerCubicInch)]
         [InlineData("t/m³", DensityUnit.TonnePerCubicMeter)]
         [InlineData("t/mm³", DensityUnit.TonnePerCubicMillimeter)]
-        public void ParseUnit(string abbreviation, DensityUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, DensityUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            DensityUnit parsedUnit = Density.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            DensityUnit parsedUnit = Density.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("cg/dl", DensityUnit.CentigramPerDeciliter)]
+        [InlineData("cg/l", DensityUnit.CentigramPerLiter)]
+        [InlineData("cg/ml", DensityUnit.CentigramPerMilliliter)]
+        [InlineData("dg/dl", DensityUnit.DecigramPerDeciliter)]
+        [InlineData("dg/l", DensityUnit.DecigramPerLiter)]
+        [InlineData("dg/ml", DensityUnit.DecigramPerMilliliter)]
+        [InlineData("fg/dl", DensityUnit.FemtogramPerDeciliter)]
+        [InlineData("fg/l", DensityUnit.FemtogramPerLiter)]
+        [InlineData("fg/ml", DensityUnit.FemtogramPerMilliliter)]
+        [InlineData("g/cm³", DensityUnit.GramPerCubicCentimeter)]
+        [InlineData("g/ft³", DensityUnit.GramPerCubicFoot)]
+        [InlineData("g/in³", DensityUnit.GramPerCubicInch)]
+        [InlineData("g/m³", DensityUnit.GramPerCubicMeter)]
+        [InlineData("g/mm³", DensityUnit.GramPerCubicMillimeter)]
+        [InlineData("g/dl", DensityUnit.GramPerDeciliter)]
+        [InlineData("g/l", DensityUnit.GramPerLiter)]
+        [InlineData("g/ml", DensityUnit.GramPerMilliliter)]
+        [InlineData("kg/cm³", DensityUnit.KilogramPerCubicCentimeter)]
+        [InlineData("kg/m³", DensityUnit.KilogramPerCubicMeter)]
+        [InlineData("kg/mm³", DensityUnit.KilogramPerCubicMillimeter)]
+        [InlineData("kg/l", DensityUnit.KilogramPerLiter)]
+        [InlineData("kip/ft³", DensityUnit.KilopoundPerCubicFoot)]
+        [InlineData("kip/in³", DensityUnit.KilopoundPerCubicInch)]
+        [InlineData("kip/yd³", DensityUnit.KilopoundPerCubicYard)]
+        [InlineData("µg/m³", DensityUnit.MicrogramPerCubicMeter)]
+        [InlineData("µg/dl", DensityUnit.MicrogramPerDeciliter)]
+        [InlineData("µg/l", DensityUnit.MicrogramPerLiter)]
+        [InlineData("µg/ml", DensityUnit.MicrogramPerMilliliter)]
+        [InlineData("mg/m³", DensityUnit.MilligramPerCubicMeter)]
+        [InlineData("mg/dl", DensityUnit.MilligramPerDeciliter)]
+        [InlineData("mg/l", DensityUnit.MilligramPerLiter)]
+        [InlineData("mg/ml", DensityUnit.MilligramPerMilliliter)]
+        [InlineData("ng/dl", DensityUnit.NanogramPerDeciliter)]
+        [InlineData("ng/l", DensityUnit.NanogramPerLiter)]
+        [InlineData("ng/ml", DensityUnit.NanogramPerMilliliter)]
+        [InlineData("pg/dl", DensityUnit.PicogramPerDeciliter)]
+        [InlineData("pg/l", DensityUnit.PicogramPerLiter)]
+        [InlineData("pg/ml", DensityUnit.PicogramPerMilliliter)]
+        [InlineData("lb/cm³", DensityUnit.PoundPerCubicCentimeter)]
+        [InlineData("lb/ft³", DensityUnit.PoundPerCubicFoot)]
+        [InlineData("lb/in³", DensityUnit.PoundPerCubicInch)]
+        [InlineData("lb/m³", DensityUnit.PoundPerCubicMeter)]
+        [InlineData("lb/mm³", DensityUnit.PoundPerCubicMillimeter)]
+        [InlineData("lb/yd³", DensityUnit.PoundPerCubicYard)]
+        [InlineData("ppg (imp.)", DensityUnit.PoundPerImperialGallon)]
+        [InlineData("ppg (U.S.)", DensityUnit.PoundPerUSGallon)]
+        [InlineData("slug/cm³", DensityUnit.SlugPerCubicCentimeter)]
+        [InlineData("slug/ft³", DensityUnit.SlugPerCubicFoot)]
+        [InlineData("slug/in³", DensityUnit.SlugPerCubicInch)]
+        [InlineData("slug/m³", DensityUnit.SlugPerCubicMeter)]
+        [InlineData("slug/mm³", DensityUnit.SlugPerCubicMillimeter)]
+        [InlineData("t/cm³", DensityUnit.TonnePerCubicCentimeter)]
+        [InlineData("t/ft³", DensityUnit.TonnePerCubicFoot)]
+        [InlineData("t/in³", DensityUnit.TonnePerCubicInch)]
+        [InlineData("t/m³", DensityUnit.TonnePerCubicMeter)]
+        [InlineData("t/mm³", DensityUnit.TonnePerCubicMillimeter)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, DensityUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            DensityUnit parsedUnit = Density.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -1642,7 +1709,75 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "кг/м³", DensityUnit.KilogramPerCubicMeter)]
         [InlineData("ru-RU", "мкг/м³", DensityUnit.MicrogramPerCubicMeter)]
         [InlineData("ru-RU", "мг/м³", DensityUnit.MilligramPerCubicMeter)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, DensityUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, DensityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            DensityUnit parsedUnit = Density.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "cg/dl", DensityUnit.CentigramPerDeciliter)]
+        [InlineData("en-US", "cg/l", DensityUnit.CentigramPerLiter)]
+        [InlineData("en-US", "cg/ml", DensityUnit.CentigramPerMilliliter)]
+        [InlineData("en-US", "dg/dl", DensityUnit.DecigramPerDeciliter)]
+        [InlineData("en-US", "dg/l", DensityUnit.DecigramPerLiter)]
+        [InlineData("en-US", "dg/ml", DensityUnit.DecigramPerMilliliter)]
+        [InlineData("en-US", "fg/dl", DensityUnit.FemtogramPerDeciliter)]
+        [InlineData("en-US", "fg/l", DensityUnit.FemtogramPerLiter)]
+        [InlineData("en-US", "fg/ml", DensityUnit.FemtogramPerMilliliter)]
+        [InlineData("en-US", "g/cm³", DensityUnit.GramPerCubicCentimeter)]
+        [InlineData("en-US", "g/ft³", DensityUnit.GramPerCubicFoot)]
+        [InlineData("en-US", "g/in³", DensityUnit.GramPerCubicInch)]
+        [InlineData("en-US", "g/m³", DensityUnit.GramPerCubicMeter)]
+        [InlineData("en-US", "g/mm³", DensityUnit.GramPerCubicMillimeter)]
+        [InlineData("en-US", "g/dl", DensityUnit.GramPerDeciliter)]
+        [InlineData("en-US", "g/l", DensityUnit.GramPerLiter)]
+        [InlineData("en-US", "g/ml", DensityUnit.GramPerMilliliter)]
+        [InlineData("en-US", "kg/cm³", DensityUnit.KilogramPerCubicCentimeter)]
+        [InlineData("en-US", "kg/m³", DensityUnit.KilogramPerCubicMeter)]
+        [InlineData("en-US", "kg/mm³", DensityUnit.KilogramPerCubicMillimeter)]
+        [InlineData("en-US", "kg/l", DensityUnit.KilogramPerLiter)]
+        [InlineData("en-US", "kip/ft³", DensityUnit.KilopoundPerCubicFoot)]
+        [InlineData("en-US", "kip/in³", DensityUnit.KilopoundPerCubicInch)]
+        [InlineData("en-US", "kip/yd³", DensityUnit.KilopoundPerCubicYard)]
+        [InlineData("en-US", "µg/m³", DensityUnit.MicrogramPerCubicMeter)]
+        [InlineData("en-US", "µg/dl", DensityUnit.MicrogramPerDeciliter)]
+        [InlineData("en-US", "µg/l", DensityUnit.MicrogramPerLiter)]
+        [InlineData("en-US", "µg/ml", DensityUnit.MicrogramPerMilliliter)]
+        [InlineData("en-US", "mg/m³", DensityUnit.MilligramPerCubicMeter)]
+        [InlineData("en-US", "mg/dl", DensityUnit.MilligramPerDeciliter)]
+        [InlineData("en-US", "mg/l", DensityUnit.MilligramPerLiter)]
+        [InlineData("en-US", "mg/ml", DensityUnit.MilligramPerMilliliter)]
+        [InlineData("en-US", "ng/dl", DensityUnit.NanogramPerDeciliter)]
+        [InlineData("en-US", "ng/l", DensityUnit.NanogramPerLiter)]
+        [InlineData("en-US", "ng/ml", DensityUnit.NanogramPerMilliliter)]
+        [InlineData("en-US", "pg/dl", DensityUnit.PicogramPerDeciliter)]
+        [InlineData("en-US", "pg/l", DensityUnit.PicogramPerLiter)]
+        [InlineData("en-US", "pg/ml", DensityUnit.PicogramPerMilliliter)]
+        [InlineData("en-US", "lb/cm³", DensityUnit.PoundPerCubicCentimeter)]
+        [InlineData("en-US", "lb/ft³", DensityUnit.PoundPerCubicFoot)]
+        [InlineData("en-US", "lb/in³", DensityUnit.PoundPerCubicInch)]
+        [InlineData("en-US", "lb/m³", DensityUnit.PoundPerCubicMeter)]
+        [InlineData("en-US", "lb/mm³", DensityUnit.PoundPerCubicMillimeter)]
+        [InlineData("en-US", "lb/yd³", DensityUnit.PoundPerCubicYard)]
+        [InlineData("en-US", "ppg (imp.)", DensityUnit.PoundPerImperialGallon)]
+        [InlineData("en-US", "ppg (U.S.)", DensityUnit.PoundPerUSGallon)]
+        [InlineData("en-US", "slug/cm³", DensityUnit.SlugPerCubicCentimeter)]
+        [InlineData("en-US", "slug/ft³", DensityUnit.SlugPerCubicFoot)]
+        [InlineData("en-US", "slug/in³", DensityUnit.SlugPerCubicInch)]
+        [InlineData("en-US", "slug/m³", DensityUnit.SlugPerCubicMeter)]
+        [InlineData("en-US", "slug/mm³", DensityUnit.SlugPerCubicMillimeter)]
+        [InlineData("en-US", "t/cm³", DensityUnit.TonnePerCubicCentimeter)]
+        [InlineData("en-US", "t/ft³", DensityUnit.TonnePerCubicFoot)]
+        [InlineData("en-US", "t/in³", DensityUnit.TonnePerCubicInch)]
+        [InlineData("en-US", "t/m³", DensityUnit.TonnePerCubicMeter)]
+        [InlineData("en-US", "t/mm³", DensityUnit.TonnePerCubicMillimeter)]
+        [InlineData("ru-RU", "г/м³", DensityUnit.GramPerCubicMeter)]
+        [InlineData("ru-RU", "кг/м³", DensityUnit.KilogramPerCubicMeter)]
+        [InlineData("ru-RU", "мкг/м³", DensityUnit.MicrogramPerCubicMeter)]
+        [InlineData("ru-RU", "мг/м³", DensityUnit.MilligramPerCubicMeter)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, DensityUnit expectedUnit)
         {
             DensityUnit parsedUnit = Density.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -1705,9 +1840,75 @@ namespace UnitsNet.Tests
         [InlineData("t/in³", DensityUnit.TonnePerCubicInch)]
         [InlineData("t/m³", DensityUnit.TonnePerCubicMeter)]
         [InlineData("t/mm³", DensityUnit.TonnePerCubicMillimeter)]
-        public void TryParseUnit(string abbreviation, DensityUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, DensityUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(Density.TryParseUnit(abbreviation, out DensityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("cg/dl", DensityUnit.CentigramPerDeciliter)]
+        [InlineData("cg/l", DensityUnit.CentigramPerLiter)]
+        [InlineData("cg/ml", DensityUnit.CentigramPerMilliliter)]
+        [InlineData("dg/dl", DensityUnit.DecigramPerDeciliter)]
+        [InlineData("dg/l", DensityUnit.DecigramPerLiter)]
+        [InlineData("dg/ml", DensityUnit.DecigramPerMilliliter)]
+        [InlineData("fg/dl", DensityUnit.FemtogramPerDeciliter)]
+        [InlineData("fg/l", DensityUnit.FemtogramPerLiter)]
+        [InlineData("fg/ml", DensityUnit.FemtogramPerMilliliter)]
+        [InlineData("g/cm³", DensityUnit.GramPerCubicCentimeter)]
+        [InlineData("g/ft³", DensityUnit.GramPerCubicFoot)]
+        [InlineData("g/in³", DensityUnit.GramPerCubicInch)]
+        [InlineData("g/m³", DensityUnit.GramPerCubicMeter)]
+        [InlineData("g/mm³", DensityUnit.GramPerCubicMillimeter)]
+        [InlineData("g/dl", DensityUnit.GramPerDeciliter)]
+        [InlineData("g/l", DensityUnit.GramPerLiter)]
+        [InlineData("g/ml", DensityUnit.GramPerMilliliter)]
+        [InlineData("kg/cm³", DensityUnit.KilogramPerCubicCentimeter)]
+        [InlineData("kg/m³", DensityUnit.KilogramPerCubicMeter)]
+        [InlineData("kg/mm³", DensityUnit.KilogramPerCubicMillimeter)]
+        [InlineData("kg/l", DensityUnit.KilogramPerLiter)]
+        [InlineData("kip/ft³", DensityUnit.KilopoundPerCubicFoot)]
+        [InlineData("kip/in³", DensityUnit.KilopoundPerCubicInch)]
+        [InlineData("kip/yd³", DensityUnit.KilopoundPerCubicYard)]
+        [InlineData("µg/m³", DensityUnit.MicrogramPerCubicMeter)]
+        [InlineData("µg/dl", DensityUnit.MicrogramPerDeciliter)]
+        [InlineData("µg/l", DensityUnit.MicrogramPerLiter)]
+        [InlineData("µg/ml", DensityUnit.MicrogramPerMilliliter)]
+        [InlineData("mg/m³", DensityUnit.MilligramPerCubicMeter)]
+        [InlineData("mg/dl", DensityUnit.MilligramPerDeciliter)]
+        [InlineData("mg/l", DensityUnit.MilligramPerLiter)]
+        [InlineData("mg/ml", DensityUnit.MilligramPerMilliliter)]
+        [InlineData("ng/dl", DensityUnit.NanogramPerDeciliter)]
+        [InlineData("ng/l", DensityUnit.NanogramPerLiter)]
+        [InlineData("ng/ml", DensityUnit.NanogramPerMilliliter)]
+        [InlineData("pg/dl", DensityUnit.PicogramPerDeciliter)]
+        [InlineData("pg/l", DensityUnit.PicogramPerLiter)]
+        [InlineData("pg/ml", DensityUnit.PicogramPerMilliliter)]
+        [InlineData("lb/cm³", DensityUnit.PoundPerCubicCentimeter)]
+        [InlineData("lb/ft³", DensityUnit.PoundPerCubicFoot)]
+        [InlineData("lb/in³", DensityUnit.PoundPerCubicInch)]
+        [InlineData("lb/m³", DensityUnit.PoundPerCubicMeter)]
+        [InlineData("lb/mm³", DensityUnit.PoundPerCubicMillimeter)]
+        [InlineData("lb/yd³", DensityUnit.PoundPerCubicYard)]
+        [InlineData("ppg (imp.)", DensityUnit.PoundPerImperialGallon)]
+        [InlineData("ppg (U.S.)", DensityUnit.PoundPerUSGallon)]
+        [InlineData("slug/cm³", DensityUnit.SlugPerCubicCentimeter)]
+        [InlineData("slug/ft³", DensityUnit.SlugPerCubicFoot)]
+        [InlineData("slug/in³", DensityUnit.SlugPerCubicInch)]
+        [InlineData("slug/m³", DensityUnit.SlugPerCubicMeter)]
+        [InlineData("slug/mm³", DensityUnit.SlugPerCubicMillimeter)]
+        [InlineData("t/cm³", DensityUnit.TonnePerCubicCentimeter)]
+        [InlineData("t/ft³", DensityUnit.TonnePerCubicFoot)]
+        [InlineData("t/in³", DensityUnit.TonnePerCubicInch)]
+        [InlineData("t/m³", DensityUnit.TonnePerCubicMeter)]
+        [InlineData("t/mm³", DensityUnit.TonnePerCubicMillimeter)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, DensityUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(Density.TryParseUnit(abbreviation, out DensityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -1773,7 +1974,75 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "кг/м³", DensityUnit.KilogramPerCubicMeter)]
         [InlineData("ru-RU", "мкг/м³", DensityUnit.MicrogramPerCubicMeter)]
         [InlineData("ru-RU", "мг/м³", DensityUnit.MilligramPerCubicMeter)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, DensityUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, DensityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(Density.TryParseUnit(abbreviation, out DensityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "cg/dl", DensityUnit.CentigramPerDeciliter)]
+        [InlineData("en-US", "cg/l", DensityUnit.CentigramPerLiter)]
+        [InlineData("en-US", "cg/ml", DensityUnit.CentigramPerMilliliter)]
+        [InlineData("en-US", "dg/dl", DensityUnit.DecigramPerDeciliter)]
+        [InlineData("en-US", "dg/l", DensityUnit.DecigramPerLiter)]
+        [InlineData("en-US", "dg/ml", DensityUnit.DecigramPerMilliliter)]
+        [InlineData("en-US", "fg/dl", DensityUnit.FemtogramPerDeciliter)]
+        [InlineData("en-US", "fg/l", DensityUnit.FemtogramPerLiter)]
+        [InlineData("en-US", "fg/ml", DensityUnit.FemtogramPerMilliliter)]
+        [InlineData("en-US", "g/cm³", DensityUnit.GramPerCubicCentimeter)]
+        [InlineData("en-US", "g/ft³", DensityUnit.GramPerCubicFoot)]
+        [InlineData("en-US", "g/in³", DensityUnit.GramPerCubicInch)]
+        [InlineData("en-US", "g/m³", DensityUnit.GramPerCubicMeter)]
+        [InlineData("en-US", "g/mm³", DensityUnit.GramPerCubicMillimeter)]
+        [InlineData("en-US", "g/dl", DensityUnit.GramPerDeciliter)]
+        [InlineData("en-US", "g/l", DensityUnit.GramPerLiter)]
+        [InlineData("en-US", "g/ml", DensityUnit.GramPerMilliliter)]
+        [InlineData("en-US", "kg/cm³", DensityUnit.KilogramPerCubicCentimeter)]
+        [InlineData("en-US", "kg/m³", DensityUnit.KilogramPerCubicMeter)]
+        [InlineData("en-US", "kg/mm³", DensityUnit.KilogramPerCubicMillimeter)]
+        [InlineData("en-US", "kg/l", DensityUnit.KilogramPerLiter)]
+        [InlineData("en-US", "kip/ft³", DensityUnit.KilopoundPerCubicFoot)]
+        [InlineData("en-US", "kip/in³", DensityUnit.KilopoundPerCubicInch)]
+        [InlineData("en-US", "kip/yd³", DensityUnit.KilopoundPerCubicYard)]
+        [InlineData("en-US", "µg/m³", DensityUnit.MicrogramPerCubicMeter)]
+        [InlineData("en-US", "µg/dl", DensityUnit.MicrogramPerDeciliter)]
+        [InlineData("en-US", "µg/l", DensityUnit.MicrogramPerLiter)]
+        [InlineData("en-US", "µg/ml", DensityUnit.MicrogramPerMilliliter)]
+        [InlineData("en-US", "mg/m³", DensityUnit.MilligramPerCubicMeter)]
+        [InlineData("en-US", "mg/dl", DensityUnit.MilligramPerDeciliter)]
+        [InlineData("en-US", "mg/l", DensityUnit.MilligramPerLiter)]
+        [InlineData("en-US", "mg/ml", DensityUnit.MilligramPerMilliliter)]
+        [InlineData("en-US", "ng/dl", DensityUnit.NanogramPerDeciliter)]
+        [InlineData("en-US", "ng/l", DensityUnit.NanogramPerLiter)]
+        [InlineData("en-US", "ng/ml", DensityUnit.NanogramPerMilliliter)]
+        [InlineData("en-US", "pg/dl", DensityUnit.PicogramPerDeciliter)]
+        [InlineData("en-US", "pg/l", DensityUnit.PicogramPerLiter)]
+        [InlineData("en-US", "pg/ml", DensityUnit.PicogramPerMilliliter)]
+        [InlineData("en-US", "lb/cm³", DensityUnit.PoundPerCubicCentimeter)]
+        [InlineData("en-US", "lb/ft³", DensityUnit.PoundPerCubicFoot)]
+        [InlineData("en-US", "lb/in³", DensityUnit.PoundPerCubicInch)]
+        [InlineData("en-US", "lb/m³", DensityUnit.PoundPerCubicMeter)]
+        [InlineData("en-US", "lb/mm³", DensityUnit.PoundPerCubicMillimeter)]
+        [InlineData("en-US", "lb/yd³", DensityUnit.PoundPerCubicYard)]
+        [InlineData("en-US", "ppg (imp.)", DensityUnit.PoundPerImperialGallon)]
+        [InlineData("en-US", "ppg (U.S.)", DensityUnit.PoundPerUSGallon)]
+        [InlineData("en-US", "slug/cm³", DensityUnit.SlugPerCubicCentimeter)]
+        [InlineData("en-US", "slug/ft³", DensityUnit.SlugPerCubicFoot)]
+        [InlineData("en-US", "slug/in³", DensityUnit.SlugPerCubicInch)]
+        [InlineData("en-US", "slug/m³", DensityUnit.SlugPerCubicMeter)]
+        [InlineData("en-US", "slug/mm³", DensityUnit.SlugPerCubicMillimeter)]
+        [InlineData("en-US", "t/cm³", DensityUnit.TonnePerCubicCentimeter)]
+        [InlineData("en-US", "t/ft³", DensityUnit.TonnePerCubicFoot)]
+        [InlineData("en-US", "t/in³", DensityUnit.TonnePerCubicInch)]
+        [InlineData("en-US", "t/m³", DensityUnit.TonnePerCubicMeter)]
+        [InlineData("en-US", "t/mm³", DensityUnit.TonnePerCubicMillimeter)]
+        [InlineData("ru-RU", "г/м³", DensityUnit.GramPerCubicMeter)]
+        [InlineData("ru-RU", "кг/м³", DensityUnit.KilogramPerCubicMeter)]
+        [InlineData("ru-RU", "мкг/м³", DensityUnit.MicrogramPerCubicMeter)]
+        [InlineData("ru-RU", "мг/м³", DensityUnit.MilligramPerCubicMeter)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, DensityUnit expectedUnit)
         {
             Assert.True(Density.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out DensityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

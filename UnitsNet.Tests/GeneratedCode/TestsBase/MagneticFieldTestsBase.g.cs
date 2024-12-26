@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -322,10 +323,26 @@ namespace UnitsNet.Tests
         [InlineData("mT", MagneticFieldUnit.Millitesla)]
         [InlineData("nT", MagneticFieldUnit.Nanotesla)]
         [InlineData("T", MagneticFieldUnit.Tesla)]
-        public void ParseUnit(string abbreviation, MagneticFieldUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, MagneticFieldUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            MagneticFieldUnit parsedUnit = MagneticField.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            MagneticFieldUnit parsedUnit = MagneticField.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("G", MagneticFieldUnit.Gauss)]
+        [InlineData("µT", MagneticFieldUnit.Microtesla)]
+        [InlineData("mG", MagneticFieldUnit.Milligauss)]
+        [InlineData("mT", MagneticFieldUnit.Millitesla)]
+        [InlineData("nT", MagneticFieldUnit.Nanotesla)]
+        [InlineData("T", MagneticFieldUnit.Tesla)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, MagneticFieldUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            MagneticFieldUnit parsedUnit = MagneticField.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -336,7 +353,21 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "mT", MagneticFieldUnit.Millitesla)]
         [InlineData("en-US", "nT", MagneticFieldUnit.Nanotesla)]
         [InlineData("en-US", "T", MagneticFieldUnit.Tesla)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, MagneticFieldUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, MagneticFieldUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            MagneticFieldUnit parsedUnit = MagneticField.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "G", MagneticFieldUnit.Gauss)]
+        [InlineData("en-US", "µT", MagneticFieldUnit.Microtesla)]
+        [InlineData("en-US", "mG", MagneticFieldUnit.Milligauss)]
+        [InlineData("en-US", "mT", MagneticFieldUnit.Millitesla)]
+        [InlineData("en-US", "nT", MagneticFieldUnit.Nanotesla)]
+        [InlineData("en-US", "T", MagneticFieldUnit.Tesla)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, MagneticFieldUnit expectedUnit)
         {
             MagneticFieldUnit parsedUnit = MagneticField.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -349,9 +380,25 @@ namespace UnitsNet.Tests
         [InlineData("mT", MagneticFieldUnit.Millitesla)]
         [InlineData("nT", MagneticFieldUnit.Nanotesla)]
         [InlineData("T", MagneticFieldUnit.Tesla)]
-        public void TryParseUnit(string abbreviation, MagneticFieldUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, MagneticFieldUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(MagneticField.TryParseUnit(abbreviation, out MagneticFieldUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("G", MagneticFieldUnit.Gauss)]
+        [InlineData("µT", MagneticFieldUnit.Microtesla)]
+        [InlineData("mG", MagneticFieldUnit.Milligauss)]
+        [InlineData("mT", MagneticFieldUnit.Millitesla)]
+        [InlineData("nT", MagneticFieldUnit.Nanotesla)]
+        [InlineData("T", MagneticFieldUnit.Tesla)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, MagneticFieldUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(MagneticField.TryParseUnit(abbreviation, out MagneticFieldUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -363,7 +410,21 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "mT", MagneticFieldUnit.Millitesla)]
         [InlineData("en-US", "nT", MagneticFieldUnit.Nanotesla)]
         [InlineData("en-US", "T", MagneticFieldUnit.Tesla)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, MagneticFieldUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, MagneticFieldUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(MagneticField.TryParseUnit(abbreviation, out MagneticFieldUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "G", MagneticFieldUnit.Gauss)]
+        [InlineData("en-US", "µT", MagneticFieldUnit.Microtesla)]
+        [InlineData("en-US", "mG", MagneticFieldUnit.Milligauss)]
+        [InlineData("en-US", "mT", MagneticFieldUnit.Millitesla)]
+        [InlineData("en-US", "nT", MagneticFieldUnit.Nanotesla)]
+        [InlineData("en-US", "T", MagneticFieldUnit.Tesla)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, MagneticFieldUnit expectedUnit)
         {
             Assert.True(MagneticField.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out MagneticFieldUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

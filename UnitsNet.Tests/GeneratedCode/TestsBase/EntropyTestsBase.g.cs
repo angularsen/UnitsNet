@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -346,10 +347,27 @@ namespace UnitsNet.Tests
         [InlineData("kJ/C", EntropyUnit.KilojoulePerDegreeCelsius)]
         [InlineData("kJ/K", EntropyUnit.KilojoulePerKelvin)]
         [InlineData("MJ/K", EntropyUnit.MegajoulePerKelvin)]
-        public void ParseUnit(string abbreviation, EntropyUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, EntropyUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            EntropyUnit parsedUnit = Entropy.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            EntropyUnit parsedUnit = Entropy.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("cal/K", EntropyUnit.CaloriePerKelvin)]
+        [InlineData("J/C", EntropyUnit.JoulePerDegreeCelsius)]
+        [InlineData("J/K", EntropyUnit.JoulePerKelvin)]
+        [InlineData("kcal/K", EntropyUnit.KilocaloriePerKelvin)]
+        [InlineData("kJ/C", EntropyUnit.KilojoulePerDegreeCelsius)]
+        [InlineData("kJ/K", EntropyUnit.KilojoulePerKelvin)]
+        [InlineData("MJ/K", EntropyUnit.MegajoulePerKelvin)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, EntropyUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            EntropyUnit parsedUnit = Entropy.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -361,7 +379,22 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "kJ/C", EntropyUnit.KilojoulePerDegreeCelsius)]
         [InlineData("en-US", "kJ/K", EntropyUnit.KilojoulePerKelvin)]
         [InlineData("en-US", "MJ/K", EntropyUnit.MegajoulePerKelvin)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, EntropyUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, EntropyUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            EntropyUnit parsedUnit = Entropy.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "cal/K", EntropyUnit.CaloriePerKelvin)]
+        [InlineData("en-US", "J/C", EntropyUnit.JoulePerDegreeCelsius)]
+        [InlineData("en-US", "J/K", EntropyUnit.JoulePerKelvin)]
+        [InlineData("en-US", "kcal/K", EntropyUnit.KilocaloriePerKelvin)]
+        [InlineData("en-US", "kJ/C", EntropyUnit.KilojoulePerDegreeCelsius)]
+        [InlineData("en-US", "kJ/K", EntropyUnit.KilojoulePerKelvin)]
+        [InlineData("en-US", "MJ/K", EntropyUnit.MegajoulePerKelvin)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, EntropyUnit expectedUnit)
         {
             EntropyUnit parsedUnit = Entropy.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -375,9 +408,26 @@ namespace UnitsNet.Tests
         [InlineData("kJ/C", EntropyUnit.KilojoulePerDegreeCelsius)]
         [InlineData("kJ/K", EntropyUnit.KilojoulePerKelvin)]
         [InlineData("MJ/K", EntropyUnit.MegajoulePerKelvin)]
-        public void TryParseUnit(string abbreviation, EntropyUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, EntropyUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(Entropy.TryParseUnit(abbreviation, out EntropyUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("cal/K", EntropyUnit.CaloriePerKelvin)]
+        [InlineData("J/C", EntropyUnit.JoulePerDegreeCelsius)]
+        [InlineData("J/K", EntropyUnit.JoulePerKelvin)]
+        [InlineData("kcal/K", EntropyUnit.KilocaloriePerKelvin)]
+        [InlineData("kJ/C", EntropyUnit.KilojoulePerDegreeCelsius)]
+        [InlineData("kJ/K", EntropyUnit.KilojoulePerKelvin)]
+        [InlineData("MJ/K", EntropyUnit.MegajoulePerKelvin)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, EntropyUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(Entropy.TryParseUnit(abbreviation, out EntropyUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -390,7 +440,22 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "kJ/C", EntropyUnit.KilojoulePerDegreeCelsius)]
         [InlineData("en-US", "kJ/K", EntropyUnit.KilojoulePerKelvin)]
         [InlineData("en-US", "MJ/K", EntropyUnit.MegajoulePerKelvin)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, EntropyUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, EntropyUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(Entropy.TryParseUnit(abbreviation, out EntropyUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "cal/K", EntropyUnit.CaloriePerKelvin)]
+        [InlineData("en-US", "J/C", EntropyUnit.JoulePerDegreeCelsius)]
+        [InlineData("en-US", "J/K", EntropyUnit.JoulePerKelvin)]
+        [InlineData("en-US", "kcal/K", EntropyUnit.KilocaloriePerKelvin)]
+        [InlineData("en-US", "kJ/C", EntropyUnit.KilojoulePerDegreeCelsius)]
+        [InlineData("en-US", "kJ/K", EntropyUnit.KilojoulePerKelvin)]
+        [InlineData("en-US", "MJ/K", EntropyUnit.MegajoulePerKelvin)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, EntropyUnit expectedUnit)
         {
             Assert.True(Entropy.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out EntropyUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

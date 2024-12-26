@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -1136,10 +1137,65 @@ namespace UnitsNet.Tests
         [InlineData("yr", DurationUnit.Year365)]
         [InlineData("year", DurationUnit.Year365)]
         [InlineData("years", DurationUnit.Year365)]
-        public void ParseUnit(string abbreviation, DurationUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, DurationUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            DurationUnit parsedUnit = Duration.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            DurationUnit parsedUnit = Duration.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("d", DurationUnit.Day)]
+        [InlineData("day", DurationUnit.Day)]
+        [InlineData("days", DurationUnit.Day)]
+        [InlineData("h", DurationUnit.Hour)]
+        [InlineData("hr", DurationUnit.Hour)]
+        [InlineData("hrs", DurationUnit.Hour)]
+        [InlineData("hour", DurationUnit.Hour)]
+        [InlineData("hours", DurationUnit.Hour)]
+        [InlineData("jyr", DurationUnit.JulianYear)]
+        [InlineData("jyear", DurationUnit.JulianYear)]
+        [InlineData("jyears", DurationUnit.JulianYear)]
+        [InlineData("µs", DurationUnit.Microsecond)]
+        [InlineData("µsec", DurationUnit.Microsecond)]
+        [InlineData("µsecs", DurationUnit.Microsecond)]
+        [InlineData("µsecond", DurationUnit.Microsecond)]
+        [InlineData("µseconds", DurationUnit.Microsecond)]
+        [InlineData("ms", DurationUnit.Millisecond)]
+        [InlineData("msec", DurationUnit.Millisecond)]
+        [InlineData("msecs", DurationUnit.Millisecond)]
+        [InlineData("msecond", DurationUnit.Millisecond)]
+        [InlineData("mseconds", DurationUnit.Millisecond)]
+        [InlineData("m", DurationUnit.Minute)]
+        [InlineData("min", DurationUnit.Minute)]
+        [InlineData("minute", DurationUnit.Minute)]
+        [InlineData("minutes", DurationUnit.Minute)]
+        [InlineData("mo", DurationUnit.Month30)]
+        [InlineData("month", DurationUnit.Month30)]
+        [InlineData("months", DurationUnit.Month30)]
+        [InlineData("ns", DurationUnit.Nanosecond)]
+        [InlineData("nsec", DurationUnit.Nanosecond)]
+        [InlineData("nsecs", DurationUnit.Nanosecond)]
+        [InlineData("nsecond", DurationUnit.Nanosecond)]
+        [InlineData("nseconds", DurationUnit.Nanosecond)]
+        [InlineData("s", DurationUnit.Second)]
+        [InlineData("sec", DurationUnit.Second)]
+        [InlineData("secs", DurationUnit.Second)]
+        [InlineData("second", DurationUnit.Second)]
+        [InlineData("seconds", DurationUnit.Second)]
+        [InlineData("sol", DurationUnit.Sol)]
+        [InlineData("wk", DurationUnit.Week)]
+        [InlineData("week", DurationUnit.Week)]
+        [InlineData("weeks", DurationUnit.Week)]
+        [InlineData("yr", DurationUnit.Year365)]
+        [InlineData("year", DurationUnit.Year365)]
+        [InlineData("years", DurationUnit.Year365)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, DurationUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            DurationUnit parsedUnit = Duration.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -1205,7 +1261,76 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "с", DurationUnit.Second)]
         [InlineData("ru-RU", "нед", DurationUnit.Week)]
         [InlineData("ru-RU", "год", DurationUnit.Year365)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, DurationUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, DurationUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            DurationUnit parsedUnit = Duration.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "d", DurationUnit.Day)]
+        [InlineData("en-US", "day", DurationUnit.Day)]
+        [InlineData("en-US", "days", DurationUnit.Day)]
+        [InlineData("en-US", "h", DurationUnit.Hour)]
+        [InlineData("en-US", "hr", DurationUnit.Hour)]
+        [InlineData("en-US", "hrs", DurationUnit.Hour)]
+        [InlineData("en-US", "hour", DurationUnit.Hour)]
+        [InlineData("en-US", "hours", DurationUnit.Hour)]
+        [InlineData("en-US", "jyr", DurationUnit.JulianYear)]
+        [InlineData("en-US", "jyear", DurationUnit.JulianYear)]
+        [InlineData("en-US", "jyears", DurationUnit.JulianYear)]
+        [InlineData("en-US", "µs", DurationUnit.Microsecond)]
+        [InlineData("en-US", "µsec", DurationUnit.Microsecond)]
+        [InlineData("en-US", "µsecs", DurationUnit.Microsecond)]
+        [InlineData("en-US", "µsecond", DurationUnit.Microsecond)]
+        [InlineData("en-US", "µseconds", DurationUnit.Microsecond)]
+        [InlineData("en-US", "ms", DurationUnit.Millisecond)]
+        [InlineData("en-US", "msec", DurationUnit.Millisecond)]
+        [InlineData("en-US", "msecs", DurationUnit.Millisecond)]
+        [InlineData("en-US", "msecond", DurationUnit.Millisecond)]
+        [InlineData("en-US", "mseconds", DurationUnit.Millisecond)]
+        [InlineData("en-US", "m", DurationUnit.Minute)]
+        [InlineData("en-US", "min", DurationUnit.Minute)]
+        [InlineData("en-US", "minute", DurationUnit.Minute)]
+        [InlineData("en-US", "minutes", DurationUnit.Minute)]
+        [InlineData("en-US", "mo", DurationUnit.Month30)]
+        [InlineData("en-US", "month", DurationUnit.Month30)]
+        [InlineData("en-US", "months", DurationUnit.Month30)]
+        [InlineData("en-US", "ns", DurationUnit.Nanosecond)]
+        [InlineData("en-US", "nsec", DurationUnit.Nanosecond)]
+        [InlineData("en-US", "nsecs", DurationUnit.Nanosecond)]
+        [InlineData("en-US", "nsecond", DurationUnit.Nanosecond)]
+        [InlineData("en-US", "nseconds", DurationUnit.Nanosecond)]
+        [InlineData("en-US", "s", DurationUnit.Second)]
+        [InlineData("en-US", "sec", DurationUnit.Second)]
+        [InlineData("en-US", "secs", DurationUnit.Second)]
+        [InlineData("en-US", "second", DurationUnit.Second)]
+        [InlineData("en-US", "seconds", DurationUnit.Second)]
+        [InlineData("en-US", "sol", DurationUnit.Sol)]
+        [InlineData("en-US", "wk", DurationUnit.Week)]
+        [InlineData("en-US", "week", DurationUnit.Week)]
+        [InlineData("en-US", "weeks", DurationUnit.Week)]
+        [InlineData("en-US", "yr", DurationUnit.Year365)]
+        [InlineData("en-US", "year", DurationUnit.Year365)]
+        [InlineData("en-US", "years", DurationUnit.Year365)]
+        [InlineData("ru-RU", "сут", DurationUnit.Day)]
+        [InlineData("ru-RU", "д", DurationUnit.Day)]
+        [InlineData("ru-RU", "ч", DurationUnit.Hour)]
+        [InlineData("ru-RU", "час", DurationUnit.Hour)]
+        [InlineData("ru-RU", "мксек", DurationUnit.Microsecond)]
+        [InlineData("ru-RU", "мкс", DurationUnit.Microsecond)]
+        [InlineData("ru-RU", "мсек", DurationUnit.Millisecond)]
+        [InlineData("ru-RU", "мс", DurationUnit.Millisecond)]
+        [InlineData("ru-RU", "мин", DurationUnit.Minute)]
+        [InlineData("ru-RU", "месяц", DurationUnit.Month30)]
+        [InlineData("ru-RU", "нсек", DurationUnit.Nanosecond)]
+        [InlineData("ru-RU", "нс", DurationUnit.Nanosecond)]
+        [InlineData("ru-RU", "сек", DurationUnit.Second)]
+        [InlineData("ru-RU", "с", DurationUnit.Second)]
+        [InlineData("ru-RU", "нед", DurationUnit.Week)]
+        [InlineData("ru-RU", "год", DurationUnit.Year365)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, DurationUnit expectedUnit)
         {
             DurationUnit parsedUnit = Duration.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -1257,9 +1382,64 @@ namespace UnitsNet.Tests
         [InlineData("yr", DurationUnit.Year365)]
         [InlineData("year", DurationUnit.Year365)]
         [InlineData("years", DurationUnit.Year365)]
-        public void TryParseUnit(string abbreviation, DurationUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, DurationUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(Duration.TryParseUnit(abbreviation, out DurationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("d", DurationUnit.Day)]
+        [InlineData("day", DurationUnit.Day)]
+        [InlineData("days", DurationUnit.Day)]
+        [InlineData("h", DurationUnit.Hour)]
+        [InlineData("hr", DurationUnit.Hour)]
+        [InlineData("hrs", DurationUnit.Hour)]
+        [InlineData("hour", DurationUnit.Hour)]
+        [InlineData("hours", DurationUnit.Hour)]
+        [InlineData("jyr", DurationUnit.JulianYear)]
+        [InlineData("jyear", DurationUnit.JulianYear)]
+        [InlineData("jyears", DurationUnit.JulianYear)]
+        [InlineData("µs", DurationUnit.Microsecond)]
+        [InlineData("µsec", DurationUnit.Microsecond)]
+        [InlineData("µsecs", DurationUnit.Microsecond)]
+        [InlineData("µsecond", DurationUnit.Microsecond)]
+        [InlineData("µseconds", DurationUnit.Microsecond)]
+        [InlineData("ms", DurationUnit.Millisecond)]
+        [InlineData("msec", DurationUnit.Millisecond)]
+        [InlineData("msecs", DurationUnit.Millisecond)]
+        [InlineData("msecond", DurationUnit.Millisecond)]
+        [InlineData("mseconds", DurationUnit.Millisecond)]
+        [InlineData("m", DurationUnit.Minute)]
+        [InlineData("min", DurationUnit.Minute)]
+        [InlineData("minute", DurationUnit.Minute)]
+        [InlineData("minutes", DurationUnit.Minute)]
+        [InlineData("mo", DurationUnit.Month30)]
+        [InlineData("month", DurationUnit.Month30)]
+        [InlineData("months", DurationUnit.Month30)]
+        [InlineData("ns", DurationUnit.Nanosecond)]
+        [InlineData("nsec", DurationUnit.Nanosecond)]
+        [InlineData("nsecs", DurationUnit.Nanosecond)]
+        [InlineData("nsecond", DurationUnit.Nanosecond)]
+        [InlineData("nseconds", DurationUnit.Nanosecond)]
+        [InlineData("s", DurationUnit.Second)]
+        [InlineData("sec", DurationUnit.Second)]
+        [InlineData("secs", DurationUnit.Second)]
+        [InlineData("second", DurationUnit.Second)]
+        [InlineData("seconds", DurationUnit.Second)]
+        [InlineData("sol", DurationUnit.Sol)]
+        [InlineData("wk", DurationUnit.Week)]
+        [InlineData("week", DurationUnit.Week)]
+        [InlineData("weeks", DurationUnit.Week)]
+        [InlineData("yr", DurationUnit.Year365)]
+        [InlineData("year", DurationUnit.Year365)]
+        [InlineData("years", DurationUnit.Year365)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, DurationUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(Duration.TryParseUnit(abbreviation, out DurationUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -1326,7 +1506,76 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "с", DurationUnit.Second)]
         [InlineData("ru-RU", "нед", DurationUnit.Week)]
         [InlineData("ru-RU", "год", DurationUnit.Year365)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, DurationUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, DurationUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(Duration.TryParseUnit(abbreviation, out DurationUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "d", DurationUnit.Day)]
+        [InlineData("en-US", "day", DurationUnit.Day)]
+        [InlineData("en-US", "days", DurationUnit.Day)]
+        [InlineData("en-US", "h", DurationUnit.Hour)]
+        [InlineData("en-US", "hr", DurationUnit.Hour)]
+        [InlineData("en-US", "hrs", DurationUnit.Hour)]
+        [InlineData("en-US", "hour", DurationUnit.Hour)]
+        [InlineData("en-US", "hours", DurationUnit.Hour)]
+        [InlineData("en-US", "jyr", DurationUnit.JulianYear)]
+        [InlineData("en-US", "jyear", DurationUnit.JulianYear)]
+        [InlineData("en-US", "jyears", DurationUnit.JulianYear)]
+        [InlineData("en-US", "µs", DurationUnit.Microsecond)]
+        [InlineData("en-US", "µsec", DurationUnit.Microsecond)]
+        [InlineData("en-US", "µsecs", DurationUnit.Microsecond)]
+        [InlineData("en-US", "µsecond", DurationUnit.Microsecond)]
+        [InlineData("en-US", "µseconds", DurationUnit.Microsecond)]
+        [InlineData("en-US", "ms", DurationUnit.Millisecond)]
+        [InlineData("en-US", "msec", DurationUnit.Millisecond)]
+        [InlineData("en-US", "msecs", DurationUnit.Millisecond)]
+        [InlineData("en-US", "msecond", DurationUnit.Millisecond)]
+        [InlineData("en-US", "mseconds", DurationUnit.Millisecond)]
+        [InlineData("en-US", "m", DurationUnit.Minute)]
+        [InlineData("en-US", "min", DurationUnit.Minute)]
+        [InlineData("en-US", "minute", DurationUnit.Minute)]
+        [InlineData("en-US", "minutes", DurationUnit.Minute)]
+        [InlineData("en-US", "mo", DurationUnit.Month30)]
+        [InlineData("en-US", "month", DurationUnit.Month30)]
+        [InlineData("en-US", "months", DurationUnit.Month30)]
+        [InlineData("en-US", "ns", DurationUnit.Nanosecond)]
+        [InlineData("en-US", "nsec", DurationUnit.Nanosecond)]
+        [InlineData("en-US", "nsecs", DurationUnit.Nanosecond)]
+        [InlineData("en-US", "nsecond", DurationUnit.Nanosecond)]
+        [InlineData("en-US", "nseconds", DurationUnit.Nanosecond)]
+        [InlineData("en-US", "s", DurationUnit.Second)]
+        [InlineData("en-US", "sec", DurationUnit.Second)]
+        [InlineData("en-US", "secs", DurationUnit.Second)]
+        [InlineData("en-US", "second", DurationUnit.Second)]
+        [InlineData("en-US", "seconds", DurationUnit.Second)]
+        [InlineData("en-US", "sol", DurationUnit.Sol)]
+        [InlineData("en-US", "wk", DurationUnit.Week)]
+        [InlineData("en-US", "week", DurationUnit.Week)]
+        [InlineData("en-US", "weeks", DurationUnit.Week)]
+        [InlineData("en-US", "yr", DurationUnit.Year365)]
+        [InlineData("en-US", "year", DurationUnit.Year365)]
+        [InlineData("en-US", "years", DurationUnit.Year365)]
+        [InlineData("ru-RU", "сут", DurationUnit.Day)]
+        [InlineData("ru-RU", "д", DurationUnit.Day)]
+        [InlineData("ru-RU", "ч", DurationUnit.Hour)]
+        [InlineData("ru-RU", "час", DurationUnit.Hour)]
+        [InlineData("ru-RU", "мксек", DurationUnit.Microsecond)]
+        [InlineData("ru-RU", "мкс", DurationUnit.Microsecond)]
+        [InlineData("ru-RU", "мсек", DurationUnit.Millisecond)]
+        [InlineData("ru-RU", "мс", DurationUnit.Millisecond)]
+        [InlineData("ru-RU", "мин", DurationUnit.Minute)]
+        [InlineData("ru-RU", "месяц", DurationUnit.Month30)]
+        [InlineData("ru-RU", "нсек", DurationUnit.Nanosecond)]
+        [InlineData("ru-RU", "нс", DurationUnit.Nanosecond)]
+        [InlineData("ru-RU", "сек", DurationUnit.Second)]
+        [InlineData("ru-RU", "с", DurationUnit.Second)]
+        [InlineData("ru-RU", "нед", DurationUnit.Week)]
+        [InlineData("ru-RU", "год", DurationUnit.Year365)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, DurationUnit expectedUnit)
         {
             Assert.True(Duration.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out DurationUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

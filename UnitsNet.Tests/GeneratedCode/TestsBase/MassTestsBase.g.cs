@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -1433,10 +1434,54 @@ namespace UnitsNet.Tests
         [InlineData("M⊙", MassUnit.SolarMass)]
         [InlineData("st", MassUnit.Stone)]
         [InlineData("t", MassUnit.Tonne)]
-        public void ParseUnit(string abbreviation, MassUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, MassUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            MassUnit parsedUnit = Mass.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            MassUnit parsedUnit = Mass.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("cg", MassUnit.Centigram)]
+        [InlineData("dag", MassUnit.Decagram)]
+        [InlineData("dg", MassUnit.Decigram)]
+        [InlineData("em", MassUnit.EarthMass)]
+        [InlineData("fg", MassUnit.Femtogram)]
+        [InlineData("gr", MassUnit.Grain)]
+        [InlineData("g", MassUnit.Gram)]
+        [InlineData("hg", MassUnit.Hectogram)]
+        [InlineData("kg", MassUnit.Kilogram)]
+        [InlineData("klb", MassUnit.Kilopound)]
+        [InlineData("klbs", MassUnit.Kilopound)]
+        [InlineData("klbm", MassUnit.Kilopound)]
+        [InlineData("kt", MassUnit.Kilotonne)]
+        [InlineData("long tn", MassUnit.LongTon)]
+        [InlineData("Mlb", MassUnit.Megapound)]
+        [InlineData("Mlbs", MassUnit.Megapound)]
+        [InlineData("Mlbm", MassUnit.Megapound)]
+        [InlineData("Mt", MassUnit.Megatonne)]
+        [InlineData("µg", MassUnit.Microgram)]
+        [InlineData("mg", MassUnit.Milligram)]
+        [InlineData("ng", MassUnit.Nanogram)]
+        [InlineData("oz", MassUnit.Ounce)]
+        [InlineData("pg", MassUnit.Picogram)]
+        [InlineData("lb", MassUnit.Pound)]
+        [InlineData("lbs", MassUnit.Pound)]
+        [InlineData("lbm", MassUnit.Pound)]
+        [InlineData("t (short)", MassUnit.ShortTon)]
+        [InlineData("short tn", MassUnit.ShortTon)]
+        [InlineData("ST", MassUnit.ShortTon)]
+        [InlineData("slug", MassUnit.Slug)]
+        [InlineData("M☉", MassUnit.SolarMass)]
+        [InlineData("M⊙", MassUnit.SolarMass)]
+        [InlineData("st", MassUnit.Stone)]
+        [InlineData("t", MassUnit.Tonne)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, MassUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            MassUnit parsedUnit = Mass.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -1514,7 +1559,88 @@ namespace UnitsNet.Tests
         [InlineData("zh-CN", "磅", MassUnit.Pound)]
         [InlineData("zh-CN", "短吨", MassUnit.ShortTon)]
         [InlineData("zh-CN", "吨", MassUnit.Tonne)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, MassUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, MassUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            MassUnit parsedUnit = Mass.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "cg", MassUnit.Centigram)]
+        [InlineData("en-US", "dag", MassUnit.Decagram)]
+        [InlineData("en-US", "dg", MassUnit.Decigram)]
+        [InlineData("en-US", "em", MassUnit.EarthMass)]
+        [InlineData("en-US", "fg", MassUnit.Femtogram)]
+        [InlineData("en-US", "gr", MassUnit.Grain)]
+        [InlineData("en-US", "g", MassUnit.Gram)]
+        [InlineData("en-US", "hg", MassUnit.Hectogram)]
+        [InlineData("en-US", "kg", MassUnit.Kilogram)]
+        [InlineData("en-US", "klb", MassUnit.Kilopound)]
+        [InlineData("en-US", "klbs", MassUnit.Kilopound)]
+        [InlineData("en-US", "klbm", MassUnit.Kilopound)]
+        [InlineData("en-US", "kt", MassUnit.Kilotonne)]
+        [InlineData("en-US", "long tn", MassUnit.LongTon)]
+        [InlineData("en-US", "Mlb", MassUnit.Megapound)]
+        [InlineData("en-US", "Mlbs", MassUnit.Megapound)]
+        [InlineData("en-US", "Mlbm", MassUnit.Megapound)]
+        [InlineData("en-US", "Mt", MassUnit.Megatonne)]
+        [InlineData("en-US", "µg", MassUnit.Microgram)]
+        [InlineData("en-US", "mg", MassUnit.Milligram)]
+        [InlineData("en-US", "ng", MassUnit.Nanogram)]
+        [InlineData("en-US", "oz", MassUnit.Ounce)]
+        [InlineData("en-US", "pg", MassUnit.Picogram)]
+        [InlineData("en-US", "lb", MassUnit.Pound)]
+        [InlineData("en-US", "lbs", MassUnit.Pound)]
+        [InlineData("en-US", "lbm", MassUnit.Pound)]
+        [InlineData("en-US", "t (short)", MassUnit.ShortTon)]
+        [InlineData("en-US", "short tn", MassUnit.ShortTon)]
+        [InlineData("en-US", "ST", MassUnit.ShortTon)]
+        [InlineData("en-US", "slug", MassUnit.Slug)]
+        [InlineData("en-US", "M☉", MassUnit.SolarMass)]
+        [InlineData("en-US", "M⊙", MassUnit.SolarMass)]
+        [InlineData("en-US", "st", MassUnit.Stone)]
+        [InlineData("en-US", "t", MassUnit.Tonne)]
+        [InlineData("ru-RU", "сг", MassUnit.Centigram)]
+        [InlineData("ru-RU", "даг", MassUnit.Decagram)]
+        [InlineData("ru-RU", "дг", MassUnit.Decigram)]
+        [InlineData("ru-RU", "фг", MassUnit.Femtogram)]
+        [InlineData("ru-RU", "г", MassUnit.Gram)]
+        [InlineData("ru-RU", "гг", MassUnit.Hectogram)]
+        [InlineData("ru-RU", "кг", MassUnit.Kilogram)]
+        [InlineData("ru-RU", "кфунт", MassUnit.Kilopound)]
+        [InlineData("ru-RU", "кт", MassUnit.Kilotonne)]
+        [InlineData("ru-RU", "тонна большая", MassUnit.LongTon)]
+        [InlineData("ru-RU", "Мфунт", MassUnit.Megapound)]
+        [InlineData("ru-RU", "Мт", MassUnit.Megatonne)]
+        [InlineData("ru-RU", "мкг", MassUnit.Microgram)]
+        [InlineData("ru-RU", "мг", MassUnit.Milligram)]
+        [InlineData("ru-RU", "нг", MassUnit.Nanogram)]
+        [InlineData("ru-RU", "пг", MassUnit.Picogram)]
+        [InlineData("ru-RU", "фунт", MassUnit.Pound)]
+        [InlineData("ru-RU", "тонна малая", MassUnit.ShortTon)]
+        [InlineData("ru-RU", "т", MassUnit.Tonne)]
+        [InlineData("zh-CN", "厘克", MassUnit.Centigram)]
+        [InlineData("zh-CN", "十克", MassUnit.Decagram)]
+        [InlineData("zh-CN", "分克", MassUnit.Decigram)]
+        [InlineData("zh-CN", "飞克", MassUnit.Femtogram)]
+        [InlineData("zh-CN", "克", MassUnit.Gram)]
+        [InlineData("zh-CN", "百克", MassUnit.Hectogram)]
+        [InlineData("zh-CN", "千克", MassUnit.Kilogram)]
+        [InlineData("zh-CN", "千磅", MassUnit.Kilopound)]
+        [InlineData("zh-CN", "千吨", MassUnit.Kilotonne)]
+        [InlineData("zh-CN", "长吨", MassUnit.LongTon)]
+        [InlineData("zh-CN", "兆磅", MassUnit.Megapound)]
+        [InlineData("zh-CN", "兆吨", MassUnit.Megatonne)]
+        [InlineData("zh-CN", "微克", MassUnit.Microgram)]
+        [InlineData("zh-CN", "毫克", MassUnit.Milligram)]
+        [InlineData("zh-CN", "纳克", MassUnit.Nanogram)]
+        [InlineData("zh-CN", "盎司", MassUnit.Ounce)]
+        [InlineData("zh-CN", "皮克", MassUnit.Picogram)]
+        [InlineData("zh-CN", "磅", MassUnit.Pound)]
+        [InlineData("zh-CN", "短吨", MassUnit.ShortTon)]
+        [InlineData("zh-CN", "吨", MassUnit.Tonne)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, MassUnit expectedUnit)
         {
             MassUnit parsedUnit = Mass.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -1562,9 +1688,53 @@ namespace UnitsNet.Tests
         [InlineData("M⊙", MassUnit.SolarMass)]
         [InlineData("st", MassUnit.Stone)]
         [InlineData("t", MassUnit.Tonne)]
-        public void TryParseUnit(string abbreviation, MassUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, MassUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(Mass.TryParseUnit(abbreviation, out MassUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("cg", MassUnit.Centigram)]
+        [InlineData("dag", MassUnit.Decagram)]
+        [InlineData("dg", MassUnit.Decigram)]
+        [InlineData("em", MassUnit.EarthMass)]
+        [InlineData("fg", MassUnit.Femtogram)]
+        [InlineData("gr", MassUnit.Grain)]
+        [InlineData("g", MassUnit.Gram)]
+        [InlineData("hg", MassUnit.Hectogram)]
+        [InlineData("kg", MassUnit.Kilogram)]
+        [InlineData("klb", MassUnit.Kilopound)]
+        [InlineData("klbs", MassUnit.Kilopound)]
+        [InlineData("klbm", MassUnit.Kilopound)]
+        [InlineData("kt", MassUnit.Kilotonne)]
+        [InlineData("long tn", MassUnit.LongTon)]
+        [InlineData("Mlb", MassUnit.Megapound)]
+        [InlineData("Mlbs", MassUnit.Megapound)]
+        [InlineData("Mlbm", MassUnit.Megapound)]
+        [InlineData("Mt", MassUnit.Megatonne)]
+        [InlineData("µg", MassUnit.Microgram)]
+        [InlineData("mg", MassUnit.Milligram)]
+        [InlineData("ng", MassUnit.Nanogram)]
+        [InlineData("oz", MassUnit.Ounce)]
+        [InlineData("pg", MassUnit.Picogram)]
+        [InlineData("lb", MassUnit.Pound)]
+        [InlineData("lbs", MassUnit.Pound)]
+        [InlineData("lbm", MassUnit.Pound)]
+        [InlineData("t (short)", MassUnit.ShortTon)]
+        [InlineData("short tn", MassUnit.ShortTon)]
+        [InlineData("ST", MassUnit.ShortTon)]
+        [InlineData("slug", MassUnit.Slug)]
+        [InlineData("M☉", MassUnit.SolarMass)]
+        [InlineData("M⊙", MassUnit.SolarMass)]
+        [InlineData("st", MassUnit.Stone)]
+        [InlineData("t", MassUnit.Tonne)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, MassUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(Mass.TryParseUnit(abbreviation, out MassUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -1643,7 +1813,88 @@ namespace UnitsNet.Tests
         [InlineData("zh-CN", "磅", MassUnit.Pound)]
         [InlineData("zh-CN", "短吨", MassUnit.ShortTon)]
         [InlineData("zh-CN", "吨", MassUnit.Tonne)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, MassUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, MassUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(Mass.TryParseUnit(abbreviation, out MassUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "cg", MassUnit.Centigram)]
+        [InlineData("en-US", "dag", MassUnit.Decagram)]
+        [InlineData("en-US", "dg", MassUnit.Decigram)]
+        [InlineData("en-US", "em", MassUnit.EarthMass)]
+        [InlineData("en-US", "fg", MassUnit.Femtogram)]
+        [InlineData("en-US", "gr", MassUnit.Grain)]
+        [InlineData("en-US", "g", MassUnit.Gram)]
+        [InlineData("en-US", "hg", MassUnit.Hectogram)]
+        [InlineData("en-US", "kg", MassUnit.Kilogram)]
+        [InlineData("en-US", "klb", MassUnit.Kilopound)]
+        [InlineData("en-US", "klbs", MassUnit.Kilopound)]
+        [InlineData("en-US", "klbm", MassUnit.Kilopound)]
+        [InlineData("en-US", "kt", MassUnit.Kilotonne)]
+        [InlineData("en-US", "long tn", MassUnit.LongTon)]
+        [InlineData("en-US", "Mlb", MassUnit.Megapound)]
+        [InlineData("en-US", "Mlbs", MassUnit.Megapound)]
+        [InlineData("en-US", "Mlbm", MassUnit.Megapound)]
+        [InlineData("en-US", "Mt", MassUnit.Megatonne)]
+        [InlineData("en-US", "µg", MassUnit.Microgram)]
+        [InlineData("en-US", "mg", MassUnit.Milligram)]
+        [InlineData("en-US", "ng", MassUnit.Nanogram)]
+        [InlineData("en-US", "oz", MassUnit.Ounce)]
+        [InlineData("en-US", "pg", MassUnit.Picogram)]
+        [InlineData("en-US", "lb", MassUnit.Pound)]
+        [InlineData("en-US", "lbs", MassUnit.Pound)]
+        [InlineData("en-US", "lbm", MassUnit.Pound)]
+        [InlineData("en-US", "t (short)", MassUnit.ShortTon)]
+        [InlineData("en-US", "short tn", MassUnit.ShortTon)]
+        [InlineData("en-US", "ST", MassUnit.ShortTon)]
+        [InlineData("en-US", "slug", MassUnit.Slug)]
+        [InlineData("en-US", "M☉", MassUnit.SolarMass)]
+        [InlineData("en-US", "M⊙", MassUnit.SolarMass)]
+        [InlineData("en-US", "st", MassUnit.Stone)]
+        [InlineData("en-US", "t", MassUnit.Tonne)]
+        [InlineData("ru-RU", "сг", MassUnit.Centigram)]
+        [InlineData("ru-RU", "даг", MassUnit.Decagram)]
+        [InlineData("ru-RU", "дг", MassUnit.Decigram)]
+        [InlineData("ru-RU", "фг", MassUnit.Femtogram)]
+        [InlineData("ru-RU", "г", MassUnit.Gram)]
+        [InlineData("ru-RU", "гг", MassUnit.Hectogram)]
+        [InlineData("ru-RU", "кг", MassUnit.Kilogram)]
+        [InlineData("ru-RU", "кфунт", MassUnit.Kilopound)]
+        [InlineData("ru-RU", "кт", MassUnit.Kilotonne)]
+        [InlineData("ru-RU", "тонна большая", MassUnit.LongTon)]
+        [InlineData("ru-RU", "Мфунт", MassUnit.Megapound)]
+        [InlineData("ru-RU", "Мт", MassUnit.Megatonne)]
+        [InlineData("ru-RU", "мкг", MassUnit.Microgram)]
+        [InlineData("ru-RU", "мг", MassUnit.Milligram)]
+        [InlineData("ru-RU", "нг", MassUnit.Nanogram)]
+        [InlineData("ru-RU", "пг", MassUnit.Picogram)]
+        [InlineData("ru-RU", "фунт", MassUnit.Pound)]
+        [InlineData("ru-RU", "тонна малая", MassUnit.ShortTon)]
+        [InlineData("ru-RU", "т", MassUnit.Tonne)]
+        [InlineData("zh-CN", "厘克", MassUnit.Centigram)]
+        [InlineData("zh-CN", "十克", MassUnit.Decagram)]
+        [InlineData("zh-CN", "分克", MassUnit.Decigram)]
+        [InlineData("zh-CN", "飞克", MassUnit.Femtogram)]
+        [InlineData("zh-CN", "克", MassUnit.Gram)]
+        [InlineData("zh-CN", "百克", MassUnit.Hectogram)]
+        [InlineData("zh-CN", "千克", MassUnit.Kilogram)]
+        [InlineData("zh-CN", "千磅", MassUnit.Kilopound)]
+        [InlineData("zh-CN", "千吨", MassUnit.Kilotonne)]
+        [InlineData("zh-CN", "长吨", MassUnit.LongTon)]
+        [InlineData("zh-CN", "兆磅", MassUnit.Megapound)]
+        [InlineData("zh-CN", "兆吨", MassUnit.Megatonne)]
+        [InlineData("zh-CN", "微克", MassUnit.Microgram)]
+        [InlineData("zh-CN", "毫克", MassUnit.Milligram)]
+        [InlineData("zh-CN", "纳克", MassUnit.Nanogram)]
+        [InlineData("zh-CN", "盎司", MassUnit.Ounce)]
+        [InlineData("zh-CN", "皮克", MassUnit.Picogram)]
+        [InlineData("zh-CN", "磅", MassUnit.Pound)]
+        [InlineData("zh-CN", "短吨", MassUnit.ShortTon)]
+        [InlineData("zh-CN", "吨", MassUnit.Tonne)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, MassUnit expectedUnit)
         {
             Assert.True(Mass.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out MassUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

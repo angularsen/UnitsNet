@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -322,10 +323,26 @@ namespace UnitsNet.Tests
         [InlineData("‰", RatioUnit.PartPerThousand)]
         [InlineData("ppt", RatioUnit.PartPerTrillion)]
         [InlineData("%", RatioUnit.Percent)]
-        public void ParseUnit(string abbreviation, RatioUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, RatioUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            RatioUnit parsedUnit = Ratio.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            RatioUnit parsedUnit = Ratio.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("", RatioUnit.DecimalFraction)]
+        [InlineData("ppb", RatioUnit.PartPerBillion)]
+        [InlineData("ppm", RatioUnit.PartPerMillion)]
+        [InlineData("‰", RatioUnit.PartPerThousand)]
+        [InlineData("ppt", RatioUnit.PartPerTrillion)]
+        [InlineData("%", RatioUnit.Percent)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, RatioUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            RatioUnit parsedUnit = Ratio.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -336,7 +353,21 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "‰", RatioUnit.PartPerThousand)]
         [InlineData("en-US", "ppt", RatioUnit.PartPerTrillion)]
         [InlineData("en-US", "%", RatioUnit.Percent)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, RatioUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, RatioUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            RatioUnit parsedUnit = Ratio.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "", RatioUnit.DecimalFraction)]
+        [InlineData("en-US", "ppb", RatioUnit.PartPerBillion)]
+        [InlineData("en-US", "ppm", RatioUnit.PartPerMillion)]
+        [InlineData("en-US", "‰", RatioUnit.PartPerThousand)]
+        [InlineData("en-US", "ppt", RatioUnit.PartPerTrillion)]
+        [InlineData("en-US", "%", RatioUnit.Percent)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, RatioUnit expectedUnit)
         {
             RatioUnit parsedUnit = Ratio.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -349,9 +380,25 @@ namespace UnitsNet.Tests
         [InlineData("‰", RatioUnit.PartPerThousand)]
         [InlineData("ppt", RatioUnit.PartPerTrillion)]
         [InlineData("%", RatioUnit.Percent)]
-        public void TryParseUnit(string abbreviation, RatioUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, RatioUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(Ratio.TryParseUnit(abbreviation, out RatioUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("", RatioUnit.DecimalFraction)]
+        [InlineData("ppb", RatioUnit.PartPerBillion)]
+        [InlineData("ppm", RatioUnit.PartPerMillion)]
+        [InlineData("‰", RatioUnit.PartPerThousand)]
+        [InlineData("ppt", RatioUnit.PartPerTrillion)]
+        [InlineData("%", RatioUnit.Percent)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, RatioUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(Ratio.TryParseUnit(abbreviation, out RatioUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -363,7 +410,21 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "‰", RatioUnit.PartPerThousand)]
         [InlineData("en-US", "ppt", RatioUnit.PartPerTrillion)]
         [InlineData("en-US", "%", RatioUnit.Percent)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, RatioUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, RatioUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(Ratio.TryParseUnit(abbreviation, out RatioUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "", RatioUnit.DecimalFraction)]
+        [InlineData("en-US", "ppb", RatioUnit.PartPerBillion)]
+        [InlineData("en-US", "ppm", RatioUnit.PartPerMillion)]
+        [InlineData("en-US", "‰", RatioUnit.PartPerThousand)]
+        [InlineData("en-US", "ppt", RatioUnit.PartPerTrillion)]
+        [InlineData("en-US", "%", RatioUnit.Percent)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, RatioUnit expectedUnit)
         {
             Assert.True(Ratio.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out RatioUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

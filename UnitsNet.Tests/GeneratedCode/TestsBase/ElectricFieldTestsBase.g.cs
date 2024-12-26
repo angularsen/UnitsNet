@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -202,16 +203,36 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("V/m", ElectricFieldUnit.VoltPerMeter)]
-        public void ParseUnit(string abbreviation, ElectricFieldUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ElectricFieldUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            ElectricFieldUnit parsedUnit = ElectricField.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            ElectricFieldUnit parsedUnit = ElectricField.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("V/m", ElectricFieldUnit.VoltPerMeter)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ElectricFieldUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            ElectricFieldUnit parsedUnit = ElectricField.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
         [InlineData("en-US", "V/m", ElectricFieldUnit.VoltPerMeter)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, ElectricFieldUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, ElectricFieldUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            ElectricFieldUnit parsedUnit = ElectricField.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "V/m", ElectricFieldUnit.VoltPerMeter)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, ElectricFieldUnit expectedUnit)
         {
             ElectricFieldUnit parsedUnit = ElectricField.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -219,16 +240,36 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("V/m", ElectricFieldUnit.VoltPerMeter)]
-        public void TryParseUnit(string abbreviation, ElectricFieldUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ElectricFieldUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(ElectricField.TryParseUnit(abbreviation, out ElectricFieldUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("V/m", ElectricFieldUnit.VoltPerMeter)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ElectricFieldUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(ElectricField.TryParseUnit(abbreviation, out ElectricFieldUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
         [Theory]
         [InlineData("en-US", "V/m", ElectricFieldUnit.VoltPerMeter)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, ElectricFieldUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, ElectricFieldUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(ElectricField.TryParseUnit(abbreviation, out ElectricFieldUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "V/m", ElectricFieldUnit.VoltPerMeter)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, ElectricFieldUnit expectedUnit)
         {
             Assert.True(ElectricField.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ElectricFieldUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

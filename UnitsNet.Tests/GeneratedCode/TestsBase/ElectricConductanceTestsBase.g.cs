@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -298,10 +299,25 @@ namespace UnitsNet.Tests
         [InlineData("mS", ElectricConductanceUnit.Millisiemens)]
         [InlineData("nS", ElectricConductanceUnit.Nanosiemens)]
         [InlineData("S", ElectricConductanceUnit.Siemens)]
-        public void ParseUnit(string abbreviation, ElectricConductanceUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ElectricConductanceUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            ElectricConductanceUnit parsedUnit = ElectricConductance.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            ElectricConductanceUnit parsedUnit = ElectricConductance.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("kS", ElectricConductanceUnit.Kilosiemens)]
+        [InlineData("µS", ElectricConductanceUnit.Microsiemens)]
+        [InlineData("mS", ElectricConductanceUnit.Millisiemens)]
+        [InlineData("nS", ElectricConductanceUnit.Nanosiemens)]
+        [InlineData("S", ElectricConductanceUnit.Siemens)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ElectricConductanceUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            ElectricConductanceUnit parsedUnit = ElectricConductance.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -311,7 +327,20 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "mS", ElectricConductanceUnit.Millisiemens)]
         [InlineData("en-US", "nS", ElectricConductanceUnit.Nanosiemens)]
         [InlineData("en-US", "S", ElectricConductanceUnit.Siemens)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, ElectricConductanceUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, ElectricConductanceUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            ElectricConductanceUnit parsedUnit = ElectricConductance.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "kS", ElectricConductanceUnit.Kilosiemens)]
+        [InlineData("en-US", "µS", ElectricConductanceUnit.Microsiemens)]
+        [InlineData("en-US", "mS", ElectricConductanceUnit.Millisiemens)]
+        [InlineData("en-US", "nS", ElectricConductanceUnit.Nanosiemens)]
+        [InlineData("en-US", "S", ElectricConductanceUnit.Siemens)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, ElectricConductanceUnit expectedUnit)
         {
             ElectricConductanceUnit parsedUnit = ElectricConductance.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -323,9 +352,24 @@ namespace UnitsNet.Tests
         [InlineData("mS", ElectricConductanceUnit.Millisiemens)]
         [InlineData("nS", ElectricConductanceUnit.Nanosiemens)]
         [InlineData("S", ElectricConductanceUnit.Siemens)]
-        public void TryParseUnit(string abbreviation, ElectricConductanceUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ElectricConductanceUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(ElectricConductance.TryParseUnit(abbreviation, out ElectricConductanceUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("kS", ElectricConductanceUnit.Kilosiemens)]
+        [InlineData("µS", ElectricConductanceUnit.Microsiemens)]
+        [InlineData("mS", ElectricConductanceUnit.Millisiemens)]
+        [InlineData("nS", ElectricConductanceUnit.Nanosiemens)]
+        [InlineData("S", ElectricConductanceUnit.Siemens)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ElectricConductanceUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(ElectricConductance.TryParseUnit(abbreviation, out ElectricConductanceUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -336,7 +380,20 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "mS", ElectricConductanceUnit.Millisiemens)]
         [InlineData("en-US", "nS", ElectricConductanceUnit.Nanosiemens)]
         [InlineData("en-US", "S", ElectricConductanceUnit.Siemens)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, ElectricConductanceUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, ElectricConductanceUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(ElectricConductance.TryParseUnit(abbreviation, out ElectricConductanceUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "kS", ElectricConductanceUnit.Kilosiemens)]
+        [InlineData("en-US", "µS", ElectricConductanceUnit.Microsiemens)]
+        [InlineData("en-US", "mS", ElectricConductanceUnit.Millisiemens)]
+        [InlineData("en-US", "nS", ElectricConductanceUnit.Nanosiemens)]
+        [InlineData("en-US", "S", ElectricConductanceUnit.Siemens)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, ElectricConductanceUnit expectedUnit)
         {
             Assert.True(ElectricConductance.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ElectricConductanceUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

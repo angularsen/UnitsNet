@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -768,10 +769,45 @@ namespace UnitsNet.Tests
         [InlineData("ppt", MassFractionUnit.PartPerTrillion)]
         [InlineData("%", MassFractionUnit.Percent)]
         [InlineData("% (w/w)", MassFractionUnit.Percent)]
-        public void ParseUnit(string abbreviation, MassFractionUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, MassFractionUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            MassFractionUnit parsedUnit = MassFraction.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            MassFractionUnit parsedUnit = MassFraction.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("cg/g", MassFractionUnit.CentigramPerGram)]
+        [InlineData("cg/kg", MassFractionUnit.CentigramPerKilogram)]
+        [InlineData("dag/g", MassFractionUnit.DecagramPerGram)]
+        [InlineData("dag/kg", MassFractionUnit.DecagramPerKilogram)]
+        [InlineData("dg/g", MassFractionUnit.DecigramPerGram)]
+        [InlineData("dg/kg", MassFractionUnit.DecigramPerKilogram)]
+        [InlineData("", MassFractionUnit.DecimalFraction)]
+        [InlineData("g/g", MassFractionUnit.GramPerGram)]
+        [InlineData("g/kg", MassFractionUnit.GramPerKilogram)]
+        [InlineData("hg/g", MassFractionUnit.HectogramPerGram)]
+        [InlineData("hg/kg", MassFractionUnit.HectogramPerKilogram)]
+        [InlineData("kg/g", MassFractionUnit.KilogramPerGram)]
+        [InlineData("kg/kg", MassFractionUnit.KilogramPerKilogram)]
+        [InlineData("µg/g", MassFractionUnit.MicrogramPerGram)]
+        [InlineData("µg/kg", MassFractionUnit.MicrogramPerKilogram)]
+        [InlineData("mg/g", MassFractionUnit.MilligramPerGram)]
+        [InlineData("mg/kg", MassFractionUnit.MilligramPerKilogram)]
+        [InlineData("ng/g", MassFractionUnit.NanogramPerGram)]
+        [InlineData("ng/kg", MassFractionUnit.NanogramPerKilogram)]
+        [InlineData("ppb", MassFractionUnit.PartPerBillion)]
+        [InlineData("ppm", MassFractionUnit.PartPerMillion)]
+        [InlineData("‰", MassFractionUnit.PartPerThousand)]
+        [InlineData("ppt", MassFractionUnit.PartPerTrillion)]
+        [InlineData("%", MassFractionUnit.Percent)]
+        [InlineData("% (w/w)", MassFractionUnit.Percent)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, MassFractionUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            MassFractionUnit parsedUnit = MassFraction.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -801,7 +837,40 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "ppt", MassFractionUnit.PartPerTrillion)]
         [InlineData("en-US", "%", MassFractionUnit.Percent)]
         [InlineData("en-US", "% (w/w)", MassFractionUnit.Percent)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, MassFractionUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, MassFractionUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            MassFractionUnit parsedUnit = MassFraction.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "cg/g", MassFractionUnit.CentigramPerGram)]
+        [InlineData("en-US", "cg/kg", MassFractionUnit.CentigramPerKilogram)]
+        [InlineData("en-US", "dag/g", MassFractionUnit.DecagramPerGram)]
+        [InlineData("en-US", "dag/kg", MassFractionUnit.DecagramPerKilogram)]
+        [InlineData("en-US", "dg/g", MassFractionUnit.DecigramPerGram)]
+        [InlineData("en-US", "dg/kg", MassFractionUnit.DecigramPerKilogram)]
+        [InlineData("en-US", "", MassFractionUnit.DecimalFraction)]
+        [InlineData("en-US", "g/g", MassFractionUnit.GramPerGram)]
+        [InlineData("en-US", "g/kg", MassFractionUnit.GramPerKilogram)]
+        [InlineData("en-US", "hg/g", MassFractionUnit.HectogramPerGram)]
+        [InlineData("en-US", "hg/kg", MassFractionUnit.HectogramPerKilogram)]
+        [InlineData("en-US", "kg/g", MassFractionUnit.KilogramPerGram)]
+        [InlineData("en-US", "kg/kg", MassFractionUnit.KilogramPerKilogram)]
+        [InlineData("en-US", "µg/g", MassFractionUnit.MicrogramPerGram)]
+        [InlineData("en-US", "µg/kg", MassFractionUnit.MicrogramPerKilogram)]
+        [InlineData("en-US", "mg/g", MassFractionUnit.MilligramPerGram)]
+        [InlineData("en-US", "mg/kg", MassFractionUnit.MilligramPerKilogram)]
+        [InlineData("en-US", "ng/g", MassFractionUnit.NanogramPerGram)]
+        [InlineData("en-US", "ng/kg", MassFractionUnit.NanogramPerKilogram)]
+        [InlineData("en-US", "ppb", MassFractionUnit.PartPerBillion)]
+        [InlineData("en-US", "ppm", MassFractionUnit.PartPerMillion)]
+        [InlineData("en-US", "‰", MassFractionUnit.PartPerThousand)]
+        [InlineData("en-US", "ppt", MassFractionUnit.PartPerTrillion)]
+        [InlineData("en-US", "%", MassFractionUnit.Percent)]
+        [InlineData("en-US", "% (w/w)", MassFractionUnit.Percent)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, MassFractionUnit expectedUnit)
         {
             MassFractionUnit parsedUnit = MassFraction.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -833,9 +902,44 @@ namespace UnitsNet.Tests
         [InlineData("ppt", MassFractionUnit.PartPerTrillion)]
         [InlineData("%", MassFractionUnit.Percent)]
         [InlineData("% (w/w)", MassFractionUnit.Percent)]
-        public void TryParseUnit(string abbreviation, MassFractionUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, MassFractionUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(MassFraction.TryParseUnit(abbreviation, out MassFractionUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("cg/g", MassFractionUnit.CentigramPerGram)]
+        [InlineData("cg/kg", MassFractionUnit.CentigramPerKilogram)]
+        [InlineData("dag/g", MassFractionUnit.DecagramPerGram)]
+        [InlineData("dag/kg", MassFractionUnit.DecagramPerKilogram)]
+        [InlineData("dg/g", MassFractionUnit.DecigramPerGram)]
+        [InlineData("dg/kg", MassFractionUnit.DecigramPerKilogram)]
+        [InlineData("", MassFractionUnit.DecimalFraction)]
+        [InlineData("g/g", MassFractionUnit.GramPerGram)]
+        [InlineData("g/kg", MassFractionUnit.GramPerKilogram)]
+        [InlineData("hg/g", MassFractionUnit.HectogramPerGram)]
+        [InlineData("hg/kg", MassFractionUnit.HectogramPerKilogram)]
+        [InlineData("kg/g", MassFractionUnit.KilogramPerGram)]
+        [InlineData("kg/kg", MassFractionUnit.KilogramPerKilogram)]
+        [InlineData("µg/g", MassFractionUnit.MicrogramPerGram)]
+        [InlineData("µg/kg", MassFractionUnit.MicrogramPerKilogram)]
+        [InlineData("mg/g", MassFractionUnit.MilligramPerGram)]
+        [InlineData("mg/kg", MassFractionUnit.MilligramPerKilogram)]
+        [InlineData("ng/g", MassFractionUnit.NanogramPerGram)]
+        [InlineData("ng/kg", MassFractionUnit.NanogramPerKilogram)]
+        [InlineData("ppb", MassFractionUnit.PartPerBillion)]
+        [InlineData("ppm", MassFractionUnit.PartPerMillion)]
+        [InlineData("‰", MassFractionUnit.PartPerThousand)]
+        [InlineData("ppt", MassFractionUnit.PartPerTrillion)]
+        [InlineData("%", MassFractionUnit.Percent)]
+        [InlineData("% (w/w)", MassFractionUnit.Percent)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, MassFractionUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(MassFraction.TryParseUnit(abbreviation, out MassFractionUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -866,7 +970,40 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "ppt", MassFractionUnit.PartPerTrillion)]
         [InlineData("en-US", "%", MassFractionUnit.Percent)]
         [InlineData("en-US", "% (w/w)", MassFractionUnit.Percent)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, MassFractionUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, MassFractionUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(MassFraction.TryParseUnit(abbreviation, out MassFractionUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "cg/g", MassFractionUnit.CentigramPerGram)]
+        [InlineData("en-US", "cg/kg", MassFractionUnit.CentigramPerKilogram)]
+        [InlineData("en-US", "dag/g", MassFractionUnit.DecagramPerGram)]
+        [InlineData("en-US", "dag/kg", MassFractionUnit.DecagramPerKilogram)]
+        [InlineData("en-US", "dg/g", MassFractionUnit.DecigramPerGram)]
+        [InlineData("en-US", "dg/kg", MassFractionUnit.DecigramPerKilogram)]
+        [InlineData("en-US", "", MassFractionUnit.DecimalFraction)]
+        [InlineData("en-US", "g/g", MassFractionUnit.GramPerGram)]
+        [InlineData("en-US", "g/kg", MassFractionUnit.GramPerKilogram)]
+        [InlineData("en-US", "hg/g", MassFractionUnit.HectogramPerGram)]
+        [InlineData("en-US", "hg/kg", MassFractionUnit.HectogramPerKilogram)]
+        [InlineData("en-US", "kg/g", MassFractionUnit.KilogramPerGram)]
+        [InlineData("en-US", "kg/kg", MassFractionUnit.KilogramPerKilogram)]
+        [InlineData("en-US", "µg/g", MassFractionUnit.MicrogramPerGram)]
+        [InlineData("en-US", "µg/kg", MassFractionUnit.MicrogramPerKilogram)]
+        [InlineData("en-US", "mg/g", MassFractionUnit.MilligramPerGram)]
+        [InlineData("en-US", "mg/kg", MassFractionUnit.MilligramPerKilogram)]
+        [InlineData("en-US", "ng/g", MassFractionUnit.NanogramPerGram)]
+        [InlineData("en-US", "ng/kg", MassFractionUnit.NanogramPerKilogram)]
+        [InlineData("en-US", "ppb", MassFractionUnit.PartPerBillion)]
+        [InlineData("en-US", "ppm", MassFractionUnit.PartPerMillion)]
+        [InlineData("en-US", "‰", MassFractionUnit.PartPerThousand)]
+        [InlineData("en-US", "ppt", MassFractionUnit.PartPerTrillion)]
+        [InlineData("en-US", "%", MassFractionUnit.Percent)]
+        [InlineData("en-US", "% (w/w)", MassFractionUnit.Percent)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, MassFractionUnit expectedUnit)
         {
             Assert.True(MassFraction.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out MassFractionUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

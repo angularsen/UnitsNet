@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -490,10 +491,34 @@ namespace UnitsNet.Tests
         [InlineData("pW/m²", IrradianceUnit.PicowattPerSquareMeter)]
         [InlineData("W/cm²", IrradianceUnit.WattPerSquareCentimeter)]
         [InlineData("W/m²", IrradianceUnit.WattPerSquareMeter)]
-        public void ParseUnit(string abbreviation, IrradianceUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, IrradianceUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            IrradianceUnit parsedUnit = Irradiance.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            IrradianceUnit parsedUnit = Irradiance.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("kW/cm²", IrradianceUnit.KilowattPerSquareCentimeter)]
+        [InlineData("kW/m²", IrradianceUnit.KilowattPerSquareMeter)]
+        [InlineData("MW/cm²", IrradianceUnit.MegawattPerSquareCentimeter)]
+        [InlineData("MW/m²", IrradianceUnit.MegawattPerSquareMeter)]
+        [InlineData("µW/cm²", IrradianceUnit.MicrowattPerSquareCentimeter)]
+        [InlineData("µW/m²", IrradianceUnit.MicrowattPerSquareMeter)]
+        [InlineData("mW/cm²", IrradianceUnit.MilliwattPerSquareCentimeter)]
+        [InlineData("mW/m²", IrradianceUnit.MilliwattPerSquareMeter)]
+        [InlineData("nW/cm²", IrradianceUnit.NanowattPerSquareCentimeter)]
+        [InlineData("nW/m²", IrradianceUnit.NanowattPerSquareMeter)]
+        [InlineData("pW/cm²", IrradianceUnit.PicowattPerSquareCentimeter)]
+        [InlineData("pW/m²", IrradianceUnit.PicowattPerSquareMeter)]
+        [InlineData("W/cm²", IrradianceUnit.WattPerSquareCentimeter)]
+        [InlineData("W/m²", IrradianceUnit.WattPerSquareMeter)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, IrradianceUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            IrradianceUnit parsedUnit = Irradiance.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -512,7 +537,29 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "pW/m²", IrradianceUnit.PicowattPerSquareMeter)]
         [InlineData("en-US", "W/cm²", IrradianceUnit.WattPerSquareCentimeter)]
         [InlineData("en-US", "W/m²", IrradianceUnit.WattPerSquareMeter)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, IrradianceUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, IrradianceUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            IrradianceUnit parsedUnit = Irradiance.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "kW/cm²", IrradianceUnit.KilowattPerSquareCentimeter)]
+        [InlineData("en-US", "kW/m²", IrradianceUnit.KilowattPerSquareMeter)]
+        [InlineData("en-US", "MW/cm²", IrradianceUnit.MegawattPerSquareCentimeter)]
+        [InlineData("en-US", "MW/m²", IrradianceUnit.MegawattPerSquareMeter)]
+        [InlineData("en-US", "µW/cm²", IrradianceUnit.MicrowattPerSquareCentimeter)]
+        [InlineData("en-US", "µW/m²", IrradianceUnit.MicrowattPerSquareMeter)]
+        [InlineData("en-US", "mW/cm²", IrradianceUnit.MilliwattPerSquareCentimeter)]
+        [InlineData("en-US", "mW/m²", IrradianceUnit.MilliwattPerSquareMeter)]
+        [InlineData("en-US", "nW/cm²", IrradianceUnit.NanowattPerSquareCentimeter)]
+        [InlineData("en-US", "nW/m²", IrradianceUnit.NanowattPerSquareMeter)]
+        [InlineData("en-US", "pW/cm²", IrradianceUnit.PicowattPerSquareCentimeter)]
+        [InlineData("en-US", "pW/m²", IrradianceUnit.PicowattPerSquareMeter)]
+        [InlineData("en-US", "W/cm²", IrradianceUnit.WattPerSquareCentimeter)]
+        [InlineData("en-US", "W/m²", IrradianceUnit.WattPerSquareMeter)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, IrradianceUnit expectedUnit)
         {
             IrradianceUnit parsedUnit = Irradiance.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -533,9 +580,33 @@ namespace UnitsNet.Tests
         [InlineData("pW/m²", IrradianceUnit.PicowattPerSquareMeter)]
         [InlineData("W/cm²", IrradianceUnit.WattPerSquareCentimeter)]
         [InlineData("W/m²", IrradianceUnit.WattPerSquareMeter)]
-        public void TryParseUnit(string abbreviation, IrradianceUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, IrradianceUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(Irradiance.TryParseUnit(abbreviation, out IrradianceUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("kW/cm²", IrradianceUnit.KilowattPerSquareCentimeter)]
+        [InlineData("kW/m²", IrradianceUnit.KilowattPerSquareMeter)]
+        [InlineData("MW/cm²", IrradianceUnit.MegawattPerSquareCentimeter)]
+        [InlineData("MW/m²", IrradianceUnit.MegawattPerSquareMeter)]
+        [InlineData("µW/cm²", IrradianceUnit.MicrowattPerSquareCentimeter)]
+        [InlineData("µW/m²", IrradianceUnit.MicrowattPerSquareMeter)]
+        [InlineData("mW/cm²", IrradianceUnit.MilliwattPerSquareCentimeter)]
+        [InlineData("mW/m²", IrradianceUnit.MilliwattPerSquareMeter)]
+        [InlineData("nW/cm²", IrradianceUnit.NanowattPerSquareCentimeter)]
+        [InlineData("nW/m²", IrradianceUnit.NanowattPerSquareMeter)]
+        [InlineData("pW/cm²", IrradianceUnit.PicowattPerSquareCentimeter)]
+        [InlineData("pW/m²", IrradianceUnit.PicowattPerSquareMeter)]
+        [InlineData("W/cm²", IrradianceUnit.WattPerSquareCentimeter)]
+        [InlineData("W/m²", IrradianceUnit.WattPerSquareMeter)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, IrradianceUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(Irradiance.TryParseUnit(abbreviation, out IrradianceUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -555,7 +626,29 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "pW/m²", IrradianceUnit.PicowattPerSquareMeter)]
         [InlineData("en-US", "W/cm²", IrradianceUnit.WattPerSquareCentimeter)]
         [InlineData("en-US", "W/m²", IrradianceUnit.WattPerSquareMeter)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, IrradianceUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, IrradianceUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(Irradiance.TryParseUnit(abbreviation, out IrradianceUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "kW/cm²", IrradianceUnit.KilowattPerSquareCentimeter)]
+        [InlineData("en-US", "kW/m²", IrradianceUnit.KilowattPerSquareMeter)]
+        [InlineData("en-US", "MW/cm²", IrradianceUnit.MegawattPerSquareCentimeter)]
+        [InlineData("en-US", "MW/m²", IrradianceUnit.MegawattPerSquareMeter)]
+        [InlineData("en-US", "µW/cm²", IrradianceUnit.MicrowattPerSquareCentimeter)]
+        [InlineData("en-US", "µW/m²", IrradianceUnit.MicrowattPerSquareMeter)]
+        [InlineData("en-US", "mW/cm²", IrradianceUnit.MilliwattPerSquareCentimeter)]
+        [InlineData("en-US", "mW/m²", IrradianceUnit.MilliwattPerSquareMeter)]
+        [InlineData("en-US", "nW/cm²", IrradianceUnit.NanowattPerSquareCentimeter)]
+        [InlineData("en-US", "nW/m²", IrradianceUnit.NanowattPerSquareMeter)]
+        [InlineData("en-US", "pW/cm²", IrradianceUnit.PicowattPerSquareCentimeter)]
+        [InlineData("en-US", "pW/m²", IrradianceUnit.PicowattPerSquareMeter)]
+        [InlineData("en-US", "W/cm²", IrradianceUnit.WattPerSquareCentimeter)]
+        [InlineData("en-US", "W/m²", IrradianceUnit.WattPerSquareMeter)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, IrradianceUnit expectedUnit)
         {
             Assert.True(Irradiance.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out IrradianceUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

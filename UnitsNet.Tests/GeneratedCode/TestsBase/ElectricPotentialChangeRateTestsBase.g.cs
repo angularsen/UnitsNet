@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -610,10 +611,40 @@ namespace UnitsNet.Tests
         [InlineData("V/μs", ElectricPotentialChangeRateUnit.VoltPerMicrosecond)]
         [InlineData("V/min", ElectricPotentialChangeRateUnit.VoltPerMinute)]
         [InlineData("V/s", ElectricPotentialChangeRateUnit.VoltPerSecond)]
-        public void ParseUnit(string abbreviation, ElectricPotentialChangeRateUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ElectricPotentialChangeRateUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            ElectricPotentialChangeRateUnit parsedUnit = ElectricPotentialChangeRate.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            ElectricPotentialChangeRateUnit parsedUnit = ElectricPotentialChangeRate.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("kV/h", ElectricPotentialChangeRateUnit.KilovoltPerHour)]
+        [InlineData("kV/μs", ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond)]
+        [InlineData("kV/min", ElectricPotentialChangeRateUnit.KilovoltPerMinute)]
+        [InlineData("kV/s", ElectricPotentialChangeRateUnit.KilovoltPerSecond)]
+        [InlineData("MV/h", ElectricPotentialChangeRateUnit.MegavoltPerHour)]
+        [InlineData("MV/μs", ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond)]
+        [InlineData("MV/min", ElectricPotentialChangeRateUnit.MegavoltPerMinute)]
+        [InlineData("MV/s", ElectricPotentialChangeRateUnit.MegavoltPerSecond)]
+        [InlineData("µV/h", ElectricPotentialChangeRateUnit.MicrovoltPerHour)]
+        [InlineData("µV/μs", ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond)]
+        [InlineData("µV/min", ElectricPotentialChangeRateUnit.MicrovoltPerMinute)]
+        [InlineData("µV/s", ElectricPotentialChangeRateUnit.MicrovoltPerSecond)]
+        [InlineData("mV/h", ElectricPotentialChangeRateUnit.MillivoltPerHour)]
+        [InlineData("mV/μs", ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond)]
+        [InlineData("mV/min", ElectricPotentialChangeRateUnit.MillivoltPerMinute)]
+        [InlineData("mV/s", ElectricPotentialChangeRateUnit.MillivoltPerSecond)]
+        [InlineData("V/h", ElectricPotentialChangeRateUnit.VoltPerHour)]
+        [InlineData("V/μs", ElectricPotentialChangeRateUnit.VoltPerMicrosecond)]
+        [InlineData("V/min", ElectricPotentialChangeRateUnit.VoltPerMinute)]
+        [InlineData("V/s", ElectricPotentialChangeRateUnit.VoltPerSecond)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ElectricPotentialChangeRateUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            ElectricPotentialChangeRateUnit parsedUnit = ElectricPotentialChangeRate.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -638,7 +669,35 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "V/μs", ElectricPotentialChangeRateUnit.VoltPerMicrosecond)]
         [InlineData("en-US", "V/min", ElectricPotentialChangeRateUnit.VoltPerMinute)]
         [InlineData("en-US", "V/s", ElectricPotentialChangeRateUnit.VoltPerSecond)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, ElectricPotentialChangeRateUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, ElectricPotentialChangeRateUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            ElectricPotentialChangeRateUnit parsedUnit = ElectricPotentialChangeRate.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "kV/h", ElectricPotentialChangeRateUnit.KilovoltPerHour)]
+        [InlineData("en-US", "kV/μs", ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond)]
+        [InlineData("en-US", "kV/min", ElectricPotentialChangeRateUnit.KilovoltPerMinute)]
+        [InlineData("en-US", "kV/s", ElectricPotentialChangeRateUnit.KilovoltPerSecond)]
+        [InlineData("en-US", "MV/h", ElectricPotentialChangeRateUnit.MegavoltPerHour)]
+        [InlineData("en-US", "MV/μs", ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond)]
+        [InlineData("en-US", "MV/min", ElectricPotentialChangeRateUnit.MegavoltPerMinute)]
+        [InlineData("en-US", "MV/s", ElectricPotentialChangeRateUnit.MegavoltPerSecond)]
+        [InlineData("en-US", "µV/h", ElectricPotentialChangeRateUnit.MicrovoltPerHour)]
+        [InlineData("en-US", "µV/μs", ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond)]
+        [InlineData("en-US", "µV/min", ElectricPotentialChangeRateUnit.MicrovoltPerMinute)]
+        [InlineData("en-US", "µV/s", ElectricPotentialChangeRateUnit.MicrovoltPerSecond)]
+        [InlineData("en-US", "mV/h", ElectricPotentialChangeRateUnit.MillivoltPerHour)]
+        [InlineData("en-US", "mV/μs", ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond)]
+        [InlineData("en-US", "mV/min", ElectricPotentialChangeRateUnit.MillivoltPerMinute)]
+        [InlineData("en-US", "mV/s", ElectricPotentialChangeRateUnit.MillivoltPerSecond)]
+        [InlineData("en-US", "V/h", ElectricPotentialChangeRateUnit.VoltPerHour)]
+        [InlineData("en-US", "V/μs", ElectricPotentialChangeRateUnit.VoltPerMicrosecond)]
+        [InlineData("en-US", "V/min", ElectricPotentialChangeRateUnit.VoltPerMinute)]
+        [InlineData("en-US", "V/s", ElectricPotentialChangeRateUnit.VoltPerSecond)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, ElectricPotentialChangeRateUnit expectedUnit)
         {
             ElectricPotentialChangeRateUnit parsedUnit = ElectricPotentialChangeRate.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -665,9 +724,39 @@ namespace UnitsNet.Tests
         [InlineData("V/μs", ElectricPotentialChangeRateUnit.VoltPerMicrosecond)]
         [InlineData("V/min", ElectricPotentialChangeRateUnit.VoltPerMinute)]
         [InlineData("V/s", ElectricPotentialChangeRateUnit.VoltPerSecond)]
-        public void TryParseUnit(string abbreviation, ElectricPotentialChangeRateUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ElectricPotentialChangeRateUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(ElectricPotentialChangeRate.TryParseUnit(abbreviation, out ElectricPotentialChangeRateUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("kV/h", ElectricPotentialChangeRateUnit.KilovoltPerHour)]
+        [InlineData("kV/μs", ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond)]
+        [InlineData("kV/min", ElectricPotentialChangeRateUnit.KilovoltPerMinute)]
+        [InlineData("kV/s", ElectricPotentialChangeRateUnit.KilovoltPerSecond)]
+        [InlineData("MV/h", ElectricPotentialChangeRateUnit.MegavoltPerHour)]
+        [InlineData("MV/μs", ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond)]
+        [InlineData("MV/min", ElectricPotentialChangeRateUnit.MegavoltPerMinute)]
+        [InlineData("MV/s", ElectricPotentialChangeRateUnit.MegavoltPerSecond)]
+        [InlineData("µV/h", ElectricPotentialChangeRateUnit.MicrovoltPerHour)]
+        [InlineData("µV/μs", ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond)]
+        [InlineData("µV/min", ElectricPotentialChangeRateUnit.MicrovoltPerMinute)]
+        [InlineData("µV/s", ElectricPotentialChangeRateUnit.MicrovoltPerSecond)]
+        [InlineData("mV/h", ElectricPotentialChangeRateUnit.MillivoltPerHour)]
+        [InlineData("mV/μs", ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond)]
+        [InlineData("mV/min", ElectricPotentialChangeRateUnit.MillivoltPerMinute)]
+        [InlineData("mV/s", ElectricPotentialChangeRateUnit.MillivoltPerSecond)]
+        [InlineData("V/h", ElectricPotentialChangeRateUnit.VoltPerHour)]
+        [InlineData("V/μs", ElectricPotentialChangeRateUnit.VoltPerMicrosecond)]
+        [InlineData("V/min", ElectricPotentialChangeRateUnit.VoltPerMinute)]
+        [InlineData("V/s", ElectricPotentialChangeRateUnit.VoltPerSecond)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ElectricPotentialChangeRateUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(ElectricPotentialChangeRate.TryParseUnit(abbreviation, out ElectricPotentialChangeRateUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -693,7 +782,35 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "V/μs", ElectricPotentialChangeRateUnit.VoltPerMicrosecond)]
         [InlineData("en-US", "V/min", ElectricPotentialChangeRateUnit.VoltPerMinute)]
         [InlineData("en-US", "V/s", ElectricPotentialChangeRateUnit.VoltPerSecond)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, ElectricPotentialChangeRateUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, ElectricPotentialChangeRateUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(ElectricPotentialChangeRate.TryParseUnit(abbreviation, out ElectricPotentialChangeRateUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "kV/h", ElectricPotentialChangeRateUnit.KilovoltPerHour)]
+        [InlineData("en-US", "kV/μs", ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond)]
+        [InlineData("en-US", "kV/min", ElectricPotentialChangeRateUnit.KilovoltPerMinute)]
+        [InlineData("en-US", "kV/s", ElectricPotentialChangeRateUnit.KilovoltPerSecond)]
+        [InlineData("en-US", "MV/h", ElectricPotentialChangeRateUnit.MegavoltPerHour)]
+        [InlineData("en-US", "MV/μs", ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond)]
+        [InlineData("en-US", "MV/min", ElectricPotentialChangeRateUnit.MegavoltPerMinute)]
+        [InlineData("en-US", "MV/s", ElectricPotentialChangeRateUnit.MegavoltPerSecond)]
+        [InlineData("en-US", "µV/h", ElectricPotentialChangeRateUnit.MicrovoltPerHour)]
+        [InlineData("en-US", "µV/μs", ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond)]
+        [InlineData("en-US", "µV/min", ElectricPotentialChangeRateUnit.MicrovoltPerMinute)]
+        [InlineData("en-US", "µV/s", ElectricPotentialChangeRateUnit.MicrovoltPerSecond)]
+        [InlineData("en-US", "mV/h", ElectricPotentialChangeRateUnit.MillivoltPerHour)]
+        [InlineData("en-US", "mV/μs", ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond)]
+        [InlineData("en-US", "mV/min", ElectricPotentialChangeRateUnit.MillivoltPerMinute)]
+        [InlineData("en-US", "mV/s", ElectricPotentialChangeRateUnit.MillivoltPerSecond)]
+        [InlineData("en-US", "V/h", ElectricPotentialChangeRateUnit.VoltPerHour)]
+        [InlineData("en-US", "V/μs", ElectricPotentialChangeRateUnit.VoltPerMicrosecond)]
+        [InlineData("en-US", "V/min", ElectricPotentialChangeRateUnit.VoltPerMinute)]
+        [InlineData("en-US", "V/s", ElectricPotentialChangeRateUnit.VoltPerSecond)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, ElectricPotentialChangeRateUnit expectedUnit)
         {
             Assert.True(ElectricPotentialChangeRate.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ElectricPotentialChangeRateUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

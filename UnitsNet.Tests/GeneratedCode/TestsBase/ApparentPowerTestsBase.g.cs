@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -310,10 +311,26 @@ namespace UnitsNet.Tests
         [InlineData("µVA", ApparentPowerUnit.Microvoltampere)]
         [InlineData("mVA", ApparentPowerUnit.Millivoltampere)]
         [InlineData("VA", ApparentPowerUnit.Voltampere)]
-        public void ParseUnit(string abbreviation, ApparentPowerUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ApparentPowerUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            ApparentPowerUnit parsedUnit = ApparentPower.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            ApparentPowerUnit parsedUnit = ApparentPower.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("GVA", ApparentPowerUnit.Gigavoltampere)]
+        [InlineData("kVA", ApparentPowerUnit.Kilovoltampere)]
+        [InlineData("MVA", ApparentPowerUnit.Megavoltampere)]
+        [InlineData("µVA", ApparentPowerUnit.Microvoltampere)]
+        [InlineData("mVA", ApparentPowerUnit.Millivoltampere)]
+        [InlineData("VA", ApparentPowerUnit.Voltampere)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ApparentPowerUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            ApparentPowerUnit parsedUnit = ApparentPower.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -324,7 +341,21 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "µVA", ApparentPowerUnit.Microvoltampere)]
         [InlineData("en-US", "mVA", ApparentPowerUnit.Millivoltampere)]
         [InlineData("en-US", "VA", ApparentPowerUnit.Voltampere)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, ApparentPowerUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, ApparentPowerUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            ApparentPowerUnit parsedUnit = ApparentPower.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "GVA", ApparentPowerUnit.Gigavoltampere)]
+        [InlineData("en-US", "kVA", ApparentPowerUnit.Kilovoltampere)]
+        [InlineData("en-US", "MVA", ApparentPowerUnit.Megavoltampere)]
+        [InlineData("en-US", "µVA", ApparentPowerUnit.Microvoltampere)]
+        [InlineData("en-US", "mVA", ApparentPowerUnit.Millivoltampere)]
+        [InlineData("en-US", "VA", ApparentPowerUnit.Voltampere)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, ApparentPowerUnit expectedUnit)
         {
             ApparentPowerUnit parsedUnit = ApparentPower.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -337,9 +368,25 @@ namespace UnitsNet.Tests
         [InlineData("µVA", ApparentPowerUnit.Microvoltampere)]
         [InlineData("mVA", ApparentPowerUnit.Millivoltampere)]
         [InlineData("VA", ApparentPowerUnit.Voltampere)]
-        public void TryParseUnit(string abbreviation, ApparentPowerUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ApparentPowerUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(ApparentPower.TryParseUnit(abbreviation, out ApparentPowerUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("GVA", ApparentPowerUnit.Gigavoltampere)]
+        [InlineData("kVA", ApparentPowerUnit.Kilovoltampere)]
+        [InlineData("MVA", ApparentPowerUnit.Megavoltampere)]
+        [InlineData("µVA", ApparentPowerUnit.Microvoltampere)]
+        [InlineData("mVA", ApparentPowerUnit.Millivoltampere)]
+        [InlineData("VA", ApparentPowerUnit.Voltampere)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ApparentPowerUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(ApparentPower.TryParseUnit(abbreviation, out ApparentPowerUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -351,7 +398,21 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "µVA", ApparentPowerUnit.Microvoltampere)]
         [InlineData("en-US", "mVA", ApparentPowerUnit.Millivoltampere)]
         [InlineData("en-US", "VA", ApparentPowerUnit.Voltampere)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, ApparentPowerUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, ApparentPowerUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(ApparentPower.TryParseUnit(abbreviation, out ApparentPowerUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "GVA", ApparentPowerUnit.Gigavoltampere)]
+        [InlineData("en-US", "kVA", ApparentPowerUnit.Kilovoltampere)]
+        [InlineData("en-US", "MVA", ApparentPowerUnit.Megavoltampere)]
+        [InlineData("en-US", "µVA", ApparentPowerUnit.Microvoltampere)]
+        [InlineData("en-US", "mVA", ApparentPowerUnit.Millivoltampere)]
+        [InlineData("en-US", "VA", ApparentPowerUnit.Voltampere)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, ApparentPowerUnit expectedUnit)
         {
             Assert.True(ApparentPower.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ApparentPowerUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

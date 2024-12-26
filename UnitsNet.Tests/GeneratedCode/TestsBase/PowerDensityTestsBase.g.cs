@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -1186,10 +1187,64 @@ namespace UnitsNet.Tests
         [InlineData("W/in³", PowerDensityUnit.WattPerCubicInch)]
         [InlineData("W/m³", PowerDensityUnit.WattPerCubicMeter)]
         [InlineData("W/l", PowerDensityUnit.WattPerLiter)]
-        public void ParseUnit(string abbreviation, PowerDensityUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, PowerDensityUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            PowerDensityUnit parsedUnit = PowerDensity.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            PowerDensityUnit parsedUnit = PowerDensity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("daW/ft³", PowerDensityUnit.DecawattPerCubicFoot)]
+        [InlineData("daW/in³", PowerDensityUnit.DecawattPerCubicInch)]
+        [InlineData("daW/m³", PowerDensityUnit.DecawattPerCubicMeter)]
+        [InlineData("daW/l", PowerDensityUnit.DecawattPerLiter)]
+        [InlineData("dW/ft³", PowerDensityUnit.DeciwattPerCubicFoot)]
+        [InlineData("dW/in³", PowerDensityUnit.DeciwattPerCubicInch)]
+        [InlineData("dW/m³", PowerDensityUnit.DeciwattPerCubicMeter)]
+        [InlineData("dW/l", PowerDensityUnit.DeciwattPerLiter)]
+        [InlineData("GW/ft³", PowerDensityUnit.GigawattPerCubicFoot)]
+        [InlineData("GW/in³", PowerDensityUnit.GigawattPerCubicInch)]
+        [InlineData("GW/m³", PowerDensityUnit.GigawattPerCubicMeter)]
+        [InlineData("GW/l", PowerDensityUnit.GigawattPerLiter)]
+        [InlineData("kW/ft³", PowerDensityUnit.KilowattPerCubicFoot)]
+        [InlineData("kW/in³", PowerDensityUnit.KilowattPerCubicInch)]
+        [InlineData("kW/m³", PowerDensityUnit.KilowattPerCubicMeter)]
+        [InlineData("kW/l", PowerDensityUnit.KilowattPerLiter)]
+        [InlineData("MW/ft³", PowerDensityUnit.MegawattPerCubicFoot)]
+        [InlineData("MW/in³", PowerDensityUnit.MegawattPerCubicInch)]
+        [InlineData("MW/m³", PowerDensityUnit.MegawattPerCubicMeter)]
+        [InlineData("MW/l", PowerDensityUnit.MegawattPerLiter)]
+        [InlineData("µW/ft³", PowerDensityUnit.MicrowattPerCubicFoot)]
+        [InlineData("µW/in³", PowerDensityUnit.MicrowattPerCubicInch)]
+        [InlineData("µW/m³", PowerDensityUnit.MicrowattPerCubicMeter)]
+        [InlineData("µW/l", PowerDensityUnit.MicrowattPerLiter)]
+        [InlineData("mW/ft³", PowerDensityUnit.MilliwattPerCubicFoot)]
+        [InlineData("mW/in³", PowerDensityUnit.MilliwattPerCubicInch)]
+        [InlineData("mW/m³", PowerDensityUnit.MilliwattPerCubicMeter)]
+        [InlineData("mW/l", PowerDensityUnit.MilliwattPerLiter)]
+        [InlineData("nW/ft³", PowerDensityUnit.NanowattPerCubicFoot)]
+        [InlineData("nW/in³", PowerDensityUnit.NanowattPerCubicInch)]
+        [InlineData("nW/m³", PowerDensityUnit.NanowattPerCubicMeter)]
+        [InlineData("nW/l", PowerDensityUnit.NanowattPerLiter)]
+        [InlineData("pW/ft³", PowerDensityUnit.PicowattPerCubicFoot)]
+        [InlineData("pW/in³", PowerDensityUnit.PicowattPerCubicInch)]
+        [InlineData("pW/m³", PowerDensityUnit.PicowattPerCubicMeter)]
+        [InlineData("pW/l", PowerDensityUnit.PicowattPerLiter)]
+        [InlineData("TW/ft³", PowerDensityUnit.TerawattPerCubicFoot)]
+        [InlineData("TW/in³", PowerDensityUnit.TerawattPerCubicInch)]
+        [InlineData("TW/m³", PowerDensityUnit.TerawattPerCubicMeter)]
+        [InlineData("TW/l", PowerDensityUnit.TerawattPerLiter)]
+        [InlineData("W/ft³", PowerDensityUnit.WattPerCubicFoot)]
+        [InlineData("W/in³", PowerDensityUnit.WattPerCubicInch)]
+        [InlineData("W/m³", PowerDensityUnit.WattPerCubicMeter)]
+        [InlineData("W/l", PowerDensityUnit.WattPerLiter)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, PowerDensityUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            PowerDensityUnit parsedUnit = PowerDensity.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -1238,7 +1293,59 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "W/in³", PowerDensityUnit.WattPerCubicInch)]
         [InlineData("en-US", "W/m³", PowerDensityUnit.WattPerCubicMeter)]
         [InlineData("en-US", "W/l", PowerDensityUnit.WattPerLiter)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, PowerDensityUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, PowerDensityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            PowerDensityUnit parsedUnit = PowerDensity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "daW/ft³", PowerDensityUnit.DecawattPerCubicFoot)]
+        [InlineData("en-US", "daW/in³", PowerDensityUnit.DecawattPerCubicInch)]
+        [InlineData("en-US", "daW/m³", PowerDensityUnit.DecawattPerCubicMeter)]
+        [InlineData("en-US", "daW/l", PowerDensityUnit.DecawattPerLiter)]
+        [InlineData("en-US", "dW/ft³", PowerDensityUnit.DeciwattPerCubicFoot)]
+        [InlineData("en-US", "dW/in³", PowerDensityUnit.DeciwattPerCubicInch)]
+        [InlineData("en-US", "dW/m³", PowerDensityUnit.DeciwattPerCubicMeter)]
+        [InlineData("en-US", "dW/l", PowerDensityUnit.DeciwattPerLiter)]
+        [InlineData("en-US", "GW/ft³", PowerDensityUnit.GigawattPerCubicFoot)]
+        [InlineData("en-US", "GW/in³", PowerDensityUnit.GigawattPerCubicInch)]
+        [InlineData("en-US", "GW/m³", PowerDensityUnit.GigawattPerCubicMeter)]
+        [InlineData("en-US", "GW/l", PowerDensityUnit.GigawattPerLiter)]
+        [InlineData("en-US", "kW/ft³", PowerDensityUnit.KilowattPerCubicFoot)]
+        [InlineData("en-US", "kW/in³", PowerDensityUnit.KilowattPerCubicInch)]
+        [InlineData("en-US", "kW/m³", PowerDensityUnit.KilowattPerCubicMeter)]
+        [InlineData("en-US", "kW/l", PowerDensityUnit.KilowattPerLiter)]
+        [InlineData("en-US", "MW/ft³", PowerDensityUnit.MegawattPerCubicFoot)]
+        [InlineData("en-US", "MW/in³", PowerDensityUnit.MegawattPerCubicInch)]
+        [InlineData("en-US", "MW/m³", PowerDensityUnit.MegawattPerCubicMeter)]
+        [InlineData("en-US", "MW/l", PowerDensityUnit.MegawattPerLiter)]
+        [InlineData("en-US", "µW/ft³", PowerDensityUnit.MicrowattPerCubicFoot)]
+        [InlineData("en-US", "µW/in³", PowerDensityUnit.MicrowattPerCubicInch)]
+        [InlineData("en-US", "µW/m³", PowerDensityUnit.MicrowattPerCubicMeter)]
+        [InlineData("en-US", "µW/l", PowerDensityUnit.MicrowattPerLiter)]
+        [InlineData("en-US", "mW/ft³", PowerDensityUnit.MilliwattPerCubicFoot)]
+        [InlineData("en-US", "mW/in³", PowerDensityUnit.MilliwattPerCubicInch)]
+        [InlineData("en-US", "mW/m³", PowerDensityUnit.MilliwattPerCubicMeter)]
+        [InlineData("en-US", "mW/l", PowerDensityUnit.MilliwattPerLiter)]
+        [InlineData("en-US", "nW/ft³", PowerDensityUnit.NanowattPerCubicFoot)]
+        [InlineData("en-US", "nW/in³", PowerDensityUnit.NanowattPerCubicInch)]
+        [InlineData("en-US", "nW/m³", PowerDensityUnit.NanowattPerCubicMeter)]
+        [InlineData("en-US", "nW/l", PowerDensityUnit.NanowattPerLiter)]
+        [InlineData("en-US", "pW/ft³", PowerDensityUnit.PicowattPerCubicFoot)]
+        [InlineData("en-US", "pW/in³", PowerDensityUnit.PicowattPerCubicInch)]
+        [InlineData("en-US", "pW/m³", PowerDensityUnit.PicowattPerCubicMeter)]
+        [InlineData("en-US", "pW/l", PowerDensityUnit.PicowattPerLiter)]
+        [InlineData("en-US", "TW/ft³", PowerDensityUnit.TerawattPerCubicFoot)]
+        [InlineData("en-US", "TW/in³", PowerDensityUnit.TerawattPerCubicInch)]
+        [InlineData("en-US", "TW/m³", PowerDensityUnit.TerawattPerCubicMeter)]
+        [InlineData("en-US", "TW/l", PowerDensityUnit.TerawattPerLiter)]
+        [InlineData("en-US", "W/ft³", PowerDensityUnit.WattPerCubicFoot)]
+        [InlineData("en-US", "W/in³", PowerDensityUnit.WattPerCubicInch)]
+        [InlineData("en-US", "W/m³", PowerDensityUnit.WattPerCubicMeter)]
+        [InlineData("en-US", "W/l", PowerDensityUnit.WattPerLiter)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, PowerDensityUnit expectedUnit)
         {
             PowerDensityUnit parsedUnit = PowerDensity.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -1289,9 +1396,63 @@ namespace UnitsNet.Tests
         [InlineData("W/in³", PowerDensityUnit.WattPerCubicInch)]
         [InlineData("W/m³", PowerDensityUnit.WattPerCubicMeter)]
         [InlineData("W/l", PowerDensityUnit.WattPerLiter)]
-        public void TryParseUnit(string abbreviation, PowerDensityUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, PowerDensityUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(PowerDensity.TryParseUnit(abbreviation, out PowerDensityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("daW/ft³", PowerDensityUnit.DecawattPerCubicFoot)]
+        [InlineData("daW/in³", PowerDensityUnit.DecawattPerCubicInch)]
+        [InlineData("daW/m³", PowerDensityUnit.DecawattPerCubicMeter)]
+        [InlineData("daW/l", PowerDensityUnit.DecawattPerLiter)]
+        [InlineData("dW/ft³", PowerDensityUnit.DeciwattPerCubicFoot)]
+        [InlineData("dW/in³", PowerDensityUnit.DeciwattPerCubicInch)]
+        [InlineData("dW/m³", PowerDensityUnit.DeciwattPerCubicMeter)]
+        [InlineData("dW/l", PowerDensityUnit.DeciwattPerLiter)]
+        [InlineData("GW/ft³", PowerDensityUnit.GigawattPerCubicFoot)]
+        [InlineData("GW/in³", PowerDensityUnit.GigawattPerCubicInch)]
+        [InlineData("GW/m³", PowerDensityUnit.GigawattPerCubicMeter)]
+        [InlineData("GW/l", PowerDensityUnit.GigawattPerLiter)]
+        [InlineData("kW/ft³", PowerDensityUnit.KilowattPerCubicFoot)]
+        [InlineData("kW/in³", PowerDensityUnit.KilowattPerCubicInch)]
+        [InlineData("kW/m³", PowerDensityUnit.KilowattPerCubicMeter)]
+        [InlineData("kW/l", PowerDensityUnit.KilowattPerLiter)]
+        [InlineData("MW/ft³", PowerDensityUnit.MegawattPerCubicFoot)]
+        [InlineData("MW/in³", PowerDensityUnit.MegawattPerCubicInch)]
+        [InlineData("MW/m³", PowerDensityUnit.MegawattPerCubicMeter)]
+        [InlineData("MW/l", PowerDensityUnit.MegawattPerLiter)]
+        [InlineData("µW/ft³", PowerDensityUnit.MicrowattPerCubicFoot)]
+        [InlineData("µW/in³", PowerDensityUnit.MicrowattPerCubicInch)]
+        [InlineData("µW/m³", PowerDensityUnit.MicrowattPerCubicMeter)]
+        [InlineData("µW/l", PowerDensityUnit.MicrowattPerLiter)]
+        [InlineData("mW/ft³", PowerDensityUnit.MilliwattPerCubicFoot)]
+        [InlineData("mW/in³", PowerDensityUnit.MilliwattPerCubicInch)]
+        [InlineData("mW/m³", PowerDensityUnit.MilliwattPerCubicMeter)]
+        [InlineData("mW/l", PowerDensityUnit.MilliwattPerLiter)]
+        [InlineData("nW/ft³", PowerDensityUnit.NanowattPerCubicFoot)]
+        [InlineData("nW/in³", PowerDensityUnit.NanowattPerCubicInch)]
+        [InlineData("nW/m³", PowerDensityUnit.NanowattPerCubicMeter)]
+        [InlineData("nW/l", PowerDensityUnit.NanowattPerLiter)]
+        [InlineData("pW/ft³", PowerDensityUnit.PicowattPerCubicFoot)]
+        [InlineData("pW/in³", PowerDensityUnit.PicowattPerCubicInch)]
+        [InlineData("pW/m³", PowerDensityUnit.PicowattPerCubicMeter)]
+        [InlineData("pW/l", PowerDensityUnit.PicowattPerLiter)]
+        [InlineData("TW/ft³", PowerDensityUnit.TerawattPerCubicFoot)]
+        [InlineData("TW/in³", PowerDensityUnit.TerawattPerCubicInch)]
+        [InlineData("TW/m³", PowerDensityUnit.TerawattPerCubicMeter)]
+        [InlineData("TW/l", PowerDensityUnit.TerawattPerLiter)]
+        [InlineData("W/ft³", PowerDensityUnit.WattPerCubicFoot)]
+        [InlineData("W/in³", PowerDensityUnit.WattPerCubicInch)]
+        [InlineData("W/m³", PowerDensityUnit.WattPerCubicMeter)]
+        [InlineData("W/l", PowerDensityUnit.WattPerLiter)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, PowerDensityUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(PowerDensity.TryParseUnit(abbreviation, out PowerDensityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -1341,7 +1502,59 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "W/in³", PowerDensityUnit.WattPerCubicInch)]
         [InlineData("en-US", "W/m³", PowerDensityUnit.WattPerCubicMeter)]
         [InlineData("en-US", "W/l", PowerDensityUnit.WattPerLiter)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, PowerDensityUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, PowerDensityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(PowerDensity.TryParseUnit(abbreviation, out PowerDensityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "daW/ft³", PowerDensityUnit.DecawattPerCubicFoot)]
+        [InlineData("en-US", "daW/in³", PowerDensityUnit.DecawattPerCubicInch)]
+        [InlineData("en-US", "daW/m³", PowerDensityUnit.DecawattPerCubicMeter)]
+        [InlineData("en-US", "daW/l", PowerDensityUnit.DecawattPerLiter)]
+        [InlineData("en-US", "dW/ft³", PowerDensityUnit.DeciwattPerCubicFoot)]
+        [InlineData("en-US", "dW/in³", PowerDensityUnit.DeciwattPerCubicInch)]
+        [InlineData("en-US", "dW/m³", PowerDensityUnit.DeciwattPerCubicMeter)]
+        [InlineData("en-US", "dW/l", PowerDensityUnit.DeciwattPerLiter)]
+        [InlineData("en-US", "GW/ft³", PowerDensityUnit.GigawattPerCubicFoot)]
+        [InlineData("en-US", "GW/in³", PowerDensityUnit.GigawattPerCubicInch)]
+        [InlineData("en-US", "GW/m³", PowerDensityUnit.GigawattPerCubicMeter)]
+        [InlineData("en-US", "GW/l", PowerDensityUnit.GigawattPerLiter)]
+        [InlineData("en-US", "kW/ft³", PowerDensityUnit.KilowattPerCubicFoot)]
+        [InlineData("en-US", "kW/in³", PowerDensityUnit.KilowattPerCubicInch)]
+        [InlineData("en-US", "kW/m³", PowerDensityUnit.KilowattPerCubicMeter)]
+        [InlineData("en-US", "kW/l", PowerDensityUnit.KilowattPerLiter)]
+        [InlineData("en-US", "MW/ft³", PowerDensityUnit.MegawattPerCubicFoot)]
+        [InlineData("en-US", "MW/in³", PowerDensityUnit.MegawattPerCubicInch)]
+        [InlineData("en-US", "MW/m³", PowerDensityUnit.MegawattPerCubicMeter)]
+        [InlineData("en-US", "MW/l", PowerDensityUnit.MegawattPerLiter)]
+        [InlineData("en-US", "µW/ft³", PowerDensityUnit.MicrowattPerCubicFoot)]
+        [InlineData("en-US", "µW/in³", PowerDensityUnit.MicrowattPerCubicInch)]
+        [InlineData("en-US", "µW/m³", PowerDensityUnit.MicrowattPerCubicMeter)]
+        [InlineData("en-US", "µW/l", PowerDensityUnit.MicrowattPerLiter)]
+        [InlineData("en-US", "mW/ft³", PowerDensityUnit.MilliwattPerCubicFoot)]
+        [InlineData("en-US", "mW/in³", PowerDensityUnit.MilliwattPerCubicInch)]
+        [InlineData("en-US", "mW/m³", PowerDensityUnit.MilliwattPerCubicMeter)]
+        [InlineData("en-US", "mW/l", PowerDensityUnit.MilliwattPerLiter)]
+        [InlineData("en-US", "nW/ft³", PowerDensityUnit.NanowattPerCubicFoot)]
+        [InlineData("en-US", "nW/in³", PowerDensityUnit.NanowattPerCubicInch)]
+        [InlineData("en-US", "nW/m³", PowerDensityUnit.NanowattPerCubicMeter)]
+        [InlineData("en-US", "nW/l", PowerDensityUnit.NanowattPerLiter)]
+        [InlineData("en-US", "pW/ft³", PowerDensityUnit.PicowattPerCubicFoot)]
+        [InlineData("en-US", "pW/in³", PowerDensityUnit.PicowattPerCubicInch)]
+        [InlineData("en-US", "pW/m³", PowerDensityUnit.PicowattPerCubicMeter)]
+        [InlineData("en-US", "pW/l", PowerDensityUnit.PicowattPerLiter)]
+        [InlineData("en-US", "TW/ft³", PowerDensityUnit.TerawattPerCubicFoot)]
+        [InlineData("en-US", "TW/in³", PowerDensityUnit.TerawattPerCubicInch)]
+        [InlineData("en-US", "TW/m³", PowerDensityUnit.TerawattPerCubicMeter)]
+        [InlineData("en-US", "TW/l", PowerDensityUnit.TerawattPerLiter)]
+        [InlineData("en-US", "W/ft³", PowerDensityUnit.WattPerCubicFoot)]
+        [InlineData("en-US", "W/in³", PowerDensityUnit.WattPerCubicInch)]
+        [InlineData("en-US", "W/m³", PowerDensityUnit.WattPerCubicMeter)]
+        [InlineData("en-US", "W/l", PowerDensityUnit.WattPerLiter)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, PowerDensityUnit expectedUnit)
         {
             Assert.True(PowerDensity.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out PowerDensityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

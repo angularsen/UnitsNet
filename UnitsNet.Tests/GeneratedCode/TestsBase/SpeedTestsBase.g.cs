@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -1366,10 +1367,59 @@ namespace UnitsNet.Tests
         [InlineData("yd/h", SpeedUnit.YardPerHour)]
         [InlineData("yd/min", SpeedUnit.YardPerMinute)]
         [InlineData("yd/s", SpeedUnit.YardPerSecond)]
-        public void ParseUnit(string abbreviation, SpeedUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, SpeedUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            SpeedUnit parsedUnit = Speed.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            SpeedUnit parsedUnit = Speed.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("cm/h", SpeedUnit.CentimeterPerHour)]
+        [InlineData("cm/min", SpeedUnit.CentimeterPerMinute)]
+        [InlineData("cm/s", SpeedUnit.CentimeterPerSecond)]
+        [InlineData("dm/min", SpeedUnit.DecimeterPerMinute)]
+        [InlineData("dm/s", SpeedUnit.DecimeterPerSecond)]
+        [InlineData("ft/h", SpeedUnit.FootPerHour)]
+        [InlineData("ft/min", SpeedUnit.FootPerMinute)]
+        [InlineData("ft/s", SpeedUnit.FootPerSecond)]
+        [InlineData("in/h", SpeedUnit.InchPerHour)]
+        [InlineData("in/min", SpeedUnit.InchPerMinute)]
+        [InlineData("in/s", SpeedUnit.InchPerSecond)]
+        [InlineData("km/h", SpeedUnit.KilometerPerHour)]
+        [InlineData("km/min", SpeedUnit.KilometerPerMinute)]
+        [InlineData("km/s", SpeedUnit.KilometerPerSecond)]
+        [InlineData("kn", SpeedUnit.Knot)]
+        [InlineData("kt", SpeedUnit.Knot)]
+        [InlineData("knot", SpeedUnit.Knot)]
+        [InlineData("knots", SpeedUnit.Knot)]
+        [InlineData("M", SpeedUnit.Mach)]
+        [InlineData("Ma", SpeedUnit.Mach)]
+        [InlineData("MN", SpeedUnit.Mach)]
+        [InlineData("MACH", SpeedUnit.Mach)]
+        [InlineData("m/h", SpeedUnit.MeterPerHour)]
+        [InlineData("m/min", SpeedUnit.MeterPerMinute)]
+        [InlineData("m/s", SpeedUnit.MeterPerSecond)]
+        [InlineData("µm/min", SpeedUnit.MicrometerPerMinute)]
+        [InlineData("µm/s", SpeedUnit.MicrometerPerSecond)]
+        [InlineData("mph", SpeedUnit.MilePerHour)]
+        [InlineData("mm/h", SpeedUnit.MillimeterPerHour)]
+        [InlineData("mm/min", SpeedUnit.MillimeterPerMinute)]
+        [InlineData("mm/s", SpeedUnit.MillimeterPerSecond)]
+        [InlineData("nm/min", SpeedUnit.NanometerPerMinute)]
+        [InlineData("nm/s", SpeedUnit.NanometerPerSecond)]
+        [InlineData("ftUS/h", SpeedUnit.UsSurveyFootPerHour)]
+        [InlineData("ftUS/min", SpeedUnit.UsSurveyFootPerMinute)]
+        [InlineData("ftUS/s", SpeedUnit.UsSurveyFootPerSecond)]
+        [InlineData("yd/h", SpeedUnit.YardPerHour)]
+        [InlineData("yd/min", SpeedUnit.YardPerMinute)]
+        [InlineData("yd/s", SpeedUnit.YardPerSecond)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, SpeedUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            SpeedUnit parsedUnit = Speed.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -1437,7 +1487,78 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "мм/с", SpeedUnit.MillimeterPerSecond)]
         [InlineData("ru-RU", "нм/мин", SpeedUnit.NanometerPerMinute)]
         [InlineData("ru-RU", "нм/с", SpeedUnit.NanometerPerSecond)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, SpeedUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, SpeedUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            SpeedUnit parsedUnit = Speed.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "cm/h", SpeedUnit.CentimeterPerHour)]
+        [InlineData("en-US", "cm/min", SpeedUnit.CentimeterPerMinute)]
+        [InlineData("en-US", "cm/s", SpeedUnit.CentimeterPerSecond)]
+        [InlineData("en-US", "dm/min", SpeedUnit.DecimeterPerMinute)]
+        [InlineData("en-US", "dm/s", SpeedUnit.DecimeterPerSecond)]
+        [InlineData("en-US", "ft/h", SpeedUnit.FootPerHour)]
+        [InlineData("en-US", "ft/min", SpeedUnit.FootPerMinute)]
+        [InlineData("en-US", "ft/s", SpeedUnit.FootPerSecond)]
+        [InlineData("en-US", "in/h", SpeedUnit.InchPerHour)]
+        [InlineData("en-US", "in/min", SpeedUnit.InchPerMinute)]
+        [InlineData("en-US", "in/s", SpeedUnit.InchPerSecond)]
+        [InlineData("en-US", "km/h", SpeedUnit.KilometerPerHour)]
+        [InlineData("en-US", "km/min", SpeedUnit.KilometerPerMinute)]
+        [InlineData("en-US", "km/s", SpeedUnit.KilometerPerSecond)]
+        [InlineData("en-US", "kn", SpeedUnit.Knot)]
+        [InlineData("en-US", "kt", SpeedUnit.Knot)]
+        [InlineData("en-US", "knot", SpeedUnit.Knot)]
+        [InlineData("en-US", "knots", SpeedUnit.Knot)]
+        [InlineData("en-US", "M", SpeedUnit.Mach)]
+        [InlineData("en-US", "Ma", SpeedUnit.Mach)]
+        [InlineData("en-US", "MN", SpeedUnit.Mach)]
+        [InlineData("en-US", "MACH", SpeedUnit.Mach)]
+        [InlineData("en-US", "m/h", SpeedUnit.MeterPerHour)]
+        [InlineData("en-US", "m/min", SpeedUnit.MeterPerMinute)]
+        [InlineData("en-US", "m/s", SpeedUnit.MeterPerSecond)]
+        [InlineData("en-US", "µm/min", SpeedUnit.MicrometerPerMinute)]
+        [InlineData("en-US", "µm/s", SpeedUnit.MicrometerPerSecond)]
+        [InlineData("en-US", "mph", SpeedUnit.MilePerHour)]
+        [InlineData("en-US", "mm/h", SpeedUnit.MillimeterPerHour)]
+        [InlineData("en-US", "mm/min", SpeedUnit.MillimeterPerMinute)]
+        [InlineData("en-US", "mm/s", SpeedUnit.MillimeterPerSecond)]
+        [InlineData("en-US", "nm/min", SpeedUnit.NanometerPerMinute)]
+        [InlineData("en-US", "nm/s", SpeedUnit.NanometerPerSecond)]
+        [InlineData("en-US", "ftUS/h", SpeedUnit.UsSurveyFootPerHour)]
+        [InlineData("en-US", "ftUS/min", SpeedUnit.UsSurveyFootPerMinute)]
+        [InlineData("en-US", "ftUS/s", SpeedUnit.UsSurveyFootPerSecond)]
+        [InlineData("en-US", "yd/h", SpeedUnit.YardPerHour)]
+        [InlineData("en-US", "yd/min", SpeedUnit.YardPerMinute)]
+        [InlineData("en-US", "yd/s", SpeedUnit.YardPerSecond)]
+        [InlineData("ru-RU", "см/ч", SpeedUnit.CentimeterPerHour)]
+        [InlineData("ru-RU", "см/мин", SpeedUnit.CentimeterPerMinute)]
+        [InlineData("ru-RU", "см/с", SpeedUnit.CentimeterPerSecond)]
+        [InlineData("ru-RU", "дм/мин", SpeedUnit.DecimeterPerMinute)]
+        [InlineData("ru-RU", "дм/с", SpeedUnit.DecimeterPerSecond)]
+        [InlineData("ru-RU", "фут/ч", SpeedUnit.FootPerHour)]
+        [InlineData("ru-RU", "фут/мин", SpeedUnit.FootPerMinute)]
+        [InlineData("ru-RU", "фут/с", SpeedUnit.FootPerSecond)]
+        [InlineData("ru-RU", "км/ч", SpeedUnit.KilometerPerHour)]
+        [InlineData("ru-RU", "км/мин", SpeedUnit.KilometerPerMinute)]
+        [InlineData("ru-RU", "км/с", SpeedUnit.KilometerPerSecond)]
+        [InlineData("ru-RU", "уз.", SpeedUnit.Knot)]
+        [InlineData("ru-RU", "мах", SpeedUnit.Mach)]
+        [InlineData("ru-RU", "м/ч", SpeedUnit.MeterPerHour)]
+        [InlineData("ru-RU", "м/мин", SpeedUnit.MeterPerMinute)]
+        [InlineData("ru-RU", "м/с", SpeedUnit.MeterPerSecond)]
+        [InlineData("ru-RU", "мкм/мин", SpeedUnit.MicrometerPerMinute)]
+        [InlineData("ru-RU", "мкм/с", SpeedUnit.MicrometerPerSecond)]
+        [InlineData("ru-RU", "миль/ч", SpeedUnit.MilePerHour)]
+        [InlineData("ru-RU", "мм/ч", SpeedUnit.MillimeterPerHour)]
+        [InlineData("ru-RU", "мм/мин", SpeedUnit.MillimeterPerMinute)]
+        [InlineData("ru-RU", "мм/с", SpeedUnit.MillimeterPerSecond)]
+        [InlineData("ru-RU", "нм/мин", SpeedUnit.NanometerPerMinute)]
+        [InlineData("ru-RU", "нм/с", SpeedUnit.NanometerPerSecond)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, SpeedUnit expectedUnit)
         {
             SpeedUnit parsedUnit = Speed.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -1483,9 +1604,58 @@ namespace UnitsNet.Tests
         [InlineData("yd/h", SpeedUnit.YardPerHour)]
         [InlineData("yd/min", SpeedUnit.YardPerMinute)]
         [InlineData("yd/s", SpeedUnit.YardPerSecond)]
-        public void TryParseUnit(string abbreviation, SpeedUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, SpeedUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(Speed.TryParseUnit(abbreviation, out SpeedUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("cm/h", SpeedUnit.CentimeterPerHour)]
+        [InlineData("cm/min", SpeedUnit.CentimeterPerMinute)]
+        [InlineData("cm/s", SpeedUnit.CentimeterPerSecond)]
+        [InlineData("dm/min", SpeedUnit.DecimeterPerMinute)]
+        [InlineData("dm/s", SpeedUnit.DecimeterPerSecond)]
+        [InlineData("ft/h", SpeedUnit.FootPerHour)]
+        [InlineData("ft/min", SpeedUnit.FootPerMinute)]
+        [InlineData("ft/s", SpeedUnit.FootPerSecond)]
+        [InlineData("in/h", SpeedUnit.InchPerHour)]
+        [InlineData("in/min", SpeedUnit.InchPerMinute)]
+        [InlineData("in/s", SpeedUnit.InchPerSecond)]
+        [InlineData("km/h", SpeedUnit.KilometerPerHour)]
+        [InlineData("km/min", SpeedUnit.KilometerPerMinute)]
+        [InlineData("km/s", SpeedUnit.KilometerPerSecond)]
+        [InlineData("kn", SpeedUnit.Knot)]
+        [InlineData("kt", SpeedUnit.Knot)]
+        [InlineData("knot", SpeedUnit.Knot)]
+        [InlineData("knots", SpeedUnit.Knot)]
+        [InlineData("M", SpeedUnit.Mach)]
+        [InlineData("Ma", SpeedUnit.Mach)]
+        [InlineData("MN", SpeedUnit.Mach)]
+        [InlineData("MACH", SpeedUnit.Mach)]
+        [InlineData("m/h", SpeedUnit.MeterPerHour)]
+        [InlineData("m/min", SpeedUnit.MeterPerMinute)]
+        [InlineData("m/s", SpeedUnit.MeterPerSecond)]
+        [InlineData("µm/min", SpeedUnit.MicrometerPerMinute)]
+        [InlineData("µm/s", SpeedUnit.MicrometerPerSecond)]
+        [InlineData("mph", SpeedUnit.MilePerHour)]
+        [InlineData("mm/h", SpeedUnit.MillimeterPerHour)]
+        [InlineData("mm/min", SpeedUnit.MillimeterPerMinute)]
+        [InlineData("mm/s", SpeedUnit.MillimeterPerSecond)]
+        [InlineData("nm/min", SpeedUnit.NanometerPerMinute)]
+        [InlineData("nm/s", SpeedUnit.NanometerPerSecond)]
+        [InlineData("ftUS/h", SpeedUnit.UsSurveyFootPerHour)]
+        [InlineData("ftUS/min", SpeedUnit.UsSurveyFootPerMinute)]
+        [InlineData("ftUS/s", SpeedUnit.UsSurveyFootPerSecond)]
+        [InlineData("yd/h", SpeedUnit.YardPerHour)]
+        [InlineData("yd/min", SpeedUnit.YardPerMinute)]
+        [InlineData("yd/s", SpeedUnit.YardPerSecond)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, SpeedUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(Speed.TryParseUnit(abbreviation, out SpeedUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -1554,7 +1724,78 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "мм/с", SpeedUnit.MillimeterPerSecond)]
         [InlineData("ru-RU", "нм/мин", SpeedUnit.NanometerPerMinute)]
         [InlineData("ru-RU", "нм/с", SpeedUnit.NanometerPerSecond)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, SpeedUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, SpeedUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(Speed.TryParseUnit(abbreviation, out SpeedUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "cm/h", SpeedUnit.CentimeterPerHour)]
+        [InlineData("en-US", "cm/min", SpeedUnit.CentimeterPerMinute)]
+        [InlineData("en-US", "cm/s", SpeedUnit.CentimeterPerSecond)]
+        [InlineData("en-US", "dm/min", SpeedUnit.DecimeterPerMinute)]
+        [InlineData("en-US", "dm/s", SpeedUnit.DecimeterPerSecond)]
+        [InlineData("en-US", "ft/h", SpeedUnit.FootPerHour)]
+        [InlineData("en-US", "ft/min", SpeedUnit.FootPerMinute)]
+        [InlineData("en-US", "ft/s", SpeedUnit.FootPerSecond)]
+        [InlineData("en-US", "in/h", SpeedUnit.InchPerHour)]
+        [InlineData("en-US", "in/min", SpeedUnit.InchPerMinute)]
+        [InlineData("en-US", "in/s", SpeedUnit.InchPerSecond)]
+        [InlineData("en-US", "km/h", SpeedUnit.KilometerPerHour)]
+        [InlineData("en-US", "km/min", SpeedUnit.KilometerPerMinute)]
+        [InlineData("en-US", "km/s", SpeedUnit.KilometerPerSecond)]
+        [InlineData("en-US", "kn", SpeedUnit.Knot)]
+        [InlineData("en-US", "kt", SpeedUnit.Knot)]
+        [InlineData("en-US", "knot", SpeedUnit.Knot)]
+        [InlineData("en-US", "knots", SpeedUnit.Knot)]
+        [InlineData("en-US", "M", SpeedUnit.Mach)]
+        [InlineData("en-US", "Ma", SpeedUnit.Mach)]
+        [InlineData("en-US", "MN", SpeedUnit.Mach)]
+        [InlineData("en-US", "MACH", SpeedUnit.Mach)]
+        [InlineData("en-US", "m/h", SpeedUnit.MeterPerHour)]
+        [InlineData("en-US", "m/min", SpeedUnit.MeterPerMinute)]
+        [InlineData("en-US", "m/s", SpeedUnit.MeterPerSecond)]
+        [InlineData("en-US", "µm/min", SpeedUnit.MicrometerPerMinute)]
+        [InlineData("en-US", "µm/s", SpeedUnit.MicrometerPerSecond)]
+        [InlineData("en-US", "mph", SpeedUnit.MilePerHour)]
+        [InlineData("en-US", "mm/h", SpeedUnit.MillimeterPerHour)]
+        [InlineData("en-US", "mm/min", SpeedUnit.MillimeterPerMinute)]
+        [InlineData("en-US", "mm/s", SpeedUnit.MillimeterPerSecond)]
+        [InlineData("en-US", "nm/min", SpeedUnit.NanometerPerMinute)]
+        [InlineData("en-US", "nm/s", SpeedUnit.NanometerPerSecond)]
+        [InlineData("en-US", "ftUS/h", SpeedUnit.UsSurveyFootPerHour)]
+        [InlineData("en-US", "ftUS/min", SpeedUnit.UsSurveyFootPerMinute)]
+        [InlineData("en-US", "ftUS/s", SpeedUnit.UsSurveyFootPerSecond)]
+        [InlineData("en-US", "yd/h", SpeedUnit.YardPerHour)]
+        [InlineData("en-US", "yd/min", SpeedUnit.YardPerMinute)]
+        [InlineData("en-US", "yd/s", SpeedUnit.YardPerSecond)]
+        [InlineData("ru-RU", "см/ч", SpeedUnit.CentimeterPerHour)]
+        [InlineData("ru-RU", "см/мин", SpeedUnit.CentimeterPerMinute)]
+        [InlineData("ru-RU", "см/с", SpeedUnit.CentimeterPerSecond)]
+        [InlineData("ru-RU", "дм/мин", SpeedUnit.DecimeterPerMinute)]
+        [InlineData("ru-RU", "дм/с", SpeedUnit.DecimeterPerSecond)]
+        [InlineData("ru-RU", "фут/ч", SpeedUnit.FootPerHour)]
+        [InlineData("ru-RU", "фут/мин", SpeedUnit.FootPerMinute)]
+        [InlineData("ru-RU", "фут/с", SpeedUnit.FootPerSecond)]
+        [InlineData("ru-RU", "км/ч", SpeedUnit.KilometerPerHour)]
+        [InlineData("ru-RU", "км/мин", SpeedUnit.KilometerPerMinute)]
+        [InlineData("ru-RU", "км/с", SpeedUnit.KilometerPerSecond)]
+        [InlineData("ru-RU", "уз.", SpeedUnit.Knot)]
+        [InlineData("ru-RU", "мах", SpeedUnit.Mach)]
+        [InlineData("ru-RU", "м/ч", SpeedUnit.MeterPerHour)]
+        [InlineData("ru-RU", "м/мин", SpeedUnit.MeterPerMinute)]
+        [InlineData("ru-RU", "м/с", SpeedUnit.MeterPerSecond)]
+        [InlineData("ru-RU", "мкм/мин", SpeedUnit.MicrometerPerMinute)]
+        [InlineData("ru-RU", "мкм/с", SpeedUnit.MicrometerPerSecond)]
+        [InlineData("ru-RU", "миль/ч", SpeedUnit.MilePerHour)]
+        [InlineData("ru-RU", "мм/ч", SpeedUnit.MillimeterPerHour)]
+        [InlineData("ru-RU", "мм/мин", SpeedUnit.MillimeterPerMinute)]
+        [InlineData("ru-RU", "мм/с", SpeedUnit.MillimeterPerSecond)]
+        [InlineData("ru-RU", "нм/мин", SpeedUnit.NanometerPerMinute)]
+        [InlineData("ru-RU", "нм/с", SpeedUnit.NanometerPerSecond)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, SpeedUnit expectedUnit)
         {
             Assert.True(Speed.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out SpeedUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

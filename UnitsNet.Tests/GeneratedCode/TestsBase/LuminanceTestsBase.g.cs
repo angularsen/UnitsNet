@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -418,10 +419,30 @@ namespace UnitsNet.Tests
         [InlineData("mCd/m²", LuminanceUnit.MillicandelaPerSquareMeter)]
         [InlineData("nCd/m²", LuminanceUnit.NanocandelaPerSquareMeter)]
         [InlineData("nt", LuminanceUnit.Nit)]
-        public void ParseUnit(string abbreviation, LuminanceUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, LuminanceUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            LuminanceUnit parsedUnit = Luminance.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            LuminanceUnit parsedUnit = Luminance.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("Cd/ft²", LuminanceUnit.CandelaPerSquareFoot)]
+        [InlineData("Cd/in²", LuminanceUnit.CandelaPerSquareInch)]
+        [InlineData("Cd/m²", LuminanceUnit.CandelaPerSquareMeter)]
+        [InlineData("cCd/m²", LuminanceUnit.CenticandelaPerSquareMeter)]
+        [InlineData("dCd/m²", LuminanceUnit.DecicandelaPerSquareMeter)]
+        [InlineData("kCd/m²", LuminanceUnit.KilocandelaPerSquareMeter)]
+        [InlineData("µCd/m²", LuminanceUnit.MicrocandelaPerSquareMeter)]
+        [InlineData("mCd/m²", LuminanceUnit.MillicandelaPerSquareMeter)]
+        [InlineData("nCd/m²", LuminanceUnit.NanocandelaPerSquareMeter)]
+        [InlineData("nt", LuminanceUnit.Nit)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, LuminanceUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            LuminanceUnit parsedUnit = Luminance.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -436,7 +457,25 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "mCd/m²", LuminanceUnit.MillicandelaPerSquareMeter)]
         [InlineData("en-US", "nCd/m²", LuminanceUnit.NanocandelaPerSquareMeter)]
         [InlineData("en-US", "nt", LuminanceUnit.Nit)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, LuminanceUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, LuminanceUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            LuminanceUnit parsedUnit = Luminance.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "Cd/ft²", LuminanceUnit.CandelaPerSquareFoot)]
+        [InlineData("en-US", "Cd/in²", LuminanceUnit.CandelaPerSquareInch)]
+        [InlineData("en-US", "Cd/m²", LuminanceUnit.CandelaPerSquareMeter)]
+        [InlineData("en-US", "cCd/m²", LuminanceUnit.CenticandelaPerSquareMeter)]
+        [InlineData("en-US", "dCd/m²", LuminanceUnit.DecicandelaPerSquareMeter)]
+        [InlineData("en-US", "kCd/m²", LuminanceUnit.KilocandelaPerSquareMeter)]
+        [InlineData("en-US", "µCd/m²", LuminanceUnit.MicrocandelaPerSquareMeter)]
+        [InlineData("en-US", "mCd/m²", LuminanceUnit.MillicandelaPerSquareMeter)]
+        [InlineData("en-US", "nCd/m²", LuminanceUnit.NanocandelaPerSquareMeter)]
+        [InlineData("en-US", "nt", LuminanceUnit.Nit)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, LuminanceUnit expectedUnit)
         {
             LuminanceUnit parsedUnit = Luminance.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -453,9 +492,29 @@ namespace UnitsNet.Tests
         [InlineData("mCd/m²", LuminanceUnit.MillicandelaPerSquareMeter)]
         [InlineData("nCd/m²", LuminanceUnit.NanocandelaPerSquareMeter)]
         [InlineData("nt", LuminanceUnit.Nit)]
-        public void TryParseUnit(string abbreviation, LuminanceUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, LuminanceUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(Luminance.TryParseUnit(abbreviation, out LuminanceUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("Cd/ft²", LuminanceUnit.CandelaPerSquareFoot)]
+        [InlineData("Cd/in²", LuminanceUnit.CandelaPerSquareInch)]
+        [InlineData("Cd/m²", LuminanceUnit.CandelaPerSquareMeter)]
+        [InlineData("cCd/m²", LuminanceUnit.CenticandelaPerSquareMeter)]
+        [InlineData("dCd/m²", LuminanceUnit.DecicandelaPerSquareMeter)]
+        [InlineData("kCd/m²", LuminanceUnit.KilocandelaPerSquareMeter)]
+        [InlineData("µCd/m²", LuminanceUnit.MicrocandelaPerSquareMeter)]
+        [InlineData("mCd/m²", LuminanceUnit.MillicandelaPerSquareMeter)]
+        [InlineData("nCd/m²", LuminanceUnit.NanocandelaPerSquareMeter)]
+        [InlineData("nt", LuminanceUnit.Nit)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, LuminanceUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(Luminance.TryParseUnit(abbreviation, out LuminanceUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -471,7 +530,25 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "mCd/m²", LuminanceUnit.MillicandelaPerSquareMeter)]
         [InlineData("en-US", "nCd/m²", LuminanceUnit.NanocandelaPerSquareMeter)]
         [InlineData("en-US", "nt", LuminanceUnit.Nit)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, LuminanceUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, LuminanceUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(Luminance.TryParseUnit(abbreviation, out LuminanceUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "Cd/ft²", LuminanceUnit.CandelaPerSquareFoot)]
+        [InlineData("en-US", "Cd/in²", LuminanceUnit.CandelaPerSquareInch)]
+        [InlineData("en-US", "Cd/m²", LuminanceUnit.CandelaPerSquareMeter)]
+        [InlineData("en-US", "cCd/m²", LuminanceUnit.CenticandelaPerSquareMeter)]
+        [InlineData("en-US", "dCd/m²", LuminanceUnit.DecicandelaPerSquareMeter)]
+        [InlineData("en-US", "kCd/m²", LuminanceUnit.KilocandelaPerSquareMeter)]
+        [InlineData("en-US", "µCd/m²", LuminanceUnit.MicrocandelaPerSquareMeter)]
+        [InlineData("en-US", "mCd/m²", LuminanceUnit.MillicandelaPerSquareMeter)]
+        [InlineData("en-US", "nCd/m²", LuminanceUnit.NanocandelaPerSquareMeter)]
+        [InlineData("en-US", "nt", LuminanceUnit.Nit)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, LuminanceUnit expectedUnit)
         {
             Assert.True(Luminance.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out LuminanceUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

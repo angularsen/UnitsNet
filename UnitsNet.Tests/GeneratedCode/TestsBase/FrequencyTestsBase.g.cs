@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -583,10 +584,33 @@ namespace UnitsNet.Tests
         [InlineData("s⁻¹", FrequencyUnit.PerSecond)]
         [InlineData("rad/s", FrequencyUnit.RadianPerSecond)]
         [InlineData("THz", FrequencyUnit.Terahertz)]
-        public void ParseUnit(string abbreviation, FrequencyUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, FrequencyUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            FrequencyUnit parsedUnit = Frequency.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            FrequencyUnit parsedUnit = Frequency.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("bpm", FrequencyUnit.BeatPerMinute)]
+        [InlineData("B Units", FrequencyUnit.BUnit)]
+        [InlineData("cph", FrequencyUnit.CyclePerHour)]
+        [InlineData("cpm", FrequencyUnit.CyclePerMinute)]
+        [InlineData("GHz", FrequencyUnit.Gigahertz)]
+        [InlineData("Hz", FrequencyUnit.Hertz)]
+        [InlineData("kHz", FrequencyUnit.Kilohertz)]
+        [InlineData("MHz", FrequencyUnit.Megahertz)]
+        [InlineData("µHz", FrequencyUnit.Microhertz)]
+        [InlineData("mHz", FrequencyUnit.Millihertz)]
+        [InlineData("s⁻¹", FrequencyUnit.PerSecond)]
+        [InlineData("rad/s", FrequencyUnit.RadianPerSecond)]
+        [InlineData("THz", FrequencyUnit.Terahertz)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, FrequencyUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            FrequencyUnit parsedUnit = Frequency.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -613,7 +637,37 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "с⁻¹", FrequencyUnit.PerSecond)]
         [InlineData("ru-RU", "рад/с", FrequencyUnit.RadianPerSecond)]
         [InlineData("ru-RU", "ТГц", FrequencyUnit.Terahertz)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, FrequencyUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, FrequencyUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            FrequencyUnit parsedUnit = Frequency.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "bpm", FrequencyUnit.BeatPerMinute)]
+        [InlineData("en-US", "B Units", FrequencyUnit.BUnit)]
+        [InlineData("en-US", "cph", FrequencyUnit.CyclePerHour)]
+        [InlineData("en-US", "cpm", FrequencyUnit.CyclePerMinute)]
+        [InlineData("en-US", "GHz", FrequencyUnit.Gigahertz)]
+        [InlineData("en-US", "Hz", FrequencyUnit.Hertz)]
+        [InlineData("en-US", "kHz", FrequencyUnit.Kilohertz)]
+        [InlineData("en-US", "MHz", FrequencyUnit.Megahertz)]
+        [InlineData("en-US", "µHz", FrequencyUnit.Microhertz)]
+        [InlineData("en-US", "mHz", FrequencyUnit.Millihertz)]
+        [InlineData("en-US", "s⁻¹", FrequencyUnit.PerSecond)]
+        [InlineData("en-US", "rad/s", FrequencyUnit.RadianPerSecond)]
+        [InlineData("en-US", "THz", FrequencyUnit.Terahertz)]
+        [InlineData("ru-RU", "ГГц", FrequencyUnit.Gigahertz)]
+        [InlineData("ru-RU", "Гц", FrequencyUnit.Hertz)]
+        [InlineData("ru-RU", "кГц", FrequencyUnit.Kilohertz)]
+        [InlineData("ru-RU", "МГц", FrequencyUnit.Megahertz)]
+        [InlineData("ru-RU", "мкГц", FrequencyUnit.Microhertz)]
+        [InlineData("ru-RU", "мГц", FrequencyUnit.Millihertz)]
+        [InlineData("ru-RU", "с⁻¹", FrequencyUnit.PerSecond)]
+        [InlineData("ru-RU", "рад/с", FrequencyUnit.RadianPerSecond)]
+        [InlineData("ru-RU", "ТГц", FrequencyUnit.Terahertz)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, FrequencyUnit expectedUnit)
         {
             FrequencyUnit parsedUnit = Frequency.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -633,9 +687,32 @@ namespace UnitsNet.Tests
         [InlineData("s⁻¹", FrequencyUnit.PerSecond)]
         [InlineData("rad/s", FrequencyUnit.RadianPerSecond)]
         [InlineData("THz", FrequencyUnit.Terahertz)]
-        public void TryParseUnit(string abbreviation, FrequencyUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, FrequencyUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(Frequency.TryParseUnit(abbreviation, out FrequencyUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("bpm", FrequencyUnit.BeatPerMinute)]
+        [InlineData("B Units", FrequencyUnit.BUnit)]
+        [InlineData("cph", FrequencyUnit.CyclePerHour)]
+        [InlineData("cpm", FrequencyUnit.CyclePerMinute)]
+        [InlineData("GHz", FrequencyUnit.Gigahertz)]
+        [InlineData("Hz", FrequencyUnit.Hertz)]
+        [InlineData("kHz", FrequencyUnit.Kilohertz)]
+        [InlineData("MHz", FrequencyUnit.Megahertz)]
+        [InlineData("µHz", FrequencyUnit.Microhertz)]
+        [InlineData("mHz", FrequencyUnit.Millihertz)]
+        [InlineData("s⁻¹", FrequencyUnit.PerSecond)]
+        [InlineData("rad/s", FrequencyUnit.RadianPerSecond)]
+        [InlineData("THz", FrequencyUnit.Terahertz)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, FrequencyUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(Frequency.TryParseUnit(abbreviation, out FrequencyUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -663,7 +740,37 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "с⁻¹", FrequencyUnit.PerSecond)]
         [InlineData("ru-RU", "рад/с", FrequencyUnit.RadianPerSecond)]
         [InlineData("ru-RU", "ТГц", FrequencyUnit.Terahertz)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, FrequencyUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, FrequencyUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(Frequency.TryParseUnit(abbreviation, out FrequencyUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "bpm", FrequencyUnit.BeatPerMinute)]
+        [InlineData("en-US", "B Units", FrequencyUnit.BUnit)]
+        [InlineData("en-US", "cph", FrequencyUnit.CyclePerHour)]
+        [InlineData("en-US", "cpm", FrequencyUnit.CyclePerMinute)]
+        [InlineData("en-US", "GHz", FrequencyUnit.Gigahertz)]
+        [InlineData("en-US", "Hz", FrequencyUnit.Hertz)]
+        [InlineData("en-US", "kHz", FrequencyUnit.Kilohertz)]
+        [InlineData("en-US", "MHz", FrequencyUnit.Megahertz)]
+        [InlineData("en-US", "µHz", FrequencyUnit.Microhertz)]
+        [InlineData("en-US", "mHz", FrequencyUnit.Millihertz)]
+        [InlineData("en-US", "s⁻¹", FrequencyUnit.PerSecond)]
+        [InlineData("en-US", "rad/s", FrequencyUnit.RadianPerSecond)]
+        [InlineData("en-US", "THz", FrequencyUnit.Terahertz)]
+        [InlineData("ru-RU", "ГГц", FrequencyUnit.Gigahertz)]
+        [InlineData("ru-RU", "Гц", FrequencyUnit.Hertz)]
+        [InlineData("ru-RU", "кГц", FrequencyUnit.Kilohertz)]
+        [InlineData("ru-RU", "МГц", FrequencyUnit.Megahertz)]
+        [InlineData("ru-RU", "мкГц", FrequencyUnit.Microhertz)]
+        [InlineData("ru-RU", "мГц", FrequencyUnit.Millihertz)]
+        [InlineData("ru-RU", "с⁻¹", FrequencyUnit.PerSecond)]
+        [InlineData("ru-RU", "рад/с", FrequencyUnit.RadianPerSecond)]
+        [InlineData("ru-RU", "ТГц", FrequencyUnit.Terahertz)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, FrequencyUnit expectedUnit)
         {
             Assert.True(Frequency.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out FrequencyUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

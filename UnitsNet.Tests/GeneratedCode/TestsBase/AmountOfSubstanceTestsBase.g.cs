@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -574,10 +575,37 @@ namespace UnitsNet.Tests
         [InlineData("nlbmol", AmountOfSubstanceUnit.NanopoundMole)]
         [InlineData("pmol", AmountOfSubstanceUnit.Picomole)]
         [InlineData("lbmol", AmountOfSubstanceUnit.PoundMole)]
-        public void ParseUnit(string abbreviation, AmountOfSubstanceUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, AmountOfSubstanceUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            AmountOfSubstanceUnit parsedUnit = AmountOfSubstance.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            AmountOfSubstanceUnit parsedUnit = AmountOfSubstance.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("cmol", AmountOfSubstanceUnit.Centimole)]
+        [InlineData("clbmol", AmountOfSubstanceUnit.CentipoundMole)]
+        [InlineData("dmol", AmountOfSubstanceUnit.Decimole)]
+        [InlineData("dlbmol", AmountOfSubstanceUnit.DecipoundMole)]
+        [InlineData("fmol", AmountOfSubstanceUnit.Femtomole)]
+        [InlineData("kmol", AmountOfSubstanceUnit.Kilomole)]
+        [InlineData("klbmol", AmountOfSubstanceUnit.KilopoundMole)]
+        [InlineData("Mmol", AmountOfSubstanceUnit.Megamole)]
+        [InlineData("µmol", AmountOfSubstanceUnit.Micromole)]
+        [InlineData("µlbmol", AmountOfSubstanceUnit.MicropoundMole)]
+        [InlineData("mmol", AmountOfSubstanceUnit.Millimole)]
+        [InlineData("mlbmol", AmountOfSubstanceUnit.MillipoundMole)]
+        [InlineData("mol", AmountOfSubstanceUnit.Mole)]
+        [InlineData("nmol", AmountOfSubstanceUnit.Nanomole)]
+        [InlineData("nlbmol", AmountOfSubstanceUnit.NanopoundMole)]
+        [InlineData("pmol", AmountOfSubstanceUnit.Picomole)]
+        [InlineData("lbmol", AmountOfSubstanceUnit.PoundMole)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, AmountOfSubstanceUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            AmountOfSubstanceUnit parsedUnit = AmountOfSubstance.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -599,7 +627,32 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "nlbmol", AmountOfSubstanceUnit.NanopoundMole)]
         [InlineData("en-US", "pmol", AmountOfSubstanceUnit.Picomole)]
         [InlineData("en-US", "lbmol", AmountOfSubstanceUnit.PoundMole)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, AmountOfSubstanceUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, AmountOfSubstanceUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            AmountOfSubstanceUnit parsedUnit = AmountOfSubstance.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "cmol", AmountOfSubstanceUnit.Centimole)]
+        [InlineData("en-US", "clbmol", AmountOfSubstanceUnit.CentipoundMole)]
+        [InlineData("en-US", "dmol", AmountOfSubstanceUnit.Decimole)]
+        [InlineData("en-US", "dlbmol", AmountOfSubstanceUnit.DecipoundMole)]
+        [InlineData("en-US", "fmol", AmountOfSubstanceUnit.Femtomole)]
+        [InlineData("en-US", "kmol", AmountOfSubstanceUnit.Kilomole)]
+        [InlineData("en-US", "klbmol", AmountOfSubstanceUnit.KilopoundMole)]
+        [InlineData("en-US", "Mmol", AmountOfSubstanceUnit.Megamole)]
+        [InlineData("en-US", "µmol", AmountOfSubstanceUnit.Micromole)]
+        [InlineData("en-US", "µlbmol", AmountOfSubstanceUnit.MicropoundMole)]
+        [InlineData("en-US", "mmol", AmountOfSubstanceUnit.Millimole)]
+        [InlineData("en-US", "mlbmol", AmountOfSubstanceUnit.MillipoundMole)]
+        [InlineData("en-US", "mol", AmountOfSubstanceUnit.Mole)]
+        [InlineData("en-US", "nmol", AmountOfSubstanceUnit.Nanomole)]
+        [InlineData("en-US", "nlbmol", AmountOfSubstanceUnit.NanopoundMole)]
+        [InlineData("en-US", "pmol", AmountOfSubstanceUnit.Picomole)]
+        [InlineData("en-US", "lbmol", AmountOfSubstanceUnit.PoundMole)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, AmountOfSubstanceUnit expectedUnit)
         {
             AmountOfSubstanceUnit parsedUnit = AmountOfSubstance.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -623,9 +676,36 @@ namespace UnitsNet.Tests
         [InlineData("nlbmol", AmountOfSubstanceUnit.NanopoundMole)]
         [InlineData("pmol", AmountOfSubstanceUnit.Picomole)]
         [InlineData("lbmol", AmountOfSubstanceUnit.PoundMole)]
-        public void TryParseUnit(string abbreviation, AmountOfSubstanceUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, AmountOfSubstanceUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(AmountOfSubstance.TryParseUnit(abbreviation, out AmountOfSubstanceUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("cmol", AmountOfSubstanceUnit.Centimole)]
+        [InlineData("clbmol", AmountOfSubstanceUnit.CentipoundMole)]
+        [InlineData("dmol", AmountOfSubstanceUnit.Decimole)]
+        [InlineData("dlbmol", AmountOfSubstanceUnit.DecipoundMole)]
+        [InlineData("fmol", AmountOfSubstanceUnit.Femtomole)]
+        [InlineData("kmol", AmountOfSubstanceUnit.Kilomole)]
+        [InlineData("klbmol", AmountOfSubstanceUnit.KilopoundMole)]
+        [InlineData("Mmol", AmountOfSubstanceUnit.Megamole)]
+        [InlineData("µmol", AmountOfSubstanceUnit.Micromole)]
+        [InlineData("µlbmol", AmountOfSubstanceUnit.MicropoundMole)]
+        [InlineData("mmol", AmountOfSubstanceUnit.Millimole)]
+        [InlineData("mlbmol", AmountOfSubstanceUnit.MillipoundMole)]
+        [InlineData("mol", AmountOfSubstanceUnit.Mole)]
+        [InlineData("nmol", AmountOfSubstanceUnit.Nanomole)]
+        [InlineData("nlbmol", AmountOfSubstanceUnit.NanopoundMole)]
+        [InlineData("pmol", AmountOfSubstanceUnit.Picomole)]
+        [InlineData("lbmol", AmountOfSubstanceUnit.PoundMole)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, AmountOfSubstanceUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(AmountOfSubstance.TryParseUnit(abbreviation, out AmountOfSubstanceUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -648,7 +728,32 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "nlbmol", AmountOfSubstanceUnit.NanopoundMole)]
         [InlineData("en-US", "pmol", AmountOfSubstanceUnit.Picomole)]
         [InlineData("en-US", "lbmol", AmountOfSubstanceUnit.PoundMole)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, AmountOfSubstanceUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, AmountOfSubstanceUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(AmountOfSubstance.TryParseUnit(abbreviation, out AmountOfSubstanceUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "cmol", AmountOfSubstanceUnit.Centimole)]
+        [InlineData("en-US", "clbmol", AmountOfSubstanceUnit.CentipoundMole)]
+        [InlineData("en-US", "dmol", AmountOfSubstanceUnit.Decimole)]
+        [InlineData("en-US", "dlbmol", AmountOfSubstanceUnit.DecipoundMole)]
+        [InlineData("en-US", "fmol", AmountOfSubstanceUnit.Femtomole)]
+        [InlineData("en-US", "kmol", AmountOfSubstanceUnit.Kilomole)]
+        [InlineData("en-US", "klbmol", AmountOfSubstanceUnit.KilopoundMole)]
+        [InlineData("en-US", "Mmol", AmountOfSubstanceUnit.Megamole)]
+        [InlineData("en-US", "µmol", AmountOfSubstanceUnit.Micromole)]
+        [InlineData("en-US", "µlbmol", AmountOfSubstanceUnit.MicropoundMole)]
+        [InlineData("en-US", "mmol", AmountOfSubstanceUnit.Millimole)]
+        [InlineData("en-US", "mlbmol", AmountOfSubstanceUnit.MillipoundMole)]
+        [InlineData("en-US", "mol", AmountOfSubstanceUnit.Mole)]
+        [InlineData("en-US", "nmol", AmountOfSubstanceUnit.Nanomole)]
+        [InlineData("en-US", "nlbmol", AmountOfSubstanceUnit.NanopoundMole)]
+        [InlineData("en-US", "pmol", AmountOfSubstanceUnit.Picomole)]
+        [InlineData("en-US", "lbmol", AmountOfSubstanceUnit.PoundMole)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, AmountOfSubstanceUnit expectedUnit)
         {
             Assert.True(AmountOfSubstance.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out AmountOfSubstanceUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

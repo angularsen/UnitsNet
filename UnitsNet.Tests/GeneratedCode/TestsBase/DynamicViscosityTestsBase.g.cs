@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -460,10 +461,33 @@ namespace UnitsNet.Tests
         [InlineData("lbf·s/in²", DynamicViscosityUnit.PoundForceSecondPerSquareInch)]
         [InlineData("lb/(ft·s)", DynamicViscosityUnit.PoundPerFootSecond)]
         [InlineData("reyn", DynamicViscosityUnit.Reyn)]
-        public void ParseUnit(string abbreviation, DynamicViscosityUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, DynamicViscosityUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            DynamicViscosityUnit parsedUnit = DynamicViscosity.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            DynamicViscosityUnit parsedUnit = DynamicViscosity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("cP", DynamicViscosityUnit.Centipoise)]
+        [InlineData("µPa·s", DynamicViscosityUnit.MicropascalSecond)]
+        [InlineData("µPaS", DynamicViscosityUnit.MicropascalSecond)]
+        [InlineData("mPa·s", DynamicViscosityUnit.MillipascalSecond)]
+        [InlineData("mPaS", DynamicViscosityUnit.MillipascalSecond)]
+        [InlineData("Ns/m²", DynamicViscosityUnit.NewtonSecondPerMeterSquared)]
+        [InlineData("Pa·s", DynamicViscosityUnit.PascalSecond)]
+        [InlineData("PaS", DynamicViscosityUnit.PascalSecond)]
+        [InlineData("P", DynamicViscosityUnit.Poise)]
+        [InlineData("lbf·s/ft²", DynamicViscosityUnit.PoundForceSecondPerSquareFoot)]
+        [InlineData("lbf·s/in²", DynamicViscosityUnit.PoundForceSecondPerSquareInch)]
+        [InlineData("lb/(ft·s)", DynamicViscosityUnit.PoundPerFootSecond)]
+        [InlineData("reyn", DynamicViscosityUnit.Reyn)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, DynamicViscosityUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            DynamicViscosityUnit parsedUnit = DynamicViscosity.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -481,7 +505,28 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "lbf·s/in²", DynamicViscosityUnit.PoundForceSecondPerSquareInch)]
         [InlineData("en-US", "lb/(ft·s)", DynamicViscosityUnit.PoundPerFootSecond)]
         [InlineData("en-US", "reyn", DynamicViscosityUnit.Reyn)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, DynamicViscosityUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, DynamicViscosityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            DynamicViscosityUnit parsedUnit = DynamicViscosity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "cP", DynamicViscosityUnit.Centipoise)]
+        [InlineData("en-US", "µPa·s", DynamicViscosityUnit.MicropascalSecond)]
+        [InlineData("en-US", "µPaS", DynamicViscosityUnit.MicropascalSecond)]
+        [InlineData("en-US", "mPa·s", DynamicViscosityUnit.MillipascalSecond)]
+        [InlineData("en-US", "mPaS", DynamicViscosityUnit.MillipascalSecond)]
+        [InlineData("en-US", "Ns/m²", DynamicViscosityUnit.NewtonSecondPerMeterSquared)]
+        [InlineData("en-US", "Pa·s", DynamicViscosityUnit.PascalSecond)]
+        [InlineData("en-US", "PaS", DynamicViscosityUnit.PascalSecond)]
+        [InlineData("en-US", "P", DynamicViscosityUnit.Poise)]
+        [InlineData("en-US", "lbf·s/ft²", DynamicViscosityUnit.PoundForceSecondPerSquareFoot)]
+        [InlineData("en-US", "lbf·s/in²", DynamicViscosityUnit.PoundForceSecondPerSquareInch)]
+        [InlineData("en-US", "lb/(ft·s)", DynamicViscosityUnit.PoundPerFootSecond)]
+        [InlineData("en-US", "reyn", DynamicViscosityUnit.Reyn)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, DynamicViscosityUnit expectedUnit)
         {
             DynamicViscosityUnit parsedUnit = DynamicViscosity.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -501,9 +546,32 @@ namespace UnitsNet.Tests
         [InlineData("lbf·s/in²", DynamicViscosityUnit.PoundForceSecondPerSquareInch)]
         [InlineData("lb/(ft·s)", DynamicViscosityUnit.PoundPerFootSecond)]
         [InlineData("reyn", DynamicViscosityUnit.Reyn)]
-        public void TryParseUnit(string abbreviation, DynamicViscosityUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, DynamicViscosityUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(DynamicViscosity.TryParseUnit(abbreviation, out DynamicViscosityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("cP", DynamicViscosityUnit.Centipoise)]
+        [InlineData("µPa·s", DynamicViscosityUnit.MicropascalSecond)]
+        [InlineData("µPaS", DynamicViscosityUnit.MicropascalSecond)]
+        [InlineData("mPa·s", DynamicViscosityUnit.MillipascalSecond)]
+        [InlineData("mPaS", DynamicViscosityUnit.MillipascalSecond)]
+        [InlineData("Ns/m²", DynamicViscosityUnit.NewtonSecondPerMeterSquared)]
+        [InlineData("Pa·s", DynamicViscosityUnit.PascalSecond)]
+        [InlineData("PaS", DynamicViscosityUnit.PascalSecond)]
+        [InlineData("P", DynamicViscosityUnit.Poise)]
+        [InlineData("lbf·s/ft²", DynamicViscosityUnit.PoundForceSecondPerSquareFoot)]
+        [InlineData("lbf·s/in²", DynamicViscosityUnit.PoundForceSecondPerSquareInch)]
+        [InlineData("lb/(ft·s)", DynamicViscosityUnit.PoundPerFootSecond)]
+        [InlineData("reyn", DynamicViscosityUnit.Reyn)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, DynamicViscosityUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(DynamicViscosity.TryParseUnit(abbreviation, out DynamicViscosityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -522,7 +590,28 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "lbf·s/in²", DynamicViscosityUnit.PoundForceSecondPerSquareInch)]
         [InlineData("en-US", "lb/(ft·s)", DynamicViscosityUnit.PoundPerFootSecond)]
         [InlineData("en-US", "reyn", DynamicViscosityUnit.Reyn)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, DynamicViscosityUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, DynamicViscosityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(DynamicViscosity.TryParseUnit(abbreviation, out DynamicViscosityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "cP", DynamicViscosityUnit.Centipoise)]
+        [InlineData("en-US", "µPa·s", DynamicViscosityUnit.MicropascalSecond)]
+        [InlineData("en-US", "µPaS", DynamicViscosityUnit.MicropascalSecond)]
+        [InlineData("en-US", "mPa·s", DynamicViscosityUnit.MillipascalSecond)]
+        [InlineData("en-US", "mPaS", DynamicViscosityUnit.MillipascalSecond)]
+        [InlineData("en-US", "Ns/m²", DynamicViscosityUnit.NewtonSecondPerMeterSquared)]
+        [InlineData("en-US", "Pa·s", DynamicViscosityUnit.PascalSecond)]
+        [InlineData("en-US", "PaS", DynamicViscosityUnit.PascalSecond)]
+        [InlineData("en-US", "P", DynamicViscosityUnit.Poise)]
+        [InlineData("en-US", "lbf·s/ft²", DynamicViscosityUnit.PoundForceSecondPerSquareFoot)]
+        [InlineData("en-US", "lbf·s/in²", DynamicViscosityUnit.PoundForceSecondPerSquareInch)]
+        [InlineData("en-US", "lb/(ft·s)", DynamicViscosityUnit.PoundPerFootSecond)]
+        [InlineData("en-US", "reyn", DynamicViscosityUnit.Reyn)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, DynamicViscosityUnit expectedUnit)
         {
             Assert.True(DynamicViscosity.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out DynamicViscosityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

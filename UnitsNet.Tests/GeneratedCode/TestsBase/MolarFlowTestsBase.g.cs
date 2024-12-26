@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -394,10 +395,29 @@ namespace UnitsNet.Tests
         [InlineData("lbmol/h", MolarFlowUnit.PoundMolePerHour)]
         [InlineData("lbmol/min", MolarFlowUnit.PoundMolePerMinute)]
         [InlineData("lbmol/s", MolarFlowUnit.PoundMolePerSecond)]
-        public void ParseUnit(string abbreviation, MolarFlowUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, MolarFlowUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            MolarFlowUnit parsedUnit = MolarFlow.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            MolarFlowUnit parsedUnit = MolarFlow.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("kkmol/h", MolarFlowUnit.KilomolePerHour)]
+        [InlineData("kmol/min", MolarFlowUnit.KilomolePerMinute)]
+        [InlineData("kmol/s", MolarFlowUnit.KilomolePerSecond)]
+        [InlineData("kmol/h", MolarFlowUnit.MolePerHour)]
+        [InlineData("mol/min", MolarFlowUnit.MolePerMinute)]
+        [InlineData("mol/s", MolarFlowUnit.MolePerSecond)]
+        [InlineData("lbmol/h", MolarFlowUnit.PoundMolePerHour)]
+        [InlineData("lbmol/min", MolarFlowUnit.PoundMolePerMinute)]
+        [InlineData("lbmol/s", MolarFlowUnit.PoundMolePerSecond)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, MolarFlowUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            MolarFlowUnit parsedUnit = MolarFlow.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -411,7 +431,24 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "lbmol/h", MolarFlowUnit.PoundMolePerHour)]
         [InlineData("en-US", "lbmol/min", MolarFlowUnit.PoundMolePerMinute)]
         [InlineData("en-US", "lbmol/s", MolarFlowUnit.PoundMolePerSecond)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, MolarFlowUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, MolarFlowUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            MolarFlowUnit parsedUnit = MolarFlow.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "kkmol/h", MolarFlowUnit.KilomolePerHour)]
+        [InlineData("en-US", "kmol/min", MolarFlowUnit.KilomolePerMinute)]
+        [InlineData("en-US", "kmol/s", MolarFlowUnit.KilomolePerSecond)]
+        [InlineData("en-US", "kmol/h", MolarFlowUnit.MolePerHour)]
+        [InlineData("en-US", "mol/min", MolarFlowUnit.MolePerMinute)]
+        [InlineData("en-US", "mol/s", MolarFlowUnit.MolePerSecond)]
+        [InlineData("en-US", "lbmol/h", MolarFlowUnit.PoundMolePerHour)]
+        [InlineData("en-US", "lbmol/min", MolarFlowUnit.PoundMolePerMinute)]
+        [InlineData("en-US", "lbmol/s", MolarFlowUnit.PoundMolePerSecond)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, MolarFlowUnit expectedUnit)
         {
             MolarFlowUnit parsedUnit = MolarFlow.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -427,9 +464,28 @@ namespace UnitsNet.Tests
         [InlineData("lbmol/h", MolarFlowUnit.PoundMolePerHour)]
         [InlineData("lbmol/min", MolarFlowUnit.PoundMolePerMinute)]
         [InlineData("lbmol/s", MolarFlowUnit.PoundMolePerSecond)]
-        public void TryParseUnit(string abbreviation, MolarFlowUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, MolarFlowUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(MolarFlow.TryParseUnit(abbreviation, out MolarFlowUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("kkmol/h", MolarFlowUnit.KilomolePerHour)]
+        [InlineData("kmol/min", MolarFlowUnit.KilomolePerMinute)]
+        [InlineData("kmol/s", MolarFlowUnit.KilomolePerSecond)]
+        [InlineData("kmol/h", MolarFlowUnit.MolePerHour)]
+        [InlineData("mol/min", MolarFlowUnit.MolePerMinute)]
+        [InlineData("mol/s", MolarFlowUnit.MolePerSecond)]
+        [InlineData("lbmol/h", MolarFlowUnit.PoundMolePerHour)]
+        [InlineData("lbmol/min", MolarFlowUnit.PoundMolePerMinute)]
+        [InlineData("lbmol/s", MolarFlowUnit.PoundMolePerSecond)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, MolarFlowUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(MolarFlow.TryParseUnit(abbreviation, out MolarFlowUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -444,7 +500,24 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "lbmol/h", MolarFlowUnit.PoundMolePerHour)]
         [InlineData("en-US", "lbmol/min", MolarFlowUnit.PoundMolePerMinute)]
         [InlineData("en-US", "lbmol/s", MolarFlowUnit.PoundMolePerSecond)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, MolarFlowUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, MolarFlowUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(MolarFlow.TryParseUnit(abbreviation, out MolarFlowUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "kkmol/h", MolarFlowUnit.KilomolePerHour)]
+        [InlineData("en-US", "kmol/min", MolarFlowUnit.KilomolePerMinute)]
+        [InlineData("en-US", "kmol/s", MolarFlowUnit.KilomolePerSecond)]
+        [InlineData("en-US", "kmol/h", MolarFlowUnit.MolePerHour)]
+        [InlineData("en-US", "mol/min", MolarFlowUnit.MolePerMinute)]
+        [InlineData("en-US", "mol/s", MolarFlowUnit.MolePerSecond)]
+        [InlineData("en-US", "lbmol/h", MolarFlowUnit.PoundMolePerHour)]
+        [InlineData("en-US", "lbmol/min", MolarFlowUnit.PoundMolePerMinute)]
+        [InlineData("en-US", "lbmol/s", MolarFlowUnit.PoundMolePerSecond)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, MolarFlowUnit expectedUnit)
         {
             Assert.True(MolarFlow.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out MolarFlowUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

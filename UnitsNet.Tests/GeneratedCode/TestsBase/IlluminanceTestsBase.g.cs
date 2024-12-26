@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -262,10 +263,24 @@ namespace UnitsNet.Tests
         [InlineData("lx", IlluminanceUnit.Lux)]
         [InlineData("Mlx", IlluminanceUnit.Megalux)]
         [InlineData("mlx", IlluminanceUnit.Millilux)]
-        public void ParseUnit(string abbreviation, IlluminanceUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, IlluminanceUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            IlluminanceUnit parsedUnit = Illuminance.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            IlluminanceUnit parsedUnit = Illuminance.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("klx", IlluminanceUnit.Kilolux)]
+        [InlineData("lx", IlluminanceUnit.Lux)]
+        [InlineData("Mlx", IlluminanceUnit.Megalux)]
+        [InlineData("mlx", IlluminanceUnit.Millilux)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, IlluminanceUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            IlluminanceUnit parsedUnit = Illuminance.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -274,7 +289,19 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "lx", IlluminanceUnit.Lux)]
         [InlineData("en-US", "Mlx", IlluminanceUnit.Megalux)]
         [InlineData("en-US", "mlx", IlluminanceUnit.Millilux)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, IlluminanceUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, IlluminanceUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            IlluminanceUnit parsedUnit = Illuminance.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "klx", IlluminanceUnit.Kilolux)]
+        [InlineData("en-US", "lx", IlluminanceUnit.Lux)]
+        [InlineData("en-US", "Mlx", IlluminanceUnit.Megalux)]
+        [InlineData("en-US", "mlx", IlluminanceUnit.Millilux)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, IlluminanceUnit expectedUnit)
         {
             IlluminanceUnit parsedUnit = Illuminance.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -285,9 +312,23 @@ namespace UnitsNet.Tests
         [InlineData("lx", IlluminanceUnit.Lux)]
         [InlineData("Mlx", IlluminanceUnit.Megalux)]
         [InlineData("mlx", IlluminanceUnit.Millilux)]
-        public void TryParseUnit(string abbreviation, IlluminanceUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, IlluminanceUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(Illuminance.TryParseUnit(abbreviation, out IlluminanceUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("klx", IlluminanceUnit.Kilolux)]
+        [InlineData("lx", IlluminanceUnit.Lux)]
+        [InlineData("Mlx", IlluminanceUnit.Megalux)]
+        [InlineData("mlx", IlluminanceUnit.Millilux)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, IlluminanceUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(Illuminance.TryParseUnit(abbreviation, out IlluminanceUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -297,7 +338,19 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "lx", IlluminanceUnit.Lux)]
         [InlineData("en-US", "Mlx", IlluminanceUnit.Megalux)]
         [InlineData("en-US", "mlx", IlluminanceUnit.Millilux)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, IlluminanceUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, IlluminanceUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(Illuminance.TryParseUnit(abbreviation, out IlluminanceUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "klx", IlluminanceUnit.Kilolux)]
+        [InlineData("en-US", "lx", IlluminanceUnit.Lux)]
+        [InlineData("en-US", "Mlx", IlluminanceUnit.Megalux)]
+        [InlineData("en-US", "mlx", IlluminanceUnit.Millilux)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, IlluminanceUnit expectedUnit)
         {
             Assert.True(Illuminance.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out IlluminanceUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

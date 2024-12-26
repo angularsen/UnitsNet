@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -1155,10 +1156,49 @@ namespace UnitsNet.Tests
         [InlineData("TBq", RadioactivityUnit.Terabecquerel)]
         [InlineData("TCi", RadioactivityUnit.Teracurie)]
         [InlineData("TRd", RadioactivityUnit.Terarutherford)]
-        public void ParseUnit(string abbreviation, RadioactivityUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, RadioactivityUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            RadioactivityUnit parsedUnit = Radioactivity.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            RadioactivityUnit parsedUnit = Radioactivity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("Bq", RadioactivityUnit.Becquerel)]
+        [InlineData("Ci", RadioactivityUnit.Curie)]
+        [InlineData("EBq", RadioactivityUnit.Exabecquerel)]
+        [InlineData("GBq", RadioactivityUnit.Gigabecquerel)]
+        [InlineData("GCi", RadioactivityUnit.Gigacurie)]
+        [InlineData("GRd", RadioactivityUnit.Gigarutherford)]
+        [InlineData("kBq", RadioactivityUnit.Kilobecquerel)]
+        [InlineData("kCi", RadioactivityUnit.Kilocurie)]
+        [InlineData("kRd", RadioactivityUnit.Kilorutherford)]
+        [InlineData("MBq", RadioactivityUnit.Megabecquerel)]
+        [InlineData("MCi", RadioactivityUnit.Megacurie)]
+        [InlineData("MRd", RadioactivityUnit.Megarutherford)]
+        [InlineData("µBq", RadioactivityUnit.Microbecquerel)]
+        [InlineData("µCi", RadioactivityUnit.Microcurie)]
+        [InlineData("µRd", RadioactivityUnit.Microrutherford)]
+        [InlineData("mBq", RadioactivityUnit.Millibecquerel)]
+        [InlineData("mCi", RadioactivityUnit.Millicurie)]
+        [InlineData("mRd", RadioactivityUnit.Millirutherford)]
+        [InlineData("nBq", RadioactivityUnit.Nanobecquerel)]
+        [InlineData("nCi", RadioactivityUnit.Nanocurie)]
+        [InlineData("nRd", RadioactivityUnit.Nanorutherford)]
+        [InlineData("PBq", RadioactivityUnit.Petabecquerel)]
+        [InlineData("pBq", RadioactivityUnit.Picobecquerel)]
+        [InlineData("pCi", RadioactivityUnit.Picocurie)]
+        [InlineData("pRd", RadioactivityUnit.Picorutherford)]
+        [InlineData("Rd", RadioactivityUnit.Rutherford)]
+        [InlineData("TBq", RadioactivityUnit.Terabecquerel)]
+        [InlineData("TCi", RadioactivityUnit.Teracurie)]
+        [InlineData("TRd", RadioactivityUnit.Terarutherford)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, RadioactivityUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            RadioactivityUnit parsedUnit = Radioactivity.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -1221,7 +1261,73 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "ТБк", RadioactivityUnit.Terabecquerel)]
         [InlineData("ru-RU", "ТКи", RadioactivityUnit.Teracurie)]
         [InlineData("ru-RU", "ТРд", RadioactivityUnit.Terarutherford)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, RadioactivityUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, RadioactivityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            RadioactivityUnit parsedUnit = Radioactivity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "Bq", RadioactivityUnit.Becquerel)]
+        [InlineData("en-US", "Ci", RadioactivityUnit.Curie)]
+        [InlineData("en-US", "EBq", RadioactivityUnit.Exabecquerel)]
+        [InlineData("en-US", "GBq", RadioactivityUnit.Gigabecquerel)]
+        [InlineData("en-US", "GCi", RadioactivityUnit.Gigacurie)]
+        [InlineData("en-US", "GRd", RadioactivityUnit.Gigarutherford)]
+        [InlineData("en-US", "kBq", RadioactivityUnit.Kilobecquerel)]
+        [InlineData("en-US", "kCi", RadioactivityUnit.Kilocurie)]
+        [InlineData("en-US", "kRd", RadioactivityUnit.Kilorutherford)]
+        [InlineData("en-US", "MBq", RadioactivityUnit.Megabecquerel)]
+        [InlineData("en-US", "MCi", RadioactivityUnit.Megacurie)]
+        [InlineData("en-US", "MRd", RadioactivityUnit.Megarutherford)]
+        [InlineData("en-US", "µBq", RadioactivityUnit.Microbecquerel)]
+        [InlineData("en-US", "µCi", RadioactivityUnit.Microcurie)]
+        [InlineData("en-US", "µRd", RadioactivityUnit.Microrutherford)]
+        [InlineData("en-US", "mBq", RadioactivityUnit.Millibecquerel)]
+        [InlineData("en-US", "mCi", RadioactivityUnit.Millicurie)]
+        [InlineData("en-US", "mRd", RadioactivityUnit.Millirutherford)]
+        [InlineData("en-US", "nBq", RadioactivityUnit.Nanobecquerel)]
+        [InlineData("en-US", "nCi", RadioactivityUnit.Nanocurie)]
+        [InlineData("en-US", "nRd", RadioactivityUnit.Nanorutherford)]
+        [InlineData("en-US", "PBq", RadioactivityUnit.Petabecquerel)]
+        [InlineData("en-US", "pBq", RadioactivityUnit.Picobecquerel)]
+        [InlineData("en-US", "pCi", RadioactivityUnit.Picocurie)]
+        [InlineData("en-US", "pRd", RadioactivityUnit.Picorutherford)]
+        [InlineData("en-US", "Rd", RadioactivityUnit.Rutherford)]
+        [InlineData("en-US", "TBq", RadioactivityUnit.Terabecquerel)]
+        [InlineData("en-US", "TCi", RadioactivityUnit.Teracurie)]
+        [InlineData("en-US", "TRd", RadioactivityUnit.Terarutherford)]
+        [InlineData("ru-RU", "Бк", RadioactivityUnit.Becquerel)]
+        [InlineData("ru-RU", "Ки", RadioactivityUnit.Curie)]
+        [InlineData("ru-RU", "ЭБк", RadioactivityUnit.Exabecquerel)]
+        [InlineData("ru-RU", "ГБк", RadioactivityUnit.Gigabecquerel)]
+        [InlineData("ru-RU", "ГКи", RadioactivityUnit.Gigacurie)]
+        [InlineData("ru-RU", "ГРд", RadioactivityUnit.Gigarutherford)]
+        [InlineData("ru-RU", "кБк", RadioactivityUnit.Kilobecquerel)]
+        [InlineData("ru-RU", "кКи", RadioactivityUnit.Kilocurie)]
+        [InlineData("ru-RU", "кРд", RadioactivityUnit.Kilorutherford)]
+        [InlineData("ru-RU", "МБк", RadioactivityUnit.Megabecquerel)]
+        [InlineData("ru-RU", "МКи", RadioactivityUnit.Megacurie)]
+        [InlineData("ru-RU", "МРд", RadioactivityUnit.Megarutherford)]
+        [InlineData("ru-RU", "мкБк", RadioactivityUnit.Microbecquerel)]
+        [InlineData("ru-RU", "мкКи", RadioactivityUnit.Microcurie)]
+        [InlineData("ru-RU", "мкРд", RadioactivityUnit.Microrutherford)]
+        [InlineData("ru-RU", "мБк", RadioactivityUnit.Millibecquerel)]
+        [InlineData("ru-RU", "мКи", RadioactivityUnit.Millicurie)]
+        [InlineData("ru-RU", "мРд", RadioactivityUnit.Millirutherford)]
+        [InlineData("ru-RU", "нБк", RadioactivityUnit.Nanobecquerel)]
+        [InlineData("ru-RU", "нКи", RadioactivityUnit.Nanocurie)]
+        [InlineData("ru-RU", "нРд", RadioactivityUnit.Nanorutherford)]
+        [InlineData("ru-RU", "ПБк", RadioactivityUnit.Petabecquerel)]
+        [InlineData("ru-RU", "пБк", RadioactivityUnit.Picobecquerel)]
+        [InlineData("ru-RU", "пКи", RadioactivityUnit.Picocurie)]
+        [InlineData("ru-RU", "пРд", RadioactivityUnit.Picorutherford)]
+        [InlineData("ru-RU", "Рд", RadioactivityUnit.Rutherford)]
+        [InlineData("ru-RU", "ТБк", RadioactivityUnit.Terabecquerel)]
+        [InlineData("ru-RU", "ТКи", RadioactivityUnit.Teracurie)]
+        [InlineData("ru-RU", "ТРд", RadioactivityUnit.Terarutherford)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, RadioactivityUnit expectedUnit)
         {
             RadioactivityUnit parsedUnit = Radioactivity.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -1257,9 +1363,48 @@ namespace UnitsNet.Tests
         [InlineData("TBq", RadioactivityUnit.Terabecquerel)]
         [InlineData("TCi", RadioactivityUnit.Teracurie)]
         [InlineData("TRd", RadioactivityUnit.Terarutherford)]
-        public void TryParseUnit(string abbreviation, RadioactivityUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, RadioactivityUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(Radioactivity.TryParseUnit(abbreviation, out RadioactivityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("Bq", RadioactivityUnit.Becquerel)]
+        [InlineData("Ci", RadioactivityUnit.Curie)]
+        [InlineData("EBq", RadioactivityUnit.Exabecquerel)]
+        [InlineData("GBq", RadioactivityUnit.Gigabecquerel)]
+        [InlineData("GCi", RadioactivityUnit.Gigacurie)]
+        [InlineData("GRd", RadioactivityUnit.Gigarutherford)]
+        [InlineData("kBq", RadioactivityUnit.Kilobecquerel)]
+        [InlineData("kCi", RadioactivityUnit.Kilocurie)]
+        [InlineData("kRd", RadioactivityUnit.Kilorutherford)]
+        [InlineData("MBq", RadioactivityUnit.Megabecquerel)]
+        [InlineData("MCi", RadioactivityUnit.Megacurie)]
+        [InlineData("MRd", RadioactivityUnit.Megarutherford)]
+        [InlineData("µBq", RadioactivityUnit.Microbecquerel)]
+        [InlineData("µCi", RadioactivityUnit.Microcurie)]
+        [InlineData("µRd", RadioactivityUnit.Microrutherford)]
+        [InlineData("mBq", RadioactivityUnit.Millibecquerel)]
+        [InlineData("mCi", RadioactivityUnit.Millicurie)]
+        [InlineData("mRd", RadioactivityUnit.Millirutherford)]
+        [InlineData("nBq", RadioactivityUnit.Nanobecquerel)]
+        [InlineData("nCi", RadioactivityUnit.Nanocurie)]
+        [InlineData("nRd", RadioactivityUnit.Nanorutherford)]
+        [InlineData("PBq", RadioactivityUnit.Petabecquerel)]
+        [InlineData("pBq", RadioactivityUnit.Picobecquerel)]
+        [InlineData("pCi", RadioactivityUnit.Picocurie)]
+        [InlineData("pRd", RadioactivityUnit.Picorutherford)]
+        [InlineData("Rd", RadioactivityUnit.Rutherford)]
+        [InlineData("TBq", RadioactivityUnit.Terabecquerel)]
+        [InlineData("TCi", RadioactivityUnit.Teracurie)]
+        [InlineData("TRd", RadioactivityUnit.Terarutherford)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, RadioactivityUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(Radioactivity.TryParseUnit(abbreviation, out RadioactivityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -1323,7 +1468,73 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "ТБк", RadioactivityUnit.Terabecquerel)]
         [InlineData("ru-RU", "ТКи", RadioactivityUnit.Teracurie)]
         [InlineData("ru-RU", "ТРд", RadioactivityUnit.Terarutherford)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, RadioactivityUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, RadioactivityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(Radioactivity.TryParseUnit(abbreviation, out RadioactivityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "Bq", RadioactivityUnit.Becquerel)]
+        [InlineData("en-US", "Ci", RadioactivityUnit.Curie)]
+        [InlineData("en-US", "EBq", RadioactivityUnit.Exabecquerel)]
+        [InlineData("en-US", "GBq", RadioactivityUnit.Gigabecquerel)]
+        [InlineData("en-US", "GCi", RadioactivityUnit.Gigacurie)]
+        [InlineData("en-US", "GRd", RadioactivityUnit.Gigarutherford)]
+        [InlineData("en-US", "kBq", RadioactivityUnit.Kilobecquerel)]
+        [InlineData("en-US", "kCi", RadioactivityUnit.Kilocurie)]
+        [InlineData("en-US", "kRd", RadioactivityUnit.Kilorutherford)]
+        [InlineData("en-US", "MBq", RadioactivityUnit.Megabecquerel)]
+        [InlineData("en-US", "MCi", RadioactivityUnit.Megacurie)]
+        [InlineData("en-US", "MRd", RadioactivityUnit.Megarutherford)]
+        [InlineData("en-US", "µBq", RadioactivityUnit.Microbecquerel)]
+        [InlineData("en-US", "µCi", RadioactivityUnit.Microcurie)]
+        [InlineData("en-US", "µRd", RadioactivityUnit.Microrutherford)]
+        [InlineData("en-US", "mBq", RadioactivityUnit.Millibecquerel)]
+        [InlineData("en-US", "mCi", RadioactivityUnit.Millicurie)]
+        [InlineData("en-US", "mRd", RadioactivityUnit.Millirutherford)]
+        [InlineData("en-US", "nBq", RadioactivityUnit.Nanobecquerel)]
+        [InlineData("en-US", "nCi", RadioactivityUnit.Nanocurie)]
+        [InlineData("en-US", "nRd", RadioactivityUnit.Nanorutherford)]
+        [InlineData("en-US", "PBq", RadioactivityUnit.Petabecquerel)]
+        [InlineData("en-US", "pBq", RadioactivityUnit.Picobecquerel)]
+        [InlineData("en-US", "pCi", RadioactivityUnit.Picocurie)]
+        [InlineData("en-US", "pRd", RadioactivityUnit.Picorutherford)]
+        [InlineData("en-US", "Rd", RadioactivityUnit.Rutherford)]
+        [InlineData("en-US", "TBq", RadioactivityUnit.Terabecquerel)]
+        [InlineData("en-US", "TCi", RadioactivityUnit.Teracurie)]
+        [InlineData("en-US", "TRd", RadioactivityUnit.Terarutherford)]
+        [InlineData("ru-RU", "Бк", RadioactivityUnit.Becquerel)]
+        [InlineData("ru-RU", "Ки", RadioactivityUnit.Curie)]
+        [InlineData("ru-RU", "ЭБк", RadioactivityUnit.Exabecquerel)]
+        [InlineData("ru-RU", "ГБк", RadioactivityUnit.Gigabecquerel)]
+        [InlineData("ru-RU", "ГКи", RadioactivityUnit.Gigacurie)]
+        [InlineData("ru-RU", "ГРд", RadioactivityUnit.Gigarutherford)]
+        [InlineData("ru-RU", "кБк", RadioactivityUnit.Kilobecquerel)]
+        [InlineData("ru-RU", "кКи", RadioactivityUnit.Kilocurie)]
+        [InlineData("ru-RU", "кРд", RadioactivityUnit.Kilorutherford)]
+        [InlineData("ru-RU", "МБк", RadioactivityUnit.Megabecquerel)]
+        [InlineData("ru-RU", "МКи", RadioactivityUnit.Megacurie)]
+        [InlineData("ru-RU", "МРд", RadioactivityUnit.Megarutherford)]
+        [InlineData("ru-RU", "мкБк", RadioactivityUnit.Microbecquerel)]
+        [InlineData("ru-RU", "мкКи", RadioactivityUnit.Microcurie)]
+        [InlineData("ru-RU", "мкРд", RadioactivityUnit.Microrutherford)]
+        [InlineData("ru-RU", "мБк", RadioactivityUnit.Millibecquerel)]
+        [InlineData("ru-RU", "мКи", RadioactivityUnit.Millicurie)]
+        [InlineData("ru-RU", "мРд", RadioactivityUnit.Millirutherford)]
+        [InlineData("ru-RU", "нБк", RadioactivityUnit.Nanobecquerel)]
+        [InlineData("ru-RU", "нКи", RadioactivityUnit.Nanocurie)]
+        [InlineData("ru-RU", "нРд", RadioactivityUnit.Nanorutherford)]
+        [InlineData("ru-RU", "ПБк", RadioactivityUnit.Petabecquerel)]
+        [InlineData("ru-RU", "пБк", RadioactivityUnit.Picobecquerel)]
+        [InlineData("ru-RU", "пКи", RadioactivityUnit.Picocurie)]
+        [InlineData("ru-RU", "пРд", RadioactivityUnit.Picorutherford)]
+        [InlineData("ru-RU", "Рд", RadioactivityUnit.Rutherford)]
+        [InlineData("ru-RU", "ТБк", RadioactivityUnit.Terabecquerel)]
+        [InlineData("ru-RU", "ТКи", RadioactivityUnit.Teracurie)]
+        [InlineData("ru-RU", "ТРд", RadioactivityUnit.Terarutherford)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, RadioactivityUnit expectedUnit)
         {
             Assert.True(Radioactivity.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out RadioactivityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

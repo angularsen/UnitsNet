@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -834,10 +835,45 @@ namespace UnitsNet.Tests
         [InlineData("mil", AngleUnit.NatoMil)]
         [InlineData("rad", AngleUnit.Radian)]
         [InlineData("r", AngleUnit.Revolution)]
-        public void ParseUnit(string abbreviation, AngleUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, AngleUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            AngleUnit parsedUnit = Angle.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            AngleUnit parsedUnit = Angle.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("'", AngleUnit.Arcminute)]
+        [InlineData("arcmin", AngleUnit.Arcminute)]
+        [InlineData("amin", AngleUnit.Arcminute)]
+        [InlineData("min", AngleUnit.Arcminute)]
+        [InlineData("″", AngleUnit.Arcsecond)]
+        [InlineData("arcsec", AngleUnit.Arcsecond)]
+        [InlineData("asec", AngleUnit.Arcsecond)]
+        [InlineData("sec", AngleUnit.Arcsecond)]
+        [InlineData("crad", AngleUnit.Centiradian)]
+        [InlineData("drad", AngleUnit.Deciradian)]
+        [InlineData("°", AngleUnit.Degree)]
+        [InlineData("deg", AngleUnit.Degree)]
+        [InlineData("g", AngleUnit.Gradian)]
+        [InlineData("µ°", AngleUnit.Microdegree)]
+        [InlineData("µdeg", AngleUnit.Microdegree)]
+        [InlineData("µrad", AngleUnit.Microradian)]
+        [InlineData("m°", AngleUnit.Millidegree)]
+        [InlineData("mdeg", AngleUnit.Millidegree)]
+        [InlineData("mrad", AngleUnit.Milliradian)]
+        [InlineData("n°", AngleUnit.Nanodegree)]
+        [InlineData("ndeg", AngleUnit.Nanodegree)]
+        [InlineData("nrad", AngleUnit.Nanoradian)]
+        [InlineData("mil", AngleUnit.NatoMil)]
+        [InlineData("rad", AngleUnit.Radian)]
+        [InlineData("r", AngleUnit.Revolution)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, AngleUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            AngleUnit parsedUnit = Angle.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -879,7 +915,52 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "нрад", AngleUnit.Nanoradian)]
         [InlineData("ru-RU", "рад", AngleUnit.Radian)]
         [InlineData("ru-RU", "r", AngleUnit.Revolution)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, AngleUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, AngleUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            AngleUnit parsedUnit = Angle.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "'", AngleUnit.Arcminute)]
+        [InlineData("en-US", "arcmin", AngleUnit.Arcminute)]
+        [InlineData("en-US", "amin", AngleUnit.Arcminute)]
+        [InlineData("en-US", "min", AngleUnit.Arcminute)]
+        [InlineData("en-US", "″", AngleUnit.Arcsecond)]
+        [InlineData("en-US", "arcsec", AngleUnit.Arcsecond)]
+        [InlineData("en-US", "asec", AngleUnit.Arcsecond)]
+        [InlineData("en-US", "sec", AngleUnit.Arcsecond)]
+        [InlineData("en-US", "crad", AngleUnit.Centiradian)]
+        [InlineData("en-US", "drad", AngleUnit.Deciradian)]
+        [InlineData("en-US", "°", AngleUnit.Degree)]
+        [InlineData("en-US", "deg", AngleUnit.Degree)]
+        [InlineData("en-US", "g", AngleUnit.Gradian)]
+        [InlineData("en-US", "µ°", AngleUnit.Microdegree)]
+        [InlineData("en-US", "µdeg", AngleUnit.Microdegree)]
+        [InlineData("en-US", "µrad", AngleUnit.Microradian)]
+        [InlineData("en-US", "m°", AngleUnit.Millidegree)]
+        [InlineData("en-US", "mdeg", AngleUnit.Millidegree)]
+        [InlineData("en-US", "mrad", AngleUnit.Milliradian)]
+        [InlineData("en-US", "n°", AngleUnit.Nanodegree)]
+        [InlineData("en-US", "ndeg", AngleUnit.Nanodegree)]
+        [InlineData("en-US", "nrad", AngleUnit.Nanoradian)]
+        [InlineData("en-US", "mil", AngleUnit.NatoMil)]
+        [InlineData("en-US", "rad", AngleUnit.Radian)]
+        [InlineData("en-US", "r", AngleUnit.Revolution)]
+        [InlineData("ru-RU", "срад", AngleUnit.Centiradian)]
+        [InlineData("ru-RU", "драд", AngleUnit.Deciradian)]
+        [InlineData("ru-RU", "°", AngleUnit.Degree)]
+        [InlineData("ru-RU", "g", AngleUnit.Gradian)]
+        [InlineData("ru-RU", "мк°", AngleUnit.Microdegree)]
+        [InlineData("ru-RU", "мкрад", AngleUnit.Microradian)]
+        [InlineData("ru-RU", "м°", AngleUnit.Millidegree)]
+        [InlineData("ru-RU", "мрад", AngleUnit.Milliradian)]
+        [InlineData("ru-RU", "н°", AngleUnit.Nanodegree)]
+        [InlineData("ru-RU", "нрад", AngleUnit.Nanoradian)]
+        [InlineData("ru-RU", "рад", AngleUnit.Radian)]
+        [InlineData("ru-RU", "r", AngleUnit.Revolution)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, AngleUnit expectedUnit)
         {
             AngleUnit parsedUnit = Angle.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -911,9 +992,44 @@ namespace UnitsNet.Tests
         [InlineData("mil", AngleUnit.NatoMil)]
         [InlineData("rad", AngleUnit.Radian)]
         [InlineData("r", AngleUnit.Revolution)]
-        public void TryParseUnit(string abbreviation, AngleUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, AngleUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(Angle.TryParseUnit(abbreviation, out AngleUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("'", AngleUnit.Arcminute)]
+        [InlineData("arcmin", AngleUnit.Arcminute)]
+        [InlineData("amin", AngleUnit.Arcminute)]
+        [InlineData("min", AngleUnit.Arcminute)]
+        [InlineData("″", AngleUnit.Arcsecond)]
+        [InlineData("arcsec", AngleUnit.Arcsecond)]
+        [InlineData("asec", AngleUnit.Arcsecond)]
+        [InlineData("sec", AngleUnit.Arcsecond)]
+        [InlineData("crad", AngleUnit.Centiradian)]
+        [InlineData("drad", AngleUnit.Deciradian)]
+        [InlineData("°", AngleUnit.Degree)]
+        [InlineData("deg", AngleUnit.Degree)]
+        [InlineData("g", AngleUnit.Gradian)]
+        [InlineData("µ°", AngleUnit.Microdegree)]
+        [InlineData("µdeg", AngleUnit.Microdegree)]
+        [InlineData("µrad", AngleUnit.Microradian)]
+        [InlineData("m°", AngleUnit.Millidegree)]
+        [InlineData("mdeg", AngleUnit.Millidegree)]
+        [InlineData("mrad", AngleUnit.Milliradian)]
+        [InlineData("n°", AngleUnit.Nanodegree)]
+        [InlineData("ndeg", AngleUnit.Nanodegree)]
+        [InlineData("nrad", AngleUnit.Nanoradian)]
+        [InlineData("mil", AngleUnit.NatoMil)]
+        [InlineData("rad", AngleUnit.Radian)]
+        [InlineData("r", AngleUnit.Revolution)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, AngleUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(Angle.TryParseUnit(abbreviation, out AngleUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -956,7 +1072,52 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "нрад", AngleUnit.Nanoradian)]
         [InlineData("ru-RU", "рад", AngleUnit.Radian)]
         [InlineData("ru-RU", "r", AngleUnit.Revolution)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, AngleUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, AngleUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(Angle.TryParseUnit(abbreviation, out AngleUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "'", AngleUnit.Arcminute)]
+        [InlineData("en-US", "arcmin", AngleUnit.Arcminute)]
+        [InlineData("en-US", "amin", AngleUnit.Arcminute)]
+        [InlineData("en-US", "min", AngleUnit.Arcminute)]
+        [InlineData("en-US", "″", AngleUnit.Arcsecond)]
+        [InlineData("en-US", "arcsec", AngleUnit.Arcsecond)]
+        [InlineData("en-US", "asec", AngleUnit.Arcsecond)]
+        [InlineData("en-US", "sec", AngleUnit.Arcsecond)]
+        [InlineData("en-US", "crad", AngleUnit.Centiradian)]
+        [InlineData("en-US", "drad", AngleUnit.Deciradian)]
+        [InlineData("en-US", "°", AngleUnit.Degree)]
+        [InlineData("en-US", "deg", AngleUnit.Degree)]
+        [InlineData("en-US", "g", AngleUnit.Gradian)]
+        [InlineData("en-US", "µ°", AngleUnit.Microdegree)]
+        [InlineData("en-US", "µdeg", AngleUnit.Microdegree)]
+        [InlineData("en-US", "µrad", AngleUnit.Microradian)]
+        [InlineData("en-US", "m°", AngleUnit.Millidegree)]
+        [InlineData("en-US", "mdeg", AngleUnit.Millidegree)]
+        [InlineData("en-US", "mrad", AngleUnit.Milliradian)]
+        [InlineData("en-US", "n°", AngleUnit.Nanodegree)]
+        [InlineData("en-US", "ndeg", AngleUnit.Nanodegree)]
+        [InlineData("en-US", "nrad", AngleUnit.Nanoradian)]
+        [InlineData("en-US", "mil", AngleUnit.NatoMil)]
+        [InlineData("en-US", "rad", AngleUnit.Radian)]
+        [InlineData("en-US", "r", AngleUnit.Revolution)]
+        [InlineData("ru-RU", "срад", AngleUnit.Centiradian)]
+        [InlineData("ru-RU", "драд", AngleUnit.Deciradian)]
+        [InlineData("ru-RU", "°", AngleUnit.Degree)]
+        [InlineData("ru-RU", "g", AngleUnit.Gradian)]
+        [InlineData("ru-RU", "мк°", AngleUnit.Microdegree)]
+        [InlineData("ru-RU", "мкрад", AngleUnit.Microradian)]
+        [InlineData("ru-RU", "м°", AngleUnit.Millidegree)]
+        [InlineData("ru-RU", "мрад", AngleUnit.Milliradian)]
+        [InlineData("ru-RU", "н°", AngleUnit.Nanodegree)]
+        [InlineData("ru-RU", "нрад", AngleUnit.Nanoradian)]
+        [InlineData("ru-RU", "рад", AngleUnit.Radian)]
+        [InlineData("ru-RU", "r", AngleUnit.Revolution)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, AngleUnit expectedUnit)
         {
             Assert.True(Angle.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out AngleUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

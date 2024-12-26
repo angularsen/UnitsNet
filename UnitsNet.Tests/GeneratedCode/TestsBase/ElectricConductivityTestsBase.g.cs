@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -322,10 +323,26 @@ namespace UnitsNet.Tests
         [InlineData("S/ft", ElectricConductivityUnit.SiemensPerFoot)]
         [InlineData("S/in", ElectricConductivityUnit.SiemensPerInch)]
         [InlineData("S/m", ElectricConductivityUnit.SiemensPerMeter)]
-        public void ParseUnit(string abbreviation, ElectricConductivityUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ElectricConductivityUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            ElectricConductivityUnit parsedUnit = ElectricConductivity.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            ElectricConductivityUnit parsedUnit = ElectricConductivity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("µS/cm", ElectricConductivityUnit.MicrosiemensPerCentimeter)]
+        [InlineData("mS/cm", ElectricConductivityUnit.MillisiemensPerCentimeter)]
+        [InlineData("S/cm", ElectricConductivityUnit.SiemensPerCentimeter)]
+        [InlineData("S/ft", ElectricConductivityUnit.SiemensPerFoot)]
+        [InlineData("S/in", ElectricConductivityUnit.SiemensPerInch)]
+        [InlineData("S/m", ElectricConductivityUnit.SiemensPerMeter)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ElectricConductivityUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            ElectricConductivityUnit parsedUnit = ElectricConductivity.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -336,7 +353,21 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "S/ft", ElectricConductivityUnit.SiemensPerFoot)]
         [InlineData("en-US", "S/in", ElectricConductivityUnit.SiemensPerInch)]
         [InlineData("en-US", "S/m", ElectricConductivityUnit.SiemensPerMeter)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, ElectricConductivityUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, ElectricConductivityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            ElectricConductivityUnit parsedUnit = ElectricConductivity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "µS/cm", ElectricConductivityUnit.MicrosiemensPerCentimeter)]
+        [InlineData("en-US", "mS/cm", ElectricConductivityUnit.MillisiemensPerCentimeter)]
+        [InlineData("en-US", "S/cm", ElectricConductivityUnit.SiemensPerCentimeter)]
+        [InlineData("en-US", "S/ft", ElectricConductivityUnit.SiemensPerFoot)]
+        [InlineData("en-US", "S/in", ElectricConductivityUnit.SiemensPerInch)]
+        [InlineData("en-US", "S/m", ElectricConductivityUnit.SiemensPerMeter)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, ElectricConductivityUnit expectedUnit)
         {
             ElectricConductivityUnit parsedUnit = ElectricConductivity.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -349,9 +380,25 @@ namespace UnitsNet.Tests
         [InlineData("S/ft", ElectricConductivityUnit.SiemensPerFoot)]
         [InlineData("S/in", ElectricConductivityUnit.SiemensPerInch)]
         [InlineData("S/m", ElectricConductivityUnit.SiemensPerMeter)]
-        public void TryParseUnit(string abbreviation, ElectricConductivityUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ElectricConductivityUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(ElectricConductivity.TryParseUnit(abbreviation, out ElectricConductivityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("µS/cm", ElectricConductivityUnit.MicrosiemensPerCentimeter)]
+        [InlineData("mS/cm", ElectricConductivityUnit.MillisiemensPerCentimeter)]
+        [InlineData("S/cm", ElectricConductivityUnit.SiemensPerCentimeter)]
+        [InlineData("S/ft", ElectricConductivityUnit.SiemensPerFoot)]
+        [InlineData("S/in", ElectricConductivityUnit.SiemensPerInch)]
+        [InlineData("S/m", ElectricConductivityUnit.SiemensPerMeter)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ElectricConductivityUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(ElectricConductivity.TryParseUnit(abbreviation, out ElectricConductivityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -363,7 +410,21 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "S/ft", ElectricConductivityUnit.SiemensPerFoot)]
         [InlineData("en-US", "S/in", ElectricConductivityUnit.SiemensPerInch)]
         [InlineData("en-US", "S/m", ElectricConductivityUnit.SiemensPerMeter)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, ElectricConductivityUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, ElectricConductivityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(ElectricConductivity.TryParseUnit(abbreviation, out ElectricConductivityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "µS/cm", ElectricConductivityUnit.MicrosiemensPerCentimeter)]
+        [InlineData("en-US", "mS/cm", ElectricConductivityUnit.MillisiemensPerCentimeter)]
+        [InlineData("en-US", "S/cm", ElectricConductivityUnit.SiemensPerCentimeter)]
+        [InlineData("en-US", "S/ft", ElectricConductivityUnit.SiemensPerFoot)]
+        [InlineData("en-US", "S/in", ElectricConductivityUnit.SiemensPerInch)]
+        [InlineData("en-US", "S/m", ElectricConductivityUnit.SiemensPerMeter)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, ElectricConductivityUnit expectedUnit)
         {
             Assert.True(ElectricConductivity.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ElectricConductivityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

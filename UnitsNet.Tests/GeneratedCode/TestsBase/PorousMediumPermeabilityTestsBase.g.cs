@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -298,10 +299,25 @@ namespace UnitsNet.Tests
         [InlineData("mD", PorousMediumPermeabilityUnit.Millidarcy)]
         [InlineData("cm²", PorousMediumPermeabilityUnit.SquareCentimeter)]
         [InlineData("m²", PorousMediumPermeabilityUnit.SquareMeter)]
-        public void ParseUnit(string abbreviation, PorousMediumPermeabilityUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, PorousMediumPermeabilityUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            PorousMediumPermeabilityUnit parsedUnit = PorousMediumPermeability.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            PorousMediumPermeabilityUnit parsedUnit = PorousMediumPermeability.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("D", PorousMediumPermeabilityUnit.Darcy)]
+        [InlineData("µD", PorousMediumPermeabilityUnit.Microdarcy)]
+        [InlineData("mD", PorousMediumPermeabilityUnit.Millidarcy)]
+        [InlineData("cm²", PorousMediumPermeabilityUnit.SquareCentimeter)]
+        [InlineData("m²", PorousMediumPermeabilityUnit.SquareMeter)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, PorousMediumPermeabilityUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            PorousMediumPermeabilityUnit parsedUnit = PorousMediumPermeability.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -311,7 +327,20 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "mD", PorousMediumPermeabilityUnit.Millidarcy)]
         [InlineData("en-US", "cm²", PorousMediumPermeabilityUnit.SquareCentimeter)]
         [InlineData("en-US", "m²", PorousMediumPermeabilityUnit.SquareMeter)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, PorousMediumPermeabilityUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, PorousMediumPermeabilityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            PorousMediumPermeabilityUnit parsedUnit = PorousMediumPermeability.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "D", PorousMediumPermeabilityUnit.Darcy)]
+        [InlineData("en-US", "µD", PorousMediumPermeabilityUnit.Microdarcy)]
+        [InlineData("en-US", "mD", PorousMediumPermeabilityUnit.Millidarcy)]
+        [InlineData("en-US", "cm²", PorousMediumPermeabilityUnit.SquareCentimeter)]
+        [InlineData("en-US", "m²", PorousMediumPermeabilityUnit.SquareMeter)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, PorousMediumPermeabilityUnit expectedUnit)
         {
             PorousMediumPermeabilityUnit parsedUnit = PorousMediumPermeability.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -323,9 +352,24 @@ namespace UnitsNet.Tests
         [InlineData("mD", PorousMediumPermeabilityUnit.Millidarcy)]
         [InlineData("cm²", PorousMediumPermeabilityUnit.SquareCentimeter)]
         [InlineData("m²", PorousMediumPermeabilityUnit.SquareMeter)]
-        public void TryParseUnit(string abbreviation, PorousMediumPermeabilityUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, PorousMediumPermeabilityUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(PorousMediumPermeability.TryParseUnit(abbreviation, out PorousMediumPermeabilityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("D", PorousMediumPermeabilityUnit.Darcy)]
+        [InlineData("µD", PorousMediumPermeabilityUnit.Microdarcy)]
+        [InlineData("mD", PorousMediumPermeabilityUnit.Millidarcy)]
+        [InlineData("cm²", PorousMediumPermeabilityUnit.SquareCentimeter)]
+        [InlineData("m²", PorousMediumPermeabilityUnit.SquareMeter)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, PorousMediumPermeabilityUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(PorousMediumPermeability.TryParseUnit(abbreviation, out PorousMediumPermeabilityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -336,7 +380,20 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "mD", PorousMediumPermeabilityUnit.Millidarcy)]
         [InlineData("en-US", "cm²", PorousMediumPermeabilityUnit.SquareCentimeter)]
         [InlineData("en-US", "m²", PorousMediumPermeabilityUnit.SquareMeter)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, PorousMediumPermeabilityUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, PorousMediumPermeabilityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(PorousMediumPermeability.TryParseUnit(abbreviation, out PorousMediumPermeabilityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "D", PorousMediumPermeabilityUnit.Darcy)]
+        [InlineData("en-US", "µD", PorousMediumPermeabilityUnit.Microdarcy)]
+        [InlineData("en-US", "mD", PorousMediumPermeabilityUnit.Millidarcy)]
+        [InlineData("en-US", "cm²", PorousMediumPermeabilityUnit.SquareCentimeter)]
+        [InlineData("en-US", "m²", PorousMediumPermeabilityUnit.SquareMeter)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, PorousMediumPermeabilityUnit expectedUnit)
         {
             Assert.True(PorousMediumPermeability.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out PorousMediumPermeabilityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -334,10 +335,27 @@ namespace UnitsNet.Tests
         [InlineData("mF", CapacitanceUnit.Millifarad)]
         [InlineData("nF", CapacitanceUnit.Nanofarad)]
         [InlineData("pF", CapacitanceUnit.Picofarad)]
-        public void ParseUnit(string abbreviation, CapacitanceUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, CapacitanceUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            CapacitanceUnit parsedUnit = Capacitance.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            CapacitanceUnit parsedUnit = Capacitance.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("F", CapacitanceUnit.Farad)]
+        [InlineData("kF", CapacitanceUnit.Kilofarad)]
+        [InlineData("MF", CapacitanceUnit.Megafarad)]
+        [InlineData("µF", CapacitanceUnit.Microfarad)]
+        [InlineData("mF", CapacitanceUnit.Millifarad)]
+        [InlineData("nF", CapacitanceUnit.Nanofarad)]
+        [InlineData("pF", CapacitanceUnit.Picofarad)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, CapacitanceUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            CapacitanceUnit parsedUnit = Capacitance.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -349,7 +367,22 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "mF", CapacitanceUnit.Millifarad)]
         [InlineData("en-US", "nF", CapacitanceUnit.Nanofarad)]
         [InlineData("en-US", "pF", CapacitanceUnit.Picofarad)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, CapacitanceUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, CapacitanceUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            CapacitanceUnit parsedUnit = Capacitance.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "F", CapacitanceUnit.Farad)]
+        [InlineData("en-US", "kF", CapacitanceUnit.Kilofarad)]
+        [InlineData("en-US", "MF", CapacitanceUnit.Megafarad)]
+        [InlineData("en-US", "µF", CapacitanceUnit.Microfarad)]
+        [InlineData("en-US", "mF", CapacitanceUnit.Millifarad)]
+        [InlineData("en-US", "nF", CapacitanceUnit.Nanofarad)]
+        [InlineData("en-US", "pF", CapacitanceUnit.Picofarad)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, CapacitanceUnit expectedUnit)
         {
             CapacitanceUnit parsedUnit = Capacitance.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -363,9 +396,26 @@ namespace UnitsNet.Tests
         [InlineData("mF", CapacitanceUnit.Millifarad)]
         [InlineData("nF", CapacitanceUnit.Nanofarad)]
         [InlineData("pF", CapacitanceUnit.Picofarad)]
-        public void TryParseUnit(string abbreviation, CapacitanceUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, CapacitanceUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(Capacitance.TryParseUnit(abbreviation, out CapacitanceUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("F", CapacitanceUnit.Farad)]
+        [InlineData("kF", CapacitanceUnit.Kilofarad)]
+        [InlineData("MF", CapacitanceUnit.Megafarad)]
+        [InlineData("µF", CapacitanceUnit.Microfarad)]
+        [InlineData("mF", CapacitanceUnit.Millifarad)]
+        [InlineData("nF", CapacitanceUnit.Nanofarad)]
+        [InlineData("pF", CapacitanceUnit.Picofarad)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, CapacitanceUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(Capacitance.TryParseUnit(abbreviation, out CapacitanceUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -378,7 +428,22 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "mF", CapacitanceUnit.Millifarad)]
         [InlineData("en-US", "nF", CapacitanceUnit.Nanofarad)]
         [InlineData("en-US", "pF", CapacitanceUnit.Picofarad)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, CapacitanceUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, CapacitanceUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(Capacitance.TryParseUnit(abbreviation, out CapacitanceUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "F", CapacitanceUnit.Farad)]
+        [InlineData("en-US", "kF", CapacitanceUnit.Kilofarad)]
+        [InlineData("en-US", "MF", CapacitanceUnit.Megafarad)]
+        [InlineData("en-US", "µF", CapacitanceUnit.Microfarad)]
+        [InlineData("en-US", "mF", CapacitanceUnit.Millifarad)]
+        [InlineData("en-US", "nF", CapacitanceUnit.Nanofarad)]
+        [InlineData("en-US", "pF", CapacitanceUnit.Picofarad)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, CapacitanceUnit expectedUnit)
         {
             Assert.True(Capacitance.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out CapacitanceUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

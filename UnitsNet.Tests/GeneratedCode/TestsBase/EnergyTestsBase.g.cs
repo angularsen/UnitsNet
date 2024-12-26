@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -1399,10 +1400,60 @@ namespace UnitsNet.Tests
         [InlineData("th (U.S.)", EnergyUnit.ThermUs)]
         [InlineData("Wd", EnergyUnit.WattDay)]
         [InlineData("Wh", EnergyUnit.WattHour)]
-        public void ParseUnit(string abbreviation, EnergyUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, EnergyUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            EnergyUnit parsedUnit = Energy.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            EnergyUnit parsedUnit = Energy.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("BTU", EnergyUnit.BritishThermalUnit)]
+        [InlineData("cal", EnergyUnit.Calorie)]
+        [InlineData("Dth (E.C.)", EnergyUnit.DecathermEc)]
+        [InlineData("Dth (imp.)", EnergyUnit.DecathermImperial)]
+        [InlineData("Dth (U.S.)", EnergyUnit.DecathermUs)]
+        [InlineData("eV", EnergyUnit.ElectronVolt)]
+        [InlineData("erg", EnergyUnit.Erg)]
+        [InlineData("ft·lb", EnergyUnit.FootPound)]
+        [InlineData("GBTU", EnergyUnit.GigabritishThermalUnit)]
+        [InlineData("GeV", EnergyUnit.GigaelectronVolt)]
+        [InlineData("GJ", EnergyUnit.Gigajoule)]
+        [InlineData("GWd", EnergyUnit.GigawattDay)]
+        [InlineData("GWh", EnergyUnit.GigawattHour)]
+        [InlineData("hp·h", EnergyUnit.HorsepowerHour)]
+        [InlineData("J", EnergyUnit.Joule)]
+        [InlineData("kBTU", EnergyUnit.KilobritishThermalUnit)]
+        [InlineData("kcal", EnergyUnit.Kilocalorie)]
+        [InlineData("keV", EnergyUnit.KiloelectronVolt)]
+        [InlineData("kJ", EnergyUnit.Kilojoule)]
+        [InlineData("kWd", EnergyUnit.KilowattDay)]
+        [InlineData("kWh", EnergyUnit.KilowattHour)]
+        [InlineData("MBTU", EnergyUnit.MegabritishThermalUnit)]
+        [InlineData("Mcal", EnergyUnit.Megacalorie)]
+        [InlineData("MeV", EnergyUnit.MegaelectronVolt)]
+        [InlineData("MJ", EnergyUnit.Megajoule)]
+        [InlineData("MWd", EnergyUnit.MegawattDay)]
+        [InlineData("MWh", EnergyUnit.MegawattHour)]
+        [InlineData("µJ", EnergyUnit.Microjoule)]
+        [InlineData("mJ", EnergyUnit.Millijoule)]
+        [InlineData("nJ", EnergyUnit.Nanojoule)]
+        [InlineData("PJ", EnergyUnit.Petajoule)]
+        [InlineData("TeV", EnergyUnit.TeraelectronVolt)]
+        [InlineData("TJ", EnergyUnit.Terajoule)]
+        [InlineData("TWd", EnergyUnit.TerawattDay)]
+        [InlineData("TWh", EnergyUnit.TerawattHour)]
+        [InlineData("th (E.C.)", EnergyUnit.ThermEc)]
+        [InlineData("th (imp.)", EnergyUnit.ThermImperial)]
+        [InlineData("th (U.S.)", EnergyUnit.ThermUs)]
+        [InlineData("Wd", EnergyUnit.WattDay)]
+        [InlineData("Wh", EnergyUnit.WattHour)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, EnergyUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            EnergyUnit parsedUnit = Energy.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -1468,7 +1519,76 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "Американский терм", EnergyUnit.ThermUs)]
         [InlineData("ru-RU", "Вт/д", EnergyUnit.WattDay)]
         [InlineData("ru-RU", "Вт/ч", EnergyUnit.WattHour)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, EnergyUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, EnergyUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            EnergyUnit parsedUnit = Energy.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "BTU", EnergyUnit.BritishThermalUnit)]
+        [InlineData("en-US", "cal", EnergyUnit.Calorie)]
+        [InlineData("en-US", "Dth (E.C.)", EnergyUnit.DecathermEc)]
+        [InlineData("en-US", "Dth (imp.)", EnergyUnit.DecathermImperial)]
+        [InlineData("en-US", "Dth (U.S.)", EnergyUnit.DecathermUs)]
+        [InlineData("en-US", "eV", EnergyUnit.ElectronVolt)]
+        [InlineData("en-US", "erg", EnergyUnit.Erg)]
+        [InlineData("en-US", "ft·lb", EnergyUnit.FootPound)]
+        [InlineData("en-US", "GBTU", EnergyUnit.GigabritishThermalUnit)]
+        [InlineData("en-US", "GeV", EnergyUnit.GigaelectronVolt)]
+        [InlineData("en-US", "GJ", EnergyUnit.Gigajoule)]
+        [InlineData("en-US", "GWd", EnergyUnit.GigawattDay)]
+        [InlineData("en-US", "GWh", EnergyUnit.GigawattHour)]
+        [InlineData("en-US", "hp·h", EnergyUnit.HorsepowerHour)]
+        [InlineData("en-US", "J", EnergyUnit.Joule)]
+        [InlineData("en-US", "kBTU", EnergyUnit.KilobritishThermalUnit)]
+        [InlineData("en-US", "kcal", EnergyUnit.Kilocalorie)]
+        [InlineData("en-US", "keV", EnergyUnit.KiloelectronVolt)]
+        [InlineData("en-US", "kJ", EnergyUnit.Kilojoule)]
+        [InlineData("en-US", "kWd", EnergyUnit.KilowattDay)]
+        [InlineData("en-US", "kWh", EnergyUnit.KilowattHour)]
+        [InlineData("en-US", "MBTU", EnergyUnit.MegabritishThermalUnit)]
+        [InlineData("en-US", "Mcal", EnergyUnit.Megacalorie)]
+        [InlineData("en-US", "MeV", EnergyUnit.MegaelectronVolt)]
+        [InlineData("en-US", "MJ", EnergyUnit.Megajoule)]
+        [InlineData("en-US", "MWd", EnergyUnit.MegawattDay)]
+        [InlineData("en-US", "MWh", EnergyUnit.MegawattHour)]
+        [InlineData("en-US", "µJ", EnergyUnit.Microjoule)]
+        [InlineData("en-US", "mJ", EnergyUnit.Millijoule)]
+        [InlineData("en-US", "nJ", EnergyUnit.Nanojoule)]
+        [InlineData("en-US", "PJ", EnergyUnit.Petajoule)]
+        [InlineData("en-US", "TeV", EnergyUnit.TeraelectronVolt)]
+        [InlineData("en-US", "TJ", EnergyUnit.Terajoule)]
+        [InlineData("en-US", "TWd", EnergyUnit.TerawattDay)]
+        [InlineData("en-US", "TWh", EnergyUnit.TerawattHour)]
+        [InlineData("en-US", "th (E.C.)", EnergyUnit.ThermEc)]
+        [InlineData("en-US", "th (imp.)", EnergyUnit.ThermImperial)]
+        [InlineData("en-US", "th (U.S.)", EnergyUnit.ThermUs)]
+        [InlineData("en-US", "Wd", EnergyUnit.WattDay)]
+        [InlineData("en-US", "Wh", EnergyUnit.WattHour)]
+        [InlineData("ru-RU", "Европейский декатерм", EnergyUnit.DecathermEc)]
+        [InlineData("ru-RU", "Английский декатерм", EnergyUnit.DecathermImperial)]
+        [InlineData("ru-RU", "Американский декатерм", EnergyUnit.DecathermUs)]
+        [InlineData("ru-RU", "эВ", EnergyUnit.ElectronVolt)]
+        [InlineData("ru-RU", "ГэВ", EnergyUnit.GigaelectronVolt)]
+        [InlineData("ru-RU", "ГВт/д", EnergyUnit.GigawattDay)]
+        [InlineData("ru-RU", "ГВт/ч", EnergyUnit.GigawattHour)]
+        [InlineData("ru-RU", "кэВ", EnergyUnit.KiloelectronVolt)]
+        [InlineData("ru-RU", "кВт/д", EnergyUnit.KilowattDay)]
+        [InlineData("ru-RU", "кВт/ч", EnergyUnit.KilowattHour)]
+        [InlineData("ru-RU", "МэВ", EnergyUnit.MegaelectronVolt)]
+        [InlineData("ru-RU", "МВт/д", EnergyUnit.MegawattDay)]
+        [InlineData("ru-RU", "МВт/ч", EnergyUnit.MegawattHour)]
+        [InlineData("ru-RU", "ТэВ", EnergyUnit.TeraelectronVolt)]
+        [InlineData("ru-RU", "ТВт/д", EnergyUnit.TerawattDay)]
+        [InlineData("ru-RU", "ТВт/ч", EnergyUnit.TerawattHour)]
+        [InlineData("ru-RU", "Европейский терм", EnergyUnit.ThermEc)]
+        [InlineData("ru-RU", "Английский терм", EnergyUnit.ThermImperial)]
+        [InlineData("ru-RU", "Американский терм", EnergyUnit.ThermUs)]
+        [InlineData("ru-RU", "Вт/д", EnergyUnit.WattDay)]
+        [InlineData("ru-RU", "Вт/ч", EnergyUnit.WattHour)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, EnergyUnit expectedUnit)
         {
             EnergyUnit parsedUnit = Energy.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -1515,9 +1635,59 @@ namespace UnitsNet.Tests
         [InlineData("th (U.S.)", EnergyUnit.ThermUs)]
         [InlineData("Wd", EnergyUnit.WattDay)]
         [InlineData("Wh", EnergyUnit.WattHour)]
-        public void TryParseUnit(string abbreviation, EnergyUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, EnergyUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(Energy.TryParseUnit(abbreviation, out EnergyUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("BTU", EnergyUnit.BritishThermalUnit)]
+        [InlineData("cal", EnergyUnit.Calorie)]
+        [InlineData("Dth (E.C.)", EnergyUnit.DecathermEc)]
+        [InlineData("Dth (imp.)", EnergyUnit.DecathermImperial)]
+        [InlineData("Dth (U.S.)", EnergyUnit.DecathermUs)]
+        [InlineData("eV", EnergyUnit.ElectronVolt)]
+        [InlineData("erg", EnergyUnit.Erg)]
+        [InlineData("ft·lb", EnergyUnit.FootPound)]
+        [InlineData("GBTU", EnergyUnit.GigabritishThermalUnit)]
+        [InlineData("GeV", EnergyUnit.GigaelectronVolt)]
+        [InlineData("GJ", EnergyUnit.Gigajoule)]
+        [InlineData("GWd", EnergyUnit.GigawattDay)]
+        [InlineData("GWh", EnergyUnit.GigawattHour)]
+        [InlineData("hp·h", EnergyUnit.HorsepowerHour)]
+        [InlineData("J", EnergyUnit.Joule)]
+        [InlineData("kBTU", EnergyUnit.KilobritishThermalUnit)]
+        [InlineData("kcal", EnergyUnit.Kilocalorie)]
+        [InlineData("keV", EnergyUnit.KiloelectronVolt)]
+        [InlineData("kJ", EnergyUnit.Kilojoule)]
+        [InlineData("kWd", EnergyUnit.KilowattDay)]
+        [InlineData("kWh", EnergyUnit.KilowattHour)]
+        [InlineData("MBTU", EnergyUnit.MegabritishThermalUnit)]
+        [InlineData("Mcal", EnergyUnit.Megacalorie)]
+        [InlineData("MeV", EnergyUnit.MegaelectronVolt)]
+        [InlineData("MJ", EnergyUnit.Megajoule)]
+        [InlineData("MWd", EnergyUnit.MegawattDay)]
+        [InlineData("MWh", EnergyUnit.MegawattHour)]
+        [InlineData("µJ", EnergyUnit.Microjoule)]
+        [InlineData("mJ", EnergyUnit.Millijoule)]
+        [InlineData("nJ", EnergyUnit.Nanojoule)]
+        [InlineData("PJ", EnergyUnit.Petajoule)]
+        [InlineData("TeV", EnergyUnit.TeraelectronVolt)]
+        [InlineData("TJ", EnergyUnit.Terajoule)]
+        [InlineData("TWd", EnergyUnit.TerawattDay)]
+        [InlineData("TWh", EnergyUnit.TerawattHour)]
+        [InlineData("th (E.C.)", EnergyUnit.ThermEc)]
+        [InlineData("th (imp.)", EnergyUnit.ThermImperial)]
+        [InlineData("th (U.S.)", EnergyUnit.ThermUs)]
+        [InlineData("Wd", EnergyUnit.WattDay)]
+        [InlineData("Wh", EnergyUnit.WattHour)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, EnergyUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(Energy.TryParseUnit(abbreviation, out EnergyUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -1584,7 +1754,76 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "Американский терм", EnergyUnit.ThermUs)]
         [InlineData("ru-RU", "Вт/д", EnergyUnit.WattDay)]
         [InlineData("ru-RU", "Вт/ч", EnergyUnit.WattHour)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, EnergyUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, EnergyUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(Energy.TryParseUnit(abbreviation, out EnergyUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "BTU", EnergyUnit.BritishThermalUnit)]
+        [InlineData("en-US", "cal", EnergyUnit.Calorie)]
+        [InlineData("en-US", "Dth (E.C.)", EnergyUnit.DecathermEc)]
+        [InlineData("en-US", "Dth (imp.)", EnergyUnit.DecathermImperial)]
+        [InlineData("en-US", "Dth (U.S.)", EnergyUnit.DecathermUs)]
+        [InlineData("en-US", "eV", EnergyUnit.ElectronVolt)]
+        [InlineData("en-US", "erg", EnergyUnit.Erg)]
+        [InlineData("en-US", "ft·lb", EnergyUnit.FootPound)]
+        [InlineData("en-US", "GBTU", EnergyUnit.GigabritishThermalUnit)]
+        [InlineData("en-US", "GeV", EnergyUnit.GigaelectronVolt)]
+        [InlineData("en-US", "GJ", EnergyUnit.Gigajoule)]
+        [InlineData("en-US", "GWd", EnergyUnit.GigawattDay)]
+        [InlineData("en-US", "GWh", EnergyUnit.GigawattHour)]
+        [InlineData("en-US", "hp·h", EnergyUnit.HorsepowerHour)]
+        [InlineData("en-US", "J", EnergyUnit.Joule)]
+        [InlineData("en-US", "kBTU", EnergyUnit.KilobritishThermalUnit)]
+        [InlineData("en-US", "kcal", EnergyUnit.Kilocalorie)]
+        [InlineData("en-US", "keV", EnergyUnit.KiloelectronVolt)]
+        [InlineData("en-US", "kJ", EnergyUnit.Kilojoule)]
+        [InlineData("en-US", "kWd", EnergyUnit.KilowattDay)]
+        [InlineData("en-US", "kWh", EnergyUnit.KilowattHour)]
+        [InlineData("en-US", "MBTU", EnergyUnit.MegabritishThermalUnit)]
+        [InlineData("en-US", "Mcal", EnergyUnit.Megacalorie)]
+        [InlineData("en-US", "MeV", EnergyUnit.MegaelectronVolt)]
+        [InlineData("en-US", "MJ", EnergyUnit.Megajoule)]
+        [InlineData("en-US", "MWd", EnergyUnit.MegawattDay)]
+        [InlineData("en-US", "MWh", EnergyUnit.MegawattHour)]
+        [InlineData("en-US", "µJ", EnergyUnit.Microjoule)]
+        [InlineData("en-US", "mJ", EnergyUnit.Millijoule)]
+        [InlineData("en-US", "nJ", EnergyUnit.Nanojoule)]
+        [InlineData("en-US", "PJ", EnergyUnit.Petajoule)]
+        [InlineData("en-US", "TeV", EnergyUnit.TeraelectronVolt)]
+        [InlineData("en-US", "TJ", EnergyUnit.Terajoule)]
+        [InlineData("en-US", "TWd", EnergyUnit.TerawattDay)]
+        [InlineData("en-US", "TWh", EnergyUnit.TerawattHour)]
+        [InlineData("en-US", "th (E.C.)", EnergyUnit.ThermEc)]
+        [InlineData("en-US", "th (imp.)", EnergyUnit.ThermImperial)]
+        [InlineData("en-US", "th (U.S.)", EnergyUnit.ThermUs)]
+        [InlineData("en-US", "Wd", EnergyUnit.WattDay)]
+        [InlineData("en-US", "Wh", EnergyUnit.WattHour)]
+        [InlineData("ru-RU", "Европейский декатерм", EnergyUnit.DecathermEc)]
+        [InlineData("ru-RU", "Английский декатерм", EnergyUnit.DecathermImperial)]
+        [InlineData("ru-RU", "Американский декатерм", EnergyUnit.DecathermUs)]
+        [InlineData("ru-RU", "эВ", EnergyUnit.ElectronVolt)]
+        [InlineData("ru-RU", "ГэВ", EnergyUnit.GigaelectronVolt)]
+        [InlineData("ru-RU", "ГВт/д", EnergyUnit.GigawattDay)]
+        [InlineData("ru-RU", "ГВт/ч", EnergyUnit.GigawattHour)]
+        [InlineData("ru-RU", "кэВ", EnergyUnit.KiloelectronVolt)]
+        [InlineData("ru-RU", "кВт/д", EnergyUnit.KilowattDay)]
+        [InlineData("ru-RU", "кВт/ч", EnergyUnit.KilowattHour)]
+        [InlineData("ru-RU", "МэВ", EnergyUnit.MegaelectronVolt)]
+        [InlineData("ru-RU", "МВт/д", EnergyUnit.MegawattDay)]
+        [InlineData("ru-RU", "МВт/ч", EnergyUnit.MegawattHour)]
+        [InlineData("ru-RU", "ТэВ", EnergyUnit.TeraelectronVolt)]
+        [InlineData("ru-RU", "ТВт/д", EnergyUnit.TerawattDay)]
+        [InlineData("ru-RU", "ТВт/ч", EnergyUnit.TerawattHour)]
+        [InlineData("ru-RU", "Европейский терм", EnergyUnit.ThermEc)]
+        [InlineData("ru-RU", "Английский терм", EnergyUnit.ThermImperial)]
+        [InlineData("ru-RU", "Американский терм", EnergyUnit.ThermUs)]
+        [InlineData("ru-RU", "Вт/д", EnergyUnit.WattDay)]
+        [InlineData("ru-RU", "Вт/ч", EnergyUnit.WattHour)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, EnergyUnit expectedUnit)
         {
             Assert.True(Energy.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out EnergyUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

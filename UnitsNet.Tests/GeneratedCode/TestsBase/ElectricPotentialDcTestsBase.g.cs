@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -286,10 +287,25 @@ namespace UnitsNet.Tests
         [InlineData("µVdc", ElectricPotentialDcUnit.MicrovoltDc)]
         [InlineData("mVdc", ElectricPotentialDcUnit.MillivoltDc)]
         [InlineData("Vdc", ElectricPotentialDcUnit.VoltDc)]
-        public void ParseUnit(string abbreviation, ElectricPotentialDcUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ElectricPotentialDcUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            ElectricPotentialDcUnit parsedUnit = ElectricPotentialDc.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            ElectricPotentialDcUnit parsedUnit = ElectricPotentialDc.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("kVdc", ElectricPotentialDcUnit.KilovoltDc)]
+        [InlineData("MVdc", ElectricPotentialDcUnit.MegavoltDc)]
+        [InlineData("µVdc", ElectricPotentialDcUnit.MicrovoltDc)]
+        [InlineData("mVdc", ElectricPotentialDcUnit.MillivoltDc)]
+        [InlineData("Vdc", ElectricPotentialDcUnit.VoltDc)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ElectricPotentialDcUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            ElectricPotentialDcUnit parsedUnit = ElectricPotentialDc.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -299,7 +315,20 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "µVdc", ElectricPotentialDcUnit.MicrovoltDc)]
         [InlineData("en-US", "mVdc", ElectricPotentialDcUnit.MillivoltDc)]
         [InlineData("en-US", "Vdc", ElectricPotentialDcUnit.VoltDc)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, ElectricPotentialDcUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, ElectricPotentialDcUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            ElectricPotentialDcUnit parsedUnit = ElectricPotentialDc.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "kVdc", ElectricPotentialDcUnit.KilovoltDc)]
+        [InlineData("en-US", "MVdc", ElectricPotentialDcUnit.MegavoltDc)]
+        [InlineData("en-US", "µVdc", ElectricPotentialDcUnit.MicrovoltDc)]
+        [InlineData("en-US", "mVdc", ElectricPotentialDcUnit.MillivoltDc)]
+        [InlineData("en-US", "Vdc", ElectricPotentialDcUnit.VoltDc)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, ElectricPotentialDcUnit expectedUnit)
         {
             ElectricPotentialDcUnit parsedUnit = ElectricPotentialDc.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -311,9 +340,24 @@ namespace UnitsNet.Tests
         [InlineData("µVdc", ElectricPotentialDcUnit.MicrovoltDc)]
         [InlineData("mVdc", ElectricPotentialDcUnit.MillivoltDc)]
         [InlineData("Vdc", ElectricPotentialDcUnit.VoltDc)]
-        public void TryParseUnit(string abbreviation, ElectricPotentialDcUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ElectricPotentialDcUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(ElectricPotentialDc.TryParseUnit(abbreviation, out ElectricPotentialDcUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("kVdc", ElectricPotentialDcUnit.KilovoltDc)]
+        [InlineData("MVdc", ElectricPotentialDcUnit.MegavoltDc)]
+        [InlineData("µVdc", ElectricPotentialDcUnit.MicrovoltDc)]
+        [InlineData("mVdc", ElectricPotentialDcUnit.MillivoltDc)]
+        [InlineData("Vdc", ElectricPotentialDcUnit.VoltDc)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ElectricPotentialDcUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(ElectricPotentialDc.TryParseUnit(abbreviation, out ElectricPotentialDcUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -324,7 +368,20 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "µVdc", ElectricPotentialDcUnit.MicrovoltDc)]
         [InlineData("en-US", "mVdc", ElectricPotentialDcUnit.MillivoltDc)]
         [InlineData("en-US", "Vdc", ElectricPotentialDcUnit.VoltDc)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, ElectricPotentialDcUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, ElectricPotentialDcUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(ElectricPotentialDc.TryParseUnit(abbreviation, out ElectricPotentialDcUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "kVdc", ElectricPotentialDcUnit.KilovoltDc)]
+        [InlineData("en-US", "MVdc", ElectricPotentialDcUnit.MegavoltDc)]
+        [InlineData("en-US", "µVdc", ElectricPotentialDcUnit.MicrovoltDc)]
+        [InlineData("en-US", "mVdc", ElectricPotentialDcUnit.MillivoltDc)]
+        [InlineData("en-US", "Vdc", ElectricPotentialDcUnit.VoltDc)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, ElectricPotentialDcUnit expectedUnit)
         {
             Assert.True(ElectricPotentialDc.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ElectricPotentialDcUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

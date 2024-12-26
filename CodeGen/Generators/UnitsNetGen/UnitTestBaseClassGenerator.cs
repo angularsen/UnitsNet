@@ -169,6 +169,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -403,7 +404,7 @@ namespace UnitsNet.Tests
             Writer.WL($@"
         }}
 ");
-            
+
             Writer.WL($@"
         [Theory]");
             foreach ((var abbreviation, Unit unit) in _uniqueAbbreviationsForCulture[FallbackCultureName])
@@ -412,13 +413,32 @@ namespace UnitsNet.Tests
         [InlineData(""{abbreviation}"", {GetUnitFullName(unit)})]");
             }
             Writer.WL($@"
-        public void ParseUnit(string abbreviation, {_unitEnumName} expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, {_unitEnumName} expectedUnit)
         {{
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture (""{FallbackCultureName}"")
-            {_unitEnumName} parsedUnit = {_quantity.Name}.ParseUnit(abbreviation); 
+            // Fallback culture ""{FallbackCultureName}"" is always localized
+            using var _ = new CultureScope(""{FallbackCultureName}"");
+            {_unitEnumName} parsedUnit = {_quantity.Name}.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }}
 ");
+
+            Writer.WL($@"
+        [Theory]");
+            foreach ((var abbreviation, Unit unit) in _uniqueAbbreviationsForCulture[FallbackCultureName])
+            {
+                Writer.WL($@"
+        [InlineData(""{abbreviation}"", {GetUnitFullName(unit)})]");
+            }
+            Writer.WL($@"
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, {_unitEnumName} expectedUnit)
+        {{
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to ""{FallbackCultureName}"" when parsing.
+            using var _ = new CultureScope(""is-IS"");
+            {_unitEnumName} parsedUnit = {_quantity.Name}.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }}
+");
+
             Writer.WL($@"
         [Theory]");
             foreach ((var cultureName, Dictionary<string, Unit> abbreviations) in _uniqueAbbreviationsForCulture)
@@ -430,12 +450,32 @@ namespace UnitsNet.Tests
                 }
             }
             Writer.WL($@"
-        public void ParseUnitWithCulture(string culture, string abbreviation, {_unitEnumName} expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, {_unitEnumName} expectedUnit)
+        {{
+            using var _ = new CultureScope(culture);
+            {_unitEnumName} parsedUnit = {_quantity.Name}.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }}
+");
+
+            Writer.WL($@"
+        [Theory]");
+            foreach ((var cultureName, Dictionary<string, Unit> abbreviations) in _uniqueAbbreviationsForCulture)
+            {
+                foreach ((var abbreviation, Unit unit) in abbreviations)
+                {
+                    Writer.WL($@"
+        [InlineData(""{cultureName}"", ""{abbreviation}"", {GetUnitFullName(unit)})]");
+                }
+            }
+            Writer.WL($@"
+        public void ParseUnit_WithCulture(string culture, string abbreviation, {_unitEnumName} expectedUnit)
         {{
             {_unitEnumName} parsedUnit = {_quantity.Name}.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
         }}
 ");
+
             // we only generate these for a few of the quantities
             if (_ambiguousAbbreviationsForCulture.Count != 0)
             {
@@ -456,7 +496,7 @@ namespace UnitsNet.Tests
         }}
 ");
             } // ambiguousAbbreviations
-            
+
             Writer.WL($@"
         [Theory]");
             foreach ((var abbreviation, Unit unit) in _uniqueAbbreviationsForCulture[FallbackCultureName])
@@ -465,13 +505,32 @@ namespace UnitsNet.Tests
         [InlineData(""{abbreviation}"", {GetUnitFullName(unit)})]");
             }
             Writer.WL($@"
-        public void TryParseUnit(string abbreviation, {_unitEnumName} expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, {_unitEnumName} expectedUnit)
         {{
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture (""{FallbackCultureName}"")
+            // Fallback culture ""{FallbackCultureName}"" is always localized
+            using var _ = new CultureScope(""{FallbackCultureName}"");
             Assert.True({_quantity.Name}.TryParseUnit(abbreviation, out {_unitEnumName} parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }}
 ");
+
+            Writer.WL($@"
+        [Theory]");
+            foreach ((var abbreviation, Unit unit) in _uniqueAbbreviationsForCulture[FallbackCultureName])
+            {
+                Writer.WL($@"
+        [InlineData(""{abbreviation}"", {GetUnitFullName(unit)})]");
+            }
+            Writer.WL($@"
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, {_unitEnumName} expectedUnit)
+        {{
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to ""{FallbackCultureName}"" when parsing.
+            using var _ = new CultureScope(""is-IS"");
+            Assert.True({_quantity.Name}.TryParseUnit(abbreviation, out {_unitEnumName} parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }}
+");
+
             Writer.WL($@"
         [Theory]");
             foreach ((var cultureName, Dictionary<string, Unit> abbreviations) in _uniqueAbbreviationsForCulture)
@@ -483,12 +542,32 @@ namespace UnitsNet.Tests
                 }
             }
             Writer.WL($@"
-        public void TryParseUnitWithCulture(string culture, string abbreviation, {_unitEnumName} expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, {_unitEnumName} expectedUnit)
+        {{
+            using var _ = new CultureScope(culture);
+            Assert.True({_quantity.Name}.TryParseUnit(abbreviation, out {_unitEnumName} parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }}
+");
+
+            Writer.WL($@"
+        [Theory]");
+            foreach ((var cultureName, Dictionary<string, Unit> abbreviations) in _uniqueAbbreviationsForCulture)
+            {
+                foreach ((var abbreviation, Unit unit) in abbreviations)
+                {
+                    Writer.WL($@"
+        [InlineData(""{cultureName}"", ""{abbreviation}"", {GetUnitFullName(unit)})]");
+                }
+            }
+            Writer.WL($@"
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, {_unitEnumName} expectedUnit)
         {{
             Assert.True({_quantity.Name}.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out {_unitEnumName} parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }}
 ");
+
             // we only generate these for a few of the quantities
             if (_ambiguousAbbreviationsForCulture.Count != 0)
             {
@@ -509,7 +588,7 @@ namespace UnitsNet.Tests
         }}
 ");
             } // ambiguousAbbreviations
-            
+
             Writer.WL($@"
         [Theory]
         [MemberData(nameof(UnitTypes))]

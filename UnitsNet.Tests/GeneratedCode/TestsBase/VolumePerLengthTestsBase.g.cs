@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -394,10 +395,29 @@ namespace UnitsNet.Tests
         [InlineData("l/mm", VolumePerLengthUnit.LiterPerMillimeter)]
         [InlineData("bbl/ft", VolumePerLengthUnit.OilBarrelPerFoot)]
         [InlineData("gal (U.S.)/mi", VolumePerLengthUnit.UsGallonPerMile)]
-        public void ParseUnit(string abbreviation, VolumePerLengthUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, VolumePerLengthUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            VolumePerLengthUnit parsedUnit = VolumePerLength.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            VolumePerLengthUnit parsedUnit = VolumePerLength.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("m³/m", VolumePerLengthUnit.CubicMeterPerMeter)]
+        [InlineData("yd³/ft", VolumePerLengthUnit.CubicYardPerFoot)]
+        [InlineData("yd³/ftUS", VolumePerLengthUnit.CubicYardPerUsSurveyFoot)]
+        [InlineData("gal (imp.)/mi", VolumePerLengthUnit.ImperialGallonPerMile)]
+        [InlineData("l/km", VolumePerLengthUnit.LiterPerKilometer)]
+        [InlineData("l/m", VolumePerLengthUnit.LiterPerMeter)]
+        [InlineData("l/mm", VolumePerLengthUnit.LiterPerMillimeter)]
+        [InlineData("bbl/ft", VolumePerLengthUnit.OilBarrelPerFoot)]
+        [InlineData("gal (U.S.)/mi", VolumePerLengthUnit.UsGallonPerMile)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, VolumePerLengthUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            VolumePerLengthUnit parsedUnit = VolumePerLength.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -411,7 +431,24 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "l/mm", VolumePerLengthUnit.LiterPerMillimeter)]
         [InlineData("en-US", "bbl/ft", VolumePerLengthUnit.OilBarrelPerFoot)]
         [InlineData("en-US", "gal (U.S.)/mi", VolumePerLengthUnit.UsGallonPerMile)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, VolumePerLengthUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, VolumePerLengthUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            VolumePerLengthUnit parsedUnit = VolumePerLength.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "m³/m", VolumePerLengthUnit.CubicMeterPerMeter)]
+        [InlineData("en-US", "yd³/ft", VolumePerLengthUnit.CubicYardPerFoot)]
+        [InlineData("en-US", "yd³/ftUS", VolumePerLengthUnit.CubicYardPerUsSurveyFoot)]
+        [InlineData("en-US", "gal (imp.)/mi", VolumePerLengthUnit.ImperialGallonPerMile)]
+        [InlineData("en-US", "l/km", VolumePerLengthUnit.LiterPerKilometer)]
+        [InlineData("en-US", "l/m", VolumePerLengthUnit.LiterPerMeter)]
+        [InlineData("en-US", "l/mm", VolumePerLengthUnit.LiterPerMillimeter)]
+        [InlineData("en-US", "bbl/ft", VolumePerLengthUnit.OilBarrelPerFoot)]
+        [InlineData("en-US", "gal (U.S.)/mi", VolumePerLengthUnit.UsGallonPerMile)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, VolumePerLengthUnit expectedUnit)
         {
             VolumePerLengthUnit parsedUnit = VolumePerLength.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -427,9 +464,28 @@ namespace UnitsNet.Tests
         [InlineData("l/mm", VolumePerLengthUnit.LiterPerMillimeter)]
         [InlineData("bbl/ft", VolumePerLengthUnit.OilBarrelPerFoot)]
         [InlineData("gal (U.S.)/mi", VolumePerLengthUnit.UsGallonPerMile)]
-        public void TryParseUnit(string abbreviation, VolumePerLengthUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, VolumePerLengthUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(VolumePerLength.TryParseUnit(abbreviation, out VolumePerLengthUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("m³/m", VolumePerLengthUnit.CubicMeterPerMeter)]
+        [InlineData("yd³/ft", VolumePerLengthUnit.CubicYardPerFoot)]
+        [InlineData("yd³/ftUS", VolumePerLengthUnit.CubicYardPerUsSurveyFoot)]
+        [InlineData("gal (imp.)/mi", VolumePerLengthUnit.ImperialGallonPerMile)]
+        [InlineData("l/km", VolumePerLengthUnit.LiterPerKilometer)]
+        [InlineData("l/m", VolumePerLengthUnit.LiterPerMeter)]
+        [InlineData("l/mm", VolumePerLengthUnit.LiterPerMillimeter)]
+        [InlineData("bbl/ft", VolumePerLengthUnit.OilBarrelPerFoot)]
+        [InlineData("gal (U.S.)/mi", VolumePerLengthUnit.UsGallonPerMile)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, VolumePerLengthUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(VolumePerLength.TryParseUnit(abbreviation, out VolumePerLengthUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -444,7 +500,24 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "l/mm", VolumePerLengthUnit.LiterPerMillimeter)]
         [InlineData("en-US", "bbl/ft", VolumePerLengthUnit.OilBarrelPerFoot)]
         [InlineData("en-US", "gal (U.S.)/mi", VolumePerLengthUnit.UsGallonPerMile)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, VolumePerLengthUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, VolumePerLengthUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(VolumePerLength.TryParseUnit(abbreviation, out VolumePerLengthUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "m³/m", VolumePerLengthUnit.CubicMeterPerMeter)]
+        [InlineData("en-US", "yd³/ft", VolumePerLengthUnit.CubicYardPerFoot)]
+        [InlineData("en-US", "yd³/ftUS", VolumePerLengthUnit.CubicYardPerUsSurveyFoot)]
+        [InlineData("en-US", "gal (imp.)/mi", VolumePerLengthUnit.ImperialGallonPerMile)]
+        [InlineData("en-US", "l/km", VolumePerLengthUnit.LiterPerKilometer)]
+        [InlineData("en-US", "l/m", VolumePerLengthUnit.LiterPerMeter)]
+        [InlineData("en-US", "l/mm", VolumePerLengthUnit.LiterPerMillimeter)]
+        [InlineData("en-US", "bbl/ft", VolumePerLengthUnit.OilBarrelPerFoot)]
+        [InlineData("en-US", "gal (U.S.)/mi", VolumePerLengthUnit.UsGallonPerMile)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, VolumePerLengthUnit expectedUnit)
         {
             Assert.True(VolumePerLength.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out VolumePerLengthUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

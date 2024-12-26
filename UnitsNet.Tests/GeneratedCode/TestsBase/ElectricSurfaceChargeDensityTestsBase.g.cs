@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -250,10 +251,23 @@ namespace UnitsNet.Tests
         [InlineData("C/cm²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter)]
         [InlineData("C/in²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch)]
         [InlineData("C/m²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter)]
-        public void ParseUnit(string abbreviation, ElectricSurfaceChargeDensityUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ElectricSurfaceChargeDensityUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            ElectricSurfaceChargeDensityUnit parsedUnit = ElectricSurfaceChargeDensity.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            ElectricSurfaceChargeDensityUnit parsedUnit = ElectricSurfaceChargeDensity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("C/cm²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter)]
+        [InlineData("C/in²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch)]
+        [InlineData("C/m²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ElectricSurfaceChargeDensityUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            ElectricSurfaceChargeDensityUnit parsedUnit = ElectricSurfaceChargeDensity.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -261,7 +275,18 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "C/cm²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter)]
         [InlineData("en-US", "C/in²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch)]
         [InlineData("en-US", "C/m²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, ElectricSurfaceChargeDensityUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, ElectricSurfaceChargeDensityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            ElectricSurfaceChargeDensityUnit parsedUnit = ElectricSurfaceChargeDensity.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "C/cm²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter)]
+        [InlineData("en-US", "C/in²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch)]
+        [InlineData("en-US", "C/m²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, ElectricSurfaceChargeDensityUnit expectedUnit)
         {
             ElectricSurfaceChargeDensityUnit parsedUnit = ElectricSurfaceChargeDensity.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -271,9 +296,22 @@ namespace UnitsNet.Tests
         [InlineData("C/cm²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter)]
         [InlineData("C/in²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch)]
         [InlineData("C/m²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter)]
-        public void TryParseUnit(string abbreviation, ElectricSurfaceChargeDensityUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ElectricSurfaceChargeDensityUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(ElectricSurfaceChargeDensity.TryParseUnit(abbreviation, out ElectricSurfaceChargeDensityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("C/cm²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter)]
+        [InlineData("C/in²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch)]
+        [InlineData("C/m²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ElectricSurfaceChargeDensityUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(ElectricSurfaceChargeDensity.TryParseUnit(abbreviation, out ElectricSurfaceChargeDensityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -282,7 +320,18 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "C/cm²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter)]
         [InlineData("en-US", "C/in²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch)]
         [InlineData("en-US", "C/m²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, ElectricSurfaceChargeDensityUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, ElectricSurfaceChargeDensityUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(ElectricSurfaceChargeDensity.TryParseUnit(abbreviation, out ElectricSurfaceChargeDensityUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "C/cm²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter)]
+        [InlineData("en-US", "C/in²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch)]
+        [InlineData("en-US", "C/m²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, ElectricSurfaceChargeDensityUnit expectedUnit)
         {
             Assert.True(ElectricSurfaceChargeDensity.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ElectricSurfaceChargeDensityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

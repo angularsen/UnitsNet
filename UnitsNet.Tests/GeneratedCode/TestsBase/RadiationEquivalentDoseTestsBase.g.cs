@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -374,10 +375,26 @@ namespace UnitsNet.Tests
         [InlineData("nSv", RadiationEquivalentDoseUnit.Nanosievert)]
         [InlineData("rem", RadiationEquivalentDoseUnit.RoentgenEquivalentMan)]
         [InlineData("Sv", RadiationEquivalentDoseUnit.Sievert)]
-        public void ParseUnit(string abbreviation, RadiationEquivalentDoseUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, RadiationEquivalentDoseUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            RadiationEquivalentDoseUnit parsedUnit = RadiationEquivalentDose.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            RadiationEquivalentDoseUnit parsedUnit = RadiationEquivalentDose.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("µSv", RadiationEquivalentDoseUnit.Microsievert)]
+        [InlineData("mrem", RadiationEquivalentDoseUnit.MilliroentgenEquivalentMan)]
+        [InlineData("mSv", RadiationEquivalentDoseUnit.Millisievert)]
+        [InlineData("nSv", RadiationEquivalentDoseUnit.Nanosievert)]
+        [InlineData("rem", RadiationEquivalentDoseUnit.RoentgenEquivalentMan)]
+        [InlineData("Sv", RadiationEquivalentDoseUnit.Sievert)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, RadiationEquivalentDoseUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            RadiationEquivalentDoseUnit parsedUnit = RadiationEquivalentDose.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -392,7 +409,25 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "мЗв", RadiationEquivalentDoseUnit.Millisievert)]
         [InlineData("ru-RU", "нЗв", RadiationEquivalentDoseUnit.Nanosievert)]
         [InlineData("ru-RU", "Зв", RadiationEquivalentDoseUnit.Sievert)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, RadiationEquivalentDoseUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, RadiationEquivalentDoseUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            RadiationEquivalentDoseUnit parsedUnit = RadiationEquivalentDose.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "µSv", RadiationEquivalentDoseUnit.Microsievert)]
+        [InlineData("en-US", "mrem", RadiationEquivalentDoseUnit.MilliroentgenEquivalentMan)]
+        [InlineData("en-US", "mSv", RadiationEquivalentDoseUnit.Millisievert)]
+        [InlineData("en-US", "nSv", RadiationEquivalentDoseUnit.Nanosievert)]
+        [InlineData("en-US", "rem", RadiationEquivalentDoseUnit.RoentgenEquivalentMan)]
+        [InlineData("en-US", "Sv", RadiationEquivalentDoseUnit.Sievert)]
+        [InlineData("ru-RU", "мкЗв", RadiationEquivalentDoseUnit.Microsievert)]
+        [InlineData("ru-RU", "мЗв", RadiationEquivalentDoseUnit.Millisievert)]
+        [InlineData("ru-RU", "нЗв", RadiationEquivalentDoseUnit.Nanosievert)]
+        [InlineData("ru-RU", "Зв", RadiationEquivalentDoseUnit.Sievert)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, RadiationEquivalentDoseUnit expectedUnit)
         {
             RadiationEquivalentDoseUnit parsedUnit = RadiationEquivalentDose.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -405,9 +440,25 @@ namespace UnitsNet.Tests
         [InlineData("nSv", RadiationEquivalentDoseUnit.Nanosievert)]
         [InlineData("rem", RadiationEquivalentDoseUnit.RoentgenEquivalentMan)]
         [InlineData("Sv", RadiationEquivalentDoseUnit.Sievert)]
-        public void TryParseUnit(string abbreviation, RadiationEquivalentDoseUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, RadiationEquivalentDoseUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(RadiationEquivalentDose.TryParseUnit(abbreviation, out RadiationEquivalentDoseUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("µSv", RadiationEquivalentDoseUnit.Microsievert)]
+        [InlineData("mrem", RadiationEquivalentDoseUnit.MilliroentgenEquivalentMan)]
+        [InlineData("mSv", RadiationEquivalentDoseUnit.Millisievert)]
+        [InlineData("nSv", RadiationEquivalentDoseUnit.Nanosievert)]
+        [InlineData("rem", RadiationEquivalentDoseUnit.RoentgenEquivalentMan)]
+        [InlineData("Sv", RadiationEquivalentDoseUnit.Sievert)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, RadiationEquivalentDoseUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(RadiationEquivalentDose.TryParseUnit(abbreviation, out RadiationEquivalentDoseUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -423,7 +474,25 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "мЗв", RadiationEquivalentDoseUnit.Millisievert)]
         [InlineData("ru-RU", "нЗв", RadiationEquivalentDoseUnit.Nanosievert)]
         [InlineData("ru-RU", "Зв", RadiationEquivalentDoseUnit.Sievert)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, RadiationEquivalentDoseUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, RadiationEquivalentDoseUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(RadiationEquivalentDose.TryParseUnit(abbreviation, out RadiationEquivalentDoseUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "µSv", RadiationEquivalentDoseUnit.Microsievert)]
+        [InlineData("en-US", "mrem", RadiationEquivalentDoseUnit.MilliroentgenEquivalentMan)]
+        [InlineData("en-US", "mSv", RadiationEquivalentDoseUnit.Millisievert)]
+        [InlineData("en-US", "nSv", RadiationEquivalentDoseUnit.Nanosievert)]
+        [InlineData("en-US", "rem", RadiationEquivalentDoseUnit.RoentgenEquivalentMan)]
+        [InlineData("en-US", "Sv", RadiationEquivalentDoseUnit.Sievert)]
+        [InlineData("ru-RU", "мкЗв", RadiationEquivalentDoseUnit.Microsievert)]
+        [InlineData("ru-RU", "мЗв", RadiationEquivalentDoseUnit.Millisievert)]
+        [InlineData("ru-RU", "нЗв", RadiationEquivalentDoseUnit.Nanosievert)]
+        [InlineData("ru-RU", "Зв", RadiationEquivalentDoseUnit.Sievert)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, RadiationEquivalentDoseUnit expectedUnit)
         {
             Assert.True(RadiationEquivalentDose.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out RadiationEquivalentDoseUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

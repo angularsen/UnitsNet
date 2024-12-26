@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -394,10 +395,29 @@ namespace UnitsNet.Tests
         [InlineData("Sm³/min", StandardVolumeFlowUnit.StandardCubicMeterPerMinute)]
         [InlineData("Sm³/s", StandardVolumeFlowUnit.StandardCubicMeterPerSecond)]
         [InlineData("slm", StandardVolumeFlowUnit.StandardLiterPerMinute)]
-        public void ParseUnit(string abbreviation, StandardVolumeFlowUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, StandardVolumeFlowUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            StandardVolumeFlowUnit parsedUnit = StandardVolumeFlow.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            StandardVolumeFlowUnit parsedUnit = StandardVolumeFlow.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("sccm", StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute)]
+        [InlineData("scfh", StandardVolumeFlowUnit.StandardCubicFootPerHour)]
+        [InlineData("scfm", StandardVolumeFlowUnit.StandardCubicFootPerMinute)]
+        [InlineData("Sft³/s", StandardVolumeFlowUnit.StandardCubicFootPerSecond)]
+        [InlineData("Sm³/d", StandardVolumeFlowUnit.StandardCubicMeterPerDay)]
+        [InlineData("Sm³/h", StandardVolumeFlowUnit.StandardCubicMeterPerHour)]
+        [InlineData("Sm³/min", StandardVolumeFlowUnit.StandardCubicMeterPerMinute)]
+        [InlineData("Sm³/s", StandardVolumeFlowUnit.StandardCubicMeterPerSecond)]
+        [InlineData("slm", StandardVolumeFlowUnit.StandardLiterPerMinute)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, StandardVolumeFlowUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            StandardVolumeFlowUnit parsedUnit = StandardVolumeFlow.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -411,7 +431,24 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "Sm³/min", StandardVolumeFlowUnit.StandardCubicMeterPerMinute)]
         [InlineData("en-US", "Sm³/s", StandardVolumeFlowUnit.StandardCubicMeterPerSecond)]
         [InlineData("en-US", "slm", StandardVolumeFlowUnit.StandardLiterPerMinute)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, StandardVolumeFlowUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, StandardVolumeFlowUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            StandardVolumeFlowUnit parsedUnit = StandardVolumeFlow.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "sccm", StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute)]
+        [InlineData("en-US", "scfh", StandardVolumeFlowUnit.StandardCubicFootPerHour)]
+        [InlineData("en-US", "scfm", StandardVolumeFlowUnit.StandardCubicFootPerMinute)]
+        [InlineData("en-US", "Sft³/s", StandardVolumeFlowUnit.StandardCubicFootPerSecond)]
+        [InlineData("en-US", "Sm³/d", StandardVolumeFlowUnit.StandardCubicMeterPerDay)]
+        [InlineData("en-US", "Sm³/h", StandardVolumeFlowUnit.StandardCubicMeterPerHour)]
+        [InlineData("en-US", "Sm³/min", StandardVolumeFlowUnit.StandardCubicMeterPerMinute)]
+        [InlineData("en-US", "Sm³/s", StandardVolumeFlowUnit.StandardCubicMeterPerSecond)]
+        [InlineData("en-US", "slm", StandardVolumeFlowUnit.StandardLiterPerMinute)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, StandardVolumeFlowUnit expectedUnit)
         {
             StandardVolumeFlowUnit parsedUnit = StandardVolumeFlow.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -427,9 +464,28 @@ namespace UnitsNet.Tests
         [InlineData("Sm³/min", StandardVolumeFlowUnit.StandardCubicMeterPerMinute)]
         [InlineData("Sm³/s", StandardVolumeFlowUnit.StandardCubicMeterPerSecond)]
         [InlineData("slm", StandardVolumeFlowUnit.StandardLiterPerMinute)]
-        public void TryParseUnit(string abbreviation, StandardVolumeFlowUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, StandardVolumeFlowUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(StandardVolumeFlow.TryParseUnit(abbreviation, out StandardVolumeFlowUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("sccm", StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute)]
+        [InlineData("scfh", StandardVolumeFlowUnit.StandardCubicFootPerHour)]
+        [InlineData("scfm", StandardVolumeFlowUnit.StandardCubicFootPerMinute)]
+        [InlineData("Sft³/s", StandardVolumeFlowUnit.StandardCubicFootPerSecond)]
+        [InlineData("Sm³/d", StandardVolumeFlowUnit.StandardCubicMeterPerDay)]
+        [InlineData("Sm³/h", StandardVolumeFlowUnit.StandardCubicMeterPerHour)]
+        [InlineData("Sm³/min", StandardVolumeFlowUnit.StandardCubicMeterPerMinute)]
+        [InlineData("Sm³/s", StandardVolumeFlowUnit.StandardCubicMeterPerSecond)]
+        [InlineData("slm", StandardVolumeFlowUnit.StandardLiterPerMinute)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, StandardVolumeFlowUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(StandardVolumeFlow.TryParseUnit(abbreviation, out StandardVolumeFlowUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -444,7 +500,24 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "Sm³/min", StandardVolumeFlowUnit.StandardCubicMeterPerMinute)]
         [InlineData("en-US", "Sm³/s", StandardVolumeFlowUnit.StandardCubicMeterPerSecond)]
         [InlineData("en-US", "slm", StandardVolumeFlowUnit.StandardLiterPerMinute)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, StandardVolumeFlowUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, StandardVolumeFlowUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(StandardVolumeFlow.TryParseUnit(abbreviation, out StandardVolumeFlowUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "sccm", StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute)]
+        [InlineData("en-US", "scfh", StandardVolumeFlowUnit.StandardCubicFootPerHour)]
+        [InlineData("en-US", "scfm", StandardVolumeFlowUnit.StandardCubicFootPerMinute)]
+        [InlineData("en-US", "Sft³/s", StandardVolumeFlowUnit.StandardCubicFootPerSecond)]
+        [InlineData("en-US", "Sm³/d", StandardVolumeFlowUnit.StandardCubicMeterPerDay)]
+        [InlineData("en-US", "Sm³/h", StandardVolumeFlowUnit.StandardCubicMeterPerHour)]
+        [InlineData("en-US", "Sm³/min", StandardVolumeFlowUnit.StandardCubicMeterPerMinute)]
+        [InlineData("en-US", "Sm³/s", StandardVolumeFlowUnit.StandardCubicMeterPerSecond)]
+        [InlineData("en-US", "slm", StandardVolumeFlowUnit.StandardLiterPerMinute)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, StandardVolumeFlowUnit expectedUnit)
         {
             Assert.True(StandardVolumeFlow.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out StandardVolumeFlowUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

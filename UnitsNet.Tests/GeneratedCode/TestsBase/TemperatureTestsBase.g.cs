@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -418,10 +419,30 @@ namespace UnitsNet.Tests
         [InlineData("K", TemperatureUnit.Kelvin)]
         [InlineData("m°C", TemperatureUnit.MillidegreeCelsius)]
         [InlineData("T⊙", TemperatureUnit.SolarTemperature)]
-        public void ParseUnit(string abbreviation, TemperatureUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, TemperatureUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            TemperatureUnit parsedUnit = Temperature.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            TemperatureUnit parsedUnit = Temperature.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("°C", TemperatureUnit.DegreeCelsius)]
+        [InlineData("°De", TemperatureUnit.DegreeDelisle)]
+        [InlineData("°F", TemperatureUnit.DegreeFahrenheit)]
+        [InlineData("°N", TemperatureUnit.DegreeNewton)]
+        [InlineData("°R", TemperatureUnit.DegreeRankine)]
+        [InlineData("°Ré", TemperatureUnit.DegreeReaumur)]
+        [InlineData("°Rø", TemperatureUnit.DegreeRoemer)]
+        [InlineData("K", TemperatureUnit.Kelvin)]
+        [InlineData("m°C", TemperatureUnit.MillidegreeCelsius)]
+        [InlineData("T⊙", TemperatureUnit.SolarTemperature)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, TemperatureUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            TemperatureUnit parsedUnit = Temperature.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -436,7 +457,25 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "K", TemperatureUnit.Kelvin)]
         [InlineData("en-US", "m°C", TemperatureUnit.MillidegreeCelsius)]
         [InlineData("en-US", "T⊙", TemperatureUnit.SolarTemperature)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, TemperatureUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, TemperatureUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            TemperatureUnit parsedUnit = Temperature.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "°C", TemperatureUnit.DegreeCelsius)]
+        [InlineData("en-US", "°De", TemperatureUnit.DegreeDelisle)]
+        [InlineData("en-US", "°F", TemperatureUnit.DegreeFahrenheit)]
+        [InlineData("en-US", "°N", TemperatureUnit.DegreeNewton)]
+        [InlineData("en-US", "°R", TemperatureUnit.DegreeRankine)]
+        [InlineData("en-US", "°Ré", TemperatureUnit.DegreeReaumur)]
+        [InlineData("en-US", "°Rø", TemperatureUnit.DegreeRoemer)]
+        [InlineData("en-US", "K", TemperatureUnit.Kelvin)]
+        [InlineData("en-US", "m°C", TemperatureUnit.MillidegreeCelsius)]
+        [InlineData("en-US", "T⊙", TemperatureUnit.SolarTemperature)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, TemperatureUnit expectedUnit)
         {
             TemperatureUnit parsedUnit = Temperature.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -453,9 +492,29 @@ namespace UnitsNet.Tests
         [InlineData("K", TemperatureUnit.Kelvin)]
         [InlineData("m°C", TemperatureUnit.MillidegreeCelsius)]
         [InlineData("T⊙", TemperatureUnit.SolarTemperature)]
-        public void TryParseUnit(string abbreviation, TemperatureUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, TemperatureUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(Temperature.TryParseUnit(abbreviation, out TemperatureUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("°C", TemperatureUnit.DegreeCelsius)]
+        [InlineData("°De", TemperatureUnit.DegreeDelisle)]
+        [InlineData("°F", TemperatureUnit.DegreeFahrenheit)]
+        [InlineData("°N", TemperatureUnit.DegreeNewton)]
+        [InlineData("°R", TemperatureUnit.DegreeRankine)]
+        [InlineData("°Ré", TemperatureUnit.DegreeReaumur)]
+        [InlineData("°Rø", TemperatureUnit.DegreeRoemer)]
+        [InlineData("K", TemperatureUnit.Kelvin)]
+        [InlineData("m°C", TemperatureUnit.MillidegreeCelsius)]
+        [InlineData("T⊙", TemperatureUnit.SolarTemperature)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, TemperatureUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(Temperature.TryParseUnit(abbreviation, out TemperatureUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -471,7 +530,25 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "K", TemperatureUnit.Kelvin)]
         [InlineData("en-US", "m°C", TemperatureUnit.MillidegreeCelsius)]
         [InlineData("en-US", "T⊙", TemperatureUnit.SolarTemperature)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, TemperatureUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, TemperatureUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(Temperature.TryParseUnit(abbreviation, out TemperatureUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "°C", TemperatureUnit.DegreeCelsius)]
+        [InlineData("en-US", "°De", TemperatureUnit.DegreeDelisle)]
+        [InlineData("en-US", "°F", TemperatureUnit.DegreeFahrenheit)]
+        [InlineData("en-US", "°N", TemperatureUnit.DegreeNewton)]
+        [InlineData("en-US", "°R", TemperatureUnit.DegreeRankine)]
+        [InlineData("en-US", "°Ré", TemperatureUnit.DegreeReaumur)]
+        [InlineData("en-US", "°Rø", TemperatureUnit.DegreeRoemer)]
+        [InlineData("en-US", "K", TemperatureUnit.Kelvin)]
+        [InlineData("en-US", "m°C", TemperatureUnit.MillidegreeCelsius)]
+        [InlineData("en-US", "T⊙", TemperatureUnit.SolarTemperature)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, TemperatureUnit expectedUnit)
         {
             Assert.True(Temperature.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out TemperatureUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -382,10 +383,29 @@ namespace UnitsNet.Tests
         [InlineData("mA", ElectricCurrentUnit.Milliampere)]
         [InlineData("nA", ElectricCurrentUnit.Nanoampere)]
         [InlineData("pA", ElectricCurrentUnit.Picoampere)]
-        public void ParseUnit(string abbreviation, ElectricCurrentUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ElectricCurrentUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            ElectricCurrentUnit parsedUnit = ElectricCurrent.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            ElectricCurrentUnit parsedUnit = ElectricCurrent.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("A", ElectricCurrentUnit.Ampere)]
+        [InlineData("cA", ElectricCurrentUnit.Centiampere)]
+        [InlineData("fA", ElectricCurrentUnit.Femtoampere)]
+        [InlineData("kA", ElectricCurrentUnit.Kiloampere)]
+        [InlineData("MA", ElectricCurrentUnit.Megaampere)]
+        [InlineData("µA", ElectricCurrentUnit.Microampere)]
+        [InlineData("mA", ElectricCurrentUnit.Milliampere)]
+        [InlineData("nA", ElectricCurrentUnit.Nanoampere)]
+        [InlineData("pA", ElectricCurrentUnit.Picoampere)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ElectricCurrentUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            ElectricCurrentUnit parsedUnit = ElectricCurrent.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -399,7 +419,24 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "mA", ElectricCurrentUnit.Milliampere)]
         [InlineData("en-US", "nA", ElectricCurrentUnit.Nanoampere)]
         [InlineData("en-US", "pA", ElectricCurrentUnit.Picoampere)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, ElectricCurrentUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, ElectricCurrentUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            ElectricCurrentUnit parsedUnit = ElectricCurrent.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "A", ElectricCurrentUnit.Ampere)]
+        [InlineData("en-US", "cA", ElectricCurrentUnit.Centiampere)]
+        [InlineData("en-US", "fA", ElectricCurrentUnit.Femtoampere)]
+        [InlineData("en-US", "kA", ElectricCurrentUnit.Kiloampere)]
+        [InlineData("en-US", "MA", ElectricCurrentUnit.Megaampere)]
+        [InlineData("en-US", "µA", ElectricCurrentUnit.Microampere)]
+        [InlineData("en-US", "mA", ElectricCurrentUnit.Milliampere)]
+        [InlineData("en-US", "nA", ElectricCurrentUnit.Nanoampere)]
+        [InlineData("en-US", "pA", ElectricCurrentUnit.Picoampere)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, ElectricCurrentUnit expectedUnit)
         {
             ElectricCurrentUnit parsedUnit = ElectricCurrent.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -415,9 +452,28 @@ namespace UnitsNet.Tests
         [InlineData("mA", ElectricCurrentUnit.Milliampere)]
         [InlineData("nA", ElectricCurrentUnit.Nanoampere)]
         [InlineData("pA", ElectricCurrentUnit.Picoampere)]
-        public void TryParseUnit(string abbreviation, ElectricCurrentUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ElectricCurrentUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(ElectricCurrent.TryParseUnit(abbreviation, out ElectricCurrentUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("A", ElectricCurrentUnit.Ampere)]
+        [InlineData("cA", ElectricCurrentUnit.Centiampere)]
+        [InlineData("fA", ElectricCurrentUnit.Femtoampere)]
+        [InlineData("kA", ElectricCurrentUnit.Kiloampere)]
+        [InlineData("MA", ElectricCurrentUnit.Megaampere)]
+        [InlineData("µA", ElectricCurrentUnit.Microampere)]
+        [InlineData("mA", ElectricCurrentUnit.Milliampere)]
+        [InlineData("nA", ElectricCurrentUnit.Nanoampere)]
+        [InlineData("pA", ElectricCurrentUnit.Picoampere)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ElectricCurrentUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(ElectricCurrent.TryParseUnit(abbreviation, out ElectricCurrentUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -432,7 +488,24 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "mA", ElectricCurrentUnit.Milliampere)]
         [InlineData("en-US", "nA", ElectricCurrentUnit.Nanoampere)]
         [InlineData("en-US", "pA", ElectricCurrentUnit.Picoampere)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, ElectricCurrentUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, ElectricCurrentUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(ElectricCurrent.TryParseUnit(abbreviation, out ElectricCurrentUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "A", ElectricCurrentUnit.Ampere)]
+        [InlineData("en-US", "cA", ElectricCurrentUnit.Centiampere)]
+        [InlineData("en-US", "fA", ElectricCurrentUnit.Femtoampere)]
+        [InlineData("en-US", "kA", ElectricCurrentUnit.Kiloampere)]
+        [InlineData("en-US", "MA", ElectricCurrentUnit.Megaampere)]
+        [InlineData("en-US", "µA", ElectricCurrentUnit.Microampere)]
+        [InlineData("en-US", "mA", ElectricCurrentUnit.Milliampere)]
+        [InlineData("en-US", "nA", ElectricCurrentUnit.Nanoampere)]
+        [InlineData("en-US", "pA", ElectricCurrentUnit.Picoampere)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, ElectricCurrentUnit expectedUnit)
         {
             Assert.True(ElectricCurrent.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ElectricCurrentUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

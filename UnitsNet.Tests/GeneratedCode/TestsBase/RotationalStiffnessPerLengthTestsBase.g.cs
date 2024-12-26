@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -410,10 +411,33 @@ namespace UnitsNet.Tests
         [InlineData("N·m/rad/m", RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter)]
         [InlineData("Nm/rad/m", RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter)]
         [InlineData("lbf·ft/deg/ft", RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot)]
-        public void ParseUnit(string abbreviation, RotationalStiffnessPerLengthUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, RotationalStiffnessPerLengthUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            RotationalStiffnessPerLengthUnit parsedUnit = RotationalStiffnessPerLength.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            RotationalStiffnessPerLengthUnit parsedUnit = RotationalStiffnessPerLength.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("kN·m/rad/m", RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter)]
+        [InlineData("kNm/rad/m", RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter)]
+        [InlineData("kipf·ft/°/ft", RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot)]
+        [InlineData("kip·ft/°/ft", RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot)]
+        [InlineData("k·ft/°/ft", RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot)]
+        [InlineData("kipf·ft/deg/ft", RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot)]
+        [InlineData("kip·ft/deg/ft", RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot)]
+        [InlineData("k·ft/deg/ft", RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot)]
+        [InlineData("MN·m/rad/m", RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter)]
+        [InlineData("MNm/rad/m", RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter)]
+        [InlineData("N·m/rad/m", RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter)]
+        [InlineData("Nm/rad/m", RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter)]
+        [InlineData("lbf·ft/deg/ft", RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, RotationalStiffnessPerLengthUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            RotationalStiffnessPerLengthUnit parsedUnit = RotationalStiffnessPerLength.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -431,7 +455,28 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "N·m/rad/m", RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter)]
         [InlineData("en-US", "Nm/rad/m", RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter)]
         [InlineData("en-US", "lbf·ft/deg/ft", RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, RotationalStiffnessPerLengthUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, RotationalStiffnessPerLengthUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            RotationalStiffnessPerLengthUnit parsedUnit = RotationalStiffnessPerLength.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "kN·m/rad/m", RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter)]
+        [InlineData("en-US", "kNm/rad/m", RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter)]
+        [InlineData("en-US", "kipf·ft/°/ft", RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot)]
+        [InlineData("en-US", "kip·ft/°/ft", RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot)]
+        [InlineData("en-US", "k·ft/°/ft", RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot)]
+        [InlineData("en-US", "kipf·ft/deg/ft", RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot)]
+        [InlineData("en-US", "kip·ft/deg/ft", RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot)]
+        [InlineData("en-US", "k·ft/deg/ft", RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot)]
+        [InlineData("en-US", "MN·m/rad/m", RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter)]
+        [InlineData("en-US", "MNm/rad/m", RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter)]
+        [InlineData("en-US", "N·m/rad/m", RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter)]
+        [InlineData("en-US", "Nm/rad/m", RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter)]
+        [InlineData("en-US", "lbf·ft/deg/ft", RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, RotationalStiffnessPerLengthUnit expectedUnit)
         {
             RotationalStiffnessPerLengthUnit parsedUnit = RotationalStiffnessPerLength.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -451,9 +496,32 @@ namespace UnitsNet.Tests
         [InlineData("N·m/rad/m", RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter)]
         [InlineData("Nm/rad/m", RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter)]
         [InlineData("lbf·ft/deg/ft", RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot)]
-        public void TryParseUnit(string abbreviation, RotationalStiffnessPerLengthUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, RotationalStiffnessPerLengthUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(RotationalStiffnessPerLength.TryParseUnit(abbreviation, out RotationalStiffnessPerLengthUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("kN·m/rad/m", RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter)]
+        [InlineData("kNm/rad/m", RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter)]
+        [InlineData("kipf·ft/°/ft", RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot)]
+        [InlineData("kip·ft/°/ft", RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot)]
+        [InlineData("k·ft/°/ft", RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot)]
+        [InlineData("kipf·ft/deg/ft", RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot)]
+        [InlineData("kip·ft/deg/ft", RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot)]
+        [InlineData("k·ft/deg/ft", RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot)]
+        [InlineData("MN·m/rad/m", RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter)]
+        [InlineData("MNm/rad/m", RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter)]
+        [InlineData("N·m/rad/m", RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter)]
+        [InlineData("Nm/rad/m", RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter)]
+        [InlineData("lbf·ft/deg/ft", RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, RotationalStiffnessPerLengthUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(RotationalStiffnessPerLength.TryParseUnit(abbreviation, out RotationalStiffnessPerLengthUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -472,7 +540,28 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "N·m/rad/m", RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter)]
         [InlineData("en-US", "Nm/rad/m", RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter)]
         [InlineData("en-US", "lbf·ft/deg/ft", RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, RotationalStiffnessPerLengthUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, RotationalStiffnessPerLengthUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(RotationalStiffnessPerLength.TryParseUnit(abbreviation, out RotationalStiffnessPerLengthUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "kN·m/rad/m", RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter)]
+        [InlineData("en-US", "kNm/rad/m", RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter)]
+        [InlineData("en-US", "kipf·ft/°/ft", RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot)]
+        [InlineData("en-US", "kip·ft/°/ft", RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot)]
+        [InlineData("en-US", "k·ft/°/ft", RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot)]
+        [InlineData("en-US", "kipf·ft/deg/ft", RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot)]
+        [InlineData("en-US", "kip·ft/deg/ft", RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot)]
+        [InlineData("en-US", "k·ft/deg/ft", RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot)]
+        [InlineData("en-US", "MN·m/rad/m", RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter)]
+        [InlineData("en-US", "MNm/rad/m", RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter)]
+        [InlineData("en-US", "N·m/rad/m", RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter)]
+        [InlineData("en-US", "Nm/rad/m", RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter)]
+        [InlineData("en-US", "lbf·ft/deg/ft", RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, RotationalStiffnessPerLengthUnit expectedUnit)
         {
             Assert.True(RotationalStiffnessPerLength.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out RotationalStiffnessPerLengthUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

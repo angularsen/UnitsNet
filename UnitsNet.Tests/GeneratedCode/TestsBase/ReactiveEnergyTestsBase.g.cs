@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -250,10 +251,23 @@ namespace UnitsNet.Tests
         [InlineData("kvarh", ReactiveEnergyUnit.KilovoltampereReactiveHour)]
         [InlineData("Mvarh", ReactiveEnergyUnit.MegavoltampereReactiveHour)]
         [InlineData("varh", ReactiveEnergyUnit.VoltampereReactiveHour)]
-        public void ParseUnit(string abbreviation, ReactiveEnergyUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ReactiveEnergyUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            ReactiveEnergyUnit parsedUnit = ReactiveEnergy.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            ReactiveEnergyUnit parsedUnit = ReactiveEnergy.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("kvarh", ReactiveEnergyUnit.KilovoltampereReactiveHour)]
+        [InlineData("Mvarh", ReactiveEnergyUnit.MegavoltampereReactiveHour)]
+        [InlineData("varh", ReactiveEnergyUnit.VoltampereReactiveHour)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ReactiveEnergyUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            ReactiveEnergyUnit parsedUnit = ReactiveEnergy.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -261,7 +275,18 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "kvarh", ReactiveEnergyUnit.KilovoltampereReactiveHour)]
         [InlineData("en-US", "Mvarh", ReactiveEnergyUnit.MegavoltampereReactiveHour)]
         [InlineData("en-US", "varh", ReactiveEnergyUnit.VoltampereReactiveHour)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, ReactiveEnergyUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, ReactiveEnergyUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            ReactiveEnergyUnit parsedUnit = ReactiveEnergy.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "kvarh", ReactiveEnergyUnit.KilovoltampereReactiveHour)]
+        [InlineData("en-US", "Mvarh", ReactiveEnergyUnit.MegavoltampereReactiveHour)]
+        [InlineData("en-US", "varh", ReactiveEnergyUnit.VoltampereReactiveHour)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, ReactiveEnergyUnit expectedUnit)
         {
             ReactiveEnergyUnit parsedUnit = ReactiveEnergy.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -271,9 +296,22 @@ namespace UnitsNet.Tests
         [InlineData("kvarh", ReactiveEnergyUnit.KilovoltampereReactiveHour)]
         [InlineData("Mvarh", ReactiveEnergyUnit.MegavoltampereReactiveHour)]
         [InlineData("varh", ReactiveEnergyUnit.VoltampereReactiveHour)]
-        public void TryParseUnit(string abbreviation, ReactiveEnergyUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ReactiveEnergyUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(ReactiveEnergy.TryParseUnit(abbreviation, out ReactiveEnergyUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("kvarh", ReactiveEnergyUnit.KilovoltampereReactiveHour)]
+        [InlineData("Mvarh", ReactiveEnergyUnit.MegavoltampereReactiveHour)]
+        [InlineData("varh", ReactiveEnergyUnit.VoltampereReactiveHour)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ReactiveEnergyUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(ReactiveEnergy.TryParseUnit(abbreviation, out ReactiveEnergyUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -282,7 +320,18 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "kvarh", ReactiveEnergyUnit.KilovoltampereReactiveHour)]
         [InlineData("en-US", "Mvarh", ReactiveEnergyUnit.MegavoltampereReactiveHour)]
         [InlineData("en-US", "varh", ReactiveEnergyUnit.VoltampereReactiveHour)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, ReactiveEnergyUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, ReactiveEnergyUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(ReactiveEnergy.TryParseUnit(abbreviation, out ReactiveEnergyUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "kvarh", ReactiveEnergyUnit.KilovoltampereReactiveHour)]
+        [InlineData("en-US", "Mvarh", ReactiveEnergyUnit.MegavoltampereReactiveHour)]
+        [InlineData("en-US", "varh", ReactiveEnergyUnit.VoltampereReactiveHour)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, ReactiveEnergyUnit expectedUnit)
         {
             Assert.True(ReactiveEnergy.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ReactiveEnergyUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -370,10 +371,28 @@ namespace UnitsNet.Tests
         [InlineData("nC/kg", RadiationExposureUnit.NanocoulombPerKilogram)]
         [InlineData("pC/kg", RadiationExposureUnit.PicocoulombPerKilogram)]
         [InlineData("R", RadiationExposureUnit.Roentgen)]
-        public void ParseUnit(string abbreviation, RadiationExposureUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, RadiationExposureUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            RadiationExposureUnit parsedUnit = RadiationExposure.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            RadiationExposureUnit parsedUnit = RadiationExposure.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("C/kg", RadiationExposureUnit.CoulombPerKilogram)]
+        [InlineData("µC/kg", RadiationExposureUnit.MicrocoulombPerKilogram)]
+        [InlineData("µR", RadiationExposureUnit.Microroentgen)]
+        [InlineData("mC/kg", RadiationExposureUnit.MillicoulombPerKilogram)]
+        [InlineData("mR", RadiationExposureUnit.Milliroentgen)]
+        [InlineData("nC/kg", RadiationExposureUnit.NanocoulombPerKilogram)]
+        [InlineData("pC/kg", RadiationExposureUnit.PicocoulombPerKilogram)]
+        [InlineData("R", RadiationExposureUnit.Roentgen)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, RadiationExposureUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            RadiationExposureUnit parsedUnit = RadiationExposure.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -386,7 +405,23 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "nC/kg", RadiationExposureUnit.NanocoulombPerKilogram)]
         [InlineData("en-US", "pC/kg", RadiationExposureUnit.PicocoulombPerKilogram)]
         [InlineData("en-US", "R", RadiationExposureUnit.Roentgen)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, RadiationExposureUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, RadiationExposureUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            RadiationExposureUnit parsedUnit = RadiationExposure.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "C/kg", RadiationExposureUnit.CoulombPerKilogram)]
+        [InlineData("en-US", "µC/kg", RadiationExposureUnit.MicrocoulombPerKilogram)]
+        [InlineData("en-US", "µR", RadiationExposureUnit.Microroentgen)]
+        [InlineData("en-US", "mC/kg", RadiationExposureUnit.MillicoulombPerKilogram)]
+        [InlineData("en-US", "mR", RadiationExposureUnit.Milliroentgen)]
+        [InlineData("en-US", "nC/kg", RadiationExposureUnit.NanocoulombPerKilogram)]
+        [InlineData("en-US", "pC/kg", RadiationExposureUnit.PicocoulombPerKilogram)]
+        [InlineData("en-US", "R", RadiationExposureUnit.Roentgen)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, RadiationExposureUnit expectedUnit)
         {
             RadiationExposureUnit parsedUnit = RadiationExposure.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -401,9 +436,27 @@ namespace UnitsNet.Tests
         [InlineData("nC/kg", RadiationExposureUnit.NanocoulombPerKilogram)]
         [InlineData("pC/kg", RadiationExposureUnit.PicocoulombPerKilogram)]
         [InlineData("R", RadiationExposureUnit.Roentgen)]
-        public void TryParseUnit(string abbreviation, RadiationExposureUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, RadiationExposureUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(RadiationExposure.TryParseUnit(abbreviation, out RadiationExposureUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("C/kg", RadiationExposureUnit.CoulombPerKilogram)]
+        [InlineData("µC/kg", RadiationExposureUnit.MicrocoulombPerKilogram)]
+        [InlineData("µR", RadiationExposureUnit.Microroentgen)]
+        [InlineData("mC/kg", RadiationExposureUnit.MillicoulombPerKilogram)]
+        [InlineData("mR", RadiationExposureUnit.Milliroentgen)]
+        [InlineData("nC/kg", RadiationExposureUnit.NanocoulombPerKilogram)]
+        [InlineData("pC/kg", RadiationExposureUnit.PicocoulombPerKilogram)]
+        [InlineData("R", RadiationExposureUnit.Roentgen)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, RadiationExposureUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(RadiationExposure.TryParseUnit(abbreviation, out RadiationExposureUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -417,7 +470,23 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "nC/kg", RadiationExposureUnit.NanocoulombPerKilogram)]
         [InlineData("en-US", "pC/kg", RadiationExposureUnit.PicocoulombPerKilogram)]
         [InlineData("en-US", "R", RadiationExposureUnit.Roentgen)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, RadiationExposureUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, RadiationExposureUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(RadiationExposure.TryParseUnit(abbreviation, out RadiationExposureUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "C/kg", RadiationExposureUnit.CoulombPerKilogram)]
+        [InlineData("en-US", "µC/kg", RadiationExposureUnit.MicrocoulombPerKilogram)]
+        [InlineData("en-US", "µR", RadiationExposureUnit.Microroentgen)]
+        [InlineData("en-US", "mC/kg", RadiationExposureUnit.MillicoulombPerKilogram)]
+        [InlineData("en-US", "mR", RadiationExposureUnit.Milliroentgen)]
+        [InlineData("en-US", "nC/kg", RadiationExposureUnit.NanocoulombPerKilogram)]
+        [InlineData("en-US", "pC/kg", RadiationExposureUnit.PicocoulombPerKilogram)]
+        [InlineData("en-US", "R", RadiationExposureUnit.Roentgen)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, RadiationExposureUnit expectedUnit)
         {
             Assert.True(RadiationExposure.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out RadiationExposureUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);

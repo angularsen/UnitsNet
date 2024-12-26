@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
 using Xunit;
@@ -274,10 +275,24 @@ namespace UnitsNet.Tests
         [InlineData("l/100km", FuelEfficiencyUnit.LiterPer100Kilometers)]
         [InlineData("mpg (imp.)", FuelEfficiencyUnit.MilePerUkGallon)]
         [InlineData("mpg (U.S.)", FuelEfficiencyUnit.MilePerUsGallon)]
-        public void ParseUnit(string abbreviation, FuelEfficiencyUnit expectedUnit)
+        public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, FuelEfficiencyUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
-            FuelEfficiencyUnit parsedUnit = FuelEfficiency.ParseUnit(abbreviation); 
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            FuelEfficiencyUnit parsedUnit = FuelEfficiency.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("km/l", FuelEfficiencyUnit.KilometerPerLiter)]
+        [InlineData("l/100km", FuelEfficiencyUnit.LiterPer100Kilometers)]
+        [InlineData("mpg (imp.)", FuelEfficiencyUnit.MilePerUkGallon)]
+        [InlineData("mpg (U.S.)", FuelEfficiencyUnit.MilePerUsGallon)]
+        public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, FuelEfficiencyUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
+            FuelEfficiencyUnit parsedUnit = FuelEfficiency.ParseUnit(abbreviation);
             Assert.Equal(expectedUnit, parsedUnit);
         }
 
@@ -286,7 +301,19 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "l/100km", FuelEfficiencyUnit.LiterPer100Kilometers)]
         [InlineData("en-US", "mpg (imp.)", FuelEfficiencyUnit.MilePerUkGallon)]
         [InlineData("en-US", "mpg (U.S.)", FuelEfficiencyUnit.MilePerUsGallon)]
-        public void ParseUnitWithCulture(string culture, string abbreviation, FuelEfficiencyUnit expectedUnit)
+        public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, FuelEfficiencyUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            FuelEfficiencyUnit parsedUnit = FuelEfficiency.ParseUnit(abbreviation);
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "km/l", FuelEfficiencyUnit.KilometerPerLiter)]
+        [InlineData("en-US", "l/100km", FuelEfficiencyUnit.LiterPer100Kilometers)]
+        [InlineData("en-US", "mpg (imp.)", FuelEfficiencyUnit.MilePerUkGallon)]
+        [InlineData("en-US", "mpg (U.S.)", FuelEfficiencyUnit.MilePerUsGallon)]
+        public void ParseUnit_WithCulture(string culture, string abbreviation, FuelEfficiencyUnit expectedUnit)
         {
             FuelEfficiencyUnit parsedUnit = FuelEfficiency.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
@@ -297,9 +324,23 @@ namespace UnitsNet.Tests
         [InlineData("l/100km", FuelEfficiencyUnit.LiterPer100Kilometers)]
         [InlineData("mpg (imp.)", FuelEfficiencyUnit.MilePerUkGallon)]
         [InlineData("mpg (U.S.)", FuelEfficiencyUnit.MilePerUsGallon)]
-        public void TryParseUnit(string abbreviation, FuelEfficiencyUnit expectedUnit)
+        public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, FuelEfficiencyUnit expectedUnit)
         {
-            // regardless of the CurrentCulture is, this should always work with the FallbackCulture ("en-US")
+            // Fallback culture "en-US" is always localized
+            using var _ = new CultureScope("en-US");
+            Assert.True(FuelEfficiency.TryParseUnit(abbreviation, out FuelEfficiencyUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("km/l", FuelEfficiencyUnit.KilometerPerLiter)]
+        [InlineData("l/100km", FuelEfficiencyUnit.LiterPer100Kilometers)]
+        [InlineData("mpg (imp.)", FuelEfficiencyUnit.MilePerUkGallon)]
+        [InlineData("mpg (U.S.)", FuelEfficiencyUnit.MilePerUsGallon)]
+        public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, FuelEfficiencyUnit expectedUnit)
+        {
+            // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
+            using var _ = new CultureScope("is-IS");
             Assert.True(FuelEfficiency.TryParseUnit(abbreviation, out FuelEfficiencyUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
         }
@@ -309,7 +350,19 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "l/100km", FuelEfficiencyUnit.LiterPer100Kilometers)]
         [InlineData("en-US", "mpg (imp.)", FuelEfficiencyUnit.MilePerUkGallon)]
         [InlineData("en-US", "mpg (U.S.)", FuelEfficiencyUnit.MilePerUsGallon)]
-        public void TryParseUnitWithCulture(string culture, string abbreviation, FuelEfficiencyUnit expectedUnit)
+        public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, FuelEfficiencyUnit expectedUnit)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(FuelEfficiency.TryParseUnit(abbreviation, out FuelEfficiencyUnit parsedUnit));
+            Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", "km/l", FuelEfficiencyUnit.KilometerPerLiter)]
+        [InlineData("en-US", "l/100km", FuelEfficiencyUnit.LiterPer100Kilometers)]
+        [InlineData("en-US", "mpg (imp.)", FuelEfficiencyUnit.MilePerUkGallon)]
+        [InlineData("en-US", "mpg (U.S.)", FuelEfficiencyUnit.MilePerUsGallon)]
+        public void TryParseUnit_WithCulture(string culture, string abbreviation, FuelEfficiencyUnit expectedUnit)
         {
             Assert.True(FuelEfficiency.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out FuelEfficiencyUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
