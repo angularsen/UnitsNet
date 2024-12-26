@@ -1,0 +1,84 @@
+﻿{
+  "Name": "DoseAreaProduct",
+  "BaseUnit": "GrayPerSquareMeter",
+  "XmlDocSummary": "It is defined as the absorbed dose multiplied by the area irradiated.",
+  "XmlDocRemarks": "https://en.wikipedia.org/wiki/Dose_area_product",
+  "BaseDimensions": {
+    "L": 4,
+    "T": -2
+  },
+  "Units": [
+    {
+      "SingularName": "GrayPerSquareMeter",
+      "PluralName": "GrayPerSquareMeters",
+      "BaseUnits": {
+        "L": "Meter",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Prefixes": [ "Micro", "Milli", "Centi", "Deci" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Gy·m²" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "Гр·м²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GrayPerSquareDecimeter",
+      "PluralName": "GrayPerSquareDecimeters",
+      "FromUnitToBaseFunc": "{x} / 100",
+      "FromBaseToUnitFunc": "{x} * 100",
+      "Prefixes": [ "Micro", "Milli", "Centi", "Deci" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Gy·dm²" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "Гр·дм²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GrayPerSquareCentimeter",
+      "PluralName": "GrayPerSquareCentimeters",
+      "FromUnitToBaseFunc": "{x} / 10000",
+      "FromBaseToUnitFunc": "{x} * 10000",
+      "Prefixes": [ "Micro", "Milli", "Centi", "Deci" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Gy·cm²" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "Гр·см²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "GrayPerSquareMillimeter",
+      "PluralName": "GrayPerSquareMillimeters",
+      "FromUnitToBaseFunc": "{x} / 1000000",
+      "FromBaseToUnitFunc": "{x} * 1000000",
+      "Prefixes": [ "Micro", "Milli", "Centi", "Deci" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Gy·mm²" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "Гр·мм²" ]
+        }
+      ]
+    }
+  ]
+}
