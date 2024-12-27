@@ -156,6 +156,7 @@ namespace UnitsNet
             { "Torque", Torque.Info },
             { "TorquePerLength", TorquePerLength.Info },
             { "Turbidity", Turbidity.Info },
+            { "VascularResistance", VascularResistance.Info },
             { "VitaminA", VitaminA.Info },
             { "Volume", Volume.Info },
             { "VolumeConcentration", VolumeConcentration.Info },
@@ -294,6 +295,7 @@ namespace UnitsNet
                 "Torque" => Torque.From(value, Torque.BaseUnit),
                 "TorquePerLength" => TorquePerLength.From(value, TorquePerLength.BaseUnit),
                 "Turbidity" => Turbidity.From(value, Turbidity.BaseUnit),
+                "VascularResistance" => VascularResistance.From(value, VascularResistance.BaseUnit),
                 "VitaminA" => VitaminA.From(value, VitaminA.BaseUnit),
                 "Volume" => Volume.From(value, Volume.BaseUnit),
                 "VolumeConcentration" => VolumeConcentration.From(value, VolumeConcentration.BaseUnit),
@@ -435,6 +437,7 @@ namespace UnitsNet
                 TorqueUnit torqueUnit => Torque.From(value, torqueUnit),
                 TorquePerLengthUnit torquePerLengthUnit => TorquePerLength.From(value, torquePerLengthUnit),
                 TurbidityUnit turbidityUnit => Turbidity.From(value, turbidityUnit),
+                VascularResistanceUnit vascularResistanceUnit => VascularResistance.From(value, vascularResistanceUnit),
                 VitaminAUnit vitaminAUnit => VitaminA.From(value, vitaminAUnit),
                 VolumeUnit volumeUnit => Volume.From(value, volumeUnit),
                 VolumeConcentrationUnit volumeConcentrationUnit => VolumeConcentration.From(value, volumeConcentrationUnit),
@@ -586,6 +589,7 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(Torque) => parser.TryParse<Torque, TorqueUnit>(quantityString, formatProvider, Torque.From, out quantity),
                 Type _ when quantityType == typeof(TorquePerLength) => parser.TryParse<TorquePerLength, TorquePerLengthUnit>(quantityString, formatProvider, TorquePerLength.From, out quantity),
                 Type _ when quantityType == typeof(Turbidity) => parser.TryParse<Turbidity, TurbidityUnit>(quantityString, formatProvider, Turbidity.From, out quantity),
+                Type _ when quantityType == typeof(VascularResistance) => parser.TryParse<VascularResistance, VascularResistanceUnit>(quantityString, formatProvider, VascularResistance.From, out quantity),
                 Type _ when quantityType == typeof(VitaminA) => parser.TryParse<VitaminA, VitaminAUnit>(quantityString, formatProvider, VitaminA.From, out quantity),
                 Type _ when quantityType == typeof(Volume) => parser.TryParse<Volume, VolumeUnit>(quantityString, formatProvider, Volume.From, out quantity),
                 Type _ when quantityType == typeof(VolumeConcentration) => parser.TryParse<VolumeConcentration, VolumeConcentrationUnit>(quantityString, formatProvider, VolumeConcentration.From, out quantity),
@@ -718,6 +722,7 @@ namespace UnitsNet
             yield return typeof(Torque);
             yield return typeof(TorquePerLength);
             yield return typeof(Turbidity);
+            yield return typeof(VascularResistance);
             yield return typeof(VitaminA);
             yield return typeof(Volume);
             yield return typeof(VolumeConcentration);
