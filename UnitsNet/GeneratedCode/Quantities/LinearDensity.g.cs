@@ -81,10 +81,10 @@ namespace UnitsNet
             Info = new QuantityInfo<LinearDensityUnit>("LinearDensity",
                 new UnitInfo<LinearDensityUnit>[]
                 {
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.GramPerCentimeter, "GramsPerCentimeter", BaseUnits.Undefined, "LinearDensity"),
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.GramPerFoot, "GramsPerFoot", BaseUnits.Undefined, "LinearDensity"),
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.GramPerMeter, "GramsPerMeter", BaseUnits.Undefined, "LinearDensity"),
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.GramPerMillimeter, "GramsPerMillimeter", BaseUnits.Undefined, "LinearDensity"),
+                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.GramPerCentimeter, "GramsPerCentimeter", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram), "LinearDensity"),
+                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.GramPerFoot, "GramsPerFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Gram), "LinearDensity"),
+                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.GramPerMeter, "GramsPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram), "LinearDensity"),
+                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.GramPerMillimeter, "GramsPerMillimeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Gram), "LinearDensity"),
                     new UnitInfo<LinearDensityUnit>(LinearDensityUnit.KilogramPerCentimeter, "KilogramsPerCentimeter", BaseUnits.Undefined, "LinearDensity"),
                     new UnitInfo<LinearDensityUnit>(LinearDensityUnit.KilogramPerFoot, "KilogramsPerFoot", BaseUnits.Undefined, "LinearDensity"),
                     new UnitInfo<LinearDensityUnit>(LinearDensityUnit.KilogramPerMeter, "KilogramsPerMeter", BaseUnits.Undefined, "LinearDensity"),
@@ -97,8 +97,8 @@ namespace UnitsNet
                     new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MilligramPerFoot, "MilligramsPerFoot", BaseUnits.Undefined, "LinearDensity"),
                     new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MilligramPerMeter, "MilligramsPerMeter", BaseUnits.Undefined, "LinearDensity"),
                     new UnitInfo<LinearDensityUnit>(LinearDensityUnit.MilligramPerMillimeter, "MilligramsPerMillimeter", BaseUnits.Undefined, "LinearDensity"),
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.PoundPerFoot, "PoundsPerFoot", BaseUnits.Undefined, "LinearDensity"),
-                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.PoundPerInch, "PoundsPerInch", BaseUnits.Undefined, "LinearDensity"),
+                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.PoundPerFoot, "PoundsPerFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound), "LinearDensity"),
+                    new UnitInfo<LinearDensityUnit>(LinearDensityUnit.PoundPerInch, "PoundsPerInch", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Pound), "LinearDensity"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -127,13 +127,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public LinearDensity(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -939,25 +934,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is LinearDensityUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LinearDensityUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -1068,6 +1045,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public LinearDensity ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not LinearDensityUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LinearDensityUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -1075,21 +1068,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LinearDensityUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public LinearDensity ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -1100,6 +1078,8 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<LinearDensityUnit> IQuantity<LinearDensityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        #endregion
 
         #endregion
 

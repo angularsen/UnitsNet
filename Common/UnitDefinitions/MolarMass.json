@@ -10,6 +10,10 @@
     {
       "SingularName": "GramPerMole",
       "PluralName": "GramsPerMole",
+      "BaseUnits": {
+        "M": "Gram",
+        "N": "Mole"
+      },
       "FromUnitToBaseFunc": "{x} / 1e3",
       "FromBaseToUnitFunc": "{x} * 1e3",
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo" ],
@@ -27,6 +31,10 @@
     {
       "SingularName": "KilogramPerKilomole",
       "PluralName": "KilogramsPerKilomole",
+      "BaseUnits": {
+        "M": "Kilogram",
+        "N": "Kilomole"
+      },
       "FromUnitToBaseFunc": "{x} / 1e3",
       "FromBaseToUnitFunc": "{x} * 1e3",
       "Localization": [
@@ -39,6 +47,10 @@
     {
       "SingularName": "PoundPerMole",
       "PluralName": "PoundsPerMole",
+      "BaseUnits": {
+        "M": "Pound",
+        "N": "Mole"
+      },
       "FromUnitToBaseFunc": "{x} * 0.45359237",
       "FromBaseToUnitFunc": "{x} / 0.45359237",
       "Prefixes": [ "Kilo", "Mega" ],

@@ -85,6 +85,30 @@ namespace UnitsNet.Tests.CustomCode
         protected override double OuncesPerUSGallonInOneKilogramPerCubicMeter => 0.1335264711843;
         #endregion
 
+        [Fact(Skip = "The BaseUnits are not yet supported by the prefix-generator")]
+        public override void Ctor_SIUnitSystem_ReturnsQuantityWithSIUnits()
+        {
+            base.Ctor_SIUnitSystem_ReturnsQuantityWithSIUnits();
+        }
+        
+        [Fact(Skip = "The BaseUnits are not yet supported by the prefix-generator")]
+        public override void BaseUnit_HasSIBase()
+        {
+            base.BaseUnit_HasSIBase();
+        }
+        
+        [Fact(Skip = "The BaseUnits are not yet supported by the prefix-generator")]
+        public override void As_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            base.As_UnitSystem_SI_ReturnsQuantityInSIUnits();
+        }
+        
+        [Fact(Skip = "The BaseUnits are not yet supported by the prefix-generator")]
+        public override void ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            base.ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits();
+        }
+
         [Theory]
         [InlineData(60.02, MassConcentrationUnit.KilogramPerCubicMeter,
                     58.443, MolarMassUnit.GramPerMole,

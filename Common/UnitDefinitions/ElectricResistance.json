@@ -12,6 +12,12 @@
     {
       "SingularName": "Ohm",
       "PluralName": "Ohms",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second",
+        "I": "Ampere"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Micro", "Milli", "Kilo", "Mega", "Giga", "Tera" ],

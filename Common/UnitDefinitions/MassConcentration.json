@@ -66,10 +66,6 @@
     {
       "SingularName": "GramPerMicroliter",
       "PluralName": "GramsPerMicroliter",
-      "BaseUnits": {
-        "M": "Gram",
-        "L": "Centimeter"
-      },
       "FromUnitToBaseFunc": "{x} / 1e-6",
       "FromBaseToUnitFunc": "{x} * 1e-6",
       "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Centi", "Deci" ],
@@ -239,7 +235,7 @@
         }
       ]
     },
-	{
+    {
       "SingularName": "OuncePerUSGallon",
       "PluralName": "OuncesPerUSGallon",
       "FromUnitToBaseFunc": " {x} / 0.1335264711843",
@@ -251,7 +247,7 @@
         }
       ]
     },
-	{
+    {
       "SingularName": "OuncePerImperialGallon",
       "PluralName": "OuncesPerImperialGallon",
       "FromUnitToBaseFunc": " {x} / 0.1603586720609",

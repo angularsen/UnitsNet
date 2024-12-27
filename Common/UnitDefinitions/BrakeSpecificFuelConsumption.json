@@ -4,6 +4,7 @@
   "XmlDocSummary": "Brake specific fuel consumption (BSFC) is a measure of the fuel efficiency of any prime mover that burns fuel and produces rotational, or shaft, power. It is typically used for comparing the efficiency of internal combustion engines with a shaft output.",
   "BaseDimensions": {
     "L": -2,
+    "M": 0,
     "T": 2
   },
   "Units": [
@@ -22,6 +23,10 @@
     {
       "SingularName": "KilogramPerJoule",
       "PluralName": "KilogramsPerJoule",
+      "BaseUnits": {
+        "L": "Meter",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Localization": [

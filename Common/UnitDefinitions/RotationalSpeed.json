@@ -9,6 +9,9 @@
     {
       "SingularName": "RadianPerSecond",
       "PluralName": "RadiansPerSecond",
+      "BaseUnits": {
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci" ],

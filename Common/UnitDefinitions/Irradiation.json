@@ -4,6 +4,7 @@
   "XmlDocSummary": "Irradiation is the process by which an object is exposed to radiation. The exposure can originate from various sources, including natural sources.",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Irradiation",
   "BaseDimensions": {
+    "L": 0,
     "M": 1,
     "T": -2
   },
@@ -11,6 +12,10 @@
     {
       "SingularName": "JoulePerSquareMeter",
       "PluralName": "JoulesPerSquareMeter",
+      "BaseUnits": {
+        "M": "Kilogram",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Kilo" ],

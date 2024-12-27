@@ -11,6 +11,11 @@
     {
       "SingularName": "VoltampereHour",
       "PluralName": "VoltampereHours",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Kilo", "Mega" ],

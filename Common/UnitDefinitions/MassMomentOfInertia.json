@@ -10,6 +10,10 @@
     {
       "SingularName": "GramSquareMeter",
       "PluralName": "GramSquareMeters",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Gram"
+      },
       "FromUnitToBaseFunc": "{x} / 1e3",
       "FromBaseToUnitFunc": "{x} * 1e3",
       "Prefixes": [ "Milli", "Kilo" ],
@@ -23,6 +27,10 @@
     {
       "SingularName": "GramSquareDecimeter",
       "PluralName": "GramSquareDecimeters",
+      "BaseUnits": {
+        "L": "Decimeter",
+        "M": "Gram"
+      },
       "FromUnitToBaseFunc": "{x} / 1e5",
       "FromBaseToUnitFunc": "{x} * 1e5",
       "Prefixes": [ "Milli", "Kilo" ],
@@ -36,6 +44,10 @@
     {
       "SingularName": "GramSquareCentimeter",
       "PluralName": "GramSquareCentimeters",
+      "BaseUnits": {
+        "L": "Centimeter",
+        "M": "Gram"
+      },
       "FromUnitToBaseFunc": "{x} / 1e7",
       "FromBaseToUnitFunc": "{x} * 1e7",
       "Prefixes": [ "Milli", "Kilo" ],
@@ -49,6 +61,10 @@
     {
       "SingularName": "GramSquareMillimeter",
       "PluralName": "GramSquareMillimeters",
+      "BaseUnits": {
+        "L": "Millimeter",
+        "M": "Gram"
+      },
       "FromUnitToBaseFunc": "{x} / 1e9",
       "FromBaseToUnitFunc": "{x} * 1e9",
       "Prefixes": [ "Milli", "Kilo" ],
@@ -62,6 +78,10 @@
     {
       "SingularName": "TonneSquareMeter",
       "PluralName": "TonneSquareMeters",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Tonne"
+      },
       "FromUnitToBaseFunc": "{x} / 1e-3",
       "FromBaseToUnitFunc": "{x} * 1e-3",
       "Prefixes": [ "Kilo", "Mega" ],
@@ -75,6 +95,10 @@
     {
       "SingularName": "TonneSquareDecimeter",
       "PluralName": "TonneSquareDecimeters",
+      "BaseUnits": {
+        "L": "Decimeter",
+        "M": "Tonne"
+      },
       "FromUnitToBaseFunc": "{x} / 1e-1",
       "FromBaseToUnitFunc": "{x} * 1e-1",
       "Prefixes": [ "Kilo", "Mega" ],
@@ -88,6 +112,10 @@
     {
       "SingularName": "TonneSquareCentimeter",
       "PluralName": "TonneSquareCentimeters",
+      "BaseUnits": {
+        "L": "Centimeter",
+        "M": "Tonne"
+      },
       "FromUnitToBaseFunc": "{x} / 1e1",
       "FromBaseToUnitFunc": "{x} * 1e1",
       "Prefixes": [ "Kilo", "Mega" ],
@@ -101,6 +129,10 @@
     {
       "SingularName": "TonneSquareMilimeter",
       "PluralName": "TonneSquareMilimeters",
+      "BaseUnits": {
+        "L": "Millimeter",
+        "M": "Tonne"
+      },
       "FromUnitToBaseFunc": "{x} / 1e3",
       "FromBaseToUnitFunc": "{x} * 1e3",
       "Prefixes": [ "Kilo", "Mega" ],
@@ -114,6 +146,10 @@
     {
       "SingularName": "PoundSquareFoot",
       "PluralName": "PoundSquareFeet",
+      "BaseUnits": {
+        "L": "Foot",
+        "M": "Pound"
+      },
       "FromUnitToBaseFunc": "{x} * 4.21401101e-2",
       "FromBaseToUnitFunc": "{x} / 4.21401101e-2",
       "Localization": [
@@ -126,6 +162,10 @@
     {
       "SingularName": "PoundSquareInch",
       "PluralName": "PoundSquareInches",
+      "BaseUnits": {
+        "L": "Inch",
+        "M": "Pound"
+      },
       "FromUnitToBaseFunc": "{x} * 2.9263965e-4",
       "FromBaseToUnitFunc": "{x} / 2.9263965e-4",
       "Localization": [
@@ -138,6 +178,10 @@
     {
       "SingularName": "SlugSquareFoot",
       "PluralName": "SlugSquareFeet",
+      "BaseUnits": {
+        "L": "Foot",
+        "M": "Slug"
+      },
       "FromUnitToBaseFunc": "{x} * 1.3558179619",
       "FromBaseToUnitFunc": "{x} / 1.3558179619",
       "Localization": [
@@ -150,6 +194,10 @@
     {
       "SingularName": "SlugSquareInch",
       "PluralName": "SlugSquareInches",
+      "BaseUnits": {
+        "L": "Inch",
+        "M": "Slug"
+      },
       "FromUnitToBaseFunc": "{x} * 9.41540242e-3",
       "FromBaseToUnitFunc": "{x} / 9.41540242e-3",
       "Localization": [

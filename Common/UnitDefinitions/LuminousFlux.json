@@ -10,6 +10,9 @@
     {
       "SingularName": "Lumen",
       "PluralName": "Lumens",
+      "BaseUnits": {
+        "J": "Candela"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Localization": [

@@ -2,10 +2,22 @@
   "Name": "ElectricPotentialAc",
   "BaseUnit": "VoltAc",
   "XmlDocSummary": "The Electric Potential of a system known to use Alternating Current.",
+  "BaseDimensions": {
+    "L": 2,
+    "M": 1,
+    "T": -3,
+    "I": -1
+  },
   "Units": [
     {
       "SingularName": "VoltAc",
       "PluralName": "VoltsAc",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second",
+        "I": "Ampere"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Micro", "Milli", "Kilo", "Mega" ],

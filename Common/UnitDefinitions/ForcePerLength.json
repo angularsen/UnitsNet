@@ -3,6 +3,7 @@
   "BaseUnit": "NewtonPerMeter",
   "XmlDocSummary": "The magnitude of force per unit length.",
   "BaseDimensions": {
+    "L": 0,
     "M": 1,
     "T": -2
   },
@@ -10,6 +11,10 @@
     {
       "SingularName": "NewtonPerMeter",
       "PluralName": "NewtonsPerMeter",
+      "BaseUnits": {
+        "M": "Kilogram",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Kilo", "Mega" ],
@@ -190,7 +195,7 @@
         }
       ]
     },
-	    {
+    {
       "SingularName": "KilopoundForcePerInch",
       "PluralName": "KilopoundsForcePerInch",
       "FromUnitToBaseFunc": "{x} * 1.75126835e5",

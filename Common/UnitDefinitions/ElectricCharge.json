@@ -11,6 +11,10 @@
     {
       "SingularName": "Coulomb",
       "PluralName": "Coulombs",
+      "BaseUnits": {
+        "I": "Ampere",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Kilo", "Mega" ],
@@ -24,8 +28,12 @@
     {
       "SingularName": "AmpereHour",
       "PluralName": "AmpereHours",
-      "FromUnitToBaseFunc": "{x} / 2.77777777777e-4",
-      "FromBaseToUnitFunc": "{x} * 2.77777777777e-4",
+      "BaseUnits": {
+        "I": "Ampere",
+        "T":  "Hour"
+      },
+      "FromUnitToBaseFunc": "{x} * 3600",
+      "FromBaseToUnitFunc": "{x} / 3600",
       "Prefixes": [ "Milli", "Kilo", "Mega" ],
       "Localization": [
         {

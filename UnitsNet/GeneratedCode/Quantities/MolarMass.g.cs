@@ -81,16 +81,16 @@ namespace UnitsNet
                     new UnitInfo<MolarMassUnit>(MolarMassUnit.CentigramPerMole, "CentigramsPerMole", BaseUnits.Undefined, "MolarMass"),
                     new UnitInfo<MolarMassUnit>(MolarMassUnit.DecagramPerMole, "DecagramsPerMole", BaseUnits.Undefined, "MolarMass"),
                     new UnitInfo<MolarMassUnit>(MolarMassUnit.DecigramPerMole, "DecigramsPerMole", BaseUnits.Undefined, "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.GramPerMole, "GramsPerMole", BaseUnits.Undefined, "MolarMass"),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.GramPerMole, "GramsPerMole", new BaseUnits(mass: MassUnit.Gram, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
                     new UnitInfo<MolarMassUnit>(MolarMassUnit.HectogramPerMole, "HectogramsPerMole", BaseUnits.Undefined, "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.KilogramPerKilomole, "KilogramsPerKilomole", BaseUnits.Undefined, "MolarMass"),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.KilogramPerKilomole, "KilogramsPerKilomole", new BaseUnits(mass: MassUnit.Kilogram, amount: AmountOfSubstanceUnit.Kilomole), "MolarMass"),
                     new UnitInfo<MolarMassUnit>(MolarMassUnit.KilogramPerMole, "KilogramsPerMole", BaseUnits.Undefined, "MolarMass"),
                     new UnitInfo<MolarMassUnit>(MolarMassUnit.KilopoundPerMole, "KilopoundsPerMole", BaseUnits.Undefined, "MolarMass"),
                     new UnitInfo<MolarMassUnit>(MolarMassUnit.MegapoundPerMole, "MegapoundsPerMole", BaseUnits.Undefined, "MolarMass"),
                     new UnitInfo<MolarMassUnit>(MolarMassUnit.MicrogramPerMole, "MicrogramsPerMole", BaseUnits.Undefined, "MolarMass"),
                     new UnitInfo<MolarMassUnit>(MolarMassUnit.MilligramPerMole, "MilligramsPerMole", BaseUnits.Undefined, "MolarMass"),
                     new UnitInfo<MolarMassUnit>(MolarMassUnit.NanogramPerMole, "NanogramsPerMole", BaseUnits.Undefined, "MolarMass"),
-                    new UnitInfo<MolarMassUnit>(MolarMassUnit.PoundPerMole, "PoundsPerMole", BaseUnits.Undefined, "MolarMass"),
+                    new UnitInfo<MolarMassUnit>(MolarMassUnit.PoundPerMole, "PoundsPerMole", new BaseUnits(mass: MassUnit.Pound, amount: AmountOfSubstanceUnit.Mole), "MolarMass"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -119,13 +119,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public MolarMass(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -856,25 +851,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is MolarMassUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarMassUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -975,6 +952,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public MolarMass ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not MolarMassUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarMassUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -982,21 +975,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarMassUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public MolarMass ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -1007,6 +985,8 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<MolarMassUnit> IQuantity<MolarMassUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        #endregion
 
         #endregion
 

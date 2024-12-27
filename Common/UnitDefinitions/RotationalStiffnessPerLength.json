@@ -11,6 +11,11 @@
     {
       "SingularName": "NewtonMeterPerRadianPerMeter",
       "PluralName": "NewtonMetersPerRadianPerMeter",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Kilo", "Mega" ],

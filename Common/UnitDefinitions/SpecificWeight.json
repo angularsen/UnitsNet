@@ -38,6 +38,11 @@
     {
       "SingularName": "NewtonPerCubicMeter",
       "PluralName": "NewtonsPerCubicMeter",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Kilo", "Mega" ],

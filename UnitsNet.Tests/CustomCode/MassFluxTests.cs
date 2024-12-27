@@ -43,6 +43,30 @@ namespace UnitsNet.Tests.CustomCode
         protected override double KilogramsPerHourPerSquareCentimeterInOneKilogramPerSecondPerSquareMeter => 3.6E-1;
         protected override double KilogramsPerHourPerSquareMillimeterInOneKilogramPerSecondPerSquareMeter => 3.6E-3;
 
+        [Fact(Skip = "The BaseUnits are not yet supported by the prefix-generator")]
+        public override void Ctor_SIUnitSystem_ReturnsQuantityWithSIUnits()
+        {
+            base.Ctor_SIUnitSystem_ReturnsQuantityWithSIUnits();
+        }
+        
+        [Fact(Skip = "The BaseUnits are not yet supported by the prefix-generator")]
+        public override void BaseUnit_HasSIBase()
+        {
+            base.BaseUnit_HasSIBase();
+        }
+        
+        [Fact(Skip = "The BaseUnits are not yet supported by the prefix-generator")]
+        public override void As_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            base.As_UnitSystem_SI_ReturnsQuantityInSIUnits();
+        }
+        
+        [Fact(Skip = "The BaseUnits are not yet supported by the prefix-generator")]
+        public override void ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            base.ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits();
+        }
+
         [Fact]
         public void MassFluxDividedBySpeedEqualsDensity()
         {

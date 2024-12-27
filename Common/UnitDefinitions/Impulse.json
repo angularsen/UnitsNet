@@ -11,6 +11,11 @@
     {
       "SingularName": "KilogramMeterPerSecond",
       "PluralName": "KilogramMetersPerSecond",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Localization": [
@@ -23,6 +28,11 @@
     {
       "SingularName": "NewtonSecond",
       "PluralName": "NewtonSeconds",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Kilo", "Mega" ],
@@ -36,6 +46,11 @@
     {
       "SingularName": "PoundFootPerSecond",
       "PluralName": "PoundFeetPerSecond",
+      "BaseUnits": {
+        "L": "Foot",
+        "M": "Pound",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x} / 7.230657989877",
       "FromBaseToUnitFunc": "{x} * 7.230657989877",
       "Localization": [
@@ -60,6 +75,11 @@
     {
       "SingularName": "SlugFootPerSecond",
       "PluralName": "SlugFeetPerSecond",
+      "BaseUnits": {
+        "L": "Foot",
+        "M": "Slug",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x} / 0.224735720691",
       "FromBaseToUnitFunc": "{x} * 0.224735720691",
       "Localization": [

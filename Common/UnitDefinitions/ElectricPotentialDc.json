@@ -2,10 +2,22 @@
   "Name": "ElectricPotentialDc",
   "BaseUnit": "VoltDc",
   "XmlDocSummary": "The Electric Potential of a system known to use Direct Current.",
+  "BaseDimensions": {
+    "L": 2,
+    "M": 1,
+    "T": -3,
+    "I": -1
+  },
   "Units": [
     {
       "SingularName": "VoltDc",
       "PluralName": "VoltsDc",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second",
+        "I": "Ampere"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Micro", "Milli", "Kilo", "Mega" ],

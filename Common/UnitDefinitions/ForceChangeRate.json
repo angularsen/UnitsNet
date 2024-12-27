@@ -24,6 +24,11 @@
     {
       "SingularName": "NewtonPerSecond",
       "PluralName": "NewtonsPerSecond",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Kilo" ],

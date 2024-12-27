@@ -76,16 +76,16 @@ namespace UnitsNet
                     new UnitInfo<ImpulseUnit>(ImpulseUnit.CentinewtonSecond, "CentinewtonSeconds", BaseUnits.Undefined, "Impulse"),
                     new UnitInfo<ImpulseUnit>(ImpulseUnit.DecanewtonSecond, "DecanewtonSeconds", BaseUnits.Undefined, "Impulse"),
                     new UnitInfo<ImpulseUnit>(ImpulseUnit.DecinewtonSecond, "DecinewtonSeconds", BaseUnits.Undefined, "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.KilogramMeterPerSecond, "KilogramMetersPerSecond", BaseUnits.Undefined, "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.KilogramMeterPerSecond, "KilogramMetersPerSecond", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Impulse"),
                     new UnitInfo<ImpulseUnit>(ImpulseUnit.KilonewtonSecond, "KilonewtonSeconds", BaseUnits.Undefined, "Impulse"),
                     new UnitInfo<ImpulseUnit>(ImpulseUnit.MeganewtonSecond, "MeganewtonSeconds", BaseUnits.Undefined, "Impulse"),
                     new UnitInfo<ImpulseUnit>(ImpulseUnit.MicronewtonSecond, "MicronewtonSeconds", BaseUnits.Undefined, "Impulse"),
                     new UnitInfo<ImpulseUnit>(ImpulseUnit.MillinewtonSecond, "MillinewtonSeconds", BaseUnits.Undefined, "Impulse"),
                     new UnitInfo<ImpulseUnit>(ImpulseUnit.NanonewtonSecond, "NanonewtonSeconds", BaseUnits.Undefined, "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.NewtonSecond, "NewtonSeconds", BaseUnits.Undefined, "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.PoundFootPerSecond, "PoundFeetPerSecond", BaseUnits.Undefined, "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.NewtonSecond, "NewtonSeconds", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second), "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.PoundFootPerSecond, "PoundFeetPerSecond", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound, time: DurationUnit.Second), "Impulse"),
                     new UnitInfo<ImpulseUnit>(ImpulseUnit.PoundForceSecond, "PoundForceSeconds", BaseUnits.Undefined, "Impulse"),
-                    new UnitInfo<ImpulseUnit>(ImpulseUnit.SlugFootPerSecond, "SlugFeetPerSecond", BaseUnits.Undefined, "Impulse"),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.SlugFootPerSecond, "SlugFeetPerSecond", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Slug, time: DurationUnit.Second), "Impulse"),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -114,13 +114,8 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public Impulse(double value, UnitSystem unitSystem)
         {
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-
             _value = value;
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+            _unit = Info.GetDefaultUnit(unitSystem);
         }
 
         #region Static Properties
@@ -829,25 +824,7 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
-        }
-
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {
-            if (!(unit is ImpulseUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ImpulseUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
+            return As(Info.GetDefaultUnit(unitSystem));
         }
 
         /// <summary>
@@ -948,6 +925,22 @@ namespace UnitsNet
             return true;
         }
 
+        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
+        public Impulse ToUnit(UnitSystem unitSystem)
+        {
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }
+
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {
+            if (unit is not ImpulseUnit typedUnit)
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ImpulseUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
@@ -955,21 +948,6 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ImpulseUnit)} is supported.", nameof(unit));
 
             return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public Impulse ToUnit(UnitSystem unitSystem)
-        {
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
         }
 
         /// <inheritdoc />
@@ -980,6 +958,8 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ImpulseUnit> IQuantity<ImpulseUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        #endregion
 
         #endregion
 

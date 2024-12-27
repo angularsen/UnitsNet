@@ -23,6 +23,11 @@
     {
       "SingularName": "SquareMeterKelvinPerWatt",
       "PluralName": "SquareMeterKelvinsPerWatt",
+      "BaseUnits": {
+        "M": "Kilogram",
+        "T": "Second",
+        "Θ": "Kelvin"
+      },
       "FromUnitToBaseFunc": "{x} * 1000",
       "FromBaseToUnitFunc": "{x} / 1000",
       "Localization": [
@@ -35,6 +40,11 @@
     {
       "SingularName": "SquareMeterDegreeCelsiusPerWatt",
       "PluralName": "SquareMeterDegreesCelsiusPerWatt",
+      "BaseUnits": {
+        "M": "Kilogram",
+        "T": "Second",
+        "Θ": "DegreeCelsius"
+      },
       "FromUnitToBaseFunc": "{x} * 1000.0",
       "FromBaseToUnitFunc": "{x} / 1000.0",
       "Localization": [

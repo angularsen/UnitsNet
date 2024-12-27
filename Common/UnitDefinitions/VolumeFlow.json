@@ -10,6 +10,10 @@
     {
       "SingularName": "CubicMeterPerSecond",
       "PluralName": "CubicMetersPerSecond",
+      "BaseUnits": {
+        "L": "Meter",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Localization": [
@@ -26,6 +30,10 @@
     {
       "SingularName": "CubicMeterPerMinute",
       "PluralName": "CubicMetersPerMinute",
+      "BaseUnits": {
+        "L": "Meter",
+        "T": "Minute"
+      },
       "FromUnitToBaseFunc": "{x} / 60",
       "FromBaseToUnitFunc": "{x} * 60",
       "Localization": [
@@ -42,6 +50,10 @@
     {
       "SingularName": "CubicMeterPerHour",
       "PluralName": "CubicMetersPerHour",
+      "BaseUnits": {
+        "L": "Meter",
+        "T": "Hour"
+      },
       "FromUnitToBaseFunc": "{x} / 3600",
       "FromBaseToUnitFunc": "{x} * 3600",
       "Localization": [
@@ -58,6 +70,10 @@
     {
       "SingularName": "CubicMeterPerDay",
       "PluralName": "CubicMetersPerDay",
+      "BaseUnits": {
+        "L": "Meter",
+        "T": "Day"
+      },
       "FromUnitToBaseFunc": "{x} / 86400",
       "FromBaseToUnitFunc": "{x} * 86400",
       "Localization": [
@@ -70,6 +86,10 @@
     {
       "SingularName": "CubicFootPerSecond",
       "PluralName": "CubicFeetPerSecond",
+      "BaseUnits": {
+        "L": "Foot",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x} / 35.314666721",
       "FromBaseToUnitFunc": "{x} * 35.314666721",
       "Localization": [
@@ -82,6 +102,10 @@
     {
       "SingularName": "CubicFootPerMinute",
       "PluralName": "CubicFeetPerMinute",
+      "BaseUnits": {
+        "L": "Foot",
+        "T": "Minute"
+      },
       "FromUnitToBaseFunc": "{x} / 2118.88000326",
       "FromBaseToUnitFunc": "{x} * 2118.88000326",
       "Localization": [
@@ -94,6 +118,10 @@
     {
       "SingularName": "CubicFootPerHour",
       "PluralName": "CubicFeetPerHour",
+      "BaseUnits": {
+        "L": "Foot",
+        "T": "Hour"
+      },
       "FromUnitToBaseFunc": "{x} * 7.8657907199999087346816086183876e-6",
       "FromBaseToUnitFunc": "{x} / 7.8657907199999087346816086183876e-6",
       "Localization": [
@@ -118,6 +146,10 @@
     {
       "SingularName": "CubicYardPerMinute",
       "PluralName": "CubicYardsPerMinute",
+      "BaseUnits": {
+        "L": "Yard",
+        "T": "Minute"
+      },
       "FromUnitToBaseFunc": "{x} * 0.0127425809664",
       "FromBaseToUnitFunc": "{x} / 0.0127425809664",
       "Localization": [
@@ -130,6 +162,10 @@
     {
       "SingularName": "CubicYardPerHour",
       "PluralName": "CubicYardsPerHour",
+      "BaseUnits": {
+        "L": "Yard",
+        "T": "Hour"
+      },
       "FromUnitToBaseFunc": "{x} * 2.1237634944E-4",
       "FromBaseToUnitFunc": "{x} / 2.1237634944E-4",
       "Localization": [
@@ -142,6 +178,10 @@
     {
       "SingularName": "CubicYardPerDay",
       "PluralName": "CubicYardsPerDay",
+      "BaseUnits": {
+        "L": "Yard",
+        "T": "Day"
+      },
       "FromUnitToBaseFunc": "{x} / 113007",
       "FromBaseToUnitFunc": "{x} * 113007",
       "Localization": [
@@ -341,6 +381,10 @@
     {
       "SingularName": "CubicDecimeterPerMinute",
       "PluralName": "CubicDecimetersPerMinute",
+      "BaseUnits": {
+        "L": "Decimeter",
+        "T": "Minute"
+      },
       "FromUnitToBaseFunc": "{x} / 60000.00000",
       "FromBaseToUnitFunc": "{x} * 60000.00000",
       "Localization": [
@@ -405,6 +449,10 @@
     {
       "SingularName": "CubicMillimeterPerSecond",
       "PluralName": "CubicMillimetersPerSecond",
+      "BaseUnits": {
+        "L": "Millimeter",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x} * 1e-9",
       "FromBaseToUnitFunc": "{x} / 1e-9",
       "Localization": [
@@ -469,6 +517,10 @@
     {
       "SingularName": "CubicCentimeterPerMinute",
       "PluralName": "CubicCentimetersPerMinute",
+      "BaseUnits": {
+        "L": "Centimeter",
+        "T": "Minute"
+      },
       "FromUnitToBaseFunc": "{x} * 1.6666666666667e-8",
       "FromBaseToUnitFunc": "{x} / 1.6666666666667e-8",
       "Localization": [

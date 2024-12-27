@@ -214,7 +214,10 @@ namespace UnitsNet
             Writer.WL($@"
             _unit = unit;
         }}
-
+");
+            if (!_isDimensionless)
+            {
+                Writer.WL($@"
         /// <summary>
         /// Creates an instance of the quantity with the given numeric value in units compatible with the given <see cref=""UnitSystem""/>.
         /// If multiple compatible units were found, the first match is used.
@@ -225,18 +228,11 @@ namespace UnitsNet
         /// <exception cref=""ArgumentException"">No unit was found for the given <see cref=""UnitSystem""/>.</exception>
         public {_quantity.Name}(double value, UnitSystem unitSystem)
         {{
-            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-");
-
-            Writer.WL(@"
-            _value = value;");
-            Writer.WL($@"
-            _unit = firstUnitInfo?.Value ?? throw new ArgumentException(""No units were found for the given UnitSystem."", nameof(unitSystem));
+            _value = value;
+            _unit = Info.GetDefaultUnit(unitSystem);
         }}
 ");
+            }
         }
 
         private void GenerateStaticProperties()
@@ -1000,7 +996,8 @@ namespace UnitsNet
         }}
 ");
 
-            Writer.WL($@"
+            Writer.WL(_isDimensionless
+                ? $@"
 
         /// <inheritdoc cref=""IQuantity.As(UnitSystem)""/>
         public double As(UnitSystem unitSystem)
@@ -1008,26 +1005,19 @@ namespace UnitsNet
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
+            return As(BaseUnit);
+        }}
+"
+                : $@"
 
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException(""No units were found for the given UnitSystem."", nameof(unitSystem));
-
-            return As(firstUnitInfo.Value);
+        /// <inheritdoc cref=""IQuantity.As(UnitSystem)""/>
+        public double As(UnitSystem unitSystem)
+        {{
+            return As(Info.GetDefaultUnit(unitSystem));
         }}
 ");
 
             Writer.WL($@"
-        /// <inheritdoc />
-        double IQuantity.As(Enum unit)
-        {{
-            if (!(unit is {_unitEnumName} typedUnit))
-                throw new ArgumentException($""The given unit is of type {{unit.GetType()}}. Only {{typeof({_unitEnumName})}} is supported."", nameof(unit));
-
-            return As(typedUnit);
-        }}
-
         /// <summary>
         ///     Converts this {_quantity.Name} to another {_quantity.Name} with the unit representation <paramref name=""unit"" />.
         /// </summary>
@@ -1123,6 +1113,36 @@ namespace UnitsNet
             converted = convertedOrNull.Value;
             return true;
         }}
+");
+            Writer.WL(_isDimensionless
+                ? $@"
+        /// <inheritdoc cref=""IQuantity.ToUnit(UnitSystem)""/>
+        public {_quantity.Name} ToUnit(UnitSystem unitSystem)
+        {{
+            if (unitSystem is null)
+                throw new ArgumentNullException(nameof(unitSystem));
+
+            return ToUnit(BaseUnit);
+        }}
+"
+                : $@"
+        /// <inheritdoc cref=""IQuantity.ToUnit(UnitSystem)""/>
+        public {_quantity.Name} ToUnit(UnitSystem unitSystem)
+        {{
+            return ToUnit(Info.GetDefaultUnit(unitSystem));
+        }}
+");
+
+            Writer.WL($@"
+        #region Explicit implementations
+
+        double IQuantity.As(Enum unit)
+        {{
+            if (unit is not {_unitEnumName} typedUnit)
+                throw new ArgumentException($""The given unit is of type {{unit.GetType()}}. Only {{typeof({_unitEnumName})}} is supported."", nameof(unit));
+
+            return As(typedUnit);
+        }}
 
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
@@ -1133,21 +1153,6 @@ namespace UnitsNet
             return ToUnit(typedUnit, DefaultConversionFunctions);
         }}
 
-        /// <inheritdoc cref=""IQuantity.ToUnit(UnitSystem)""/>
-        public {_quantity.Name} ToUnit(UnitSystem unitSystem)
-        {{
-            if (unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if (firstUnitInfo == null)
-                throw new ArgumentException(""No units were found for the given UnitSystem."", nameof(unitSystem));
-
-            return ToUnit(firstUnitInfo.Value);
-        }}
-
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
@@ -1156,6 +1161,8 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<{_unitEnumName}> IQuantity<{_unitEnumName}>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+
+        #endregion
 
         #endregion
 ");

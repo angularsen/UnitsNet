@@ -12,6 +12,12 @@
     {
       "SingularName": "JoulePerMole",
       "PluralName": "JoulesPerMole",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second",
+        "N": "Mole"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Kilo", "Mega" ],

@@ -3,6 +3,7 @@
   "BaseUnit": "WattPerSquareMeterKelvin",
   "XmlDocSummary": "The heat transfer coefficient or film coefficient, or film effectiveness, in thermodynamics and in mechanics is the proportionality constant between the heat flux and the thermodynamic driving force for the flow of heat (i.e., the temperature difference, ΔT)",
   "BaseDimensions": {
+    "L": 0,
     "M": 1,
     "T": -3,
     "Θ": -1
@@ -11,6 +12,11 @@
     {
       "SingularName": "WattPerSquareMeterKelvin",
       "PluralName": "WattsPerSquareMeterKelvin",
+      "BaseUnits": {
+        "M": "Kilogram",
+        "T": "Second",
+        "Θ": "Kelvin"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Localization": [
@@ -23,6 +29,11 @@
     {
       "SingularName": "WattPerSquareMeterCelsius",
       "PluralName": "WattsPerSquareMeterCelsius",
+      "BaseUnits": {
+        "M": "Kilogram",
+        "T": "Second",
+        "Θ": "DegreeCelsius"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Localization": [

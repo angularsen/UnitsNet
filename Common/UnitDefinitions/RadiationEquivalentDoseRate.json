@@ -28,6 +28,10 @@
     {
       "SingularName": "SievertPerSecond",
       "PluralName": "SievertsPerSecond",
+      "BaseUnits": {
+        "L": "Meter",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Nano", "Micro", "Milli" ],
