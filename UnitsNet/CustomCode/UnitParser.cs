@@ -23,11 +23,11 @@ namespace UnitsNet
         /// <summary>
         ///     Create a parser using the given unit abbreviations cache.
         /// </summary>
-        /// <param name="unitAbbreviationsCache"></param>
-        // TODO Change this to not fallback to built-in units abbreviations when given null, in v6: https://github.com/angularsen/UnitsNet/issues/1200
-        public UnitParser(UnitAbbreviationsCache? unitAbbreviationsCache)
+        /// <param name="unitAbbreviationsCache">The unit abbreviations to parse with.</param>
+        /// <exception cref="ArgumentNullException">No unit abbreviations cache was given.</exception>
+        public UnitParser(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            _unitAbbreviationsCache = unitAbbreviationsCache ?? UnitsNetSetup.Default.UnitAbbreviations;
+            _unitAbbreviationsCache = unitAbbreviationsCache ?? throw new ArgumentNullException(nameof(unitAbbreviationsCache));
         }
 
         /// <summary>
