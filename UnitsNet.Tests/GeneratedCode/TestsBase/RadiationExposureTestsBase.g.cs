@@ -679,7 +679,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(RadiationExposureUnit)).Cast<RadiationExposureUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 

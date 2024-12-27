@@ -2589,7 +2589,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(LengthUnit)).Cast<LengthUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 

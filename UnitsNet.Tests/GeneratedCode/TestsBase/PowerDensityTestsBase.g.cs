@@ -1783,7 +1783,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(PowerDensityUnit)).Cast<PowerDensityUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 

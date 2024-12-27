@@ -9,7 +9,7 @@ using Xunit;
 
 namespace UnitsNet.Tests
 {
-    // Disable parallelization due to manipulating global state, like UnitAbbreviationsCache.Default.MapUnitToDefaultAbbreviation().
+    // Disable parallelization due to manipulating global state, like UnitsNetSetup.Default.UnitAbbreviations.MapUnitToDefaultAbbreviation().
     [Collection(nameof(DisableParallelizationCollectionFixture))]
     public class UnitAbbreviationsCacheTests
     {
@@ -360,7 +360,7 @@ namespace UnitsNet.Tests
         {
             // Use a distinct culture here so that we don't mess up other tests that may rely on the default cache.
             var newZealandCulture = GetCulture("en-NZ");
-            UnitAbbreviationsCache.Default.MapUnitToDefaultAbbreviation(AreaUnit.SquareMeter, newZealandCulture, "m^2");
+            UnitsNetSetup.Default.UnitAbbreviations.MapUnitToDefaultAbbreviation(AreaUnit.SquareMeter, newZealandCulture, "m^2");
 
             Assert.Equal("1 m^2", Area.FromSquareMeters(1).ToString(newZealandCulture));
         }
@@ -400,8 +400,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void MapAndLookup_WithSpecificEnumType()
         {
-            UnitAbbreviationsCache.Default.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, "sm");
-            Assert.Equal("sm", UnitAbbreviationsCache.Default.GetDefaultAbbreviation(HowMuchUnit.Some));
+            UnitsNetSetup.Default.UnitAbbreviations.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, "sm");
+            Assert.Equal("sm", UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(HowMuchUnit.Some));
         }
 
         /// <inheritdoc cref="MapAndLookup_WithSpecificEnumType"/>
@@ -409,16 +409,16 @@ namespace UnitsNet.Tests
         public void MapAndLookup_WithEnumType()
         {
             Enum valueAsEnumType = HowMuchUnit.Some;
-            UnitAbbreviationsCache.Default.MapUnitToDefaultAbbreviation(valueAsEnumType, "sm");
-            Assert.Equal("sm", UnitAbbreviationsCache.Default.GetDefaultAbbreviation(valueAsEnumType));
+            UnitsNetSetup.Default.UnitAbbreviations.MapUnitToDefaultAbbreviation(valueAsEnumType, "sm");
+            Assert.Equal("sm", UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(valueAsEnumType));
         }
 
         /// <inheritdoc cref="MapAndLookup_WithSpecificEnumType"/>
         [Fact]
         public void MapAndLookup_MapWithSpecificEnumType_LookupWithEnumType()
         {
-            UnitAbbreviationsCache.Default.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, "sm");
-            Assert.Equal("sm", UnitAbbreviationsCache.Default.GetDefaultAbbreviation((Enum)HowMuchUnit.Some));
+            UnitsNetSetup.Default.UnitAbbreviations.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, "sm");
+            Assert.Equal("sm", UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation((Enum)HowMuchUnit.Some));
         }
 
         /// <summary>

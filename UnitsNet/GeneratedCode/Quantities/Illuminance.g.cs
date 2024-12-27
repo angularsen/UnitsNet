@@ -247,7 +247,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(IlluminanceUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -353,7 +353,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static Illuminance Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Illuminance, IlluminanceUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<Illuminance, IlluminanceUnit>(
                 str,
                 provider,
                 From);
@@ -384,7 +384,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out Illuminance result)
         {
-            return QuantityParser.Default.TryParse<Illuminance, IlluminanceUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<Illuminance, IlluminanceUnit>(
                 str,
                 provider,
                 From,
@@ -417,7 +417,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static IlluminanceUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<IlluminanceUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<IlluminanceUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.IlluminanceUnit)"/>
@@ -438,7 +438,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out IlluminanceUnit unit)
         {
-            return UnitParser.Default.TryParse<IlluminanceUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<IlluminanceUnit>(str, provider, out unit);
         }
 
         #endregion

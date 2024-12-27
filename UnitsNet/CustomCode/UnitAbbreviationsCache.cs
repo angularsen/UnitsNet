@@ -15,7 +15,8 @@ namespace UnitsNet
 {
     /// <summary>
     ///     Cache of the mapping between unit enum values and unit abbreviation strings for one or more cultures.
-    ///     A static instance <see cref="Default"/> is used internally for ToString() and Parse() of quantities and units.
+    ///     A static instance <see cref="UnitsNetSetup"/>.<see cref="UnitsNetSetup.Default"/>.<see cref="UnitsNetSetup.UnitAbbreviations"/> is used internally
+    ///     for ToString() and Parse() of quantities and units.
     /// </summary>
     public sealed class UnitAbbreviationsCache
     {

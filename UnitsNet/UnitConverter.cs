@@ -430,10 +430,10 @@ namespace UnitsNet
 
             var cultureInfo = CultureHelper.GetCultureOrInvariant(culture);
 
-            var fromUnit = UnitParser.Default.Parse(fromUnitAbbrev, unitType, cultureInfo); // ex: ("m", LengthUnit) => LengthUnit.Meter
+            var fromUnit = UnitsNetSetup.Default.UnitParser.Parse(fromUnitAbbrev, unitType, cultureInfo); // ex: ("m", LengthUnit) => LengthUnit.Meter
             var fromQuantity = Quantity.From(fromValue, fromUnit);
 
-            var toUnit = UnitParser.Default.Parse(toUnitAbbrev, unitType, cultureInfo); // ex:("cm", LengthUnit) => LengthUnit.Centimeter
+            var toUnit = UnitsNetSetup.Default.UnitParser.Parse(toUnitAbbrev, unitType, cultureInfo); // ex:("cm", LengthUnit) => LengthUnit.Centimeter
             return fromQuantity.As(toUnit);
         }
 
@@ -489,10 +489,10 @@ namespace UnitsNet
 
             var cultureInfo = CultureHelper.GetCultureOrInvariant(culture);
 
-            if (!UnitParser.Default.TryParse(fromUnitAbbrev, unitType, cultureInfo, out Enum? fromUnit)) // ex: ("m", LengthUnit) => LengthUnit.Meter
+            if (!UnitsNetSetup.Default.UnitParser.TryParse(fromUnitAbbrev, unitType, cultureInfo, out Enum? fromUnit)) // ex: ("m", LengthUnit) => LengthUnit.Meter
                 return false;
 
-            if (!UnitParser.Default.TryParse(toUnitAbbrev, unitType, cultureInfo, out Enum? toUnit)) // ex:("cm", LengthUnit) => LengthUnit.Centimeter
+            if (!UnitsNetSetup.Default.UnitParser.TryParse(toUnitAbbrev, unitType, cultureInfo, out Enum? toUnit)) // ex:("cm", LengthUnit) => LengthUnit.Centimeter
                 return false;
 
             var fromQuantity = Quantity.From(fromValue, fromUnit);

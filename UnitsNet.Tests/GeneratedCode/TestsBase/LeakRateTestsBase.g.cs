@@ -519,7 +519,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(LeakRateUnit)).Cast<LeakRateUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 

@@ -143,7 +143,7 @@ namespace UnitsNet
                 var sb = new StringBuilder();
 
                 string GetDefaultAbbreviation<TUnitType>(TUnitType? unitOrNull) where TUnitType : struct, Enum => unitOrNull is { } unit
-                    ? UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit)
+                    ? UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit)
                     : "N/A";
 
                 sb.AppendFormat("[Length]: {0}, ", GetDefaultAbbreviation(Length));

@@ -1748,7 +1748,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(RadioactivityUnit)).Cast<RadioactivityUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 

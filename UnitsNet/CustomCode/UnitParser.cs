@@ -34,7 +34,7 @@ namespace UnitsNet
         // TODO Change this to not fallback to built-in units abbreviations when given null, in v6: https://github.com/angularsen/UnitsNet/issues/1200
         public UnitParser(UnitAbbreviationsCache? unitAbbreviationsCache)
         {
-            _unitAbbreviationsCache = unitAbbreviationsCache ?? UnitAbbreviationsCache.Default;
+            _unitAbbreviationsCache = unitAbbreviationsCache ?? UnitsNetSetup.Default.UnitAbbreviations;
         }
 
         /// <summary>

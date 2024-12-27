@@ -454,7 +454,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(ScalarUnit)).Cast<ScalarUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 

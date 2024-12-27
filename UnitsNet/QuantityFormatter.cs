@@ -25,7 +25,7 @@ public class QuantityFormatter
     ///                 Any of the
     ///                 <see href="https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings#standard-format-specifiers">
     ///                     Standard format specifiers
-    ///                 </see>.                 
+    ///                 </see>.
     ///             </description>
     ///         </item>
     ///         <item>
@@ -67,7 +67,7 @@ public class QuantityFormatter
     {
         return Format(quantity, format, CultureInfo.CurrentCulture);
     }
-        
+
     /// <summary>
     ///     Formats a quantity using the given format string and format provider.
     /// </summary>
@@ -86,7 +86,7 @@ public class QuantityFormatter
     ///                 Any of the
     ///                 <see href="https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings#standard-format-specifiers">
     ///                     Standard format specifiers
-    ///                 </see>.                 
+    ///                 </see>.
     ///             </description>
     ///         </item>
     ///         <item>
@@ -202,7 +202,7 @@ public class QuantityFormatter
 #endif
             }
         }
-        
+
         // Anything else is a standard numeric format string with default unit abbreviation postfix.
         return FormatWithValueAndAbbreviation(quantity, format, formatProvider);
     }

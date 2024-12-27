@@ -962,7 +962,7 @@ namespace UnitsNet.Tests
             var units = Enum.GetValues(typeof(JerkUnit)).Cast<JerkUnit>();
             foreach (var unit in units)
             {
-                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
             }
         }
 
