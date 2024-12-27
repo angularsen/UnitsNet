@@ -9,6 +9,7 @@ using Xunit;
 
 namespace UnitsNet.Tests
 {
+    // Disable parallelization due to manipulating global state, like UnitAbbreviationsCache.Default.MapUnitToDefaultAbbreviation().
     [Collection(nameof(DisableParallelizationCollectionFixture))]
     public class UnitAbbreviationsCacheTests
     {
@@ -20,7 +21,7 @@ namespace UnitsNet.Tests
         private static readonly IFormatProvider NorwegianCulture = CultureInfo.GetCultureInfo(NorwegianCultureName);
         private static readonly IFormatProvider RussianCulture = CultureInfo.GetCultureInfo(RussianCultureName);
 
-        // The default, parameterless ToString() method uses 2 sigifnificant digits after the radix point.
+        // The default, parameterless ToString() method uses 2 significant digits after the radix point.
         [Theory]
         [InlineData(0, "0 m")]
         [InlineData(0.1, "0.1 m")]
