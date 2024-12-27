@@ -1,16 +1,18 @@
-﻿using Xunit;
+﻿using System.Globalization;
+using Xunit;
 
-namespace UnitsNet.Tests
-{
-    [CollectionDefinition(nameof(UnitAbbreviationsCacheFixture), DisableParallelization = true)]
-    public class UnitAbbreviationsCacheFixture : ICollectionFixture<object>
-    {
-        // This class has no code, and is never created. Its purpose is simply
-        // to be the place to apply [CollectionDefinition] and all the
-        // ICollectionFixture<> interfaces.
+namespace UnitsNet.Tests;
 
-        // Apply this collection fixture to classes:
-        // 1. That rely on manipulating CultureInfo. See https://github.com/angularsen/UnitsNet/issues/436
-        // 2. To avoid accessing static ToString/Parse from multiple tests where UnitAbbreviationsCache.Default is modified
-    }
-}
+/// <summary>
+///     Apply to test classes that manipulate static fields, such as
+///     <see cref="UnitsNetSetup"/>.<see cref="UnitsNetSetup.Default"/>.<see cref="UnitsNetSetup.UnitAbbreviations"/>,
+///     to disable parallelization and avoid flaky tests.
+///     <br /><br />
+///     To apply to test class, add attribute just before class definition: <c>[Collection(nameof(UnitAbbreviationsCacheFixture))]</c>
+/// </summary>
+/// <remarks>
+///     This is not necessary for thread-static fields like <see cref="CultureInfo"/>.<see cref="CultureInfo.CurrentCulture"/>, typically used when testing Parse/ToString() without an explicit culture,
+///     as long as each test method reverts its changes with try-finally or <see cref="CultureScope"/>.
+/// </remarks>
+[CollectionDefinition(nameof(UnitAbbreviationsCacheFixture), DisableParallelization = true)]
+public class UnitAbbreviationsCacheFixture : ICollectionFixture<object>;
