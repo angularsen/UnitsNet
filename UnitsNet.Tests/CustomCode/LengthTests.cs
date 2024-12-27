@@ -11,7 +11,7 @@ namespace UnitsNet.Tests
     // Avoid accessing static prop DefaultToString in parallel from multiple tests:
     // UnitSystemTests.DefaultToStringFormatting()
     // LengthTests.ToStringReturnsCorrectNumberAndUnitWithCentimeterAsDefualtUnit()
-    [Collection(nameof(UnitAbbreviationsCacheFixture))]
+    [Collection(nameof(DisableParallelizationCollectionFixture))]
     public class LengthTests : LengthTestsBase
     {
         protected override bool SupportsSIUnitSystem => true;

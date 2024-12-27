@@ -14,5 +14,5 @@ namespace UnitsNet.Tests;
 ///     This is not necessary for thread-static fields like <see cref="CultureInfo"/>.<see cref="CultureInfo.CurrentCulture"/>, typically used when testing Parse/ToString() without an explicit culture,
 ///     as long as each test method reverts its changes with try-finally or <see cref="CultureScope"/>.
 /// </remarks>
-[CollectionDefinition(nameof(UnitAbbreviationsCacheFixture), DisableParallelization = true)]
-public class UnitAbbreviationsCacheFixture : ICollectionFixture<object>;
+[CollectionDefinition(nameof(DisableParallelizationCollectionFixture), DisableParallelization = true)]
+public class DisableParallelizationCollectionFixture : ICollectionFixture<object>;
