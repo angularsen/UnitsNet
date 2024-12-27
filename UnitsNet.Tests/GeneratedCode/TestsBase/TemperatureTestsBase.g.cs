@@ -707,24 +707,17 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 °C", new Temperature(1, TemperatureUnit.DegreeCelsius).ToString());
-                Assert.Equal("1 °De", new Temperature(1, TemperatureUnit.DegreeDelisle).ToString());
-                Assert.Equal("1 °F", new Temperature(1, TemperatureUnit.DegreeFahrenheit).ToString());
-                Assert.Equal("1 °N", new Temperature(1, TemperatureUnit.DegreeNewton).ToString());
-                Assert.Equal("1 °R", new Temperature(1, TemperatureUnit.DegreeRankine).ToString());
-                Assert.Equal("1 °Ré", new Temperature(1, TemperatureUnit.DegreeReaumur).ToString());
-                Assert.Equal("1 °Rø", new Temperature(1, TemperatureUnit.DegreeRoemer).ToString());
-                Assert.Equal("1 K", new Temperature(1, TemperatureUnit.Kelvin).ToString());
-                Assert.Equal("1 m°C", new Temperature(1, TemperatureUnit.MillidegreeCelsius).ToString());
-                Assert.Equal("1 T⊙", new Temperature(1, TemperatureUnit.SolarTemperature).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 °C", new Temperature(1, TemperatureUnit.DegreeCelsius).ToString());
+            Assert.Equal("1 °De", new Temperature(1, TemperatureUnit.DegreeDelisle).ToString());
+            Assert.Equal("1 °F", new Temperature(1, TemperatureUnit.DegreeFahrenheit).ToString());
+            Assert.Equal("1 °N", new Temperature(1, TemperatureUnit.DegreeNewton).ToString());
+            Assert.Equal("1 °R", new Temperature(1, TemperatureUnit.DegreeRankine).ToString());
+            Assert.Equal("1 °Ré", new Temperature(1, TemperatureUnit.DegreeReaumur).ToString());
+            Assert.Equal("1 °Rø", new Temperature(1, TemperatureUnit.DegreeRoemer).ToString());
+            Assert.Equal("1 K", new Temperature(1, TemperatureUnit.Kelvin).ToString());
+            Assert.Equal("1 m°C", new Temperature(1, TemperatureUnit.MillidegreeCelsius).ToString());
+            Assert.Equal("1 T⊙", new Temperature(1, TemperatureUnit.SolarTemperature).ToString());
         }
 
         [Fact]
@@ -748,19 +741,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 K", new Temperature(0.123456, TemperatureUnit.Kelvin).ToString("s1"));
-                Assert.Equal("0.12 K", new Temperature(0.123456, TemperatureUnit.Kelvin).ToString("s2"));
-                Assert.Equal("0.123 K", new Temperature(0.123456, TemperatureUnit.Kelvin).ToString("s3"));
-                Assert.Equal("0.1235 K", new Temperature(0.123456, TemperatureUnit.Kelvin).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 K", new Temperature(0.123456, TemperatureUnit.Kelvin).ToString("s1"));
+            Assert.Equal("0.12 K", new Temperature(0.123456, TemperatureUnit.Kelvin).ToString("s2"));
+            Assert.Equal("0.123 K", new Temperature(0.123456, TemperatureUnit.Kelvin).ToString("s3"));
+            Assert.Equal("0.1235 K", new Temperature(0.123456, TemperatureUnit.Kelvin).ToString("s4"));
         }
 
         [Fact]

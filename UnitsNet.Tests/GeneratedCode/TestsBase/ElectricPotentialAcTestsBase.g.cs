@@ -522,19 +522,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 kVac", new ElectricPotentialAc(1, ElectricPotentialAcUnit.KilovoltAc).ToString());
-                Assert.Equal("1 MVac", new ElectricPotentialAc(1, ElectricPotentialAcUnit.MegavoltAc).ToString());
-                Assert.Equal("1 µVac", new ElectricPotentialAc(1, ElectricPotentialAcUnit.MicrovoltAc).ToString());
-                Assert.Equal("1 mVac", new ElectricPotentialAc(1, ElectricPotentialAcUnit.MillivoltAc).ToString());
-                Assert.Equal("1 Vac", new ElectricPotentialAc(1, ElectricPotentialAcUnit.VoltAc).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 kVac", new ElectricPotentialAc(1, ElectricPotentialAcUnit.KilovoltAc).ToString());
+            Assert.Equal("1 MVac", new ElectricPotentialAc(1, ElectricPotentialAcUnit.MegavoltAc).ToString());
+            Assert.Equal("1 µVac", new ElectricPotentialAc(1, ElectricPotentialAcUnit.MicrovoltAc).ToString());
+            Assert.Equal("1 mVac", new ElectricPotentialAc(1, ElectricPotentialAcUnit.MillivoltAc).ToString());
+            Assert.Equal("1 Vac", new ElectricPotentialAc(1, ElectricPotentialAcUnit.VoltAc).ToString());
         }
 
         [Fact]
@@ -553,19 +546,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 Vac", new ElectricPotentialAc(0.123456, ElectricPotentialAcUnit.VoltAc).ToString("s1"));
-                Assert.Equal("0.12 Vac", new ElectricPotentialAc(0.123456, ElectricPotentialAcUnit.VoltAc).ToString("s2"));
-                Assert.Equal("0.123 Vac", new ElectricPotentialAc(0.123456, ElectricPotentialAcUnit.VoltAc).ToString("s3"));
-                Assert.Equal("0.1235 Vac", new ElectricPotentialAc(0.123456, ElectricPotentialAcUnit.VoltAc).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 Vac", new ElectricPotentialAc(0.123456, ElectricPotentialAcUnit.VoltAc).ToString("s1"));
+            Assert.Equal("0.12 Vac", new ElectricPotentialAc(0.123456, ElectricPotentialAcUnit.VoltAc).ToString("s2"));
+            Assert.Equal("0.123 Vac", new ElectricPotentialAc(0.123456, ElectricPotentialAcUnit.VoltAc).ToString("s3"));
+            Assert.Equal("0.1235 Vac", new ElectricPotentialAc(0.123456, ElectricPotentialAcUnit.VoltAc).ToString("s4"));
         }
 
         [Fact]

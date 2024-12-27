@@ -544,19 +544,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 kS", new ElectricConductance(1, ElectricConductanceUnit.Kilosiemens).ToString());
-                Assert.Equal("1 µS", new ElectricConductance(1, ElectricConductanceUnit.Microsiemens).ToString());
-                Assert.Equal("1 mS", new ElectricConductance(1, ElectricConductanceUnit.Millisiemens).ToString());
-                Assert.Equal("1 nS", new ElectricConductance(1, ElectricConductanceUnit.Nanosiemens).ToString());
-                Assert.Equal("1 S", new ElectricConductance(1, ElectricConductanceUnit.Siemens).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 kS", new ElectricConductance(1, ElectricConductanceUnit.Kilosiemens).ToString());
+            Assert.Equal("1 µS", new ElectricConductance(1, ElectricConductanceUnit.Microsiemens).ToString());
+            Assert.Equal("1 mS", new ElectricConductance(1, ElectricConductanceUnit.Millisiemens).ToString());
+            Assert.Equal("1 nS", new ElectricConductance(1, ElectricConductanceUnit.Nanosiemens).ToString());
+            Assert.Equal("1 S", new ElectricConductance(1, ElectricConductanceUnit.Siemens).ToString());
         }
 
         [Fact]
@@ -575,19 +568,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 S", new ElectricConductance(0.123456, ElectricConductanceUnit.Siemens).ToString("s1"));
-                Assert.Equal("0.12 S", new ElectricConductance(0.123456, ElectricConductanceUnit.Siemens).ToString("s2"));
-                Assert.Equal("0.123 S", new ElectricConductance(0.123456, ElectricConductanceUnit.Siemens).ToString("s3"));
-                Assert.Equal("0.1235 S", new ElectricConductance(0.123456, ElectricConductanceUnit.Siemens).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 S", new ElectricConductance(0.123456, ElectricConductanceUnit.Siemens).ToString("s1"));
+            Assert.Equal("0.12 S", new ElectricConductance(0.123456, ElectricConductanceUnit.Siemens).ToString("s2"));
+            Assert.Equal("0.123 S", new ElectricConductance(0.123456, ElectricConductanceUnit.Siemens).ToString("s3"));
+            Assert.Equal("0.1235 S", new ElectricConductance(0.123456, ElectricConductanceUnit.Siemens).ToString("s4"));
         }
 
         [Fact]

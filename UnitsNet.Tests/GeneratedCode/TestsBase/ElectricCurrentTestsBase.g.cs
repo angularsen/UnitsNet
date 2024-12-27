@@ -662,23 +662,16 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 A", new ElectricCurrent(1, ElectricCurrentUnit.Ampere).ToString());
-                Assert.Equal("1 cA", new ElectricCurrent(1, ElectricCurrentUnit.Centiampere).ToString());
-                Assert.Equal("1 fA", new ElectricCurrent(1, ElectricCurrentUnit.Femtoampere).ToString());
-                Assert.Equal("1 kA", new ElectricCurrent(1, ElectricCurrentUnit.Kiloampere).ToString());
-                Assert.Equal("1 MA", new ElectricCurrent(1, ElectricCurrentUnit.Megaampere).ToString());
-                Assert.Equal("1 µA", new ElectricCurrent(1, ElectricCurrentUnit.Microampere).ToString());
-                Assert.Equal("1 mA", new ElectricCurrent(1, ElectricCurrentUnit.Milliampere).ToString());
-                Assert.Equal("1 nA", new ElectricCurrent(1, ElectricCurrentUnit.Nanoampere).ToString());
-                Assert.Equal("1 pA", new ElectricCurrent(1, ElectricCurrentUnit.Picoampere).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 A", new ElectricCurrent(1, ElectricCurrentUnit.Ampere).ToString());
+            Assert.Equal("1 cA", new ElectricCurrent(1, ElectricCurrentUnit.Centiampere).ToString());
+            Assert.Equal("1 fA", new ElectricCurrent(1, ElectricCurrentUnit.Femtoampere).ToString());
+            Assert.Equal("1 kA", new ElectricCurrent(1, ElectricCurrentUnit.Kiloampere).ToString());
+            Assert.Equal("1 MA", new ElectricCurrent(1, ElectricCurrentUnit.Megaampere).ToString());
+            Assert.Equal("1 µA", new ElectricCurrent(1, ElectricCurrentUnit.Microampere).ToString());
+            Assert.Equal("1 mA", new ElectricCurrent(1, ElectricCurrentUnit.Milliampere).ToString());
+            Assert.Equal("1 nA", new ElectricCurrent(1, ElectricCurrentUnit.Nanoampere).ToString());
+            Assert.Equal("1 pA", new ElectricCurrent(1, ElectricCurrentUnit.Picoampere).ToString());
         }
 
         [Fact]
@@ -701,19 +694,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 A", new ElectricCurrent(0.123456, ElectricCurrentUnit.Ampere).ToString("s1"));
-                Assert.Equal("0.12 A", new ElectricCurrent(0.123456, ElectricCurrentUnit.Ampere).ToString("s2"));
-                Assert.Equal("0.123 A", new ElectricCurrent(0.123456, ElectricCurrentUnit.Ampere).ToString("s3"));
-                Assert.Equal("0.1235 A", new ElectricCurrent(0.123456, ElectricCurrentUnit.Ampere).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 A", new ElectricCurrent(0.123456, ElectricCurrentUnit.Ampere).ToString("s1"));
+            Assert.Equal("0.12 A", new ElectricCurrent(0.123456, ElectricCurrentUnit.Ampere).ToString("s2"));
+            Assert.Equal("0.123 A", new ElectricCurrent(0.123456, ElectricCurrentUnit.Ampere).ToString("s3"));
+            Assert.Equal("0.1235 A", new ElectricCurrent(0.123456, ElectricCurrentUnit.Ampere).ToString("s4"));
         }
 
         [Fact]

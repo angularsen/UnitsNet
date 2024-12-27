@@ -782,21 +782,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 atm⁻¹", new Compressibility(1, CompressibilityUnit.InverseAtmosphere).ToString());
-                Assert.Equal("1 bar⁻¹", new Compressibility(1, CompressibilityUnit.InverseBar).ToString());
-                Assert.Equal("1 kPa⁻¹", new Compressibility(1, CompressibilityUnit.InverseKilopascal).ToString());
-                Assert.Equal("1 MPa⁻¹", new Compressibility(1, CompressibilityUnit.InverseMegapascal).ToString());
-                Assert.Equal("1 mbar⁻¹", new Compressibility(1, CompressibilityUnit.InverseMillibar).ToString());
-                Assert.Equal("1 Pa⁻¹", new Compressibility(1, CompressibilityUnit.InversePascal).ToString());
-                Assert.Equal("1 psi⁻¹", new Compressibility(1, CompressibilityUnit.InversePoundForcePerSquareInch).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 atm⁻¹", new Compressibility(1, CompressibilityUnit.InverseAtmosphere).ToString());
+            Assert.Equal("1 bar⁻¹", new Compressibility(1, CompressibilityUnit.InverseBar).ToString());
+            Assert.Equal("1 kPa⁻¹", new Compressibility(1, CompressibilityUnit.InverseKilopascal).ToString());
+            Assert.Equal("1 MPa⁻¹", new Compressibility(1, CompressibilityUnit.InverseMegapascal).ToString());
+            Assert.Equal("1 mbar⁻¹", new Compressibility(1, CompressibilityUnit.InverseMillibar).ToString());
+            Assert.Equal("1 Pa⁻¹", new Compressibility(1, CompressibilityUnit.InversePascal).ToString());
+            Assert.Equal("1 psi⁻¹", new Compressibility(1, CompressibilityUnit.InversePoundForcePerSquareInch).ToString());
         }
 
         [Fact]
@@ -817,19 +810,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 Pa⁻¹", new Compressibility(0.123456, CompressibilityUnit.InversePascal).ToString("s1"));
-                Assert.Equal("0.12 Pa⁻¹", new Compressibility(0.123456, CompressibilityUnit.InversePascal).ToString("s2"));
-                Assert.Equal("0.123 Pa⁻¹", new Compressibility(0.123456, CompressibilityUnit.InversePascal).ToString("s3"));
-                Assert.Equal("0.1235 Pa⁻¹", new Compressibility(0.123456, CompressibilityUnit.InversePascal).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 Pa⁻¹", new Compressibility(0.123456, CompressibilityUnit.InversePascal).ToString("s1"));
+            Assert.Equal("0.12 Pa⁻¹", new Compressibility(0.123456, CompressibilityUnit.InversePascal).ToString("s2"));
+            Assert.Equal("0.123 Pa⁻¹", new Compressibility(0.123456, CompressibilityUnit.InversePascal).ToString("s3"));
+            Assert.Equal("0.1235 Pa⁻¹", new Compressibility(0.123456, CompressibilityUnit.InversePascal).ToString("s4"));
         }
 
         [Fact]

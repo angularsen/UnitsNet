@@ -474,17 +474,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 J/mol", new MolarEnergy(1, MolarEnergyUnit.JoulePerMole).ToString());
-                Assert.Equal("1 kJ/mol", new MolarEnergy(1, MolarEnergyUnit.KilojoulePerMole).ToString());
-                Assert.Equal("1 MJ/mol", new MolarEnergy(1, MolarEnergyUnit.MegajoulePerMole).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 J/mol", new MolarEnergy(1, MolarEnergyUnit.JoulePerMole).ToString());
+            Assert.Equal("1 kJ/mol", new MolarEnergy(1, MolarEnergyUnit.KilojoulePerMole).ToString());
+            Assert.Equal("1 MJ/mol", new MolarEnergy(1, MolarEnergyUnit.MegajoulePerMole).ToString());
         }
 
         [Fact]
@@ -501,19 +494,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 J/mol", new MolarEnergy(0.123456, MolarEnergyUnit.JoulePerMole).ToString("s1"));
-                Assert.Equal("0.12 J/mol", new MolarEnergy(0.123456, MolarEnergyUnit.JoulePerMole).ToString("s2"));
-                Assert.Equal("0.123 J/mol", new MolarEnergy(0.123456, MolarEnergyUnit.JoulePerMole).ToString("s3"));
-                Assert.Equal("0.1235 J/mol", new MolarEnergy(0.123456, MolarEnergyUnit.JoulePerMole).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 J/mol", new MolarEnergy(0.123456, MolarEnergyUnit.JoulePerMole).ToString("s1"));
+            Assert.Equal("0.12 J/mol", new MolarEnergy(0.123456, MolarEnergyUnit.JoulePerMole).ToString("s2"));
+            Assert.Equal("0.123 J/mol", new MolarEnergy(0.123456, MolarEnergyUnit.JoulePerMole).ToString("s3"));
+            Assert.Equal("0.1235 J/mol", new MolarEnergy(0.123456, MolarEnergyUnit.JoulePerMole).ToString("s4"));
         }
 
         [Fact]

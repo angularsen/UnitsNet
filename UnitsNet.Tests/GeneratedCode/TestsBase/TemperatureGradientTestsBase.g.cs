@@ -509,18 +509,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 ∆°C/km", new TemperatureGradient(1, TemperatureGradientUnit.DegreeCelsiusPerKilometer).ToString());
-                Assert.Equal("1 ∆°C/m", new TemperatureGradient(1, TemperatureGradientUnit.DegreeCelsiusPerMeter).ToString());
-                Assert.Equal("1 ∆°F/ft", new TemperatureGradient(1, TemperatureGradientUnit.DegreeFahrenheitPerFoot).ToString());
-                Assert.Equal("1 ∆°K/m", new TemperatureGradient(1, TemperatureGradientUnit.KelvinPerMeter).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 ∆°C/km", new TemperatureGradient(1, TemperatureGradientUnit.DegreeCelsiusPerKilometer).ToString());
+            Assert.Equal("1 ∆°C/m", new TemperatureGradient(1, TemperatureGradientUnit.DegreeCelsiusPerMeter).ToString());
+            Assert.Equal("1 ∆°F/ft", new TemperatureGradient(1, TemperatureGradientUnit.DegreeFahrenheitPerFoot).ToString());
+            Assert.Equal("1 ∆°K/m", new TemperatureGradient(1, TemperatureGradientUnit.KelvinPerMeter).ToString());
         }
 
         [Fact]
@@ -538,19 +531,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 ∆°K/m", new TemperatureGradient(0.123456, TemperatureGradientUnit.KelvinPerMeter).ToString("s1"));
-                Assert.Equal("0.12 ∆°K/m", new TemperatureGradient(0.123456, TemperatureGradientUnit.KelvinPerMeter).ToString("s2"));
-                Assert.Equal("0.123 ∆°K/m", new TemperatureGradient(0.123456, TemperatureGradientUnit.KelvinPerMeter).ToString("s3"));
-                Assert.Equal("0.1235 ∆°K/m", new TemperatureGradient(0.123456, TemperatureGradientUnit.KelvinPerMeter).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 ∆°K/m", new TemperatureGradient(0.123456, TemperatureGradientUnit.KelvinPerMeter).ToString("s1"));
+            Assert.Equal("0.12 ∆°K/m", new TemperatureGradient(0.123456, TemperatureGradientUnit.KelvinPerMeter).ToString("s2"));
+            Assert.Equal("0.123 ∆°K/m", new TemperatureGradient(0.123456, TemperatureGradientUnit.KelvinPerMeter).ToString("s3"));
+            Assert.Equal("0.1235 ∆°K/m", new TemperatureGradient(0.123456, TemperatureGradientUnit.KelvinPerMeter).ToString("s4"));
         }
 
         [Fact]

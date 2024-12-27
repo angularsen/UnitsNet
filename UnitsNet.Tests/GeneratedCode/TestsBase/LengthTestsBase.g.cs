@@ -2937,56 +2937,49 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 Å", new Length(1, LengthUnit.Angstrom).ToString());
-                Assert.Equal("1 au", new Length(1, LengthUnit.AstronomicalUnit).ToString());
-                Assert.Equal("1 cm", new Length(1, LengthUnit.Centimeter).ToString());
-                Assert.Equal("1 ch", new Length(1, LengthUnit.Chain).ToString());
-                Assert.Equal("1 DM", new Length(1, LengthUnit.DataMile).ToString());
-                Assert.Equal("1 dam", new Length(1, LengthUnit.Decameter).ToString());
-                Assert.Equal("1 dm", new Length(1, LengthUnit.Decimeter).ToString());
-                Assert.Equal("1 pica", new Length(1, LengthUnit.DtpPica).ToString());
-                Assert.Equal("1 pt", new Length(1, LengthUnit.DtpPoint).ToString());
-                Assert.Equal("1 fathom", new Length(1, LengthUnit.Fathom).ToString());
-                Assert.Equal("1 fm", new Length(1, LengthUnit.Femtometer).ToString());
-                Assert.Equal("1 ft", new Length(1, LengthUnit.Foot).ToString());
-                Assert.Equal("1 Gm", new Length(1, LengthUnit.Gigameter).ToString());
-                Assert.Equal("1 h", new Length(1, LengthUnit.Hand).ToString());
-                Assert.Equal("1 hm", new Length(1, LengthUnit.Hectometer).ToString());
-                Assert.Equal("1 in", new Length(1, LengthUnit.Inch).ToString());
-                Assert.Equal("1 kft", new Length(1, LengthUnit.Kilofoot).ToString());
-                Assert.Equal("1 kly", new Length(1, LengthUnit.KilolightYear).ToString());
-                Assert.Equal("1 km", new Length(1, LengthUnit.Kilometer).ToString());
-                Assert.Equal("1 kpc", new Length(1, LengthUnit.Kiloparsec).ToString());
-                Assert.Equal("1 kyd", new Length(1, LengthUnit.Kiloyard).ToString());
-                Assert.Equal("1 ly", new Length(1, LengthUnit.LightYear).ToString());
-                Assert.Equal("1 Mly", new Length(1, LengthUnit.MegalightYear).ToString());
-                Assert.Equal("1 Mm", new Length(1, LengthUnit.Megameter).ToString());
-                Assert.Equal("1 Mpc", new Length(1, LengthUnit.Megaparsec).ToString());
-                Assert.Equal("1 m", new Length(1, LengthUnit.Meter).ToString());
-                Assert.Equal("1 µin", new Length(1, LengthUnit.Microinch).ToString());
-                Assert.Equal("1 µm", new Length(1, LengthUnit.Micrometer).ToString());
-                Assert.Equal("1 mil", new Length(1, LengthUnit.Mil).ToString());
-                Assert.Equal("1 mi", new Length(1, LengthUnit.Mile).ToString());
-                Assert.Equal("1 mm", new Length(1, LengthUnit.Millimeter).ToString());
-                Assert.Equal("1 nm", new Length(1, LengthUnit.Nanometer).ToString());
-                Assert.Equal("1 NM", new Length(1, LengthUnit.NauticalMile).ToString());
-                Assert.Equal("1 pc", new Length(1, LengthUnit.Parsec).ToString());
-                Assert.Equal("1 pm", new Length(1, LengthUnit.Picometer).ToString());
-                Assert.Equal("1 pica", new Length(1, LengthUnit.PrinterPica).ToString());
-                Assert.Equal("1 pt", new Length(1, LengthUnit.PrinterPoint).ToString());
-                Assert.Equal("1 shackle", new Length(1, LengthUnit.Shackle).ToString());
-                Assert.Equal("1 R⊙", new Length(1, LengthUnit.SolarRadius).ToString());
-                Assert.Equal("1 twip", new Length(1, LengthUnit.Twip).ToString());
-                Assert.Equal("1 ftUS", new Length(1, LengthUnit.UsSurveyFoot).ToString());
-                Assert.Equal("1 yd", new Length(1, LengthUnit.Yard).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 Å", new Length(1, LengthUnit.Angstrom).ToString());
+            Assert.Equal("1 au", new Length(1, LengthUnit.AstronomicalUnit).ToString());
+            Assert.Equal("1 cm", new Length(1, LengthUnit.Centimeter).ToString());
+            Assert.Equal("1 ch", new Length(1, LengthUnit.Chain).ToString());
+            Assert.Equal("1 DM", new Length(1, LengthUnit.DataMile).ToString());
+            Assert.Equal("1 dam", new Length(1, LengthUnit.Decameter).ToString());
+            Assert.Equal("1 dm", new Length(1, LengthUnit.Decimeter).ToString());
+            Assert.Equal("1 pica", new Length(1, LengthUnit.DtpPica).ToString());
+            Assert.Equal("1 pt", new Length(1, LengthUnit.DtpPoint).ToString());
+            Assert.Equal("1 fathom", new Length(1, LengthUnit.Fathom).ToString());
+            Assert.Equal("1 fm", new Length(1, LengthUnit.Femtometer).ToString());
+            Assert.Equal("1 ft", new Length(1, LengthUnit.Foot).ToString());
+            Assert.Equal("1 Gm", new Length(1, LengthUnit.Gigameter).ToString());
+            Assert.Equal("1 h", new Length(1, LengthUnit.Hand).ToString());
+            Assert.Equal("1 hm", new Length(1, LengthUnit.Hectometer).ToString());
+            Assert.Equal("1 in", new Length(1, LengthUnit.Inch).ToString());
+            Assert.Equal("1 kft", new Length(1, LengthUnit.Kilofoot).ToString());
+            Assert.Equal("1 kly", new Length(1, LengthUnit.KilolightYear).ToString());
+            Assert.Equal("1 km", new Length(1, LengthUnit.Kilometer).ToString());
+            Assert.Equal("1 kpc", new Length(1, LengthUnit.Kiloparsec).ToString());
+            Assert.Equal("1 kyd", new Length(1, LengthUnit.Kiloyard).ToString());
+            Assert.Equal("1 ly", new Length(1, LengthUnit.LightYear).ToString());
+            Assert.Equal("1 Mly", new Length(1, LengthUnit.MegalightYear).ToString());
+            Assert.Equal("1 Mm", new Length(1, LengthUnit.Megameter).ToString());
+            Assert.Equal("1 Mpc", new Length(1, LengthUnit.Megaparsec).ToString());
+            Assert.Equal("1 m", new Length(1, LengthUnit.Meter).ToString());
+            Assert.Equal("1 µin", new Length(1, LengthUnit.Microinch).ToString());
+            Assert.Equal("1 µm", new Length(1, LengthUnit.Micrometer).ToString());
+            Assert.Equal("1 mil", new Length(1, LengthUnit.Mil).ToString());
+            Assert.Equal("1 mi", new Length(1, LengthUnit.Mile).ToString());
+            Assert.Equal("1 mm", new Length(1, LengthUnit.Millimeter).ToString());
+            Assert.Equal("1 nm", new Length(1, LengthUnit.Nanometer).ToString());
+            Assert.Equal("1 NM", new Length(1, LengthUnit.NauticalMile).ToString());
+            Assert.Equal("1 pc", new Length(1, LengthUnit.Parsec).ToString());
+            Assert.Equal("1 pm", new Length(1, LengthUnit.Picometer).ToString());
+            Assert.Equal("1 pica", new Length(1, LengthUnit.PrinterPica).ToString());
+            Assert.Equal("1 pt", new Length(1, LengthUnit.PrinterPoint).ToString());
+            Assert.Equal("1 shackle", new Length(1, LengthUnit.Shackle).ToString());
+            Assert.Equal("1 R⊙", new Length(1, LengthUnit.SolarRadius).ToString());
+            Assert.Equal("1 twip", new Length(1, LengthUnit.Twip).ToString());
+            Assert.Equal("1 ftUS", new Length(1, LengthUnit.UsSurveyFoot).ToString());
+            Assert.Equal("1 yd", new Length(1, LengthUnit.Yard).ToString());
         }
 
         [Fact]
@@ -3042,19 +3035,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 m", new Length(0.123456, LengthUnit.Meter).ToString("s1"));
-                Assert.Equal("0.12 m", new Length(0.123456, LengthUnit.Meter).ToString("s2"));
-                Assert.Equal("0.123 m", new Length(0.123456, LengthUnit.Meter).ToString("s3"));
-                Assert.Equal("0.1235 m", new Length(0.123456, LengthUnit.Meter).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 m", new Length(0.123456, LengthUnit.Meter).ToString("s1"));
+            Assert.Equal("0.12 m", new Length(0.123456, LengthUnit.Meter).ToString("s2"));
+            Assert.Equal("0.123 m", new Length(0.123456, LengthUnit.Meter).ToString("s3"));
+            Assert.Equal("0.1235 m", new Length(0.123456, LengthUnit.Meter).ToString("s4"));
         }
 
         [Fact]

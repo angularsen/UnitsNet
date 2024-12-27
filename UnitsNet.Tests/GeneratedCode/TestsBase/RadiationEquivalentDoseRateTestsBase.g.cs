@@ -911,24 +911,17 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 µSv/h", new RadiationEquivalentDoseRate(1, RadiationEquivalentDoseRateUnit.MicrosievertPerHour).ToString());
-                Assert.Equal("1 µSv/s", new RadiationEquivalentDoseRate(1, RadiationEquivalentDoseRateUnit.MicrosievertPerSecond).ToString());
-                Assert.Equal("1 mrem/h", new RadiationEquivalentDoseRate(1, RadiationEquivalentDoseRateUnit.MilliroentgenEquivalentManPerHour).ToString());
-                Assert.Equal("1 mSv/h", new RadiationEquivalentDoseRate(1, RadiationEquivalentDoseRateUnit.MillisievertPerHour).ToString());
-                Assert.Equal("1 mSv/s", new RadiationEquivalentDoseRate(1, RadiationEquivalentDoseRateUnit.MillisievertPerSecond).ToString());
-                Assert.Equal("1 nSv/h", new RadiationEquivalentDoseRate(1, RadiationEquivalentDoseRateUnit.NanosievertPerHour).ToString());
-                Assert.Equal("1 nSv/s", new RadiationEquivalentDoseRate(1, RadiationEquivalentDoseRateUnit.NanosievertPerSecond).ToString());
-                Assert.Equal("1 rem/h", new RadiationEquivalentDoseRate(1, RadiationEquivalentDoseRateUnit.RoentgenEquivalentManPerHour).ToString());
-                Assert.Equal("1 Sv/h", new RadiationEquivalentDoseRate(1, RadiationEquivalentDoseRateUnit.SievertPerHour).ToString());
-                Assert.Equal("1 Sv/s", new RadiationEquivalentDoseRate(1, RadiationEquivalentDoseRateUnit.SievertPerSecond).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 µSv/h", new RadiationEquivalentDoseRate(1, RadiationEquivalentDoseRateUnit.MicrosievertPerHour).ToString());
+            Assert.Equal("1 µSv/s", new RadiationEquivalentDoseRate(1, RadiationEquivalentDoseRateUnit.MicrosievertPerSecond).ToString());
+            Assert.Equal("1 mrem/h", new RadiationEquivalentDoseRate(1, RadiationEquivalentDoseRateUnit.MilliroentgenEquivalentManPerHour).ToString());
+            Assert.Equal("1 mSv/h", new RadiationEquivalentDoseRate(1, RadiationEquivalentDoseRateUnit.MillisievertPerHour).ToString());
+            Assert.Equal("1 mSv/s", new RadiationEquivalentDoseRate(1, RadiationEquivalentDoseRateUnit.MillisievertPerSecond).ToString());
+            Assert.Equal("1 nSv/h", new RadiationEquivalentDoseRate(1, RadiationEquivalentDoseRateUnit.NanosievertPerHour).ToString());
+            Assert.Equal("1 nSv/s", new RadiationEquivalentDoseRate(1, RadiationEquivalentDoseRateUnit.NanosievertPerSecond).ToString());
+            Assert.Equal("1 rem/h", new RadiationEquivalentDoseRate(1, RadiationEquivalentDoseRateUnit.RoentgenEquivalentManPerHour).ToString());
+            Assert.Equal("1 Sv/h", new RadiationEquivalentDoseRate(1, RadiationEquivalentDoseRateUnit.SievertPerHour).ToString());
+            Assert.Equal("1 Sv/s", new RadiationEquivalentDoseRate(1, RadiationEquivalentDoseRateUnit.SievertPerSecond).ToString());
         }
 
         [Fact]
@@ -952,19 +945,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 Sv/s", new RadiationEquivalentDoseRate(0.123456, RadiationEquivalentDoseRateUnit.SievertPerSecond).ToString("s1"));
-                Assert.Equal("0.12 Sv/s", new RadiationEquivalentDoseRate(0.123456, RadiationEquivalentDoseRateUnit.SievertPerSecond).ToString("s2"));
-                Assert.Equal("0.123 Sv/s", new RadiationEquivalentDoseRate(0.123456, RadiationEquivalentDoseRateUnit.SievertPerSecond).ToString("s3"));
-                Assert.Equal("0.1235 Sv/s", new RadiationEquivalentDoseRate(0.123456, RadiationEquivalentDoseRateUnit.SievertPerSecond).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 Sv/s", new RadiationEquivalentDoseRate(0.123456, RadiationEquivalentDoseRateUnit.SievertPerSecond).ToString("s1"));
+            Assert.Equal("0.12 Sv/s", new RadiationEquivalentDoseRate(0.123456, RadiationEquivalentDoseRateUnit.SievertPerSecond).ToString("s2"));
+            Assert.Equal("0.123 Sv/s", new RadiationEquivalentDoseRate(0.123456, RadiationEquivalentDoseRateUnit.SievertPerSecond).ToString("s3"));
+            Assert.Equal("0.1235 Sv/s", new RadiationEquivalentDoseRate(0.123456, RadiationEquivalentDoseRateUnit.SievertPerSecond).ToString("s4"));
         }
 
         [Fact]

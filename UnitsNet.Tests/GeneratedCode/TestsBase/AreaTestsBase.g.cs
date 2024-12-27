@@ -1485,28 +1485,21 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 ac", new Area(1, AreaUnit.Acre).ToString());
-                Assert.Equal("1 ha", new Area(1, AreaUnit.Hectare).ToString());
-                Assert.Equal("1 cm²", new Area(1, AreaUnit.SquareCentimeter).ToString());
-                Assert.Equal("1 dm²", new Area(1, AreaUnit.SquareDecimeter).ToString());
-                Assert.Equal("1 ft²", new Area(1, AreaUnit.SquareFoot).ToString());
-                Assert.Equal("1 in²", new Area(1, AreaUnit.SquareInch).ToString());
-                Assert.Equal("1 km²", new Area(1, AreaUnit.SquareKilometer).ToString());
-                Assert.Equal("1 m²", new Area(1, AreaUnit.SquareMeter).ToString());
-                Assert.Equal("1 µm²", new Area(1, AreaUnit.SquareMicrometer).ToString());
-                Assert.Equal("1 mi²", new Area(1, AreaUnit.SquareMile).ToString());
-                Assert.Equal("1 mm²", new Area(1, AreaUnit.SquareMillimeter).ToString());
-                Assert.Equal("1 nmi²", new Area(1, AreaUnit.SquareNauticalMile).ToString());
-                Assert.Equal("1 yd²", new Area(1, AreaUnit.SquareYard).ToString());
-                Assert.Equal("1 ft² (US)", new Area(1, AreaUnit.UsSurveySquareFoot).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 ac", new Area(1, AreaUnit.Acre).ToString());
+            Assert.Equal("1 ha", new Area(1, AreaUnit.Hectare).ToString());
+            Assert.Equal("1 cm²", new Area(1, AreaUnit.SquareCentimeter).ToString());
+            Assert.Equal("1 dm²", new Area(1, AreaUnit.SquareDecimeter).ToString());
+            Assert.Equal("1 ft²", new Area(1, AreaUnit.SquareFoot).ToString());
+            Assert.Equal("1 in²", new Area(1, AreaUnit.SquareInch).ToString());
+            Assert.Equal("1 km²", new Area(1, AreaUnit.SquareKilometer).ToString());
+            Assert.Equal("1 m²", new Area(1, AreaUnit.SquareMeter).ToString());
+            Assert.Equal("1 µm²", new Area(1, AreaUnit.SquareMicrometer).ToString());
+            Assert.Equal("1 mi²", new Area(1, AreaUnit.SquareMile).ToString());
+            Assert.Equal("1 mm²", new Area(1, AreaUnit.SquareMillimeter).ToString());
+            Assert.Equal("1 nmi²", new Area(1, AreaUnit.SquareNauticalMile).ToString());
+            Assert.Equal("1 yd²", new Area(1, AreaUnit.SquareYard).ToString());
+            Assert.Equal("1 ft² (US)", new Area(1, AreaUnit.UsSurveySquareFoot).ToString());
         }
 
         [Fact]
@@ -1534,19 +1527,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 m²", new Area(0.123456, AreaUnit.SquareMeter).ToString("s1"));
-                Assert.Equal("0.12 m²", new Area(0.123456, AreaUnit.SquareMeter).ToString("s2"));
-                Assert.Equal("0.123 m²", new Area(0.123456, AreaUnit.SquareMeter).ToString("s3"));
-                Assert.Equal("0.1235 m²", new Area(0.123456, AreaUnit.SquareMeter).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 m²", new Area(0.123456, AreaUnit.SquareMeter).ToString("s1"));
+            Assert.Equal("0.12 m²", new Area(0.123456, AreaUnit.SquareMeter).ToString("s2"));
+            Assert.Equal("0.123 m²", new Area(0.123456, AreaUnit.SquareMeter).ToString("s3"));
+            Assert.Equal("0.1235 m²", new Area(0.123456, AreaUnit.SquareMeter).ToString("s4"));
         }
 
         [Fact]

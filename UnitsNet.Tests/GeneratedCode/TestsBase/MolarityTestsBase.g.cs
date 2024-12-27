@@ -946,25 +946,18 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 cmol/L", new Molarity(1, MolarityUnit.CentimolePerLiter).ToString());
-                Assert.Equal("1 dmol/L", new Molarity(1, MolarityUnit.DecimolePerLiter).ToString());
-                Assert.Equal("1 fmol/L", new Molarity(1, MolarityUnit.FemtomolePerLiter).ToString());
-                Assert.Equal("1 kmol/m³", new Molarity(1, MolarityUnit.KilomolePerCubicMeter).ToString());
-                Assert.Equal("1 µmol/L", new Molarity(1, MolarityUnit.MicromolePerLiter).ToString());
-                Assert.Equal("1 mmol/L", new Molarity(1, MolarityUnit.MillimolePerLiter).ToString());
-                Assert.Equal("1 mol/m³", new Molarity(1, MolarityUnit.MolePerCubicMeter).ToString());
-                Assert.Equal("1 mol/L", new Molarity(1, MolarityUnit.MolePerLiter).ToString());
-                Assert.Equal("1 nmol/L", new Molarity(1, MolarityUnit.NanomolePerLiter).ToString());
-                Assert.Equal("1 pmol/L", new Molarity(1, MolarityUnit.PicomolePerLiter).ToString());
-                Assert.Equal("1 lbmol/ft³", new Molarity(1, MolarityUnit.PoundMolePerCubicFoot).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 cmol/L", new Molarity(1, MolarityUnit.CentimolePerLiter).ToString());
+            Assert.Equal("1 dmol/L", new Molarity(1, MolarityUnit.DecimolePerLiter).ToString());
+            Assert.Equal("1 fmol/L", new Molarity(1, MolarityUnit.FemtomolePerLiter).ToString());
+            Assert.Equal("1 kmol/m³", new Molarity(1, MolarityUnit.KilomolePerCubicMeter).ToString());
+            Assert.Equal("1 µmol/L", new Molarity(1, MolarityUnit.MicromolePerLiter).ToString());
+            Assert.Equal("1 mmol/L", new Molarity(1, MolarityUnit.MillimolePerLiter).ToString());
+            Assert.Equal("1 mol/m³", new Molarity(1, MolarityUnit.MolePerCubicMeter).ToString());
+            Assert.Equal("1 mol/L", new Molarity(1, MolarityUnit.MolePerLiter).ToString());
+            Assert.Equal("1 nmol/L", new Molarity(1, MolarityUnit.NanomolePerLiter).ToString());
+            Assert.Equal("1 pmol/L", new Molarity(1, MolarityUnit.PicomolePerLiter).ToString());
+            Assert.Equal("1 lbmol/ft³", new Molarity(1, MolarityUnit.PoundMolePerCubicFoot).ToString());
         }
 
         [Fact]
@@ -989,19 +982,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 mol/m³", new Molarity(0.123456, MolarityUnit.MolePerCubicMeter).ToString("s1"));
-                Assert.Equal("0.12 mol/m³", new Molarity(0.123456, MolarityUnit.MolePerCubicMeter).ToString("s2"));
-                Assert.Equal("0.123 mol/m³", new Molarity(0.123456, MolarityUnit.MolePerCubicMeter).ToString("s3"));
-                Assert.Equal("0.1235 mol/m³", new Molarity(0.123456, MolarityUnit.MolePerCubicMeter).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 mol/m³", new Molarity(0.123456, MolarityUnit.MolePerCubicMeter).ToString("s1"));
+            Assert.Equal("0.12 mol/m³", new Molarity(0.123456, MolarityUnit.MolePerCubicMeter).ToString("s2"));
+            Assert.Equal("0.123 mol/m³", new Molarity(0.123456, MolarityUnit.MolePerCubicMeter).ToString("s3"));
+            Assert.Equal("0.1235 mol/m³", new Molarity(0.123456, MolarityUnit.MolePerCubicMeter).ToString("s4"));
         }
 
         [Fact]

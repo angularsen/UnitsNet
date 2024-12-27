@@ -5010,89 +5010,82 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 af/d", new VolumeFlow(1, VolumeFlowUnit.AcreFootPerDay).ToString());
-                Assert.Equal("1 af/h", new VolumeFlow(1, VolumeFlowUnit.AcreFootPerHour).ToString());
-                Assert.Equal("1 af/m", new VolumeFlow(1, VolumeFlowUnit.AcreFootPerMinute).ToString());
-                Assert.Equal("1 af/s", new VolumeFlow(1, VolumeFlowUnit.AcreFootPerSecond).ToString());
-                Assert.Equal("1 cl/day", new VolumeFlow(1, VolumeFlowUnit.CentiliterPerDay).ToString());
-                Assert.Equal("1 cL/h", new VolumeFlow(1, VolumeFlowUnit.CentiliterPerHour).ToString());
-                Assert.Equal("1 cL/min", new VolumeFlow(1, VolumeFlowUnit.CentiliterPerMinute).ToString());
-                Assert.Equal("1 cL/s", new VolumeFlow(1, VolumeFlowUnit.CentiliterPerSecond).ToString());
-                Assert.Equal("1 cm³/min", new VolumeFlow(1, VolumeFlowUnit.CubicCentimeterPerMinute).ToString());
-                Assert.Equal("1 dm³/min", new VolumeFlow(1, VolumeFlowUnit.CubicDecimeterPerMinute).ToString());
-                Assert.Equal("1 ft³/h", new VolumeFlow(1, VolumeFlowUnit.CubicFootPerHour).ToString());
-                Assert.Equal("1 ft³/min", new VolumeFlow(1, VolumeFlowUnit.CubicFootPerMinute).ToString());
-                Assert.Equal("1 ft³/s", new VolumeFlow(1, VolumeFlowUnit.CubicFootPerSecond).ToString());
-                Assert.Equal("1 m³/d", new VolumeFlow(1, VolumeFlowUnit.CubicMeterPerDay).ToString());
-                Assert.Equal("1 m³/h", new VolumeFlow(1, VolumeFlowUnit.CubicMeterPerHour).ToString());
-                Assert.Equal("1 m³/min", new VolumeFlow(1, VolumeFlowUnit.CubicMeterPerMinute).ToString());
-                Assert.Equal("1 m³/s", new VolumeFlow(1, VolumeFlowUnit.CubicMeterPerSecond).ToString());
-                Assert.Equal("1 mm³/s", new VolumeFlow(1, VolumeFlowUnit.CubicMillimeterPerSecond).ToString());
-                Assert.Equal("1 cy/day", new VolumeFlow(1, VolumeFlowUnit.CubicYardPerDay).ToString());
-                Assert.Equal("1 yd³/h", new VolumeFlow(1, VolumeFlowUnit.CubicYardPerHour).ToString());
-                Assert.Equal("1 yd³/min", new VolumeFlow(1, VolumeFlowUnit.CubicYardPerMinute).ToString());
-                Assert.Equal("1 yd³/s", new VolumeFlow(1, VolumeFlowUnit.CubicYardPerSecond).ToString());
-                Assert.Equal("1 dal/day", new VolumeFlow(1, VolumeFlowUnit.DecaliterPerDay).ToString());
-                Assert.Equal("1 daL/h", new VolumeFlow(1, VolumeFlowUnit.DecaliterPerHour).ToString());
-                Assert.Equal("1 daL/min", new VolumeFlow(1, VolumeFlowUnit.DecaliterPerMinute).ToString());
-                Assert.Equal("1 daL/s", new VolumeFlow(1, VolumeFlowUnit.DecaliterPerSecond).ToString());
-                Assert.Equal("1 dl/day", new VolumeFlow(1, VolumeFlowUnit.DeciliterPerDay).ToString());
-                Assert.Equal("1 dL/h", new VolumeFlow(1, VolumeFlowUnit.DeciliterPerHour).ToString());
-                Assert.Equal("1 dL/min", new VolumeFlow(1, VolumeFlowUnit.DeciliterPerMinute).ToString());
-                Assert.Equal("1 dL/s", new VolumeFlow(1, VolumeFlowUnit.DeciliterPerSecond).ToString());
-                Assert.Equal("1 hl/day", new VolumeFlow(1, VolumeFlowUnit.HectoliterPerDay).ToString());
-                Assert.Equal("1 hL/h", new VolumeFlow(1, VolumeFlowUnit.HectoliterPerHour).ToString());
-                Assert.Equal("1 hL/min", new VolumeFlow(1, VolumeFlowUnit.HectoliterPerMinute).ToString());
-                Assert.Equal("1 hL/s", new VolumeFlow(1, VolumeFlowUnit.HectoliterPerSecond).ToString());
-                Assert.Equal("1 kl/day", new VolumeFlow(1, VolumeFlowUnit.KiloliterPerDay).ToString());
-                Assert.Equal("1 kL/h", new VolumeFlow(1, VolumeFlowUnit.KiloliterPerHour).ToString());
-                Assert.Equal("1 kL/min", new VolumeFlow(1, VolumeFlowUnit.KiloliterPerMinute).ToString());
-                Assert.Equal("1 kL/s", new VolumeFlow(1, VolumeFlowUnit.KiloliterPerSecond).ToString());
-                Assert.Equal("1 kgal (U.S.)/min", new VolumeFlow(1, VolumeFlowUnit.KilousGallonPerMinute).ToString());
-                Assert.Equal("1 l/day", new VolumeFlow(1, VolumeFlowUnit.LiterPerDay).ToString());
-                Assert.Equal("1 L/h", new VolumeFlow(1, VolumeFlowUnit.LiterPerHour).ToString());
-                Assert.Equal("1 L/min", new VolumeFlow(1, VolumeFlowUnit.LiterPerMinute).ToString());
-                Assert.Equal("1 L/s", new VolumeFlow(1, VolumeFlowUnit.LiterPerSecond).ToString());
-                Assert.Equal("1 Ml/day", new VolumeFlow(1, VolumeFlowUnit.MegaliterPerDay).ToString());
-                Assert.Equal("1 ML/h", new VolumeFlow(1, VolumeFlowUnit.MegaliterPerHour).ToString());
-                Assert.Equal("1 ML/min", new VolumeFlow(1, VolumeFlowUnit.MegaliterPerMinute).ToString());
-                Assert.Equal("1 ML/s", new VolumeFlow(1, VolumeFlowUnit.MegaliterPerSecond).ToString());
-                Assert.Equal("1 Mgal (U. K.)/d", new VolumeFlow(1, VolumeFlowUnit.MegaukGallonPerDay).ToString());
-                Assert.Equal("1 Mgal (imp.)/s", new VolumeFlow(1, VolumeFlowUnit.MegaukGallonPerSecond).ToString());
-                Assert.Equal("1 Mgpd", new VolumeFlow(1, VolumeFlowUnit.MegausGallonPerDay).ToString());
-                Assert.Equal("1 µl/day", new VolumeFlow(1, VolumeFlowUnit.MicroliterPerDay).ToString());
-                Assert.Equal("1 µL/h", new VolumeFlow(1, VolumeFlowUnit.MicroliterPerHour).ToString());
-                Assert.Equal("1 µL/min", new VolumeFlow(1, VolumeFlowUnit.MicroliterPerMinute).ToString());
-                Assert.Equal("1 µL/s", new VolumeFlow(1, VolumeFlowUnit.MicroliterPerSecond).ToString());
-                Assert.Equal("1 ml/day", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerDay).ToString());
-                Assert.Equal("1 mL/h", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerHour).ToString());
-                Assert.Equal("1 mL/min", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerMinute).ToString());
-                Assert.Equal("1 mL/s", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerSecond).ToString());
-                Assert.Equal("1 MGD", new VolumeFlow(1, VolumeFlowUnit.MillionUsGallonPerDay).ToString());
-                Assert.Equal("1 nl/day", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerDay).ToString());
-                Assert.Equal("1 nL/h", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerHour).ToString());
-                Assert.Equal("1 nL/min", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerMinute).ToString());
-                Assert.Equal("1 nL/s", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerSecond).ToString());
-                Assert.Equal("1 bbl/d", new VolumeFlow(1, VolumeFlowUnit.OilBarrelPerDay).ToString());
-                Assert.Equal("1 bbl/hr", new VolumeFlow(1, VolumeFlowUnit.OilBarrelPerHour).ToString());
-                Assert.Equal("1 bbl/min", new VolumeFlow(1, VolumeFlowUnit.OilBarrelPerMinute).ToString());
-                Assert.Equal("1 bbl/s", new VolumeFlow(1, VolumeFlowUnit.OilBarrelPerSecond).ToString());
-                Assert.Equal("1 gal (U. K.)/d", new VolumeFlow(1, VolumeFlowUnit.UkGallonPerDay).ToString());
-                Assert.Equal("1 gal (imp.)/h", new VolumeFlow(1, VolumeFlowUnit.UkGallonPerHour).ToString());
-                Assert.Equal("1 gal (imp.)/min", new VolumeFlow(1, VolumeFlowUnit.UkGallonPerMinute).ToString());
-                Assert.Equal("1 gal (imp.)/s", new VolumeFlow(1, VolumeFlowUnit.UkGallonPerSecond).ToString());
-                Assert.Equal("1 gpd", new VolumeFlow(1, VolumeFlowUnit.UsGallonPerDay).ToString());
-                Assert.Equal("1 gal (U.S.)/h", new VolumeFlow(1, VolumeFlowUnit.UsGallonPerHour).ToString());
-                Assert.Equal("1 gal (U.S.)/min", new VolumeFlow(1, VolumeFlowUnit.UsGallonPerMinute).ToString());
-                Assert.Equal("1 gal (U.S.)/s", new VolumeFlow(1, VolumeFlowUnit.UsGallonPerSecond).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 af/d", new VolumeFlow(1, VolumeFlowUnit.AcreFootPerDay).ToString());
+            Assert.Equal("1 af/h", new VolumeFlow(1, VolumeFlowUnit.AcreFootPerHour).ToString());
+            Assert.Equal("1 af/m", new VolumeFlow(1, VolumeFlowUnit.AcreFootPerMinute).ToString());
+            Assert.Equal("1 af/s", new VolumeFlow(1, VolumeFlowUnit.AcreFootPerSecond).ToString());
+            Assert.Equal("1 cl/day", new VolumeFlow(1, VolumeFlowUnit.CentiliterPerDay).ToString());
+            Assert.Equal("1 cL/h", new VolumeFlow(1, VolumeFlowUnit.CentiliterPerHour).ToString());
+            Assert.Equal("1 cL/min", new VolumeFlow(1, VolumeFlowUnit.CentiliterPerMinute).ToString());
+            Assert.Equal("1 cL/s", new VolumeFlow(1, VolumeFlowUnit.CentiliterPerSecond).ToString());
+            Assert.Equal("1 cm³/min", new VolumeFlow(1, VolumeFlowUnit.CubicCentimeterPerMinute).ToString());
+            Assert.Equal("1 dm³/min", new VolumeFlow(1, VolumeFlowUnit.CubicDecimeterPerMinute).ToString());
+            Assert.Equal("1 ft³/h", new VolumeFlow(1, VolumeFlowUnit.CubicFootPerHour).ToString());
+            Assert.Equal("1 ft³/min", new VolumeFlow(1, VolumeFlowUnit.CubicFootPerMinute).ToString());
+            Assert.Equal("1 ft³/s", new VolumeFlow(1, VolumeFlowUnit.CubicFootPerSecond).ToString());
+            Assert.Equal("1 m³/d", new VolumeFlow(1, VolumeFlowUnit.CubicMeterPerDay).ToString());
+            Assert.Equal("1 m³/h", new VolumeFlow(1, VolumeFlowUnit.CubicMeterPerHour).ToString());
+            Assert.Equal("1 m³/min", new VolumeFlow(1, VolumeFlowUnit.CubicMeterPerMinute).ToString());
+            Assert.Equal("1 m³/s", new VolumeFlow(1, VolumeFlowUnit.CubicMeterPerSecond).ToString());
+            Assert.Equal("1 mm³/s", new VolumeFlow(1, VolumeFlowUnit.CubicMillimeterPerSecond).ToString());
+            Assert.Equal("1 cy/day", new VolumeFlow(1, VolumeFlowUnit.CubicYardPerDay).ToString());
+            Assert.Equal("1 yd³/h", new VolumeFlow(1, VolumeFlowUnit.CubicYardPerHour).ToString());
+            Assert.Equal("1 yd³/min", new VolumeFlow(1, VolumeFlowUnit.CubicYardPerMinute).ToString());
+            Assert.Equal("1 yd³/s", new VolumeFlow(1, VolumeFlowUnit.CubicYardPerSecond).ToString());
+            Assert.Equal("1 dal/day", new VolumeFlow(1, VolumeFlowUnit.DecaliterPerDay).ToString());
+            Assert.Equal("1 daL/h", new VolumeFlow(1, VolumeFlowUnit.DecaliterPerHour).ToString());
+            Assert.Equal("1 daL/min", new VolumeFlow(1, VolumeFlowUnit.DecaliterPerMinute).ToString());
+            Assert.Equal("1 daL/s", new VolumeFlow(1, VolumeFlowUnit.DecaliterPerSecond).ToString());
+            Assert.Equal("1 dl/day", new VolumeFlow(1, VolumeFlowUnit.DeciliterPerDay).ToString());
+            Assert.Equal("1 dL/h", new VolumeFlow(1, VolumeFlowUnit.DeciliterPerHour).ToString());
+            Assert.Equal("1 dL/min", new VolumeFlow(1, VolumeFlowUnit.DeciliterPerMinute).ToString());
+            Assert.Equal("1 dL/s", new VolumeFlow(1, VolumeFlowUnit.DeciliterPerSecond).ToString());
+            Assert.Equal("1 hl/day", new VolumeFlow(1, VolumeFlowUnit.HectoliterPerDay).ToString());
+            Assert.Equal("1 hL/h", new VolumeFlow(1, VolumeFlowUnit.HectoliterPerHour).ToString());
+            Assert.Equal("1 hL/min", new VolumeFlow(1, VolumeFlowUnit.HectoliterPerMinute).ToString());
+            Assert.Equal("1 hL/s", new VolumeFlow(1, VolumeFlowUnit.HectoliterPerSecond).ToString());
+            Assert.Equal("1 kl/day", new VolumeFlow(1, VolumeFlowUnit.KiloliterPerDay).ToString());
+            Assert.Equal("1 kL/h", new VolumeFlow(1, VolumeFlowUnit.KiloliterPerHour).ToString());
+            Assert.Equal("1 kL/min", new VolumeFlow(1, VolumeFlowUnit.KiloliterPerMinute).ToString());
+            Assert.Equal("1 kL/s", new VolumeFlow(1, VolumeFlowUnit.KiloliterPerSecond).ToString());
+            Assert.Equal("1 kgal (U.S.)/min", new VolumeFlow(1, VolumeFlowUnit.KilousGallonPerMinute).ToString());
+            Assert.Equal("1 l/day", new VolumeFlow(1, VolumeFlowUnit.LiterPerDay).ToString());
+            Assert.Equal("1 L/h", new VolumeFlow(1, VolumeFlowUnit.LiterPerHour).ToString());
+            Assert.Equal("1 L/min", new VolumeFlow(1, VolumeFlowUnit.LiterPerMinute).ToString());
+            Assert.Equal("1 L/s", new VolumeFlow(1, VolumeFlowUnit.LiterPerSecond).ToString());
+            Assert.Equal("1 Ml/day", new VolumeFlow(1, VolumeFlowUnit.MegaliterPerDay).ToString());
+            Assert.Equal("1 ML/h", new VolumeFlow(1, VolumeFlowUnit.MegaliterPerHour).ToString());
+            Assert.Equal("1 ML/min", new VolumeFlow(1, VolumeFlowUnit.MegaliterPerMinute).ToString());
+            Assert.Equal("1 ML/s", new VolumeFlow(1, VolumeFlowUnit.MegaliterPerSecond).ToString());
+            Assert.Equal("1 Mgal (U. K.)/d", new VolumeFlow(1, VolumeFlowUnit.MegaukGallonPerDay).ToString());
+            Assert.Equal("1 Mgal (imp.)/s", new VolumeFlow(1, VolumeFlowUnit.MegaukGallonPerSecond).ToString());
+            Assert.Equal("1 Mgpd", new VolumeFlow(1, VolumeFlowUnit.MegausGallonPerDay).ToString());
+            Assert.Equal("1 µl/day", new VolumeFlow(1, VolumeFlowUnit.MicroliterPerDay).ToString());
+            Assert.Equal("1 µL/h", new VolumeFlow(1, VolumeFlowUnit.MicroliterPerHour).ToString());
+            Assert.Equal("1 µL/min", new VolumeFlow(1, VolumeFlowUnit.MicroliterPerMinute).ToString());
+            Assert.Equal("1 µL/s", new VolumeFlow(1, VolumeFlowUnit.MicroliterPerSecond).ToString());
+            Assert.Equal("1 ml/day", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerDay).ToString());
+            Assert.Equal("1 mL/h", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerHour).ToString());
+            Assert.Equal("1 mL/min", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerMinute).ToString());
+            Assert.Equal("1 mL/s", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerSecond).ToString());
+            Assert.Equal("1 MGD", new VolumeFlow(1, VolumeFlowUnit.MillionUsGallonPerDay).ToString());
+            Assert.Equal("1 nl/day", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerDay).ToString());
+            Assert.Equal("1 nL/h", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerHour).ToString());
+            Assert.Equal("1 nL/min", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerMinute).ToString());
+            Assert.Equal("1 nL/s", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerSecond).ToString());
+            Assert.Equal("1 bbl/d", new VolumeFlow(1, VolumeFlowUnit.OilBarrelPerDay).ToString());
+            Assert.Equal("1 bbl/hr", new VolumeFlow(1, VolumeFlowUnit.OilBarrelPerHour).ToString());
+            Assert.Equal("1 bbl/min", new VolumeFlow(1, VolumeFlowUnit.OilBarrelPerMinute).ToString());
+            Assert.Equal("1 bbl/s", new VolumeFlow(1, VolumeFlowUnit.OilBarrelPerSecond).ToString());
+            Assert.Equal("1 gal (U. K.)/d", new VolumeFlow(1, VolumeFlowUnit.UkGallonPerDay).ToString());
+            Assert.Equal("1 gal (imp.)/h", new VolumeFlow(1, VolumeFlowUnit.UkGallonPerHour).ToString());
+            Assert.Equal("1 gal (imp.)/min", new VolumeFlow(1, VolumeFlowUnit.UkGallonPerMinute).ToString());
+            Assert.Equal("1 gal (imp.)/s", new VolumeFlow(1, VolumeFlowUnit.UkGallonPerSecond).ToString());
+            Assert.Equal("1 gpd", new VolumeFlow(1, VolumeFlowUnit.UsGallonPerDay).ToString());
+            Assert.Equal("1 gal (U.S.)/h", new VolumeFlow(1, VolumeFlowUnit.UsGallonPerHour).ToString());
+            Assert.Equal("1 gal (U.S.)/min", new VolumeFlow(1, VolumeFlowUnit.UsGallonPerMinute).ToString());
+            Assert.Equal("1 gal (U.S.)/s", new VolumeFlow(1, VolumeFlowUnit.UsGallonPerSecond).ToString());
         }
 
         [Fact]
@@ -5181,19 +5174,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 m³/s", new VolumeFlow(0.123456, VolumeFlowUnit.CubicMeterPerSecond).ToString("s1"));
-                Assert.Equal("0.12 m³/s", new VolumeFlow(0.123456, VolumeFlowUnit.CubicMeterPerSecond).ToString("s2"));
-                Assert.Equal("0.123 m³/s", new VolumeFlow(0.123456, VolumeFlowUnit.CubicMeterPerSecond).ToString("s3"));
-                Assert.Equal("0.1235 m³/s", new VolumeFlow(0.123456, VolumeFlowUnit.CubicMeterPerSecond).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 m³/s", new VolumeFlow(0.123456, VolumeFlowUnit.CubicMeterPerSecond).ToString("s1"));
+            Assert.Equal("0.12 m³/s", new VolumeFlow(0.123456, VolumeFlowUnit.CubicMeterPerSecond).ToString("s2"));
+            Assert.Equal("0.123 m³/s", new VolumeFlow(0.123456, VolumeFlowUnit.CubicMeterPerSecond).ToString("s3"));
+            Assert.Equal("0.1235 m³/s", new VolumeFlow(0.123456, VolumeFlowUnit.CubicMeterPerSecond).ToString("s4"));
         }
 
         [Fact]

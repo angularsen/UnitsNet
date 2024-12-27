@@ -1176,35 +1176,28 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 kgf·cm/m", new TorquePerLength(1, TorquePerLengthUnit.KilogramForceCentimeterPerMeter).ToString());
-                Assert.Equal("1 kgf·m/m", new TorquePerLength(1, TorquePerLengthUnit.KilogramForceMeterPerMeter).ToString());
-                Assert.Equal("1 kgf·mm/m", new TorquePerLength(1, TorquePerLengthUnit.KilogramForceMillimeterPerMeter).ToString());
-                Assert.Equal("1 kN·cm/m", new TorquePerLength(1, TorquePerLengthUnit.KilonewtonCentimeterPerMeter).ToString());
-                Assert.Equal("1 kN·m/m", new TorquePerLength(1, TorquePerLengthUnit.KilonewtonMeterPerMeter).ToString());
-                Assert.Equal("1 kN·mm/m", new TorquePerLength(1, TorquePerLengthUnit.KilonewtonMillimeterPerMeter).ToString());
-                Assert.Equal("1 kipf·ft/ft", new TorquePerLength(1, TorquePerLengthUnit.KilopoundForceFootPerFoot).ToString());
-                Assert.Equal("1 kipf·in/ft", new TorquePerLength(1, TorquePerLengthUnit.KilopoundForceInchPerFoot).ToString());
-                Assert.Equal("1 MN·cm/m", new TorquePerLength(1, TorquePerLengthUnit.MeganewtonCentimeterPerMeter).ToString());
-                Assert.Equal("1 MN·m/m", new TorquePerLength(1, TorquePerLengthUnit.MeganewtonMeterPerMeter).ToString());
-                Assert.Equal("1 MN·mm/m", new TorquePerLength(1, TorquePerLengthUnit.MeganewtonMillimeterPerMeter).ToString());
-                Assert.Equal("1 Mlbf·ft/ft", new TorquePerLength(1, TorquePerLengthUnit.MegapoundForceFootPerFoot).ToString());
-                Assert.Equal("1 Mlbf·in/ft", new TorquePerLength(1, TorquePerLengthUnit.MegapoundForceInchPerFoot).ToString());
-                Assert.Equal("1 N·cm/m", new TorquePerLength(1, TorquePerLengthUnit.NewtonCentimeterPerMeter).ToString());
-                Assert.Equal("1 N·m/m", new TorquePerLength(1, TorquePerLengthUnit.NewtonMeterPerMeter).ToString());
-                Assert.Equal("1 N·mm/m", new TorquePerLength(1, TorquePerLengthUnit.NewtonMillimeterPerMeter).ToString());
-                Assert.Equal("1 lbf·ft/ft", new TorquePerLength(1, TorquePerLengthUnit.PoundForceFootPerFoot).ToString());
-                Assert.Equal("1 lbf·in/ft", new TorquePerLength(1, TorquePerLengthUnit.PoundForceInchPerFoot).ToString());
-                Assert.Equal("1 tf·cm/m", new TorquePerLength(1, TorquePerLengthUnit.TonneForceCentimeterPerMeter).ToString());
-                Assert.Equal("1 tf·m/m", new TorquePerLength(1, TorquePerLengthUnit.TonneForceMeterPerMeter).ToString());
-                Assert.Equal("1 tf·mm/m", new TorquePerLength(1, TorquePerLengthUnit.TonneForceMillimeterPerMeter).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 kgf·cm/m", new TorquePerLength(1, TorquePerLengthUnit.KilogramForceCentimeterPerMeter).ToString());
+            Assert.Equal("1 kgf·m/m", new TorquePerLength(1, TorquePerLengthUnit.KilogramForceMeterPerMeter).ToString());
+            Assert.Equal("1 kgf·mm/m", new TorquePerLength(1, TorquePerLengthUnit.KilogramForceMillimeterPerMeter).ToString());
+            Assert.Equal("1 kN·cm/m", new TorquePerLength(1, TorquePerLengthUnit.KilonewtonCentimeterPerMeter).ToString());
+            Assert.Equal("1 kN·m/m", new TorquePerLength(1, TorquePerLengthUnit.KilonewtonMeterPerMeter).ToString());
+            Assert.Equal("1 kN·mm/m", new TorquePerLength(1, TorquePerLengthUnit.KilonewtonMillimeterPerMeter).ToString());
+            Assert.Equal("1 kipf·ft/ft", new TorquePerLength(1, TorquePerLengthUnit.KilopoundForceFootPerFoot).ToString());
+            Assert.Equal("1 kipf·in/ft", new TorquePerLength(1, TorquePerLengthUnit.KilopoundForceInchPerFoot).ToString());
+            Assert.Equal("1 MN·cm/m", new TorquePerLength(1, TorquePerLengthUnit.MeganewtonCentimeterPerMeter).ToString());
+            Assert.Equal("1 MN·m/m", new TorquePerLength(1, TorquePerLengthUnit.MeganewtonMeterPerMeter).ToString());
+            Assert.Equal("1 MN·mm/m", new TorquePerLength(1, TorquePerLengthUnit.MeganewtonMillimeterPerMeter).ToString());
+            Assert.Equal("1 Mlbf·ft/ft", new TorquePerLength(1, TorquePerLengthUnit.MegapoundForceFootPerFoot).ToString());
+            Assert.Equal("1 Mlbf·in/ft", new TorquePerLength(1, TorquePerLengthUnit.MegapoundForceInchPerFoot).ToString());
+            Assert.Equal("1 N·cm/m", new TorquePerLength(1, TorquePerLengthUnit.NewtonCentimeterPerMeter).ToString());
+            Assert.Equal("1 N·m/m", new TorquePerLength(1, TorquePerLengthUnit.NewtonMeterPerMeter).ToString());
+            Assert.Equal("1 N·mm/m", new TorquePerLength(1, TorquePerLengthUnit.NewtonMillimeterPerMeter).ToString());
+            Assert.Equal("1 lbf·ft/ft", new TorquePerLength(1, TorquePerLengthUnit.PoundForceFootPerFoot).ToString());
+            Assert.Equal("1 lbf·in/ft", new TorquePerLength(1, TorquePerLengthUnit.PoundForceInchPerFoot).ToString());
+            Assert.Equal("1 tf·cm/m", new TorquePerLength(1, TorquePerLengthUnit.TonneForceCentimeterPerMeter).ToString());
+            Assert.Equal("1 tf·m/m", new TorquePerLength(1, TorquePerLengthUnit.TonneForceMeterPerMeter).ToString());
+            Assert.Equal("1 tf·mm/m", new TorquePerLength(1, TorquePerLengthUnit.TonneForceMillimeterPerMeter).ToString());
         }
 
         [Fact]
@@ -1239,19 +1232,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 N·m/m", new TorquePerLength(0.123456, TorquePerLengthUnit.NewtonMeterPerMeter).ToString("s1"));
-                Assert.Equal("0.12 N·m/m", new TorquePerLength(0.123456, TorquePerLengthUnit.NewtonMeterPerMeter).ToString("s2"));
-                Assert.Equal("0.123 N·m/m", new TorquePerLength(0.123456, TorquePerLengthUnit.NewtonMeterPerMeter).ToString("s3"));
-                Assert.Equal("0.1235 N·m/m", new TorquePerLength(0.123456, TorquePerLengthUnit.NewtonMeterPerMeter).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 N·m/m", new TorquePerLength(0.123456, TorquePerLengthUnit.NewtonMeterPerMeter).ToString("s1"));
+            Assert.Equal("0.12 N·m/m", new TorquePerLength(0.123456, TorquePerLengthUnit.NewtonMeterPerMeter).ToString("s2"));
+            Assert.Equal("0.123 N·m/m", new TorquePerLength(0.123456, TorquePerLengthUnit.NewtonMeterPerMeter).ToString("s3"));
+            Assert.Equal("0.1235 N·m/m", new TorquePerLength(0.123456, TorquePerLengthUnit.NewtonMeterPerMeter).ToString("s4"));
         }
 
         [Fact]

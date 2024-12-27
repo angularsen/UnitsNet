@@ -1295,41 +1295,34 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentCulture;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
-            try {
-                Assert.Equal("1 hp(S)", new Power(1, PowerUnit.BoilerHorsepower).ToString());
-                Assert.Equal("1 Btu/h", new Power(1, PowerUnit.BritishThermalUnitPerHour).ToString());
-                Assert.Equal("1 daW", new Power(1, PowerUnit.Decawatt).ToString());
-                Assert.Equal("1 dW", new Power(1, PowerUnit.Deciwatt).ToString());
-                Assert.Equal("1 hp(E)", new Power(1, PowerUnit.ElectricalHorsepower).ToString());
-                Assert.Equal("1 fW", new Power(1, PowerUnit.Femtowatt).ToString());
-                Assert.Equal("1 GJ/h", new Power(1, PowerUnit.GigajoulePerHour).ToString());
-                Assert.Equal("1 GW", new Power(1, PowerUnit.Gigawatt).ToString());
-                Assert.Equal("1 hp(H)", new Power(1, PowerUnit.HydraulicHorsepower).ToString());
-                Assert.Equal("1 J/h", new Power(1, PowerUnit.JoulePerHour).ToString());
-                Assert.Equal("1 kBtu/h", new Power(1, PowerUnit.KilobritishThermalUnitPerHour).ToString());
-                Assert.Equal("1 kJ/h", new Power(1, PowerUnit.KilojoulePerHour).ToString());
-                Assert.Equal("1 kW", new Power(1, PowerUnit.Kilowatt).ToString());
-                Assert.Equal("1 hp(I)", new Power(1, PowerUnit.MechanicalHorsepower).ToString());
-                Assert.Equal("1 MBtu/h", new Power(1, PowerUnit.MegabritishThermalUnitPerHour).ToString());
-                Assert.Equal("1 MJ/h", new Power(1, PowerUnit.MegajoulePerHour).ToString());
-                Assert.Equal("1 MW", new Power(1, PowerUnit.Megawatt).ToString());
-                Assert.Equal("1 hp(M)", new Power(1, PowerUnit.MetricHorsepower).ToString());
-                Assert.Equal("1 µW", new Power(1, PowerUnit.Microwatt).ToString());
-                Assert.Equal("1 mJ/h", new Power(1, PowerUnit.MillijoulePerHour).ToString());
-                Assert.Equal("1 mW", new Power(1, PowerUnit.Milliwatt).ToString());
-                Assert.Equal("1 nW", new Power(1, PowerUnit.Nanowatt).ToString());
-                Assert.Equal("1 PW", new Power(1, PowerUnit.Petawatt).ToString());
-                Assert.Equal("1 pW", new Power(1, PowerUnit.Picowatt).ToString());
-                Assert.Equal("1 TW", new Power(1, PowerUnit.Terawatt).ToString());
-                Assert.Equal("1 TR", new Power(1, PowerUnit.TonOfRefrigeration).ToString());
-                Assert.Equal("1 W", new Power(1, PowerUnit.Watt).ToString());
-            }
-            finally
-            {
-                Thread.CurrentThread.CurrentCulture = prevCulture;
-            }
+            using var _ = new CultureScope("en-US");
+            Assert.Equal("1 hp(S)", new Power(1, PowerUnit.BoilerHorsepower).ToString());
+            Assert.Equal("1 Btu/h", new Power(1, PowerUnit.BritishThermalUnitPerHour).ToString());
+            Assert.Equal("1 daW", new Power(1, PowerUnit.Decawatt).ToString());
+            Assert.Equal("1 dW", new Power(1, PowerUnit.Deciwatt).ToString());
+            Assert.Equal("1 hp(E)", new Power(1, PowerUnit.ElectricalHorsepower).ToString());
+            Assert.Equal("1 fW", new Power(1, PowerUnit.Femtowatt).ToString());
+            Assert.Equal("1 GJ/h", new Power(1, PowerUnit.GigajoulePerHour).ToString());
+            Assert.Equal("1 GW", new Power(1, PowerUnit.Gigawatt).ToString());
+            Assert.Equal("1 hp(H)", new Power(1, PowerUnit.HydraulicHorsepower).ToString());
+            Assert.Equal("1 J/h", new Power(1, PowerUnit.JoulePerHour).ToString());
+            Assert.Equal("1 kBtu/h", new Power(1, PowerUnit.KilobritishThermalUnitPerHour).ToString());
+            Assert.Equal("1 kJ/h", new Power(1, PowerUnit.KilojoulePerHour).ToString());
+            Assert.Equal("1 kW", new Power(1, PowerUnit.Kilowatt).ToString());
+            Assert.Equal("1 hp(I)", new Power(1, PowerUnit.MechanicalHorsepower).ToString());
+            Assert.Equal("1 MBtu/h", new Power(1, PowerUnit.MegabritishThermalUnitPerHour).ToString());
+            Assert.Equal("1 MJ/h", new Power(1, PowerUnit.MegajoulePerHour).ToString());
+            Assert.Equal("1 MW", new Power(1, PowerUnit.Megawatt).ToString());
+            Assert.Equal("1 hp(M)", new Power(1, PowerUnit.MetricHorsepower).ToString());
+            Assert.Equal("1 µW", new Power(1, PowerUnit.Microwatt).ToString());
+            Assert.Equal("1 mJ/h", new Power(1, PowerUnit.MillijoulePerHour).ToString());
+            Assert.Equal("1 mW", new Power(1, PowerUnit.Milliwatt).ToString());
+            Assert.Equal("1 nW", new Power(1, PowerUnit.Nanowatt).ToString());
+            Assert.Equal("1 PW", new Power(1, PowerUnit.Petawatt).ToString());
+            Assert.Equal("1 pW", new Power(1, PowerUnit.Picowatt).ToString());
+            Assert.Equal("1 TW", new Power(1, PowerUnit.Terawatt).ToString());
+            Assert.Equal("1 TR", new Power(1, PowerUnit.TonOfRefrigeration).ToString());
+            Assert.Equal("1 W", new Power(1, PowerUnit.Watt).ToString());
         }
 
         [Fact]
@@ -1370,19 +1363,11 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentCulture;
-            try
-            {
-                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
-                Assert.Equal("0.1 W", new Power(0.123456m, PowerUnit.Watt).ToString("s1"));
-                Assert.Equal("0.12 W", new Power(0.123456m, PowerUnit.Watt).ToString("s2"));
-                Assert.Equal("0.123 W", new Power(0.123456m, PowerUnit.Watt).ToString("s3"));
-                Assert.Equal("0.1235 W", new Power(0.123456m, PowerUnit.Watt).ToString("s4"));
-            }
-            finally
-            {
-                CultureInfo.CurrentCulture = oldCulture;
-            }
+            var _ = new CultureScope(CultureInfo.InvariantCulture);
+            Assert.Equal("0.1 W", new Power(0.123456m, PowerUnit.Watt).ToString("s1"));
+            Assert.Equal("0.12 W", new Power(0.123456m, PowerUnit.Watt).ToString("s2"));
+            Assert.Equal("0.123 W", new Power(0.123456m, PowerUnit.Watt).ToString("s3"));
+            Assert.Equal("0.1235 W", new Power(0.123456m, PowerUnit.Watt).ToString("s4"));
         }
 
         [Fact]
