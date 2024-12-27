@@ -1903,5 +1903,10 @@
     "MilligraySquareDecimeter": 17,
     "MilligraySquareMeter": 11,
     "MilligraySquareMillimeter": 12
+  },
+  "VascularResistance": {
+    "DyneSecondPerCentimeterToTheFifth": 5,
+    "MegapascalSecondPerCubicMeter": 7,
+    "WoodUnit": 4
   }
 }
