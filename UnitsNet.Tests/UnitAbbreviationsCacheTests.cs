@@ -325,10 +325,10 @@ namespace UnitsNet.Tests
             var culture = AmericanCulture;
             var unit = AreaUnit.SquareMeter;
 
-            var cache1 = new UnitAbbreviationsCache();
+            var cache1 = UnitAbbreviationsCache.CreateDefault();
             cache1.MapUnitToAbbreviation(unit, culture, "m^2");
 
-            var cache2 = new UnitAbbreviationsCache();
+            var cache2 = UnitAbbreviationsCache.CreateDefault();
             cache2.MapUnitToAbbreviation(unit, culture, "m2");
 
             Assert.Equal(new[] { "m²", "m^2" }, cache1.GetUnitAbbreviations(unit, culture));
@@ -340,7 +340,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void MapUnitToAbbreviation_AddCustomUnit_DoesNotOverrideDefaultAbbreviationForAlreadyMappedUnits()
         {
-            var cache = new UnitAbbreviationsCache();
+            var cache = UnitAbbreviationsCache.CreateDefault();
             cache.MapUnitToAbbreviation(AreaUnit.SquareMeter, AmericanCulture, "m^2");
 
             Assert.Equal("m²", cache.GetDefaultAbbreviation(AreaUnit.SquareMeter, AmericanCulture));

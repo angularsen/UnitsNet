@@ -39,12 +39,10 @@ namespace UnitsNet
         private ConcurrentDictionary<AbbreviationMapKey, IReadOnlyList<string>> AbbreviationsMap { get; } = new();
 
         /// <summary>
-        ///     Create an instance of the cache and load all the abbreviations defined in the library.
+        ///     Create an empty instance of the cache, with no default abbreviations loaded.
         /// </summary>
-        // TODO Change this to create an empty cache in v6: https://github.com/angularsen/UnitsNet/issues/1200
-        [Obsolete("Use CreateDefault() instead to create an instance that loads the built-in units. The default ctor will change to create an empty cache in UnitsNet v6.")]
         public UnitAbbreviationsCache()
-            : this(new QuantityInfoLookup(Quantity.ByName.Values))
+            : this(new QuantityInfoLookup([]))
         {
         }
 
@@ -58,16 +56,6 @@ namespace UnitsNet
         {
             QuantityInfoLookup = quantityInfoLookup;
         }
-
-        /// <summary>
-        ///     Create an instance with empty cache.
-        /// </summary>
-        /// <remarks>
-        ///     Workaround until v6 changes the default ctor to create an empty cache.<br/>
-        /// </remarks>
-        /// <returns>Instance with empty cache.</returns>
-        // TODO Remove in v6: https://github.com/angularsen/UnitsNet/issues/1200
-        public static UnitAbbreviationsCache CreateEmpty() => new(new QuantityInfoLookup(new List<QuantityInfo>()));
 
         /// <summary>
         ///     Create an instance of the cache and load all the built-in unit abbreviations defined in the library.
