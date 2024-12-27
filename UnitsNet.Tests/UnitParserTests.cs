@@ -9,7 +9,7 @@ using Xunit;
 
 namespace UnitsNet.Tests
 {
-    [Collection(nameof(UnitAbbreviationsCacheFixture))]
+    [Collection(nameof(DisableParallelizationCollectionFixture))]
     public class UnitParserTests
     {
         [Theory]
