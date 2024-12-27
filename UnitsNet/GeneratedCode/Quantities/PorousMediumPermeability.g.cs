@@ -247,7 +247,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(PorousMediumPermeabilityUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -371,7 +371,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static PorousMediumPermeability Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<PorousMediumPermeability, PorousMediumPermeabilityUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<PorousMediumPermeability, PorousMediumPermeabilityUnit>(
                 str,
                 provider,
                 From);
@@ -402,7 +402,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out PorousMediumPermeability result)
         {
-            return QuantityParser.Default.TryParse<PorousMediumPermeability, PorousMediumPermeabilityUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<PorousMediumPermeability, PorousMediumPermeabilityUnit>(
                 str,
                 provider,
                 From,
@@ -435,7 +435,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static PorousMediumPermeabilityUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<PorousMediumPermeabilityUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<PorousMediumPermeabilityUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.PorousMediumPermeabilityUnit)"/>
@@ -456,7 +456,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out PorousMediumPermeabilityUnit unit)
         {
-            return UnitParser.Default.TryParse<PorousMediumPermeabilityUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<PorousMediumPermeabilityUnit>(str, provider, out unit);
         }
 
         #endregion

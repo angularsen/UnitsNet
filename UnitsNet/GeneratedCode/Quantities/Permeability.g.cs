@@ -215,7 +215,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(PermeabilityUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -299,7 +299,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static Permeability Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Permeability, PermeabilityUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<Permeability, PermeabilityUnit>(
                 str,
                 provider,
                 From);
@@ -330,7 +330,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out Permeability result)
         {
-            return QuantityParser.Default.TryParse<Permeability, PermeabilityUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<Permeability, PermeabilityUnit>(
                 str,
                 provider,
                 From,
@@ -363,7 +363,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static PermeabilityUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<PermeabilityUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<PermeabilityUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.PermeabilityUnit)"/>
@@ -384,7 +384,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out PermeabilityUnit unit)
         {
-            return UnitParser.Default.TryParse<PermeabilityUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<PermeabilityUnit>(str, provider, out unit);
         }
 
         #endregion

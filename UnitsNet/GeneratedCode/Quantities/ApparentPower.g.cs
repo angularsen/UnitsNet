@@ -252,7 +252,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(ApparentPowerUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -386,7 +386,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static ApparentPower Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<ApparentPower, ApparentPowerUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<ApparentPower, ApparentPowerUnit>(
                 str,
                 provider,
                 From);
@@ -417,7 +417,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out ApparentPower result)
         {
-            return QuantityParser.Default.TryParse<ApparentPower, ApparentPowerUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<ApparentPower, ApparentPowerUnit>(
                 str,
                 provider,
                 From,
@@ -450,7 +450,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static ApparentPowerUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<ApparentPowerUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<ApparentPowerUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.ApparentPowerUnit)"/>
@@ -471,7 +471,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out ApparentPowerUnit unit)
         {
-            return UnitParser.Default.TryParse<ApparentPowerUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<ApparentPowerUnit>(str, provider, out unit);
         }
 
         #endregion

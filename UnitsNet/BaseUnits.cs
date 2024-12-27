@@ -103,7 +103,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public override int GetHashCode()
         {
-#if NET 
+#if NET
             return HashCode.Combine(Length, Mass, Time, Current, Temperature, Amount, LuminousIntensity);
 #else
             return new {Length, Mass, Time, Current, Temperature, Amount, LuminousIntensity}.GetHashCode();
@@ -142,7 +142,7 @@ namespace UnitsNet
                 var sb = new StringBuilder();
 
                 string GetDefaultAbbreviation<TUnitType>(TUnitType? unitOrNull) where TUnitType : struct, Enum => unitOrNull is { } unit
-                    ? UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit)
+                    ? UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit)
                     : "N/A";
 
                 sb.AppendFormat("[Length]: {0}, ", GetDefaultAbbreviation(Length));
@@ -200,8 +200,8 @@ namespace UnitsNet
         ///     Gets a value indicating whether all base units are defined.
         /// </summary>
         /// <remarks>
-        ///     This property returns <c>true</c> if all seven base units 
-        ///     (Length, Mass, Time, Current, Temperature, Amount, and LuminousIntensity) 
+        ///     This property returns <c>true</c> if all seven base units
+        ///     (Length, Mass, Time, Current, Temperature, Amount, and LuminousIntensity)
         ///     are non-null; otherwise, it returns <c>false</c>.
         /// </remarks>
         public bool IsFullyDefined => Length is not null &&

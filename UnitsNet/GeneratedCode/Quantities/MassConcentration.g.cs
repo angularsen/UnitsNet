@@ -599,7 +599,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(MassConcentrationUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -1163,7 +1163,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static MassConcentration Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<MassConcentration, MassConcentrationUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<MassConcentration, MassConcentrationUnit>(
                 str,
                 provider,
                 From);
@@ -1194,7 +1194,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out MassConcentration result)
         {
-            return QuantityParser.Default.TryParse<MassConcentration, MassConcentrationUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<MassConcentration, MassConcentrationUnit>(
                 str,
                 provider,
                 From,
@@ -1227,7 +1227,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static MassConcentrationUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<MassConcentrationUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<MassConcentrationUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.MassConcentrationUnit)"/>
@@ -1248,7 +1248,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out MassConcentrationUnit unit)
         {
-            return UnitParser.Default.TryParse<MassConcentrationUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<MassConcentrationUnit>(str, provider, out unit);
         }
 
         #endregion

@@ -292,7 +292,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(JerkUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -476,7 +476,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static Jerk Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<Jerk, JerkUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<Jerk, JerkUnit>(
                 str,
                 provider,
                 From);
@@ -507,7 +507,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out Jerk result)
         {
-            return QuantityParser.Default.TryParse<Jerk, JerkUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<Jerk, JerkUnit>(
                 str,
                 provider,
                 From,
@@ -540,7 +540,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static JerkUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<JerkUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<JerkUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.JerkUnit)"/>
@@ -561,7 +561,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out JerkUnit unit)
         {
-            return UnitParser.Default.TryParse<JerkUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<JerkUnit>(str, provider, out unit);
         }
 
         #endregion

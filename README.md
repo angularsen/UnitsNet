@@ -230,9 +230,9 @@ if (Quantity.TryParse(typeof(Length), "3cm", out IQuantity quantity2)
 [UnitParser](UnitsNet/CustomCode/UnitParser.cs) parses unit abbreviation strings to unit enum values.
 
 ```c#
-Enum unit = UnitParser.Default.Parse("cm", typeof(LengthUnit)); // LengthUnit.Centimeter
+Enum unit = UnitsNetSetup.Default.UnitParser.Parse("cm", typeof(LengthUnit)); // LengthUnit.Centimeter
 
-if (UnitParser.Default.TryParse("cm", typeof(LengthUnit), out Enum unit2))
+if (UnitsNetSetup.Default.UnitParser.TryParse("cm", typeof(LengthUnit), out Enum unit2))
 {
     // Use unit2 as LengthUnit.Centimeter
 }
@@ -277,14 +277,16 @@ Read more at [Extending-with-Custom-Units](https://github.com/angularsen/UnitsNe
 #### Map between unit enum values and unit abbreviations
 ```c#
 // Map unit enum values to unit abbreviations
-UnitAbbreviationsCache.Default.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, "sm");
-UnitAbbreviationsCache.Default.GetDefaultAbbreviation(HowMuchUnit.Some); // "sm"
-UnitParser.Default.Parse<HowMuchUnit>("sm");  // HowMuchUnit.Some
+var unitAbbreviations = UnitsNetSetup.Default.UnitAbbreviations;
+unitAbbreviations.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, "sm");
+unitAbbreviations.GetDefaultAbbreviation(HowMuchUnit.Some); // "sm"
+
+UnitsNetSetup.Default.UnitParser.Parse<HowMuchUnit>("sm");  // HowMuchUnit.Some
 ```
 
 #### Convert between units of custom quantity
 ```c#
-var unitConverter = UnitConverter.Default;
+var unitConverter = UnitsNetSetup.Default.UnitConverter;
 unitConverter.SetConversionFunction<HowMuch>(HowMuchUnit.Lots, HowMuchUnit.Some, x => new HowMuch(x.Value * 2, HowMuchUnit.Some));
 unitConverter.SetConversionFunction<HowMuch>(HowMuchUnit.Tons, HowMuchUnit.Lots, x => new HowMuch(x.Value * 10, HowMuchUnit.Lots));
 unitConverter.SetConversionFunction<HowMuch>(HowMuchUnit.Tons, HowMuchUnit.Some, x => new HowMuch(x.Value * 20, HowMuchUnit.Some));
@@ -299,21 +301,30 @@ Console.WriteLine(Convert(HowMuchUnit.Tons)); // 10 tns
 ```
 
 #### Parse custom quantity
-[QuantityParser](UnitsNet/CustomCode/QuantityParser.cs) parses quantity strings to `IQuantity` by providing a `UnitAbbreviationsCache` with custom units and unit abbreviations.
+[QuantityParser](UnitsNet/CustomCode/QuantityParser.cs) parses quantity strings to `IQuantity` by mapping custom units to unit abbreviations in `UnitAbbreviationsCache`.
 
 ```c#
-// Alternatively, manipulate the global UnitAbbreviationsCache.Default.
-var unitAbbreviationsCache = new UnitAbbreviationsCache();
+// Map custom units to abbreviations
+var unitAbbreviationsCache = UnitsNetSetup.Default.UnitAbbreviations;
 unitAbbreviationsCache.MapUnitToAbbreviation(HowMuchUnit.Some, "sm");
 unitAbbreviationsCache.MapUnitToAbbreviation(HowMuchUnit.ATon, "tn");
 
-var quantityParser = new QuantityParser(unitAbbreviationsCache);
+var quantityParser = UnitsNetSetup.Default.QuantityParser;
 
-// 1 Some
+// "1 sm" => new HowMuch(1, HowMuchUnit.Some)
 HowMuch q = quantityParser.Parse<HowMuch, HowMuchUnit>(
     str: "1 sm",
     formatProvider: null,
     fromDelegate: (value, unit) => new HowMuch((double) value, unit));
+```
+
+```c#
+// Alternatively, create your own instances to not change the global singleton instances.
+var unitAbbreviationsCache = UnitAbbreviationsCache.CreateDefault(); // or .CreateEmpty()
+unitAbbreviationsCache.MapUnitToAbbreviation(HowMuchUnit.Some, "sm");
+unitAbbreviationsCache.MapUnitToAbbreviation(HowMuchUnit.ATon, "tn");
+
+var quantityParser = new QuantityParser(unitAbbreviationsCache);
 ```
 
 

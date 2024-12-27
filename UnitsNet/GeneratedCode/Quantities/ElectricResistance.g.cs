@@ -260,7 +260,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(ElectricResistanceUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -404,7 +404,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static ElectricResistance Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<ElectricResistance, ElectricResistanceUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<ElectricResistance, ElectricResistanceUnit>(
                 str,
                 provider,
                 From);
@@ -435,7 +435,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out ElectricResistance result)
         {
-            return QuantityParser.Default.TryParse<ElectricResistance, ElectricResistanceUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<ElectricResistance, ElectricResistanceUnit>(
                 str,
                 provider,
                 From,
@@ -468,7 +468,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static ElectricResistanceUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<ElectricResistanceUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<ElectricResistanceUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.ElectricResistanceUnit)"/>
@@ -489,7 +489,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out ElectricResistanceUnit unit)
         {
-            return UnitParser.Default.TryParse<ElectricResistanceUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<ElectricResistanceUnit>(str, provider, out unit);
         }
 
         #endregion

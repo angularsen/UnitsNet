@@ -804,7 +804,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(VolumeFlowUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit, provider);
         }
 
         #endregion
@@ -1628,7 +1628,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static VolumeFlow Parse(string str, IFormatProvider? provider)
         {
-            return QuantityParser.Default.Parse<VolumeFlow, VolumeFlowUnit>(
+            return UnitsNetSetup.Default.QuantityParser.Parse<VolumeFlow, VolumeFlowUnit>(
                 str,
                 provider,
                 From);
@@ -1659,7 +1659,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out VolumeFlow result)
         {
-            return QuantityParser.Default.TryParse<VolumeFlow, VolumeFlowUnit>(
+            return UnitsNetSetup.Default.QuantityParser.TryParse<VolumeFlow, VolumeFlowUnit>(
                 str,
                 provider,
                 From,
@@ -1692,7 +1692,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static VolumeFlowUnit ParseUnit(string str, IFormatProvider? provider)
         {
-            return UnitParser.Default.Parse<VolumeFlowUnit>(str, provider);
+            return UnitsNetSetup.Default.UnitParser.Parse<VolumeFlowUnit>(str, provider);
         }
 
         /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.VolumeFlowUnit)"/>
@@ -1713,7 +1713,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out VolumeFlowUnit unit)
         {
-            return UnitParser.Default.TryParse<VolumeFlowUnit>(str, provider, out unit);
+            return UnitsNetSetup.Default.UnitParser.TryParse<VolumeFlowUnit>(str, provider, out unit);
         }
 
         #endregion
