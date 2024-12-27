@@ -4,7 +4,6 @@
 using System;
 using System.Collections.Concurrent;
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using System.Reflection;
 using System.Linq;
 using UnitsNet.InternalHelpers;
@@ -35,13 +34,6 @@ namespace UnitsNet
     /// </summary>
     public sealed class UnitConverter
     {
-        /// <summary>
-        /// The static instance used by Units.NET to convert between units. Modify this to add/remove conversion functions at runtime, such
-        /// as adding your own third-party units and quantities to convert between.
-        /// </summary>
-        [Obsolete("Use UnitsNetSetup.Default.UnitConverter instead.")]
-        public static UnitConverter Default => UnitsNetSetup.Default.UnitConverter;
-
         /// <summary>
         /// Creates a new <see cref="UnitConverter"/> instance.
         /// </summary>

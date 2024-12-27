@@ -13,19 +13,12 @@ namespace UnitsNet
 {
     /// <summary>
     ///     Parses units given a unit abbreviations cache.
-    ///     The static instance <see cref="Default"/> is used internally to parse quantities and units using the
-    ///     default abbreviations cache for all units and abbreviations defined in the library.
+    ///     A static instance <see cref="UnitsNetSetup"/>.<see cref="UnitsNetSetup.Default"/>.<see cref="UnitsNetSetup.UnitParser"/> is used internally
+    ///     to parse quantities and units using the default abbreviations cache for all units and abbreviations defined in the library.
     /// </summary>
     public sealed class UnitParser
     {
         private readonly UnitAbbreviationsCache _unitAbbreviationsCache;
-
-        /// <summary>
-        ///     The default static instance used internally to parse quantities and units using the
-        ///     default abbreviations cache for all units and abbreviations defined in the library.
-        /// </summary>
-        [Obsolete("Use UnitsNetSetup.Default.UnitParser instead.")]
-        public static UnitParser Default => UnitsNetSetup.Default.UnitParser;
 
         /// <summary>
         ///     Create a parser using the given unit abbreviations cache.
@@ -205,7 +198,7 @@ namespace UnitsNet
             {
                 return false;
             }
-        
+
             unit = matches[0].Unit;
             return true;
         }
